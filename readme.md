@@ -1,6 +1,6 @@
 <div align="center">
   <h1>Knowledge</h1>
-  <p>Personnal bookmarks</p>
+  <p>Personal bookmarks</p>
 </div>
 <br>
 
@@ -227,7 +227,7 @@ fly deploy \
 
 #### Notes
 
-My personnal Knowledge Base is inspired and extract resources from the Knowledge Base of François-Paul Servant namely [Semanlink](http://www.semanlink.net/sl/home).
+My personal Knowledge Base is inspired and extract resources from the Knowledge Base of François-Paul Servant namely [Semanlink](http://www.semanlink.net/sl/home).
 
 
 #### License
