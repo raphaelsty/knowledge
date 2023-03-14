@@ -176,6 +176,14 @@ We will need to set the Github Page from the repository configurations (fork).
 
 ![Alt text](img/pages.png)
 
+> ⚠️ After creating your github page, you will have to modify the `origins` field of the `api/api.py` file:
+
+```python
+origins = [
+    "https://raphaelsty.github.io", # Put your own github page name here.
+]
+```
+
 #### Costs
 
 >  ⚠️ To avoid any financial incident, remember to define a `hard_limit` and a `soft_limit` which will bounder the number of instance Fly.io will deploy to answer to peak demands and therefore limit the costs. Those parameters are available in the `fly.toml` file.
