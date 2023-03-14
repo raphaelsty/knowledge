@@ -68,15 +68,15 @@ class Knowledge:
 knowledge = Knowledge()
 
 
-async def async_chat(content):
+async def async_chat(query: str, content: str):
     """Re-rank the documents using ChatGPT."""
     response = await openai.ChatCompletion.acreate(
         model="gpt-3.5-turbo",
         messages=[
             {
                 "role": "system",
-                "content": """
-                You are knowledgable personnal assitant, based on a query, will recommend the best resources from the set of retrieved documents. You will write for the top 3 recommended resources their title, a comprehensive and short description and their url. Rely only on the set of documents provided.
+                "content": f"""
+                You are knowledgable personnal assitant, based on the input query {query}, you will recommend the best resources from the set of retrieved documents. You will write for the top 3 recommended resources their title, a comprehensive and short description and their url. Rely on the set of documents provided and on your knowledge.
                 """,
             },
             {"role": "user", "content": content},
@@ -156,4 +156,4 @@ async def chat(k_tags: int, q: str):
         )
         content += "url: " + document["url"] + "\n\n"
     content = "title: ".join(content[:3000].split("title:")[:-1])
-    return StreamingResponse(async_chat(content), media_type="text/plain")
+    return StreamingResponse(async_chat(query=q, content=content), media_type="text/plain")
