@@ -1,0 +1,279 @@
+<body>
+    <div id="searchbox">
+        <div id="backsearch"></div>
+        <div id="ask"></div>
+        <div id="documents"></div>
+    </div>
+    <div class="graph" id="graph"></div>
+
+</body>
+
+  <script type="text/jsx">
+    const { useRef } = React;
+
+    class Search extends React.Component {
+
+      constructor(props) {
+          super(props);
+          this.state = { query: "", node: null, k: 20};
+          this.timer = null;
+          this.handleChangeText = this.handleChangeText.bind(this);
+          this.handleHoverNode = this.handleHoverNode.bind(this);
+          this.handleClickTag = this.handleClickTag.bind(this);
+          this.search = this.search.bind(this);
+          this.plot = this.plot.bind(this);
+          this.highlight = this.highlight.bind(this);
+          this.handleClickDate = this.handleClickDate.bind(this);
+          this.chat = this.chat.bind(this);
+
+          // Get query and node from URL
+          const params = new URLSearchParams(window.location.search);
+          const query = params.get("query") || "";
+          const node = params.get("node") || null;
+          if (query.length > 0) {
+            this.state.query = query;
+            this.handlePlot(query, this.state.k, false);
+            if (node !== null) {
+                this.state.node = node;
+                this.search(query + " " + node, this.state.k);
+            }
+          }
+
+      }
+
+      // Plot graph 600 ms after used ended typing.
+      handlePlot = (query, k, timer=true) => {
+          // Clears running timer and starts a new one each time the user types
+          this.search(query, k);
+          clearTimeout(this.timer);
+          if (timer){
+            this.timer = setTimeout(() => {
+                this.plot(query, k);
+            }, 600);
+          } else {
+            // If timer is false, plot immediately, useful when loading from URL.
+            this.plot(query, k);
+          }
+      }
+
+      // Render texts from ChatGPT.
+      chat() {
+
+        // Get active query and node.
+        let query = this.state.query;
+        if (this.state.node !== null) {
+            query = query + " " + this.state.node;
+        }
+
+        // Clear chat and show it.
+        let chat = document.getElementById("chat")
+        if (chat !== null) {
+            chat.innerHTML = "";
+            chat.hidden = false;
+        }
+
+        const response = document.getElementById("chat");
+
+        if (query.length > 3){
+            fetch('https://knowledge.fly.dev/chat/20/' + query.replace("/", ""))
+            .then(response => {
+                // Stream response.
+                const reader = response.body.getReader();
+                return new ReadableStream({
+                start(controller) {
+                    function push() {
+                    reader.read().then(({ done, value }) => {
+                        if (done) {
+                        controller.close();
+                        return;
+                        }
+                        controller.enqueue(value);
+                        push();
+                    });
+                    }
+                    push();
+                }
+                });
+            })
+            .then(stream => {
+                const decoder = new TextDecoder();
+                const reader = stream.getReader();
+                function read() {
+                reader.read().then(({ done, value }) => {
+                    if (done) {
+                    console.log("Stream reading complete");
+                    return;
+                    }
+                    let text = decoder.decode(value);
+                    ReactDOM.render(
+                        <div id="chat">
+                            {text}
+                        </div>,
+                        document.getElementById('ask')
+                    );
+                    read();
+                });
+                }
+                read();
+            })
+            .catch(error => {
+                console.error(error);
+            });
+        }
+        this.search(query, this.state.k, false, false);
+      }
+
+      // Search for documents when user type.
+      handleChangeText(event) {
+        this.setState({ query: event.target.value.toLowerCase(), node: null });
+        window.history.pushState({}, null, `?query=${encodeURIComponent(event.target.value.toLowerCase())}`);
+        if (event.target.value.trim().length > 0) {
+            this.handlePlot(event.target.value.toLowerCase(), this.state.k);
+        }
+      }
+
+      // Update search content when getting over a node.
+      handleHoverNode(node) {
+        if (node !== null) {
+            this.setState({ node: node.id });
+            this.search(this.state.query + " " + node.id, this.state.k);
+            window.history.pushState({}, null, `?query=${encodeURIComponent(this.state.query)}&node=${encodeURIComponent(node.id)}`);
+        }
+      }
+
+    // Higligh content from text that match the query.
+    highlight(text) {
+        if (this.state.query.length > 1) {
+            let keywords = this.state.query;
+            if (this.state.node !== null) {
+                keywords = keywords + " " + this.state.node;
+            }
+            keywords = keywords.split(/\s/);
+            keywords = keywords.filter((token) => {
+                return token.length > 2;
+            });
+            const setKeywords =  new Set(keywords)
+            const parts = text.split(new RegExp(`(${keywords.join("|")})`, 'gi'));
+            return <div id="inline">{parts.map(part => setKeywords.has(part.toLowerCase()) ? <div id="highlight">{part}</div> : part)}</div>;
+        } else {
+            return <div id="inline">{text}</div>;
+        }
+    }
+
+    // Sort content after a click on date.
+    handleClickDate(){
+        this.search(this.state.query, this.state.k, true)
+    }
+
+    // Add tag to query on click.
+    handleClickTag(tag){
+        let query = this.state.query + " " + tag
+        this.setState({ query: query});
+        document.getElementById("search").value = query;
+        this.handlePlot(query, this.state.k);
+    }
+
+    search(query, k, sort = false, hide = true) {
+        let chat = document.getElementById("chat")
+        if (hide & chat !== null) {
+            chat.hidden = true;
+        }
+
+        fetch("https://knowledge.fly.dev/search/" + sort.toString() + "/"  + this.state.node + "/" + k.toString() + "/" + query.replace("/", "")).then(res => res.json()).then(data => {
+                ReactDOM.render(
+                    <div>
+                    {Object.entries(data["documents"]).map((document, _) =>
+                        <div id="document">
+                            <a class="title" href={document[1]["url"]} target="_blank">{this.highlight(document[1]["title"])}</a>
+                            <div id="date" onClick={() => this.handleClickDate()}>{this.highlight(document[1]["date"])}</div>
+                            <div id="summary">{this.highlight(document[1]["summary"])}</div>
+                            <div id="tags">
+                                {Object.entries(document[1]["tags"].concat(document[1]["extra-tags"])).map((tag, _) =>
+                                    <div id="tag" onClick={() => this.handleClickTag(tag[1])}>
+                                        {this.highlight(tag[1])}
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                        )}
+                    </div>,
+                    document.getElementById('documents')
+                );
+            });
+        }
+
+
+      plot(query, k) {
+          fetch("https://knowledge.fly.dev/plot/" + k.toString() + "/" + query.replace("/", "")).then(res => res.json()).then(data => {
+              ReactDOM.render(
+                  <ForceGraph3D
+                      graphData={data}
+                      backgroundColor="#131317"
+                      width={window.innerWidth / 2}
+                      height={window.innerHeight}
+                      showNavInfo={false}
+                      nodeAutoColorBy="group"
+                      linkOpacity={0.6}
+                      linkWidth={0.1}
+                      linkResolution={10}
+                      linkDirectionalParticleColor={() => "#FFFFFF"}
+                      linkDirectionalParticles={1}
+                      linkDirectionalParticleWidth={0.2}
+                      linkDirectionalParticleResolution={8}
+                      linkColor="#FFFFFF"
+
+                      linkThreeObjectExtend={true}
+                      linkThreeObject={link => {
+                          // extend link with text sprite
+                          const sprite = new SpriteText(`${link.relation}`);
+                          sprite.color = '#FFFFFF';
+                          sprite.textHeight = 2;
+                          sprite.fontSize = 0;
+                          sprite.fontFace = "Futura";
+                          return sprite;
+                      }}
+                      linkPositionUpdate={(sprite, { start, end }) => {
+                          const middlePos = Object.assign(...['x', 'y', 'z'].map(c => ({
+                              [c]: start[c] + (end[c] - start[c]) / 2 // calc middle point
+                          })));
+                          // Position sprite
+                          Object.assign(sprite.position, middlePos);
+                      }}
+                      nodeThreeObject={node => {
+                          const sprite = new SpriteText(node.id);
+                          sprite.color = node.color;
+                          sprite.textHeight = 4;
+                          sprite.fontSize = 50;
+                          sprite.fontFace = "Futura";
+                          return sprite;
+
+                      }}
+                      onNodeHover={node => { this.handleHoverNode(node) }}
+                    />, document.getElementById('graph')
+              );
+          });
+      }
+
+      render() {
+          return (
+              <React.Fragment>
+                <input id="search" type="textarea" placeholder="Neural Search" value={this.state.query} onChange={this.handleChangeText} autoFocus/>
+                <button class="ask" role="button" onClick={this.chat}>Ask</button>
+              </React.Fragment>
+          );
+      }
+  }
+
+  const root = ReactDOM.createRoot(document.getElementById('backsearch'));
+  root.render(<Search />);
+
+  </script>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <script src="https://unpkg.com/react/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/babel-standalone"></script>
+  <script src="https://unpkg.com/three"></script>
+  <script src="https://unpkg.com/three-spritetext"></script>
+  <script src="https://unpkg.com/react-force-graph-3d"></script>
+  <!--<script src="../../src/packages/react-force-graph-2d/dist/react-force-graph-2d.js"></script>-->

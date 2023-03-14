@@ -1,0 +1,16 @@
+beautifulsoup4 == 4.9.3
+lxml == 4.9.2
+pandas == 1.5.3
+requests == 2.27.1
+rdflib == 6.1.1
+cherche == 1.0.1
+networkx == 2.8.5
+uvicorn == 0.17.5
+fastapi == 0.74.0
+pydantic == 1.9.0
+python-multipart == 0.0.5
+pyyaml_env_tag == 0.1
+pyzotero == 1.5.5
+scikit-learn == 1.1.1
+openai == 0.27.0
+orjson == 3.8.7

@@ -1,0 +1,158 @@
+body {
+    background-color: #131317;
+}
+
+#graph {
+    position: fixed;
+    top: 0%;
+    width: 50%;
+    margin-left: 50%;
+
+}
+
+#search {
+    padding-left: 20px;
+    position: fixed;
+    float: left;
+    width: 44%;
+    margin-left: 2%;
+    top: 1%;
+    background-color: #1E1E1E;
+    border-width: 0%;
+    color: #FFFFFF;
+    font-family: 'Futura', sans-serif;
+    font-weight:normal;
+    font-size: 15px;
+    height: 3%;
+    outline-width: 0;
+    box-shadow: none;
+    border-width: 0;
+    vertical-align: bottom;
+
+}
+
+.ask {
+    position: fixed;
+    float: left;
+    height: 3%;
+    top: 1%;
+    margin-left: 47%;
+    background-color: #131317;
+    border-radius: 8px;
+    border-width: 0;
+    color: #919191;
+    cursor: pointer;
+    font-family: 'Futura', sans-serif;
+    font-weight: lighter;
+    font-size: 12px;
+    padding: 3px 10px;
+    text-align: center;
+    vertical-align: bottom
+}
+
+
+#chat {
+    position: flex;
+    width: 47%;
+    margin-left: 2%;
+    margin-top: 60px;
+    font-size: 14px;
+    color: #919191;
+    font-family: 'Futura', sans-serif;
+    font-weight: lighter;
+    font-style: italic;
+    text-align: justify;
+    white-space: pre-line;
+}
+
+
+*:focus {
+    outline: none;
+}
+
+#documents {
+    position: flex;
+    left: 0%;
+    width: 47%;
+    margin-top: 60px;
+    margin-left: 2%;
+    font-size: 1vw;
+    color: #FFFFFF;
+    font-family: 'Futura', sans-serif;
+    font-weight: bolder;
+    overflow: scroll;
+    background-color: #131317;
+}
+
+#document{
+    position: flex;
+    background-color: #131317;
+    margin-bottom: 7%;
+}
+
+#title {
+    position: fixed;
+    font-size: 15px;
+    background-color: #131317;
+}
+
+#date {
+    position: flex;
+    font-size: 11px;
+    font-family: 'Futura', sans-serif;
+    color: #ACADA8 ;
+    font-weight: lighter;
+    margin-top: 1%;
+    cursor: pointer;
+}
+
+#tags {
+    position: flex;
+    margin-top: 2%;
+    font-size: 14px;
+    color: #ACADA8 ;
+    font-family: 'Futura', sans-serif;
+    font-weight: lighter;
+    font-style: italic;
+    text-align: justify;
+    background-color: #131317;
+    max-height: 10%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#tag {
+    margin-right: 1%;
+    cursor: pointer;
+    display:inline;
+}
+
+#summary {
+    position: flex;
+    margin-top: 2%;
+    font-size: 14px;
+    color: #CCCDC6;
+    font-family: 'Futura', sans-serif;
+    font-weight: lighter;
+    text-align: justify;
+    background-color: #131317;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+a {
+    color: #FFFFFF;
+    font-family: 'Futura', sans-serif;
+    font-size: 15px;
+    font-weight: lighter;
+    text-decoration: none;
+  }
+
+#highlight {
+    color: #19bc8e;
+    display: inline;
+}
+
+#inline {
+    display: inline;
+}
