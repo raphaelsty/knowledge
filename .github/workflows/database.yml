@@ -27,6 +27,8 @@ jobs:
           TWITTER_TOKEN: ${{ secrets.TWITTER_TOKEN }}
           HACKERNEWS_PASSWORD: ${{ secrets.HACKERNEWS_PASSWORD }}
           HACKERNEWS_USERNAME: ${{ secrets.HACKERNEWS_USERNAME }}
+          ZOTERO_API_KEY: ${{ secrets.ZOTERO_API_KEY }}
+          ZOTERO_LIBRARY_ID: ${{ secrets.ZOTERO_LIBRARY_ID }}
         run: python run.py
 
       - name: commit files
