@@ -142606,5 +142606,269 @@
     {
         "head": "computer science - artificial intelligence",
         "tail": "computer science - computation and language"
+    },
+    {
+        "head": "bookmarks",
+        "tail": "knowledge-base"
+    },
+    {
+        "head": "bookmarks",
+        "tail": "zotero"
+    },
+    {
+        "head": "bookmarks",
+        "tail": "python"
+    },
+    {
+        "head": "bookmarks",
+        "tail": "search-engine"
+    },
+    {
+        "head": "bookmarks",
+        "tail": "hacker-news"
+    },
+    {
+        "head": "knowledge-base",
+        "tail": "zotero"
+    },
+    {
+        "head": "knowledge-base",
+        "tail": "search-engine"
+    },
+    {
+        "head": "knowledge-base",
+        "tail": "hacker-news"
+    },
+    {
+        "head": "zotero",
+        "tail": "python"
+    },
+    {
+        "head": "zotero",
+        "tail": "search-engine"
+    },
+    {
+        "head": "zotero",
+        "tail": "hacker-news"
+    },
+    {
+        "head": "python",
+        "tail": "hacker-news"
+    },
+    {
+        "head": "search-engine",
+        "tail": "hacker-news"
+    },
+    {
+        "head": "async-programming",
+        "tail": "database-driver"
+    },
+    {
+        "head": "async-programming",
+        "tail": "python-3"
+    },
+    {
+        "head": "async-programming",
+        "tail": "high-performance"
+    },
+    {
+        "head": "async-programming",
+        "tail": "postgresql"
+    },
+    {
+        "head": "async-programming",
+        "tail": "asyncio"
+    },
+    {
+        "head": "async-programming",
+        "tail": "python"
+    },
+    {
+        "head": "async-programming",
+        "tail": "async-python"
+    },
+    {
+        "head": "database-driver",
+        "tail": "python-3"
+    },
+    {
+        "head": "database-driver",
+        "tail": "high-performance"
+    },
+    {
+        "head": "database-driver",
+        "tail": "postgresql"
+    },
+    {
+        "head": "database-driver",
+        "tail": "asyncio"
+    },
+    {
+        "head": "database-driver",
+        "tail": "python"
+    },
+    {
+        "head": "database-driver",
+        "tail": "async-python"
+    },
+    {
+        "head": "python-3",
+        "tail": "high-performance"
+    },
+    {
+        "head": "python-3",
+        "tail": "asyncio"
+    },
+    {
+        "head": "python-3",
+        "tail": "async-python"
+    },
+    {
+        "head": "high-performance",
+        "tail": "postgresql"
+    },
+    {
+        "head": "high-performance",
+        "tail": "asyncio"
+    },
+    {
+        "head": "high-performance",
+        "tail": "python"
+    },
+    {
+        "head": "high-performance",
+        "tail": "async-python"
+    },
+    {
+        "head": "postgresql",
+        "tail": "async-python"
+    },
+    {
+        "head": "asyncio",
+        "tail": "async-python"
+    },
+    {
+        "head": "python",
+        "tail": "async-python"
+    },
+    {
+        "head": "python-library",
+        "tail": "infrastructure"
+    },
+    {
+        "head": "python-library",
+        "tail": "webdev"
+    },
+    {
+        "head": "python-library",
+        "tail": "open-source"
+    },
+    {
+        "head": "python-library",
+        "tail": "fullstack"
+    },
+    {
+        "head": "python-library",
+        "tail": "web"
+    },
+    {
+        "head": "python-library",
+        "tail": "framework"
+    },
+    {
+        "head": "infrastructure",
+        "tail": "webdev"
+    },
+    {
+        "head": "infrastructure",
+        "tail": "open-source"
+    },
+    {
+        "head": "infrastructure",
+        "tail": "fullstack"
+    },
+    {
+        "head": "infrastructure",
+        "tail": "python"
+    },
+    {
+        "head": "infrastructure",
+        "tail": "python3"
+    },
+    {
+        "head": "infrastructure",
+        "tail": "web"
+    },
+    {
+        "head": "infrastructure",
+        "tail": "framework"
+    },
+    {
+        "head": "webdev",
+        "tail": "open-source"
+    },
+    {
+        "head": "webdev",
+        "tail": "fullstack"
+    },
+    {
+        "head": "webdev",
+        "tail": "python"
+    },
+    {
+        "head": "webdev",
+        "tail": "python3"
+    },
+    {
+        "head": "webdev",
+        "tail": "web"
+    },
+    {
+        "head": "webdev",
+        "tail": "framework"
+    },
+    {
+        "head": "open-source",
+        "tail": "fullstack"
+    },
+    {
+        "head": "open-source",
+        "tail": "python3"
+    },
+    {
+        "head": "open-source",
+        "tail": "web"
+    },
+    {
+        "head": "open-source",
+        "tail": "framework"
+    },
+    {
+        "head": "fullstack",
+        "tail": "python"
+    },
+    {
+        "head": "fullstack",
+        "tail": "python3"
+    },
+    {
+        "head": "fullstack",
+        "tail": "web"
+    },
+    {
+        "head": "fullstack",
+        "tail": "framework"
+    },
+    {
+        "head": "python3",
+        "tail": "web"
+    },
+    {
+        "head": "python3",
+        "tail": "framework"
+    },
+    {
+        "head": "web",
+        "tail": "framework"
     }
 ]

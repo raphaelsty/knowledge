@@ -29951,5 +29951,63 @@
         "title": "[1909.04164] Knowledge Enhanced Contextual Word Representations",
         "summary": "Contextual word representations, typically trained on unstructured, unlabeled\ntext, do not contain any explicit grounding to real world entities and are\noften unable to remember facts about those entities. We propose a general\nmethod to embed multiple knowledge bases (KBs) into large scale models, and\nthereby enhance their representations with structured, human-curated knowledge.\nFor each KB, we first use an integrated entity linker to retrieve relevant\nentity embeddings, then update contextual word representations via a form of\nword-to-entity attention. In contrast to previous approaches, the entity\nlinkers and self-supervised language modeling objective are jointly trained\nend-to-end in a multitask setting that combines a small amount of entity\nlinking supervision with a large amount of raw text. After integrating WordNet\nand a subset of Wikipedia into BERT, the knowledge enhanced BERT (KnowBert)\ndemonstrates improved perplexity, ability to recall facts as measured in a\nprobing task and downstream performance on relationship extraction, entity\ntyping, and word sense disambiguation. KnowBert's runtime is comparable to\nBERT's and it scales to large KBs.",
         "date": "2019-09-09"
+    },
+    "https://github.com/raphaelsty/knowledge": {
+        "extra-tags": [],
+        "date": "2023-02-22",
+        "title": "knowledge",
+        "summary": "Open-source personal bookmarks search engine",
+        "tags": [
+            "bookmarks",
+            "github",
+            "twitter",
+            "knowledge-base",
+            "zotero",
+            "python",
+            "search-engine",
+            "hacker-news"
+        ]
+    },
+    "https://github.com/MagicStack/asyncpg": {
+        "extra-tags": [],
+        "date": "2016-07-19",
+        "title": "asyncpg",
+        "summary": "A fast PostgreSQL Database Client Library for Python/asyncio.",
+        "tags": [
+            "async-programming",
+            "database-driver",
+            "python-3",
+            "high-performance",
+            "postgresql",
+            "asyncio",
+            "python",
+            "async-python"
+        ]
+    },
+    "https://github.com/pynecone-io/pynecone": {
+        "extra-tags": [],
+        "date": "2022-10-25",
+        "title": "pynecone",
+        "summary": "\ud83d\udd78 Web apps in pure Python \ud83d\udc0d",
+        "tags": [
+            "python-library",
+            "infrastructure",
+            "webdev",
+            "open-source",
+            "fullstack",
+            "python",
+            "python3",
+            "web",
+            "framework"
+        ]
+    },
+    "https://crfm.stanford.edu/2023/03/13/alpaca.html": {
+        "extra-tags": [],
+        "title": "Hackernews Alpaca: A strong open-source instruction-following model (stanford.edu)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2023-03-14"
     }
 }
