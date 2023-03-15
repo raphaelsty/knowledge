@@ -30009,5 +30009,68 @@
         ],
         "summary": "",
         "date": "2023-03-14"
+    },
+    "https://twitter.com/hyperfp/status/1635791091709386752": {
+        "extra-tags": [],
+        "date": "2023-03-14",
+        "title": "Twitter @hyperfp",
+        "summary": "@raphaelsrty the same day as GPT-4 release?",
+        "tags": [
+            "twitter",
+            "gpt-4"
+        ]
+    },
+    "https://twitter.com/fishnets88/status/1635653726403796993": {
+        "extra-tags": [],
+        "date": "2023-03-14",
+        "title": "Twitter @fishnets88",
+        "summary": "@ceyda_cinarel For phrases -&gt; sense2vec. \nFor bad spelling -&gt; bytepair or floret \nFor sentences -&gt; sentence-transformers\nJust words: spaCy. \n\nI wrote a library that makes it pretty easy to just use any of them: \n\nhttps://t.co/tTK7QASm4U",
+        "tags": [
+            "twitter"
+        ]
+    },
+    "https://github.com/tatsu-lab/stanford_alpaca": {
+        "extra-tags": [],
+        "date": "2023-03-10",
+        "title": "stanford_alpaca",
+        "summary": "Code and documentation to train Stanford's Alpaca models, and generate the data.",
+        "tags": [
+            "deep-learning",
+            "instruction-following",
+            "language-model",
+            "python"
+        ]
+    },
+    "https://github.com/openrlbenchmark/openrlbenchmark": {
+        "extra-tags": [],
+        "date": "2022-05-10",
+        "title": "openrlbenchmark",
+        "summary": "",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/jolibrain/vicreg-loss": {
+        "extra-tags": [
+            "pytorch",
+            "loss"
+        ],
+        "date": "2023-03-14",
+        "title": "vicreg-loss",
+        "summary": "Pytorch implementation of the VICReg loss.",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://cdn.openai.com/papers/gpt-4.pdf": {
+        "extra-tags": [],
+        "title": "",
+        "summary": "",
+        "date": "2023-03-14",
+        "tags": [
+            "gpt4",
+            "openai",
+            "paper"
+        ]
     }
 }

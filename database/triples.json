@@ -142870,5 +142870,29 @@
     {
         "head": "web",
         "tail": "framework"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "instruction-following"
+    },
+    {
+        "head": "instruction-following",
+        "tail": "language-model"
+    },
+    {
+        "head": "instruction-following",
+        "tail": "python"
+    },
+    {
+        "head": "gpt4",
+        "tail": "openai"
+    },
+    {
+        "head": "gpt4",
+        "tail": "paper"
+    },
+    {
+        "head": "openai",
+        "tail": "paper"
     }
 ]
