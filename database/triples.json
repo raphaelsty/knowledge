@@ -142894,5 +142894,21 @@
     {
         "head": "openai",
         "tail": "paper"
+    },
+    {
+        "head": "typescript",
+        "tail": "avro"
+    },
+    {
+        "head": "typescript",
+        "tail": "kafka"
+    },
+    {
+        "head": "avro",
+        "tail": "kafka"
+    },
+    {
+        "head": "avro",
+        "tail": "sql"
     }
 ]

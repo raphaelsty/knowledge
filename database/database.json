@@ -30081,5 +30081,17 @@
         "tags": [
             "rust"
         ]
+    },
+    "https://github.com/MaterializeInc/datagen": {
+        "extra-tags": [],
+        "date": "2022-12-22",
+        "title": "datagen",
+        "summary": "Generate authentic looking mock data based on a SQL, JSON or Avro schema and produce to Kafka in JSON or Avro format.",
+        "tags": [
+            "typescript",
+            "avro",
+            "kafka",
+            "sql"
+        ]
     }
 }
