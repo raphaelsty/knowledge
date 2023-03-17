@@ -142910,5 +142910,29 @@
     {
         "head": "avro",
         "tail": "sql"
+    },
+    {
+        "head": "distance",
+        "tail": "silhouette"
+    },
+    {
+        "head": "distance",
+        "tail": "similarity"
+    },
+    {
+        "head": "distance",
+        "tail": "clustering"
+    },
+    {
+        "head": "silhouette",
+        "tail": "similarity"
+    },
+    {
+        "head": "silhouette",
+        "tail": "clustering"
+    },
+    {
+        "head": "similarity",
+        "tail": "clustering"
     }
 ]

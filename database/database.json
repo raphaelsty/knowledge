@@ -30093,5 +30093,27 @@
             "kafka",
             "sql"
         ]
+    },
+    "https://github.com/antimatter15/alpaca.cpp": {
+        "extra-tags": [],
+        "date": "2023-03-16",
+        "title": "alpaca.cpp",
+        "summary": "Locally run an Instruction-Tuned Chat-Style LLM ",
+        "tags": [
+            "c"
+        ]
+    },
+    "https://towardsdatascience.com/silhouette-coefficient-validating-clustering-techniques-e976bb81d10c": {
+        "extra-tags": [
+            "clustering"
+        ],
+        "title": "Silhouette Coefficient : Validating clustering techniques",
+        "summary": "This is my first medium story, so please ignore any grammatical mistake as i am not a native English speaker.",
+        "date": "2023-03-16",
+        "tags": [
+            "distance",
+            "silhouette",
+            "similarity"
+        ]
     }
 }
