@@ -30115,5 +30115,23 @@
             "silhouette",
             "similarity"
         ]
+    },
+    "https://github.com/UKPLab/lagonn": {
+        "extra-tags": [],
+        "date": "2023-02-16",
+        "title": "lagonn",
+        "summary": "Source code and data for Like a Good Nearest Neighbor",
+        "tags": [
+            "python"
+        ]
+    },
+    "http://arxiv.org/abs/2302.08957": {
+        "extra-tags": [],
+        "title": "Like a Good Nearest Neighbor: Practical Content Moderation with Sentence Transformers",
+        "summary": "Modern text classification systems have impressive capabilities but are infeasible to deploy and use reliably due to their dependence on prompting and billion-parameter language models. SetFit (Tunstall et al., 2022) is a recent, practical approach that fine-tunes a Sentence Transformer under a contrastive learning paradigm and achieves similar results to more unwieldy systems. Text classification is important for addressing the problem of domain drift in detecting harmful content, which plagues all social media platforms. Here, we propose Like a Good Nearest Neighbor (LaGoNN), an inexpensive modification to SetFit that requires no additional parameters or hyperparameters but modifies input with information about its nearest neighbor, for example, the label and text, in the training data, making novel data appear similar to an instance on which the model was optimized. LaGoNN is effective at the task of detecting harmful content and generally improves performance compared to SetFit. To demonstrate the value of our system, we conduct a thorough study of text classification systems in the context of content moderation under four label distributions.",
+        "date": "2023-03-17",
+        "tags": [
+            "computer science - computation and language"
+        ]
     }
 }
