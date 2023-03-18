@@ -30133,5 +30133,50 @@
         "tags": [
             "computer science - computation and language"
         ]
+    },
+    "https://twitter.com/HaihaoShen/status/1636708494404640768": {
+        "extra-tags": [],
+        "date": "2023-03-17",
+        "title": "Twitter @HaihaoShen",
+        "summary": "\ud83c\udfafWe released GPT-J-6B INT8 ONNX models (first time for INT8 ONNX LLM\u2753) with ~4x model size reduction while preserving ~99.9% accuracy of FP32 baseline.\n\ud83d\udd25GPT-J-6B INT8 models are now publicly available at Hugging Face model hub!\nhttps://t.co/votWIhhgcr\nhttps://t.co/eMbGVhyzwV",
+        "tags": [
+            "gpt-j-6b",
+            "twitter",
+            "fp32",
+            "onnx",
+            "-6b"
+        ]
+    },
+    "https://twitter.com/StabilityAI/status/1636706439732555777": {
+        "extra-tags": [],
+        "date": "2023-03-17",
+        "title": "Twitter @StabilityAI",
+        "summary": "Stability AI is excited to announce the launch of Stable Diffusion Reimagine! \n\nWe invite users to experiment with images and \u2018reimagine\u2019 their designs through Stable Diffusion.\n\nMore info \u2192 https://t.co/lVxsBvwd0u https://t.co/jXsYe8HJ89",
+        "tags": [
+            "twitter"
+        ]
+    },
+    "https://viper.cs.columbia.edu/": {
+        "extra-tags": [],
+        "title": "Hackernews ViperGPT: Visual Inference via Python Execution for Reasoning (columbia.edu)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2023-03-18"
+    },
+    "https://workers.cloudflare.com/": {
+        "extra-tags": [
+            "build",
+            "workers"
+        ],
+        "title": "Cloudflare Workers\u00ae",
+        "summary": "Build your next application with Cloudflare Workers",
+        "date": "2023-03-17",
+        "tags": [
+            "cheap",
+            "cloud",
+            "state less"
+        ]
     }
 }

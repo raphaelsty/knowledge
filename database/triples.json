@@ -142934,5 +142934,69 @@
     {
         "head": "similarity",
         "tail": "clustering"
+    },
+    {
+        "head": "gpt-j-6b",
+        "tail": "fp32"
+    },
+    {
+        "head": "gpt-j-6b",
+        "tail": "onnx"
+    },
+    {
+        "head": "gpt-j-6b",
+        "tail": "-6b"
+    },
+    {
+        "head": "fp32",
+        "tail": "onnx"
+    },
+    {
+        "head": "fp32",
+        "tail": "-6b"
+    },
+    {
+        "head": "onnx",
+        "tail": "-6b"
+    },
+    {
+        "head": "cheap",
+        "tail": "cloud"
+    },
+    {
+        "head": "cheap",
+        "tail": "state less"
+    },
+    {
+        "head": "cheap",
+        "tail": "build"
+    },
+    {
+        "head": "cheap",
+        "tail": "workers"
+    },
+    {
+        "head": "cloud",
+        "tail": "state less"
+    },
+    {
+        "head": "cloud",
+        "tail": "build"
+    },
+    {
+        "head": "cloud",
+        "tail": "workers"
+    },
+    {
+        "head": "state less",
+        "tail": "build"
+    },
+    {
+        "head": "state less",
+        "tail": "workers"
+    },
+    {
+        "head": "build",
+        "tail": "workers"
     }
 ]
