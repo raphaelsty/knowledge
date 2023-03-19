@@ -30178,5 +30178,14 @@
             "cloud",
             "state less"
         ]
+    },
+    "https://github.com/0x6b/libgsqlite": {
+        "extra-tags": [],
+        "title": "Hackernews Libgsqlite: A SQLite extension which loads a Google Sheet as a virtual table (github.com/0x6b)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2023-03-19"
     }
 }
