@@ -142998,5 +142998,25 @@
     {
         "head": "build",
         "tail": "workers"
+    },
+    {
+        "head": "ai",
+        "tail": "midjourney"
+    },
+    {
+        "head": "ai",
+        "tail": "tool"
+    },
+    {
+        "head": "midjourney",
+        "tail": "tool"
+    },
+    {
+        "head": "midjourney",
+        "tail": "upscale"
+    },
+    {
+        "head": "tool",
+        "tail": "upscale"
     }
 ]

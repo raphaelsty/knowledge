@@ -30187,5 +30187,26 @@
         ],
         "summary": "",
         "date": "2023-03-19"
+    },
+    "https://twitter.com/gcabanac/status/1637552844222988289": {
+        "extra-tags": [],
+        "date": "2023-03-19",
+        "title": "Twitter @gcabanac",
+        "summary": "\ud83d\ude35\u200d\ud83d\udcab A 2021 book replete with Tortured Phrases: \u201cArtificial Intelligence and Data Mining Approaches in Security Frameworks\u201d published by @WileyGlobal @scrivpub and sold $42 per chapter. \ud83d\udce2RETRACTION required ASAP @WileyInResearch. See\nhttps://t.co/v3mEaCQ1ss (HT @JanneSeppanen) https://t.co/5Y7yhxEt0c",
+        "tags": [
+            "twitter"
+        ]
+    },
+    "https://bigjpg.com": {
+        "extra-tags": [],
+        "title": "Bigjpg - AI Super-Resolution lossless image enlarging / upscaling tool using Deep Convolutional Neural Networks",
+        "summary": "Bigjpg - Image Super-Resolution for Anime-style artworks using the Deep Convolutional Neural Networks without quality loss. Photos are also supported.",
+        "date": "2023-03-19",
+        "tags": [
+            "ai",
+            "midjourney",
+            "tool",
+            "upscale"
+        ]
     }
 }
