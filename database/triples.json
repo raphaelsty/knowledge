@@ -143018,5 +143018,57 @@
     {
         "head": "tool",
         "tail": "upscale"
+    },
+    {
+        "head": "c++",
+        "tail": "parallel-programming"
+    },
+    {
+        "head": "c++",
+        "tail": "high-performance"
+    },
+    {
+        "head": "c++",
+        "tail": "llvm"
+    },
+    {
+        "head": "compiler",
+        "tail": "parallel-programming"
+    },
+    {
+        "head": "compiler",
+        "tail": "high-performance"
+    },
+    {
+        "head": "compiler",
+        "tail": "gpu-programming"
+    },
+    {
+        "head": "parallel-programming",
+        "tail": "high-performance"
+    },
+    {
+        "head": "parallel-programming",
+        "tail": "gpu-programming"
+    },
+    {
+        "head": "parallel-programming",
+        "tail": "python"
+    },
+    {
+        "head": "parallel-programming",
+        "tail": "llvm"
+    },
+    {
+        "head": "high-performance",
+        "tail": "gpu-programming"
+    },
+    {
+        "head": "high-performance",
+        "tail": "llvm"
+    },
+    {
+        "head": "gpu-programming",
+        "tail": "llvm"
     }
 ]

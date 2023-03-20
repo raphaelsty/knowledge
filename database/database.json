@@ -30208,5 +30208,47 @@
             "tool",
             "upscale"
         ]
+    },
+    "https://github.com/VieVie31/i-like-paintings": {
+        "extra-tags": [],
+        "date": "2023-03-15",
+        "title": "i-like-paintings",
+        "summary": "A package for predicting painting appreciation from images using a linear regressor on top of a frozen CLIP model",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/exaloop/codon": {
+        "extra-tags": [],
+        "date": "2021-09-27",
+        "title": "codon",
+        "summary": "A high-performance, zero-overhead, extensible Python compiler using LLVM",
+        "tags": [
+            "c++",
+            "compiler",
+            "parallel-programming",
+            "high-performance",
+            "gpu-programming",
+            "python",
+            "llvm"
+        ]
+    },
+    "https://twitter.com/brdskggs/status/1637114268876144640": {
+        "extra-tags": [],
+        "title": "Hackernews Anti-recruiter prompt injection attack in LinkedIn profile (twitter.com/brdskggs)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2023-03-20"
+    },
+    "https://en.wikipedia.org/wiki/Jaccard_index": {
+        "extra-tags": [],
+        "title": "Hackernews Jaccard Index (wikipedia.org)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2023-03-20"
     }
 }
