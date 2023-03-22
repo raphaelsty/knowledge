@@ -143070,5 +143070,193 @@
     {
         "head": "gpu-programming",
         "tail": "llvm"
+    },
+    {
+        "head": "python",
+        "tail": "xml"
+    },
+    {
+        "head": "pypi",
+        "tail": "xml"
+    },
+    {
+        "head": "lca",
+        "tail": "ascv"
+    },
+    {
+        "head": "lca",
+        "tail": "lci"
+    },
+    {
+        "head": "lca",
+        "tail": "lavoisier"
+    },
+    {
+        "head": "lca",
+        "tail": "python"
+    },
+    {
+        "head": "lca",
+        "tail": "converter"
+    },
+    {
+        "head": "lca",
+        "tail": "format-converter"
+    },
+    {
+        "head": "lca",
+        "tail": "inventory"
+    },
+    {
+        "head": "lca",
+        "tail": "acv"
+    },
+    {
+        "head": "lca",
+        "tail": "conversion"
+    },
+    {
+        "head": "ascv",
+        "tail": "lci"
+    },
+    {
+        "head": "ascv",
+        "tail": "lavoisier"
+    },
+    {
+        "head": "ascv",
+        "tail": "python"
+    },
+    {
+        "head": "ascv",
+        "tail": "converter"
+    },
+    {
+        "head": "ascv",
+        "tail": "format-converter"
+    },
+    {
+        "head": "ascv",
+        "tail": "inventory"
+    },
+    {
+        "head": "ascv",
+        "tail": "acv"
+    },
+    {
+        "head": "ascv",
+        "tail": "conversion"
+    },
+    {
+        "head": "lci",
+        "tail": "lavoisier"
+    },
+    {
+        "head": "lci",
+        "tail": "python"
+    },
+    {
+        "head": "lci",
+        "tail": "converter"
+    },
+    {
+        "head": "lci",
+        "tail": "format-converter"
+    },
+    {
+        "head": "lci",
+        "tail": "inventory"
+    },
+    {
+        "head": "lci",
+        "tail": "acv"
+    },
+    {
+        "head": "lci",
+        "tail": "conversion"
+    },
+    {
+        "head": "lavoisier",
+        "tail": "python"
+    },
+    {
+        "head": "lavoisier",
+        "tail": "converter"
+    },
+    {
+        "head": "lavoisier",
+        "tail": "format-converter"
+    },
+    {
+        "head": "lavoisier",
+        "tail": "inventory"
+    },
+    {
+        "head": "lavoisier",
+        "tail": "acv"
+    },
+    {
+        "head": "lavoisier",
+        "tail": "conversion"
+    },
+    {
+        "head": "python",
+        "tail": "converter"
+    },
+    {
+        "head": "python",
+        "tail": "format-converter"
+    },
+    {
+        "head": "python",
+        "tail": "inventory"
+    },
+    {
+        "head": "python",
+        "tail": "acv"
+    },
+    {
+        "head": "python",
+        "tail": "conversion"
+    },
+    {
+        "head": "converter",
+        "tail": "format-converter"
+    },
+    {
+        "head": "converter",
+        "tail": "inventory"
+    },
+    {
+        "head": "converter",
+        "tail": "acv"
+    },
+    {
+        "head": "converter",
+        "tail": "conversion"
+    },
+    {
+        "head": "format-converter",
+        "tail": "inventory"
+    },
+    {
+        "head": "format-converter",
+        "tail": "acv"
+    },
+    {
+        "head": "format-converter",
+        "tail": "conversion"
+    },
+    {
+        "head": "inventory",
+        "tail": "acv"
+    },
+    {
+        "head": "inventory",
+        "tail": "conversion"
+    },
+    {
+        "head": "acv",
+        "tail": "conversion"
     }
 ]

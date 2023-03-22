@@ -30250,5 +30250,56 @@
         ],
         "summary": "",
         "date": "2023-03-20"
+    },
+    "https://twitter.com/mervenoyann/status/1638298629977800706": {
+        "extra-tags": [],
+        "date": "2023-03-21",
+        "title": "Twitter @mervenoyann",
+        "summary": "my prediction is that at the end of the day companies will go with open-source reproductions of RLHF based LLMs (for the sake of reducing dependency &amp; improving sustainability) and closed source services will be used by regular folk https://t.co/t2cVM0FQoW",
+        "tags": [
+            "twitter",
+            "llms",
+            "rlhf"
+        ]
+    },
+    "https://github.com/stchris/untangle": {
+        "extra-tags": [],
+        "date": "2011-06-05",
+        "title": "untangle",
+        "summary": "Converts XML to Python objects",
+        "tags": [
+            "python",
+            "pypi",
+            "xml"
+        ]
+    },
+    "https://github.com/JosePauloSavioli/Lavoisier": {
+        "extra-tags": [],
+        "date": "2019-11-11",
+        "title": "Lavoisier",
+        "summary": "Format converter for LCI datasets",
+        "tags": [
+            "lca",
+            "ascv",
+            "lci",
+            "lavoisier",
+            "python",
+            "converter",
+            "format-converter",
+            "inventory",
+            "acv",
+            "conversion"
+        ]
+    },
+    "https://www.gatesnotes.com/The-Age-of-AI-Has-Begun": {
+        "extra-tags": [
+            "ai"
+        ],
+        "title": "Hackernews The Age of AI has begun (gatesnotes.com)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2023-03-22"
     }
 }
