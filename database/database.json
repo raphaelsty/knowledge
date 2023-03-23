@@ -30301,5 +30301,14 @@
         ],
         "summary": "",
         "date": "2023-03-22"
+    },
+    "https://evanw.github.io/thumbhash/": {
+        "extra-tags": [],
+        "title": "Hackernews ThumbHash: A better compact image placeholder hash (evanw.github.io)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2023-03-23"
     }
 }
