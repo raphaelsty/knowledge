@@ -30310,5 +30310,35 @@
         ],
         "summary": "",
         "date": "2023-03-23"
+    },
+    "https://github.com/RadeonOpenCompute/ROCm": {
+        "extra-tags": [],
+        "date": "2016-03-18",
+        "title": "ROCm",
+        "summary": "ROCm -  Open Software Platform for GPU Compute",
+        "tags": [
+            "ruby"
+        ]
+    },
+    "https://github.com/moonshinelabs-ai/moonshine": {
+        "extra-tags": [],
+        "date": "2023-02-06",
+        "title": "moonshine",
+        "summary": "Pretrained remote sensing models for the rest of us.",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/typst/typst": {
+        "extra-tags": [],
+        "date": "2019-09-24",
+        "title": "typst",
+        "summary": "A new markup-based typesetting system that is powerful and easy to learn.",
+        "tags": [
+            "compiler",
+            "typesetting",
+            "markup",
+            "rust"
+        ]
     }
 }
