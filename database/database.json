@@ -30381,5 +30381,44 @@
         "tags": [
             "rust"
         ]
+    },
+    "https://github.com/GerevAI/gerev": {
+        "extra-tags": [
+            "search"
+        ],
+        "date": "2023-03-05",
+        "title": "gerev",
+        "summary": "\ud83e\udde0 AI-powered search engine for your organization  \ud83d\udd0e",
+        "tags": [
+            "search-engine",
+            "ai",
+            "python",
+            "docker",
+            "chatgpt",
+            "llm",
+            "workplace-search",
+            "bert",
+            "chatgpt-plugin",
+            "chatgpt-plugins",
+            "enterprise-search"
+        ]
+    },
+    "https://github.com/locustio/locust": {
+        "extra-tags": [],
+        "date": "2011-02-17",
+        "title": "locust",
+        "summary": "Write scalable load tests in plain Python \ud83d\ude97\ud83d\udca8",
+        "tags": [
+            "load-test",
+            "http",
+            "python",
+            "performance",
+            "benchmarking",
+            "load-tests",
+            "locust",
+            "load-generator",
+            "load-testing",
+            "performance-testing"
+        ]
     }
 }
