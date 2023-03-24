@@ -143278,5 +143278,53 @@
     {
         "head": "markup",
         "tail": "rust"
+    },
+    {
+        "head": "python",
+        "tail": "conformal-prediction"
+    },
+    {
+        "head": "python",
+        "tail": "conformal-inference"
+    },
+    {
+        "head": "python",
+        "tail": "conformal-regressors"
+    },
+    {
+        "head": "conformal-prediction",
+        "tail": "conformal-inference"
+    },
+    {
+        "head": "conformal-prediction",
+        "tail": "conformal-regressors"
+    },
+    {
+        "head": "conformal-prediction",
+        "tail": "uncertainty-estimation"
+    },
+    {
+        "head": "conformal-prediction",
+        "tail": "uncertainty-quantification"
+    },
+    {
+        "head": "conformal-inference",
+        "tail": "conformal-regressors"
+    },
+    {
+        "head": "conformal-inference",
+        "tail": "uncertainty-estimation"
+    },
+    {
+        "head": "conformal-inference",
+        "tail": "uncertainty-quantification"
+    },
+    {
+        "head": "conformal-regressors",
+        "tail": "uncertainty-estimation"
+    },
+    {
+        "head": "conformal-regressors",
+        "tail": "uncertainty-quantification"
     }
 ]

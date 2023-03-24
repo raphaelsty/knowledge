@@ -30340,5 +30340,46 @@
             "markup",
             "rust"
         ]
+    },
+    "https://github.com/online-ml/orac": {
+        "extra-tags": [],
+        "date": "2022-03-16",
+        "title": "orac",
+        "summary": "\ud83e\uddab MLOps for (online) machine learning",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/huawei-noah/streamDM-Cpp": {
+        "extra-tags": [],
+        "date": "2015-06-27",
+        "title": "streamDM-Cpp",
+        "summary": "stream Machine Learning in C++",
+        "tags": [
+            "c++"
+        ]
+    },
+    "https://github.com/deel-ai/puncc": {
+        "extra-tags": [],
+        "date": "2022-07-20",
+        "title": "puncc",
+        "summary": "\ud83d\udc4b Puncc is a python library for predictive uncertainty quantification using conformal prediction.",
+        "tags": [
+            "python",
+            "conformal-prediction",
+            "conformal-inference",
+            "conformal-regressors",
+            "uncertainty-estimation",
+            "uncertainty-quantification"
+        ]
+    },
+    "https://github.com/rustformers/llama-rs": {
+        "extra-tags": [],
+        "date": "2023-03-13",
+        "title": "llama-rs",
+        "summary": "Run LLaMA inference on CPU, with Rust \ud83e\udd80\ud83d\ude80\ud83e\udd99",
+        "tags": [
+            "rust"
+        ]
     }
 }
