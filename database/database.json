@@ -30429,5 +30429,15 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/cgarciae/ciclo": {
+        "extra-tags": [],
+        "date": "2022-10-10",
+        "title": "ciclo",
+        "summary": "A functional training loops library for JAX",
+        "tags": [
+            "python",
+            "jax"
+        ]
     }
 }
