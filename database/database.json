@@ -30439,5 +30439,37 @@
             "python",
             "jax"
         ]
+    },
+    "https://github.com/zincsearch/zincsearch": {
+        "extra-tags": [],
+        "date": "2021-12-02",
+        "title": "zincsearch",
+        "summary": "ZincSearch . A lightweight alternative to elasticsearch that requires minimal resources, written in Go.",
+        "tags": [
+            "modern",
+            "elasticsearch",
+            "searchengine",
+            "search",
+            "go",
+            "vuejs",
+            "opensearch",
+            "golang"
+        ]
+    },
+    "https://github.com/tech-branch/tsr": {
+        "extra-tags": [],
+        "date": "2023-03-16",
+        "title": "tsr",
+        "summary": "Simple csv-based timetracker for Raycast and Alfred",
+        "tags": [
+            "alfred",
+            "raycast",
+            "osx",
+            "productivity",
+            "python",
+            "timetracker",
+            "alfred-workflow",
+            "extension"
+        ]
     }
 }

@@ -143706,5 +143706,113 @@
     {
         "head": "load-testing",
         "tail": "performance-testing"
+    },
+    {
+        "head": "alfred",
+        "tail": "raycast"
+    },
+    {
+        "head": "alfred",
+        "tail": "osx"
+    },
+    {
+        "head": "alfred",
+        "tail": "productivity"
+    },
+    {
+        "head": "alfred",
+        "tail": "python"
+    },
+    {
+        "head": "alfred",
+        "tail": "timetracker"
+    },
+    {
+        "head": "alfred",
+        "tail": "alfred-workflow"
+    },
+    {
+        "head": "alfred",
+        "tail": "extension"
+    },
+    {
+        "head": "raycast",
+        "tail": "osx"
+    },
+    {
+        "head": "raycast",
+        "tail": "productivity"
+    },
+    {
+        "head": "raycast",
+        "tail": "python"
+    },
+    {
+        "head": "raycast",
+        "tail": "timetracker"
+    },
+    {
+        "head": "raycast",
+        "tail": "alfred-workflow"
+    },
+    {
+        "head": "raycast",
+        "tail": "extension"
+    },
+    {
+        "head": "osx",
+        "tail": "productivity"
+    },
+    {
+        "head": "osx",
+        "tail": "python"
+    },
+    {
+        "head": "osx",
+        "tail": "timetracker"
+    },
+    {
+        "head": "osx",
+        "tail": "alfred-workflow"
+    },
+    {
+        "head": "osx",
+        "tail": "extension"
+    },
+    {
+        "head": "productivity",
+        "tail": "timetracker"
+    },
+    {
+        "head": "productivity",
+        "tail": "alfred-workflow"
+    },
+    {
+        "head": "productivity",
+        "tail": "extension"
+    },
+    {
+        "head": "python",
+        "tail": "timetracker"
+    },
+    {
+        "head": "python",
+        "tail": "alfred-workflow"
+    },
+    {
+        "head": "python",
+        "tail": "extension"
+    },
+    {
+        "head": "timetracker",
+        "tail": "alfred-workflow"
+    },
+    {
+        "head": "timetracker",
+        "tail": "extension"
+    },
+    {
+        "head": "alfred-workflow",
+        "tail": "extension"
     }
 ]
