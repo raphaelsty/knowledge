@@ -30491,5 +30491,14 @@
         "tags": [
             "jupyter notebook"
         ]
+    },
+    "https://github.com/jolibrain/wheatley": {
+        "extra-tags": [],
+        "date": "2023-03-29",
+        "title": "wheatley",
+        "summary": "",
+        "tags": [
+            "python"
+        ]
     }
 }
