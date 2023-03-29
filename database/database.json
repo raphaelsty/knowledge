@@ -30471,5 +30471,25 @@
             "alfred-workflow",
             "extension"
         ]
+    },
+    "https://github.com/Lightning-AI/lit-llama": {
+        "extra-tags": [
+            "llama"
+        ],
+        "date": "2023-03-22",
+        "title": "lit-llama",
+        "summary": "",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/deel-ai/LARD": {
+        "extra-tags": [],
+        "date": "2023-02-13",
+        "title": "LARD",
+        "summary": "A runway dataset and a generator of synthetic aerial images with automatic labeling. ",
+        "tags": [
+            "jupyter notebook"
+        ]
     }
 }

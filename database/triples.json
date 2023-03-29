@@ -143814,5 +143814,9 @@
     {
         "head": "alfred-workflow",
         "tail": "extension"
+    },
+    {
+        "head": "python",
+        "tail": "llama"
     }
 ]
