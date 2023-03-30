@@ -30518,5 +30518,29 @@
         "summary": "",
         "date": "2023-03-29",
         "tags": []
+    },
+    "https://github.com/Lightning-AI/torchmetrics": {
+        "extra-tags": [],
+        "date": "2020-12-22",
+        "title": "torchmetrics",
+        "summary": "Torchmetrics - Machine learning metrics for distributed, scalable PyTorch applications.",
+        "tags": [
+            "machine-learning",
+            "deep-learning",
+            "python",
+            "metrics",
+            "pytorch",
+            "data-science",
+            "analyses"
+        ]
+    },
+    "https://sites.research.google/usm/": {
+        "extra-tags": [],
+        "title": "Hackernews Universal Speech Model (research.google)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2023-03-30"
     }
 }
