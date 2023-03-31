@@ -144174,5 +144174,65 @@
     {
         "head": "mapping",
         "tail": "codebase"
+    },
+    {
+        "head": "developer-tools",
+        "tail": "aws"
+    },
+    {
+        "head": "developer-tools",
+        "tail": "localstack"
+    },
+    {
+        "head": "developer-tools",
+        "tail": "testing"
+    },
+    {
+        "head": "developer-tools",
+        "tail": "cloud"
+    },
+    {
+        "head": "aws",
+        "tail": "localstack"
+    },
+    {
+        "head": "aws",
+        "tail": "testing"
+    },
+    {
+        "head": "aws",
+        "tail": "continuous-integration"
+    },
+    {
+        "head": "python",
+        "tail": "localstack"
+    },
+    {
+        "head": "python",
+        "tail": "continuous-integration"
+    },
+    {
+        "head": "localstack",
+        "tail": "testing"
+    },
+    {
+        "head": "localstack",
+        "tail": "cloud"
+    },
+    {
+        "head": "localstack",
+        "tail": "continuous-integration"
+    },
+    {
+        "head": "testing",
+        "tail": "cloud"
+    },
+    {
+        "head": "testing",
+        "tail": "continuous-integration"
+    },
+    {
+        "head": "cloud",
+        "tail": "continuous-integration"
     }
 ]
