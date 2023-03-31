@@ -30542,5 +30542,42 @@
         ],
         "summary": "",
         "date": "2023-03-30"
+    },
+    "https://github.com/jina-ai/finetuner": {
+        "extra-tags": [],
+        "date": "2021-08-11",
+        "title": "finetuner",
+        "summary": ":dart: Task-oriented finetuning for better embeddings on neural search",
+        "tags": [
+            "similarity-learning",
+            "transfer-learning",
+            "triplet-loss",
+            "finetuning",
+            "fine-tuning",
+            "python",
+            "negative-sampling",
+            "metric-learning",
+            "few-shot-learning",
+            "neural-search",
+            "pretrained-models",
+            "jina",
+            "siamese-network"
+        ]
+    },
+    "https://github.com/datawrapper/datawrapper": {
+        "extra-tags": [
+            "codebase"
+        ],
+        "date": "2012-07-06",
+        "title": "datawrapper",
+        "summary": "This is a read-only mirror of a part of our codebase. ",
+        "tags": [
+            "tool",
+            "visualization",
+            "ddj",
+            "datawrapper",
+            "javascript",
+            "mapping"
+        ]
     }
 }

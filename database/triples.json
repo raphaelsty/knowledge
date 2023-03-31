@@ -143818,5 +143818,361 @@
     {
         "head": "python",
         "tail": "llama"
+    },
+    {
+        "head": "similarity-learning",
+        "tail": "transfer-learning"
+    },
+    {
+        "head": "similarity-learning",
+        "tail": "triplet-loss"
+    },
+    {
+        "head": "similarity-learning",
+        "tail": "finetuning"
+    },
+    {
+        "head": "similarity-learning",
+        "tail": "fine-tuning"
+    },
+    {
+        "head": "similarity-learning",
+        "tail": "python"
+    },
+    {
+        "head": "similarity-learning",
+        "tail": "negative-sampling"
+    },
+    {
+        "head": "similarity-learning",
+        "tail": "metric-learning"
+    },
+    {
+        "head": "similarity-learning",
+        "tail": "few-shot-learning"
+    },
+    {
+        "head": "similarity-learning",
+        "tail": "neural-search"
+    },
+    {
+        "head": "similarity-learning",
+        "tail": "pretrained-models"
+    },
+    {
+        "head": "similarity-learning",
+        "tail": "jina"
+    },
+    {
+        "head": "similarity-learning",
+        "tail": "siamese-network"
+    },
+    {
+        "head": "transfer-learning",
+        "tail": "triplet-loss"
+    },
+    {
+        "head": "transfer-learning",
+        "tail": "finetuning"
+    },
+    {
+        "head": "transfer-learning",
+        "tail": "fine-tuning"
+    },
+    {
+        "head": "transfer-learning",
+        "tail": "negative-sampling"
+    },
+    {
+        "head": "transfer-learning",
+        "tail": "metric-learning"
+    },
+    {
+        "head": "transfer-learning",
+        "tail": "neural-search"
+    },
+    {
+        "head": "transfer-learning",
+        "tail": "pretrained-models"
+    },
+    {
+        "head": "transfer-learning",
+        "tail": "jina"
+    },
+    {
+        "head": "transfer-learning",
+        "tail": "siamese-network"
+    },
+    {
+        "head": "triplet-loss",
+        "tail": "finetuning"
+    },
+    {
+        "head": "triplet-loss",
+        "tail": "fine-tuning"
+    },
+    {
+        "head": "triplet-loss",
+        "tail": "negative-sampling"
+    },
+    {
+        "head": "triplet-loss",
+        "tail": "metric-learning"
+    },
+    {
+        "head": "triplet-loss",
+        "tail": "few-shot-learning"
+    },
+    {
+        "head": "triplet-loss",
+        "tail": "neural-search"
+    },
+    {
+        "head": "triplet-loss",
+        "tail": "pretrained-models"
+    },
+    {
+        "head": "triplet-loss",
+        "tail": "jina"
+    },
+    {
+        "head": "triplet-loss",
+        "tail": "siamese-network"
+    },
+    {
+        "head": "finetuning",
+        "tail": "fine-tuning"
+    },
+    {
+        "head": "finetuning",
+        "tail": "negative-sampling"
+    },
+    {
+        "head": "finetuning",
+        "tail": "metric-learning"
+    },
+    {
+        "head": "finetuning",
+        "tail": "few-shot-learning"
+    },
+    {
+        "head": "finetuning",
+        "tail": "neural-search"
+    },
+    {
+        "head": "finetuning",
+        "tail": "pretrained-models"
+    },
+    {
+        "head": "finetuning",
+        "tail": "jina"
+    },
+    {
+        "head": "finetuning",
+        "tail": "siamese-network"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "python"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "negative-sampling"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "metric-learning"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "few-shot-learning"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "neural-search"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "pretrained-models"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "jina"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "siamese-network"
+    },
+    {
+        "head": "python",
+        "tail": "negative-sampling"
+    },
+    {
+        "head": "python",
+        "tail": "jina"
+    },
+    {
+        "head": "python",
+        "tail": "siamese-network"
+    },
+    {
+        "head": "negative-sampling",
+        "tail": "metric-learning"
+    },
+    {
+        "head": "negative-sampling",
+        "tail": "few-shot-learning"
+    },
+    {
+        "head": "negative-sampling",
+        "tail": "neural-search"
+    },
+    {
+        "head": "negative-sampling",
+        "tail": "pretrained-models"
+    },
+    {
+        "head": "negative-sampling",
+        "tail": "jina"
+    },
+    {
+        "head": "negative-sampling",
+        "tail": "siamese-network"
+    },
+    {
+        "head": "metric-learning",
+        "tail": "neural-search"
+    },
+    {
+        "head": "metric-learning",
+        "tail": "pretrained-models"
+    },
+    {
+        "head": "metric-learning",
+        "tail": "jina"
+    },
+    {
+        "head": "metric-learning",
+        "tail": "siamese-network"
+    },
+    {
+        "head": "few-shot-learning",
+        "tail": "neural-search"
+    },
+    {
+        "head": "few-shot-learning",
+        "tail": "pretrained-models"
+    },
+    {
+        "head": "few-shot-learning",
+        "tail": "jina"
+    },
+    {
+        "head": "few-shot-learning",
+        "tail": "siamese-network"
+    },
+    {
+        "head": "neural-search",
+        "tail": "pretrained-models"
+    },
+    {
+        "head": "neural-search",
+        "tail": "jina"
+    },
+    {
+        "head": "neural-search",
+        "tail": "siamese-network"
+    },
+    {
+        "head": "pretrained-models",
+        "tail": "jina"
+    },
+    {
+        "head": "pretrained-models",
+        "tail": "siamese-network"
+    },
+    {
+        "head": "jina",
+        "tail": "siamese-network"
+    },
+    {
+        "head": "tool",
+        "tail": "visualization"
+    },
+    {
+        "head": "tool",
+        "tail": "ddj"
+    },
+    {
+        "head": "tool",
+        "tail": "datawrapper"
+    },
+    {
+        "head": "tool",
+        "tail": "javascript"
+    },
+    {
+        "head": "tool",
+        "tail": "mapping"
+    },
+    {
+        "head": "tool",
+        "tail": "codebase"
+    },
+    {
+        "head": "visualization",
+        "tail": "ddj"
+    },
+    {
+        "head": "visualization",
+        "tail": "datawrapper"
+    },
+    {
+        "head": "visualization",
+        "tail": "mapping"
+    },
+    {
+        "head": "visualization",
+        "tail": "codebase"
+    },
+    {
+        "head": "ddj",
+        "tail": "datawrapper"
+    },
+    {
+        "head": "ddj",
+        "tail": "javascript"
+    },
+    {
+        "head": "ddj",
+        "tail": "mapping"
+    },
+    {
+        "head": "ddj",
+        "tail": "codebase"
+    },
+    {
+        "head": "datawrapper",
+        "tail": "javascript"
+    },
+    {
+        "head": "datawrapper",
+        "tail": "mapping"
+    },
+    {
+        "head": "datawrapper",
+        "tail": "codebase"
+    },
+    {
+        "head": "javascript",
+        "tail": "mapping"
+    },
+    {
+        "head": "javascript",
+        "tail": "codebase"
+    },
+    {
+        "head": "mapping",
+        "tail": "codebase"
     }
 ]
