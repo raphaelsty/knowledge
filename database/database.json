@@ -30623,5 +30623,23 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/datafuselabs/databend": {
+        "extra-tags": [],
+        "date": "2020-10-10",
+        "title": "databend",
+        "summary": "A modern cloud data warehouse focusing on reducing cost and complexity for your massive-scale analytics needs. Open source alternative to Snowflake. Also available in the cloud: https://app.databend.com",
+        "tags": [
+            "database",
+            "sql",
+            "olap",
+            "rust",
+            "object-storage",
+            "query-processing",
+            "cloud-warehouse",
+            "data-cloud",
+            "serverless",
+            "storage"
+        ]
     }
 }

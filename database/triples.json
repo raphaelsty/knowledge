@@ -144234,5 +144234,153 @@
     {
         "head": "cloud",
         "tail": "continuous-integration"
+    },
+    {
+        "head": "database",
+        "tail": "object-storage"
+    },
+    {
+        "head": "database",
+        "tail": "query-processing"
+    },
+    {
+        "head": "database",
+        "tail": "cloud-warehouse"
+    },
+    {
+        "head": "database",
+        "tail": "data-cloud"
+    },
+    {
+        "head": "database",
+        "tail": "storage"
+    },
+    {
+        "head": "sql",
+        "tail": "object-storage"
+    },
+    {
+        "head": "sql",
+        "tail": "query-processing"
+    },
+    {
+        "head": "sql",
+        "tail": "cloud-warehouse"
+    },
+    {
+        "head": "sql",
+        "tail": "data-cloud"
+    },
+    {
+        "head": "sql",
+        "tail": "storage"
+    },
+    {
+        "head": "olap",
+        "tail": "rust"
+    },
+    {
+        "head": "olap",
+        "tail": "object-storage"
+    },
+    {
+        "head": "olap",
+        "tail": "query-processing"
+    },
+    {
+        "head": "olap",
+        "tail": "cloud-warehouse"
+    },
+    {
+        "head": "olap",
+        "tail": "data-cloud"
+    },
+    {
+        "head": "olap",
+        "tail": "serverless"
+    },
+    {
+        "head": "olap",
+        "tail": "storage"
+    },
+    {
+        "head": "rust",
+        "tail": "object-storage"
+    },
+    {
+        "head": "rust",
+        "tail": "query-processing"
+    },
+    {
+        "head": "rust",
+        "tail": "cloud-warehouse"
+    },
+    {
+        "head": "rust",
+        "tail": "data-cloud"
+    },
+    {
+        "head": "rust",
+        "tail": "storage"
+    },
+    {
+        "head": "object-storage",
+        "tail": "query-processing"
+    },
+    {
+        "head": "object-storage",
+        "tail": "cloud-warehouse"
+    },
+    {
+        "head": "object-storage",
+        "tail": "data-cloud"
+    },
+    {
+        "head": "object-storage",
+        "tail": "serverless"
+    },
+    {
+        "head": "object-storage",
+        "tail": "storage"
+    },
+    {
+        "head": "query-processing",
+        "tail": "cloud-warehouse"
+    },
+    {
+        "head": "query-processing",
+        "tail": "data-cloud"
+    },
+    {
+        "head": "query-processing",
+        "tail": "serverless"
+    },
+    {
+        "head": "query-processing",
+        "tail": "storage"
+    },
+    {
+        "head": "cloud-warehouse",
+        "tail": "data-cloud"
+    },
+    {
+        "head": "cloud-warehouse",
+        "tail": "serverless"
+    },
+    {
+        "head": "cloud-warehouse",
+        "tail": "storage"
+    },
+    {
+        "head": "data-cloud",
+        "tail": "serverless"
+    },
+    {
+        "head": "data-cloud",
+        "tail": "storage"
+    },
+    {
+        "head": "serverless",
+        "tail": "storage"
     }
 ]
