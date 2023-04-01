@@ -30605,5 +30605,23 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/twitter/the-algorithm": {
+        "extra-tags": [],
+        "date": "2023-03-27",
+        "title": "the-algorithm",
+        "summary": "Source code for Twitter's Recommendation Algorithm",
+        "tags": [
+            "scala"
+        ]
+    },
+    "https://github.com/twitter/the-algorithm-ml": {
+        "extra-tags": [],
+        "date": "2023-03-27",
+        "title": "the-algorithm-ml",
+        "summary": "Source code for Twitter's Recommendation Algorithm",
+        "tags": [
+            "python"
+        ]
     }
 }
