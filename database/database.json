@@ -30652,5 +30652,16 @@
         "tags": [
             "twitter"
         ]
+    },
+    "https://github.com/pierrot-lc/anime_vae": {
+        "extra-tags": [
+            "anime"
+        ],
+        "date": "2021-10-11",
+        "title": "anime_vae",
+        "summary": "Small Tkinter app using a VAE to produce anime faces.",
+        "tags": [
+            "python"
+        ]
     }
 }
