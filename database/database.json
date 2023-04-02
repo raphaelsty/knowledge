@@ -30641,5 +30641,16 @@
             "serverless",
             "storage"
         ]
+    },
+    "https://twitter.com/julien_c/status/1641886311438077959": {
+        "extra-tags": [
+            "datasets"
+        ],
+        "date": "2023-03-31",
+        "title": "Twitter @julien_c",
+        "summary": "Oh actually nvm they did release some datasets on the Hub \ud83d\ude4c\n\nhttps://t.co/wsFV6FhXod",
+        "tags": [
+            "twitter"
+        ]
     }
 }
