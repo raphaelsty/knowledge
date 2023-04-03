@@ -30663,5 +30663,34 @@
         "tags": [
             "python"
         ]
+    },
+    "https://twitter.com/0xDesigner/status/1642554817590566915": {
+        "extra-tags": [],
+        "date": "2023-04-02",
+        "title": "Twitter @0xDesigner",
+        "summary": "Probably the best thing you'll see today.\n\nIn 2017, a group of developers hilariously competed for who could create worst volume control interface in the world.\n\nThe results \ud83e\uddf5\n\n1/22",
+        "tags": [
+            "twitter"
+        ]
+    },
+    "https://github.com/nomic-ai/gpt4all": {
+        "extra-tags": [],
+        "date": "2023-03-27",
+        "title": "gpt4all",
+        "summary": "gpt4all: a chatbot trained on a massive collection of clean assistant data including code, stories and dialogue",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://simonwillison.net/2023/Apr/2/calculator-for-words/": {
+        "extra-tags": [
+            "chatgpt"
+        ],
+        "title": "Hackernews ChatGPT as a Calculator for Words (simonwillison.net)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2023-04-03"
     }
 }
