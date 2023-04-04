@@ -144382,5 +144382,17 @@
     {
         "head": "serverless",
         "tail": "storage"
+    },
+    {
+        "head": "microsoft",
+        "tail": "search satifsfaction"
+    },
+    {
+        "head": "microsoft",
+        "tail": "session"
+    },
+    {
+        "head": "search satifsfaction",
+        "tail": "session"
     }
 ]

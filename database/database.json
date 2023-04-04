@@ -30692,5 +30692,16 @@
         ],
         "summary": "",
         "date": "2023-04-03"
+    },
+    "https://www.microsoft.com/en-us/research/video/no-interaction-as-indicator-of-search-satisfaction-by-widad-machmouchi/": {
+        "extra-tags": [],
+        "title": "No Interaction as Indicator of Search Satisfaction",
+        "summary": "At Bing, measuring user success has always been a deciding factor as to which feature or change is shipped to production. Testing such changes is carried out through randomized controlled experiments, where success metrics are used to measure the treatment effect on user satisfaction. Over the years, we have designed and refined our metrics to [\u2026]",
+        "date": "2023-04-03",
+        "tags": [
+            "microsoft",
+            "search satifsfaction",
+            "session"
+        ]
     }
 }
