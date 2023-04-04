@@ -30703,5 +30703,27 @@
             "search satifsfaction",
             "session"
         ]
+    },
+    "https://twitter.com/halford_max/status/1643066195900354566": {
+        "extra-tags": [],
+        "date": "2023-04-04",
+        "title": "Twitter @halford_max",
+        "summary": "Online logistic regression on CPU, in Python:\n\n\ud83c\udfc6 River 105ms\n\ud83e\udd48 Vowpal Wabbit 304ms\n\ud83e\udd49 PyTorch 903 ms\n\ud83e\udd44scikit-learn 1500ms\n\nhttps://t.co/MuyH6sHSHi\n\nCan anyone do better?",
+        "tags": [
+            "cpu",
+            "twitter",
+            "python"
+        ]
+    },
+    "https://github.com/Yelp/detect-secrets": {
+        "extra-tags": [
+            "code"
+        ],
+        "date": "2017-12-05",
+        "title": "detect-secrets",
+        "summary": "An enterprise friendly way of detecting and preventing secrets in code.",
+        "tags": [
+            "python"
+        ]
     }
 }
