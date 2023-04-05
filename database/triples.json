@@ -144394,5 +144394,29 @@
     {
         "head": "search satifsfaction",
         "tail": "session"
+    },
+    {
+        "head": "contextualized token retriever",
+        "tail": "multi-vector retrieval"
+    },
+    {
+        "head": "contextualized token retriever",
+        "tail": "token retrieval"
+    },
+    {
+        "head": "contextualized token retriever",
+        "tail": "xtr"
+    },
+    {
+        "head": "multi-vector retrieval",
+        "tail": "token retrieval"
+    },
+    {
+        "head": "multi-vector retrieval",
+        "tail": "xtr"
+    },
+    {
+        "head": "token retrieval",
+        "tail": "xtr"
     }
 ]

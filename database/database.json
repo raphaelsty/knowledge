@@ -30725,5 +30725,47 @@
         "tags": [
             "python"
         ]
+    },
+    "https://twitter.com/LaureSoulier/status/1643386412736081921": {
+        "extra-tags": [],
+        "date": "2023-04-04",
+        "title": "Twitter @LaureSoulier",
+        "summary": "@jgmorenof from @IRIToulouse presenting his #ecir2023 poster on summarization with entities. Great work! \ud83d\udc4f\ud83d\udc4f\ud83d\udc4f https://t.co/jI8eL9u14W",
+        "tags": [
+            "ecir2023",
+            "twitter"
+        ]
+    },
+    "https://twitter.com/arankomatsuzaki/status/1643417549114048512": {
+        "extra-tags": [],
+        "date": "2023-04-05",
+        "title": "Twitter @arankomatsuzaki",
+        "summary": "Rethinking the Role of Token Retrieval in Multi-Vector Retrieval\n\nPresents XTR, ConteXtualized Token Retriever, which introduces a simple, yet novel, objective function that encourages the model to retrieve the most important document tokens first.\n\nhttps://t.co/q3RezUmMB2 https://t.co/SOraax2axc",
+        "tags": [
+            "twitter",
+            "contextualized token retriever",
+            "multi-vector retrieval",
+            "token retrieval",
+            "xtr"
+        ]
+    },
+    "https://twitter.com/jobergum/status/1643483695649521664": {
+        "extra-tags": [],
+        "date": "2023-04-05",
+        "title": "Twitter @jobergum",
+        "summary": "Multi-vector retrieval for the win. \n\nI\u2019m so happy we identified this early and had ColBERT support for ranking in 2020. Now this work allow for further optimizations as you only score with the tokens used for retrieval https://t.co/bDkpBzyFzM https://t.co/Uzhkiul6XR",
+        "tags": [
+            "twitter",
+            "colbert"
+        ]
+    },
+    "https://github.com/BOUALILILila/Term-Topic-Embeddings": {
+        "extra-tags": [],
+        "date": "2022-12-21",
+        "title": "Term-Topic-Embeddings",
+        "summary": "An analysis framework of transformer contextualized representations in ranking using term topic embeddings ",
+        "tags": [
+            "python"
+        ]
     }
 }
