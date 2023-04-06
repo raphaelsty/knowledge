@@ -30767,5 +30767,14 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/facebookresearch/segment-anything": {
+        "extra-tags": [],
+        "date": "2023-03-23",
+        "title": "segment-anything",
+        "summary": "The repository provides code for running inference with the SegmentAnything Model (SAM), links for downloading the trained model checkpoints, and example notebooks that show how to use the model.",
+        "tags": [
+            "jupyter notebook"
+        ]
     }
 }
