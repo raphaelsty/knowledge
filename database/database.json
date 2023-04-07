@@ -30776,5 +30776,53 @@
         "tags": [
             "jupyter notebook"
         ]
+    },
+    "https://github.com/tcdi/plrust": {
+        "extra-tags": [],
+        "date": "2020-11-28",
+        "title": "plrust",
+        "summary": "A Rust procedural language handler for PostgreSQL",
+        "tags": [
+            "rust"
+        ]
+    },
+    "https://github.com/facebook/buck2": {
+        "extra-tags": [
+            "build",
+            "system"
+        ],
+        "date": "2022-01-21",
+        "title": "buck2",
+        "summary": "Build system, successor to Buck",
+        "tags": [
+            "rust"
+        ]
+    },
+    "https://github.com/luchris429/purejaxrl": {
+        "extra-tags": [],
+        "date": "2023-02-25",
+        "title": "purejaxrl",
+        "summary": "Really Fast End-to-End Jax RL Implementations",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/Noeda/rllama": {
+        "extra-tags": [],
+        "date": "2023-03-11",
+        "title": "rllama",
+        "summary": "Rust+OpenCL+AVX2 implementation of LLaMA inference code",
+        "tags": [
+            "rust"
+        ]
+    },
+    "https://github.com/Pakrohk-DotFiles/NvPak": {
+        "extra-tags": [],
+        "date": "2020-11-15",
+        "title": "NvPak",
+        "summary": "A clean config for neovim to be of particular complexity",
+        "tags": [
+            "lua"
+        ]
     }
 }
