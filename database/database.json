@@ -30824,5 +30824,45 @@
         "tags": [
             "lua"
         ]
+    },
+    "https://twitter.com/younesbelkada/status/1644341065091272704": {
+        "extra-tags": [],
+        "date": "2023-04-07",
+        "title": "Twitter @younesbelkada",
+        "summary": "MatCha and DePlot from @GoogleAI ! \ud83e\udde0\n\nA set of foundation models for plots and charts that can perform complex visual reasoning tasks such as plot summarisation/VQA.\n\nWhen combined with instruction-tuned LMs, you can create interesting demos, such as the one below \u2193 https://t.co/E9tj6UfCtg",
+        "tags": [
+            "matcha",
+            "twitter",
+            "deplot",
+            "vqa"
+        ]
+    },
+    "https://twitter.com/abacaj/status/1644099238035435527": {
+        "extra-tags": [],
+        "date": "2023-04-06",
+        "title": "Twitter @abacaj",
+        "summary": "RLHF might sound easy in theory, but in practice there are many things that can go wrong. A new post from hugging face shows how and why. They show how to perform RLHF on LLaMA\n\nhttps://t.co/qNyw957vCB https://t.co/wQtcATEN4i",
+        "tags": [
+            "rlhf",
+            "twitter",
+            "llama"
+        ]
+    },
+    "https://huggingface.co/blog/stackllama": {
+        "extra-tags": [],
+        "title": "StackLLaMA: A hands-on guide to train LLaMA with RLHF",
+        "summary": "We\u2019re on a journey to advance and democratize artificial intelligence through open source and open science.",
+        "date": "2023-04-07",
+        "tags": []
+    },
+    "http://arxiv.org/abs/2304.01982": {
+        "extra-tags": [],
+        "title": "Rethinking the Role of Token Retrieval in Multi-Vector Retrieval",
+        "summary": "Multi-vector retrieval models such as ColBERT [Khattab and Zaharia, 2020] allow token-level interactions between queries and documents, and hence achieve state of the art on many information retrieval benchmarks. However, their non-linear scoring function cannot be scaled to millions of documents, necessitating a three-stage process for inference: retrieving initial candidates via token retrieval, accessing all token vectors, and scoring the initial candidate documents. The non-linear scoring function is applied over all token vectors of each candidate document, making the inference process complicated and slow. In this paper, we aim to simplify the multi-vector retrieval by rethinking the role of token retrieval. We present XTR, ConteXtualized Token Retriever, which introduces a simple, yet novel, objective function that encourages the model to retrieve the most important document tokens first. The improvement to token retrieval allows XTR to rank candidates only using the retrieved tokens rather than all tokens in the document, and enables a newly designed scoring stage that is two-to-three orders of magnitude cheaper than that of ColBERT. On the popular BEIR benchmark, XTR advances the state-of-the-art by 2.8 nDCG@10 without any distillation. Detailed analysis confirms our decision to revisit the token retrieval stage, as XTR demonstrates much better recall of the token retrieval stage compared to ColBERT.",
+        "date": "2023-04-07",
+        "tags": [
+            "computer science - computation and language",
+            "computer science - information retrieval"
+        ]
     }
 }

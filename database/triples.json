@@ -144426,5 +144426,25 @@
     {
         "head": "build",
         "tail": "system"
+    },
+    {
+        "head": "matcha",
+        "tail": "deplot"
+    },
+    {
+        "head": "matcha",
+        "tail": "vqa"
+    },
+    {
+        "head": "deplot",
+        "tail": "vqa"
+    },
+    {
+        "head": "rlhf",
+        "tail": "llama"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "computer science - information retrieval"
     }
 ]
