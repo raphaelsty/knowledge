@@ -30864,5 +30864,37 @@
             "computer science - computation and language",
             "computer science - information retrieval"
         ]
+    },
+    "https://twitter.com/ljvmiranda/status/1621813818904154112": {
+        "extra-tags": [],
+        "date": "2023-02-04",
+        "title": "Twitter @ljvmiranda",
+        "summary": "\ud83d\udce3 New blog post: I've been working on an NER pipeline for my native language, Tagalog, using @spacy_io!\n\nStill a work-in-progress, but happy to share my updates on getting structured evaluations on a low-resource language :)\n\nhttps://t.co/xKXOAOE0C4",
+        "tags": [
+            "twitter"
+        ]
+    },
+    "https://github.com/jamalex/notion-py": {
+        "extra-tags": [],
+        "date": "2018-11-26",
+        "title": "notion-py",
+        "summary": "Unofficial Python API client for Notion.so",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/erikgrinaker/toydb": {
+        "extra-tags": [],
+        "date": "2019-04-28",
+        "title": "toydb",
+        "summary": "Distributed SQL database in Rust, written as a learning project",
+        "tags": [
+            "distributed",
+            "raft",
+            "mvcc",
+            "database",
+            "rust",
+            "sql"
+        ]
     }
 }

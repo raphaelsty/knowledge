@@ -144446,5 +144446,41 @@
     {
         "head": "computer science - computation and language",
         "tail": "computer science - information retrieval"
+    },
+    {
+        "head": "distributed",
+        "tail": "raft"
+    },
+    {
+        "head": "distributed",
+        "tail": "mvcc"
+    },
+    {
+        "head": "distributed",
+        "tail": "rust"
+    },
+    {
+        "head": "raft",
+        "tail": "mvcc"
+    },
+    {
+        "head": "raft",
+        "tail": "rust"
+    },
+    {
+        "head": "raft",
+        "tail": "sql"
+    },
+    {
+        "head": "mvcc",
+        "tail": "database"
+    },
+    {
+        "head": "mvcc",
+        "tail": "rust"
+    },
+    {
+        "head": "mvcc",
+        "tail": "sql"
     }
 ]
