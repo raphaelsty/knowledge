@@ -30896,5 +30896,15 @@
             "rust",
             "sql"
         ]
+    },
+    "http://arxiv.org/abs/2004.11759": {
+        "extra-tags": [],
+        "title": "Learning Term Discrimination",
+        "summary": "Document indexing is a key component for efficient information retrieval (IR). After preprocessing steps such as stemming and stop-word removal, document indexes usually store term-frequencies (tf). Along with tf (that only reflects the importance of a term in a document), traditional IR models use term discrimination values (TDVs) such as inverse document frequency (idf) to favor discriminative terms during retrieval. In this work, we propose to learn TDVs for document indexing with shallow neural networks that approximate traditional IR ranking functions such as TF-IDF and BM25. Our proposal outperforms, both in terms of nDCG and recall, traditional approaches, even with few positively labelled query-document pairs as learning data. Our learned TDVs, when used to filter out terms of the vocabulary that have zero discrimination value, allow to both significantly lower the memory footprint of the inverted index and speed up the retrieval process (BM25 is up to 3~times faster), without degrading retrieval quality.",
+        "date": "2023-04-08",
+        "tags": [
+            "computer science - information retrieval",
+            "bm25"
+        ]
     }
 }
