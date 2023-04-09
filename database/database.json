@@ -30906,5 +30906,34 @@
             "computer science - information retrieval",
             "bm25"
         ]
+    },
+    "https://github.com/amidst/toolbox": {
+        "extra-tags": [],
+        "date": "2014-04-01",
+        "title": "toolbox",
+        "summary": "A Java Toolbox for Scalable Probabilistic Machine Learning",
+        "tags": [
+            "bayesian-networks",
+            "graphical-models",
+            "latent-variable-models",
+            "data-science",
+            "java",
+            "bayesian-methods",
+            "machine-learning",
+            "streaming-data"
+        ]
+    },
+    "https://github.com/framesurge/perseus": {
+        "extra-tags": [],
+        "date": "2021-07-16",
+        "title": "perseus",
+        "summary": "A state-driven web development framework for Rust with full support for server-side rendering and static generation.",
+        "tags": [
+            "ssr",
+            "ssg",
+            "transitional-app",
+            "rust",
+            "isomorphic"
+        ]
     }
 }

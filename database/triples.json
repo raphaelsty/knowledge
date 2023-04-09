@@ -144486,5 +144486,125 @@
     {
         "head": "computer science - information retrieval",
         "tail": "bm25"
+    },
+    {
+        "head": "bayesian-networks",
+        "tail": "graphical-models"
+    },
+    {
+        "head": "bayesian-networks",
+        "tail": "latent-variable-models"
+    },
+    {
+        "head": "bayesian-networks",
+        "tail": "data-science"
+    },
+    {
+        "head": "bayesian-networks",
+        "tail": "java"
+    },
+    {
+        "head": "bayesian-networks",
+        "tail": "bayesian-methods"
+    },
+    {
+        "head": "bayesian-networks",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "bayesian-networks",
+        "tail": "streaming-data"
+    },
+    {
+        "head": "graphical-models",
+        "tail": "latent-variable-models"
+    },
+    {
+        "head": "graphical-models",
+        "tail": "data-science"
+    },
+    {
+        "head": "graphical-models",
+        "tail": "java"
+    },
+    {
+        "head": "graphical-models",
+        "tail": "bayesian-methods"
+    },
+    {
+        "head": "graphical-models",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "graphical-models",
+        "tail": "streaming-data"
+    },
+    {
+        "head": "latent-variable-models",
+        "tail": "data-science"
+    },
+    {
+        "head": "latent-variable-models",
+        "tail": "java"
+    },
+    {
+        "head": "latent-variable-models",
+        "tail": "bayesian-methods"
+    },
+    {
+        "head": "latent-variable-models",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "latent-variable-models",
+        "tail": "streaming-data"
+    },
+    {
+        "head": "java",
+        "tail": "bayesian-methods"
+    },
+    {
+        "head": "java",
+        "tail": "streaming-data"
+    },
+    {
+        "head": "bayesian-methods",
+        "tail": "streaming-data"
+    },
+    {
+        "head": "ssr",
+        "tail": "ssg"
+    },
+    {
+        "head": "ssr",
+        "tail": "transitional-app"
+    },
+    {
+        "head": "ssr",
+        "tail": "rust"
+    },
+    {
+        "head": "ssr",
+        "tail": "isomorphic"
+    },
+    {
+        "head": "ssg",
+        "tail": "transitional-app"
+    },
+    {
+        "head": "ssg",
+        "tail": "isomorphic"
+    },
+    {
+        "head": "transitional-app",
+        "tail": "rust"
+    },
+    {
+        "head": "transitional-app",
+        "tail": "isomorphic"
+    },
+    {
+        "head": "rust",
+        "tail": "isomorphic"
     }
 ]
