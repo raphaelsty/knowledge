@@ -30935,5 +30935,34 @@
             "rust",
             "isomorphic"
         ]
+    },
+    "https://twitter.com/fishnets88/status/1644721486970617857": {
+        "extra-tags": [],
+        "date": "2023-04-08",
+        "title": "Twitter @fishnets88",
+        "summary": "@vboykis This is partially why calmcode\u2019s search just uses tf-idf.\n\nThat said, neat trick: tf/idf -&gt; svd also yields useful clusters sometimes. And you can steer this embedding by putting a finetuner at the end of it.",
+        "tags": [
+            "calmcode",
+            "svd",
+            "twitter"
+        ]
+    },
+    "https://github.com/koenderks/rcityviews": {
+        "extra-tags": [],
+        "date": "2022-01-03",
+        "title": "rcityviews",
+        "summary": "A user-friendly R interface for rendering customizable city maps using OpenStreetMap (www.openstreetmap.org) data, implemented as an R package and a Shiny web application.",
+        "tags": [
+            "poster",
+            "r",
+            "rstats",
+            "shiny",
+            "generative-art",
+            "ggplot2",
+            "maps",
+            "openstreetmap",
+            "cartography",
+            "osm"
+        ]
     }
 }

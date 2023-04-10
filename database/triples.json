@@ -144606,5 +144606,161 @@
     {
         "head": "rust",
         "tail": "isomorphic"
+    },
+    {
+        "head": "calmcode",
+        "tail": "svd"
+    },
+    {
+        "head": "poster",
+        "tail": "r"
+    },
+    {
+        "head": "poster",
+        "tail": "rstats"
+    },
+    {
+        "head": "poster",
+        "tail": "shiny"
+    },
+    {
+        "head": "poster",
+        "tail": "generative-art"
+    },
+    {
+        "head": "poster",
+        "tail": "ggplot2"
+    },
+    {
+        "head": "poster",
+        "tail": "maps"
+    },
+    {
+        "head": "poster",
+        "tail": "openstreetmap"
+    },
+    {
+        "head": "poster",
+        "tail": "cartography"
+    },
+    {
+        "head": "poster",
+        "tail": "osm"
+    },
+    {
+        "head": "r",
+        "tail": "shiny"
+    },
+    {
+        "head": "r",
+        "tail": "generative-art"
+    },
+    {
+        "head": "r",
+        "tail": "ggplot2"
+    },
+    {
+        "head": "r",
+        "tail": "maps"
+    },
+    {
+        "head": "r",
+        "tail": "openstreetmap"
+    },
+    {
+        "head": "r",
+        "tail": "cartography"
+    },
+    {
+        "head": "r",
+        "tail": "osm"
+    },
+    {
+        "head": "rstats",
+        "tail": "shiny"
+    },
+    {
+        "head": "rstats",
+        "tail": "generative-art"
+    },
+    {
+        "head": "rstats",
+        "tail": "ggplot2"
+    },
+    {
+        "head": "rstats",
+        "tail": "maps"
+    },
+    {
+        "head": "rstats",
+        "tail": "openstreetmap"
+    },
+    {
+        "head": "rstats",
+        "tail": "cartography"
+    },
+    {
+        "head": "rstats",
+        "tail": "osm"
+    },
+    {
+        "head": "shiny",
+        "tail": "generative-art"
+    },
+    {
+        "head": "shiny",
+        "tail": "ggplot2"
+    },
+    {
+        "head": "shiny",
+        "tail": "maps"
+    },
+    {
+        "head": "shiny",
+        "tail": "openstreetmap"
+    },
+    {
+        "head": "shiny",
+        "tail": "cartography"
+    },
+    {
+        "head": "shiny",
+        "tail": "osm"
+    },
+    {
+        "head": "generative-art",
+        "tail": "ggplot2"
+    },
+    {
+        "head": "generative-art",
+        "tail": "osm"
+    },
+    {
+        "head": "ggplot2",
+        "tail": "maps"
+    },
+    {
+        "head": "ggplot2",
+        "tail": "openstreetmap"
+    },
+    {
+        "head": "ggplot2",
+        "tail": "cartography"
+    },
+    {
+        "head": "ggplot2",
+        "tail": "osm"
+    },
+    {
+        "head": "maps",
+        "tail": "osm"
+    },
+    {
+        "head": "openstreetmap",
+        "tail": "osm"
+    },
+    {
+        "head": "cartography",
+        "tail": "osm"
     }
 ]
