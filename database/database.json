@@ -30964,5 +30964,14 @@
             "cartography",
             "osm"
         ]
+    },
+    "https://github.com/sail-sg/EditAnything": {
+        "extra-tags": [],
+        "date": "2023-04-09",
+        "title": "EditAnything",
+        "summary": "",
+        "tags": [
+            "python"
+        ]
     }
 }
