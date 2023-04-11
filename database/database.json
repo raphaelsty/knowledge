@@ -30973,5 +30973,18 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/mtshiba/pylyzer": {
+        "extra-tags": [],
+        "date": "2022-12-12",
+        "title": "pylyzer",
+        "summary": "A fast static code analyzer & language server for Python",
+        "tags": [
+            "rust",
+            "type-checker",
+            "language-server",
+            "static-analysis",
+            "python"
+        ]
     }
 }

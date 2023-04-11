@@ -144762,5 +144762,29 @@
     {
         "head": "cartography",
         "tail": "osm"
+    },
+    {
+        "head": "rust",
+        "tail": "type-checker"
+    },
+    {
+        "head": "type-checker",
+        "tail": "language-server"
+    },
+    {
+        "head": "type-checker",
+        "tail": "static-analysis"
+    },
+    {
+        "head": "type-checker",
+        "tail": "python"
+    },
+    {
+        "head": "language-server",
+        "tail": "static-analysis"
+    },
+    {
+        "head": "language-server",
+        "tail": "python"
     }
 ]
