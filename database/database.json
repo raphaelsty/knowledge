@@ -30986,5 +30986,16 @@
             "static-analysis",
             "python"
         ]
+    },
+    "https://github.com/ravenscroftj/turbopilot": {
+        "extra-tags": [
+            "copilot"
+        ],
+        "date": "2023-04-09",
+        "title": "turbopilot",
+        "summary": "",
+        "tags": [
+            "python"
+        ]
     }
 }
