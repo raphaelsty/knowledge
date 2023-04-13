@@ -30997,5 +30997,14 @@
         "tags": [
             "python"
         ]
+    },
+    "https://www.ethanrosenthal.com/2023/04/10/nn-vs-ann/": {
+        "extra-tags": [],
+        "title": "Hackernews Do you need a vector database? (ethanrosenthal.com)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2023-04-13"
     }
 }
