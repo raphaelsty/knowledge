@@ -144786,5 +144786,245 @@
     {
         "head": "language-server",
         "tail": "python"
+    },
+    {
+        "head": "gpu",
+        "tail": "trillion-parameters"
+    },
+    {
+        "head": "gpu",
+        "tail": "compression"
+    },
+    {
+        "head": "gpu",
+        "tail": "zero"
+    },
+    {
+        "head": "gpu",
+        "tail": "data-parallelism"
+    },
+    {
+        "head": "gpu",
+        "tail": "pipeline-parallelism"
+    },
+    {
+        "head": "gpu",
+        "tail": "model-parallelism"
+    },
+    {
+        "head": "gpu",
+        "tail": "mixture-of-experts"
+    },
+    {
+        "head": "gpu",
+        "tail": "billion-parameters"
+    },
+    {
+        "head": "trillion-parameters",
+        "tail": "compression"
+    },
+    {
+        "head": "trillion-parameters",
+        "tail": "pytorch"
+    },
+    {
+        "head": "trillion-parameters",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "trillion-parameters",
+        "tail": "deep-learning"
+    },
+    {
+        "head": "trillion-parameters",
+        "tail": "zero"
+    },
+    {
+        "head": "trillion-parameters",
+        "tail": "data-parallelism"
+    },
+    {
+        "head": "trillion-parameters",
+        "tail": "pipeline-parallelism"
+    },
+    {
+        "head": "trillion-parameters",
+        "tail": "model-parallelism"
+    },
+    {
+        "head": "trillion-parameters",
+        "tail": "inference"
+    },
+    {
+        "head": "trillion-parameters",
+        "tail": "mixture-of-experts"
+    },
+    {
+        "head": "trillion-parameters",
+        "tail": "python"
+    },
+    {
+        "head": "trillion-parameters",
+        "tail": "billion-parameters"
+    },
+    {
+        "head": "compression",
+        "tail": "pytorch"
+    },
+    {
+        "head": "compression",
+        "tail": "deep-learning"
+    },
+    {
+        "head": "compression",
+        "tail": "zero"
+    },
+    {
+        "head": "compression",
+        "tail": "data-parallelism"
+    },
+    {
+        "head": "compression",
+        "tail": "pipeline-parallelism"
+    },
+    {
+        "head": "compression",
+        "tail": "model-parallelism"
+    },
+    {
+        "head": "compression",
+        "tail": "inference"
+    },
+    {
+        "head": "compression",
+        "tail": "mixture-of-experts"
+    },
+    {
+        "head": "compression",
+        "tail": "billion-parameters"
+    },
+    {
+        "head": "pytorch",
+        "tail": "zero"
+    },
+    {
+        "head": "pytorch",
+        "tail": "data-parallelism"
+    },
+    {
+        "head": "pytorch",
+        "tail": "pipeline-parallelism"
+    },
+    {
+        "head": "pytorch",
+        "tail": "model-parallelism"
+    },
+    {
+        "head": "pytorch",
+        "tail": "inference"
+    },
+    {
+        "head": "pytorch",
+        "tail": "billion-parameters"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "zero"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "data-parallelism"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "pipeline-parallelism"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "model-parallelism"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "billion-parameters"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "zero"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "billion-parameters"
+    },
+    {
+        "head": "zero",
+        "tail": "data-parallelism"
+    },
+    {
+        "head": "zero",
+        "tail": "pipeline-parallelism"
+    },
+    {
+        "head": "zero",
+        "tail": "model-parallelism"
+    },
+    {
+        "head": "zero",
+        "tail": "inference"
+    },
+    {
+        "head": "zero",
+        "tail": "mixture-of-experts"
+    },
+    {
+        "head": "zero",
+        "tail": "python"
+    },
+    {
+        "head": "zero",
+        "tail": "billion-parameters"
+    },
+    {
+        "head": "data-parallelism",
+        "tail": "mixture-of-experts"
+    },
+    {
+        "head": "data-parallelism",
+        "tail": "billion-parameters"
+    },
+    {
+        "head": "pipeline-parallelism",
+        "tail": "mixture-of-experts"
+    },
+    {
+        "head": "pipeline-parallelism",
+        "tail": "billion-parameters"
+    },
+    {
+        "head": "model-parallelism",
+        "tail": "mixture-of-experts"
+    },
+    {
+        "head": "model-parallelism",
+        "tail": "billion-parameters"
+    },
+    {
+        "head": "inference",
+        "tail": "mixture-of-experts"
+    },
+    {
+        "head": "inference",
+        "tail": "billion-parameters"
+    },
+    {
+        "head": "mixture-of-experts",
+        "tail": "billion-parameters"
+    },
+    {
+        "head": "python",
+        "tail": "billion-parameters"
+    },
+    {
+        "head": "training",
+        "tail": "llms"
     }
 ]
