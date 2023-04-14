@@ -31047,5 +31047,22 @@
         "tags": [
             "multiples gpus"
         ]
+    },
+    "https://github.com/jolibrain/joliGEN": {
+        "extra-tags": [],
+        "date": "2020-08-18",
+        "title": "joliGEN",
+        "summary": "Generative AI Toolset with GANs and Diffusion for Real-World Applications",
+        "tags": [
+            "generative-model",
+            "neural-network",
+            "diffusion-models",
+            "machine-learning",
+            "python",
+            "augmented-reality",
+            "gan",
+            "deep-learning",
+            "pytorch"
+        ]
     }
 }
