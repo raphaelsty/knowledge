@@ -31064,5 +31064,32 @@
             "deep-learning",
             "pytorch"
         ]
+    },
+    "https://github.com/entity-neural-network/enn-trainer": {
+        "extra-tags": [],
+        "date": "2022-05-12",
+        "title": "enn-trainer",
+        "summary": "Reinforcement learning training framework for entity-gym environments.",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/entity-neural-network/entity-gym": {
+        "extra-tags": [],
+        "date": "2022-05-11",
+        "title": "entity-gym",
+        "summary": "Standard interface for entity based reinforcement learning environments.",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/entity-neural-network/rogue-net": {
+        "extra-tags": [],
+        "date": "2022-05-11",
+        "title": "rogue-net",
+        "summary": "Entity Gym compatible ragged batch transformer implementation.",
+        "tags": [
+            "python"
+        ]
     }
 }
