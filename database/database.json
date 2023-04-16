@@ -31091,5 +31091,16 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/jzck/horqrux": {
+        "extra-tags": [
+            "code"
+        ],
+        "date": "2023-04-15",
+        "title": "horqrux",
+        "summary": "QR code splitting",
+        "tags": [
+            "python"
+        ]
     }
 }
