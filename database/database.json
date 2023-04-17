@@ -31102,5 +31102,15 @@
         "tags": [
             "python"
         ]
+    },
+    "https://twitter.com/mvpatel2000/status/1646353582890057730": {
+        "extra-tags": [],
+        "date": "2023-04-13",
+        "title": "Twitter @mvpatel2000",
+        "summary": "Evaluating LLMs is really hard! At @MosaicML, we rigorously benchmark models by asking for vegan* banana bread recipes, baking them, and ranking on taste\n\n*we currently do not penalize for responding with non-vegan, but this will change in future https://t.co/I5R8ZDz924",
+        "tags": [
+            "llms",
+            "twitter"
+        ]
     }
 }
