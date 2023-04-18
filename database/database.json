@@ -31121,5 +31121,16 @@
         "tags": [
             "twitter"
         ]
+    },
+    "https://github.com/lernapparat/torchhacks": {
+        "extra-tags": [
+            "pytorch"
+        ],
+        "date": "2023-04-18",
+        "title": "torchhacks",
+        "summary": "Hacks for PyTorch",
+        "tags": [
+            "python"
+        ]
     }
 }
