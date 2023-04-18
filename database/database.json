@@ -31112,5 +31112,14 @@
             "llms",
             "twitter"
         ]
+    },
+    "https://twitter.com/vagabondjack/status/1648052658073403392": {
+        "extra-tags": [],
+        "date": "2023-04-17",
+        "title": "Twitter @vagabondjack",
+        "summary": "Inspired by @jeremyphoward, a non-exhaustive list of the reasons the @togethercompute RedPajama LLaMA dataset reproduction saves the rest of us a lot of work. [1/n]",
+        "tags": [
+            "twitter"
+        ]
     }
 }
