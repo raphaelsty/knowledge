@@ -31152,5 +31152,17 @@
             "twitter",
             "paris"
         ]
+    },
+    "https://github.com/colindecourt/darod": {
+        "extra-tags": [
+            "deep",
+            "maps"
+        ],
+        "date": "2023-03-17",
+        "title": "darod",
+        "summary": "DAROD: A Deep Automotive Radar Object Detector on Range-Doppler maps (IEEE Intelligent Vehicle Symposium 2022)",
+        "tags": [
+            "python"
+        ]
     }
 }
