@@ -31132,5 +31132,25 @@
         "tags": [
             "python"
         ]
+    },
+    "https://twitter.com/Nils_Reimers/status/1649020329887399936": {
+        "extra-tags": [],
+        "date": "2023-04-20",
+        "title": "Twitter @Nils_Reimers",
+        "summary": "\ud83c\uddfa\ud83c\uddf3Cross-Lingual Text-Classification just from English Data\ud83c\uddec\ud83c\udde7\n\nDeveloping NLP apps for an international audience is challenging: It has to work for many languages.\n\nHow can you simplify this and get amazing classification results from a handful of \ud83c\uddfa\ud83c\uddf8 English training examples?\ud83e\uddf5",
+        "tags": [
+            "twitter",
+            "nlp"
+        ]
+    },
+    "https://twitter.com/mervenoyann/status/1649052210087727104": {
+        "extra-tags": [],
+        "date": "2023-04-20",
+        "title": "Twitter @mervenoyann",
+        "summary": "another day in @huggingface's humble Paris office (this is my desk) https://t.co/Iu0J5hnWIR",
+        "tags": [
+            "twitter",
+            "paris"
+        ]
     }
 }
