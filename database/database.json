@@ -31164,5 +31164,54 @@
         "tags": [
             "python"
         ]
+    },
+    "https://twitter.com/chloe21e8/status/1649439431571693569": {
+        "extra-tags": [],
+        "date": "2023-04-21",
+        "title": "Twitter @chloe21e8",
+        "summary": "When I was 15 I did this\u2014 it was so funny watching them be mad, claiming I was a computer or cheating. Nope, just a genius. \n\nSmall world I see this on twitter.\n https://t.co/rQtxX3eoaq",
+        "tags": [
+            "twitter"
+        ]
+    },
+    "https://twitter.com/then_there_was/status/1649150416049827922": {
+        "extra-tags": [],
+        "date": "2023-04-20",
+        "title": "Twitter @then_there_was",
+        "summary": "The legend of Cleo in the Mathematics StackExchange. \ud83d\ude02 https://t.co/imrBLda1LH",
+        "tags": [
+            "cleo",
+            "twitter",
+            "mathematics stackexchange"
+        ]
+    },
+    "https://github.com/unum-cloud/ucall": {
+        "extra-tags": [],
+        "date": "2023-01-03",
+        "title": "ucall",
+        "summary": "Up to 100x Faster FastAPI. JSON-RPC with io_uring, SIMDJSON, and pure CPython bindings",
+        "tags": [
+            "dpdk",
+            "rpc",
+            "tcp-ip",
+            "http",
+            "rpc-framework",
+            "c",
+            "python",
+            "io-uring",
+            "json",
+            "flask",
+            "tcp",
+            "json-rpc",
+            "fast-api",
+            "liburing",
+            "cpython",
+            "http-server",
+            "linux-kernel",
+            "epoll",
+            "simdjson",
+            "simd",
+            "backend"
+        ]
     }
 }
