@@ -145174,5 +145174,17 @@
     {
         "head": "c",
         "tail": "backend"
+    },
+    {
+        "head": "rust",
+        "tail": "poetry"
+    },
+    {
+        "head": "rust",
+        "tail": "pip"
+    },
+    {
+        "head": "poetry",
+        "tail": "pip"
     }
 ]

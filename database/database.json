@@ -31213,5 +31213,28 @@
             "simd",
             "backend"
         ]
+    },
+    "https://github.com/mitsuhiko/rye": {
+        "extra-tags": [
+            "poetry",
+            "pip"
+        ],
+        "date": "2023-04-22",
+        "title": "rye",
+        "summary": " an experimental alternative to poetry/pip/pipenv/pyenv/venv/virtualenv/pdm/hatch/\u2026 ",
+        "tags": [
+            "rust"
+        ]
+    },
+    "https://www.augmental.tech/": {
+        "extra-tags": [
+            "tech"
+        ],
+        "title": "Hackernews MouthPad \u2013 In-Mouth Bluetooth Mouse Uses Tongue Sensitive Trackpad (augmental.tech)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2023-04-24"
     }
 }
