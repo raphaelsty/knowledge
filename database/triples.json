@@ -145186,5 +145186,657 @@
     {
         "head": "poetry",
         "tail": "pip"
+    },
+    {
+        "head": "gdb-command",
+        "tail": "gdb-commands"
+    },
+    {
+        "head": "gdb-command",
+        "tail": "subcommands"
+    },
+    {
+        "head": "gdb-command",
+        "tail": "ansi"
+    },
+    {
+        "head": "gdb-command",
+        "tail": "dashboard"
+    },
+    {
+        "head": "gdb-command",
+        "tail": "gdb"
+    },
+    {
+        "head": "gdb-command",
+        "tail": "divide"
+    },
+    {
+        "head": "gdb-command",
+        "tail": "dashboard-styles"
+    },
+    {
+        "head": "gdb-command",
+        "tail": "python"
+    },
+    {
+        "head": "gdb-command",
+        "tail": "pygments"
+    },
+    {
+        "head": "gdb-command",
+        "tail": "terminal"
+    },
+    {
+        "head": "gdb-command",
+        "tail": "console"
+    },
+    {
+        "head": "gdb-command",
+        "tail": "syntax-highlighting"
+    },
+    {
+        "head": "gdb-command",
+        "tail": "tty"
+    },
+    {
+        "head": "gdb-command",
+        "tail": "interface"
+    },
+    {
+        "head": "gdb-command",
+        "tail": "visual"
+    },
+    {
+        "head": "gdb-command",
+        "tail": "stylable-attributes"
+    },
+    {
+        "head": "gdb-command",
+        "tail": "debugger"
+    },
+    {
+        "head": "gdb-command",
+        "tail": "assembly"
+    },
+    {
+        "head": "gdb-commands",
+        "tail": "subcommands"
+    },
+    {
+        "head": "gdb-commands",
+        "tail": "ansi"
+    },
+    {
+        "head": "gdb-commands",
+        "tail": "dashboard"
+    },
+    {
+        "head": "gdb-commands",
+        "tail": "gdb"
+    },
+    {
+        "head": "gdb-commands",
+        "tail": "divide"
+    },
+    {
+        "head": "gdb-commands",
+        "tail": "dashboard-styles"
+    },
+    {
+        "head": "gdb-commands",
+        "tail": "python"
+    },
+    {
+        "head": "gdb-commands",
+        "tail": "pygments"
+    },
+    {
+        "head": "gdb-commands",
+        "tail": "terminal"
+    },
+    {
+        "head": "gdb-commands",
+        "tail": "console"
+    },
+    {
+        "head": "gdb-commands",
+        "tail": "syntax-highlighting"
+    },
+    {
+        "head": "gdb-commands",
+        "tail": "tty"
+    },
+    {
+        "head": "gdb-commands",
+        "tail": "interface"
+    },
+    {
+        "head": "gdb-commands",
+        "tail": "visual"
+    },
+    {
+        "head": "gdb-commands",
+        "tail": "stylable-attributes"
+    },
+    {
+        "head": "gdb-commands",
+        "tail": "debugger"
+    },
+    {
+        "head": "gdb-commands",
+        "tail": "assembly"
+    },
+    {
+        "head": "subcommands",
+        "tail": "ansi"
+    },
+    {
+        "head": "subcommands",
+        "tail": "dashboard"
+    },
+    {
+        "head": "subcommands",
+        "tail": "gdb"
+    },
+    {
+        "head": "subcommands",
+        "tail": "divide"
+    },
+    {
+        "head": "subcommands",
+        "tail": "dashboard-styles"
+    },
+    {
+        "head": "subcommands",
+        "tail": "python"
+    },
+    {
+        "head": "subcommands",
+        "tail": "pygments"
+    },
+    {
+        "head": "subcommands",
+        "tail": "terminal"
+    },
+    {
+        "head": "subcommands",
+        "tail": "console"
+    },
+    {
+        "head": "subcommands",
+        "tail": "syntax-highlighting"
+    },
+    {
+        "head": "subcommands",
+        "tail": "tty"
+    },
+    {
+        "head": "subcommands",
+        "tail": "interface"
+    },
+    {
+        "head": "subcommands",
+        "tail": "visual"
+    },
+    {
+        "head": "subcommands",
+        "tail": "stylable-attributes"
+    },
+    {
+        "head": "subcommands",
+        "tail": "debugger"
+    },
+    {
+        "head": "subcommands",
+        "tail": "assembly"
+    },
+    {
+        "head": "ansi",
+        "tail": "dashboard"
+    },
+    {
+        "head": "ansi",
+        "tail": "gdb"
+    },
+    {
+        "head": "ansi",
+        "tail": "divide"
+    },
+    {
+        "head": "ansi",
+        "tail": "dashboard-styles"
+    },
+    {
+        "head": "ansi",
+        "tail": "python"
+    },
+    {
+        "head": "ansi",
+        "tail": "pygments"
+    },
+    {
+        "head": "ansi",
+        "tail": "terminal"
+    },
+    {
+        "head": "ansi",
+        "tail": "console"
+    },
+    {
+        "head": "ansi",
+        "tail": "syntax-highlighting"
+    },
+    {
+        "head": "ansi",
+        "tail": "tty"
+    },
+    {
+        "head": "ansi",
+        "tail": "interface"
+    },
+    {
+        "head": "ansi",
+        "tail": "visual"
+    },
+    {
+        "head": "ansi",
+        "tail": "stylable-attributes"
+    },
+    {
+        "head": "ansi",
+        "tail": "debugger"
+    },
+    {
+        "head": "ansi",
+        "tail": "assembly"
+    },
+    {
+        "head": "dashboard",
+        "tail": "gdb"
+    },
+    {
+        "head": "dashboard",
+        "tail": "divide"
+    },
+    {
+        "head": "dashboard",
+        "tail": "dashboard-styles"
+    },
+    {
+        "head": "dashboard",
+        "tail": "pygments"
+    },
+    {
+        "head": "dashboard",
+        "tail": "terminal"
+    },
+    {
+        "head": "dashboard",
+        "tail": "console"
+    },
+    {
+        "head": "dashboard",
+        "tail": "syntax-highlighting"
+    },
+    {
+        "head": "dashboard",
+        "tail": "tty"
+    },
+    {
+        "head": "dashboard",
+        "tail": "interface"
+    },
+    {
+        "head": "dashboard",
+        "tail": "visual"
+    },
+    {
+        "head": "dashboard",
+        "tail": "stylable-attributes"
+    },
+    {
+        "head": "dashboard",
+        "tail": "debugger"
+    },
+    {
+        "head": "dashboard",
+        "tail": "assembly"
+    },
+    {
+        "head": "gdb",
+        "tail": "divide"
+    },
+    {
+        "head": "gdb",
+        "tail": "dashboard-styles"
+    },
+    {
+        "head": "gdb",
+        "tail": "python"
+    },
+    {
+        "head": "gdb",
+        "tail": "pygments"
+    },
+    {
+        "head": "gdb",
+        "tail": "terminal"
+    },
+    {
+        "head": "gdb",
+        "tail": "console"
+    },
+    {
+        "head": "gdb",
+        "tail": "syntax-highlighting"
+    },
+    {
+        "head": "gdb",
+        "tail": "tty"
+    },
+    {
+        "head": "gdb",
+        "tail": "interface"
+    },
+    {
+        "head": "gdb",
+        "tail": "visual"
+    },
+    {
+        "head": "gdb",
+        "tail": "stylable-attributes"
+    },
+    {
+        "head": "gdb",
+        "tail": "debugger"
+    },
+    {
+        "head": "gdb",
+        "tail": "assembly"
+    },
+    {
+        "head": "divide",
+        "tail": "dashboard-styles"
+    },
+    {
+        "head": "divide",
+        "tail": "python"
+    },
+    {
+        "head": "divide",
+        "tail": "pygments"
+    },
+    {
+        "head": "divide",
+        "tail": "terminal"
+    },
+    {
+        "head": "divide",
+        "tail": "console"
+    },
+    {
+        "head": "divide",
+        "tail": "syntax-highlighting"
+    },
+    {
+        "head": "divide",
+        "tail": "tty"
+    },
+    {
+        "head": "divide",
+        "tail": "interface"
+    },
+    {
+        "head": "divide",
+        "tail": "visual"
+    },
+    {
+        "head": "divide",
+        "tail": "stylable-attributes"
+    },
+    {
+        "head": "divide",
+        "tail": "debugger"
+    },
+    {
+        "head": "divide",
+        "tail": "assembly"
+    },
+    {
+        "head": "dashboard-styles",
+        "tail": "python"
+    },
+    {
+        "head": "dashboard-styles",
+        "tail": "pygments"
+    },
+    {
+        "head": "dashboard-styles",
+        "tail": "terminal"
+    },
+    {
+        "head": "dashboard-styles",
+        "tail": "console"
+    },
+    {
+        "head": "dashboard-styles",
+        "tail": "syntax-highlighting"
+    },
+    {
+        "head": "dashboard-styles",
+        "tail": "tty"
+    },
+    {
+        "head": "dashboard-styles",
+        "tail": "interface"
+    },
+    {
+        "head": "dashboard-styles",
+        "tail": "visual"
+    },
+    {
+        "head": "dashboard-styles",
+        "tail": "stylable-attributes"
+    },
+    {
+        "head": "dashboard-styles",
+        "tail": "debugger"
+    },
+    {
+        "head": "dashboard-styles",
+        "tail": "assembly"
+    },
+    {
+        "head": "python",
+        "tail": "pygments"
+    },
+    {
+        "head": "python",
+        "tail": "tty"
+    },
+    {
+        "head": "python",
+        "tail": "visual"
+    },
+    {
+        "head": "python",
+        "tail": "stylable-attributes"
+    },
+    {
+        "head": "python",
+        "tail": "assembly"
+    },
+    {
+        "head": "pygments",
+        "tail": "terminal"
+    },
+    {
+        "head": "pygments",
+        "tail": "console"
+    },
+    {
+        "head": "pygments",
+        "tail": "syntax-highlighting"
+    },
+    {
+        "head": "pygments",
+        "tail": "tty"
+    },
+    {
+        "head": "pygments",
+        "tail": "interface"
+    },
+    {
+        "head": "pygments",
+        "tail": "visual"
+    },
+    {
+        "head": "pygments",
+        "tail": "stylable-attributes"
+    },
+    {
+        "head": "pygments",
+        "tail": "debugger"
+    },
+    {
+        "head": "pygments",
+        "tail": "assembly"
+    },
+    {
+        "head": "terminal",
+        "tail": "tty"
+    },
+    {
+        "head": "terminal",
+        "tail": "interface"
+    },
+    {
+        "head": "terminal",
+        "tail": "visual"
+    },
+    {
+        "head": "terminal",
+        "tail": "stylable-attributes"
+    },
+    {
+        "head": "terminal",
+        "tail": "debugger"
+    },
+    {
+        "head": "terminal",
+        "tail": "assembly"
+    },
+    {
+        "head": "console",
+        "tail": "syntax-highlighting"
+    },
+    {
+        "head": "console",
+        "tail": "tty"
+    },
+    {
+        "head": "console",
+        "tail": "interface"
+    },
+    {
+        "head": "console",
+        "tail": "visual"
+    },
+    {
+        "head": "console",
+        "tail": "stylable-attributes"
+    },
+    {
+        "head": "console",
+        "tail": "debugger"
+    },
+    {
+        "head": "console",
+        "tail": "assembly"
+    },
+    {
+        "head": "syntax-highlighting",
+        "tail": "tty"
+    },
+    {
+        "head": "syntax-highlighting",
+        "tail": "interface"
+    },
+    {
+        "head": "syntax-highlighting",
+        "tail": "visual"
+    },
+    {
+        "head": "syntax-highlighting",
+        "tail": "stylable-attributes"
+    },
+    {
+        "head": "syntax-highlighting",
+        "tail": "debugger"
+    },
+    {
+        "head": "syntax-highlighting",
+        "tail": "assembly"
+    },
+    {
+        "head": "tty",
+        "tail": "interface"
+    },
+    {
+        "head": "tty",
+        "tail": "visual"
+    },
+    {
+        "head": "tty",
+        "tail": "stylable-attributes"
+    },
+    {
+        "head": "tty",
+        "tail": "debugger"
+    },
+    {
+        "head": "tty",
+        "tail": "assembly"
+    },
+    {
+        "head": "interface",
+        "tail": "visual"
+    },
+    {
+        "head": "interface",
+        "tail": "stylable-attributes"
+    },
+    {
+        "head": "interface",
+        "tail": "debugger"
+    },
+    {
+        "head": "interface",
+        "tail": "assembly"
+    },
+    {
+        "head": "visual",
+        "tail": "stylable-attributes"
+    },
+    {
+        "head": "visual",
+        "tail": "debugger"
+    },
+    {
+        "head": "visual",
+        "tail": "assembly"
+    },
+    {
+        "head": "stylable-attributes",
+        "tail": "debugger"
+    },
+    {
+        "head": "stylable-attributes",
+        "tail": "assembly"
+    },
+    {
+        "head": "debugger",
+        "tail": "assembly"
     }
 ]

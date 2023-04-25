@@ -31236,5 +31236,52 @@
         ],
         "summary": "",
         "date": "2023-04-24"
+    },
+    "https://github.com/aslakey/CBM_Encoding": {
+        "extra-tags": [],
+        "date": "2019-03-30",
+        "title": "CBM_Encoding",
+        "summary": "CBM Encoding",
+        "tags": [
+            "jupyter notebook"
+        ]
+    },
+    "https://github.com/facebookresearch/AnimatedDrawings": {
+        "extra-tags": [
+            "code"
+        ],
+        "date": "2022-11-30",
+        "title": "AnimatedDrawings",
+        "summary": "Code to accompany \"A Method for Animating Children's Drawings of the Human Figure\"",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/cyrus-and/gdb-dashboard": {
+        "extra-tags": [],
+        "date": "2015-09-09",
+        "title": "gdb-dashboard",
+        "summary": "Modular visual interface for GDB in Python",
+        "tags": [
+            "gdb-command",
+            "gdb-commands",
+            "subcommands",
+            "ansi",
+            "dashboard",
+            "gdb",
+            "divide",
+            "dashboard-styles",
+            "python",
+            "pygments",
+            "terminal",
+            "console",
+            "syntax-highlighting",
+            "tty",
+            "interface",
+            "visual",
+            "stylable-attributes",
+            "debugger",
+            "assembly"
+        ]
     }
 }
