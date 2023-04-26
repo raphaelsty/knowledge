@@ -31283,5 +31283,14 @@
             "debugger",
             "assembly"
         ]
+    },
+    "https://github.com/HazyResearch/evaporate": {
+        "extra-tags": [],
+        "date": "2023-03-25",
+        "title": "evaporate",
+        "summary": "This repo contains data and code for the paper \"Language Models Enable Simple Systems for Generating Structured Views of Heterogeneous Data Lakes\"",
+        "tags": [
+            "python"
+        ]
     }
 }
