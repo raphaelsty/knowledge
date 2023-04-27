@@ -31292,5 +31292,23 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/streamdal/plumber": {
+        "extra-tags": [],
+        "date": "2020-07-28",
+        "title": "plumber",
+        "summary": "A swiss army knife CLI tool for interacting with Kafka, RabbitMQ and other messaging systems.",
+        "tags": [
+            "hacktoberfest",
+            "message-bus",
+            "kafka",
+            "message-queue",
+            "golang",
+            "rabbitmq",
+            "go",
+            "event-bus",
+            "protobuf",
+            "event-driven"
+        ]
     }
 }
