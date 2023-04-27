@@ -31310,5 +31310,23 @@
             "protobuf",
             "event-driven"
         ]
+    },
+    "https://twitter.com/pommedeterre33/status/1651345718722920452": {
+        "extra-tags": [],
+        "date": "2023-04-26",
+        "title": "Twitter @pommedeterre33",
+        "summary": "LLaMa license explicitly forbids derivative works. Output of fine-tuning likely produces a derivative work. XORing weights with the sole intent to sidestep obligations imposed by the licence may be seen as a sham or colorable arrangement and could lead to legal consequences \ud83d\udcb8\ud83d\udc80 https://t.co/vhtUnIobbG",
+        "tags": [
+            "twitter"
+        ]
+    },
+    "https://slate.com/business/2023/04/cars-buttons-touchscreens-vw-porsche-nissan-hyundai.html": {
+        "extra-tags": [],
+        "title": "Hackernews Automakers are starting to admit that drivers hate touchscreens (slate.com)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2023-04-27"
     }
 }
