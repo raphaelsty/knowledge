@@ -145838,5 +145838,17 @@
     {
         "head": "debugger",
         "tail": "assembly"
+    },
+    {
+        "head": "javascript",
+        "tail": "hacker"
+    },
+    {
+        "head": "javascript",
+        "tail": "browser"
+    },
+    {
+        "head": "hacker",
+        "tail": "browser"
     }
 ]
