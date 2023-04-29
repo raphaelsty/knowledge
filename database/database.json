@@ -31340,5 +31340,22 @@
         "tags": [
             "javascript"
         ]
+    },
+    "https://github.com/finos/perspective": {
+        "extra-tags": [],
+        "date": "2017-11-02",
+        "title": "perspective",
+        "summary": "A data visualization and analytics component, especially well-suited for large and/or streaming datasets.",
+        "tags": [
+            "jupyter",
+            "javascript",
+            "data-visualization",
+            "bi",
+            "python",
+            "analytics",
+            "webassembly",
+            "real-time",
+            "c++"
+        ]
     }
 }

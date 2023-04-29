@@ -145850,5 +145850,85 @@
     {
         "head": "hacker",
         "tail": "browser"
+    },
+    {
+        "head": "jupyter",
+        "tail": "bi"
+    },
+    {
+        "head": "jupyter",
+        "tail": "analytics"
+    },
+    {
+        "head": "jupyter",
+        "tail": "webassembly"
+    },
+    {
+        "head": "jupyter",
+        "tail": "real-time"
+    },
+    {
+        "head": "jupyter",
+        "tail": "c++"
+    },
+    {
+        "head": "javascript",
+        "tail": "data-visualization"
+    },
+    {
+        "head": "javascript",
+        "tail": "webassembly"
+    },
+    {
+        "head": "javascript",
+        "tail": "real-time"
+    },
+    {
+        "head": "javascript",
+        "tail": "c++"
+    },
+    {
+        "head": "data-visualization",
+        "tail": "webassembly"
+    },
+    {
+        "head": "data-visualization",
+        "tail": "real-time"
+    },
+    {
+        "head": "bi",
+        "tail": "webassembly"
+    },
+    {
+        "head": "bi",
+        "tail": "real-time"
+    },
+    {
+        "head": "bi",
+        "tail": "c++"
+    },
+    {
+        "head": "python",
+        "tail": "webassembly"
+    },
+    {
+        "head": "analytics",
+        "tail": "webassembly"
+    },
+    {
+        "head": "analytics",
+        "tail": "real-time"
+    },
+    {
+        "head": "webassembly",
+        "tail": "real-time"
+    },
+    {
+        "head": "webassembly",
+        "tail": "c++"
+    },
+    {
+        "head": "real-time",
+        "tail": "c++"
     }
 ]
