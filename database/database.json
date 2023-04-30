@@ -31357,5 +31357,14 @@
             "real-time",
             "c++"
         ]
+    },
+    "https://github.com/sknetwork-team/scikit-network": {
+        "extra-tags": [],
+        "date": "2018-05-29",
+        "title": "scikit-network",
+        "summary": "Graph Algorithms",
+        "tags": [
+            "python"
+        ]
     }
 }
