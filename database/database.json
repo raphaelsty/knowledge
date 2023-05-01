@@ -31366,5 +31366,15 @@
         "tags": [
             "python"
         ]
+    },
+    "https://twitter.com/_akhaliq/status/1651793641659154433": {
+        "extra-tags": [],
+        "date": "2023-04-28",
+        "title": "Twitter @_akhaliq",
+        "summary": "JaxPruner: A concise library for sparsity research\n\nabs: https://t.co/02mpxzSmSk https://t.co/woEWwFiZ9N",
+        "tags": [
+            "twitter",
+            "jaxpruner"
+        ]
     }
 }
