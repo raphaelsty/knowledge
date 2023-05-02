@@ -31376,5 +31376,14 @@
             "twitter",
             "jaxpruner"
         ]
+    },
+    "https://github.com/charliermarsh/ruff-lsp": {
+        "extra-tags": [],
+        "date": "2022-12-17",
+        "title": "ruff-lsp",
+        "summary": "A Language Server Protocol implementation for Ruff.",
+        "tags": [
+            "python"
+        ]
     }
 }
