@@ -145930,5 +145930,17 @@
     {
         "head": "real-time",
         "tail": "c++"
+    },
+    {
+        "head": "awesome",
+        "tail": "knowledge-graph"
+    },
+    {
+        "head": "python",
+        "tail": "taxonomy expansion task"
+    },
+    {
+        "head": "box",
+        "tail": "embeddings"
     }
 ]
