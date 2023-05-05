@@ -145942,5 +145942,269 @@
     {
         "head": "box",
         "tail": "embeddings"
+    },
+    {
+        "head": "keybindings",
+        "tail": "list"
+    },
+    {
+        "head": "keybindings",
+        "tail": "ultimate"
+    },
+    {
+        "head": "keybindings",
+        "tail": "vi"
+    },
+    {
+        "head": "keybindings",
+        "tail": "vim"
+    },
+    {
+        "head": "keybindings",
+        "tail": "shortcuts"
+    },
+    {
+        "head": "keybindings",
+        "tail": "awesome-list"
+    },
+    {
+        "head": "keybindings",
+        "tail": "ultimate-list"
+    },
+    {
+        "head": "keybindings",
+        "tail": "configuration"
+    },
+    {
+        "head": "keybindings",
+        "tail": "keyboard"
+    },
+    {
+        "head": "keybindings",
+        "tail": "collaborative"
+    },
+    {
+        "head": "keybindings",
+        "tail": "shell"
+    },
+    {
+        "head": "list",
+        "tail": "ultimate"
+    },
+    {
+        "head": "list",
+        "tail": "vi"
+    },
+    {
+        "head": "list",
+        "tail": "vim"
+    },
+    {
+        "head": "list",
+        "tail": "shortcuts"
+    },
+    {
+        "head": "list",
+        "tail": "awesome-list"
+    },
+    {
+        "head": "list",
+        "tail": "ultimate-list"
+    },
+    {
+        "head": "list",
+        "tail": "configuration"
+    },
+    {
+        "head": "list",
+        "tail": "keyboard"
+    },
+    {
+        "head": "list",
+        "tail": "collaborative"
+    },
+    {
+        "head": "list",
+        "tail": "shell"
+    },
+    {
+        "head": "ultimate",
+        "tail": "vi"
+    },
+    {
+        "head": "ultimate",
+        "tail": "vim"
+    },
+    {
+        "head": "ultimate",
+        "tail": "shortcuts"
+    },
+    {
+        "head": "ultimate",
+        "tail": "awesome-list"
+    },
+    {
+        "head": "ultimate",
+        "tail": "ultimate-list"
+    },
+    {
+        "head": "ultimate",
+        "tail": "configuration"
+    },
+    {
+        "head": "ultimate",
+        "tail": "keyboard"
+    },
+    {
+        "head": "ultimate",
+        "tail": "collaborative"
+    },
+    {
+        "head": "ultimate",
+        "tail": "shell"
+    },
+    {
+        "head": "vi",
+        "tail": "vim"
+    },
+    {
+        "head": "vi",
+        "tail": "shortcuts"
+    },
+    {
+        "head": "vi",
+        "tail": "awesome-list"
+    },
+    {
+        "head": "vi",
+        "tail": "ultimate-list"
+    },
+    {
+        "head": "vi",
+        "tail": "configuration"
+    },
+    {
+        "head": "vi",
+        "tail": "keyboard"
+    },
+    {
+        "head": "vi",
+        "tail": "collaborative"
+    },
+    {
+        "head": "vi",
+        "tail": "shell"
+    },
+    {
+        "head": "vim",
+        "tail": "shortcuts"
+    },
+    {
+        "head": "vim",
+        "tail": "awesome-list"
+    },
+    {
+        "head": "vim",
+        "tail": "ultimate-list"
+    },
+    {
+        "head": "vim",
+        "tail": "configuration"
+    },
+    {
+        "head": "vim",
+        "tail": "keyboard"
+    },
+    {
+        "head": "vim",
+        "tail": "collaborative"
+    },
+    {
+        "head": "vim",
+        "tail": "shell"
+    },
+    {
+        "head": "shortcuts",
+        "tail": "awesome-list"
+    },
+    {
+        "head": "shortcuts",
+        "tail": "ultimate-list"
+    },
+    {
+        "head": "shortcuts",
+        "tail": "configuration"
+    },
+    {
+        "head": "shortcuts",
+        "tail": "keyboard"
+    },
+    {
+        "head": "shortcuts",
+        "tail": "collaborative"
+    },
+    {
+        "head": "shortcuts",
+        "tail": "shell"
+    },
+    {
+        "head": "awesome-list",
+        "tail": "ultimate-list"
+    },
+    {
+        "head": "awesome-list",
+        "tail": "configuration"
+    },
+    {
+        "head": "awesome-list",
+        "tail": "keyboard"
+    },
+    {
+        "head": "awesome-list",
+        "tail": "collaborative"
+    },
+    {
+        "head": "awesome-list",
+        "tail": "shell"
+    },
+    {
+        "head": "ultimate-list",
+        "tail": "configuration"
+    },
+    {
+        "head": "ultimate-list",
+        "tail": "keyboard"
+    },
+    {
+        "head": "ultimate-list",
+        "tail": "collaborative"
+    },
+    {
+        "head": "ultimate-list",
+        "tail": "shell"
+    },
+    {
+        "head": "configuration",
+        "tail": "keyboard"
+    },
+    {
+        "head": "configuration",
+        "tail": "collaborative"
+    },
+    {
+        "head": "configuration",
+        "tail": "shell"
+    },
+    {
+        "head": "keyboard",
+        "tail": "collaborative"
+    },
+    {
+        "head": "keyboard",
+        "tail": "shell"
+    },
+    {
+        "head": "collaborative",
+        "tail": "shell"
     }
 ]

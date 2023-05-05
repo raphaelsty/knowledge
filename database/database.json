@@ -31432,5 +31432,25 @@
             "box",
             "embeddings"
         ]
+    },
+    "https://github.com/erikw/vim-keybindings-everywhere-the-ultimate-list": {
+        "extra-tags": [],
+        "date": "2021-12-04",
+        "title": "vim-keybindings-everywhere-the-ultimate-list",
+        "summary": "The ultimate list of which programs support Vim keybindings natively, or how they can be added with extensions.",
+        "tags": [
+            "keybindings",
+            "list",
+            "ultimate",
+            "vi",
+            "vim",
+            "shortcuts",
+            "awesome-list",
+            "ultimate-list",
+            "configuration",
+            "keyboard",
+            "collaborative",
+            "shell"
+        ]
     }
 }
