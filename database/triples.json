@@ -146206,5 +146206,29 @@
     {
         "head": "collaborative",
         "tail": "shell"
+    },
+    {
+        "head": "argpartition",
+        "tail": "argsort"
+    },
+    {
+        "head": "argpartition",
+        "tail": "numpy"
+    },
+    {
+        "head": "argpartition",
+        "tail": "topk"
+    },
+    {
+        "head": "argsort",
+        "tail": "numpy"
+    },
+    {
+        "head": "argsort",
+        "tail": "topk"
+    },
+    {
+        "head": "numpy",
+        "tail": "topk"
     }
 ]
