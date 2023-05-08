@@ -31464,5 +31464,14 @@
             "numpy",
             "topk"
         ]
+    },
+    "https://github.com/aristocratos/btop": {
+        "extra-tags": [],
+        "date": "2021-05-06",
+        "title": "btop",
+        "summary": "A monitor of resources",
+        "tags": [
+            "c++"
+        ]
     }
 }
