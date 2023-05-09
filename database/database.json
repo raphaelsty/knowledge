@@ -31473,5 +31473,33 @@
         "tags": [
             "c++"
         ]
+    },
+    "https://twitter.com/karpathy/status/1647025230546886658": {
+        "extra-tags": [],
+        "date": "2023-04-14",
+        "title": "Twitter @karpathy",
+        "summary": "Random note on k-Nearest Neighbor lookups on embeddings: in my experience much better results can be obtained by training SVMs instead. Not too widely known.\n\nShort example:\nhttps://t.co/RXO9xiOmAB\n\nWorks because SVM ranking considers the unique aspects of your query w.r.t. data.",
+        "tags": [
+            "twitter",
+            "svm",
+            "svms"
+        ]
+    },
+    "https://github.com/eloialonso/iris": {
+        "extra-tags": [],
+        "date": "2022-08-23",
+        "title": "iris",
+        "summary": "Transformers are Sample-Efficient World Models. ICLR 2023, notable top 5%.",
+        "tags": [
+            "atari",
+            "deep-learning",
+            "reinforcement-learning",
+            "artificial-intelligence",
+            "research",
+            "transformers",
+            "python",
+            "machine-learning",
+            "world-models"
+        ]
     }
 }
