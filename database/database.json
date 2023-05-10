@@ -31501,5 +31501,14 @@
             "machine-learning",
             "world-models"
         ]
+    },
+    "https://github.com/Mimino666/langdetect": {
+        "extra-tags": [],
+        "date": "2014-05-12",
+        "title": "langdetect",
+        "summary": "Port of Google's language-detection library to Python.",
+        "tags": [
+            "python"
+        ]
     }
 }
