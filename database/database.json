@@ -31510,5 +31510,30 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/MaartenGr/KeyBERT": {
+        "extra-tags": [],
+        "date": "2020-10-22",
+        "title": "KeyBERT",
+        "summary": "Minimal keyword extraction with BERT",
+        "tags": [
+            "python",
+            "keyword-extraction",
+            "bert",
+            "keyphrase-extraction",
+            "mmr"
+        ]
+    },
+    "https://github.com/deel-ai/FairSense": {
+        "extra-tags": [
+            "library",
+            "fairness"
+        ],
+        "date": "2023-02-07",
+        "title": "FairSense",
+        "summary": "This library allow to compute global sensitivity indices in the context of fairness measurements.",
+        "tags": [
+            "python"
+        ]
     }
 }
