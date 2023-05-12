@@ -31535,5 +31535,43 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/ranvijaykumar/typo": {
+        "extra-tags": [
+            "package"
+        ],
+        "date": "2021-01-04",
+        "title": "typo",
+        "summary": "A python package to simulate typographical errors.",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/aws/amazon-sagemaker-examples": {
+        "extra-tags": [],
+        "date": "2017-10-23",
+        "title": "amazon-sagemaker-examples",
+        "summary": "Example \ud83d\udcd3 Jupyter notebooks that demonstrate how to build, train, and deploy machine learning models using \ud83e\udde0 Amazon SageMaker. ",
+        "tags": [
+            "mlops",
+            "machine-learning",
+            "jupyter notebook",
+            "deep-learning",
+            "jupyter-notebook",
+            "inference",
+            "training",
+            "sagemaker",
+            "data-science",
+            "reinforcement-learning",
+            "examples",
+            "aws"
+        ]
+    },
+    "https://aws.amazon.com/fr/sagemaker/jumpstart/getting-started/?sagemaker-jumpstart-cards.sort-by=item.additionalFields.priority&sagemaker-jumpstart-cards.sort-order=asc&awsf.sagemaker-jumpstart-filter-product-type=*all&awsf.sagemaker-jumpstart-filter-text=*all&awsf.sagemaker-jumpstart-filter-vision=*all&awsf.sagemaker-jumpstart-filter-tabular=*all&awsf.sagemaker-jumpstart-filter-audio-tasks=*all&awsf.sagemaker-jumpstart-filter-multimodal=*all&awsf.sagemaker-jumpstart-filter-RL=*all&awsm.page-sagemaker-jumpstart-cards=1": {
+        "extra-tags": [],
+        "title": "Getting Started with ML using Amazon SageMaker JumpStart - Amazon Web Services",
+        "summary": "",
+        "date": "2023-05-12",
+        "tags": []
     }
 }

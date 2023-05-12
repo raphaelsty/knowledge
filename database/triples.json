@@ -146322,5 +146322,133 @@
     {
         "head": "library",
         "tail": "fairness"
+    },
+    {
+        "head": "mlops",
+        "tail": "jupyter-notebook"
+    },
+    {
+        "head": "mlops",
+        "tail": "training"
+    },
+    {
+        "head": "mlops",
+        "tail": "sagemaker"
+    },
+    {
+        "head": "mlops",
+        "tail": "reinforcement-learning"
+    },
+    {
+        "head": "mlops",
+        "tail": "examples"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "examples"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "inference"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "training"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "sagemaker"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "aws"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "examples"
+    },
+    {
+        "head": "jupyter-notebook",
+        "tail": "inference"
+    },
+    {
+        "head": "jupyter-notebook",
+        "tail": "training"
+    },
+    {
+        "head": "jupyter-notebook",
+        "tail": "sagemaker"
+    },
+    {
+        "head": "jupyter-notebook",
+        "tail": "reinforcement-learning"
+    },
+    {
+        "head": "jupyter-notebook",
+        "tail": "examples"
+    },
+    {
+        "head": "jupyter-notebook",
+        "tail": "aws"
+    },
+    {
+        "head": "inference",
+        "tail": "training"
+    },
+    {
+        "head": "inference",
+        "tail": "sagemaker"
+    },
+    {
+        "head": "inference",
+        "tail": "reinforcement-learning"
+    },
+    {
+        "head": "inference",
+        "tail": "examples"
+    },
+    {
+        "head": "inference",
+        "tail": "aws"
+    },
+    {
+        "head": "training",
+        "tail": "sagemaker"
+    },
+    {
+        "head": "training",
+        "tail": "reinforcement-learning"
+    },
+    {
+        "head": "training",
+        "tail": "examples"
+    },
+    {
+        "head": "training",
+        "tail": "aws"
+    },
+    {
+        "head": "sagemaker",
+        "tail": "reinforcement-learning"
+    },
+    {
+        "head": "sagemaker",
+        "tail": "examples"
+    },
+    {
+        "head": "data-science",
+        "tail": "examples"
+    },
+    {
+        "head": "reinforcement-learning",
+        "tail": "examples"
+    },
+    {
+        "head": "reinforcement-learning",
+        "tail": "aws"
+    },
+    {
+        "head": "examples",
+        "tail": "aws"
     }
 ]
