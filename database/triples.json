@@ -146450,5 +146450,21 @@
     {
         "head": "examples",
         "tail": "aws"
+    },
+    {
+        "head": "sydney",
+        "tail": "bing chat"
+    },
+    {
+        "head": "microsoft",
+        "tail": "github copilot"
+    },
+    {
+        "head": "microsoft",
+        "tail": "copilot"
+    },
+    {
+        "head": "github copilot",
+        "tail": "copilot"
     }
 ]
