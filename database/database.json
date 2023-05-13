@@ -31573,5 +31573,14 @@
         "summary": "",
         "date": "2023-05-12",
         "tags": []
+    },
+    "https://twitter.com/amanrsanger/status/1657095380650311681": {
+        "extra-tags": [],
+        "date": "2023-05-12",
+        "title": "Twitter @amanrsanger",
+        "summary": "Llama and many recent open-source models have a significant architectural limitation\n\nThey use multi-head attention instead of multi-query attention (which is used by PaLM and probs Claude 100K)\n\nThis can result in slowdowns of up to 30x\n\nHeres the math behind why (1/n) https://t.co/Kojyqhpgn2 https://t.co/By7k1OOpSd",
+        "tags": [
+            "twitter"
+        ]
     }
 }
