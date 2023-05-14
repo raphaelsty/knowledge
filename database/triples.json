@@ -146466,5 +146466,57 @@
     {
         "head": "github copilot",
         "tail": "copilot"
+    },
+    {
+        "head": "data-visualization",
+        "tail": "database"
+    },
+    {
+        "head": "data-visualization",
+        "tail": "semantic-modeling"
+    },
+    {
+        "head": "data-visualization",
+        "tail": "malloy"
+    },
+    {
+        "head": "database",
+        "tail": "semantic-modeling"
+    },
+    {
+        "head": "database",
+        "tail": "malloy"
+    },
+    {
+        "head": "database",
+        "tail": "typescript"
+    },
+    {
+        "head": "sql",
+        "tail": "semantic-modeling"
+    },
+    {
+        "head": "sql",
+        "tail": "malloy"
+    },
+    {
+        "head": "semantic-modeling",
+        "tail": "malloy"
+    },
+    {
+        "head": "semantic-modeling",
+        "tail": "typescript"
+    },
+    {
+        "head": "semantic-modeling",
+        "tail": "data"
+    },
+    {
+        "head": "malloy",
+        "tail": "typescript"
+    },
+    {
+        "head": "malloy",
+        "tail": "data"
     }
 ]

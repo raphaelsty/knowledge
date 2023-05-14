@@ -31605,5 +31605,20 @@
             "github copilot",
             "copilot"
         ]
+    },
+    "https://github.com/malloydata/malloy": {
+        "extra-tags": [],
+        "date": "2021-08-13",
+        "title": "malloy",
+        "summary": "Malloy is an experimental language for describing data relationships and transformations.",
+        "tags": [
+            "data-visualization",
+            "database",
+            "sql",
+            "semantic-modeling",
+            "malloy",
+            "typescript",
+            "data"
+        ]
     }
 }
