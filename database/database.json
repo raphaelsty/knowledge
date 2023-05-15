@@ -31620,5 +31620,18 @@
             "typescript",
             "data"
         ]
+    },
+    "https://github.com/mwclient/mwclient": {
+        "extra-tags": [],
+        "date": "2012-11-26",
+        "title": "mwclient",
+        "summary": "Python client library to interface with the MediaWiki API",
+        "tags": [
+            "wikipedia",
+            "mediawiki",
+            "mediawiki-api",
+            "python",
+            "python-library"
+        ]
     }
 }

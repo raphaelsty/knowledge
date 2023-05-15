@@ -146518,5 +146518,37 @@
     {
         "head": "malloy",
         "tail": "data"
+    },
+    {
+        "head": "wikipedia",
+        "tail": "mediawiki"
+    },
+    {
+        "head": "wikipedia",
+        "tail": "mediawiki-api"
+    },
+    {
+        "head": "wikipedia",
+        "tail": "python-library"
+    },
+    {
+        "head": "mediawiki",
+        "tail": "mediawiki-api"
+    },
+    {
+        "head": "mediawiki",
+        "tail": "python"
+    },
+    {
+        "head": "mediawiki",
+        "tail": "python-library"
+    },
+    {
+        "head": "mediawiki-api",
+        "tail": "python"
+    },
+    {
+        "head": "mediawiki-api",
+        "tail": "python-library"
     }
 ]
