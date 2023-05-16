@@ -31633,5 +31633,20 @@
             "python",
             "python-library"
         ]
+    },
+    "https://github.com/Haidra-Org/AI-Horde": {
+        "extra-tags": [],
+        "date": "2022-09-13",
+        "title": "AI-Horde",
+        "summary": "A crowdsourced distributed cluster for AI art and text generation",
+        "tags": [
+            "stable-diffusion",
+            "distributed-computing",
+            "flask-api",
+            "python",
+            "ai",
+            "opt",
+            "gpt"
+        ]
     }
 }
