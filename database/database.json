@@ -31648,5 +31648,14 @@
             "opt",
             "gpt"
         ]
+    },
+    "https://twitter.com/lateinteraction/status/1658563625173540864": {
+        "extra-tags": [],
+        "date": "2023-05-16",
+        "title": "Twitter @lateinteraction",
+        "summary": "@amanrsanger Nice thread about multi-vector retrieval! You don\u2019t need any extra storage: the token-level vectors are extremely small to encode (e.g., 20 bytes each).\n\nhttps://t.co/wo20R4WE3F",
+        "tags": [
+            "twitter"
+        ]
     }
 }
