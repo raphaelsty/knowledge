@@ -31657,5 +31657,14 @@
         "tags": [
             "twitter"
         ]
+    },
+    "https://ojs.aaai.org/aimagazine/index.php/aimagazine/article/view/18140": {
+        "extra-tags": [],
+        "title": "Deep Learning for Recommender Systems: A Netflix Case Study",
+        "summary": "Deep learning has profoundly impacted many areas of machine learning. However, it took a while for its impact to be felt in the field of recommender systems. In this article, we outline some of the challenges encountered and lessons learned in using deep learning for recommender systems at Netflix. We first provide an overview of the various recommendation tasks on the Netflix service. We found that different model architectures excel at different tasks. Even though many deep-learning models can be understood as extensions of existing (simple) recommendation algorithms, we initially did not observe significant improvements in performance over well-tuned non-deep-learning approaches. Only when we added numerous features of heterogeneous types to the input data, deep-learning models did start to shine in our setting. We also observed that deep-learning methods can exacerbate the problem of offline\u2013online metric (mis-)alignment. After addressing these challenges, deep learning has ultimately resulted in large improvements to our recommendations as measured by both offline and online metrics. On the practical side, integrating deep-learning toolboxes in our system has made it faster and easier to implement and experiment with both deep-learning and non-deep-learning approaches for various recommendation tasks. We conclude this article by summarizing our take-aways that may generalize to other applications beyond Netflix.",
+        "date": "2023-05-17",
+        "tags": [
+            "netflix"
+        ]
     }
 }
