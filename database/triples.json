@@ -146550,5 +146550,721 @@
     {
         "head": "mediawiki-api",
         "tail": "python-library"
+    },
+    {
+        "head": "dbms",
+        "tail": "nosql"
+    },
+    {
+        "head": "dbms",
+        "tail": "json"
+    },
+    {
+        "head": "dbms",
+        "tail": "document-database"
+    },
+    {
+        "head": "dbms",
+        "tail": "database-server"
+    },
+    {
+        "head": "dbms",
+        "tail": "skybase"
+    },
+    {
+        "head": "dbms",
+        "tail": "key-value-store"
+    },
+    {
+        "head": "dbms",
+        "tail": "rust"
+    },
+    {
+        "head": "dbms",
+        "tail": "contributions-welcome"
+    },
+    {
+        "head": "dbms",
+        "tail": "database-engine"
+    },
+    {
+        "head": "dbms",
+        "tail": "databases"
+    },
+    {
+        "head": "dbms",
+        "tail": "beginner-friendly"
+    },
+    {
+        "head": "dbms",
+        "tail": "column-store"
+    },
+    {
+        "head": "dbms",
+        "tail": "terrabasedb"
+    },
+    {
+        "head": "dbms",
+        "tail": "multi-model"
+    },
+    {
+        "head": "dbms",
+        "tail": "skytable"
+    },
+    {
+        "head": "dbms",
+        "tail": "database"
+    },
+    {
+        "head": "dbms",
+        "tail": "nosql-database"
+    },
+    {
+        "head": "nosql",
+        "tail": "json"
+    },
+    {
+        "head": "nosql",
+        "tail": "document-database"
+    },
+    {
+        "head": "nosql",
+        "tail": "database-server"
+    },
+    {
+        "head": "nosql",
+        "tail": "skybase"
+    },
+    {
+        "head": "nosql",
+        "tail": "key-value-store"
+    },
+    {
+        "head": "nosql",
+        "tail": "rust"
+    },
+    {
+        "head": "nosql",
+        "tail": "contributions-welcome"
+    },
+    {
+        "head": "nosql",
+        "tail": "distributed-database"
+    },
+    {
+        "head": "nosql",
+        "tail": "database-engine"
+    },
+    {
+        "head": "nosql",
+        "tail": "databases"
+    },
+    {
+        "head": "nosql",
+        "tail": "beginner-friendly"
+    },
+    {
+        "head": "nosql",
+        "tail": "column-store"
+    },
+    {
+        "head": "nosql",
+        "tail": "sql"
+    },
+    {
+        "head": "nosql",
+        "tail": "terrabasedb"
+    },
+    {
+        "head": "nosql",
+        "tail": "multi-model"
+    },
+    {
+        "head": "nosql",
+        "tail": "skytable"
+    },
+    {
+        "head": "nosql",
+        "tail": "database"
+    },
+    {
+        "head": "nosql",
+        "tail": "nosql-database"
+    },
+    {
+        "head": "json",
+        "tail": "document-database"
+    },
+    {
+        "head": "json",
+        "tail": "database-server"
+    },
+    {
+        "head": "json",
+        "tail": "skybase"
+    },
+    {
+        "head": "json",
+        "tail": "key-value-store"
+    },
+    {
+        "head": "json",
+        "tail": "rust"
+    },
+    {
+        "head": "json",
+        "tail": "contributions-welcome"
+    },
+    {
+        "head": "json",
+        "tail": "distributed-database"
+    },
+    {
+        "head": "json",
+        "tail": "database-engine"
+    },
+    {
+        "head": "json",
+        "tail": "databases"
+    },
+    {
+        "head": "json",
+        "tail": "beginner-friendly"
+    },
+    {
+        "head": "json",
+        "tail": "column-store"
+    },
+    {
+        "head": "json",
+        "tail": "terrabasedb"
+    },
+    {
+        "head": "json",
+        "tail": "multi-model"
+    },
+    {
+        "head": "json",
+        "tail": "skytable"
+    },
+    {
+        "head": "json",
+        "tail": "nosql-database"
+    },
+    {
+        "head": "document-database",
+        "tail": "database-server"
+    },
+    {
+        "head": "document-database",
+        "tail": "skybase"
+    },
+    {
+        "head": "document-database",
+        "tail": "key-value-store"
+    },
+    {
+        "head": "document-database",
+        "tail": "rust"
+    },
+    {
+        "head": "document-database",
+        "tail": "contributions-welcome"
+    },
+    {
+        "head": "document-database",
+        "tail": "distributed-database"
+    },
+    {
+        "head": "document-database",
+        "tail": "database-engine"
+    },
+    {
+        "head": "document-database",
+        "tail": "databases"
+    },
+    {
+        "head": "document-database",
+        "tail": "beginner-friendly"
+    },
+    {
+        "head": "document-database",
+        "tail": "column-store"
+    },
+    {
+        "head": "document-database",
+        "tail": "sql"
+    },
+    {
+        "head": "document-database",
+        "tail": "terrabasedb"
+    },
+    {
+        "head": "document-database",
+        "tail": "multi-model"
+    },
+    {
+        "head": "document-database",
+        "tail": "skytable"
+    },
+    {
+        "head": "document-database",
+        "tail": "database"
+    },
+    {
+        "head": "document-database",
+        "tail": "nosql-database"
+    },
+    {
+        "head": "database-server",
+        "tail": "skybase"
+    },
+    {
+        "head": "database-server",
+        "tail": "key-value-store"
+    },
+    {
+        "head": "database-server",
+        "tail": "rust"
+    },
+    {
+        "head": "database-server",
+        "tail": "contributions-welcome"
+    },
+    {
+        "head": "database-server",
+        "tail": "distributed-database"
+    },
+    {
+        "head": "database-server",
+        "tail": "database-engine"
+    },
+    {
+        "head": "database-server",
+        "tail": "databases"
+    },
+    {
+        "head": "database-server",
+        "tail": "beginner-friendly"
+    },
+    {
+        "head": "database-server",
+        "tail": "column-store"
+    },
+    {
+        "head": "database-server",
+        "tail": "sql"
+    },
+    {
+        "head": "database-server",
+        "tail": "terrabasedb"
+    },
+    {
+        "head": "database-server",
+        "tail": "multi-model"
+    },
+    {
+        "head": "database-server",
+        "tail": "skytable"
+    },
+    {
+        "head": "database-server",
+        "tail": "database"
+    },
+    {
+        "head": "database-server",
+        "tail": "nosql-database"
+    },
+    {
+        "head": "skybase",
+        "tail": "key-value-store"
+    },
+    {
+        "head": "skybase",
+        "tail": "rust"
+    },
+    {
+        "head": "skybase",
+        "tail": "contributions-welcome"
+    },
+    {
+        "head": "skybase",
+        "tail": "distributed-database"
+    },
+    {
+        "head": "skybase",
+        "tail": "database-engine"
+    },
+    {
+        "head": "skybase",
+        "tail": "databases"
+    },
+    {
+        "head": "skybase",
+        "tail": "beginner-friendly"
+    },
+    {
+        "head": "skybase",
+        "tail": "column-store"
+    },
+    {
+        "head": "skybase",
+        "tail": "sql"
+    },
+    {
+        "head": "skybase",
+        "tail": "terrabasedb"
+    },
+    {
+        "head": "skybase",
+        "tail": "multi-model"
+    },
+    {
+        "head": "skybase",
+        "tail": "skytable"
+    },
+    {
+        "head": "skybase",
+        "tail": "database"
+    },
+    {
+        "head": "skybase",
+        "tail": "nosql-database"
+    },
+    {
+        "head": "key-value-store",
+        "tail": "rust"
+    },
+    {
+        "head": "key-value-store",
+        "tail": "contributions-welcome"
+    },
+    {
+        "head": "key-value-store",
+        "tail": "distributed-database"
+    },
+    {
+        "head": "key-value-store",
+        "tail": "database-engine"
+    },
+    {
+        "head": "key-value-store",
+        "tail": "databases"
+    },
+    {
+        "head": "key-value-store",
+        "tail": "beginner-friendly"
+    },
+    {
+        "head": "key-value-store",
+        "tail": "column-store"
+    },
+    {
+        "head": "key-value-store",
+        "tail": "sql"
+    },
+    {
+        "head": "key-value-store",
+        "tail": "terrabasedb"
+    },
+    {
+        "head": "key-value-store",
+        "tail": "multi-model"
+    },
+    {
+        "head": "key-value-store",
+        "tail": "skytable"
+    },
+    {
+        "head": "key-value-store",
+        "tail": "database"
+    },
+    {
+        "head": "key-value-store",
+        "tail": "nosql-database"
+    },
+    {
+        "head": "rust",
+        "tail": "database-engine"
+    },
+    {
+        "head": "rust",
+        "tail": "databases"
+    },
+    {
+        "head": "rust",
+        "tail": "beginner-friendly"
+    },
+    {
+        "head": "rust",
+        "tail": "column-store"
+    },
+    {
+        "head": "rust",
+        "tail": "terrabasedb"
+    },
+    {
+        "head": "rust",
+        "tail": "multi-model"
+    },
+    {
+        "head": "rust",
+        "tail": "skytable"
+    },
+    {
+        "head": "rust",
+        "tail": "nosql-database"
+    },
+    {
+        "head": "contributions-welcome",
+        "tail": "distributed-database"
+    },
+    {
+        "head": "contributions-welcome",
+        "tail": "database-engine"
+    },
+    {
+        "head": "contributions-welcome",
+        "tail": "databases"
+    },
+    {
+        "head": "contributions-welcome",
+        "tail": "beginner-friendly"
+    },
+    {
+        "head": "contributions-welcome",
+        "tail": "column-store"
+    },
+    {
+        "head": "contributions-welcome",
+        "tail": "sql"
+    },
+    {
+        "head": "contributions-welcome",
+        "tail": "terrabasedb"
+    },
+    {
+        "head": "contributions-welcome",
+        "tail": "multi-model"
+    },
+    {
+        "head": "contributions-welcome",
+        "tail": "skytable"
+    },
+    {
+        "head": "contributions-welcome",
+        "tail": "database"
+    },
+    {
+        "head": "contributions-welcome",
+        "tail": "nosql-database"
+    },
+    {
+        "head": "distributed-database",
+        "tail": "database-engine"
+    },
+    {
+        "head": "distributed-database",
+        "tail": "databases"
+    },
+    {
+        "head": "distributed-database",
+        "tail": "beginner-friendly"
+    },
+    {
+        "head": "distributed-database",
+        "tail": "column-store"
+    },
+    {
+        "head": "distributed-database",
+        "tail": "terrabasedb"
+    },
+    {
+        "head": "distributed-database",
+        "tail": "multi-model"
+    },
+    {
+        "head": "distributed-database",
+        "tail": "skytable"
+    },
+    {
+        "head": "distributed-database",
+        "tail": "nosql-database"
+    },
+    {
+        "head": "database-engine",
+        "tail": "databases"
+    },
+    {
+        "head": "database-engine",
+        "tail": "beginner-friendly"
+    },
+    {
+        "head": "database-engine",
+        "tail": "column-store"
+    },
+    {
+        "head": "database-engine",
+        "tail": "sql"
+    },
+    {
+        "head": "database-engine",
+        "tail": "terrabasedb"
+    },
+    {
+        "head": "database-engine",
+        "tail": "multi-model"
+    },
+    {
+        "head": "database-engine",
+        "tail": "skytable"
+    },
+    {
+        "head": "database-engine",
+        "tail": "database"
+    },
+    {
+        "head": "database-engine",
+        "tail": "nosql-database"
+    },
+    {
+        "head": "databases",
+        "tail": "beginner-friendly"
+    },
+    {
+        "head": "databases",
+        "tail": "column-store"
+    },
+    {
+        "head": "databases",
+        "tail": "sql"
+    },
+    {
+        "head": "databases",
+        "tail": "terrabasedb"
+    },
+    {
+        "head": "databases",
+        "tail": "multi-model"
+    },
+    {
+        "head": "databases",
+        "tail": "skytable"
+    },
+    {
+        "head": "databases",
+        "tail": "database"
+    },
+    {
+        "head": "databases",
+        "tail": "nosql-database"
+    },
+    {
+        "head": "beginner-friendly",
+        "tail": "column-store"
+    },
+    {
+        "head": "beginner-friendly",
+        "tail": "sql"
+    },
+    {
+        "head": "beginner-friendly",
+        "tail": "terrabasedb"
+    },
+    {
+        "head": "beginner-friendly",
+        "tail": "multi-model"
+    },
+    {
+        "head": "beginner-friendly",
+        "tail": "skytable"
+    },
+    {
+        "head": "beginner-friendly",
+        "tail": "database"
+    },
+    {
+        "head": "beginner-friendly",
+        "tail": "nosql-database"
+    },
+    {
+        "head": "column-store",
+        "tail": "sql"
+    },
+    {
+        "head": "column-store",
+        "tail": "terrabasedb"
+    },
+    {
+        "head": "column-store",
+        "tail": "multi-model"
+    },
+    {
+        "head": "column-store",
+        "tail": "skytable"
+    },
+    {
+        "head": "column-store",
+        "tail": "database"
+    },
+    {
+        "head": "column-store",
+        "tail": "nosql-database"
+    },
+    {
+        "head": "sql",
+        "tail": "terrabasedb"
+    },
+    {
+        "head": "sql",
+        "tail": "multi-model"
+    },
+    {
+        "head": "sql",
+        "tail": "skytable"
+    },
+    {
+        "head": "sql",
+        "tail": "nosql-database"
+    },
+    {
+        "head": "terrabasedb",
+        "tail": "multi-model"
+    },
+    {
+        "head": "terrabasedb",
+        "tail": "skytable"
+    },
+    {
+        "head": "terrabasedb",
+        "tail": "database"
+    },
+    {
+        "head": "terrabasedb",
+        "tail": "nosql-database"
+    },
+    {
+        "head": "multi-model",
+        "tail": "skytable"
+    },
+    {
+        "head": "multi-model",
+        "tail": "database"
+    },
+    {
+        "head": "multi-model",
+        "tail": "nosql-database"
+    },
+    {
+        "head": "skytable",
+        "tail": "database"
+    },
+    {
+        "head": "skytable",
+        "tail": "nosql-database"
+    },
+    {
+        "head": "database",
+        "tail": "nosql-database"
     }
 ]

@@ -31666,5 +31666,42 @@
         "tags": [
             "netflix"
         ]
+    },
+    "https://github.com/skytable/skytable": {
+        "extra-tags": [],
+        "date": "2020-06-30",
+        "title": "skytable",
+        "summary": "Skytable is a fast, secure and reliable realtime NoSQL database with keyspaces, tables, data types, authn/authz, snapshots and more to build powerful apps",
+        "tags": [
+            "dbms",
+            "nosql",
+            "json",
+            "document-database",
+            "database-server",
+            "skybase",
+            "key-value-store",
+            "rust",
+            "contributions-welcome",
+            "distributed-database",
+            "database-engine",
+            "databases",
+            "beginner-friendly",
+            "column-store",
+            "sql",
+            "terrabasedb",
+            "multi-model",
+            "skytable",
+            "database",
+            "nosql-database"
+        ]
+    },
+    "https://github.com/astral-sh/ruff-lsp": {
+        "extra-tags": [],
+        "date": "2022-12-17",
+        "title": "ruff-lsp",
+        "summary": "A Language Server Protocol implementation for Ruff.",
+        "tags": [
+            "python"
+        ]
     }
 }
