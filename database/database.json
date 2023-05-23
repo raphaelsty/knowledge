@@ -31732,5 +31732,24 @@
             "trading-simulator",
             "stocks"
         ]
+    },
+    "https://twitter.com/ylecun/status/1660732998155640833": {
+        "extra-tags": [],
+        "date": "2023-05-22",
+        "title": "Twitter @ylecun",
+        "summary": "MMS: Massively Multilingual Speech.\n- Can do speech2text and text speech in 1100 languages.\n- Can recognize 4000 spoken languages.\n- Code and models available under the CC-BY-NC 4.0 license.\n- half the word error rate of Whisper.\n\nCode+Models: https://t.co/zQ9lWms5TQ\nPaper:\u2026 https://t.co/SWSbEJrQUh",
+        "tags": [
+            "mms",
+            "twitter"
+        ]
+    },
+    "https://github.com/x35f/model_based_rl": {
+        "extra-tags": [],
+        "date": "2021-12-16",
+        "title": "model_based_rl",
+        "summary": "model based reinforcement learning algorithms for unstable baselines",
+        "tags": [
+            "python"
+        ]
     }
 }
