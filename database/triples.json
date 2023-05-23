@@ -147266,5 +147266,781 @@
     {
         "head": "database",
         "tail": "nosql-database"
+    },
+    {
+        "head": "backtesting-trading-strategies",
+        "tail": "finance"
+    },
+    {
+        "head": "backtesting-trading-strategies",
+        "tail": "trading"
+    },
+    {
+        "head": "backtesting-trading-strategies",
+        "tail": "backtesting-engine"
+    },
+    {
+        "head": "backtesting-trading-strategies",
+        "tail": "backtesting"
+    },
+    {
+        "head": "backtesting-trading-strategies",
+        "tail": "investment"
+    },
+    {
+        "head": "backtesting-trading-strategies",
+        "tail": "trading-strategies"
+    },
+    {
+        "head": "backtesting-trading-strategies",
+        "tail": "forex"
+    },
+    {
+        "head": "backtesting-trading-strategies",
+        "tail": "investment-strategies"
+    },
+    {
+        "head": "backtesting-trading-strategies",
+        "tail": "trading-algorithms"
+    },
+    {
+        "head": "backtesting-trading-strategies",
+        "tail": "python"
+    },
+    {
+        "head": "backtesting-trading-strategies",
+        "tail": "algorithmic-trading"
+    },
+    {
+        "head": "backtesting-trading-strategies",
+        "tail": "backtesting-frameworks"
+    },
+    {
+        "head": "backtesting-trading-strategies",
+        "tail": "investing"
+    },
+    {
+        "head": "backtesting-trading-strategies",
+        "tail": "forex-trading"
+    },
+    {
+        "head": "backtesting-trading-strategies",
+        "tail": "framework"
+    },
+    {
+        "head": "backtesting-trading-strategies",
+        "tail": "hacktoberfest"
+    },
+    {
+        "head": "backtesting-trading-strategies",
+        "tail": "algo-trading"
+    },
+    {
+        "head": "backtesting-trading-strategies",
+        "tail": "financial-markets"
+    },
+    {
+        "head": "backtesting-trading-strategies",
+        "tail": "trading-simulator"
+    },
+    {
+        "head": "backtesting-trading-strategies",
+        "tail": "stocks"
+    },
+    {
+        "head": "finance",
+        "tail": "backtesting-engine"
+    },
+    {
+        "head": "finance",
+        "tail": "backtesting"
+    },
+    {
+        "head": "finance",
+        "tail": "trading-strategies"
+    },
+    {
+        "head": "finance",
+        "tail": "forex"
+    },
+    {
+        "head": "finance",
+        "tail": "investment-strategies"
+    },
+    {
+        "head": "finance",
+        "tail": "trading-algorithms"
+    },
+    {
+        "head": "finance",
+        "tail": "backtesting-frameworks"
+    },
+    {
+        "head": "finance",
+        "tail": "forex-trading"
+    },
+    {
+        "head": "finance",
+        "tail": "framework"
+    },
+    {
+        "head": "finance",
+        "tail": "hacktoberfest"
+    },
+    {
+        "head": "finance",
+        "tail": "algo-trading"
+    },
+    {
+        "head": "finance",
+        "tail": "financial-markets"
+    },
+    {
+        "head": "finance",
+        "tail": "trading-simulator"
+    },
+    {
+        "head": "finance",
+        "tail": "stocks"
+    },
+    {
+        "head": "trading",
+        "tail": "backtesting-engine"
+    },
+    {
+        "head": "trading",
+        "tail": "backtesting"
+    },
+    {
+        "head": "trading",
+        "tail": "trading-strategies"
+    },
+    {
+        "head": "trading",
+        "tail": "forex"
+    },
+    {
+        "head": "trading",
+        "tail": "investment-strategies"
+    },
+    {
+        "head": "trading",
+        "tail": "trading-algorithms"
+    },
+    {
+        "head": "trading",
+        "tail": "backtesting-frameworks"
+    },
+    {
+        "head": "trading",
+        "tail": "forex-trading"
+    },
+    {
+        "head": "trading",
+        "tail": "framework"
+    },
+    {
+        "head": "trading",
+        "tail": "hacktoberfest"
+    },
+    {
+        "head": "trading",
+        "tail": "algo-trading"
+    },
+    {
+        "head": "trading",
+        "tail": "financial-markets"
+    },
+    {
+        "head": "trading",
+        "tail": "trading-simulator"
+    },
+    {
+        "head": "trading",
+        "tail": "stocks"
+    },
+    {
+        "head": "backtesting-engine",
+        "tail": "backtesting"
+    },
+    {
+        "head": "backtesting-engine",
+        "tail": "investment"
+    },
+    {
+        "head": "backtesting-engine",
+        "tail": "trading-strategies"
+    },
+    {
+        "head": "backtesting-engine",
+        "tail": "forex"
+    },
+    {
+        "head": "backtesting-engine",
+        "tail": "investment-strategies"
+    },
+    {
+        "head": "backtesting-engine",
+        "tail": "trading-algorithms"
+    },
+    {
+        "head": "backtesting-engine",
+        "tail": "python"
+    },
+    {
+        "head": "backtesting-engine",
+        "tail": "algorithmic-trading"
+    },
+    {
+        "head": "backtesting-engine",
+        "tail": "backtesting-frameworks"
+    },
+    {
+        "head": "backtesting-engine",
+        "tail": "investing"
+    },
+    {
+        "head": "backtesting-engine",
+        "tail": "forex-trading"
+    },
+    {
+        "head": "backtesting-engine",
+        "tail": "framework"
+    },
+    {
+        "head": "backtesting-engine",
+        "tail": "hacktoberfest"
+    },
+    {
+        "head": "backtesting-engine",
+        "tail": "algo-trading"
+    },
+    {
+        "head": "backtesting-engine",
+        "tail": "financial-markets"
+    },
+    {
+        "head": "backtesting-engine",
+        "tail": "trading-simulator"
+    },
+    {
+        "head": "backtesting-engine",
+        "tail": "stocks"
+    },
+    {
+        "head": "backtesting",
+        "tail": "investment"
+    },
+    {
+        "head": "backtesting",
+        "tail": "trading-strategies"
+    },
+    {
+        "head": "backtesting",
+        "tail": "forex"
+    },
+    {
+        "head": "backtesting",
+        "tail": "investment-strategies"
+    },
+    {
+        "head": "backtesting",
+        "tail": "trading-algorithms"
+    },
+    {
+        "head": "backtesting",
+        "tail": "python"
+    },
+    {
+        "head": "backtesting",
+        "tail": "algorithmic-trading"
+    },
+    {
+        "head": "backtesting",
+        "tail": "backtesting-frameworks"
+    },
+    {
+        "head": "backtesting",
+        "tail": "investing"
+    },
+    {
+        "head": "backtesting",
+        "tail": "forex-trading"
+    },
+    {
+        "head": "backtesting",
+        "tail": "framework"
+    },
+    {
+        "head": "backtesting",
+        "tail": "hacktoberfest"
+    },
+    {
+        "head": "backtesting",
+        "tail": "algo-trading"
+    },
+    {
+        "head": "backtesting",
+        "tail": "financial-markets"
+    },
+    {
+        "head": "backtesting",
+        "tail": "trading-simulator"
+    },
+    {
+        "head": "backtesting",
+        "tail": "stocks"
+    },
+    {
+        "head": "investment",
+        "tail": "trading-strategies"
+    },
+    {
+        "head": "investment",
+        "tail": "forex"
+    },
+    {
+        "head": "investment",
+        "tail": "investment-strategies"
+    },
+    {
+        "head": "investment",
+        "tail": "trading-algorithms"
+    },
+    {
+        "head": "investment",
+        "tail": "python"
+    },
+    {
+        "head": "investment",
+        "tail": "algorithmic-trading"
+    },
+    {
+        "head": "investment",
+        "tail": "backtesting-frameworks"
+    },
+    {
+        "head": "investment",
+        "tail": "investing"
+    },
+    {
+        "head": "investment",
+        "tail": "forex-trading"
+    },
+    {
+        "head": "investment",
+        "tail": "framework"
+    },
+    {
+        "head": "investment",
+        "tail": "hacktoberfest"
+    },
+    {
+        "head": "investment",
+        "tail": "algo-trading"
+    },
+    {
+        "head": "investment",
+        "tail": "financial-markets"
+    },
+    {
+        "head": "investment",
+        "tail": "trading-simulator"
+    },
+    {
+        "head": "investment",
+        "tail": "stocks"
+    },
+    {
+        "head": "trading-strategies",
+        "tail": "forex"
+    },
+    {
+        "head": "trading-strategies",
+        "tail": "investment-strategies"
+    },
+    {
+        "head": "trading-strategies",
+        "tail": "python"
+    },
+    {
+        "head": "trading-strategies",
+        "tail": "algorithmic-trading"
+    },
+    {
+        "head": "trading-strategies",
+        "tail": "backtesting-frameworks"
+    },
+    {
+        "head": "trading-strategies",
+        "tail": "investing"
+    },
+    {
+        "head": "trading-strategies",
+        "tail": "forex-trading"
+    },
+    {
+        "head": "trading-strategies",
+        "tail": "framework"
+    },
+    {
+        "head": "trading-strategies",
+        "tail": "hacktoberfest"
+    },
+    {
+        "head": "trading-strategies",
+        "tail": "algo-trading"
+    },
+    {
+        "head": "trading-strategies",
+        "tail": "financial-markets"
+    },
+    {
+        "head": "trading-strategies",
+        "tail": "trading-simulator"
+    },
+    {
+        "head": "trading-strategies",
+        "tail": "stocks"
+    },
+    {
+        "head": "forex",
+        "tail": "investment-strategies"
+    },
+    {
+        "head": "forex",
+        "tail": "trading-algorithms"
+    },
+    {
+        "head": "forex",
+        "tail": "python"
+    },
+    {
+        "head": "forex",
+        "tail": "algorithmic-trading"
+    },
+    {
+        "head": "forex",
+        "tail": "backtesting-frameworks"
+    },
+    {
+        "head": "forex",
+        "tail": "investing"
+    },
+    {
+        "head": "forex",
+        "tail": "forex-trading"
+    },
+    {
+        "head": "forex",
+        "tail": "framework"
+    },
+    {
+        "head": "forex",
+        "tail": "hacktoberfest"
+    },
+    {
+        "head": "forex",
+        "tail": "algo-trading"
+    },
+    {
+        "head": "forex",
+        "tail": "financial-markets"
+    },
+    {
+        "head": "forex",
+        "tail": "trading-simulator"
+    },
+    {
+        "head": "forex",
+        "tail": "stocks"
+    },
+    {
+        "head": "investment-strategies",
+        "tail": "trading-algorithms"
+    },
+    {
+        "head": "investment-strategies",
+        "tail": "python"
+    },
+    {
+        "head": "investment-strategies",
+        "tail": "algorithmic-trading"
+    },
+    {
+        "head": "investment-strategies",
+        "tail": "backtesting-frameworks"
+    },
+    {
+        "head": "investment-strategies",
+        "tail": "investing"
+    },
+    {
+        "head": "investment-strategies",
+        "tail": "forex-trading"
+    },
+    {
+        "head": "investment-strategies",
+        "tail": "framework"
+    },
+    {
+        "head": "investment-strategies",
+        "tail": "hacktoberfest"
+    },
+    {
+        "head": "investment-strategies",
+        "tail": "algo-trading"
+    },
+    {
+        "head": "investment-strategies",
+        "tail": "financial-markets"
+    },
+    {
+        "head": "investment-strategies",
+        "tail": "trading-simulator"
+    },
+    {
+        "head": "investment-strategies",
+        "tail": "stocks"
+    },
+    {
+        "head": "trading-algorithms",
+        "tail": "python"
+    },
+    {
+        "head": "trading-algorithms",
+        "tail": "algorithmic-trading"
+    },
+    {
+        "head": "trading-algorithms",
+        "tail": "backtesting-frameworks"
+    },
+    {
+        "head": "trading-algorithms",
+        "tail": "investing"
+    },
+    {
+        "head": "trading-algorithms",
+        "tail": "forex-trading"
+    },
+    {
+        "head": "trading-algorithms",
+        "tail": "framework"
+    },
+    {
+        "head": "trading-algorithms",
+        "tail": "hacktoberfest"
+    },
+    {
+        "head": "trading-algorithms",
+        "tail": "algo-trading"
+    },
+    {
+        "head": "trading-algorithms",
+        "tail": "financial-markets"
+    },
+    {
+        "head": "trading-algorithms",
+        "tail": "trading-simulator"
+    },
+    {
+        "head": "trading-algorithms",
+        "tail": "stocks"
+    },
+    {
+        "head": "python",
+        "tail": "backtesting-frameworks"
+    },
+    {
+        "head": "python",
+        "tail": "forex-trading"
+    },
+    {
+        "head": "python",
+        "tail": "algo-trading"
+    },
+    {
+        "head": "python",
+        "tail": "financial-markets"
+    },
+    {
+        "head": "python",
+        "tail": "trading-simulator"
+    },
+    {
+        "head": "python",
+        "tail": "stocks"
+    },
+    {
+        "head": "algorithmic-trading",
+        "tail": "backtesting-frameworks"
+    },
+    {
+        "head": "algorithmic-trading",
+        "tail": "forex-trading"
+    },
+    {
+        "head": "algorithmic-trading",
+        "tail": "framework"
+    },
+    {
+        "head": "algorithmic-trading",
+        "tail": "hacktoberfest"
+    },
+    {
+        "head": "algorithmic-trading",
+        "tail": "algo-trading"
+    },
+    {
+        "head": "algorithmic-trading",
+        "tail": "financial-markets"
+    },
+    {
+        "head": "algorithmic-trading",
+        "tail": "trading-simulator"
+    },
+    {
+        "head": "algorithmic-trading",
+        "tail": "stocks"
+    },
+    {
+        "head": "backtesting-frameworks",
+        "tail": "investing"
+    },
+    {
+        "head": "backtesting-frameworks",
+        "tail": "forex-trading"
+    },
+    {
+        "head": "backtesting-frameworks",
+        "tail": "framework"
+    },
+    {
+        "head": "backtesting-frameworks",
+        "tail": "hacktoberfest"
+    },
+    {
+        "head": "backtesting-frameworks",
+        "tail": "algo-trading"
+    },
+    {
+        "head": "backtesting-frameworks",
+        "tail": "financial-markets"
+    },
+    {
+        "head": "backtesting-frameworks",
+        "tail": "trading-simulator"
+    },
+    {
+        "head": "backtesting-frameworks",
+        "tail": "stocks"
+    },
+    {
+        "head": "investing",
+        "tail": "forex-trading"
+    },
+    {
+        "head": "investing",
+        "tail": "framework"
+    },
+    {
+        "head": "investing",
+        "tail": "hacktoberfest"
+    },
+    {
+        "head": "investing",
+        "tail": "algo-trading"
+    },
+    {
+        "head": "investing",
+        "tail": "financial-markets"
+    },
+    {
+        "head": "investing",
+        "tail": "trading-simulator"
+    },
+    {
+        "head": "investing",
+        "tail": "stocks"
+    },
+    {
+        "head": "forex-trading",
+        "tail": "framework"
+    },
+    {
+        "head": "forex-trading",
+        "tail": "hacktoberfest"
+    },
+    {
+        "head": "forex-trading",
+        "tail": "algo-trading"
+    },
+    {
+        "head": "forex-trading",
+        "tail": "financial-markets"
+    },
+    {
+        "head": "forex-trading",
+        "tail": "trading-simulator"
+    },
+    {
+        "head": "forex-trading",
+        "tail": "stocks"
+    },
+    {
+        "head": "framework",
+        "tail": "algo-trading"
+    },
+    {
+        "head": "framework",
+        "tail": "financial-markets"
+    },
+    {
+        "head": "framework",
+        "tail": "trading-simulator"
+    },
+    {
+        "head": "framework",
+        "tail": "stocks"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "algo-trading"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "financial-markets"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "trading-simulator"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "stocks"
+    },
+    {
+        "head": "algo-trading",
+        "tail": "financial-markets"
+    },
+    {
+        "head": "algo-trading",
+        "tail": "trading-simulator"
+    },
+    {
+        "head": "algo-trading",
+        "tail": "stocks"
+    },
+    {
+        "head": "financial-markets",
+        "tail": "trading-simulator"
+    },
+    {
+        "head": "financial-markets",
+        "tail": "stocks"
+    },
+    {
+        "head": "trading-simulator",
+        "tail": "stocks"
     }
 ]

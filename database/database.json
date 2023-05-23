@@ -31703,5 +31703,34 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/kernc/backtesting.py": {
+        "extra-tags": [],
+        "date": "2019-01-02",
+        "title": "backtesting.py",
+        "summary": ":mag_right: :chart_with_upwards_trend: :snake: :moneybag:  Backtest trading strategies in Python.",
+        "tags": [
+            "backtesting-trading-strategies",
+            "finance",
+            "trading",
+            "backtesting-engine",
+            "backtesting",
+            "investment",
+            "trading-strategies",
+            "forex",
+            "investment-strategies",
+            "trading-algorithms",
+            "python",
+            "algorithmic-trading",
+            "backtesting-frameworks",
+            "investing",
+            "forex-trading",
+            "framework",
+            "hacktoberfest",
+            "algo-trading",
+            "financial-markets",
+            "trading-simulator",
+            "stocks"
+        ]
     }
 }
