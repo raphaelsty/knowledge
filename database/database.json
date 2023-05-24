@@ -31751,5 +31751,25 @@
         "tags": [
             "python"
         ]
+    },
+    "https://twitter.com/yoavgo/status/1660996986244329472": {
+        "extra-tags": [
+            "paper"
+        ],
+        "date": "2023-05-23",
+        "title": "Twitter @yoavgo",
+        "summary": "Paper: https://t.co/QfYcu9IuDh",
+        "tags": [
+            "twitter"
+        ]
+    },
+    "https://twitter.com/yoavgo/status/1660994200488247296": {
+        "extra-tags": [],
+        "date": "2023-05-23",
+        "title": "Twitter @yoavgo",
+        "summary": "\"semantic embeddings\" are becoming increasingly popular, but \"semantics\" is really ill-defined. sometimes you want to search for text given a description of its content. current embedders suck at this. in this work we introduce a new embedder.\n@ravfogel @valentina__py @AvshalomM https://t.co/bi7GsTFJUx",
+        "tags": [
+            "twitter"
+        ]
     }
 }
