@@ -31771,5 +31771,30 @@
         "tags": [
             "twitter"
         ]
+    },
+    "https://twitter.com/lateinteraction/status/1661067770115821569": {
+        "extra-tags": [],
+        "date": "2023-05-23",
+        "title": "Twitter @lateinteraction",
+        "summary": "Using \ud835\uddd6\ud835\uddfc\ud835\uddf9\ud835\uddd5\ud835\uddd8\ud835\udde5\ud835\udde7\ud835\ude03\ud835\udfee zero-shot, and want to adapt it to your domain with *no* labels?\n\nWe just tested our \ud835\udde8\ud835\uddd7\ud835\uddd4\ud835\udde3\ud835\uddd7\ud835\udde5 technique on BEIR and LoTTE. SoTA zero-shot retrieval\u2014and large gains across the board.\n\nPaper: https://t.co/dYjCjgGq1q\n\nBy the amazing @JonSaadFalcon &amp; team https://t.co/1mnCGd4aED https://t.co/okraFbFQEe",
+        "tags": [
+            "sota",
+            "twitter",
+            "beir",
+            "lotte"
+        ]
+    },
+    "https://github.com/codepod-io/codepod": {
+        "extra-tags": [],
+        "date": "2020-10-04",
+        "title": "codepod",
+        "summary": "Codepod IDE: Scalable Interactive Coding",
+        "tags": [
+            "jupyter",
+            "interactive-programming",
+            "typescript",
+            "ide",
+            "repl"
+        ]
     }
 }

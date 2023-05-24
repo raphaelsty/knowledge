@@ -148042,5 +148042,57 @@
     {
         "head": "trading-simulator",
         "tail": "stocks"
+    },
+    {
+        "head": "sota",
+        "tail": "beir"
+    },
+    {
+        "head": "sota",
+        "tail": "lotte"
+    },
+    {
+        "head": "beir",
+        "tail": "lotte"
+    },
+    {
+        "head": "jupyter",
+        "tail": "interactive-programming"
+    },
+    {
+        "head": "jupyter",
+        "tail": "typescript"
+    },
+    {
+        "head": "jupyter",
+        "tail": "ide"
+    },
+    {
+        "head": "jupyter",
+        "tail": "repl"
+    },
+    {
+        "head": "interactive-programming",
+        "tail": "typescript"
+    },
+    {
+        "head": "interactive-programming",
+        "tail": "ide"
+    },
+    {
+        "head": "interactive-programming",
+        "tail": "repl"
+    },
+    {
+        "head": "typescript",
+        "tail": "ide"
+    },
+    {
+        "head": "typescript",
+        "tail": "repl"
+    },
+    {
+        "head": "ide",
+        "tail": "repl"
     }
 ]
