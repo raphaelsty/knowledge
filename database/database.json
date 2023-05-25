@@ -31806,5 +31806,14 @@
             "twitter",
             "gpt3"
         ]
+    },
+    "https://twitter.com/lateinteraction/status/1661488862504587265": {
+        "extra-tags": [],
+        "date": "2023-05-24",
+        "title": "Twitter @lateinteraction",
+        "summary": "@yoavgo Most these days don\u2019t only evaluate on MS MARCO. e.g., colbertv2 is not atypical in reporting around 30 test task scores\n\nhttps://t.co/wo20R4WE3F",
+        "tags": [
+            "twitter"
+        ]
     }
 }
