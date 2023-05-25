@@ -31796,5 +31796,15 @@
             "ide",
             "repl"
         ]
+    },
+    "https://twitter.com/ravfogel/status/1661288424865759234": {
+        "extra-tags": [],
+        "date": "2023-05-24",
+        "title": "Twitter @ravfogel",
+        "summary": "@raphaelsrty @yoavgo @jeremyphoward @valentina__py @AvshalomM We prompt GPT3 to create the negatives. It turns out to be pretty good in generating very challenging ones (check out the 1th and 6th and 7th examples). https://t.co/eg6Ce5BNY3",
+        "tags": [
+            "twitter",
+            "gpt3"
+        ]
     }
 }
