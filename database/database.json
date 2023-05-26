@@ -31844,5 +31844,14 @@
             "computer science - information retrieval",
             "computer science - machine learning"
         ]
+    },
+    "https://github.com/Adel-Moumen/fast_sligru": {
+        "extra-tags": [],
+        "date": "2023-02-15",
+        "title": "fast_sligru",
+        "summary": "",
+        "tags": [
+            "python"
+        ]
     }
 }
