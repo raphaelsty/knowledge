@@ -148094,5 +148094,13 @@
     {
         "head": "ide",
         "tail": "repl"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "computer science - machine learning"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "computer science - machine learning"
     }
 ]

@@ -31815,5 +31815,34 @@
         "tags": [
             "twitter"
         ]
+    },
+    "https://twitter.com/halford_max/status/1661823903860236288": {
+        "extra-tags": [],
+        "date": "2023-05-25",
+        "title": "Twitter @halford_max",
+        "summary": "Analytics is usually done in the aggregate. But zooming into data points is insightful too. Motif by @seanjtaylor  does this really well for user journeys \ud83e\udd29https://t.co/iU5qjF5syV",
+        "tags": [
+            "twitter"
+        ]
+    },
+    "https://github.com/dacorvo/gtest-cmake-example": {
+        "extra-tags": [],
+        "date": "2014-12-24",
+        "title": "gtest-cmake-example",
+        "summary": "A sample project using GoogleTest with CMake",
+        "tags": [
+            "c++"
+        ]
+    },
+    "http://arxiv.org/abs/2305.12517": {
+        "extra-tags": [],
+        "title": "Retrieving Texts based on Abstract Descriptions",
+        "summary": "In this work, we aim to connect two research areas: instruction models and retrieval-based models. While instruction-tuned Large Language Models (LLMs) excel at extracting information from text, they are not suitable for semantic retrieval. Similarity search over embedding vectors allows to index and query vectors, but the similarity reflected in the embedding is sub-optimal for many use cases. We identify the task of retrieving sentences based on abstract descriptions of their content. We demonstrate the inadequacy of current text embeddings and propose an alternative model that significantly improves when used in standard nearest neighbor search. The model is trained using positive and negative pairs sourced through prompting an a large language model (LLM). While it is easy to source the training material from an LLM, the retrieval task cannot be performed by the LLM directly. This demonstrates that data from LLMs can be used not only for distilling more efficient specialized models than the original LLM, but also for creating new capabilities not immediately possible using the original model.",
+        "date": "2023-05-25",
+        "tags": [
+            "computer science - computation and language",
+            "computer science - information retrieval",
+            "computer science - machine learning"
+        ]
     }
 }
