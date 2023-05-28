@@ -31884,5 +31884,17 @@
         ],
         "summary": "",
         "date": "2023-05-28"
+    },
+    "https://twitter.com/predict_addict/status/1662397171361087493": {
+        "extra-tags": [],
+        "date": "2023-05-27",
+        "title": "Twitter @predict_addict",
+        "summary": "An excellent paper by @KexinHuang5, @YingJin531,  Emmanuel Candes and @jure \n\nConformal prediction + Graph Neural Networks = \ud83d\udd25\ud83d\udd25\ud83d\udd25\ud83d\udd25\n\nUncertainty Quantification over Graph with Conformalized Graph Neural Networks -&gt; https://t.co/k1CanMTQJW\n\n\u201dGraph Neural Networks (GNNs) are\u2026 https://t.co/Ic7rKnYPFE https://t.co/dZxY2IgEKg",
+        "tags": [
+            "emmanuel candes",
+            "twitter",
+            "neural networks",
+            "graph neural networks"
+        ]
     }
 }
