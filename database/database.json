@@ -31864,5 +31864,25 @@
         "tags": [
             "twitter"
         ]
+    },
+    "https://twitter.com/_cartermp/status/1662147677730275329": {
+        "extra-tags": [],
+        "date": "2023-05-26",
+        "title": "Twitter @_cartermp",
+        "summary": "I wrote up a bunch of challenges we (@honeycombio) faced when building our feature that uses @openai to create queries for people in natural language.\n\nCurious about a real-world experience report? Here we go:\n\nhttps://t.co/EK9Ak55cxS",
+        "tags": [
+            "twitter"
+        ]
+    },
+    "https://www.honeycomb.io/blog/hard-stuff-nobody-talks-about-llm": {
+        "extra-tags": [
+            "llms"
+        ],
+        "title": "Hackernews Hard stuff when building products with LLMs (honeycomb.io)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2023-05-28"
     }
 }
