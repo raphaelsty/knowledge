@@ -31896,5 +31896,20 @@
             "neural networks",
             "graph neural networks"
         ]
+    },
+    "https://github.com/clovaai/donut": {
+        "extra-tags": [],
+        "date": "2022-07-20",
+        "title": "donut",
+        "summary": "Official Implementation of OCR-free Document Understanding Transformer (Donut) and Synthetic Document Generator (SynthDoG), ECCV 2022",
+        "tags": [
+            "document-ai",
+            "multimodal-pre-trained-model",
+            "computer-vision",
+            "eccv-2022",
+            "ocr",
+            "nlp",
+            "python"
+        ]
     }
 }

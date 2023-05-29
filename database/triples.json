@@ -148114,5 +148114,65 @@
     {
         "head": "neural networks",
         "tail": "graph neural networks"
+    },
+    {
+        "head": "document-ai",
+        "tail": "multimodal-pre-trained-model"
+    },
+    {
+        "head": "document-ai",
+        "tail": "computer-vision"
+    },
+    {
+        "head": "document-ai",
+        "tail": "eccv-2022"
+    },
+    {
+        "head": "document-ai",
+        "tail": "ocr"
+    },
+    {
+        "head": "document-ai",
+        "tail": "nlp"
+    },
+    {
+        "head": "document-ai",
+        "tail": "python"
+    },
+    {
+        "head": "multimodal-pre-trained-model",
+        "tail": "computer-vision"
+    },
+    {
+        "head": "multimodal-pre-trained-model",
+        "tail": "eccv-2022"
+    },
+    {
+        "head": "multimodal-pre-trained-model",
+        "tail": "ocr"
+    },
+    {
+        "head": "multimodal-pre-trained-model",
+        "tail": "nlp"
+    },
+    {
+        "head": "multimodal-pre-trained-model",
+        "tail": "python"
+    },
+    {
+        "head": "computer-vision",
+        "tail": "eccv-2022"
+    },
+    {
+        "head": "eccv-2022",
+        "tail": "ocr"
+    },
+    {
+        "head": "eccv-2022",
+        "tail": "nlp"
+    },
+    {
+        "head": "eccv-2022",
+        "tail": "python"
     }
 ]
