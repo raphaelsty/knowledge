@@ -31911,5 +31911,26 @@
             "nlp",
             "python"
         ]
+    },
+    "https://twitter.com/fishnets88/status/1663471883357134850": {
+        "extra-tags": [],
+        "date": "2023-05-30",
+        "title": "Twitter @fishnets88",
+        "summary": "There's this _really_ cool trick that you can do with LLMs that I felt was underappreciated so I figured I'd write a blogpost about it.\n\nIn short: you can compare it with an existing pipeline to find examples to annotate next.\n\nhttps://t.co/N74p7o8uHG https://t.co/dv3ms9fmNE",
+        "tags": [
+            "twitter",
+            "llms"
+        ]
+    },
+    "https://twitter.com/jobergum/status/1663562859752882177": {
+        "extra-tags": [],
+        "date": "2023-05-30",
+        "title": "Twitter @jobergum",
+        "summary": "I don't understand how a @huggingface employee with Open-Source in their bio can characterize the Falcon model as an open-source LLM. Just stop. \n\nhttps://t.co/C9FOREsqLC https://t.co/ZPXkTUEXNl",
+        "tags": [
+            "llm",
+            "falcon",
+            "twitter"
+        ]
     }
 }
