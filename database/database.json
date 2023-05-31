@@ -31932,5 +31932,12 @@
             "falcon",
             "twitter"
         ]
+    },
+    "https://solara.dev/api/input": {
+        "extra-tags": [],
+        "title": "Solara documentation",
+        "summary": "Use ipywidgets with Solara to build powerful and scalable web apps for Jupyter and production in Python.",
+        "date": "2023-05-31",
+        "tags": []
     }
 }
