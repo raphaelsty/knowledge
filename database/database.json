@@ -31939,5 +31939,22 @@
         "summary": "Use ipywidgets with Solara to build powerful and scalable web apps for Jupyter and production in Python.",
         "date": "2023-05-31",
         "tags": []
+    },
+    "https://github.com/yukinarit/pyserde": {
+        "extra-tags": [],
+        "date": "2018-12-05",
+        "title": "pyserde",
+        "summary": "Yet another serialization library on top of dataclasses, inspired by serde-rs.",
+        "tags": [
+            "serialization",
+            "dataclasses",
+            "typing",
+            "msgpack",
+            "serde",
+            "json",
+            "python",
+            "toml",
+            "yaml"
+        ]
     }
 }

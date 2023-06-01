@@ -148178,5 +148178,133 @@
     {
         "head": "llm",
         "tail": "falcon"
+    },
+    {
+        "head": "serialization",
+        "tail": "dataclasses"
+    },
+    {
+        "head": "serialization",
+        "tail": "typing"
+    },
+    {
+        "head": "serialization",
+        "tail": "msgpack"
+    },
+    {
+        "head": "serialization",
+        "tail": "serde"
+    },
+    {
+        "head": "serialization",
+        "tail": "json"
+    },
+    {
+        "head": "serialization",
+        "tail": "python"
+    },
+    {
+        "head": "serialization",
+        "tail": "toml"
+    },
+    {
+        "head": "serialization",
+        "tail": "yaml"
+    },
+    {
+        "head": "dataclasses",
+        "tail": "typing"
+    },
+    {
+        "head": "dataclasses",
+        "tail": "msgpack"
+    },
+    {
+        "head": "dataclasses",
+        "tail": "serde"
+    },
+    {
+        "head": "dataclasses",
+        "tail": "toml"
+    },
+    {
+        "head": "dataclasses",
+        "tail": "yaml"
+    },
+    {
+        "head": "typing",
+        "tail": "msgpack"
+    },
+    {
+        "head": "typing",
+        "tail": "serde"
+    },
+    {
+        "head": "typing",
+        "tail": "json"
+    },
+    {
+        "head": "typing",
+        "tail": "toml"
+    },
+    {
+        "head": "typing",
+        "tail": "yaml"
+    },
+    {
+        "head": "msgpack",
+        "tail": "serde"
+    },
+    {
+        "head": "msgpack",
+        "tail": "json"
+    },
+    {
+        "head": "msgpack",
+        "tail": "python"
+    },
+    {
+        "head": "msgpack",
+        "tail": "toml"
+    },
+    {
+        "head": "msgpack",
+        "tail": "yaml"
+    },
+    {
+        "head": "serde",
+        "tail": "json"
+    },
+    {
+        "head": "serde",
+        "tail": "python"
+    },
+    {
+        "head": "serde",
+        "tail": "toml"
+    },
+    {
+        "head": "serde",
+        "tail": "yaml"
+    },
+    {
+        "head": "json",
+        "tail": "toml"
+    },
+    {
+        "head": "json",
+        "tail": "yaml"
+    },
+    {
+        "head": "python",
+        "tail": "toml"
+    },
+    {
+        "head": "python",
+        "tail": "yaml"
+    },
+    {
+        "head": "toml",
+        "tail": "yaml"
     }
 ]
