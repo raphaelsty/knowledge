@@ -31956,5 +31956,25 @@
             "toml",
             "yaml"
         ]
+    },
+    "https://github.com/skrub-data/skrub": {
+        "extra-tags": [
+            "tables",
+            "machine learning"
+        ],
+        "date": "2018-03-12",
+        "title": "skrub",
+        "summary": "Prepping tables for machine learning",
+        "tags": [
+            "machine-learning",
+            "data-preparation",
+            "data",
+            "data-analysis",
+            "data-science",
+            "data-preprocessing",
+            "dirty-data",
+            "python",
+            "data-cleaning"
+        ]
     }
 }

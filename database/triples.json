@@ -148306,5 +148306,73 @@
     {
         "head": "toml",
         "tail": "yaml"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "tables"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "machine learning"
+    },
+    {
+        "head": "data-preparation",
+        "tail": "tables"
+    },
+    {
+        "head": "data-preparation",
+        "tail": "machine learning"
+    },
+    {
+        "head": "data",
+        "tail": "tables"
+    },
+    {
+        "head": "data",
+        "tail": "machine learning"
+    },
+    {
+        "head": "data-analysis",
+        "tail": "tables"
+    },
+    {
+        "head": "data-analysis",
+        "tail": "machine learning"
+    },
+    {
+        "head": "data-science",
+        "tail": "tables"
+    },
+    {
+        "head": "data-science",
+        "tail": "machine learning"
+    },
+    {
+        "head": "data-preprocessing",
+        "tail": "tables"
+    },
+    {
+        "head": "data-preprocessing",
+        "tail": "machine learning"
+    },
+    {
+        "head": "dirty-data",
+        "tail": "tables"
+    },
+    {
+        "head": "dirty-data",
+        "tail": "machine learning"
+    },
+    {
+        "head": "data-cleaning",
+        "tail": "tables"
+    },
+    {
+        "head": "data-cleaning",
+        "tail": "machine learning"
+    },
+    {
+        "head": "tables",
+        "tail": "machine learning"
     }
 ]
