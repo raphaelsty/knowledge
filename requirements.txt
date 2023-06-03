@@ -1,7 +1,7 @@
 beautifulsoup4 == 4.9.3
 lxml == 4.9.2
 pandas == 1.5.3
-requests == 2.27.1
+requests == 2.31.0
 rdflib == 6.1.1
 cherche == 1.0.1
 networkx == 2.8.5
