@@ -148374,5 +148374,93 @@
     {
         "head": "tables",
         "tail": "machine learning"
+    },
+    {
+        "head": "jupyter",
+        "tail": "fastapi"
+    },
+    {
+        "head": "jupyter",
+        "tail": "starlette"
+    },
+    {
+        "head": "jupyter",
+        "tail": "dataapp"
+    },
+    {
+        "head": "jupyter",
+        "tail": "webapp"
+    },
+    {
+        "head": "flask",
+        "tail": "fastapi"
+    },
+    {
+        "head": "flask",
+        "tail": "starlette"
+    },
+    {
+        "head": "flask",
+        "tail": "dataapp"
+    },
+    {
+        "head": "flask",
+        "tail": "ipywidgets"
+    },
+    {
+        "head": "flask",
+        "tail": "webapp"
+    },
+    {
+        "head": "python",
+        "tail": "starlette"
+    },
+    {
+        "head": "python",
+        "tail": "dataapp"
+    },
+    {
+        "head": "python",
+        "tail": "webapp"
+    },
+    {
+        "head": "fastapi",
+        "tail": "starlette"
+    },
+    {
+        "head": "fastapi",
+        "tail": "dataapp"
+    },
+    {
+        "head": "fastapi",
+        "tail": "ipywidgets"
+    },
+    {
+        "head": "fastapi",
+        "tail": "webapp"
+    },
+    {
+        "head": "starlette",
+        "tail": "dataapp"
+    },
+    {
+        "head": "starlette",
+        "tail": "ipywidgets"
+    },
+    {
+        "head": "starlette",
+        "tail": "webapp"
+    },
+    {
+        "head": "dataapp",
+        "tail": "ipywidgets"
+    },
+    {
+        "head": "dataapp",
+        "tail": "webapp"
+    },
+    {
+        "head": "ipywidgets",
+        "tail": "webapp"
     }
 ]

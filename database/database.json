@@ -31976,5 +31976,21 @@
             "python",
             "data-cleaning"
         ]
+    },
+    "https://github.com/widgetti/solara": {
+        "extra-tags": [],
+        "date": "2022-03-09",
+        "title": "solara",
+        "summary": "A Pure Python, React-style Framework for Scaling Your Jupyter and Web Apps",
+        "tags": [
+            "jupyter",
+            "flask",
+            "python",
+            "fastapi",
+            "starlette",
+            "dataapp",
+            "ipywidgets",
+            "webapp"
+        ]
     }
 }
