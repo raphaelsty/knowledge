@@ -31992,5 +31992,39 @@
             "ipywidgets",
             "webapp"
         ]
+    },
+    "https://twitter.com/halford_max/status/1665624713140269058": {
+        "extra-tags": [],
+        "date": "2023-06-05",
+        "title": "Twitter @halford_max",
+        "summary": "Graph components come up all the time in social sciences and data mining. Here's how to compute them in SQL, in particular with @duckdb https://t.co/6Wt0ml4agc \ud83d\udd78\ufe0f\ud83e\udd86",
+        "tags": [
+            "sql",
+            "twitter"
+        ]
+    },
+    "https://github.com/lancedb/lance": {
+        "extra-tags": [],
+        "date": "2022-07-07",
+        "title": "lance",
+        "summary": "Modern columnar data format for ML and LLMs implemented in Rust. Convert from parquet in 2 lines of code for 100x faster random access, vector index, and data versioning. Compatible with Pandas, DuckDB, Polars, Pyarrow, with more integrations coming..",
+        "tags": [
+            "mlops",
+            "data-centric",
+            "dataops",
+            "data-science",
+            "data-analysis",
+            "deep-learning",
+            "python",
+            "llms",
+            "data-format",
+            "data-analytics",
+            "embeddings",
+            "machine-learning",
+            "apache-arrow",
+            "duckdb",
+            "computer-vision",
+            "rust"
+        ]
     }
 }

@@ -148462,5 +148462,337 @@
     {
         "head": "ipywidgets",
         "tail": "webapp"
+    },
+    {
+        "head": "mlops",
+        "tail": "data-centric"
+    },
+    {
+        "head": "mlops",
+        "tail": "data-analysis"
+    },
+    {
+        "head": "mlops",
+        "tail": "llms"
+    },
+    {
+        "head": "mlops",
+        "tail": "data-format"
+    },
+    {
+        "head": "mlops",
+        "tail": "data-analytics"
+    },
+    {
+        "head": "mlops",
+        "tail": "embeddings"
+    },
+    {
+        "head": "mlops",
+        "tail": "apache-arrow"
+    },
+    {
+        "head": "mlops",
+        "tail": "duckdb"
+    },
+    {
+        "head": "data-centric",
+        "tail": "dataops"
+    },
+    {
+        "head": "data-centric",
+        "tail": "data-science"
+    },
+    {
+        "head": "data-centric",
+        "tail": "data-analysis"
+    },
+    {
+        "head": "data-centric",
+        "tail": "deep-learning"
+    },
+    {
+        "head": "data-centric",
+        "tail": "python"
+    },
+    {
+        "head": "data-centric",
+        "tail": "llms"
+    },
+    {
+        "head": "data-centric",
+        "tail": "data-format"
+    },
+    {
+        "head": "data-centric",
+        "tail": "data-analytics"
+    },
+    {
+        "head": "data-centric",
+        "tail": "embeddings"
+    },
+    {
+        "head": "data-centric",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "data-centric",
+        "tail": "apache-arrow"
+    },
+    {
+        "head": "data-centric",
+        "tail": "duckdb"
+    },
+    {
+        "head": "data-centric",
+        "tail": "computer-vision"
+    },
+    {
+        "head": "data-centric",
+        "tail": "rust"
+    },
+    {
+        "head": "dataops",
+        "tail": "data-analysis"
+    },
+    {
+        "head": "dataops",
+        "tail": "deep-learning"
+    },
+    {
+        "head": "dataops",
+        "tail": "llms"
+    },
+    {
+        "head": "dataops",
+        "tail": "data-format"
+    },
+    {
+        "head": "dataops",
+        "tail": "data-analytics"
+    },
+    {
+        "head": "dataops",
+        "tail": "embeddings"
+    },
+    {
+        "head": "dataops",
+        "tail": "apache-arrow"
+    },
+    {
+        "head": "dataops",
+        "tail": "duckdb"
+    },
+    {
+        "head": "dataops",
+        "tail": "computer-vision"
+    },
+    {
+        "head": "dataops",
+        "tail": "rust"
+    },
+    {
+        "head": "data-science",
+        "tail": "llms"
+    },
+    {
+        "head": "data-science",
+        "tail": "data-format"
+    },
+    {
+        "head": "data-science",
+        "tail": "data-analytics"
+    },
+    {
+        "head": "data-science",
+        "tail": "embeddings"
+    },
+    {
+        "head": "data-science",
+        "tail": "apache-arrow"
+    },
+    {
+        "head": "data-analysis",
+        "tail": "llms"
+    },
+    {
+        "head": "data-analysis",
+        "tail": "data-format"
+    },
+    {
+        "head": "data-analysis",
+        "tail": "data-analytics"
+    },
+    {
+        "head": "data-analysis",
+        "tail": "embeddings"
+    },
+    {
+        "head": "data-analysis",
+        "tail": "computer-vision"
+    },
+    {
+        "head": "data-analysis",
+        "tail": "rust"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "llms"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "data-format"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "data-analytics"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "embeddings"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "apache-arrow"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "duckdb"
+    },
+    {
+        "head": "python",
+        "tail": "llms"
+    },
+    {
+        "head": "python",
+        "tail": "data-format"
+    },
+    {
+        "head": "python",
+        "tail": "data-analytics"
+    },
+    {
+        "head": "llms",
+        "tail": "data-format"
+    },
+    {
+        "head": "llms",
+        "tail": "data-analytics"
+    },
+    {
+        "head": "llms",
+        "tail": "embeddings"
+    },
+    {
+        "head": "llms",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "llms",
+        "tail": "apache-arrow"
+    },
+    {
+        "head": "llms",
+        "tail": "duckdb"
+    },
+    {
+        "head": "llms",
+        "tail": "computer-vision"
+    },
+    {
+        "head": "llms",
+        "tail": "rust"
+    },
+    {
+        "head": "data-format",
+        "tail": "data-analytics"
+    },
+    {
+        "head": "data-format",
+        "tail": "embeddings"
+    },
+    {
+        "head": "data-format",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "data-format",
+        "tail": "apache-arrow"
+    },
+    {
+        "head": "data-format",
+        "tail": "duckdb"
+    },
+    {
+        "head": "data-format",
+        "tail": "computer-vision"
+    },
+    {
+        "head": "data-format",
+        "tail": "rust"
+    },
+    {
+        "head": "data-analytics",
+        "tail": "embeddings"
+    },
+    {
+        "head": "data-analytics",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "data-analytics",
+        "tail": "apache-arrow"
+    },
+    {
+        "head": "data-analytics",
+        "tail": "duckdb"
+    },
+    {
+        "head": "data-analytics",
+        "tail": "computer-vision"
+    },
+    {
+        "head": "data-analytics",
+        "tail": "rust"
+    },
+    {
+        "head": "embeddings",
+        "tail": "apache-arrow"
+    },
+    {
+        "head": "embeddings",
+        "tail": "duckdb"
+    },
+    {
+        "head": "embeddings",
+        "tail": "rust"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "apache-arrow"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "duckdb"
+    },
+    {
+        "head": "apache-arrow",
+        "tail": "duckdb"
+    },
+    {
+        "head": "apache-arrow",
+        "tail": "computer-vision"
+    },
+    {
+        "head": "apache-arrow",
+        "tail": "rust"
+    },
+    {
+        "head": "duckdb",
+        "tail": "computer-vision"
+    },
+    {
+        "head": "duckdb",
+        "tail": "rust"
     }
 ]
