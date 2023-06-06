@@ -32026,5 +32026,16 @@
             "computer-vision",
             "rust"
         ]
+    },
+    "https://github.com/monkeytypegame/monkeytype": {
+        "extra-tags": [],
+        "date": "2020-05-14",
+        "title": "monkeytype",
+        "summary": "The most customizable typing website with a minimalistic design and a ton of features. Test yourself in various modes, track your progress and improve your speed.",
+        "tags": [
+            "typescript",
+            "monkeytype",
+            "typingtest"
+        ]
     }
 }

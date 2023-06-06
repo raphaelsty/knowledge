@@ -148794,5 +148794,17 @@
     {
         "head": "duckdb",
         "tail": "rust"
+    },
+    {
+        "head": "typescript",
+        "tail": "monkeytype"
+    },
+    {
+        "head": "typescript",
+        "tail": "typingtest"
+    },
+    {
+        "head": "monkeytype",
+        "tail": "typingtest"
     }
 ]
