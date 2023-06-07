@@ -32037,5 +32037,15 @@
             "monkeytype",
             "typingtest"
         ]
+    },
+    "https://twitter.com/danieldazac/status/1666406388933730304": {
+        "extra-tags": [],
+        "date": "2023-06-07",
+        "title": "Twitter @danieldazac",
+        "summary": "New preprint! We introduce BioBLP, a method for learning embeddings on multimodal knowledge graphs.\n\nPaper: https://t.co/92TAkpOTRP\nCode: https://t.co/deK9SlcO2L\n\nw/ @DimitrisAlivas @pmitra01 @thompijn @michaelcochez @pgroth\n1/4 https://t.co/lACQxepkHN",
+        "tags": [
+            "bioblp",
+            "twitter"
+        ]
     }
 }
