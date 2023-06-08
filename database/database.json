@@ -32047,5 +32047,72 @@
             "bioblp",
             "twitter"
         ]
+    },
+    "https://twitter.com/LaureSoulier/status/1665777024688848900": {
+        "extra-tags": [],
+        "date": "2023-06-05",
+        "title": "Twitter @LaureSoulier",
+        "summary": "Nous vous attendons avec impatience demain pour le d\u00e9marrage de la conf\u00e9rence Coria-Taln au site des cordeliers de @Sorbonne_Univ_ , apr\u00e8s une journ\u00e9e bien charg\u00e9e en ateliers/tuto/hackatal chez SCAI ! https://t.co/pc7hQVT1gD",
+        "tags": [
+            "twitter"
+        ]
+    },
+    "https://twitter.com/jgmorenof/status/1666705783302639617": {
+        "extra-tags": [
+            "ance"
+        ],
+        "date": "2023-06-08",
+        "title": "Twitter @jgmorenof",
+        "summary": "On commence la troisi\u00e8me s\u00e9ance commune \u00e0  @coriataln2023 avec une pr\u00e9sentation tr\u00e8s int\u00e9ressante d @antoine_chaffin sur l\u2019explicabilit\u00e9 https://t.co/xNYIAjh6Fx",
+        "tags": [
+            "twitter"
+        ]
+    },
+    "https://github.com/rilldata/rill": {
+        "extra-tags": [],
+        "date": "2021-12-09",
+        "title": "rill",
+        "summary": "Rill is a tool for effortlessly transforming data sets into powerful, opinionated dashboards using SQL.  BI-as-code.",
+        "tags": [
+            "parquet-tools",
+            "data-visualization",
+            "duckdb",
+            "gcs",
+            "parquet-viewer",
+            "sveltejs",
+            "sql-editor",
+            "csv",
+            "business-analytics",
+            "data",
+            "golang",
+            "go",
+            "dataviz",
+            "parquet",
+            "bi",
+            "svelte",
+            "data-analysis",
+            "sql",
+            "s3",
+            "sveltekit"
+        ]
+    },
+    "https://github.com/astral-sh/ruff": {
+        "extra-tags": [],
+        "date": "2022-08-09",
+        "title": "ruff",
+        "summary": "An extremely fast Python linter, written in Rust.",
+        "tags": [
+            "ruff",
+            "style-guide",
+            "linter",
+            "python3",
+            "static-analysis",
+            "pep8",
+            "python",
+            "rust",
+            "rustpython",
+            "static-code-analysis",
+            "styleguide"
+        ]
     }
 }
