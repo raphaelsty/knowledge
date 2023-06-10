@@ -148806,5 +148806,17 @@
     {
         "head": "monkeytype",
         "tail": "typingtest"
+    },
+    {
+        "head": "python",
+        "tail": "reactpy"
+    },
+    {
+        "head": "reactpy",
+        "tail": "javascript"
+    },
+    {
+        "head": "reactpy",
+        "tail": "react"
     }
 ]

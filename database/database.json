@@ -32114,5 +32114,17 @@
             "static-code-analysis",
             "styleguide"
         ]
+    },
+    "https://github.com/reactive-python/reactpy": {
+        "extra-tags": [],
+        "date": "2019-02-19",
+        "title": "reactpy",
+        "summary": "It's React, but in Python",
+        "tags": [
+            "python",
+            "reactpy",
+            "javascript",
+            "react"
+        ]
     }
 }
