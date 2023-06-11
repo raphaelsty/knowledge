@@ -148818,5 +148818,133 @@
     {
         "head": "reactpy",
         "tail": "react"
+    },
+    {
+        "head": "python",
+        "tail": "vision-and-language"
+    },
+    {
+        "head": "python",
+        "tail": "contrastive-loss"
+    },
+    {
+        "head": "python",
+        "tail": "audio-language"
+    },
+    {
+        "head": "python",
+        "tail": "vision-language"
+    },
+    {
+        "head": "vision-and-language",
+        "tail": "contrastive-loss"
+    },
+    {
+        "head": "vision-and-language",
+        "tail": "vision-transformer"
+    },
+    {
+        "head": "vision-and-language",
+        "tail": "representation-learning"
+    },
+    {
+        "head": "vision-and-language",
+        "tail": "audio-language"
+    },
+    {
+        "head": "vision-and-language",
+        "tail": "vision-language"
+    },
+    {
+        "head": "vision-and-language",
+        "tail": "foundation-models"
+    },
+    {
+        "head": "vision-and-language",
+        "tail": "multimodal"
+    },
+    {
+        "head": "contrastive-loss",
+        "tail": "vision-transformer"
+    },
+    {
+        "head": "contrastive-loss",
+        "tail": "representation-learning"
+    },
+    {
+        "head": "contrastive-loss",
+        "tail": "audio-language"
+    },
+    {
+        "head": "contrastive-loss",
+        "tail": "vision-language"
+    },
+    {
+        "head": "contrastive-loss",
+        "tail": "foundation-models"
+    },
+    {
+        "head": "contrastive-loss",
+        "tail": "multimodal"
+    },
+    {
+        "head": "vision-transformer",
+        "tail": "representation-learning"
+    },
+    {
+        "head": "vision-transformer",
+        "tail": "audio-language"
+    },
+    {
+        "head": "vision-transformer",
+        "tail": "vision-language"
+    },
+    {
+        "head": "vision-transformer",
+        "tail": "foundation-models"
+    },
+    {
+        "head": "vision-transformer",
+        "tail": "multimodal"
+    },
+    {
+        "head": "representation-learning",
+        "tail": "audio-language"
+    },
+    {
+        "head": "representation-learning",
+        "tail": "vision-language"
+    },
+    {
+        "head": "representation-learning",
+        "tail": "foundation-models"
+    },
+    {
+        "head": "representation-learning",
+        "tail": "multimodal"
+    },
+    {
+        "head": "audio-language",
+        "tail": "vision-language"
+    },
+    {
+        "head": "audio-language",
+        "tail": "foundation-models"
+    },
+    {
+        "head": "audio-language",
+        "tail": "multimodal"
+    },
+    {
+        "head": "vision-language",
+        "tail": "foundation-models"
+    },
+    {
+        "head": "vision-language",
+        "tail": "multimodal"
+    },
+    {
+        "head": "foundation-models",
+        "tail": "multimodal"
     }
 ]

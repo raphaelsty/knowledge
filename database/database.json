@@ -32126,5 +32126,22 @@
             "javascript",
             "react"
         ]
+    },
+    "https://github.com/OFA-Sys/ONE-PEACE": {
+        "extra-tags": [],
+        "date": "2023-05-18",
+        "title": "ONE-PEACE",
+        "summary": "A general representation modal across vision, audio, language modalities. Paper: ONE-PEACE: Exploring One General Representation Model Toward Unlimited Modalities",
+        "tags": [
+            "python",
+            "vision-and-language",
+            "contrastive-loss",
+            "vision-transformer",
+            "representation-learning",
+            "audio-language",
+            "vision-language",
+            "foundation-models",
+            "multimodal"
+        ]
     }
 }
