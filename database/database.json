@@ -32143,5 +32143,14 @@
             "foundation-models",
             "multimodal"
         ]
+    },
+    "https://github.com/JunMa11/SegLoss": {
+        "extra-tags": [],
+        "date": "2019-05-30",
+        "title": "SegLoss",
+        "summary": "A collection of loss functions for medical image segmentation",
+        "tags": [
+            "python"
+        ]
     }
 }
