@@ -148946,5 +148946,309 @@
     {
         "head": "foundation-models",
         "tail": "multimodal"
+    },
+    {
+        "head": "hyperloglog",
+        "tail": "search"
+    },
+    {
+        "head": "hyperloglog",
+        "tail": "jaccard-similarity"
+    },
+    {
+        "head": "hyperloglog",
+        "tail": "weighted-quantiles"
+    },
+    {
+        "head": "hyperloglog",
+        "tail": "data-summary"
+    },
+    {
+        "head": "hyperloglog",
+        "tail": "minhash"
+    },
+    {
+        "head": "hyperloglog",
+        "tail": "python"
+    },
+    {
+        "head": "hyperloglog",
+        "tail": "lsh-forest"
+    },
+    {
+        "head": "hyperloglog",
+        "tail": "lsh-ensemble"
+    },
+    {
+        "head": "hyperloglog",
+        "tail": "data-sketches"
+    },
+    {
+        "head": "hyperloglog",
+        "tail": "locality-sensitive-hashing"
+    },
+    {
+        "head": "hyperloglog",
+        "tail": "lsh"
+    },
+    {
+        "head": "hyperloglog",
+        "tail": "top-k"
+    },
+    {
+        "head": "search",
+        "tail": "jaccard-similarity"
+    },
+    {
+        "head": "search",
+        "tail": "weighted-quantiles"
+    },
+    {
+        "head": "search",
+        "tail": "data-summary"
+    },
+    {
+        "head": "search",
+        "tail": "minhash"
+    },
+    {
+        "head": "search",
+        "tail": "lsh-forest"
+    },
+    {
+        "head": "search",
+        "tail": "lsh-ensemble"
+    },
+    {
+        "head": "search",
+        "tail": "data-sketches"
+    },
+    {
+        "head": "search",
+        "tail": "locality-sensitive-hashing"
+    },
+    {
+        "head": "search",
+        "tail": "lsh"
+    },
+    {
+        "head": "search",
+        "tail": "top-k"
+    },
+    {
+        "head": "jaccard-similarity",
+        "tail": "weighted-quantiles"
+    },
+    {
+        "head": "jaccard-similarity",
+        "tail": "data-summary"
+    },
+    {
+        "head": "jaccard-similarity",
+        "tail": "minhash"
+    },
+    {
+        "head": "jaccard-similarity",
+        "tail": "python"
+    },
+    {
+        "head": "jaccard-similarity",
+        "tail": "lsh-forest"
+    },
+    {
+        "head": "jaccard-similarity",
+        "tail": "lsh-ensemble"
+    },
+    {
+        "head": "jaccard-similarity",
+        "tail": "data-sketches"
+    },
+    {
+        "head": "jaccard-similarity",
+        "tail": "locality-sensitive-hashing"
+    },
+    {
+        "head": "jaccard-similarity",
+        "tail": "lsh"
+    },
+    {
+        "head": "jaccard-similarity",
+        "tail": "top-k"
+    },
+    {
+        "head": "weighted-quantiles",
+        "tail": "data-summary"
+    },
+    {
+        "head": "weighted-quantiles",
+        "tail": "minhash"
+    },
+    {
+        "head": "weighted-quantiles",
+        "tail": "python"
+    },
+    {
+        "head": "weighted-quantiles",
+        "tail": "lsh-forest"
+    },
+    {
+        "head": "weighted-quantiles",
+        "tail": "lsh-ensemble"
+    },
+    {
+        "head": "weighted-quantiles",
+        "tail": "data-sketches"
+    },
+    {
+        "head": "weighted-quantiles",
+        "tail": "locality-sensitive-hashing"
+    },
+    {
+        "head": "weighted-quantiles",
+        "tail": "lsh"
+    },
+    {
+        "head": "weighted-quantiles",
+        "tail": "top-k"
+    },
+    {
+        "head": "data-summary",
+        "tail": "minhash"
+    },
+    {
+        "head": "data-summary",
+        "tail": "python"
+    },
+    {
+        "head": "data-summary",
+        "tail": "lsh-forest"
+    },
+    {
+        "head": "data-summary",
+        "tail": "lsh-ensemble"
+    },
+    {
+        "head": "data-summary",
+        "tail": "data-sketches"
+    },
+    {
+        "head": "data-summary",
+        "tail": "locality-sensitive-hashing"
+    },
+    {
+        "head": "data-summary",
+        "tail": "lsh"
+    },
+    {
+        "head": "data-summary",
+        "tail": "top-k"
+    },
+    {
+        "head": "minhash",
+        "tail": "python"
+    },
+    {
+        "head": "minhash",
+        "tail": "lsh-forest"
+    },
+    {
+        "head": "minhash",
+        "tail": "lsh-ensemble"
+    },
+    {
+        "head": "minhash",
+        "tail": "data-sketches"
+    },
+    {
+        "head": "minhash",
+        "tail": "locality-sensitive-hashing"
+    },
+    {
+        "head": "minhash",
+        "tail": "lsh"
+    },
+    {
+        "head": "minhash",
+        "tail": "top-k"
+    },
+    {
+        "head": "python",
+        "tail": "lsh-forest"
+    },
+    {
+        "head": "python",
+        "tail": "lsh-ensemble"
+    },
+    {
+        "head": "python",
+        "tail": "data-sketches"
+    },
+    {
+        "head": "python",
+        "tail": "lsh"
+    },
+    {
+        "head": "python",
+        "tail": "top-k"
+    },
+    {
+        "head": "lsh-forest",
+        "tail": "lsh-ensemble"
+    },
+    {
+        "head": "lsh-forest",
+        "tail": "data-sketches"
+    },
+    {
+        "head": "lsh-forest",
+        "tail": "locality-sensitive-hashing"
+    },
+    {
+        "head": "lsh-forest",
+        "tail": "lsh"
+    },
+    {
+        "head": "lsh-forest",
+        "tail": "top-k"
+    },
+    {
+        "head": "lsh-ensemble",
+        "tail": "data-sketches"
+    },
+    {
+        "head": "lsh-ensemble",
+        "tail": "locality-sensitive-hashing"
+    },
+    {
+        "head": "lsh-ensemble",
+        "tail": "lsh"
+    },
+    {
+        "head": "lsh-ensemble",
+        "tail": "top-k"
+    },
+    {
+        "head": "data-sketches",
+        "tail": "locality-sensitive-hashing"
+    },
+    {
+        "head": "data-sketches",
+        "tail": "lsh"
+    },
+    {
+        "head": "data-sketches",
+        "tail": "top-k"
+    },
+    {
+        "head": "locality-sensitive-hashing",
+        "tail": "lsh"
+    },
+    {
+        "head": "locality-sensitive-hashing",
+        "tail": "top-k"
+    },
+    {
+        "head": "lsh",
+        "tail": "top-k"
     }
 ]

@@ -32152,5 +32152,26 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/ekzhu/datasketch": {
+        "extra-tags": [],
+        "date": "2015-03-20",
+        "title": "datasketch",
+        "summary": "MinHash, LSH, LSH Forest, Weighted MinHash, HyperLogLog, HyperLogLog++, LSH Ensemble",
+        "tags": [
+            "hyperloglog",
+            "search",
+            "jaccard-similarity",
+            "weighted-quantiles",
+            "data-summary",
+            "minhash",
+            "python",
+            "lsh-forest",
+            "lsh-ensemble",
+            "data-sketches",
+            "locality-sensitive-hashing",
+            "lsh",
+            "top-k"
+        ]
     }
 }
