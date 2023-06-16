@@ -32173,5 +32173,16 @@
             "lsh",
             "top-k"
         ]
+    },
+    "https://michaelnielsen.org/ddi/how-to-crawl-a-quarter-billion-webpages-in-40-hours/": {
+        "extra-tags": [
+            "crawling"
+        ],
+        "title": "Hackernews Crawling a quarter billion webpages in 40 hours (2012) (michaelnielsen.org)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2023-06-16"
     }
 }
