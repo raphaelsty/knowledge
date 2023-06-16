@@ -32184,5 +32184,16 @@
         ],
         "summary": "",
         "date": "2023-06-16"
+    },
+    "https://github.com/julien-blanchon/qrcode-diffusion": {
+        "extra-tags": [
+            "diffusion"
+        ],
+        "date": "2023-06-15",
+        "title": "qrcode-diffusion",
+        "summary": "",
+        "tags": [
+            "python"
+        ]
     }
 }
