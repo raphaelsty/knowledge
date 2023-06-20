@@ -32195,5 +32195,21 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/Nixtla/mlforecast": {
+        "extra-tags": [],
+        "date": "2021-04-26",
+        "title": "mlforecast",
+        "summary": "Scalable machine \ud83e\udd16 learning for time series forecasting.",
+        "tags": [
+            "lightgbm",
+            "forecasting",
+            "forecast",
+            "python",
+            "dask",
+            "time-series",
+            "xgboost",
+            "machine-learning"
+        ]
     }
 }

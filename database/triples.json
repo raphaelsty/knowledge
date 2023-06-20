@@ -149250,5 +149250,53 @@
     {
         "head": "lsh",
         "tail": "top-k"
+    },
+    {
+        "head": "lightgbm",
+        "tail": "forecasting"
+    },
+    {
+        "head": "lightgbm",
+        "tail": "forecast"
+    },
+    {
+        "head": "lightgbm",
+        "tail": "dask"
+    },
+    {
+        "head": "lightgbm",
+        "tail": "time-series"
+    },
+    {
+        "head": "forecasting",
+        "tail": "dask"
+    },
+    {
+        "head": "forecasting",
+        "tail": "xgboost"
+    },
+    {
+        "head": "forecast",
+        "tail": "dask"
+    },
+    {
+        "head": "forecast",
+        "tail": "xgboost"
+    },
+    {
+        "head": "dask",
+        "tail": "time-series"
+    },
+    {
+        "head": "dask",
+        "tail": "xgboost"
+    },
+    {
+        "head": "dask",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "time-series",
+        "tail": "xgboost"
     }
 ]
