@@ -149298,5 +149298,41 @@
     {
         "head": "time-series",
         "tail": "xgboost"
+    },
+    {
+        "head": "collaboration",
+        "tail": "discord"
+    },
+    {
+        "head": "collaboration",
+        "tail": "slack"
+    },
+    {
+        "head": "collaboration",
+        "tail": "chat"
+    },
+    {
+        "head": "discord",
+        "tail": "slack"
+    },
+    {
+        "head": "discord",
+        "tail": "typescript"
+    },
+    {
+        "head": "discord",
+        "tail": "chat"
+    },
+    {
+        "head": "slack",
+        "tail": "typescript"
+    },
+    {
+        "head": "slack",
+        "tail": "chat"
+    },
+    {
+        "head": "typescript",
+        "tail": "chat"
     }
 ]

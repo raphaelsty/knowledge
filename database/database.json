@@ -32211,5 +32211,18 @@
             "xgboost",
             "machine-learning"
         ]
+    },
+    "https://github.com/Linen-dev/linen.dev": {
+        "extra-tags": [],
+        "date": "2022-02-15",
+        "title": "linen.dev",
+        "summary": "Lightweight Google-searchable Slack alternative for Communities",
+        "tags": [
+            "collaboration",
+            "discord",
+            "slack",
+            "typescript",
+            "chat"
+        ]
     }
 }
