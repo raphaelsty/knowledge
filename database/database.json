@@ -32224,5 +32224,17 @@
             "typescript",
             "chat"
         ]
+    },
+    "https://github.com/lepture/shibuya": {
+        "extra-tags": [],
+        "date": "2023-02-13",
+        "title": "shibuya",
+        "summary": "A responsive, good looking with modern design documentation theme for Sphinx",
+        "tags": [
+            "documentation",
+            "css",
+            "sphinx-doc",
+            "sphinx-theme"
+        ]
     }
 }

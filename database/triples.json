@@ -149334,5 +149334,29 @@
     {
         "head": "typescript",
         "tail": "chat"
+    },
+    {
+        "head": "documentation",
+        "tail": "css"
+    },
+    {
+        "head": "documentation",
+        "tail": "sphinx-doc"
+    },
+    {
+        "head": "documentation",
+        "tail": "sphinx-theme"
+    },
+    {
+        "head": "css",
+        "tail": "sphinx-doc"
+    },
+    {
+        "head": "css",
+        "tail": "sphinx-theme"
+    },
+    {
+        "head": "sphinx-doc",
+        "tail": "sphinx-theme"
     }
 ]
