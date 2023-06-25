@@ -32236,5 +32236,19 @@
             "sphinx-doc",
             "sphinx-theme"
         ]
+    },
+    "https://github.com/sparckles/robyn": {
+        "extra-tags": [],
+        "date": "2021-06-18",
+        "title": "robyn",
+        "summary": "A High-Performance, Community-Driven, and Innovator Friendly Web Framework with a Rust runtime.",
+        "tags": [
+            "backend",
+            "python3",
+            "python",
+            "rust",
+            "async",
+            "hacktoberfest"
+        ]
     }
 }
