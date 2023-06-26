@@ -149358,5 +149358,9 @@
     {
         "head": "sphinx-doc",
         "tail": "sphinx-theme"
+    },
+    {
+        "head": "web",
+        "tail": "browser"
     }
 ]

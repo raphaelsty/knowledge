@@ -32250,5 +32250,15 @@
             "async",
             "hacktoberfest"
         ]
+    },
+    "https://github.com/geohot/fromthetransistor": {
+        "extra-tags": [
+            "web",
+            "browser"
+        ],
+        "date": "2016-08-14",
+        "title": "fromthetransistor",
+        "summary": "From the Transistor to the Web Browser, a rough outline for a 12 week course",
+        "tags": []
     }
 }
