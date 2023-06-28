@@ -32260,5 +32260,22 @@
         "title": "fromthetransistor",
         "summary": "From the Transistor to the Web Browser, a rough outline for a 12 week course",
         "tags": []
+    },
+    "https://github.com/Quantco/glum": {
+        "extra-tags": [],
+        "date": "2020-03-25",
+        "title": "glum",
+        "summary": "High performance Python GLMs with all the features!",
+        "tags": [
+            "python",
+            "elastic-net",
+            "tweedie",
+            "glm",
+            "logit",
+            "poisson",
+            "ridge",
+            "gamma",
+            "lasso"
+        ]
     }
 }

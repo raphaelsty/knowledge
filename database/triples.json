@@ -149362,5 +149362,145 @@
     {
         "head": "web",
         "tail": "browser"
+    },
+    {
+        "head": "python",
+        "tail": "elastic-net"
+    },
+    {
+        "head": "python",
+        "tail": "tweedie"
+    },
+    {
+        "head": "python",
+        "tail": "glm"
+    },
+    {
+        "head": "python",
+        "tail": "logit"
+    },
+    {
+        "head": "python",
+        "tail": "poisson"
+    },
+    {
+        "head": "python",
+        "tail": "ridge"
+    },
+    {
+        "head": "python",
+        "tail": "gamma"
+    },
+    {
+        "head": "elastic-net",
+        "tail": "tweedie"
+    },
+    {
+        "head": "elastic-net",
+        "tail": "glm"
+    },
+    {
+        "head": "elastic-net",
+        "tail": "logit"
+    },
+    {
+        "head": "elastic-net",
+        "tail": "poisson"
+    },
+    {
+        "head": "elastic-net",
+        "tail": "ridge"
+    },
+    {
+        "head": "elastic-net",
+        "tail": "gamma"
+    },
+    {
+        "head": "elastic-net",
+        "tail": "lasso"
+    },
+    {
+        "head": "tweedie",
+        "tail": "glm"
+    },
+    {
+        "head": "tweedie",
+        "tail": "logit"
+    },
+    {
+        "head": "tweedie",
+        "tail": "poisson"
+    },
+    {
+        "head": "tweedie",
+        "tail": "ridge"
+    },
+    {
+        "head": "tweedie",
+        "tail": "gamma"
+    },
+    {
+        "head": "tweedie",
+        "tail": "lasso"
+    },
+    {
+        "head": "glm",
+        "tail": "logit"
+    },
+    {
+        "head": "glm",
+        "tail": "poisson"
+    },
+    {
+        "head": "glm",
+        "tail": "ridge"
+    },
+    {
+        "head": "glm",
+        "tail": "gamma"
+    },
+    {
+        "head": "glm",
+        "tail": "lasso"
+    },
+    {
+        "head": "logit",
+        "tail": "poisson"
+    },
+    {
+        "head": "logit",
+        "tail": "ridge"
+    },
+    {
+        "head": "logit",
+        "tail": "gamma"
+    },
+    {
+        "head": "logit",
+        "tail": "lasso"
+    },
+    {
+        "head": "poisson",
+        "tail": "ridge"
+    },
+    {
+        "head": "poisson",
+        "tail": "gamma"
+    },
+    {
+        "head": "poisson",
+        "tail": "lasso"
+    },
+    {
+        "head": "ridge",
+        "tail": "gamma"
+    },
+    {
+        "head": "ridge",
+        "tail": "lasso"
+    },
+    {
+        "head": "gamma",
+        "tail": "lasso"
     }
 ]
