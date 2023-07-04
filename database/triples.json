@@ -149502,5 +149502,61 @@
     {
         "head": "gamma",
         "tail": "lasso"
+    },
+    {
+        "head": "javascript",
+        "tail": "platform"
+    },
+    {
+        "head": "javascript",
+        "tail": "self-hostable"
+    },
+    {
+        "head": "low-code",
+        "tail": "open-source"
+    },
+    {
+        "head": "low-code",
+        "tail": "python"
+    },
+    {
+        "head": "low-code",
+        "tail": "self-hostable"
+    },
+    {
+        "head": "low-code",
+        "tail": "postgresql"
+    },
+    {
+        "head": "open-source",
+        "tail": "platform"
+    },
+    {
+        "head": "open-source",
+        "tail": "self-hostable"
+    },
+    {
+        "head": "platform",
+        "tail": "python"
+    },
+    {
+        "head": "platform",
+        "tail": "self-hostable"
+    },
+    {
+        "head": "platform",
+        "tail": "postgresql"
+    },
+    {
+        "head": "typescript",
+        "tail": "self-hostable"
+    },
+    {
+        "head": "python",
+        "tail": "self-hostable"
+    },
+    {
+        "head": "self-hostable",
+        "tail": "postgresql"
     }
 ]

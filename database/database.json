@@ -32277,5 +32277,21 @@
             "gamma",
             "lasso"
         ]
+    },
+    "https://github.com/windmill-labs/windmill": {
+        "extra-tags": [],
+        "date": "2022-05-05",
+        "title": "windmill",
+        "summary": "Open-source developer platform to turn scripts into workflows and UIs. Open-source alternative to Airplane and Retool.",
+        "tags": [
+            "javascript",
+            "low-code",
+            "open-source",
+            "platform",
+            "typescript",
+            "python",
+            "self-hostable",
+            "postgresql"
+        ]
     }
 }
