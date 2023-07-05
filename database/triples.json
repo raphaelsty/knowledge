@@ -149558,5 +149558,25 @@
     {
         "head": "self-hostable",
         "tail": "postgresql"
+    },
+    {
+        "head": "embeddings",
+        "tail": "embeddings-similarity"
+    },
+    {
+        "head": "embeddings",
+        "tail": "vector-database"
+    },
+    {
+        "head": "embeddings",
+        "tail": "search-engines"
+    },
+    {
+        "head": "embeddings",
+        "tail": "vector-search"
+    },
+    {
+        "head": "embeddings",
+        "tail": "similarity-search"
     }
 ]

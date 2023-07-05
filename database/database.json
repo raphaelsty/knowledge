@@ -32293,5 +32293,21 @@
             "self-hostable",
             "postgresql"
         ]
+    },
+    "https://github.com/m1guelpf/tinyvector": {
+        "extra-tags": [],
+        "date": "2023-07-03",
+        "title": "tinyvector",
+        "summary": "A tiny embedding database in pure Rust.",
+        "tags": [
+            "rust",
+            "embeddings",
+            "embeddings-similarity",
+            "vector-database",
+            "search-engines",
+            "machine-learning",
+            "vector-search",
+            "similarity-search"
+        ]
     }
 }
