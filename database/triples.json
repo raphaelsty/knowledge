@@ -149578,5 +149578,509 @@
     {
         "head": "embeddings",
         "tail": "similarity-search"
+    },
+    {
+        "head": "sgd",
+        "tail": "opencl"
+    },
+    {
+        "head": "sgd",
+        "tail": "data-analysis"
+    },
+    {
+        "head": "sgd",
+        "tail": "deep-learning"
+    },
+    {
+        "head": "sgd",
+        "tail": "gpu-computing"
+    },
+    {
+        "head": "sgd",
+        "tail": "cuda"
+    },
+    {
+        "head": "sgd",
+        "tail": "gpu"
+    },
+    {
+        "head": "sgd",
+        "tail": "adam"
+    },
+    {
+        "head": "sgd",
+        "tail": "neural-networks"
+    },
+    {
+        "head": "sgd",
+        "tail": "regression"
+    },
+    {
+        "head": "sgd",
+        "tail": "dropout"
+    },
+    {
+        "head": "sgd",
+        "tail": "pipelines"
+    },
+    {
+        "head": "sgd",
+        "tail": "rust"
+    },
+    {
+        "head": "sgd",
+        "tail": "ml"
+    },
+    {
+        "head": "sgd",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "sgd",
+        "tail": "nn"
+    },
+    {
+        "head": "sgd",
+        "tail": "nalgebra"
+    },
+    {
+        "head": "sgd",
+        "tail": "classification"
+    },
+    {
+        "head": "opencl",
+        "tail": "data-analysis"
+    },
+    {
+        "head": "opencl",
+        "tail": "deep-learning"
+    },
+    {
+        "head": "opencl",
+        "tail": "gpu-computing"
+    },
+    {
+        "head": "opencl",
+        "tail": "cuda"
+    },
+    {
+        "head": "opencl",
+        "tail": "gpu"
+    },
+    {
+        "head": "opencl",
+        "tail": "adam"
+    },
+    {
+        "head": "opencl",
+        "tail": "neural-networks"
+    },
+    {
+        "head": "opencl",
+        "tail": "regression"
+    },
+    {
+        "head": "opencl",
+        "tail": "dropout"
+    },
+    {
+        "head": "opencl",
+        "tail": "pipelines"
+    },
+    {
+        "head": "opencl",
+        "tail": "rust"
+    },
+    {
+        "head": "opencl",
+        "tail": "ml"
+    },
+    {
+        "head": "opencl",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "opencl",
+        "tail": "nn"
+    },
+    {
+        "head": "opencl",
+        "tail": "nalgebra"
+    },
+    {
+        "head": "opencl",
+        "tail": "classification"
+    },
+    {
+        "head": "data-analysis",
+        "tail": "gpu-computing"
+    },
+    {
+        "head": "data-analysis",
+        "tail": "adam"
+    },
+    {
+        "head": "data-analysis",
+        "tail": "neural-networks"
+    },
+    {
+        "head": "data-analysis",
+        "tail": "regression"
+    },
+    {
+        "head": "data-analysis",
+        "tail": "dropout"
+    },
+    {
+        "head": "data-analysis",
+        "tail": "pipelines"
+    },
+    {
+        "head": "data-analysis",
+        "tail": "nn"
+    },
+    {
+        "head": "data-analysis",
+        "tail": "nalgebra"
+    },
+    {
+        "head": "data-analysis",
+        "tail": "classification"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "adam"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "dropout"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "pipelines"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "nn"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "nalgebra"
+    },
+    {
+        "head": "gpu-computing",
+        "tail": "adam"
+    },
+    {
+        "head": "gpu-computing",
+        "tail": "neural-networks"
+    },
+    {
+        "head": "gpu-computing",
+        "tail": "regression"
+    },
+    {
+        "head": "gpu-computing",
+        "tail": "dropout"
+    },
+    {
+        "head": "gpu-computing",
+        "tail": "pipelines"
+    },
+    {
+        "head": "gpu-computing",
+        "tail": "ml"
+    },
+    {
+        "head": "gpu-computing",
+        "tail": "nn"
+    },
+    {
+        "head": "gpu-computing",
+        "tail": "nalgebra"
+    },
+    {
+        "head": "gpu-computing",
+        "tail": "classification"
+    },
+    {
+        "head": "cuda",
+        "tail": "adam"
+    },
+    {
+        "head": "cuda",
+        "tail": "neural-networks"
+    },
+    {
+        "head": "cuda",
+        "tail": "regression"
+    },
+    {
+        "head": "cuda",
+        "tail": "dropout"
+    },
+    {
+        "head": "cuda",
+        "tail": "pipelines"
+    },
+    {
+        "head": "cuda",
+        "tail": "ml"
+    },
+    {
+        "head": "cuda",
+        "tail": "nn"
+    },
+    {
+        "head": "cuda",
+        "tail": "nalgebra"
+    },
+    {
+        "head": "cuda",
+        "tail": "classification"
+    },
+    {
+        "head": "gpu",
+        "tail": "adam"
+    },
+    {
+        "head": "gpu",
+        "tail": "neural-networks"
+    },
+    {
+        "head": "gpu",
+        "tail": "regression"
+    },
+    {
+        "head": "gpu",
+        "tail": "dropout"
+    },
+    {
+        "head": "gpu",
+        "tail": "pipelines"
+    },
+    {
+        "head": "gpu",
+        "tail": "ml"
+    },
+    {
+        "head": "gpu",
+        "tail": "nn"
+    },
+    {
+        "head": "gpu",
+        "tail": "nalgebra"
+    },
+    {
+        "head": "gpu",
+        "tail": "classification"
+    },
+    {
+        "head": "adam",
+        "tail": "neural-networks"
+    },
+    {
+        "head": "adam",
+        "tail": "regression"
+    },
+    {
+        "head": "adam",
+        "tail": "dropout"
+    },
+    {
+        "head": "adam",
+        "tail": "pipelines"
+    },
+    {
+        "head": "adam",
+        "tail": "rust"
+    },
+    {
+        "head": "adam",
+        "tail": "ml"
+    },
+    {
+        "head": "adam",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "adam",
+        "tail": "nn"
+    },
+    {
+        "head": "adam",
+        "tail": "nalgebra"
+    },
+    {
+        "head": "adam",
+        "tail": "classification"
+    },
+    {
+        "head": "neural-networks",
+        "tail": "regression"
+    },
+    {
+        "head": "neural-networks",
+        "tail": "dropout"
+    },
+    {
+        "head": "neural-networks",
+        "tail": "pipelines"
+    },
+    {
+        "head": "neural-networks",
+        "tail": "rust"
+    },
+    {
+        "head": "neural-networks",
+        "tail": "ml"
+    },
+    {
+        "head": "neural-networks",
+        "tail": "nn"
+    },
+    {
+        "head": "neural-networks",
+        "tail": "nalgebra"
+    },
+    {
+        "head": "neural-networks",
+        "tail": "classification"
+    },
+    {
+        "head": "regression",
+        "tail": "pipelines"
+    },
+    {
+        "head": "regression",
+        "tail": "ml"
+    },
+    {
+        "head": "regression",
+        "tail": "nn"
+    },
+    {
+        "head": "regression",
+        "tail": "nalgebra"
+    },
+    {
+        "head": "dropout",
+        "tail": "pipelines"
+    },
+    {
+        "head": "dropout",
+        "tail": "rust"
+    },
+    {
+        "head": "dropout",
+        "tail": "ml"
+    },
+    {
+        "head": "dropout",
+        "tail": "nn"
+    },
+    {
+        "head": "dropout",
+        "tail": "nalgebra"
+    },
+    {
+        "head": "pipelines",
+        "tail": "rust"
+    },
+    {
+        "head": "pipelines",
+        "tail": "ml"
+    },
+    {
+        "head": "pipelines",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "pipelines",
+        "tail": "nn"
+    },
+    {
+        "head": "pipelines",
+        "tail": "nalgebra"
+    },
+    {
+        "head": "pipelines",
+        "tail": "classification"
+    },
+    {
+        "head": "rust",
+        "tail": "nn"
+    },
+    {
+        "head": "rust",
+        "tail": "nalgebra"
+    },
+    {
+        "head": "ml",
+        "tail": "nn"
+    },
+    {
+        "head": "ml",
+        "tail": "nalgebra"
+    },
+    {
+        "head": "ml",
+        "tail": "classification"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "nn"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "nalgebra"
+    },
+    {
+        "head": "nn",
+        "tail": "nalgebra"
+    },
+    {
+        "head": "nn",
+        "tail": "classification"
+    },
+    {
+        "head": "nalgebra",
+        "tail": "classification"
+    },
+    {
+        "head": "song-cover",
+        "tail": "jupyter notebook"
+    },
+    {
+        "head": "song-cover",
+        "tail": "svc"
+    },
+    {
+        "head": "song-cover",
+        "tail": "ai"
+    },
+    {
+        "head": "song-cover",
+        "tail": "rvc"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "svc"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "rvc"
+    },
+    {
+        "head": "svc",
+        "tail": "ai"
+    },
+    {
+        "head": "svc",
+        "tail": "rvc"
+    },
+    {
+        "head": "ai",
+        "tail": "rvc"
     }
 ]

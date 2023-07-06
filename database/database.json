@@ -32309,5 +32309,44 @@
             "vector-search",
             "similarity-search"
         ]
+    },
+    "https://github.com/AnicetNgrt/jiro-nn": {
+        "extra-tags": [],
+        "date": "2023-03-30",
+        "title": "jiro-nn",
+        "summary": "A framework for building and training efficient Neural Networks in pure Rust with support for both the CPU and the GPU.",
+        "tags": [
+            "sgd",
+            "opencl",
+            "data-analysis",
+            "deep-learning",
+            "gpu-computing",
+            "cuda",
+            "gpu",
+            "adam",
+            "neural-networks",
+            "regression",
+            "dropout",
+            "pipelines",
+            "rust",
+            "ml",
+            "machine-learning",
+            "nn",
+            "nalgebra",
+            "classification"
+        ]
+    },
+    "https://github.com/ardha27/AI-Song-Cover-RVC": {
+        "extra-tags": [],
+        "date": "2023-05-06",
+        "title": "AI-Song-Cover-RVC",
+        "summary": "All in One Version : Youtube WAV Download, Separating Vocal, Splitting Audio, Training, and Inference Using Google Colab",
+        "tags": [
+            "song-cover",
+            "jupyter notebook",
+            "svc",
+            "ai",
+            "rvc"
+        ]
     }
 }
