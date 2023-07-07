@@ -32348,5 +32348,16 @@
             "ai",
             "rvc"
         ]
+    },
+    "https://github.com/tinygrad/tinygrad": {
+        "extra-tags": [
+            "pytorch"
+        ],
+        "date": "2020-10-18",
+        "title": "tinygrad",
+        "summary": "You like pytorch? You like micrograd? You love tinygrad! \u2764\ufe0f ",
+        "tags": [
+            "python"
+        ]
     }
 }
