@@ -32359,5 +32359,14 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/EvolveBeyond/NvPak": {
+        "extra-tags": [],
+        "date": "2020-11-15",
+        "title": "NvPak",
+        "summary": "A clean config for neovim to be of particular complexity",
+        "tags": [
+            "lua"
+        ]
     }
 }
