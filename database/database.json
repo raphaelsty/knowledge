@@ -32382,5 +32382,14 @@
             "machine-learning",
             "gradient-boosting"
         ]
+    },
+    "https://github.com/olgavrou/personalizer_chain": {
+        "extra-tags": [],
+        "date": "2023-07-05",
+        "title": "personalizer_chain",
+        "summary": "",
+        "tags": [
+            "python"
+        ]
     }
 }
