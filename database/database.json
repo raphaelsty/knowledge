@@ -32368,5 +32368,19 @@
         "tags": [
             "lua"
         ]
+    },
+    "https://github.com/siboehm/lleaves": {
+        "extra-tags": [],
+        "date": "2021-04-27",
+        "title": "lleaves",
+        "summary": "Compiler for LightGBM gradient-boosted trees, based on LLVM. Speeds up prediction by \u226510x.",
+        "tags": [
+            "lightgbm",
+            "python",
+            "decision-trees",
+            "llvm",
+            "machine-learning",
+            "gradient-boosting"
+        ]
     }
 }
