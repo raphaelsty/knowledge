@@ -32391,5 +32391,17 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/juniorrojas/ff-net": {
+        "extra-tags": [],
+        "date": "2015-04-13",
+        "title": "ff-net",
+        "summary": "Feedforward neural network learning in real time",
+        "tags": [
+            "visualization",
+            "javascript",
+            "machine-learning",
+            "neural-networks"
+        ]
     }
 }
