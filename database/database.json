@@ -32403,5 +32403,14 @@
             "machine-learning",
             "neural-networks"
         ]
+    },
+    "https://github.com/spipm/Depix": {
+        "extra-tags": [],
+        "date": "2020-12-06",
+        "title": "Depix",
+        "summary": "Recovers passwords from pixelized screenshots",
+        "tags": [
+            "python"
+        ]
     }
 }
