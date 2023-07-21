@@ -32430,5 +32430,35 @@
         "tags": [
             "jupyter notebook"
         ]
+    },
+    "https://github.com/barrust/pyspellchecker": {
+        "extra-tags": [
+            "http"
+        ],
+        "date": "2018-02-24",
+        "title": "pyspellchecker",
+        "summary": "Pure Python Spell Checking http://pyspellchecker.readthedocs.io/en/latest/",
+        "tags": [
+            "python",
+            "levenshtein-distance",
+            "python-spell-checking",
+            "spelling-checker",
+            "spellchecker",
+            "spellcheck"
+        ]
+    },
+    "https://github.com/serre-lab/Lens": {
+        "extra-tags": [
+            "project"
+        ],
+        "date": "2023-05-29",
+        "title": "Lens",
+        "summary": "LENS Project",
+        "tags": [
+            "explainability",
+            "html",
+            "deep-learning",
+            "xai"
+        ]
     }
 }

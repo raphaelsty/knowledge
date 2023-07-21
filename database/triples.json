@@ -150102,5 +150102,97 @@
     {
         "head": "visualization",
         "tail": "neural-networks"
+    },
+    {
+        "head": "python",
+        "tail": "python-spell-checking"
+    },
+    {
+        "head": "python",
+        "tail": "spelling-checker"
+    },
+    {
+        "head": "python",
+        "tail": "spellchecker"
+    },
+    {
+        "head": "levenshtein-distance",
+        "tail": "python-spell-checking"
+    },
+    {
+        "head": "levenshtein-distance",
+        "tail": "spelling-checker"
+    },
+    {
+        "head": "levenshtein-distance",
+        "tail": "spellchecker"
+    },
+    {
+        "head": "levenshtein-distance",
+        "tail": "http"
+    },
+    {
+        "head": "python-spell-checking",
+        "tail": "spelling-checker"
+    },
+    {
+        "head": "python-spell-checking",
+        "tail": "spellchecker"
+    },
+    {
+        "head": "python-spell-checking",
+        "tail": "spellcheck"
+    },
+    {
+        "head": "python-spell-checking",
+        "tail": "http"
+    },
+    {
+        "head": "spelling-checker",
+        "tail": "spellchecker"
+    },
+    {
+        "head": "spelling-checker",
+        "tail": "spellcheck"
+    },
+    {
+        "head": "spelling-checker",
+        "tail": "http"
+    },
+    {
+        "head": "spellchecker",
+        "tail": "spellcheck"
+    },
+    {
+        "head": "spellchecker",
+        "tail": "http"
+    },
+    {
+        "head": "spellcheck",
+        "tail": "http"
+    },
+    {
+        "head": "explainability",
+        "tail": "html"
+    },
+    {
+        "head": "explainability",
+        "tail": "project"
+    },
+    {
+        "head": "html",
+        "tail": "xai"
+    },
+    {
+        "head": "html",
+        "tail": "project"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "xai"
+    },
+    {
+        "head": "xai",
+        "tail": "project"
     }
 ]
