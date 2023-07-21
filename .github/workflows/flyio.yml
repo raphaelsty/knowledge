@@ -2,7 +2,7 @@ name: Fly Deploy
 
 on:
   schedule:
-    - cron: '*/10 * * * *' # '0 */13 * * *' # https://crontab.guru/#0_*/20_*_*_* '0 */12 * * *'
+    - cron: '0 */13 * * *' # https://crontab.guru/#0_*/20_*_*_* '0 */12 * * *'
     
 env:
   FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
