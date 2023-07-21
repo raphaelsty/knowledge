@@ -32412,5 +32412,23 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/serre-lab/MaCo": {
+        "extra-tags": [
+            "visualization"
+        ],
+        "date": "2023-07-20",
+        "title": "MaCo",
+        "summary": "MaCo Feature Visualization",
+        "tags": []
+    },
+    "https://github.com/deel-ai/Craft": {
+        "extra-tags": [],
+        "date": "2023-03-23",
+        "title": "Craft",
+        "summary": "",
+        "tags": [
+            "jupyter notebook"
+        ]
     }
 }
