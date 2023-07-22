@@ -32460,5 +32460,20 @@
             "deep-learning",
             "xai"
         ]
+    },
+    "https://github.com/fal-ai/dbt-fal": {
+        "extra-tags": [],
+        "date": "2021-01-24",
+        "title": "dbt-fal",
+        "summary": "do more with dbt. dbt-fal helps you run Python alongside dbt, so you can send Slack alerts, detect anomalies and build machine learning models.",
+        "tags": [
+            "analytics",
+            "machinelearning",
+            "python",
+            "pandas",
+            "machine-learning",
+            "data-modeling",
+            "dbt"
+        ]
     }
 }
