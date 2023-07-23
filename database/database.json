@@ -32475,5 +32475,34 @@
             "data-modeling",
             "dbt"
         ]
+    },
+    "https://github.com/HumanSignal/label-studio": {
+        "extra-tags": [],
+        "date": "2019-06-19",
+        "title": "label-studio",
+        "summary": "Label Studio is a multi-type data labeling and annotation tool with standardized output format",
+        "tags": [
+            "dataset",
+            "datasets",
+            "image-labelling-tool",
+            "annotations",
+            "text-annotation",
+            "labeling",
+            "python",
+            "labeling-tool",
+            "label-studio",
+            "annotation-tool",
+            "data-labeling",
+            "image-classification",
+            "image-labeling",
+            "mlops",
+            "semantic-segmentation",
+            "annotation",
+            "image-annotation",
+            "boundingbox",
+            "computer-vision",
+            "deep-learning",
+            "yolo"
+        ]
     }
 }
