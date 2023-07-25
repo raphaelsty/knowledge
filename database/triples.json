@@ -150194,5 +150194,113 @@
     {
         "head": "xai",
         "tail": "project"
+    },
+    {
+        "head": "complex-networks",
+        "tail": "graph-algorithms"
+    },
+    {
+        "head": "complex-networks",
+        "tail": "python"
+    },
+    {
+        "head": "complex-networks",
+        "tail": "graph-analysis"
+    },
+    {
+        "head": "complex-networks",
+        "tail": "graph-theory"
+    },
+    {
+        "head": "complex-networks",
+        "tail": "graph-generation"
+    },
+    {
+        "head": "complex-networks",
+        "tail": "graph-visualization"
+    },
+    {
+        "head": "complex-networks",
+        "tail": "analysis"
+    },
+    {
+        "head": "graph-algorithms",
+        "tail": "python"
+    },
+    {
+        "head": "graph-algorithms",
+        "tail": "graph-analysis"
+    },
+    {
+        "head": "graph-algorithms",
+        "tail": "graph-theory"
+    },
+    {
+        "head": "graph-algorithms",
+        "tail": "graph-generation"
+    },
+    {
+        "head": "graph-algorithms",
+        "tail": "graph-visualization"
+    },
+    {
+        "head": "graph-algorithms",
+        "tail": "analysis"
+    },
+    {
+        "head": "python",
+        "tail": "graph-analysis"
+    },
+    {
+        "head": "python",
+        "tail": "graph-theory"
+    },
+    {
+        "head": "python",
+        "tail": "graph-generation"
+    },
+    {
+        "head": "python",
+        "tail": "graph-visualization"
+    },
+    {
+        "head": "graph-analysis",
+        "tail": "graph-theory"
+    },
+    {
+        "head": "graph-analysis",
+        "tail": "graph-generation"
+    },
+    {
+        "head": "graph-analysis",
+        "tail": "graph-visualization"
+    },
+    {
+        "head": "graph-analysis",
+        "tail": "analysis"
+    },
+    {
+        "head": "graph-theory",
+        "tail": "graph-generation"
+    },
+    {
+        "head": "graph-theory",
+        "tail": "graph-visualization"
+    },
+    {
+        "head": "graph-theory",
+        "tail": "analysis"
+    },
+    {
+        "head": "graph-generation",
+        "tail": "graph-visualization"
+    },
+    {
+        "head": "graph-generation",
+        "tail": "analysis"
+    },
+    {
+        "head": "graph-visualization",
+        "tail": "analysis"
     }
 ]

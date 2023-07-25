@@ -32504,5 +32504,31 @@
             "deep-learning",
             "yolo"
         ]
+    },
+    "https://github.com/networkx/networkx": {
+        "extra-tags": [
+            "analysis"
+        ],
+        "date": "2010-09-06",
+        "title": "networkx",
+        "summary": "Network Analysis in Python",
+        "tags": [
+            "complex-networks",
+            "graph-algorithms",
+            "python",
+            "graph-analysis",
+            "graph-theory",
+            "graph-generation",
+            "graph-visualization"
+        ]
+    },
+    "https://github.com/karpathy/llama2.c": {
+        "extra-tags": [],
+        "date": "2023-07-23",
+        "title": "llama2.c",
+        "summary": "Inference Llama 2 in one file of pure C",
+        "tags": [
+            "python"
+        ]
     }
 }
