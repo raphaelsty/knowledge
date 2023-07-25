@@ -32530,5 +32530,21 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/shap/shap": {
+        "extra-tags": [],
+        "date": "2016-11-22",
+        "title": "shap",
+        "summary": "A game theoretic approach to explain the output of any machine learning model.",
+        "tags": [
+            "shap",
+            "shapley",
+            "machine-learning",
+            "jupyter notebook",
+            "deep-learning",
+            "interpretability",
+            "explainability",
+            "gradient-boosting"
+        ]
     }
 }
