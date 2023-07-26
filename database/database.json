@@ -32575,5 +32575,14 @@
         ],
         "summary": "",
         "date": "2023-07-26"
+    },
+    "https://github.com/SwordHolderSH/Mang2Vec": {
+        "extra-tags": [],
+        "date": "2022-06-11",
+        "title": "Mang2Vec",
+        "summary": "Mang2Vec: Vectorization of Raster Manga by Primitive-based Deep Reinforcement Learning",
+        "tags": [
+            "python"
+        ]
     }
 }
