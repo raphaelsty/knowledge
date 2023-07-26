@@ -32546,5 +32546,34 @@
             "explainability",
             "gradient-boosting"
         ]
+    },
+    "https://replicate.com/blog/run-llama-locally": {
+        "extra-tags": [
+            "llama"
+        ],
+        "title": "Hackernews Guide to running Llama 2 locally (replicate.com)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2023-07-26"
+    },
+    "https://thesephist.com/posts/hyperlink/": {
+        "extra-tags": [],
+        "title": "Hackernews Hyperlink maximalism (2022) (thesephist.com)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2023-07-26"
+    },
+    "https://invoicedragon.com/": {
+        "extra-tags": [],
+        "title": "Hackernews Show HN: Invoice Dragon \u2013 An open source app to create PDF invoices (invoicedragon.com)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2023-07-26"
     }
 }
