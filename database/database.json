@@ -32584,5 +32584,12 @@
         "tags": [
             "python"
         ]
+    },
+    "https://dl.acm.org/doi/10.1145/3539618.3592065": {
+        "extra-tags": [],
+        "title": "SparseEmbed: Learning Sparse Lexical Representations with Contextual Embeddings for Retrieval",
+        "summary": "",
+        "date": "2023-07-26",
+        "tags": []
     }
 }
