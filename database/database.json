@@ -32600,5 +32600,14 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/Stability-AI/generative-models": {
+        "extra-tags": [],
+        "date": "2023-06-22",
+        "title": "generative-models",
+        "summary": "Generative Models by Stability AI",
+        "tags": [
+            "python"
+        ]
     }
 }
