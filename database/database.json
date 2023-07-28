@@ -32591,5 +32591,14 @@
         "summary": "",
         "date": "2023-07-26",
         "tags": []
+    },
+    "https://github.com/IBM/kgi-slot-filling": {
+        "extra-tags": [],
+        "date": "2021-04-12",
+        "title": "kgi-slot-filling",
+        "summary": "This is the code for our KILT leaderboard submissions (KGI + Re2G models).",
+        "tags": [
+            "python"
+        ]
     }
 }
