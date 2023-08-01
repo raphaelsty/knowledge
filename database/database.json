@@ -32609,5 +32609,16 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/srush/llama2.rs": {
+        "extra-tags": [
+            "llama"
+        ],
+        "date": "2023-07-28",
+        "title": "llama2.rs",
+        "summary": "",
+        "tags": [
+            "rust"
+        ]
     }
 }

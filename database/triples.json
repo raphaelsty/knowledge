@@ -150302,5 +150302,9 @@
     {
         "head": "graph-visualization",
         "tail": "analysis"
+    },
+    {
+        "head": "rust",
+        "tail": "llama"
     }
 ]
