@@ -32620,5 +32620,14 @@
         "tags": [
             "rust"
         ]
+    },
+    "https://praveshkoirala.com/2023/06/13/a-non-mathematical-introduction-to-kalman-filters-for-programmers/": {
+        "extra-tags": [],
+        "title": "Hackernews A non-mathematical introduction to Kalman filters for programmers (praveshkoirala.com)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2023-08-03"
     }
 }
