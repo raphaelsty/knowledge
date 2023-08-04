@@ -150306,5 +150306,37 @@
     {
         "head": "rust",
         "tail": "llama"
+    },
+    {
+        "head": "shell",
+        "tail": "dotfile-manager"
+    },
+    {
+        "head": "shell",
+        "tail": "git"
+    },
+    {
+        "head": "bash",
+        "tail": "dotfile-manager"
+    },
+    {
+        "head": "bash",
+        "tail": "git"
+    },
+    {
+        "head": "dotfile-manager",
+        "tail": "git"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "computer science - information retrieval"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "llm;ir;generation"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "llm;ir;generation"
     }
 ]
