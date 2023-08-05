@@ -150338,5 +150338,65 @@
     {
         "head": "computer science - information retrieval",
         "tail": "llm;ir;generation"
+    },
+    {
+        "head": "sparseembed",
+        "tail": "semantic-search"
+    },
+    {
+        "head": "sparseembed",
+        "tail": "python"
+    },
+    {
+        "head": "sparseembed",
+        "tail": "neural-search"
+    },
+    {
+        "head": "sparseembed",
+        "tail": "sparse-matrix"
+    },
+    {
+        "head": "sparseembed",
+        "tail": "google"
+    },
+    {
+        "head": "sparseembed",
+        "tail": "language-model"
+    },
+    {
+        "head": "semantic-search",
+        "tail": "sparse-matrix"
+    },
+    {
+        "head": "semantic-search",
+        "tail": "google"
+    },
+    {
+        "head": "python",
+        "tail": "sparse-matrix"
+    },
+    {
+        "head": "neural-search",
+        "tail": "sparse-matrix"
+    },
+    {
+        "head": "neural-search",
+        "tail": "google"
+    },
+    {
+        "head": "neural-search",
+        "tail": "language-model"
+    },
+    {
+        "head": "sparse-matrix",
+        "tail": "google"
+    },
+    {
+        "head": "sparse-matrix",
+        "tail": "language-model"
+    },
+    {
+        "head": "google",
+        "tail": "language-model"
     }
 ]

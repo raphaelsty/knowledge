@@ -32652,5 +32652,20 @@
             "computer science - information retrieval",
             "llm;ir;generation"
         ]
+    },
+    "https://github.com/raphaelsty/sparsembed": {
+        "extra-tags": [],
+        "date": "2023-08-04",
+        "title": "sparsembed",
+        "summary": "Google's SparseEmbed Neural Search Model Replication",
+        "tags": [
+            "sparseembed",
+            "semantic-search",
+            "python",
+            "neural-search",
+            "sparse-matrix",
+            "google",
+            "language-model"
+        ]
     }
 }
