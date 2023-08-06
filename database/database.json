@@ -32667,5 +32667,16 @@
             "google",
             "language-model"
         ]
+    },
+    "https://github.com/MaxHalford/bike-sharing-history": {
+        "extra-tags": [],
+        "date": "2023-07-02",
+        "title": "bike-sharing-history",
+        "summary": "\ud83d\udeb2 Git scraping for bike sharing APIs",
+        "tags": [
+            "bike-sharing",
+            "python",
+            "git-scraping"
+        ]
     }
 }
