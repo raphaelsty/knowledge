@@ -32697,5 +32697,29 @@
             "benchmark",
             "mteb"
         ]
+    },
+    "https://github.com/shacklettbp/madrona": {
+        "extra-tags": [],
+        "date": "2022-06-22",
+        "title": "madrona",
+        "summary": "",
+        "tags": [
+            "c++"
+        ]
+    },
+    "https://github.com/google/argh": {
+        "extra-tags": [],
+        "date": "2020-01-30",
+        "title": "argh",
+        "summary": "Rust derive-based argument parsing optimized for code size",
+        "tags": [
+            "positional-arguments",
+            "argument-parser",
+            "rust-library",
+            "subcommands",
+            "arguments",
+            "rust",
+            "argh"
+        ]
     }
 }

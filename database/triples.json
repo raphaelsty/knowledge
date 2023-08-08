@@ -150414,5 +150414,85 @@
     {
         "head": "benchmark",
         "tail": "mteb"
+    },
+    {
+        "head": "positional-arguments",
+        "tail": "argument-parser"
+    },
+    {
+        "head": "positional-arguments",
+        "tail": "rust-library"
+    },
+    {
+        "head": "positional-arguments",
+        "tail": "subcommands"
+    },
+    {
+        "head": "positional-arguments",
+        "tail": "arguments"
+    },
+    {
+        "head": "positional-arguments",
+        "tail": "rust"
+    },
+    {
+        "head": "positional-arguments",
+        "tail": "argh"
+    },
+    {
+        "head": "argument-parser",
+        "tail": "rust-library"
+    },
+    {
+        "head": "argument-parser",
+        "tail": "subcommands"
+    },
+    {
+        "head": "argument-parser",
+        "tail": "arguments"
+    },
+    {
+        "head": "argument-parser",
+        "tail": "rust"
+    },
+    {
+        "head": "argument-parser",
+        "tail": "argh"
+    },
+    {
+        "head": "rust-library",
+        "tail": "subcommands"
+    },
+    {
+        "head": "rust-library",
+        "tail": "arguments"
+    },
+    {
+        "head": "rust-library",
+        "tail": "argh"
+    },
+    {
+        "head": "subcommands",
+        "tail": "arguments"
+    },
+    {
+        "head": "subcommands",
+        "tail": "rust"
+    },
+    {
+        "head": "subcommands",
+        "tail": "argh"
+    },
+    {
+        "head": "arguments",
+        "tail": "rust"
+    },
+    {
+        "head": "arguments",
+        "tail": "argh"
+    },
+    {
+        "head": "rust",
+        "tail": "argh"
     }
 ]
