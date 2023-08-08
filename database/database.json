@@ -32678,5 +32678,24 @@
             "python",
             "git-scraping"
         ]
+    },
+    "https://github.com/AlibabaResearch/HLATR": {
+        "extra-tags": [],
+        "date": "2022-10-10",
+        "title": "HLATR",
+        "summary": "Implementation of paper: HLATR: Enhance Multi-stage Text Retrieval with Hybrid List Aware Transformer Reranking",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://huggingface.co/spaces/mteb/leaderboard": {
+        "extra-tags": [],
+        "title": "MTEB Leaderboard - a Hugging Face Space by mteb",
+        "summary": "Discover amazing ML apps made by the community",
+        "date": "2023-08-07",
+        "tags": [
+            "benchmark",
+            "mteb"
+        ]
     }
 }
