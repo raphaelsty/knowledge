@@ -32721,5 +32721,14 @@
             "rust",
             "argh"
         ]
+    },
+    "https://github.com/huggingface/candle": {
+        "extra-tags": [],
+        "date": "2023-06-19",
+        "title": "candle",
+        "summary": "Minimalist ML framework for Rust",
+        "tags": [
+            "rust"
+        ]
     }
 }
