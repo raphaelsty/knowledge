@@ -32730,5 +32730,14 @@
         "tags": [
             "rust"
         ]
+    },
+    "https://github.com/huggingface/trl": {
+        "extra-tags": [],
+        "date": "2020-03-27",
+        "title": "trl",
+        "summary": "Train transformer language models with reinforcement learning.",
+        "tags": [
+            "python"
+        ]
     }
 }
