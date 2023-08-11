@@ -32739,5 +32739,35 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/the-turing-way/the-turing-way": {
+        "extra-tags": [],
+        "date": "2018-11-01",
+        "title": "the-turing-way",
+        "summary": "Host repository for The Turing Way: a how to guide for reproducible data science",
+        "tags": [
+            "hacktoberfest",
+            "education",
+            "hut23-396",
+            "hut23-270",
+            "hut23",
+            "closember",
+            "data-science",
+            "tex",
+            "community"
+        ]
+    },
+    "https://github.com/defer-run/defer.client": {
+        "extra-tags": [],
+        "date": "2022-11-16",
+        "title": "defer.client",
+        "summary": "Zero infrastructure Node.js background jobs",
+        "tags": [
+            "cron",
+            "typescript",
+            "background-jobs",
+            "nodejs",
+            "queueing"
+        ]
     }
 }

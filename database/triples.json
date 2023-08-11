@@ -150494,5 +150494,45 @@
     {
         "head": "rust",
         "tail": "argh"
+    },
+    {
+        "head": "cron",
+        "tail": "typescript"
+    },
+    {
+        "head": "cron",
+        "tail": "background-jobs"
+    },
+    {
+        "head": "cron",
+        "tail": "nodejs"
+    },
+    {
+        "head": "cron",
+        "tail": "queueing"
+    },
+    {
+        "head": "typescript",
+        "tail": "background-jobs"
+    },
+    {
+        "head": "typescript",
+        "tail": "nodejs"
+    },
+    {
+        "head": "typescript",
+        "tail": "queueing"
+    },
+    {
+        "head": "background-jobs",
+        "tail": "nodejs"
+    },
+    {
+        "head": "background-jobs",
+        "tail": "queueing"
+    },
+    {
+        "head": "nodejs",
+        "tail": "queueing"
     }
 ]
