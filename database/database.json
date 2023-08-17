@@ -32769,5 +32769,24 @@
             "nodejs",
             "queueing"
         ]
+    },
+    "https://github.com/prefix-dev/pixi": {
+        "extra-tags": [
+            "package"
+        ],
+        "date": "2023-04-28",
+        "title": "pixi",
+        "summary": "Package management made easy",
+        "tags": [
+            "rust",
+            "python-virtual-environment",
+            "conda",
+            "package-manager",
+            "conda-packages",
+            "package-management",
+            "rust-lang",
+            "conda-environment",
+            "package-manager-tool"
+        ]
     }
 }

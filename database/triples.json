@@ -150534,5 +150534,177 @@
     {
         "head": "nodejs",
         "tail": "queueing"
+    },
+    {
+        "head": "rust",
+        "tail": "python-virtual-environment"
+    },
+    {
+        "head": "rust",
+        "tail": "conda"
+    },
+    {
+        "head": "rust",
+        "tail": "package-manager"
+    },
+    {
+        "head": "rust",
+        "tail": "conda-packages"
+    },
+    {
+        "head": "rust",
+        "tail": "package-management"
+    },
+    {
+        "head": "rust",
+        "tail": "conda-environment"
+    },
+    {
+        "head": "rust",
+        "tail": "package-manager-tool"
+    },
+    {
+        "head": "rust",
+        "tail": "package"
+    },
+    {
+        "head": "python-virtual-environment",
+        "tail": "conda"
+    },
+    {
+        "head": "python-virtual-environment",
+        "tail": "package-manager"
+    },
+    {
+        "head": "python-virtual-environment",
+        "tail": "conda-packages"
+    },
+    {
+        "head": "python-virtual-environment",
+        "tail": "package-management"
+    },
+    {
+        "head": "python-virtual-environment",
+        "tail": "rust-lang"
+    },
+    {
+        "head": "python-virtual-environment",
+        "tail": "conda-environment"
+    },
+    {
+        "head": "python-virtual-environment",
+        "tail": "package-manager-tool"
+    },
+    {
+        "head": "python-virtual-environment",
+        "tail": "package"
+    },
+    {
+        "head": "conda",
+        "tail": "package-manager"
+    },
+    {
+        "head": "conda",
+        "tail": "conda-packages"
+    },
+    {
+        "head": "conda",
+        "tail": "package-management"
+    },
+    {
+        "head": "conda",
+        "tail": "rust-lang"
+    },
+    {
+        "head": "conda",
+        "tail": "conda-environment"
+    },
+    {
+        "head": "conda",
+        "tail": "package-manager-tool"
+    },
+    {
+        "head": "conda",
+        "tail": "package"
+    },
+    {
+        "head": "package-manager",
+        "tail": "conda-packages"
+    },
+    {
+        "head": "package-manager",
+        "tail": "package-management"
+    },
+    {
+        "head": "package-manager",
+        "tail": "rust-lang"
+    },
+    {
+        "head": "package-manager",
+        "tail": "conda-environment"
+    },
+    {
+        "head": "package-manager",
+        "tail": "package-manager-tool"
+    },
+    {
+        "head": "conda-packages",
+        "tail": "package-management"
+    },
+    {
+        "head": "conda-packages",
+        "tail": "rust-lang"
+    },
+    {
+        "head": "conda-packages",
+        "tail": "conda-environment"
+    },
+    {
+        "head": "conda-packages",
+        "tail": "package-manager-tool"
+    },
+    {
+        "head": "conda-packages",
+        "tail": "package"
+    },
+    {
+        "head": "package-management",
+        "tail": "rust-lang"
+    },
+    {
+        "head": "package-management",
+        "tail": "conda-environment"
+    },
+    {
+        "head": "package-management",
+        "tail": "package-manager-tool"
+    },
+    {
+        "head": "package-management",
+        "tail": "package"
+    },
+    {
+        "head": "rust-lang",
+        "tail": "conda-environment"
+    },
+    {
+        "head": "rust-lang",
+        "tail": "package-manager-tool"
+    },
+    {
+        "head": "rust-lang",
+        "tail": "package"
+    },
+    {
+        "head": "conda-environment",
+        "tail": "package-manager-tool"
+    },
+    {
+        "head": "conda-environment",
+        "tail": "package"
+    },
+    {
+        "head": "package-manager-tool",
+        "tail": "package"
     }
 ]
