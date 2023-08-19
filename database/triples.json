@@ -150706,5 +150706,25 @@
     {
         "head": "package-manager-tool",
         "tail": "package"
+    },
+    {
+        "head": "scraping",
+        "tail": "skyblog"
+    },
+    {
+        "head": "scraping",
+        "tail": "skyrock"
+    },
+    {
+        "head": "skyblog",
+        "tail": "python"
+    },
+    {
+        "head": "skyblog",
+        "tail": "skyrock"
+    },
+    {
+        "head": "python",
+        "tail": "skyrock"
     }
 ]

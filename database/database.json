@@ -32788,5 +32788,17 @@
             "conda-environment",
             "package-manager-tool"
         ]
+    },
+    "https://github.com/NicolasBizzozzero/Skyblog-Archiving": {
+        "extra-tags": [],
+        "date": "2023-08-18",
+        "title": "Skyblog-Archiving",
+        "summary": "Archive skyrock.com blogs in a readable HTML format.",
+        "tags": [
+            "scraping",
+            "skyblog",
+            "python",
+            "skyrock"
+        ]
     }
 }
