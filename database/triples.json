@@ -150726,5 +150726,61 @@
     {
         "head": "python",
         "tail": "skyrock"
+    },
+    {
+        "head": "hyperscript",
+        "tail": "html"
+    },
+    {
+        "head": "hyperscript",
+        "tail": "rest"
+    },
+    {
+        "head": "hyperscript",
+        "tail": "hateoas"
+    },
+    {
+        "head": "hyperscript",
+        "tail": "javascript"
+    },
+    {
+        "head": "hyperscript",
+        "tail": "htmx"
+    },
+    {
+        "head": "html",
+        "tail": "rest"
+    },
+    {
+        "head": "html",
+        "tail": "hateoas"
+    },
+    {
+        "head": "html",
+        "tail": "htmx"
+    },
+    {
+        "head": "rest",
+        "tail": "hateoas"
+    },
+    {
+        "head": "rest",
+        "tail": "javascript"
+    },
+    {
+        "head": "rest",
+        "tail": "htmx"
+    },
+    {
+        "head": "hateoas",
+        "tail": "javascript"
+    },
+    {
+        "head": "hateoas",
+        "tail": "htmx"
+    },
+    {
+        "head": "javascript",
+        "tail": "htmx"
     }
 ]

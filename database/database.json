@@ -32800,5 +32800,19 @@
             "python",
             "skyrock"
         ]
+    },
+    "https://github.com/bigskysoftware/htmx": {
+        "extra-tags": [],
+        "date": "2020-04-13",
+        "title": "htmx",
+        "summary": "</> htmx - high power tools for HTML",
+        "tags": [
+            "hyperscript",
+            "html",
+            "rest",
+            "hateoas",
+            "javascript",
+            "htmx"
+        ]
     }
 }
