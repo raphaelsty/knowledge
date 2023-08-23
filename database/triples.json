@@ -150782,5 +150782,17 @@
     {
         "head": "javascript",
         "tail": "htmx"
+    },
+    {
+        "head": "lesson",
+        "tail": "software-design"
+    },
+    {
+        "head": "lesson",
+        "tail": "python"
+    },
+    {
+        "head": "software-design",
+        "tail": "python"
     }
 ]

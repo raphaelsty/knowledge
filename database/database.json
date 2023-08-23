@@ -32814,5 +32814,16 @@
             "javascript",
             "htmx"
         ]
+    },
+    "https://github.com/gvwilson/sdxpy": {
+        "extra-tags": [],
+        "date": "2022-07-31",
+        "title": "sdxpy",
+        "summary": "Software Design by Example: a tool-based introduction with Python",
+        "tags": [
+            "lesson",
+            "software-design",
+            "python"
+        ]
     }
 }
