@@ -150794,5 +150794,21 @@
     {
         "head": "software-design",
         "tail": "python"
+    },
+    {
+        "head": "pygithub",
+        "tail": "github-api"
+    },
+    {
+        "head": "pygithub",
+        "tail": "python"
+    },
+    {
+        "head": "github-api",
+        "tail": "python"
+    },
+    {
+        "head": "julia",
+        "tail": "tricks"
     }
 ]

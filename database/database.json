@@ -32825,5 +32825,28 @@
             "software-design",
             "python"
         ]
+    },
+    "https://github.com/PyGithub/PyGithub": {
+        "extra-tags": [],
+        "date": "2012-02-25",
+        "title": "PyGithub",
+        "summary": "Typed interactions with the GitHub API v3",
+        "tags": [
+            "github",
+            "pygithub",
+            "github-api",
+            "python"
+        ]
+    },
+    "https://github.com/LightningDrop/SkateboardML": {
+        "extra-tags": [
+            "tricks"
+        ],
+        "date": "2020-06-16",
+        "title": "SkateboardML",
+        "summary": "Classifying skateboarding tricks",
+        "tags": [
+            "julia"
+        ]
     }
 }
