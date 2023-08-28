@@ -32848,5 +32848,21 @@
         "tags": [
             "julia"
         ]
+    },
+    "https://github.com/vnpy/vnpy": {
+        "extra-tags": [],
+        "date": "2015-03-02",
+        "title": "vnpy",
+        "summary": "\u57fa\u4e8ePython\u7684\u5f00\u6e90\u91cf\u5316\u4ea4\u6613\u5e73\u53f0\u5f00\u53d1\u6846\u67b6",
+        "tags": [
+            "python",
+            "algotrading",
+            "quant",
+            "fintech",
+            "vnpy",
+            "investment",
+            "finance",
+            "trading"
+        ]
     }
 }

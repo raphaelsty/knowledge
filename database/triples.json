@@ -150810,5 +150810,93 @@
     {
         "head": "julia",
         "tail": "tricks"
+    },
+    {
+        "head": "python",
+        "tail": "algotrading"
+    },
+    {
+        "head": "python",
+        "tail": "quant"
+    },
+    {
+        "head": "python",
+        "tail": "fintech"
+    },
+    {
+        "head": "python",
+        "tail": "vnpy"
+    },
+    {
+        "head": "algotrading",
+        "tail": "quant"
+    },
+    {
+        "head": "algotrading",
+        "tail": "fintech"
+    },
+    {
+        "head": "algotrading",
+        "tail": "vnpy"
+    },
+    {
+        "head": "algotrading",
+        "tail": "investment"
+    },
+    {
+        "head": "algotrading",
+        "tail": "finance"
+    },
+    {
+        "head": "algotrading",
+        "tail": "trading"
+    },
+    {
+        "head": "quant",
+        "tail": "fintech"
+    },
+    {
+        "head": "quant",
+        "tail": "vnpy"
+    },
+    {
+        "head": "quant",
+        "tail": "investment"
+    },
+    {
+        "head": "quant",
+        "tail": "finance"
+    },
+    {
+        "head": "quant",
+        "tail": "trading"
+    },
+    {
+        "head": "fintech",
+        "tail": "vnpy"
+    },
+    {
+        "head": "fintech",
+        "tail": "investment"
+    },
+    {
+        "head": "fintech",
+        "tail": "finance"
+    },
+    {
+        "head": "fintech",
+        "tail": "trading"
+    },
+    {
+        "head": "vnpy",
+        "tail": "investment"
+    },
+    {
+        "head": "vnpy",
+        "tail": "finance"
+    },
+    {
+        "head": "vnpy",
+        "tail": "trading"
     }
 ]
