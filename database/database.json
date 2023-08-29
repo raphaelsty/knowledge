@@ -32864,5 +32864,14 @@
             "finance",
             "trading"
         ]
+    },
+    "https://vitalik.ca/general/2023/08/16/communitynotes.html": {
+        "extra-tags": [],
+        "title": "Hackernews What do I think about Community Notes? (vitalik.ca)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2023-08-29"
     }
 }
