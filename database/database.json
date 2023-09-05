@@ -32882,5 +32882,17 @@
         ],
         "summary": "",
         "date": "2023-09-05"
+    },
+    "https://github.com/Indystrycc/OpenScrewCounter": {
+        "extra-tags": [
+            "source",
+            "machine"
+        ],
+        "date": "2023-02-03",
+        "title": "OpenScrewCounter",
+        "summary": "Open source screw counting machine",
+        "tags": [
+            "nesc"
+        ]
     }
 }

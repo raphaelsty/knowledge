@@ -150898,5 +150898,17 @@
     {
         "head": "vnpy",
         "tail": "trading"
+    },
+    {
+        "head": "nesc",
+        "tail": "source"
+    },
+    {
+        "head": "nesc",
+        "tail": "machine"
+    },
+    {
+        "head": "source",
+        "tail": "machine"
     }
 ]
