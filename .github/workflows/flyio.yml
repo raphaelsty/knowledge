@@ -17,4 +17,4 @@ jobs:
       - uses: superfly/flyctl-actions/setup-flyctl@master
         with:
            version: 1.5
-      - run: flyctl deploy --build-secret OPENAI_API_KEY=$OPENAI_API_KEY --remote-only
+      - run: flyctl deploy --build-secret OPENAI_API_KEY=$OPENAI_API_KEY --remote-only --no-cache
