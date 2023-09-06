@@ -14,5 +14,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: superfly/flyctl-actions/setup-flyctl@master
       - run: flyctl deploy --build-secret OPENAI_API_KEY=$OPENAI_API_KEY --remote-only
