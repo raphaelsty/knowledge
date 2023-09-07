@@ -1,8 +1,9 @@
 name: Fly Deploy
 
 on:
-  schedule:
-    - cron: '0 */13 * * *' # https://crontab.guru/#0_*/20_*_*_* '0 */12 * * *'
+  push:
+    branches:
+      - master
     
 env:
   FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
@@ -15,6 +16,4 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: superfly/flyctl-actions/setup-flyctl@master
-        with:
-           version: 1.5
       - run: flyctl deploy --build-secret OPENAI_API_KEY=$OPENAI_API_KEY --remote-only --no-cache
