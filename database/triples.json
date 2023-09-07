@@ -150910,5 +150910,21 @@
     {
         "head": "source",
         "tail": "machine"
+    },
+    {
+        "head": "go",
+        "tail": "infrastructure"
+    },
+    {
+        "head": "cloud",
+        "tail": "infrastructure"
+    },
+    {
+        "head": "cloud",
+        "tail": "declarative"
+    },
+    {
+        "head": "infrastructure",
+        "tail": "declarative"
     }
 ]
