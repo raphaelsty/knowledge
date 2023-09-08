@@ -32907,5 +32907,170 @@
         "tags": [
             "go"
         ]
+    },
+    "https://github.com/google-deepmind/alphafold": {
+        "extra-tags": [
+            "source",
+            "code",
+            "alphafold2"
+        ],
+        "date": "2021-06-17",
+        "title": "alphafold",
+        "summary": "Open source code for AlphaFold.",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/google-deepmind/jraph": {
+        "extra-tags": [
+            "graph neural",
+            "library",
+            "graph neural networks"
+        ],
+        "date": "2020-11-23",
+        "title": "jraph",
+        "summary": "A Graph Neural Network Library in Jax",
+        "tags": [
+            "jax",
+            "python",
+            "machine-learning",
+            "deep-learning",
+            "graph-neural-networks"
+        ]
+    },
+    "https://github.com/google-deepmind/mujoco_menagerie": {
+        "extra-tags": [
+            "collection",
+            "models",
+            "mujoco",
+            "physics",
+            "google deepmind"
+        ],
+        "date": "2022-09-05",
+        "title": "mujoco_menagerie",
+        "summary": "A collection of high-quality models for the MuJoCo physics engine, curated by Google DeepMind.",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/google-deepmind/mujoco": {
+        "extra-tags": [],
+        "date": "2021-08-27",
+        "title": "mujoco",
+        "summary": "Multi-Joint dynamics with Contact. A general purpose physics simulator.",
+        "tags": [
+            "c++",
+            "mujoco",
+            "robotics",
+            "physics"
+        ]
+    },
+    "https://github.com/google-deepmind/meltingpot": {
+        "extra-tags": [
+            "multi-agent",
+            "reinforcement",
+            "learning"
+        ],
+        "date": "2021-07-16",
+        "title": "meltingpot",
+        "summary": "A suite of test scenarios for multi-agent reinforcement learning.",
+        "tags": [
+            "python",
+            "multiagent-reinforcement-learning"
+        ]
+    },
+    "https://github.com/google-deepmind/tensor_annotations": {
+        "extra-tags": [
+            "tensor",
+            "types",
+            "annotations"
+        ],
+        "date": "2020-12-02",
+        "title": "tensor_annotations",
+        "summary": "Annotating tensor shapes using Python types",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/google-deepmind/android_env": {
+        "extra-tags": [
+            "rl",
+            "research"
+        ],
+        "date": "2021-04-21",
+        "title": "android_env",
+        "summary": "RL research on Android devices.",
+        "tags": [
+            "android",
+            "python",
+            "reinforcement-learning"
+        ]
+    },
+    "https://github.com/google-deepmind/chex": {
+        "extra-tags": [
+            "chess",
+            "cheap",
+            "checkers"
+        ],
+        "date": "2020-08-06",
+        "title": "chex",
+        "summary": "",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/google-deepmind/jmp": {
+        "extra-tags": [
+            "precision",
+            "library",
+            "jax"
+        ],
+        "date": "2021-04-12",
+        "title": "jmp",
+        "summary": "JMP is a Mixed Precision library for JAX.",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/google-deepmind/distrax": {
+        "extra-tags": [
+            "distributed",
+            "out of distribution detection",
+            "distributed-database"
+        ],
+        "date": "2021-04-01",
+        "title": "distrax",
+        "summary": "",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/google-deepmind/reverb": {
+        "extra-tags": [
+            "easy-to-use",
+            "data",
+            "storage",
+            "system",
+            "machine learning"
+        ],
+        "date": "2020-05-01",
+        "title": "reverb",
+        "summary": "Reverb is an efficient and easy-to-use data storage and transport system designed for machine learning research",
+        "tags": [
+            "c++"
+        ]
+    },
+    "https://github.com/stanfordnlp/dspy": {
+        "extra-tags": [
+            "framework",
+            "programming",
+            "models"
+        ],
+        "title": "Hackernews DSPy: Framework for programming with foundation models (github.com/stanfordnlp)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2023-09-08"
     }
 }
