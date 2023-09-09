@@ -151186,5 +151186,37 @@
     {
         "head": "programming",
         "tail": "models"
+    },
+    {
+        "head": "python",
+        "tail": "delight"
+    },
+    {
+        "head": "python",
+        "tail": "flashlight"
+    },
+    {
+        "head": "delight",
+        "tail": "gametight"
+    },
+    {
+        "head": "delight",
+        "tail": "flashlight"
+    },
+    {
+        "head": "gametight",
+        "tail": "flashlight"
+    },
+    {
+        "head": "set",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "set",
+        "tail": "memory"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "memory"
     }
 ]

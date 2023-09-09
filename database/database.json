@@ -33072,5 +33072,31 @@
         ],
         "summary": "",
         "date": "2023-09-08"
+    },
+    "https://github.com/google-deepmind/dm_hard_eight": {
+        "extra-tags": [
+            "delight",
+            "gametight",
+            "flashlight"
+        ],
+        "date": "2020-04-23",
+        "title": "dm_hard_eight",
+        "summary": "",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/google-deepmind/dm_memorytasks": {
+        "extra-tags": [
+            "set",
+            "machine-learning",
+            "memory"
+        ],
+        "date": "2019-12-03",
+        "title": "dm_memorytasks",
+        "summary": "A set of 13 diverse machine-learning tasks that require memory to solve.",
+        "tags": [
+            "python"
+        ]
     }
 }
