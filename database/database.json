@@ -33098,5 +33098,18 @@
         "tags": [
             "python"
         ]
+    },
+    "https://magazine.sebastianraschka.com/p/llm-training-rlhf-and-its-alternatives": {
+        "extra-tags": [
+            "rlhf",
+            "training",
+            "llms"
+        ],
+        "title": "Hackernews Training and aligning LLMs with RLHF and RLHF alternatives (sebastianraschka.com)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2023-09-11"
     }
 }
