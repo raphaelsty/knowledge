@@ -151222,5 +151222,49 @@
     {
         "head": "rlhf",
         "tail": "training"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "programming"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "genetic-programming"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "evolutionary-algorithms"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "python3"
+    },
+    {
+        "head": "genetic-programming",
+        "tail": "python3"
+    },
+    {
+        "head": "genetic-programming",
+        "tail": "programming"
+    },
+    {
+        "head": "genetic-programming",
+        "tail": "python"
+    },
+    {
+        "head": "evolutionary-algorithms",
+        "tail": "python3"
+    },
+    {
+        "head": "evolutionary-algorithms",
+        "tail": "programming"
+    },
+    {
+        "head": "python3",
+        "tail": "programming"
+    },
+    {
+        "head": "programming",
+        "tail": "library"
     }
 ]

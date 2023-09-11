@@ -33111,5 +33111,22 @@
         ],
         "summary": "",
         "date": "2023-09-11"
+    },
+    "https://github.com/l1n0b1/TurboGP": {
+        "extra-tags": [
+            "programming",
+            "library",
+            "python"
+        ],
+        "date": "2020-12-31",
+        "title": "TurboGP",
+        "summary": "Genetic Programming library in Python",
+        "tags": [
+            "machine-learning",
+            "jupyter notebook",
+            "genetic-programming",
+            "evolutionary-algorithms",
+            "python3"
+        ]
     }
 }
