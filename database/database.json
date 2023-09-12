@@ -33128,5 +33128,135 @@
             "evolutionary-algorithms",
             "python3"
         ]
+    },
+    "https://github.com/google-deepmind/dqn_zoo": {
+        "extra-tags": [
+            "dqn",
+            "collection",
+            "reference",
+            "reinforcement",
+            "deepmind"
+        ],
+        "date": "2020-09-22",
+        "title": "dqn_zoo",
+        "summary": "DQN Zoo is a collection of reference implementations of reinforcement learning agents developed at DeepMind based on the Deep Q-Network (DQN) agent.",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/google-deepmind/open_spiel": {
+        "extra-tags": [
+            "collection",
+            "algorithms",
+            "research",
+            "reinforcement"
+        ],
+        "date": "2019-07-22",
+        "title": "open_spiel",
+        "summary": "OpenSpiel is a collection of environments and algorithms for research in general reinforcement learning and search/planning in games.",
+        "tags": [
+            "reinforcement-learning",
+            "games",
+            "cpp",
+            "c++",
+            "python",
+            "multiagent"
+        ]
+    },
+    "https://github.com/google-deepmind/dm_control": {
+        "extra-tags": [
+            "google deepmind",
+            "software",
+            "physics",
+            "simulation",
+            "reinforcement"
+        ],
+        "date": "2017-12-29",
+        "title": "dm_control",
+        "summary": "Google DeepMind's software stack for physics-based simulation and Reinforcement Learning environments, using MuJoCo.",
+        "tags": [
+            "neural-networks",
+            "mujoco",
+            "deep-learning",
+            "machine-learning",
+            "reinforcement-learning",
+            "python",
+            "physics-simulation",
+            "artificial-intelligence"
+        ]
+    },
+    "https://github.com/google-deepmind/pycolab": {
+        "extra-tags": [
+            "gridworld",
+            "game",
+            "make",
+            "games",
+            "reinforcement"
+        ],
+        "date": "2017-11-14",
+        "title": "pycolab",
+        "summary": "A highly-customisable gridworld game engine with some batteries included. Make your own gridworld games to test reinforcement learning agents!",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/google-deepmind/dm-haiku": {
+        "extra-tags": [
+            "neural",
+            "library",
+            "neural networks"
+        ],
+        "date": "2020-02-18",
+        "title": "dm-haiku",
+        "summary": "JAX-based neural network library",
+        "tags": [
+            "neural-networks",
+            "deep-learning",
+            "machine-learning",
+            "python",
+            "deep-neural-networks",
+            "jax"
+        ]
+    },
+    "https://github.com/google-deepmind/rlax": {
+        "extra-tags": [
+            "flax"
+        ],
+        "date": "2020-02-18",
+        "title": "rlax",
+        "summary": "",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/google-deepmind/dm_env": {
+        "extra-tags": [
+            "reinforcement",
+            "learning"
+        ],
+        "date": "2019-07-08",
+        "title": "dm_env",
+        "summary": "A Python interface for reinforcement learning environments",
+        "tags": [
+            "deep-learning",
+            "interface",
+            "machine-learning",
+            "reinforcement-learning",
+            "python",
+            "api"
+        ]
+    },
+    "https://github.com/google-deepmind/trfl": {
+        "extra-tags": [
+            "tensorflow",
+            "reinforcement",
+            "learning"
+        ],
+        "date": "2018-08-08",
+        "title": "trfl",
+        "summary": "TensorFlow Reinforcement Learning",
+        "tags": [
+            "python"
+        ]
     }
 }

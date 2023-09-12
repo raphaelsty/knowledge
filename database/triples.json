@@ -151266,5 +151266,389 @@
     {
         "head": "programming",
         "tail": "library"
+    },
+    {
+        "head": "dqn",
+        "tail": "collection"
+    },
+    {
+        "head": "dqn",
+        "tail": "reference"
+    },
+    {
+        "head": "dqn",
+        "tail": "reinforcement"
+    },
+    {
+        "head": "dqn",
+        "tail": "deepmind"
+    },
+    {
+        "head": "collection",
+        "tail": "reference"
+    },
+    {
+        "head": "collection",
+        "tail": "reinforcement"
+    },
+    {
+        "head": "collection",
+        "tail": "deepmind"
+    },
+    {
+        "head": "reference",
+        "tail": "reinforcement"
+    },
+    {
+        "head": "reference",
+        "tail": "deepmind"
+    },
+    {
+        "head": "reinforcement",
+        "tail": "deepmind"
+    },
+    {
+        "head": "reinforcement-learning",
+        "tail": "collection"
+    },
+    {
+        "head": "games",
+        "tail": "collection"
+    },
+    {
+        "head": "games",
+        "tail": "algorithms"
+    },
+    {
+        "head": "games",
+        "tail": "research"
+    },
+    {
+        "head": "games",
+        "tail": "reinforcement"
+    },
+    {
+        "head": "cpp",
+        "tail": "collection"
+    },
+    {
+        "head": "cpp",
+        "tail": "algorithms"
+    },
+    {
+        "head": "cpp",
+        "tail": "reinforcement"
+    },
+    {
+        "head": "c++",
+        "tail": "collection"
+    },
+    {
+        "head": "c++",
+        "tail": "algorithms"
+    },
+    {
+        "head": "c++",
+        "tail": "reinforcement"
+    },
+    {
+        "head": "multiagent",
+        "tail": "collection"
+    },
+    {
+        "head": "multiagent",
+        "tail": "algorithms"
+    },
+    {
+        "head": "multiagent",
+        "tail": "reinforcement"
+    },
+    {
+        "head": "collection",
+        "tail": "algorithms"
+    },
+    {
+        "head": "collection",
+        "tail": "research"
+    },
+    {
+        "head": "algorithms",
+        "tail": "reinforcement"
+    },
+    {
+        "head": "research",
+        "tail": "reinforcement"
+    },
+    {
+        "head": "neural-networks",
+        "tail": "google deepmind"
+    },
+    {
+        "head": "neural-networks",
+        "tail": "software"
+    },
+    {
+        "head": "neural-networks",
+        "tail": "physics"
+    },
+    {
+        "head": "neural-networks",
+        "tail": "simulation"
+    },
+    {
+        "head": "neural-networks",
+        "tail": "reinforcement"
+    },
+    {
+        "head": "mujoco",
+        "tail": "software"
+    },
+    {
+        "head": "mujoco",
+        "tail": "simulation"
+    },
+    {
+        "head": "mujoco",
+        "tail": "reinforcement"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "google deepmind"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "software"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "physics"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "reinforcement"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "google deepmind"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "physics"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "reinforcement"
+    },
+    {
+        "head": "reinforcement-learning",
+        "tail": "google deepmind"
+    },
+    {
+        "head": "reinforcement-learning",
+        "tail": "software"
+    },
+    {
+        "head": "reinforcement-learning",
+        "tail": "physics"
+    },
+    {
+        "head": "physics-simulation",
+        "tail": "google deepmind"
+    },
+    {
+        "head": "physics-simulation",
+        "tail": "software"
+    },
+    {
+        "head": "physics-simulation",
+        "tail": "physics"
+    },
+    {
+        "head": "physics-simulation",
+        "tail": "simulation"
+    },
+    {
+        "head": "physics-simulation",
+        "tail": "reinforcement"
+    },
+    {
+        "head": "artificial-intelligence",
+        "tail": "google deepmind"
+    },
+    {
+        "head": "artificial-intelligence",
+        "tail": "software"
+    },
+    {
+        "head": "artificial-intelligence",
+        "tail": "physics"
+    },
+    {
+        "head": "artificial-intelligence",
+        "tail": "reinforcement"
+    },
+    {
+        "head": "google deepmind",
+        "tail": "software"
+    },
+    {
+        "head": "google deepmind",
+        "tail": "simulation"
+    },
+    {
+        "head": "google deepmind",
+        "tail": "reinforcement"
+    },
+    {
+        "head": "software",
+        "tail": "physics"
+    },
+    {
+        "head": "software",
+        "tail": "simulation"
+    },
+    {
+        "head": "software",
+        "tail": "reinforcement"
+    },
+    {
+        "head": "physics",
+        "tail": "simulation"
+    },
+    {
+        "head": "physics",
+        "tail": "reinforcement"
+    },
+    {
+        "head": "simulation",
+        "tail": "reinforcement"
+    },
+    {
+        "head": "python",
+        "tail": "make"
+    },
+    {
+        "head": "gridworld",
+        "tail": "game"
+    },
+    {
+        "head": "gridworld",
+        "tail": "make"
+    },
+    {
+        "head": "gridworld",
+        "tail": "games"
+    },
+    {
+        "head": "gridworld",
+        "tail": "reinforcement"
+    },
+    {
+        "head": "game",
+        "tail": "make"
+    },
+    {
+        "head": "game",
+        "tail": "games"
+    },
+    {
+        "head": "game",
+        "tail": "reinforcement"
+    },
+    {
+        "head": "make",
+        "tail": "games"
+    },
+    {
+        "head": "make",
+        "tail": "reinforcement"
+    },
+    {
+        "head": "neural-networks",
+        "tail": "neural"
+    },
+    {
+        "head": "neural-networks",
+        "tail": "neural networks"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "neural"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "neural networks"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "neural"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "neural networks"
+    },
+    {
+        "head": "python",
+        "tail": "neural"
+    },
+    {
+        "head": "python",
+        "tail": "neural networks"
+    },
+    {
+        "head": "deep-neural-networks",
+        "tail": "neural"
+    },
+    {
+        "head": "deep-neural-networks",
+        "tail": "neural networks"
+    },
+    {
+        "head": "jax",
+        "tail": "neural"
+    },
+    {
+        "head": "jax",
+        "tail": "neural networks"
+    },
+    {
+        "head": "neural",
+        "tail": "library"
+    },
+    {
+        "head": "neural",
+        "tail": "neural networks"
+    },
+    {
+        "head": "library",
+        "tail": "neural networks"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "learning"
+    },
+    {
+        "head": "interface",
+        "tail": "reinforcement"
+    },
+    {
+        "head": "interface",
+        "tail": "learning"
+    },
+    {
+        "head": "api",
+        "tail": "reinforcement"
+    },
+    {
+        "head": "api",
+        "tail": "learning"
+    },
+    {
+        "head": "tensorflow",
+        "tail": "reinforcement"
+    },
+    {
+        "head": "tensorflow",
+        "tail": "learning"
     }
 ]
