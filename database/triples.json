@@ -151650,5 +151650,109 @@
     {
         "head": "tensorflow",
         "tail": "learning"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "colbert"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "data"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "fine-tuning"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "strategies"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "training"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "annotation"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "colbert"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "data"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "fine-tuning"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "strategies"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "training"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "annotation"
+    },
+    {
+        "head": "colbert",
+        "tail": "data"
+    },
+    {
+        "head": "colbert",
+        "tail": "fine-tuning"
+    },
+    {
+        "head": "colbert",
+        "tail": "strategies"
+    },
+    {
+        "head": "colbert",
+        "tail": "training"
+    },
+    {
+        "head": "colbert",
+        "tail": "annotation"
+    },
+    {
+        "head": "data",
+        "tail": "fine-tuning"
+    },
+    {
+        "head": "data",
+        "tail": "strategies"
+    },
+    {
+        "head": "data",
+        "tail": "training"
+    },
+    {
+        "head": "data",
+        "tail": "annotation"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "strategies"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "training"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "annotation"
+    },
+    {
+        "head": "strategies",
+        "tail": "annotation"
+    },
+    {
+        "head": "training",
+        "tail": "annotation"
     }
 ]
