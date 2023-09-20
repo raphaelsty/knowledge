@@ -33275,5 +33275,18 @@
             "computer science - information retrieval",
             "colbert"
         ]
+    },
+    "https://github.com/opentofu/opentofu": {
+        "extra-tags": [
+            "cloud",
+            "infrastructure",
+            "declarative"
+        ],
+        "date": "2023-08-16",
+        "title": "opentofu",
+        "summary": "OpenTofu lets you declaratively manage your cloud infrastructure.",
+        "tags": [
+            "go"
+        ]
     }
 }
