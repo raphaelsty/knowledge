@@ -151754,5 +151754,221 @@
     {
         "head": "training",
         "tail": "annotation"
+    },
+    {
+        "head": "gitlab-ci",
+        "tail": "local"
+    },
+    {
+        "head": "gitlab-ci",
+        "tail": "push"
+    },
+    {
+        "head": "gitlab-ci",
+        "tail": "cd"
+    },
+    {
+        "head": "gitlab-ci",
+        "tail": "uncomitted"
+    },
+    {
+        "head": "gitlab-ci",
+        "tail": "git"
+    },
+    {
+        "head": "gitlab-ci",
+        "tail": "typescript"
+    },
+    {
+        "head": "gitlab-ci",
+        "tail": "untracked"
+    },
+    {
+        "head": "gitlab-ci",
+        "tail": "pipeline"
+    },
+    {
+        "head": "gitlab-ci",
+        "tail": "gitlab"
+    },
+    {
+        "head": "local",
+        "tail": "push"
+    },
+    {
+        "head": "local",
+        "tail": "cd"
+    },
+    {
+        "head": "local",
+        "tail": "uncomitted"
+    },
+    {
+        "head": "local",
+        "tail": "git"
+    },
+    {
+        "head": "local",
+        "tail": "ci"
+    },
+    {
+        "head": "local",
+        "tail": "typescript"
+    },
+    {
+        "head": "local",
+        "tail": "untracked"
+    },
+    {
+        "head": "local",
+        "tail": "pipeline"
+    },
+    {
+        "head": "local",
+        "tail": "gitlab"
+    },
+    {
+        "head": "push",
+        "tail": "cd"
+    },
+    {
+        "head": "push",
+        "tail": "uncomitted"
+    },
+    {
+        "head": "push",
+        "tail": "git"
+    },
+    {
+        "head": "push",
+        "tail": "ci"
+    },
+    {
+        "head": "push",
+        "tail": "typescript"
+    },
+    {
+        "head": "push",
+        "tail": "untracked"
+    },
+    {
+        "head": "push",
+        "tail": "pipeline"
+    },
+    {
+        "head": "push",
+        "tail": "gitlab"
+    },
+    {
+        "head": "cd",
+        "tail": "uncomitted"
+    },
+    {
+        "head": "cd",
+        "tail": "git"
+    },
+    {
+        "head": "cd",
+        "tail": "ci"
+    },
+    {
+        "head": "cd",
+        "tail": "typescript"
+    },
+    {
+        "head": "cd",
+        "tail": "untracked"
+    },
+    {
+        "head": "cd",
+        "tail": "pipeline"
+    },
+    {
+        "head": "cd",
+        "tail": "gitlab"
+    },
+    {
+        "head": "uncomitted",
+        "tail": "git"
+    },
+    {
+        "head": "uncomitted",
+        "tail": "ci"
+    },
+    {
+        "head": "uncomitted",
+        "tail": "typescript"
+    },
+    {
+        "head": "uncomitted",
+        "tail": "untracked"
+    },
+    {
+        "head": "uncomitted",
+        "tail": "pipeline"
+    },
+    {
+        "head": "uncomitted",
+        "tail": "gitlab"
+    },
+    {
+        "head": "git",
+        "tail": "ci"
+    },
+    {
+        "head": "git",
+        "tail": "typescript"
+    },
+    {
+        "head": "git",
+        "tail": "untracked"
+    },
+    {
+        "head": "git",
+        "tail": "pipeline"
+    },
+    {
+        "head": "git",
+        "tail": "gitlab"
+    },
+    {
+        "head": "ci",
+        "tail": "typescript"
+    },
+    {
+        "head": "ci",
+        "tail": "untracked"
+    },
+    {
+        "head": "ci",
+        "tail": "pipeline"
+    },
+    {
+        "head": "ci",
+        "tail": "gitlab"
+    },
+    {
+        "head": "typescript",
+        "tail": "untracked"
+    },
+    {
+        "head": "typescript",
+        "tail": "pipeline"
+    },
+    {
+        "head": "typescript",
+        "tail": "gitlab"
+    },
+    {
+        "head": "untracked",
+        "tail": "pipeline"
+    },
+    {
+        "head": "untracked",
+        "tail": "gitlab"
+    },
+    {
+        "head": "pipeline",
+        "tail": "gitlab"
     }
 ]

@@ -33288,5 +33288,24 @@
         "tags": [
             "go"
         ]
+    },
+    "https://github.com/firecow/gitlab-ci-local": {
+        "extra-tags": [],
+        "date": "2020-01-04",
+        "title": "gitlab-ci-local",
+        "summary": "Tired of pushing to test your .gitlab-ci.yml?",
+        "tags": [
+            "gitlab-ci",
+            "local",
+            "push",
+            "cd",
+            "uncomitted",
+            "git",
+            "ci",
+            "typescript",
+            "untracked",
+            "pipeline",
+            "gitlab"
+        ]
     }
 }
