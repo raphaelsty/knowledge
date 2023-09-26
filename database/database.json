@@ -33322,5 +33322,42 @@
         "tags": [
             "jupyter notebook"
         ]
+    },
+    "https://github.com/abiosoft/colima": {
+        "extra-tags": [
+            "container",
+            "linux",
+            "minimal"
+        ],
+        "date": "2021-09-04",
+        "title": "colima",
+        "summary": "Container runtimes on macOS (and Linux) with minimal setup",
+        "tags": [
+            "containerd-compose",
+            "docker",
+            "go",
+            "nerdctl",
+            "k3s",
+            "lima",
+            "macos",
+            "containerd",
+            "kubernetes",
+            "containers",
+            "k8s",
+            "docker-compose"
+        ]
+    },
+    "https://www.arecadata.com/real-time-analytics-with-dynamic-tables-in-snowflake-redpanda/": {
+        "extra-tags": [
+            "tables",
+            "data",
+            "real-time"
+        ],
+        "title": "Real-time Analytics with Snowflake Dynamic Tables & Redpanda",
+        "summary": "Dynamic Tables are the key to efficient, automated data transformations and might easily be the foundation for the future of Snowflake Data Engineering pipelines.",
+        "date": "2023-09-26",
+        "tags": [
+            "snowflake"
+        ]
     }
 }
