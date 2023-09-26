@@ -151970,5 +151970,53 @@
     {
         "head": "pipeline",
         "tail": "gitlab"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "deep"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "river"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "deep learning"
+    },
+    {
+        "head": "deep",
+        "tail": "code"
+    },
+    {
+        "head": "deep",
+        "tail": "tutorial"
+    },
+    {
+        "head": "deep",
+        "tail": "deep learning"
+    },
+    {
+        "head": "river",
+        "tail": "code"
+    },
+    {
+        "head": "river",
+        "tail": "tutorial"
+    },
+    {
+        "head": "river",
+        "tail": "deep learning"
+    },
+    {
+        "head": "code",
+        "tail": "tutorial"
+    },
+    {
+        "head": "code",
+        "tail": "deep learning"
+    },
+    {
+        "head": "tutorial",
+        "tail": "deep learning"
     }
 ]

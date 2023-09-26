@@ -33307,5 +33307,20 @@
             "pipeline",
             "gitlab"
         ]
+    },
+    "https://github.com/lucasczz/deep-river-demo-23": {
+        "extra-tags": [
+            "deep",
+            "river",
+            "code",
+            "tutorial",
+            "deep learning"
+        ],
+        "date": "2023-09-01",
+        "title": "deep-river-demo-23",
+        "summary": "Code for the tutorial on \"Opportunities and Challenges for Online Deep Learning\" presented at ECML PKDD 2023",
+        "tags": [
+            "jupyter notebook"
+        ]
     }
 }
