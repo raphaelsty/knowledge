@@ -152398,5 +152398,157 @@
     {
         "head": "data",
         "tail": "real-time"
+    },
+    {
+        "head": "opencv-tutorial",
+        "tail": "python-opencv"
+    },
+    {
+        "head": "opencv-tutorial",
+        "tail": "body-angles"
+    },
+    {
+        "head": "opencv-tutorial",
+        "tail": "python"
+    },
+    {
+        "head": "opencv-tutorial",
+        "tail": "opencv-body"
+    },
+    {
+        "head": "opencv-tutorial",
+        "tail": "computer-vision"
+    },
+    {
+        "head": "opencv-tutorial",
+        "tail": "opencv"
+    },
+    {
+        "head": "opencv-tutorial",
+        "tail": "body-recognition"
+    },
+    {
+        "head": "opencv-tutorial",
+        "tail": "openpose"
+    },
+    {
+        "head": "opencv-tutorial",
+        "tail": "reference"
+    },
+    {
+        "head": "python-opencv",
+        "tail": "body-angles"
+    },
+    {
+        "head": "python-opencv",
+        "tail": "python"
+    },
+    {
+        "head": "python-opencv",
+        "tail": "opencv-body"
+    },
+    {
+        "head": "python-opencv",
+        "tail": "computer-vision"
+    },
+    {
+        "head": "python-opencv",
+        "tail": "opencv"
+    },
+    {
+        "head": "python-opencv",
+        "tail": "body-recognition"
+    },
+    {
+        "head": "python-opencv",
+        "tail": "openpose"
+    },
+    {
+        "head": "python-opencv",
+        "tail": "reference"
+    },
+    {
+        "head": "body-angles",
+        "tail": "python"
+    },
+    {
+        "head": "body-angles",
+        "tail": "opencv-body"
+    },
+    {
+        "head": "body-angles",
+        "tail": "computer-vision"
+    },
+    {
+        "head": "body-angles",
+        "tail": "opencv"
+    },
+    {
+        "head": "body-angles",
+        "tail": "body-recognition"
+    },
+    {
+        "head": "body-angles",
+        "tail": "openpose"
+    },
+    {
+        "head": "body-angles",
+        "tail": "reference"
+    },
+    {
+        "head": "python",
+        "tail": "opencv-body"
+    },
+    {
+        "head": "python",
+        "tail": "body-recognition"
+    },
+    {
+        "head": "opencv-body",
+        "tail": "computer-vision"
+    },
+    {
+        "head": "opencv-body",
+        "tail": "opencv"
+    },
+    {
+        "head": "opencv-body",
+        "tail": "body-recognition"
+    },
+    {
+        "head": "opencv-body",
+        "tail": "openpose"
+    },
+    {
+        "head": "opencv-body",
+        "tail": "reference"
+    },
+    {
+        "head": "computer-vision",
+        "tail": "body-recognition"
+    },
+    {
+        "head": "computer-vision",
+        "tail": "reference"
+    },
+    {
+        "head": "opencv",
+        "tail": "body-recognition"
+    },
+    {
+        "head": "opencv",
+        "tail": "reference"
+    },
+    {
+        "head": "body-recognition",
+        "tail": "openpose"
+    },
+    {
+        "head": "body-recognition",
+        "tail": "reference"
+    },
+    {
+        "head": "openpose",
+        "tail": "reference"
     }
 ]

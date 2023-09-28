@@ -33359,5 +33359,24 @@
         "tags": [
             "snowflake"
         ]
+    },
+    "https://github.com/lxaw/JojosBizarreAdventurePoseEstimator": {
+        "extra-tags": [
+            "reference"
+        ],
+        "date": "2021-03-13",
+        "title": "JojosBizarreAdventurePoseEstimator",
+        "summary": "Using OpenCV and OpenPose to recognize reference poses.",
+        "tags": [
+            "opencv-tutorial",
+            "python-opencv",
+            "body-angles",
+            "python",
+            "opencv-body",
+            "computer-vision",
+            "opencv",
+            "body-recognition",
+            "openpose"
+        ]
     }
 }
