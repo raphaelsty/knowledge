@@ -152550,5 +152550,33 @@
     {
         "head": "openpose",
         "tail": "reference"
+    },
+    {
+        "head": "python",
+        "tail": "index"
+    },
+    {
+        "head": "gpt",
+        "tail": "index"
+    },
+    {
+        "head": "gpt",
+        "tail": "data"
+    },
+    {
+        "head": "gpt",
+        "tail": "framework"
+    },
+    {
+        "head": "index",
+        "tail": "data"
+    },
+    {
+        "head": "index",
+        "tail": "framework"
+    },
+    {
+        "head": "data",
+        "tail": "framework"
     }
 ]
