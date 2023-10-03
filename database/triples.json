@@ -152578,5 +152578,85 @@
     {
         "head": "data",
         "tail": "framework"
+    },
+    {
+        "head": "backend",
+        "tail": "high-performance"
+    },
+    {
+        "head": "backend",
+        "tail": "community"
+    },
+    {
+        "head": "backend",
+        "tail": "web"
+    },
+    {
+        "head": "backend",
+        "tail": "framework"
+    },
+    {
+        "head": "python",
+        "tail": "community"
+    },
+    {
+        "head": "async",
+        "tail": "high-performance"
+    },
+    {
+        "head": "async",
+        "tail": "community"
+    },
+    {
+        "head": "async",
+        "tail": "web"
+    },
+    {
+        "head": "async",
+        "tail": "framework"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "web"
+    },
+    {
+        "head": "rust",
+        "tail": "community"
+    },
+    {
+        "head": "rust",
+        "tail": "web"
+    },
+    {
+        "head": "rust",
+        "tail": "framework"
+    },
+    {
+        "head": "python3",
+        "tail": "high-performance"
+    },
+    {
+        "head": "python3",
+        "tail": "community"
+    },
+    {
+        "head": "high-performance",
+        "tail": "community"
+    },
+    {
+        "head": "high-performance",
+        "tail": "web"
+    },
+    {
+        "head": "high-performance",
+        "tail": "framework"
+    },
+    {
+        "head": "community",
+        "tail": "web"
+    },
+    {
+        "head": "community",
+        "tail": "framework"
     }
 ]

@@ -33392,5 +33392,24 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/sparckles/Robyn": {
+        "extra-tags": [
+            "high-performance",
+            "community",
+            "web",
+            "framework"
+        ],
+        "date": "2021-06-18",
+        "title": "Robyn",
+        "summary": "A High-Performance, Community-Driven, and Innovator Friendly Web Framework with a Rust runtime.",
+        "tags": [
+            "backend",
+            "python",
+            "async",
+            "hacktoberfest",
+            "rust",
+            "python3"
+        ]
     }
 }
