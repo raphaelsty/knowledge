@@ -33411,5 +33411,18 @@
             "rust",
             "python3"
         ]
+    },
+    "https://peterbloem.nl/blog/transformers": {
+        "extra-tags": [
+            "transformers",
+            "knn transformers",
+            "river transformers"
+        ],
+        "title": "Transformers from scratch | peterbloem.nl",
+        "summary": "",
+        "date": "2023-10-05",
+        "tags": [
+            "explained"
+        ]
     }
 }
