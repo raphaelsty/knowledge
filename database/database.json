@@ -33424,5 +33424,21 @@
         "tags": [
             "explained"
         ]
+    },
+    "https://github.com/jackgerrits/reductionml": {
+        "extra-tags": [
+            "machine learning",
+            "framework"
+        ],
+        "date": "2023-05-25",
+        "title": "reductionml",
+        "summary": "Reduction-based machine learning framework with a focus on contextual bandits",
+        "tags": [
+            "machine-learning",
+            "data-science",
+            "rust",
+            "contextual-bandits",
+            "online-learning"
+        ]
     }
 }
