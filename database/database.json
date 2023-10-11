@@ -33440,5 +33440,22 @@
             "contextual-bandits",
             "online-learning"
         ]
+    },
+    "https://github.com/mwouts/itables": {
+        "extra-tags": [
+            "dataframes",
+            "interactive"
+        ],
+        "date": "2019-04-15",
+        "title": "itables",
+        "summary": "Pandas DataFrames as Interactive DataTables",
+        "tags": [
+            "datatables",
+            "jupyter",
+            "visual-studio-code",
+            "pandas",
+            "python",
+            "jupyter notebook"
+        ]
     }
 }

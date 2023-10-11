@@ -152722,5 +152722,85 @@
     {
         "head": "machine learning",
         "tail": "framework"
+    },
+    {
+        "head": "datatables",
+        "tail": "jupyter"
+    },
+    {
+        "head": "datatables",
+        "tail": "visual-studio-code"
+    },
+    {
+        "head": "datatables",
+        "tail": "pandas"
+    },
+    {
+        "head": "datatables",
+        "tail": "python"
+    },
+    {
+        "head": "datatables",
+        "tail": "jupyter notebook"
+    },
+    {
+        "head": "datatables",
+        "tail": "dataframes"
+    },
+    {
+        "head": "datatables",
+        "tail": "interactive"
+    },
+    {
+        "head": "jupyter",
+        "tail": "visual-studio-code"
+    },
+    {
+        "head": "jupyter",
+        "tail": "dataframes"
+    },
+    {
+        "head": "jupyter",
+        "tail": "interactive"
+    },
+    {
+        "head": "visual-studio-code",
+        "tail": "pandas"
+    },
+    {
+        "head": "visual-studio-code",
+        "tail": "python"
+    },
+    {
+        "head": "visual-studio-code",
+        "tail": "jupyter notebook"
+    },
+    {
+        "head": "visual-studio-code",
+        "tail": "dataframes"
+    },
+    {
+        "head": "visual-studio-code",
+        "tail": "interactive"
+    },
+    {
+        "head": "pandas",
+        "tail": "dataframes"
+    },
+    {
+        "head": "pandas",
+        "tail": "interactive"
+    },
+    {
+        "head": "python",
+        "tail": "interactive"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "dataframes"
+    },
+    {
+        "head": "dataframes",
+        "tail": "interactive"
     }
 ]
