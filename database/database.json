@@ -33469,5 +33469,23 @@
         ],
         "summary": "",
         "date": "2023-10-12"
+    },
+    "http://arxiv.org/abs/2310.06825": {
+        "extra-tags": [
+            "llama",
+            "benchmarks",
+            "attention"
+        ],
+        "title": "Mistral 7B",
+        "summary": "We introduce Mistral 7B v0.1, a 7-billion-parameter language model engineered for superior performance and efficiency. Mistral 7B outperforms Llama 2 13B across all evaluated benchmarks, and Llama 1 34B in reasoning, mathematics, and code generation. Our model leverages grouped-query attention (GQA) for faster inference, coupled with sliding window attention (SWA) to effectively handle sequences of arbitrary length with a reduced inference cost. We also provide a model fine-tuned to follow instructions, Mistral 7B -- Instruct, that surpasses the Llama 2 13B -- Chat model both on human and automated benchmarks. Our models are released under the Apache 2.0 license.",
+        "date": "2023-10-12",
+        "tags": [
+            "computer science - artificial intelligence",
+            "computer science - computation and language",
+            "computer science - machine learning",
+            "language models",
+            "llm",
+            "mistral"
+        ]
     }
 }
