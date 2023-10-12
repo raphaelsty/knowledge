@@ -33457,5 +33457,17 @@
             "python",
             "jupyter notebook"
         ]
+    },
+    "https://arxiv.org/abs/2310.06825": {
+        "extra-tags": [
+            "arxiv",
+            "hacker"
+        ],
+        "title": "Hackernews Mistral 7B (arxiv.org)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2023-10-12"
     }
 }
