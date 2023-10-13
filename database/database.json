@@ -33487,5 +33487,58 @@
             "llm",
             "mistral"
         ]
+    },
+    "https://github.com/unytics/airbyte_serverless": {
+        "extra-tags": [
+            "no",
+            "simple",
+            "ui"
+        ],
+        "date": "2023-08-31",
+        "title": "airbyte_serverless",
+        "summary": "Airbyte made simple (no UI, no database, no cluster)",
+        "tags": [
+            "pipeline",
+            "python",
+            "elt",
+            "data-warehouse",
+            "data",
+            "bigquery",
+            "data-engineering",
+            "data-analysis",
+            "etl",
+            "airbyte"
+        ]
+    },
+    "https://github.com/jasp-stats/jasp-desktop": {
+        "extra-tags": [
+            "statistical",
+            "package",
+            "bayesian"
+        ],
+        "date": "2013-06-01",
+        "title": "jasp-desktop",
+        "summary": "JASP aims to be a complete statistical package for both Bayesian and Frequentist statistical methods, that is easy to use and familiar to users of SPSS",
+        "tags": [
+            "freesoftware",
+            "hacktoberfest",
+            "opensource",
+            "statistics",
+            "jasp",
+            "c++"
+        ]
+    },
+    "https://github.com/sqlparser-rs/sqlparser-rs": {
+        "extra-tags": [
+            "sqlparser"
+        ],
+        "date": "2018-02-06",
+        "title": "sqlparser-rs",
+        "summary": "Extensible SQL Lexer and Parser for Rust",
+        "tags": [
+            "sql",
+            "rust",
+            "parser"
+        ]
     }
 }

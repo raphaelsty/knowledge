@@ -152942,5 +152942,301 @@
     {
         "head": "benchmarks",
         "tail": "attention"
+    },
+    {
+        "head": "pipeline",
+        "tail": "data-warehouse"
+    },
+    {
+        "head": "pipeline",
+        "tail": "no"
+    },
+    {
+        "head": "pipeline",
+        "tail": "simple"
+    },
+    {
+        "head": "pipeline",
+        "tail": "ui"
+    },
+    {
+        "head": "python",
+        "tail": "data-warehouse"
+    },
+    {
+        "head": "python",
+        "tail": "no"
+    },
+    {
+        "head": "python",
+        "tail": "ui"
+    },
+    {
+        "head": "elt",
+        "tail": "data-warehouse"
+    },
+    {
+        "head": "elt",
+        "tail": "no"
+    },
+    {
+        "head": "elt",
+        "tail": "simple"
+    },
+    {
+        "head": "elt",
+        "tail": "ui"
+    },
+    {
+        "head": "data-warehouse",
+        "tail": "data"
+    },
+    {
+        "head": "data-warehouse",
+        "tail": "bigquery"
+    },
+    {
+        "head": "data-warehouse",
+        "tail": "data-engineering"
+    },
+    {
+        "head": "data-warehouse",
+        "tail": "data-analysis"
+    },
+    {
+        "head": "data-warehouse",
+        "tail": "etl"
+    },
+    {
+        "head": "data-warehouse",
+        "tail": "airbyte"
+    },
+    {
+        "head": "data-warehouse",
+        "tail": "no"
+    },
+    {
+        "head": "data-warehouse",
+        "tail": "simple"
+    },
+    {
+        "head": "data-warehouse",
+        "tail": "ui"
+    },
+    {
+        "head": "data",
+        "tail": "no"
+    },
+    {
+        "head": "data",
+        "tail": "simple"
+    },
+    {
+        "head": "data",
+        "tail": "ui"
+    },
+    {
+        "head": "bigquery",
+        "tail": "no"
+    },
+    {
+        "head": "bigquery",
+        "tail": "simple"
+    },
+    {
+        "head": "bigquery",
+        "tail": "ui"
+    },
+    {
+        "head": "data-engineering",
+        "tail": "no"
+    },
+    {
+        "head": "data-engineering",
+        "tail": "simple"
+    },
+    {
+        "head": "data-engineering",
+        "tail": "ui"
+    },
+    {
+        "head": "data-analysis",
+        "tail": "no"
+    },
+    {
+        "head": "data-analysis",
+        "tail": "simple"
+    },
+    {
+        "head": "data-analysis",
+        "tail": "ui"
+    },
+    {
+        "head": "etl",
+        "tail": "no"
+    },
+    {
+        "head": "etl",
+        "tail": "simple"
+    },
+    {
+        "head": "etl",
+        "tail": "ui"
+    },
+    {
+        "head": "airbyte",
+        "tail": "no"
+    },
+    {
+        "head": "airbyte",
+        "tail": "simple"
+    },
+    {
+        "head": "airbyte",
+        "tail": "ui"
+    },
+    {
+        "head": "no",
+        "tail": "simple"
+    },
+    {
+        "head": "no",
+        "tail": "ui"
+    },
+    {
+        "head": "simple",
+        "tail": "ui"
+    },
+    {
+        "head": "freesoftware",
+        "tail": "hacktoberfest"
+    },
+    {
+        "head": "freesoftware",
+        "tail": "opensource"
+    },
+    {
+        "head": "freesoftware",
+        "tail": "statistics"
+    },
+    {
+        "head": "freesoftware",
+        "tail": "jasp"
+    },
+    {
+        "head": "freesoftware",
+        "tail": "c++"
+    },
+    {
+        "head": "freesoftware",
+        "tail": "statistical"
+    },
+    {
+        "head": "freesoftware",
+        "tail": "package"
+    },
+    {
+        "head": "freesoftware",
+        "tail": "bayesian"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "opensource"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "jasp"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "statistical"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "bayesian"
+    },
+    {
+        "head": "opensource",
+        "tail": "statistics"
+    },
+    {
+        "head": "opensource",
+        "tail": "jasp"
+    },
+    {
+        "head": "opensource",
+        "tail": "c++"
+    },
+    {
+        "head": "opensource",
+        "tail": "statistical"
+    },
+    {
+        "head": "opensource",
+        "tail": "package"
+    },
+    {
+        "head": "opensource",
+        "tail": "bayesian"
+    },
+    {
+        "head": "statistics",
+        "tail": "jasp"
+    },
+    {
+        "head": "statistics",
+        "tail": "statistical"
+    },
+    {
+        "head": "statistics",
+        "tail": "package"
+    },
+    {
+        "head": "statistics",
+        "tail": "bayesian"
+    },
+    {
+        "head": "jasp",
+        "tail": "c++"
+    },
+    {
+        "head": "jasp",
+        "tail": "statistical"
+    },
+    {
+        "head": "jasp",
+        "tail": "package"
+    },
+    {
+        "head": "jasp",
+        "tail": "bayesian"
+    },
+    {
+        "head": "c++",
+        "tail": "package"
+    },
+    {
+        "head": "c++",
+        "tail": "bayesian"
+    },
+    {
+        "head": "statistical",
+        "tail": "package"
+    },
+    {
+        "head": "statistical",
+        "tail": "bayesian"
+    },
+    {
+        "head": "package",
+        "tail": "bayesian"
+    },
+    {
+        "head": "rust",
+        "tail": "parser"
+    },
+    {
+        "head": "rust",
+        "tail": "sqlparser"
     }
 ]
