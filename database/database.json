@@ -33540,5 +33540,18 @@
             "rust",
             "parser"
         ]
+    },
+    "https://github.com/facebookresearch/nevergrad": {
+        "extra-tags": [
+            "toolbox",
+            "gradient",
+            "optimization"
+        ],
+        "date": "2018-11-21",
+        "title": "nevergrad",
+        "summary": "A Python toolbox for performing gradient-free optimization",
+        "tags": [
+            "python"
+        ]
     }
 }
