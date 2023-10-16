@@ -153250,5 +153250,17 @@
     {
         "head": "gradient",
         "tail": "optimization"
+    },
+    {
+        "head": "prompting",
+        "tail": "rating"
+    },
+    {
+        "head": "prompting",
+        "tail": "generative-ai"
+    },
+    {
+        "head": "rating",
+        "tail": "generative-ai"
     }
 ]
