@@ -33566,5 +33566,45 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/carbonfact/lea": {
+        "extra-tags": [
+            "dbt",
+            "tableau-alternative",
+            "minimal"
+        ],
+        "date": "2023-10-08",
+        "title": "lea",
+        "summary": "\ud83c\udfc3\u200d\u2640\ufe0f Minimalist alternative to dbt",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/TanMy21/12-design": {
+        "extra-tags": [
+            "design",
+            "software",
+            "data"
+        ],
+        "date": "2021-08-30",
+        "title": "12-design",
+        "summary": "Ten Quick Software Design Tips for Data Scientists",
+        "tags": []
+    },
+    "https://github.com/kawre/leetcode.nvim": {
+        "extra-tags": [],
+        "date": "2023-09-16",
+        "title": "leetcode.nvim",
+        "summary": "A Neovim plugin enabling you to solve LeetCode problems within Neovim.",
+        "tags": [
+            "leetcode-nvim",
+            "neovim-plugin",
+            "lua",
+            "nvim-plugin",
+            "neovim",
+            "leetcode",
+            "plugin",
+            "nvim"
+        ]
     }
 }

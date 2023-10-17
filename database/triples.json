@@ -153262,5 +153262,133 @@
     {
         "head": "rating",
         "tail": "generative-ai"
+    },
+    {
+        "head": "python",
+        "tail": "tableau-alternative"
+    },
+    {
+        "head": "python",
+        "tail": "minimal"
+    },
+    {
+        "head": "dbt",
+        "tail": "tableau-alternative"
+    },
+    {
+        "head": "dbt",
+        "tail": "minimal"
+    },
+    {
+        "head": "tableau-alternative",
+        "tail": "minimal"
+    },
+    {
+        "head": "design",
+        "tail": "software"
+    },
+    {
+        "head": "design",
+        "tail": "data"
+    },
+    {
+        "head": "software",
+        "tail": "data"
+    },
+    {
+        "head": "leetcode-nvim",
+        "tail": "neovim-plugin"
+    },
+    {
+        "head": "leetcode-nvim",
+        "tail": "lua"
+    },
+    {
+        "head": "leetcode-nvim",
+        "tail": "nvim-plugin"
+    },
+    {
+        "head": "leetcode-nvim",
+        "tail": "neovim"
+    },
+    {
+        "head": "leetcode-nvim",
+        "tail": "leetcode"
+    },
+    {
+        "head": "leetcode-nvim",
+        "tail": "plugin"
+    },
+    {
+        "head": "leetcode-nvim",
+        "tail": "nvim"
+    },
+    {
+        "head": "neovim-plugin",
+        "tail": "lua"
+    },
+    {
+        "head": "neovim-plugin",
+        "tail": "nvim-plugin"
+    },
+    {
+        "head": "neovim-plugin",
+        "tail": "neovim"
+    },
+    {
+        "head": "neovim-plugin",
+        "tail": "leetcode"
+    },
+    {
+        "head": "neovim-plugin",
+        "tail": "plugin"
+    },
+    {
+        "head": "lua",
+        "tail": "nvim-plugin"
+    },
+    {
+        "head": "lua",
+        "tail": "leetcode"
+    },
+    {
+        "head": "lua",
+        "tail": "plugin"
+    },
+    {
+        "head": "nvim-plugin",
+        "tail": "neovim"
+    },
+    {
+        "head": "nvim-plugin",
+        "tail": "leetcode"
+    },
+    {
+        "head": "nvim-plugin",
+        "tail": "plugin"
+    },
+    {
+        "head": "nvim-plugin",
+        "tail": "nvim"
+    },
+    {
+        "head": "neovim",
+        "tail": "leetcode"
+    },
+    {
+        "head": "neovim",
+        "tail": "plugin"
+    },
+    {
+        "head": "leetcode",
+        "tail": "plugin"
+    },
+    {
+        "head": "leetcode",
+        "tail": "nvim"
+    },
+    {
+        "head": "plugin",
+        "tail": "nvim"
     }
 ]
