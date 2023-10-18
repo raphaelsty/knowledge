@@ -33606,5 +33606,41 @@
             "plugin",
             "nvim"
         ]
+    },
+    "https://github.com/rotationalio/pyensign": {
+        "extra-tags": [
+            "ensign",
+            "sdk"
+        ],
+        "date": "2023-02-27",
+        "title": "pyensign",
+        "summary": "Ensign driver, SDK, and helpers for Python",
+        "tags": [
+            "eventing",
+            "python",
+            "event-driven",
+            "event-driven-architecture",
+            "microservices",
+            "hacktoberfest",
+            "data-science"
+        ]
+    },
+    "https://github.com/rotationalio/data-playground": {
+        "extra-tags": [
+            "data",
+            "examples"
+        ],
+        "date": "2023-06-08",
+        "title": "data-playground",
+        "summary": "Streaming data sources and examples for your apps, models, and services.",
+        "tags": [
+            "data-sources",
+            "streaming",
+            "python",
+            "ensign",
+            "publishers",
+            "data-playground",
+            "realtime"
+        ]
     }
 }

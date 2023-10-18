@@ -153390,5 +153390,253 @@
     {
         "head": "plugin",
         "tail": "nvim"
+    },
+    {
+        "head": "eventing",
+        "tail": "python"
+    },
+    {
+        "head": "eventing",
+        "tail": "event-driven"
+    },
+    {
+        "head": "eventing",
+        "tail": "event-driven-architecture"
+    },
+    {
+        "head": "eventing",
+        "tail": "microservices"
+    },
+    {
+        "head": "eventing",
+        "tail": "hacktoberfest"
+    },
+    {
+        "head": "eventing",
+        "tail": "data-science"
+    },
+    {
+        "head": "eventing",
+        "tail": "ensign"
+    },
+    {
+        "head": "eventing",
+        "tail": "sdk"
+    },
+    {
+        "head": "python",
+        "tail": "event-driven"
+    },
+    {
+        "head": "python",
+        "tail": "event-driven-architecture"
+    },
+    {
+        "head": "python",
+        "tail": "ensign"
+    },
+    {
+        "head": "event-driven",
+        "tail": "event-driven-architecture"
+    },
+    {
+        "head": "event-driven",
+        "tail": "microservices"
+    },
+    {
+        "head": "event-driven",
+        "tail": "data-science"
+    },
+    {
+        "head": "event-driven",
+        "tail": "ensign"
+    },
+    {
+        "head": "event-driven",
+        "tail": "sdk"
+    },
+    {
+        "head": "event-driven-architecture",
+        "tail": "microservices"
+    },
+    {
+        "head": "event-driven-architecture",
+        "tail": "hacktoberfest"
+    },
+    {
+        "head": "event-driven-architecture",
+        "tail": "data-science"
+    },
+    {
+        "head": "event-driven-architecture",
+        "tail": "ensign"
+    },
+    {
+        "head": "event-driven-architecture",
+        "tail": "sdk"
+    },
+    {
+        "head": "microservices",
+        "tail": "data-science"
+    },
+    {
+        "head": "microservices",
+        "tail": "ensign"
+    },
+    {
+        "head": "microservices",
+        "tail": "sdk"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "ensign"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "sdk"
+    },
+    {
+        "head": "data-science",
+        "tail": "ensign"
+    },
+    {
+        "head": "data-science",
+        "tail": "sdk"
+    },
+    {
+        "head": "ensign",
+        "tail": "sdk"
+    },
+    {
+        "head": "data-sources",
+        "tail": "streaming"
+    },
+    {
+        "head": "data-sources",
+        "tail": "python"
+    },
+    {
+        "head": "data-sources",
+        "tail": "ensign"
+    },
+    {
+        "head": "data-sources",
+        "tail": "publishers"
+    },
+    {
+        "head": "data-sources",
+        "tail": "data-playground"
+    },
+    {
+        "head": "data-sources",
+        "tail": "realtime"
+    },
+    {
+        "head": "data-sources",
+        "tail": "data"
+    },
+    {
+        "head": "data-sources",
+        "tail": "examples"
+    },
+    {
+        "head": "streaming",
+        "tail": "ensign"
+    },
+    {
+        "head": "streaming",
+        "tail": "publishers"
+    },
+    {
+        "head": "streaming",
+        "tail": "data-playground"
+    },
+    {
+        "head": "streaming",
+        "tail": "realtime"
+    },
+    {
+        "head": "streaming",
+        "tail": "data"
+    },
+    {
+        "head": "streaming",
+        "tail": "examples"
+    },
+    {
+        "head": "python",
+        "tail": "publishers"
+    },
+    {
+        "head": "python",
+        "tail": "data-playground"
+    },
+    {
+        "head": "python",
+        "tail": "realtime"
+    },
+    {
+        "head": "python",
+        "tail": "examples"
+    },
+    {
+        "head": "ensign",
+        "tail": "publishers"
+    },
+    {
+        "head": "ensign",
+        "tail": "data-playground"
+    },
+    {
+        "head": "ensign",
+        "tail": "realtime"
+    },
+    {
+        "head": "ensign",
+        "tail": "data"
+    },
+    {
+        "head": "ensign",
+        "tail": "examples"
+    },
+    {
+        "head": "publishers",
+        "tail": "data-playground"
+    },
+    {
+        "head": "publishers",
+        "tail": "realtime"
+    },
+    {
+        "head": "publishers",
+        "tail": "data"
+    },
+    {
+        "head": "publishers",
+        "tail": "examples"
+    },
+    {
+        "head": "data-playground",
+        "tail": "realtime"
+    },
+    {
+        "head": "data-playground",
+        "tail": "data"
+    },
+    {
+        "head": "data-playground",
+        "tail": "examples"
+    },
+    {
+        "head": "realtime",
+        "tail": "data"
+    },
+    {
+        "head": "realtime",
+        "tail": "examples"
+    },
+    {
+        "head": "data",
+        "tail": "examples"
     }
 ]
