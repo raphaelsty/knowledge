@@ -153638,5 +153638,77 @@
     {
         "head": "data",
         "tail": "examples"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "computer science - multiagent systems"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "ai"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "assistant"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "data"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "teams"
+    },
+    {
+        "head": "computer science - multiagent systems",
+        "tail": "statistics - machine learning"
+    },
+    {
+        "head": "computer science - multiagent systems",
+        "tail": "ai"
+    },
+    {
+        "head": "computer science - multiagent systems",
+        "tail": "assistant"
+    },
+    {
+        "head": "computer science - multiagent systems",
+        "tail": "data"
+    },
+    {
+        "head": "computer science - multiagent systems",
+        "tail": "teams"
+    },
+    {
+        "head": "statistics - machine learning",
+        "tail": "ai"
+    },
+    {
+        "head": "statistics - machine learning",
+        "tail": "assistant"
+    },
+    {
+        "head": "statistics - machine learning",
+        "tail": "data"
+    },
+    {
+        "head": "statistics - machine learning",
+        "tail": "teams"
+    },
+    {
+        "head": "ai",
+        "tail": "teams"
+    },
+    {
+        "head": "assistant",
+        "tail": "data"
+    },
+    {
+        "head": "assistant",
+        "tail": "teams"
+    },
+    {
+        "head": "data",
+        "tail": "teams"
     }
 ]

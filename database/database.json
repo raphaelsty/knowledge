@@ -33642,5 +33642,21 @@
             "data-playground",
             "realtime"
         ]
+    },
+    "http://arxiv.org/abs/2310.10553": {
+        "extra-tags": [
+            "ai",
+            "assistant",
+            "data",
+            "teams"
+        ],
+        "title": "TacticAI: an AI assistant for football tactics",
+        "summary": "Identifying key patterns of tactics implemented by rival teams, and developing effective responses, lies at the heart of modern football. However, doing so algorithmically remains an open research challenge. To address this unmet need, we propose TacticAI, an AI football tactics assistant developed and evaluated in close collaboration with domain experts from Liverpool FC. We focus on analysing corner kicks, as they offer coaches the most direct opportunities for interventions and improvements. TacticAI incorporates both a predictive and a generative component, allowing the coaches to effectively sample and explore alternative player setups for each corner kick routine and to select those with the highest predicted likelihood of success. We validate TacticAI on a number of relevant benchmark tasks: predicting receivers and shot attempts and recommending player position adjustments. The utility of TacticAI is validated by a qualitative study conducted with football domain experts at Liverpool FC. We show that TacticAI's model suggestions are not only indistinguishable from real tactics, but also favoured over existing tactics 90% of the time, and that TacticAI offers an effective corner kick retrieval system. TacticAI achieves these results despite the limited availability of gold-standard data, achieving data efficiency through geometric deep learning.",
+        "date": "2023-10-18",
+        "tags": [
+            "computer science - machine learning",
+            "computer science - multiagent systems",
+            "statistics - machine learning"
+        ]
     }
 }
