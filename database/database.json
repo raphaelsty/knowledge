@@ -33670,5 +33670,40 @@
         ],
         "summary": "",
         "date": "2023-10-19"
+    },
+    "https://github.com/vllm-project/vllm": {
+        "extra-tags": [
+            "memory-efficient",
+            "serving",
+            "llms"
+        ],
+        "date": "2023-02-09",
+        "title": "vllm",
+        "summary": "A high-throughput and memory-efficient inference and serving engine for LLMs",
+        "tags": [
+            "mlops",
+            "transformer",
+            "pytorch",
+            "inference",
+            "python",
+            "llmops",
+            "model-serving",
+            "llm",
+            "gpt",
+            "llm-serving"
+        ]
+    },
+    "https://github.com/alessiobernardo/River_Hands-on_ContinualAI_Unconference": {
+        "extra-tags": [
+            "continualai",
+            "conference",
+            "continual learning"
+        ],
+        "date": "2023-09-28",
+        "title": "River_Hands-on_ContinualAI_Unconference",
+        "summary": "",
+        "tags": [
+            "jupyter notebook"
+        ]
     }
 }

@@ -153714,5 +153714,253 @@
     {
         "head": "e commerce data",
         "tail": "hacker"
+    },
+    {
+        "head": "mlops",
+        "tail": "transformer"
+    },
+    {
+        "head": "mlops",
+        "tail": "llmops"
+    },
+    {
+        "head": "mlops",
+        "tail": "llm"
+    },
+    {
+        "head": "mlops",
+        "tail": "gpt"
+    },
+    {
+        "head": "mlops",
+        "tail": "llm-serving"
+    },
+    {
+        "head": "mlops",
+        "tail": "memory-efficient"
+    },
+    {
+        "head": "mlops",
+        "tail": "serving"
+    },
+    {
+        "head": "transformer",
+        "tail": "inference"
+    },
+    {
+        "head": "transformer",
+        "tail": "llmops"
+    },
+    {
+        "head": "transformer",
+        "tail": "model-serving"
+    },
+    {
+        "head": "transformer",
+        "tail": "llm"
+    },
+    {
+        "head": "transformer",
+        "tail": "llm-serving"
+    },
+    {
+        "head": "transformer",
+        "tail": "memory-efficient"
+    },
+    {
+        "head": "transformer",
+        "tail": "serving"
+    },
+    {
+        "head": "transformer",
+        "tail": "llms"
+    },
+    {
+        "head": "pytorch",
+        "tail": "llmops"
+    },
+    {
+        "head": "pytorch",
+        "tail": "llm-serving"
+    },
+    {
+        "head": "pytorch",
+        "tail": "memory-efficient"
+    },
+    {
+        "head": "pytorch",
+        "tail": "llms"
+    },
+    {
+        "head": "inference",
+        "tail": "llmops"
+    },
+    {
+        "head": "inference",
+        "tail": "model-serving"
+    },
+    {
+        "head": "inference",
+        "tail": "llm"
+    },
+    {
+        "head": "inference",
+        "tail": "gpt"
+    },
+    {
+        "head": "inference",
+        "tail": "llm-serving"
+    },
+    {
+        "head": "inference",
+        "tail": "memory-efficient"
+    },
+    {
+        "head": "inference",
+        "tail": "serving"
+    },
+    {
+        "head": "inference",
+        "tail": "llms"
+    },
+    {
+        "head": "python",
+        "tail": "llmops"
+    },
+    {
+        "head": "python",
+        "tail": "llm-serving"
+    },
+    {
+        "head": "llmops",
+        "tail": "model-serving"
+    },
+    {
+        "head": "llmops",
+        "tail": "llm"
+    },
+    {
+        "head": "llmops",
+        "tail": "gpt"
+    },
+    {
+        "head": "llmops",
+        "tail": "llm-serving"
+    },
+    {
+        "head": "llmops",
+        "tail": "memory-efficient"
+    },
+    {
+        "head": "llmops",
+        "tail": "serving"
+    },
+    {
+        "head": "llmops",
+        "tail": "llms"
+    },
+    {
+        "head": "model-serving",
+        "tail": "llm"
+    },
+    {
+        "head": "model-serving",
+        "tail": "gpt"
+    },
+    {
+        "head": "model-serving",
+        "tail": "llm-serving"
+    },
+    {
+        "head": "model-serving",
+        "tail": "memory-efficient"
+    },
+    {
+        "head": "model-serving",
+        "tail": "serving"
+    },
+    {
+        "head": "model-serving",
+        "tail": "llms"
+    },
+    {
+        "head": "llm",
+        "tail": "gpt"
+    },
+    {
+        "head": "llm",
+        "tail": "llm-serving"
+    },
+    {
+        "head": "llm",
+        "tail": "memory-efficient"
+    },
+    {
+        "head": "llm",
+        "tail": "serving"
+    },
+    {
+        "head": "gpt",
+        "tail": "llm-serving"
+    },
+    {
+        "head": "gpt",
+        "tail": "memory-efficient"
+    },
+    {
+        "head": "gpt",
+        "tail": "serving"
+    },
+    {
+        "head": "gpt",
+        "tail": "llms"
+    },
+    {
+        "head": "llm-serving",
+        "tail": "memory-efficient"
+    },
+    {
+        "head": "llm-serving",
+        "tail": "serving"
+    },
+    {
+        "head": "llm-serving",
+        "tail": "llms"
+    },
+    {
+        "head": "memory-efficient",
+        "tail": "serving"
+    },
+    {
+        "head": "memory-efficient",
+        "tail": "llms"
+    },
+    {
+        "head": "serving",
+        "tail": "llms"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "continualai"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "conference"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "continual learning"
+    },
+    {
+        "head": "continualai",
+        "tail": "conference"
+    },
+    {
+        "head": "continualai",
+        "tail": "continual learning"
+    },
+    {
+        "head": "conference",
+        "tail": "continual learning"
     }
 ]
