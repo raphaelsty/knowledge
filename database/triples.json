@@ -153962,5 +153962,141 @@
     {
         "head": "conference",
         "tail": "continual learning"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "tpu"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "architecture"
+    },
+    {
+        "head": "jax",
+        "tail": "tpu"
+    },
+    {
+        "head": "jax",
+        "tail": "architecture"
+    },
+    {
+        "head": "jax",
+        "tail": "reinforcement"
+    },
+    {
+        "head": "jax",
+        "tail": "learning"
+    },
+    {
+        "head": "jax",
+        "tail": "cloud"
+    },
+    {
+        "head": "python",
+        "tail": "architecture"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "architecture"
+    },
+    {
+        "head": "tpu",
+        "tail": "reinforcement-learning"
+    },
+    {
+        "head": "tpu",
+        "tail": "architecture"
+    },
+    {
+        "head": "tpu",
+        "tail": "reinforcement"
+    },
+    {
+        "head": "tpu",
+        "tail": "learning"
+    },
+    {
+        "head": "tpu",
+        "tail": "cloud"
+    },
+    {
+        "head": "reinforcement-learning",
+        "tail": "architecture"
+    },
+    {
+        "head": "reinforcement-learning",
+        "tail": "cloud"
+    },
+    {
+        "head": "architecture",
+        "tail": "reinforcement"
+    },
+    {
+        "head": "architecture",
+        "tail": "learning"
+    },
+    {
+        "head": "architecture",
+        "tail": "cloud"
+    },
+    {
+        "head": "reinforcement",
+        "tail": "cloud"
+    },
+    {
+        "head": "learning",
+        "tail": "cloud"
+    },
+    {
+        "head": "codspeed",
+        "tail": "typescript"
+    },
+    {
+        "head": "codspeed",
+        "tail": "performance"
+    },
+    {
+        "head": "codspeed",
+        "tail": "benchmarking"
+    },
+    {
+        "head": "codspeed",
+        "tail": "ci"
+    },
+    {
+        "head": "codspeed",
+        "tail": "github actions"
+    },
+    {
+        "head": "typescript",
+        "tail": "performance"
+    },
+    {
+        "head": "typescript",
+        "tail": "benchmarking"
+    },
+    {
+        "head": "typescript",
+        "tail": "github actions"
+    },
+    {
+        "head": "performance",
+        "tail": "ci"
+    },
+    {
+        "head": "performance",
+        "tail": "github actions"
+    },
+    {
+        "head": "benchmarking",
+        "tail": "ci"
+    },
+    {
+        "head": "benchmarking",
+        "tail": "github actions"
+    },
+    {
+        "head": "ci",
+        "tail": "github actions"
     }
 ]

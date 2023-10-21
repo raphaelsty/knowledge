@@ -33705,5 +33705,39 @@
         "tags": [
             "jupyter notebook"
         ]
+    },
+    "https://github.com/instadeepai/sebulba": {
+        "extra-tags": [
+            "architecture",
+            "reinforcement",
+            "learning",
+            "cloud"
+        ],
+        "date": "2023-09-04",
+        "title": "sebulba",
+        "summary": "\ud83e\ude90 The Sebulba architecture to scale reinforcement learning on Cloud TPUs in JAX",
+        "tags": [
+            "machine-learning",
+            "jax",
+            "python",
+            "deep-learning",
+            "tpu",
+            "reinforcement-learning"
+        ]
+    },
+    "https://github.com/CodSpeedHQ/action": {
+        "extra-tags": [
+            "github actions"
+        ],
+        "date": "2022-11-04",
+        "title": "action",
+        "summary": "Github Actions for running CodSpeed in your CI ",
+        "tags": [
+            "codspeed",
+            "typescript",
+            "performance",
+            "benchmarking",
+            "ci"
+        ]
     }
 }
