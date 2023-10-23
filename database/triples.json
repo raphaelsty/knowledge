@@ -154170,5 +154170,101 @@
     {
         "head": "search",
         "tail": "library"
+    },
+    {
+        "head": "sncf",
+        "tail": "python"
+    },
+    {
+        "head": "sncf",
+        "tail": "tgv"
+    },
+    {
+        "head": "sncf",
+        "tail": "cli"
+    },
+    {
+        "head": "sncf",
+        "tail": "ter"
+    },
+    {
+        "head": "sncf",
+        "tail": "api"
+    },
+    {
+        "head": "sncf",
+        "tail": "france"
+    },
+    {
+        "head": "sncf",
+        "tail": "train"
+    },
+    {
+        "head": "python",
+        "tail": "tgv"
+    },
+    {
+        "head": "python",
+        "tail": "ter"
+    },
+    {
+        "head": "python",
+        "tail": "france"
+    },
+    {
+        "head": "tgv",
+        "tail": "cli"
+    },
+    {
+        "head": "tgv",
+        "tail": "ter"
+    },
+    {
+        "head": "tgv",
+        "tail": "api"
+    },
+    {
+        "head": "tgv",
+        "tail": "france"
+    },
+    {
+        "head": "tgv",
+        "tail": "train"
+    },
+    {
+        "head": "cli",
+        "tail": "ter"
+    },
+    {
+        "head": "cli",
+        "tail": "france"
+    },
+    {
+        "head": "cli",
+        "tail": "train"
+    },
+    {
+        "head": "ter",
+        "tail": "api"
+    },
+    {
+        "head": "ter",
+        "tail": "france"
+    },
+    {
+        "head": "ter",
+        "tail": "train"
+    },
+    {
+        "head": "api",
+        "tail": "france"
+    },
+    {
+        "head": "api",
+        "tail": "train"
+    },
+    {
+        "head": "france",
+        "tail": "train"
     }
 ]

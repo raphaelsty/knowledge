@@ -33757,5 +33757,21 @@
             "machine-learning",
             "nearest-neighbor-search"
         ]
+    },
+    "https://github.com/maxmouchet/locomotive": {
+        "extra-tags": [],
+        "date": "2019-06-03",
+        "title": "locomotive",
+        "summary": "Python API clients for France's railways.",
+        "tags": [
+            "sncf",
+            "python",
+            "tgv",
+            "cli",
+            "ter",
+            "api",
+            "france",
+            "train"
+        ]
     }
 }
