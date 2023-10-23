@@ -33739,5 +33739,23 @@
             "benchmarking",
             "ci"
         ]
+    },
+    "https://github.com/spotify/voyager": {
+        "extra-tags": [
+            "search",
+            "library"
+        ],
+        "date": "2023-04-13",
+        "title": "voyager",
+        "summary": "\ud83d\udef0\ufe0f Voyager is an approximate nearest-neighbor search library for Python and Java with a focus on ease of use, simplicity, and deployability.",
+        "tags": [
+            "hnsw",
+            "c++",
+            "python",
+            "hnswlib",
+            "java",
+            "machine-learning",
+            "nearest-neighbor-search"
+        ]
     }
 }

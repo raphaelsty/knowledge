@@ -154098,5 +154098,77 @@
     {
         "head": "ci",
         "tail": "github actions"
+    },
+    {
+        "head": "hnsw",
+        "tail": "c++"
+    },
+    {
+        "head": "hnsw",
+        "tail": "python"
+    },
+    {
+        "head": "hnsw",
+        "tail": "hnswlib"
+    },
+    {
+        "head": "hnsw",
+        "tail": "java"
+    },
+    {
+        "head": "hnsw",
+        "tail": "library"
+    },
+    {
+        "head": "c++",
+        "tail": "hnswlib"
+    },
+    {
+        "head": "c++",
+        "tail": "java"
+    },
+    {
+        "head": "python",
+        "tail": "hnswlib"
+    },
+    {
+        "head": "hnswlib",
+        "tail": "java"
+    },
+    {
+        "head": "hnswlib",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "hnswlib",
+        "tail": "nearest-neighbor-search"
+    },
+    {
+        "head": "hnswlib",
+        "tail": "search"
+    },
+    {
+        "head": "hnswlib",
+        "tail": "library"
+    },
+    {
+        "head": "java",
+        "tail": "nearest-neighbor-search"
+    },
+    {
+        "head": "java",
+        "tail": "search"
+    },
+    {
+        "head": "java",
+        "tail": "library"
+    },
+    {
+        "head": "nearest-neighbor-search",
+        "tail": "library"
+    },
+    {
+        "head": "search",
+        "tail": "library"
     }
 ]
