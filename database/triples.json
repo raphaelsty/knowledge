@@ -154266,5 +154266,85 @@
     {
         "head": "france",
         "tail": "train"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "off-policy"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "hpc"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "buffers"
+    },
+    {
+        "head": "off-policy",
+        "tail": "jax"
+    },
+    {
+        "head": "off-policy",
+        "tail": "hpc"
+    },
+    {
+        "head": "off-policy",
+        "tail": "buffers"
+    },
+    {
+        "head": "off-policy",
+        "tail": "gpu-acceleration"
+    },
+    {
+        "head": "jax",
+        "tail": "hpc"
+    },
+    {
+        "head": "jax",
+        "tail": "buffers"
+    },
+    {
+        "head": "jax",
+        "tail": "gpu-acceleration"
+    },
+    {
+        "head": "reinforcement-learning",
+        "tail": "hpc"
+    },
+    {
+        "head": "reinforcement-learning",
+        "tail": "buffers"
+    },
+    {
+        "head": "reinforcement-learning",
+        "tail": "gpu-acceleration"
+    },
+    {
+        "head": "rl",
+        "tail": "hpc"
+    },
+    {
+        "head": "rl",
+        "tail": "buffers"
+    },
+    {
+        "head": "rl",
+        "tail": "gpu-acceleration"
+    },
+    {
+        "head": "hpc",
+        "tail": "buffers"
+    },
+    {
+        "head": "hpc",
+        "tail": "gpu-acceleration"
+    },
+    {
+        "head": "buffers",
+        "tail": "python"
+    },
+    {
+        "head": "buffers",
+        "tail": "gpu-acceleration"
     }
 ]

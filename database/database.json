@@ -33773,5 +33773,23 @@
             "france",
             "train"
         ]
+    },
+    "https://github.com/instadeepai/flashbax": {
+        "extra-tags": [
+            "gpu-acceleration"
+        ],
+        "date": "2023-10-17",
+        "title": "flashbax",
+        "summary": "\u26a1 Flashbax: Accelerated Replay Buffers in JAX",
+        "tags": [
+            "machine-learning",
+            "off-policy",
+            "jax",
+            "reinforcement-learning",
+            "rl",
+            "hpc",
+            "buffers",
+            "python"
+        ]
     }
 }
