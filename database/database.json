@@ -33791,5 +33791,19 @@
             "buffers",
             "python"
         ]
+    },
+    "https://huggingface.co/spaces/Vokturz/can-it-run-llm": {
+        "extra-tags": [
+            "ml",
+            "apps",
+            "community"
+        ],
+        "title": "Can You Run It? LLM version - a Hugging Face Space by Vokturz",
+        "summary": "Discover amazing ML apps made by the community",
+        "date": "2023-10-25",
+        "tags": [
+            "gpu",
+            "llm"
+        ]
     }
 }

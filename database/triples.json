@@ -154346,5 +154346,41 @@
     {
         "head": "buffers",
         "tail": "gpu-acceleration"
+    },
+    {
+        "head": "gpu",
+        "tail": "llm"
+    },
+    {
+        "head": "gpu",
+        "tail": "apps"
+    },
+    {
+        "head": "gpu",
+        "tail": "community"
+    },
+    {
+        "head": "llm",
+        "tail": "ml"
+    },
+    {
+        "head": "llm",
+        "tail": "apps"
+    },
+    {
+        "head": "llm",
+        "tail": "community"
+    },
+    {
+        "head": "ml",
+        "tail": "apps"
+    },
+    {
+        "head": "ml",
+        "tail": "community"
+    },
+    {
+        "head": "apps",
+        "tail": "community"
     }
 ]
