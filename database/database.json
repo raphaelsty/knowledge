@@ -33805,5 +33805,16 @@
             "gpu",
             "llm"
         ]
+    },
+    "https://probablymarcus.com/blocks/2023/10/19/vectorizing-wide-pytorch-expressions.html": {
+        "extra-tags": [
+            "pytorch"
+        ],
+        "title": "Hackernews What happens when you vectorize wide PyTorch expressions? (probablymarcus.com)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2023-10-27"
     }
 }
