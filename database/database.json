@@ -33816,5 +33816,17 @@
         ],
         "summary": "",
         "date": "2023-10-27"
+    },
+    "https://github.com/OpenSignLabs/OpenSign": {
+        "extra-tags": [
+            "source",
+            "github"
+        ],
+        "title": "Hackernews Show HN: OpenSign \u2013 Open source alternative to DocuSign (github.com/opensignlabs)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2023-10-29"
     }
 }
