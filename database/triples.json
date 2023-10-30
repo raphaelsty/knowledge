@@ -154382,5 +154382,49 @@
     {
         "head": "apps",
         "tail": "community"
+    },
+    {
+        "head": "rust",
+        "tail": "simd"
+    },
+    {
+        "head": "rust",
+        "tail": "serde"
+    },
+    {
+        "head": "rust",
+        "tail": "fast"
+    },
+    {
+        "head": "rust",
+        "tail": "library"
+    },
+    {
+        "head": "json",
+        "tail": "library"
+    },
+    {
+        "head": "simd",
+        "tail": "serde"
+    },
+    {
+        "head": "simd",
+        "tail": "fast"
+    },
+    {
+        "head": "simd",
+        "tail": "library"
+    },
+    {
+        "head": "serde",
+        "tail": "fast"
+    },
+    {
+        "head": "serde",
+        "tail": "library"
+    },
+    {
+        "head": "fast",
+        "tail": "library"
     }
 ]

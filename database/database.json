@@ -33828,5 +33828,20 @@
         ],
         "summary": "",
         "date": "2023-10-29"
+    },
+    "https://github.com/cloudwego/sonic-rs": {
+        "extra-tags": [
+            "fast",
+            "library"
+        ],
+        "date": "2023-07-27",
+        "title": "sonic-rs",
+        "summary": "A fast Rust JSON library based on SIMD.",
+        "tags": [
+            "rust",
+            "json",
+            "simd",
+            "serde"
+        ]
     }
 }
