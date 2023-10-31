@@ -154426,5 +154426,21 @@
     {
         "head": "fast",
         "tail": "library"
+    },
+    {
+        "head": "python",
+        "tail": "ide"
+    },
+    {
+        "head": "duckdb",
+        "tail": "ide"
+    },
+    {
+        "head": "duckdb",
+        "tail": "terminal"
+    },
+    {
+        "head": "ide",
+        "tail": "terminal"
     }
 ]

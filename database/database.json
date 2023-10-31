@@ -33843,5 +33843,18 @@
             "simd",
             "serde"
         ]
+    },
+    "https://github.com/tconbeer/harlequin": {
+        "extra-tags": [
+            "duckdb",
+            "ide",
+            "terminal"
+        ],
+        "date": "2023-05-02",
+        "title": "harlequin",
+        "summary": "The DuckDB IDE for Your Terminal.",
+        "tags": [
+            "python"
+        ]
     }
 }
