@@ -154442,5 +154442,17 @@
     {
         "head": "ide",
         "tail": "terminal"
+    },
+    {
+        "head": "gpt-4",
+        "tail": "coding"
+    },
+    {
+        "head": "gpt-4",
+        "tail": "gpt-3"
+    },
+    {
+        "head": "coding",
+        "tail": "gpt-3"
     }
 ]

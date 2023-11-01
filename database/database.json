@@ -33856,5 +33856,18 @@
         "tags": [
             "python"
         ]
+    },
+    "https://www.phind.com/phindmodelhn": {
+        "extra-tags": [
+            "gpt-4",
+            "coding",
+            "gpt-3"
+        ],
+        "title": "Hackernews Phind Model beats GPT-4 at coding, with GPT-3.5 speed and 16k context (phind.com)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2023-11-01"
     }
 }
