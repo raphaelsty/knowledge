@@ -33869,5 +33869,55 @@
         ],
         "summary": "",
         "date": "2023-11-01"
+    },
+    "https://github.com/xyflow/react-flow": {
+        "extra-tags": [
+            "react-flow",
+            "customizable",
+            "library",
+            "interactive"
+        ],
+        "date": "2019-07-15",
+        "title": "react-flow",
+        "summary": "Highly customizable library for building an interactive node-based UI, workflow editor, flow chart or static diagram ",
+        "tags": [
+            "typescript-library",
+            "workflow",
+            "flowchart",
+            "node-based-ui",
+            "graph",
+            "react-library",
+            "react",
+            "typescript"
+        ]
+    },
+    "https://github.com/jupyterlab-contrib/jupyterlab-variableInspector": {
+        "extra-tags": [
+            "extension"
+        ],
+        "date": "2018-06-13",
+        "title": "jupyterlab-variableInspector",
+        "summary": "Variable Inspector extension for Jupyterlab",
+        "tags": [
+            "jupyterlab",
+            "variable-inspector",
+            "jupyterlab-extension",
+            "typescript",
+            "jupyterlab-variableinspector"
+        ]
+    },
+    "https://github.com/higgsfield-ai/higgsfield": {
+        "extra-tags": [
+            "gpu",
+            "machine learning",
+            "framework",
+            "training"
+        ],
+        "date": "2018-05-26",
+        "title": "higgsfield",
+        "summary": "Fault-tolerant, highly scalable GPU orchestration, and a machine learning framework designed for training models with billions to trillions of parameters",
+        "tags": [
+            "jupyter notebook"
+        ]
     }
 }
