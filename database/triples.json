@@ -154910,5 +154910,21 @@
     {
         "head": "image",
         "tail": "segmentation"
+    },
+    {
+        "head": "rust",
+        "tail": "python 3."
+    },
+    {
+        "head": "rust",
+        "tail": "python 3.5"
+    },
+    {
+        "head": "python",
+        "tail": "python 3.5"
+    },
+    {
+        "head": "python 3.",
+        "tail": "python 3.5"
     }
 ]

@@ -33958,5 +33958,18 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/davidhewitt/pythonize": {
+        "extra-tags": [
+            "python",
+            "python 3.",
+            "python 3.5"
+        ],
+        "date": "2020-08-07",
+        "title": "pythonize",
+        "summary": "",
+        "tags": [
+            "rust"
+        ]
     }
 }
