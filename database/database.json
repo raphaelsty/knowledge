@@ -33919,5 +33919,44 @@
         "tags": [
             "jupyter notebook"
         ]
+    },
+    "https://github.com/xyflow/xyflow": {
+        "extra-tags": [
+            "source",
+            "node",
+            "out-of-the-box",
+            "customizable"
+        ],
+        "date": "2019-07-15",
+        "title": "xyflow",
+        "summary": "React Flow |\u00a0Svelte Flow - Powerful open source libraries for building node-based UIs with React or Svelte. Ready out-of-the-box and infinitely customizable",
+        "tags": [
+            "typescript",
+            "react",
+            "javascript",
+            "react-flow",
+            "flowchart",
+            "svelte-flow",
+            "typescript-library",
+            "workflow",
+            "node-based-ui",
+            "svelte",
+            "graph"
+        ]
+    },
+    "https://github.com/JunMa11/SegLossOdyssey": {
+        "extra-tags": [
+            "collection",
+            "loss",
+            "functions",
+            "image",
+            "segmentation"
+        ],
+        "date": "2019-05-30",
+        "title": "SegLossOdyssey",
+        "summary": "A collection of loss functions for medical image segmentation",
+        "tags": [
+            "python"
+        ]
     }
 }

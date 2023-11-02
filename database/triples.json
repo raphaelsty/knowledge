@@ -154642,5 +154642,273 @@
     {
         "head": "machine learning",
         "tail": "training"
+    },
+    {
+        "head": "typescript",
+        "tail": "svelte-flow"
+    },
+    {
+        "head": "typescript",
+        "tail": "svelte"
+    },
+    {
+        "head": "typescript",
+        "tail": "out-of-the-box"
+    },
+    {
+        "head": "react",
+        "tail": "svelte-flow"
+    },
+    {
+        "head": "react",
+        "tail": "svelte"
+    },
+    {
+        "head": "react",
+        "tail": "node"
+    },
+    {
+        "head": "react",
+        "tail": "out-of-the-box"
+    },
+    {
+        "head": "javascript",
+        "tail": "flowchart"
+    },
+    {
+        "head": "javascript",
+        "tail": "svelte-flow"
+    },
+    {
+        "head": "javascript",
+        "tail": "typescript-library"
+    },
+    {
+        "head": "javascript",
+        "tail": "workflow"
+    },
+    {
+        "head": "javascript",
+        "tail": "node-based-ui"
+    },
+    {
+        "head": "javascript",
+        "tail": "out-of-the-box"
+    },
+    {
+        "head": "javascript",
+        "tail": "customizable"
+    },
+    {
+        "head": "react-flow",
+        "tail": "svelte-flow"
+    },
+    {
+        "head": "react-flow",
+        "tail": "svelte"
+    },
+    {
+        "head": "react-flow",
+        "tail": "source"
+    },
+    {
+        "head": "react-flow",
+        "tail": "node"
+    },
+    {
+        "head": "react-flow",
+        "tail": "out-of-the-box"
+    },
+    {
+        "head": "flowchart",
+        "tail": "svelte-flow"
+    },
+    {
+        "head": "flowchart",
+        "tail": "svelte"
+    },
+    {
+        "head": "flowchart",
+        "tail": "source"
+    },
+    {
+        "head": "flowchart",
+        "tail": "node"
+    },
+    {
+        "head": "flowchart",
+        "tail": "out-of-the-box"
+    },
+    {
+        "head": "svelte-flow",
+        "tail": "typescript-library"
+    },
+    {
+        "head": "svelte-flow",
+        "tail": "workflow"
+    },
+    {
+        "head": "svelte-flow",
+        "tail": "node-based-ui"
+    },
+    {
+        "head": "svelte-flow",
+        "tail": "svelte"
+    },
+    {
+        "head": "svelte-flow",
+        "tail": "graph"
+    },
+    {
+        "head": "svelte-flow",
+        "tail": "source"
+    },
+    {
+        "head": "svelte-flow",
+        "tail": "node"
+    },
+    {
+        "head": "svelte-flow",
+        "tail": "out-of-the-box"
+    },
+    {
+        "head": "svelte-flow",
+        "tail": "customizable"
+    },
+    {
+        "head": "typescript-library",
+        "tail": "svelte"
+    },
+    {
+        "head": "typescript-library",
+        "tail": "source"
+    },
+    {
+        "head": "typescript-library",
+        "tail": "node"
+    },
+    {
+        "head": "typescript-library",
+        "tail": "out-of-the-box"
+    },
+    {
+        "head": "workflow",
+        "tail": "svelte"
+    },
+    {
+        "head": "workflow",
+        "tail": "source"
+    },
+    {
+        "head": "workflow",
+        "tail": "out-of-the-box"
+    },
+    {
+        "head": "node-based-ui",
+        "tail": "svelte"
+    },
+    {
+        "head": "node-based-ui",
+        "tail": "source"
+    },
+    {
+        "head": "node-based-ui",
+        "tail": "node"
+    },
+    {
+        "head": "node-based-ui",
+        "tail": "out-of-the-box"
+    },
+    {
+        "head": "svelte",
+        "tail": "graph"
+    },
+    {
+        "head": "svelte",
+        "tail": "source"
+    },
+    {
+        "head": "svelte",
+        "tail": "node"
+    },
+    {
+        "head": "svelte",
+        "tail": "out-of-the-box"
+    },
+    {
+        "head": "svelte",
+        "tail": "customizable"
+    },
+    {
+        "head": "graph",
+        "tail": "source"
+    },
+    {
+        "head": "graph",
+        "tail": "node"
+    },
+    {
+        "head": "graph",
+        "tail": "out-of-the-box"
+    },
+    {
+        "head": "source",
+        "tail": "node"
+    },
+    {
+        "head": "source",
+        "tail": "out-of-the-box"
+    },
+    {
+        "head": "source",
+        "tail": "customizable"
+    },
+    {
+        "head": "node",
+        "tail": "out-of-the-box"
+    },
+    {
+        "head": "node",
+        "tail": "customizable"
+    },
+    {
+        "head": "collection",
+        "tail": "loss"
+    },
+    {
+        "head": "collection",
+        "tail": "functions"
+    },
+    {
+        "head": "collection",
+        "tail": "image"
+    },
+    {
+        "head": "collection",
+        "tail": "segmentation"
+    },
+    {
+        "head": "loss",
+        "tail": "functions"
+    },
+    {
+        "head": "loss",
+        "tail": "image"
+    },
+    {
+        "head": "loss",
+        "tail": "segmentation"
+    },
+    {
+        "head": "functions",
+        "tail": "image"
+    },
+    {
+        "head": "functions",
+        "tail": "segmentation"
+    },
+    {
+        "head": "image",
+        "tail": "segmentation"
     }
 ]
