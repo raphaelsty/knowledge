@@ -33971,5 +33971,20 @@
         "tags": [
             "rust"
         ]
+    },
+    "https://github.com/Mortennn/Dozer": {
+        "extra-tags": [
+            "hide"
+        ],
+        "date": "2018-09-30",
+        "title": "Dozer",
+        "summary": "Hide menu bar icons on macOS",
+        "tags": [
+            "macos",
+            "statusbar",
+            "minimalistic",
+            "swift",
+            "utility"
+        ]
     }
 }

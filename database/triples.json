@@ -154926,5 +154926,61 @@
     {
         "head": "python 3.",
         "tail": "python 3.5"
+    },
+    {
+        "head": "macos",
+        "tail": "statusbar"
+    },
+    {
+        "head": "macos",
+        "tail": "minimalistic"
+    },
+    {
+        "head": "macos",
+        "tail": "utility"
+    },
+    {
+        "head": "macos",
+        "tail": "hide"
+    },
+    {
+        "head": "statusbar",
+        "tail": "minimalistic"
+    },
+    {
+        "head": "statusbar",
+        "tail": "swift"
+    },
+    {
+        "head": "statusbar",
+        "tail": "utility"
+    },
+    {
+        "head": "statusbar",
+        "tail": "hide"
+    },
+    {
+        "head": "minimalistic",
+        "tail": "swift"
+    },
+    {
+        "head": "minimalistic",
+        "tail": "utility"
+    },
+    {
+        "head": "minimalistic",
+        "tail": "hide"
+    },
+    {
+        "head": "swift",
+        "tail": "utility"
+    },
+    {
+        "head": "swift",
+        "tail": "hide"
+    },
+    {
+        "head": "utility",
+        "tail": "hide"
     }
 ]
