@@ -154982,5 +154982,133 @@
     {
         "head": "utility",
         "tail": "hide"
+    },
+    {
+        "head": "transformers",
+        "tail": "lsr"
+    },
+    {
+        "head": "transformers",
+        "tail": "neural-ir"
+    },
+    {
+        "head": "transformers",
+        "tail": "learned-sparse-retrieval"
+    },
+    {
+        "head": "transformers",
+        "tail": "sparse-retrieval"
+    },
+    {
+        "head": "transformers",
+        "tail": "sparse"
+    },
+    {
+        "head": "transformers",
+        "tail": "retrieval"
+    },
+    {
+        "head": "transformers",
+        "tail": "framework"
+    },
+    {
+        "head": "lsr",
+        "tail": "neural-ir"
+    },
+    {
+        "head": "lsr",
+        "tail": "learned-sparse-retrieval"
+    },
+    {
+        "head": "lsr",
+        "tail": "python"
+    },
+    {
+        "head": "lsr",
+        "tail": "sparse-retrieval"
+    },
+    {
+        "head": "lsr",
+        "tail": "sparse"
+    },
+    {
+        "head": "lsr",
+        "tail": "retrieval"
+    },
+    {
+        "head": "lsr",
+        "tail": "framework"
+    },
+    {
+        "head": "neural-ir",
+        "tail": "learned-sparse-retrieval"
+    },
+    {
+        "head": "neural-ir",
+        "tail": "python"
+    },
+    {
+        "head": "neural-ir",
+        "tail": "sparse-retrieval"
+    },
+    {
+        "head": "neural-ir",
+        "tail": "sparse"
+    },
+    {
+        "head": "neural-ir",
+        "tail": "retrieval"
+    },
+    {
+        "head": "neural-ir",
+        "tail": "framework"
+    },
+    {
+        "head": "learned-sparse-retrieval",
+        "tail": "python"
+    },
+    {
+        "head": "learned-sparse-retrieval",
+        "tail": "sparse-retrieval"
+    },
+    {
+        "head": "learned-sparse-retrieval",
+        "tail": "sparse"
+    },
+    {
+        "head": "learned-sparse-retrieval",
+        "tail": "retrieval"
+    },
+    {
+        "head": "learned-sparse-retrieval",
+        "tail": "framework"
+    },
+    {
+        "head": "python",
+        "tail": "sparse-retrieval"
+    },
+    {
+        "head": "sparse-retrieval",
+        "tail": "sparse"
+    },
+    {
+        "head": "sparse-retrieval",
+        "tail": "retrieval"
+    },
+    {
+        "head": "sparse-retrieval",
+        "tail": "framework"
+    },
+    {
+        "head": "sparse",
+        "tail": "retrieval"
+    },
+    {
+        "head": "sparse",
+        "tail": "framework"
+    },
+    {
+        "head": "retrieval",
+        "tail": "framework"
     }
 ]

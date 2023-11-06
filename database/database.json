@@ -33986,5 +33986,23 @@
             "swift",
             "utility"
         ]
+    },
+    "https://github.com/thongnt99/learned-sparse-retrieval": {
+        "extra-tags": [
+            "sparse",
+            "retrieval",
+            "framework"
+        ],
+        "date": "2023-01-09",
+        "title": "learned-sparse-retrieval",
+        "summary": "Unified Learned Sparse Retrieval Framework",
+        "tags": [
+            "transformers",
+            "lsr",
+            "neural-ir",
+            "learned-sparse-retrieval",
+            "python",
+            "sparse-retrieval"
+        ]
     }
 }
