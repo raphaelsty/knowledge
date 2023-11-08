@@ -155110,5 +155110,129 @@
     {
         "head": "retrieval",
         "tail": "framework"
+    },
+    {
+        "head": "web",
+        "tail": "ssh"
+    },
+    {
+        "head": "web",
+        "tail": "share"
+    },
+    {
+        "head": "web",
+        "tail": "collaborative"
+    },
+    {
+        "head": "web",
+        "tail": "tty"
+    },
+    {
+        "head": "web",
+        "tail": "fast"
+    },
+    {
+        "head": "web",
+        "tail": "sharing"
+    },
+    {
+        "head": "ssh",
+        "tail": "share"
+    },
+    {
+        "head": "ssh",
+        "tail": "terminal"
+    },
+    {
+        "head": "ssh",
+        "tail": "collaborative"
+    },
+    {
+        "head": "ssh",
+        "tail": "tty"
+    },
+    {
+        "head": "ssh",
+        "tail": "rust"
+    },
+    {
+        "head": "ssh",
+        "tail": "fast"
+    },
+    {
+        "head": "ssh",
+        "tail": "sharing"
+    },
+    {
+        "head": "share",
+        "tail": "terminal"
+    },
+    {
+        "head": "share",
+        "tail": "collaborative"
+    },
+    {
+        "head": "share",
+        "tail": "tty"
+    },
+    {
+        "head": "share",
+        "tail": "rust"
+    },
+    {
+        "head": "share",
+        "tail": "fast"
+    },
+    {
+        "head": "share",
+        "tail": "sharing"
+    },
+    {
+        "head": "terminal",
+        "tail": "collaborative"
+    },
+    {
+        "head": "terminal",
+        "tail": "fast"
+    },
+    {
+        "head": "terminal",
+        "tail": "sharing"
+    },
+    {
+        "head": "collaborative",
+        "tail": "tty"
+    },
+    {
+        "head": "collaborative",
+        "tail": "rust"
+    },
+    {
+        "head": "collaborative",
+        "tail": "fast"
+    },
+    {
+        "head": "collaborative",
+        "tail": "sharing"
+    },
+    {
+        "head": "tty",
+        "tail": "rust"
+    },
+    {
+        "head": "tty",
+        "tail": "fast"
+    },
+    {
+        "head": "tty",
+        "tail": "sharing"
+    },
+    {
+        "head": "rust",
+        "tail": "sharing"
+    },
+    {
+        "head": "fast",
+        "tail": "sharing"
     }
 ]

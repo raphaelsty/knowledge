@@ -34004,5 +34004,23 @@
             "python",
             "sparse-retrieval"
         ]
+    },
+    "https://github.com/ekzhang/sshx": {
+        "extra-tags": [
+            "fast",
+            "sharing"
+        ],
+        "date": "2022-02-12",
+        "title": "sshx",
+        "summary": "Fast, collaborative live terminal sharing over the web",
+        "tags": [
+            "web",
+            "ssh",
+            "share",
+            "terminal",
+            "collaborative",
+            "tty",
+            "rust"
+        ]
     }
 }
