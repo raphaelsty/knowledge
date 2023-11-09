@@ -155234,5 +155234,17 @@
     {
         "head": "fast",
         "tail": "sharing"
+    },
+    {
+        "head": "ai",
+        "tail": "arxiv"
+    },
+    {
+        "head": "ai",
+        "tail": "paper"
+    },
+    {
+        "head": "arxiv",
+        "tail": "paper"
     }
 ]

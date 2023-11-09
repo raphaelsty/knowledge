@@ -34022,5 +34022,18 @@
             "tty",
             "rust"
         ]
+    },
+    "https://www.bulletpapers.ai": {
+        "extra-tags": [
+            "ai",
+            "arxiv",
+            "paper"
+        ],
+        "title": "Hackernews Show HN: Bulletpapers \u2013 ArXiv AI paper summarizer, won Anthropic Hackathon (bulletpapers.ai)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2023-11-09"
     }
 }
