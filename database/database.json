@@ -34035,5 +34035,47 @@
         ],
         "summary": "",
         "date": "2023-11-09"
+    },
+    "https://github.com/sebastian-hofstaetter/matchmaker": {
+        "extra-tags": [
+            "training",
+            "evaluation",
+            "library",
+            "text"
+        ],
+        "date": "2019-10-30",
+        "title": "matchmaker",
+        "summary": "Training & evaluation library for text-based neural re-ranking and dense retrieval models built with PyTorch",
+        "tags": [
+            "explainability",
+            "knowledge-distillation",
+            "dpr",
+            "neural-ir",
+            "python",
+            "pytorch",
+            "neural-ranking",
+            "efficiency",
+            "transformer"
+        ]
+    },
+    "https://github.com/pemistahl/lingua-py": {
+        "extra-tags": [
+            "language",
+            "detection",
+            "library"
+        ],
+        "date": "2021-07-13",
+        "title": "lingua-py",
+        "summary": "The most accurate natural language detection library for Python, suitable for long and short text alike",
+        "tags": [
+            "nlp",
+            "python-library",
+            "language-recognition",
+            "language-classification",
+            "language-detection",
+            "language-identification",
+            "python",
+            "natural-language-processing"
+        ]
     }
 }

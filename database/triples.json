@@ -155246,5 +155246,421 @@
     {
         "head": "arxiv",
         "tail": "paper"
+    },
+    {
+        "head": "explainability",
+        "tail": "knowledge-distillation"
+    },
+    {
+        "head": "explainability",
+        "tail": "dpr"
+    },
+    {
+        "head": "explainability",
+        "tail": "neural-ir"
+    },
+    {
+        "head": "explainability",
+        "tail": "pytorch"
+    },
+    {
+        "head": "explainability",
+        "tail": "neural-ranking"
+    },
+    {
+        "head": "explainability",
+        "tail": "efficiency"
+    },
+    {
+        "head": "explainability",
+        "tail": "transformer"
+    },
+    {
+        "head": "explainability",
+        "tail": "training"
+    },
+    {
+        "head": "explainability",
+        "tail": "evaluation"
+    },
+    {
+        "head": "explainability",
+        "tail": "library"
+    },
+    {
+        "head": "explainability",
+        "tail": "text"
+    },
+    {
+        "head": "knowledge-distillation",
+        "tail": "dpr"
+    },
+    {
+        "head": "knowledge-distillation",
+        "tail": "neural-ir"
+    },
+    {
+        "head": "knowledge-distillation",
+        "tail": "pytorch"
+    },
+    {
+        "head": "knowledge-distillation",
+        "tail": "neural-ranking"
+    },
+    {
+        "head": "knowledge-distillation",
+        "tail": "efficiency"
+    },
+    {
+        "head": "knowledge-distillation",
+        "tail": "transformer"
+    },
+    {
+        "head": "knowledge-distillation",
+        "tail": "training"
+    },
+    {
+        "head": "knowledge-distillation",
+        "tail": "evaluation"
+    },
+    {
+        "head": "knowledge-distillation",
+        "tail": "library"
+    },
+    {
+        "head": "knowledge-distillation",
+        "tail": "text"
+    },
+    {
+        "head": "dpr",
+        "tail": "neural-ir"
+    },
+    {
+        "head": "dpr",
+        "tail": "neural-ranking"
+    },
+    {
+        "head": "dpr",
+        "tail": "efficiency"
+    },
+    {
+        "head": "dpr",
+        "tail": "transformer"
+    },
+    {
+        "head": "dpr",
+        "tail": "training"
+    },
+    {
+        "head": "dpr",
+        "tail": "evaluation"
+    },
+    {
+        "head": "dpr",
+        "tail": "library"
+    },
+    {
+        "head": "dpr",
+        "tail": "text"
+    },
+    {
+        "head": "neural-ir",
+        "tail": "pytorch"
+    },
+    {
+        "head": "neural-ir",
+        "tail": "neural-ranking"
+    },
+    {
+        "head": "neural-ir",
+        "tail": "efficiency"
+    },
+    {
+        "head": "neural-ir",
+        "tail": "transformer"
+    },
+    {
+        "head": "neural-ir",
+        "tail": "training"
+    },
+    {
+        "head": "neural-ir",
+        "tail": "evaluation"
+    },
+    {
+        "head": "neural-ir",
+        "tail": "library"
+    },
+    {
+        "head": "neural-ir",
+        "tail": "text"
+    },
+    {
+        "head": "python",
+        "tail": "neural-ranking"
+    },
+    {
+        "head": "python",
+        "tail": "efficiency"
+    },
+    {
+        "head": "pytorch",
+        "tail": "neural-ranking"
+    },
+    {
+        "head": "pytorch",
+        "tail": "efficiency"
+    },
+    {
+        "head": "neural-ranking",
+        "tail": "efficiency"
+    },
+    {
+        "head": "neural-ranking",
+        "tail": "transformer"
+    },
+    {
+        "head": "neural-ranking",
+        "tail": "training"
+    },
+    {
+        "head": "neural-ranking",
+        "tail": "evaluation"
+    },
+    {
+        "head": "neural-ranking",
+        "tail": "library"
+    },
+    {
+        "head": "neural-ranking",
+        "tail": "text"
+    },
+    {
+        "head": "efficiency",
+        "tail": "transformer"
+    },
+    {
+        "head": "efficiency",
+        "tail": "training"
+    },
+    {
+        "head": "efficiency",
+        "tail": "evaluation"
+    },
+    {
+        "head": "efficiency",
+        "tail": "library"
+    },
+    {
+        "head": "efficiency",
+        "tail": "text"
+    },
+    {
+        "head": "transformer",
+        "tail": "training"
+    },
+    {
+        "head": "transformer",
+        "tail": "evaluation"
+    },
+    {
+        "head": "transformer",
+        "tail": "library"
+    },
+    {
+        "head": "training",
+        "tail": "text"
+    },
+    {
+        "head": "evaluation",
+        "tail": "text"
+    },
+    {
+        "head": "library",
+        "tail": "text"
+    },
+    {
+        "head": "nlp",
+        "tail": "python-library"
+    },
+    {
+        "head": "nlp",
+        "tail": "language-recognition"
+    },
+    {
+        "head": "nlp",
+        "tail": "language-classification"
+    },
+    {
+        "head": "nlp",
+        "tail": "language-detection"
+    },
+    {
+        "head": "nlp",
+        "tail": "language-identification"
+    },
+    {
+        "head": "nlp",
+        "tail": "detection"
+    },
+    {
+        "head": "nlp",
+        "tail": "library"
+    },
+    {
+        "head": "python-library",
+        "tail": "language-recognition"
+    },
+    {
+        "head": "python-library",
+        "tail": "language-classification"
+    },
+    {
+        "head": "python-library",
+        "tail": "language-detection"
+    },
+    {
+        "head": "python-library",
+        "tail": "language-identification"
+    },
+    {
+        "head": "python-library",
+        "tail": "natural-language-processing"
+    },
+    {
+        "head": "python-library",
+        "tail": "language"
+    },
+    {
+        "head": "python-library",
+        "tail": "library"
+    },
+    {
+        "head": "language-recognition",
+        "tail": "language-classification"
+    },
+    {
+        "head": "language-recognition",
+        "tail": "language-detection"
+    },
+    {
+        "head": "language-recognition",
+        "tail": "language-identification"
+    },
+    {
+        "head": "language-recognition",
+        "tail": "python"
+    },
+    {
+        "head": "language-recognition",
+        "tail": "natural-language-processing"
+    },
+    {
+        "head": "language-recognition",
+        "tail": "language"
+    },
+    {
+        "head": "language-recognition",
+        "tail": "detection"
+    },
+    {
+        "head": "language-recognition",
+        "tail": "library"
+    },
+    {
+        "head": "language-classification",
+        "tail": "language-detection"
+    },
+    {
+        "head": "language-classification",
+        "tail": "language-identification"
+    },
+    {
+        "head": "language-classification",
+        "tail": "python"
+    },
+    {
+        "head": "language-classification",
+        "tail": "natural-language-processing"
+    },
+    {
+        "head": "language-classification",
+        "tail": "language"
+    },
+    {
+        "head": "language-classification",
+        "tail": "detection"
+    },
+    {
+        "head": "language-classification",
+        "tail": "library"
+    },
+    {
+        "head": "language-detection",
+        "tail": "language-identification"
+    },
+    {
+        "head": "language-detection",
+        "tail": "python"
+    },
+    {
+        "head": "language-detection",
+        "tail": "natural-language-processing"
+    },
+    {
+        "head": "language-detection",
+        "tail": "language"
+    },
+    {
+        "head": "language-detection",
+        "tail": "detection"
+    },
+    {
+        "head": "language-detection",
+        "tail": "library"
+    },
+    {
+        "head": "language-identification",
+        "tail": "python"
+    },
+    {
+        "head": "language-identification",
+        "tail": "natural-language-processing"
+    },
+    {
+        "head": "language-identification",
+        "tail": "language"
+    },
+    {
+        "head": "language-identification",
+        "tail": "detection"
+    },
+    {
+        "head": "language-identification",
+        "tail": "library"
+    },
+    {
+        "head": "natural-language-processing",
+        "tail": "language"
+    },
+    {
+        "head": "natural-language-processing",
+        "tail": "detection"
+    },
+    {
+        "head": "natural-language-processing",
+        "tail": "library"
+    },
+    {
+        "head": "language",
+        "tail": "detection"
+    },
+    {
+        "head": "language",
+        "tail": "library"
+    },
+    {
+        "head": "detection",
+        "tail": "library"
     }
 ]
