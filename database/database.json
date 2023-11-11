@@ -34077,5 +34077,38 @@
             "python",
             "natural-language-processing"
         ]
+    },
+    "https://github.com/rustedpy/maybe": {
+        "extra-tags": [
+            "simple",
+            "rust",
+            "python 3."
+        ],
+        "date": "2023-08-18",
+        "title": "maybe",
+        "summary": "A simple Rust like Option type for Python 3. Fully type annotated.",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/rustedpy/result": {
+        "extra-tags": [
+            "simple",
+            "python 3."
+        ],
+        "date": "2015-12-14",
+        "title": "result",
+        "summary": "A simple Rust like Result type for Python 3. Fully type annotated.",
+        "tags": [
+            "railway-oriented-programming",
+            "mypy",
+            "rust",
+            "strongly-typed",
+            "typechecking",
+            "python",
+            "functional-programming",
+            "python3",
+            "type-safety"
+        ]
     }
 }

@@ -155662,5 +155662,193 @@
     {
         "head": "detection",
         "tail": "library"
+    },
+    {
+        "head": "simple",
+        "tail": "rust"
+    },
+    {
+        "head": "simple",
+        "tail": "python 3."
+    },
+    {
+        "head": "railway-oriented-programming",
+        "tail": "mypy"
+    },
+    {
+        "head": "railway-oriented-programming",
+        "tail": "rust"
+    },
+    {
+        "head": "railway-oriented-programming",
+        "tail": "strongly-typed"
+    },
+    {
+        "head": "railway-oriented-programming",
+        "tail": "typechecking"
+    },
+    {
+        "head": "railway-oriented-programming",
+        "tail": "python"
+    },
+    {
+        "head": "railway-oriented-programming",
+        "tail": "functional-programming"
+    },
+    {
+        "head": "railway-oriented-programming",
+        "tail": "python3"
+    },
+    {
+        "head": "railway-oriented-programming",
+        "tail": "type-safety"
+    },
+    {
+        "head": "railway-oriented-programming",
+        "tail": "simple"
+    },
+    {
+        "head": "railway-oriented-programming",
+        "tail": "python 3."
+    },
+    {
+        "head": "mypy",
+        "tail": "rust"
+    },
+    {
+        "head": "mypy",
+        "tail": "strongly-typed"
+    },
+    {
+        "head": "mypy",
+        "tail": "typechecking"
+    },
+    {
+        "head": "mypy",
+        "tail": "functional-programming"
+    },
+    {
+        "head": "mypy",
+        "tail": "python3"
+    },
+    {
+        "head": "mypy",
+        "tail": "type-safety"
+    },
+    {
+        "head": "mypy",
+        "tail": "simple"
+    },
+    {
+        "head": "mypy",
+        "tail": "python 3."
+    },
+    {
+        "head": "rust",
+        "tail": "strongly-typed"
+    },
+    {
+        "head": "rust",
+        "tail": "typechecking"
+    },
+    {
+        "head": "rust",
+        "tail": "functional-programming"
+    },
+    {
+        "head": "rust",
+        "tail": "type-safety"
+    },
+    {
+        "head": "strongly-typed",
+        "tail": "typechecking"
+    },
+    {
+        "head": "strongly-typed",
+        "tail": "python"
+    },
+    {
+        "head": "strongly-typed",
+        "tail": "functional-programming"
+    },
+    {
+        "head": "strongly-typed",
+        "tail": "python3"
+    },
+    {
+        "head": "strongly-typed",
+        "tail": "type-safety"
+    },
+    {
+        "head": "strongly-typed",
+        "tail": "simple"
+    },
+    {
+        "head": "strongly-typed",
+        "tail": "python 3."
+    },
+    {
+        "head": "typechecking",
+        "tail": "python"
+    },
+    {
+        "head": "typechecking",
+        "tail": "functional-programming"
+    },
+    {
+        "head": "typechecking",
+        "tail": "python3"
+    },
+    {
+        "head": "typechecking",
+        "tail": "type-safety"
+    },
+    {
+        "head": "typechecking",
+        "tail": "simple"
+    },
+    {
+        "head": "typechecking",
+        "tail": "python 3."
+    },
+    {
+        "head": "python",
+        "tail": "type-safety"
+    },
+    {
+        "head": "functional-programming",
+        "tail": "python3"
+    },
+    {
+        "head": "functional-programming",
+        "tail": "type-safety"
+    },
+    {
+        "head": "functional-programming",
+        "tail": "simple"
+    },
+    {
+        "head": "functional-programming",
+        "tail": "python 3."
+    },
+    {
+        "head": "python3",
+        "tail": "type-safety"
+    },
+    {
+        "head": "python3",
+        "tail": "simple"
+    },
+    {
+        "head": "python3",
+        "tail": "python 3."
+    },
+    {
+        "head": "type-safety",
+        "tail": "simple"
+    },
+    {
+        "head": "type-safety",
+        "tail": "python 3."
     }
 ]
