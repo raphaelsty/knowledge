@@ -34154,5 +34154,20 @@
         "summary": "Llama 2 \u2014 The next generation of our open source large language model, available for free for research and commercial use.",
         "date": "2023-11-13",
         "tags": []
+    },
+    "https://github.com/yuankunzhang/charming": {
+        "extra-tags": [
+            "library"
+        ],
+        "date": "2023-06-29",
+        "title": "charming",
+        "summary": "A visualization library for Rust",
+        "tags": [
+            "data-science",
+            "webassembly",
+            "visualization",
+            "chart",
+            "rust"
+        ]
     }
 }

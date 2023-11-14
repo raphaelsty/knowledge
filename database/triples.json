@@ -155982,5 +155982,41 @@
     {
         "head": "source",
         "tail": "language model"
+    },
+    {
+        "head": "data-science",
+        "tail": "webassembly"
+    },
+    {
+        "head": "data-science",
+        "tail": "chart"
+    },
+    {
+        "head": "data-science",
+        "tail": "library"
+    },
+    {
+        "head": "webassembly",
+        "tail": "visualization"
+    },
+    {
+        "head": "webassembly",
+        "tail": "chart"
+    },
+    {
+        "head": "webassembly",
+        "tail": "rust"
+    },
+    {
+        "head": "webassembly",
+        "tail": "library"
+    },
+    {
+        "head": "visualization",
+        "tail": "library"
+    },
+    {
+        "head": "chart",
+        "tail": "library"
     }
 ]
