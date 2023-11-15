@@ -34194,5 +34194,18 @@
         "tags": [
             "ocaml"
         ]
+    },
+    "https://github.com/tldraw/draw-a-ui": {
+        "extra-tags": [
+            "draw",
+            "ui",
+            "html"
+        ],
+        "date": "2023-11-13",
+        "title": "draw-a-ui",
+        "summary": "Draw a mockup and generate html for it",
+        "tags": [
+            "typescript"
+        ]
     }
 }

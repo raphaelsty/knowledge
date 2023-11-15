@@ -156050,5 +156050,25 @@
     {
         "head": "gdb-command",
         "tail": "target entity disambiguation"
+    },
+    {
+        "head": "typescript",
+        "tail": "draw"
+    },
+    {
+        "head": "typescript",
+        "tail": "ui"
+    },
+    {
+        "head": "typescript",
+        "tail": "html"
+    },
+    {
+        "head": "draw",
+        "tail": "ui"
+    },
+    {
+        "head": "ui",
+        "tail": "html"
     }
 ]
