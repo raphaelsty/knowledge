@@ -34169,5 +34169,30 @@
             "chart",
             "rust"
         ]
+    },
+    "https://github.com/pierrot-lc/dotfiles": {
+        "extra-tags": [
+            "dotfiles",
+            "files"
+        ],
+        "date": "2023-11-14",
+        "title": "dotfiles",
+        "summary": "Dot files fully configured with Nix.",
+        "tags": [
+            "lua"
+        ]
+    },
+    "https://github.com/arxaqapi/ojo": {
+        "extra-tags": [
+            "tool",
+            "gdb-command",
+            "target entity disambiguation"
+        ],
+        "date": "2021-11-21",
+        "title": "ojo",
+        "summary": "\ud83d\udc41\ufe0f A tool to execute a certain command when a target file is modified.",
+        "tags": [
+            "ocaml"
+        ]
     }
 }
