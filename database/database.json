@@ -34207,5 +34207,47 @@
         "tags": [
             "typescript"
         ]
+    },
+    "https://github.com/adapter-hub/adapters": {
+        "extra-tags": [
+            "library",
+            "transfer learning"
+        ],
+        "date": "2020-04-21",
+        "title": "adapters",
+        "summary": "A Unified Library for Parameter-Efficient and Modular Transfer Learning ",
+        "tags": [
+            "nlp",
+            "adapters",
+            "bert",
+            "parameter-efficient-learning",
+            "pytorch",
+            "transformers",
+            "natural-language-processing",
+            "jupyter notebook",
+            "parameter-efficient-tuning"
+        ]
+    },
+    "https://github.com/raphaelsty/neural-cherche": {
+        "extra-tags": [
+            "neural",
+            "search",
+            "graph neural"
+        ],
+        "date": "2023-08-04",
+        "title": "neural-cherche",
+        "summary": "Neural Search",
+        "tags": [
+            "splade",
+            "google",
+            "neural-search",
+            "transformers",
+            "python",
+            "colbert",
+            "language-model",
+            "sparseembed",
+            "stanford",
+            "semantic-search"
+        ]
     }
 }

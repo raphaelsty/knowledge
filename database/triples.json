@@ -156070,5 +156070,337 @@
     {
         "head": "ui",
         "tail": "html"
+    },
+    {
+        "head": "nlp",
+        "tail": "parameter-efficient-learning"
+    },
+    {
+        "head": "nlp",
+        "tail": "parameter-efficient-tuning"
+    },
+    {
+        "head": "nlp",
+        "tail": "transfer learning"
+    },
+    {
+        "head": "adapters",
+        "tail": "parameter-efficient-learning"
+    },
+    {
+        "head": "adapters",
+        "tail": "jupyter notebook"
+    },
+    {
+        "head": "adapters",
+        "tail": "parameter-efficient-tuning"
+    },
+    {
+        "head": "adapters",
+        "tail": "library"
+    },
+    {
+        "head": "adapters",
+        "tail": "transfer learning"
+    },
+    {
+        "head": "bert",
+        "tail": "parameter-efficient-learning"
+    },
+    {
+        "head": "bert",
+        "tail": "jupyter notebook"
+    },
+    {
+        "head": "bert",
+        "tail": "parameter-efficient-tuning"
+    },
+    {
+        "head": "bert",
+        "tail": "library"
+    },
+    {
+        "head": "bert",
+        "tail": "transfer learning"
+    },
+    {
+        "head": "parameter-efficient-learning",
+        "tail": "natural-language-processing"
+    },
+    {
+        "head": "parameter-efficient-learning",
+        "tail": "jupyter notebook"
+    },
+    {
+        "head": "parameter-efficient-learning",
+        "tail": "parameter-efficient-tuning"
+    },
+    {
+        "head": "parameter-efficient-learning",
+        "tail": "library"
+    },
+    {
+        "head": "parameter-efficient-learning",
+        "tail": "transfer learning"
+    },
+    {
+        "head": "pytorch",
+        "tail": "parameter-efficient-tuning"
+    },
+    {
+        "head": "pytorch",
+        "tail": "transfer learning"
+    },
+    {
+        "head": "transformers",
+        "tail": "parameter-efficient-tuning"
+    },
+    {
+        "head": "transformers",
+        "tail": "library"
+    },
+    {
+        "head": "transformers",
+        "tail": "transfer learning"
+    },
+    {
+        "head": "natural-language-processing",
+        "tail": "parameter-efficient-tuning"
+    },
+    {
+        "head": "natural-language-processing",
+        "tail": "transfer learning"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "parameter-efficient-tuning"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "transfer learning"
+    },
+    {
+        "head": "parameter-efficient-tuning",
+        "tail": "library"
+    },
+    {
+        "head": "parameter-efficient-tuning",
+        "tail": "transfer learning"
+    },
+    {
+        "head": "library",
+        "tail": "transfer learning"
+    },
+    {
+        "head": "splade",
+        "tail": "google"
+    },
+    {
+        "head": "splade",
+        "tail": "neural-search"
+    },
+    {
+        "head": "splade",
+        "tail": "transformers"
+    },
+    {
+        "head": "splade",
+        "tail": "colbert"
+    },
+    {
+        "head": "splade",
+        "tail": "language-model"
+    },
+    {
+        "head": "splade",
+        "tail": "sparseembed"
+    },
+    {
+        "head": "splade",
+        "tail": "stanford"
+    },
+    {
+        "head": "splade",
+        "tail": "semantic-search"
+    },
+    {
+        "head": "splade",
+        "tail": "neural"
+    },
+    {
+        "head": "splade",
+        "tail": "search"
+    },
+    {
+        "head": "splade",
+        "tail": "graph neural"
+    },
+    {
+        "head": "google",
+        "tail": "transformers"
+    },
+    {
+        "head": "google",
+        "tail": "colbert"
+    },
+    {
+        "head": "google",
+        "tail": "stanford"
+    },
+    {
+        "head": "google",
+        "tail": "neural"
+    },
+    {
+        "head": "google",
+        "tail": "search"
+    },
+    {
+        "head": "google",
+        "tail": "graph neural"
+    },
+    {
+        "head": "neural-search",
+        "tail": "transformers"
+    },
+    {
+        "head": "neural-search",
+        "tail": "colbert"
+    },
+    {
+        "head": "neural-search",
+        "tail": "stanford"
+    },
+    {
+        "head": "neural-search",
+        "tail": "neural"
+    },
+    {
+        "head": "neural-search",
+        "tail": "graph neural"
+    },
+    {
+        "head": "transformers",
+        "tail": "colbert"
+    },
+    {
+        "head": "transformers",
+        "tail": "sparseembed"
+    },
+    {
+        "head": "transformers",
+        "tail": "stanford"
+    },
+    {
+        "head": "transformers",
+        "tail": "neural"
+    },
+    {
+        "head": "transformers",
+        "tail": "search"
+    },
+    {
+        "head": "transformers",
+        "tail": "graph neural"
+    },
+    {
+        "head": "python",
+        "tail": "stanford"
+    },
+    {
+        "head": "colbert",
+        "tail": "language-model"
+    },
+    {
+        "head": "colbert",
+        "tail": "sparseembed"
+    },
+    {
+        "head": "colbert",
+        "tail": "stanford"
+    },
+    {
+        "head": "colbert",
+        "tail": "semantic-search"
+    },
+    {
+        "head": "colbert",
+        "tail": "neural"
+    },
+    {
+        "head": "colbert",
+        "tail": "search"
+    },
+    {
+        "head": "colbert",
+        "tail": "graph neural"
+    },
+    {
+        "head": "language-model",
+        "tail": "stanford"
+    },
+    {
+        "head": "language-model",
+        "tail": "neural"
+    },
+    {
+        "head": "language-model",
+        "tail": "search"
+    },
+    {
+        "head": "language-model",
+        "tail": "graph neural"
+    },
+    {
+        "head": "sparseembed",
+        "tail": "stanford"
+    },
+    {
+        "head": "sparseembed",
+        "tail": "neural"
+    },
+    {
+        "head": "sparseembed",
+        "tail": "search"
+    },
+    {
+        "head": "sparseembed",
+        "tail": "graph neural"
+    },
+    {
+        "head": "stanford",
+        "tail": "semantic-search"
+    },
+    {
+        "head": "stanford",
+        "tail": "neural"
+    },
+    {
+        "head": "stanford",
+        "tail": "search"
+    },
+    {
+        "head": "stanford",
+        "tail": "graph neural"
+    },
+    {
+        "head": "semantic-search",
+        "tail": "neural"
+    },
+    {
+        "head": "semantic-search",
+        "tail": "graph neural"
+    },
+    {
+        "head": "neural",
+        "tail": "search"
+    },
+    {
+        "head": "neural",
+        "tail": "graph neural"
+    },
+    {
+        "head": "search",
+        "tail": "graph neural"
     }
 ]
