@@ -156402,5 +156402,17 @@
     {
         "head": "search",
         "tail": "graph neural"
+    },
+    {
+        "head": "fast",
+        "tail": "inference"
+    },
+    {
+        "head": "fast",
+        "tail": "segmentation"
+    },
+    {
+        "head": "inference",
+        "tail": "segmentation"
     }
 ]

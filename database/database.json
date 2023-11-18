@@ -34249,5 +34249,18 @@
             "stanford",
             "semantic-search"
         ]
+    },
+    "https://github.com/pytorch-labs/segment-anything-fast": {
+        "extra-tags": [
+            "fast",
+            "inference",
+            "segmentation"
+        ],
+        "date": "2023-08-30",
+        "title": "segment-anything-fast",
+        "summary": "A batched offline inference oriented version of segment-anything",
+        "tags": [
+            "python"
+        ]
     }
 }
