@@ -34262,5 +34262,30 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/jcrist/msgspec": {
+        "extra-tags": [
+            "fast",
+            "library"
+        ],
+        "date": "2021-01-26",
+        "title": "msgspec",
+        "summary": "A fast serialization and validation library, with builtin support for JSON, MessagePack, YAML, and TOML",
+        "tags": [
+            "yaml",
+            "msgpack",
+            "python",
+            "jsonschema",
+            "json-schema",
+            "openapi3",
+            "toml",
+            "schema",
+            "messagepack",
+            "validation",
+            "serde",
+            "deserialization",
+            "serialization",
+            "json"
+        ]
     }
 }

@@ -156414,5 +156414,361 @@
     {
         "head": "inference",
         "tail": "segmentation"
+    },
+    {
+        "head": "yaml",
+        "tail": "jsonschema"
+    },
+    {
+        "head": "yaml",
+        "tail": "json-schema"
+    },
+    {
+        "head": "yaml",
+        "tail": "openapi3"
+    },
+    {
+        "head": "yaml",
+        "tail": "schema"
+    },
+    {
+        "head": "yaml",
+        "tail": "messagepack"
+    },
+    {
+        "head": "yaml",
+        "tail": "validation"
+    },
+    {
+        "head": "yaml",
+        "tail": "deserialization"
+    },
+    {
+        "head": "yaml",
+        "tail": "fast"
+    },
+    {
+        "head": "yaml",
+        "tail": "library"
+    },
+    {
+        "head": "msgpack",
+        "tail": "jsonschema"
+    },
+    {
+        "head": "msgpack",
+        "tail": "json-schema"
+    },
+    {
+        "head": "msgpack",
+        "tail": "openapi3"
+    },
+    {
+        "head": "msgpack",
+        "tail": "schema"
+    },
+    {
+        "head": "msgpack",
+        "tail": "messagepack"
+    },
+    {
+        "head": "msgpack",
+        "tail": "validation"
+    },
+    {
+        "head": "msgpack",
+        "tail": "deserialization"
+    },
+    {
+        "head": "msgpack",
+        "tail": "fast"
+    },
+    {
+        "head": "msgpack",
+        "tail": "library"
+    },
+    {
+        "head": "python",
+        "tail": "jsonschema"
+    },
+    {
+        "head": "python",
+        "tail": "openapi3"
+    },
+    {
+        "head": "python",
+        "tail": "schema"
+    },
+    {
+        "head": "python",
+        "tail": "messagepack"
+    },
+    {
+        "head": "python",
+        "tail": "deserialization"
+    },
+    {
+        "head": "jsonschema",
+        "tail": "json-schema"
+    },
+    {
+        "head": "jsonschema",
+        "tail": "openapi3"
+    },
+    {
+        "head": "jsonschema",
+        "tail": "toml"
+    },
+    {
+        "head": "jsonschema",
+        "tail": "schema"
+    },
+    {
+        "head": "jsonschema",
+        "tail": "messagepack"
+    },
+    {
+        "head": "jsonschema",
+        "tail": "validation"
+    },
+    {
+        "head": "jsonschema",
+        "tail": "serde"
+    },
+    {
+        "head": "jsonschema",
+        "tail": "deserialization"
+    },
+    {
+        "head": "jsonschema",
+        "tail": "serialization"
+    },
+    {
+        "head": "jsonschema",
+        "tail": "json"
+    },
+    {
+        "head": "jsonschema",
+        "tail": "fast"
+    },
+    {
+        "head": "jsonschema",
+        "tail": "library"
+    },
+    {
+        "head": "json-schema",
+        "tail": "openapi3"
+    },
+    {
+        "head": "json-schema",
+        "tail": "toml"
+    },
+    {
+        "head": "json-schema",
+        "tail": "schema"
+    },
+    {
+        "head": "json-schema",
+        "tail": "messagepack"
+    },
+    {
+        "head": "json-schema",
+        "tail": "serde"
+    },
+    {
+        "head": "json-schema",
+        "tail": "deserialization"
+    },
+    {
+        "head": "json-schema",
+        "tail": "serialization"
+    },
+    {
+        "head": "json-schema",
+        "tail": "json"
+    },
+    {
+        "head": "json-schema",
+        "tail": "fast"
+    },
+    {
+        "head": "json-schema",
+        "tail": "library"
+    },
+    {
+        "head": "openapi3",
+        "tail": "toml"
+    },
+    {
+        "head": "openapi3",
+        "tail": "schema"
+    },
+    {
+        "head": "openapi3",
+        "tail": "messagepack"
+    },
+    {
+        "head": "openapi3",
+        "tail": "validation"
+    },
+    {
+        "head": "openapi3",
+        "tail": "serde"
+    },
+    {
+        "head": "openapi3",
+        "tail": "deserialization"
+    },
+    {
+        "head": "openapi3",
+        "tail": "serialization"
+    },
+    {
+        "head": "openapi3",
+        "tail": "json"
+    },
+    {
+        "head": "openapi3",
+        "tail": "fast"
+    },
+    {
+        "head": "openapi3",
+        "tail": "library"
+    },
+    {
+        "head": "toml",
+        "tail": "schema"
+    },
+    {
+        "head": "toml",
+        "tail": "messagepack"
+    },
+    {
+        "head": "toml",
+        "tail": "validation"
+    },
+    {
+        "head": "toml",
+        "tail": "deserialization"
+    },
+    {
+        "head": "toml",
+        "tail": "fast"
+    },
+    {
+        "head": "toml",
+        "tail": "library"
+    },
+    {
+        "head": "schema",
+        "tail": "messagepack"
+    },
+    {
+        "head": "schema",
+        "tail": "validation"
+    },
+    {
+        "head": "schema",
+        "tail": "serde"
+    },
+    {
+        "head": "schema",
+        "tail": "deserialization"
+    },
+    {
+        "head": "schema",
+        "tail": "serialization"
+    },
+    {
+        "head": "schema",
+        "tail": "json"
+    },
+    {
+        "head": "schema",
+        "tail": "fast"
+    },
+    {
+        "head": "schema",
+        "tail": "library"
+    },
+    {
+        "head": "messagepack",
+        "tail": "validation"
+    },
+    {
+        "head": "messagepack",
+        "tail": "serde"
+    },
+    {
+        "head": "messagepack",
+        "tail": "deserialization"
+    },
+    {
+        "head": "messagepack",
+        "tail": "serialization"
+    },
+    {
+        "head": "messagepack",
+        "tail": "json"
+    },
+    {
+        "head": "messagepack",
+        "tail": "fast"
+    },
+    {
+        "head": "messagepack",
+        "tail": "library"
+    },
+    {
+        "head": "validation",
+        "tail": "serde"
+    },
+    {
+        "head": "validation",
+        "tail": "deserialization"
+    },
+    {
+        "head": "validation",
+        "tail": "serialization"
+    },
+    {
+        "head": "validation",
+        "tail": "json"
+    },
+    {
+        "head": "validation",
+        "tail": "fast"
+    },
+    {
+        "head": "validation",
+        "tail": "library"
+    },
+    {
+        "head": "serde",
+        "tail": "deserialization"
+    },
+    {
+        "head": "deserialization",
+        "tail": "serialization"
+    },
+    {
+        "head": "deserialization",
+        "tail": "json"
+    },
+    {
+        "head": "deserialization",
+        "tail": "fast"
+    },
+    {
+        "head": "deserialization",
+        "tail": "library"
+    },
+    {
+        "head": "serialization",
+        "tail": "fast"
+    },
+    {
+        "head": "serialization",
+        "tail": "library"
     }
 ]
