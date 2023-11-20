@@ -34287,5 +34287,18 @@
             "serialization",
             "json"
         ]
+    },
+    "https://magazine.sebastianraschka.com/p/practical-tips-for-finetuning-llms": {
+        "extra-tags": [
+            "finetuning",
+            "llms",
+            "low-rank"
+        ],
+        "title": "Hackernews Practical Tips for Finetuning LLMs Using LoRA (Low-Rank Adaptation) (sebastianraschka.com)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2023-11-20"
     }
 }
