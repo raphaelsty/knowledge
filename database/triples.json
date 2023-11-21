@@ -156782,5 +156782,17 @@
     {
         "head": "llms",
         "tail": "low-rank"
+    },
+    {
+        "head": "typescript",
+        "tail": "make"
+    },
+    {
+        "head": "make",
+        "tail": "draw"
+    },
+    {
+        "head": "make",
+        "tail": "ui"
     }
 ]

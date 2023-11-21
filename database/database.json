@@ -34300,5 +34300,18 @@
         ],
         "summary": "",
         "date": "2023-11-20"
+    },
+    "https://github.com/tldraw/make-real": {
+        "extra-tags": [
+            "make",
+            "draw",
+            "ui"
+        ],
+        "date": "2023-11-13",
+        "title": "make-real",
+        "summary": "Draw a ui and make it real",
+        "tags": [
+            "typescript"
+        ]
     }
 }
