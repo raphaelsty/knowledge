@@ -34326,5 +34326,44 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/sourcegraph/zoekt": {
+        "extra-tags": [
+            "fast",
+            "code",
+            "search"
+        ],
+        "date": "2018-10-01",
+        "title": "zoekt",
+        "summary": "Fast trigram based code search  ",
+        "tags": [
+            "repo-type-backend",
+            "go"
+        ]
+    },
+    "https://github.com/pierrot-lc/algs": {
+        "extra-tags": [
+            "algorithms",
+            "algorithm",
+            "rl-algorithms"
+        ],
+        "date": "2023-11-21",
+        "title": "algs",
+        "summary": "A repo to store some algorithms I like.",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://arxiv.org/abs/2311.11045": {
+        "extra-tags": [
+            "language models",
+            "arxiv"
+        ],
+        "title": "Hackernews Orca 2: Teaching Small Language Models How to Reason (arxiv.org)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2023-11-22"
     }
 }
