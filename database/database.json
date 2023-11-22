@@ -34313,5 +34313,18 @@
         "tags": [
             "typescript"
         ]
+    },
+    "https://github.com/Thytu/StockLLM": {
+        "extra-tags": [
+            "llm",
+            "chess",
+            "fine-tuning"
+        ],
+        "date": "2023-10-19",
+        "title": "StockLLM",
+        "summary": "A fine-tuned LLM on chess",
+        "tags": [
+            "python"
+        ]
     }
 }

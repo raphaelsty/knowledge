@@ -156794,5 +156794,17 @@
     {
         "head": "make",
         "tail": "ui"
+    },
+    {
+        "head": "llm",
+        "tail": "chess"
+    },
+    {
+        "head": "llm",
+        "tail": "fine-tuning"
+    },
+    {
+        "head": "chess",
+        "tail": "fine-tuning"
     }
 ]
