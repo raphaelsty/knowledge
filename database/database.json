@@ -34365,5 +34365,18 @@
         ],
         "summary": "",
         "date": "2023-11-22"
+    },
+    "https://arxiv.org/abs/2311.10770": {
+        "extra-tags": [
+            "language",
+            "modelling",
+            "arxiv"
+        ],
+        "title": "Hackernews Exponentially faster language modelling (arxiv.org)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2023-11-23"
     }
 }
