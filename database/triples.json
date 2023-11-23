@@ -156858,5 +156858,9 @@
     {
         "head": "modelling",
         "tail": "arxiv"
+    },
+    {
+        "head": "multi-agent",
+        "tail": "jax"
     }
 ]

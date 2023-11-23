@@ -34378,5 +34378,19 @@
         ],
         "summary": "",
         "date": "2023-11-23"
+    },
+    "https://github.com/FLAIROx/JaxMARL": {
+        "extra-tags": [
+            "multi-agent",
+            "reinforcement",
+            "learning",
+            "jax"
+        ],
+        "date": "2023-03-27",
+        "title": "JaxMARL",
+        "summary": "Multi-Agent Reinforcement Learning with JAX",
+        "tags": [
+            "python"
+        ]
     }
 }
