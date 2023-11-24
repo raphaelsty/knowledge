@@ -34392,5 +34392,19 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/facebookresearch/hiplot": {
+        "extra-tags": [
+            "data",
+            "natural-language-understanding",
+            "multidimensional",
+            "spoken-language-understanding"
+        ],
+        "date": "2019-11-08",
+        "title": "hiplot",
+        "summary": "HiPlot makes understanding high dimensional data easy",
+        "tags": [
+            "typescript"
+        ]
     }
 }

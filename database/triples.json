@@ -156862,5 +156862,41 @@
     {
         "head": "multi-agent",
         "tail": "jax"
+    },
+    {
+        "head": "typescript",
+        "tail": "natural-language-understanding"
+    },
+    {
+        "head": "typescript",
+        "tail": "multidimensional"
+    },
+    {
+        "head": "typescript",
+        "tail": "spoken-language-understanding"
+    },
+    {
+        "head": "data",
+        "tail": "natural-language-understanding"
+    },
+    {
+        "head": "data",
+        "tail": "multidimensional"
+    },
+    {
+        "head": "data",
+        "tail": "spoken-language-understanding"
+    },
+    {
+        "head": "natural-language-understanding",
+        "tail": "multidimensional"
+    },
+    {
+        "head": "natural-language-understanding",
+        "tail": "spoken-language-understanding"
+    },
+    {
+        "head": "multidimensional",
+        "tail": "spoken-language-understanding"
     }
 ]
