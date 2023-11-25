@@ -156898,5 +156898,29 @@
     {
         "head": "multidimensional",
         "tail": "spoken-language-understanding"
+    },
+    {
+        "head": "assembly",
+        "tail": "zelda"
+    },
+    {
+        "head": "assembly",
+        "tail": "prince"
+    },
+    {
+        "head": "assembly",
+        "tail": "nlp princeton"
+    },
+    {
+        "head": "zelda",
+        "tail": "prince"
+    },
+    {
+        "head": "zelda",
+        "tail": "nlp princeton"
+    },
+    {
+        "head": "prince",
+        "tail": "nlp princeton"
     }
 ]

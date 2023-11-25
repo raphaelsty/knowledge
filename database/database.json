@@ -34406,5 +34406,18 @@
         "tags": [
             "typescript"
         ]
+    },
+    "https://github.com/zeldaret/tp": {
+        "extra-tags": [
+            "zelda",
+            "prince",
+            "nlp princeton"
+        ],
+        "date": "2020-08-29",
+        "title": "tp",
+        "summary": "Decompilation of The Legend of Zelda: Twilight Princess (GCN, USA)",
+        "tags": [
+            "assembly"
+        ]
     }
 }
