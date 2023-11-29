@@ -156962,5 +156962,153 @@
     {
         "head": "language models as knowledge bases",
         "tail": "language models knowledge"
+    },
+    {
+        "head": "python",
+        "tail": "find-replace"
+    },
+    {
+        "head": "python",
+        "tail": "regexp"
+    },
+    {
+        "head": "python",
+        "tail": "regex"
+    },
+    {
+        "head": "python",
+        "tail": "blacklist"
+    },
+    {
+        "head": "python",
+        "tail": "trie"
+    },
+    {
+        "head": "python",
+        "tail": "whitelist"
+    },
+    {
+        "head": "python",
+        "tail": "mapping"
+    },
+    {
+        "head": "find-replace",
+        "tail": "regexp"
+    },
+    {
+        "head": "find-replace",
+        "tail": "regex"
+    },
+    {
+        "head": "find-replace",
+        "tail": "blacklist"
+    },
+    {
+        "head": "find-replace",
+        "tail": "trie"
+    },
+    {
+        "head": "find-replace",
+        "tail": "whitelist"
+    },
+    {
+        "head": "find-replace",
+        "tail": "mapping"
+    },
+    {
+        "head": "regexp",
+        "tail": "blacklist"
+    },
+    {
+        "head": "regexp",
+        "tail": "trie"
+    },
+    {
+        "head": "regexp",
+        "tail": "whitelist"
+    },
+    {
+        "head": "regexp",
+        "tail": "mapping"
+    },
+    {
+        "head": "regex",
+        "tail": "blacklist"
+    },
+    {
+        "head": "regex",
+        "tail": "trie"
+    },
+    {
+        "head": "regex",
+        "tail": "whitelist"
+    },
+    {
+        "head": "regex",
+        "tail": "mapping"
+    },
+    {
+        "head": "blacklist",
+        "tail": "trie"
+    },
+    {
+        "head": "blacklist",
+        "tail": "whitelist"
+    },
+    {
+        "head": "blacklist",
+        "tail": "mapping"
+    },
+    {
+        "head": "trie",
+        "tail": "whitelist"
+    },
+    {
+        "head": "trie",
+        "tail": "mapping"
+    },
+    {
+        "head": "whitelist",
+        "tail": "mapping"
+    },
+    {
+        "head": "python",
+        "tail": "mypyc"
+    },
+    {
+        "head": "python",
+        "tail": "python standard library"
+    },
+    {
+        "head": "mypyc",
+        "tail": "python3"
+    },
+    {
+        "head": "mypyc",
+        "tail": "python standard library"
+    },
+    {
+        "head": "mypyc",
+        "tail": "compiler"
+    },
+    {
+        "head": "mypyc",
+        "tail": "library"
+    },
+    {
+        "head": "python3",
+        "tail": "python standard library"
+    },
+    {
+        "head": "python standard library",
+        "tail": "compiler"
+    },
+    {
+        "head": "python standard library",
+        "tail": "library"
+    },
+    {
+        "head": "compiler",
+        "tail": "library"
     }
 ]

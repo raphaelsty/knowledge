@@ -34446,5 +34446,37 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/ddelange/retrie": {
+        "extra-tags": [
+            "mapping"
+        ],
+        "date": "2020-04-08",
+        "title": "retrie",
+        "summary": "Efficient Trie-based regex unions for blacklist/whitelist filtering and one-pass mapping-based string replacing",
+        "tags": [
+            "python",
+            "find-replace",
+            "regexp",
+            "regex",
+            "blacklist",
+            "trie",
+            "whitelist"
+        ]
+    },
+    "https://github.com/pycompiled/compiled": {
+        "extra-tags": [
+            "python standard library",
+            "compiler",
+            "library"
+        ],
+        "date": "2021-09-06",
+        "title": "compiled",
+        "summary": "Compiled variants of the Python standard library.",
+        "tags": [
+            "python",
+            "mypyc",
+            "python3"
+        ]
     }
 }
