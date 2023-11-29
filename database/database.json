@@ -34419,5 +34419,32 @@
         "tags": [
             "assembly"
         ]
+    },
+    "https://github.com/anndvision/vsop": {
+        "extra-tags": [
+            "on-policy",
+            "actor-critic",
+            "advantage-actor-critic"
+        ],
+        "date": "2023-05-23",
+        "title": "vsop",
+        "summary": "Implementation of ReLU to the Rescue: Improve Your On-Policy Actor-Critic with Positive Advantages ",
+        "tags": [
+            "jupyter notebook"
+        ]
+    },
+    "https://github.com/raphaelsty/kdmlm": {
+        "extra-tags": [
+            "knowledge",
+            "language models",
+            "language models as knowledge bases",
+            "language models knowledge"
+        ],
+        "date": "2021-02-15",
+        "title": "kdmlm",
+        "summary": "Combine knowledge bases with language models.",
+        "tags": [
+            "python"
+        ]
     }
 }
