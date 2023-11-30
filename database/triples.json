@@ -157110,5 +157110,37 @@
     {
         "head": "compiler",
         "tail": "library"
+    },
+    {
+        "head": "kernel",
+        "tail": "system"
+    },
+    {
+        "head": "kernel",
+        "tail": "code"
+    },
+    {
+        "head": "kernel",
+        "tail": "unix"
+    },
+    {
+        "head": "kernel",
+        "tail": "macos"
+    },
+    {
+        "head": "system",
+        "tail": "code"
+    },
+    {
+        "head": "system",
+        "tail": "unix"
+    },
+    {
+        "head": "system",
+        "tail": "macos"
+    },
+    {
+        "head": "code",
+        "tail": "unix"
     }
 ]

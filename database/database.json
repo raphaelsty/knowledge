@@ -34478,5 +34478,19 @@
             "mypyc",
             "python3"
         ]
+    },
+    "https://en.wikipedia.org/w/index.php?title=Darwin_(operating_system)&oldid=1185383001#Kernel": {
+        "extra-tags": [
+            "system",
+            "code",
+            "unix",
+            "macos"
+        ],
+        "title": "Darwin (operating system)",
+        "summary": "Darwin is the core Unix operating system of macOS (previously OS X and Mac OS X), iOS, watchOS, tvOS, iPadOS, visionOS, and bridgeOS. It previously existed as an independent open-source operating system, first released by Apple Inc. in 2000. It is composed of code derived from NeXTSTEP, BSD, Mach, and other free software projects' code, as well as code developed by Apple.\nDarwin is mostly POSIX-compatible, but has never, by itself, been certified as compatible with any version of POSIX. Starting with Leopard, macOS has been certified as compatible with the Single UNIX Specification version 3 (SUSv3).",
+        "date": "2023-11-29",
+        "tags": [
+            "kernel"
+        ]
     }
 }
