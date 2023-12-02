@@ -157142,5 +157142,217 @@
     {
         "head": "code",
         "tail": "unix"
+    },
+    {
+        "head": "pydantic",
+        "tail": "typescript"
+    },
+    {
+        "head": "pydantic",
+        "tail": "react"
+    },
+    {
+        "head": "pydantic",
+        "tail": "build"
+    },
+    {
+        "head": "pydantic",
+        "tail": "fast"
+    },
+    {
+        "head": "pydantic",
+        "tail": "fast ai"
+    },
+    {
+        "head": "python",
+        "tail": "fast ai"
+    },
+    {
+        "head": "typescript",
+        "tail": "fastapi"
+    },
+    {
+        "head": "typescript",
+        "tail": "build"
+    },
+    {
+        "head": "typescript",
+        "tail": "fast"
+    },
+    {
+        "head": "typescript",
+        "tail": "fast ai"
+    },
+    {
+        "head": "react",
+        "tail": "fastapi"
+    },
+    {
+        "head": "react",
+        "tail": "build"
+    },
+    {
+        "head": "react",
+        "tail": "fast"
+    },
+    {
+        "head": "react",
+        "tail": "fast ai"
+    },
+    {
+        "head": "fastapi",
+        "tail": "build"
+    },
+    {
+        "head": "fastapi",
+        "tail": "fast"
+    },
+    {
+        "head": "fastapi",
+        "tail": "fast ai"
+    },
+    {
+        "head": "build",
+        "tail": "fast"
+    },
+    {
+        "head": "build",
+        "tail": "fast ai"
+    },
+    {
+        "head": "fast",
+        "tail": "fast ai"
+    },
+    {
+        "head": "github-wrapped",
+        "tail": "profile-readme"
+    },
+    {
+        "head": "github-wrapped",
+        "tail": "python"
+    },
+    {
+        "head": "github-wrapped",
+        "tail": "readme-stats"
+    },
+    {
+        "head": "github-wrapped",
+        "tail": "github-api"
+    },
+    {
+        "head": "github-wrapped",
+        "tail": "trends"
+    },
+    {
+        "head": "github-wrapped",
+        "tail": "profile"
+    },
+    {
+        "head": "github-wrapped",
+        "tail": "customizable"
+    },
+    {
+        "head": "github-wrapped",
+        "tail": "statistics"
+    },
+    {
+        "head": "profile-readme",
+        "tail": "python"
+    },
+    {
+        "head": "profile-readme",
+        "tail": "readme-stats"
+    },
+    {
+        "head": "profile-readme",
+        "tail": "github-api"
+    },
+    {
+        "head": "profile-readme",
+        "tail": "trends"
+    },
+    {
+        "head": "profile-readme",
+        "tail": "profile"
+    },
+    {
+        "head": "profile-readme",
+        "tail": "customizable"
+    },
+    {
+        "head": "profile-readme",
+        "tail": "statistics"
+    },
+    {
+        "head": "python",
+        "tail": "readme-stats"
+    },
+    {
+        "head": "python",
+        "tail": "trends"
+    },
+    {
+        "head": "python",
+        "tail": "customizable"
+    },
+    {
+        "head": "readme-stats",
+        "tail": "github-api"
+    },
+    {
+        "head": "readme-stats",
+        "tail": "trends"
+    },
+    {
+        "head": "readme-stats",
+        "tail": "profile"
+    },
+    {
+        "head": "readme-stats",
+        "tail": "customizable"
+    },
+    {
+        "head": "readme-stats",
+        "tail": "statistics"
+    },
+    {
+        "head": "github-api",
+        "tail": "trends"
+    },
+    {
+        "head": "github-api",
+        "tail": "profile"
+    },
+    {
+        "head": "github-api",
+        "tail": "customizable"
+    },
+    {
+        "head": "github-api",
+        "tail": "statistics"
+    },
+    {
+        "head": "trends",
+        "tail": "profile"
+    },
+    {
+        "head": "trends",
+        "tail": "customizable"
+    },
+    {
+        "head": "trends",
+        "tail": "statistics"
+    },
+    {
+        "head": "profile",
+        "tail": "customizable"
+    },
+    {
+        "head": "profile",
+        "tail": "statistics"
+    },
+    {
+        "head": "customizable",
+        "tail": "statistics"
     }
 ]

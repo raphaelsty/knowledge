@@ -34492,5 +34492,41 @@
         "tags": [
             "kernel"
         ]
+    },
+    "https://github.com/samuelcolvin/FastUI": {
+        "extra-tags": [
+            "build",
+            "fast",
+            "fast ai"
+        ],
+        "date": "2023-09-18",
+        "title": "FastUI",
+        "summary": "Build better UIs faster.",
+        "tags": [
+            "pydantic",
+            "python",
+            "typescript",
+            "react",
+            "fastapi"
+        ]
+    },
+    "https://github.com/avgupta456/github-trends": {
+        "extra-tags": [
+            "trends",
+            "profile",
+            "customizable",
+            "statistics"
+        ],
+        "date": "2020-12-18",
+        "title": "github-trends",
+        "summary": "\ud83d\ude80 Level up your GitHub profile readme with customizable cards including LOC statistics!",
+        "tags": [
+            "github-wrapped",
+            "github",
+            "profile-readme",
+            "python",
+            "readme-stats",
+            "github-api"
+        ]
     }
 }
