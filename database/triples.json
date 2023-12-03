@@ -157354,5 +157354,145 @@
     {
         "head": "customizable",
         "tail": "statistics"
+    },
+    {
+        "head": "i3wm",
+        "tail": "i3"
+    },
+    {
+        "head": "i3wm",
+        "tail": "tiling"
+    },
+    {
+        "head": "i3wm",
+        "tail": "swift"
+    },
+    {
+        "head": "i3wm",
+        "tail": "tiling-window-manager"
+    },
+    {
+        "head": "i3wm",
+        "tail": "mac"
+    },
+    {
+        "head": "i3wm",
+        "tail": "macos"
+    },
+    {
+        "head": "i3wm",
+        "tail": "window-manager"
+    },
+    {
+        "head": "i3wm",
+        "tail": "manager"
+    },
+    {
+        "head": "i3",
+        "tail": "tiling"
+    },
+    {
+        "head": "i3",
+        "tail": "swift"
+    },
+    {
+        "head": "i3",
+        "tail": "tiling-window-manager"
+    },
+    {
+        "head": "i3",
+        "tail": "mac"
+    },
+    {
+        "head": "i3",
+        "tail": "macos"
+    },
+    {
+        "head": "i3",
+        "tail": "window-manager"
+    },
+    {
+        "head": "i3",
+        "tail": "manager"
+    },
+    {
+        "head": "tiling",
+        "tail": "swift"
+    },
+    {
+        "head": "tiling",
+        "tail": "tiling-window-manager"
+    },
+    {
+        "head": "tiling",
+        "tail": "mac"
+    },
+    {
+        "head": "tiling",
+        "tail": "macos"
+    },
+    {
+        "head": "tiling",
+        "tail": "window-manager"
+    },
+    {
+        "head": "tiling",
+        "tail": "manager"
+    },
+    {
+        "head": "swift",
+        "tail": "tiling-window-manager"
+    },
+    {
+        "head": "swift",
+        "tail": "mac"
+    },
+    {
+        "head": "swift",
+        "tail": "window-manager"
+    },
+    {
+        "head": "swift",
+        "tail": "manager"
+    },
+    {
+        "head": "tiling-window-manager",
+        "tail": "mac"
+    },
+    {
+        "head": "tiling-window-manager",
+        "tail": "macos"
+    },
+    {
+        "head": "tiling-window-manager",
+        "tail": "window-manager"
+    },
+    {
+        "head": "tiling-window-manager",
+        "tail": "manager"
+    },
+    {
+        "head": "mac",
+        "tail": "macos"
+    },
+    {
+        "head": "mac",
+        "tail": "window-manager"
+    },
+    {
+        "head": "mac",
+        "tail": "manager"
+    },
+    {
+        "head": "macos",
+        "tail": "window-manager"
+    },
+    {
+        "head": "macos",
+        "tail": "manager"
+    },
+    {
+        "head": "window-manager",
+        "tail": "manager"
     }
 ]

@@ -34528,5 +34528,32 @@
             "readme-stats",
             "github-api"
         ]
+    },
+    "https://github.com/gbolmier/aoc": {
+        "extra-tags": [],
+        "date": "2023-12-01",
+        "title": "aoc",
+        "summary": "",
+        "tags": [
+            "jupyter notebook"
+        ]
+    },
+    "https://github.com/nikitabobko/AeroSpace": {
+        "extra-tags": [
+            "manager"
+        ],
+        "date": "2023-05-21",
+        "title": "AeroSpace",
+        "summary": "AeroSpace is an i3-like tiling window manager for macOS",
+        "tags": [
+            "i3wm",
+            "i3",
+            "tiling",
+            "swift",
+            "tiling-window-manager",
+            "mac",
+            "macos",
+            "window-manager"
+        ]
     }
 }
