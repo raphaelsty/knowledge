@@ -34555,5 +34555,39 @@
             "macos",
             "window-manager"
         ]
+    },
+    "https://github.com/joelgrus/advent2023": {
+        "extra-tags": [
+            "code",
+            "ecir2023",
+            "sample code"
+        ],
+        "date": "2023-12-02",
+        "title": "advent2023",
+        "summary": "advent of code 2023",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/ccaloian/advent-of-code-2023": {
+        "extra-tags": [
+            "code",
+            "out-of-core"
+        ],
+        "date": "2023-12-02",
+        "title": "advent-of-code-2023",
+        "summary": "Advent of Code 2023 (Rust)",
+        "tags": [
+            "rust"
+        ]
+    },
+    "https://github.com/joellidin/aoc": {
+        "extra-tags": [],
+        "date": "2022-12-01",
+        "title": "aoc",
+        "summary": "",
+        "tags": [
+            "rust"
+        ]
     }
 }

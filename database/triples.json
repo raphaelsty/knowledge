@@ -157494,5 +157494,33 @@
     {
         "head": "window-manager",
         "tail": "manager"
+    },
+    {
+        "head": "python",
+        "tail": "ecir2023"
+    },
+    {
+        "head": "python",
+        "tail": "sample code"
+    },
+    {
+        "head": "code",
+        "tail": "ecir2023"
+    },
+    {
+        "head": "code",
+        "tail": "sample code"
+    },
+    {
+        "head": "ecir2023",
+        "tail": "sample code"
+    },
+    {
+        "head": "rust",
+        "tail": "code"
+    },
+    {
+        "head": "code",
+        "tail": "out-of-core"
     }
 ]
