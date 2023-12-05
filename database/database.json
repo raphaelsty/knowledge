@@ -34618,5 +34618,23 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/AmrDeveloper/GQL": {
+        "extra-tags": [
+            "language"
+        ],
+        "date": "2023-06-05",
+        "title": "GQL",
+        "summary": " Git Query language is a SQL like language to perform queries on .git files with supports of most of SQL features such as grouping, ordering and aggregations functions",
+        "tags": [
+            "interpreter",
+            "engine",
+            "git",
+            "rust",
+            "gitql",
+            "sql",
+            "gql",
+            "database"
+        ]
     }
 }

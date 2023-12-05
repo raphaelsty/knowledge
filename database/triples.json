@@ -157618,5 +157618,113 @@
     {
         "head": "imba",
         "tail": "numba"
+    },
+    {
+        "head": "interpreter",
+        "tail": "engine"
+    },
+    {
+        "head": "interpreter",
+        "tail": "git"
+    },
+    {
+        "head": "interpreter",
+        "tail": "gitql"
+    },
+    {
+        "head": "interpreter",
+        "tail": "sql"
+    },
+    {
+        "head": "interpreter",
+        "tail": "gql"
+    },
+    {
+        "head": "interpreter",
+        "tail": "database"
+    },
+    {
+        "head": "engine",
+        "tail": "git"
+    },
+    {
+        "head": "engine",
+        "tail": "rust"
+    },
+    {
+        "head": "engine",
+        "tail": "gitql"
+    },
+    {
+        "head": "engine",
+        "tail": "sql"
+    },
+    {
+        "head": "engine",
+        "tail": "gql"
+    },
+    {
+        "head": "engine",
+        "tail": "database"
+    },
+    {
+        "head": "engine",
+        "tail": "language"
+    },
+    {
+        "head": "git",
+        "tail": "gitql"
+    },
+    {
+        "head": "git",
+        "tail": "gql"
+    },
+    {
+        "head": "git",
+        "tail": "language"
+    },
+    {
+        "head": "rust",
+        "tail": "gitql"
+    },
+    {
+        "head": "rust",
+        "tail": "gql"
+    },
+    {
+        "head": "gitql",
+        "tail": "sql"
+    },
+    {
+        "head": "gitql",
+        "tail": "gql"
+    },
+    {
+        "head": "gitql",
+        "tail": "database"
+    },
+    {
+        "head": "gitql",
+        "tail": "language"
+    },
+    {
+        "head": "sql",
+        "tail": "gql"
+    },
+    {
+        "head": "sql",
+        "tail": "language"
+    },
+    {
+        "head": "gql",
+        "tail": "database"
+    },
+    {
+        "head": "gql",
+        "tail": "language"
+    },
+    {
+        "head": "database",
+        "tail": "language"
     }
 ]
