@@ -157522,5 +157522,101 @@
     {
         "head": "code",
         "tail": "out-of-core"
+    },
+    {
+        "head": "gui",
+        "tail": "go"
+    },
+    {
+        "head": "gui",
+        "tail": "macos"
+    },
+    {
+        "head": "gui",
+        "tail": "windows"
+    },
+    {
+        "head": "gui",
+        "tail": "adblock"
+    },
+    {
+        "head": "gui",
+        "tail": "linux"
+    },
+    {
+        "head": "gui",
+        "tail": "privacy"
+    },
+    {
+        "head": "gui",
+        "tail": "simple"
+    },
+    {
+        "head": "go",
+        "tail": "adblock"
+    },
+    {
+        "head": "go",
+        "tail": "privacy"
+    },
+    {
+        "head": "go",
+        "tail": "simple"
+    },
+    {
+        "head": "macos",
+        "tail": "adblock"
+    },
+    {
+        "head": "macos",
+        "tail": "privacy"
+    },
+    {
+        "head": "macos",
+        "tail": "simple"
+    },
+    {
+        "head": "windows",
+        "tail": "adblock"
+    },
+    {
+        "head": "windows",
+        "tail": "privacy"
+    },
+    {
+        "head": "windows",
+        "tail": "simple"
+    },
+    {
+        "head": "adblock",
+        "tail": "linux"
+    },
+    {
+        "head": "adblock",
+        "tail": "privacy"
+    },
+    {
+        "head": "adblock",
+        "tail": "simple"
+    },
+    {
+        "head": "linux",
+        "tail": "privacy"
+    },
+    {
+        "head": "linux",
+        "tail": "simple"
+    },
+    {
+        "head": "privacy",
+        "tail": "simple"
+    },
+    {
+        "head": "python",
+        "tail": "imba"
+    },
+    {
+        "head": "imba",
+        "tail": "numba"
     }
 ]

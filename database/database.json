@@ -34589,5 +34589,34 @@
         "tags": [
             "rust"
         ]
+    },
+    "https://github.com/anfragment/zen": {
+        "extra-tags": [
+            "simple"
+        ],
+        "date": "2023-05-27",
+        "title": "zen",
+        "summary": "Simple, free and efficient ad-blocker and privacy guard for Windows, MacOS and Linux",
+        "tags": [
+            "gui",
+            "go",
+            "macos",
+            "windows",
+            "adblock",
+            "linux",
+            "privacy"
+        ]
+    },
+    "https://github.com/state-spaces/mamba": {
+        "extra-tags": [
+            "imba",
+            "numba"
+        ],
+        "date": "2023-12-01",
+        "title": "mamba",
+        "summary": "",
+        "tags": [
+            "python"
+        ]
     }
 }
