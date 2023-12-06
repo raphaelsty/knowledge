@@ -157730,5 +157730,57 @@
     {
         "head": "hacker",
         "tail": "dl why does it work"
+    },
+    {
+        "head": "python",
+        "tail": "go"
+    },
+    {
+        "head": "python",
+        "tail": "question answering"
+    },
+    {
+        "head": "python",
+        "tail": "open domain question answering"
+    },
+    {
+        "head": "go",
+        "tail": "question answering"
+    },
+    {
+        "head": "go",
+        "tail": "question-generation"
+    },
+    {
+        "head": "go",
+        "tail": "open domain question answering"
+    },
+    {
+        "head": "question answering",
+        "tail": "question-generation"
+    },
+    {
+        "head": "question-generation",
+        "tail": "open domain question answering"
+    },
+    {
+        "head": "python",
+        "tail": "uncertainty"
+    },
+    {
+        "head": "python",
+        "tail": "uncertainty in deep learning"
+    },
+    {
+        "head": "python",
+        "tail": "uncertainty quantification"
+    },
+    {
+        "head": "uncertainty",
+        "tail": "uncertainty in deep learning"
+    },
+    {
+        "head": "uncertainty",
+        "tail": "uncertainty quantification"
     }
 ]
