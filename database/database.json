@@ -34675,5 +34675,17 @@
         "tags": [
             "python"
         ]
+    },
+    "https://www.bikobatanari.art/posts/2023/east-west-website-culture": {
+        "extra-tags": [
+            "web",
+            "art"
+        ],
+        "title": "Hackernews Browsing the Eastern Side of the Personal Web (bikobatanari.art)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2023-12-07"
     }
 }
