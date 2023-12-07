@@ -34687,5 +34687,34 @@
         ],
         "summary": "",
         "date": "2023-12-07"
+    },
+    "https://github.com/ROCm/ROCm": {
+        "extra-tags": [
+            "software",
+            "github"
+        ],
+        "date": "2016-03-18",
+        "title": "ROCm",
+        "summary": "AMD ROCm\u2122 Software - GitHub Home",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/pydantic/FastUI": {
+        "extra-tags": [
+            "build",
+            "fast",
+            "fast ai"
+        ],
+        "date": "2023-09-18",
+        "title": "FastUI",
+        "summary": "Build better UIs faster.",
+        "tags": [
+            "react",
+            "fastapi",
+            "typescript",
+            "pydantic",
+            "python"
+        ]
     }
 }
