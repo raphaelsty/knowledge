@@ -157786,5 +157786,121 @@
     {
         "head": "web",
         "tail": "art"
+    },
+    {
+        "head": "feature-selection",
+        "tail": "scikit-learn"
+    },
+    {
+        "head": "feature-selection",
+        "tail": "feature-extraction"
+    },
+    {
+        "head": "feature-selection",
+        "tail": "feature-engineering"
+    },
+    {
+        "head": "feature-selection",
+        "tail": "engineering"
+    },
+    {
+        "head": "feature-selection",
+        "tail": "package"
+    },
+    {
+        "head": "feature-selection",
+        "tail": "sklearn"
+    },
+    {
+        "head": "data-science",
+        "tail": "engineering"
+    },
+    {
+        "head": "data-science",
+        "tail": "package"
+    },
+    {
+        "head": "scikit-learn",
+        "tail": "feature-extraction"
+    },
+    {
+        "head": "scikit-learn",
+        "tail": "engineering"
+    },
+    {
+        "head": "scikit-learn",
+        "tail": "package"
+    },
+    {
+        "head": "feature-extraction",
+        "tail": "engineering"
+    },
+    {
+        "head": "feature-extraction",
+        "tail": "package"
+    },
+    {
+        "head": "feature-extraction",
+        "tail": "sklearn"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "engineering"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "package"
+    },
+    {
+        "head": "python",
+        "tail": "engineering"
+    },
+    {
+        "head": "feature-engineering",
+        "tail": "engineering"
+    },
+    {
+        "head": "feature-engineering",
+        "tail": "package"
+    },
+    {
+        "head": "feature-engineering",
+        "tail": "sklearn"
+    },
+    {
+        "head": "engineering",
+        "tail": "package"
+    },
+    {
+        "head": "engineering",
+        "tail": "sklearn"
+    },
+    {
+        "head": "package",
+        "tail": "sklearn"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "ipython"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "tool"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "memory"
+    },
+    {
+        "head": "ipython",
+        "tail": "tool"
+    },
+    {
+        "head": "ipython",
+        "tail": "memory"
+    },
+    {
+        "head": "tool",
+        "tail": "memory"
     }
 ]

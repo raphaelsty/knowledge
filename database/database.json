@@ -34716,5 +34716,37 @@
             "pydantic",
             "python"
         ]
+    },
+    "https://github.com/feature-engine/feature_engine": {
+        "extra-tags": [
+            "engineering",
+            "package",
+            "sklearn"
+        ],
+        "date": "2018-12-31",
+        "title": "feature_engine",
+        "summary": "Feature engineering package with sklearn like functionality",
+        "tags": [
+            "feature-selection",
+            "data-science",
+            "scikit-learn",
+            "feature-extraction",
+            "machine-learning",
+            "python",
+            "feature-engineering"
+        ]
+    },
+    "https://github.com/ianozsvald/ipython_memory_usage": {
+        "extra-tags": [
+            "ipython",
+            "tool",
+            "memory"
+        ],
+        "date": "2014-07-14",
+        "title": "ipython_memory_usage",
+        "summary": "IPython tool to report memory usage deltas for every command you type",
+        "tags": [
+            "jupyter notebook"
+        ]
     }
 }
