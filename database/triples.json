@@ -157902,5 +157902,37 @@
     {
         "head": "tool",
         "tail": "memory"
+    },
+    {
+        "head": "accelerate",
+        "tail": "pytorch"
+    },
+    {
+        "head": "accelerate",
+        "tail": "python"
+    },
+    {
+        "head": "accelerate",
+        "tail": "utility"
+    },
+    {
+        "head": "accelerate",
+        "tail": "functions"
+    },
+    {
+        "head": "pytorch",
+        "tail": "utility"
+    },
+    {
+        "head": "pytorch",
+        "tail": "functions"
+    },
+    {
+        "head": "python",
+        "tail": "utility"
+    },
+    {
+        "head": "utility",
+        "tail": "functions"
     }
 ]

@@ -34748,5 +34748,19 @@
         "tags": [
             "jupyter notebook"
         ]
+    },
+    "https://github.com/lucidrains/pytorch-custom-utils": {
+        "extra-tags": [
+            "utility",
+            "functions"
+        ],
+        "date": "2023-12-12",
+        "title": "pytorch-custom-utils",
+        "summary": "Just some miscellaneous utility functions / decorators / modules related to Pytorch and Accelerate to help speed up implementation of new AI research",
+        "tags": [
+            "accelerate",
+            "pytorch",
+            "python"
+        ]
     }
 }
