@@ -34762,5 +34762,40 @@
             "pytorch",
             "python"
         ]
+    },
+    "https://github.com/run-llama/llama-hub": {
+        "extra-tags": [
+            "llama",
+            "library",
+            "data",
+            "llms",
+            "community"
+        ],
+        "date": "2023-02-01",
+        "title": "llama-hub",
+        "summary": "A library of data loaders for LLMs made by the community -- to be used with LlamaIndex and/or LangChain",
+        "tags": [
+            "jupyter notebook"
+        ]
+    },
+    "https://github.com/nalgeon/codapi": {
+        "extra-tags": [
+            "code",
+            "education",
+            "documentation",
+            "fun"
+        ],
+        "date": "2023-11-24",
+        "title": "codapi",
+        "summary": "Embeddable code playgrounds for education, documentation, and fun.",
+        "tags": [
+            "snippets",
+            "sandbox",
+            "interactive-snippets",
+            "code-playground",
+            "go",
+            "playground",
+            "interactive-code"
+        ]
     }
 }

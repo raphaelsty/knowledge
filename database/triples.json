@@ -157934,5 +157934,261 @@
     {
         "head": "utility",
         "tail": "functions"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "llama"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "llms"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "community"
+    },
+    {
+        "head": "llama",
+        "tail": "library"
+    },
+    {
+        "head": "llama",
+        "tail": "data"
+    },
+    {
+        "head": "llama",
+        "tail": "llms"
+    },
+    {
+        "head": "llama",
+        "tail": "community"
+    },
+    {
+        "head": "library",
+        "tail": "data"
+    },
+    {
+        "head": "library",
+        "tail": "llms"
+    },
+    {
+        "head": "library",
+        "tail": "community"
+    },
+    {
+        "head": "data",
+        "tail": "llms"
+    },
+    {
+        "head": "data",
+        "tail": "community"
+    },
+    {
+        "head": "llms",
+        "tail": "community"
+    },
+    {
+        "head": "snippets",
+        "tail": "sandbox"
+    },
+    {
+        "head": "snippets",
+        "tail": "interactive-snippets"
+    },
+    {
+        "head": "snippets",
+        "tail": "code-playground"
+    },
+    {
+        "head": "snippets",
+        "tail": "go"
+    },
+    {
+        "head": "snippets",
+        "tail": "playground"
+    },
+    {
+        "head": "snippets",
+        "tail": "interactive-code"
+    },
+    {
+        "head": "snippets",
+        "tail": "code"
+    },
+    {
+        "head": "snippets",
+        "tail": "documentation"
+    },
+    {
+        "head": "snippets",
+        "tail": "fun"
+    },
+    {
+        "head": "sandbox",
+        "tail": "interactive-snippets"
+    },
+    {
+        "head": "sandbox",
+        "tail": "code-playground"
+    },
+    {
+        "head": "sandbox",
+        "tail": "go"
+    },
+    {
+        "head": "sandbox",
+        "tail": "playground"
+    },
+    {
+        "head": "sandbox",
+        "tail": "interactive-code"
+    },
+    {
+        "head": "sandbox",
+        "tail": "code"
+    },
+    {
+        "head": "sandbox",
+        "tail": "education"
+    },
+    {
+        "head": "sandbox",
+        "tail": "documentation"
+    },
+    {
+        "head": "sandbox",
+        "tail": "fun"
+    },
+    {
+        "head": "interactive-snippets",
+        "tail": "code-playground"
+    },
+    {
+        "head": "interactive-snippets",
+        "tail": "go"
+    },
+    {
+        "head": "interactive-snippets",
+        "tail": "playground"
+    },
+    {
+        "head": "interactive-snippets",
+        "tail": "interactive-code"
+    },
+    {
+        "head": "interactive-snippets",
+        "tail": "code"
+    },
+    {
+        "head": "interactive-snippets",
+        "tail": "education"
+    },
+    {
+        "head": "interactive-snippets",
+        "tail": "documentation"
+    },
+    {
+        "head": "interactive-snippets",
+        "tail": "fun"
+    },
+    {
+        "head": "code-playground",
+        "tail": "go"
+    },
+    {
+        "head": "code-playground",
+        "tail": "playground"
+    },
+    {
+        "head": "code-playground",
+        "tail": "interactive-code"
+    },
+    {
+        "head": "code-playground",
+        "tail": "code"
+    },
+    {
+        "head": "code-playground",
+        "tail": "education"
+    },
+    {
+        "head": "code-playground",
+        "tail": "documentation"
+    },
+    {
+        "head": "code-playground",
+        "tail": "fun"
+    },
+    {
+        "head": "go",
+        "tail": "playground"
+    },
+    {
+        "head": "go",
+        "tail": "interactive-code"
+    },
+    {
+        "head": "go",
+        "tail": "education"
+    },
+    {
+        "head": "go",
+        "tail": "documentation"
+    },
+    {
+        "head": "go",
+        "tail": "fun"
+    },
+    {
+        "head": "playground",
+        "tail": "interactive-code"
+    },
+    {
+        "head": "playground",
+        "tail": "code"
+    },
+    {
+        "head": "playground",
+        "tail": "education"
+    },
+    {
+        "head": "playground",
+        "tail": "documentation"
+    },
+    {
+        "head": "playground",
+        "tail": "fun"
+    },
+    {
+        "head": "interactive-code",
+        "tail": "code"
+    },
+    {
+        "head": "interactive-code",
+        "tail": "education"
+    },
+    {
+        "head": "interactive-code",
+        "tail": "documentation"
+    },
+    {
+        "head": "interactive-code",
+        "tail": "fun"
+    },
+    {
+        "head": "code",
+        "tail": "education"
+    },
+    {
+        "head": "education",
+        "tail": "documentation"
+    },
+    {
+        "head": "education",
+        "tail": "fun"
+    },
+    {
+        "head": "documentation",
+        "tail": "fun"
     }
 ]
