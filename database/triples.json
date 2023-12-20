@@ -158190,5 +158190,41 @@
     {
         "head": "documentation",
         "tail": "fun"
+    },
+    {
+        "head": "model-parallel",
+        "tail": "tensor"
+    },
+    {
+        "head": "model-parallel",
+        "tail": "parallel"
+    },
+    {
+        "head": "model-parallel",
+        "tail": "torch"
+    },
+    {
+        "head": "shard-training",
+        "tail": "tensor"
+    },
+    {
+        "head": "shard-training",
+        "tail": "parallel"
+    },
+    {
+        "head": "shard-training",
+        "tail": "torch"
+    },
+    {
+        "head": "tensor",
+        "tail": "parallel"
+    },
+    {
+        "head": "tensor",
+        "tail": "torch"
+    },
+    {
+        "head": "parallel",
+        "tail": "torch"
     }
 ]

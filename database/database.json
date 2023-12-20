@@ -34797,5 +34797,21 @@
             "playground",
             "interactive-code"
         ]
+    },
+    "https://github.com/kaiyuyue/torchshard": {
+        "extra-tags": [
+            "tensor",
+            "parallel",
+            "torch"
+        ],
+        "date": "2021-04-27",
+        "title": "torchshard",
+        "summary": "TorchShard: Slicing a PyTorch Tensor Into Parallel Shards.",
+        "tags": [
+            "python",
+            "model-parallel",
+            "shard-training",
+            "pytorch"
+        ]
     }
 }
