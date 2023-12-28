@@ -158226,5 +158226,269 @@
     {
         "head": "parallel",
         "tail": "torch"
+    },
+    {
+        "head": "geography",
+        "tail": "flashcards"
+    },
+    {
+        "head": "geography",
+        "tail": "anki"
+    },
+    {
+        "head": "geography",
+        "tail": "brain-brew"
+    },
+    {
+        "head": "geography",
+        "tail": "html"
+    },
+    {
+        "head": "geography",
+        "tail": "deck"
+    },
+    {
+        "head": "geography",
+        "tail": "ultimate"
+    },
+    {
+        "head": "flashcards",
+        "tail": "anki"
+    },
+    {
+        "head": "flashcards",
+        "tail": "brain-brew"
+    },
+    {
+        "head": "flashcards",
+        "tail": "html"
+    },
+    {
+        "head": "flashcards",
+        "tail": "deck"
+    },
+    {
+        "head": "flashcards",
+        "tail": "ultimate"
+    },
+    {
+        "head": "anki",
+        "tail": "brain-brew"
+    },
+    {
+        "head": "anki",
+        "tail": "html"
+    },
+    {
+        "head": "anki",
+        "tail": "deck"
+    },
+    {
+        "head": "anki",
+        "tail": "ultimate"
+    },
+    {
+        "head": "brain-brew",
+        "tail": "html"
+    },
+    {
+        "head": "brain-brew",
+        "tail": "deck"
+    },
+    {
+        "head": "brain-brew",
+        "tail": "ultimate"
+    },
+    {
+        "head": "html",
+        "tail": "deck"
+    },
+    {
+        "head": "html",
+        "tail": "ultimate"
+    },
+    {
+        "head": "deck",
+        "tail": "ultimate"
+    },
+    {
+        "head": "python",
+        "tail": "trivia"
+    },
+    {
+        "head": "python",
+        "tail": "deck"
+    },
+    {
+        "head": "python",
+        "tail": "anki"
+    },
+    {
+        "head": "trivia",
+        "tail": "deck"
+    },
+    {
+        "head": "trivia",
+        "tail": "anki"
+    },
+    {
+        "head": "anki",
+        "tail": "quizbowl"
+    },
+    {
+        "head": "anki",
+        "tail": "study"
+    },
+    {
+        "head": "anki",
+        "tail": "jeopardy"
+    },
+    {
+        "head": "anki",
+        "tail": "srs"
+    },
+    {
+        "head": "anki",
+        "tail": "project"
+    },
+    {
+        "head": "anki",
+        "tail": "knowledge"
+    },
+    {
+        "head": "flashcards",
+        "tail": "quizbowl"
+    },
+    {
+        "head": "flashcards",
+        "tail": "study"
+    },
+    {
+        "head": "flashcards",
+        "tail": "trivia"
+    },
+    {
+        "head": "flashcards",
+        "tail": "jeopardy"
+    },
+    {
+        "head": "flashcards",
+        "tail": "srs"
+    },
+    {
+        "head": "flashcards",
+        "tail": "project"
+    },
+    {
+        "head": "flashcards",
+        "tail": "knowledge"
+    },
+    {
+        "head": "quizbowl",
+        "tail": "study"
+    },
+    {
+        "head": "quizbowl",
+        "tail": "deck"
+    },
+    {
+        "head": "quizbowl",
+        "tail": "trivia"
+    },
+    {
+        "head": "quizbowl",
+        "tail": "jeopardy"
+    },
+    {
+        "head": "quizbowl",
+        "tail": "srs"
+    },
+    {
+        "head": "quizbowl",
+        "tail": "project"
+    },
+    {
+        "head": "quizbowl",
+        "tail": "knowledge"
+    },
+    {
+        "head": "study",
+        "tail": "deck"
+    },
+    {
+        "head": "study",
+        "tail": "trivia"
+    },
+    {
+        "head": "study",
+        "tail": "jeopardy"
+    },
+    {
+        "head": "study",
+        "tail": "srs"
+    },
+    {
+        "head": "study",
+        "tail": "project"
+    },
+    {
+        "head": "study",
+        "tail": "knowledge"
+    },
+    {
+        "head": "deck",
+        "tail": "jeopardy"
+    },
+    {
+        "head": "deck",
+        "tail": "srs"
+    },
+    {
+        "head": "deck",
+        "tail": "project"
+    },
+    {
+        "head": "deck",
+        "tail": "knowledge"
+    },
+    {
+        "head": "trivia",
+        "tail": "jeopardy"
+    },
+    {
+        "head": "trivia",
+        "tail": "srs"
+    },
+    {
+        "head": "trivia",
+        "tail": "project"
+    },
+    {
+        "head": "trivia",
+        "tail": "knowledge"
+    },
+    {
+        "head": "jeopardy",
+        "tail": "srs"
+    },
+    {
+        "head": "jeopardy",
+        "tail": "project"
+    },
+    {
+        "head": "jeopardy",
+        "tail": "knowledge"
+    },
+    {
+        "head": "srs",
+        "tail": "project"
+    },
+    {
+        "head": "srs",
+        "tail": "knowledge"
+    },
+    {
+        "head": "project",
+        "tail": "knowledge"
     }
 ]

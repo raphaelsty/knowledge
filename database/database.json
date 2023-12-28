@@ -34813,5 +34813,53 @@
             "shard-training",
             "pytorch"
         ]
+    },
+    "https://github.com/anki-geo/ultimate-geography": {
+        "extra-tags": [
+            "ultimate"
+        ],
+        "date": "2016-12-28",
+        "title": "ultimate-geography",
+        "summary": "Geography flashcard deck for Anki",
+        "tags": [
+            "geography",
+            "flashcards",
+            "anki",
+            "brain-brew",
+            "html",
+            "deck"
+        ]
+    },
+    "https://github.com/ricardofig016/TriviaAnkiDeckGenerator": {
+        "extra-tags": [
+            "trivia",
+            "deck",
+            "anki"
+        ],
+        "date": "2023-08-10",
+        "title": "TriviaAnkiDeckGenerator",
+        "summary": "Generate a trivia deck on Anki from Random Trivia Generator",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/AnkiLearnEverything/Anki_Ultimate_Everything": {
+        "extra-tags": [
+            "project",
+            "knowledge"
+        ],
+        "date": "2020-07-02",
+        "title": "Anki_Ultimate_Everything",
+        "summary": "This project aims to provide instructive, high-quality, atomic, Anki flashcards which cover a myriad general knowledge topics.",
+        "tags": [
+            "anki",
+            "flashcards",
+            "quizbowl",
+            "study",
+            "deck",
+            "trivia",
+            "jeopardy",
+            "srs"
+        ]
     }
 }
