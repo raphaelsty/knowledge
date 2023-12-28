@@ -34861,5 +34861,17 @@
             "jeopardy",
             "srs"
         ]
+    },
+    "https://github.com/cuda-mode/resource-stream": {
+        "extra-tags": [
+            "stream",
+            "cuda",
+            "news",
+            "kd mkb related"
+        ],
+        "date": "2023-12-27",
+        "title": "resource-stream",
+        "summary": "CUDA related news and material links",
+        "tags": []
     }
 }
