@@ -34873,5 +34873,24 @@
         "title": "resource-stream",
         "summary": "CUDA related news and material links",
         "tags": []
+    },
+    "https://github.com/rapidfuzz/RapidFuzz": {
+        "extra-tags": [
+            "matching",
+            "metrics"
+        ],
+        "date": "2020-02-29",
+        "title": "RapidFuzz",
+        "summary": "Rapid fuzzy string matching in Python using various string metrics",
+        "tags": [
+            "levenshtein-distance",
+            "levenshtein",
+            "python",
+            "string-matching",
+            "c++",
+            "string-similarity",
+            "cpp",
+            "string-comparison"
+        ]
     }
 }
