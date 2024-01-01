@@ -34892,5 +34892,23 @@
             "cpp",
             "string-comparison"
         ]
+    },
+    "https://github.com/iorate/ublacklist": {
+        "extra-tags": [
+            "google",
+            "search",
+            "blacklist",
+            "domain specific bert"
+        ],
+        "date": "2018-06-25",
+        "title": "ublacklist",
+        "summary": "Blocks specific sites from appearing in Google search results",
+        "tags": [
+            "blocker",
+            "firefox-extension",
+            "typescript",
+            "google-search",
+            "chrome-extension"
+        ]
     }
 }

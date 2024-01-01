@@ -158578,5 +158578,133 @@
     {
         "head": "matching",
         "tail": "metrics"
+    },
+    {
+        "head": "blocker",
+        "tail": "firefox-extension"
+    },
+    {
+        "head": "blocker",
+        "tail": "typescript"
+    },
+    {
+        "head": "blocker",
+        "tail": "google-search"
+    },
+    {
+        "head": "blocker",
+        "tail": "chrome-extension"
+    },
+    {
+        "head": "blocker",
+        "tail": "google"
+    },
+    {
+        "head": "blocker",
+        "tail": "search"
+    },
+    {
+        "head": "blocker",
+        "tail": "blacklist"
+    },
+    {
+        "head": "blocker",
+        "tail": "domain specific bert"
+    },
+    {
+        "head": "firefox-extension",
+        "tail": "google-search"
+    },
+    {
+        "head": "firefox-extension",
+        "tail": "google"
+    },
+    {
+        "head": "firefox-extension",
+        "tail": "search"
+    },
+    {
+        "head": "firefox-extension",
+        "tail": "blacklist"
+    },
+    {
+        "head": "firefox-extension",
+        "tail": "domain specific bert"
+    },
+    {
+        "head": "typescript",
+        "tail": "google-search"
+    },
+    {
+        "head": "typescript",
+        "tail": "google"
+    },
+    {
+        "head": "typescript",
+        "tail": "search"
+    },
+    {
+        "head": "typescript",
+        "tail": "blacklist"
+    },
+    {
+        "head": "typescript",
+        "tail": "domain specific bert"
+    },
+    {
+        "head": "google-search",
+        "tail": "chrome-extension"
+    },
+    {
+        "head": "google-search",
+        "tail": "google"
+    },
+    {
+        "head": "google-search",
+        "tail": "search"
+    },
+    {
+        "head": "google-search",
+        "tail": "blacklist"
+    },
+    {
+        "head": "google-search",
+        "tail": "domain specific bert"
+    },
+    {
+        "head": "chrome-extension",
+        "tail": "google"
+    },
+    {
+        "head": "chrome-extension",
+        "tail": "search"
+    },
+    {
+        "head": "chrome-extension",
+        "tail": "blacklist"
+    },
+    {
+        "head": "chrome-extension",
+        "tail": "domain specific bert"
+    },
+    {
+        "head": "google",
+        "tail": "blacklist"
+    },
+    {
+        "head": "google",
+        "tail": "domain specific bert"
+    },
+    {
+        "head": "search",
+        "tail": "blacklist"
+    },
+    {
+        "head": "search",
+        "tail": "domain specific bert"
+    },
+    {
+        "head": "blacklist",
+        "tail": "domain specific bert"
     }
 ]
