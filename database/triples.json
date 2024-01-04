@@ -158706,5 +158706,57 @@
     {
         "head": "blacklist",
         "tail": "domain specific bert"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "tree"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "retrieval"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "index"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "tree"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "retrieval"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "index"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "models"
+    },
+    {
+        "head": "tree",
+        "tail": "retrieval"
+    },
+    {
+        "head": "tree",
+        "tail": "index"
+    },
+    {
+        "head": "tree",
+        "tail": "models"
+    },
+    {
+        "head": "retrieval",
+        "tail": "index"
+    },
+    {
+        "head": "retrieval",
+        "tail": "models"
+    },
+    {
+        "head": "index",
+        "tail": "models"
     }
 ]
