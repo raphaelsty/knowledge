@@ -34940,5 +34940,18 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/bclavie/RAGatouille": {
+        "extra-tags": [
+            "rag",
+            "dalle",
+            "guillaume lample"
+        ],
+        "date": "2023-12-29",
+        "title": "RAGatouille",
+        "summary": "",
+        "tags": [
+            "python"
+        ]
     }
 }

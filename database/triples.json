@@ -158790,5 +158790,25 @@
     {
         "head": "paper",
         "tail": "retrieval"
+    },
+    {
+        "head": "python",
+        "tail": "rag"
+    },
+    {
+        "head": "python",
+        "tail": "guillaume lample"
+    },
+    {
+        "head": "rag",
+        "tail": "dalle"
+    },
+    {
+        "head": "rag",
+        "tail": "guillaume lample"
+    },
+    {
+        "head": "dalle",
+        "tail": "guillaume lample"
     }
 ]
