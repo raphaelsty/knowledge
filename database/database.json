@@ -34925,5 +34925,20 @@
             "computer science - information retrieval",
             "tree"
         ]
+    },
+    "https://github.com/CSHaitao/JTR": {
+        "extra-tags": [
+            "sigir",
+            "paper",
+            "tree",
+            "index",
+            "retrieval"
+        ],
+        "date": "2023-04-06",
+        "title": "JTR",
+        "summary": "The official repo for our SIGIR'23 Full paper: Constructing Tree-based Index for Efficient and Effective Dense Retrieval",
+        "tags": [
+            "python"
+        ]
     }
 }
