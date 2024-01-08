@@ -34953,5 +34953,27 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/ToucanToco/weaverbird": {
+        "extra-tags": [
+            "visual",
+            "data",
+            "pipeline"
+        ],
+        "date": "2019-01-23",
+        "title": "weaverbird",
+        "summary": "A visual data pipeline builder with various backends",
+        "tags": [
+            "mysql",
+            "data-transformation",
+            "pandas",
+            "snowflake",
+            "sql",
+            "postgresql",
+            "mongodb",
+            "typescript",
+            "vuejs",
+            "redshift"
+        ]
     }
 }

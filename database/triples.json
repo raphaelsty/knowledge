@@ -158810,5 +158810,205 @@
     {
         "head": "dalle",
         "tail": "guillaume lample"
+    },
+    {
+        "head": "mysql",
+        "tail": "data-transformation"
+    },
+    {
+        "head": "mysql",
+        "tail": "pandas"
+    },
+    {
+        "head": "mysql",
+        "tail": "visual"
+    },
+    {
+        "head": "mysql",
+        "tail": "pipeline"
+    },
+    {
+        "head": "data-transformation",
+        "tail": "pandas"
+    },
+    {
+        "head": "data-transformation",
+        "tail": "snowflake"
+    },
+    {
+        "head": "data-transformation",
+        "tail": "sql"
+    },
+    {
+        "head": "data-transformation",
+        "tail": "postgresql"
+    },
+    {
+        "head": "data-transformation",
+        "tail": "mongodb"
+    },
+    {
+        "head": "data-transformation",
+        "tail": "typescript"
+    },
+    {
+        "head": "data-transformation",
+        "tail": "vuejs"
+    },
+    {
+        "head": "data-transformation",
+        "tail": "redshift"
+    },
+    {
+        "head": "data-transformation",
+        "tail": "visual"
+    },
+    {
+        "head": "data-transformation",
+        "tail": "data"
+    },
+    {
+        "head": "data-transformation",
+        "tail": "pipeline"
+    },
+    {
+        "head": "pandas",
+        "tail": "snowflake"
+    },
+    {
+        "head": "pandas",
+        "tail": "postgresql"
+    },
+    {
+        "head": "pandas",
+        "tail": "mongodb"
+    },
+    {
+        "head": "pandas",
+        "tail": "typescript"
+    },
+    {
+        "head": "pandas",
+        "tail": "vuejs"
+    },
+    {
+        "head": "pandas",
+        "tail": "redshift"
+    },
+    {
+        "head": "pandas",
+        "tail": "visual"
+    },
+    {
+        "head": "pandas",
+        "tail": "pipeline"
+    },
+    {
+        "head": "snowflake",
+        "tail": "postgresql"
+    },
+    {
+        "head": "snowflake",
+        "tail": "mongodb"
+    },
+    {
+        "head": "snowflake",
+        "tail": "typescript"
+    },
+    {
+        "head": "snowflake",
+        "tail": "vuejs"
+    },
+    {
+        "head": "snowflake",
+        "tail": "visual"
+    },
+    {
+        "head": "sql",
+        "tail": "mongodb"
+    },
+    {
+        "head": "sql",
+        "tail": "vuejs"
+    },
+    {
+        "head": "sql",
+        "tail": "visual"
+    },
+    {
+        "head": "sql",
+        "tail": "pipeline"
+    },
+    {
+        "head": "postgresql",
+        "tail": "visual"
+    },
+    {
+        "head": "postgresql",
+        "tail": "data"
+    },
+    {
+        "head": "postgresql",
+        "tail": "pipeline"
+    },
+    {
+        "head": "mongodb",
+        "tail": "typescript"
+    },
+    {
+        "head": "mongodb",
+        "tail": "redshift"
+    },
+    {
+        "head": "mongodb",
+        "tail": "visual"
+    },
+    {
+        "head": "mongodb",
+        "tail": "data"
+    },
+    {
+        "head": "mongodb",
+        "tail": "pipeline"
+    },
+    {
+        "head": "typescript",
+        "tail": "vuejs"
+    },
+    {
+        "head": "typescript",
+        "tail": "redshift"
+    },
+    {
+        "head": "typescript",
+        "tail": "visual"
+    },
+    {
+        "head": "vuejs",
+        "tail": "redshift"
+    },
+    {
+        "head": "vuejs",
+        "tail": "visual"
+    },
+    {
+        "head": "vuejs",
+        "tail": "data"
+    },
+    {
+        "head": "vuejs",
+        "tail": "pipeline"
+    },
+    {
+        "head": "redshift",
+        "tail": "visual"
+    },
+    {
+        "head": "visual",
+        "tail": "data"
+    },
+    {
+        "head": "visual",
+        "tail": "pipeline"
     }
 ]
