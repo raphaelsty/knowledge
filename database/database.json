@@ -34988,5 +34988,17 @@
         "tags": [
             "jupyter notebook"
         ]
+    },
+    "https://buildjet.com/for-github-actions": {
+        "extra-tags": [
+            "github actions",
+            "build"
+        ],
+        "title": "BuildJet for GitHub Actions",
+        "summary": "Change 1 line, get 2x faster and cheaper builds",
+        "date": "2024-01-09",
+        "tags": [
+            "github action"
+        ]
     }
 }
