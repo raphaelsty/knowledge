@@ -34975,5 +34975,18 @@
             "vuejs",
             "redshift"
         ]
+    },
+    "https://github.com/erachelson/RLclass_MVA": {
+        "extra-tags": [
+            "classification relations between classes",
+            "classification",
+            "dataclass"
+        ],
+        "date": "2023-11-22",
+        "title": "RLclass_MVA",
+        "summary": "",
+        "tags": [
+            "jupyter notebook"
+        ]
     }
 }

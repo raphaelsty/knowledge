@@ -159010,5 +159010,21 @@
     {
         "head": "visual",
         "tail": "pipeline"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "classification relations between classes"
+    },
+    {
+        "head": "classification relations between classes",
+        "tail": "classification"
+    },
+    {
+        "head": "classification relations between classes",
+        "tail": "dataclass"
+    },
+    {
+        "head": "classification",
+        "tail": "dataclass"
     }
 ]
