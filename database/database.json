@@ -35000,5 +35000,25 @@
         "tags": [
             "github action"
         ]
+    },
+    "https://github.com/jxnl/instructor": {
+        "extra-tags": [
+            "llms",
+            "structured knowledge",
+            "structured-data",
+            "unstructured-data"
+        ],
+        "date": "2023-06-14",
+        "title": "instructor",
+        "summary": "structured outputs for llms ",
+        "tags": [
+            "validation",
+            "jupyter notebook",
+            "openai-function-calli",
+            "openai-functions",
+            "python",
+            "pydantic-v2",
+            "openai"
+        ]
     }
 }

@@ -159038,5 +159038,197 @@
     {
         "head": "github actions",
         "tail": "build"
+    },
+    {
+        "head": "validation",
+        "tail": "jupyter notebook"
+    },
+    {
+        "head": "validation",
+        "tail": "openai-function-calli"
+    },
+    {
+        "head": "validation",
+        "tail": "openai-functions"
+    },
+    {
+        "head": "validation",
+        "tail": "pydantic-v2"
+    },
+    {
+        "head": "validation",
+        "tail": "openai"
+    },
+    {
+        "head": "validation",
+        "tail": "llms"
+    },
+    {
+        "head": "validation",
+        "tail": "structured knowledge"
+    },
+    {
+        "head": "validation",
+        "tail": "structured-data"
+    },
+    {
+        "head": "validation",
+        "tail": "unstructured-data"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "openai-function-calli"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "openai-functions"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "pydantic-v2"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "openai"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "structured knowledge"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "structured-data"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "unstructured-data"
+    },
+    {
+        "head": "openai-function-calli",
+        "tail": "openai-functions"
+    },
+    {
+        "head": "openai-function-calli",
+        "tail": "python"
+    },
+    {
+        "head": "openai-function-calli",
+        "tail": "pydantic-v2"
+    },
+    {
+        "head": "openai-function-calli",
+        "tail": "openai"
+    },
+    {
+        "head": "openai-function-calli",
+        "tail": "llms"
+    },
+    {
+        "head": "openai-function-calli",
+        "tail": "structured knowledge"
+    },
+    {
+        "head": "openai-function-calli",
+        "tail": "structured-data"
+    },
+    {
+        "head": "openai-function-calli",
+        "tail": "unstructured-data"
+    },
+    {
+        "head": "openai-functions",
+        "tail": "python"
+    },
+    {
+        "head": "openai-functions",
+        "tail": "pydantic-v2"
+    },
+    {
+        "head": "openai-functions",
+        "tail": "openai"
+    },
+    {
+        "head": "openai-functions",
+        "tail": "llms"
+    },
+    {
+        "head": "openai-functions",
+        "tail": "structured knowledge"
+    },
+    {
+        "head": "openai-functions",
+        "tail": "structured-data"
+    },
+    {
+        "head": "openai-functions",
+        "tail": "unstructured-data"
+    },
+    {
+        "head": "python",
+        "tail": "pydantic-v2"
+    },
+    {
+        "head": "python",
+        "tail": "structured knowledge"
+    },
+    {
+        "head": "pydantic-v2",
+        "tail": "openai"
+    },
+    {
+        "head": "pydantic-v2",
+        "tail": "llms"
+    },
+    {
+        "head": "pydantic-v2",
+        "tail": "structured knowledge"
+    },
+    {
+        "head": "pydantic-v2",
+        "tail": "structured-data"
+    },
+    {
+        "head": "pydantic-v2",
+        "tail": "unstructured-data"
+    },
+    {
+        "head": "openai",
+        "tail": "llms"
+    },
+    {
+        "head": "openai",
+        "tail": "structured knowledge"
+    },
+    {
+        "head": "openai",
+        "tail": "structured-data"
+    },
+    {
+        "head": "openai",
+        "tail": "unstructured-data"
+    },
+    {
+        "head": "llms",
+        "tail": "structured knowledge"
+    },
+    {
+        "head": "llms",
+        "tail": "structured-data"
+    },
+    {
+        "head": "llms",
+        "tail": "unstructured-data"
+    },
+    {
+        "head": "structured knowledge",
+        "tail": "structured-data"
+    },
+    {
+        "head": "structured knowledge",
+        "tail": "unstructured-data"
+    },
+    {
+        "head": "structured-data",
+        "tail": "unstructured-data"
     }
 ]
