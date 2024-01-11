@@ -35020,5 +35020,56 @@
             "pydantic-v2",
             "openai"
         ]
+    },
+    "https://github.com/tonybaloney/rich-bench": {
+        "extra-tags": [
+            "rich",
+            "benchmarking",
+            "tool"
+        ],
+        "date": "2022-06-20",
+        "title": "rich-bench",
+        "summary": "A little benchmarking tool for Python",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/danieldk/awesome-glove80": {
+        "extra-tags": [
+            "awesome",
+            "awesome-list",
+            "font-awesome"
+        ],
+        "date": "2024-01-10",
+        "title": "awesome-glove80",
+        "summary": "Because Glove80 is awesome",
+        "tags": []
+    },
+    "https://github.com/atuinsh/atuin": {
+        "extra-tags": [],
+        "date": "2020-10-04",
+        "title": "atuin",
+        "summary": "\u2728 Magical shell history",
+        "tags": [
+            "zsh",
+            "rust",
+            "shell",
+            "fish",
+            "bash",
+            "history"
+        ]
+    },
+    "https://kazemnejad.com/blog/transformer_architecture_positional_encoding/": {
+        "extra-tags": [
+            "transformer",
+            "architecture",
+            "blog"
+        ],
+        "title": "Transformer Architecture: The Positional Encoding - Amirhossein Kazemnejad's Blog",
+        "summary": "",
+        "date": "2024-01-10",
+        "tags": [
+            "positional encoding"
+        ]
     }
 }

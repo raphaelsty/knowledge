@@ -159230,5 +159230,69 @@
     {
         "head": "structured-data",
         "tail": "unstructured-data"
+    },
+    {
+        "head": "rich",
+        "tail": "benchmarking"
+    },
+    {
+        "head": "rich",
+        "tail": "tool"
+    },
+    {
+        "head": "benchmarking",
+        "tail": "tool"
+    },
+    {
+        "head": "awesome",
+        "tail": "font-awesome"
+    },
+    {
+        "head": "awesome-list",
+        "tail": "font-awesome"
+    },
+    {
+        "head": "zsh",
+        "tail": "history"
+    },
+    {
+        "head": "rust",
+        "tail": "history"
+    },
+    {
+        "head": "shell",
+        "tail": "history"
+    },
+    {
+        "head": "fish",
+        "tail": "history"
+    },
+    {
+        "head": "bash",
+        "tail": "history"
+    },
+    {
+        "head": "positional encoding",
+        "tail": "transformer"
+    },
+    {
+        "head": "positional encoding",
+        "tail": "architecture"
+    },
+    {
+        "head": "positional encoding",
+        "tail": "blog"
+    },
+    {
+        "head": "transformer",
+        "tail": "architecture"
+    },
+    {
+        "head": "transformer",
+        "tail": "blog"
+    },
+    {
+        "head": "architecture",
+        "tail": "blog"
     }
 ]
