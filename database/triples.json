@@ -159294,5 +159294,17 @@
     {
         "head": "architecture",
         "tail": "blog"
+    },
+    {
+        "head": "python",
+        "tail": "cuda 11."
+    },
+    {
+        "head": "cuda",
+        "tail": "architecture"
+    },
+    {
+        "head": "architecture",
+        "tail": "cuda 11."
     }
 ]
