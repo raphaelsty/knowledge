@@ -159306,5 +159306,49 @@
     {
         "head": "architecture",
         "tail": "cuda 11."
+    },
+    {
+        "head": "artificial-intelligence",
+        "tail": "pytorch-lightning"
+    },
+    {
+        "head": "artificial-intelligence",
+        "tail": "models"
+    },
+    {
+        "head": "artificial-intelligence",
+        "tail": "zero"
+    },
+    {
+        "head": "data-science",
+        "tail": "pytorch-lightning"
+    },
+    {
+        "head": "data-science",
+        "tail": "zero"
+    },
+    {
+        "head": "python",
+        "tail": "pytorch-lightning"
+    },
+    {
+        "head": "ai",
+        "tail": "pytorch-lightning"
+    },
+    {
+        "head": "ai",
+        "tail": "zero"
+    },
+    {
+        "head": "pytorch-lightning",
+        "tail": "models"
+    },
+    {
+        "head": "pytorch-lightning",
+        "tail": "zero"
+    },
+    {
+        "head": "models",
+        "tail": "zero"
     }
 ]

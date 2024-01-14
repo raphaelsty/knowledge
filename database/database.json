@@ -35084,5 +35084,24 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/Lightning-AI/pytorch-lightning": {
+        "extra-tags": [
+            "pytorch-lightning",
+            "models",
+            "zero"
+        ],
+        "date": "2019-03-31",
+        "title": "pytorch-lightning",
+        "summary": "Pretrain, finetune and deploy AI models on multiple GPUs, TPUs with zero code changes.",
+        "tags": [
+            "artificial-intelligence",
+            "pytorch",
+            "machine-learning",
+            "data-science",
+            "python",
+            "ai",
+            "deep-learning"
+        ]
     }
 }
