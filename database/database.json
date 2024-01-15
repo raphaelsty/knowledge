@@ -35103,5 +35103,18 @@
             "ai",
             "deep-learning"
         ]
+    },
+    "https://github.com/cuda-mode/profiling-cuda-in-torch": {
+        "extra-tags": [
+            "profiling",
+            "cuda",
+            "torch"
+        ],
+        "date": "2024-01-11",
+        "title": "profiling-cuda-in-torch",
+        "summary": "",
+        "tags": [
+            "python"
+        ]
     }
 }
