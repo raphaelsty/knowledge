@@ -35116,5 +35116,17 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/LaurentMazare/board-rs": {
+        "extra-tags": [
+            "tensorboard",
+            "data"
+        ],
+        "date": "2024-01-15",
+        "title": "board-rs",
+        "summary": "Read and write tensorboard data using Rust",
+        "tags": [
+            "rust"
+        ]
     }
 }
