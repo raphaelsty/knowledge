@@ -35128,5 +35128,39 @@
         "tags": [
             "rust"
         ]
+    },
+    "https://github.com/sxyazi/yazi": {
+        "extra-tags": [
+            "fast",
+            "manager",
+            "async"
+        ],
+        "date": "2023-07-08",
+        "title": "yazi",
+        "summary": "\ud83d\udca5 Blazing fast terminal file manager written in Rust, based on async I/O.",
+        "tags": [
+            "rust",
+            "tui",
+            "linux",
+            "asyncio",
+            "terminal",
+            "file-manager",
+            "yazi",
+            "concurrency",
+            "windows",
+            "macos"
+        ]
+    },
+    "https://twitter.com/joao_gante/status/1747322413006643259": {
+        "extra-tags": [
+            "llm",
+            "no",
+            "transformers",
+            "llms"
+        ],
+        "title": "Up to 3x faster LLM generation with no extra resources/requirements - ngram speculation has landed in \ud83e\udd17 transformers! \ud83c\udfce\ufe0f\ud83d\udca8 All you need to do is to add `prompt_lookup_num_tokens=10` to your `generate` call and you'll get faster LLMs\ud83d\udd25 \ud83e\uddf5How does it work? https://t.co/DS7YJfw7Cw",
+        "summary": "",
+        "date": "2024-01-16",
+        "tags": []
     }
 }

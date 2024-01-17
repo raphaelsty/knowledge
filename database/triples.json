@@ -159370,5 +159370,269 @@
     {
         "head": "tensorboard",
         "tail": "data"
+    },
+    {
+        "head": "rust",
+        "tail": "tui"
+    },
+    {
+        "head": "rust",
+        "tail": "asyncio"
+    },
+    {
+        "head": "rust",
+        "tail": "file-manager"
+    },
+    {
+        "head": "rust",
+        "tail": "yazi"
+    },
+    {
+        "head": "rust",
+        "tail": "concurrency"
+    },
+    {
+        "head": "rust",
+        "tail": "manager"
+    },
+    {
+        "head": "tui",
+        "tail": "linux"
+    },
+    {
+        "head": "tui",
+        "tail": "asyncio"
+    },
+    {
+        "head": "tui",
+        "tail": "file-manager"
+    },
+    {
+        "head": "tui",
+        "tail": "yazi"
+    },
+    {
+        "head": "tui",
+        "tail": "concurrency"
+    },
+    {
+        "head": "tui",
+        "tail": "windows"
+    },
+    {
+        "head": "tui",
+        "tail": "macos"
+    },
+    {
+        "head": "tui",
+        "tail": "fast"
+    },
+    {
+        "head": "tui",
+        "tail": "manager"
+    },
+    {
+        "head": "tui",
+        "tail": "async"
+    },
+    {
+        "head": "linux",
+        "tail": "asyncio"
+    },
+    {
+        "head": "linux",
+        "tail": "file-manager"
+    },
+    {
+        "head": "linux",
+        "tail": "yazi"
+    },
+    {
+        "head": "linux",
+        "tail": "concurrency"
+    },
+    {
+        "head": "linux",
+        "tail": "fast"
+    },
+    {
+        "head": "linux",
+        "tail": "manager"
+    },
+    {
+        "head": "linux",
+        "tail": "async"
+    },
+    {
+        "head": "asyncio",
+        "tail": "terminal"
+    },
+    {
+        "head": "asyncio",
+        "tail": "file-manager"
+    },
+    {
+        "head": "asyncio",
+        "tail": "yazi"
+    },
+    {
+        "head": "asyncio",
+        "tail": "concurrency"
+    },
+    {
+        "head": "asyncio",
+        "tail": "windows"
+    },
+    {
+        "head": "asyncio",
+        "tail": "macos"
+    },
+    {
+        "head": "asyncio",
+        "tail": "fast"
+    },
+    {
+        "head": "asyncio",
+        "tail": "manager"
+    },
+    {
+        "head": "terminal",
+        "tail": "file-manager"
+    },
+    {
+        "head": "terminal",
+        "tail": "yazi"
+    },
+    {
+        "head": "terminal",
+        "tail": "concurrency"
+    },
+    {
+        "head": "terminal",
+        "tail": "manager"
+    },
+    {
+        "head": "terminal",
+        "tail": "async"
+    },
+    {
+        "head": "file-manager",
+        "tail": "yazi"
+    },
+    {
+        "head": "file-manager",
+        "tail": "concurrency"
+    },
+    {
+        "head": "file-manager",
+        "tail": "windows"
+    },
+    {
+        "head": "file-manager",
+        "tail": "macos"
+    },
+    {
+        "head": "file-manager",
+        "tail": "fast"
+    },
+    {
+        "head": "file-manager",
+        "tail": "manager"
+    },
+    {
+        "head": "file-manager",
+        "tail": "async"
+    },
+    {
+        "head": "yazi",
+        "tail": "concurrency"
+    },
+    {
+        "head": "yazi",
+        "tail": "windows"
+    },
+    {
+        "head": "yazi",
+        "tail": "macos"
+    },
+    {
+        "head": "yazi",
+        "tail": "fast"
+    },
+    {
+        "head": "yazi",
+        "tail": "manager"
+    },
+    {
+        "head": "yazi",
+        "tail": "async"
+    },
+    {
+        "head": "concurrency",
+        "tail": "windows"
+    },
+    {
+        "head": "concurrency",
+        "tail": "macos"
+    },
+    {
+        "head": "concurrency",
+        "tail": "fast"
+    },
+    {
+        "head": "concurrency",
+        "tail": "manager"
+    },
+    {
+        "head": "concurrency",
+        "tail": "async"
+    },
+    {
+        "head": "windows",
+        "tail": "fast"
+    },
+    {
+        "head": "windows",
+        "tail": "manager"
+    },
+    {
+        "head": "windows",
+        "tail": "async"
+    },
+    {
+        "head": "macos",
+        "tail": "fast"
+    },
+    {
+        "head": "macos",
+        "tail": "async"
+    },
+    {
+        "head": "fast",
+        "tail": "manager"
+    },
+    {
+        "head": "fast",
+        "tail": "async"
+    },
+    {
+        "head": "manager",
+        "tail": "async"
+    },
+    {
+        "head": "llm",
+        "tail": "no"
+    },
+    {
+        "head": "no",
+        "tail": "transformers"
+    },
+    {
+        "head": "no",
+        "tail": "llms"
+    },
+    {
+        "head": "transformers",
+        "tail": "llms"
     }
 ]
