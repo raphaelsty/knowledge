@@ -35162,5 +35162,34 @@
         "summary": "",
         "date": "2024-01-16",
         "tags": []
+    },
+    "https://github.com/nicklashansen/tdmpc2": {
+        "extra-tags": [
+            "code",
+            "models",
+            "continuous",
+            "control"
+        ],
+        "date": "2023-10-26",
+        "title": "tdmpc2",
+        "summary": "Code for \"TD-MPC2: Scalable, Robust World Models for Continuous Control\"",
+        "tags": [
+            "robotics",
+            "python",
+            "world-model",
+            "reinforcement-learning"
+        ]
+    },
+    "https://github.com/LaurentMazare/tboard-rs": {
+        "extra-tags": [
+            "tensorboard",
+            "data"
+        ],
+        "date": "2024-01-15",
+        "title": "tboard-rs",
+        "summary": "Read and write tensorboard data using Rust",
+        "tags": [
+            "rust"
+        ]
     }
 }
