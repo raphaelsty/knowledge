@@ -35258,5 +35258,19 @@
             "ollama",
             "llama"
         ]
+    },
+    "https://github.com/huggingface/nanotron": {
+        "extra-tags": [
+            "minimalistic",
+            "language model",
+            "3d",
+            "training"
+        ],
+        "date": "2023-09-11",
+        "title": "nanotron",
+        "summary": "Minimalistic large language model 3D-parallelism training",
+        "tags": [
+            "python"
+        ]
     }
 }

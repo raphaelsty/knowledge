@@ -160082,5 +160082,41 @@
     {
         "head": "ollama",
         "tail": "language models"
+    },
+    {
+        "head": "python",
+        "tail": "minimalistic"
+    },
+    {
+        "head": "python",
+        "tail": "language model"
+    },
+    {
+        "head": "python",
+        "tail": "3d"
+    },
+    {
+        "head": "minimalistic",
+        "tail": "language model"
+    },
+    {
+        "head": "minimalistic",
+        "tail": "3d"
+    },
+    {
+        "head": "minimalistic",
+        "tail": "training"
+    },
+    {
+        "head": "language model",
+        "tail": "3d"
+    },
+    {
+        "head": "language model",
+        "tail": "training"
+    },
+    {
+        "head": "3d",
+        "tail": "training"
     }
 ]
