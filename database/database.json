@@ -35191,5 +35191,72 @@
         "tags": [
             "rust"
         ]
+    },
+    "https://github.com/DeMoriarty/fast_pytorch_kmeans": {
+        "extra-tags": [
+            "pytorch",
+            "clustering",
+            "algorithm"
+        ],
+        "date": "2020-09-14",
+        "title": "fast_pytorch_kmeans",
+        "summary": "This is a pytorch implementation of k-means clustering algorithm",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/mdrokz/rust-llama.cpp": {
+        "extra-tags": [
+            "bindings"
+        ],
+        "date": "2023-06-15",
+        "title": "rust-llama.cpp",
+        "summary": "LLama.cpp rust bindings",
+        "tags": [
+            "cpp",
+            "model",
+            "llama-cpp",
+            "ffi",
+            "rust",
+            "machine-learning",
+            "crates-io",
+            "api-bindings",
+            "llama"
+        ]
+    },
+    "https://github.com/ggerganov/ggml": {
+        "extra-tags": [
+            "tensor",
+            "library",
+            "machine learning"
+        ],
+        "date": "2022-09-18",
+        "title": "ggml",
+        "summary": "Tensor library for machine learning",
+        "tags": [
+            "c",
+            "tensor-algebra",
+            "machine-learning",
+            "large-language-models",
+            "automatic-differentiation"
+        ]
+    },
+    "https://github.com/jmorganca/ollama": {
+        "extra-tags": [
+            "language models"
+        ],
+        "date": "2023-06-26",
+        "title": "ollama",
+        "summary": "Get up and running with Llama 2, Mistral, and other large language models locally.",
+        "tags": [
+            "llm",
+            "mistral",
+            "golang",
+            "go",
+            "llama2",
+            "llms",
+            "ollama",
+            "llama"
+        ]
     }
 }

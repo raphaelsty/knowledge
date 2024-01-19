@@ -159710,5 +159710,377 @@
     {
         "head": "continuous",
         "tail": "control"
+    },
+    {
+        "head": "pytorch",
+        "tail": "clustering"
+    },
+    {
+        "head": "clustering",
+        "tail": "algorithm"
+    },
+    {
+        "head": "cpp",
+        "tail": "model"
+    },
+    {
+        "head": "cpp",
+        "tail": "llama-cpp"
+    },
+    {
+        "head": "cpp",
+        "tail": "ffi"
+    },
+    {
+        "head": "cpp",
+        "tail": "rust"
+    },
+    {
+        "head": "cpp",
+        "tail": "crates-io"
+    },
+    {
+        "head": "cpp",
+        "tail": "api-bindings"
+    },
+    {
+        "head": "cpp",
+        "tail": "llama"
+    },
+    {
+        "head": "cpp",
+        "tail": "bindings"
+    },
+    {
+        "head": "model",
+        "tail": "llama-cpp"
+    },
+    {
+        "head": "model",
+        "tail": "ffi"
+    },
+    {
+        "head": "model",
+        "tail": "rust"
+    },
+    {
+        "head": "model",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "model",
+        "tail": "crates-io"
+    },
+    {
+        "head": "model",
+        "tail": "api-bindings"
+    },
+    {
+        "head": "model",
+        "tail": "llama"
+    },
+    {
+        "head": "model",
+        "tail": "bindings"
+    },
+    {
+        "head": "llama-cpp",
+        "tail": "ffi"
+    },
+    {
+        "head": "llama-cpp",
+        "tail": "rust"
+    },
+    {
+        "head": "llama-cpp",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "llama-cpp",
+        "tail": "crates-io"
+    },
+    {
+        "head": "llama-cpp",
+        "tail": "api-bindings"
+    },
+    {
+        "head": "llama-cpp",
+        "tail": "llama"
+    },
+    {
+        "head": "llama-cpp",
+        "tail": "bindings"
+    },
+    {
+        "head": "ffi",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "ffi",
+        "tail": "crates-io"
+    },
+    {
+        "head": "ffi",
+        "tail": "api-bindings"
+    },
+    {
+        "head": "ffi",
+        "tail": "llama"
+    },
+    {
+        "head": "ffi",
+        "tail": "bindings"
+    },
+    {
+        "head": "rust",
+        "tail": "crates-io"
+    },
+    {
+        "head": "rust",
+        "tail": "api-bindings"
+    },
+    {
+        "head": "rust",
+        "tail": "bindings"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "crates-io"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "api-bindings"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "llama"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "bindings"
+    },
+    {
+        "head": "crates-io",
+        "tail": "api-bindings"
+    },
+    {
+        "head": "crates-io",
+        "tail": "llama"
+    },
+    {
+        "head": "crates-io",
+        "tail": "bindings"
+    },
+    {
+        "head": "api-bindings",
+        "tail": "llama"
+    },
+    {
+        "head": "api-bindings",
+        "tail": "bindings"
+    },
+    {
+        "head": "llama",
+        "tail": "bindings"
+    },
+    {
+        "head": "c",
+        "tail": "tensor-algebra"
+    },
+    {
+        "head": "c",
+        "tail": "large-language-models"
+    },
+    {
+        "head": "c",
+        "tail": "automatic-differentiation"
+    },
+    {
+        "head": "c",
+        "tail": "tensor"
+    },
+    {
+        "head": "c",
+        "tail": "library"
+    },
+    {
+        "head": "c",
+        "tail": "machine learning"
+    },
+    {
+        "head": "tensor-algebra",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "tensor-algebra",
+        "tail": "large-language-models"
+    },
+    {
+        "head": "tensor-algebra",
+        "tail": "automatic-differentiation"
+    },
+    {
+        "head": "tensor-algebra",
+        "tail": "tensor"
+    },
+    {
+        "head": "tensor-algebra",
+        "tail": "library"
+    },
+    {
+        "head": "tensor-algebra",
+        "tail": "machine learning"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "automatic-differentiation"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "automatic-differentiation"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "tensor"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "library"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "machine learning"
+    },
+    {
+        "head": "automatic-differentiation",
+        "tail": "tensor"
+    },
+    {
+        "head": "automatic-differentiation",
+        "tail": "library"
+    },
+    {
+        "head": "automatic-differentiation",
+        "tail": "machine learning"
+    },
+    {
+        "head": "tensor",
+        "tail": "library"
+    },
+    {
+        "head": "tensor",
+        "tail": "machine learning"
+    },
+    {
+        "head": "library",
+        "tail": "machine learning"
+    },
+    {
+        "head": "llm",
+        "tail": "golang"
+    },
+    {
+        "head": "llm",
+        "tail": "go"
+    },
+    {
+        "head": "llm",
+        "tail": "llama2"
+    },
+    {
+        "head": "llm",
+        "tail": "ollama"
+    },
+    {
+        "head": "mistral",
+        "tail": "golang"
+    },
+    {
+        "head": "mistral",
+        "tail": "go"
+    },
+    {
+        "head": "mistral",
+        "tail": "llama2"
+    },
+    {
+        "head": "mistral",
+        "tail": "llms"
+    },
+    {
+        "head": "mistral",
+        "tail": "ollama"
+    },
+    {
+        "head": "golang",
+        "tail": "llama2"
+    },
+    {
+        "head": "golang",
+        "tail": "llms"
+    },
+    {
+        "head": "golang",
+        "tail": "ollama"
+    },
+    {
+        "head": "golang",
+        "tail": "llama"
+    },
+    {
+        "head": "golang",
+        "tail": "language models"
+    },
+    {
+        "head": "go",
+        "tail": "llama2"
+    },
+    {
+        "head": "go",
+        "tail": "llms"
+    },
+    {
+        "head": "go",
+        "tail": "ollama"
+    },
+    {
+        "head": "go",
+        "tail": "llama"
+    },
+    {
+        "head": "go",
+        "tail": "language models"
+    },
+    {
+        "head": "llama2",
+        "tail": "llms"
+    },
+    {
+        "head": "llama2",
+        "tail": "ollama"
+    },
+    {
+        "head": "llama2",
+        "tail": "llama"
+    },
+    {
+        "head": "llama2",
+        "tail": "language models"
+    },
+    {
+        "head": "llms",
+        "tail": "ollama"
+    },
+    {
+        "head": "llms",
+        "tail": "language models"
+    },
+    {
+        "head": "ollama",
+        "tail": "llama"
+    },
+    {
+        "head": "ollama",
+        "tail": "language models"
     }
 ]
