@@ -35272,5 +35272,41 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/deepseek-ai/DeepSeek-Coder": {
+        "extra-tags": [
+            "code",
+            "deepspeed",
+            "sample code"
+        ],
+        "date": "2023-10-20",
+        "title": "DeepSeek-Coder",
+        "summary": "DeepSeek Coder: Let the Code Write Itself",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/dry-python/returns": {
+        "extra-tags": [
+            "make",
+            "functions",
+            "meaning in nlp"
+        ],
+        "date": "2019-01-26",
+        "title": "returns",
+        "summary": "Make your functions return something meaningful, typed, and safe!",
+        "tags": [
+            "functional-programming",
+            "mypy",
+            "mypy-plugins",
+            "railway-oriented-programming",
+            "fp",
+            "type-safety",
+            "mypy-stubs",
+            "dry-python",
+            "python3",
+            "python",
+            "hacktoberfest"
+        ]
     }
 }

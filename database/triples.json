@@ -160118,5 +160118,297 @@
     {
         "head": "3d",
         "tail": "training"
+    },
+    {
+        "head": "code",
+        "tail": "deepspeed"
+    },
+    {
+        "head": "deepspeed",
+        "tail": "sample code"
+    },
+    {
+        "head": "functional-programming",
+        "tail": "mypy-plugins"
+    },
+    {
+        "head": "functional-programming",
+        "tail": "fp"
+    },
+    {
+        "head": "functional-programming",
+        "tail": "mypy-stubs"
+    },
+    {
+        "head": "functional-programming",
+        "tail": "dry-python"
+    },
+    {
+        "head": "functional-programming",
+        "tail": "hacktoberfest"
+    },
+    {
+        "head": "functional-programming",
+        "tail": "make"
+    },
+    {
+        "head": "functional-programming",
+        "tail": "functions"
+    },
+    {
+        "head": "functional-programming",
+        "tail": "meaning in nlp"
+    },
+    {
+        "head": "mypy",
+        "tail": "mypy-plugins"
+    },
+    {
+        "head": "mypy",
+        "tail": "fp"
+    },
+    {
+        "head": "mypy",
+        "tail": "mypy-stubs"
+    },
+    {
+        "head": "mypy",
+        "tail": "dry-python"
+    },
+    {
+        "head": "mypy",
+        "tail": "make"
+    },
+    {
+        "head": "mypy",
+        "tail": "functions"
+    },
+    {
+        "head": "mypy",
+        "tail": "meaning in nlp"
+    },
+    {
+        "head": "mypy-plugins",
+        "tail": "railway-oriented-programming"
+    },
+    {
+        "head": "mypy-plugins",
+        "tail": "fp"
+    },
+    {
+        "head": "mypy-plugins",
+        "tail": "type-safety"
+    },
+    {
+        "head": "mypy-plugins",
+        "tail": "mypy-stubs"
+    },
+    {
+        "head": "mypy-plugins",
+        "tail": "dry-python"
+    },
+    {
+        "head": "mypy-plugins",
+        "tail": "python3"
+    },
+    {
+        "head": "mypy-plugins",
+        "tail": "python"
+    },
+    {
+        "head": "mypy-plugins",
+        "tail": "hacktoberfest"
+    },
+    {
+        "head": "mypy-plugins",
+        "tail": "make"
+    },
+    {
+        "head": "mypy-plugins",
+        "tail": "functions"
+    },
+    {
+        "head": "mypy-plugins",
+        "tail": "meaning in nlp"
+    },
+    {
+        "head": "railway-oriented-programming",
+        "tail": "fp"
+    },
+    {
+        "head": "railway-oriented-programming",
+        "tail": "mypy-stubs"
+    },
+    {
+        "head": "railway-oriented-programming",
+        "tail": "dry-python"
+    },
+    {
+        "head": "railway-oriented-programming",
+        "tail": "hacktoberfest"
+    },
+    {
+        "head": "railway-oriented-programming",
+        "tail": "make"
+    },
+    {
+        "head": "railway-oriented-programming",
+        "tail": "functions"
+    },
+    {
+        "head": "railway-oriented-programming",
+        "tail": "meaning in nlp"
+    },
+    {
+        "head": "fp",
+        "tail": "type-safety"
+    },
+    {
+        "head": "fp",
+        "tail": "mypy-stubs"
+    },
+    {
+        "head": "fp",
+        "tail": "dry-python"
+    },
+    {
+        "head": "fp",
+        "tail": "python3"
+    },
+    {
+        "head": "fp",
+        "tail": "python"
+    },
+    {
+        "head": "fp",
+        "tail": "hacktoberfest"
+    },
+    {
+        "head": "fp",
+        "tail": "make"
+    },
+    {
+        "head": "fp",
+        "tail": "functions"
+    },
+    {
+        "head": "fp",
+        "tail": "meaning in nlp"
+    },
+    {
+        "head": "type-safety",
+        "tail": "mypy-stubs"
+    },
+    {
+        "head": "type-safety",
+        "tail": "dry-python"
+    },
+    {
+        "head": "type-safety",
+        "tail": "hacktoberfest"
+    },
+    {
+        "head": "type-safety",
+        "tail": "make"
+    },
+    {
+        "head": "type-safety",
+        "tail": "functions"
+    },
+    {
+        "head": "type-safety",
+        "tail": "meaning in nlp"
+    },
+    {
+        "head": "mypy-stubs",
+        "tail": "dry-python"
+    },
+    {
+        "head": "mypy-stubs",
+        "tail": "python3"
+    },
+    {
+        "head": "mypy-stubs",
+        "tail": "python"
+    },
+    {
+        "head": "mypy-stubs",
+        "tail": "hacktoberfest"
+    },
+    {
+        "head": "mypy-stubs",
+        "tail": "make"
+    },
+    {
+        "head": "mypy-stubs",
+        "tail": "functions"
+    },
+    {
+        "head": "mypy-stubs",
+        "tail": "meaning in nlp"
+    },
+    {
+        "head": "dry-python",
+        "tail": "python3"
+    },
+    {
+        "head": "dry-python",
+        "tail": "python"
+    },
+    {
+        "head": "dry-python",
+        "tail": "hacktoberfest"
+    },
+    {
+        "head": "dry-python",
+        "tail": "make"
+    },
+    {
+        "head": "dry-python",
+        "tail": "functions"
+    },
+    {
+        "head": "dry-python",
+        "tail": "meaning in nlp"
+    },
+    {
+        "head": "python3",
+        "tail": "make"
+    },
+    {
+        "head": "python3",
+        "tail": "functions"
+    },
+    {
+        "head": "python3",
+        "tail": "meaning in nlp"
+    },
+    {
+        "head": "python",
+        "tail": "meaning in nlp"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "make"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "functions"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "meaning in nlp"
+    },
+    {
+        "head": "make",
+        "tail": "functions"
+    },
+    {
+        "head": "make",
+        "tail": "meaning in nlp"
+    },
+    {
+        "head": "functions",
+        "tail": "meaning in nlp"
     }
 ]
