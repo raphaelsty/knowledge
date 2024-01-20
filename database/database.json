@@ -35308,5 +35308,24 @@
             "python",
             "hacktoberfest"
         ]
+    },
+    "https://github.com/vanna-ai/vanna": {
+        "extra-tags": [
+            "chat"
+        ],
+        "date": "2023-05-13",
+        "title": "vanna",
+        "summary": "\ud83e\udd16 Chat with your SQL database \ud83d\udcca. Accurate Text-to-SQL Generation via LLMs using RAG \ud83d\udd04.",
+        "tags": [
+            "text-to-sql",
+            "ai",
+            "rag",
+            "sql",
+            "data-visualization",
+            "jupyter notebook",
+            "agent",
+            "database",
+            "llm"
+        ]
     }
 }

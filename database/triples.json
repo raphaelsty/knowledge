@@ -160410,5 +160410,153 @@
     {
         "head": "functions",
         "tail": "meaning in nlp"
+    },
+    {
+        "head": "text-to-sql",
+        "tail": "ai"
+    },
+    {
+        "head": "text-to-sql",
+        "tail": "rag"
+    },
+    {
+        "head": "text-to-sql",
+        "tail": "sql"
+    },
+    {
+        "head": "text-to-sql",
+        "tail": "data-visualization"
+    },
+    {
+        "head": "text-to-sql",
+        "tail": "jupyter notebook"
+    },
+    {
+        "head": "text-to-sql",
+        "tail": "agent"
+    },
+    {
+        "head": "text-to-sql",
+        "tail": "database"
+    },
+    {
+        "head": "text-to-sql",
+        "tail": "llm"
+    },
+    {
+        "head": "text-to-sql",
+        "tail": "chat"
+    },
+    {
+        "head": "ai",
+        "tail": "rag"
+    },
+    {
+        "head": "ai",
+        "tail": "sql"
+    },
+    {
+        "head": "ai",
+        "tail": "data-visualization"
+    },
+    {
+        "head": "ai",
+        "tail": "database"
+    },
+    {
+        "head": "ai",
+        "tail": "chat"
+    },
+    {
+        "head": "rag",
+        "tail": "sql"
+    },
+    {
+        "head": "rag",
+        "tail": "data-visualization"
+    },
+    {
+        "head": "rag",
+        "tail": "jupyter notebook"
+    },
+    {
+        "head": "rag",
+        "tail": "agent"
+    },
+    {
+        "head": "rag",
+        "tail": "database"
+    },
+    {
+        "head": "rag",
+        "tail": "llm"
+    },
+    {
+        "head": "rag",
+        "tail": "chat"
+    },
+    {
+        "head": "sql",
+        "tail": "jupyter notebook"
+    },
+    {
+        "head": "sql",
+        "tail": "agent"
+    },
+    {
+        "head": "sql",
+        "tail": "llm"
+    },
+    {
+        "head": "sql",
+        "tail": "chat"
+    },
+    {
+        "head": "data-visualization",
+        "tail": "agent"
+    },
+    {
+        "head": "data-visualization",
+        "tail": "llm"
+    },
+    {
+        "head": "data-visualization",
+        "tail": "chat"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "database"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "llm"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "chat"
+    },
+    {
+        "head": "agent",
+        "tail": "database"
+    },
+    {
+        "head": "agent",
+        "tail": "llm"
+    },
+    {
+        "head": "agent",
+        "tail": "chat"
+    },
+    {
+        "head": "database",
+        "tail": "llm"
+    },
+    {
+        "head": "database",
+        "tail": "chat"
+    },
+    {
+        "head": "llm",
+        "tail": "chat"
     }
 ]
