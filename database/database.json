@@ -35327,5 +35327,14 @@
             "database",
             "llm"
         ]
+    },
+    "https://github.com/LaurentMazare/mamba.rs": {
+        "extra-tags": [],
+        "date": "2024-01-20",
+        "title": "mamba.rs",
+        "summary": "",
+        "tags": [
+            "rust"
+        ]
     }
 }
