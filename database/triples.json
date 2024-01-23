@@ -160998,5 +160998,37 @@
     {
         "head": "machine learning",
         "tail": "online"
+    },
+    {
+        "head": "log",
+        "tail": "python"
+    },
+    {
+        "head": "log",
+        "tail": "logger"
+    },
+    {
+        "head": "log",
+        "tail": "logging"
+    },
+    {
+        "head": "log",
+        "tail": "simple"
+    },
+    {
+        "head": "python",
+        "tail": "logger"
+    },
+    {
+        "head": "logger",
+        "tail": "logging"
+    },
+    {
+        "head": "logger",
+        "tail": "simple"
+    },
+    {
+        "head": "logging",
+        "tail": "simple"
     }
 ]

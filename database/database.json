@@ -35377,5 +35377,19 @@
             "mlops",
             "scalability"
         ]
+    },
+    "https://github.com/Delgan/loguru": {
+        "extra-tags": [
+            "simple"
+        ],
+        "date": "2017-08-15",
+        "title": "loguru",
+        "summary": "Python logging made (stupidly) simple",
+        "tags": [
+            "log",
+            "python",
+            "logger",
+            "logging"
+        ]
     }
 }
