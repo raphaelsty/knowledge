@@ -160558,5 +160558,445 @@
     {
         "head": "llm",
         "tail": "chat"
+    },
+    {
+        "head": "data-visualization",
+        "tail": "make"
+    },
+    {
+        "head": "data-visualization",
+        "tail": "types"
+    },
+    {
+        "head": "r",
+        "tail": "make"
+    },
+    {
+        "head": "r",
+        "tail": "types"
+    },
+    {
+        "head": "r",
+        "tail": "data"
+    },
+    {
+        "head": "r",
+        "tail": "visualization"
+    },
+    {
+        "head": "make",
+        "tail": "types"
+    },
+    {
+        "head": "make",
+        "tail": "data"
+    },
+    {
+        "head": "make",
+        "tail": "visualization"
+    },
+    {
+        "head": "types",
+        "tail": "data"
+    },
+    {
+        "head": "types",
+        "tail": "visualization"
+    },
+    {
+        "head": "data",
+        "tail": "visualization"
+    },
+    {
+        "head": "slurm",
+        "tail": "transformers"
+    },
+    {
+        "head": "slurm",
+        "tail": "bash"
+    },
+    {
+        "head": "slurm",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "slurm",
+        "tail": "llm"
+    },
+    {
+        "head": "slurm",
+        "tail": "ai"
+    },
+    {
+        "head": "slurm",
+        "tail": "make"
+    },
+    {
+        "head": "slurm",
+        "tail": "large-language-models"
+    },
+    {
+        "head": "slurm",
+        "tail": "pytorch"
+    },
+    {
+        "head": "slurm",
+        "tail": "python"
+    },
+    {
+        "head": "slurm",
+        "tail": "machine-learning-engineering"
+    },
+    {
+        "head": "slurm",
+        "tail": "mlops"
+    },
+    {
+        "head": "slurm",
+        "tail": "scalability"
+    },
+    {
+        "head": "slurm",
+        "tail": "engineering"
+    },
+    {
+        "head": "slurm",
+        "tail": "ml"
+    },
+    {
+        "head": "slurm",
+        "tail": "machine learning"
+    },
+    {
+        "head": "slurm",
+        "tail": "online"
+    },
+    {
+        "head": "transformers",
+        "tail": "bash"
+    },
+    {
+        "head": "transformers",
+        "tail": "make"
+    },
+    {
+        "head": "transformers",
+        "tail": "machine-learning-engineering"
+    },
+    {
+        "head": "transformers",
+        "tail": "mlops"
+    },
+    {
+        "head": "transformers",
+        "tail": "scalability"
+    },
+    {
+        "head": "transformers",
+        "tail": "engineering"
+    },
+    {
+        "head": "transformers",
+        "tail": "ml"
+    },
+    {
+        "head": "transformers",
+        "tail": "machine learning"
+    },
+    {
+        "head": "transformers",
+        "tail": "online"
+    },
+    {
+        "head": "bash",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "bash",
+        "tail": "llm"
+    },
+    {
+        "head": "bash",
+        "tail": "ai"
+    },
+    {
+        "head": "bash",
+        "tail": "make"
+    },
+    {
+        "head": "bash",
+        "tail": "large-language-models"
+    },
+    {
+        "head": "bash",
+        "tail": "pytorch"
+    },
+    {
+        "head": "bash",
+        "tail": "python"
+    },
+    {
+        "head": "bash",
+        "tail": "machine-learning-engineering"
+    },
+    {
+        "head": "bash",
+        "tail": "mlops"
+    },
+    {
+        "head": "bash",
+        "tail": "scalability"
+    },
+    {
+        "head": "bash",
+        "tail": "engineering"
+    },
+    {
+        "head": "bash",
+        "tail": "ml"
+    },
+    {
+        "head": "bash",
+        "tail": "machine learning"
+    },
+    {
+        "head": "bash",
+        "tail": "online"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "llm"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "make"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "machine-learning-engineering"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "scalability"
+    },
+    {
+        "head": "llm",
+        "tail": "make"
+    },
+    {
+        "head": "llm",
+        "tail": "large-language-models"
+    },
+    {
+        "head": "llm",
+        "tail": "machine-learning-engineering"
+    },
+    {
+        "head": "llm",
+        "tail": "scalability"
+    },
+    {
+        "head": "llm",
+        "tail": "engineering"
+    },
+    {
+        "head": "llm",
+        "tail": "machine learning"
+    },
+    {
+        "head": "llm",
+        "tail": "online"
+    },
+    {
+        "head": "ai",
+        "tail": "make"
+    },
+    {
+        "head": "ai",
+        "tail": "machine-learning-engineering"
+    },
+    {
+        "head": "ai",
+        "tail": "scalability"
+    },
+    {
+        "head": "ai",
+        "tail": "engineering"
+    },
+    {
+        "head": "ai",
+        "tail": "machine learning"
+    },
+    {
+        "head": "ai",
+        "tail": "online"
+    },
+    {
+        "head": "make",
+        "tail": "large-language-models"
+    },
+    {
+        "head": "make",
+        "tail": "pytorch"
+    },
+    {
+        "head": "make",
+        "tail": "machine-learning-engineering"
+    },
+    {
+        "head": "make",
+        "tail": "mlops"
+    },
+    {
+        "head": "make",
+        "tail": "scalability"
+    },
+    {
+        "head": "make",
+        "tail": "engineering"
+    },
+    {
+        "head": "make",
+        "tail": "ml"
+    },
+    {
+        "head": "make",
+        "tail": "machine learning"
+    },
+    {
+        "head": "make",
+        "tail": "online"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "machine-learning-engineering"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "mlops"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "scalability"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "engineering"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "ml"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "online"
+    },
+    {
+        "head": "pytorch",
+        "tail": "machine-learning-engineering"
+    },
+    {
+        "head": "pytorch",
+        "tail": "scalability"
+    },
+    {
+        "head": "pytorch",
+        "tail": "engineering"
+    },
+    {
+        "head": "pytorch",
+        "tail": "machine learning"
+    },
+    {
+        "head": "pytorch",
+        "tail": "online"
+    },
+    {
+        "head": "python",
+        "tail": "machine-learning-engineering"
+    },
+    {
+        "head": "python",
+        "tail": "scalability"
+    },
+    {
+        "head": "machine-learning-engineering",
+        "tail": "mlops"
+    },
+    {
+        "head": "machine-learning-engineering",
+        "tail": "scalability"
+    },
+    {
+        "head": "machine-learning-engineering",
+        "tail": "engineering"
+    },
+    {
+        "head": "machine-learning-engineering",
+        "tail": "ml"
+    },
+    {
+        "head": "machine-learning-engineering",
+        "tail": "machine learning"
+    },
+    {
+        "head": "machine-learning-engineering",
+        "tail": "online"
+    },
+    {
+        "head": "mlops",
+        "tail": "scalability"
+    },
+    {
+        "head": "mlops",
+        "tail": "engineering"
+    },
+    {
+        "head": "mlops",
+        "tail": "machine learning"
+    },
+    {
+        "head": "mlops",
+        "tail": "online"
+    },
+    {
+        "head": "scalability",
+        "tail": "engineering"
+    },
+    {
+        "head": "scalability",
+        "tail": "ml"
+    },
+    {
+        "head": "scalability",
+        "tail": "machine learning"
+    },
+    {
+        "head": "scalability",
+        "tail": "online"
+    },
+    {
+        "head": "engineering",
+        "tail": "ml"
+    },
+    {
+        "head": "engineering",
+        "tail": "machine learning"
+    },
+    {
+        "head": "engineering",
+        "tail": "online"
+    },
+    {
+        "head": "ml",
+        "tail": "machine learning"
+    },
+    {
+        "head": "ml",
+        "tail": "online"
+    },
+    {
+        "head": "machine learning",
+        "tail": "online"
     }
 ]

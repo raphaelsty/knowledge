@@ -35336,5 +35336,46 @@
         "tags": [
             "rust"
         ]
+    },
+    "https://github.com/cxli233/FriendsDontLetFriends": {
+        "extra-tags": [
+            "make",
+            "types",
+            "data",
+            "visualization"
+        ],
+        "date": "2022-05-24",
+        "title": "FriendsDontLetFriends",
+        "summary": "Friends don't let friends make certain types of data visualization - What are they and why are they bad. ",
+        "tags": [
+            "data-visualization",
+            "r"
+        ]
+    },
+    "https://github.com/stas00/ml-engineering": {
+        "extra-tags": [
+            "engineering",
+            "ml",
+            "machine learning",
+            "online"
+        ],
+        "date": "2020-09-02",
+        "title": "ml-engineering",
+        "summary": "Machine Learning Engineering Online Book",
+        "tags": [
+            "slurm",
+            "transformers",
+            "bash",
+            "machine-learning",
+            "llm",
+            "ai",
+            "make",
+            "large-language-models",
+            "pytorch",
+            "python",
+            "machine-learning-engineering",
+            "mlops",
+            "scalability"
+        ]
     }
 }
