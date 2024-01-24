@@ -35423,5 +35423,39 @@
             "mistral",
             "llm"
         ]
+    },
+    "https://github.com/ashvardanian/SimSIMD": {
+        "extra-tags": [
+            "vector",
+            "similarity",
+            "functions",
+            "javascript",
+            "vectors"
+        ],
+        "date": "2023-03-14",
+        "title": "SimSIMD",
+        "summary": "Vector Similarity Functions 3x-200x Faster than SciPy and NumPy \u2014 for Python, JavaScript, and C 11, supporting f64, f32, f16, i8, and binary vectors using SIMD for both x86 AVX2 & AVX-512 and Arm NEON & SVE \ud83d\udcd0",
+        "tags": [
+            "information-retrieval",
+            "avx2",
+            "simd",
+            "arm-neon",
+            "similarity-search",
+            "arm-sve",
+            "c",
+            "distance-measures",
+            "scipy",
+            "metrics",
+            "vector-search",
+            "neon",
+            "python",
+            "simd-instructions",
+            "similarity-measures",
+            "assembly",
+            "avx512",
+            "numpy",
+            "arm",
+            "distance-calculation"
+        ]
     }
 }

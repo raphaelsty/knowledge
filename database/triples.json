@@ -161066,5 +161066,1113 @@
     {
         "head": "gradient",
         "tail": "illustration"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "avx2"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "simd"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "arm-neon"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "arm-sve"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "c"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "distance-measures"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "scipy"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "metrics"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "neon"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "simd-instructions"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "similarity-measures"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "assembly"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "avx512"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "numpy"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "arm"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "distance-calculation"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "vector"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "similarity"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "functions"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "javascript"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "vectors"
+    },
+    {
+        "head": "avx2",
+        "tail": "simd"
+    },
+    {
+        "head": "avx2",
+        "tail": "arm-neon"
+    },
+    {
+        "head": "avx2",
+        "tail": "similarity-search"
+    },
+    {
+        "head": "avx2",
+        "tail": "arm-sve"
+    },
+    {
+        "head": "avx2",
+        "tail": "c"
+    },
+    {
+        "head": "avx2",
+        "tail": "distance-measures"
+    },
+    {
+        "head": "avx2",
+        "tail": "scipy"
+    },
+    {
+        "head": "avx2",
+        "tail": "metrics"
+    },
+    {
+        "head": "avx2",
+        "tail": "vector-search"
+    },
+    {
+        "head": "avx2",
+        "tail": "neon"
+    },
+    {
+        "head": "avx2",
+        "tail": "python"
+    },
+    {
+        "head": "avx2",
+        "tail": "simd-instructions"
+    },
+    {
+        "head": "avx2",
+        "tail": "similarity-measures"
+    },
+    {
+        "head": "avx2",
+        "tail": "assembly"
+    },
+    {
+        "head": "avx2",
+        "tail": "avx512"
+    },
+    {
+        "head": "avx2",
+        "tail": "numpy"
+    },
+    {
+        "head": "avx2",
+        "tail": "arm"
+    },
+    {
+        "head": "avx2",
+        "tail": "distance-calculation"
+    },
+    {
+        "head": "avx2",
+        "tail": "vector"
+    },
+    {
+        "head": "avx2",
+        "tail": "similarity"
+    },
+    {
+        "head": "avx2",
+        "tail": "functions"
+    },
+    {
+        "head": "avx2",
+        "tail": "javascript"
+    },
+    {
+        "head": "avx2",
+        "tail": "vectors"
+    },
+    {
+        "head": "simd",
+        "tail": "arm-neon"
+    },
+    {
+        "head": "simd",
+        "tail": "similarity-search"
+    },
+    {
+        "head": "simd",
+        "tail": "arm-sve"
+    },
+    {
+        "head": "simd",
+        "tail": "distance-measures"
+    },
+    {
+        "head": "simd",
+        "tail": "scipy"
+    },
+    {
+        "head": "simd",
+        "tail": "metrics"
+    },
+    {
+        "head": "simd",
+        "tail": "vector-search"
+    },
+    {
+        "head": "simd",
+        "tail": "neon"
+    },
+    {
+        "head": "simd",
+        "tail": "simd-instructions"
+    },
+    {
+        "head": "simd",
+        "tail": "similarity-measures"
+    },
+    {
+        "head": "simd",
+        "tail": "assembly"
+    },
+    {
+        "head": "simd",
+        "tail": "avx512"
+    },
+    {
+        "head": "simd",
+        "tail": "numpy"
+    },
+    {
+        "head": "simd",
+        "tail": "arm"
+    },
+    {
+        "head": "simd",
+        "tail": "distance-calculation"
+    },
+    {
+        "head": "simd",
+        "tail": "vector"
+    },
+    {
+        "head": "simd",
+        "tail": "similarity"
+    },
+    {
+        "head": "simd",
+        "tail": "functions"
+    },
+    {
+        "head": "simd",
+        "tail": "javascript"
+    },
+    {
+        "head": "simd",
+        "tail": "vectors"
+    },
+    {
+        "head": "arm-neon",
+        "tail": "similarity-search"
+    },
+    {
+        "head": "arm-neon",
+        "tail": "arm-sve"
+    },
+    {
+        "head": "arm-neon",
+        "tail": "c"
+    },
+    {
+        "head": "arm-neon",
+        "tail": "distance-measures"
+    },
+    {
+        "head": "arm-neon",
+        "tail": "scipy"
+    },
+    {
+        "head": "arm-neon",
+        "tail": "metrics"
+    },
+    {
+        "head": "arm-neon",
+        "tail": "vector-search"
+    },
+    {
+        "head": "arm-neon",
+        "tail": "neon"
+    },
+    {
+        "head": "arm-neon",
+        "tail": "python"
+    },
+    {
+        "head": "arm-neon",
+        "tail": "simd-instructions"
+    },
+    {
+        "head": "arm-neon",
+        "tail": "similarity-measures"
+    },
+    {
+        "head": "arm-neon",
+        "tail": "assembly"
+    },
+    {
+        "head": "arm-neon",
+        "tail": "avx512"
+    },
+    {
+        "head": "arm-neon",
+        "tail": "numpy"
+    },
+    {
+        "head": "arm-neon",
+        "tail": "arm"
+    },
+    {
+        "head": "arm-neon",
+        "tail": "distance-calculation"
+    },
+    {
+        "head": "arm-neon",
+        "tail": "vector"
+    },
+    {
+        "head": "arm-neon",
+        "tail": "similarity"
+    },
+    {
+        "head": "arm-neon",
+        "tail": "functions"
+    },
+    {
+        "head": "arm-neon",
+        "tail": "javascript"
+    },
+    {
+        "head": "arm-neon",
+        "tail": "vectors"
+    },
+    {
+        "head": "similarity-search",
+        "tail": "arm-sve"
+    },
+    {
+        "head": "similarity-search",
+        "tail": "c"
+    },
+    {
+        "head": "similarity-search",
+        "tail": "distance-measures"
+    },
+    {
+        "head": "similarity-search",
+        "tail": "scipy"
+    },
+    {
+        "head": "similarity-search",
+        "tail": "metrics"
+    },
+    {
+        "head": "similarity-search",
+        "tail": "neon"
+    },
+    {
+        "head": "similarity-search",
+        "tail": "simd-instructions"
+    },
+    {
+        "head": "similarity-search",
+        "tail": "similarity-measures"
+    },
+    {
+        "head": "similarity-search",
+        "tail": "assembly"
+    },
+    {
+        "head": "similarity-search",
+        "tail": "avx512"
+    },
+    {
+        "head": "similarity-search",
+        "tail": "numpy"
+    },
+    {
+        "head": "similarity-search",
+        "tail": "arm"
+    },
+    {
+        "head": "similarity-search",
+        "tail": "distance-calculation"
+    },
+    {
+        "head": "similarity-search",
+        "tail": "vector"
+    },
+    {
+        "head": "similarity-search",
+        "tail": "similarity"
+    },
+    {
+        "head": "similarity-search",
+        "tail": "functions"
+    },
+    {
+        "head": "similarity-search",
+        "tail": "javascript"
+    },
+    {
+        "head": "similarity-search",
+        "tail": "vectors"
+    },
+    {
+        "head": "arm-sve",
+        "tail": "c"
+    },
+    {
+        "head": "arm-sve",
+        "tail": "distance-measures"
+    },
+    {
+        "head": "arm-sve",
+        "tail": "scipy"
+    },
+    {
+        "head": "arm-sve",
+        "tail": "metrics"
+    },
+    {
+        "head": "arm-sve",
+        "tail": "vector-search"
+    },
+    {
+        "head": "arm-sve",
+        "tail": "neon"
+    },
+    {
+        "head": "arm-sve",
+        "tail": "python"
+    },
+    {
+        "head": "arm-sve",
+        "tail": "simd-instructions"
+    },
+    {
+        "head": "arm-sve",
+        "tail": "similarity-measures"
+    },
+    {
+        "head": "arm-sve",
+        "tail": "assembly"
+    },
+    {
+        "head": "arm-sve",
+        "tail": "avx512"
+    },
+    {
+        "head": "arm-sve",
+        "tail": "numpy"
+    },
+    {
+        "head": "arm-sve",
+        "tail": "arm"
+    },
+    {
+        "head": "arm-sve",
+        "tail": "distance-calculation"
+    },
+    {
+        "head": "arm-sve",
+        "tail": "vector"
+    },
+    {
+        "head": "arm-sve",
+        "tail": "similarity"
+    },
+    {
+        "head": "arm-sve",
+        "tail": "functions"
+    },
+    {
+        "head": "arm-sve",
+        "tail": "javascript"
+    },
+    {
+        "head": "arm-sve",
+        "tail": "vectors"
+    },
+    {
+        "head": "c",
+        "tail": "distance-measures"
+    },
+    {
+        "head": "c",
+        "tail": "scipy"
+    },
+    {
+        "head": "c",
+        "tail": "vector-search"
+    },
+    {
+        "head": "c",
+        "tail": "neon"
+    },
+    {
+        "head": "c",
+        "tail": "simd-instructions"
+    },
+    {
+        "head": "c",
+        "tail": "similarity-measures"
+    },
+    {
+        "head": "c",
+        "tail": "assembly"
+    },
+    {
+        "head": "c",
+        "tail": "avx512"
+    },
+    {
+        "head": "c",
+        "tail": "numpy"
+    },
+    {
+        "head": "c",
+        "tail": "arm"
+    },
+    {
+        "head": "c",
+        "tail": "distance-calculation"
+    },
+    {
+        "head": "c",
+        "tail": "vector"
+    },
+    {
+        "head": "c",
+        "tail": "similarity"
+    },
+    {
+        "head": "c",
+        "tail": "functions"
+    },
+    {
+        "head": "c",
+        "tail": "javascript"
+    },
+    {
+        "head": "c",
+        "tail": "vectors"
+    },
+    {
+        "head": "distance-measures",
+        "tail": "scipy"
+    },
+    {
+        "head": "distance-measures",
+        "tail": "metrics"
+    },
+    {
+        "head": "distance-measures",
+        "tail": "vector-search"
+    },
+    {
+        "head": "distance-measures",
+        "tail": "neon"
+    },
+    {
+        "head": "distance-measures",
+        "tail": "python"
+    },
+    {
+        "head": "distance-measures",
+        "tail": "simd-instructions"
+    },
+    {
+        "head": "distance-measures",
+        "tail": "similarity-measures"
+    },
+    {
+        "head": "distance-measures",
+        "tail": "assembly"
+    },
+    {
+        "head": "distance-measures",
+        "tail": "avx512"
+    },
+    {
+        "head": "distance-measures",
+        "tail": "numpy"
+    },
+    {
+        "head": "distance-measures",
+        "tail": "arm"
+    },
+    {
+        "head": "distance-measures",
+        "tail": "distance-calculation"
+    },
+    {
+        "head": "distance-measures",
+        "tail": "vector"
+    },
+    {
+        "head": "distance-measures",
+        "tail": "similarity"
+    },
+    {
+        "head": "distance-measures",
+        "tail": "functions"
+    },
+    {
+        "head": "distance-measures",
+        "tail": "javascript"
+    },
+    {
+        "head": "distance-measures",
+        "tail": "vectors"
+    },
+    {
+        "head": "scipy",
+        "tail": "metrics"
+    },
+    {
+        "head": "scipy",
+        "tail": "vector-search"
+    },
+    {
+        "head": "scipy",
+        "tail": "neon"
+    },
+    {
+        "head": "scipy",
+        "tail": "simd-instructions"
+    },
+    {
+        "head": "scipy",
+        "tail": "similarity-measures"
+    },
+    {
+        "head": "scipy",
+        "tail": "assembly"
+    },
+    {
+        "head": "scipy",
+        "tail": "avx512"
+    },
+    {
+        "head": "scipy",
+        "tail": "arm"
+    },
+    {
+        "head": "scipy",
+        "tail": "distance-calculation"
+    },
+    {
+        "head": "scipy",
+        "tail": "vector"
+    },
+    {
+        "head": "scipy",
+        "tail": "similarity"
+    },
+    {
+        "head": "scipy",
+        "tail": "functions"
+    },
+    {
+        "head": "scipy",
+        "tail": "javascript"
+    },
+    {
+        "head": "scipy",
+        "tail": "vectors"
+    },
+    {
+        "head": "metrics",
+        "tail": "vector-search"
+    },
+    {
+        "head": "metrics",
+        "tail": "neon"
+    },
+    {
+        "head": "metrics",
+        "tail": "simd-instructions"
+    },
+    {
+        "head": "metrics",
+        "tail": "similarity-measures"
+    },
+    {
+        "head": "metrics",
+        "tail": "assembly"
+    },
+    {
+        "head": "metrics",
+        "tail": "avx512"
+    },
+    {
+        "head": "metrics",
+        "tail": "arm"
+    },
+    {
+        "head": "metrics",
+        "tail": "distance-calculation"
+    },
+    {
+        "head": "metrics",
+        "tail": "vector"
+    },
+    {
+        "head": "metrics",
+        "tail": "similarity"
+    },
+    {
+        "head": "metrics",
+        "tail": "functions"
+    },
+    {
+        "head": "metrics",
+        "tail": "vectors"
+    },
+    {
+        "head": "vector-search",
+        "tail": "neon"
+    },
+    {
+        "head": "vector-search",
+        "tail": "simd-instructions"
+    },
+    {
+        "head": "vector-search",
+        "tail": "similarity-measures"
+    },
+    {
+        "head": "vector-search",
+        "tail": "assembly"
+    },
+    {
+        "head": "vector-search",
+        "tail": "avx512"
+    },
+    {
+        "head": "vector-search",
+        "tail": "numpy"
+    },
+    {
+        "head": "vector-search",
+        "tail": "arm"
+    },
+    {
+        "head": "vector-search",
+        "tail": "distance-calculation"
+    },
+    {
+        "head": "vector-search",
+        "tail": "vector"
+    },
+    {
+        "head": "vector-search",
+        "tail": "similarity"
+    },
+    {
+        "head": "vector-search",
+        "tail": "functions"
+    },
+    {
+        "head": "vector-search",
+        "tail": "javascript"
+    },
+    {
+        "head": "vector-search",
+        "tail": "vectors"
+    },
+    {
+        "head": "neon",
+        "tail": "python"
+    },
+    {
+        "head": "neon",
+        "tail": "simd-instructions"
+    },
+    {
+        "head": "neon",
+        "tail": "similarity-measures"
+    },
+    {
+        "head": "neon",
+        "tail": "assembly"
+    },
+    {
+        "head": "neon",
+        "tail": "avx512"
+    },
+    {
+        "head": "neon",
+        "tail": "numpy"
+    },
+    {
+        "head": "neon",
+        "tail": "arm"
+    },
+    {
+        "head": "neon",
+        "tail": "distance-calculation"
+    },
+    {
+        "head": "neon",
+        "tail": "vector"
+    },
+    {
+        "head": "neon",
+        "tail": "similarity"
+    },
+    {
+        "head": "neon",
+        "tail": "functions"
+    },
+    {
+        "head": "neon",
+        "tail": "javascript"
+    },
+    {
+        "head": "neon",
+        "tail": "vectors"
+    },
+    {
+        "head": "python",
+        "tail": "simd-instructions"
+    },
+    {
+        "head": "python",
+        "tail": "similarity-measures"
+    },
+    {
+        "head": "python",
+        "tail": "avx512"
+    },
+    {
+        "head": "python",
+        "tail": "arm"
+    },
+    {
+        "head": "python",
+        "tail": "distance-calculation"
+    },
+    {
+        "head": "simd-instructions",
+        "tail": "similarity-measures"
+    },
+    {
+        "head": "simd-instructions",
+        "tail": "assembly"
+    },
+    {
+        "head": "simd-instructions",
+        "tail": "avx512"
+    },
+    {
+        "head": "simd-instructions",
+        "tail": "numpy"
+    },
+    {
+        "head": "simd-instructions",
+        "tail": "arm"
+    },
+    {
+        "head": "simd-instructions",
+        "tail": "distance-calculation"
+    },
+    {
+        "head": "simd-instructions",
+        "tail": "vector"
+    },
+    {
+        "head": "simd-instructions",
+        "tail": "similarity"
+    },
+    {
+        "head": "simd-instructions",
+        "tail": "functions"
+    },
+    {
+        "head": "simd-instructions",
+        "tail": "javascript"
+    },
+    {
+        "head": "simd-instructions",
+        "tail": "vectors"
+    },
+    {
+        "head": "similarity-measures",
+        "tail": "assembly"
+    },
+    {
+        "head": "similarity-measures",
+        "tail": "avx512"
+    },
+    {
+        "head": "similarity-measures",
+        "tail": "numpy"
+    },
+    {
+        "head": "similarity-measures",
+        "tail": "arm"
+    },
+    {
+        "head": "similarity-measures",
+        "tail": "distance-calculation"
+    },
+    {
+        "head": "similarity-measures",
+        "tail": "vector"
+    },
+    {
+        "head": "similarity-measures",
+        "tail": "similarity"
+    },
+    {
+        "head": "similarity-measures",
+        "tail": "functions"
+    },
+    {
+        "head": "similarity-measures",
+        "tail": "javascript"
+    },
+    {
+        "head": "similarity-measures",
+        "tail": "vectors"
+    },
+    {
+        "head": "assembly",
+        "tail": "avx512"
+    },
+    {
+        "head": "assembly",
+        "tail": "numpy"
+    },
+    {
+        "head": "assembly",
+        "tail": "arm"
+    },
+    {
+        "head": "assembly",
+        "tail": "distance-calculation"
+    },
+    {
+        "head": "assembly",
+        "tail": "vector"
+    },
+    {
+        "head": "assembly",
+        "tail": "similarity"
+    },
+    {
+        "head": "assembly",
+        "tail": "functions"
+    },
+    {
+        "head": "assembly",
+        "tail": "javascript"
+    },
+    {
+        "head": "assembly",
+        "tail": "vectors"
+    },
+    {
+        "head": "avx512",
+        "tail": "numpy"
+    },
+    {
+        "head": "avx512",
+        "tail": "arm"
+    },
+    {
+        "head": "avx512",
+        "tail": "distance-calculation"
+    },
+    {
+        "head": "avx512",
+        "tail": "vector"
+    },
+    {
+        "head": "avx512",
+        "tail": "similarity"
+    },
+    {
+        "head": "avx512",
+        "tail": "functions"
+    },
+    {
+        "head": "avx512",
+        "tail": "javascript"
+    },
+    {
+        "head": "avx512",
+        "tail": "vectors"
+    },
+    {
+        "head": "numpy",
+        "tail": "arm"
+    },
+    {
+        "head": "numpy",
+        "tail": "distance-calculation"
+    },
+    {
+        "head": "numpy",
+        "tail": "similarity"
+    },
+    {
+        "head": "numpy",
+        "tail": "functions"
+    },
+    {
+        "head": "numpy",
+        "tail": "javascript"
+    },
+    {
+        "head": "numpy",
+        "tail": "vectors"
+    },
+    {
+        "head": "arm",
+        "tail": "distance-calculation"
+    },
+    {
+        "head": "arm",
+        "tail": "vector"
+    },
+    {
+        "head": "arm",
+        "tail": "similarity"
+    },
+    {
+        "head": "arm",
+        "tail": "functions"
+    },
+    {
+        "head": "arm",
+        "tail": "javascript"
+    },
+    {
+        "head": "arm",
+        "tail": "vectors"
+    },
+    {
+        "head": "distance-calculation",
+        "tail": "vector"
+    },
+    {
+        "head": "distance-calculation",
+        "tail": "similarity"
+    },
+    {
+        "head": "distance-calculation",
+        "tail": "functions"
+    },
+    {
+        "head": "distance-calculation",
+        "tail": "javascript"
+    },
+    {
+        "head": "distance-calculation",
+        "tail": "vectors"
+    },
+    {
+        "head": "vector",
+        "tail": "similarity"
+    },
+    {
+        "head": "vector",
+        "tail": "functions"
+    },
+    {
+        "head": "vector",
+        "tail": "javascript"
+    },
+    {
+        "head": "vector",
+        "tail": "vectors"
+    },
+    {
+        "head": "similarity",
+        "tail": "functions"
+    },
+    {
+        "head": "similarity",
+        "tail": "javascript"
+    },
+    {
+        "head": "similarity",
+        "tail": "vectors"
+    },
+    {
+        "head": "functions",
+        "tail": "javascript"
+    },
+    {
+        "head": "functions",
+        "tail": "vectors"
+    },
+    {
+        "head": "javascript",
+        "tail": "vectors"
     }
 ]
