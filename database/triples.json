@@ -161030,5 +161030,41 @@
     {
         "head": "logging",
         "tail": "simple"
+    },
+    {
+        "head": "c++",
+        "tail": "interactive"
+    },
+    {
+        "head": "c++",
+        "tail": "visualization"
+    },
+    {
+        "head": "c++",
+        "tail": "illustration"
+    },
+    {
+        "head": "interactive",
+        "tail": "visualization"
+    },
+    {
+        "head": "interactive",
+        "tail": "gradient"
+    },
+    {
+        "head": "interactive",
+        "tail": "illustration"
+    },
+    {
+        "head": "visualization",
+        "tail": "gradient"
+    },
+    {
+        "head": "visualization",
+        "tail": "illustration"
+    },
+    {
+        "head": "gradient",
+        "tail": "illustration"
     }
 ]

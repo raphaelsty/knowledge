@@ -35391,5 +35391,37 @@
             "logger",
             "logging"
         ]
+    },
+    "https://github.com/lilipads/gradient_descent_viz": {
+        "extra-tags": [
+            "interactive",
+            "visualization",
+            "gradient",
+            "illustration"
+        ],
+        "date": "2020-05-31",
+        "title": "gradient_descent_viz",
+        "summary": "interactive visualization of 5 popular gradient descent methods with step-by-step illustration and hyperparameter tuning UI",
+        "tags": [
+            "c++"
+        ]
+    },
+    "https://github.com/ollama/ollama": {
+        "extra-tags": [
+            "language models"
+        ],
+        "date": "2023-06-26",
+        "title": "ollama",
+        "summary": "Get up and running with Llama 2, Mistral, and other large language models locally.",
+        "tags": [
+            "golang",
+            "llms",
+            "ollama",
+            "llama2",
+            "llama",
+            "go",
+            "mistral",
+            "llm"
+        ]
     }
 }
