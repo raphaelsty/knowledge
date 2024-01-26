@@ -35457,5 +35457,48 @@
             "arm",
             "distance-calculation"
         ]
+    },
+    "https://github.com/criteo/autofaiss": {
+        "extra-tags": [
+            "faiss",
+            "similarity",
+            "search"
+        ],
+        "date": "2021-04-28",
+        "title": "autofaiss",
+        "summary": "Automatically create Faiss knn indices with the most optimal similarity search parameters.",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/kornia/kornia-rs": {
+        "extra-tags": [
+            "vision",
+            "paper-implementations",
+            "efficient-implementations"
+        ],
+        "date": "2022-03-05",
+        "title": "kornia-rs",
+        "summary": "Low level implementations for computer vision in Rust",
+        "tags": [
+            "rust"
+        ]
+    },
+    "https://github.com/zed-industries/zed": {
+        "extra-tags": [
+            "code",
+            "high-performance",
+            "editor",
+            "tree-sitter"
+        ],
+        "date": "2021-02-20",
+        "title": "zed",
+        "summary": "Code at the speed of thought \u2013 Zed is a high-performance, multiplayer code editor from the creators of Atom and Tree-sitter.",
+        "tags": [
+            "gpui",
+            "text-editor",
+            "rust",
+            "zed"
+        ]
     }
 }

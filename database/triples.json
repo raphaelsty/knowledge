@@ -162174,5 +162174,137 @@
     {
         "head": "javascript",
         "tail": "vectors"
+    },
+    {
+        "head": "faiss",
+        "tail": "similarity"
+    },
+    {
+        "head": "faiss",
+        "tail": "search"
+    },
+    {
+        "head": "similarity",
+        "tail": "search"
+    },
+    {
+        "head": "rust",
+        "tail": "vision"
+    },
+    {
+        "head": "rust",
+        "tail": "paper-implementations"
+    },
+    {
+        "head": "rust",
+        "tail": "efficient-implementations"
+    },
+    {
+        "head": "vision",
+        "tail": "paper-implementations"
+    },
+    {
+        "head": "vision",
+        "tail": "efficient-implementations"
+    },
+    {
+        "head": "paper-implementations",
+        "tail": "efficient-implementations"
+    },
+    {
+        "head": "gpui",
+        "tail": "text-editor"
+    },
+    {
+        "head": "gpui",
+        "tail": "rust"
+    },
+    {
+        "head": "gpui",
+        "tail": "zed"
+    },
+    {
+        "head": "gpui",
+        "tail": "code"
+    },
+    {
+        "head": "gpui",
+        "tail": "high-performance"
+    },
+    {
+        "head": "gpui",
+        "tail": "editor"
+    },
+    {
+        "head": "gpui",
+        "tail": "tree-sitter"
+    },
+    {
+        "head": "text-editor",
+        "tail": "rust"
+    },
+    {
+        "head": "text-editor",
+        "tail": "zed"
+    },
+    {
+        "head": "text-editor",
+        "tail": "code"
+    },
+    {
+        "head": "text-editor",
+        "tail": "high-performance"
+    },
+    {
+        "head": "text-editor",
+        "tail": "editor"
+    },
+    {
+        "head": "text-editor",
+        "tail": "tree-sitter"
+    },
+    {
+        "head": "rust",
+        "tail": "zed"
+    },
+    {
+        "head": "rust",
+        "tail": "editor"
+    },
+    {
+        "head": "zed",
+        "tail": "code"
+    },
+    {
+        "head": "zed",
+        "tail": "high-performance"
+    },
+    {
+        "head": "zed",
+        "tail": "editor"
+    },
+    {
+        "head": "zed",
+        "tail": "tree-sitter"
+    },
+    {
+        "head": "code",
+        "tail": "high-performance"
+    },
+    {
+        "head": "code",
+        "tail": "tree-sitter"
+    },
+    {
+        "head": "high-performance",
+        "tail": "editor"
+    },
+    {
+        "head": "high-performance",
+        "tail": "tree-sitter"
+    },
+    {
+        "head": "editor",
+        "tail": "tree-sitter"
     }
 ]
