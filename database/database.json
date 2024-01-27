@@ -35500,5 +35500,22 @@
             "rust",
             "zed"
         ]
+    },
+    "https://github.com/LiheYoung/Depth-Anything": {
+        "extra-tags": [
+            "large-scale",
+            "data",
+            "large-scale-ml"
+        ],
+        "date": "2024-01-22",
+        "title": "Depth-Anything",
+        "summary": "Depth Anything: Unleashing the Power of Large-Scale Unlabeled Data",
+        "tags": [
+            "depth-estimation",
+            "image-synthesis",
+            "metric-depth-estimation",
+            "python",
+            "monocular-depth-estimation"
+        ]
     }
 }

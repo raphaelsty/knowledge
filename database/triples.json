@@ -162306,5 +162306,105 @@
     {
         "head": "editor",
         "tail": "tree-sitter"
+    },
+    {
+        "head": "depth-estimation",
+        "tail": "image-synthesis"
+    },
+    {
+        "head": "depth-estimation",
+        "tail": "metric-depth-estimation"
+    },
+    {
+        "head": "depth-estimation",
+        "tail": "python"
+    },
+    {
+        "head": "depth-estimation",
+        "tail": "monocular-depth-estimation"
+    },
+    {
+        "head": "depth-estimation",
+        "tail": "large-scale"
+    },
+    {
+        "head": "depth-estimation",
+        "tail": "data"
+    },
+    {
+        "head": "depth-estimation",
+        "tail": "large-scale-ml"
+    },
+    {
+        "head": "image-synthesis",
+        "tail": "metric-depth-estimation"
+    },
+    {
+        "head": "image-synthesis",
+        "tail": "monocular-depth-estimation"
+    },
+    {
+        "head": "image-synthesis",
+        "tail": "large-scale"
+    },
+    {
+        "head": "image-synthesis",
+        "tail": "data"
+    },
+    {
+        "head": "image-synthesis",
+        "tail": "large-scale-ml"
+    },
+    {
+        "head": "metric-depth-estimation",
+        "tail": "python"
+    },
+    {
+        "head": "metric-depth-estimation",
+        "tail": "monocular-depth-estimation"
+    },
+    {
+        "head": "metric-depth-estimation",
+        "tail": "large-scale"
+    },
+    {
+        "head": "metric-depth-estimation",
+        "tail": "data"
+    },
+    {
+        "head": "metric-depth-estimation",
+        "tail": "large-scale-ml"
+    },
+    {
+        "head": "python",
+        "tail": "monocular-depth-estimation"
+    },
+    {
+        "head": "python",
+        "tail": "large-scale-ml"
+    },
+    {
+        "head": "monocular-depth-estimation",
+        "tail": "large-scale"
+    },
+    {
+        "head": "monocular-depth-estimation",
+        "tail": "data"
+    },
+    {
+        "head": "monocular-depth-estimation",
+        "tail": "large-scale-ml"
+    },
+    {
+        "head": "large-scale",
+        "tail": "data"
+    },
+    {
+        "head": "large-scale",
+        "tail": "large-scale-ml"
+    },
+    {
+        "head": "data",
+        "tail": "large-scale-ml"
     }
 ]
