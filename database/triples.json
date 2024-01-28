@@ -162406,5 +162406,49 @@
     {
         "head": "data",
         "tail": "large-scale-ml"
+    },
+    {
+        "head": "lua",
+        "tail": "nix"
+    },
+    {
+        "head": "lua",
+        "tail": "nix-flake"
+    },
+    {
+        "head": "nix",
+        "tail": "neovim"
+    },
+    {
+        "head": "nix",
+        "tail": "dotfiles"
+    },
+    {
+        "head": "nix",
+        "tail": "neovim-dotfiles"
+    },
+    {
+        "head": "nix",
+        "tail": "nix-flake"
+    },
+    {
+        "head": "nix",
+        "tail": "nvim"
+    },
+    {
+        "head": "neovim",
+        "tail": "nix-flake"
+    },
+    {
+        "head": "dotfiles",
+        "tail": "nix-flake"
+    },
+    {
+        "head": "neovim-dotfiles",
+        "tail": "nix-flake"
+    },
+    {
+        "head": "nix-flake",
+        "tail": "nvim"
     }
 ]

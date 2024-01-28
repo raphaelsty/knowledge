@@ -35517,5 +35517,21 @@
             "python",
             "monocular-depth-estimation"
         ]
+    },
+    "https://github.com/pierrot-lc/nvim-nix": {
+        "extra-tags": [
+            "nvim"
+        ],
+        "date": "2024-01-27",
+        "title": "nvim-nix",
+        "summary": "Pierrot's Neovim flake",
+        "tags": [
+            "lua",
+            "nix",
+            "neovim",
+            "dotfiles",
+            "neovim-dotfiles",
+            "nix-flake"
+        ]
     }
 }
