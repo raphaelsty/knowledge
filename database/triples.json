@@ -162450,5 +162450,49 @@
     {
         "head": "nix-flake",
         "tail": "nvim"
+    },
+    {
+        "head": "rust",
+        "tail": "glove"
+    },
+    {
+        "head": "rust",
+        "tail": "rating"
+    },
+    {
+        "head": "cli",
+        "tail": "glove"
+    },
+    {
+        "head": "cli",
+        "tail": "rating"
+    },
+    {
+        "head": "glove",
+        "tail": "rating"
+    },
+    {
+        "head": "javascript",
+        "tail": "extension"
+    },
+    {
+        "head": "javascript",
+        "tail": "web-extension"
+    },
+    {
+        "head": "javascript",
+        "tail": "github-extension"
+    },
+    {
+        "head": "extension",
+        "tail": "web-extension"
+    },
+    {
+        "head": "extension",
+        "tail": "github-extension"
+    },
+    {
+        "head": "web-extension",
+        "tail": "github-extension"
     }
 ]

@@ -35533,5 +35533,31 @@
             "neovim-dotfiles",
             "nix-flake"
         ]
+    },
+    "https://github.com/jereanon/glove80-firmware-updater": {
+        "extra-tags": [
+            "cli",
+            "glove",
+            "rating"
+        ],
+        "date": "2024-01-27",
+        "title": "glove80-firmware-updater",
+        "summary": "A small CLI for updating Glove80 firmware easily",
+        "tags": [
+            "rust"
+        ]
+    },
+    "https://github.com/drcika/apc-extension": {
+        "extra-tags": [
+            "extension",
+            "web-extension",
+            "github-extension"
+        ],
+        "date": "2023-05-26",
+        "title": "apc-extension",
+        "summary": "",
+        "tags": [
+            "javascript"
+        ]
     }
 }
