@@ -162494,5 +162494,41 @@
     {
         "head": "web-extension",
         "tail": "github-extension"
+    },
+    {
+        "head": "tsp",
+        "tail": "gym"
+    },
+    {
+        "head": "tsp",
+        "tail": "simple"
+    },
+    {
+        "head": "tsp",
+        "tail": "reinforcement"
+    },
+    {
+        "head": "tsp",
+        "tail": "environment"
+    },
+    {
+        "head": "gym",
+        "tail": "simple"
+    },
+    {
+        "head": "gym",
+        "tail": "reinforcement"
+    },
+    {
+        "head": "simple",
+        "tail": "reinforcement"
+    },
+    {
+        "head": "simple",
+        "tail": "environment"
+    },
+    {
+        "head": "reinforcement",
+        "tail": "environment"
     }
 ]

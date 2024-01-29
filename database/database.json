@@ -35559,5 +35559,20 @@
         "tags": [
             "javascript"
         ]
+    },
+    "https://github.com/pierrot-lc/tsp-gym": {
+        "extra-tags": [
+            "tsp",
+            "gym",
+            "simple",
+            "reinforcement",
+            "environment"
+        ],
+        "date": "2024-01-28",
+        "title": "tsp-gym",
+        "summary": "A simple reinforcement learning environment for the TSP.",
+        "tags": [
+            "python"
+        ]
     }
 }
