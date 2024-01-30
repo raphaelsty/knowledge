@@ -162530,5 +162530,269 @@
     {
         "head": "reinforcement",
         "tail": "environment"
+    },
+    {
+        "head": "tutorial",
+        "tail": "sql"
+    },
+    {
+        "head": "sql",
+        "tail": "pytorch-tutorial"
+    },
+    {
+        "head": "repository",
+        "tail": "pytorch"
+    },
+    {
+        "head": "repository",
+        "tail": "training"
+    },
+    {
+        "head": "repository",
+        "tail": "experiment"
+    },
+    {
+        "head": "training",
+        "tail": "experiment"
+    },
+    {
+        "head": "prompt-engineering",
+        "tail": "llms"
+    },
+    {
+        "head": "prompt-engineering",
+        "tail": "guided-generation"
+    },
+    {
+        "head": "prompt-engineering",
+        "tail": "generative-ai"
+    },
+    {
+        "head": "prompt-engineering",
+        "tail": "symbolic-ai"
+    },
+    {
+        "head": "prompt-engineering",
+        "tail": "text"
+    },
+    {
+        "head": "prompt-engineering",
+        "tail": "structured knowledge"
+    },
+    {
+        "head": "prompt-engineering",
+        "tail": "structured-data"
+    },
+    {
+        "head": "prompt-engineering",
+        "tail": "structured-signals"
+    },
+    {
+        "head": "llms",
+        "tail": "guided-generation"
+    },
+    {
+        "head": "llms",
+        "tail": "prompt-toolkit"
+    },
+    {
+        "head": "llms",
+        "tail": "generative-ai"
+    },
+    {
+        "head": "llms",
+        "tail": "symbolic-ai"
+    },
+    {
+        "head": "llms",
+        "tail": "text"
+    },
+    {
+        "head": "llms",
+        "tail": "structured-signals"
+    },
+    {
+        "head": "guided-generation",
+        "tail": "prompt-toolkit"
+    },
+    {
+        "head": "guided-generation",
+        "tail": "generative-ai"
+    },
+    {
+        "head": "guided-generation",
+        "tail": "python"
+    },
+    {
+        "head": "guided-generation",
+        "tail": "symbolic-ai"
+    },
+    {
+        "head": "guided-generation",
+        "tail": "text"
+    },
+    {
+        "head": "guided-generation",
+        "tail": "structured knowledge"
+    },
+    {
+        "head": "guided-generation",
+        "tail": "structured-data"
+    },
+    {
+        "head": "guided-generation",
+        "tail": "structured-signals"
+    },
+    {
+        "head": "prompt-toolkit",
+        "tail": "generative-ai"
+    },
+    {
+        "head": "prompt-toolkit",
+        "tail": "symbolic-ai"
+    },
+    {
+        "head": "prompt-toolkit",
+        "tail": "text"
+    },
+    {
+        "head": "prompt-toolkit",
+        "tail": "structured knowledge"
+    },
+    {
+        "head": "prompt-toolkit",
+        "tail": "structured-data"
+    },
+    {
+        "head": "prompt-toolkit",
+        "tail": "structured-signals"
+    },
+    {
+        "head": "generative-ai",
+        "tail": "symbolic-ai"
+    },
+    {
+        "head": "generative-ai",
+        "tail": "text"
+    },
+    {
+        "head": "generative-ai",
+        "tail": "structured knowledge"
+    },
+    {
+        "head": "generative-ai",
+        "tail": "structured-data"
+    },
+    {
+        "head": "generative-ai",
+        "tail": "structured-signals"
+    },
+    {
+        "head": "python",
+        "tail": "symbolic-ai"
+    },
+    {
+        "head": "symbolic-ai",
+        "tail": "text"
+    },
+    {
+        "head": "symbolic-ai",
+        "tail": "structured knowledge"
+    },
+    {
+        "head": "symbolic-ai",
+        "tail": "structured-data"
+    },
+    {
+        "head": "symbolic-ai",
+        "tail": "structured-signals"
+    },
+    {
+        "head": "text",
+        "tail": "structured knowledge"
+    },
+    {
+        "head": "text",
+        "tail": "structured-data"
+    },
+    {
+        "head": "text",
+        "tail": "structured-signals"
+    },
+    {
+        "head": "structured knowledge",
+        "tail": "structured-signals"
+    },
+    {
+        "head": "structured-data",
+        "tail": "structured-signals"
+    },
+    {
+        "head": "syntax-highlighting",
+        "tail": "crates"
+    },
+    {
+        "head": "syntax-highlighting",
+        "tail": "library"
+    },
+    {
+        "head": "syntax-highlighting",
+        "tail": "text"
+    },
+    {
+        "head": "crates",
+        "tail": "syntax"
+    },
+    {
+        "head": "crates",
+        "tail": "library"
+    },
+    {
+        "head": "crates",
+        "tail": "text"
+    },
+    {
+        "head": "rust",
+        "tail": "text"
+    },
+    {
+        "head": "syntax",
+        "tail": "library"
+    },
+    {
+        "head": "syntax",
+        "tail": "text"
+    },
+    {
+        "head": "jax",
+        "tail": "annotations"
+    },
+    {
+        "head": "jax",
+        "tail": "shape"
+    },
+    {
+        "head": "python-typing",
+        "tail": "annotations"
+    },
+    {
+        "head": "python-typing",
+        "tail": "numpy"
+    },
+    {
+        "head": "typing",
+        "tail": "annotations"
+    },
+    {
+        "head": "annotations",
+        "tail": "shape"
+    },
+    {
+        "head": "annotations",
+        "tail": "numpy"
+    },
+    {
+        "head": "shape",
+        "tail": "numpy"
     }
 ]

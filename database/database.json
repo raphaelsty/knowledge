@@ -35574,5 +35574,83 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/gvwilson/sql-tutorial": {
+        "extra-tags": [
+            "pytorch-tutorial"
+        ],
+        "date": "2024-01-16",
+        "title": "sql-tutorial",
+        "summary": "SQL in 100 Queries",
+        "tags": [
+            "tutorial",
+            "python",
+            "sql"
+        ]
+    },
+    "https://github.com/pytorch-labs/float8_experimental": {
+        "extra-tags": [
+            "repository",
+            "pytorch",
+            "training",
+            "experiment"
+        ],
+        "date": "2023-07-19",
+        "title": "float8_experimental",
+        "summary": "This repository contains the experimental PyTorch native float8 training UX",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/outlines-dev/outlines": {
+        "extra-tags": [
+            "text",
+            "structured knowledge",
+            "structured-data",
+            "structured-signals"
+        ],
+        "date": "2023-03-17",
+        "title": "outlines",
+        "summary": "Structured Text Generation",
+        "tags": [
+            "prompt-engineering",
+            "llms",
+            "guided-generation",
+            "prompt-toolkit",
+            "generative-ai",
+            "python",
+            "symbolic-ai"
+        ]
+    },
+    "https://github.com/trishume/syntect": {
+        "extra-tags": [
+            "syntax",
+            "library",
+            "text"
+        ],
+        "date": "2016-05-15",
+        "title": "syntect",
+        "summary": "Rust library for syntax highlighting using Sublime Text syntax definitions.",
+        "tags": [
+            "syntax-highlighting",
+            "crates",
+            "rust"
+        ]
+    },
+    "https://github.com/patrick-kidger/jaxtyping": {
+        "extra-tags": [
+            "annotations",
+            "shape",
+            "numpy"
+        ],
+        "date": "2022-06-23",
+        "title": "jaxtyping",
+        "summary": "Type annotations and runtime checking for shape and dtype of JAX/NumPy/PyTorch/etc. arrays. https://docs.kidger.site/jaxtyping/",
+        "tags": [
+            "jax",
+            "python",
+            "python-typing",
+            "typing"
+        ]
     }
 }
