@@ -162902,5 +162902,669 @@
     {
         "head": "typing",
         "tail": "box"
+    },
+    {
+        "head": "qdrant-vector-database",
+        "tail": "llm"
+    },
+    {
+        "head": "qdrant-vector-database",
+        "tail": "diesel"
+    },
+    {
+        "head": "qdrant-vector-database",
+        "tail": "solidjs"
+    },
+    {
+        "head": "qdrant-vector-database",
+        "tail": "search-engine"
+    },
+    {
+        "head": "qdrant-vector-database",
+        "tail": "artificial-intelligence"
+    },
+    {
+        "head": "qdrant-vector-database",
+        "tail": "qdrant"
+    },
+    {
+        "head": "qdrant-vector-database",
+        "tail": "rag"
+    },
+    {
+        "head": "qdrant-vector-database",
+        "tail": "tailwindcss"
+    },
+    {
+        "head": "qdrant-vector-database",
+        "tail": "actix-web"
+    },
+    {
+        "head": "qdrant-vector-database",
+        "tail": "retrieval-augmented-generation"
+    },
+    {
+        "head": "qdrant-vector-database",
+        "tail": "postgresql"
+    },
+    {
+        "head": "qdrant-vector-database",
+        "tail": "search"
+    },
+    {
+        "head": "qdrant-vector-database",
+        "tail": "vector-search"
+    },
+    {
+        "head": "qdrant-vector-database",
+        "tail": "rust"
+    },
+    {
+        "head": "qdrant-vector-database",
+        "tail": "actix"
+    },
+    {
+        "head": "qdrant-vector-database",
+        "tail": "embedding"
+    },
+    {
+        "head": "qdrant-vector-database",
+        "tail": "ai"
+    },
+    {
+        "head": "qdrant-vector-database",
+        "tail": "api"
+    },
+    {
+        "head": "qdrant-vector-database",
+        "tail": "text"
+    },
+    {
+        "head": "llm",
+        "tail": "diesel"
+    },
+    {
+        "head": "llm",
+        "tail": "solidjs"
+    },
+    {
+        "head": "llm",
+        "tail": "artificial-intelligence"
+    },
+    {
+        "head": "llm",
+        "tail": "qdrant"
+    },
+    {
+        "head": "llm",
+        "tail": "tailwindcss"
+    },
+    {
+        "head": "llm",
+        "tail": "actix-web"
+    },
+    {
+        "head": "llm",
+        "tail": "retrieval-augmented-generation"
+    },
+    {
+        "head": "llm",
+        "tail": "postgresql"
+    },
+    {
+        "head": "llm",
+        "tail": "vector-search"
+    },
+    {
+        "head": "llm",
+        "tail": "rust"
+    },
+    {
+        "head": "llm",
+        "tail": "actix"
+    },
+    {
+        "head": "llm",
+        "tail": "embedding"
+    },
+    {
+        "head": "llm",
+        "tail": "api"
+    },
+    {
+        "head": "llm",
+        "tail": "text"
+    },
+    {
+        "head": "diesel",
+        "tail": "solidjs"
+    },
+    {
+        "head": "diesel",
+        "tail": "search-engine"
+    },
+    {
+        "head": "diesel",
+        "tail": "artificial-intelligence"
+    },
+    {
+        "head": "diesel",
+        "tail": "qdrant"
+    },
+    {
+        "head": "diesel",
+        "tail": "rag"
+    },
+    {
+        "head": "diesel",
+        "tail": "tailwindcss"
+    },
+    {
+        "head": "diesel",
+        "tail": "actix-web"
+    },
+    {
+        "head": "diesel",
+        "tail": "retrieval-augmented-generation"
+    },
+    {
+        "head": "diesel",
+        "tail": "postgresql"
+    },
+    {
+        "head": "diesel",
+        "tail": "search"
+    },
+    {
+        "head": "diesel",
+        "tail": "vector-search"
+    },
+    {
+        "head": "diesel",
+        "tail": "rust"
+    },
+    {
+        "head": "diesel",
+        "tail": "actix"
+    },
+    {
+        "head": "diesel",
+        "tail": "embedding"
+    },
+    {
+        "head": "diesel",
+        "tail": "ai"
+    },
+    {
+        "head": "diesel",
+        "tail": "api"
+    },
+    {
+        "head": "diesel",
+        "tail": "text"
+    },
+    {
+        "head": "solidjs",
+        "tail": "search-engine"
+    },
+    {
+        "head": "solidjs",
+        "tail": "artificial-intelligence"
+    },
+    {
+        "head": "solidjs",
+        "tail": "qdrant"
+    },
+    {
+        "head": "solidjs",
+        "tail": "rag"
+    },
+    {
+        "head": "solidjs",
+        "tail": "tailwindcss"
+    },
+    {
+        "head": "solidjs",
+        "tail": "actix-web"
+    },
+    {
+        "head": "solidjs",
+        "tail": "retrieval-augmented-generation"
+    },
+    {
+        "head": "solidjs",
+        "tail": "postgresql"
+    },
+    {
+        "head": "solidjs",
+        "tail": "search"
+    },
+    {
+        "head": "solidjs",
+        "tail": "vector-search"
+    },
+    {
+        "head": "solidjs",
+        "tail": "rust"
+    },
+    {
+        "head": "solidjs",
+        "tail": "actix"
+    },
+    {
+        "head": "solidjs",
+        "tail": "embedding"
+    },
+    {
+        "head": "solidjs",
+        "tail": "ai"
+    },
+    {
+        "head": "solidjs",
+        "tail": "api"
+    },
+    {
+        "head": "solidjs",
+        "tail": "text"
+    },
+    {
+        "head": "search-engine",
+        "tail": "artificial-intelligence"
+    },
+    {
+        "head": "search-engine",
+        "tail": "qdrant"
+    },
+    {
+        "head": "search-engine",
+        "tail": "rag"
+    },
+    {
+        "head": "search-engine",
+        "tail": "tailwindcss"
+    },
+    {
+        "head": "search-engine",
+        "tail": "actix-web"
+    },
+    {
+        "head": "search-engine",
+        "tail": "retrieval-augmented-generation"
+    },
+    {
+        "head": "search-engine",
+        "tail": "postgresql"
+    },
+    {
+        "head": "search-engine",
+        "tail": "actix"
+    },
+    {
+        "head": "search-engine",
+        "tail": "text"
+    },
+    {
+        "head": "artificial-intelligence",
+        "tail": "qdrant"
+    },
+    {
+        "head": "artificial-intelligence",
+        "tail": "rag"
+    },
+    {
+        "head": "artificial-intelligence",
+        "tail": "tailwindcss"
+    },
+    {
+        "head": "artificial-intelligence",
+        "tail": "actix-web"
+    },
+    {
+        "head": "artificial-intelligence",
+        "tail": "retrieval-augmented-generation"
+    },
+    {
+        "head": "artificial-intelligence",
+        "tail": "postgresql"
+    },
+    {
+        "head": "artificial-intelligence",
+        "tail": "search"
+    },
+    {
+        "head": "artificial-intelligence",
+        "tail": "vector-search"
+    },
+    {
+        "head": "artificial-intelligence",
+        "tail": "rust"
+    },
+    {
+        "head": "artificial-intelligence",
+        "tail": "actix"
+    },
+    {
+        "head": "artificial-intelligence",
+        "tail": "embedding"
+    },
+    {
+        "head": "artificial-intelligence",
+        "tail": "api"
+    },
+    {
+        "head": "artificial-intelligence",
+        "tail": "text"
+    },
+    {
+        "head": "qdrant",
+        "tail": "rag"
+    },
+    {
+        "head": "qdrant",
+        "tail": "tailwindcss"
+    },
+    {
+        "head": "qdrant",
+        "tail": "actix-web"
+    },
+    {
+        "head": "qdrant",
+        "tail": "retrieval-augmented-generation"
+    },
+    {
+        "head": "qdrant",
+        "tail": "postgresql"
+    },
+    {
+        "head": "qdrant",
+        "tail": "search"
+    },
+    {
+        "head": "qdrant",
+        "tail": "rust"
+    },
+    {
+        "head": "qdrant",
+        "tail": "actix"
+    },
+    {
+        "head": "qdrant",
+        "tail": "embedding"
+    },
+    {
+        "head": "qdrant",
+        "tail": "ai"
+    },
+    {
+        "head": "qdrant",
+        "tail": "api"
+    },
+    {
+        "head": "qdrant",
+        "tail": "text"
+    },
+    {
+        "head": "rag",
+        "tail": "tailwindcss"
+    },
+    {
+        "head": "rag",
+        "tail": "actix-web"
+    },
+    {
+        "head": "rag",
+        "tail": "retrieval-augmented-generation"
+    },
+    {
+        "head": "rag",
+        "tail": "postgresql"
+    },
+    {
+        "head": "rag",
+        "tail": "search"
+    },
+    {
+        "head": "rag",
+        "tail": "vector-search"
+    },
+    {
+        "head": "rag",
+        "tail": "rust"
+    },
+    {
+        "head": "rag",
+        "tail": "actix"
+    },
+    {
+        "head": "rag",
+        "tail": "embedding"
+    },
+    {
+        "head": "rag",
+        "tail": "api"
+    },
+    {
+        "head": "rag",
+        "tail": "text"
+    },
+    {
+        "head": "tailwindcss",
+        "tail": "actix-web"
+    },
+    {
+        "head": "tailwindcss",
+        "tail": "retrieval-augmented-generation"
+    },
+    {
+        "head": "tailwindcss",
+        "tail": "postgresql"
+    },
+    {
+        "head": "tailwindcss",
+        "tail": "search"
+    },
+    {
+        "head": "tailwindcss",
+        "tail": "vector-search"
+    },
+    {
+        "head": "tailwindcss",
+        "tail": "rust"
+    },
+    {
+        "head": "tailwindcss",
+        "tail": "actix"
+    },
+    {
+        "head": "tailwindcss",
+        "tail": "embedding"
+    },
+    {
+        "head": "tailwindcss",
+        "tail": "ai"
+    },
+    {
+        "head": "tailwindcss",
+        "tail": "api"
+    },
+    {
+        "head": "tailwindcss",
+        "tail": "text"
+    },
+    {
+        "head": "actix-web",
+        "tail": "retrieval-augmented-generation"
+    },
+    {
+        "head": "actix-web",
+        "tail": "postgresql"
+    },
+    {
+        "head": "actix-web",
+        "tail": "search"
+    },
+    {
+        "head": "actix-web",
+        "tail": "vector-search"
+    },
+    {
+        "head": "actix-web",
+        "tail": "rust"
+    },
+    {
+        "head": "actix-web",
+        "tail": "actix"
+    },
+    {
+        "head": "actix-web",
+        "tail": "embedding"
+    },
+    {
+        "head": "actix-web",
+        "tail": "ai"
+    },
+    {
+        "head": "actix-web",
+        "tail": "api"
+    },
+    {
+        "head": "actix-web",
+        "tail": "text"
+    },
+    {
+        "head": "retrieval-augmented-generation",
+        "tail": "postgresql"
+    },
+    {
+        "head": "retrieval-augmented-generation",
+        "tail": "search"
+    },
+    {
+        "head": "retrieval-augmented-generation",
+        "tail": "vector-search"
+    },
+    {
+        "head": "retrieval-augmented-generation",
+        "tail": "rust"
+    },
+    {
+        "head": "retrieval-augmented-generation",
+        "tail": "actix"
+    },
+    {
+        "head": "retrieval-augmented-generation",
+        "tail": "embedding"
+    },
+    {
+        "head": "retrieval-augmented-generation",
+        "tail": "ai"
+    },
+    {
+        "head": "retrieval-augmented-generation",
+        "tail": "api"
+    },
+    {
+        "head": "retrieval-augmented-generation",
+        "tail": "text"
+    },
+    {
+        "head": "postgresql",
+        "tail": "search"
+    },
+    {
+        "head": "postgresql",
+        "tail": "vector-search"
+    },
+    {
+        "head": "postgresql",
+        "tail": "actix"
+    },
+    {
+        "head": "postgresql",
+        "tail": "embedding"
+    },
+    {
+        "head": "postgresql",
+        "tail": "ai"
+    },
+    {
+        "head": "postgresql",
+        "tail": "text"
+    },
+    {
+        "head": "search",
+        "tail": "actix"
+    },
+    {
+        "head": "search",
+        "tail": "embedding"
+    },
+    {
+        "head": "search",
+        "tail": "text"
+    },
+    {
+        "head": "vector-search",
+        "tail": "actix"
+    },
+    {
+        "head": "vector-search",
+        "tail": "embedding"
+    },
+    {
+        "head": "vector-search",
+        "tail": "ai"
+    },
+    {
+        "head": "vector-search",
+        "tail": "text"
+    },
+    {
+        "head": "rust",
+        "tail": "actix"
+    },
+    {
+        "head": "rust",
+        "tail": "embedding"
+    },
+    {
+        "head": "actix",
+        "tail": "embedding"
+    },
+    {
+        "head": "actix",
+        "tail": "ai"
+    },
+    {
+        "head": "actix",
+        "tail": "api"
+    },
+    {
+        "head": "actix",
+        "tail": "text"
+    },
+    {
+        "head": "embedding",
+        "tail": "ai"
+    },
+    {
+        "head": "embedding",
+        "tail": "api"
+    },
+    {
+        "head": "embedding",
+        "tail": "text"
+    },
+    {
+        "head": "ai",
+        "tail": "api"
+    },
+    {
+        "head": "ai",
+        "tail": "text"
+    },
+    {
+        "head": "api",
+        "tail": "text"
     }
 ]

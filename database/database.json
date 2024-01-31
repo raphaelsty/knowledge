@@ -35680,5 +35680,34 @@
             "computer science - computation and language",
             "computer science - machine learning"
         ]
+    },
+    "https://github.com/devflowinc/trieve": {
+        "extra-tags": [
+            "api",
+            "text"
+        ],
+        "date": "2023-03-26",
+        "title": "trieve",
+        "summary": "Advanced Relevance API for hybrid (semantic + full-text + re-ranker) search, recommendations, and RAG",
+        "tags": [
+            "qdrant-vector-database",
+            "llm",
+            "diesel",
+            "solidjs",
+            "search-engine",
+            "artificial-intelligence",
+            "qdrant",
+            "rag",
+            "tailwindcss",
+            "actix-web",
+            "retrieval-augmented-generation",
+            "postgresql",
+            "search",
+            "vector-search",
+            "rust",
+            "actix",
+            "embedding",
+            "ai"
+        ]
     }
 }
