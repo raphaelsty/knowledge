@@ -35652,5 +35652,33 @@
             "python-typing",
             "typing"
         ]
+    },
+    "https://github.com/SergioMEV/slurm-for-dummies": {
+        "extra-tags": [
+            "slurm",
+            "hpc",
+            "quant"
+        ],
+        "date": "2023-10-11",
+        "title": "slurm-for-dummies",
+        "summary": "A dummy's guide to setting up (and using) HPC clusters on Ubuntu 22.04LTS using Slurm  and Munge. Created by the Quant Club @ UIowa.",
+        "tags": []
+    },
+    "http://arxiv.org/abs/2101.00345": {
+        "extra-tags": [
+            "model",
+            "types",
+            "typing",
+            "box"
+        ],
+        "title": "Modeling Fine-Grained Entity Types with Box Embeddings",
+        "summary": "Neural entity typing models typically represent fine-grained entity types as vectors in a high-dimensional space, but such spaces are not well-suited to modeling these types' complex interdependencies. We study the ability of box embeddings, which embed concepts as d-dimensional hyperrectangles, to capture hierarchies of types even when these relationships are not defined explicitly in the ontology. Our model represents both types and entity mentions as boxes. Each mention and its context are fed into a BERT-based model to embed that mention in our box space; essentially, this model leverages typological clues present in the surface text to hypothesize a type representation for the mention. Box containment can then be used to derive both the posterior probability of a mention exhibiting a given type and the conditional probability relations between types themselves. We compare our approach with a vector-based typing model and observe state-of-the-art performance on several entity typing benchmarks. In addition to competitive typing performance, our box-based model shows better performance in prediction consistency (predicting a supertype and a subtype together) and confidence (i.e., calibration), demonstrating that the box-based model captures the latent type hierarchies better than the vector-based model does.",
+        "date": "2024-01-30",
+        "tags": [
+            "box embeddings",
+            "computer science - artificial intelligence",
+            "computer science - computation and language",
+            "computer science - machine learning"
+        ]
     }
 }

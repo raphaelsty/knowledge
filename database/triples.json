@@ -162794,5 +162794,113 @@
     {
         "head": "shape",
         "tail": "numpy"
+    },
+    {
+        "head": "slurm",
+        "tail": "hpc"
+    },
+    {
+        "head": "slurm",
+        "tail": "quant"
+    },
+    {
+        "head": "hpc",
+        "tail": "quant"
+    },
+    {
+        "head": "box embeddings",
+        "tail": "computer science - artificial intelligence"
+    },
+    {
+        "head": "box embeddings",
+        "tail": "computer science - computation and language"
+    },
+    {
+        "head": "box embeddings",
+        "tail": "computer science - machine learning"
+    },
+    {
+        "head": "box embeddings",
+        "tail": "model"
+    },
+    {
+        "head": "box embeddings",
+        "tail": "types"
+    },
+    {
+        "head": "box embeddings",
+        "tail": "typing"
+    },
+    {
+        "head": "box embeddings",
+        "tail": "box"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "model"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "types"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "typing"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "box"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "model"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "types"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "typing"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "box"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "model"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "types"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "typing"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "box"
+    },
+    {
+        "head": "model",
+        "tail": "types"
+    },
+    {
+        "head": "model",
+        "tail": "typing"
+    },
+    {
+        "head": "model",
+        "tail": "box"
+    },
+    {
+        "head": "types",
+        "tail": "box"
+    },
+    {
+        "head": "typing",
+        "tail": "box"
     }
 ]
