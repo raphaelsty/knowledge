@@ -163566,5 +163566,41 @@
     {
         "head": "api",
         "tail": "text"
+    },
+    {
+        "head": "modeling",
+        "tail": "training"
+    },
+    {
+        "head": "modeling",
+        "tail": "inference"
+    },
+    {
+        "head": "modeling",
+        "tail": "code"
+    },
+    {
+        "head": "inference",
+        "tail": "code"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "registry"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "oci-registry"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "image-registry"
+    },
+    {
+        "head": "registry",
+        "tail": "oci-registry"
+    },
+    {
+        "head": "registry",
+        "tail": "image-registry"
     }
 ]
