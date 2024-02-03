@@ -163602,5 +163602,21 @@
     {
         "head": "registry",
         "tail": "image-registry"
+    },
+    {
+        "head": "python",
+        "tail": "time series"
+    },
+    {
+        "head": "library",
+        "tail": "time series"
+    },
+    {
+        "head": "library",
+        "tail": "analysis"
+    },
+    {
+        "head": "time series",
+        "tail": "analysis"
     }
 ]
