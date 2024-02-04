@@ -35749,5 +35749,21 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/sql-js/sql.js": {
+        "extra-tags": [
+            "library"
+        ],
+        "date": "2012-02-27",
+        "title": "sql.js",
+        "summary": "A javascript library to run SQLite on the web.  ",
+        "tags": [
+            "wasm",
+            "javascript",
+            "emscripten",
+            "database",
+            "sqlite",
+            "sql"
+        ]
     }
 }

@@ -163618,5 +163618,73 @@
     {
         "head": "time series",
         "tail": "analysis"
+    },
+    {
+        "head": "wasm",
+        "tail": "javascript"
+    },
+    {
+        "head": "wasm",
+        "tail": "emscripten"
+    },
+    {
+        "head": "wasm",
+        "tail": "database"
+    },
+    {
+        "head": "wasm",
+        "tail": "sqlite"
+    },
+    {
+        "head": "wasm",
+        "tail": "sql"
+    },
+    {
+        "head": "wasm",
+        "tail": "library"
+    },
+    {
+        "head": "javascript",
+        "tail": "emscripten"
+    },
+    {
+        "head": "javascript",
+        "tail": "sqlite"
+    },
+    {
+        "head": "javascript",
+        "tail": "library"
+    },
+    {
+        "head": "emscripten",
+        "tail": "database"
+    },
+    {
+        "head": "emscripten",
+        "tail": "sqlite"
+    },
+    {
+        "head": "emscripten",
+        "tail": "sql"
+    },
+    {
+        "head": "emscripten",
+        "tail": "library"
+    },
+    {
+        "head": "database",
+        "tail": "sqlite"
+    },
+    {
+        "head": "database",
+        "tail": "library"
+    },
+    {
+        "head": "sqlite",
+        "tail": "library"
+    },
+    {
+        "head": "sql",
+        "tail": "library"
     }
 ]
