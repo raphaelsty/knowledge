@@ -35765,5 +35765,25 @@
             "sqlite",
             "sql"
         ]
+    },
+    "https://github.com/flashinfer-ai/flashinfer": {
+        "extra-tags": [
+            "kernel",
+            "library",
+            "llm",
+            "serving"
+        ],
+        "date": "2023-07-22",
+        "title": "flashinfer",
+        "summary": "FlashInfer: Kernel Library for LLM Serving",
+        "tags": [
+            "cuda",
+            "pytorch",
+            "large-large-models",
+            "gpu",
+            "tvm",
+            "flash-attention",
+            "llm-inference"
+        ]
     }
 }

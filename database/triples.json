@@ -163686,5 +163686,193 @@
     {
         "head": "sql",
         "tail": "library"
+    },
+    {
+        "head": "cuda",
+        "tail": "large-large-models"
+    },
+    {
+        "head": "cuda",
+        "tail": "tvm"
+    },
+    {
+        "head": "cuda",
+        "tail": "flash-attention"
+    },
+    {
+        "head": "cuda",
+        "tail": "llm-inference"
+    },
+    {
+        "head": "cuda",
+        "tail": "kernel"
+    },
+    {
+        "head": "cuda",
+        "tail": "library"
+    },
+    {
+        "head": "cuda",
+        "tail": "llm"
+    },
+    {
+        "head": "cuda",
+        "tail": "serving"
+    },
+    {
+        "head": "pytorch",
+        "tail": "large-large-models"
+    },
+    {
+        "head": "pytorch",
+        "tail": "tvm"
+    },
+    {
+        "head": "pytorch",
+        "tail": "flash-attention"
+    },
+    {
+        "head": "pytorch",
+        "tail": "llm-inference"
+    },
+    {
+        "head": "pytorch",
+        "tail": "kernel"
+    },
+    {
+        "head": "large-large-models",
+        "tail": "gpu"
+    },
+    {
+        "head": "large-large-models",
+        "tail": "tvm"
+    },
+    {
+        "head": "large-large-models",
+        "tail": "flash-attention"
+    },
+    {
+        "head": "large-large-models",
+        "tail": "llm-inference"
+    },
+    {
+        "head": "large-large-models",
+        "tail": "kernel"
+    },
+    {
+        "head": "large-large-models",
+        "tail": "library"
+    },
+    {
+        "head": "large-large-models",
+        "tail": "llm"
+    },
+    {
+        "head": "large-large-models",
+        "tail": "serving"
+    },
+    {
+        "head": "gpu",
+        "tail": "tvm"
+    },
+    {
+        "head": "gpu",
+        "tail": "flash-attention"
+    },
+    {
+        "head": "gpu",
+        "tail": "llm-inference"
+    },
+    {
+        "head": "gpu",
+        "tail": "kernel"
+    },
+    {
+        "head": "gpu",
+        "tail": "library"
+    },
+    {
+        "head": "gpu",
+        "tail": "serving"
+    },
+    {
+        "head": "tvm",
+        "tail": "flash-attention"
+    },
+    {
+        "head": "tvm",
+        "tail": "llm-inference"
+    },
+    {
+        "head": "tvm",
+        "tail": "kernel"
+    },
+    {
+        "head": "tvm",
+        "tail": "library"
+    },
+    {
+        "head": "tvm",
+        "tail": "llm"
+    },
+    {
+        "head": "tvm",
+        "tail": "serving"
+    },
+    {
+        "head": "flash-attention",
+        "tail": "llm-inference"
+    },
+    {
+        "head": "flash-attention",
+        "tail": "kernel"
+    },
+    {
+        "head": "flash-attention",
+        "tail": "library"
+    },
+    {
+        "head": "flash-attention",
+        "tail": "llm"
+    },
+    {
+        "head": "flash-attention",
+        "tail": "serving"
+    },
+    {
+        "head": "llm-inference",
+        "tail": "kernel"
+    },
+    {
+        "head": "llm-inference",
+        "tail": "library"
+    },
+    {
+        "head": "llm-inference",
+        "tail": "llm"
+    },
+    {
+        "head": "llm-inference",
+        "tail": "serving"
+    },
+    {
+        "head": "kernel",
+        "tail": "library"
+    },
+    {
+        "head": "kernel",
+        "tail": "llm"
+    },
+    {
+        "head": "kernel",
+        "tail": "serving"
+    },
+    {
+        "head": "library",
+        "tail": "llm"
+    },
+    {
+        "head": "library",
+        "tail": "serving"
     }
 ]
