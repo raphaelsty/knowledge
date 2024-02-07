@@ -163874,5 +163874,333 @@
     {
         "head": "library",
         "tail": "serving"
+    },
+    {
+        "head": "archiving",
+        "tail": "bookmark-manager"
+    },
+    {
+        "head": "archiving",
+        "tail": "docker"
+    },
+    {
+        "head": "archiving",
+        "tail": "php"
+    },
+    {
+        "head": "archiving",
+        "tail": "bookmarks"
+    },
+    {
+        "head": "archiving",
+        "tail": "selfhosted"
+    },
+    {
+        "head": "archiving",
+        "tail": "bookmark-managers"
+    },
+    {
+        "head": "archiving",
+        "tail": "bookmarking"
+    },
+    {
+        "head": "archiving",
+        "tail": "self-hosted"
+    },
+    {
+        "head": "archiving",
+        "tail": "laravel"
+    },
+    {
+        "head": "archiving",
+        "tail": "archive"
+    },
+    {
+        "head": "bookmark-manager",
+        "tail": "docker"
+    },
+    {
+        "head": "bookmark-manager",
+        "tail": "php"
+    },
+    {
+        "head": "bookmark-manager",
+        "tail": "bookmarks"
+    },
+    {
+        "head": "bookmark-manager",
+        "tail": "selfhosted"
+    },
+    {
+        "head": "bookmark-manager",
+        "tail": "bookmark-managers"
+    },
+    {
+        "head": "bookmark-manager",
+        "tail": "bookmarking"
+    },
+    {
+        "head": "bookmark-manager",
+        "tail": "self-hosted"
+    },
+    {
+        "head": "bookmark-manager",
+        "tail": "laravel"
+    },
+    {
+        "head": "bookmark-manager",
+        "tail": "archive"
+    },
+    {
+        "head": "docker",
+        "tail": "bookmarks"
+    },
+    {
+        "head": "docker",
+        "tail": "selfhosted"
+    },
+    {
+        "head": "docker",
+        "tail": "bookmark-managers"
+    },
+    {
+        "head": "docker",
+        "tail": "bookmarking"
+    },
+    {
+        "head": "docker",
+        "tail": "laravel"
+    },
+    {
+        "head": "docker",
+        "tail": "archive"
+    },
+    {
+        "head": "php",
+        "tail": "bookmarks"
+    },
+    {
+        "head": "php",
+        "tail": "selfhosted"
+    },
+    {
+        "head": "php",
+        "tail": "bookmark-managers"
+    },
+    {
+        "head": "php",
+        "tail": "bookmarking"
+    },
+    {
+        "head": "php",
+        "tail": "self-hosted"
+    },
+    {
+        "head": "php",
+        "tail": "laravel"
+    },
+    {
+        "head": "php",
+        "tail": "archive"
+    },
+    {
+        "head": "bookmarks",
+        "tail": "selfhosted"
+    },
+    {
+        "head": "bookmarks",
+        "tail": "bookmark-managers"
+    },
+    {
+        "head": "bookmarks",
+        "tail": "bookmarking"
+    },
+    {
+        "head": "bookmarks",
+        "tail": "self-hosted"
+    },
+    {
+        "head": "bookmarks",
+        "tail": "laravel"
+    },
+    {
+        "head": "bookmarks",
+        "tail": "archive"
+    },
+    {
+        "head": "selfhosted",
+        "tail": "bookmark-managers"
+    },
+    {
+        "head": "selfhosted",
+        "tail": "bookmarking"
+    },
+    {
+        "head": "selfhosted",
+        "tail": "self-hosted"
+    },
+    {
+        "head": "selfhosted",
+        "tail": "laravel"
+    },
+    {
+        "head": "selfhosted",
+        "tail": "archive"
+    },
+    {
+        "head": "bookmark-managers",
+        "tail": "bookmarking"
+    },
+    {
+        "head": "bookmark-managers",
+        "tail": "self-hosted"
+    },
+    {
+        "head": "bookmark-managers",
+        "tail": "laravel"
+    },
+    {
+        "head": "bookmark-managers",
+        "tail": "archive"
+    },
+    {
+        "head": "bookmarking",
+        "tail": "self-hosted"
+    },
+    {
+        "head": "bookmarking",
+        "tail": "laravel"
+    },
+    {
+        "head": "bookmarking",
+        "tail": "archive"
+    },
+    {
+        "head": "self-hosted",
+        "tail": "laravel"
+    },
+    {
+        "head": "self-hosted",
+        "tail": "archive"
+    },
+    {
+        "head": "laravel",
+        "tail": "archive"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "huggingface-transformers"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "vllm"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "json"
+    },
+    {
+        "head": "huggingface-transformers",
+        "tail": "vllm"
+    },
+    {
+        "head": "huggingface-transformers",
+        "tail": "openai"
+    },
+    {
+        "head": "huggingface-transformers",
+        "tail": "llm"
+    },
+    {
+        "head": "huggingface-transformers",
+        "tail": "json"
+    },
+    {
+        "head": "huggingface-transformers",
+        "tail": "llms"
+    },
+    {
+        "head": "vllm",
+        "tail": "openai"
+    },
+    {
+        "head": "vllm",
+        "tail": "llm"
+    },
+    {
+        "head": "vllm",
+        "tail": "json"
+    },
+    {
+        "head": "vllm",
+        "tail": "llms"
+    },
+    {
+        "head": "openai",
+        "tail": "llm"
+    },
+    {
+        "head": "openai",
+        "tail": "json"
+    },
+    {
+        "head": "llm",
+        "tail": "json"
+    },
+    {
+        "head": "json",
+        "tail": "llms"
+    },
+    {
+        "head": "go",
+        "tail": "deep"
+    },
+    {
+        "head": "go",
+        "tail": "reinforcement"
+    },
+    {
+        "head": "go",
+        "tail": "learning"
+    },
+    {
+        "head": "go",
+        "tail": "microservice"
+    },
+    {
+        "head": "deep",
+        "tail": "reinforcement"
+    },
+    {
+        "head": "deep",
+        "tail": "learning"
+    },
+    {
+        "head": "deep",
+        "tail": "kubernetes"
+    },
+    {
+        "head": "deep",
+        "tail": "microservice"
+    },
+    {
+        "head": "reinforcement",
+        "tail": "kubernetes"
+    },
+    {
+        "head": "reinforcement",
+        "tail": "microservice"
+    },
+    {
+        "head": "learning",
+        "tail": "kubernetes"
+    },
+    {
+        "head": "learning",
+        "tail": "microservice"
+    },
+    {
+        "head": "kubernetes",
+        "tail": "microservice"
     }
 ]

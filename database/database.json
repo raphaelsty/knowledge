@@ -35785,5 +35785,55 @@
             "flash-attention",
             "llm-inference"
         ]
+    },
+    "https://github.com/Kovah/LinkAce": {
+        "extra-tags": [],
+        "date": "2018-08-22",
+        "title": "LinkAce",
+        "summary": "LinkAce is a self-hosted archive to collect links of your favorite websites.",
+        "tags": [
+            "archiving",
+            "bookmark-manager",
+            "docker",
+            "php",
+            "bookmarks",
+            "selfhosted",
+            "bookmark-managers",
+            "bookmarking",
+            "self-hosted",
+            "laravel",
+            "archive"
+        ]
+    },
+    "https://github.com/varunshenoy/super-json-mode": {
+        "extra-tags": [
+            "json",
+            "llms"
+        ],
+        "date": "2023-11-15",
+        "title": "super-json-mode",
+        "summary": "Low latency JSON generation using LLMs \u26a1\ufe0f",
+        "tags": [
+            "jupyter notebook",
+            "huggingface-transformers",
+            "vllm",
+            "openai",
+            "llm"
+        ]
+    },
+    "https://github.com/JolyonJian/DRS": {
+        "extra-tags": [
+            "deep",
+            "reinforcement",
+            "learning",
+            "kubernetes",
+            "microservice"
+        ],
+        "date": "2023-06-12",
+        "title": "DRS",
+        "summary": "A Deep Reinforcement Learning enhanced Kubernetes Scheduler for Microservice-based System",
+        "tags": [
+            "go"
+        ]
     }
 }
