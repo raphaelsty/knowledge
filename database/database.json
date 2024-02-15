@@ -35835,5 +35835,16 @@
         "tags": [
             "go"
         ]
+    },
+    "https://github.com/jzck/Open3CL": {
+        "extra-tags": [],
+        "date": "2024-01-28",
+        "title": "Open3CL",
+        "summary": "Moteur de calcul 3CL / DPE",
+        "tags": [
+            "dpe",
+            "javascript",
+            "3cl"
+        ]
     }
 }

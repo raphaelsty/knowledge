@@ -164202,5 +164202,17 @@
     {
         "head": "kubernetes",
         "tail": "microservice"
+    },
+    {
+        "head": "dpe",
+        "tail": "javascript"
+    },
+    {
+        "head": "dpe",
+        "tail": "3cl"
+    },
+    {
+        "head": "javascript",
+        "tail": "3cl"
     }
 ]
