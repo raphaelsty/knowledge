@@ -35846,5 +35846,18 @@
             "javascript",
             "3cl"
         ]
+    },
+    "https://github.com/astral-sh/uv": {
+        "extra-tags": [
+            "fast",
+            "python",
+            "package"
+        ],
+        "date": "2023-10-02",
+        "title": "uv",
+        "summary": "An extremely fast Python package installer and resolver, written in Rust.",
+        "tags": [
+            "rust"
+        ]
     }
 }

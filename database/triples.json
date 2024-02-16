@@ -164214,5 +164214,9 @@
     {
         "head": "javascript",
         "tail": "3cl"
+    },
+    {
+        "head": "fast",
+        "tail": "package"
     }
 ]
