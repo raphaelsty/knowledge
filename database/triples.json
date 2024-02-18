@@ -164218,5 +164218,349 @@
     {
         "head": "fast",
         "tail": "package"
+    },
+    {
+        "head": "embedding",
+        "tail": "html"
+    },
+    {
+        "head": "embedding",
+        "tail": "neural"
+    },
+    {
+        "head": "embedding",
+        "tail": "engine"
+    },
+    {
+        "head": "embedding",
+        "tail": "metadata"
+    },
+    {
+        "head": "neural-information-retrieval",
+        "tail": "html"
+    },
+    {
+        "head": "neural-information-retrieval",
+        "tail": "search"
+    },
+    {
+        "head": "neural-information-retrieval",
+        "tail": "neural"
+    },
+    {
+        "head": "neural-information-retrieval",
+        "tail": "engine"
+    },
+    {
+        "head": "neural-information-retrieval",
+        "tail": "metadata"
+    },
+    {
+        "head": "information-retrieval-engine",
+        "tail": "html"
+    },
+    {
+        "head": "information-retrieval-engine",
+        "tail": "search"
+    },
+    {
+        "head": "information-retrieval-engine",
+        "tail": "neural"
+    },
+    {
+        "head": "information-retrieval-engine",
+        "tail": "engine"
+    },
+    {
+        "head": "information-retrieval-engine",
+        "tail": "metadata"
+    },
+    {
+        "head": "approximate-nearest-neighbor-search",
+        "tail": "html"
+    },
+    {
+        "head": "approximate-nearest-neighbor-search",
+        "tail": "neural"
+    },
+    {
+        "head": "approximate-nearest-neighbor-search",
+        "tail": "engine"
+    },
+    {
+        "head": "approximate-nearest-neighbor-search",
+        "tail": "metadata"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "html"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "neural"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "engine"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "metadata"
+    },
+    {
+        "head": "knn-search",
+        "tail": "html"
+    },
+    {
+        "head": "knn-search",
+        "tail": "search"
+    },
+    {
+        "head": "knn-search",
+        "tail": "neural"
+    },
+    {
+        "head": "knn-search",
+        "tail": "engine"
+    },
+    {
+        "head": "knn-search",
+        "tail": "metadata"
+    },
+    {
+        "head": "search-engine",
+        "tail": "html"
+    },
+    {
+        "head": "search-engine",
+        "tail": "neural"
+    },
+    {
+        "head": "search-engine",
+        "tail": "engine"
+    },
+    {
+        "head": "search-engine",
+        "tail": "metadata"
+    },
+    {
+        "head": "similarity-searches",
+        "tail": "html"
+    },
+    {
+        "head": "similarity-searches",
+        "tail": "search"
+    },
+    {
+        "head": "similarity-searches",
+        "tail": "neural"
+    },
+    {
+        "head": "similarity-searches",
+        "tail": "engine"
+    },
+    {
+        "head": "similarity-searches",
+        "tail": "metadata"
+    },
+    {
+        "head": "vector-database",
+        "tail": "html"
+    },
+    {
+        "head": "vector-database",
+        "tail": "neural"
+    },
+    {
+        "head": "vector-database",
+        "tail": "engine"
+    },
+    {
+        "head": "vector-database",
+        "tail": "metadata"
+    },
+    {
+        "head": "image-search",
+        "tail": "html"
+    },
+    {
+        "head": "image-search",
+        "tail": "neural"
+    },
+    {
+        "head": "image-search",
+        "tail": "engine"
+    },
+    {
+        "head": "image-search",
+        "tail": "metadata"
+    },
+    {
+        "head": "html",
+        "tail": "aquila"
+    },
+    {
+        "head": "html",
+        "tail": "nearest-neighbor-search"
+    },
+    {
+        "head": "html",
+        "tail": "neural-search"
+    },
+    {
+        "head": "html",
+        "tail": "feature-vectors"
+    },
+    {
+        "head": "html",
+        "tail": "faiss"
+    },
+    {
+        "head": "html",
+        "tail": "retrieval"
+    },
+    {
+        "head": "html",
+        "tail": "video-search"
+    },
+    {
+        "head": "html",
+        "tail": "similarity-search"
+    },
+    {
+        "head": "html",
+        "tail": "search"
+    },
+    {
+        "head": "html",
+        "tail": "neural"
+    },
+    {
+        "head": "html",
+        "tail": "engine"
+    },
+    {
+        "head": "html",
+        "tail": "metadata"
+    },
+    {
+        "head": "aquila",
+        "tail": "search"
+    },
+    {
+        "head": "aquila",
+        "tail": "neural"
+    },
+    {
+        "head": "aquila",
+        "tail": "engine"
+    },
+    {
+        "head": "aquila",
+        "tail": "metadata"
+    },
+    {
+        "head": "nearest-neighbor-search",
+        "tail": "neural"
+    },
+    {
+        "head": "nearest-neighbor-search",
+        "tail": "engine"
+    },
+    {
+        "head": "nearest-neighbor-search",
+        "tail": "metadata"
+    },
+    {
+        "head": "neural-search",
+        "tail": "engine"
+    },
+    {
+        "head": "neural-search",
+        "tail": "metadata"
+    },
+    {
+        "head": "feature-vectors",
+        "tail": "search"
+    },
+    {
+        "head": "feature-vectors",
+        "tail": "neural"
+    },
+    {
+        "head": "feature-vectors",
+        "tail": "engine"
+    },
+    {
+        "head": "feature-vectors",
+        "tail": "metadata"
+    },
+    {
+        "head": "faiss",
+        "tail": "neural"
+    },
+    {
+        "head": "faiss",
+        "tail": "engine"
+    },
+    {
+        "head": "faiss",
+        "tail": "metadata"
+    },
+    {
+        "head": "retrieval",
+        "tail": "neural"
+    },
+    {
+        "head": "retrieval",
+        "tail": "engine"
+    },
+    {
+        "head": "retrieval",
+        "tail": "metadata"
+    },
+    {
+        "head": "video-search",
+        "tail": "neural"
+    },
+    {
+        "head": "video-search",
+        "tail": "engine"
+    },
+    {
+        "head": "video-search",
+        "tail": "metadata"
+    },
+    {
+        "head": "similarity-search",
+        "tail": "neural"
+    },
+    {
+        "head": "similarity-search",
+        "tail": "engine"
+    },
+    {
+        "head": "similarity-search",
+        "tail": "metadata"
+    },
+    {
+        "head": "search",
+        "tail": "engine"
+    },
+    {
+        "head": "search",
+        "tail": "metadata"
+    },
+    {
+        "head": "neural",
+        "tail": "engine"
+    },
+    {
+        "head": "neural",
+        "tail": "metadata"
+    },
+    {
+        "head": "engine",
+        "tail": "metadata"
     }
 ]

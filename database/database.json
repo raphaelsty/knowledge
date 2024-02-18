@@ -35859,5 +35859,37 @@
         "tags": [
             "rust"
         ]
+    },
+    "https://github.com/Aquila-Network/aquila": {
+        "extra-tags": [
+            "search",
+            "neural",
+            "engine",
+            "metadata"
+        ],
+        "date": "2019-04-19",
+        "title": "aquila",
+        "summary": "An easy to use Neural Search Engine. Index latent vectors along with JSON metadata and do efficient k-NN search.",
+        "tags": [
+            "embedding",
+            "neural-information-retrieval",
+            "information-retrieval-engine",
+            "approximate-nearest-neighbor-search",
+            "information-retrieval",
+            "knn-search",
+            "search-engine",
+            "similarity-searches",
+            "vector-database",
+            "image-search",
+            "html",
+            "aquila",
+            "nearest-neighbor-search",
+            "neural-search",
+            "feature-vectors",
+            "faiss",
+            "retrieval",
+            "video-search",
+            "similarity-search"
+        ]
     }
 }
