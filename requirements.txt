@@ -6,7 +6,7 @@ rdflib == 6.1.1
 cherche == 2.0.5
 networkx == 2.8.5
 uvicorn == 0.17.5
-fastapi == 0.74.0
+fastapi == 0.109.1
 pydantic == 1.9.0
 python-multipart == 0.0.5
 pyyaml_env_tag == 0.1
