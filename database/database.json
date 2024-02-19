@@ -35891,5 +35891,40 @@
             "video-search",
             "similarity-search"
         ]
+    },
+    "https://github.com/yalue/onnxruntime_go": {
+        "extra-tags": [
+            "library",
+            "microsoft"
+        ],
+        "date": "2023-01-28",
+        "title": "onnxruntime_go",
+        "summary": "A Go (golang) library wrapping microsoft/onnxruntime.",
+        "tags": [
+            "go",
+            "windows",
+            "onnx",
+            "onnxruntime",
+            "neural-networks",
+            "golang",
+            "linux",
+            "arm64"
+        ]
+    },
+    "https://github.com/rhysd/tui-textarea": {
+        "extra-tags": [
+            "simple",
+            "text"
+        ],
+        "date": "2022-06-08",
+        "title": "tui-textarea",
+        "summary": "Simple yet powerful multi-line text editor widget for ratatui and tui-rs",
+        "tags": [
+            "tui",
+            "ratatui",
+            "editor",
+            "terminal",
+            "rust"
+        ]
     }
 }
