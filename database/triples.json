@@ -164754,5 +164754,33 @@
     {
         "head": "simple",
         "tail": "text"
+    },
+    {
+        "head": "rust",
+        "tail": "efficiency"
+    },
+    {
+        "head": "sql",
+        "tail": "linter"
+    },
+    {
+        "head": "sql",
+        "tail": "efficiency"
+    },
+    {
+        "head": "linter",
+        "tail": "efficiency"
+    },
+    {
+        "head": "rust",
+        "tail": "widgets"
+    },
+    {
+        "head": "widgets",
+        "tail": "tui"
+    },
+    {
+        "head": "widgets",
+        "tail": "ratatui"
     }
 ]

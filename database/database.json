@@ -35926,5 +35926,30 @@
             "terminal",
             "rust"
         ]
+    },
+    "https://github.com/quarylabs/sqruff": {
+        "extra-tags": [
+            "sql",
+            "linter",
+            "efficiency"
+        ],
+        "date": "2023-02-13",
+        "title": "sqruff",
+        "summary": "A compact, high-speed SQL linter, engineered with Rust efficiency.",
+        "tags": [
+            "rust"
+        ]
+    },
+    "https://github.com/joshka/tui-scrollview": {
+        "extra-tags": [],
+        "date": "2024-01-18",
+        "title": "tui-scrollview",
+        "summary": "A ScrollView widget for ratatui",
+        "tags": [
+            "rust",
+            "widgets",
+            "tui",
+            "ratatui"
+        ]
     }
 }
