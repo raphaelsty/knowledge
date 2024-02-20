@@ -164782,5 +164782,425 @@
     {
         "head": "widgets",
         "tail": "ratatui"
+    },
+    {
+        "head": "engineer",
+        "tail": "read-articles"
+    },
+    {
+        "head": "engineer",
+        "tail": "computer-science"
+    },
+    {
+        "head": "engineer",
+        "tail": "programmer"
+    },
+    {
+        "head": "engineer",
+        "tail": "scalability"
+    },
+    {
+        "head": "engineer",
+        "tail": "learning"
+    },
+    {
+        "head": "engineer",
+        "tail": "lessons-learned"
+    },
+    {
+        "head": "engineer",
+        "tail": "documentation"
+    },
+    {
+        "head": "engineer",
+        "tail": "software-engineering"
+    },
+    {
+        "head": "engineer",
+        "tail": "concepts"
+    },
+    {
+        "head": "engineer",
+        "tail": "python"
+    },
+    {
+        "head": "engineer",
+        "tail": "professional"
+    },
+    {
+        "head": "engineer",
+        "tail": "architecture"
+    },
+    {
+        "head": "engineer",
+        "tail": "programming-language"
+    },
+    {
+        "head": "engineer",
+        "tail": "programming"
+    },
+    {
+        "head": "engineer",
+        "tail": "collection"
+    },
+    {
+        "head": "read-articles",
+        "tail": "computer-science"
+    },
+    {
+        "head": "read-articles",
+        "tail": "programmer"
+    },
+    {
+        "head": "read-articles",
+        "tail": "scalability"
+    },
+    {
+        "head": "read-articles",
+        "tail": "learning"
+    },
+    {
+        "head": "read-articles",
+        "tail": "lessons-learned"
+    },
+    {
+        "head": "read-articles",
+        "tail": "documentation"
+    },
+    {
+        "head": "read-articles",
+        "tail": "software-engineering"
+    },
+    {
+        "head": "read-articles",
+        "tail": "concepts"
+    },
+    {
+        "head": "read-articles",
+        "tail": "python"
+    },
+    {
+        "head": "read-articles",
+        "tail": "professional"
+    },
+    {
+        "head": "read-articles",
+        "tail": "architecture"
+    },
+    {
+        "head": "read-articles",
+        "tail": "programming-language"
+    },
+    {
+        "head": "read-articles",
+        "tail": "programming"
+    },
+    {
+        "head": "read-articles",
+        "tail": "collection"
+    },
+    {
+        "head": "computer-science",
+        "tail": "programmer"
+    },
+    {
+        "head": "computer-science",
+        "tail": "scalability"
+    },
+    {
+        "head": "computer-science",
+        "tail": "learning"
+    },
+    {
+        "head": "computer-science",
+        "tail": "lessons-learned"
+    },
+    {
+        "head": "computer-science",
+        "tail": "documentation"
+    },
+    {
+        "head": "computer-science",
+        "tail": "concepts"
+    },
+    {
+        "head": "computer-science",
+        "tail": "professional"
+    },
+    {
+        "head": "computer-science",
+        "tail": "programming"
+    },
+    {
+        "head": "programmer",
+        "tail": "scalability"
+    },
+    {
+        "head": "programmer",
+        "tail": "learning"
+    },
+    {
+        "head": "programmer",
+        "tail": "lessons-learned"
+    },
+    {
+        "head": "programmer",
+        "tail": "documentation"
+    },
+    {
+        "head": "programmer",
+        "tail": "software-engineering"
+    },
+    {
+        "head": "programmer",
+        "tail": "concepts"
+    },
+    {
+        "head": "programmer",
+        "tail": "python"
+    },
+    {
+        "head": "programmer",
+        "tail": "professional"
+    },
+    {
+        "head": "programmer",
+        "tail": "architecture"
+    },
+    {
+        "head": "programmer",
+        "tail": "programming-language"
+    },
+    {
+        "head": "programmer",
+        "tail": "programming"
+    },
+    {
+        "head": "programmer",
+        "tail": "collection"
+    },
+    {
+        "head": "scalability",
+        "tail": "learning"
+    },
+    {
+        "head": "scalability",
+        "tail": "lessons-learned"
+    },
+    {
+        "head": "scalability",
+        "tail": "documentation"
+    },
+    {
+        "head": "scalability",
+        "tail": "software-engineering"
+    },
+    {
+        "head": "scalability",
+        "tail": "concepts"
+    },
+    {
+        "head": "scalability",
+        "tail": "professional"
+    },
+    {
+        "head": "scalability",
+        "tail": "architecture"
+    },
+    {
+        "head": "scalability",
+        "tail": "programming-language"
+    },
+    {
+        "head": "scalability",
+        "tail": "programming"
+    },
+    {
+        "head": "scalability",
+        "tail": "collection"
+    },
+    {
+        "head": "learning",
+        "tail": "lessons-learned"
+    },
+    {
+        "head": "learning",
+        "tail": "documentation"
+    },
+    {
+        "head": "learning",
+        "tail": "software-engineering"
+    },
+    {
+        "head": "learning",
+        "tail": "concepts"
+    },
+    {
+        "head": "learning",
+        "tail": "professional"
+    },
+    {
+        "head": "learning",
+        "tail": "programming-language"
+    },
+    {
+        "head": "learning",
+        "tail": "collection"
+    },
+    {
+        "head": "lessons-learned",
+        "tail": "documentation"
+    },
+    {
+        "head": "lessons-learned",
+        "tail": "software-engineering"
+    },
+    {
+        "head": "lessons-learned",
+        "tail": "concepts"
+    },
+    {
+        "head": "lessons-learned",
+        "tail": "python"
+    },
+    {
+        "head": "lessons-learned",
+        "tail": "professional"
+    },
+    {
+        "head": "lessons-learned",
+        "tail": "architecture"
+    },
+    {
+        "head": "lessons-learned",
+        "tail": "programming-language"
+    },
+    {
+        "head": "lessons-learned",
+        "tail": "programming"
+    },
+    {
+        "head": "lessons-learned",
+        "tail": "collection"
+    },
+    {
+        "head": "documentation",
+        "tail": "software-engineering"
+    },
+    {
+        "head": "documentation",
+        "tail": "concepts"
+    },
+    {
+        "head": "documentation",
+        "tail": "professional"
+    },
+    {
+        "head": "documentation",
+        "tail": "architecture"
+    },
+    {
+        "head": "documentation",
+        "tail": "programming-language"
+    },
+    {
+        "head": "documentation",
+        "tail": "programming"
+    },
+    {
+        "head": "documentation",
+        "tail": "collection"
+    },
+    {
+        "head": "software-engineering",
+        "tail": "concepts"
+    },
+    {
+        "head": "software-engineering",
+        "tail": "python"
+    },
+    {
+        "head": "software-engineering",
+        "tail": "professional"
+    },
+    {
+        "head": "software-engineering",
+        "tail": "programming-language"
+    },
+    {
+        "head": "software-engineering",
+        "tail": "programming"
+    },
+    {
+        "head": "software-engineering",
+        "tail": "collection"
+    },
+    {
+        "head": "concepts",
+        "tail": "python"
+    },
+    {
+        "head": "concepts",
+        "tail": "professional"
+    },
+    {
+        "head": "concepts",
+        "tail": "architecture"
+    },
+    {
+        "head": "concepts",
+        "tail": "programming-language"
+    },
+    {
+        "head": "concepts",
+        "tail": "programming"
+    },
+    {
+        "head": "concepts",
+        "tail": "collection"
+    },
+    {
+        "head": "python",
+        "tail": "professional"
+    },
+    {
+        "head": "professional",
+        "tail": "architecture"
+    },
+    {
+        "head": "professional",
+        "tail": "programming-language"
+    },
+    {
+        "head": "professional",
+        "tail": "programming"
+    },
+    {
+        "head": "professional",
+        "tail": "collection"
+    },
+    {
+        "head": "architecture",
+        "tail": "programming-language"
+    },
+    {
+        "head": "architecture",
+        "tail": "programming"
+    },
+    {
+        "head": "architecture",
+        "tail": "collection"
+    },
+    {
+        "head": "programming-language",
+        "tail": "programming"
+    },
+    {
+        "head": "programming-language",
+        "tail": "collection"
+    },
+    {
+        "head": "programming",
+        "tail": "collection"
     }
 ]

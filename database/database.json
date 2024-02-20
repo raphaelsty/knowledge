@@ -35951,5 +35951,30 @@
             "tui",
             "ratatui"
         ]
+    },
+    "https://github.com/charlax/professional-programming": {
+        "extra-tags": [
+            "programming",
+            "collection"
+        ],
+        "date": "2015-11-07",
+        "title": "professional-programming",
+        "summary": "A collection of learning resources for curious software engineers",
+        "tags": [
+            "engineer",
+            "read-articles",
+            "computer-science",
+            "programmer",
+            "scalability",
+            "learning",
+            "lessons-learned",
+            "documentation",
+            "software-engineering",
+            "concepts",
+            "python",
+            "professional",
+            "architecture",
+            "programming-language"
+        ]
     }
 }
