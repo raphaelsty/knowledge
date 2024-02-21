@@ -165202,5 +165202,21 @@
     {
         "head": "programming",
         "tail": "collection"
+    },
+    {
+        "head": "python",
+        "tail": "beautiful"
+    },
+    {
+        "head": "beautiful",
+        "tail": "data"
+    },
+    {
+        "head": "beautiful",
+        "tail": "maps"
+    },
+    {
+        "head": "data",
+        "tail": "maps"
     }
 ]

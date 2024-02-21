@@ -35976,5 +35976,18 @@
             "architecture",
             "programming-language"
         ]
+    },
+    "https://github.com/TutteInstitute/datamapplot": {
+        "extra-tags": [
+            "beautiful",
+            "data",
+            "maps"
+        ],
+        "date": "2023-12-18",
+        "title": "datamapplot",
+        "summary": "Creating beautiful plots of data maps",
+        "tags": [
+            "python"
+        ]
     }
 }
