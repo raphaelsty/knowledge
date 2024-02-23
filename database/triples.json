@@ -165218,5 +165218,33 @@
     {
         "head": "data",
         "tail": "maps"
+    },
+    {
+        "head": "python",
+        "tail": "rest"
+    },
+    {
+        "head": "remote-sensing",
+        "tail": "pretrained"
+    },
+    {
+        "head": "remote-sensing",
+        "tail": "models"
+    },
+    {
+        "head": "remote-sensing",
+        "tail": "rest"
+    },
+    {
+        "head": "pretrained",
+        "tail": "models"
+    },
+    {
+        "head": "pretrained",
+        "tail": "rest"
+    },
+    {
+        "head": "models",
+        "tail": "rest"
     }
 ]

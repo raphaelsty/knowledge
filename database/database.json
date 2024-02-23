@@ -35989,5 +35989,19 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/moonshinelabs-ai/moonshine-remote-sensing": {
+        "extra-tags": [
+            "remote-sensing",
+            "pretrained",
+            "models",
+            "rest"
+        ],
+        "date": "2023-02-06",
+        "title": "moonshine-remote-sensing",
+        "summary": "Pretrained remote sensing models for the rest of us.",
+        "tags": [
+            "python"
+        ]
     }
 }
