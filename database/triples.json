@@ -165246,5 +165246,49 @@
     {
         "head": "models",
         "tail": "rest"
+    },
+    {
+        "head": "rust",
+        "tail": "comments-widget"
+    },
+    {
+        "head": "tui",
+        "tail": "tree"
+    },
+    {
+        "head": "tui",
+        "tail": "comments-widget"
+    },
+    {
+        "head": "tree",
+        "tail": "widgets"
+    },
+    {
+        "head": "tree",
+        "tail": "comments-widget"
+    },
+    {
+        "head": "widgets",
+        "tail": "comments-widget"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "codspeed"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "codex"
+    },
+    {
+        "head": "codspeed",
+        "tail": "code"
+    },
+    {
+        "head": "codspeed",
+        "tail": "codex"
+    },
+    {
+        "head": "code",
+        "tail": "codex"
     }
 ]
