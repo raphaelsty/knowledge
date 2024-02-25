@@ -36030,5 +36030,38 @@
         "tags": [
             "jupyter notebook"
         ]
+    },
+    "https://github.com/google/gemma.cpp": {
+        "extra-tags": [
+            "cpp",
+            "inference",
+            "engine"
+        ],
+        "date": "2024-02-13",
+        "title": "gemma.cpp",
+        "summary": "lightweight, standalone C++ inference engine for Google's Gemma models.",
+        "tags": [
+            "c++"
+        ]
+    },
+    "https://github.com/Bycob/midipic": {
+        "extra-tags": [
+            "translation",
+            "ml",
+            "datasets"
+        ],
+        "date": "2024-02-24",
+        "title": "midipic",
+        "summary": "Midi to Image translation for ML datasets",
+        "tags": [
+            "dataset",
+            "generative-art",
+            "music",
+            "python",
+            "generative-ai",
+            "machine-learning",
+            "midi",
+            "image"
+        ]
     }
 }
