@@ -36063,5 +36063,20 @@
             "midi",
             "image"
         ]
+    },
+    "https://github.com/astral-sh/rye": {
+        "extra-tags": [
+            "ux-experience",
+            "developer-experience"
+        ],
+        "date": "2023-04-22",
+        "title": "rye",
+        "summary": "a Hassle-Free Python Experience",
+        "tags": [
+            "packaging",
+            "package-manager",
+            "rust",
+            "python"
+        ]
     }
 }

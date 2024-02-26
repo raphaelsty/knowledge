@@ -165462,5 +165462,41 @@
     {
         "head": "ml",
         "tail": "datasets"
+    },
+    {
+        "head": "packaging",
+        "tail": "ux-experience"
+    },
+    {
+        "head": "packaging",
+        "tail": "developer-experience"
+    },
+    {
+        "head": "package-manager",
+        "tail": "ux-experience"
+    },
+    {
+        "head": "package-manager",
+        "tail": "developer-experience"
+    },
+    {
+        "head": "rust",
+        "tail": "ux-experience"
+    },
+    {
+        "head": "rust",
+        "tail": "developer-experience"
+    },
+    {
+        "head": "python",
+        "tail": "ux-experience"
+    },
+    {
+        "head": "python",
+        "tail": "developer-experience"
+    },
+    {
+        "head": "ux-experience",
+        "tail": "developer-experience"
     }
 ]
