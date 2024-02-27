@@ -36078,5 +36078,17 @@
             "rust",
             "python"
         ]
+    },
+    "https://github.com/zhuzilin/ring-flash-attention": {
+        "extra-tags": [
+            "attention",
+            "flash-attention"
+        ],
+        "date": "2024-02-21",
+        "title": "ring-flash-attention",
+        "summary": "Ring attention implementation with flash attention",
+        "tags": [
+            "python"
+        ]
     }
 }
