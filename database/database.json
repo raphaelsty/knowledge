@@ -36090,5 +36090,18 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/raphaelsty/neural-tree": {
+        "extra-tags": [
+            "tree",
+            "neural",
+            "neural-search"
+        ],
+        "date": "2024-02-25",
+        "title": "neural-tree",
+        "summary": "Tree-based indexes for neural-search",
+        "tags": [
+            "python"
+        ]
     }
 }
