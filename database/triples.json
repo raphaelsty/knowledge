@@ -165514,5 +165514,517 @@
     {
         "head": "tree",
         "tail": "neural-search"
+    },
+    {
+        "head": "blip",
+        "tail": "llava"
+    },
+    {
+        "head": "blip",
+        "tail": "open-vocabulary-segmentation"
+    },
+    {
+        "head": "blip",
+        "tail": "clip"
+    },
+    {
+        "head": "blip",
+        "tail": "multimodal"
+    },
+    {
+        "head": "blip",
+        "tail": "open-vocabulary-detection"
+    },
+    {
+        "head": "blip",
+        "tail": "nlp"
+    },
+    {
+        "head": "blip",
+        "tail": "grounding-dino"
+    },
+    {
+        "head": "blip",
+        "tail": "zero-shot-detection"
+    },
+    {
+        "head": "blip",
+        "tail": "image-captioning"
+    },
+    {
+        "head": "blip",
+        "tail": "python"
+    },
+    {
+        "head": "blip",
+        "tail": "foundational-models"
+    },
+    {
+        "head": "blip",
+        "tail": "segment-anything"
+    },
+    {
+        "head": "blip",
+        "tail": "computer-vision"
+    },
+    {
+        "head": "blip",
+        "tail": "models"
+    },
+    {
+        "head": "blip",
+        "tail": "awesome"
+    },
+    {
+        "head": "blip",
+        "tail": "list"
+    },
+    {
+        "head": "llava",
+        "tail": "open-vocabulary-segmentation"
+    },
+    {
+        "head": "llava",
+        "tail": "clip"
+    },
+    {
+        "head": "llava",
+        "tail": "multimodal"
+    },
+    {
+        "head": "llava",
+        "tail": "open-vocabulary-detection"
+    },
+    {
+        "head": "llava",
+        "tail": "nlp"
+    },
+    {
+        "head": "llava",
+        "tail": "grounding-dino"
+    },
+    {
+        "head": "llava",
+        "tail": "zero-shot-detection"
+    },
+    {
+        "head": "llava",
+        "tail": "image-captioning"
+    },
+    {
+        "head": "llava",
+        "tail": "python"
+    },
+    {
+        "head": "llava",
+        "tail": "foundational-models"
+    },
+    {
+        "head": "llava",
+        "tail": "segment-anything"
+    },
+    {
+        "head": "llava",
+        "tail": "computer-vision"
+    },
+    {
+        "head": "llava",
+        "tail": "models"
+    },
+    {
+        "head": "llava",
+        "tail": "awesome"
+    },
+    {
+        "head": "llava",
+        "tail": "list"
+    },
+    {
+        "head": "open-vocabulary-segmentation",
+        "tail": "clip"
+    },
+    {
+        "head": "open-vocabulary-segmentation",
+        "tail": "multimodal"
+    },
+    {
+        "head": "open-vocabulary-segmentation",
+        "tail": "open-vocabulary-detection"
+    },
+    {
+        "head": "open-vocabulary-segmentation",
+        "tail": "nlp"
+    },
+    {
+        "head": "open-vocabulary-segmentation",
+        "tail": "grounding-dino"
+    },
+    {
+        "head": "open-vocabulary-segmentation",
+        "tail": "zero-shot-detection"
+    },
+    {
+        "head": "open-vocabulary-segmentation",
+        "tail": "image-captioning"
+    },
+    {
+        "head": "open-vocabulary-segmentation",
+        "tail": "python"
+    },
+    {
+        "head": "open-vocabulary-segmentation",
+        "tail": "foundational-models"
+    },
+    {
+        "head": "open-vocabulary-segmentation",
+        "tail": "segment-anything"
+    },
+    {
+        "head": "open-vocabulary-segmentation",
+        "tail": "computer-vision"
+    },
+    {
+        "head": "open-vocabulary-segmentation",
+        "tail": "models"
+    },
+    {
+        "head": "open-vocabulary-segmentation",
+        "tail": "awesome"
+    },
+    {
+        "head": "open-vocabulary-segmentation",
+        "tail": "list"
+    },
+    {
+        "head": "clip",
+        "tail": "multimodal"
+    },
+    {
+        "head": "clip",
+        "tail": "open-vocabulary-detection"
+    },
+    {
+        "head": "clip",
+        "tail": "nlp"
+    },
+    {
+        "head": "clip",
+        "tail": "grounding-dino"
+    },
+    {
+        "head": "clip",
+        "tail": "zero-shot-detection"
+    },
+    {
+        "head": "clip",
+        "tail": "image-captioning"
+    },
+    {
+        "head": "clip",
+        "tail": "python"
+    },
+    {
+        "head": "clip",
+        "tail": "foundational-models"
+    },
+    {
+        "head": "clip",
+        "tail": "segment-anything"
+    },
+    {
+        "head": "clip",
+        "tail": "computer-vision"
+    },
+    {
+        "head": "clip",
+        "tail": "models"
+    },
+    {
+        "head": "clip",
+        "tail": "awesome"
+    },
+    {
+        "head": "clip",
+        "tail": "list"
+    },
+    {
+        "head": "multimodal",
+        "tail": "open-vocabulary-detection"
+    },
+    {
+        "head": "multimodal",
+        "tail": "nlp"
+    },
+    {
+        "head": "multimodal",
+        "tail": "grounding-dino"
+    },
+    {
+        "head": "multimodal",
+        "tail": "zero-shot-detection"
+    },
+    {
+        "head": "multimodal",
+        "tail": "image-captioning"
+    },
+    {
+        "head": "multimodal",
+        "tail": "foundational-models"
+    },
+    {
+        "head": "multimodal",
+        "tail": "segment-anything"
+    },
+    {
+        "head": "multimodal",
+        "tail": "computer-vision"
+    },
+    {
+        "head": "multimodal",
+        "tail": "models"
+    },
+    {
+        "head": "multimodal",
+        "tail": "awesome"
+    },
+    {
+        "head": "multimodal",
+        "tail": "list"
+    },
+    {
+        "head": "open-vocabulary-detection",
+        "tail": "nlp"
+    },
+    {
+        "head": "open-vocabulary-detection",
+        "tail": "grounding-dino"
+    },
+    {
+        "head": "open-vocabulary-detection",
+        "tail": "zero-shot-detection"
+    },
+    {
+        "head": "open-vocabulary-detection",
+        "tail": "image-captioning"
+    },
+    {
+        "head": "open-vocabulary-detection",
+        "tail": "python"
+    },
+    {
+        "head": "open-vocabulary-detection",
+        "tail": "foundational-models"
+    },
+    {
+        "head": "open-vocabulary-detection",
+        "tail": "segment-anything"
+    },
+    {
+        "head": "open-vocabulary-detection",
+        "tail": "computer-vision"
+    },
+    {
+        "head": "open-vocabulary-detection",
+        "tail": "models"
+    },
+    {
+        "head": "open-vocabulary-detection",
+        "tail": "awesome"
+    },
+    {
+        "head": "open-vocabulary-detection",
+        "tail": "list"
+    },
+    {
+        "head": "nlp",
+        "tail": "grounding-dino"
+    },
+    {
+        "head": "nlp",
+        "tail": "zero-shot-detection"
+    },
+    {
+        "head": "nlp",
+        "tail": "image-captioning"
+    },
+    {
+        "head": "nlp",
+        "tail": "foundational-models"
+    },
+    {
+        "head": "nlp",
+        "tail": "segment-anything"
+    },
+    {
+        "head": "nlp",
+        "tail": "models"
+    },
+    {
+        "head": "nlp",
+        "tail": "list"
+    },
+    {
+        "head": "grounding-dino",
+        "tail": "zero-shot-detection"
+    },
+    {
+        "head": "grounding-dino",
+        "tail": "image-captioning"
+    },
+    {
+        "head": "grounding-dino",
+        "tail": "python"
+    },
+    {
+        "head": "grounding-dino",
+        "tail": "foundational-models"
+    },
+    {
+        "head": "grounding-dino",
+        "tail": "segment-anything"
+    },
+    {
+        "head": "grounding-dino",
+        "tail": "computer-vision"
+    },
+    {
+        "head": "grounding-dino",
+        "tail": "models"
+    },
+    {
+        "head": "grounding-dino",
+        "tail": "awesome"
+    },
+    {
+        "head": "grounding-dino",
+        "tail": "list"
+    },
+    {
+        "head": "zero-shot-detection",
+        "tail": "image-captioning"
+    },
+    {
+        "head": "zero-shot-detection",
+        "tail": "python"
+    },
+    {
+        "head": "zero-shot-detection",
+        "tail": "foundational-models"
+    },
+    {
+        "head": "zero-shot-detection",
+        "tail": "segment-anything"
+    },
+    {
+        "head": "zero-shot-detection",
+        "tail": "computer-vision"
+    },
+    {
+        "head": "zero-shot-detection",
+        "tail": "models"
+    },
+    {
+        "head": "zero-shot-detection",
+        "tail": "awesome"
+    },
+    {
+        "head": "zero-shot-detection",
+        "tail": "list"
+    },
+    {
+        "head": "image-captioning",
+        "tail": "python"
+    },
+    {
+        "head": "image-captioning",
+        "tail": "foundational-models"
+    },
+    {
+        "head": "image-captioning",
+        "tail": "segment-anything"
+    },
+    {
+        "head": "image-captioning",
+        "tail": "computer-vision"
+    },
+    {
+        "head": "image-captioning",
+        "tail": "models"
+    },
+    {
+        "head": "image-captioning",
+        "tail": "awesome"
+    },
+    {
+        "head": "image-captioning",
+        "tail": "list"
+    },
+    {
+        "head": "python",
+        "tail": "foundational-models"
+    },
+    {
+        "head": "python",
+        "tail": "segment-anything"
+    },
+    {
+        "head": "foundational-models",
+        "tail": "segment-anything"
+    },
+    {
+        "head": "foundational-models",
+        "tail": "computer-vision"
+    },
+    {
+        "head": "foundational-models",
+        "tail": "models"
+    },
+    {
+        "head": "foundational-models",
+        "tail": "awesome"
+    },
+    {
+        "head": "foundational-models",
+        "tail": "list"
+    },
+    {
+        "head": "segment-anything",
+        "tail": "computer-vision"
+    },
+    {
+        "head": "segment-anything",
+        "tail": "models"
+    },
+    {
+        "head": "segment-anything",
+        "tail": "awesome"
+    },
+    {
+        "head": "segment-anything",
+        "tail": "list"
+    },
+    {
+        "head": "computer-vision",
+        "tail": "models"
+    },
+    {
+        "head": "computer-vision",
+        "tail": "awesome"
+    },
+    {
+        "head": "computer-vision",
+        "tail": "list"
+    },
+    {
+        "head": "models",
+        "tail": "awesome"
+    },
+    {
+        "head": "models",
+        "tail": "list"
+    },
+    {
+        "head": "awesome",
+        "tail": "list"
     }
 ]

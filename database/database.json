@@ -36103,5 +36103,31 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/SkalskiP/awesome-foundation-and-multimodal-models": {
+        "extra-tags": [
+            "models",
+            "awesome",
+            "list"
+        ],
+        "date": "2023-10-08",
+        "title": "awesome-foundation-and-multimodal-models",
+        "summary": "\ud83d\udc41\ufe0f + \ud83d\udcac + \ud83c\udfa7  = \ud83e\udd16 Curated list of top foundation and multimodal models! [Paper + Code]",
+        "tags": [
+            "blip",
+            "llava",
+            "open-vocabulary-segmentation",
+            "clip",
+            "multimodal",
+            "open-vocabulary-detection",
+            "nlp",
+            "grounding-dino",
+            "zero-shot-detection",
+            "image-captioning",
+            "python",
+            "foundational-models",
+            "segment-anything",
+            "computer-vision"
+        ]
     }
 }
