@@ -36129,5 +36129,35 @@
             "segment-anything",
             "computer-vision"
         ]
+    },
+    "https://github.com/NVIDIA/TensorRT-LLM": {
+        "extra-tags": [
+            "tensorrt",
+            "llm",
+            "python",
+            "easy-to-use"
+        ],
+        "date": "2023-08-16",
+        "title": "TensorRT-LLM",
+        "summary": "TensorRT-LLM provides users with an easy-to-use Python API to define Large Language Models (LLMs) and build TensorRT engines that contain state-of-the-art optimizations to perform inference efficiently on NVIDIA GPUs. TensorRT-LLM also contains components to create Python and C++ runtimes that execute those TensorRT engines.",
+        "tags": [
+            "c++"
+        ]
+    },
+    "https://github.com/ManoManoTech/loggia": {
+        "extra-tags": [
+            "convenient",
+            "configuration",
+            "manager"
+        ],
+        "date": "2023-08-28",
+        "title": "loggia",
+        "summary": "Loggia is convenient logging configuration manager, for Python standard logging library and loguru.",
+        "tags": [
+            "python3",
+            "python",
+            "structured-logging",
+            "logging"
+        ]
     }
 }

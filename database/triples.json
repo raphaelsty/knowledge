@@ -166026,5 +166026,101 @@
     {
         "head": "awesome",
         "tail": "list"
+    },
+    {
+        "head": "c++",
+        "tail": "llm"
+    },
+    {
+        "head": "tensorrt",
+        "tail": "llm"
+    },
+    {
+        "head": "tensorrt",
+        "tail": "python"
+    },
+    {
+        "head": "tensorrt",
+        "tail": "easy-to-use"
+    },
+    {
+        "head": "llm",
+        "tail": "easy-to-use"
+    },
+    {
+        "head": "python3",
+        "tail": "structured-logging"
+    },
+    {
+        "head": "python3",
+        "tail": "logging"
+    },
+    {
+        "head": "python3",
+        "tail": "convenient"
+    },
+    {
+        "head": "python3",
+        "tail": "configuration"
+    },
+    {
+        "head": "python3",
+        "tail": "manager"
+    },
+    {
+        "head": "python",
+        "tail": "structured-logging"
+    },
+    {
+        "head": "python",
+        "tail": "convenient"
+    },
+    {
+        "head": "python",
+        "tail": "configuration"
+    },
+    {
+        "head": "python",
+        "tail": "manager"
+    },
+    {
+        "head": "structured-logging",
+        "tail": "logging"
+    },
+    {
+        "head": "structured-logging",
+        "tail": "convenient"
+    },
+    {
+        "head": "structured-logging",
+        "tail": "configuration"
+    },
+    {
+        "head": "structured-logging",
+        "tail": "manager"
+    },
+    {
+        "head": "logging",
+        "tail": "convenient"
+    },
+    {
+        "head": "logging",
+        "tail": "configuration"
+    },
+    {
+        "head": "logging",
+        "tail": "manager"
+    },
+    {
+        "head": "convenient",
+        "tail": "configuration"
+    },
+    {
+        "head": "convenient",
+        "tail": "manager"
+    },
+    {
+        "head": "configuration",
+        "tail": "manager"
     }
 ]
