@@ -36159,5 +36159,27 @@
             "structured-logging",
             "logging"
         ]
+    },
+    "https://github.com/dlt-hub/dlt": {
+        "extra-tags": [
+            "tool",
+            "source",
+            "library"
+        ],
+        "date": "2022-01-26",
+        "title": "dlt",
+        "summary": "data load tool (dlt) is an open source Python library that makes data loading easy \ud83d\udee0\ufe0f ",
+        "tags": [
+            "data",
+            "data-engineering",
+            "extract",
+            "data-lake",
+            "elt",
+            "python",
+            "data-warehouse",
+            "data-loading",
+            "load",
+            "transform"
+        ]
     }
 }

@@ -166122,5 +166122,253 @@
     {
         "head": "configuration",
         "tail": "manager"
+    },
+    {
+        "head": "data",
+        "tail": "extract"
+    },
+    {
+        "head": "data",
+        "tail": "data-lake"
+    },
+    {
+        "head": "data",
+        "tail": "data-loading"
+    },
+    {
+        "head": "data",
+        "tail": "load"
+    },
+    {
+        "head": "data",
+        "tail": "tool"
+    },
+    {
+        "head": "data",
+        "tail": "source"
+    },
+    {
+        "head": "data-engineering",
+        "tail": "extract"
+    },
+    {
+        "head": "data-engineering",
+        "tail": "data-lake"
+    },
+    {
+        "head": "data-engineering",
+        "tail": "data-loading"
+    },
+    {
+        "head": "data-engineering",
+        "tail": "load"
+    },
+    {
+        "head": "data-engineering",
+        "tail": "transform"
+    },
+    {
+        "head": "data-engineering",
+        "tail": "tool"
+    },
+    {
+        "head": "data-engineering",
+        "tail": "source"
+    },
+    {
+        "head": "data-engineering",
+        "tail": "library"
+    },
+    {
+        "head": "extract",
+        "tail": "data-lake"
+    },
+    {
+        "head": "extract",
+        "tail": "elt"
+    },
+    {
+        "head": "extract",
+        "tail": "python"
+    },
+    {
+        "head": "extract",
+        "tail": "data-warehouse"
+    },
+    {
+        "head": "extract",
+        "tail": "data-loading"
+    },
+    {
+        "head": "extract",
+        "tail": "load"
+    },
+    {
+        "head": "extract",
+        "tail": "transform"
+    },
+    {
+        "head": "extract",
+        "tail": "tool"
+    },
+    {
+        "head": "extract",
+        "tail": "source"
+    },
+    {
+        "head": "extract",
+        "tail": "library"
+    },
+    {
+        "head": "data-lake",
+        "tail": "elt"
+    },
+    {
+        "head": "data-lake",
+        "tail": "python"
+    },
+    {
+        "head": "data-lake",
+        "tail": "data-warehouse"
+    },
+    {
+        "head": "data-lake",
+        "tail": "data-loading"
+    },
+    {
+        "head": "data-lake",
+        "tail": "load"
+    },
+    {
+        "head": "data-lake",
+        "tail": "transform"
+    },
+    {
+        "head": "data-lake",
+        "tail": "tool"
+    },
+    {
+        "head": "data-lake",
+        "tail": "source"
+    },
+    {
+        "head": "data-lake",
+        "tail": "library"
+    },
+    {
+        "head": "elt",
+        "tail": "data-loading"
+    },
+    {
+        "head": "elt",
+        "tail": "load"
+    },
+    {
+        "head": "elt",
+        "tail": "transform"
+    },
+    {
+        "head": "elt",
+        "tail": "tool"
+    },
+    {
+        "head": "elt",
+        "tail": "source"
+    },
+    {
+        "head": "elt",
+        "tail": "library"
+    },
+    {
+        "head": "python",
+        "tail": "data-loading"
+    },
+    {
+        "head": "python",
+        "tail": "load"
+    },
+    {
+        "head": "python",
+        "tail": "transform"
+    },
+    {
+        "head": "data-warehouse",
+        "tail": "data-loading"
+    },
+    {
+        "head": "data-warehouse",
+        "tail": "load"
+    },
+    {
+        "head": "data-warehouse",
+        "tail": "transform"
+    },
+    {
+        "head": "data-warehouse",
+        "tail": "tool"
+    },
+    {
+        "head": "data-warehouse",
+        "tail": "source"
+    },
+    {
+        "head": "data-warehouse",
+        "tail": "library"
+    },
+    {
+        "head": "data-loading",
+        "tail": "load"
+    },
+    {
+        "head": "data-loading",
+        "tail": "transform"
+    },
+    {
+        "head": "data-loading",
+        "tail": "tool"
+    },
+    {
+        "head": "data-loading",
+        "tail": "source"
+    },
+    {
+        "head": "data-loading",
+        "tail": "library"
+    },
+    {
+        "head": "load",
+        "tail": "transform"
+    },
+    {
+        "head": "load",
+        "tail": "tool"
+    },
+    {
+        "head": "load",
+        "tail": "source"
+    },
+    {
+        "head": "load",
+        "tail": "library"
+    },
+    {
+        "head": "transform",
+        "tail": "tool"
+    },
+    {
+        "head": "transform",
+        "tail": "source"
+    },
+    {
+        "head": "transform",
+        "tail": "library"
+    },
+    {
+        "head": "tool",
+        "tail": "source"
+    },
+    {
+        "head": "source",
+        "tail": "library"
     }
 ]
