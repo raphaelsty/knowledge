@@ -166370,5 +166370,81 @@
     {
         "head": "source",
         "tail": "library"
+    },
+    {
+        "head": "llm",
+        "tail": "evaluation"
+    },
+    {
+        "head": "llm",
+        "tail": "framework"
+    },
+    {
+        "head": "llm",
+        "tail": "retrieval augmented generation"
+    },
+    {
+        "head": "llmops",
+        "tail": "evaluation"
+    },
+    {
+        "head": "llmops",
+        "tail": "framework"
+    },
+    {
+        "head": "llmops",
+        "tail": "retrieval augmented generation"
+    },
+    {
+        "head": "llmops",
+        "tail": "rag"
+    },
+    {
+        "head": "python",
+        "tail": "retrieval augmented generation"
+    },
+    {
+        "head": "evaluation",
+        "tail": "retrieval augmented generation"
+    },
+    {
+        "head": "evaluation",
+        "tail": "rag"
+    },
+    {
+        "head": "framework",
+        "tail": "retrieval augmented generation"
+    },
+    {
+        "head": "framework",
+        "tail": "rag"
+    },
+    {
+        "head": "retrieval augmented generation",
+        "tail": "rag"
+    },
+    {
+        "head": "rust",
+        "tail": "graphs nlp"
+    },
+    {
+        "head": "rust",
+        "tail": "cuda graphs"
+    },
+    {
+        "head": "rust",
+        "tail": "graphs machine learning"
+    },
+    {
+        "head": "graphs nlp",
+        "tail": "cuda graphs"
+    },
+    {
+        "head": "graphs nlp",
+        "tail": "graphs machine learning"
+    },
+    {
+        "head": "cuda graphs",
+        "tail": "graphs machine learning"
     }
 ]

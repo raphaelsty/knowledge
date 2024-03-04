@@ -36181,5 +36181,34 @@
             "load",
             "transform"
         ]
+    },
+    "https://github.com/explodinggradients/ragas": {
+        "extra-tags": [
+            "evaluation",
+            "framework",
+            "retrieval augmented generation",
+            "rag"
+        ],
+        "date": "2023-05-08",
+        "title": "ragas",
+        "summary": "Evaluation framework for your Retrieval Augmented Generation (RAG) pipelines",
+        "tags": [
+            "llm",
+            "llmops",
+            "python"
+        ]
+    },
+    "https://github.com/Algue-Rythme/graphs": {
+        "extra-tags": [
+            "graphs nlp",
+            "cuda graphs",
+            "graphs machine learning"
+        ],
+        "date": "2024-03-03",
+        "title": "graphs",
+        "summary": "",
+        "tags": [
+            "rust"
+        ]
     }
 }
