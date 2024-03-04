@@ -166446,5 +166446,309 @@
     {
         "head": "cuda graphs",
         "tail": "graphs machine learning"
+    },
+    {
+        "head": "duckdb",
+        "tail": "illustrator"
+    },
+    {
+        "head": "sql",
+        "tail": "illustrator"
+    },
+    {
+        "head": "duckdb",
+        "tail": "data-integration"
+    },
+    {
+        "head": "duckdb",
+        "tail": "postgresql"
+    },
+    {
+        "head": "duckdb",
+        "tail": "copy-database"
+    },
+    {
+        "head": "duckdb",
+        "tail": "mssql"
+    },
+    {
+        "head": "duckdb",
+        "tail": "ingestion-pipeline"
+    },
+    {
+        "head": "duckdb",
+        "tail": "data-ingestion"
+    },
+    {
+        "head": "duckdb",
+        "tail": "data-pipeline"
+    },
+    {
+        "head": "duckdb",
+        "tail": "cli"
+    },
+    {
+        "head": "duckdb",
+        "tail": "tool"
+    },
+    {
+        "head": "duckdb",
+        "tail": "databases"
+    },
+    {
+        "head": "data-integration",
+        "tail": "postgresql"
+    },
+    {
+        "head": "data-integration",
+        "tail": "copy-database"
+    },
+    {
+        "head": "data-integration",
+        "tail": "mssql"
+    },
+    {
+        "head": "data-integration",
+        "tail": "ingestion-pipeline"
+    },
+    {
+        "head": "data-integration",
+        "tail": "data-pipeline"
+    },
+    {
+        "head": "data-integration",
+        "tail": "cli"
+    },
+    {
+        "head": "data-integration",
+        "tail": "tool"
+    },
+    {
+        "head": "data-integration",
+        "tail": "databases"
+    },
+    {
+        "head": "snowflake",
+        "tail": "copy-database"
+    },
+    {
+        "head": "snowflake",
+        "tail": "mssql"
+    },
+    {
+        "head": "snowflake",
+        "tail": "ingestion-pipeline"
+    },
+    {
+        "head": "snowflake",
+        "tail": "data-pipeline"
+    },
+    {
+        "head": "snowflake",
+        "tail": "cli"
+    },
+    {
+        "head": "snowflake",
+        "tail": "tool"
+    },
+    {
+        "head": "snowflake",
+        "tail": "databases"
+    },
+    {
+        "head": "bigquery",
+        "tail": "copy-database"
+    },
+    {
+        "head": "bigquery",
+        "tail": "mssql"
+    },
+    {
+        "head": "bigquery",
+        "tail": "ingestion-pipeline"
+    },
+    {
+        "head": "bigquery",
+        "tail": "data-pipeline"
+    },
+    {
+        "head": "bigquery",
+        "tail": "cli"
+    },
+    {
+        "head": "bigquery",
+        "tail": "tool"
+    },
+    {
+        "head": "bigquery",
+        "tail": "databases"
+    },
+    {
+        "head": "postgresql",
+        "tail": "copy-database"
+    },
+    {
+        "head": "postgresql",
+        "tail": "mssql"
+    },
+    {
+        "head": "postgresql",
+        "tail": "ingestion-pipeline"
+    },
+    {
+        "head": "postgresql",
+        "tail": "data-ingestion"
+    },
+    {
+        "head": "postgresql",
+        "tail": "data-pipeline"
+    },
+    {
+        "head": "postgresql",
+        "tail": "cli"
+    },
+    {
+        "head": "postgresql",
+        "tail": "tool"
+    },
+    {
+        "head": "copy-database",
+        "tail": "mssql"
+    },
+    {
+        "head": "copy-database",
+        "tail": "ingestion-pipeline"
+    },
+    {
+        "head": "copy-database",
+        "tail": "data-ingestion"
+    },
+    {
+        "head": "copy-database",
+        "tail": "data-pipeline"
+    },
+    {
+        "head": "copy-database",
+        "tail": "python"
+    },
+    {
+        "head": "copy-database",
+        "tail": "cli"
+    },
+    {
+        "head": "copy-database",
+        "tail": "tool"
+    },
+    {
+        "head": "copy-database",
+        "tail": "data"
+    },
+    {
+        "head": "copy-database",
+        "tail": "databases"
+    },
+    {
+        "head": "mssql",
+        "tail": "ingestion-pipeline"
+    },
+    {
+        "head": "mssql",
+        "tail": "data-ingestion"
+    },
+    {
+        "head": "mssql",
+        "tail": "data-pipeline"
+    },
+    {
+        "head": "mssql",
+        "tail": "python"
+    },
+    {
+        "head": "mssql",
+        "tail": "cli"
+    },
+    {
+        "head": "mssql",
+        "tail": "tool"
+    },
+    {
+        "head": "mssql",
+        "tail": "data"
+    },
+    {
+        "head": "mssql",
+        "tail": "databases"
+    },
+    {
+        "head": "ingestion-pipeline",
+        "tail": "data-ingestion"
+    },
+    {
+        "head": "ingestion-pipeline",
+        "tail": "data-pipeline"
+    },
+    {
+        "head": "ingestion-pipeline",
+        "tail": "python"
+    },
+    {
+        "head": "ingestion-pipeline",
+        "tail": "cli"
+    },
+    {
+        "head": "ingestion-pipeline",
+        "tail": "tool"
+    },
+    {
+        "head": "ingestion-pipeline",
+        "tail": "data"
+    },
+    {
+        "head": "ingestion-pipeline",
+        "tail": "databases"
+    },
+    {
+        "head": "data-ingestion",
+        "tail": "data-pipeline"
+    },
+    {
+        "head": "data-ingestion",
+        "tail": "cli"
+    },
+    {
+        "head": "data-ingestion",
+        "tail": "tool"
+    },
+    {
+        "head": "data-ingestion",
+        "tail": "databases"
+    },
+    {
+        "head": "data-pipeline",
+        "tail": "cli"
+    },
+    {
+        "head": "data-pipeline",
+        "tail": "tool"
+    },
+    {
+        "head": "data-pipeline",
+        "tail": "databases"
+    },
+    {
+        "head": "python",
+        "tail": "databases"
+    },
+    {
+        "head": "cli",
+        "tail": "databases"
+    },
+    {
+        "head": "tool",
+        "tail": "databases"
+    },
+    {
+        "head": "data",
+        "tail": "databases"
     }
 ]

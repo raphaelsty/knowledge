@@ -36210,5 +36210,42 @@
         "tags": [
             "rust"
         ]
+    },
+    "https://github.com/Bl3f/yato": {
+        "extra-tags": [
+            "duckdb",
+            "sql",
+            "illustrator"
+        ],
+        "date": "2024-02-28",
+        "title": "yato",
+        "summary": "The smallest DuckDB SQL orchestrator on Earth.",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/bruin-data/ingestr": {
+        "extra-tags": [
+            "cli",
+            "tool",
+            "data",
+            "databases"
+        ],
+        "date": "2024-02-12",
+        "title": "ingestr",
+        "summary": "ingestr is a CLI tool to copy data between any databases with a single command seamlessly.",
+        "tags": [
+            "duckdb",
+            "data-integration",
+            "snowflake",
+            "bigquery",
+            "postgresql",
+            "copy-database",
+            "mssql",
+            "ingestion-pipeline",
+            "data-ingestion",
+            "data-pipeline",
+            "python"
+        ]
     }
 }
