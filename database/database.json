@@ -36247,5 +36247,19 @@
             "data-pipeline",
             "python"
         ]
+    },
+    "https://github.com/casper-hansen/AutoAWQ": {
+        "extra-tags": [
+            "algorithm",
+            "quantization",
+            "inference",
+            "documentation"
+        ],
+        "date": "2023-08-25",
+        "title": "AutoAWQ",
+        "summary": "AutoAWQ implements the AWQ algorithm for 4-bit quantization with a 2x speedup during inference. Documentation:",
+        "tags": [
+            "python"
+        ]
     }
 }

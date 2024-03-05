@@ -166750,5 +166750,29 @@
     {
         "head": "data",
         "tail": "databases"
+    },
+    {
+        "head": "algorithm",
+        "tail": "quantization"
+    },
+    {
+        "head": "algorithm",
+        "tail": "inference"
+    },
+    {
+        "head": "algorithm",
+        "tail": "documentation"
+    },
+    {
+        "head": "quantization",
+        "tail": "inference"
+    },
+    {
+        "head": "quantization",
+        "tail": "documentation"
+    },
+    {
+        "head": "inference",
+        "tail": "documentation"
     }
 ]
