@@ -36261,5 +36261,31 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/unixpickle/scanscam": {
+        "extra-tags": [
+            "learning",
+            "algorithms",
+            "algorithm"
+        ],
+        "date": "2024-03-05",
+        "title": "scanscam",
+        "summary": "Learning about efficient scan algorithms",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/bigcode-project/starcoder2": {
+        "extra-tags": [
+            "starcraft2",
+            "starcraftii",
+            "starcraft2-ai"
+        ],
+        "date": "2023-12-08",
+        "title": "starcoder2",
+        "summary": "Home of StarCoder2!",
+        "tags": [
+            "python"
+        ]
     }
 }

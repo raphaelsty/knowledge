@@ -166774,5 +166774,21 @@
     {
         "head": "inference",
         "tail": "documentation"
+    },
+    {
+        "head": "learning",
+        "tail": "algorithms"
+    },
+    {
+        "head": "learning",
+        "tail": "algorithm"
+    },
+    {
+        "head": "starcraft2",
+        "tail": "starcraftii"
+    },
+    {
+        "head": "starcraftii",
+        "tail": "starcraft2-ai"
     }
 ]
