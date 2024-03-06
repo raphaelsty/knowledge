@@ -36287,5 +36287,38 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/parthsarthi03/raptor": {
+        "extra-tags": [
+            "processing",
+            "tree"
+        ],
+        "date": "2024-02-27",
+        "title": "raptor",
+        "summary": "The official implementation of RAPTOR: Recursive Abstractive Processing for Tree-Organized Retrieval",
+        "tags": [
+            "retrieval",
+            "python",
+            "rag",
+            "retrieval-augmented-generation"
+        ]
+    },
+    "https://github.com/sungchun12/fst": {
+        "extra-tags": [
+            "tool",
+            "data",
+            "engineering"
+        ],
+        "date": "2023-03-13",
+        "title": "fst",
+        "summary": "fst: flow state tool | smooth where you want it, friction where you need it when data engineering",
+        "tags": [
+            "python",
+            "dbt",
+            "workflow",
+            "fast",
+            "hot-reload",
+            "flowstate"
+        ]
     }
 }

@@ -166790,5 +166790,157 @@
     {
         "head": "starcraftii",
         "tail": "starcraft2-ai"
+    },
+    {
+        "head": "retrieval",
+        "tail": "rag"
+    },
+    {
+        "head": "retrieval",
+        "tail": "retrieval-augmented-generation"
+    },
+    {
+        "head": "retrieval",
+        "tail": "processing"
+    },
+    {
+        "head": "python",
+        "tail": "retrieval-augmented-generation"
+    },
+    {
+        "head": "python",
+        "tail": "processing"
+    },
+    {
+        "head": "rag",
+        "tail": "processing"
+    },
+    {
+        "head": "rag",
+        "tail": "tree"
+    },
+    {
+        "head": "retrieval-augmented-generation",
+        "tail": "processing"
+    },
+    {
+        "head": "retrieval-augmented-generation",
+        "tail": "tree"
+    },
+    {
+        "head": "processing",
+        "tail": "tree"
+    },
+    {
+        "head": "python",
+        "tail": "hot-reload"
+    },
+    {
+        "head": "python",
+        "tail": "flowstate"
+    },
+    {
+        "head": "dbt",
+        "tail": "workflow"
+    },
+    {
+        "head": "dbt",
+        "tail": "fast"
+    },
+    {
+        "head": "dbt",
+        "tail": "hot-reload"
+    },
+    {
+        "head": "dbt",
+        "tail": "flowstate"
+    },
+    {
+        "head": "dbt",
+        "tail": "tool"
+    },
+    {
+        "head": "dbt",
+        "tail": "engineering"
+    },
+    {
+        "head": "workflow",
+        "tail": "fast"
+    },
+    {
+        "head": "workflow",
+        "tail": "hot-reload"
+    },
+    {
+        "head": "workflow",
+        "tail": "flowstate"
+    },
+    {
+        "head": "workflow",
+        "tail": "tool"
+    },
+    {
+        "head": "workflow",
+        "tail": "data"
+    },
+    {
+        "head": "workflow",
+        "tail": "engineering"
+    },
+    {
+        "head": "fast",
+        "tail": "hot-reload"
+    },
+    {
+        "head": "fast",
+        "tail": "flowstate"
+    },
+    {
+        "head": "fast",
+        "tail": "tool"
+    },
+    {
+        "head": "fast",
+        "tail": "data"
+    },
+    {
+        "head": "fast",
+        "tail": "engineering"
+    },
+    {
+        "head": "hot-reload",
+        "tail": "flowstate"
+    },
+    {
+        "head": "hot-reload",
+        "tail": "tool"
+    },
+    {
+        "head": "hot-reload",
+        "tail": "data"
+    },
+    {
+        "head": "hot-reload",
+        "tail": "engineering"
+    },
+    {
+        "head": "flowstate",
+        "tail": "tool"
+    },
+    {
+        "head": "flowstate",
+        "tail": "data"
+    },
+    {
+        "head": "flowstate",
+        "tail": "engineering"
+    },
+    {
+        "head": "tool",
+        "tail": "engineering"
+    },
+    {
+        "head": "data",
+        "tail": "engineering"
     }
 ]
