@@ -166942,5 +166942,21 @@
     {
         "head": "data",
         "tail": "engineering"
+    },
+    {
+        "head": "rust",
+        "tail": "postgres"
+    },
+    {
+        "head": "vector",
+        "tail": "search"
+    },
+    {
+        "head": "vector",
+        "tail": "postgres"
+    },
+    {
+        "head": "search",
+        "tail": "postgres"
     }
 ]

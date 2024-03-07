@@ -36320,5 +36320,18 @@
             "hot-reload",
             "flowstate"
         ]
+    },
+    "https://github.com/tembo-io/pg_vectorize": {
+        "extra-tags": [
+            "vector",
+            "search",
+            "postgres"
+        ],
+        "date": "2023-07-24",
+        "title": "pg_vectorize",
+        "summary": "The simplest way to orchestrate vector search on Postgres",
+        "tags": [
+            "rust"
+        ]
     }
 }
