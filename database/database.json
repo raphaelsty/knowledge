@@ -36333,5 +36333,55 @@
         "tags": [
             "rust"
         ]
+    },
+    "https://github.com/electricitymaps/electricitymaps-contrib": {
+        "extra-tags": [
+            "real-time",
+            "visualisations",
+            "belle visualisation"
+        ],
+        "date": "2016-05-21",
+        "title": "electricitymaps-contrib",
+        "summary": "A real-time visualisation of the CO2 emissions of electricity consumption",
+        "tags": [
+            "hacktoberfest",
+            "python",
+            "sustainability",
+            "climate-change",
+            "data-visualization"
+        ]
+    },
+    "https://github.com/pgcentralfoundation/pgrx": {
+        "extra-tags": [
+            "build"
+        ],
+        "date": "2019-12-18",
+        "title": "pgrx",
+        "summary": "Build Postgres Extensions with Rust!",
+        "tags": [
+            "rust",
+            "postgres",
+            "rustlang",
+            "postgresql",
+            "postgresql-extension"
+        ]
+    },
+    "https://mail.google.com/mail/u/1/#inbox": {
+        "extra-tags": [
+            "gmail",
+            "r",
+            "raphaelsty"
+        ],
+        "title": "Bo\u00eete de r\u00e9ception (777) - raphaelsourty@gmail.com - Gmail",
+        "summary": "",
+        "date": "2024-03-07",
+        "tags": []
+    },
+    "https://docupub.com/docs/5b70e851-c3a9-4d66-9776-a4ee20856dcc/these_raphael_sourty.pdf": {
+        "extra-tags": [],
+        "title": "",
+        "summary": "",
+        "date": "2024-03-07",
+        "tags": []
     }
 }

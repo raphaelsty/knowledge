@@ -166958,5 +166958,141 @@
     {
         "head": "search",
         "tail": "postgres"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "climate-change"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "real-time"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "visualisations"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "belle visualisation"
+    },
+    {
+        "head": "python",
+        "tail": "sustainability"
+    },
+    {
+        "head": "python",
+        "tail": "climate-change"
+    },
+    {
+        "head": "python",
+        "tail": "belle visualisation"
+    },
+    {
+        "head": "sustainability",
+        "tail": "data-visualization"
+    },
+    {
+        "head": "sustainability",
+        "tail": "real-time"
+    },
+    {
+        "head": "sustainability",
+        "tail": "visualisations"
+    },
+    {
+        "head": "sustainability",
+        "tail": "belle visualisation"
+    },
+    {
+        "head": "climate-change",
+        "tail": "data-visualization"
+    },
+    {
+        "head": "climate-change",
+        "tail": "real-time"
+    },
+    {
+        "head": "climate-change",
+        "tail": "visualisations"
+    },
+    {
+        "head": "climate-change",
+        "tail": "belle visualisation"
+    },
+    {
+        "head": "data-visualization",
+        "tail": "visualisations"
+    },
+    {
+        "head": "data-visualization",
+        "tail": "belle visualisation"
+    },
+    {
+        "head": "real-time",
+        "tail": "visualisations"
+    },
+    {
+        "head": "real-time",
+        "tail": "belle visualisation"
+    },
+    {
+        "head": "visualisations",
+        "tail": "belle visualisation"
+    },
+    {
+        "head": "rust",
+        "tail": "rustlang"
+    },
+    {
+        "head": "rust",
+        "tail": "postgresql-extension"
+    },
+    {
+        "head": "postgres",
+        "tail": "rustlang"
+    },
+    {
+        "head": "postgres",
+        "tail": "postgresql-extension"
+    },
+    {
+        "head": "postgres",
+        "tail": "build"
+    },
+    {
+        "head": "rustlang",
+        "tail": "postgresql"
+    },
+    {
+        "head": "rustlang",
+        "tail": "postgresql-extension"
+    },
+    {
+        "head": "rustlang",
+        "tail": "build"
+    },
+    {
+        "head": "postgresql",
+        "tail": "postgresql-extension"
+    },
+    {
+        "head": "postgresql",
+        "tail": "build"
+    },
+    {
+        "head": "postgresql-extension",
+        "tail": "build"
+    },
+    {
+        "head": "gmail",
+        "tail": "r"
+    },
+    {
+        "head": "gmail",
+        "tail": "raphaelsty"
+    },
+    {
+        "head": "r",
+        "tail": "raphaelsty"
     }
 ]
