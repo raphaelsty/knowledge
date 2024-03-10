@@ -167094,5 +167094,113 @@
     {
         "head": "r",
         "tail": "raphaelsty"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "kbs"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "kg"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "llms"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "kgs"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "knowledge"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "kbs"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "kg"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "llms"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "kgs"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "knowledge"
+    },
+    {
+        "head": "kbs",
+        "tail": "kg"
+    },
+    {
+        "head": "kbs",
+        "tail": "language models"
+    },
+    {
+        "head": "kbs",
+        "tail": "llm"
+    },
+    {
+        "head": "kbs",
+        "tail": "llms"
+    },
+    {
+        "head": "kbs",
+        "tail": "kgs"
+    },
+    {
+        "head": "kbs",
+        "tail": "knowledge"
+    },
+    {
+        "head": "kg",
+        "tail": "language models"
+    },
+    {
+        "head": "kg",
+        "tail": "llm"
+    },
+    {
+        "head": "kg",
+        "tail": "llms"
+    },
+    {
+        "head": "kg",
+        "tail": "kgs"
+    },
+    {
+        "head": "kg",
+        "tail": "knowledge"
+    },
+    {
+        "head": "language models",
+        "tail": "kgs"
+    },
+    {
+        "head": "llm",
+        "tail": "kgs"
+    },
+    {
+        "head": "llm",
+        "tail": "knowledge"
+    },
+    {
+        "head": "llms",
+        "tail": "kgs"
+    },
+    {
+        "head": "llms",
+        "tail": "knowledge"
+    },
+    {
+        "head": "kgs",
+        "tail": "knowledge"
     }
 ]
