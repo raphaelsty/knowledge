@@ -167202,5 +167202,125 @@
     {
         "head": "kgs",
         "tail": "knowledge"
+    },
+    {
+        "head": "rust",
+        "tail": "codecov"
+    },
+    {
+        "head": "git",
+        "tail": "codecov"
+    },
+    {
+        "head": "mlops",
+        "tail": "online-ml"
+    },
+    {
+        "head": "mlops",
+        "tail": "online-learning"
+    },
+    {
+        "head": "mlops",
+        "tail": "streaming"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "online-ml"
+    },
+    {
+        "head": "docker",
+        "tail": "online-ml"
+    },
+    {
+        "head": "docker",
+        "tail": "online-learning"
+    },
+    {
+        "head": "docker",
+        "tail": "machine-learning-operations"
+    },
+    {
+        "head": "docker",
+        "tail": "streaming"
+    },
+    {
+        "head": "docker",
+        "tail": "river"
+    },
+    {
+        "head": "docker",
+        "tail": "online"
+    },
+    {
+        "head": "docker",
+        "tail": "machine learning"
+    },
+    {
+        "head": "online-ml",
+        "tail": "online-learning"
+    },
+    {
+        "head": "online-ml",
+        "tail": "machine-learning-operations"
+    },
+    {
+        "head": "online-ml",
+        "tail": "streaming"
+    },
+    {
+        "head": "online-ml",
+        "tail": "river"
+    },
+    {
+        "head": "online-ml",
+        "tail": "python"
+    },
+    {
+        "head": "online-ml",
+        "tail": "online"
+    },
+    {
+        "head": "online-ml",
+        "tail": "machine learning"
+    },
+    {
+        "head": "online-learning",
+        "tail": "machine-learning-operations"
+    },
+    {
+        "head": "online-learning",
+        "tail": "online"
+    },
+    {
+        "head": "machine-learning-operations",
+        "tail": "streaming"
+    },
+    {
+        "head": "machine-learning-operations",
+        "tail": "river"
+    },
+    {
+        "head": "machine-learning-operations",
+        "tail": "online"
+    },
+    {
+        "head": "machine-learning-operations",
+        "tail": "machine learning"
+    },
+    {
+        "head": "streaming",
+        "tail": "online"
+    },
+    {
+        "head": "streaming",
+        "tail": "machine learning"
+    },
+    {
+        "head": "river",
+        "tail": "online"
+    },
+    {
+        "head": "river",
+        "tail": "machine learning"
     }
 ]

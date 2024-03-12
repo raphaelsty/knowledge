@@ -36401,5 +36401,37 @@
             "language models",
             "llm"
         ]
+    },
+    "https://github.com/jonhoo/codecrafters-git-rust": {
+        "extra-tags": [
+            "git",
+            "codecov"
+        ],
+        "date": "2024-03-09",
+        "title": "codecrafters-git-rust",
+        "summary": "",
+        "tags": [
+            "rust"
+        ]
+    },
+    "https://github.com/sebiwtt/Delta": {
+        "extra-tags": [
+            "online",
+            "machine learning"
+        ],
+        "date": "2024-03-01",
+        "title": "Delta",
+        "summary": "MLOps for online machine learning using Docker and Python",
+        "tags": [
+            "mlops",
+            "machine-learning",
+            "docker",
+            "online-ml",
+            "online-learning",
+            "machine-learning-operations",
+            "streaming",
+            "river",
+            "python"
+        ]
     }
 }
