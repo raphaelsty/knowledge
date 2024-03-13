@@ -36433,5 +36433,18 @@
             "river",
             "python"
         ]
+    },
+    "https://github.com/hbonnavaud/hbrl": {
+        "extra-tags": [
+            "reinforcement",
+            "learning",
+            "framework"
+        ],
+        "date": "2024-03-13",
+        "title": "hbrl",
+        "summary": "Reinforcement learning framework.",
+        "tags": [
+            "python"
+        ]
     }
 }
