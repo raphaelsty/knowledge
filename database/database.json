@@ -36446,5 +36446,19 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/meta-llama/llama": {
+        "extra-tags": [
+            "llama",
+            "inference",
+            "code",
+            "models"
+        ],
+        "date": "2023-02-14",
+        "title": "llama",
+        "summary": "Inference code for Llama models",
+        "tags": [
+            "python"
+        ]
     }
 }
