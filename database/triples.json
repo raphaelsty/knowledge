@@ -167354,5 +167354,61 @@
     {
         "head": "ai-systems",
         "tail": "type-systems"
+    },
+    {
+        "head": "gnn",
+        "tail": "graph"
+    },
+    {
+        "head": "gnn",
+        "tail": "graph neural networks"
+    },
+    {
+        "head": "gnn",
+        "tail": "components"
+    },
+    {
+        "head": "gnn",
+        "tail": "learning"
+    },
+    {
+        "head": "gnn",
+        "tail": "algorithms"
+    },
+    {
+        "head": "graph",
+        "tail": "graph neural networks"
+    },
+    {
+        "head": "graph",
+        "tail": "components"
+    },
+    {
+        "head": "graph",
+        "tail": "learning"
+    },
+    {
+        "head": "graph",
+        "tail": "algorithms"
+    },
+    {
+        "head": "graph neural networks",
+        "tail": "components"
+    },
+    {
+        "head": "graph neural networks",
+        "tail": "learning"
+    },
+    {
+        "head": "graph neural networks",
+        "tail": "algorithms"
+    },
+    {
+        "head": "components",
+        "tail": "learning"
+    },
+    {
+        "head": "components",
+        "tail": "algorithms"
     }
 ]

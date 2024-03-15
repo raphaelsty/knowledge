@@ -36471,5 +36471,20 @@
         "title": "MyViewOfLinuxSystems",
         "summary": "",
         "tags": []
+    },
+    "https://distill.pub/2021/gnn-intro": {
+        "extra-tags": [
+            "graph neural networks",
+            "components",
+            "learning",
+            "algorithms"
+        ],
+        "title": "A Gentle Introduction to Graph Neural Networks",
+        "summary": "What components are needed for building learning algorithms that leverage the structure and properties of graphs?",
+        "date": "2024-03-14",
+        "tags": [
+            "gnn",
+            "graph"
+        ]
     }
 }
