@@ -36486,5 +36486,18 @@
             "gnn",
             "graph"
         ]
+    },
+    "https://github.com/tspeterkim/flash-attention-minimal": {
+        "extra-tags": [
+            "flash-attention",
+            "minimal",
+            "attention"
+        ],
+        "date": "2024-03-07",
+        "title": "flash-attention-minimal",
+        "summary": "Flash Attention in ~100 lines of CUDA (forward pass only)",
+        "tags": [
+            "cuda"
+        ]
     }
 }

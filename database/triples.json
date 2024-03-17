@@ -167410,5 +167410,21 @@
     {
         "head": "components",
         "tail": "algorithms"
+    },
+    {
+        "head": "cuda",
+        "tail": "minimal"
+    },
+    {
+        "head": "cuda",
+        "tail": "attention"
+    },
+    {
+        "head": "flash-attention",
+        "tail": "minimal"
+    },
+    {
+        "head": "minimal",
+        "tail": "attention"
     }
 ]
