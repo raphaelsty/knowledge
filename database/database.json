@@ -36499,5 +36499,18 @@
         "tags": [
             "cuda"
         ]
+    },
+    "https://github.com/hbonnavaud/RLF": {
+        "extra-tags": [
+            "reinforcement",
+            "learning",
+            "framework"
+        ],
+        "date": "2024-03-13",
+        "title": "RLF",
+        "summary": "Reinforcement learning framework.",
+        "tags": [
+            "python"
+        ]
     }
 }
