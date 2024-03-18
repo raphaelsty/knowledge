@@ -167426,5 +167426,29 @@
     {
         "head": "minimal",
         "tail": "attention"
+    },
+    {
+        "head": "python",
+        "tail": "release-automation"
+    },
+    {
+        "head": "python",
+        "tail": "open ai"
+    },
+    {
+        "head": "python",
+        "tail": "github-releases"
+    },
+    {
+        "head": "release-automation",
+        "tail": "open ai"
+    },
+    {
+        "head": "release-automation",
+        "tail": "github-releases"
+    },
+    {
+        "head": "open ai",
+        "tail": "github-releases"
     }
 ]

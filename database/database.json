@@ -36512,5 +36512,18 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/xai-org/grok-1": {
+        "extra-tags": [
+            "release-automation",
+            "open ai",
+            "github-releases"
+        ],
+        "date": "2024-03-17",
+        "title": "grok-1",
+        "summary": "Grok open release",
+        "tags": [
+            "python"
+        ]
     }
 }
