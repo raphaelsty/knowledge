@@ -36525,5 +36525,18 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/hbonnavaud/RLFramework": {
+        "extra-tags": [
+            "reinforcement",
+            "learning",
+            "framework"
+        ],
+        "date": "2024-03-13",
+        "title": "RLFramework",
+        "summary": "Reinforcement learning framework.",
+        "tags": [
+            "python"
+        ]
     }
 }
