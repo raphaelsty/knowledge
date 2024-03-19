@@ -36538,5 +36538,19 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/Thytu/SLAM": {
+        "extra-tags": [
+            "audio",
+            "llm",
+            "simple",
+            "tool"
+        ],
+        "date": "2024-02-25",
+        "title": "SLAM",
+        "summary": "Bringing audio to LLM: A Simple Modality Integration Tool",
+        "tags": [
+            "python"
+        ]
     }
 }

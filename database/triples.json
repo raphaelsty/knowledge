@@ -167450,5 +167450,25 @@
     {
         "head": "open ai",
         "tail": "github-releases"
+    },
+    {
+        "head": "audio",
+        "tail": "llm"
+    },
+    {
+        "head": "audio",
+        "tail": "simple"
+    },
+    {
+        "head": "audio",
+        "tail": "tool"
+    },
+    {
+        "head": "llm",
+        "tail": "simple"
+    },
+    {
+        "head": "llm",
+        "tail": "tool"
     }
 ]
