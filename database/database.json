@@ -36552,5 +36552,31 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/carlosferrazza/humanoid-bench": {
+        "extra-tags": [
+            "human in the loop",
+            "human ai collaboration",
+            "nlp french"
+        ],
+        "date": "2024-03-18",
+        "title": "humanoid-bench",
+        "summary": "",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/Thytu/SMIT": {
+        "extra-tags": [
+            "simple",
+            "tool",
+            "integrations"
+        ],
+        "date": "2024-02-25",
+        "title": "SMIT",
+        "summary": "SMIT: A Simple Modality Integration Tool",
+        "tags": [
+            "python"
+        ]
     }
 }

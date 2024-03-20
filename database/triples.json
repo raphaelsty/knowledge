@@ -167470,5 +167470,41 @@
     {
         "head": "llm",
         "tail": "tool"
+    },
+    {
+        "head": "python",
+        "tail": "human in the loop"
+    },
+    {
+        "head": "python",
+        "tail": "human ai collaboration"
+    },
+    {
+        "head": "python",
+        "tail": "nlp french"
+    },
+    {
+        "head": "human in the loop",
+        "tail": "human ai collaboration"
+    },
+    {
+        "head": "human in the loop",
+        "tail": "nlp french"
+    },
+    {
+        "head": "human ai collaboration",
+        "tail": "nlp french"
+    },
+    {
+        "head": "python",
+        "tail": "integrations"
+    },
+    {
+        "head": "simple",
+        "tail": "integrations"
+    },
+    {
+        "head": "tool",
+        "tail": "integrations"
     }
 ]
