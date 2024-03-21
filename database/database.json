@@ -36578,5 +36578,29 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/schmatz/cs-interview-guide": {
+        "extra-tags": [
+            "interview",
+            "science",
+            "interview-preparation"
+        ],
+        "date": "2014-01-26",
+        "title": "cs-interview-guide",
+        "summary": "A short guide on preparing for computer science interviews",
+        "tags": []
+    },
+    "https://github.com/Thytu/OpenAdv": {
+        "extra-tags": [
+            "tool",
+            "adversarial",
+            "adversarial-attacks"
+        ],
+        "date": "2021-10-02",
+        "title": "OpenAdv",
+        "summary": "An easy to use tool to apply adversarial attacks",
+        "tags": [
+            "python"
+        ]
     }
 }

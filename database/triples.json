@@ -167506,5 +167506,29 @@
     {
         "head": "tool",
         "tail": "integrations"
+    },
+    {
+        "head": "interview",
+        "tail": "science"
+    },
+    {
+        "head": "science",
+        "tail": "interview-preparation"
+    },
+    {
+        "head": "python",
+        "tail": "adversarial-attacks"
+    },
+    {
+        "head": "tool",
+        "tail": "adversarial"
+    },
+    {
+        "head": "tool",
+        "tail": "adversarial-attacks"
+    },
+    {
+        "head": "adversarial",
+        "tail": "adversarial-attacks"
     }
 ]
