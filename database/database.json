@@ -36602,5 +36602,19 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/Stardust-hyx/Torch-X-Embodiment": {
+        "extra-tags": [
+            "x",
+            "torch",
+            "pytorch",
+            "preprocessing"
+        ],
+        "date": "2023-11-15",
+        "title": "Torch-X-Embodiment",
+        "summary": "Pytorch Preprocessing and Training for Open X-Embodiment",
+        "tags": [
+            "python"
+        ]
     }
 }
