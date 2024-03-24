@@ -36616,5 +36616,18 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/LaurentMazare/hojo": {
+        "extra-tags": [
+            "python",
+            "library",
+            "python standard library"
+        ],
+        "date": "2024-03-23",
+        "title": "hojo",
+        "summary": "A small python library to run iterators in a separate process",
+        "tags": [
+            "rust"
+        ]
     }
 }
