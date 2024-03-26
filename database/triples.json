@@ -167558,5 +167558,49 @@
     {
         "head": "rust",
         "tail": "python standard library"
+    },
+    {
+        "head": "javascript",
+        "tail": "text"
+    },
+    {
+        "head": "javascript",
+        "tail": "nlp reading comprehension"
+    },
+    {
+        "head": "javascript",
+        "tail": "transcribe"
+    },
+    {
+        "head": "ai",
+        "tail": "nlp reading comprehension"
+    },
+    {
+        "head": "ai",
+        "tail": "transcribe"
+    },
+    {
+        "head": "text",
+        "tail": "nlp reading comprehension"
+    },
+    {
+        "head": "text",
+        "tail": "transcribe"
+    },
+    {
+        "head": "nlp reading comprehension",
+        "tail": "transcribe"
+    },
+    {
+        "head": "ai",
+        "tail": "generative-art"
+    },
+    {
+        "head": "ai",
+        "tail": "generative-model"
+    },
+    {
+        "head": "generative-art",
+        "tail": "generative-model"
     }
 ]

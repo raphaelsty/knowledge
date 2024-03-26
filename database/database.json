@@ -36629,5 +36629,31 @@
         "tags": [
             "rust"
         ]
+    },
+    "https://github.com/hrishioa/lumentis": {
+        "extra-tags": [
+            "ai",
+            "text",
+            "nlp reading comprehension",
+            "transcribe"
+        ],
+        "date": "2024-03-20",
+        "title": "lumentis",
+        "summary": "AI powered one-click comprehensive docs from transcripts and text.",
+        "tags": [
+            "javascript"
+        ]
+    },
+    "https://github.com/MatthieuQcc/MaskRemover": {
+        "extra-tags": [
+            "ai",
+            "generative-ai",
+            "generative-art",
+            "generative-model"
+        ],
+        "date": "2024-03-25",
+        "title": "MaskRemover",
+        "summary": "Surgical Mask remover using generative AI",
+        "tags": []
     }
 }
