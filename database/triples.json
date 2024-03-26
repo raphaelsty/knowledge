@@ -167602,5 +167602,225 @@
     {
         "head": "generative-art",
         "tail": "generative-model"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "llama"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "qlora"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "llms"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "mistral"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "gemma"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "llama2"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "lora"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "ai"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "memory"
+    },
+    {
+        "head": "llama",
+        "tail": "qlora"
+    },
+    {
+        "head": "llama",
+        "tail": "finetuning"
+    },
+    {
+        "head": "llama",
+        "tail": "gemma"
+    },
+    {
+        "head": "llama",
+        "tail": "lora"
+    },
+    {
+        "head": "llama",
+        "tail": "memory"
+    },
+    {
+        "head": "qlora",
+        "tail": "finetuning"
+    },
+    {
+        "head": "qlora",
+        "tail": "llms"
+    },
+    {
+        "head": "qlora",
+        "tail": "mistral"
+    },
+    {
+        "head": "qlora",
+        "tail": "python"
+    },
+    {
+        "head": "qlora",
+        "tail": "gemma"
+    },
+    {
+        "head": "qlora",
+        "tail": "llama2"
+    },
+    {
+        "head": "qlora",
+        "tail": "lora"
+    },
+    {
+        "head": "qlora",
+        "tail": "ai"
+    },
+    {
+        "head": "qlora",
+        "tail": "memory"
+    },
+    {
+        "head": "finetuning",
+        "tail": "mistral"
+    },
+    {
+        "head": "finetuning",
+        "tail": "gemma"
+    },
+    {
+        "head": "finetuning",
+        "tail": "llama2"
+    },
+    {
+        "head": "finetuning",
+        "tail": "lora"
+    },
+    {
+        "head": "finetuning",
+        "tail": "ai"
+    },
+    {
+        "head": "finetuning",
+        "tail": "memory"
+    },
+    {
+        "head": "llms",
+        "tail": "gemma"
+    },
+    {
+        "head": "llms",
+        "tail": "lora"
+    },
+    {
+        "head": "llms",
+        "tail": "ai"
+    },
+    {
+        "head": "llms",
+        "tail": "memory"
+    },
+    {
+        "head": "mistral",
+        "tail": "python"
+    },
+    {
+        "head": "mistral",
+        "tail": "gemma"
+    },
+    {
+        "head": "mistral",
+        "tail": "lora"
+    },
+    {
+        "head": "mistral",
+        "tail": "ai"
+    },
+    {
+        "head": "mistral",
+        "tail": "memory"
+    },
+    {
+        "head": "python",
+        "tail": "gemma"
+    },
+    {
+        "head": "python",
+        "tail": "llama2"
+    },
+    {
+        "head": "python",
+        "tail": "lora"
+    },
+    {
+        "head": "gemma",
+        "tail": "llama2"
+    },
+    {
+        "head": "gemma",
+        "tail": "lora"
+    },
+    {
+        "head": "gemma",
+        "tail": "ai"
+    },
+    {
+        "head": "gemma",
+        "tail": "memory"
+    },
+    {
+        "head": "llama2",
+        "tail": "lora"
+    },
+    {
+        "head": "llama2",
+        "tail": "ai"
+    },
+    {
+        "head": "llama2",
+        "tail": "memory"
+    },
+    {
+        "head": "lora",
+        "tail": "ai"
+    },
+    {
+        "head": "lora",
+        "tail": "memory"
+    },
+    {
+        "head": "ai",
+        "tail": "memory"
+    },
+    {
+        "head": "go",
+        "tail": "identification"
+    },
+    {
+        "head": "go",
+        "tail": "game"
+    },
+    {
+        "head": "identification",
+        "tail": "game"
+    },
+    {
+        "head": "identification",
+        "tail": "ai"
     }
 ]

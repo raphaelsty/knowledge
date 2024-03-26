@@ -36655,5 +36655,40 @@
         "title": "MaskRemover",
         "summary": "Surgical Mask remover using generative AI",
         "tags": []
+    },
+    "https://github.com/unslothai/unsloth": {
+        "extra-tags": [
+            "memory"
+        ],
+        "date": "2023-11-29",
+        "title": "unsloth",
+        "summary": "2-5X faster 70% less memory QLoRA & LoRA finetuning",
+        "tags": [
+            "fine-tuning",
+            "llama",
+            "qlora",
+            "finetuning",
+            "llms",
+            "mistral",
+            "python",
+            "gemma",
+            "llama2",
+            "lora",
+            "ai"
+        ]
+    },
+    "https://github.com/eleurent/nature-go": {
+        "extra-tags": [
+            "go",
+            "identification",
+            "game",
+            "ai"
+        ],
+        "date": "2023-06-03",
+        "title": "nature-go",
+        "summary": "Wildlife identification game exploring the use of generative AI",
+        "tags": [
+            "python"
+        ]
     }
 }
