@@ -36690,5 +36690,18 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/cohere-ai/BinaryVectorDB": {
+        "extra-tags": [
+            "vector",
+            "database",
+            "embeddings"
+        ],
+        "date": "2024-03-21",
+        "title": "BinaryVectorDB",
+        "summary": "Efficient vector database for hundred millions of embeddings.",
+        "tags": [
+            "python"
+        ]
     }
 }

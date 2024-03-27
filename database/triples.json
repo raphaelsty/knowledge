@@ -167822,5 +167822,13 @@
     {
         "head": "identification",
         "tail": "ai"
+    },
+    {
+        "head": "vector",
+        "tail": "embeddings"
+    },
+    {
+        "head": "database",
+        "tail": "embeddings"
     }
 ]
