@@ -167830,5 +167830,89 @@
     {
         "head": "database",
         "tail": "embeddings"
+    },
+    {
+        "head": "typst",
+        "tail": "typst-templates"
+    },
+    {
+        "head": "typst",
+        "tail": "neurips"
+    },
+    {
+        "head": "typst",
+        "tail": "icml"
+    },
+    {
+        "head": "typst",
+        "tail": "list"
+    },
+    {
+        "head": "typst",
+        "tail": "paper"
+    },
+    {
+        "head": "typst",
+        "tail": "templates"
+    },
+    {
+        "head": "typst-templates",
+        "tail": "neurips"
+    },
+    {
+        "head": "typst-templates",
+        "tail": "icml"
+    },
+    {
+        "head": "typst-templates",
+        "tail": "list"
+    },
+    {
+        "head": "typst-templates",
+        "tail": "paper"
+    },
+    {
+        "head": "typst-templates",
+        "tail": "templates"
+    },
+    {
+        "head": "neurips",
+        "tail": "icml"
+    },
+    {
+        "head": "neurips",
+        "tail": "list"
+    },
+    {
+        "head": "neurips",
+        "tail": "paper"
+    },
+    {
+        "head": "neurips",
+        "tail": "templates"
+    },
+    {
+        "head": "icml",
+        "tail": "list"
+    },
+    {
+        "head": "icml",
+        "tail": "paper"
+    },
+    {
+        "head": "icml",
+        "tail": "templates"
+    },
+    {
+        "head": "list",
+        "tail": "paper"
+    },
+    {
+        "head": "list",
+        "tail": "templates"
+    },
+    {
+        "head": "paper",
+        "tail": "templates"
     }
 ]

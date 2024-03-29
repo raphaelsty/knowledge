@@ -36703,5 +36703,21 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/daskol/typst-templates": {
+        "extra-tags": [
+            "list",
+            "paper",
+            "templates"
+        ],
+        "date": "2023-12-23",
+        "title": "typst-templates",
+        "summary": "A list of paper templates in the area of machine learning.",
+        "tags": [
+            "typst",
+            "typst-templates",
+            "neurips",
+            "icml"
+        ]
     }
 }
