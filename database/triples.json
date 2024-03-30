@@ -167914,5 +167914,17 @@
     {
         "head": "paper",
         "tail": "templates"
+    },
+    {
+        "head": "python",
+        "tail": "automatically annotated data"
+    },
+    {
+        "head": "types",
+        "tail": "automatically annotated data"
+    },
+    {
+        "head": "typing",
+        "tail": "automatically annotated data"
     }
 ]

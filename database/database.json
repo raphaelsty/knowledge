@@ -36719,5 +36719,18 @@
             "neurips",
             "icml"
         ]
+    },
+    "https://github.com/annotated-types/annotated-types": {
+        "extra-tags": [
+            "types",
+            "typing",
+            "automatically annotated data"
+        ],
+        "date": "2022-05-02",
+        "title": "annotated-types",
+        "summary": "Reusable constraint types to use with typing.Annotated",
+        "tags": [
+            "python"
+        ]
     }
 }
