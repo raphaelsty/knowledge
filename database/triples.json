@@ -167926,5 +167926,29 @@
     {
         "head": "typing",
         "tail": "automatically annotated data"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "qlora"
+    },
+    {
+        "head": "training",
+        "tail": "qlora"
+    },
+    {
+        "head": "python",
+        "tail": "ranker\narxiv"
+    },
+    {
+        "head": "python",
+        "tail": "exaranker"
+    },
+    {
+        "head": "ranker\narxiv",
+        "tail": "workers"
+    },
+    {
+        "head": "exaranker",
+        "tail": "workers"
     }
 ]

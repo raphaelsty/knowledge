@@ -36732,5 +36732,31 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/AnswerDotAI/fsdp_qlora": {
+        "extra-tags": [
+            "training",
+            "llms",
+            "qlora"
+        ],
+        "date": "2024-01-14",
+        "title": "fsdp_qlora",
+        "summary": "Training LLMs with QLoRA + FSDP",
+        "tags": [
+            "jupyter notebook"
+        ]
+    },
+    "https://github.com/AnswerDotAI/rerankers": {
+        "extra-tags": [
+            "ranker\narxiv",
+            "exaranker",
+            "workers"
+        ],
+        "date": "2024-03-06",
+        "title": "rerankers",
+        "summary": "",
+        "tags": [
+            "python"
+        ]
     }
 }
