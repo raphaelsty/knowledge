@@ -36758,5 +36758,35 @@
         "tags": [
             "python"
         ]
+    },
+    "https://proceedings.neurips.cc/paper_files/paper/2023/hash/a85b405ed65c6477a4fe8302b5e06ce7-Abstract-Conference.html": {
+        "extra-tags": [
+            "optimization",
+            "language model",
+            "model"
+        ],
+        "title": "Direct Preference Optimization: Your Language Model is Secretly a Reward Model",
+        "summary": "",
+        "date": "2024-04-01",
+        "tags": [
+            "dpo"
+        ]
+    },
+    "http://arxiv.org/abs/2403.19159": {
+        "extra-tags": [
+            "rlhf",
+            "optimization",
+            "reinforcement",
+            "control"
+        ],
+        "title": "Disentangling Length from Quality in Direct Preference Optimization",
+        "summary": "Reinforcement Learning from Human Feedback (RLHF) has been a crucial component in the recent success of Large Language Models. However, RLHF is know to exploit biases in human preferences, such as verbosity. A well-formatted and eloquent answer is often more highly rated by users, even when it is less helpful and objective. A number of approaches have been developed to control those biases in the classical RLHF literature, but the problem remains relatively under-explored for Direct Alignment Algorithms such as Direct Preference Optimization (DPO). Unlike classical RLHF, DPO does not train a separate reward model or use reinforcement learning directly, so previous approaches developed to control verbosity cannot be directly applied to this setting. Our work makes several contributions. For the first time, we study the length problem in the DPO setting, showing significant exploitation in DPO and linking it to out-of-distribution bootstrapping. We then develop a principled but simple regularization strategy that prevents length exploitation, while still maintaining improvements in model quality. We demonstrate these effects across datasets on summarization and dialogue, where we achieve up to 20\\% improvement in win rates when controlling for length, despite the GPT4 judge's well-known verbosity bias.",
+        "date": "2024-04-01",
+        "tags": [
+            "computer science - computation and language",
+            "computer science - machine learning",
+            "dpo",
+            "training"
+        ]
     }
 }
