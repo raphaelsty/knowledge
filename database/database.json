@@ -36788,5 +36788,18 @@
             "dpo",
             "training"
         ]
+    },
+    "https://github.com/Jaysce/Spaceman": {
+        "extra-tags": [],
+        "date": "2020-11-23",
+        "title": "Spaceman",
+        "summary": "A macOS app to view Spaces / Virtual Desktops in the menu bar",
+        "tags": [
+            "spaces",
+            "macos",
+            "swift",
+            "virtualdesktop",
+            "menubar"
+        ]
     }
 }

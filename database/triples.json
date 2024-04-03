@@ -168070,5 +168070,41 @@
     {
         "head": "reinforcement",
         "tail": "control"
+    },
+    {
+        "head": "spaces",
+        "tail": "macos"
+    },
+    {
+        "head": "spaces",
+        "tail": "swift"
+    },
+    {
+        "head": "spaces",
+        "tail": "virtualdesktop"
+    },
+    {
+        "head": "spaces",
+        "tail": "menubar"
+    },
+    {
+        "head": "macos",
+        "tail": "virtualdesktop"
+    },
+    {
+        "head": "macos",
+        "tail": "menubar"
+    },
+    {
+        "head": "swift",
+        "tail": "virtualdesktop"
+    },
+    {
+        "head": "swift",
+        "tail": "menubar"
+    },
+    {
+        "head": "virtualdesktop",
+        "tail": "menubar"
     }
 ]
