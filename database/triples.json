@@ -168122,5 +168122,105 @@
     {
         "head": "pytorch",
         "tail": "scheduling"
+    },
+    {
+        "head": "luarocks",
+        "tail": "lua"
+    },
+    {
+        "head": "luarocks",
+        "tail": "neovim-plugin"
+    },
+    {
+        "head": "luarocks",
+        "tail": "plugin"
+    },
+    {
+        "head": "luarocks",
+        "tail": "neovim"
+    },
+    {
+        "head": "luarocks",
+        "tail": "package-manager"
+    },
+    {
+        "head": "luarocks",
+        "tail": "nvim"
+    },
+    {
+        "head": "luarocks",
+        "tail": "plugin-manager"
+    },
+    {
+        "head": "luarocks",
+        "tail": "cargo"
+    },
+    {
+        "head": "lua",
+        "tail": "plugin-manager"
+    },
+    {
+        "head": "lua",
+        "tail": "cargo"
+    },
+    {
+        "head": "neovim-plugin",
+        "tail": "package-manager"
+    },
+    {
+        "head": "neovim-plugin",
+        "tail": "plugin-manager"
+    },
+    {
+        "head": "neovim-plugin",
+        "tail": "cargo"
+    },
+    {
+        "head": "plugin",
+        "tail": "package-manager"
+    },
+    {
+        "head": "plugin",
+        "tail": "plugin-manager"
+    },
+    {
+        "head": "plugin",
+        "tail": "cargo"
+    },
+    {
+        "head": "neovim",
+        "tail": "plugin-manager"
+    },
+    {
+        "head": "neovim",
+        "tail": "cargo"
+    },
+    {
+        "head": "package-manager",
+        "tail": "plugin-manager"
+    },
+    {
+        "head": "package-manager",
+        "tail": "cargo"
+    },
+    {
+        "head": "nvim",
+        "tail": "plugin-manager"
+    },
+    {
+        "head": "nvim",
+        "tail": "cargo"
+    },
+    {
+        "head": "plugin-manager",
+        "tail": "cargo"
+    },
+    {
+        "head": "typescript",
+        "tail": "debugger"
+    },
+    {
+        "head": "pytorch",
+        "tail": "debugger"
     }
 ]

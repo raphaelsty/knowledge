@@ -36815,5 +36815,35 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/nvim-neorocks/rocks.nvim": {
+        "extra-tags": [
+            "cargo"
+        ],
+        "date": "2023-07-05",
+        "title": "rocks.nvim",
+        "summary": "Neovim plugin management inspired by Cargo, powered by luarocks",
+        "tags": [
+            "luarocks",
+            "lua",
+            "neovim-plugin",
+            "plugin",
+            "neovim",
+            "package-manager",
+            "nvim",
+            "plugin-manager"
+        ]
+    },
+    "https://github.com/ezyang/torchdbg": {
+        "extra-tags": [
+            "pytorch",
+            "debugger"
+        ],
+        "date": "2024-04-01",
+        "title": "torchdbg",
+        "summary": "PyTorch centric eager mode debugger",
+        "tags": [
+            "typescript"
+        ]
     }
 }
