@@ -36801,5 +36801,19 @@
             "virtualdesktop",
             "menubar"
         ]
+    },
+    "https://github.com/facebookresearch/schedule_free": {
+        "extra-tags": [
+            "optimization",
+            "pytorch",
+            "scheduler",
+            "scheduling"
+        ],
+        "date": "2024-03-27",
+        "title": "schedule_free",
+        "summary": "Schedule-Free Optimization in PyTorch",
+        "tags": [
+            "python"
+        ]
     }
 }
