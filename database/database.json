@@ -36845,5 +36845,38 @@
         "tags": [
             "typescript"
         ]
+    },
+    "https://github.com/pretzelai/pretzelai": {
+        "extra-tags": [
+            "browser",
+            "local",
+            "exploration"
+        ],
+        "date": "2024-03-12",
+        "title": "pretzelai",
+        "summary": "Open-source, browser-local data exploration using DuckDB-Wasm and PRQL",
+        "tags": [
+            "dashboard",
+            "data",
+            "notebooks",
+            "duckdb",
+            "reporting",
+            "sql-editor-online",
+            "open-source",
+            "sql",
+            "businessintelligence",
+            "artificial-intelligence",
+            "prql",
+            "data-visualization",
+            "data-analytics",
+            "data-science",
+            "analytics",
+            "sql-editor",
+            "data-analysis",
+            "typescript",
+            "wasm",
+            "visualization",
+            "business-intelligence"
+        ]
     }
 }

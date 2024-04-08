@@ -168222,5 +168222,861 @@
     {
         "head": "pytorch",
         "tail": "debugger"
+    },
+    {
+        "head": "dashboard",
+        "tail": "data"
+    },
+    {
+        "head": "dashboard",
+        "tail": "notebooks"
+    },
+    {
+        "head": "dashboard",
+        "tail": "duckdb"
+    },
+    {
+        "head": "dashboard",
+        "tail": "reporting"
+    },
+    {
+        "head": "dashboard",
+        "tail": "sql-editor-online"
+    },
+    {
+        "head": "dashboard",
+        "tail": "open-source"
+    },
+    {
+        "head": "dashboard",
+        "tail": "sql"
+    },
+    {
+        "head": "dashboard",
+        "tail": "businessintelligence"
+    },
+    {
+        "head": "dashboard",
+        "tail": "artificial-intelligence"
+    },
+    {
+        "head": "dashboard",
+        "tail": "prql"
+    },
+    {
+        "head": "dashboard",
+        "tail": "data-analytics"
+    },
+    {
+        "head": "dashboard",
+        "tail": "data-science"
+    },
+    {
+        "head": "dashboard",
+        "tail": "sql-editor"
+    },
+    {
+        "head": "dashboard",
+        "tail": "data-analysis"
+    },
+    {
+        "head": "dashboard",
+        "tail": "wasm"
+    },
+    {
+        "head": "dashboard",
+        "tail": "browser"
+    },
+    {
+        "head": "dashboard",
+        "tail": "local"
+    },
+    {
+        "head": "dashboard",
+        "tail": "exploration"
+    },
+    {
+        "head": "data",
+        "tail": "notebooks"
+    },
+    {
+        "head": "data",
+        "tail": "reporting"
+    },
+    {
+        "head": "data",
+        "tail": "sql-editor-online"
+    },
+    {
+        "head": "data",
+        "tail": "businessintelligence"
+    },
+    {
+        "head": "data",
+        "tail": "artificial-intelligence"
+    },
+    {
+        "head": "data",
+        "tail": "prql"
+    },
+    {
+        "head": "data",
+        "tail": "data-analytics"
+    },
+    {
+        "head": "data",
+        "tail": "wasm"
+    },
+    {
+        "head": "data",
+        "tail": "business-intelligence"
+    },
+    {
+        "head": "data",
+        "tail": "browser"
+    },
+    {
+        "head": "data",
+        "tail": "local"
+    },
+    {
+        "head": "notebooks",
+        "tail": "duckdb"
+    },
+    {
+        "head": "notebooks",
+        "tail": "reporting"
+    },
+    {
+        "head": "notebooks",
+        "tail": "sql-editor-online"
+    },
+    {
+        "head": "notebooks",
+        "tail": "open-source"
+    },
+    {
+        "head": "notebooks",
+        "tail": "sql"
+    },
+    {
+        "head": "notebooks",
+        "tail": "businessintelligence"
+    },
+    {
+        "head": "notebooks",
+        "tail": "artificial-intelligence"
+    },
+    {
+        "head": "notebooks",
+        "tail": "prql"
+    },
+    {
+        "head": "notebooks",
+        "tail": "data-visualization"
+    },
+    {
+        "head": "notebooks",
+        "tail": "data-analytics"
+    },
+    {
+        "head": "notebooks",
+        "tail": "data-science"
+    },
+    {
+        "head": "notebooks",
+        "tail": "analytics"
+    },
+    {
+        "head": "notebooks",
+        "tail": "sql-editor"
+    },
+    {
+        "head": "notebooks",
+        "tail": "data-analysis"
+    },
+    {
+        "head": "notebooks",
+        "tail": "typescript"
+    },
+    {
+        "head": "notebooks",
+        "tail": "wasm"
+    },
+    {
+        "head": "notebooks",
+        "tail": "visualization"
+    },
+    {
+        "head": "notebooks",
+        "tail": "business-intelligence"
+    },
+    {
+        "head": "notebooks",
+        "tail": "browser"
+    },
+    {
+        "head": "notebooks",
+        "tail": "local"
+    },
+    {
+        "head": "notebooks",
+        "tail": "exploration"
+    },
+    {
+        "head": "duckdb",
+        "tail": "reporting"
+    },
+    {
+        "head": "duckdb",
+        "tail": "sql-editor-online"
+    },
+    {
+        "head": "duckdb",
+        "tail": "open-source"
+    },
+    {
+        "head": "duckdb",
+        "tail": "businessintelligence"
+    },
+    {
+        "head": "duckdb",
+        "tail": "artificial-intelligence"
+    },
+    {
+        "head": "duckdb",
+        "tail": "prql"
+    },
+    {
+        "head": "duckdb",
+        "tail": "analytics"
+    },
+    {
+        "head": "duckdb",
+        "tail": "typescript"
+    },
+    {
+        "head": "duckdb",
+        "tail": "wasm"
+    },
+    {
+        "head": "duckdb",
+        "tail": "visualization"
+    },
+    {
+        "head": "duckdb",
+        "tail": "business-intelligence"
+    },
+    {
+        "head": "duckdb",
+        "tail": "browser"
+    },
+    {
+        "head": "duckdb",
+        "tail": "local"
+    },
+    {
+        "head": "duckdb",
+        "tail": "exploration"
+    },
+    {
+        "head": "reporting",
+        "tail": "sql-editor-online"
+    },
+    {
+        "head": "reporting",
+        "tail": "open-source"
+    },
+    {
+        "head": "reporting",
+        "tail": "sql"
+    },
+    {
+        "head": "reporting",
+        "tail": "businessintelligence"
+    },
+    {
+        "head": "reporting",
+        "tail": "artificial-intelligence"
+    },
+    {
+        "head": "reporting",
+        "tail": "prql"
+    },
+    {
+        "head": "reporting",
+        "tail": "data-visualization"
+    },
+    {
+        "head": "reporting",
+        "tail": "data-analytics"
+    },
+    {
+        "head": "reporting",
+        "tail": "data-science"
+    },
+    {
+        "head": "reporting",
+        "tail": "analytics"
+    },
+    {
+        "head": "reporting",
+        "tail": "sql-editor"
+    },
+    {
+        "head": "reporting",
+        "tail": "data-analysis"
+    },
+    {
+        "head": "reporting",
+        "tail": "typescript"
+    },
+    {
+        "head": "reporting",
+        "tail": "wasm"
+    },
+    {
+        "head": "reporting",
+        "tail": "visualization"
+    },
+    {
+        "head": "reporting",
+        "tail": "business-intelligence"
+    },
+    {
+        "head": "reporting",
+        "tail": "browser"
+    },
+    {
+        "head": "reporting",
+        "tail": "local"
+    },
+    {
+        "head": "reporting",
+        "tail": "exploration"
+    },
+    {
+        "head": "sql-editor-online",
+        "tail": "open-source"
+    },
+    {
+        "head": "sql-editor-online",
+        "tail": "sql"
+    },
+    {
+        "head": "sql-editor-online",
+        "tail": "businessintelligence"
+    },
+    {
+        "head": "sql-editor-online",
+        "tail": "artificial-intelligence"
+    },
+    {
+        "head": "sql-editor-online",
+        "tail": "prql"
+    },
+    {
+        "head": "sql-editor-online",
+        "tail": "data-visualization"
+    },
+    {
+        "head": "sql-editor-online",
+        "tail": "data-analytics"
+    },
+    {
+        "head": "sql-editor-online",
+        "tail": "data-science"
+    },
+    {
+        "head": "sql-editor-online",
+        "tail": "analytics"
+    },
+    {
+        "head": "sql-editor-online",
+        "tail": "sql-editor"
+    },
+    {
+        "head": "sql-editor-online",
+        "tail": "data-analysis"
+    },
+    {
+        "head": "sql-editor-online",
+        "tail": "typescript"
+    },
+    {
+        "head": "sql-editor-online",
+        "tail": "wasm"
+    },
+    {
+        "head": "sql-editor-online",
+        "tail": "visualization"
+    },
+    {
+        "head": "sql-editor-online",
+        "tail": "business-intelligence"
+    },
+    {
+        "head": "sql-editor-online",
+        "tail": "browser"
+    },
+    {
+        "head": "sql-editor-online",
+        "tail": "local"
+    },
+    {
+        "head": "sql-editor-online",
+        "tail": "exploration"
+    },
+    {
+        "head": "open-source",
+        "tail": "sql"
+    },
+    {
+        "head": "open-source",
+        "tail": "businessintelligence"
+    },
+    {
+        "head": "open-source",
+        "tail": "artificial-intelligence"
+    },
+    {
+        "head": "open-source",
+        "tail": "prql"
+    },
+    {
+        "head": "open-source",
+        "tail": "data-visualization"
+    },
+    {
+        "head": "open-source",
+        "tail": "data-analytics"
+    },
+    {
+        "head": "open-source",
+        "tail": "sql-editor"
+    },
+    {
+        "head": "open-source",
+        "tail": "data-analysis"
+    },
+    {
+        "head": "open-source",
+        "tail": "wasm"
+    },
+    {
+        "head": "open-source",
+        "tail": "visualization"
+    },
+    {
+        "head": "open-source",
+        "tail": "business-intelligence"
+    },
+    {
+        "head": "open-source",
+        "tail": "browser"
+    },
+    {
+        "head": "open-source",
+        "tail": "local"
+    },
+    {
+        "head": "open-source",
+        "tail": "exploration"
+    },
+    {
+        "head": "sql",
+        "tail": "businessintelligence"
+    },
+    {
+        "head": "sql",
+        "tail": "artificial-intelligence"
+    },
+    {
+        "head": "sql",
+        "tail": "prql"
+    },
+    {
+        "head": "sql",
+        "tail": "data-analytics"
+    },
+    {
+        "head": "sql",
+        "tail": "business-intelligence"
+    },
+    {
+        "head": "sql",
+        "tail": "browser"
+    },
+    {
+        "head": "sql",
+        "tail": "local"
+    },
+    {
+        "head": "sql",
+        "tail": "exploration"
+    },
+    {
+        "head": "businessintelligence",
+        "tail": "artificial-intelligence"
+    },
+    {
+        "head": "businessintelligence",
+        "tail": "prql"
+    },
+    {
+        "head": "businessintelligence",
+        "tail": "data-visualization"
+    },
+    {
+        "head": "businessintelligence",
+        "tail": "data-analytics"
+    },
+    {
+        "head": "businessintelligence",
+        "tail": "data-science"
+    },
+    {
+        "head": "businessintelligence",
+        "tail": "analytics"
+    },
+    {
+        "head": "businessintelligence",
+        "tail": "sql-editor"
+    },
+    {
+        "head": "businessintelligence",
+        "tail": "data-analysis"
+    },
+    {
+        "head": "businessintelligence",
+        "tail": "typescript"
+    },
+    {
+        "head": "businessintelligence",
+        "tail": "wasm"
+    },
+    {
+        "head": "businessintelligence",
+        "tail": "visualization"
+    },
+    {
+        "head": "businessintelligence",
+        "tail": "business-intelligence"
+    },
+    {
+        "head": "businessintelligence",
+        "tail": "browser"
+    },
+    {
+        "head": "businessintelligence",
+        "tail": "local"
+    },
+    {
+        "head": "businessintelligence",
+        "tail": "exploration"
+    },
+    {
+        "head": "artificial-intelligence",
+        "tail": "prql"
+    },
+    {
+        "head": "artificial-intelligence",
+        "tail": "data-visualization"
+    },
+    {
+        "head": "artificial-intelligence",
+        "tail": "data-analytics"
+    },
+    {
+        "head": "artificial-intelligence",
+        "tail": "analytics"
+    },
+    {
+        "head": "artificial-intelligence",
+        "tail": "sql-editor"
+    },
+    {
+        "head": "artificial-intelligence",
+        "tail": "data-analysis"
+    },
+    {
+        "head": "artificial-intelligence",
+        "tail": "typescript"
+    },
+    {
+        "head": "artificial-intelligence",
+        "tail": "wasm"
+    },
+    {
+        "head": "artificial-intelligence",
+        "tail": "visualization"
+    },
+    {
+        "head": "artificial-intelligence",
+        "tail": "business-intelligence"
+    },
+    {
+        "head": "artificial-intelligence",
+        "tail": "browser"
+    },
+    {
+        "head": "artificial-intelligence",
+        "tail": "local"
+    },
+    {
+        "head": "artificial-intelligence",
+        "tail": "exploration"
+    },
+    {
+        "head": "prql",
+        "tail": "data-visualization"
+    },
+    {
+        "head": "prql",
+        "tail": "data-analytics"
+    },
+    {
+        "head": "prql",
+        "tail": "data-science"
+    },
+    {
+        "head": "prql",
+        "tail": "analytics"
+    },
+    {
+        "head": "prql",
+        "tail": "sql-editor"
+    },
+    {
+        "head": "prql",
+        "tail": "data-analysis"
+    },
+    {
+        "head": "prql",
+        "tail": "typescript"
+    },
+    {
+        "head": "prql",
+        "tail": "wasm"
+    },
+    {
+        "head": "prql",
+        "tail": "visualization"
+    },
+    {
+        "head": "prql",
+        "tail": "business-intelligence"
+    },
+    {
+        "head": "prql",
+        "tail": "browser"
+    },
+    {
+        "head": "prql",
+        "tail": "local"
+    },
+    {
+        "head": "prql",
+        "tail": "exploration"
+    },
+    {
+        "head": "data-visualization",
+        "tail": "wasm"
+    },
+    {
+        "head": "data-visualization",
+        "tail": "browser"
+    },
+    {
+        "head": "data-visualization",
+        "tail": "local"
+    },
+    {
+        "head": "data-visualization",
+        "tail": "exploration"
+    },
+    {
+        "head": "data-analytics",
+        "tail": "analytics"
+    },
+    {
+        "head": "data-analytics",
+        "tail": "sql-editor"
+    },
+    {
+        "head": "data-analytics",
+        "tail": "wasm"
+    },
+    {
+        "head": "data-analytics",
+        "tail": "visualization"
+    },
+    {
+        "head": "data-analytics",
+        "tail": "browser"
+    },
+    {
+        "head": "data-analytics",
+        "tail": "local"
+    },
+    {
+        "head": "data-analytics",
+        "tail": "exploration"
+    },
+    {
+        "head": "data-science",
+        "tail": "sql-editor"
+    },
+    {
+        "head": "data-science",
+        "tail": "typescript"
+    },
+    {
+        "head": "data-science",
+        "tail": "wasm"
+    },
+    {
+        "head": "data-science",
+        "tail": "business-intelligence"
+    },
+    {
+        "head": "data-science",
+        "tail": "browser"
+    },
+    {
+        "head": "data-science",
+        "tail": "local"
+    },
+    {
+        "head": "analytics",
+        "tail": "sql-editor"
+    },
+    {
+        "head": "analytics",
+        "tail": "wasm"
+    },
+    {
+        "head": "analytics",
+        "tail": "browser"
+    },
+    {
+        "head": "analytics",
+        "tail": "local"
+    },
+    {
+        "head": "sql-editor",
+        "tail": "typescript"
+    },
+    {
+        "head": "sql-editor",
+        "tail": "wasm"
+    },
+    {
+        "head": "sql-editor",
+        "tail": "visualization"
+    },
+    {
+        "head": "sql-editor",
+        "tail": "business-intelligence"
+    },
+    {
+        "head": "sql-editor",
+        "tail": "browser"
+    },
+    {
+        "head": "sql-editor",
+        "tail": "local"
+    },
+    {
+        "head": "sql-editor",
+        "tail": "exploration"
+    },
+    {
+        "head": "data-analysis",
+        "tail": "typescript"
+    },
+    {
+        "head": "data-analysis",
+        "tail": "wasm"
+    },
+    {
+        "head": "data-analysis",
+        "tail": "business-intelligence"
+    },
+    {
+        "head": "data-analysis",
+        "tail": "browser"
+    },
+    {
+        "head": "data-analysis",
+        "tail": "local"
+    },
+    {
+        "head": "typescript",
+        "tail": "wasm"
+    },
+    {
+        "head": "typescript",
+        "tail": "browser"
+    },
+    {
+        "head": "typescript",
+        "tail": "exploration"
+    },
+    {
+        "head": "wasm",
+        "tail": "visualization"
+    },
+    {
+        "head": "wasm",
+        "tail": "business-intelligence"
+    },
+    {
+        "head": "wasm",
+        "tail": "browser"
+    },
+    {
+        "head": "wasm",
+        "tail": "local"
+    },
+    {
+        "head": "wasm",
+        "tail": "exploration"
+    },
+    {
+        "head": "visualization",
+        "tail": "browser"
+    },
+    {
+        "head": "visualization",
+        "tail": "local"
+    },
+    {
+        "head": "visualization",
+        "tail": "exploration"
+    },
+    {
+        "head": "business-intelligence",
+        "tail": "browser"
+    },
+    {
+        "head": "business-intelligence",
+        "tail": "local"
+    },
+    {
+        "head": "business-intelligence",
+        "tail": "exploration"
+    },
+    {
+        "head": "browser",
+        "tail": "local"
+    },
+    {
+        "head": "browser",
+        "tail": "exploration"
+    },
+    {
+        "head": "local",
+        "tail": "exploration"
     }
 ]
