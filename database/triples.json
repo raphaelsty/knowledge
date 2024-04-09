@@ -169078,5 +169078,37 @@
     {
         "head": "local",
         "tail": "exploration"
+    },
+    {
+        "head": "stream",
+        "tail": "search"
+    },
+    {
+        "head": "c",
+        "tail": "llm"
+    },
+    {
+        "head": "c",
+        "tail": "training"
+    },
+    {
+        "head": "c",
+        "tail": "simple"
+    },
+    {
+        "head": "llm",
+        "tail": "training"
+    },
+    {
+        "head": "training",
+        "tail": "simple"
+    },
+    {
+        "head": "python",
+        "tail": "interesting idea"
+    },
+    {
+        "head": "interesting idea",
+        "tail": "python 3."
     }
 ]

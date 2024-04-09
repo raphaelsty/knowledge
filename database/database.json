@@ -36878,5 +36878,42 @@
             "visualization",
             "business-intelligence"
         ]
+    },
+    "https://github.com/kanishkg/stream-of-search": {
+        "extra-tags": [
+            "stream",
+            "search"
+        ],
+        "date": "2024-04-01",
+        "title": "stream-of-search",
+        "summary": "",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/karpathy/llm.c": {
+        "extra-tags": [
+            "llm",
+            "training",
+            "simple"
+        ],
+        "date": "2024-04-08",
+        "title": "llm.c",
+        "summary": "LLM training in simple, raw C/CUDA",
+        "tags": [
+            "c"
+        ]
+    },
+    "https://github.com/cclauss/Ten-lines-or-less": {
+        "extra-tags": [
+            "interesting idea",
+            "python 3."
+        ],
+        "date": "2014-08-09",
+        "title": "Ten-lines-or-less",
+        "summary": "Python scripts that are short but useful or interesting",
+        "tags": [
+            "python"
+        ]
     }
 }
