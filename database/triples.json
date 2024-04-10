@@ -169110,5 +169110,45 @@
     {
         "head": "interesting idea",
         "tail": "python 3."
+    },
+    {
+        "head": "numba",
+        "tail": "llvm"
+    },
+    {
+        "head": "numba",
+        "tail": "compiler"
+    },
+    {
+        "head": "numba",
+        "tail": "scipy"
+    },
+    {
+        "head": "numba",
+        "tail": "make"
+    },
+    {
+        "head": "llvm",
+        "tail": "scipy"
+    },
+    {
+        "head": "llvm",
+        "tail": "make"
+    },
+    {
+        "head": "compiler",
+        "tail": "scipy"
+    },
+    {
+        "head": "compiler",
+        "tail": "make"
+    },
+    {
+        "head": "scipy",
+        "tail": "make"
+    },
+    {
+        "head": "numpy",
+        "tail": "make"
     }
 ]

@@ -36915,5 +36915,21 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/numba/numba-scipy": {
+        "extra-tags": [
+            "make"
+        ],
+        "date": "2019-07-19",
+        "title": "numba-scipy",
+        "summary": "numba_scipy extends Numba to make it aware of SciPy",
+        "tags": [
+            "python",
+            "numba",
+            "llvm",
+            "compiler",
+            "scipy",
+            "numpy"
+        ]
     }
 }
