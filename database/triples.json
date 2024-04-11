@@ -169150,5 +169150,121 @@
     {
         "head": "numpy",
         "tail": "make"
+    },
+    {
+        "head": "lens",
+        "tail": "pixelsort"
+    },
+    {
+        "head": "lens",
+        "tail": "face-recognition"
+    },
+    {
+        "head": "lens",
+        "tail": "python"
+    },
+    {
+        "head": "lens",
+        "tail": "glitch-art"
+    },
+    {
+        "head": "lens",
+        "tail": "decision-making"
+    },
+    {
+        "head": "lens",
+        "tail": "note-taking"
+    },
+    {
+        "head": "pixelsort",
+        "tail": "face-recognition"
+    },
+    {
+        "head": "pixelsort",
+        "tail": "python"
+    },
+    {
+        "head": "pixelsort",
+        "tail": "glitch-art"
+    },
+    {
+        "head": "pixelsort",
+        "tail": "decision-making"
+    },
+    {
+        "head": "pixelsort",
+        "tail": "note-taking"
+    },
+    {
+        "head": "face-recognition",
+        "tail": "glitch-art"
+    },
+    {
+        "head": "face-recognition",
+        "tail": "decision-making"
+    },
+    {
+        "head": "face-recognition",
+        "tail": "note-taking"
+    },
+    {
+        "head": "python",
+        "tail": "note-taking"
+    },
+    {
+        "head": "glitch-art",
+        "tail": "decision-making"
+    },
+    {
+        "head": "glitch-art",
+        "tail": "note-taking"
+    },
+    {
+        "head": "decision-making",
+        "tail": "note-taking"
+    },
+    {
+        "head": "dataflow",
+        "tail": "robotics"
+    },
+    {
+        "head": "dataflow",
+        "tail": "low-latency"
+    },
+    {
+        "head": "dataflow",
+        "tail": "distributed"
+    },
+    {
+        "head": "dataflow",
+        "tail": "ai"
+    },
+    {
+        "head": "robotics",
+        "tail": "low-latency"
+    },
+    {
+        "head": "robotics",
+        "tail": "distributed"
+    },
+    {
+        "head": "robotics",
+        "tail": "ai"
+    },
+    {
+        "head": "low-latency",
+        "tail": "rust"
+    },
+    {
+        "head": "low-latency",
+        "tail": "distributed"
+    },
+    {
+        "head": "low-latency",
+        "tail": "ai"
+    },
+    {
+        "head": "distributed",
+        "tail": "ai"
     }
 ]

@@ -36931,5 +36931,36 @@
             "scipy",
             "numpy"
         ]
+    },
+    "https://github.com/BernardZhao/lenssort": {
+        "extra-tags": [
+            "decision-making",
+            "note-taking"
+        ],
+        "date": "2018-04-04",
+        "title": "lenssort",
+        "summary": "Making some cool pfps \ud83d\udc69\u200d\ud83c\udfa4",
+        "tags": [
+            "lens",
+            "pixelsort",
+            "face-recognition",
+            "python",
+            "glitch-art"
+        ]
+    },
+    "https://github.com/dora-rs/dora": {
+        "extra-tags": [
+            "distributed",
+            "ai"
+        ],
+        "date": "2022-02-17",
+        "title": "dora",
+        "summary": "low latency, composable, and distributed dataflow for AI and robotic application",
+        "tags": [
+            "dataflow",
+            "robotics",
+            "low-latency",
+            "rust"
+        ]
     }
 }
