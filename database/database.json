@@ -36962,5 +36962,27 @@
             "low-latency",
             "rust"
         ]
+    },
+    "https://github.com/plotly/plotly.rs": {
+        "extra-tags": [],
+        "date": "2020-01-26",
+        "title": "plotly.rs",
+        "summary": "Plotly for Rust",
+        "tags": [
+            "rust",
+            "scatterplot",
+            "plot",
+            "plotly",
+            "financial",
+            "barchart",
+            "statistics",
+            "chart",
+            "data-vizualisation",
+            "data-visualization",
+            "financial-analysis",
+            "plotlyjs",
+            "scatter",
+            "candlestick-chart"
+        ]
     }
 }
