@@ -169266,5 +169266,17 @@
     {
         "head": "distributed",
         "tail": "ai"
+    },
+    {
+        "head": "rust",
+        "tail": "zeek"
+    },
+    {
+        "head": "rust",
+        "tail": "integrations"
+    },
+    {
+        "head": "zeek",
+        "tail": "integrations"
     }
 ]

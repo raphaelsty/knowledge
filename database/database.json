@@ -36984,5 +36984,17 @@
             "scatter",
             "candlestick-chart"
         ]
+    },
+    "https://github.com/mbispham/zeekjs-rust-hello-world": {
+        "extra-tags": [
+            "zeek",
+            "integrations"
+        ],
+        "date": "2024-04-12",
+        "title": "zeekjs-rust-hello-world",
+        "summary": "Integrate Rust with Zeek via ZeekJS",
+        "tags": [
+            "rust"
+        ]
     }
 }
