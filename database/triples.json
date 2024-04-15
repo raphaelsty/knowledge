@@ -169278,5 +169278,81 @@
     {
         "head": "zeek",
         "tail": "integrations"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "openai-triton"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "triton"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "openai"
+    },
+    {
+        "head": "python",
+        "tail": "openai-triton"
+    },
+    {
+        "head": "python",
+        "tail": "triton"
+    },
+    {
+        "head": "openai-triton",
+        "tail": "triton"
+    },
+    {
+        "head": "openai-triton",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "openai-triton",
+        "tail": "pytorch"
+    },
+    {
+        "head": "openai-triton",
+        "tail": "cuda"
+    },
+    {
+        "head": "openai-triton",
+        "tail": "openai"
+    },
+    {
+        "head": "openai-triton",
+        "tail": "neural"
+    },
+    {
+        "head": "triton",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "triton",
+        "tail": "openai"
+    },
+    {
+        "head": "triton",
+        "tail": "neural"
+    },
+    {
+        "head": "pytorch",
+        "tail": "openai"
+    },
+    {
+        "head": "pytorch",
+        "tail": "neural"
+    },
+    {
+        "head": "cuda",
+        "tail": "openai"
+    },
+    {
+        "head": "cuda",
+        "tail": "neural"
+    },
+    {
+        "head": "openai",
+        "tail": "neural"
     }
 ]

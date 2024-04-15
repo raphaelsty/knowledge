@@ -36996,5 +36996,23 @@
         "tags": [
             "rust"
         ]
+    },
+    "https://github.com/BobMcDear/attorch": {
+        "extra-tags": [
+            "neural"
+        ],
+        "date": "2023-07-13",
+        "title": "attorch",
+        "summary": "A subset of PyTorch's neural network modules, written in Python using OpenAI's Triton.",
+        "tags": [
+            "deep-learning",
+            "python",
+            "openai-triton",
+            "triton",
+            "machine-learning",
+            "pytorch",
+            "cuda",
+            "openai"
+        ]
     }
 }
