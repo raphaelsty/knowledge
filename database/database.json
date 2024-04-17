@@ -37014,5 +37014,18 @@
             "cuda",
             "openai"
         ]
+    },
+    "https://github.com/pierrot-lc/selective-attention": {
+        "extra-tags": [
+            "attention",
+            "transformer",
+            "transformers"
+        ],
+        "date": "2023-11-25",
+        "title": "selective-attention",
+        "summary": "A transformer variant.",
+        "tags": [
+            "python"
+        ]
     }
 }
