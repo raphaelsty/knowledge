@@ -37027,5 +37027,18 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/lightonai/composer": {
+        "extra-tags": [
+            "model",
+            "training",
+            "co training"
+        ],
+        "date": "2024-04-08",
+        "title": "composer",
+        "summary": "Supercharge Your Model Training",
+        "tags": [
+            "python"
+        ]
     }
 }

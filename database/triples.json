@@ -169358,5 +169358,25 @@
     {
         "head": "attention",
         "tail": "transformer"
+    },
+    {
+        "head": "python",
+        "tail": "model"
+    },
+    {
+        "head": "python",
+        "tail": "co training"
+    },
+    {
+        "head": "model",
+        "tail": "training"
+    },
+    {
+        "head": "model",
+        "tail": "co training"
+    },
+    {
+        "head": "training",
+        "tail": "co training"
     }
 ]
