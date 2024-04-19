@@ -169378,5 +169378,45 @@
     {
         "head": "training",
         "tail": "co training"
+    },
+    {
+        "head": "beam search",
+        "tail": "generative"
+    },
+    {
+        "head": "beam search",
+        "tail": "text"
+    },
+    {
+        "head": "beam search",
+        "tail": "transformers"
+    },
+    {
+        "head": "beam search",
+        "tail": "source"
+    },
+    {
+        "head": "generative",
+        "tail": "text"
+    },
+    {
+        "head": "generative",
+        "tail": "transformers"
+    },
+    {
+        "head": "generative",
+        "tail": "source"
+    },
+    {
+        "head": "text",
+        "tail": "transformers"
+    },
+    {
+        "head": "text",
+        "tail": "source"
+    },
+    {
+        "head": "transformers",
+        "tail": "source"
     }
 ]
