@@ -37054,5 +37054,17 @@
             "beam search",
             "generative"
         ]
+    },
+    "https://github.com/rerun-io/python-example-droid-dataset": {
+        "extra-tags": [
+            "dataset",
+            "dataset bias"
+        ],
+        "date": "2024-04-16",
+        "title": "python-example-droid-dataset",
+        "summary": "Visualizing the DROID dataset using Rerun",
+        "tags": [
+            "python"
+        ]
     }
 }
