@@ -37066,5 +37066,22 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/microsoft/TypeChat": {
+        "extra-tags": [
+            "library",
+            "build",
+            "language"
+        ],
+        "date": "2023-06-20",
+        "title": "TypeChat",
+        "summary": "TypeChat is a library that makes it easy to build natural language interfaces using types.",
+        "tags": [
+            "ai",
+            "typescript",
+            "types",
+            "llm",
+            "natural-language"
+        ]
     }
 }
