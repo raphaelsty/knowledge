@@ -37083,5 +37083,19 @@
             "llm",
             "natural-language"
         ]
+    },
+    "https://github.com/huggingface/jat": {
+        "extra-tags": [
+            "distributed",
+            "online",
+            "training",
+            "task"
+        ],
+        "date": "2022-11-25",
+        "title": "jat",
+        "summary": "Distributed online training of a general multi-task Deep RL Agent",
+        "tags": [
+            "python"
+        ]
     }
 }
