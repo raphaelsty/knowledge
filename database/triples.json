@@ -169538,5 +169538,29 @@
     {
         "head": "training",
         "tail": "task"
+    },
+    {
+        "head": "rust",
+        "tail": "transfer"
+    },
+    {
+        "head": "rust",
+        "tail": "transfer learning"
+    },
+    {
+        "head": "rust",
+        "tail": "transfer learning in nlp"
+    },
+    {
+        "head": "transfer",
+        "tail": "transfer learning"
+    },
+    {
+        "head": "transfer",
+        "tail": "transfer learning in nlp"
+    },
+    {
+        "head": "transfer learning",
+        "tail": "transfer learning in nlp"
     }
 ]

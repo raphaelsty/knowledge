@@ -37097,5 +37097,18 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/huggingface/hf_transfer": {
+        "extra-tags": [
+            "transfer",
+            "transfer learning",
+            "transfer learning in nlp"
+        ],
+        "date": "2022-12-16",
+        "title": "hf_transfer",
+        "summary": "",
+        "tags": [
+            "rust"
+        ]
     }
 }
