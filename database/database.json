@@ -37110,5 +37110,19 @@
         "tags": [
             "rust"
         ]
+    },
+    "https://github.com/apple/corenet": {
+        "extra-tags": [
+            "library",
+            "training",
+            "deep",
+            "neural networks"
+        ],
+        "date": "2024-04-18",
+        "title": "corenet",
+        "summary": "CoreNet: A library for training deep neural networks",
+        "tags": [
+            "python"
+        ]
     }
 }

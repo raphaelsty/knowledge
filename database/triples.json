@@ -169562,5 +169562,21 @@
     {
         "head": "transfer learning",
         "tail": "transfer learning in nlp"
+    },
+    {
+        "head": "library",
+        "tail": "deep"
+    },
+    {
+        "head": "training",
+        "tail": "deep"
+    },
+    {
+        "head": "training",
+        "tail": "neural networks"
+    },
+    {
+        "head": "deep",
+        "tail": "neural networks"
     }
 ]
