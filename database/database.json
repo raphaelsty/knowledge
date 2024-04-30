@@ -37124,5 +37124,44 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/huggingface/gym-xarm": {
+        "extra-tags": [
+            "gym",
+            "arm",
+            "gym-environment"
+        ],
+        "date": "2024-03-30",
+        "title": "gym-xarm",
+        "summary": "",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/huggingface/gym-aloha": {
+        "extra-tags": [
+            "gym",
+            "gym-environment",
+            "openai-gym-agents"
+        ],
+        "date": "2024-04-07",
+        "title": "gym-aloha",
+        "summary": "",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/huggingface/gym-pusht": {
+        "extra-tags": [
+            "gym",
+            "gym-environment",
+            "push"
+        ],
+        "date": "2024-03-29",
+        "title": "gym-pusht",
+        "summary": "",
+        "tags": [
+            "python"
+        ]
     }
 }
