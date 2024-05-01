@@ -37163,5 +37163,21 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/FBruzzesi/timebasedcv": {
+        "extra-tags": [
+            "time",
+            "validation"
+        ],
+        "date": "2023-07-17",
+        "title": "timebasedcv",
+        "summary": "Time based splits for cross validation",
+        "tags": [
+            "time-series",
+            "data-science",
+            "time-series-analysis",
+            "python",
+            "cross-validation"
+        ]
     }
 }
