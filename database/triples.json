@@ -169650,5 +169650,137 @@
     {
         "head": "time",
         "tail": "validation"
+    },
+    {
+        "head": "trigger",
+        "tail": "github-action"
+    },
+    {
+        "head": "trigger",
+        "tail": "workflow-runs"
+    },
+    {
+        "head": "trigger",
+        "tail": "shell"
+    },
+    {
+        "head": "trigger",
+        "tail": "git"
+    },
+    {
+        "head": "trigger",
+        "tail": "github-actions"
+    },
+    {
+        "head": "trigger",
+        "tail": "push"
+    },
+    {
+        "head": "trigger",
+        "tail": "files"
+    },
+    {
+        "head": "trigger",
+        "tail": "github action"
+    },
+    {
+        "head": "github-action",
+        "tail": "workflow-runs"
+    },
+    {
+        "head": "github-action",
+        "tail": "shell"
+    },
+    {
+        "head": "github-action",
+        "tail": "git"
+    },
+    {
+        "head": "github-action",
+        "tail": "push"
+    },
+    {
+        "head": "github-action",
+        "tail": "files"
+    },
+    {
+        "head": "github-action",
+        "tail": "github action"
+    },
+    {
+        "head": "workflow-runs",
+        "tail": "shell"
+    },
+    {
+        "head": "workflow-runs",
+        "tail": "git"
+    },
+    {
+        "head": "workflow-runs",
+        "tail": "github-actions"
+    },
+    {
+        "head": "workflow-runs",
+        "tail": "push"
+    },
+    {
+        "head": "workflow-runs",
+        "tail": "files"
+    },
+    {
+        "head": "workflow-runs",
+        "tail": "github action"
+    },
+    {
+        "head": "shell",
+        "tail": "github-actions"
+    },
+    {
+        "head": "shell",
+        "tail": "push"
+    },
+    {
+        "head": "shell",
+        "tail": "files"
+    },
+    {
+        "head": "shell",
+        "tail": "github action"
+    },
+    {
+        "head": "git",
+        "tail": "github-actions"
+    },
+    {
+        "head": "git",
+        "tail": "files"
+    },
+    {
+        "head": "git",
+        "tail": "github action"
+    },
+    {
+        "head": "github-actions",
+        "tail": "push"
+    },
+    {
+        "head": "github-actions",
+        "tail": "files"
+    },
+    {
+        "head": "github-actions",
+        "tail": "github action"
+    },
+    {
+        "head": "push",
+        "tail": "files"
+    },
+    {
+        "head": "push",
+        "tail": "github action"
+    },
+    {
+        "head": "files",
+        "tail": "github action"
     }
 ]

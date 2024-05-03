@@ -37179,5 +37179,24 @@
             "python",
             "cross-validation"
         ]
+    },
+    "https://github.com/stefanzweifel/git-auto-commit-action": {
+        "extra-tags": [
+            "push",
+            "files",
+            "github action"
+        ],
+        "date": "2019-06-10",
+        "title": "git-auto-commit-action",
+        "summary": "Automatically commit and push changed files back to GitHub with this GitHub Action for the 80% use case.",
+        "tags": [
+            "trigger",
+            "github-action",
+            "github",
+            "workflow-runs",
+            "shell",
+            "git",
+            "github-actions"
+        ]
     }
 }
