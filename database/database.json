@@ -37198,5 +37198,18 @@
             "git",
             "github-actions"
         ]
+    },
+    "https://github.com/hbonnavaud/sciborg": {
+        "extra-tags": [
+            "reinforcement",
+            "learning",
+            "framework"
+        ],
+        "date": "2024-03-13",
+        "title": "sciborg",
+        "summary": "Reinforcement learning framework.",
+        "tags": [
+            "python"
+        ]
     }
 }
