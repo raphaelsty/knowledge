@@ -169782,5 +169782,41 @@
     {
         "head": "files",
         "tail": "github action"
+    },
+    {
+        "head": "state-of-the-art",
+        "tail": "machine learning"
+    },
+    {
+        "head": "state-of-the-art",
+        "tail": "robotics"
+    },
+    {
+        "head": "machine learning",
+        "tail": "robotics"
+    },
+    {
+        "head": "robotics",
+        "tail": "pytorch"
+    },
+    {
+        "head": "segmentation",
+        "tail": "prediction"
+    },
+    {
+        "head": "segmentation",
+        "tail": "uncertainty quantification"
+    },
+    {
+        "head": "prediction",
+        "tail": "uncertainty quantification"
+    },
+    {
+        "head": "prediction",
+        "tail": "image"
+    },
+    {
+        "head": "uncertainty quantification",
+        "tail": "image"
     }
 ]

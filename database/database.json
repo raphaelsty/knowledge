@@ -37211,5 +37211,33 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/huggingface/lerobot": {
+        "extra-tags": [
+            "state-of-the-art",
+            "machine learning",
+            "robotics",
+            "pytorch"
+        ],
+        "date": "2024-01-26",
+        "title": "lerobot",
+        "summary": "\ud83e\udd17 LeRobot: State-of-the-art Machine Learning for Real-World Robotics in Pytorch",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/deel-ai-papers/conformal-segmentation": {
+        "extra-tags": [
+            "segmentation",
+            "prediction",
+            "uncertainty quantification",
+            "image"
+        ],
+        "date": "2024-04-04",
+        "title": "conformal-segmentation",
+        "summary": "Conformal prediction for uncertainty quantification in image segmentation",
+        "tags": [
+            "python"
+        ]
     }
 }
