@@ -169906,5 +169906,177 @@
     {
         "head": "compression",
         "tail": "framework"
+    },
+    {
+        "head": "message-queue",
+        "tail": "dev"
+    },
+    {
+        "head": "message-queue",
+        "tail": "streaming"
+    },
+    {
+        "head": "message-queue",
+        "tail": "platform"
+    },
+    {
+        "head": "data-pipeline",
+        "tail": "dev"
+    },
+    {
+        "head": "data-pipeline",
+        "tail": "platform"
+    },
+    {
+        "head": "data",
+        "tail": "dev"
+    },
+    {
+        "head": "data",
+        "tail": "platform"
+    },
+    {
+        "head": "enrichment",
+        "tail": "dev"
+    },
+    {
+        "head": "enrichment",
+        "tail": "streaming"
+    },
+    {
+        "head": "enrichment",
+        "tail": "platform"
+    },
+    {
+        "head": "golang",
+        "tail": "dev"
+    },
+    {
+        "head": "golang",
+        "tail": "streaming"
+    },
+    {
+        "head": "golang",
+        "tail": "platform"
+    },
+    {
+        "head": "data-stream-processing",
+        "tail": "dev"
+    },
+    {
+        "head": "data-stream-processing",
+        "tail": "streaming"
+    },
+    {
+        "head": "data-stream-processing",
+        "tail": "platform"
+    },
+    {
+        "head": "kubernetes",
+        "tail": "dev"
+    },
+    {
+        "head": "kubernetes",
+        "tail": "streaming"
+    },
+    {
+        "head": "kubernetes",
+        "tail": "platform"
+    },
+    {
+        "head": "messaging-queue",
+        "tail": "dev"
+    },
+    {
+        "head": "messaging-queue",
+        "tail": "streaming"
+    },
+    {
+        "head": "messaging-queue",
+        "tail": "platform"
+    },
+    {
+        "head": "microservices",
+        "tail": "dev"
+    },
+    {
+        "head": "microservices",
+        "tail": "streaming"
+    },
+    {
+        "head": "go",
+        "tail": "dev"
+    },
+    {
+        "head": "go",
+        "tail": "platform"
+    },
+    {
+        "head": "data-streaming",
+        "tail": "dev"
+    },
+    {
+        "head": "data-streaming",
+        "tail": "streaming"
+    },
+    {
+        "head": "data-streaming",
+        "tail": "platform"
+    },
+    {
+        "head": "schema-registry",
+        "tail": "dev"
+    },
+    {
+        "head": "schema-registry",
+        "tail": "streaming"
+    },
+    {
+        "head": "schema-registry",
+        "tail": "platform"
+    },
+    {
+        "head": "data-engineering",
+        "tail": "dev"
+    },
+    {
+        "head": "data-engineering",
+        "tail": "platform"
+    },
+    {
+        "head": "message-bus",
+        "tail": "dev"
+    },
+    {
+        "head": "message-bus",
+        "tail": "streaming"
+    },
+    {
+        "head": "message-bus",
+        "tail": "platform"
+    },
+    {
+        "head": "message-broker",
+        "tail": "dev"
+    },
+    {
+        "head": "message-broker",
+        "tail": "streaming"
+    },
+    {
+        "head": "message-broker",
+        "tail": "platform"
+    },
+    {
+        "head": "dev",
+        "tail": "streaming"
+    },
+    {
+        "head": "dev",
+        "tail": "platform"
+    },
+    {
+        "head": "streaming",
+        "tail": "platform"
     }
 ]

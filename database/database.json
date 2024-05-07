@@ -37271,5 +37271,32 @@
             "python",
             "model-compression"
         ]
+    },
+    "https://github.com/superstreamlabs/memphis": {
+        "extra-tags": [
+            "dev",
+            "streaming",
+            "platform"
+        ],
+        "date": "2022-02-01",
+        "title": "memphis",
+        "summary": "Memphis.dev is a highly scalable and effortless data streaming platform",
+        "tags": [
+            "message-queue",
+            "data-pipeline",
+            "data",
+            "enrichment",
+            "golang",
+            "data-stream-processing",
+            "kubernetes",
+            "messaging-queue",
+            "microservices",
+            "go",
+            "data-streaming",
+            "schema-registry",
+            "data-engineering",
+            "message-bus",
+            "message-broker"
+        ]
     }
 }
