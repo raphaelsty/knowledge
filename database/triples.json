@@ -169818,5 +169818,93 @@
     {
         "head": "uncertainty quantification",
         "tail": "image"
+    },
+    {
+        "head": "c++",
+        "tail": "deep learning"
+    },
+    {
+        "head": "c++",
+        "tail": "framework"
+    },
+    {
+        "head": "deep learning",
+        "tail": "inference"
+    },
+    {
+        "head": "deep learning",
+        "tail": "framework"
+    },
+    {
+        "head": "inference",
+        "tail": "framework"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "deep learning"
+    },
+    {
+        "head": "pruning",
+        "tail": "deep learning"
+    },
+    {
+        "head": "pruning",
+        "tail": "compression"
+    },
+    {
+        "head": "pruning",
+        "tail": "framework"
+    },
+    {
+        "head": "knowledge-distillation",
+        "tail": "deep learning"
+    },
+    {
+        "head": "knowledge-distillation",
+        "tail": "compression"
+    },
+    {
+        "head": "knowledge-distillation",
+        "tail": "framework"
+    },
+    {
+        "head": "quantization",
+        "tail": "deep learning"
+    },
+    {
+        "head": "quantization",
+        "tail": "compression"
+    },
+    {
+        "head": "quantization",
+        "tail": "framework"
+    },
+    {
+        "head": "quantization",
+        "tail": "pytorch"
+    },
+    {
+        "head": "model-compression",
+        "tail": "deep learning"
+    },
+    {
+        "head": "model-compression",
+        "tail": "compression"
+    },
+    {
+        "head": "model-compression",
+        "tail": "framework"
+    },
+    {
+        "head": "deep learning",
+        "tail": "compression"
+    },
+    {
+        "head": "deep learning",
+        "tail": "pytorch"
+    },
+    {
+        "head": "compression",
+        "tail": "framework"
     }
 ]

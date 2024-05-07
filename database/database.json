@@ -37239,5 +37239,37 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/LABouteille/torchinfer": {
+        "extra-tags": [
+            "deep learning",
+            "inference",
+            "framework"
+        ],
+        "date": "2022-07-08",
+        "title": "torchinfer",
+        "summary": "Deep learning inference framework [WIP]",
+        "tags": [
+            "c++"
+        ]
+    },
+    "https://github.com/LABouteille/torchprune": {
+        "extra-tags": [
+            "deep learning",
+            "compression",
+            "framework",
+            "pytorch"
+        ],
+        "date": "2021-09-26",
+        "title": "torchprune",
+        "summary": "Deep learning compression framework in Pytorch [WIP]",
+        "tags": [
+            "deep-learning",
+            "pruning",
+            "knowledge-distillation",
+            "quantization",
+            "python",
+            "model-compression"
+        ]
     }
 }
