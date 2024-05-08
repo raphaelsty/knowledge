@@ -170078,5 +170078,73 @@
     {
         "head": "streaming",
         "tail": "platform"
+    },
+    {
+        "head": "python",
+        "tail": "document-retrieval"
+    },
+    {
+        "head": "llms",
+        "tail": "document-retrieval"
+    },
+    {
+        "head": "llms",
+        "tail": "open-source"
+    },
+    {
+        "head": "llms",
+        "tail": "embedding"
+    },
+    {
+        "head": "llms",
+        "tail": "database"
+    },
+    {
+        "head": "document-retrieval",
+        "tail": "embeddings"
+    },
+    {
+        "head": "document-retrieval",
+        "tail": "ai"
+    },
+    {
+        "head": "document-retrieval",
+        "tail": "open-source"
+    },
+    {
+        "head": "document-retrieval",
+        "tail": "embedding"
+    },
+    {
+        "head": "document-retrieval",
+        "tail": "database"
+    },
+    {
+        "head": "embeddings",
+        "tail": "ai"
+    },
+    {
+        "head": "embeddings",
+        "tail": "open-source"
+    },
+    {
+        "head": "embeddings",
+        "tail": "embedding"
+    },
+    {
+        "head": "ai",
+        "tail": "open-source"
+    },
+    {
+        "head": "open-source",
+        "tail": "embedding"
+    },
+    {
+        "head": "open-source",
+        "tail": "database"
+    },
+    {
+        "head": "embedding",
+        "tail": "database"
     }
 ]

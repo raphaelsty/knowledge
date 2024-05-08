@@ -37298,5 +37298,22 @@
             "message-bus",
             "message-broker"
         ]
+    },
+    "https://github.com/chroma-core/chroma": {
+        "extra-tags": [
+            "ai",
+            "open-source",
+            "embedding",
+            "database"
+        ],
+        "date": "2022-10-05",
+        "title": "chroma",
+        "summary": "the AI-native open-source embedding database",
+        "tags": [
+            "python",
+            "llms",
+            "document-retrieval",
+            "embeddings"
+        ]
     }
 }
