@@ -170146,5 +170146,113 @@
     {
         "head": "embedding",
         "tail": "database"
+    },
+    {
+        "head": "ranking",
+        "tail": "jupyter notebook"
+    },
+    {
+        "head": "ranking",
+        "tail": "system"
+    },
+    {
+        "head": "ranking",
+        "tail": "no"
+    },
+    {
+        "head": "elo",
+        "tail": "jupyter notebook"
+    },
+    {
+        "head": "elo",
+        "tail": "system"
+    },
+    {
+        "head": "elo",
+        "tail": "no"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "openskill-py"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "rating"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "ranking-system"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "openskill"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "pypy"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "rating-system"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "system"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "no"
+    },
+    {
+        "head": "openskill-py",
+        "tail": "system"
+    },
+    {
+        "head": "openskill-py",
+        "tail": "no"
+    },
+    {
+        "head": "rating",
+        "tail": "system"
+    },
+    {
+        "head": "rating",
+        "tail": "no"
+    },
+    {
+        "head": "ranking-system",
+        "tail": "system"
+    },
+    {
+        "head": "ranking-system",
+        "tail": "no"
+    },
+    {
+        "head": "openskill",
+        "tail": "system"
+    },
+    {
+        "head": "openskill",
+        "tail": "no"
+    },
+    {
+        "head": "pypy",
+        "tail": "system"
+    },
+    {
+        "head": "pypy",
+        "tail": "no"
+    },
+    {
+        "head": "rating-system",
+        "tail": "system"
+    },
+    {
+        "head": "rating-system",
+        "tail": "no"
+    },
+    {
+        "head": "system",
+        "tail": "no"
     }
 ]

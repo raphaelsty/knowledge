@@ -37315,5 +37315,26 @@
             "document-retrieval",
             "embeddings"
         ]
+    },
+    "https://github.com/vivekjoshy/openskill.py": {
+        "extra-tags": [
+            "system",
+            "no"
+        ],
+        "date": "2020-12-22",
+        "title": "openskill.py",
+        "summary": "Multiplayer Rating System. No Friction.",
+        "tags": [
+            "python",
+            "ranking",
+            "elo",
+            "jupyter notebook",
+            "openskill-py",
+            "rating",
+            "ranking-system",
+            "openskill",
+            "pypy",
+            "rating-system"
+        ]
     }
 }
