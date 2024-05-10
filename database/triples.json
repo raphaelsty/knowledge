@@ -170254,5 +170254,21 @@
     {
         "head": "system",
         "tail": "no"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "optimization"
+    },
+    {
+        "head": "inference",
+        "tail": "optimization"
+    },
+    {
+        "head": "inference",
+        "tail": "blog"
+    },
+    {
+        "head": "optimization",
+        "tail": "blog"
     }
 ]

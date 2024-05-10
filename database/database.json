@@ -37336,5 +37336,18 @@
             "pypy",
             "rating-system"
         ]
+    },
+    "https://github.com/vdesai2014/inference-optimization-blog-post": {
+        "extra-tags": [
+            "inference",
+            "optimization",
+            "blog"
+        ],
+        "date": "2024-02-22",
+        "title": "inference-optimization-blog-post",
+        "summary": "",
+        "tags": [
+            "jupyter notebook"
+        ]
     }
 }
