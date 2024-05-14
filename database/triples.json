@@ -170270,5 +170270,377 @@
     {
         "head": "optimization",
         "tail": "blog"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "scientific-articles"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "fulltext"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "pdf"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "bibliographical-references"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "crf"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "metadata"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "hamburger-to-cow"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "machine learning"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "information extraction"
+    },
+    {
+        "head": "scientific-articles",
+        "tail": "fulltext"
+    },
+    {
+        "head": "scientific-articles",
+        "tail": "pdf"
+    },
+    {
+        "head": "scientific-articles",
+        "tail": "bibliographical-references"
+    },
+    {
+        "head": "scientific-articles",
+        "tail": "crf"
+    },
+    {
+        "head": "scientific-articles",
+        "tail": "transformers"
+    },
+    {
+        "head": "scientific-articles",
+        "tail": "rnn"
+    },
+    {
+        "head": "scientific-articles",
+        "tail": "java"
+    },
+    {
+        "head": "scientific-articles",
+        "tail": "metadata"
+    },
+    {
+        "head": "scientific-articles",
+        "tail": "hamburger-to-cow"
+    },
+    {
+        "head": "scientific-articles",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "scientific-articles",
+        "tail": "machine learning"
+    },
+    {
+        "head": "scientific-articles",
+        "tail": "software"
+    },
+    {
+        "head": "scientific-articles",
+        "tail": "information extraction"
+    },
+    {
+        "head": "fulltext",
+        "tail": "pdf"
+    },
+    {
+        "head": "fulltext",
+        "tail": "bibliographical-references"
+    },
+    {
+        "head": "fulltext",
+        "tail": "crf"
+    },
+    {
+        "head": "fulltext",
+        "tail": "transformers"
+    },
+    {
+        "head": "fulltext",
+        "tail": "rnn"
+    },
+    {
+        "head": "fulltext",
+        "tail": "java"
+    },
+    {
+        "head": "fulltext",
+        "tail": "metadata"
+    },
+    {
+        "head": "fulltext",
+        "tail": "hamburger-to-cow"
+    },
+    {
+        "head": "fulltext",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "fulltext",
+        "tail": "machine learning"
+    },
+    {
+        "head": "fulltext",
+        "tail": "software"
+    },
+    {
+        "head": "fulltext",
+        "tail": "information extraction"
+    },
+    {
+        "head": "pdf",
+        "tail": "bibliographical-references"
+    },
+    {
+        "head": "pdf",
+        "tail": "crf"
+    },
+    {
+        "head": "pdf",
+        "tail": "transformers"
+    },
+    {
+        "head": "pdf",
+        "tail": "rnn"
+    },
+    {
+        "head": "pdf",
+        "tail": "java"
+    },
+    {
+        "head": "pdf",
+        "tail": "metadata"
+    },
+    {
+        "head": "pdf",
+        "tail": "hamburger-to-cow"
+    },
+    {
+        "head": "pdf",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "pdf",
+        "tail": "machine learning"
+    },
+    {
+        "head": "pdf",
+        "tail": "software"
+    },
+    {
+        "head": "pdf",
+        "tail": "information extraction"
+    },
+    {
+        "head": "bibliographical-references",
+        "tail": "crf"
+    },
+    {
+        "head": "bibliographical-references",
+        "tail": "transformers"
+    },
+    {
+        "head": "bibliographical-references",
+        "tail": "rnn"
+    },
+    {
+        "head": "bibliographical-references",
+        "tail": "java"
+    },
+    {
+        "head": "bibliographical-references",
+        "tail": "metadata"
+    },
+    {
+        "head": "bibliographical-references",
+        "tail": "hamburger-to-cow"
+    },
+    {
+        "head": "bibliographical-references",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "bibliographical-references",
+        "tail": "machine learning"
+    },
+    {
+        "head": "bibliographical-references",
+        "tail": "software"
+    },
+    {
+        "head": "bibliographical-references",
+        "tail": "information extraction"
+    },
+    {
+        "head": "crf",
+        "tail": "transformers"
+    },
+    {
+        "head": "crf",
+        "tail": "rnn"
+    },
+    {
+        "head": "crf",
+        "tail": "java"
+    },
+    {
+        "head": "crf",
+        "tail": "metadata"
+    },
+    {
+        "head": "crf",
+        "tail": "hamburger-to-cow"
+    },
+    {
+        "head": "crf",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "crf",
+        "tail": "machine learning"
+    },
+    {
+        "head": "crf",
+        "tail": "software"
+    },
+    {
+        "head": "crf",
+        "tail": "information extraction"
+    },
+    {
+        "head": "transformers",
+        "tail": "java"
+    },
+    {
+        "head": "transformers",
+        "tail": "metadata"
+    },
+    {
+        "head": "transformers",
+        "tail": "hamburger-to-cow"
+    },
+    {
+        "head": "transformers",
+        "tail": "software"
+    },
+    {
+        "head": "transformers",
+        "tail": "information extraction"
+    },
+    {
+        "head": "rnn",
+        "tail": "java"
+    },
+    {
+        "head": "rnn",
+        "tail": "metadata"
+    },
+    {
+        "head": "rnn",
+        "tail": "hamburger-to-cow"
+    },
+    {
+        "head": "rnn",
+        "tail": "machine learning"
+    },
+    {
+        "head": "rnn",
+        "tail": "software"
+    },
+    {
+        "head": "rnn",
+        "tail": "information extraction"
+    },
+    {
+        "head": "java",
+        "tail": "metadata"
+    },
+    {
+        "head": "java",
+        "tail": "hamburger-to-cow"
+    },
+    {
+        "head": "java",
+        "tail": "machine learning"
+    },
+    {
+        "head": "java",
+        "tail": "software"
+    },
+    {
+        "head": "java",
+        "tail": "information extraction"
+    },
+    {
+        "head": "metadata",
+        "tail": "hamburger-to-cow"
+    },
+    {
+        "head": "metadata",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "metadata",
+        "tail": "machine learning"
+    },
+    {
+        "head": "metadata",
+        "tail": "software"
+    },
+    {
+        "head": "metadata",
+        "tail": "information extraction"
+    },
+    {
+        "head": "hamburger-to-cow",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "hamburger-to-cow",
+        "tail": "machine learning"
+    },
+    {
+        "head": "hamburger-to-cow",
+        "tail": "software"
+    },
+    {
+        "head": "hamburger-to-cow",
+        "tail": "information extraction"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "information extraction"
+    },
+    {
+        "head": "machine learning",
+        "tail": "software"
+    },
+    {
+        "head": "machine learning",
+        "tail": "information extraction"
+    },
+    {
+        "head": "software",
+        "tail": "information extraction"
     }
 ]

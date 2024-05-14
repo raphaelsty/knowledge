@@ -37349,5 +37349,29 @@
         "tags": [
             "jupyter notebook"
         ]
+    },
+    "https://github.com/kermitt2/grobid": {
+        "extra-tags": [
+            "machine learning",
+            "software",
+            "information extraction"
+        ],
+        "date": "2012-09-13",
+        "title": "grobid",
+        "summary": "A machine learning software for extracting information from scholarly documents",
+        "tags": [
+            "deep-learning",
+            "scientific-articles",
+            "fulltext",
+            "pdf",
+            "bibliographical-references",
+            "crf",
+            "transformers",
+            "rnn",
+            "java",
+            "metadata",
+            "hamburger-to-cow",
+            "machine-learning"
+        ]
     }
 }
