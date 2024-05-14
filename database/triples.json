@@ -170642,5 +170642,41 @@
     {
         "head": "software",
         "tail": "information extraction"
+    },
+    {
+        "head": "c++",
+        "tail": "triton"
+    },
+    {
+        "head": "c++",
+        "tail": "development"
+    },
+    {
+        "head": "c++",
+        "tail": "language"
+    },
+    {
+        "head": "triton",
+        "tail": "development"
+    },
+    {
+        "head": "triton",
+        "tail": "repository"
+    },
+    {
+        "head": "triton",
+        "tail": "language"
+    },
+    {
+        "head": "development",
+        "tail": "repository"
+    },
+    {
+        "head": "development",
+        "tail": "language"
+    },
+    {
+        "head": "repository",
+        "tail": "language"
     }
 ]

@@ -37373,5 +37373,19 @@
             "hamburger-to-cow",
             "machine-learning"
         ]
+    },
+    "https://github.com/triton-lang/triton": {
+        "extra-tags": [
+            "triton",
+            "development",
+            "repository",
+            "language"
+        ],
+        "date": "2014-08-30",
+        "title": "triton",
+        "summary": "Development repository for the Triton language and compiler",
+        "tags": [
+            "c++"
+        ]
     }
 }
