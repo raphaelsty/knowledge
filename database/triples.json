@@ -170678,5 +170678,29 @@
     {
         "head": "repository",
         "tail": "language"
+    },
+    {
+        "head": "model",
+        "tail": "attribution"
+    },
+    {
+        "head": "model",
+        "tail": "source"
+    },
+    {
+        "head": "model",
+        "tail": "query"
+    },
+    {
+        "head": "attribution",
+        "tail": "source"
+    },
+    {
+        "head": "attribution",
+        "tail": "query"
+    },
+    {
+        "head": "source",
+        "tail": "query"
     }
 ]
