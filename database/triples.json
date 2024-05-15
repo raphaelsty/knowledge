@@ -170702,5 +170702,37 @@
     {
         "head": "source",
         "tail": "query"
+    },
+    {
+        "head": "python",
+        "tail": "bert kb"
+    },
+    {
+        "head": "python",
+        "tail": "bert fine tuning"
+    },
+    {
+        "head": "bert",
+        "tail": "bert fine tuning"
+    },
+    {
+        "head": "bert kb",
+        "tail": "bert fine tuning"
+    },
+    {
+        "head": "python",
+        "tail": "adversarial-example"
+    },
+    {
+        "head": "examples",
+        "tail": "adversarial-example"
+    },
+    {
+        "head": "examples",
+        "tail": "processing"
+    },
+    {
+        "head": "adversarial-example",
+        "tail": "processing"
     }
 ]
