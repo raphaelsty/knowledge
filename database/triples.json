@@ -170734,5 +170734,245 @@
     {
         "head": "adversarial-example",
         "tail": "processing"
+    },
+    {
+        "head": "python",
+        "tail": "t5"
+    },
+    {
+        "head": "pytorch",
+        "tail": "fine-tuning"
+    },
+    {
+        "head": "pytorch",
+        "tail": "t5"
+    },
+    {
+        "head": "pytorch",
+        "tail": "autoregressive"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "t5"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "autoregressive"
+    },
+    {
+        "head": "t5",
+        "tail": "autoregressive"
+    },
+    {
+        "head": "rdf",
+        "tail": "javascript"
+    },
+    {
+        "head": "rdf",
+        "tail": "web-navigation"
+    },
+    {
+        "head": "rdf",
+        "tail": "web-extension"
+    },
+    {
+        "head": "rdf",
+        "tail": "web"
+    },
+    {
+        "head": "rdf",
+        "tail": "extension"
+    },
+    {
+        "head": "rdf",
+        "tail": "graph"
+    },
+    {
+        "head": "rdf",
+        "tail": "exploration"
+    },
+    {
+        "head": "javascript",
+        "tail": "semantic-web"
+    },
+    {
+        "head": "javascript",
+        "tail": "web-navigation"
+    },
+    {
+        "head": "javascript",
+        "tail": "linked-data"
+    },
+    {
+        "head": "javascript",
+        "tail": "web"
+    },
+    {
+        "head": "javascript",
+        "tail": "exploration"
+    },
+    {
+        "head": "semantic-web",
+        "tail": "web-navigation"
+    },
+    {
+        "head": "semantic-web",
+        "tail": "web-extension"
+    },
+    {
+        "head": "semantic-web",
+        "tail": "web"
+    },
+    {
+        "head": "semantic-web",
+        "tail": "extension"
+    },
+    {
+        "head": "semantic-web",
+        "tail": "graph"
+    },
+    {
+        "head": "semantic-web",
+        "tail": "exploration"
+    },
+    {
+        "head": "web-navigation",
+        "tail": "linked-data"
+    },
+    {
+        "head": "web-navigation",
+        "tail": "web-extension"
+    },
+    {
+        "head": "web-navigation",
+        "tail": "web"
+    },
+    {
+        "head": "web-navigation",
+        "tail": "extension"
+    },
+    {
+        "head": "web-navigation",
+        "tail": "graph"
+    },
+    {
+        "head": "web-navigation",
+        "tail": "exploration"
+    },
+    {
+        "head": "linked-data",
+        "tail": "web-extension"
+    },
+    {
+        "head": "linked-data",
+        "tail": "web"
+    },
+    {
+        "head": "linked-data",
+        "tail": "extension"
+    },
+    {
+        "head": "linked-data",
+        "tail": "graph"
+    },
+    {
+        "head": "linked-data",
+        "tail": "exploration"
+    },
+    {
+        "head": "web-extension",
+        "tail": "web"
+    },
+    {
+        "head": "web-extension",
+        "tail": "graph"
+    },
+    {
+        "head": "web-extension",
+        "tail": "exploration"
+    },
+    {
+        "head": "web",
+        "tail": "extension"
+    },
+    {
+        "head": "web",
+        "tail": "graph"
+    },
+    {
+        "head": "web",
+        "tail": "exploration"
+    },
+    {
+        "head": "extension",
+        "tail": "graph"
+    },
+    {
+        "head": "extension",
+        "tail": "exploration"
+    },
+    {
+        "head": "graph",
+        "tail": "exploration"
+    },
+    {
+        "head": "gpt",
+        "tail": "python 3."
+    },
+    {
+        "head": "documentation",
+        "tail": "natural-language-processing"
+    },
+    {
+        "head": "documentation",
+        "tail": "artificial-intelligence"
+    },
+    {
+        "head": "documentation",
+        "tail": "chatbot"
+    },
+    {
+        "head": "documentation",
+        "tail": "online"
+    },
+    {
+        "head": "javascript",
+        "tail": "artificial-intelligence"
+    },
+    {
+        "head": "javascript",
+        "tail": "chatbot"
+    },
+    {
+        "head": "javascript",
+        "tail": "online"
+    },
+    {
+        "head": "documentation-tool",
+        "tail": "natural-language-processing"
+    },
+    {
+        "head": "documentation-tool",
+        "tail": "artificial-intelligence"
+    },
+    {
+        "head": "documentation-tool",
+        "tail": "chatbot"
+    },
+    {
+        "head": "documentation-tool",
+        "tail": "online"
+    },
+    {
+        "head": "natural-language-processing",
+        "tail": "online"
+    },
+    {
+        "head": "artificial-intelligence",
+        "tail": "online"
+    },
+    {
+        "head": "chatbot",
+        "tail": "online"
     }
 ]
