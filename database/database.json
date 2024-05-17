@@ -37486,5 +37486,18 @@
             "natural-language-processing",
             "artificial-intelligence"
         ]
+    },
+    "https://github.com/deel-ai/lipdp": {
+        "extra-tags": [
+            "train",
+            "differentiable",
+            "differential-evolution"
+        ],
+        "date": "2023-07-13",
+        "title": "lipdp",
+        "summary": "Lipdp leverages Lipchitz constraints to train differentially private networks without clipping.",
+        "tags": [
+            "jupyter notebook"
+        ]
     }
 }
