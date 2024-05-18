@@ -37538,5 +37538,20 @@
         "tags": [
             "rust"
         ]
+    },
+    "https://github.com/google-ai-edge/model-explorer": {
+        "extra-tags": [
+            "model",
+            "modern",
+            "graph",
+            "visualizer",
+            "debugger"
+        ],
+        "date": "2024-01-05",
+        "title": "model-explorer",
+        "summary": "A modern model graph visualizer and debugger",
+        "tags": [
+            "javascript"
+        ]
     }
 }

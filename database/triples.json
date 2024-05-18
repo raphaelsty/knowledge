@@ -171442,5 +171442,57 @@
     {
         "head": "programming",
         "tail": "language"
+    },
+    {
+        "head": "javascript",
+        "tail": "model"
+    },
+    {
+        "head": "javascript",
+        "tail": "modern"
+    },
+    {
+        "head": "javascript",
+        "tail": "debugger"
+    },
+    {
+        "head": "model",
+        "tail": "modern"
+    },
+    {
+        "head": "model",
+        "tail": "graph"
+    },
+    {
+        "head": "model",
+        "tail": "visualizer"
+    },
+    {
+        "head": "model",
+        "tail": "debugger"
+    },
+    {
+        "head": "modern",
+        "tail": "graph"
+    },
+    {
+        "head": "modern",
+        "tail": "visualizer"
+    },
+    {
+        "head": "modern",
+        "tail": "debugger"
+    },
+    {
+        "head": "graph",
+        "tail": "visualizer"
+    },
+    {
+        "head": "graph",
+        "tail": "debugger"
+    },
+    {
+        "head": "visualizer",
+        "tail": "debugger"
     }
 ]
