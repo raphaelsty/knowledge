@@ -37499,5 +37499,44 @@
         "tags": [
             "jupyter notebook"
         ]
+    },
+    "https://github.com/huggingface/diffusers": {
+        "extra-tags": [
+            "state-of-the-art",
+            "models",
+            "image"
+        ],
+        "date": "2022-05-30",
+        "title": "diffusers",
+        "summary": "\ud83e\udd17 Diffusers: State-of-the-art diffusion models for image and audio generation in PyTorch and FLAX.",
+        "tags": [
+            "image2image",
+            "latent-diffusion-models",
+            "python",
+            "jax",
+            "pytorch",
+            "score-based-generative-modeling",
+            "text2image",
+            "deep-learning",
+            "image-generation",
+            "diffusion",
+            "flax",
+            "hacktoberfest",
+            "stable-diffusion",
+            "stable-diffusion-diffusers"
+        ]
+    },
+    "https://github.com/HigherOrderCO/Bend": {
+        "extra-tags": [
+            "parallel",
+            "programming",
+            "language"
+        ],
+        "date": "2023-08-29",
+        "title": "Bend",
+        "summary": "A massively parallel, high-level programming language",
+        "tags": [
+            "rust"
+        ]
     }
 }
