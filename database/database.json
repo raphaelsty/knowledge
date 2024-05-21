@@ -37553,5 +37553,44 @@
         "tags": [
             "javascript"
         ]
+    },
+    "https://github.com/rayon-rs/rayon": {
+        "extra-tags": [
+            "data",
+            "library",
+            "data-parallelism"
+        ],
+        "date": "2014-10-02",
+        "title": "rayon",
+        "summary": "Rayon: A data parallelism library for Rust",
+        "tags": [
+            "rust"
+        ]
+    },
+    "https://github.com/PyO3/maturin": {
+        "extra-tags": [
+            "build",
+            "crates",
+            "bindings",
+            "packages"
+        ],
+        "date": "2018-07-21",
+        "title": "maturin",
+        "summary": "Build and publish crates with pyo3, cffi and uniffi bindings as well as rust binaries as python packages",
+        "tags": [
+            "pypy",
+            "python",
+            "manylinux",
+            "rust",
+            "pypi",
+            "cpython",
+            "wheels",
+            "hacktoberfest",
+            "cffi",
+            "uniffi",
+            "pyo3",
+            "packaging",
+            "cross-compile"
+        ]
     }
 }

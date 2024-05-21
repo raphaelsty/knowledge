@@ -171494,5 +171494,497 @@
     {
         "head": "visualizer",
         "tail": "debugger"
+    },
+    {
+        "head": "rust",
+        "tail": "data-parallelism"
+    },
+    {
+        "head": "data",
+        "tail": "data-parallelism"
+    },
+    {
+        "head": "library",
+        "tail": "data-parallelism"
+    },
+    {
+        "head": "pypy",
+        "tail": "manylinux"
+    },
+    {
+        "head": "pypy",
+        "tail": "rust"
+    },
+    {
+        "head": "pypy",
+        "tail": "pypi"
+    },
+    {
+        "head": "pypy",
+        "tail": "cpython"
+    },
+    {
+        "head": "pypy",
+        "tail": "wheels"
+    },
+    {
+        "head": "pypy",
+        "tail": "hacktoberfest"
+    },
+    {
+        "head": "pypy",
+        "tail": "cffi"
+    },
+    {
+        "head": "pypy",
+        "tail": "uniffi"
+    },
+    {
+        "head": "pypy",
+        "tail": "pyo3"
+    },
+    {
+        "head": "pypy",
+        "tail": "packaging"
+    },
+    {
+        "head": "pypy",
+        "tail": "cross-compile"
+    },
+    {
+        "head": "pypy",
+        "tail": "build"
+    },
+    {
+        "head": "pypy",
+        "tail": "crates"
+    },
+    {
+        "head": "pypy",
+        "tail": "bindings"
+    },
+    {
+        "head": "pypy",
+        "tail": "packages"
+    },
+    {
+        "head": "python",
+        "tail": "manylinux"
+    },
+    {
+        "head": "python",
+        "tail": "wheels"
+    },
+    {
+        "head": "python",
+        "tail": "cffi"
+    },
+    {
+        "head": "python",
+        "tail": "uniffi"
+    },
+    {
+        "head": "python",
+        "tail": "pyo3"
+    },
+    {
+        "head": "python",
+        "tail": "cross-compile"
+    },
+    {
+        "head": "python",
+        "tail": "crates"
+    },
+    {
+        "head": "manylinux",
+        "tail": "rust"
+    },
+    {
+        "head": "manylinux",
+        "tail": "pypi"
+    },
+    {
+        "head": "manylinux",
+        "tail": "cpython"
+    },
+    {
+        "head": "manylinux",
+        "tail": "wheels"
+    },
+    {
+        "head": "manylinux",
+        "tail": "hacktoberfest"
+    },
+    {
+        "head": "manylinux",
+        "tail": "cffi"
+    },
+    {
+        "head": "manylinux",
+        "tail": "uniffi"
+    },
+    {
+        "head": "manylinux",
+        "tail": "pyo3"
+    },
+    {
+        "head": "manylinux",
+        "tail": "packaging"
+    },
+    {
+        "head": "manylinux",
+        "tail": "cross-compile"
+    },
+    {
+        "head": "manylinux",
+        "tail": "build"
+    },
+    {
+        "head": "manylinux",
+        "tail": "crates"
+    },
+    {
+        "head": "manylinux",
+        "tail": "bindings"
+    },
+    {
+        "head": "manylinux",
+        "tail": "packages"
+    },
+    {
+        "head": "rust",
+        "tail": "pypi"
+    },
+    {
+        "head": "rust",
+        "tail": "cpython"
+    },
+    {
+        "head": "rust",
+        "tail": "wheels"
+    },
+    {
+        "head": "rust",
+        "tail": "cffi"
+    },
+    {
+        "head": "rust",
+        "tail": "uniffi"
+    },
+    {
+        "head": "rust",
+        "tail": "pyo3"
+    },
+    {
+        "head": "rust",
+        "tail": "cross-compile"
+    },
+    {
+        "head": "rust",
+        "tail": "packages"
+    },
+    {
+        "head": "pypi",
+        "tail": "cpython"
+    },
+    {
+        "head": "pypi",
+        "tail": "wheels"
+    },
+    {
+        "head": "pypi",
+        "tail": "cffi"
+    },
+    {
+        "head": "pypi",
+        "tail": "uniffi"
+    },
+    {
+        "head": "pypi",
+        "tail": "pyo3"
+    },
+    {
+        "head": "pypi",
+        "tail": "packaging"
+    },
+    {
+        "head": "pypi",
+        "tail": "cross-compile"
+    },
+    {
+        "head": "pypi",
+        "tail": "build"
+    },
+    {
+        "head": "pypi",
+        "tail": "crates"
+    },
+    {
+        "head": "pypi",
+        "tail": "bindings"
+    },
+    {
+        "head": "pypi",
+        "tail": "packages"
+    },
+    {
+        "head": "cpython",
+        "tail": "wheels"
+    },
+    {
+        "head": "cpython",
+        "tail": "hacktoberfest"
+    },
+    {
+        "head": "cpython",
+        "tail": "cffi"
+    },
+    {
+        "head": "cpython",
+        "tail": "uniffi"
+    },
+    {
+        "head": "cpython",
+        "tail": "pyo3"
+    },
+    {
+        "head": "cpython",
+        "tail": "packaging"
+    },
+    {
+        "head": "cpython",
+        "tail": "cross-compile"
+    },
+    {
+        "head": "cpython",
+        "tail": "build"
+    },
+    {
+        "head": "cpython",
+        "tail": "crates"
+    },
+    {
+        "head": "cpython",
+        "tail": "bindings"
+    },
+    {
+        "head": "cpython",
+        "tail": "packages"
+    },
+    {
+        "head": "wheels",
+        "tail": "hacktoberfest"
+    },
+    {
+        "head": "wheels",
+        "tail": "cffi"
+    },
+    {
+        "head": "wheels",
+        "tail": "uniffi"
+    },
+    {
+        "head": "wheels",
+        "tail": "pyo3"
+    },
+    {
+        "head": "wheels",
+        "tail": "packaging"
+    },
+    {
+        "head": "wheels",
+        "tail": "cross-compile"
+    },
+    {
+        "head": "wheels",
+        "tail": "build"
+    },
+    {
+        "head": "wheels",
+        "tail": "crates"
+    },
+    {
+        "head": "wheels",
+        "tail": "bindings"
+    },
+    {
+        "head": "wheels",
+        "tail": "packages"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "cffi"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "uniffi"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "pyo3"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "packaging"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "cross-compile"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "build"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "crates"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "bindings"
+    },
+    {
+        "head": "cffi",
+        "tail": "uniffi"
+    },
+    {
+        "head": "cffi",
+        "tail": "pyo3"
+    },
+    {
+        "head": "cffi",
+        "tail": "packaging"
+    },
+    {
+        "head": "cffi",
+        "tail": "cross-compile"
+    },
+    {
+        "head": "cffi",
+        "tail": "build"
+    },
+    {
+        "head": "cffi",
+        "tail": "crates"
+    },
+    {
+        "head": "cffi",
+        "tail": "bindings"
+    },
+    {
+        "head": "cffi",
+        "tail": "packages"
+    },
+    {
+        "head": "uniffi",
+        "tail": "pyo3"
+    },
+    {
+        "head": "uniffi",
+        "tail": "packaging"
+    },
+    {
+        "head": "uniffi",
+        "tail": "cross-compile"
+    },
+    {
+        "head": "uniffi",
+        "tail": "build"
+    },
+    {
+        "head": "uniffi",
+        "tail": "crates"
+    },
+    {
+        "head": "uniffi",
+        "tail": "bindings"
+    },
+    {
+        "head": "uniffi",
+        "tail": "packages"
+    },
+    {
+        "head": "pyo3",
+        "tail": "packaging"
+    },
+    {
+        "head": "pyo3",
+        "tail": "cross-compile"
+    },
+    {
+        "head": "pyo3",
+        "tail": "build"
+    },
+    {
+        "head": "pyo3",
+        "tail": "crates"
+    },
+    {
+        "head": "pyo3",
+        "tail": "bindings"
+    },
+    {
+        "head": "pyo3",
+        "tail": "packages"
+    },
+    {
+        "head": "packaging",
+        "tail": "cross-compile"
+    },
+    {
+        "head": "packaging",
+        "tail": "build"
+    },
+    {
+        "head": "packaging",
+        "tail": "crates"
+    },
+    {
+        "head": "packaging",
+        "tail": "bindings"
+    },
+    {
+        "head": "packaging",
+        "tail": "packages"
+    },
+    {
+        "head": "cross-compile",
+        "tail": "build"
+    },
+    {
+        "head": "cross-compile",
+        "tail": "crates"
+    },
+    {
+        "head": "cross-compile",
+        "tail": "bindings"
+    },
+    {
+        "head": "cross-compile",
+        "tail": "packages"
+    },
+    {
+        "head": "build",
+        "tail": "crates"
+    },
+    {
+        "head": "build",
+        "tail": "bindings"
+    },
+    {
+        "head": "build",
+        "tail": "packages"
+    },
+    {
+        "head": "crates",
+        "tail": "bindings"
+    },
+    {
+        "head": "crates",
+        "tail": "packages"
+    },
+    {
+        "head": "bindings",
+        "tail": "packages"
     }
 ]
