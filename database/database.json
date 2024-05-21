@@ -37592,5 +37592,42 @@
             "packaging",
             "cross-compile"
         ]
+    },
+    "https://github.com/cthiriet/twitter-bookmarks": {
+        "extra-tags": [
+            "simple"
+        ],
+        "date": "2024-01-23",
+        "title": "twitter-bookmarks",
+        "summary": "A simple script to download and search through your Twitter bookmarks.",
+        "tags": [
+            "search",
+            "twitter",
+            "rust",
+            "bookmarks"
+        ]
+    },
+    "https://github.com/below/HelloSilicon": {
+        "extra-tags": [
+            "apple silicon"
+        ],
+        "date": "2020-07-03",
+        "title": "HelloSilicon",
+        "summary": "An introduction to ARM64 assembly on Apple Silicon Macs",
+        "tags": [
+            "aarch64",
+            "arm64",
+            "arm",
+            "ios",
+            "darwin",
+            "mach-o",
+            "assembly",
+            "macos",
+            "assembler",
+            "m1",
+            "apple-silicon",
+            "clang-assembler",
+            "apple"
+        ]
     }
 }

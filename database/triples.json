@@ -171986,5 +171986,381 @@
     {
         "head": "bindings",
         "tail": "packages"
+    },
+    {
+        "head": "search",
+        "tail": "bookmarks"
+    },
+    {
+        "head": "search",
+        "tail": "simple"
+    },
+    {
+        "head": "rust",
+        "tail": "bookmarks"
+    },
+    {
+        "head": "bookmarks",
+        "tail": "simple"
+    },
+    {
+        "head": "aarch64",
+        "tail": "arm64"
+    },
+    {
+        "head": "aarch64",
+        "tail": "arm"
+    },
+    {
+        "head": "aarch64",
+        "tail": "ios"
+    },
+    {
+        "head": "aarch64",
+        "tail": "darwin"
+    },
+    {
+        "head": "aarch64",
+        "tail": "mach-o"
+    },
+    {
+        "head": "aarch64",
+        "tail": "assembly"
+    },
+    {
+        "head": "aarch64",
+        "tail": "macos"
+    },
+    {
+        "head": "aarch64",
+        "tail": "assembler"
+    },
+    {
+        "head": "aarch64",
+        "tail": "m1"
+    },
+    {
+        "head": "aarch64",
+        "tail": "apple-silicon"
+    },
+    {
+        "head": "aarch64",
+        "tail": "clang-assembler"
+    },
+    {
+        "head": "aarch64",
+        "tail": "apple"
+    },
+    {
+        "head": "aarch64",
+        "tail": "apple silicon"
+    },
+    {
+        "head": "arm64",
+        "tail": "arm"
+    },
+    {
+        "head": "arm64",
+        "tail": "ios"
+    },
+    {
+        "head": "arm64",
+        "tail": "darwin"
+    },
+    {
+        "head": "arm64",
+        "tail": "mach-o"
+    },
+    {
+        "head": "arm64",
+        "tail": "assembly"
+    },
+    {
+        "head": "arm64",
+        "tail": "macos"
+    },
+    {
+        "head": "arm64",
+        "tail": "assembler"
+    },
+    {
+        "head": "arm64",
+        "tail": "m1"
+    },
+    {
+        "head": "arm64",
+        "tail": "apple-silicon"
+    },
+    {
+        "head": "arm64",
+        "tail": "clang-assembler"
+    },
+    {
+        "head": "arm64",
+        "tail": "apple"
+    },
+    {
+        "head": "arm64",
+        "tail": "apple silicon"
+    },
+    {
+        "head": "arm",
+        "tail": "ios"
+    },
+    {
+        "head": "arm",
+        "tail": "darwin"
+    },
+    {
+        "head": "arm",
+        "tail": "mach-o"
+    },
+    {
+        "head": "arm",
+        "tail": "macos"
+    },
+    {
+        "head": "arm",
+        "tail": "assembler"
+    },
+    {
+        "head": "arm",
+        "tail": "m1"
+    },
+    {
+        "head": "arm",
+        "tail": "apple-silicon"
+    },
+    {
+        "head": "arm",
+        "tail": "clang-assembler"
+    },
+    {
+        "head": "arm",
+        "tail": "apple"
+    },
+    {
+        "head": "arm",
+        "tail": "apple silicon"
+    },
+    {
+        "head": "ios",
+        "tail": "darwin"
+    },
+    {
+        "head": "ios",
+        "tail": "mach-o"
+    },
+    {
+        "head": "ios",
+        "tail": "assembly"
+    },
+    {
+        "head": "ios",
+        "tail": "macos"
+    },
+    {
+        "head": "ios",
+        "tail": "assembler"
+    },
+    {
+        "head": "ios",
+        "tail": "m1"
+    },
+    {
+        "head": "ios",
+        "tail": "apple-silicon"
+    },
+    {
+        "head": "ios",
+        "tail": "clang-assembler"
+    },
+    {
+        "head": "ios",
+        "tail": "apple"
+    },
+    {
+        "head": "ios",
+        "tail": "apple silicon"
+    },
+    {
+        "head": "darwin",
+        "tail": "mach-o"
+    },
+    {
+        "head": "darwin",
+        "tail": "assembly"
+    },
+    {
+        "head": "darwin",
+        "tail": "macos"
+    },
+    {
+        "head": "darwin",
+        "tail": "assembler"
+    },
+    {
+        "head": "darwin",
+        "tail": "m1"
+    },
+    {
+        "head": "darwin",
+        "tail": "apple-silicon"
+    },
+    {
+        "head": "darwin",
+        "tail": "clang-assembler"
+    },
+    {
+        "head": "darwin",
+        "tail": "apple"
+    },
+    {
+        "head": "darwin",
+        "tail": "apple silicon"
+    },
+    {
+        "head": "mach-o",
+        "tail": "assembly"
+    },
+    {
+        "head": "mach-o",
+        "tail": "macos"
+    },
+    {
+        "head": "mach-o",
+        "tail": "assembler"
+    },
+    {
+        "head": "mach-o",
+        "tail": "m1"
+    },
+    {
+        "head": "mach-o",
+        "tail": "apple-silicon"
+    },
+    {
+        "head": "mach-o",
+        "tail": "clang-assembler"
+    },
+    {
+        "head": "mach-o",
+        "tail": "apple"
+    },
+    {
+        "head": "mach-o",
+        "tail": "apple silicon"
+    },
+    {
+        "head": "assembly",
+        "tail": "macos"
+    },
+    {
+        "head": "assembly",
+        "tail": "assembler"
+    },
+    {
+        "head": "assembly",
+        "tail": "m1"
+    },
+    {
+        "head": "assembly",
+        "tail": "apple-silicon"
+    },
+    {
+        "head": "assembly",
+        "tail": "clang-assembler"
+    },
+    {
+        "head": "assembly",
+        "tail": "apple"
+    },
+    {
+        "head": "assembly",
+        "tail": "apple silicon"
+    },
+    {
+        "head": "macos",
+        "tail": "assembler"
+    },
+    {
+        "head": "macos",
+        "tail": "m1"
+    },
+    {
+        "head": "macos",
+        "tail": "apple-silicon"
+    },
+    {
+        "head": "macos",
+        "tail": "clang-assembler"
+    },
+    {
+        "head": "macos",
+        "tail": "apple"
+    },
+    {
+        "head": "macos",
+        "tail": "apple silicon"
+    },
+    {
+        "head": "assembler",
+        "tail": "m1"
+    },
+    {
+        "head": "assembler",
+        "tail": "apple-silicon"
+    },
+    {
+        "head": "assembler",
+        "tail": "clang-assembler"
+    },
+    {
+        "head": "assembler",
+        "tail": "apple"
+    },
+    {
+        "head": "assembler",
+        "tail": "apple silicon"
+    },
+    {
+        "head": "m1",
+        "tail": "apple-silicon"
+    },
+    {
+        "head": "m1",
+        "tail": "clang-assembler"
+    },
+    {
+        "head": "m1",
+        "tail": "apple"
+    },
+    {
+        "head": "m1",
+        "tail": "apple silicon"
+    },
+    {
+        "head": "apple-silicon",
+        "tail": "clang-assembler"
+    },
+    {
+        "head": "apple-silicon",
+        "tail": "apple"
+    },
+    {
+        "head": "apple-silicon",
+        "tail": "apple silicon"
+    },
+    {
+        "head": "clang-assembler",
+        "tail": "apple"
+    },
+    {
+        "head": "clang-assembler",
+        "tail": "apple silicon"
+    },
+    {
+        "head": "apple",
+        "tail": "apple silicon"
     }
 ]
