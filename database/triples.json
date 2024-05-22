@@ -172362,5 +172362,121 @@
     {
         "head": "apple",
         "tail": "apple silicon"
+    },
+    {
+        "head": "python",
+        "tail": "automated"
+    },
+    {
+        "head": "python",
+        "tail": "information retrieval"
+    },
+    {
+        "head": "automated",
+        "tail": "information retrieval"
+    },
+    {
+        "head": "automated",
+        "tail": "benchmark"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "english-language"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "language model"
+    },
+    {
+        "head": "english-language",
+        "tail": "language-model"
+    },
+    {
+        "head": "english-language",
+        "tail": "python"
+    },
+    {
+        "head": "english-language",
+        "tail": "training"
+    },
+    {
+        "head": "english-language",
+        "tail": "bert"
+    },
+    {
+        "head": "english-language",
+        "tail": "language model"
+    },
+    {
+        "head": "language-model",
+        "tail": "training"
+    },
+    {
+        "head": "language-model",
+        "tail": "language model"
+    },
+    {
+        "head": "training",
+        "tail": "bert"
+    },
+    {
+        "head": "antropic",
+        "tail": "features"
+    },
+    {
+        "head": "antropic",
+        "tail": "llm"
+    },
+    {
+        "head": "antropic",
+        "tail": "zoom"
+    },
+    {
+        "head": "antropic",
+        "tail": "word embeddings introduction"
+    },
+    {
+        "head": "antropic",
+        "tail": "production"
+    },
+    {
+        "head": "features",
+        "tail": "llm"
+    },
+    {
+        "head": "features",
+        "tail": "zoom"
+    },
+    {
+        "head": "features",
+        "tail": "word embeddings introduction"
+    },
+    {
+        "head": "features",
+        "tail": "production"
+    },
+    {
+        "head": "llm",
+        "tail": "zoom"
+    },
+    {
+        "head": "llm",
+        "tail": "word embeddings introduction"
+    },
+    {
+        "head": "llm",
+        "tail": "production"
+    },
+    {
+        "head": "zoom",
+        "tail": "word embeddings introduction"
+    },
+    {
+        "head": "zoom",
+        "tail": "production"
+    },
+    {
+        "head": "word embeddings introduction",
+        "tail": "production"
     }
 ]
