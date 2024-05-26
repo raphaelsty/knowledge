@@ -37687,5 +37687,18 @@
         "summary": "",
         "date": "2024-05-21",
         "tags": []
+    },
+    "https://github.com/PyO3/setuptools-rust": {
+        "extra-tags": [
+            "plugin"
+        ],
+        "date": "2017-03-09",
+        "title": "setuptools-rust",
+        "summary": "Setuptools plugin for Rust support",
+        "tags": [
+            "python",
+            "rust",
+            "setuptools"
+        ]
     }
 }

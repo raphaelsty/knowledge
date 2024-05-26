@@ -172478,5 +172478,21 @@
     {
         "head": "word embeddings introduction",
         "tail": "production"
+    },
+    {
+        "head": "python",
+        "tail": "plugin"
+    },
+    {
+        "head": "rust",
+        "tail": "setuptools"
+    },
+    {
+        "head": "rust",
+        "tail": "plugin"
+    },
+    {
+        "head": "setuptools",
+        "tail": "plugin"
     }
 ]
