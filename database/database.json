@@ -37700,5 +37700,17 @@
             "rust",
             "setuptools"
         ]
+    },
+    "https://github.com/raphaelsty/LeNLP": {
+        "extra-tags": [
+            "nlp",
+            "python"
+        ],
+        "date": "2024-05-21",
+        "title": "LeNLP",
+        "summary": "NLP with Rust for Python \ud83e\udd80\ud83d\udc0d",
+        "tags": [
+            "rust"
+        ]
     }
 }
