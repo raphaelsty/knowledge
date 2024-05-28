@@ -172494,5 +172494,37 @@
     {
         "head": "setuptools",
         "tail": "plugin"
+    },
+    {
+        "head": "math web js",
+        "tail": "katex"
+    },
+    {
+        "head": "math web js",
+        "tail": "math"
+    },
+    {
+        "head": "math web js",
+        "tail": "typesetting"
+    },
+    {
+        "head": "math web js",
+        "tail": "library"
+    },
+    {
+        "head": "katex",
+        "tail": "typesetting"
+    },
+    {
+        "head": "katex",
+        "tail": "library"
+    },
+    {
+        "head": "math",
+        "tail": "typesetting"
+    },
+    {
+        "head": "math",
+        "tail": "library"
     }
 ]

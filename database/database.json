@@ -37712,5 +37712,19 @@
         "tags": [
             "rust"
         ]
+    },
+    "https://katex.org/": {
+        "extra-tags": [
+            "katex",
+            "math",
+            "typesetting",
+            "library"
+        ],
+        "title": "KaTeX \u2013 The fastest math typesetting library for the web",
+        "summary": "Simple API, no dependencies \u2013 yet super fast on all major browsers.",
+        "date": "2024-05-27",
+        "tags": [
+            "math web js"
+        ]
     }
 }
