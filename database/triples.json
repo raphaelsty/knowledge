@@ -172526,5 +172526,165 @@
     {
         "head": "math",
         "tail": "library"
+    },
+    {
+        "head": "tables",
+        "tail": "pandas-dataframe"
+    },
+    {
+        "head": "tables",
+        "tail": "summary-tables"
+    },
+    {
+        "head": "tables",
+        "tail": "polars-dataframe"
+    },
+    {
+        "head": "tables",
+        "tail": "formatting-data"
+    },
+    {
+        "head": "tables",
+        "tail": "styling"
+    },
+    {
+        "head": "tables",
+        "tail": "easy-to-use"
+    },
+    {
+        "head": "tables",
+        "tail": "make"
+    },
+    {
+        "head": "tables",
+        "tail": "awesome"
+    },
+    {
+        "head": "pandas-dataframe",
+        "tail": "summary-tables"
+    },
+    {
+        "head": "pandas-dataframe",
+        "tail": "polars-dataframe"
+    },
+    {
+        "head": "pandas-dataframe",
+        "tail": "formatting-data"
+    },
+    {
+        "head": "pandas-dataframe",
+        "tail": "styling"
+    },
+    {
+        "head": "pandas-dataframe",
+        "tail": "easy-to-use"
+    },
+    {
+        "head": "pandas-dataframe",
+        "tail": "make"
+    },
+    {
+        "head": "pandas-dataframe",
+        "tail": "awesome"
+    },
+    {
+        "head": "summary-tables",
+        "tail": "python"
+    },
+    {
+        "head": "summary-tables",
+        "tail": "polars-dataframe"
+    },
+    {
+        "head": "summary-tables",
+        "tail": "formatting-data"
+    },
+    {
+        "head": "summary-tables",
+        "tail": "styling"
+    },
+    {
+        "head": "summary-tables",
+        "tail": "easy-to-use"
+    },
+    {
+        "head": "summary-tables",
+        "tail": "make"
+    },
+    {
+        "head": "summary-tables",
+        "tail": "awesome"
+    },
+    {
+        "head": "python",
+        "tail": "polars-dataframe"
+    },
+    {
+        "head": "python",
+        "tail": "formatting-data"
+    },
+    {
+        "head": "python",
+        "tail": "styling"
+    },
+    {
+        "head": "polars-dataframe",
+        "tail": "formatting-data"
+    },
+    {
+        "head": "polars-dataframe",
+        "tail": "styling"
+    },
+    {
+        "head": "polars-dataframe",
+        "tail": "easy-to-use"
+    },
+    {
+        "head": "polars-dataframe",
+        "tail": "make"
+    },
+    {
+        "head": "polars-dataframe",
+        "tail": "awesome"
+    },
+    {
+        "head": "formatting-data",
+        "tail": "styling"
+    },
+    {
+        "head": "formatting-data",
+        "tail": "easy-to-use"
+    },
+    {
+        "head": "formatting-data",
+        "tail": "make"
+    },
+    {
+        "head": "formatting-data",
+        "tail": "awesome"
+    },
+    {
+        "head": "styling",
+        "tail": "easy-to-use"
+    },
+    {
+        "head": "styling",
+        "tail": "make"
+    },
+    {
+        "head": "styling",
+        "tail": "awesome"
+    },
+    {
+        "head": "easy-to-use",
+        "tail": "make"
+    },
+    {
+        "head": "easy-to-use",
+        "tail": "awesome"
+    },
+    {
+        "head": "make",
+        "tail": "awesome"
     }
 ]

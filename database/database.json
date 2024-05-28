@@ -37726,5 +37726,24 @@
         "tags": [
             "math web js"
         ]
+    },
+    "https://github.com/posit-dev/great-tables": {
+        "extra-tags": [
+            "make",
+            "awesome"
+        ],
+        "date": "2022-05-06",
+        "title": "great-tables",
+        "summary": "Make awesome display tables using Python.",
+        "tags": [
+            "tables",
+            "pandas-dataframe",
+            "summary-tables",
+            "python",
+            "polars-dataframe",
+            "formatting-data",
+            "styling",
+            "easy-to-use"
+        ]
     }
 }
