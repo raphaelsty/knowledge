@@ -172706,5 +172706,345 @@
     {
         "head": "common sense",
         "tail": "conventional-commits"
+    },
+    {
+        "head": "neural-networks",
+        "tail": "ml-efficiency"
+    },
+    {
+        "head": "neural-networks",
+        "tail": "ml-systems"
+    },
+    {
+        "head": "neural-networks",
+        "tail": "ml-training"
+    },
+    {
+        "head": "neural-networks",
+        "tail": "model"
+    },
+    {
+        "head": "neural-networks",
+        "tail": "co training"
+    },
+    {
+        "head": "ml-efficiency",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "ml-efficiency",
+        "tail": "python"
+    },
+    {
+        "head": "ml-efficiency",
+        "tail": "pytorch"
+    },
+    {
+        "head": "ml-efficiency",
+        "tail": "ml-systems"
+    },
+    {
+        "head": "ml-efficiency",
+        "tail": "ml-training"
+    },
+    {
+        "head": "ml-efficiency",
+        "tail": "deep-learning"
+    },
+    {
+        "head": "ml-efficiency",
+        "tail": "neural-network"
+    },
+    {
+        "head": "ml-efficiency",
+        "tail": "model"
+    },
+    {
+        "head": "ml-efficiency",
+        "tail": "training"
+    },
+    {
+        "head": "ml-efficiency",
+        "tail": "co training"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "ml-systems"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "ml-training"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "co training"
+    },
+    {
+        "head": "python",
+        "tail": "ml-systems"
+    },
+    {
+        "head": "python",
+        "tail": "ml-training"
+    },
+    {
+        "head": "pytorch",
+        "tail": "ml-systems"
+    },
+    {
+        "head": "pytorch",
+        "tail": "ml-training"
+    },
+    {
+        "head": "pytorch",
+        "tail": "model"
+    },
+    {
+        "head": "pytorch",
+        "tail": "co training"
+    },
+    {
+        "head": "ml-systems",
+        "tail": "ml-training"
+    },
+    {
+        "head": "ml-systems",
+        "tail": "deep-learning"
+    },
+    {
+        "head": "ml-systems",
+        "tail": "neural-network"
+    },
+    {
+        "head": "ml-systems",
+        "tail": "model"
+    },
+    {
+        "head": "ml-systems",
+        "tail": "training"
+    },
+    {
+        "head": "ml-systems",
+        "tail": "co training"
+    },
+    {
+        "head": "ml-training",
+        "tail": "deep-learning"
+    },
+    {
+        "head": "ml-training",
+        "tail": "neural-network"
+    },
+    {
+        "head": "ml-training",
+        "tail": "model"
+    },
+    {
+        "head": "ml-training",
+        "tail": "training"
+    },
+    {
+        "head": "ml-training",
+        "tail": "co training"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "model"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "co training"
+    },
+    {
+        "head": "neural-network",
+        "tail": "model"
+    },
+    {
+        "head": "neural-network",
+        "tail": "training"
+    },
+    {
+        "head": "neural-network",
+        "tail": "co training"
+    },
+    {
+        "head": "snowball",
+        "tail": "rust"
+    },
+    {
+        "head": "snowball",
+        "tail": "nlp-stemming"
+    },
+    {
+        "head": "snowball",
+        "tail": "information-retrieval"
+    },
+    {
+        "head": "snowball",
+        "tail": "algorithms"
+    },
+    {
+        "head": "rust",
+        "tail": "nlp-stemming"
+    },
+    {
+        "head": "rust",
+        "tail": "information-retrieval"
+    },
+    {
+        "head": "nlp-stemming",
+        "tail": "information-retrieval"
+    },
+    {
+        "head": "nlp-stemming",
+        "tail": "algorithms"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "algorithms"
+    },
+    {
+        "head": "colbert",
+        "tail": "question answering"
+    },
+    {
+        "head": "colbert",
+        "tail": "table"
+    },
+    {
+        "head": "colbert",
+        "tail": "retriever"
+    },
+    {
+        "head": "colbert",
+        "tail": "reader"
+    },
+    {
+        "head": "colbert",
+        "tail": "models"
+    },
+    {
+        "head": "question answering",
+        "tail": "table"
+    },
+    {
+        "head": "question answering",
+        "tail": "retriever"
+    },
+    {
+        "head": "question answering",
+        "tail": "reader"
+    },
+    {
+        "head": "question answering",
+        "tail": "models"
+    },
+    {
+        "head": "table",
+        "tail": "retriever"
+    },
+    {
+        "head": "table",
+        "tail": "reader"
+    },
+    {
+        "head": "table",
+        "tail": "models"
+    },
+    {
+        "head": "retriever",
+        "tail": "reader"
+    },
+    {
+        "head": "retriever",
+        "tail": "models"
+    },
+    {
+        "head": "reader",
+        "tail": "models"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "centroids"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "plaid"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "engine"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "state-of-the-art"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "centroids"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "plaid"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "engine"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "state-of-the-art"
+    },
+    {
+        "head": "centroids",
+        "tail": "colbert"
+    },
+    {
+        "head": "centroids",
+        "tail": "plaid"
+    },
+    {
+        "head": "centroids",
+        "tail": "engine"
+    },
+    {
+        "head": "centroids",
+        "tail": "retrieval"
+    },
+    {
+        "head": "centroids",
+        "tail": "state-of-the-art"
+    },
+    {
+        "head": "colbert",
+        "tail": "plaid"
+    },
+    {
+        "head": "colbert",
+        "tail": "engine"
+    },
+    {
+        "head": "colbert",
+        "tail": "state-of-the-art"
+    },
+    {
+        "head": "plaid",
+        "tail": "engine"
+    },
+    {
+        "head": "plaid",
+        "tail": "retrieval"
+    },
+    {
+        "head": "plaid",
+        "tail": "state-of-the-art"
+    },
+    {
+        "head": "engine",
+        "tail": "state-of-the-art"
+    },
+    {
+        "head": "retrieval",
+        "tail": "state-of-the-art"
     }
 ]
