@@ -1,8 +1,8 @@
 import copy
+import typing
 
 from cherche import retrieve
-from sklearn.feature_extraction.text import TfidfVectorizer
-import typing
+from lenlp import sparse
 
 __all__ = ["Retriever"]
 
@@ -52,10 +52,10 @@ class Retriever:
                 key="url",
                 on=["title", "tags", "summary", "date"],
                 k=25,
-                tfidf=TfidfVectorizer(
-                    lowercase=True,
+                tfidf=sparse.BM25Vectorizer(
+                    normalize=True,
                     ngram_range=(4, 7),
-                    analyzer="char_wb",
+                    analyzer="char",
                 ),
                 documents=updated_documents,
             )
@@ -63,8 +63,8 @@ class Retriever:
                 key="url",
                 on=["title", "tags", "summary", "date"],
                 k=5,
-                tfidf=TfidfVectorizer(
-                    lowercase=True,
+                tfidf=sparse.BM25Vectorizer(
+                    normalize=True,
                     ngram_range=(2, 5),
                     analyzer="char_wb",
                 ),
@@ -78,8 +78,8 @@ class Retriever:
                 key="url",
                 on=["title", "tags", "summary", "date"],
                 k=25,
-                tfidf=TfidfVectorizer(
-                    lowercase=True,
+                tfidf=sparse.BM25Vectorizer(
+                    normalize=True,
                     ngram_range=(4, 7),
                     analyzer="char_wb",
                 ),
@@ -89,8 +89,8 @@ class Retriever:
                 key="url",
                 on=["tags"],
                 k=30,
-                tfidf=TfidfVectorizer(
-                    lowercase=True,
+                tfidf=sparse.BM25Vectorizer(
+                    normalize=True,
                     ngram_range=(4, 7),
                     analyzer="char_wb",
                 ),
@@ -109,8 +109,8 @@ class Retriever:
                 key="tag",
                 on=["tag"],
                 k=5,
-                tfidf=TfidfVectorizer(
-                    lowercase=True,
+                tfidf=sparse.BM25Vectorizer(
+                    normalize=True,
                     ngram_range=(3, 7),
                     analyzer="char_wb",
                 ),
