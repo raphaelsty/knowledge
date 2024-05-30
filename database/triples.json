@@ -172686,5 +172686,25 @@
     {
         "head": "make",
         "tail": "awesome"
+    },
+    {
+        "head": "python",
+        "tail": "common sense"
+    },
+    {
+        "head": "python",
+        "tail": "conventional-commits"
+    },
+    {
+        "head": "mistral",
+        "tail": "common sense"
+    },
+    {
+        "head": "mistral",
+        "tail": "conventional-commits"
+    },
+    {
+        "head": "common sense",
+        "tail": "conventional-commits"
     }
 ]

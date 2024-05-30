@@ -37745,5 +37745,18 @@
             "styling",
             "easy-to-use"
         ]
+    },
+    "https://github.com/mistralai/mistral-common": {
+        "extra-tags": [
+            "mistral",
+            "common sense",
+            "conventional-commits"
+        ],
+        "date": "2024-04-15",
+        "title": "mistral-common",
+        "summary": "",
+        "tags": [
+            "python"
+        ]
     }
 }
