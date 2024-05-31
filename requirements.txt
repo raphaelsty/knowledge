@@ -3,7 +3,7 @@ lxml == 4.9.2
 pandas == 1.5.3
 requests == 2.32.2
 rdflib == 6.1.1
-cherche == 2.0.5
+cherche >= 2.1.0
 networkx == 2.8.5
 uvicorn == 0.17.5
 fastapi == 0.109.1
@@ -11,7 +11,7 @@ pydantic == 1.10.13
 python-multipart == 0.0.7
 pyyaml_env_tag == 0.1
 pyzotero == 1.5.5
-scikit-learn == 1.1.2
+scikit-learn >= 1.1.2
 openai == 0.27.0
 orjson == 3.9.15
-lenlp == 1.0.3
+lenlp >= 1.0.3
