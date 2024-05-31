@@ -1,4 +1,4 @@
-FROM python:3.9-slim-buster
+FROM python:3.9-slim-bullseye
 
 WORKDIR /code
 
@@ -7,6 +7,10 @@ COPY requirements.txt /code/requirements.txt
 COPY setup.py /code/setup.py
 COPY knowledge_database /code/knowledge_database
 COPY api /code/api
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libstdc++6 \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN pip install pip --upgrade
 RUN pip install --no-cache-dir .
