@@ -1,6 +1,9 @@
 name: Fly Deploy
 
 on:
+  push:
+    branches:
+      - main
   schedule:
     - cron: '0 */12 * * *' # https://crontab.guru/#0_*/20_*_*_* '0 */12 * * *'
     
