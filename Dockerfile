@@ -1,12 +1,16 @@
-FROM python:3.9-alpine
+FROM python:3.9-slim-buster
 
 WORKDIR /code
 
 # Install required packages
-RUN apk update && apk add --no-cache \
+RUN apt-get update && apt-get install -y --no-install-recommends \
     bash \
-    gcompat \
-    && rm -rf /var/cache/apk/*
+    gfortran \
+    gcc \
+    libc-dev \
+    build-essential \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY database/pipeline.pkl /code/database/pipeline.pkl
 COPY requirements.txt /code/requirements.txt
