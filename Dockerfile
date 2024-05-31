@@ -9,6 +9,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     gcc \
     libc-dev \
     build-essential \
+    libatlas-base-dev \
+    libblas-dev \
+    liblapack-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -19,7 +22,7 @@ COPY knowledge_database /code/knowledge_database
 COPY api /code/api
 
 RUN pip install --no-cache-dir --upgrade pip
-RUN pip install --no-cache-dir .
+RUN pip install --no-cache-dir -r requirements.txt
 
 RUN --mount=type=secret,id=OPENAI_API_KEY sh -c 'echo "export OPENAI_API_KEY=$(cat /run/secrets/OPENAI_API_KEY)" >> /etc/profile.d/openai.sh'
 
