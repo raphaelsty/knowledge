@@ -1,19 +1,6 @@
-FROM python:3.9-slim-buster
+FROM python:3.9
 
 WORKDIR /code
-
-# Install required packages
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    bash \
-    gfortran \
-    gcc \
-    libc-dev \
-    build-essential \
-    libatlas-base-dev \
-    libblas-dev \
-    liblapack-dev \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
 
 COPY database/pipeline.pkl /code/database/pipeline.pkl
 COPY requirements.txt /code/requirements.txt
@@ -21,8 +8,8 @@ COPY setup.py /code/setup.py
 COPY knowledge_database /code/knowledge_database
 COPY api /code/api
 
-RUN pip install --no-cache-dir --upgrade pip
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install pip --upgrade
+RUN pip install --no-cache-dir .
 
 RUN --mount=type=secret,id=OPENAI_API_KEY sh -c 'echo "export OPENAI_API_KEY=$(cat /run/secrets/OPENAI_API_KEY)" >> /etc/profile.d/openai.sh'
 
