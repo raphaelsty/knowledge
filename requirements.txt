@@ -14,4 +14,4 @@ pyzotero == 1.5.5
 scikit-learn >= 1.1.2
 openai == 0.27.0
 orjson == 3.9.15
-lenlp >= 1.0.4
+lenlp >= 1.1.0
