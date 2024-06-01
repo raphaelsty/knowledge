@@ -3,7 +3,7 @@ lxml == 4.9.2
 pandas == 1.5.3
 requests == 2.32.2
 rdflib == 6.1.1
-cherche >= 2.1.0
+cherche >= 2.2.1
 networkx == 2.8.5
 uvicorn == 0.17.5
 fastapi == 0.109.1
