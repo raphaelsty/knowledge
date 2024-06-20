@@ -1,9 +1,8 @@
-import json
+import datetime
 import pickle
 import typing
-import datetime
-import openai
 
+import openai
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import ORJSONResponse, StreamingResponse
@@ -71,20 +70,21 @@ knowledge = Knowledge()
 async def async_chat(query: str, content: str):
     """Re-rank the documents using ChatGPT."""
     response = await openai.ChatCompletion.acreate(
-        model="gpt-3.5-turbo",
+        model="gpt-4-turbo",
         messages=[
             {
                 "role": "system",
-                "content": f"""
-                You are knowledgable personnal assitant, based on the input query {query}, you will recommend the best resources from the set of retrieved documents. You will write for the top 3 recommended resources their title, a comprehensive and short description and their url. Rely on the set of documents provided and on your knowledge.
+                "content": """
+                You are a helpful assistant designed to output JSON.
                 """,
             },
-            {"role": "user", "content": content},
+            {
+                "role": "user",
+                "content": f"Hi, among the set of documents retrieved, which documents are related to my query: {query}, set of documents: {content}",
+            },
         ],
-        temperature=0.3,
-        max_tokens=300,
+        max_tokens=500,
         stream=True,
-        top_p=1,
     )
 
     answer = ""
@@ -156,4 +156,6 @@ async def chat(k_tags: int, q: str):
         )
         content += "url: " + document["url"] + "\n\n"
     content = "title: ".join(content[:3000].split("title:")[:-1])
-    return StreamingResponse(async_chat(query=q, content=content), media_type="text/plain")
+    return StreamingResponse(
+        async_chat(query=q, content=content), media_type="text/plain"
+    )
