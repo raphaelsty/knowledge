@@ -9,14 +9,14 @@ RUN git lfs install
 # Clone the repository
 RUN git clone https://github.com/raphaelsty/knowledge /knowledge
 
-# Pull LFS files
+# Ensure LFS files are pulled
 WORKDIR /knowledge
 RUN git lfs pull
 
 WORKDIR /code
 
 # Copy the necessary files
-COPY knowledge/database/pipeline.pkl /code/database/pipeline.pkl
+COPY knowledge/database/pipeline.pkl /code/pipeline.pkl
 COPY requirements.txt /code/requirements.txt
 COPY setup.py /code/setup.py
 COPY knowledge_database /code/knowledge_database
