@@ -1,12 +1,12 @@
 FROM python:3.10
 
 RUN apt-get update && apt-get install -y git git-lfs && git lfs install
+RUN git clone https://github.com/raphaelsty/knowledge .
+RUN git lfs install && git lfs pull
 
 WORKDIR /code
 
-RUN git lfs pull
-
-COPY database/pipeline.pkl /code/database/pipeline.pkl
+COPY knowledge/database/pipeline.pkl /code/database/pipeline.pkl
 COPY requirements.txt /code/requirements.txt
 COPY setup.py /code/setup.py
 COPY knowledge_database /code/knowledge_database
