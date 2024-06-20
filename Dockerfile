@@ -12,7 +12,7 @@ WORKDIR /code
 RUN git lfs pull
 
 # Copy the necessary files (you may skip this if already in the repository)
-# COPY database/pipeline.pkl /code/pipeline.pkl
+COPY code/database/pipeline.pkl /code/pipeline.pkl
 COPY requirements.txt /code/requirements.txt
 COPY setup.py /code/setup.py
 COPY knowledge_database /code/knowledge_database
