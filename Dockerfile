@@ -4,6 +4,8 @@ RUN apt-get update && apt-get install -y git git-lfs && git lfs install
 
 WORKDIR /code
 
+RUN git lfs pull
+
 COPY database/pipeline.pkl /code/database/pipeline.pkl
 COPY requirements.txt /code/requirements.txt
 COPY setup.py /code/setup.py
