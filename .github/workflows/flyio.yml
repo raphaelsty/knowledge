@@ -1,12 +1,11 @@
 name: Fly Deploy
 
 on:
-  push:
-    branches:
-      - main
-  schedule:
-    - cron: '0 */12 * * *' # https://crontab.guru/#0_*/20_*_*_* '0 */12 * * *'
-    
+  workflow_run:
+    workflows: ["Extract data"]
+    types:
+      - completed
+
 env:
   FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
   OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
