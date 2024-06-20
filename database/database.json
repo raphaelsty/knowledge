@@ -37832,5 +37832,513 @@
         "summary": "",
         "date": "2024-05-30",
         "tags": []
+    },
+    "https://github.com/astanin/python-tabulate": {
+        "extra-tags": [
+            "data",
+            "library",
+            "command-line",
+            "repository"
+        ],
+        "date": "2019-09-02",
+        "title": "python-tabulate",
+        "summary": "Pretty-print tabular data in Python, a library and a command-line utility. Repository migrated from bitbucket.org/astanin/python-tabulate.",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/facebookresearch/fairseq2": {
+        "extra-tags": [
+            "modeling",
+            "sequence to sequence learning",
+            "sequence labeling"
+        ],
+        "date": "2022-12-22",
+        "title": "fairseq2",
+        "summary": "FAIR Sequence Modeling Toolkit 2",
+        "tags": [
+            "artificial-intelligence",
+            "deep-learning",
+            "machine-learning",
+            "pytorch",
+            "python"
+        ]
+    },
+    "https://github.com/xhluca/bm25s": {
+        "extra-tags": [
+            "fast",
+            "search",
+            "library",
+            "bm25",
+            "scipy"
+        ],
+        "date": "2024-04-10",
+        "title": "bm25s",
+        "summary": "BM25S is an ultra-fast lexical search library that implements BM25 using scipy",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/AnacletoLAB/grape": {
+        "extra-tags": [
+            "rust",
+            "python",
+            "learning",
+            "predictions"
+        ],
+        "date": "2021-02-16",
+        "title": "grape",
+        "summary": "\ud83c\udf47 GRAPE is a Rust/Python Graph Representation Learning library for Predictions and Evaluations",
+        "tags": [
+            "high-performance",
+            "machine-learning",
+            "graph",
+            "knowledge-graph",
+            "jupyter notebook"
+        ]
+    },
+    "https://github.com/squaredtechnologies/thread": {
+        "extra-tags": [
+            "code",
+            "notebook"
+        ],
+        "date": "2024-05-21",
+        "title": "thread",
+        "summary": "An AI-powered Python notebook built in React \u2014 generate and edit code cells, automatically fix errors, and chat with your code",
+        "tags": [
+            "jupyter-notebooks",
+            "analysis",
+            "reactjs",
+            "jupyterhub",
+            "data-science",
+            "jupyterlab",
+            "react",
+            "python",
+            "jupyter",
+            "analytics",
+            "ollama",
+            "jupyter-notebook",
+            "javascript",
+            "ai"
+        ]
+    },
+    "https://github.com/stanford-futuredata/ColBERT": {
+        "extra-tags": [
+            "colbert",
+            "state-of-the-art",
+            "neural",
+            "search"
+        ],
+        "date": "2020-05-25",
+        "title": "ColBERT",
+        "summary": "ColBERT: state-of-the-art neural search (SIGIR'20, TACL'21, NeurIPS'21, NAACL'22, CIKM'22, ACL'23, EMNLP'23)",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/austinvhuang/openmemex": {
+        "extra-tags": [
+            "source",
+            "local",
+            "knowledge",
+            "platform"
+        ],
+        "date": "2020-08-15",
+        "title": "openmemex",
+        "summary": "Open source, local-first knowledge platform.",
+        "tags": [
+            "rust"
+        ]
+    },
+    "https://github.com/PyO3/maturin-action": {
+        "extra-tags": [
+            "github action",
+            "install"
+        ],
+        "date": "2021-05-03",
+        "title": "maturin-action",
+        "summary": "GitHub Action to install and run a custom maturin command with built-in support for cross compilation",
+        "tags": [
+            "manylinux",
+            "rust-cpython",
+            "uniffi",
+            "hacktoberfest",
+            "typescript",
+            "maturin",
+            "github-actions",
+            "cffi",
+            "pyo3"
+        ]
+    },
+    "https://github.com/mlabonne/llm-course": {
+        "extra-tags": [
+            "language models",
+            "llms",
+            "notebooks"
+        ],
+        "date": "2023-06-17",
+        "title": "llm-course",
+        "summary": "Course to get into Large Language Models (LLMs) with roadmaps and Colab notebooks.",
+        "tags": [
+            "large-language-models",
+            "course",
+            "machine-learning",
+            "llm",
+            "jupyter notebook",
+            "roadmap"
+        ]
+    },
+    "https://github.com/yusukebe/ramen-api": {
+        "extra-tags": [
+            "web"
+        ],
+        "date": "2022-03-29",
+        "title": "ramen-api",
+        "summary": "Web API about \ud83c\udf5c",
+        "tags": [
+            "cloudflare-workers",
+            "graphql",
+            "api",
+            "typescript",
+            "ramen"
+        ]
+    },
+    "https://github.com/piku/piku": {
+        "extra-tags": [
+            "git",
+            "push",
+            "deployment"
+        ],
+        "date": "2016-03-26",
+        "title": "piku",
+        "summary": "The tiniest PaaS you've ever seen. Piku allows you to do git push deployments to your own servers.",
+        "tags": [
+            "ubuntu",
+            "arm",
+            "raspberry-pi",
+            "paas",
+            "python",
+            "raspbian",
+            "heroku",
+            "nodejs"
+        ]
+    },
+    "https://github.com/honojs/hono": {
+        "extra-tags": [
+            "web",
+            "framework"
+        ],
+        "date": "2021-12-14",
+        "title": "hono",
+        "summary": "Web Framework built on Web Standards",
+        "tags": [
+            "router",
+            "bun",
+            "cloudflare-workers",
+            "web-framework",
+            "npm",
+            "aws-lambda",
+            "cloudflare",
+            "typescript",
+            "deno"
+        ]
+    },
+    "https://github.com/redpanda-data/connect": {
+        "extra-tags": [
+            "connect",
+            "stream",
+            "processing"
+        ],
+        "date": "2016-03-22",
+        "title": "connect",
+        "summary": "Fancy stream processing made operationally mundane",
+        "tags": [
+            "etl",
+            "golang",
+            "data-ops",
+            "cqrs",
+            "amqp",
+            "message-queue",
+            "nats",
+            "rabbitmq",
+            "message-bus",
+            "go",
+            "event-sourcing",
+            "kafka",
+            "stream-processor",
+            "streaming-data",
+            "stream-processing",
+            "logs",
+            "data-engineering"
+        ]
+    },
+    "https://github.com/fyhMer/fowm": {
+        "extra-tags": [
+            "finetuning",
+            "models",
+            "adapter modules finetuning"
+        ],
+        "date": "2023-10-25",
+        "title": "fowm",
+        "summary": "Finetuning Offline World Models in the Real World",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/openvla/openvla": {
+        "extra-tags": [
+            "open-source",
+            "vision-language",
+            "model"
+        ],
+        "date": "2024-06-13",
+        "title": "openvla",
+        "summary": "OpenVLA: An open-source vision-language-action model for robotic manipulation.",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/pierrot-lc/anime-diffusion": {
+        "extra-tags": [
+            "diffusion",
+            "anime",
+            "model",
+            "jax"
+        ],
+        "date": "2023-05-28",
+        "title": "anime-diffusion",
+        "summary": "Implementation of a basic diffusion model in Jax.",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/perezjln/gym-lowcostrobot": {
+        "extra-tags": [
+            "gym",
+            "robotics",
+            "bot"
+        ],
+        "date": "2024-05-09",
+        "title": "gym-lowcostrobot",
+        "summary": "",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/jolibrain/jolineedle": {
+        "extra-tags": [
+            "efficientnet",
+            "efficiency",
+            "efficient-inference"
+        ],
+        "date": "2024-06-11",
+        "title": "jolineedle",
+        "summary": "Compute Efficient, Gaze Based Object Detector ",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/dora-rs/dora-lerobot": {
+        "extra-tags": [
+            "boost",
+            "robotics",
+            "discussed with ns"
+        ],
+        "date": "2024-04-22",
+        "title": "dora-lerobot",
+        "summary": "Lerobot boosted with dora",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/jordanbaird/Ice": {
+        "extra-tags": [
+            "manager"
+        ],
+        "date": "2023-08-04",
+        "title": "Ice",
+        "summary": "Powerful menu bar manager for macOS",
+        "tags": [
+            "utility",
+            "macos",
+            "statusbar",
+            "macos-app",
+            "menubar",
+            "status-bar",
+            "menu-bar",
+            "swift",
+            "swiftui"
+        ]
+    },
+    "https://github.com/SuReLI/RRLS": {
+        "extra-tags": [
+            "reinforcement",
+            "learning",
+            "reinforcement-learning"
+        ],
+        "date": "2023-06-07",
+        "title": "RRLS",
+        "summary": "Robust Reinforcement Learning Suite",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/EwenQuim/entropy": {
+        "extra-tags": [
+            "tool",
+            "codebase"
+        ],
+        "date": "2024-06-04",
+        "title": "entropy",
+        "summary": "Entropy is a CLI tool that will scan your codebase for high entropy lines, which are often secrets.",
+        "tags": [
+            "secrets-detection",
+            "entropy",
+            "go",
+            "cli"
+        ]
+    },
+    "https://github.com/kscalelabs/ksim": {
+        "extra-tags": [
+            "mujoco",
+            "simulation",
+            "code"
+        ],
+        "date": "2024-05-23",
+        "title": "ksim",
+        "summary": "MuJoCo simulation code",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://arxiv.org/pdf/1911.02150": {
+        "extra-tags": [],
+        "title": "",
+        "summary": "",
+        "date": "2024-06-20",
+        "tags": [
+            "fast transformer",
+            "llm",
+            "optimization llm"
+        ]
+    },
+    "https://research.character.ai/optimizing-inference/": {
+        "extra-tags": [
+            "ai",
+            "future",
+            "language models",
+            "productivity",
+            "education"
+        ],
+        "title": "Optimizing AI Inference at Character.AI",
+        "summary": "At Character.AI, we're building toward AGI. In that future state, large language models (LLMs) will enhance daily life, providing business productivity and entertainment and helping people with everything from education to coaching, support, brainstorming, creative writing and more.\n\nTo make that a reality globally, it's critical to achieve highly",
+        "date": "2024-06-20",
+        "tags": [
+            "caching",
+            "character ai",
+            "inference",
+            "llm",
+            "quantization"
+        ]
+    },
+    "http://arxiv.org/abs/2311.06242": {
+        "extra-tags": [
+            "vision",
+            "model",
+            "text"
+        ],
+        "title": "Florence-2: Advancing a Unified Representation for a Variety of Vision Tasks",
+        "summary": "We introduce Florence-2, a novel vision foundation model with a unified, prompt-based representation for a variety of computer vision and vision-language tasks. While existing large vision models excel in transfer learning, they struggle to perform a diversity of tasks with simple instructions, a capability that implies handling the complexity of various spatial hierarchy and semantic granularity. Florence-2 was designed to take text-prompt as task instructions and generate desirable results in text forms, whether it be captioning, object detection, grounding or segmentation. This multi-task learning setup demands large-scale, high-quality annotated data. To this end, we co-developed FLD-5B that consists of 5.4 billion comprehensive visual annotations on 126 million images, using an iterative strategy of automated image annotation and model refinement. We adopted a sequence-to-sequence structure to train Florence-2 to perform versatile and comprehensive vision tasks. Extensive evaluations on numerous tasks demonstrated Florence-2 to be a strong vision foundation model contender with unprecedented zero-shot and fine-tuning capabilities.",
+        "date": "2024-06-19",
+        "tags": [
+            "computer science - computer vision and pattern recognition",
+            "florence-2"
+        ]
+    },
+    "https://colab.research.google.com/#fileId=https%3A//huggingface.co/microsoft/Florence-2-large/blob/main/sample_inference.ipynb": {
+        "extra-tags": [
+            "google",
+            "colab"
+        ],
+        "title": "Google Colab",
+        "summary": "",
+        "date": "2024-06-19",
+        "tags": [
+            "florence-2-large",
+            "notebook",
+            "segmentation"
+        ]
+    },
+    "https://arxiv.org/pdf/2312.00752": {
+        "extra-tags": [],
+        "title": "",
+        "summary": "",
+        "date": "2024-06-14",
+        "tags": [
+            "mamba"
+        ]
+    },
+    "https://huggingface.co/datasets/sentence-transformers/embedding-training-data": {
+        "extra-tags": [
+            "embedding",
+            "training-data",
+            "datasets"
+        ],
+        "title": "sentence-transformers/embedding-training-data \u00b7 Datasets at Hugging Face",
+        "summary": "We\u2019re on a journey to advance and democratize artificial intelligence through open source and open science.",
+        "date": "2024-06-09",
+        "tags": [
+            "data",
+            "dataset",
+            "fine-tuning",
+            "msmarco",
+            "sentence-transformers",
+            "training data"
+        ]
+    },
+    "https://arxiv.org/pdf/2404.09562": {
+        "extra-tags": [],
+        "title": "",
+        "summary": "",
+        "date": "2024-06-07",
+        "tags": [
+            "autoregressive",
+            "diffusion",
+            "llm"
+        ]
+    },
+    "http://arxiv.org/abs/2402.16785": {
+        "extra-tags": [
+            "data",
+            "models",
+            "tables",
+            "tree"
+        ],
+        "title": "CARTE: Pretraining and Transfer for Tabular Learning",
+        "summary": "Pretrained deep-learning models are the go-to solution for images or text. However, for tabular data the standard is still to train tree-based models. Indeed, transfer learning on tables hits the challenge of data integration: finding correspondences, correspondences in the entries (entity matching) where different words may denote the same entity, correspondences across columns (schema matching), which may come in different orders, names... We propose a neural architecture that does not need such correspondences. As a result, we can pretrain it on background data that has not been matched. The architecture -- CARTE for Context Aware Representation of Table Entries -- uses a graph representation of tabular (or relational) data to process tables with different columns, string embedding of entries and columns names to model an open vocabulary, and a graph-attentional network to contextualize entries with column names and neighboring entries. An extensive benchmark shows that CARTE facilitates learning, outperforming a solid set of baselines including the best tree-based models. CARTE also enables joint learning across tables with unmatched columns, enhancing a small table with bigger ones. CARTE opens the door to large pretrained models for tabular data.",
+        "date": "2024-06-03",
+        "tags": [
+            "computer science - machine learning",
+            "kg",
+            "knowledge graph",
+            "llm",
+            "tabular learning"
+        ]
+    },
+    "http://arxiv.org/abs/2010.02502": {
+        "extra-tags": [
+            "models",
+            "training",
+            "probabilistic"
+        ],
+        "title": "Denoising Diffusion Implicit Models",
+        "summary": "Denoising diffusion probabilistic models (DDPMs) have achieved high quality image generation without adversarial training, yet they require simulating a Markov chain for many steps to produce a sample. To accelerate sampling, we present denoising diffusion implicit models (DDIMs), a more efficient class of iterative implicit probabilistic models with the same training procedure as DDPMs. In DDPMs, the generative process is defined as the reverse of a Markovian diffusion process. We construct a class of non-Markovian diffusion processes that lead to the same training objective, but whose reverse process can be much faster to sample from. We empirically demonstrate that DDIMs can produce high quality samples $10 \\times$ to $50 \\times$ faster in terms of wall-clock time compared to DDPMs, allow us to trade off computation for sample quality, and can perform semantically meaningful image interpolation directly in the latent space.",
+        "date": "2024-05-31",
+        "tags": [
+            "computer science - computer vision and pattern recognition",
+            "computer science - machine learning",
+            "ddm",
+            "diffusion"
+        ]
     }
 }

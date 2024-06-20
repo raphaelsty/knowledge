@@ -173046,5 +173046,2201 @@
     {
         "head": "retrieval",
         "tail": "state-of-the-art"
+    },
+    {
+        "head": "data",
+        "tail": "repository"
+    },
+    {
+        "head": "library",
+        "tail": "command-line"
+    },
+    {
+        "head": "library",
+        "tail": "repository"
+    },
+    {
+        "head": "command-line",
+        "tail": "repository"
+    },
+    {
+        "head": "artificial-intelligence",
+        "tail": "modeling"
+    },
+    {
+        "head": "artificial-intelligence",
+        "tail": "sequence to sequence learning"
+    },
+    {
+        "head": "artificial-intelligence",
+        "tail": "sequence labeling"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "modeling"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "sequence to sequence learning"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "sequence labeling"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "modeling"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "sequence to sequence learning"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "sequence labeling"
+    },
+    {
+        "head": "pytorch",
+        "tail": "modeling"
+    },
+    {
+        "head": "pytorch",
+        "tail": "sequence to sequence learning"
+    },
+    {
+        "head": "pytorch",
+        "tail": "sequence labeling"
+    },
+    {
+        "head": "python",
+        "tail": "sequence to sequence learning"
+    },
+    {
+        "head": "python",
+        "tail": "sequence labeling"
+    },
+    {
+        "head": "modeling",
+        "tail": "sequence to sequence learning"
+    },
+    {
+        "head": "modeling",
+        "tail": "sequence labeling"
+    },
+    {
+        "head": "sequence to sequence learning",
+        "tail": "sequence labeling"
+    },
+    {
+        "head": "fast",
+        "tail": "bm25"
+    },
+    {
+        "head": "fast",
+        "tail": "scipy"
+    },
+    {
+        "head": "search",
+        "tail": "scipy"
+    },
+    {
+        "head": "library",
+        "tail": "bm25"
+    },
+    {
+        "head": "library",
+        "tail": "scipy"
+    },
+    {
+        "head": "bm25",
+        "tail": "scipy"
+    },
+    {
+        "head": "high-performance",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "high-performance",
+        "tail": "graph"
+    },
+    {
+        "head": "high-performance",
+        "tail": "knowledge-graph"
+    },
+    {
+        "head": "high-performance",
+        "tail": "jupyter notebook"
+    },
+    {
+        "head": "high-performance",
+        "tail": "learning"
+    },
+    {
+        "head": "high-performance",
+        "tail": "predictions"
+    },
+    {
+        "head": "graph",
+        "tail": "jupyter notebook"
+    },
+    {
+        "head": "graph",
+        "tail": "predictions"
+    },
+    {
+        "head": "knowledge-graph",
+        "tail": "jupyter notebook"
+    },
+    {
+        "head": "knowledge-graph",
+        "tail": "rust"
+    },
+    {
+        "head": "knowledge-graph",
+        "tail": "learning"
+    },
+    {
+        "head": "knowledge-graph",
+        "tail": "predictions"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "rust"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "predictions"
+    },
+    {
+        "head": "rust",
+        "tail": "learning"
+    },
+    {
+        "head": "rust",
+        "tail": "predictions"
+    },
+    {
+        "head": "learning",
+        "tail": "predictions"
+    },
+    {
+        "head": "jupyter-notebooks",
+        "tail": "analysis"
+    },
+    {
+        "head": "jupyter-notebooks",
+        "tail": "reactjs"
+    },
+    {
+        "head": "jupyter-notebooks",
+        "tail": "jupyterhub"
+    },
+    {
+        "head": "jupyter-notebooks",
+        "tail": "data-science"
+    },
+    {
+        "head": "jupyter-notebooks",
+        "tail": "jupyterlab"
+    },
+    {
+        "head": "jupyter-notebooks",
+        "tail": "react"
+    },
+    {
+        "head": "jupyter-notebooks",
+        "tail": "python"
+    },
+    {
+        "head": "jupyter-notebooks",
+        "tail": "jupyter"
+    },
+    {
+        "head": "jupyter-notebooks",
+        "tail": "analytics"
+    },
+    {
+        "head": "jupyter-notebooks",
+        "tail": "ollama"
+    },
+    {
+        "head": "jupyter-notebooks",
+        "tail": "jupyter-notebook"
+    },
+    {
+        "head": "jupyter-notebooks",
+        "tail": "javascript"
+    },
+    {
+        "head": "jupyter-notebooks",
+        "tail": "ai"
+    },
+    {
+        "head": "jupyter-notebooks",
+        "tail": "code"
+    },
+    {
+        "head": "jupyter-notebooks",
+        "tail": "notebook"
+    },
+    {
+        "head": "analysis",
+        "tail": "reactjs"
+    },
+    {
+        "head": "analysis",
+        "tail": "jupyterhub"
+    },
+    {
+        "head": "analysis",
+        "tail": "jupyterlab"
+    },
+    {
+        "head": "analysis",
+        "tail": "react"
+    },
+    {
+        "head": "analysis",
+        "tail": "jupyter"
+    },
+    {
+        "head": "analysis",
+        "tail": "ollama"
+    },
+    {
+        "head": "analysis",
+        "tail": "jupyter-notebook"
+    },
+    {
+        "head": "analysis",
+        "tail": "javascript"
+    },
+    {
+        "head": "analysis",
+        "tail": "ai"
+    },
+    {
+        "head": "analysis",
+        "tail": "code"
+    },
+    {
+        "head": "analysis",
+        "tail": "notebook"
+    },
+    {
+        "head": "reactjs",
+        "tail": "jupyterhub"
+    },
+    {
+        "head": "reactjs",
+        "tail": "data-science"
+    },
+    {
+        "head": "reactjs",
+        "tail": "jupyterlab"
+    },
+    {
+        "head": "reactjs",
+        "tail": "jupyter"
+    },
+    {
+        "head": "reactjs",
+        "tail": "ollama"
+    },
+    {
+        "head": "reactjs",
+        "tail": "jupyter-notebook"
+    },
+    {
+        "head": "reactjs",
+        "tail": "ai"
+    },
+    {
+        "head": "reactjs",
+        "tail": "code"
+    },
+    {
+        "head": "reactjs",
+        "tail": "notebook"
+    },
+    {
+        "head": "jupyterhub",
+        "tail": "data-science"
+    },
+    {
+        "head": "jupyterhub",
+        "tail": "jupyterlab"
+    },
+    {
+        "head": "jupyterhub",
+        "tail": "react"
+    },
+    {
+        "head": "jupyterhub",
+        "tail": "python"
+    },
+    {
+        "head": "jupyterhub",
+        "tail": "jupyter"
+    },
+    {
+        "head": "jupyterhub",
+        "tail": "analytics"
+    },
+    {
+        "head": "jupyterhub",
+        "tail": "ollama"
+    },
+    {
+        "head": "jupyterhub",
+        "tail": "jupyter-notebook"
+    },
+    {
+        "head": "jupyterhub",
+        "tail": "javascript"
+    },
+    {
+        "head": "jupyterhub",
+        "tail": "ai"
+    },
+    {
+        "head": "jupyterhub",
+        "tail": "code"
+    },
+    {
+        "head": "jupyterhub",
+        "tail": "notebook"
+    },
+    {
+        "head": "data-science",
+        "tail": "jupyterlab"
+    },
+    {
+        "head": "data-science",
+        "tail": "ollama"
+    },
+    {
+        "head": "data-science",
+        "tail": "code"
+    },
+    {
+        "head": "data-science",
+        "tail": "notebook"
+    },
+    {
+        "head": "jupyterlab",
+        "tail": "react"
+    },
+    {
+        "head": "jupyterlab",
+        "tail": "jupyter"
+    },
+    {
+        "head": "jupyterlab",
+        "tail": "analytics"
+    },
+    {
+        "head": "jupyterlab",
+        "tail": "ollama"
+    },
+    {
+        "head": "jupyterlab",
+        "tail": "javascript"
+    },
+    {
+        "head": "jupyterlab",
+        "tail": "ai"
+    },
+    {
+        "head": "jupyterlab",
+        "tail": "code"
+    },
+    {
+        "head": "jupyterlab",
+        "tail": "notebook"
+    },
+    {
+        "head": "react",
+        "tail": "analytics"
+    },
+    {
+        "head": "react",
+        "tail": "ollama"
+    },
+    {
+        "head": "react",
+        "tail": "jupyter-notebook"
+    },
+    {
+        "head": "react",
+        "tail": "ai"
+    },
+    {
+        "head": "react",
+        "tail": "notebook"
+    },
+    {
+        "head": "python",
+        "tail": "ollama"
+    },
+    {
+        "head": "jupyter",
+        "tail": "ollama"
+    },
+    {
+        "head": "jupyter",
+        "tail": "ai"
+    },
+    {
+        "head": "jupyter",
+        "tail": "code"
+    },
+    {
+        "head": "analytics",
+        "tail": "ollama"
+    },
+    {
+        "head": "analytics",
+        "tail": "jupyter-notebook"
+    },
+    {
+        "head": "analytics",
+        "tail": "ai"
+    },
+    {
+        "head": "analytics",
+        "tail": "code"
+    },
+    {
+        "head": "analytics",
+        "tail": "notebook"
+    },
+    {
+        "head": "ollama",
+        "tail": "jupyter-notebook"
+    },
+    {
+        "head": "ollama",
+        "tail": "javascript"
+    },
+    {
+        "head": "ollama",
+        "tail": "ai"
+    },
+    {
+        "head": "ollama",
+        "tail": "code"
+    },
+    {
+        "head": "ollama",
+        "tail": "notebook"
+    },
+    {
+        "head": "jupyter-notebook",
+        "tail": "javascript"
+    },
+    {
+        "head": "jupyter-notebook",
+        "tail": "code"
+    },
+    {
+        "head": "jupyter-notebook",
+        "tail": "notebook"
+    },
+    {
+        "head": "javascript",
+        "tail": "notebook"
+    },
+    {
+        "head": "ai",
+        "tail": "code"
+    },
+    {
+        "head": "ai",
+        "tail": "notebook"
+    },
+    {
+        "head": "code",
+        "tail": "notebook"
+    },
+    {
+        "head": "state-of-the-art",
+        "tail": "neural"
+    },
+    {
+        "head": "state-of-the-art",
+        "tail": "search"
+    },
+    {
+        "head": "rust",
+        "tail": "source"
+    },
+    {
+        "head": "rust",
+        "tail": "local"
+    },
+    {
+        "head": "rust",
+        "tail": "knowledge"
+    },
+    {
+        "head": "rust",
+        "tail": "platform"
+    },
+    {
+        "head": "source",
+        "tail": "local"
+    },
+    {
+        "head": "source",
+        "tail": "knowledge"
+    },
+    {
+        "head": "source",
+        "tail": "platform"
+    },
+    {
+        "head": "local",
+        "tail": "knowledge"
+    },
+    {
+        "head": "local",
+        "tail": "platform"
+    },
+    {
+        "head": "knowledge",
+        "tail": "platform"
+    },
+    {
+        "head": "manylinux",
+        "tail": "rust-cpython"
+    },
+    {
+        "head": "manylinux",
+        "tail": "typescript"
+    },
+    {
+        "head": "manylinux",
+        "tail": "maturin"
+    },
+    {
+        "head": "manylinux",
+        "tail": "github-actions"
+    },
+    {
+        "head": "manylinux",
+        "tail": "github action"
+    },
+    {
+        "head": "manylinux",
+        "tail": "install"
+    },
+    {
+        "head": "rust-cpython",
+        "tail": "uniffi"
+    },
+    {
+        "head": "rust-cpython",
+        "tail": "hacktoberfest"
+    },
+    {
+        "head": "rust-cpython",
+        "tail": "typescript"
+    },
+    {
+        "head": "rust-cpython",
+        "tail": "maturin"
+    },
+    {
+        "head": "rust-cpython",
+        "tail": "github-actions"
+    },
+    {
+        "head": "rust-cpython",
+        "tail": "cffi"
+    },
+    {
+        "head": "rust-cpython",
+        "tail": "pyo3"
+    },
+    {
+        "head": "rust-cpython",
+        "tail": "github action"
+    },
+    {
+        "head": "rust-cpython",
+        "tail": "install"
+    },
+    {
+        "head": "uniffi",
+        "tail": "typescript"
+    },
+    {
+        "head": "uniffi",
+        "tail": "maturin"
+    },
+    {
+        "head": "uniffi",
+        "tail": "github-actions"
+    },
+    {
+        "head": "uniffi",
+        "tail": "github action"
+    },
+    {
+        "head": "uniffi",
+        "tail": "install"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "maturin"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "github action"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "install"
+    },
+    {
+        "head": "typescript",
+        "tail": "maturin"
+    },
+    {
+        "head": "typescript",
+        "tail": "github-actions"
+    },
+    {
+        "head": "typescript",
+        "tail": "cffi"
+    },
+    {
+        "head": "typescript",
+        "tail": "pyo3"
+    },
+    {
+        "head": "typescript",
+        "tail": "github action"
+    },
+    {
+        "head": "typescript",
+        "tail": "install"
+    },
+    {
+        "head": "maturin",
+        "tail": "github-actions"
+    },
+    {
+        "head": "maturin",
+        "tail": "cffi"
+    },
+    {
+        "head": "maturin",
+        "tail": "pyo3"
+    },
+    {
+        "head": "maturin",
+        "tail": "github action"
+    },
+    {
+        "head": "maturin",
+        "tail": "install"
+    },
+    {
+        "head": "github-actions",
+        "tail": "cffi"
+    },
+    {
+        "head": "github-actions",
+        "tail": "pyo3"
+    },
+    {
+        "head": "github-actions",
+        "tail": "install"
+    },
+    {
+        "head": "cffi",
+        "tail": "github action"
+    },
+    {
+        "head": "cffi",
+        "tail": "install"
+    },
+    {
+        "head": "pyo3",
+        "tail": "github action"
+    },
+    {
+        "head": "pyo3",
+        "tail": "install"
+    },
+    {
+        "head": "github action",
+        "tail": "install"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "course"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "jupyter notebook"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "roadmap"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "language models"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "llms"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "notebooks"
+    },
+    {
+        "head": "course",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "course",
+        "tail": "llm"
+    },
+    {
+        "head": "course",
+        "tail": "jupyter notebook"
+    },
+    {
+        "head": "course",
+        "tail": "roadmap"
+    },
+    {
+        "head": "course",
+        "tail": "language models"
+    },
+    {
+        "head": "course",
+        "tail": "llms"
+    },
+    {
+        "head": "course",
+        "tail": "notebooks"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "roadmap"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "language models"
+    },
+    {
+        "head": "llm",
+        "tail": "roadmap"
+    },
+    {
+        "head": "llm",
+        "tail": "notebooks"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "roadmap"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "language models"
+    },
+    {
+        "head": "roadmap",
+        "tail": "language models"
+    },
+    {
+        "head": "roadmap",
+        "tail": "llms"
+    },
+    {
+        "head": "roadmap",
+        "tail": "notebooks"
+    },
+    {
+        "head": "language models",
+        "tail": "notebooks"
+    },
+    {
+        "head": "llms",
+        "tail": "notebooks"
+    },
+    {
+        "head": "cloudflare-workers",
+        "tail": "graphql"
+    },
+    {
+        "head": "cloudflare-workers",
+        "tail": "api"
+    },
+    {
+        "head": "cloudflare-workers",
+        "tail": "typescript"
+    },
+    {
+        "head": "cloudflare-workers",
+        "tail": "ramen"
+    },
+    {
+        "head": "cloudflare-workers",
+        "tail": "web"
+    },
+    {
+        "head": "graphql",
+        "tail": "api"
+    },
+    {
+        "head": "graphql",
+        "tail": "ramen"
+    },
+    {
+        "head": "graphql",
+        "tail": "web"
+    },
+    {
+        "head": "api",
+        "tail": "typescript"
+    },
+    {
+        "head": "api",
+        "tail": "ramen"
+    },
+    {
+        "head": "api",
+        "tail": "web"
+    },
+    {
+        "head": "typescript",
+        "tail": "ramen"
+    },
+    {
+        "head": "typescript",
+        "tail": "web"
+    },
+    {
+        "head": "ramen",
+        "tail": "web"
+    },
+    {
+        "head": "ubuntu",
+        "tail": "arm"
+    },
+    {
+        "head": "ubuntu",
+        "tail": "raspberry-pi"
+    },
+    {
+        "head": "ubuntu",
+        "tail": "paas"
+    },
+    {
+        "head": "ubuntu",
+        "tail": "python"
+    },
+    {
+        "head": "ubuntu",
+        "tail": "raspbian"
+    },
+    {
+        "head": "ubuntu",
+        "tail": "heroku"
+    },
+    {
+        "head": "ubuntu",
+        "tail": "nodejs"
+    },
+    {
+        "head": "ubuntu",
+        "tail": "git"
+    },
+    {
+        "head": "ubuntu",
+        "tail": "push"
+    },
+    {
+        "head": "ubuntu",
+        "tail": "deployment"
+    },
+    {
+        "head": "arm",
+        "tail": "raspberry-pi"
+    },
+    {
+        "head": "arm",
+        "tail": "paas"
+    },
+    {
+        "head": "arm",
+        "tail": "raspbian"
+    },
+    {
+        "head": "arm",
+        "tail": "heroku"
+    },
+    {
+        "head": "arm",
+        "tail": "nodejs"
+    },
+    {
+        "head": "arm",
+        "tail": "git"
+    },
+    {
+        "head": "arm",
+        "tail": "push"
+    },
+    {
+        "head": "arm",
+        "tail": "deployment"
+    },
+    {
+        "head": "raspberry-pi",
+        "tail": "paas"
+    },
+    {
+        "head": "raspberry-pi",
+        "tail": "python"
+    },
+    {
+        "head": "raspberry-pi",
+        "tail": "raspbian"
+    },
+    {
+        "head": "raspberry-pi",
+        "tail": "heroku"
+    },
+    {
+        "head": "raspberry-pi",
+        "tail": "nodejs"
+    },
+    {
+        "head": "raspberry-pi",
+        "tail": "git"
+    },
+    {
+        "head": "raspberry-pi",
+        "tail": "push"
+    },
+    {
+        "head": "raspberry-pi",
+        "tail": "deployment"
+    },
+    {
+        "head": "paas",
+        "tail": "python"
+    },
+    {
+        "head": "paas",
+        "tail": "raspbian"
+    },
+    {
+        "head": "paas",
+        "tail": "heroku"
+    },
+    {
+        "head": "paas",
+        "tail": "git"
+    },
+    {
+        "head": "paas",
+        "tail": "push"
+    },
+    {
+        "head": "paas",
+        "tail": "deployment"
+    },
+    {
+        "head": "python",
+        "tail": "raspbian"
+    },
+    {
+        "head": "python",
+        "tail": "heroku"
+    },
+    {
+        "head": "python",
+        "tail": "nodejs"
+    },
+    {
+        "head": "raspbian",
+        "tail": "heroku"
+    },
+    {
+        "head": "raspbian",
+        "tail": "nodejs"
+    },
+    {
+        "head": "raspbian",
+        "tail": "git"
+    },
+    {
+        "head": "raspbian",
+        "tail": "push"
+    },
+    {
+        "head": "raspbian",
+        "tail": "deployment"
+    },
+    {
+        "head": "heroku",
+        "tail": "nodejs"
+    },
+    {
+        "head": "heroku",
+        "tail": "git"
+    },
+    {
+        "head": "heroku",
+        "tail": "push"
+    },
+    {
+        "head": "heroku",
+        "tail": "deployment"
+    },
+    {
+        "head": "nodejs",
+        "tail": "git"
+    },
+    {
+        "head": "nodejs",
+        "tail": "push"
+    },
+    {
+        "head": "nodejs",
+        "tail": "deployment"
+    },
+    {
+        "head": "git",
+        "tail": "deployment"
+    },
+    {
+        "head": "push",
+        "tail": "deployment"
+    },
+    {
+        "head": "router",
+        "tail": "bun"
+    },
+    {
+        "head": "router",
+        "tail": "cloudflare-workers"
+    },
+    {
+        "head": "router",
+        "tail": "web-framework"
+    },
+    {
+        "head": "router",
+        "tail": "npm"
+    },
+    {
+        "head": "router",
+        "tail": "aws-lambda"
+    },
+    {
+        "head": "router",
+        "tail": "cloudflare"
+    },
+    {
+        "head": "router",
+        "tail": "typescript"
+    },
+    {
+        "head": "router",
+        "tail": "deno"
+    },
+    {
+        "head": "router",
+        "tail": "web"
+    },
+    {
+        "head": "router",
+        "tail": "framework"
+    },
+    {
+        "head": "bun",
+        "tail": "cloudflare-workers"
+    },
+    {
+        "head": "bun",
+        "tail": "web-framework"
+    },
+    {
+        "head": "bun",
+        "tail": "npm"
+    },
+    {
+        "head": "bun",
+        "tail": "aws-lambda"
+    },
+    {
+        "head": "bun",
+        "tail": "cloudflare"
+    },
+    {
+        "head": "bun",
+        "tail": "typescript"
+    },
+    {
+        "head": "bun",
+        "tail": "deno"
+    },
+    {
+        "head": "bun",
+        "tail": "web"
+    },
+    {
+        "head": "bun",
+        "tail": "framework"
+    },
+    {
+        "head": "cloudflare-workers",
+        "tail": "web-framework"
+    },
+    {
+        "head": "cloudflare-workers",
+        "tail": "npm"
+    },
+    {
+        "head": "cloudflare-workers",
+        "tail": "aws-lambda"
+    },
+    {
+        "head": "cloudflare-workers",
+        "tail": "cloudflare"
+    },
+    {
+        "head": "cloudflare-workers",
+        "tail": "deno"
+    },
+    {
+        "head": "cloudflare-workers",
+        "tail": "framework"
+    },
+    {
+        "head": "web-framework",
+        "tail": "npm"
+    },
+    {
+        "head": "web-framework",
+        "tail": "aws-lambda"
+    },
+    {
+        "head": "web-framework",
+        "tail": "cloudflare"
+    },
+    {
+        "head": "web-framework",
+        "tail": "typescript"
+    },
+    {
+        "head": "web-framework",
+        "tail": "deno"
+    },
+    {
+        "head": "web-framework",
+        "tail": "web"
+    },
+    {
+        "head": "web-framework",
+        "tail": "framework"
+    },
+    {
+        "head": "npm",
+        "tail": "aws-lambda"
+    },
+    {
+        "head": "npm",
+        "tail": "cloudflare"
+    },
+    {
+        "head": "npm",
+        "tail": "typescript"
+    },
+    {
+        "head": "npm",
+        "tail": "deno"
+    },
+    {
+        "head": "npm",
+        "tail": "web"
+    },
+    {
+        "head": "npm",
+        "tail": "framework"
+    },
+    {
+        "head": "aws-lambda",
+        "tail": "cloudflare"
+    },
+    {
+        "head": "aws-lambda",
+        "tail": "typescript"
+    },
+    {
+        "head": "aws-lambda",
+        "tail": "deno"
+    },
+    {
+        "head": "aws-lambda",
+        "tail": "web"
+    },
+    {
+        "head": "aws-lambda",
+        "tail": "framework"
+    },
+    {
+        "head": "cloudflare",
+        "tail": "typescript"
+    },
+    {
+        "head": "cloudflare",
+        "tail": "deno"
+    },
+    {
+        "head": "cloudflare",
+        "tail": "web"
+    },
+    {
+        "head": "cloudflare",
+        "tail": "framework"
+    },
+    {
+        "head": "typescript",
+        "tail": "deno"
+    },
+    {
+        "head": "deno",
+        "tail": "web"
+    },
+    {
+        "head": "deno",
+        "tail": "framework"
+    },
+    {
+        "head": "etl",
+        "tail": "connect"
+    },
+    {
+        "head": "golang",
+        "tail": "connect"
+    },
+    {
+        "head": "data-ops",
+        "tail": "connect"
+    },
+    {
+        "head": "cqrs",
+        "tail": "connect"
+    },
+    {
+        "head": "amqp",
+        "tail": "connect"
+    },
+    {
+        "head": "message-queue",
+        "tail": "connect"
+    },
+    {
+        "head": "nats",
+        "tail": "connect"
+    },
+    {
+        "head": "rabbitmq",
+        "tail": "connect"
+    },
+    {
+        "head": "message-bus",
+        "tail": "connect"
+    },
+    {
+        "head": "go",
+        "tail": "connect"
+    },
+    {
+        "head": "event-sourcing",
+        "tail": "connect"
+    },
+    {
+        "head": "kafka",
+        "tail": "connect"
+    },
+    {
+        "head": "stream-processor",
+        "tail": "connect"
+    },
+    {
+        "head": "streaming-data",
+        "tail": "connect"
+    },
+    {
+        "head": "stream-processing",
+        "tail": "connect"
+    },
+    {
+        "head": "logs",
+        "tail": "connect"
+    },
+    {
+        "head": "data-engineering",
+        "tail": "connect"
+    },
+    {
+        "head": "connect",
+        "tail": "stream"
+    },
+    {
+        "head": "connect",
+        "tail": "processing"
+    },
+    {
+        "head": "python",
+        "tail": "adapter modules finetuning"
+    },
+    {
+        "head": "finetuning",
+        "tail": "models"
+    },
+    {
+        "head": "finetuning",
+        "tail": "adapter modules finetuning"
+    },
+    {
+        "head": "models",
+        "tail": "adapter modules finetuning"
+    },
+    {
+        "head": "open-source",
+        "tail": "vision-language"
+    },
+    {
+        "head": "open-source",
+        "tail": "model"
+    },
+    {
+        "head": "vision-language",
+        "tail": "model"
+    },
+    {
+        "head": "diffusion",
+        "tail": "anime"
+    },
+    {
+        "head": "diffusion",
+        "tail": "model"
+    },
+    {
+        "head": "anime",
+        "tail": "model"
+    },
+    {
+        "head": "anime",
+        "tail": "jax"
+    },
+    {
+        "head": "model",
+        "tail": "jax"
+    },
+    {
+        "head": "gym",
+        "tail": "bot"
+    },
+    {
+        "head": "robotics",
+        "tail": "bot"
+    },
+    {
+        "head": "efficientnet",
+        "tail": "efficiency"
+    },
+    {
+        "head": "efficientnet",
+        "tail": "efficient-inference"
+    },
+    {
+        "head": "efficiency",
+        "tail": "efficient-inference"
+    },
+    {
+        "head": "python",
+        "tail": "boost"
+    },
+    {
+        "head": "python",
+        "tail": "discussed with ns"
+    },
+    {
+        "head": "boost",
+        "tail": "robotics"
+    },
+    {
+        "head": "boost",
+        "tail": "discussed with ns"
+    },
+    {
+        "head": "robotics",
+        "tail": "discussed with ns"
+    },
+    {
+        "head": "utility",
+        "tail": "macos-app"
+    },
+    {
+        "head": "utility",
+        "tail": "menubar"
+    },
+    {
+        "head": "utility",
+        "tail": "status-bar"
+    },
+    {
+        "head": "utility",
+        "tail": "menu-bar"
+    },
+    {
+        "head": "utility",
+        "tail": "swiftui"
+    },
+    {
+        "head": "utility",
+        "tail": "manager"
+    },
+    {
+        "head": "macos",
+        "tail": "macos-app"
+    },
+    {
+        "head": "macos",
+        "tail": "status-bar"
+    },
+    {
+        "head": "macos",
+        "tail": "menu-bar"
+    },
+    {
+        "head": "macos",
+        "tail": "swiftui"
+    },
+    {
+        "head": "statusbar",
+        "tail": "macos-app"
+    },
+    {
+        "head": "statusbar",
+        "tail": "menubar"
+    },
+    {
+        "head": "statusbar",
+        "tail": "status-bar"
+    },
+    {
+        "head": "statusbar",
+        "tail": "menu-bar"
+    },
+    {
+        "head": "statusbar",
+        "tail": "swiftui"
+    },
+    {
+        "head": "statusbar",
+        "tail": "manager"
+    },
+    {
+        "head": "macos-app",
+        "tail": "menubar"
+    },
+    {
+        "head": "macos-app",
+        "tail": "status-bar"
+    },
+    {
+        "head": "macos-app",
+        "tail": "menu-bar"
+    },
+    {
+        "head": "macos-app",
+        "tail": "swift"
+    },
+    {
+        "head": "macos-app",
+        "tail": "swiftui"
+    },
+    {
+        "head": "macos-app",
+        "tail": "manager"
+    },
+    {
+        "head": "menubar",
+        "tail": "status-bar"
+    },
+    {
+        "head": "menubar",
+        "tail": "menu-bar"
+    },
+    {
+        "head": "menubar",
+        "tail": "swiftui"
+    },
+    {
+        "head": "menubar",
+        "tail": "manager"
+    },
+    {
+        "head": "status-bar",
+        "tail": "menu-bar"
+    },
+    {
+        "head": "status-bar",
+        "tail": "swift"
+    },
+    {
+        "head": "status-bar",
+        "tail": "swiftui"
+    },
+    {
+        "head": "status-bar",
+        "tail": "manager"
+    },
+    {
+        "head": "menu-bar",
+        "tail": "swift"
+    },
+    {
+        "head": "menu-bar",
+        "tail": "swiftui"
+    },
+    {
+        "head": "menu-bar",
+        "tail": "manager"
+    },
+    {
+        "head": "swiftui",
+        "tail": "manager"
+    },
+    {
+        "head": "secrets-detection",
+        "tail": "entropy"
+    },
+    {
+        "head": "secrets-detection",
+        "tail": "go"
+    },
+    {
+        "head": "secrets-detection",
+        "tail": "cli"
+    },
+    {
+        "head": "secrets-detection",
+        "tail": "tool"
+    },
+    {
+        "head": "secrets-detection",
+        "tail": "codebase"
+    },
+    {
+        "head": "entropy",
+        "tail": "go"
+    },
+    {
+        "head": "entropy",
+        "tail": "cli"
+    },
+    {
+        "head": "entropy",
+        "tail": "tool"
+    },
+    {
+        "head": "entropy",
+        "tail": "codebase"
+    },
+    {
+        "head": "go",
+        "tail": "codebase"
+    },
+    {
+        "head": "cli",
+        "tail": "codebase"
+    },
+    {
+        "head": "mujoco",
+        "tail": "code"
+    },
+    {
+        "head": "simulation",
+        "tail": "code"
+    },
+    {
+        "head": "fast transformer",
+        "tail": "llm"
+    },
+    {
+        "head": "fast transformer",
+        "tail": "optimization llm"
+    },
+    {
+        "head": "llm",
+        "tail": "optimization llm"
+    },
+    {
+        "head": "caching",
+        "tail": "character ai"
+    },
+    {
+        "head": "caching",
+        "tail": "inference"
+    },
+    {
+        "head": "caching",
+        "tail": "llm"
+    },
+    {
+        "head": "caching",
+        "tail": "quantization"
+    },
+    {
+        "head": "caching",
+        "tail": "ai"
+    },
+    {
+        "head": "caching",
+        "tail": "future"
+    },
+    {
+        "head": "caching",
+        "tail": "language models"
+    },
+    {
+        "head": "caching",
+        "tail": "productivity"
+    },
+    {
+        "head": "caching",
+        "tail": "education"
+    },
+    {
+        "head": "character ai",
+        "tail": "inference"
+    },
+    {
+        "head": "character ai",
+        "tail": "llm"
+    },
+    {
+        "head": "character ai",
+        "tail": "quantization"
+    },
+    {
+        "head": "character ai",
+        "tail": "ai"
+    },
+    {
+        "head": "character ai",
+        "tail": "future"
+    },
+    {
+        "head": "character ai",
+        "tail": "language models"
+    },
+    {
+        "head": "character ai",
+        "tail": "productivity"
+    },
+    {
+        "head": "character ai",
+        "tail": "education"
+    },
+    {
+        "head": "inference",
+        "tail": "future"
+    },
+    {
+        "head": "inference",
+        "tail": "language models"
+    },
+    {
+        "head": "inference",
+        "tail": "productivity"
+    },
+    {
+        "head": "inference",
+        "tail": "education"
+    },
+    {
+        "head": "llm",
+        "tail": "quantization"
+    },
+    {
+        "head": "llm",
+        "tail": "future"
+    },
+    {
+        "head": "llm",
+        "tail": "productivity"
+    },
+    {
+        "head": "llm",
+        "tail": "education"
+    },
+    {
+        "head": "quantization",
+        "tail": "ai"
+    },
+    {
+        "head": "quantization",
+        "tail": "future"
+    },
+    {
+        "head": "quantization",
+        "tail": "language models"
+    },
+    {
+        "head": "quantization",
+        "tail": "productivity"
+    },
+    {
+        "head": "quantization",
+        "tail": "education"
+    },
+    {
+        "head": "ai",
+        "tail": "future"
+    },
+    {
+        "head": "ai",
+        "tail": "education"
+    },
+    {
+        "head": "future",
+        "tail": "language models"
+    },
+    {
+        "head": "future",
+        "tail": "productivity"
+    },
+    {
+        "head": "future",
+        "tail": "education"
+    },
+    {
+        "head": "language models",
+        "tail": "productivity"
+    },
+    {
+        "head": "language models",
+        "tail": "education"
+    },
+    {
+        "head": "productivity",
+        "tail": "education"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "florence-2"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "vision"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "model"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "text"
+    },
+    {
+        "head": "florence-2",
+        "tail": "vision"
+    },
+    {
+        "head": "florence-2",
+        "tail": "model"
+    },
+    {
+        "head": "florence-2",
+        "tail": "text"
+    },
+    {
+        "head": "vision",
+        "tail": "model"
+    },
+    {
+        "head": "vision",
+        "tail": "text"
+    },
+    {
+        "head": "model",
+        "tail": "text"
+    },
+    {
+        "head": "florence-2-large",
+        "tail": "notebook"
+    },
+    {
+        "head": "florence-2-large",
+        "tail": "segmentation"
+    },
+    {
+        "head": "florence-2-large",
+        "tail": "google"
+    },
+    {
+        "head": "florence-2-large",
+        "tail": "colab"
+    },
+    {
+        "head": "notebook",
+        "tail": "segmentation"
+    },
+    {
+        "head": "notebook",
+        "tail": "google"
+    },
+    {
+        "head": "segmentation",
+        "tail": "google"
+    },
+    {
+        "head": "segmentation",
+        "tail": "colab"
+    },
+    {
+        "head": "google",
+        "tail": "colab"
+    },
+    {
+        "head": "data",
+        "tail": "msmarco"
+    },
+    {
+        "head": "data",
+        "tail": "sentence-transformers"
+    },
+    {
+        "head": "data",
+        "tail": "training data"
+    },
+    {
+        "head": "data",
+        "tail": "embedding"
+    },
+    {
+        "head": "data",
+        "tail": "training-data"
+    },
+    {
+        "head": "data",
+        "tail": "datasets"
+    },
+    {
+        "head": "dataset",
+        "tail": "fine-tuning"
+    },
+    {
+        "head": "dataset",
+        "tail": "msmarco"
+    },
+    {
+        "head": "dataset",
+        "tail": "training data"
+    },
+    {
+        "head": "dataset",
+        "tail": "embedding"
+    },
+    {
+        "head": "dataset",
+        "tail": "training-data"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "msmarco"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "sentence-transformers"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "training data"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "embedding"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "training-data"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "datasets"
+    },
+    {
+        "head": "msmarco",
+        "tail": "sentence-transformers"
+    },
+    {
+        "head": "msmarco",
+        "tail": "training data"
+    },
+    {
+        "head": "msmarco",
+        "tail": "embedding"
+    },
+    {
+        "head": "msmarco",
+        "tail": "training-data"
+    },
+    {
+        "head": "msmarco",
+        "tail": "datasets"
+    },
+    {
+        "head": "sentence-transformers",
+        "tail": "training data"
+    },
+    {
+        "head": "sentence-transformers",
+        "tail": "embedding"
+    },
+    {
+        "head": "sentence-transformers",
+        "tail": "training-data"
+    },
+    {
+        "head": "sentence-transformers",
+        "tail": "datasets"
+    },
+    {
+        "head": "training data",
+        "tail": "embedding"
+    },
+    {
+        "head": "training data",
+        "tail": "training-data"
+    },
+    {
+        "head": "training data",
+        "tail": "datasets"
+    },
+    {
+        "head": "embedding",
+        "tail": "training-data"
+    },
+    {
+        "head": "embedding",
+        "tail": "datasets"
+    },
+    {
+        "head": "training-data",
+        "tail": "datasets"
+    },
+    {
+        "head": "autoregressive",
+        "tail": "diffusion"
+    },
+    {
+        "head": "autoregressive",
+        "tail": "llm"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "kg"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "knowledge graph"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "tabular learning"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "tables"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "tree"
+    },
+    {
+        "head": "kg",
+        "tail": "knowledge graph"
+    },
+    {
+        "head": "kg",
+        "tail": "tabular learning"
+    },
+    {
+        "head": "kg",
+        "tail": "data"
+    },
+    {
+        "head": "kg",
+        "tail": "models"
+    },
+    {
+        "head": "kg",
+        "tail": "tables"
+    },
+    {
+        "head": "kg",
+        "tail": "tree"
+    },
+    {
+        "head": "knowledge graph",
+        "tail": "llm"
+    },
+    {
+        "head": "knowledge graph",
+        "tail": "tabular learning"
+    },
+    {
+        "head": "knowledge graph",
+        "tail": "data"
+    },
+    {
+        "head": "knowledge graph",
+        "tail": "models"
+    },
+    {
+        "head": "knowledge graph",
+        "tail": "tables"
+    },
+    {
+        "head": "knowledge graph",
+        "tail": "tree"
+    },
+    {
+        "head": "llm",
+        "tail": "tabular learning"
+    },
+    {
+        "head": "llm",
+        "tail": "data"
+    },
+    {
+        "head": "llm",
+        "tail": "models"
+    },
+    {
+        "head": "llm",
+        "tail": "tables"
+    },
+    {
+        "head": "llm",
+        "tail": "tree"
+    },
+    {
+        "head": "tabular learning",
+        "tail": "data"
+    },
+    {
+        "head": "tabular learning",
+        "tail": "models"
+    },
+    {
+        "head": "tabular learning",
+        "tail": "tables"
+    },
+    {
+        "head": "tabular learning",
+        "tail": "tree"
+    },
+    {
+        "head": "data",
+        "tail": "tree"
+    },
+    {
+        "head": "models",
+        "tail": "tables"
+    },
+    {
+        "head": "tables",
+        "tail": "tree"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "computer science - machine learning"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "ddm"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "diffusion"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "models"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "training"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "probabilistic"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "ddm"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "diffusion"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "probabilistic"
+    },
+    {
+        "head": "ddm",
+        "tail": "diffusion"
+    },
+    {
+        "head": "ddm",
+        "tail": "models"
+    },
+    {
+        "head": "ddm",
+        "tail": "training"
+    },
+    {
+        "head": "ddm",
+        "tail": "probabilistic"
+    },
+    {
+        "head": "diffusion",
+        "tail": "training"
+    },
+    {
+        "head": "diffusion",
+        "tail": "probabilistic"
+    },
+    {
+        "head": "models",
+        "tail": "training"
+    },
+    {
+        "head": "models",
+        "tail": "probabilistic"
+    },
+    {
+        "head": "training",
+        "tail": "probabilistic"
     }
 ]
