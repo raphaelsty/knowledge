@@ -1,22 +1,14 @@
 FROM python:3.10
 
 # Install dependencies
-RUN apt-get update && apt-get install -y git git-lfs
-
-# Set up Git LFS
-RUN git lfs install
-
-# Clone the repository
-RUN git clone https://github.com/raphaelsty/knowledge /knowledge
-
-# Ensure LFS files are pulled
-WORKDIR /knowledge
-RUN git lfs pull
+RUN apt-get update && apt-get install -y git git-lfs && git lfs install
 
 WORKDIR /code
 
+RUN git lfs pull
+
 # Copy the necessary files
-COPY knowledge/database/pipeline.pkl /code/pipeline.pkl
+COPY database/pipeline.pkl /code/pipeline.pkl
 COPY requirements.txt /code/requirements.txt
 COPY setup.py /code/setup.py
 COPY knowledge_database /code/knowledge_database
