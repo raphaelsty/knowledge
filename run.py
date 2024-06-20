@@ -107,40 +107,38 @@ if sources["semanlink"]:
 else:
     print("Semanlink disabled.")
 
-if len(data) > 0:
-    print(f"Found {len(data)} new documents.")
 
-    # Sanity check.
-    for url, document in data.items():
-        for field in ["title", "tags", "summary", "date"]:
-            if document.get(field, None) is None:
-                document[field] = ""
+# Sanity check.
+for url, document in data.items():
+    for field in ["title", "tags", "summary", "date"]:
+        if document.get(field, None) is None:
+            document[field] = ""
 
-    print("Adding extra tags.")
-    data = tags.get_extra_tags(data=data)
+print("Adding extra tags.")
+data = tags.get_extra_tags(data=data)
 
-    print("Saving database.")
-    with open("database/database.json", "w") as f:
-        json.dump(data, f, indent=4)
+print("Saving database.")
+with open("database/database.json", "w") as f:
+    json.dump(data, f, indent=4)
 
-    excluded_tags = {
-        "twitter": True,
-        "github": True,
-        "semanlink": True,
-        "hackernews": True,
-        "arxiv doc": True,
-    }
+excluded_tags = {
+    "twitter": True,
+    "github": True,
+    "semanlink": True,
+    "hackernews": True,
+    "arxiv doc": True,
+}
 
-    print("Exporting tree of tags.")
-    triples = tags.get_tags_triples(data=data, excluded_tags=excluded_tags)
-    with open("database/triples.json", "w") as f:
-        json.dump(triples, f, indent=4)
+print("Exporting tree of tags.")
+triples = tags.get_tags_triples(data=data, excluded_tags=excluded_tags)
+with open("database/triples.json", "w") as f:
+    json.dump(triples, f, indent=4)
 
-    print("Serializing pipeline.")
-    knowledge_pipeline = pipeline.Pipeline(
-        documents=data,
-        triples=triples,
-        excluded_tags=excluded_tags,
-    )
-    with open("database/pipeline.pkl", "wb") as f:
-        pickle.dump(knowledge_pipeline, f)
+print("Serializing pipeline.")
+knowledge_pipeline = pipeline.Pipeline(
+    documents=data,
+    triples=triples,
+    excluded_tags=excluded_tags,
+)
+with open("database/pipeline.pkl", "wb") as f:
+    pickle.dump(knowledge_pipeline, f)
