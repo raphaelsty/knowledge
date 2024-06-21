@@ -1,13 +1,10 @@
 FROM python:3.10
 
-# Install dependencies
-RUN apt-get update && apt-get install -y git git-lfs && git lfs install
-
 # Clone the repository
 WORKDIR /code
 
 # Copy the necessary files (you may skip this if already in the repository)
-COPY database/pipeline.pkl /code/pipeline.pkl
+COPY database/pipeline.pkl /code/database/pipeline.pkl
 COPY requirements.txt /code/requirements.txt
 COPY setup.py /code/setup.py
 COPY knowledge_database /code/knowledge_database
