@@ -82,7 +82,7 @@ async def async_chat(query: str, content: str):
             },
             {
                 "role": "user",
-                "content": f"Hi, among the set of documents retrieved, which documents are related to my query: {query}, set of documents: {content}.",
+                "content": f"Hi, answer in comprehensible english, do not reply with json, among the set of documents retrieved, which documents are related to my query: {query}, set of documents: {content}.",
             },
         ],
         max_tokens=200,
