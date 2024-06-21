@@ -82,36 +82,24 @@ async def async_chat(query: str, content: str):
             },
             {
                 "role": "user",
-                "content": f"Hi, among the set of documents retrieved, which documents are related to my query: {query}, set of documents: {content}",
+                "content": f"Hi, among the set of documents retrieved, which documents are related to my query: {query}, set of documents: {content}.",
             },
         ],
-        max_tokens=500,
+        max_tokens=200,
         stream=True,
     )
 
     answer = ""
-    for token in response:
-        token = token["choices"][0]["delta"]
-        if "content" in token:
-            answer += token["content"]
+    for chunk in response:
+        if chunk.choices[0].finish_reason == "stop":
+            break
 
-            while "\n\n" in answer:
-                answer = answer.replace("\n\n", "\n")
+        token = chunk.choices[0].delta.content
+        if token is None:
+            break
 
-            for replacement in [
-                ("1. ", "\n1. "),
-                ("2. ", "\n2. "),
-                ("3. ", "\n3. "),
-                ("Title:", ""),
-                ("Summary:", ""),
-                ("Tags:", ""),
-                ("URL:", ""),
-                ("Description:", ""),
-                ("  ", " "),
-            ]:
-                answer = answer.replace(*replacement)
-
-            yield answer.strip()
+        answer += token
+        yield answer.strip()
 
 
 @app.get("/search/{sort}/{tags}/{k_tags}/{q}")
