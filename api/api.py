@@ -2,10 +2,10 @@ import datetime
 import pickle
 import typing
 
-import openai
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import ORJSONResponse, StreamingResponse
+from openai import OpenAI
 
 app = FastAPI(
     description="Personnal knowledge graph.",
@@ -69,7 +69,9 @@ knowledge = Knowledge()
 
 async def async_chat(query: str, content: str):
     """Re-rank the documents using ChatGPT."""
-    response = await openai.ChatCompletion.acreate(
+    client = OpenAI()
+
+    response = client.chat.completions.create(
         model="gpt-4-turbo",
         messages=[
             {
@@ -88,7 +90,7 @@ async def async_chat(query: str, content: str):
     )
 
     answer = ""
-    async for token in response:
+    for token in response:
         token = token["choices"][0]["delta"]
         if "content" in token:
             answer += token["content"]
