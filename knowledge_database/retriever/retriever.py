@@ -51,18 +51,19 @@ class Retriever:
             retrieve.TfIdf(
                 key="url",
                 on=["title", "tags", "summary", "date"],
-                k=25,
+                k=30,
                 tfidf=sparse.BM25Vectorizer(
                     normalize=True,
                     ngram_range=(4, 7),
-                    analyzer="char",
+                    analyzer="char_wb",
+                    b=0,
                 ),
                 documents=updated_documents,
             )
             | retrieve.TfIdf(
                 key="url",
                 on=["title", "tags", "summary", "date"],
-                k=5,
+                k=10,
                 tfidf=sparse.BM25Vectorizer(
                     normalize=True,
                     ngram_range=(2, 5),
@@ -77,7 +78,7 @@ class Retriever:
             retrieve.TfIdf(
                 key="url",
                 on=["title", "tags", "summary", "date"],
-                k=25,
+                k=40,
                 tfidf=sparse.BM25Vectorizer(
                     normalize=True,
                     ngram_range=(4, 7),
@@ -88,7 +89,7 @@ class Retriever:
             & retrieve.TfIdf(
                 key="url",
                 on=["tags"],
-                k=30,
+                k=40,
                 tfidf=sparse.BM25Vectorizer(
                     normalize=True,
                     ngram_range=(4, 7),
