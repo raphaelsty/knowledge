@@ -38340,5 +38340,18 @@
             "ddm",
             "diffusion"
         ]
+    },
+    "https://github.com/RuneBlaze/smallperm": {
+        "extra-tags": [
+            "time",
+            "ml",
+            "training"
+        ],
+        "date": "2024-06-12",
+        "title": "smallperm",
+        "summary": "Shuffled version of array in extra O(1) space, and O(1) time lookup, useful for ML training",
+        "tags": [
+            "rust"
+        ]
     }
 }
