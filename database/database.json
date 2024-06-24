@@ -38353,5 +38353,24 @@
         "tags": [
             "rust"
         ]
+    },
+    "https://github.com/ing-bank/sparse_dot_topn": {
+        "extra-tags": [
+            "python",
+            "package",
+            "accelerate",
+            "sparse",
+            "similarity"
+        ],
+        "date": "2017-08-01",
+        "title": "sparse_dot_topn",
+        "summary": "Python package to accelerate the sparse matrix multiplication and top-n similarity selection",
+        "tags": [
+            "cython",
+            "c++",
+            "cosine-similarity",
+            "scipy",
+            "sparse-matrix"
+        ]
     }
 }
