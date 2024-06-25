@@ -175398,5 +175398,25 @@
     {
         "head": "sparse",
         "tail": "similarity"
+    },
+    {
+        "head": "easy-to-use",
+        "tail": "library"
+    },
+    {
+        "head": "easy-to-use",
+        "tail": "diffusion"
+    },
+    {
+        "head": "easy-to-use",
+        "tail": "models"
+    },
+    {
+        "head": "library",
+        "tail": "diffusion"
+    },
+    {
+        "head": "library",
+        "tail": "models"
     }
 ]

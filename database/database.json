@@ -38372,5 +38372,19 @@
             "scipy",
             "sparse-matrix"
         ]
+    },
+    "https://github.com/CleanDiffuserTeam/CleanDiffuser": {
+        "extra-tags": [
+            "easy-to-use",
+            "library",
+            "diffusion",
+            "models"
+        ],
+        "date": "2024-06-05",
+        "title": "CleanDiffuser",
+        "summary": "CleanDiffuser: An Easy-to-use Modularized Library for Diffusion Models in Decision Making",
+        "tags": [
+            "python"
+        ]
     }
 }
