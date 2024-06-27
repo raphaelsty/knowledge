@@ -38386,5 +38386,23 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/zou-group/textgrad": {
+        "extra-tags": [
+            "automatic",
+            "text",
+            "language models",
+            "textual"
+        ],
+        "date": "2024-06-11",
+        "title": "textgrad",
+        "summary": "Automatic ''Differentiation'' via Text -- using large language models to backpropagate textual gradients.",
+        "tags": [
+            "python",
+            "large-language-models",
+            "textual-gradients",
+            "prompt-optimization",
+            "compound-systems"
+        ]
     }
 }

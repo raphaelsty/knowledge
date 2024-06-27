@@ -175418,5 +175418,129 @@
     {
         "head": "library",
         "tail": "models"
+    },
+    {
+        "head": "python",
+        "tail": "textual-gradients"
+    },
+    {
+        "head": "python",
+        "tail": "prompt-optimization"
+    },
+    {
+        "head": "python",
+        "tail": "compound-systems"
+    },
+    {
+        "head": "python",
+        "tail": "textual"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "textual-gradients"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "prompt-optimization"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "compound-systems"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "automatic"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "text"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "textual"
+    },
+    {
+        "head": "textual-gradients",
+        "tail": "prompt-optimization"
+    },
+    {
+        "head": "textual-gradients",
+        "tail": "compound-systems"
+    },
+    {
+        "head": "textual-gradients",
+        "tail": "automatic"
+    },
+    {
+        "head": "textual-gradients",
+        "tail": "text"
+    },
+    {
+        "head": "textual-gradients",
+        "tail": "language models"
+    },
+    {
+        "head": "textual-gradients",
+        "tail": "textual"
+    },
+    {
+        "head": "prompt-optimization",
+        "tail": "compound-systems"
+    },
+    {
+        "head": "prompt-optimization",
+        "tail": "automatic"
+    },
+    {
+        "head": "prompt-optimization",
+        "tail": "text"
+    },
+    {
+        "head": "prompt-optimization",
+        "tail": "language models"
+    },
+    {
+        "head": "prompt-optimization",
+        "tail": "textual"
+    },
+    {
+        "head": "compound-systems",
+        "tail": "automatic"
+    },
+    {
+        "head": "compound-systems",
+        "tail": "text"
+    },
+    {
+        "head": "compound-systems",
+        "tail": "language models"
+    },
+    {
+        "head": "compound-systems",
+        "tail": "textual"
+    },
+    {
+        "head": "automatic",
+        "tail": "text"
+    },
+    {
+        "head": "automatic",
+        "tail": "language models"
+    },
+    {
+        "head": "automatic",
+        "tail": "textual"
+    },
+    {
+        "head": "text",
+        "tail": "language models"
+    },
+    {
+        "head": "text",
+        "tail": "textual"
+    },
+    {
+        "head": "language models",
+        "tail": "textual"
     }
 ]
