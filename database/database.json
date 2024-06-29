@@ -38404,5 +38404,22 @@
             "prompt-optimization",
             "compound-systems"
         ]
+    },
+    "http://arxiv.org/abs/2405.17247": {
+        "extra-tags": [
+            "language",
+            "vision-language",
+            "visual",
+            "models",
+            "language models"
+        ],
+        "title": "An Introduction to Vision-Language Modeling",
+        "summary": "Following the recent popularity of Large Language Models (LLMs), several attempts have been made to extend them to the visual domain. From having a visual assistant that could guide us through unfamiliar environments to generative models that produce images using only a high-level text description, the vision-language model (VLM) applications will significantly impact our relationship with technology. However, there are many challenges that need to be addressed to improve the reliability of those models. While language is discrete, vision evolves in a much higher dimensional space in which concepts cannot always be easily discretized. To better understand the mechanics behind mapping vision to language, we present this introduction to VLMs which we hope will help anyone who would like to enter the field. First, we introduce what VLMs are, how they work, and how to train them. Then, we present and discuss approaches to evaluate VLMs. Although this work primarily focuses on mapping images to language, we also discuss extending VLMs to videos.",
+        "date": "2024-06-28",
+        "tags": [
+            "computer science - machine learning",
+            "meta",
+            "review"
+        ]
     }
 }

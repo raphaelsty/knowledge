@@ -175542,5 +175542,109 @@
     {
         "head": "language models",
         "tail": "textual"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "meta"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "review"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "language"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "vision-language"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "visual"
+    },
+    {
+        "head": "meta",
+        "tail": "review"
+    },
+    {
+        "head": "meta",
+        "tail": "language"
+    },
+    {
+        "head": "meta",
+        "tail": "vision-language"
+    },
+    {
+        "head": "meta",
+        "tail": "visual"
+    },
+    {
+        "head": "meta",
+        "tail": "models"
+    },
+    {
+        "head": "meta",
+        "tail": "language models"
+    },
+    {
+        "head": "review",
+        "tail": "language"
+    },
+    {
+        "head": "review",
+        "tail": "vision-language"
+    },
+    {
+        "head": "review",
+        "tail": "visual"
+    },
+    {
+        "head": "review",
+        "tail": "models"
+    },
+    {
+        "head": "review",
+        "tail": "language models"
+    },
+    {
+        "head": "language",
+        "tail": "vision-language"
+    },
+    {
+        "head": "language",
+        "tail": "visual"
+    },
+    {
+        "head": "language",
+        "tail": "models"
+    },
+    {
+        "head": "language",
+        "tail": "language models"
+    },
+    {
+        "head": "vision-language",
+        "tail": "visual"
+    },
+    {
+        "head": "vision-language",
+        "tail": "models"
+    },
+    {
+        "head": "vision-language",
+        "tail": "language models"
+    },
+    {
+        "head": "visual",
+        "tail": "models"
+    },
+    {
+        "head": "visual",
+        "tail": "language models"
+    },
+    {
+        "head": "models",
+        "tail": "language models"
     }
 ]
