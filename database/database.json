@@ -38421,5 +38421,35 @@
             "meta",
             "review"
         ]
+    },
+    "https://github.com/pytorch/torchtune": {
+        "extra-tags": [
+            "pytorch",
+            "library",
+            "llm",
+            "fine-tuning"
+        ],
+        "date": "2023-10-20",
+        "title": "torchtune",
+        "summary": "A Native-PyTorch Library for LLM Fine-tuning",
+        "tags": [
+            "python"
+        ]
+    },
+    "http://arxiv.org/abs/2309.03409": {
+        "extra-tags": [
+            "optimization",
+            "language models",
+            "llms",
+            "task"
+        ],
+        "title": "Large Language Models as Optimizers",
+        "summary": "Optimization is ubiquitous. While derivative-based algorithms have been powerful tools for various problems, the absence of gradient imposes challenges on many real-world applications. In this work, we propose Optimization by PROmpting (OPRO), a simple and effective approach to leverage large language models (LLMs) as optimizers, where the optimization task is described in natural language. In each optimization step, the LLM generates new solutions from the prompt that contains previously generated solutions with their values, then the new solutions are evaluated and added to the prompt for the next optimization step. We first showcase OPRO on linear regression and traveling salesman problems, then move on to our main application in prompt optimization, where the goal is to find instructions that maximize the task accuracy. With a variety of LLMs, we demonstrate that the best prompts optimized by OPRO outperform human-designed prompts by up to 8% on GSM8K, and by up to 50% on Big-Bench Hard tasks. Code at https://github.com/google-deepmind/opro.",
+        "date": "2024-07-01",
+        "tags": [
+            "computer science - artificial intelligence",
+            "computer science - computation and language",
+            "computer science - machine learning"
+        ]
     }
 }
