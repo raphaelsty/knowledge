@@ -38465,5 +38465,18 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/bitsandbytes-foundation/bitsandbytes": {
+        "extra-tags": [
+            "language models",
+            "quantization",
+            "pytorch"
+        ],
+        "date": "2021-06-04",
+        "title": "bitsandbytes",
+        "summary": "Accessible large language models via k-bit quantization for PyTorch.",
+        "tags": [
+            "python"
+        ]
     }
 }
