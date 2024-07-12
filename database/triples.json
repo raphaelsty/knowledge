@@ -175694,5 +175694,205 @@
     {
         "head": "language models",
         "tail": "pytorch"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "named-entity-recognition"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "information-extraction"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "gliner"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "model"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "named entity recognition"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "extract"
+    },
+    {
+        "head": "named-entity-recognition",
+        "tail": "prompt-tuning"
+    },
+    {
+        "head": "named-entity-recognition",
+        "tail": "gliner"
+    },
+    {
+        "head": "named-entity-recognition",
+        "tail": "model"
+    },
+    {
+        "head": "named-entity-recognition",
+        "tail": "named entity recognition"
+    },
+    {
+        "head": "named-entity-recognition",
+        "tail": "extract"
+    },
+    {
+        "head": "natural-language-processing",
+        "tail": "information-extraction"
+    },
+    {
+        "head": "natural-language-processing",
+        "tail": "prompt-tuning"
+    },
+    {
+        "head": "natural-language-processing",
+        "tail": "gliner"
+    },
+    {
+        "head": "natural-language-processing",
+        "tail": "model"
+    },
+    {
+        "head": "natural-language-processing",
+        "tail": "named entity recognition"
+    },
+    {
+        "head": "natural-language-processing",
+        "tail": "extract"
+    },
+    {
+        "head": "information-extraction",
+        "tail": "prompt-tuning"
+    },
+    {
+        "head": "information-extraction",
+        "tail": "gliner"
+    },
+    {
+        "head": "information-extraction",
+        "tail": "model"
+    },
+    {
+        "head": "information-extraction",
+        "tail": "named entity recognition"
+    },
+    {
+        "head": "information-extraction",
+        "tail": "extract"
+    },
+    {
+        "head": "prompt-tuning",
+        "tail": "gliner"
+    },
+    {
+        "head": "prompt-tuning",
+        "tail": "model"
+    },
+    {
+        "head": "prompt-tuning",
+        "tail": "named entity recognition"
+    },
+    {
+        "head": "prompt-tuning",
+        "tail": "extract"
+    },
+    {
+        "head": "python",
+        "tail": "gliner"
+    },
+    {
+        "head": "python",
+        "tail": "named entity recognition"
+    },
+    {
+        "head": "gliner",
+        "tail": "model"
+    },
+    {
+        "head": "gliner",
+        "tail": "named entity recognition"
+    },
+    {
+        "head": "gliner",
+        "tail": "extract"
+    },
+    {
+        "head": "model",
+        "tail": "named entity recognition"
+    },
+    {
+        "head": "model",
+        "tail": "extract"
+    },
+    {
+        "head": "named entity recognition",
+        "tail": "extract"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "gliner"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "ner"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "named entity recognition"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "gliner"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "ner"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "named entity recognition"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "gliner"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "ner"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "named entity recognition"
+    },
+    {
+        "head": "gliner",
+        "tail": "ner"
+    },
+    {
+        "head": "gliner",
+        "tail": "llms"
+    },
+    {
+        "head": "ner",
+        "tail": "model"
+    },
+    {
+        "head": "ner",
+        "tail": "llms"
+    },
+    {
+        "head": "ner",
+        "tail": "named entity recognition"
+    },
+    {
+        "head": "model",
+        "tail": "llms"
+    },
+    {
+        "head": "llms",
+        "tail": "named entity recognition"
     }
 ]

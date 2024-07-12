@@ -38478,5 +38478,41 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/urchade/GLiNER": {
+        "extra-tags": [
+            "gliner",
+            "model",
+            "named entity recognition",
+            "extract"
+        ],
+        "date": "2023-11-14",
+        "title": "GLiNER",
+        "summary": "Generalist and Lightweight Model for Named Entity Recognition (Extract any entity types from texts) @ NAACL 2024",
+        "tags": [
+            "large-language-models",
+            "named-entity-recognition",
+            "natural-language-processing",
+            "information-extraction",
+            "prompt-tuning",
+            "python"
+        ]
+    },
+    "http://arxiv.org/abs/2311.08526": {
+        "extra-tags": [
+            "model",
+            "llms",
+            "named entity recognition"
+        ],
+        "title": "GLiNER: Generalist Model for Named Entity Recognition using Bidirectional Transformer",
+        "summary": "Named Entity Recognition (NER) is essential in various Natural Language Processing (NLP) applications. Traditional NER models are effective but limited to a set of predefined entity types. In contrast, Large Language Models (LLMs) can extract arbitrary entities through natural language instructions, offering greater flexibility. However, their size and cost, particularly for those accessed via APIs like ChatGPT, make them impractical in resource-limited scenarios. In this paper, we introduce a compact NER model trained to identify any type of entity. Leveraging a bidirectional transformer encoder, our model, GLiNER, facilitates parallel entity extraction, an advantage over the slow sequential token generation of LLMs. Through comprehensive testing, GLiNER demonstrate strong performance, outperforming both ChatGPT and fine-tuned LLMs in zero-shot evaluations on various NER benchmarks.",
+        "date": "2024-07-12",
+        "tags": [
+            "computer science - artificial intelligence",
+            "computer science - computation and language",
+            "computer science - machine learning",
+            "gliner",
+            "ner"
+        ]
     }
 }
