@@ -175894,5 +175894,101 @@
     {
         "head": "llms",
         "tail": "named entity recognition"
+    },
+    {
+        "head": "chart",
+        "tail": "information retrieval"
+    },
+    {
+        "head": "chart",
+        "tail": "table"
+    },
+    {
+        "head": "chart",
+        "tail": "retrieval"
+    },
+    {
+        "head": "chart",
+        "tail": "text"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "table"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "retrieval"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "text"
+    },
+    {
+        "head": "table",
+        "tail": "retrieval"
+    },
+    {
+        "head": "table",
+        "tail": "text"
+    },
+    {
+        "head": "retrieval",
+        "tail": "text"
+    },
+    {
+        "head": "dataset",
+        "tail": "ner"
+    },
+    {
+        "head": "dataset",
+        "tail": "pile ner"
+    },
+    {
+        "head": "dataset",
+        "tail": "source"
+    },
+    {
+        "head": "dataset",
+        "tail": "science"
+    },
+    {
+        "head": "ner",
+        "tail": "pile ner"
+    },
+    {
+        "head": "ner",
+        "tail": "datasets"
+    },
+    {
+        "head": "ner",
+        "tail": "source"
+    },
+    {
+        "head": "ner",
+        "tail": "science"
+    },
+    {
+        "head": "pile ner",
+        "tail": "datasets"
+    },
+    {
+        "head": "pile ner",
+        "tail": "source"
+    },
+    {
+        "head": "pile ner",
+        "tail": "science"
+    },
+    {
+        "head": "datasets",
+        "tail": "source"
+    },
+    {
+        "head": "datasets",
+        "tail": "science"
+    },
+    {
+        "head": "source",
+        "tail": "science"
     }
 ]
