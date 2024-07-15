@@ -38543,5 +38543,64 @@
             "ner",
             "pile ner"
         ]
+    },
+    "https://github.com/cmavro/GNN-RAG": {
+        "extra-tags": [
+            "gnn",
+            "rag",
+            "graph neural",
+            "retrieval",
+            "reasoning"
+        ],
+        "date": "2024-05-21",
+        "title": "GNN-RAG",
+        "summary": "GNN-RAG: Graph Neural Retrieval for Large Language Modeling Reasoning",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/qubvel-org/segmentation_models.pytorch": {
+        "extra-tags": [
+            "pretrained"
+        ],
+        "date": "2019-03-01",
+        "title": "segmentation_models.pytorch",
+        "summary": "Semantic segmentation models with 500+ pretrained convolutional and transformer-based backbones.",
+        "tags": [
+            "unetplusplus",
+            "segformer",
+            "transformers",
+            "image-processing",
+            "models",
+            "pretrained-models",
+            "semantic-segmentation",
+            "computer-vision",
+            "pspnet",
+            "segmentation-models",
+            "pytorch",
+            "imagenet",
+            "deeplab-v3-plus",
+            "pretrained-weights",
+            "python",
+            "deeplabv3",
+            "segmentation",
+            "unet",
+            "fpn",
+            "image-segmentation",
+            "unet-pytorch"
+        ]
+    },
+    "https://arxiv.org/pdf/2405.20139": {
+        "extra-tags": [],
+        "title": "",
+        "summary": "",
+        "date": "2024-07-14",
+        "tags": [
+            "gnn",
+            "graph",
+            "graph-rag",
+            "kg",
+            "rag"
+        ]
     }
 }

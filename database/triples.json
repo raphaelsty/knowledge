@@ -175990,5 +175990,329 @@
     {
         "head": "source",
         "tail": "science"
+    },
+    {
+        "head": "python",
+        "tail": "gnn"
+    },
+    {
+        "head": "python",
+        "tail": "reasoning"
+    },
+    {
+        "head": "gnn",
+        "tail": "rag"
+    },
+    {
+        "head": "gnn",
+        "tail": "graph neural"
+    },
+    {
+        "head": "gnn",
+        "tail": "retrieval"
+    },
+    {
+        "head": "gnn",
+        "tail": "reasoning"
+    },
+    {
+        "head": "rag",
+        "tail": "graph neural"
+    },
+    {
+        "head": "rag",
+        "tail": "reasoning"
+    },
+    {
+        "head": "graph neural",
+        "tail": "retrieval"
+    },
+    {
+        "head": "graph neural",
+        "tail": "reasoning"
+    },
+    {
+        "head": "retrieval",
+        "tail": "reasoning"
+    },
+    {
+        "head": "unetplusplus",
+        "tail": "segformer"
+    },
+    {
+        "head": "unetplusplus",
+        "tail": "transformers"
+    },
+    {
+        "head": "unetplusplus",
+        "tail": "computer-vision"
+    },
+    {
+        "head": "unetplusplus",
+        "tail": "pretrained"
+    },
+    {
+        "head": "segformer",
+        "tail": "transformers"
+    },
+    {
+        "head": "segformer",
+        "tail": "image-processing"
+    },
+    {
+        "head": "segformer",
+        "tail": "models"
+    },
+    {
+        "head": "segformer",
+        "tail": "pretrained-models"
+    },
+    {
+        "head": "segformer",
+        "tail": "semantic-segmentation"
+    },
+    {
+        "head": "segformer",
+        "tail": "computer-vision"
+    },
+    {
+        "head": "segformer",
+        "tail": "pspnet"
+    },
+    {
+        "head": "segformer",
+        "tail": "segmentation-models"
+    },
+    {
+        "head": "segformer",
+        "tail": "pytorch"
+    },
+    {
+        "head": "segformer",
+        "tail": "imagenet"
+    },
+    {
+        "head": "segformer",
+        "tail": "deeplab-v3-plus"
+    },
+    {
+        "head": "segformer",
+        "tail": "pretrained-weights"
+    },
+    {
+        "head": "segformer",
+        "tail": "python"
+    },
+    {
+        "head": "segformer",
+        "tail": "deeplabv3"
+    },
+    {
+        "head": "segformer",
+        "tail": "segmentation"
+    },
+    {
+        "head": "segformer",
+        "tail": "unet"
+    },
+    {
+        "head": "segformer",
+        "tail": "fpn"
+    },
+    {
+        "head": "segformer",
+        "tail": "image-segmentation"
+    },
+    {
+        "head": "segformer",
+        "tail": "unet-pytorch"
+    },
+    {
+        "head": "segformer",
+        "tail": "pretrained"
+    },
+    {
+        "head": "transformers",
+        "tail": "image-processing"
+    },
+    {
+        "head": "transformers",
+        "tail": "pretrained-models"
+    },
+    {
+        "head": "transformers",
+        "tail": "semantic-segmentation"
+    },
+    {
+        "head": "transformers",
+        "tail": "pspnet"
+    },
+    {
+        "head": "transformers",
+        "tail": "segmentation-models"
+    },
+    {
+        "head": "transformers",
+        "tail": "imagenet"
+    },
+    {
+        "head": "transformers",
+        "tail": "deeplab-v3-plus"
+    },
+    {
+        "head": "transformers",
+        "tail": "pretrained-weights"
+    },
+    {
+        "head": "transformers",
+        "tail": "deeplabv3"
+    },
+    {
+        "head": "transformers",
+        "tail": "segmentation"
+    },
+    {
+        "head": "transformers",
+        "tail": "unet"
+    },
+    {
+        "head": "transformers",
+        "tail": "fpn"
+    },
+    {
+        "head": "transformers",
+        "tail": "image-segmentation"
+    },
+    {
+        "head": "transformers",
+        "tail": "unet-pytorch"
+    },
+    {
+        "head": "transformers",
+        "tail": "pretrained"
+    },
+    {
+        "head": "image-processing",
+        "tail": "pretrained"
+    },
+    {
+        "head": "pretrained-models",
+        "tail": "computer-vision"
+    },
+    {
+        "head": "pretrained-models",
+        "tail": "pretrained"
+    },
+    {
+        "head": "semantic-segmentation",
+        "tail": "pretrained"
+    },
+    {
+        "head": "computer-vision",
+        "tail": "pspnet"
+    },
+    {
+        "head": "computer-vision",
+        "tail": "segmentation-models"
+    },
+    {
+        "head": "computer-vision",
+        "tail": "deeplab-v3-plus"
+    },
+    {
+        "head": "computer-vision",
+        "tail": "pretrained-weights"
+    },
+    {
+        "head": "computer-vision",
+        "tail": "deeplabv3"
+    },
+    {
+        "head": "computer-vision",
+        "tail": "unet"
+    },
+    {
+        "head": "computer-vision",
+        "tail": "fpn"
+    },
+    {
+        "head": "computer-vision",
+        "tail": "unet-pytorch"
+    },
+    {
+        "head": "computer-vision",
+        "tail": "pretrained"
+    },
+    {
+        "head": "pspnet",
+        "tail": "pretrained"
+    },
+    {
+        "head": "segmentation-models",
+        "tail": "pretrained"
+    },
+    {
+        "head": "deeplab-v3-plus",
+        "tail": "pretrained"
+    },
+    {
+        "head": "pretrained-weights",
+        "tail": "pretrained"
+    },
+    {
+        "head": "deeplabv3",
+        "tail": "pretrained"
+    },
+    {
+        "head": "segmentation",
+        "tail": "pretrained"
+    },
+    {
+        "head": "unet",
+        "tail": "pretrained"
+    },
+    {
+        "head": "fpn",
+        "tail": "pretrained"
+    },
+    {
+        "head": "image-segmentation",
+        "tail": "pretrained"
+    },
+    {
+        "head": "unet-pytorch",
+        "tail": "pretrained"
+    },
+    {
+        "head": "gnn",
+        "tail": "graph-rag"
+    },
+    {
+        "head": "gnn",
+        "tail": "kg"
+    },
+    {
+        "head": "graph",
+        "tail": "graph-rag"
+    },
+    {
+        "head": "graph",
+        "tail": "kg"
+    },
+    {
+        "head": "graph",
+        "tail": "rag"
+    },
+    {
+        "head": "graph-rag",
+        "tail": "kg"
+    },
+    {
+        "head": "graph-rag",
+        "tail": "rag"
+    },
+    {
+        "head": "kg",
+        "tail": "rag"
     }
 ]
