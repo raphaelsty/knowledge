@@ -38602,5 +38602,36 @@
             "kg",
             "rag"
         ]
+    },
+    "https://github.com/Unstructured-IO/unstructured-inference": {
+        "extra-tags": [
+            "inference",
+            "unstructured-data",
+            "structured-data"
+        ],
+        "date": "2022-12-20",
+        "title": "unstructured-inference",
+        "summary": "",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/illuin-tech/colpali": {
+        "extra-tags": [
+            "code",
+            "train",
+            "inference",
+            "architecture"
+        ],
+        "date": "2024-06-20",
+        "title": "colpali",
+        "summary": "The code used to train and run inference with the ColPali architecture.",
+        "tags": [
+            "colpali",
+            "retrieval-augmented-generation",
+            "vision-language-model",
+            "information-retrieval",
+            "python"
+        ]
     }
 }

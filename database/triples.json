@@ -176314,5 +176314,125 @@
     {
         "head": "kg",
         "tail": "rag"
+    },
+    {
+        "head": "inference",
+        "tail": "unstructured-data"
+    },
+    {
+        "head": "inference",
+        "tail": "structured-data"
+    },
+    {
+        "head": "colpali",
+        "tail": "retrieval-augmented-generation"
+    },
+    {
+        "head": "colpali",
+        "tail": "vision-language-model"
+    },
+    {
+        "head": "colpali",
+        "tail": "information-retrieval"
+    },
+    {
+        "head": "colpali",
+        "tail": "python"
+    },
+    {
+        "head": "colpali",
+        "tail": "code"
+    },
+    {
+        "head": "colpali",
+        "tail": "train"
+    },
+    {
+        "head": "colpali",
+        "tail": "inference"
+    },
+    {
+        "head": "colpali",
+        "tail": "architecture"
+    },
+    {
+        "head": "retrieval-augmented-generation",
+        "tail": "vision-language-model"
+    },
+    {
+        "head": "retrieval-augmented-generation",
+        "tail": "information-retrieval"
+    },
+    {
+        "head": "retrieval-augmented-generation",
+        "tail": "code"
+    },
+    {
+        "head": "retrieval-augmented-generation",
+        "tail": "train"
+    },
+    {
+        "head": "retrieval-augmented-generation",
+        "tail": "inference"
+    },
+    {
+        "head": "retrieval-augmented-generation",
+        "tail": "architecture"
+    },
+    {
+        "head": "vision-language-model",
+        "tail": "information-retrieval"
+    },
+    {
+        "head": "vision-language-model",
+        "tail": "python"
+    },
+    {
+        "head": "vision-language-model",
+        "tail": "code"
+    },
+    {
+        "head": "vision-language-model",
+        "tail": "train"
+    },
+    {
+        "head": "vision-language-model",
+        "tail": "inference"
+    },
+    {
+        "head": "vision-language-model",
+        "tail": "architecture"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "code"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "train"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "inference"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "architecture"
+    },
+    {
+        "head": "code",
+        "tail": "architecture"
+    },
+    {
+        "head": "train",
+        "tail": "inference"
+    },
+    {
+        "head": "train",
+        "tail": "architecture"
+    },
+    {
+        "head": "inference",
+        "tail": "architecture"
     }
 ]
