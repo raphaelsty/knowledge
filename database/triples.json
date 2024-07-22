@@ -176434,5 +176434,209 @@
     {
         "head": "inference",
         "tail": "architecture"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "dataset"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "difficult"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "knowledge-graph"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "reasoning"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "retrival"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "retrieval"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "benchmark"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "data"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "dataset"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "difficult"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "knowledge-graph"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "reasoning"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "retrival"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "benchmark"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "dataset"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "difficult"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "knowledge-graph"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "reasoning"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "retrival"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "benchmark"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "benchmarks"
+    },
+    {
+        "head": "dataset",
+        "tail": "difficult"
+    },
+    {
+        "head": "dataset",
+        "tail": "reasoning"
+    },
+    {
+        "head": "dataset",
+        "tail": "retrival"
+    },
+    {
+        "head": "dataset",
+        "tail": "benchmarks"
+    },
+    {
+        "head": "difficult",
+        "tail": "knowledge-graph"
+    },
+    {
+        "head": "difficult",
+        "tail": "reasoning"
+    },
+    {
+        "head": "difficult",
+        "tail": "retrival"
+    },
+    {
+        "head": "difficult",
+        "tail": "retrieval"
+    },
+    {
+        "head": "difficult",
+        "tail": "benchmark"
+    },
+    {
+        "head": "difficult",
+        "tail": "data"
+    },
+    {
+        "head": "difficult",
+        "tail": "benchmarks"
+    },
+    {
+        "head": "knowledge-graph",
+        "tail": "reasoning"
+    },
+    {
+        "head": "knowledge-graph",
+        "tail": "retrival"
+    },
+    {
+        "head": "knowledge-graph",
+        "tail": "retrieval"
+    },
+    {
+        "head": "knowledge-graph",
+        "tail": "benchmark"
+    },
+    {
+        "head": "knowledge-graph",
+        "tail": "data"
+    },
+    {
+        "head": "knowledge-graph",
+        "tail": "benchmarks"
+    },
+    {
+        "head": "reasoning",
+        "tail": "retrival"
+    },
+    {
+        "head": "reasoning",
+        "tail": "benchmark"
+    },
+    {
+        "head": "reasoning",
+        "tail": "data"
+    },
+    {
+        "head": "reasoning",
+        "tail": "benchmarks"
+    },
+    {
+        "head": "retrival",
+        "tail": "retrieval"
+    },
+    {
+        "head": "retrival",
+        "tail": "benchmark"
+    },
+    {
+        "head": "retrival",
+        "tail": "data"
+    },
+    {
+        "head": "retrival",
+        "tail": "benchmarks"
+    },
+    {
+        "head": "retrieval",
+        "tail": "data"
+    },
+    {
+        "head": "retrieval",
+        "tail": "benchmarks"
+    },
+    {
+        "head": "benchmark",
+        "tail": "data"
+    },
+    {
+        "head": "benchmark",
+        "tail": "benchmarks"
+    },
+    {
+        "head": "data",
+        "tail": "benchmarks"
     }
 ]
