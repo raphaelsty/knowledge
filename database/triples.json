@@ -176638,5 +176638,197 @@
     {
         "head": "data",
         "tail": "benchmarks"
+    },
+    {
+        "head": "2024",
+        "tail": "computer science - artificial intelligence"
+    },
+    {
+        "head": "2024",
+        "tail": "computer science - information retrieval"
+    },
+    {
+        "head": "2024",
+        "tail": "hard-negative mining"
+    },
+    {
+        "head": "2024",
+        "tail": "negative-mining"
+    },
+    {
+        "head": "2024",
+        "tail": "nv-retriever"
+    },
+    {
+        "head": "2024",
+        "tail": "nvidia"
+    },
+    {
+        "head": "2024",
+        "tail": "models"
+    },
+    {
+        "head": "2024",
+        "tail": "embedding"
+    },
+    {
+        "head": "2024",
+        "tail": "retrieval"
+    },
+    {
+        "head": "2024",
+        "tail": "model"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "hard-negative mining"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "negative-mining"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "nv-retriever"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "nvidia"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "models"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "embedding"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "hard-negative mining"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "negative-mining"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "nv-retriever"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "nvidia"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "embedding"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "model"
+    },
+    {
+        "head": "hard-negative mining",
+        "tail": "negative-mining"
+    },
+    {
+        "head": "hard-negative mining",
+        "tail": "nv-retriever"
+    },
+    {
+        "head": "hard-negative mining",
+        "tail": "nvidia"
+    },
+    {
+        "head": "hard-negative mining",
+        "tail": "models"
+    },
+    {
+        "head": "hard-negative mining",
+        "tail": "embedding"
+    },
+    {
+        "head": "hard-negative mining",
+        "tail": "retrieval"
+    },
+    {
+        "head": "hard-negative mining",
+        "tail": "model"
+    },
+    {
+        "head": "negative-mining",
+        "tail": "nv-retriever"
+    },
+    {
+        "head": "negative-mining",
+        "tail": "nvidia"
+    },
+    {
+        "head": "negative-mining",
+        "tail": "models"
+    },
+    {
+        "head": "negative-mining",
+        "tail": "embedding"
+    },
+    {
+        "head": "negative-mining",
+        "tail": "retrieval"
+    },
+    {
+        "head": "negative-mining",
+        "tail": "model"
+    },
+    {
+        "head": "nv-retriever",
+        "tail": "nvidia"
+    },
+    {
+        "head": "nv-retriever",
+        "tail": "models"
+    },
+    {
+        "head": "nv-retriever",
+        "tail": "embedding"
+    },
+    {
+        "head": "nv-retriever",
+        "tail": "retrieval"
+    },
+    {
+        "head": "nv-retriever",
+        "tail": "model"
+    },
+    {
+        "head": "nvidia",
+        "tail": "models"
+    },
+    {
+        "head": "nvidia",
+        "tail": "embedding"
+    },
+    {
+        "head": "nvidia",
+        "tail": "retrieval"
+    },
+    {
+        "head": "nvidia",
+        "tail": "model"
+    },
+    {
+        "head": "models",
+        "tail": "embedding"
+    },
+    {
+        "head": "models",
+        "tail": "model"
+    },
+    {
+        "head": "embedding",
+        "tail": "model"
+    },
+    {
+        "head": "retrieval",
+        "tail": "model"
     }
 ]

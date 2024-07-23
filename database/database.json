@@ -38654,5 +38654,25 @@
             "reasoning",
             "retrival"
         ]
+    },
+    "http://arxiv.org/abs/2407.15831": {
+        "extra-tags": [
+            "models",
+            "embedding",
+            "retrieval",
+            "model"
+        ],
+        "title": "NV-Retriever: Improving text embedding models with effective hard-negative mining",
+        "summary": "Text embedding models have been popular for information retrieval applications such as semantic search and Question-Answering systems based on Retrieval-Augmented Generation (RAG). Those models are typically Transformer models that are fine-tuned with contrastive learning objectives. Many papers introduced new embedding model architectures and training approaches, however, one of the key ingredients, the process of mining negative passages, remains poorly explored or described. One of the challenging aspects of fine-tuning embedding models is the selection of high quality hard-negative passages for contrastive learning. In this paper we propose a family of positive-aware mining methods that leverage the positive relevance score for more effective false negatives removal. We also provide a comprehensive ablation study on hard-negative mining methods over their configurations, exploring different teacher and base models. We demonstrate the efficacy of our proposed methods by introducing the NV-Retriever-v1 model, which scores 60.9 on MTEB Retrieval (BEIR) benchmark and 0.65 points higher than previous methods. The model placed 1st when it was published to MTEB Retrieval on July 07, 2024.",
+        "date": "2024-07-23",
+        "tags": [
+            "2024",
+            "computer science - artificial intelligence",
+            "computer science - information retrieval",
+            "hard-negative mining",
+            "negative-mining",
+            "nv-retriever",
+            "nvidia"
+        ]
     }
 }
