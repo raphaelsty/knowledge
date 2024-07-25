@@ -176830,5 +176830,129 @@
     {
         "head": "retrieval",
         "tail": "model"
+    },
+    {
+        "head": "barcode",
+        "tail": "pdf-generation"
+    },
+    {
+        "head": "barcode",
+        "tail": "hacktoberfest"
+    },
+    {
+        "head": "barcode",
+        "tail": "python"
+    },
+    {
+        "head": "barcode",
+        "tail": "svg"
+    },
+    {
+        "head": "barcode",
+        "tail": "library"
+    },
+    {
+        "head": "barcode",
+        "tail": "markdown"
+    },
+    {
+        "head": "barcode",
+        "tail": "python3"
+    },
+    {
+        "head": "barcode",
+        "tail": "pdf"
+    },
+    {
+        "head": "barcode",
+        "tail": "pdf-library"
+    },
+    {
+        "head": "barcode",
+        "tail": "simple"
+    },
+    {
+        "head": "pdf-generation",
+        "tail": "hacktoberfest"
+    },
+    {
+        "head": "pdf-generation",
+        "tail": "svg"
+    },
+    {
+        "head": "pdf-generation",
+        "tail": "markdown"
+    },
+    {
+        "head": "pdf-generation",
+        "tail": "simple"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "pdf-library"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "simple"
+    },
+    {
+        "head": "svg",
+        "tail": "library"
+    },
+    {
+        "head": "svg",
+        "tail": "markdown"
+    },
+    {
+        "head": "svg",
+        "tail": "python3"
+    },
+    {
+        "head": "svg",
+        "tail": "pdf"
+    },
+    {
+        "head": "svg",
+        "tail": "pdf-library"
+    },
+    {
+        "head": "svg",
+        "tail": "simple"
+    },
+    {
+        "head": "library",
+        "tail": "markdown"
+    },
+    {
+        "head": "library",
+        "tail": "simple"
+    },
+    {
+        "head": "markdown",
+        "tail": "pdf"
+    },
+    {
+        "head": "markdown",
+        "tail": "pdf-library"
+    },
+    {
+        "head": "markdown",
+        "tail": "simple"
+    },
+    {
+        "head": "pdf",
+        "tail": "simple"
+    },
+    {
+        "head": "pdf-library",
+        "tail": "simple"
+    },
+    {
+        "head": "lua",
+        "tail": "config"
+    },
+    {
+        "head": "nvim",
+        "tail": "config"
     }
 ]

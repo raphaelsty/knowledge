@@ -38674,5 +38674,37 @@
             "nv-retriever",
             "nvidia"
         ]
+    },
+    "https://github.com/py-pdf/fpdf2": {
+        "extra-tags": [
+            "simple"
+        ],
+        "date": "2017-03-15",
+        "title": "fpdf2",
+        "summary": "Simple PDF generation for Python",
+        "tags": [
+            "barcode",
+            "pdf-generation",
+            "hacktoberfest",
+            "python",
+            "svg",
+            "library",
+            "markdown",
+            "python3",
+            "pdf",
+            "pdf-library"
+        ]
+    },
+    "https://github.com/e-cal/nvim": {
+        "extra-tags": [
+            "nvim",
+            "config"
+        ],
+        "date": "2021-04-21",
+        "title": "nvim",
+        "summary": "the best nvim config there's ever been",
+        "tags": [
+            "lua"
+        ]
     }
 }
