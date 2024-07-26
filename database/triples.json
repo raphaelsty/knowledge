@@ -177086,5 +177086,37 @@
     {
         "head": "open-source",
         "tail": "datasets"
+    },
+    {
+        "head": "python-inspect",
+        "tail": "python"
+    },
+    {
+        "head": "python-inspect",
+        "tail": "inspector"
+    },
+    {
+        "head": "python-inspect",
+        "tail": "deep"
+    },
+    {
+        "head": "python-inspect",
+        "tail": "inspection"
+    },
+    {
+        "head": "python",
+        "tail": "inspector"
+    },
+    {
+        "head": "inspector",
+        "tail": "deep"
+    },
+    {
+        "head": "inspector",
+        "tail": "inspection"
+    },
+    {
+        "head": "deep",
+        "tail": "inspection"
     }
 ]

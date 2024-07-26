@@ -38724,5 +38724,19 @@
             "synthetic",
             "synthetic dataset"
         ]
+    },
+    "https://github.com/igrek51/wat": {
+        "extra-tags": [
+            "deep",
+            "inspection"
+        ],
+        "date": "2024-05-13",
+        "title": "wat",
+        "summary": "Deep inspection of Python objects",
+        "tags": [
+            "python-inspect",
+            "python",
+            "inspector"
+        ]
     }
 }
