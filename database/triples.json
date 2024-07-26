@@ -176954,5 +176954,137 @@
     {
         "head": "nvim",
         "tail": "config"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "generation"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "synthetic"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "synthetic dataset"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "multimodal"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "open-source"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "dataset"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "datasets"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "generation"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "synthetic"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "synthetic dataset"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "multimodal"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "open-source"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "dataset"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "datasets"
+    },
+    {
+        "head": "generation",
+        "tail": "synthetic"
+    },
+    {
+        "head": "generation",
+        "tail": "synthetic dataset"
+    },
+    {
+        "head": "generation",
+        "tail": "multimodal"
+    },
+    {
+        "head": "generation",
+        "tail": "open-source"
+    },
+    {
+        "head": "generation",
+        "tail": "dataset"
+    },
+    {
+        "head": "generation",
+        "tail": "datasets"
+    },
+    {
+        "head": "synthetic",
+        "tail": "synthetic dataset"
+    },
+    {
+        "head": "synthetic",
+        "tail": "multimodal"
+    },
+    {
+        "head": "synthetic",
+        "tail": "open-source"
+    },
+    {
+        "head": "synthetic",
+        "tail": "datasets"
+    },
+    {
+        "head": "synthetic dataset",
+        "tail": "multimodal"
+    },
+    {
+        "head": "synthetic dataset",
+        "tail": "open-source"
+    },
+    {
+        "head": "synthetic dataset",
+        "tail": "dataset"
+    },
+    {
+        "head": "synthetic dataset",
+        "tail": "datasets"
+    },
+    {
+        "head": "multimodal",
+        "tail": "open-source"
+    },
+    {
+        "head": "multimodal",
+        "tail": "dataset"
+    },
+    {
+        "head": "multimodal",
+        "tail": "datasets"
+    },
+    {
+        "head": "open-source",
+        "tail": "dataset"
+    },
+    {
+        "head": "open-source",
+        "tail": "datasets"
     }
 ]

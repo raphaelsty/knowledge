@@ -38706,5 +38706,23 @@
         "tags": [
             "lua"
         ]
+    },
+    "http://arxiv.org/abs/2406.11271": {
+        "extra-tags": [
+            "multimodal",
+            "open-source",
+            "dataset",
+            "datasets"
+        ],
+        "title": "MINT-1T: Scaling Open-Source Multimodal Data by 10x: A Multimodal Dataset with One Trillion Tokens",
+        "summary": "Multimodal interleaved datasets featuring free-form interleaved sequences of images and text are crucial for training frontier large multimodal models (LMMs). Despite the rapid progression of open-source LMMs, there remains a pronounced scarcity of large-scale, diverse open-source multimodal interleaved datasets. In response, we introduce MINT-1T, the most extensive and diverse open-source Multimodal INTerleaved dataset to date. MINT-1T comprises one trillion text tokens and 3.4 billion images, a 10x scale-up from existing open-source datasets. Additionally, we include previously untapped sources such as PDFs and ArXiv papers. As scaling multimodal interleaved datasets requires substantial engineering effort, sharing the data curation process and releasing the dataset greatly benefits the community. Our experiments show that LMMs trained on MINT-1T rival the performance of models trained on the previous leading dataset, OBELICS. Our data and code will be released at https://github.com/mlfoundations/MINT-1T.",
+        "date": "2024-07-25",
+        "tags": [
+            "computer science - computer vision and pattern recognition",
+            "computer science - machine learning",
+            "generation",
+            "synthetic",
+            "synthetic dataset"
+        ]
     }
 }
