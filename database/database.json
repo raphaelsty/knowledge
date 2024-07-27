@@ -38738,5 +38738,19 @@
             "python",
             "inspector"
         ]
+    },
+    "https://github.com/huggingface/datatrove": {
+        "extra-tags": [
+            "processing",
+            "data",
+            "set",
+            "platform"
+        ],
+        "date": "2023-06-14",
+        "title": "datatrove",
+        "summary": "Freeing data processing from scripting madness by providing a set of platform-agnostic customizable pipeline processing blocks.",
+        "tags": [
+            "python"
+        ]
     }
 }
