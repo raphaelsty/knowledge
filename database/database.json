@@ -38752,5 +38752,19 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/Alpha-VLLM/LLaMA2-Accessory": {
+        "extra-tags": [
+            "llama2",
+            "open-source",
+            "llm",
+            "development"
+        ],
+        "date": "2023-07-21",
+        "title": "LLaMA2-Accessory",
+        "summary": "An Open-source Toolkit for LLM Development",
+        "tags": [
+            "python"
+        ]
     }
 }
