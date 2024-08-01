@@ -38766,5 +38766,49 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/vwxyzjn/costa-utils": {
+        "extra-tags": [
+            "pytorch-utils",
+            "utility",
+            "emails"
+        ],
+        "date": "2024-07-31",
+        "title": "costa-utils",
+        "summary": "",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/benchopt/benchopt": {
+        "extra-tags": [
+            "algorithms",
+            "simple"
+        ],
+        "date": "2019-12-13",
+        "title": "benchopt",
+        "summary": "Making your benchmark of optimization algorithms simple and open",
+        "tags": [
+            "machine-learning",
+            "benchmark",
+            "julia-language",
+            "python",
+            "optimization",
+            "rlang",
+            "optimization-methods"
+        ]
+    },
+    "https://github.com/karpathy/nano-llama31": {
+        "extra-tags": [
+            "llama",
+            "ollama",
+            "llama2"
+        ],
+        "date": "2024-08-01",
+        "title": "nano-llama31",
+        "summary": "nanoGPT style version of Llama 3.1",
+        "tags": [
+            "python"
+        ]
     }
 }

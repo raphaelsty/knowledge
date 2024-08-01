@@ -177162,5 +177162,125 @@
     {
         "head": "llm",
         "tail": "development"
+    },
+    {
+        "head": "pytorch-utils",
+        "tail": "utility"
+    },
+    {
+        "head": "pytorch-utils",
+        "tail": "emails"
+    },
+    {
+        "head": "utility",
+        "tail": "emails"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "julia-language"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "rlang"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "optimization-methods"
+    },
+    {
+        "head": "benchmark",
+        "tail": "julia-language"
+    },
+    {
+        "head": "benchmark",
+        "tail": "optimization"
+    },
+    {
+        "head": "benchmark",
+        "tail": "rlang"
+    },
+    {
+        "head": "benchmark",
+        "tail": "optimization-methods"
+    },
+    {
+        "head": "benchmark",
+        "tail": "algorithms"
+    },
+    {
+        "head": "benchmark",
+        "tail": "simple"
+    },
+    {
+        "head": "julia-language",
+        "tail": "python"
+    },
+    {
+        "head": "julia-language",
+        "tail": "optimization"
+    },
+    {
+        "head": "julia-language",
+        "tail": "rlang"
+    },
+    {
+        "head": "julia-language",
+        "tail": "optimization-methods"
+    },
+    {
+        "head": "julia-language",
+        "tail": "algorithms"
+    },
+    {
+        "head": "julia-language",
+        "tail": "simple"
+    },
+    {
+        "head": "python",
+        "tail": "rlang"
+    },
+    {
+        "head": "python",
+        "tail": "optimization-methods"
+    },
+    {
+        "head": "optimization",
+        "tail": "rlang"
+    },
+    {
+        "head": "optimization",
+        "tail": "optimization-methods"
+    },
+    {
+        "head": "optimization",
+        "tail": "algorithms"
+    },
+    {
+        "head": "optimization",
+        "tail": "simple"
+    },
+    {
+        "head": "rlang",
+        "tail": "optimization-methods"
+    },
+    {
+        "head": "rlang",
+        "tail": "algorithms"
+    },
+    {
+        "head": "rlang",
+        "tail": "simple"
+    },
+    {
+        "head": "optimization-methods",
+        "tail": "algorithms"
+    },
+    {
+        "head": "optimization-methods",
+        "tail": "simple"
+    },
+    {
+        "head": "algorithms",
+        "tail": "simple"
     }
 ]
