@@ -38810,5 +38810,21 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/AnswerDotAI/RAGatouille": {
+        "extra-tags": [
+            "train",
+            "art",
+            "retrieval",
+            "colbert",
+            "pipeline",
+            "research"
+        ],
+        "date": "2023-12-29",
+        "title": "RAGatouille",
+        "summary": "Easily use and train state of the art late-interaction retrieval methods (ColBERT) in any RAG pipeline. Designed for modularity and ease-of-use, backed by research.",
+        "tags": [
+            "python"
+        ]
     }
 }

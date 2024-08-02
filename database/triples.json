@@ -177282,5 +177282,61 @@
     {
         "head": "algorithms",
         "tail": "simple"
+    },
+    {
+        "head": "train",
+        "tail": "art"
+    },
+    {
+        "head": "train",
+        "tail": "retrieval"
+    },
+    {
+        "head": "train",
+        "tail": "colbert"
+    },
+    {
+        "head": "train",
+        "tail": "pipeline"
+    },
+    {
+        "head": "train",
+        "tail": "research"
+    },
+    {
+        "head": "art",
+        "tail": "retrieval"
+    },
+    {
+        "head": "art",
+        "tail": "colbert"
+    },
+    {
+        "head": "art",
+        "tail": "pipeline"
+    },
+    {
+        "head": "art",
+        "tail": "research"
+    },
+    {
+        "head": "retrieval",
+        "tail": "pipeline"
+    },
+    {
+        "head": "retrieval",
+        "tail": "research"
+    },
+    {
+        "head": "colbert",
+        "tail": "pipeline"
+    },
+    {
+        "head": "colbert",
+        "tail": "research"
+    },
+    {
+        "head": "pipeline",
+        "tail": "research"
     }
 ]
