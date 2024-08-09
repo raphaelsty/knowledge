@@ -38843,5 +38843,31 @@
             "dataset",
             "language models"
         ]
+    },
+    "https://github.com/squaredtechnologies/vizly-notebook": {
+        "extra-tags": [
+            "notebook",
+            "jupyter notebook",
+            "local"
+        ],
+        "date": "2024-05-21",
+        "title": "vizly-notebook",
+        "summary": "AI-powered Jupyter Notebook \u2014 use local AI to generate and edit code cells, automatically fix errors, and chat with your data",
+        "tags": [
+            "jupyter-notebooks",
+            "python",
+            "javascript",
+            "ai",
+            "react",
+            "analytics",
+            "data-science",
+            "jupyterlab",
+            "ollama",
+            "analysis",
+            "jupyter-notebook",
+            "jupyterhub",
+            "jupyter",
+            "reactjs"
+        ]
     }
 }

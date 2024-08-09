@@ -177418,5 +177418,89 @@
     {
         "head": "science",
         "tail": "computer science - artificial intelligence"
+    },
+    {
+        "head": "jupyter-notebooks",
+        "tail": "jupyter notebook"
+    },
+    {
+        "head": "jupyter-notebooks",
+        "tail": "local"
+    },
+    {
+        "head": "python",
+        "tail": "local"
+    },
+    {
+        "head": "javascript",
+        "tail": "jupyter notebook"
+    },
+    {
+        "head": "javascript",
+        "tail": "local"
+    },
+    {
+        "head": "ai",
+        "tail": "local"
+    },
+    {
+        "head": "react",
+        "tail": "jupyter notebook"
+    },
+    {
+        "head": "react",
+        "tail": "local"
+    },
+    {
+        "head": "jupyterlab",
+        "tail": "local"
+    },
+    {
+        "head": "ollama",
+        "tail": "jupyter notebook"
+    },
+    {
+        "head": "ollama",
+        "tail": "local"
+    },
+    {
+        "head": "analysis",
+        "tail": "jupyter notebook"
+    },
+    {
+        "head": "analysis",
+        "tail": "local"
+    },
+    {
+        "head": "jupyter-notebook",
+        "tail": "local"
+    },
+    {
+        "head": "jupyterhub",
+        "tail": "jupyter notebook"
+    },
+    {
+        "head": "jupyterhub",
+        "tail": "local"
+    },
+    {
+        "head": "jupyter",
+        "tail": "local"
+    },
+    {
+        "head": "reactjs",
+        "tail": "jupyter notebook"
+    },
+    {
+        "head": "reactjs",
+        "tail": "local"
+    },
+    {
+        "head": "notebook",
+        "tail": "local"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "local"
     }
 ]
