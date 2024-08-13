@@ -177502,5 +177502,253 @@
     {
         "head": "jupyter notebook",
         "tail": "local"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "computer science - neural and evolutionary computing"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "decoding"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "fast transformer decoding"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "transformers"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "memory"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "tensors"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "computer science - neural and evolutionary computing"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "decoding"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "fast transformer decoding"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "transformers"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "memory"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "tensors"
+    },
+    {
+        "head": "computer science - neural and evolutionary computing",
+        "tail": "decoding"
+    },
+    {
+        "head": "computer science - neural and evolutionary computing",
+        "tail": "fast transformer decoding"
+    },
+    {
+        "head": "computer science - neural and evolutionary computing",
+        "tail": "transformers"
+    },
+    {
+        "head": "computer science - neural and evolutionary computing",
+        "tail": "attention"
+    },
+    {
+        "head": "computer science - neural and evolutionary computing",
+        "tail": "memory"
+    },
+    {
+        "head": "computer science - neural and evolutionary computing",
+        "tail": "tensors"
+    },
+    {
+        "head": "decoding",
+        "tail": "fast transformer decoding"
+    },
+    {
+        "head": "decoding",
+        "tail": "transformers"
+    },
+    {
+        "head": "decoding",
+        "tail": "attention"
+    },
+    {
+        "head": "decoding",
+        "tail": "memory"
+    },
+    {
+        "head": "decoding",
+        "tail": "tensors"
+    },
+    {
+        "head": "fast transformer decoding",
+        "tail": "transformers"
+    },
+    {
+        "head": "fast transformer decoding",
+        "tail": "attention"
+    },
+    {
+        "head": "fast transformer decoding",
+        "tail": "memory"
+    },
+    {
+        "head": "fast transformer decoding",
+        "tail": "tensors"
+    },
+    {
+        "head": "transformers",
+        "tail": "memory"
+    },
+    {
+        "head": "transformers",
+        "tail": "tensors"
+    },
+    {
+        "head": "attention",
+        "tail": "memory"
+    },
+    {
+        "head": "attention",
+        "tail": "tensors"
+    },
+    {
+        "head": "memory",
+        "tail": "tensors"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "gnn-rag"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "graph-rag"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "kgqa"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "gnn-rag"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "graph-rag"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "kgqa"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "gnn-rag"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "graph-rag"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "reasoning"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "kgqa"
+    },
+    {
+        "head": "gnn-rag",
+        "tail": "graph-rag"
+    },
+    {
+        "head": "gnn-rag",
+        "tail": "reasoning"
+    },
+    {
+        "head": "gnn-rag",
+        "tail": "kgqa"
+    },
+    {
+        "head": "gnn-rag",
+        "tail": "kg"
+    },
+    {
+        "head": "graph-rag",
+        "tail": "reasoning"
+    },
+    {
+        "head": "graph-rag",
+        "tail": "kgqa"
+    },
+    {
+        "head": "reasoning",
+        "tail": "kgqa"
+    },
+    {
+        "head": "reasoning",
+        "tail": "kg"
+    },
+    {
+        "head": "kgqa",
+        "tail": "kg"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "tuning"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "datasets"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "zero-shot"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "tuning"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "zero-shot"
+    },
+    {
+        "head": "task",
+        "tail": "tuning"
+    },
+    {
+        "head": "task",
+        "tail": "datasets"
+    },
+    {
+        "head": "task",
+        "tail": "zero-shot"
+    },
+    {
+        "head": "tuning",
+        "tail": "datasets"
+    },
+    {
+        "head": "tuning",
+        "tail": "zero-shot"
+    },
+    {
+        "head": "datasets",
+        "tail": "zero-shot"
     }
 ]
