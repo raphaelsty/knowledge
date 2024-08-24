@@ -177750,5 +177750,269 @@
     {
         "head": "datasets",
         "tail": "zero-shot"
+    },
+    {
+        "head": "python",
+        "tail": "latex-template"
+    },
+    {
+        "head": "rag",
+        "tail": "colbert"
+    },
+    {
+        "head": "rag",
+        "tail": "information-retrieval"
+    },
+    {
+        "head": "rag",
+        "tail": "language-model"
+    },
+    {
+        "head": "rag",
+        "tail": "template"
+    },
+    {
+        "head": "rag",
+        "tail": "latex-template"
+    },
+    {
+        "head": "rag",
+        "tail": "boilerplate"
+    },
+    {
+        "head": "colbert",
+        "tail": "template"
+    },
+    {
+        "head": "colbert",
+        "tail": "latex-template"
+    },
+    {
+        "head": "colbert",
+        "tail": "boilerplate"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "template"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "latex-template"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "boilerplate"
+    },
+    {
+        "head": "language-model",
+        "tail": "template"
+    },
+    {
+        "head": "language-model",
+        "tail": "latex-template"
+    },
+    {
+        "head": "language-model",
+        "tail": "boilerplate"
+    },
+    {
+        "head": "template",
+        "tail": "latex-template"
+    },
+    {
+        "head": "template",
+        "tail": "boilerplate"
+    },
+    {
+        "head": "latex-template",
+        "tail": "boilerplate"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "pre-trained"
+    },
+    {
+        "head": "software2",
+        "tail": "pre-trained"
+    },
+    {
+        "head": "software2",
+        "tail": "neural"
+    },
+    {
+        "head": "software2",
+        "tail": "framework"
+    },
+    {
+        "head": "neural-network",
+        "tail": "pre-trained"
+    },
+    {
+        "head": "neural-network",
+        "tail": "neural"
+    },
+    {
+        "head": "neural-network",
+        "tail": "framework"
+    },
+    {
+        "head": "onnx",
+        "tail": "pre-trained"
+    },
+    {
+        "head": "onnx",
+        "tail": "neural"
+    },
+    {
+        "head": "onnx",
+        "tail": "framework"
+    },
+    {
+        "head": "protobuf",
+        "tail": "pre-trained"
+    },
+    {
+        "head": "protobuf",
+        "tail": "neural"
+    },
+    {
+        "head": "protobuf",
+        "tail": "framework"
+    },
+    {
+        "head": "gorgonia",
+        "tail": "pre-trained"
+    },
+    {
+        "head": "gorgonia",
+        "tail": "neural"
+    },
+    {
+        "head": "gorgonia",
+        "tail": "framework"
+    },
+    {
+        "head": "go",
+        "tail": "pre-trained"
+    },
+    {
+        "head": "go",
+        "tail": "neural"
+    },
+    {
+        "head": "go",
+        "tail": "framework"
+    },
+    {
+        "head": "open-source",
+        "tail": "pre-trained"
+    },
+    {
+        "head": "open-source",
+        "tail": "neural"
+    },
+    {
+        "head": "pre-trained",
+        "tail": "neural"
+    },
+    {
+        "head": "pre-trained",
+        "tail": "framework"
+    },
+    {
+        "head": "neural",
+        "tail": "framework"
+    },
+    {
+        "head": "diffusion",
+        "tail": "nlp"
+    },
+    {
+        "head": "diffusion",
+        "tail": "pre-trained"
+    },
+    {
+        "head": "diffusion",
+        "tail": "predict"
+    },
+    {
+        "head": "diffusion",
+        "tail": "images"
+    },
+    {
+        "head": "diffusion",
+        "tail": "multi-modal"
+    },
+    {
+        "head": "multimodal",
+        "tail": "pre-trained"
+    },
+    {
+        "head": "multimodal",
+        "tail": "predict"
+    },
+    {
+        "head": "multimodal",
+        "tail": "images"
+    },
+    {
+        "head": "multimodal",
+        "tail": "model"
+    },
+    {
+        "head": "nlp",
+        "tail": "pre-trained"
+    },
+    {
+        "head": "nlp",
+        "tail": "predict"
+    },
+    {
+        "head": "nlp",
+        "tail": "multi-modal"
+    },
+    {
+        "head": "nlp",
+        "tail": "model"
+    },
+    {
+        "head": "pre-trained",
+        "tail": "predict"
+    },
+    {
+        "head": "pre-trained",
+        "tail": "images"
+    },
+    {
+        "head": "pre-trained",
+        "tail": "multi-modal"
+    },
+    {
+        "head": "pre-trained",
+        "tail": "model"
+    },
+    {
+        "head": "predict",
+        "tail": "images"
+    },
+    {
+        "head": "predict",
+        "tail": "multi-modal"
+    },
+    {
+        "head": "predict",
+        "tail": "model"
+    },
+    {
+        "head": "images",
+        "tail": "multi-modal"
+    },
+    {
+        "head": "images",
+        "tail": "model"
+    },
+    {
+        "head": "multi-modal",
+        "tail": "model"
     }
 ]

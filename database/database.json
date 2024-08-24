@@ -38919,5 +38919,59 @@
             "computer science - computation and language",
             "computer science - machine learning"
         ]
+    },
+    "https://github.com/lightonai/pylate": {
+        "extra-tags": [
+            "template",
+            "latex-template",
+            "boilerplate"
+        ],
+        "date": "2024-05-30",
+        "title": "pylate",
+        "summary": "",
+        "tags": [
+            "python",
+            "rag",
+            "colbert",
+            "information-retrieval",
+            "language-model"
+        ]
+    },
+    "https://github.com/askorama/onnx-go": {
+        "extra-tags": [
+            "pre-trained",
+            "neural",
+            "framework"
+        ],
+        "date": "2018-08-28",
+        "title": "onnx-go",
+        "summary": "onnx-go gives the ability to import a pre-trained neural network within Go without being linked to a framework or library.",
+        "tags": [
+            "machine-learning",
+            "software2",
+            "neural-network",
+            "onnx",
+            "protobuf",
+            "gorgonia",
+            "go",
+            "open-source"
+        ]
+    },
+    "https://arxiv.org/html/2408.11039v1": {
+        "extra-tags": [
+            "predict",
+            "images",
+            "multi-modal",
+            "model"
+        ],
+        "title": "Transfusion: Predict the Next Token and Diffuse Images with One Multi-Modal Model",
+        "summary": "",
+        "date": "2024-08-23",
+        "tags": [
+            "diffusion",
+            "multimodal",
+            "nlp",
+            "pre-trained"
+        ]
     }
 }
