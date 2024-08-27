@@ -38973,5 +38973,17 @@
             "nlp",
             "pre-trained"
         ]
+    },
+    "https://github.com/kscalelabs/sim": {
+        "extra-tags": [
+            "training",
+            "simulation"
+        ],
+        "date": "2024-03-31",
+        "title": "sim",
+        "summary": "Training in simulation",
+        "tags": [
+            "python"
+        ]
     }
 }
