@@ -38985,5 +38985,30 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/SuReLI/cleanrl_SuReLI": {
+        "extra-tags": [
+            "deep",
+            "reinforcement",
+            "learning",
+            "algorithms"
+        ],
+        "date": "2024-08-24",
+        "title": "cleanrl_SuReLI",
+        "summary": "High-quality single file implementation of Deep Reinforcement Learning algorithms with research-friendly features (PPO, DQN, C51, DDPG, TD3, SAC, PPG)",
+        "tags": []
+    },
+    "https://github.com/jonhoo/lox": {
+        "extra-tags": [
+            "interpreter",
+            "interpretability",
+            "model-interpretation"
+        ],
+        "date": "2024-08-24",
+        "title": "lox",
+        "summary": "https://app.codecrafters.io/courses/interpreter",
+        "tags": [
+            "rust"
+        ]
     }
 }
