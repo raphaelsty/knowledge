@@ -39010,5 +39010,27 @@
         "tags": [
             "rust"
         ]
+    },
+    "https://github.com/mattermost-community/focalboard": {
+        "extra-tags": [
+            "source",
+            "self-hosted"
+        ],
+        "date": "2020-10-06",
+        "title": "focalboard",
+        "summary": "Focalboard is an open source, self-hosted alternative to Trello, Notion, and Asana.",
+        "tags": [
+            "typescript",
+            "goal-tracking",
+            "collaboration",
+            "hacktoberfest",
+            "project-management",
+            "kanban-board",
+            "notion",
+            "trello",
+            "project",
+            "asana",
+            "golang"
+        ]
     }
 }

@@ -178042,5 +178042,81 @@
     {
         "head": "interpretability",
         "tail": "model-interpretation"
+    },
+    {
+        "head": "goal-tracking",
+        "tail": "source"
+    },
+    {
+        "head": "goal-tracking",
+        "tail": "self-hosted"
+    },
+    {
+        "head": "collaboration",
+        "tail": "source"
+    },
+    {
+        "head": "collaboration",
+        "tail": "self-hosted"
+    },
+    {
+        "head": "project-management",
+        "tail": "source"
+    },
+    {
+        "head": "project-management",
+        "tail": "self-hosted"
+    },
+    {
+        "head": "kanban-board",
+        "tail": "source"
+    },
+    {
+        "head": "kanban-board",
+        "tail": "self-hosted"
+    },
+    {
+        "head": "notion",
+        "tail": "source"
+    },
+    {
+        "head": "notion",
+        "tail": "self-hosted"
+    },
+    {
+        "head": "trello",
+        "tail": "source"
+    },
+    {
+        "head": "trello",
+        "tail": "self-hosted"
+    },
+    {
+        "head": "project",
+        "tail": "source"
+    },
+    {
+        "head": "project",
+        "tail": "self-hosted"
+    },
+    {
+        "head": "asana",
+        "tail": "source"
+    },
+    {
+        "head": "asana",
+        "tail": "self-hosted"
+    },
+    {
+        "head": "golang",
+        "tail": "source"
+    },
+    {
+        "head": "golang",
+        "tail": "self-hosted"
+    },
+    {
+        "head": "source",
+        "tail": "self-hosted"
     }
 ]
