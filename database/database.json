@@ -39032,5 +39032,39 @@
             "asana",
             "golang"
         ]
+    },
+    "http://arxiv.org/abs/2302.08242": {
+        "extra-tags": [
+            "vision",
+            "models",
+            "task",
+            "tuning"
+        ],
+        "title": "Tuning computer vision models with task rewards",
+        "summary": "Misalignment between model predictions and intended usage can be detrimental for the deployment of computer vision models. The issue is exacerbated when the task involves complex structured outputs, as it becomes harder to design procedures which address this misalignment. In natural language processing, this is often addressed using reinforcement learning techniques that align models with a task reward. We adopt this approach and show its surprising effectiveness across multiple computer vision tasks, such as object detection, panoptic segmentation, colorization and image captioning. We believe this approach has the potential to be widely useful for better aligning models with a diverse range of computer vision tasks.",
+        "date": "2024-09-02",
+        "tags": [
+            "computer science - computer vision and pattern recognition",
+            "fine-tuning",
+            "reinforcement learning",
+            "rl",
+            "vlm"
+        ]
+    },
+    "http://arxiv.org/abs/2306.07915": {
+        "extra-tags": [
+            "image",
+            "vision",
+            "strategies",
+            "data"
+        ],
+        "title": "Image Captioners Are Scalable Vision Learners Too",
+        "summary": "Contrastive pretraining on image-text pairs from the web is one of the most popular large-scale pretraining strategies for vision backbones, especially in the context of large multimodal models. At the same time, image captioning on this type of data is commonly considered an inferior pretraining strategy. In this paper, we perform a fair comparison of these two pretraining strategies, carefully matching training data, compute, and model capacity. Using a standard encoder-decoder transformer, we find that captioning alone is surprisingly effective: on classification tasks, captioning produces vision encoders competitive with contrastively pretrained encoders, while surpassing them on vision & language tasks. We further analyze the effect of the model architecture and scale, as well as the pretraining data on the representation quality, and find that captioning exhibits the same or better scaling behavior along these axes. Overall our results show that plain image captioning is a more powerful pretraining strategy than was previously believed.",
+        "date": "2024-09-02",
+        "tags": [
+            "computer science - computer vision and pattern recognition",
+            "google",
+            "image-to-text"
+        ]
     }
 }

@@ -178118,5 +178118,209 @@
     {
         "head": "source",
         "tail": "self-hosted"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "fine-tuning"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "reinforcement learning"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "rl"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "vlm"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "task"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "tuning"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "reinforcement learning"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "rl"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "vlm"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "vision"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "task"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "tuning"
+    },
+    {
+        "head": "reinforcement learning",
+        "tail": "rl"
+    },
+    {
+        "head": "reinforcement learning",
+        "tail": "vlm"
+    },
+    {
+        "head": "reinforcement learning",
+        "tail": "vision"
+    },
+    {
+        "head": "reinforcement learning",
+        "tail": "models"
+    },
+    {
+        "head": "reinforcement learning",
+        "tail": "task"
+    },
+    {
+        "head": "reinforcement learning",
+        "tail": "tuning"
+    },
+    {
+        "head": "rl",
+        "tail": "vlm"
+    },
+    {
+        "head": "rl",
+        "tail": "vision"
+    },
+    {
+        "head": "rl",
+        "tail": "models"
+    },
+    {
+        "head": "rl",
+        "tail": "task"
+    },
+    {
+        "head": "rl",
+        "tail": "tuning"
+    },
+    {
+        "head": "vlm",
+        "tail": "vision"
+    },
+    {
+        "head": "vlm",
+        "tail": "models"
+    },
+    {
+        "head": "vlm",
+        "tail": "task"
+    },
+    {
+        "head": "vlm",
+        "tail": "tuning"
+    },
+    {
+        "head": "vision",
+        "tail": "models"
+    },
+    {
+        "head": "vision",
+        "tail": "task"
+    },
+    {
+        "head": "vision",
+        "tail": "tuning"
+    },
+    {
+        "head": "models",
+        "tail": "task"
+    },
+    {
+        "head": "models",
+        "tail": "tuning"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "google"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "image-to-text"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "image"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "strategies"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "data"
+    },
+    {
+        "head": "google",
+        "tail": "image-to-text"
+    },
+    {
+        "head": "google",
+        "tail": "image"
+    },
+    {
+        "head": "google",
+        "tail": "vision"
+    },
+    {
+        "head": "google",
+        "tail": "strategies"
+    },
+    {
+        "head": "google",
+        "tail": "data"
+    },
+    {
+        "head": "image-to-text",
+        "tail": "image"
+    },
+    {
+        "head": "image-to-text",
+        "tail": "vision"
+    },
+    {
+        "head": "image-to-text",
+        "tail": "strategies"
+    },
+    {
+        "head": "image-to-text",
+        "tail": "data"
+    },
+    {
+        "head": "image",
+        "tail": "vision"
+    },
+    {
+        "head": "image",
+        "tail": "strategies"
+    },
+    {
+        "head": "image",
+        "tail": "data"
+    },
+    {
+        "head": "vision",
+        "tail": "strategies"
+    },
+    {
+        "head": "vision",
+        "tail": "data"
     }
 ]
