@@ -39066,5 +39066,18 @@
             "google",
             "image-to-text"
         ]
+    },
+    "https://github.com/jax-ml/ml_dtypes": {
+        "extra-tags": [
+            "numpy",
+            "machine learning",
+            "extension"
+        ],
+        "date": "2022-11-11",
+        "title": "ml_dtypes",
+        "summary": "A stand-alone implementation of several NumPy dtype extensions used in machine learning.",
+        "tags": [
+            "c++"
+        ]
     }
 }

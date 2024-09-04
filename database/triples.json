@@ -178322,5 +178322,21 @@
     {
         "head": "vision",
         "tail": "data"
+    },
+    {
+        "head": "c++",
+        "tail": "extension"
+    },
+    {
+        "head": "numpy",
+        "tail": "machine learning"
+    },
+    {
+        "head": "numpy",
+        "tail": "extension"
+    },
+    {
+        "head": "machine learning",
+        "tail": "extension"
     }
 ]
