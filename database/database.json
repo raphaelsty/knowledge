@@ -39079,5 +39079,19 @@
         "tags": [
             "c++"
         ]
+    },
+    "https://colmweb.org/AcceptedPapers.html": {
+        "extra-tags": [],
+        "title": "COLM 2024: Accepted Papers",
+        "summary": "",
+        "date": "2024-09-04",
+        "tags": [
+            "2024",
+            "colm",
+            "llm",
+            "accedped papers",
+            "conference",
+            "papers"
+        ]
     }
 }
