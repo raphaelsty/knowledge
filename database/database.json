@@ -39093,5 +39093,44 @@
             "conference",
             "papers"
         ]
+    },
+    "https://github.com/afadil/wealthfolio": {
+        "extra-tags": [
+            "beautiful",
+            "investment"
+        ],
+        "date": "2024-05-27",
+        "title": "wealthfolio",
+        "summary": "A Beautiful Private and Secure Desktop Investment Tracking Application",
+        "tags": [
+            "portfolio-tracker",
+            "tauri-app",
+            "macos-app",
+            "typescript"
+        ]
+    },
+    "https://ittavern.com/cron-jobs-on-linux-comprehensive-guide/": {
+        "extra-tags": [
+            "cron",
+            "linux",
+            "examples"
+        ],
+        "title": "Hackernews Cron Jobs on Linux \u2013 Comprehensive Guide with Examples (ittavern.com)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2024-09-07"
+    },
+    "https://www.cs.virginia.edu/~robins/YouAndYourResearch.html": {
+        "extra-tags": [
+            "research",
+            "google research",
+            "microsoft research"
+        ],
+        "title": "You and Your Research",
+        "summary": "",
+        "date": "2024-09-06",
+        "tags": []
     }
 }

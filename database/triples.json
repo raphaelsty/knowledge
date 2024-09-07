@@ -178398,5 +178398,85 @@
     {
         "head": "conference",
         "tail": "papers"
+    },
+    {
+        "head": "portfolio-tracker",
+        "tail": "tauri-app"
+    },
+    {
+        "head": "portfolio-tracker",
+        "tail": "macos-app"
+    },
+    {
+        "head": "portfolio-tracker",
+        "tail": "typescript"
+    },
+    {
+        "head": "portfolio-tracker",
+        "tail": "beautiful"
+    },
+    {
+        "head": "portfolio-tracker",
+        "tail": "investment"
+    },
+    {
+        "head": "tauri-app",
+        "tail": "macos-app"
+    },
+    {
+        "head": "tauri-app",
+        "tail": "typescript"
+    },
+    {
+        "head": "tauri-app",
+        "tail": "beautiful"
+    },
+    {
+        "head": "tauri-app",
+        "tail": "investment"
+    },
+    {
+        "head": "macos-app",
+        "tail": "typescript"
+    },
+    {
+        "head": "macos-app",
+        "tail": "beautiful"
+    },
+    {
+        "head": "macos-app",
+        "tail": "investment"
+    },
+    {
+        "head": "typescript",
+        "tail": "investment"
+    },
+    {
+        "head": "beautiful",
+        "tail": "investment"
+    },
+    {
+        "head": "cron",
+        "tail": "linux"
+    },
+    {
+        "head": "cron",
+        "tail": "examples"
+    },
+    {
+        "head": "linux",
+        "tail": "examples"
+    },
+    {
+        "head": "research",
+        "tail": "google research"
+    },
+    {
+        "head": "research",
+        "tail": "microsoft research"
+    },
+    {
+        "head": "google research",
+        "tail": "microsoft research"
     }
 ]
