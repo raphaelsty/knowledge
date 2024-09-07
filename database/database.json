@@ -39132,5 +39132,69 @@
         "summary": "",
         "date": "2024-09-06",
         "tags": []
+    },
+    "https://github.com/lorentzenchr/model-diagnostics": {
+        "extra-tags": [
+            "model",
+            "tools",
+            "machine learning",
+            "models"
+        ],
+        "date": "2022-09-08",
+        "title": "model-diagnostics",
+        "summary": "Tools for diagnostics and assessment of (machine learning) models",
+        "tags": [
+            "performance-metrics",
+            "python",
+            "machine-learning",
+            "bias-detection",
+            "calibration"
+        ]
+    },
+    "https://github.com/narwhals-dev/narwhals": {
+        "extra-tags": [
+            "dataframe",
+            "dataframes",
+            "dataframe-library"
+        ],
+        "date": "2024-02-19",
+        "title": "narwhals",
+        "summary": "Lightweight and extensible compatibility layer between dataframe libraries!",
+        "tags": [
+            "ibis",
+            "dask",
+            "modin",
+            "pandas",
+            "python",
+            "cudf",
+            "pyarrow",
+            "vaex",
+            "polars"
+        ]
+    },
+    "https://github.com/waydabber/BetterDisplay": {
+        "extra-tags": [],
+        "date": "2021-10-24",
+        "title": "BetterDisplay",
+        "summary": "Unlock your displays on your Mac! Flexible HiDPI scaling, XDR/HDR extra brightness, virtual screens, DDC control, extra dimming, PIP/streaming, EDID override and lots more!",
+        "tags": [
+            "scaling",
+            "macos",
+            "flexible",
+            "xdr",
+            "mac",
+            "retina",
+            "screen",
+            "4k",
+            "resolution",
+            "brightness",
+            "ddc",
+            "virtual",
+            "hidpi",
+            "display",
+            "override",
+            "hdmi",
+            "edid"
+        ]
     }
 }
