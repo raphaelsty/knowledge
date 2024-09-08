@@ -39196,5 +39196,17 @@
             "hdmi",
             "edid"
         ]
+    },
+    "https://www.artic.edu/articles/1139/10-things-to-know-about-the-great-wave": {
+        "extra-tags": [
+            "hacker",
+            "hacker-news"
+        ],
+        "title": "Hackernews Things to know about the Great Wave (artic.edu)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2024-09-08"
     }
 }
