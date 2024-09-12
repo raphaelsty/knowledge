@@ -39229,5 +39229,19 @@
             "structured-generation",
             "generative-ai"
         ]
+    },
+    "https://github.com/lightonai/ducksearch": {
+        "extra-tags": [
+            "efficientnet"
+        ],
+        "date": "2024-09-05",
+        "title": "ducksearch",
+        "summary": "Efficient BM25 with DuckDB \ud83e\udd86",
+        "tags": [
+            "python",
+            "bm25",
+            "duckdb",
+            "information-retrieval"
+        ]
     }
 }

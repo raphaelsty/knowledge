@@ -179470,5 +179470,25 @@
     {
         "head": "generation",
         "tail": "structured knowledge"
+    },
+    {
+        "head": "bm25",
+        "tail": "duckdb"
+    },
+    {
+        "head": "bm25",
+        "tail": "efficientnet"
+    },
+    {
+        "head": "duckdb",
+        "tail": "information-retrieval"
+    },
+    {
+        "head": "duckdb",
+        "tail": "efficientnet"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "efficientnet"
     }
 ]
