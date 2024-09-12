@@ -39208,5 +39208,26 @@
         ],
         "summary": "",
         "date": "2024-09-08"
+    },
+    "https://github.com/dottxt-ai/outlines": {
+        "extra-tags": [
+            "text",
+            "generation",
+            "structured knowledge"
+        ],
+        "date": "2023-03-17",
+        "title": "outlines",
+        "summary": "Structured Text Generation",
+        "tags": [
+            "regex",
+            "symbolic-ai",
+            "json",
+            "cfg",
+            "python",
+            "prompt-engineering",
+            "llms",
+            "structured-generation",
+            "generative-ai"
+        ]
     }
 }

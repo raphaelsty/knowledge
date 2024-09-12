@@ -179302,5 +179302,173 @@
     {
         "head": "hdmi",
         "tail": "edid"
+    },
+    {
+        "head": "regex",
+        "tail": "symbolic-ai"
+    },
+    {
+        "head": "regex",
+        "tail": "json"
+    },
+    {
+        "head": "regex",
+        "tail": "cfg"
+    },
+    {
+        "head": "regex",
+        "tail": "prompt-engineering"
+    },
+    {
+        "head": "regex",
+        "tail": "llms"
+    },
+    {
+        "head": "regex",
+        "tail": "structured-generation"
+    },
+    {
+        "head": "regex",
+        "tail": "generative-ai"
+    },
+    {
+        "head": "regex",
+        "tail": "text"
+    },
+    {
+        "head": "regex",
+        "tail": "generation"
+    },
+    {
+        "head": "regex",
+        "tail": "structured knowledge"
+    },
+    {
+        "head": "symbolic-ai",
+        "tail": "json"
+    },
+    {
+        "head": "symbolic-ai",
+        "tail": "cfg"
+    },
+    {
+        "head": "symbolic-ai",
+        "tail": "structured-generation"
+    },
+    {
+        "head": "symbolic-ai",
+        "tail": "generation"
+    },
+    {
+        "head": "json",
+        "tail": "cfg"
+    },
+    {
+        "head": "json",
+        "tail": "prompt-engineering"
+    },
+    {
+        "head": "json",
+        "tail": "structured-generation"
+    },
+    {
+        "head": "json",
+        "tail": "generative-ai"
+    },
+    {
+        "head": "json",
+        "tail": "text"
+    },
+    {
+        "head": "json",
+        "tail": "generation"
+    },
+    {
+        "head": "json",
+        "tail": "structured knowledge"
+    },
+    {
+        "head": "cfg",
+        "tail": "python"
+    },
+    {
+        "head": "cfg",
+        "tail": "prompt-engineering"
+    },
+    {
+        "head": "cfg",
+        "tail": "llms"
+    },
+    {
+        "head": "cfg",
+        "tail": "structured-generation"
+    },
+    {
+        "head": "cfg",
+        "tail": "generative-ai"
+    },
+    {
+        "head": "cfg",
+        "tail": "text"
+    },
+    {
+        "head": "cfg",
+        "tail": "generation"
+    },
+    {
+        "head": "cfg",
+        "tail": "structured knowledge"
+    },
+    {
+        "head": "python",
+        "tail": "structured-generation"
+    },
+    {
+        "head": "python",
+        "tail": "generation"
+    },
+    {
+        "head": "prompt-engineering",
+        "tail": "structured-generation"
+    },
+    {
+        "head": "prompt-engineering",
+        "tail": "generation"
+    },
+    {
+        "head": "llms",
+        "tail": "structured-generation"
+    },
+    {
+        "head": "llms",
+        "tail": "generation"
+    },
+    {
+        "head": "structured-generation",
+        "tail": "generative-ai"
+    },
+    {
+        "head": "structured-generation",
+        "tail": "text"
+    },
+    {
+        "head": "structured-generation",
+        "tail": "generation"
+    },
+    {
+        "head": "structured-generation",
+        "tail": "structured knowledge"
+    },
+    {
+        "head": "generative-ai",
+        "tail": "generation"
+    },
+    {
+        "head": "text",
+        "tail": "generation"
+    },
+    {
+        "head": "generation",
+        "tail": "structured knowledge"
     }
 ]
