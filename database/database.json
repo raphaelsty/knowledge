@@ -39243,5 +39243,49 @@
             "duckdb",
             "information-retrieval"
         ]
+    },
+    "https://github.com/Future-House/paper-qa": {
+        "extra-tags": [
+            "paper",
+            "qa",
+            "nlp for scientific documents"
+        ],
+        "date": "2023-02-05",
+        "title": "paper-qa",
+        "summary": "High accuracy RAG for answering questions from scientific documents with citations",
+        "tags": [
+            "python",
+            "ai",
+            "rag",
+            "science",
+            "search"
+        ]
+    },
+    "https://github.com/jndean/LossRider": {
+        "extra-tags": [
+            "plotting",
+            "tool",
+            "maps",
+            "watch",
+            "loss"
+        ],
+        "date": "2024-08-12",
+        "title": "LossRider",
+        "summary": "A plotting tool that outputs Line Rider maps, so you can watch a man on a sled scoot down your loss curves. \ud83c\udfbf",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://arxiv.org/pdf/2409.03284": {
+        "extra-tags": [],
+        "title": "",
+        "summary": "",
+        "date": "2024-09-13",
+        "tags": [
+            "incremental",
+            "kg",
+            "kg construction",
+            "llms"
+        ]
     }
 }

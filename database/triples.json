@@ -179490,5 +179490,145 @@
     {
         "head": "information-retrieval",
         "tail": "efficientnet"
+    },
+    {
+        "head": "python",
+        "tail": "qa"
+    },
+    {
+        "head": "python",
+        "tail": "nlp for scientific documents"
+    },
+    {
+        "head": "ai",
+        "tail": "science"
+    },
+    {
+        "head": "ai",
+        "tail": "qa"
+    },
+    {
+        "head": "ai",
+        "tail": "nlp for scientific documents"
+    },
+    {
+        "head": "rag",
+        "tail": "science"
+    },
+    {
+        "head": "rag",
+        "tail": "paper"
+    },
+    {
+        "head": "rag",
+        "tail": "qa"
+    },
+    {
+        "head": "rag",
+        "tail": "nlp for scientific documents"
+    },
+    {
+        "head": "science",
+        "tail": "search"
+    },
+    {
+        "head": "science",
+        "tail": "paper"
+    },
+    {
+        "head": "science",
+        "tail": "qa"
+    },
+    {
+        "head": "science",
+        "tail": "nlp for scientific documents"
+    },
+    {
+        "head": "search",
+        "tail": "paper"
+    },
+    {
+        "head": "search",
+        "tail": "qa"
+    },
+    {
+        "head": "search",
+        "tail": "nlp for scientific documents"
+    },
+    {
+        "head": "paper",
+        "tail": "qa"
+    },
+    {
+        "head": "paper",
+        "tail": "nlp for scientific documents"
+    },
+    {
+        "head": "qa",
+        "tail": "nlp for scientific documents"
+    },
+    {
+        "head": "python",
+        "tail": "watch"
+    },
+    {
+        "head": "plotting",
+        "tail": "tool"
+    },
+    {
+        "head": "plotting",
+        "tail": "maps"
+    },
+    {
+        "head": "plotting",
+        "tail": "watch"
+    },
+    {
+        "head": "plotting",
+        "tail": "loss"
+    },
+    {
+        "head": "tool",
+        "tail": "maps"
+    },
+    {
+        "head": "tool",
+        "tail": "watch"
+    },
+    {
+        "head": "tool",
+        "tail": "loss"
+    },
+    {
+        "head": "maps",
+        "tail": "watch"
+    },
+    {
+        "head": "maps",
+        "tail": "loss"
+    },
+    {
+        "head": "watch",
+        "tail": "loss"
+    },
+    {
+        "head": "incremental",
+        "tail": "kg"
+    },
+    {
+        "head": "incremental",
+        "tail": "kg construction"
+    },
+    {
+        "head": "incremental",
+        "tail": "llms"
+    },
+    {
+        "head": "kg",
+        "tail": "kg construction"
+    },
+    {
+        "head": "kg construction",
+        "tail": "llms"
     }
 ]
