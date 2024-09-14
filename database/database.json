@@ -39287,5 +39287,18 @@
             "kg construction",
             "llms"
         ]
+    },
+    "https://github.com/Levers-Labs/SOMA-B2B-SaaS": {
+        "extra-tags": [
+            "som",
+            "paas",
+            "iaas"
+        ],
+        "date": "2023-03-29",
+        "title": "SOMA-B2B-SaaS",
+        "summary": "",
+        "tags": [
+            "python"
+        ]
     }
 }

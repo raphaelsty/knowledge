@@ -179630,5 +179630,21 @@
     {
         "head": "kg construction",
         "tail": "llms"
+    },
+    {
+        "head": "python",
+        "tail": "iaas"
+    },
+    {
+        "head": "som",
+        "tail": "paas"
+    },
+    {
+        "head": "som",
+        "tail": "iaas"
+    },
+    {
+        "head": "paas",
+        "tail": "iaas"
     }
 ]
