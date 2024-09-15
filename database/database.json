@@ -39300,5 +39300,17 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/mattt/hype": {
+        "extra-tags": [
+            "functions",
+            "language models"
+        ],
+        "date": "2024-09-11",
+        "title": "hype",
+        "summary": "Write Python functions. Call them from language models.",
+        "tags": [
+            "python"
+        ]
     }
 }
