@@ -179650,5 +179650,21 @@
     {
         "head": "functions",
         "tail": "language models"
+    },
+    {
+        "head": "python",
+        "tail": "embeddings in ir"
+    },
+    {
+        "head": "embeddings",
+        "tail": "llm"
+    },
+    {
+        "head": "embeddings",
+        "tail": "embeddings in ir"
+    },
+    {
+        "head": "llm",
+        "tail": "embeddings in ir"
     }
 ]

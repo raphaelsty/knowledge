@@ -39312,5 +39312,18 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/dleemiller/WordLlama": {
+        "extra-tags": [
+            "embeddings",
+            "llm",
+            "embeddings in ir"
+        ],
+        "date": "2024-06-12",
+        "title": "WordLlama",
+        "summary": "Things you can do with the token embeddings of an LLM",
+        "tags": [
+            "python"
+        ]
     }
 }
