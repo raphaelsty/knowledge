@@ -179666,5 +179666,41 @@
     {
         "head": "llm",
         "tail": "embeddings in ir"
+    },
+    {
+        "head": "zig",
+        "tail": "performance"
+    },
+    {
+        "head": "zig",
+        "tail": "ai"
+    },
+    {
+        "head": "zig",
+        "tail": "inference"
+    },
+    {
+        "head": "zig",
+        "tail": "production"
+    },
+    {
+        "head": "performance",
+        "tail": "ai"
+    },
+    {
+        "head": "performance",
+        "tail": "inference"
+    },
+    {
+        "head": "performance",
+        "tail": "production"
+    },
+    {
+        "head": "ai",
+        "tail": "production"
+    },
+    {
+        "head": "inference",
+        "tail": "production"
     }
 ]

@@ -39337,5 +39337,19 @@
         ],
         "summary": "",
         "date": "2024-09-17"
+    },
+    "https://github.com/zml/zml": {
+        "extra-tags": [
+            "performance",
+            "ai",
+            "inference",
+            "production"
+        ],
+        "date": "2024-09-17",
+        "title": "zml",
+        "summary": "High performance AI inference stack. Built for production. @ziglang / @openxla / MLIR / @bazelbuild",
+        "tags": [
+            "zig"
+        ]
     }
 }
