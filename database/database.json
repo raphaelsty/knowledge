@@ -39325,5 +39325,17 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/muze-nl/jaqt": {
+        "extra-tags": [
+            "javascript",
+            "github"
+        ],
+        "title": "Hackernews Show HN: JAQT \u2013 JavaScript Queries and Transformations (github.com/muze-nl)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2024-09-17"
     }
 }
