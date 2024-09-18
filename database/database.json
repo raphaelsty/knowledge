@@ -39351,5 +39351,21 @@
         "tags": [
             "zig"
         ]
+    },
+    "https://github.com/TorchDR/TorchDR": {
+        "extra-tags": [
+            "pytorch",
+            "torch"
+        ],
+        "date": "2024-02-07",
+        "title": "TorchDR",
+        "summary": "TorchDR - PyTorch Dimensionality Reduction",
+        "tags": [
+            "optimal-transport",
+            "affinity-matrix",
+            "dimensionality-reduction",
+            "python",
+            "manifold-learning"
+        ]
     }
 }

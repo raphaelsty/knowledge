@@ -179702,5 +179702,65 @@
     {
         "head": "inference",
         "tail": "production"
+    },
+    {
+        "head": "optimal-transport",
+        "tail": "affinity-matrix"
+    },
+    {
+        "head": "optimal-transport",
+        "tail": "dimensionality-reduction"
+    },
+    {
+        "head": "optimal-transport",
+        "tail": "python"
+    },
+    {
+        "head": "optimal-transport",
+        "tail": "manifold-learning"
+    },
+    {
+        "head": "optimal-transport",
+        "tail": "pytorch"
+    },
+    {
+        "head": "optimal-transport",
+        "tail": "torch"
+    },
+    {
+        "head": "affinity-matrix",
+        "tail": "dimensionality-reduction"
+    },
+    {
+        "head": "affinity-matrix",
+        "tail": "python"
+    },
+    {
+        "head": "affinity-matrix",
+        "tail": "manifold-learning"
+    },
+    {
+        "head": "affinity-matrix",
+        "tail": "pytorch"
+    },
+    {
+        "head": "affinity-matrix",
+        "tail": "torch"
+    },
+    {
+        "head": "dimensionality-reduction",
+        "tail": "pytorch"
+    },
+    {
+        "head": "dimensionality-reduction",
+        "tail": "torch"
+    },
+    {
+        "head": "manifold-learning",
+        "tail": "pytorch"
+    },
+    {
+        "head": "manifold-learning",
+        "tail": "torch"
     }
 ]
