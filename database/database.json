@@ -39367,5 +39367,30 @@
             "python",
             "manifold-learning"
         ]
+    },
+    "https://github.com/rspeer/wordfreq": {
+        "extra-tags": [
+            "database",
+            "languages",
+            "natural language generation"
+        ],
+        "date": "2013-10-28",
+        "title": "wordfreq",
+        "summary": "Access a database of word frequencies, in various natural languages.",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/rspeer/wordfreq/blob/master/SUNSET.md": {
+        "extra-tags": [
+            "github",
+            "hacker"
+        ],
+        "title": "Hackernews Why wordfreq will not be updated (github.com/rspeer)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2024-09-19"
     }
 }

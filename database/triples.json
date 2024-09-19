@@ -179762,5 +179762,21 @@
     {
         "head": "manifold-learning",
         "tail": "torch"
+    },
+    {
+        "head": "python",
+        "tail": "natural language generation"
+    },
+    {
+        "head": "database",
+        "tail": "languages"
+    },
+    {
+        "head": "database",
+        "tail": "natural language generation"
+    },
+    {
+        "head": "languages",
+        "tail": "natural language generation"
     }
 ]
