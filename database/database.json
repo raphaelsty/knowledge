@@ -39392,5 +39392,23 @@
         ],
         "summary": "",
         "date": "2024-09-19"
+    },
+    "https://github.com/juba/pyobsplot": {
+        "extra-tags": [
+            "plot",
+            "notebooks"
+        ],
+        "date": "2023-03-29",
+        "title": "pyobsplot",
+        "summary": "Observable Plot in Jupyter notebooks and Quarto documents",
+        "tags": [
+            "anywidget",
+            "jupyter",
+            "html",
+            "quarto",
+            "python",
+            "observable-plot",
+            "jupyter-widget"
+        ]
     }
 }

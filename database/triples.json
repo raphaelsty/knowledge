@@ -179778,5 +179778,129 @@
     {
         "head": "languages",
         "tail": "natural language generation"
+    },
+    {
+        "head": "anywidget",
+        "tail": "jupyter"
+    },
+    {
+        "head": "anywidget",
+        "tail": "html"
+    },
+    {
+        "head": "anywidget",
+        "tail": "quarto"
+    },
+    {
+        "head": "anywidget",
+        "tail": "python"
+    },
+    {
+        "head": "anywidget",
+        "tail": "observable-plot"
+    },
+    {
+        "head": "anywidget",
+        "tail": "jupyter-widget"
+    },
+    {
+        "head": "anywidget",
+        "tail": "plot"
+    },
+    {
+        "head": "anywidget",
+        "tail": "notebooks"
+    },
+    {
+        "head": "jupyter",
+        "tail": "html"
+    },
+    {
+        "head": "jupyter",
+        "tail": "quarto"
+    },
+    {
+        "head": "jupyter",
+        "tail": "observable-plot"
+    },
+    {
+        "head": "jupyter",
+        "tail": "jupyter-widget"
+    },
+    {
+        "head": "jupyter",
+        "tail": "plot"
+    },
+    {
+        "head": "html",
+        "tail": "quarto"
+    },
+    {
+        "head": "html",
+        "tail": "observable-plot"
+    },
+    {
+        "head": "html",
+        "tail": "jupyter-widget"
+    },
+    {
+        "head": "html",
+        "tail": "plot"
+    },
+    {
+        "head": "html",
+        "tail": "notebooks"
+    },
+    {
+        "head": "quarto",
+        "tail": "python"
+    },
+    {
+        "head": "quarto",
+        "tail": "observable-plot"
+    },
+    {
+        "head": "quarto",
+        "tail": "jupyter-widget"
+    },
+    {
+        "head": "quarto",
+        "tail": "plot"
+    },
+    {
+        "head": "quarto",
+        "tail": "notebooks"
+    },
+    {
+        "head": "python",
+        "tail": "observable-plot"
+    },
+    {
+        "head": "python",
+        "tail": "jupyter-widget"
+    },
+    {
+        "head": "observable-plot",
+        "tail": "jupyter-widget"
+    },
+    {
+        "head": "observable-plot",
+        "tail": "plot"
+    },
+    {
+        "head": "observable-plot",
+        "tail": "notebooks"
+    },
+    {
+        "head": "jupyter-widget",
+        "tail": "plot"
+    },
+    {
+        "head": "jupyter-widget",
+        "tail": "notebooks"
+    },
+    {
+        "head": "plot",
+        "tail": "notebooks"
     }
 ]
