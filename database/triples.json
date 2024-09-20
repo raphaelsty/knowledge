@@ -179902,5 +179902,157 @@
     {
         "head": "plot",
         "tail": "notebooks"
+    },
+    {
+        "head": "pytorch",
+        "tail": "performance"
+    },
+    {
+        "head": "bi-encoder",
+        "tail": "document screenshot"
+    },
+    {
+        "head": "bi-encoder",
+        "tail": "embedding"
+    },
+    {
+        "head": "bi-encoder",
+        "tail": "multimodel"
+    },
+    {
+        "head": "bi-encoder",
+        "tail": "qwen"
+    },
+    {
+        "head": "bi-encoder",
+        "tail": "multimodal"
+    },
+    {
+        "head": "bi-encoder",
+        "tail": "retrieval"
+    },
+    {
+        "head": "document screenshot",
+        "tail": "embedding"
+    },
+    {
+        "head": "document screenshot",
+        "tail": "multimodel"
+    },
+    {
+        "head": "document screenshot",
+        "tail": "qwen"
+    },
+    {
+        "head": "document screenshot",
+        "tail": "multimodal"
+    },
+    {
+        "head": "document screenshot",
+        "tail": "retrieval"
+    },
+    {
+        "head": "embedding",
+        "tail": "multimodel"
+    },
+    {
+        "head": "embedding",
+        "tail": "qwen"
+    },
+    {
+        "head": "embedding",
+        "tail": "multimodal"
+    },
+    {
+        "head": "multimodel",
+        "tail": "qwen"
+    },
+    {
+        "head": "multimodel",
+        "tail": "multimodal"
+    },
+    {
+        "head": "multimodel",
+        "tail": "retrieval"
+    },
+    {
+        "head": "qwen",
+        "tail": "multimodal"
+    },
+    {
+        "head": "qwen",
+        "tail": "retrieval"
+    },
+    {
+        "head": "multimodal",
+        "tail": "retrieval"
+    },
+    {
+        "head": "bi-encoder",
+        "tail": "embeddings"
+    },
+    {
+        "head": "bi-encoder",
+        "tail": "source"
+    },
+    {
+        "head": "bi-encoder",
+        "tail": "science"
+    },
+    {
+        "head": "bi-encoder",
+        "tail": "computer science - artificial intelligence"
+    },
+    {
+        "head": "bi-encoder",
+        "tail": "artificial human intelligence"
+    },
+    {
+        "head": "embeddings",
+        "tail": "qwen"
+    },
+    {
+        "head": "embeddings",
+        "tail": "source"
+    },
+    {
+        "head": "embeddings",
+        "tail": "science"
+    },
+    {
+        "head": "embeddings",
+        "tail": "computer science - artificial intelligence"
+    },
+    {
+        "head": "embeddings",
+        "tail": "artificial human intelligence"
+    },
+    {
+        "head": "qwen",
+        "tail": "source"
+    },
+    {
+        "head": "qwen",
+        "tail": "science"
+    },
+    {
+        "head": "qwen",
+        "tail": "computer science - artificial intelligence"
+    },
+    {
+        "head": "qwen",
+        "tail": "artificial human intelligence"
+    },
+    {
+        "head": "source",
+        "tail": "artificial human intelligence"
+    },
+    {
+        "head": "science",
+        "tail": "artificial human intelligence"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "artificial human intelligence"
     }
 ]
