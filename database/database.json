@@ -39454,5 +39454,20 @@
             "embeddings",
             "qwen"
         ]
+    },
+    "https://www.anthropic.com/news/contextual-retrieval": {
+        "extra-tags": [
+            "ai",
+            "safety"
+        ],
+        "title": "Introducing Contextual Retrieval",
+        "summary": "Anthropic is an AI safety and research company that's working to build reliable, interpretable, and steerable AI systems.",
+        "date": "2024-09-21",
+        "tags": [
+            "anthropic",
+            "bm25",
+            "contextual bm25",
+            "contextual retrieval"
+        ]
     }
 }

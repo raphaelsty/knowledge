@@ -180054,5 +180054,65 @@
     {
         "head": "computer science - artificial intelligence",
         "tail": "artificial human intelligence"
+    },
+    {
+        "head": "anthropic",
+        "tail": "bm25"
+    },
+    {
+        "head": "anthropic",
+        "tail": "contextual bm25"
+    },
+    {
+        "head": "anthropic",
+        "tail": "contextual retrieval"
+    },
+    {
+        "head": "anthropic",
+        "tail": "ai"
+    },
+    {
+        "head": "anthropic",
+        "tail": "safety"
+    },
+    {
+        "head": "bm25",
+        "tail": "contextual bm25"
+    },
+    {
+        "head": "bm25",
+        "tail": "contextual retrieval"
+    },
+    {
+        "head": "bm25",
+        "tail": "ai"
+    },
+    {
+        "head": "bm25",
+        "tail": "safety"
+    },
+    {
+        "head": "contextual bm25",
+        "tail": "contextual retrieval"
+    },
+    {
+        "head": "contextual bm25",
+        "tail": "ai"
+    },
+    {
+        "head": "contextual bm25",
+        "tail": "safety"
+    },
+    {
+        "head": "contextual retrieval",
+        "tail": "ai"
+    },
+    {
+        "head": "contextual retrieval",
+        "tail": "safety"
+    },
+    {
+        "head": "ai",
+        "tail": "safety"
     }
 ]
