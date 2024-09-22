@@ -180114,5 +180114,17 @@
     {
         "head": "ai",
         "tail": "safety"
+    },
+    {
+        "head": "jax",
+        "tail": "jit"
+    },
+    {
+        "head": "python",
+        "tail": "jit"
+    },
+    {
+        "head": "numpy",
+        "tail": "jit"
     }
 ]

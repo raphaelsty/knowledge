@@ -39469,5 +39469,18 @@
             "contextual bm25",
             "contextual retrieval"
         ]
+    },
+    "https://github.com/jax-ml/jax": {
+        "extra-tags": [
+            "numpy",
+            "jit"
+        ],
+        "date": "2018-10-25",
+        "title": "jax",
+        "summary": "Composable transformations of Python+NumPy programs: differentiate, vectorize, JIT to GPU/TPU, and more",
+        "tags": [
+            "jax",
+            "python"
+        ]
     }
 }
