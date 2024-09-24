@@ -39482,5 +39482,53 @@
             "jax",
             "python"
         ]
+    },
+    "https://github.com/apache/age": {
+        "extra-tags": [
+            "graph",
+            "database",
+            "fast",
+            "analysis",
+            "real-time"
+        ],
+        "date": "2020-07-01",
+        "title": "age",
+        "summary": "Graph database optimized for fast analysis and real-time data processing. It is provided as an extension to PostgreSQL.",
+        "tags": [
+            "graph-database",
+            "postgresql",
+            "c",
+            "age-database",
+            "postgresql-extension",
+            "multi-model-dbms",
+            "graphdb",
+            "agensgraph",
+            "analytics"
+        ]
+    },
+    "https://github.com/gpu-mode/profiling-cuda-in-torch": {
+        "extra-tags": [
+            "profiling",
+            "cuda",
+            "torch"
+        ],
+        "date": "2024-01-11",
+        "title": "profiling-cuda-in-torch",
+        "summary": "",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/gpu-mode/resource-stream": {
+        "extra-tags": [
+            "stream",
+            "gpu",
+            "programming",
+            "news"
+        ],
+        "date": "2023-12-27",
+        "title": "resource-stream",
+        "summary": "GPU programming related news and material links",
+        "tags": []
     }
 }

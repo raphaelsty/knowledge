@@ -180126,5 +180126,345 @@
     {
         "head": "numpy",
         "tail": "jit"
+    },
+    {
+        "head": "graph-database",
+        "tail": "postgresql"
+    },
+    {
+        "head": "graph-database",
+        "tail": "c"
+    },
+    {
+        "head": "graph-database",
+        "tail": "age-database"
+    },
+    {
+        "head": "graph-database",
+        "tail": "postgresql-extension"
+    },
+    {
+        "head": "graph-database",
+        "tail": "multi-model-dbms"
+    },
+    {
+        "head": "graph-database",
+        "tail": "graphdb"
+    },
+    {
+        "head": "graph-database",
+        "tail": "agensgraph"
+    },
+    {
+        "head": "graph-database",
+        "tail": "analytics"
+    },
+    {
+        "head": "graph-database",
+        "tail": "graph"
+    },
+    {
+        "head": "graph-database",
+        "tail": "database"
+    },
+    {
+        "head": "graph-database",
+        "tail": "fast"
+    },
+    {
+        "head": "graph-database",
+        "tail": "analysis"
+    },
+    {
+        "head": "graph-database",
+        "tail": "real-time"
+    },
+    {
+        "head": "postgresql",
+        "tail": "age-database"
+    },
+    {
+        "head": "postgresql",
+        "tail": "multi-model-dbms"
+    },
+    {
+        "head": "postgresql",
+        "tail": "graphdb"
+    },
+    {
+        "head": "postgresql",
+        "tail": "agensgraph"
+    },
+    {
+        "head": "postgresql",
+        "tail": "graph"
+    },
+    {
+        "head": "postgresql",
+        "tail": "fast"
+    },
+    {
+        "head": "postgresql",
+        "tail": "analysis"
+    },
+    {
+        "head": "postgresql",
+        "tail": "real-time"
+    },
+    {
+        "head": "c",
+        "tail": "age-database"
+    },
+    {
+        "head": "c",
+        "tail": "postgresql-extension"
+    },
+    {
+        "head": "c",
+        "tail": "multi-model-dbms"
+    },
+    {
+        "head": "c",
+        "tail": "graphdb"
+    },
+    {
+        "head": "c",
+        "tail": "agensgraph"
+    },
+    {
+        "head": "c",
+        "tail": "graph"
+    },
+    {
+        "head": "c",
+        "tail": "fast"
+    },
+    {
+        "head": "c",
+        "tail": "analysis"
+    },
+    {
+        "head": "c",
+        "tail": "real-time"
+    },
+    {
+        "head": "age-database",
+        "tail": "postgresql-extension"
+    },
+    {
+        "head": "age-database",
+        "tail": "multi-model-dbms"
+    },
+    {
+        "head": "age-database",
+        "tail": "graphdb"
+    },
+    {
+        "head": "age-database",
+        "tail": "agensgraph"
+    },
+    {
+        "head": "age-database",
+        "tail": "analytics"
+    },
+    {
+        "head": "age-database",
+        "tail": "graph"
+    },
+    {
+        "head": "age-database",
+        "tail": "database"
+    },
+    {
+        "head": "age-database",
+        "tail": "fast"
+    },
+    {
+        "head": "age-database",
+        "tail": "analysis"
+    },
+    {
+        "head": "age-database",
+        "tail": "real-time"
+    },
+    {
+        "head": "postgresql-extension",
+        "tail": "multi-model-dbms"
+    },
+    {
+        "head": "postgresql-extension",
+        "tail": "graphdb"
+    },
+    {
+        "head": "postgresql-extension",
+        "tail": "agensgraph"
+    },
+    {
+        "head": "postgresql-extension",
+        "tail": "analytics"
+    },
+    {
+        "head": "postgresql-extension",
+        "tail": "graph"
+    },
+    {
+        "head": "postgresql-extension",
+        "tail": "database"
+    },
+    {
+        "head": "postgresql-extension",
+        "tail": "fast"
+    },
+    {
+        "head": "postgresql-extension",
+        "tail": "analysis"
+    },
+    {
+        "head": "postgresql-extension",
+        "tail": "real-time"
+    },
+    {
+        "head": "multi-model-dbms",
+        "tail": "graphdb"
+    },
+    {
+        "head": "multi-model-dbms",
+        "tail": "agensgraph"
+    },
+    {
+        "head": "multi-model-dbms",
+        "tail": "analytics"
+    },
+    {
+        "head": "multi-model-dbms",
+        "tail": "graph"
+    },
+    {
+        "head": "multi-model-dbms",
+        "tail": "database"
+    },
+    {
+        "head": "multi-model-dbms",
+        "tail": "fast"
+    },
+    {
+        "head": "multi-model-dbms",
+        "tail": "analysis"
+    },
+    {
+        "head": "multi-model-dbms",
+        "tail": "real-time"
+    },
+    {
+        "head": "graphdb",
+        "tail": "agensgraph"
+    },
+    {
+        "head": "graphdb",
+        "tail": "analytics"
+    },
+    {
+        "head": "graphdb",
+        "tail": "graph"
+    },
+    {
+        "head": "graphdb",
+        "tail": "database"
+    },
+    {
+        "head": "graphdb",
+        "tail": "fast"
+    },
+    {
+        "head": "graphdb",
+        "tail": "analysis"
+    },
+    {
+        "head": "graphdb",
+        "tail": "real-time"
+    },
+    {
+        "head": "agensgraph",
+        "tail": "analytics"
+    },
+    {
+        "head": "agensgraph",
+        "tail": "graph"
+    },
+    {
+        "head": "agensgraph",
+        "tail": "database"
+    },
+    {
+        "head": "agensgraph",
+        "tail": "fast"
+    },
+    {
+        "head": "agensgraph",
+        "tail": "analysis"
+    },
+    {
+        "head": "agensgraph",
+        "tail": "real-time"
+    },
+    {
+        "head": "analytics",
+        "tail": "graph"
+    },
+    {
+        "head": "analytics",
+        "tail": "fast"
+    },
+    {
+        "head": "graph",
+        "tail": "fast"
+    },
+    {
+        "head": "graph",
+        "tail": "analysis"
+    },
+    {
+        "head": "graph",
+        "tail": "real-time"
+    },
+    {
+        "head": "database",
+        "tail": "fast"
+    },
+    {
+        "head": "database",
+        "tail": "analysis"
+    },
+    {
+        "head": "fast",
+        "tail": "analysis"
+    },
+    {
+        "head": "fast",
+        "tail": "real-time"
+    },
+    {
+        "head": "analysis",
+        "tail": "real-time"
+    },
+    {
+        "head": "stream",
+        "tail": "gpu"
+    },
+    {
+        "head": "stream",
+        "tail": "programming"
+    },
+    {
+        "head": "gpu",
+        "tail": "programming"
+    },
+    {
+        "head": "gpu",
+        "tail": "news"
+    },
+    {
+        "head": "programming",
+        "tail": "news"
     }
 ]
