@@ -180466,5 +180466,25 @@
     {
         "head": "programming",
         "tail": "news"
+    },
+    {
+        "head": "python",
+        "tail": "explain"
+    },
+    {
+        "head": "python",
+        "tail": "explained"
+    },
+    {
+        "head": "explain",
+        "tail": "metrics"
+    },
+    {
+        "head": "explain",
+        "tail": "explained"
+    },
+    {
+        "head": "metrics",
+        "tail": "explained"
     }
 ]

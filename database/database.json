@@ -39530,5 +39530,18 @@
         "title": "resource-stream",
         "summary": "GPU programming related news and material links",
         "tags": []
+    },
+    "https://github.com/carbonfact/icanexplain": {
+        "extra-tags": [
+            "explain",
+            "metrics",
+            "explained"
+        ],
+        "date": "2024-06-06",
+        "title": "icanexplain",
+        "summary": "\u2702\ufe0f Explain why metrics change by unpacking them",
+        "tags": [
+            "python"
+        ]
     }
 }
