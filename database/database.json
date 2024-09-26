@@ -39543,5 +39543,17 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/vmoens/tdmpc2": {
+        "extra-tags": [
+            "code",
+            "models",
+            "continuous",
+            "control"
+        ],
+        "date": "2024-09-25",
+        "title": "tdmpc2",
+        "summary": "Code for \"TD-MPC2: Scalable, Robust World Models for Continuous Control\"",
+        "tags": []
     }
 }
