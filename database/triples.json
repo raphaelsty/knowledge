@@ -180486,5 +180486,33 @@
     {
         "head": "metrics",
         "tail": "explained"
+    },
+    {
+        "head": "python",
+        "tail": "2024"
+    },
+    {
+        "head": "2024",
+        "tail": "learning"
+    },
+    {
+        "head": "2024",
+        "tail": "multimodal"
+    },
+    {
+        "head": "2024",
+        "tail": "data"
+    },
+    {
+        "head": "learning",
+        "tail": "multimodal"
+    },
+    {
+        "head": "learning",
+        "tail": "data"
+    },
+    {
+        "head": "multimodal",
+        "tail": "data"
     }
 ]

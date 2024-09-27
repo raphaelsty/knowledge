@@ -39555,5 +39555,19 @@
         "title": "tdmpc2",
         "summary": "Code for \"TD-MPC2: Scalable, Robust World Models for Continuous Control\"",
         "tags": []
+    },
+    "https://github.com/Lucas-rbnt/DRIM": {
+        "extra-tags": [
+            "2024",
+            "learning",
+            "multimodal",
+            "data"
+        ],
+        "date": "2024-06-25",
+        "title": "DRIM",
+        "summary": "[MICCAI 2024] DRIM: Learning Disentangled Representations from Incomplete Multimodal Healthcare Data",
+        "tags": [
+            "python"
+        ]
     }
 }
