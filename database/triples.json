@@ -180514,5 +180514,105 @@
     {
         "head": "multimodal",
         "tail": "data"
+    },
+    {
+        "head": "shell-script",
+        "tail": "zsh-plugins"
+    },
+    {
+        "head": "shell-script",
+        "tail": "virtualenv"
+    },
+    {
+        "head": "shell-script",
+        "tail": "shell"
+    },
+    {
+        "head": "shell-script",
+        "tail": "zsh"
+    },
+    {
+        "head": "shell-script",
+        "tail": "virtualenvwrapper"
+    },
+    {
+        "head": "shell-script",
+        "tail": "python"
+    },
+    {
+        "head": "shell-script",
+        "tail": "plugin"
+    },
+    {
+        "head": "zsh-plugins",
+        "tail": "virtualenv"
+    },
+    {
+        "head": "zsh-plugins",
+        "tail": "shell"
+    },
+    {
+        "head": "zsh-plugins",
+        "tail": "zsh"
+    },
+    {
+        "head": "zsh-plugins",
+        "tail": "virtualenvwrapper"
+    },
+    {
+        "head": "zsh-plugins",
+        "tail": "python"
+    },
+    {
+        "head": "zsh-plugins",
+        "tail": "plugin"
+    },
+    {
+        "head": "virtualenv",
+        "tail": "shell"
+    },
+    {
+        "head": "virtualenv",
+        "tail": "zsh"
+    },
+    {
+        "head": "virtualenv",
+        "tail": "virtualenvwrapper"
+    },
+    {
+        "head": "virtualenv",
+        "tail": "python"
+    },
+    {
+        "head": "virtualenv",
+        "tail": "plugin"
+    },
+    {
+        "head": "shell",
+        "tail": "virtualenvwrapper"
+    },
+    {
+        "head": "shell",
+        "tail": "plugin"
+    },
+    {
+        "head": "zsh",
+        "tail": "virtualenvwrapper"
+    },
+    {
+        "head": "zsh",
+        "tail": "python"
+    },
+    {
+        "head": "zsh",
+        "tail": "plugin"
+    },
+    {
+        "head": "virtualenvwrapper",
+        "tail": "python"
+    },
+    {
+        "head": "virtualenvwrapper",
+        "tail": "plugin"
     }
 ]

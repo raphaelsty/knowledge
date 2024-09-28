@@ -39569,5 +39569,22 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/MichaelAquilina/zsh-autoswitch-virtualenv": {
+        "extra-tags": [
+            "plugin"
+        ],
+        "date": "2016-06-26",
+        "title": "zsh-autoswitch-virtualenv",
+        "summary": " \ud83d\udc0d ZSH plugin to automatically switch python virtualenvs (including pipenv and poetry) as you move between directories",
+        "tags": [
+            "shell-script",
+            "zsh-plugins",
+            "virtualenv",
+            "shell",
+            "zsh",
+            "virtualenvwrapper",
+            "python"
+        ]
     }
 }
