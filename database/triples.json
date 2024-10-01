@@ -180614,5 +180614,29 @@
     {
         "head": "virtualenvwrapper",
         "tail": "plugin"
+    },
+    {
+        "head": "typescript",
+        "tail": "connected-vehicles"
+    },
+    {
+        "head": "typescript",
+        "tail": "connect"
+    },
+    {
+        "head": "typescript",
+        "tail": "rrt-connect"
+    },
+    {
+        "head": "connected-vehicles",
+        "tail": "connect"
+    },
+    {
+        "head": "connected-vehicles",
+        "tail": "rrt-connect"
+    },
+    {
+        "head": "connect",
+        "tail": "rrt-connect"
     }
 ]

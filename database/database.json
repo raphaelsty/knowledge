@@ -39586,5 +39586,31 @@
             "virtualenvwrapper",
             "python"
         ]
+    },
+    "https://github.com/genmon/interconnected-cursor-party": {
+        "extra-tags": [
+            "connected-vehicles",
+            "connect",
+            "rrt-connect"
+        ],
+        "date": "2023-12-08",
+        "title": "interconnected-cursor-party",
+        "summary": "PartyKit Cursor Party fork for interconnected.org",
+        "tags": [
+            "typescript"
+        ]
+    },
+    "https://github.com/apache/datafusion-sqlparser-rs": {
+        "extra-tags": [
+            "sqlparser"
+        ],
+        "date": "2018-02-06",
+        "title": "datafusion-sqlparser-rs",
+        "summary": "Extensible SQL Lexer and Parser for Rust",
+        "tags": [
+            "parser",
+            "sql",
+            "rust"
+        ]
     }
 }
