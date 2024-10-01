@@ -39612,5 +39612,21 @@
             "sql",
             "rust"
         ]
+    },
+    "https://www.marginalia.nu/log/a_111_phrase_matching/": {
+        "extra-tags": [
+            "search",
+            "matching",
+            "now"
+        ],
+        "title": "Phrase Matching in Marginalia Search",
+        "summary": "Marginalia Search now properly supports phrase matching. This not only permits a more robust implementation of quoted search queries, but also helps promote results where the search terms occur in the document exactly in the same order as they do in the query.\nThis is a write-up about implementing this change. This is going to be a relatively long post, as it represents about 4 months of work.\nI\u2019m also happy and grateful to announce that the nlnet people reached out after the run of the grant was over and asked me if I had more work in the pipe, and agreed to fund this change as well!",
+        "date": "2024-10-01",
+        "tags": [
+            "bloom filters",
+            "index",
+            "marginalia",
+            "phrase search"
+        ]
     }
 }
