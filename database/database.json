@@ -39628,5 +39628,18 @@
             "marginalia",
             "phrase search"
         ]
+    },
+    "https://github.com/TheRobotStudio/SO-ARM100": {
+        "extra-tags": [
+            "arm",
+            "python standard library",
+            "open ai"
+        ],
+        "date": "2024-05-10",
+        "title": "SO-ARM100",
+        "summary": "Standard Open Arm 100",
+        "tags": [
+            "cmake"
+        ]
     }
 }
