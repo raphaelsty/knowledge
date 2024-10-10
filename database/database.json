@@ -39641,5 +39641,51 @@
         "tags": [
             "cmake"
         ]
+    },
+    "https://github.com/Unstructured-IO/unstructured": {
+        "extra-tags": [
+            "pipelines",
+            "source",
+            "apis",
+            "build"
+        ],
+        "date": "2022-09-26",
+        "title": "unstructured",
+        "summary": "Open source libraries and APIs to build custom preprocessing pipelines for labeling, training, or production machine learning pipelines. ",
+        "tags": [
+            "information-retrieval",
+            "pdf-to-json",
+            "natural-language-processing",
+            "donut",
+            "nlp",
+            "data-pipelines",
+            "html",
+            "deep-learning",
+            "pdf-to-text",
+            "pdf",
+            "document-image-analysis",
+            "ml",
+            "ocr",
+            "document-parser",
+            "docx",
+            "langchain",
+            "machine-learning",
+            "llm",
+            "document-parsing",
+            "document-image-processing",
+            "preprocessing"
+        ]
+    },
+    "https://cacm.acm.org/research/50-years-of-queries/": {
+        "extra-tags": [
+            "hacker",
+            "hacker-news"
+        ],
+        "title": "Hackernews 50 Years of Queries (acm.org)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2024-10-10"
     }
 }
