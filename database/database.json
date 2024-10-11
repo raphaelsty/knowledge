@@ -39687,5 +39687,24 @@
         ],
         "summary": "",
         "date": "2024-10-10"
+    },
+    "https://github.com/instructor-ai/instructor": {
+        "extra-tags": [
+            "llms",
+            "structured knowledge",
+            "structured-data",
+            "unstructured-data"
+        ],
+        "date": "2023-06-14",
+        "title": "instructor",
+        "summary": "structured outputs for llms ",
+        "tags": [
+            "validation",
+            "openai-function-calli",
+            "openai-functions",
+            "python",
+            "pydantic-v2",
+            "openai"
+        ]
     }
 }
