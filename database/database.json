@@ -39706,5 +39706,24 @@
             "pydantic-v2",
             "openai"
         ]
+    },
+    "http://arxiv.org/abs/2307.06304": {
+        "extra-tags": [
+            "models",
+            "vision"
+        ],
+        "title": "Patch n' Pack: NaViT, a Vision Transformer for any Aspect Ratio and Resolution",
+        "summary": "The ubiquitous and demonstrably suboptimal choice of resizing images to a fixed resolution before processing them with computer vision models has not yet been successfully challenged. However, models such as the Vision Transformer (ViT) offer flexible sequence-based modeling, and hence varying input sequence lengths. We take advantage of this with NaViT (Native Resolution ViT) which uses sequence packing during training to process inputs of arbitrary resolutions and aspect ratios. Alongside flexible model usage, we demonstrate improved training efficiency for large-scale supervised and contrastive image-text pretraining. NaViT can be efficiently transferred to standard tasks such as image and video classification, object detection, and semantic segmentation and leads to improved results on robustness and fairness benchmarks. At inference time, the input resolution flexibility can be used to smoothly navigate the test-time cost-performance trade-off. We believe that NaViT marks a departure from the standard, CNN-designed, input and modelling pipeline used by most computer vision models, and represents a promising direction for ViTs.",
+        "date": "2024-10-11",
+        "tags": [
+            "computer science - artificial intelligence",
+            "computer science - computer vision and pattern recognition",
+            "computer science - machine learning",
+            "images",
+            "patch",
+            "resolution",
+            "vision transformer",
+            "vlm"
+        ]
     }
 }

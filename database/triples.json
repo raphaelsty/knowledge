@@ -181778,5 +181778,145 @@
     {
         "head": "apis",
         "tail": "build"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "computer science - computer vision and pattern recognition"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "images"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "patch"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "resolution"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "vision transformer"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "vlm"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "vision"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "images"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "patch"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "resolution"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "vision transformer"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "images"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "patch"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "resolution"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "vision transformer"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "vlm"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "vision"
+    },
+    {
+        "head": "images",
+        "tail": "patch"
+    },
+    {
+        "head": "images",
+        "tail": "resolution"
+    },
+    {
+        "head": "images",
+        "tail": "vision transformer"
+    },
+    {
+        "head": "images",
+        "tail": "vlm"
+    },
+    {
+        "head": "images",
+        "tail": "models"
+    },
+    {
+        "head": "images",
+        "tail": "vision"
+    },
+    {
+        "head": "patch",
+        "tail": "resolution"
+    },
+    {
+        "head": "patch",
+        "tail": "vision transformer"
+    },
+    {
+        "head": "patch",
+        "tail": "vlm"
+    },
+    {
+        "head": "patch",
+        "tail": "models"
+    },
+    {
+        "head": "patch",
+        "tail": "vision"
+    },
+    {
+        "head": "resolution",
+        "tail": "vision transformer"
+    },
+    {
+        "head": "resolution",
+        "tail": "vlm"
+    },
+    {
+        "head": "resolution",
+        "tail": "models"
+    },
+    {
+        "head": "resolution",
+        "tail": "vision"
+    },
+    {
+        "head": "vision transformer",
+        "tail": "vlm"
+    },
+    {
+        "head": "vision transformer",
+        "tail": "models"
+    },
+    {
+        "head": "vision transformer",
+        "tail": "vision"
     }
 ]
