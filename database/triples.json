@@ -181918,5 +181918,233 @@
     {
         "head": "vision transformer",
         "tail": "vision"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "blp"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "inductive"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "knowledge graph completion"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "knowledge graph transformers"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "link prediction"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "transductive"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "learning"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "blp"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "inductive"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "knowledge graph completion"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "knowledge graph transformers"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "link prediction"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "transductive"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "learning"
+    },
+    {
+        "head": "blp",
+        "tail": "inductive"
+    },
+    {
+        "head": "blp",
+        "tail": "knowledge graph completion"
+    },
+    {
+        "head": "blp",
+        "tail": "knowledge graph transformers"
+    },
+    {
+        "head": "blp",
+        "tail": "transductive"
+    },
+    {
+        "head": "blp",
+        "tail": "kg"
+    },
+    {
+        "head": "blp",
+        "tail": "training"
+    },
+    {
+        "head": "blp",
+        "tail": "transformers"
+    },
+    {
+        "head": "blp",
+        "tail": "learning"
+    },
+    {
+        "head": "inductive",
+        "tail": "knowledge graph completion"
+    },
+    {
+        "head": "inductive",
+        "tail": "knowledge graph transformers"
+    },
+    {
+        "head": "inductive",
+        "tail": "link prediction"
+    },
+    {
+        "head": "inductive",
+        "tail": "transductive"
+    },
+    {
+        "head": "inductive",
+        "tail": "kg"
+    },
+    {
+        "head": "inductive",
+        "tail": "training"
+    },
+    {
+        "head": "inductive",
+        "tail": "transformers"
+    },
+    {
+        "head": "inductive",
+        "tail": "learning"
+    },
+    {
+        "head": "knowledge graph completion",
+        "tail": "knowledge graph transformers"
+    },
+    {
+        "head": "knowledge graph completion",
+        "tail": "transductive"
+    },
+    {
+        "head": "knowledge graph completion",
+        "tail": "kg"
+    },
+    {
+        "head": "knowledge graph completion",
+        "tail": "training"
+    },
+    {
+        "head": "knowledge graph completion",
+        "tail": "transformers"
+    },
+    {
+        "head": "knowledge graph completion",
+        "tail": "learning"
+    },
+    {
+        "head": "knowledge graph transformers",
+        "tail": "link prediction"
+    },
+    {
+        "head": "knowledge graph transformers",
+        "tail": "transductive"
+    },
+    {
+        "head": "knowledge graph transformers",
+        "tail": "kg"
+    },
+    {
+        "head": "knowledge graph transformers",
+        "tail": "training"
+    },
+    {
+        "head": "knowledge graph transformers",
+        "tail": "transformers"
+    },
+    {
+        "head": "knowledge graph transformers",
+        "tail": "learning"
+    },
+    {
+        "head": "link prediction",
+        "tail": "transductive"
+    },
+    {
+        "head": "link prediction",
+        "tail": "kg"
+    },
+    {
+        "head": "link prediction",
+        "tail": "training"
+    },
+    {
+        "head": "link prediction",
+        "tail": "transformers"
+    },
+    {
+        "head": "link prediction",
+        "tail": "learning"
+    },
+    {
+        "head": "transductive",
+        "tail": "kg"
+    },
+    {
+        "head": "transductive",
+        "tail": "training"
+    },
+    {
+        "head": "transductive",
+        "tail": "transformers"
+    },
+    {
+        "head": "transductive",
+        "tail": "learning"
+    },
+    {
+        "head": "kg",
+        "tail": "training"
+    },
+    {
+        "head": "kg",
+        "tail": "transformers"
+    },
+    {
+        "head": "kg",
+        "tail": "learning"
+    },
+    {
+        "head": "training",
+        "tail": "transformers"
+    },
+    {
+        "head": "training",
+        "tail": "learning"
+    },
+    {
+        "head": "transformers",
+        "tail": "learning"
     }
 ]

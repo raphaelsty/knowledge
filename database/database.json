@@ -39725,5 +39725,26 @@
             "vision transformer",
             "vlm"
         ]
+    },
+    "http://arxiv.org/abs/2303.15682": {
+        "extra-tags": [
+            "kg",
+            "training",
+            "transformers",
+            "learning"
+        ],
+        "title": "Pre-training Transformers for Knowledge Graph Completion",
+        "summary": "Learning transferable representation of knowledge graphs (KGs) is challenging due to the heterogeneous, multi-relational nature of graph structures. Inspired by Transformer-based pretrained language models' success on learning transferable representation for texts, we introduce a novel inductive KG representation model (iHT) for KG completion by large-scale pre-training. iHT consists of a entity encoder (e.g., BERT) and a neighbor-aware relational scoring function both parameterized by Transformers. We first pre-train iHT on a large KG dataset, Wikidata5M. Our approach achieves new state-of-the-art results on matched evaluations, with a relative improvement of more than 25% in mean reciprocal rank over previous SOTA models. When further fine-tuned on smaller KGs with either entity and relational shifts, pre-trained iHT representations are shown to be transferable, significantly improving the performance on FB15K-237 and WN18RR.",
+        "date": "2024-10-13",
+        "tags": [
+            "computer science - computation and language",
+            "computer science - machine learning",
+            "blp",
+            "inductive",
+            "knowledge graph completion",
+            "knowledge graph transformers",
+            "link prediction",
+            "transductive"
+        ]
     }
 }
