@@ -39746,5 +39746,53 @@
             "link prediction",
             "transductive"
         ]
+    },
+    "https://github.com/oramasearch/onnx-go": {
+        "extra-tags": [
+            "pre-trained",
+            "neural",
+            "framework"
+        ],
+        "date": "2018-08-28",
+        "title": "onnx-go",
+        "summary": "onnx-go gives the ability to import a pre-trained neural network within Go without being linked to a framework or library.",
+        "tags": [
+            "neural-network",
+            "machine-learning",
+            "protobuf",
+            "open-source",
+            "software2",
+            "gorgonia",
+            "onnx",
+            "go"
+        ]
+    },
+    "https://github.com/twisted/towncrier": {
+        "extra-tags": [
+            "notes",
+            "project"
+        ],
+        "date": "2015-12-27",
+        "title": "towncrier",
+        "summary": "Manage the release notes for your project.",
+        "tags": [
+            "release-automation",
+            "release-notes",
+            "python",
+            "newsfile",
+            "project-management"
+        ]
+    },
+    "https://github.com/SuReLI/LEADS": {
+        "extra-tags": [
+            "algorithm",
+            "exploration"
+        ],
+        "date": "2024-10-15",
+        "title": "LEADS",
+        "summary": "A skill-based algorithm designed for pure exploration",
+        "tags": [
+            "jupyter notebook"
+        ]
     }
 }

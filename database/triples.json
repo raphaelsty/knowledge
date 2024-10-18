@@ -182146,5 +182146,85 @@
     {
         "head": "transformers",
         "tail": "learning"
+    },
+    {
+        "head": "release-automation",
+        "tail": "release-notes"
+    },
+    {
+        "head": "release-automation",
+        "tail": "newsfile"
+    },
+    {
+        "head": "release-automation",
+        "tail": "project-management"
+    },
+    {
+        "head": "release-automation",
+        "tail": "notes"
+    },
+    {
+        "head": "release-automation",
+        "tail": "project"
+    },
+    {
+        "head": "release-notes",
+        "tail": "python"
+    },
+    {
+        "head": "release-notes",
+        "tail": "newsfile"
+    },
+    {
+        "head": "release-notes",
+        "tail": "project-management"
+    },
+    {
+        "head": "release-notes",
+        "tail": "notes"
+    },
+    {
+        "head": "release-notes",
+        "tail": "project"
+    },
+    {
+        "head": "python",
+        "tail": "newsfile"
+    },
+    {
+        "head": "python",
+        "tail": "project-management"
+    },
+    {
+        "head": "python",
+        "tail": "notes"
+    },
+    {
+        "head": "newsfile",
+        "tail": "project-management"
+    },
+    {
+        "head": "newsfile",
+        "tail": "notes"
+    },
+    {
+        "head": "newsfile",
+        "tail": "project"
+    },
+    {
+        "head": "project-management",
+        "tail": "notes"
+    },
+    {
+        "head": "notes",
+        "tail": "project"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "exploration"
+    },
+    {
+        "head": "algorithm",
+        "tail": "exploration"
     }
 ]
