@@ -39794,5 +39794,93 @@
         "tags": [
             "jupyter notebook"
         ]
+    },
+    "https://github.com/RoyalSkye/Routing-CNF": {
+        "extra-tags": [
+            "neurips",
+            "2024",
+            "collaboration",
+            "neural"
+        ],
+        "date": "2023-02-09",
+        "title": "Routing-CNF",
+        "summary": "[NeurIPS 2024] \"Collaboration! Towards Robust Neural Methods for Routing Problems\"",
+        "tags": [
+            "combinatorial-optimization",
+            "adversarial-training",
+            "ensemble",
+            "vehicle-routing-problem",
+            "python",
+            "generalization"
+        ]
+    },
+    "https://github.com/KRR-Oxford/HierarchyTransformers": {
+        "extra-tags": [
+            "language models",
+            "hierarchy"
+        ],
+        "date": "2023-08-16",
+        "title": "HierarchyTransformers",
+        "summary": "Language Models as Hierarchy Encoders",
+        "tags": [
+            "transformers",
+            "hierarchy-encoder",
+            "language-model",
+            "sentence-transformers",
+            "hierarchy-transformers",
+            "hit",
+            "python"
+        ]
+    },
+    "http://arxiv.org/abs/2405.19504": {
+        "extra-tags": [
+            "multi-vector retrieval",
+            "models",
+            "similarity",
+            "retrieval"
+        ],
+        "title": "MUVERA: Multi-Vector Retrieval via Fixed Dimensional Encodings",
+        "summary": "Neural embedding models have become a fundamental component of modern information retrieval (IR) pipelines. These models produce a single embedding $x \\in \\mathbb{R}^d$ per data-point, allowing for fast retrieval via highly optimized maximum inner product search (MIPS) algorithms. Recently, beginning with the landmark ColBERT paper, multi-vector models, which produce a set of embedding per data point, have achieved markedly superior performance for IR tasks. Unfortunately, using these models for IR is computationally expensive due to the increased complexity of multi-vector retrieval and scoring. In this paper, we introduce MUVERA (MUlti-VEctor Retrieval Algorithm), a retrieval mechanism which reduces multi-vector similarity search to single-vector similarity search. This enables the usage of off-the-shelf MIPS solvers for multi-vector retrieval. MUVERA asymmetrically generates Fixed Dimensional Encodings (FDEs) of queries and documents, which are vectors whose inner product approximates multi-vector similarity. We prove that FDEs give high-quality $\\epsilon$-approximations, thus providing the first single-vector proxy for multi-vector similarity with theoretical guarantees. Empirically, we find that FDEs achieve the same recall as prior state-of-the-art heuristics while retrieving 2-5$\\times$ fewer candidates. Compared to prior state of the art implementations, MUVERA achieves consistently good end-to-end recall and latency across a diverse set of the BEIR retrieval datasets, achieving an average of 10$\\%$ improved recall with $90\\%$ lower latency.",
+        "date": "2024-10-20",
+        "tags": [
+            "computer science - data structures and algorithms",
+            "computer science - databases",
+            "computer science - information retrieval",
+            "colbert",
+            "faiss",
+            "kdtree",
+            "multi-vector"
+        ]
+    },
+    "http://arxiv.org/abs/2401.11374": {
+        "extra-tags": [
+            "lms",
+            "embedding"
+        ],
+        "title": "Language Models as Hierarchy Encoders",
+        "summary": "Interpreting hierarchical structures latent in language is a key limitation of current language models (LMs). While previous research has implicitly leveraged these hierarchies to enhance LMs, approaches for their explicit encoding are yet to be explored. To address this, we introduce a novel approach to re-train transformer encoder-based LMs as Hierarchy Transformer encoders (HiTs), harnessing the expansive nature of hyperbolic space. Our method situates the output embedding space of pre-trained LMs within a Poincar\\'e ball with a curvature that adapts to the embedding dimension, followed by training on hyperbolic clustering and centripetal losses. These losses are designed to effectively cluster related entities (input as texts) and organise them hierarchically. We evaluate HiTs against pre-trained LMs, standard fine-tuned LMs, and several hyperbolic embedding baselines, focusing on their capabilities in simulating transitive inference, predicting subsumptions, and transferring knowledge across hierarchies. The results demonstrate that HiTs consistently outperform all baselines in these tasks, underscoring the effectiveness and transferability of our re-trained hierarchy encoders.",
+        "date": "2024-10-20",
+        "tags": [
+            "computer science - artificial intelligence",
+            "computer science - computation and language",
+            "computer science - machine learning",
+            "embeddings",
+            "hierarchy",
+            "language models"
+        ]
+    },
+    "http://arxiv.org/abs/2406.04165": {
+        "extra-tags": [
+            "models",
+            "embedding",
+            "fine-tuning",
+            "language models"
+        ],
+        "title": "Repurposing Language Models into Embedding Models: Finding the Compute-Optimal Recipe",
+        "summary": "Text embeddings are essential for many tasks, such as document retrieval, clustering, and semantic similarity assessment. In this paper, we study how to contrastively train text embedding models in a compute-optimal fashion, given a suite of pre-trained decoder-only language models. Our innovation is an algorithm that produces optimal configurations of model sizes, data quantities, and fine-tuning methods for text-embedding models at different computational budget levels. The resulting recipe, which we obtain through extensive experiments, can be used by practitioners to make informed design choices for their embedding models. Specifically, our findings suggest that full fine-tuning and low-rank adaptation fine-tuning produce optimal models at lower and higher computational budgets respectively.",
+        "date": "2024-10-20",
+        "tags": [
+            "computer science - machine learning"
+        ]
     }
 }
