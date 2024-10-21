@@ -39882,5 +39882,53 @@
         "tags": [
             "computer science - machine learning"
         ]
+    },
+    "https://github.com/amazon-science/RAGChecker": {
+        "extra-tags": [
+            "framework",
+            "rag",
+            "checkers"
+        ],
+        "date": "2024-06-24",
+        "title": "RAGChecker",
+        "summary": "RAGChecker: A Fine-grained Framework For Diagnosing RAG",
+        "tags": [
+            "python"
+        ]
+    },
+    "http://arxiv.org/abs/2409.06762": {
+        "extra-tags": [
+            "language",
+            "generation"
+        ],
+        "title": "Generative Hierarchical Materials Search",
+        "summary": "Generative models trained at scale can now produce text, video, and more recently, scientific data such as crystal structures. In applications of generative approaches to materials science, and in particular to crystal structures, the guidance from the domain expert in the form of high-level instructions can be essential for an automated system to output candidate crystals that are viable for downstream research. In this work, we formulate end-to-end language-to-structure generation as a multi-objective optimization problem, and propose Generative Hierarchical Materials Search (GenMS) for controllable generation of crystal structures. GenMS consists of (1) a language model that takes high-level natural language as input and generates intermediate textual information about a crystal (e.g., chemical formulae), and (2) a diffusion model that takes intermediate information as input and generates low-level continuous value crystal structures. GenMS additionally uses a graph neural network to predict properties (e.g., formation energy) from the generated crystal structures. During inference, GenMS leverages all three components to conduct a forward tree search over the space of possible structures. Experiments show that GenMS outperforms other alternatives of directly using language models to generate structures both in satisfying user request and in generating low-energy structures. We confirm that GenMS is able to generate common crystal structures such as double perovskites, or spinels, solely from natural language input, and hence can form the foundation for more complex structure generation in near future.",
+        "date": "2024-10-20",
+        "tags": [
+            "computer science - artificial intelligence",
+            "condensed matter - materials science",
+            "generative",
+            "hierarchical",
+            "neurips 2024",
+            "search"
+        ]
+    },
+    "http://arxiv.org/abs/2402.02518": {
+        "extra-tags": [
+            "diffusion",
+            "framework",
+            "generative"
+        ],
+        "title": "Latent Graph Diffusion: A Unified Framework for Generation and Prediction on Graphs",
+        "summary": "In this paper, we propose the first framework that enables solving graph learning tasks of all levels (node, edge and graph) and all types (generation, regression and classification) with one model. We first propose Latent Graph Diffusion (LGD), a generative model that can generate node, edge, and graph-level features of all categories simultaneously. We achieve this goal by embedding the graph structures and features into a latent space leveraging a powerful encoder which can also be decoded, then training a diffusion model in the latent space. LGD is also capable of conditional generation through a specifically designed cross-attention mechanism. Then we formulate prediction tasks including regression and classification as (conditional) generation, which enables our LGD to solve tasks of all levels and all types with provable guarantees. We verify the effectiveness of our framework with extensive experiments, where our models achieve state-of-the-art or highly competitive results across generation and regression tasks.",
+        "date": "2024-10-20",
+        "tags": [
+            "computer science - machine learning",
+            "computer science - social and information networks",
+            "generation",
+            "graph",
+            "knowledge graph",
+            "neurips 2024"
+        ]
     }
 }

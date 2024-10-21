@@ -182770,5 +182770,245 @@
     {
         "head": "fine-tuning",
         "tail": "language models"
+    },
+    {
+        "head": "framework",
+        "tail": "checkers"
+    },
+    {
+        "head": "rag",
+        "tail": "checkers"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "condensed matter - materials science"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "generative"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "hierarchical"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "neurips 2024"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "search"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "language"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "generation"
+    },
+    {
+        "head": "condensed matter - materials science",
+        "tail": "generative"
+    },
+    {
+        "head": "condensed matter - materials science",
+        "tail": "hierarchical"
+    },
+    {
+        "head": "condensed matter - materials science",
+        "tail": "neurips 2024"
+    },
+    {
+        "head": "condensed matter - materials science",
+        "tail": "search"
+    },
+    {
+        "head": "condensed matter - materials science",
+        "tail": "language"
+    },
+    {
+        "head": "condensed matter - materials science",
+        "tail": "generation"
+    },
+    {
+        "head": "generative",
+        "tail": "hierarchical"
+    },
+    {
+        "head": "generative",
+        "tail": "neurips 2024"
+    },
+    {
+        "head": "generative",
+        "tail": "search"
+    },
+    {
+        "head": "generative",
+        "tail": "language"
+    },
+    {
+        "head": "generative",
+        "tail": "generation"
+    },
+    {
+        "head": "hierarchical",
+        "tail": "neurips 2024"
+    },
+    {
+        "head": "hierarchical",
+        "tail": "search"
+    },
+    {
+        "head": "hierarchical",
+        "tail": "language"
+    },
+    {
+        "head": "hierarchical",
+        "tail": "generation"
+    },
+    {
+        "head": "neurips 2024",
+        "tail": "search"
+    },
+    {
+        "head": "neurips 2024",
+        "tail": "language"
+    },
+    {
+        "head": "neurips 2024",
+        "tail": "generation"
+    },
+    {
+        "head": "search",
+        "tail": "language"
+    },
+    {
+        "head": "search",
+        "tail": "generation"
+    },
+    {
+        "head": "language",
+        "tail": "generation"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "computer science - social and information networks"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "graph"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "neurips 2024"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "framework"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "generative"
+    },
+    {
+        "head": "computer science - social and information networks",
+        "tail": "generation"
+    },
+    {
+        "head": "computer science - social and information networks",
+        "tail": "graph"
+    },
+    {
+        "head": "computer science - social and information networks",
+        "tail": "knowledge graph"
+    },
+    {
+        "head": "computer science - social and information networks",
+        "tail": "neurips 2024"
+    },
+    {
+        "head": "computer science - social and information networks",
+        "tail": "diffusion"
+    },
+    {
+        "head": "computer science - social and information networks",
+        "tail": "framework"
+    },
+    {
+        "head": "computer science - social and information networks",
+        "tail": "generative"
+    },
+    {
+        "head": "generation",
+        "tail": "graph"
+    },
+    {
+        "head": "generation",
+        "tail": "knowledge graph"
+    },
+    {
+        "head": "generation",
+        "tail": "diffusion"
+    },
+    {
+        "head": "generation",
+        "tail": "framework"
+    },
+    {
+        "head": "graph",
+        "tail": "knowledge graph"
+    },
+    {
+        "head": "graph",
+        "tail": "neurips 2024"
+    },
+    {
+        "head": "graph",
+        "tail": "diffusion"
+    },
+    {
+        "head": "graph",
+        "tail": "framework"
+    },
+    {
+        "head": "graph",
+        "tail": "generative"
+    },
+    {
+        "head": "knowledge graph",
+        "tail": "neurips 2024"
+    },
+    {
+        "head": "knowledge graph",
+        "tail": "diffusion"
+    },
+    {
+        "head": "knowledge graph",
+        "tail": "framework"
+    },
+    {
+        "head": "knowledge graph",
+        "tail": "generative"
+    },
+    {
+        "head": "neurips 2024",
+        "tail": "diffusion"
+    },
+    {
+        "head": "neurips 2024",
+        "tail": "framework"
+    },
+    {
+        "head": "diffusion",
+        "tail": "framework"
+    },
+    {
+        "head": "diffusion",
+        "tail": "generative"
+    },
+    {
+        "head": "framework",
+        "tail": "generative"
     }
 ]
