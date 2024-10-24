@@ -39930,5 +39930,18 @@
             "knowledge graph",
             "neurips 2024"
         ]
+    },
+    "https://github.com/corbt/agent.exe": {
+        "extra-tags": [
+            "agent",
+            "agents",
+            "agensgraph"
+        ],
+        "date": "2024-10-23",
+        "title": "agent.exe",
+        "summary": "",
+        "tags": [
+            "typescript"
+        ]
     }
 }

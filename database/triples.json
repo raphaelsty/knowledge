@@ -183010,5 +183010,25 @@
     {
         "head": "framework",
         "tail": "generative"
+    },
+    {
+        "head": "typescript",
+        "tail": "agent"
+    },
+    {
+        "head": "typescript",
+        "tail": "agents"
+    },
+    {
+        "head": "typescript",
+        "tail": "agensgraph"
+    },
+    {
+        "head": "agent",
+        "tail": "agensgraph"
+    },
+    {
+        "head": "agents",
+        "tail": "agensgraph"
     }
 ]
