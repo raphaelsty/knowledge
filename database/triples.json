@@ -183030,5 +183030,569 @@
     {
         "head": "agents",
         "tail": "agensgraph"
+    },
+    {
+        "head": "cncf",
+        "tail": "mlops"
+    },
+    {
+        "head": "cncf",
+        "tail": "opentelemetry"
+    },
+    {
+        "head": "cncf",
+        "tail": "generative-ai"
+    },
+    {
+        "head": "cncf",
+        "tail": "neural-search"
+    },
+    {
+        "head": "cncf",
+        "tail": "python"
+    },
+    {
+        "head": "cncf",
+        "tail": "jaeger"
+    },
+    {
+        "head": "cncf",
+        "tail": "microservice"
+    },
+    {
+        "head": "cncf",
+        "tail": "cloud-native"
+    },
+    {
+        "head": "cncf",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "cncf",
+        "tail": "fastapi"
+    },
+    {
+        "head": "cncf",
+        "tail": "pipeline"
+    },
+    {
+        "head": "cncf",
+        "tail": "multimodal"
+    },
+    {
+        "head": "cncf",
+        "tail": "orchestration"
+    },
+    {
+        "head": "cncf",
+        "tail": "deep-learning"
+    },
+    {
+        "head": "cncf",
+        "tail": "llmops"
+    },
+    {
+        "head": "cncf",
+        "tail": "framework"
+    },
+    {
+        "head": "cncf",
+        "tail": "grpc"
+    },
+    {
+        "head": "cncf",
+        "tail": "docker"
+    },
+    {
+        "head": "cncf",
+        "tail": "build"
+    },
+    {
+        "head": "cncf",
+        "tail": "ai"
+    },
+    {
+        "head": "mlops",
+        "tail": "opentelemetry"
+    },
+    {
+        "head": "mlops",
+        "tail": "jaeger"
+    },
+    {
+        "head": "mlops",
+        "tail": "microservice"
+    },
+    {
+        "head": "mlops",
+        "tail": "orchestration"
+    },
+    {
+        "head": "mlops",
+        "tail": "prometheus"
+    },
+    {
+        "head": "kubernetes",
+        "tail": "opentelemetry"
+    },
+    {
+        "head": "kubernetes",
+        "tail": "jaeger"
+    },
+    {
+        "head": "kubernetes",
+        "tail": "orchestration"
+    },
+    {
+        "head": "kubernetes",
+        "tail": "llmops"
+    },
+    {
+        "head": "kubernetes",
+        "tail": "build"
+    },
+    {
+        "head": "opentelemetry",
+        "tail": "generative-ai"
+    },
+    {
+        "head": "opentelemetry",
+        "tail": "neural-search"
+    },
+    {
+        "head": "opentelemetry",
+        "tail": "python"
+    },
+    {
+        "head": "opentelemetry",
+        "tail": "jaeger"
+    },
+    {
+        "head": "opentelemetry",
+        "tail": "microservice"
+    },
+    {
+        "head": "opentelemetry",
+        "tail": "cloud-native"
+    },
+    {
+        "head": "opentelemetry",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "opentelemetry",
+        "tail": "fastapi"
+    },
+    {
+        "head": "opentelemetry",
+        "tail": "pipeline"
+    },
+    {
+        "head": "opentelemetry",
+        "tail": "multimodal"
+    },
+    {
+        "head": "opentelemetry",
+        "tail": "orchestration"
+    },
+    {
+        "head": "opentelemetry",
+        "tail": "deep-learning"
+    },
+    {
+        "head": "opentelemetry",
+        "tail": "prometheus"
+    },
+    {
+        "head": "opentelemetry",
+        "tail": "llmops"
+    },
+    {
+        "head": "opentelemetry",
+        "tail": "framework"
+    },
+    {
+        "head": "opentelemetry",
+        "tail": "grpc"
+    },
+    {
+        "head": "opentelemetry",
+        "tail": "docker"
+    },
+    {
+        "head": "opentelemetry",
+        "tail": "build"
+    },
+    {
+        "head": "opentelemetry",
+        "tail": "ai"
+    },
+    {
+        "head": "generative-ai",
+        "tail": "jaeger"
+    },
+    {
+        "head": "generative-ai",
+        "tail": "microservice"
+    },
+    {
+        "head": "generative-ai",
+        "tail": "orchestration"
+    },
+    {
+        "head": "generative-ai",
+        "tail": "prometheus"
+    },
+    {
+        "head": "generative-ai",
+        "tail": "llmops"
+    },
+    {
+        "head": "generative-ai",
+        "tail": "docker"
+    },
+    {
+        "head": "generative-ai",
+        "tail": "build"
+    },
+    {
+        "head": "neural-search",
+        "tail": "jaeger"
+    },
+    {
+        "head": "neural-search",
+        "tail": "orchestration"
+    },
+    {
+        "head": "neural-search",
+        "tail": "prometheus"
+    },
+    {
+        "head": "neural-search",
+        "tail": "llmops"
+    },
+    {
+        "head": "neural-search",
+        "tail": "build"
+    },
+    {
+        "head": "neural-search",
+        "tail": "ai"
+    },
+    {
+        "head": "python",
+        "tail": "jaeger"
+    },
+    {
+        "head": "python",
+        "tail": "orchestration"
+    },
+    {
+        "head": "python",
+        "tail": "prometheus"
+    },
+    {
+        "head": "jaeger",
+        "tail": "microservice"
+    },
+    {
+        "head": "jaeger",
+        "tail": "cloud-native"
+    },
+    {
+        "head": "jaeger",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "jaeger",
+        "tail": "fastapi"
+    },
+    {
+        "head": "jaeger",
+        "tail": "pipeline"
+    },
+    {
+        "head": "jaeger",
+        "tail": "multimodal"
+    },
+    {
+        "head": "jaeger",
+        "tail": "orchestration"
+    },
+    {
+        "head": "jaeger",
+        "tail": "deep-learning"
+    },
+    {
+        "head": "jaeger",
+        "tail": "prometheus"
+    },
+    {
+        "head": "jaeger",
+        "tail": "llmops"
+    },
+    {
+        "head": "jaeger",
+        "tail": "framework"
+    },
+    {
+        "head": "jaeger",
+        "tail": "grpc"
+    },
+    {
+        "head": "jaeger",
+        "tail": "docker"
+    },
+    {
+        "head": "jaeger",
+        "tail": "build"
+    },
+    {
+        "head": "jaeger",
+        "tail": "ai"
+    },
+    {
+        "head": "microservice",
+        "tail": "fastapi"
+    },
+    {
+        "head": "microservice",
+        "tail": "pipeline"
+    },
+    {
+        "head": "microservice",
+        "tail": "multimodal"
+    },
+    {
+        "head": "microservice",
+        "tail": "orchestration"
+    },
+    {
+        "head": "microservice",
+        "tail": "prometheus"
+    },
+    {
+        "head": "microservice",
+        "tail": "llmops"
+    },
+    {
+        "head": "microservice",
+        "tail": "framework"
+    },
+    {
+        "head": "microservice",
+        "tail": "grpc"
+    },
+    {
+        "head": "microservice",
+        "tail": "docker"
+    },
+    {
+        "head": "microservice",
+        "tail": "build"
+    },
+    {
+        "head": "microservice",
+        "tail": "ai"
+    },
+    {
+        "head": "cloud-native",
+        "tail": "orchestration"
+    },
+    {
+        "head": "cloud-native",
+        "tail": "prometheus"
+    },
+    {
+        "head": "cloud-native",
+        "tail": "llmops"
+    },
+    {
+        "head": "cloud-native",
+        "tail": "docker"
+    },
+    {
+        "head": "cloud-native",
+        "tail": "build"
+    },
+    {
+        "head": "cloud-native",
+        "tail": "ai"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "orchestration"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "prometheus"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "llmops"
+    },
+    {
+        "head": "fastapi",
+        "tail": "orchestration"
+    },
+    {
+        "head": "fastapi",
+        "tail": "prometheus"
+    },
+    {
+        "head": "fastapi",
+        "tail": "llmops"
+    },
+    {
+        "head": "fastapi",
+        "tail": "ai"
+    },
+    {
+        "head": "pipeline",
+        "tail": "orchestration"
+    },
+    {
+        "head": "pipeline",
+        "tail": "prometheus"
+    },
+    {
+        "head": "pipeline",
+        "tail": "llmops"
+    },
+    {
+        "head": "pipeline",
+        "tail": "docker"
+    },
+    {
+        "head": "pipeline",
+        "tail": "build"
+    },
+    {
+        "head": "pipeline",
+        "tail": "ai"
+    },
+    {
+        "head": "multimodal",
+        "tail": "orchestration"
+    },
+    {
+        "head": "multimodal",
+        "tail": "prometheus"
+    },
+    {
+        "head": "multimodal",
+        "tail": "llmops"
+    },
+    {
+        "head": "multimodal",
+        "tail": "docker"
+    },
+    {
+        "head": "multimodal",
+        "tail": "build"
+    },
+    {
+        "head": "multimodal",
+        "tail": "ai"
+    },
+    {
+        "head": "orchestration",
+        "tail": "deep-learning"
+    },
+    {
+        "head": "orchestration",
+        "tail": "prometheus"
+    },
+    {
+        "head": "orchestration",
+        "tail": "llmops"
+    },
+    {
+        "head": "orchestration",
+        "tail": "framework"
+    },
+    {
+        "head": "orchestration",
+        "tail": "grpc"
+    },
+    {
+        "head": "orchestration",
+        "tail": "docker"
+    },
+    {
+        "head": "orchestration",
+        "tail": "build"
+    },
+    {
+        "head": "orchestration",
+        "tail": "ai"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "prometheus"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "llmops"
+    },
+    {
+        "head": "prometheus",
+        "tail": "llmops"
+    },
+    {
+        "head": "prometheus",
+        "tail": "framework"
+    },
+    {
+        "head": "prometheus",
+        "tail": "grpc"
+    },
+    {
+        "head": "prometheus",
+        "tail": "build"
+    },
+    {
+        "head": "prometheus",
+        "tail": "ai"
+    },
+    {
+        "head": "llmops",
+        "tail": "grpc"
+    },
+    {
+        "head": "llmops",
+        "tail": "docker"
+    },
+    {
+        "head": "llmops",
+        "tail": "build"
+    },
+    {
+        "head": "llmops",
+        "tail": "ai"
+    },
+    {
+        "head": "framework",
+        "tail": "docker"
+    },
+    {
+        "head": "framework",
+        "tail": "build"
+    },
+    {
+        "head": "framework",
+        "tail": "ai"
+    },
+    {
+        "head": "grpc",
+        "tail": "docker"
+    },
+    {
+        "head": "grpc",
+        "tail": "build"
+    },
+    {
+        "head": "grpc",
+        "tail": "ai"
     }
 ]

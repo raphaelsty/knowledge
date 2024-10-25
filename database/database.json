@@ -39943,5 +39943,37 @@
         "tags": [
             "typescript"
         ]
+    },
+    "https://github.com/jina-ai/serve": {
+        "extra-tags": [
+            "build",
+            "ai"
+        ],
+        "date": "2020-02-13",
+        "title": "serve",
+        "summary": "\u2601\ufe0f Build multimodal AI applications with cloud-native stack",
+        "tags": [
+            "cncf",
+            "mlops",
+            "kubernetes",
+            "opentelemetry",
+            "generative-ai",
+            "neural-search",
+            "python",
+            "jaeger",
+            "microservice",
+            "cloud-native",
+            "machine-learning",
+            "fastapi",
+            "pipeline",
+            "multimodal",
+            "orchestration",
+            "deep-learning",
+            "prometheus",
+            "llmops",
+            "framework",
+            "grpc",
+            "docker"
+        ]
     }
 }
