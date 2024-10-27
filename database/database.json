@@ -39975,5 +39975,21 @@
             "grpc",
             "docker"
         ]
+    },
+    "https://github.com/nschloe/tuna": {
+        "extra-tags": [
+            "fish",
+            "viewer"
+        ],
+        "date": "2018-06-27",
+        "title": "tuna",
+        "summary": ":fish: Python profile viewer",
+        "tags": [
+            "pypi",
+            "profile",
+            "profiler",
+            "python",
+            "browser"
+        ]
     }
 }

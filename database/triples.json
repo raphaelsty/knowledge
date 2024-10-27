@@ -183594,5 +183594,65 @@
     {
         "head": "grpc",
         "tail": "ai"
+    },
+    {
+        "head": "pypi",
+        "tail": "profile"
+    },
+    {
+        "head": "pypi",
+        "tail": "profiler"
+    },
+    {
+        "head": "pypi",
+        "tail": "browser"
+    },
+    {
+        "head": "pypi",
+        "tail": "fish"
+    },
+    {
+        "head": "pypi",
+        "tail": "viewer"
+    },
+    {
+        "head": "profile",
+        "tail": "browser"
+    },
+    {
+        "head": "profile",
+        "tail": "viewer"
+    },
+    {
+        "head": "profiler",
+        "tail": "browser"
+    },
+    {
+        "head": "profiler",
+        "tail": "fish"
+    },
+    {
+        "head": "profiler",
+        "tail": "viewer"
+    },
+    {
+        "head": "python",
+        "tail": "fish"
+    },
+    {
+        "head": "python",
+        "tail": "viewer"
+    },
+    {
+        "head": "browser",
+        "tail": "fish"
+    },
+    {
+        "head": "browser",
+        "tail": "viewer"
+    },
+    {
+        "head": "fish",
+        "tail": "viewer"
     }
 ]
