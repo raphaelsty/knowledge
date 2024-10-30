@@ -183666,5 +183666,785 @@
     {
         "head": "web",
         "tail": "scrape"
+    },
+    {
+        "head": "python",
+        "tail": "emnlp2024"
+    },
+    {
+        "head": "python",
+        "tail": "report-generation"
+    },
+    {
+        "head": "python",
+        "tail": "naacl"
+    },
+    {
+        "head": "python",
+        "tail": "knowledge-curation"
+    },
+    {
+        "head": "emnlp2024",
+        "tail": "report-generation"
+    },
+    {
+        "head": "emnlp2024",
+        "tail": "retrieval-augmented-generation"
+    },
+    {
+        "head": "emnlp2024",
+        "tail": "naacl"
+    },
+    {
+        "head": "emnlp2024",
+        "tail": "nlp"
+    },
+    {
+        "head": "emnlp2024",
+        "tail": "large-language-models"
+    },
+    {
+        "head": "emnlp2024",
+        "tail": "knowledge-curation"
+    },
+    {
+        "head": "emnlp2024",
+        "tail": "llm"
+    },
+    {
+        "head": "emnlp2024",
+        "tail": "knowledge"
+    },
+    {
+        "head": "emnlp2024",
+        "tail": "system"
+    },
+    {
+        "head": "emnlp2024",
+        "tail": "topic"
+    },
+    {
+        "head": "report-generation",
+        "tail": "retrieval-augmented-generation"
+    },
+    {
+        "head": "report-generation",
+        "tail": "naacl"
+    },
+    {
+        "head": "report-generation",
+        "tail": "nlp"
+    },
+    {
+        "head": "report-generation",
+        "tail": "large-language-models"
+    },
+    {
+        "head": "report-generation",
+        "tail": "knowledge-curation"
+    },
+    {
+        "head": "report-generation",
+        "tail": "llm"
+    },
+    {
+        "head": "report-generation",
+        "tail": "knowledge"
+    },
+    {
+        "head": "report-generation",
+        "tail": "system"
+    },
+    {
+        "head": "report-generation",
+        "tail": "topic"
+    },
+    {
+        "head": "retrieval-augmented-generation",
+        "tail": "naacl"
+    },
+    {
+        "head": "retrieval-augmented-generation",
+        "tail": "nlp"
+    },
+    {
+        "head": "retrieval-augmented-generation",
+        "tail": "large-language-models"
+    },
+    {
+        "head": "retrieval-augmented-generation",
+        "tail": "knowledge-curation"
+    },
+    {
+        "head": "retrieval-augmented-generation",
+        "tail": "knowledge"
+    },
+    {
+        "head": "retrieval-augmented-generation",
+        "tail": "system"
+    },
+    {
+        "head": "retrieval-augmented-generation",
+        "tail": "topic"
+    },
+    {
+        "head": "naacl",
+        "tail": "large-language-models"
+    },
+    {
+        "head": "naacl",
+        "tail": "knowledge-curation"
+    },
+    {
+        "head": "naacl",
+        "tail": "llm"
+    },
+    {
+        "head": "naacl",
+        "tail": "knowledge"
+    },
+    {
+        "head": "naacl",
+        "tail": "system"
+    },
+    {
+        "head": "naacl",
+        "tail": "topic"
+    },
+    {
+        "head": "nlp",
+        "tail": "knowledge-curation"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "knowledge-curation"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "knowledge"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "system"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "topic"
+    },
+    {
+        "head": "knowledge-curation",
+        "tail": "llm"
+    },
+    {
+        "head": "knowledge-curation",
+        "tail": "knowledge"
+    },
+    {
+        "head": "knowledge-curation",
+        "tail": "system"
+    },
+    {
+        "head": "knowledge-curation",
+        "tail": "topic"
+    },
+    {
+        "head": "llm",
+        "tail": "system"
+    },
+    {
+        "head": "llm",
+        "tail": "topic"
+    },
+    {
+        "head": "knowledge",
+        "tail": "topic"
+    },
+    {
+        "head": "system",
+        "tail": "topic"
+    },
+    {
+        "head": "artificial-intelligence",
+        "tail": "production"
+    },
+    {
+        "head": "artificial-intelligence",
+        "tail": "failed-machine-learning"
+    },
+    {
+        "head": "artificial-intelligence",
+        "tail": "recsys"
+    },
+    {
+        "head": "artificial-intelligence",
+        "tail": "fml"
+    },
+    {
+        "head": "artificial-intelligence",
+        "tail": "classification"
+    },
+    {
+        "head": "artificial-intelligence",
+        "tail": "failed-data-science"
+    },
+    {
+        "head": "artificial-intelligence",
+        "tail": "failed-ml"
+    },
+    {
+        "head": "artificial-intelligence",
+        "tail": "regression"
+    },
+    {
+        "head": "artificial-intelligence",
+        "tail": "profile"
+    },
+    {
+        "head": "artificial-intelligence",
+        "tail": "examples"
+    },
+    {
+        "head": "artificial-intelligence",
+        "tail": "machine learning"
+    },
+    {
+        "head": "data-science",
+        "tail": "failed-machine-learning"
+    },
+    {
+        "head": "data-science",
+        "tail": "fml"
+    },
+    {
+        "head": "data-science",
+        "tail": "failed-data-science"
+    },
+    {
+        "head": "data-science",
+        "tail": "failed-ml"
+    },
+    {
+        "head": "data-science",
+        "tail": "profile"
+    },
+    {
+        "head": "ml",
+        "tail": "production"
+    },
+    {
+        "head": "ml",
+        "tail": "failed-machine-learning"
+    },
+    {
+        "head": "ml",
+        "tail": "computer-vision"
+    },
+    {
+        "head": "ml",
+        "tail": "recsys"
+    },
+    {
+        "head": "ml",
+        "tail": "fml"
+    },
+    {
+        "head": "ml",
+        "tail": "failed-data-science"
+    },
+    {
+        "head": "ml",
+        "tail": "failed-ml"
+    },
+    {
+        "head": "ml",
+        "tail": "forecasting"
+    },
+    {
+        "head": "ml",
+        "tail": "profile"
+    },
+    {
+        "head": "ml",
+        "tail": "examples"
+    },
+    {
+        "head": "production",
+        "tail": "failed-machine-learning"
+    },
+    {
+        "head": "production",
+        "tail": "fml"
+    },
+    {
+        "head": "production",
+        "tail": "classification"
+    },
+    {
+        "head": "production",
+        "tail": "failed-data-science"
+    },
+    {
+        "head": "production",
+        "tail": "failed-ml"
+    },
+    {
+        "head": "production",
+        "tail": "forecasting"
+    },
+    {
+        "head": "production",
+        "tail": "regression"
+    },
+    {
+        "head": "production",
+        "tail": "profile"
+    },
+    {
+        "head": "production",
+        "tail": "examples"
+    },
+    {
+        "head": "production",
+        "tail": "machine learning"
+    },
+    {
+        "head": "failed-machine-learning",
+        "tail": "computer-vision"
+    },
+    {
+        "head": "failed-machine-learning",
+        "tail": "natural-language-processing"
+    },
+    {
+        "head": "failed-machine-learning",
+        "tail": "data-engineering"
+    },
+    {
+        "head": "failed-machine-learning",
+        "tail": "recsys"
+    },
+    {
+        "head": "failed-machine-learning",
+        "tail": "fml"
+    },
+    {
+        "head": "failed-machine-learning",
+        "tail": "ai"
+    },
+    {
+        "head": "failed-machine-learning",
+        "tail": "deep-learning"
+    },
+    {
+        "head": "failed-machine-learning",
+        "tail": "classification"
+    },
+    {
+        "head": "failed-machine-learning",
+        "tail": "failed-data-science"
+    },
+    {
+        "head": "failed-machine-learning",
+        "tail": "failed-ml"
+    },
+    {
+        "head": "failed-machine-learning",
+        "tail": "forecasting"
+    },
+    {
+        "head": "failed-machine-learning",
+        "tail": "data-quality"
+    },
+    {
+        "head": "failed-machine-learning",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "failed-machine-learning",
+        "tail": "regression"
+    },
+    {
+        "head": "failed-machine-learning",
+        "tail": "profile"
+    },
+    {
+        "head": "failed-machine-learning",
+        "tail": "examples"
+    },
+    {
+        "head": "failed-machine-learning",
+        "tail": "machine learning"
+    },
+    {
+        "head": "computer-vision",
+        "tail": "fml"
+    },
+    {
+        "head": "computer-vision",
+        "tail": "failed-data-science"
+    },
+    {
+        "head": "computer-vision",
+        "tail": "failed-ml"
+    },
+    {
+        "head": "computer-vision",
+        "tail": "regression"
+    },
+    {
+        "head": "computer-vision",
+        "tail": "profile"
+    },
+    {
+        "head": "computer-vision",
+        "tail": "examples"
+    },
+    {
+        "head": "computer-vision",
+        "tail": "machine learning"
+    },
+    {
+        "head": "natural-language-processing",
+        "tail": "fml"
+    },
+    {
+        "head": "natural-language-processing",
+        "tail": "failed-data-science"
+    },
+    {
+        "head": "natural-language-processing",
+        "tail": "failed-ml"
+    },
+    {
+        "head": "natural-language-processing",
+        "tail": "profile"
+    },
+    {
+        "head": "natural-language-processing",
+        "tail": "examples"
+    },
+    {
+        "head": "natural-language-processing",
+        "tail": "machine learning"
+    },
+    {
+        "head": "data-engineering",
+        "tail": "fml"
+    },
+    {
+        "head": "data-engineering",
+        "tail": "ai"
+    },
+    {
+        "head": "data-engineering",
+        "tail": "classification"
+    },
+    {
+        "head": "data-engineering",
+        "tail": "failed-data-science"
+    },
+    {
+        "head": "data-engineering",
+        "tail": "failed-ml"
+    },
+    {
+        "head": "data-engineering",
+        "tail": "forecasting"
+    },
+    {
+        "head": "data-engineering",
+        "tail": "regression"
+    },
+    {
+        "head": "data-engineering",
+        "tail": "profile"
+    },
+    {
+        "head": "data-engineering",
+        "tail": "examples"
+    },
+    {
+        "head": "data-engineering",
+        "tail": "machine learning"
+    },
+    {
+        "head": "recsys",
+        "tail": "fml"
+    },
+    {
+        "head": "recsys",
+        "tail": "ai"
+    },
+    {
+        "head": "recsys",
+        "tail": "classification"
+    },
+    {
+        "head": "recsys",
+        "tail": "failed-data-science"
+    },
+    {
+        "head": "recsys",
+        "tail": "failed-ml"
+    },
+    {
+        "head": "recsys",
+        "tail": "forecasting"
+    },
+    {
+        "head": "recsys",
+        "tail": "regression"
+    },
+    {
+        "head": "recsys",
+        "tail": "profile"
+    },
+    {
+        "head": "recsys",
+        "tail": "examples"
+    },
+    {
+        "head": "recsys",
+        "tail": "machine learning"
+    },
+    {
+        "head": "fml",
+        "tail": "ai"
+    },
+    {
+        "head": "fml",
+        "tail": "deep-learning"
+    },
+    {
+        "head": "fml",
+        "tail": "classification"
+    },
+    {
+        "head": "fml",
+        "tail": "failed-data-science"
+    },
+    {
+        "head": "fml",
+        "tail": "failed-ml"
+    },
+    {
+        "head": "fml",
+        "tail": "forecasting"
+    },
+    {
+        "head": "fml",
+        "tail": "data-quality"
+    },
+    {
+        "head": "fml",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "fml",
+        "tail": "regression"
+    },
+    {
+        "head": "fml",
+        "tail": "profile"
+    },
+    {
+        "head": "fml",
+        "tail": "examples"
+    },
+    {
+        "head": "fml",
+        "tail": "machine learning"
+    },
+    {
+        "head": "ai",
+        "tail": "classification"
+    },
+    {
+        "head": "ai",
+        "tail": "failed-data-science"
+    },
+    {
+        "head": "ai",
+        "tail": "failed-ml"
+    },
+    {
+        "head": "ai",
+        "tail": "forecasting"
+    },
+    {
+        "head": "ai",
+        "tail": "data-quality"
+    },
+    {
+        "head": "ai",
+        "tail": "regression"
+    },
+    {
+        "head": "ai",
+        "tail": "profile"
+    },
+    {
+        "head": "ai",
+        "tail": "examples"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "failed-data-science"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "failed-ml"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "profile"
+    },
+    {
+        "head": "classification",
+        "tail": "failed-data-science"
+    },
+    {
+        "head": "classification",
+        "tail": "failed-ml"
+    },
+    {
+        "head": "classification",
+        "tail": "forecasting"
+    },
+    {
+        "head": "classification",
+        "tail": "profile"
+    },
+    {
+        "head": "classification",
+        "tail": "examples"
+    },
+    {
+        "head": "classification",
+        "tail": "machine learning"
+    },
+    {
+        "head": "failed-data-science",
+        "tail": "failed-ml"
+    },
+    {
+        "head": "failed-data-science",
+        "tail": "forecasting"
+    },
+    {
+        "head": "failed-data-science",
+        "tail": "data-quality"
+    },
+    {
+        "head": "failed-data-science",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "failed-data-science",
+        "tail": "regression"
+    },
+    {
+        "head": "failed-data-science",
+        "tail": "profile"
+    },
+    {
+        "head": "failed-data-science",
+        "tail": "examples"
+    },
+    {
+        "head": "failed-data-science",
+        "tail": "machine learning"
+    },
+    {
+        "head": "failed-ml",
+        "tail": "forecasting"
+    },
+    {
+        "head": "failed-ml",
+        "tail": "data-quality"
+    },
+    {
+        "head": "failed-ml",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "failed-ml",
+        "tail": "regression"
+    },
+    {
+        "head": "failed-ml",
+        "tail": "profile"
+    },
+    {
+        "head": "failed-ml",
+        "tail": "examples"
+    },
+    {
+        "head": "failed-ml",
+        "tail": "machine learning"
+    },
+    {
+        "head": "forecasting",
+        "tail": "data-quality"
+    },
+    {
+        "head": "forecasting",
+        "tail": "profile"
+    },
+    {
+        "head": "forecasting",
+        "tail": "examples"
+    },
+    {
+        "head": "forecasting",
+        "tail": "machine learning"
+    },
+    {
+        "head": "data-quality",
+        "tail": "regression"
+    },
+    {
+        "head": "data-quality",
+        "tail": "profile"
+    },
+    {
+        "head": "data-quality",
+        "tail": "examples"
+    },
+    {
+        "head": "data-quality",
+        "tail": "machine learning"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "profile"
+    },
+    {
+        "head": "regression",
+        "tail": "profile"
+    },
+    {
+        "head": "regression",
+        "tail": "examples"
+    },
+    {
+        "head": "regression",
+        "tail": "machine learning"
+    },
+    {
+        "head": "profile",
+        "tail": "examples"
+    },
+    {
+        "head": "profile",
+        "tail": "machine learning"
+    },
+    {
+        "head": "examples",
+        "tail": "machine learning"
+    },
+    {
+        "head": "vector",
+        "tail": "databases"
     }
 ]

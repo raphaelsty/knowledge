@@ -40004,5 +40004,69 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/stanford-oval/storm": {
+        "extra-tags": [
+            "llm",
+            "knowledge",
+            "system",
+            "topic"
+        ],
+        "date": "2024-03-24",
+        "title": "storm",
+        "summary": "An LLM-powered knowledge curation system that researches a topic and generates a full-length report with citations.",
+        "tags": [
+            "python",
+            "emnlp2024",
+            "report-generation",
+            "retrieval-augmented-generation",
+            "naacl",
+            "nlp",
+            "large-language-models",
+            "knowledge-curation"
+        ]
+    },
+    "https://github.com/kennethleungty/Failed-ML": {
+        "extra-tags": [
+            "profile",
+            "examples",
+            "machine learning"
+        ],
+        "date": "2022-08-15",
+        "title": "Failed-ML",
+        "summary": "Compilation of high-profile real-world examples of failed machine learning projects",
+        "tags": [
+            "artificial-intelligence",
+            "data-science",
+            "ml",
+            "production",
+            "failed-machine-learning",
+            "computer-vision",
+            "natural-language-processing",
+            "data-engineering",
+            "recsys",
+            "fml",
+            "ai",
+            "deep-learning",
+            "classification",
+            "failed-data-science",
+            "failed-ml",
+            "forecasting",
+            "data-quality",
+            "machine-learning",
+            "regression"
+        ]
+    },
+    "https://www.timescale.com/blog/vector-databases-are-the-wrong-abstraction/": {
+        "extra-tags": [
+            "vector",
+            "databases"
+        ],
+        "title": "Hackernews Vector databases are the wrong abstraction (timescale.com)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2024-10-30"
     }
 }
