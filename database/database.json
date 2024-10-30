@@ -40068,5 +40068,18 @@
         ],
         "summary": "",
         "date": "2024-10-30"
+    },
+    "https://github.com/irom-princeton/Invariant-Policy-Optimization": {
+        "extra-tags": [
+            "policy",
+            "optimization",
+            "code"
+        ],
+        "date": "2020-07-07",
+        "title": "Invariant-Policy-Optimization",
+        "summary": "Code for Invariant Policy Optimization",
+        "tags": [
+            "python"
+        ]
     }
 }
