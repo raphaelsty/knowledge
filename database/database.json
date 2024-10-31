@@ -40081,5 +40081,18 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/charmbracelet/huh": {
+        "extra-tags": [
+            "build",
+            "terminal",
+            "prompts"
+        ],
+        "date": "2023-10-11",
+        "title": "huh",
+        "summary": "Build terminal forms and prompts \ud83e\udd37\ud83c\udffb\u200d\u2640\ufe0f",
+        "tags": [
+            "go"
+        ]
     }
 }

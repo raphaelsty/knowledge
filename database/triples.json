@@ -184462,5 +184462,25 @@
     {
         "head": "optimization",
         "tail": "code"
+    },
+    {
+        "head": "go",
+        "tail": "build"
+    },
+    {
+        "head": "go",
+        "tail": "prompts"
+    },
+    {
+        "head": "build",
+        "tail": "terminal"
+    },
+    {
+        "head": "build",
+        "tail": "prompts"
+    },
+    {
+        "head": "terminal",
+        "tail": "prompts"
     }
 ]
