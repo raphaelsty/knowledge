@@ -184482,5 +184482,17 @@
     {
         "head": "terminal",
         "tail": "prompts"
+    },
+    {
+        "head": "python",
+        "tail": "nalgebra"
+    },
+    {
+        "head": "matrix",
+        "tail": "nalgebra"
+    },
+    {
+        "head": "jax",
+        "tail": "nalgebra"
     }
 ]

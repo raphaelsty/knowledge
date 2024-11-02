@@ -40094,5 +40094,18 @@
         "tags": [
             "go"
         ]
+    },
+    "https://github.com/pnkraemer/matfree": {
+        "extra-tags": [
+            "matrix",
+            "jax",
+            "nalgebra"
+        ],
+        "date": "2023-03-17",
+        "title": "matfree",
+        "summary": "Matrix-free linear algebra in JAX.",
+        "tags": [
+            "python"
+        ]
     }
 }
