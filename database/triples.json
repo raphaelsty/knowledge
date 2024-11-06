@@ -184494,5 +184494,113 @@
     {
         "head": "jax",
         "tail": "nalgebra"
+    },
+    {
+        "head": "attention-mechanism",
+        "tail": "architecture"
+    },
+    {
+        "head": "attention-mechanism",
+        "tail": "scaling-methods"
+    },
+    {
+        "head": "attention-mechanism",
+        "tail": "llm"
+    },
+    {
+        "head": "attention-mechanism",
+        "tail": "foundation-models"
+    },
+    {
+        "head": "attention-mechanism",
+        "tail": "scaling"
+    },
+    {
+        "head": "attention-mechanism",
+        "tail": "model"
+    },
+    {
+        "head": "architecture",
+        "tail": "scaling-methods"
+    },
+    {
+        "head": "architecture",
+        "tail": "llm"
+    },
+    {
+        "head": "architecture",
+        "tail": "foundation-models"
+    },
+    {
+        "head": "architecture",
+        "tail": "scaling"
+    },
+    {
+        "head": "architecture",
+        "tail": "model"
+    },
+    {
+        "head": "scaling-methods",
+        "tail": "llm"
+    },
+    {
+        "head": "scaling-methods",
+        "tail": "transformer"
+    },
+    {
+        "head": "scaling-methods",
+        "tail": "python"
+    },
+    {
+        "head": "scaling-methods",
+        "tail": "foundation-models"
+    },
+    {
+        "head": "scaling-methods",
+        "tail": "scaling"
+    },
+    {
+        "head": "scaling-methods",
+        "tail": "model"
+    },
+    {
+        "head": "llm",
+        "tail": "foundation-models"
+    },
+    {
+        "head": "llm",
+        "tail": "scaling"
+    },
+    {
+        "head": "llm",
+        "tail": "model"
+    },
+    {
+        "head": "transformer",
+        "tail": "foundation-models"
+    },
+    {
+        "head": "transformer",
+        "tail": "scaling"
+    },
+    {
+        "head": "transformer",
+        "tail": "model"
+    },
+    {
+        "head": "python",
+        "tail": "scaling"
+    },
+    {
+        "head": "foundation-models",
+        "tail": "scaling"
+    },
+    {
+        "head": "foundation-models",
+        "tail": "model"
+    },
+    {
+        "head": "scaling",
+        "tail": "model"
     }
 ]

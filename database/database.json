@@ -40107,5 +40107,23 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/Haiyang-W/TokenFormer": {
+        "extra-tags": [
+            "scaling",
+            "model"
+        ],
+        "date": "2024-10-29",
+        "title": "TokenFormer",
+        "summary": "Official Implementation of TokenFormer: Rethinking Transformer Scaling with Tokenized Model Parameters",
+        "tags": [
+            "attention-mechanism",
+            "architecture",
+            "scaling-methods",
+            "llm",
+            "transformer",
+            "python",
+            "foundation-models"
+        ]
     }
 }
