@@ -40125,5 +40125,25 @@
             "python",
             "foundation-models"
         ]
+    },
+    "https://github.com/lucidrains/pi-zero-pytorch": {
+        "extra-tags": [
+            "zero",
+            "pytorch",
+            "model",
+            "architecture"
+        ],
+        "date": "2024-11-01",
+        "title": "pi-zero-pytorch",
+        "summary": "Implementation of \u03c0\u2080, the robotic foundation model architecture proposed by Physical Intelligence",
+        "tags": [
+            "python",
+            "flow-policy",
+            "flow-matching",
+            "robotics",
+            "artificial-intelligence",
+            "deep-learning",
+            "transformers"
+        ]
     }
 }
