@@ -40145,5 +40145,22 @@
             "deep-learning",
             "transformers"
         ]
+    },
+    "http://arxiv.org/abs/2308.13418": {
+        "extra-tags": [
+            "neural",
+            "academic",
+            "knowledge"
+        ],
+        "title": "Nougat: Neural Optical Understanding for Academic Documents",
+        "summary": "Scientific knowledge is predominantly stored in books and scientific journals, often in the form of PDFs. However, the PDF format leads to a loss of semantic information, particularly for mathematical expressions. We propose Nougat (Neural Optical Understanding for Academic Documents), a Visual Transformer model that performs an Optical Character Recognition (OCR) task for processing scientific documents into a markup language, and demonstrate the effectiveness of our model on a new dataset of scientific documents. The proposed approach offers a promising solution to enhance the accessibility of scientific knowledge in the digital age, by bridging the gap between human-readable documents and machine-readable text. We release the models and code to accelerate future work on scientific text recognition.",
+        "date": "2024-11-07",
+        "tags": [
+            "computer science - computer vision and pattern recognition",
+            "computer science - machine learning",
+            "nougat",
+            "pdf to markdown",
+            "qwen"
+        ]
     }
 }

@@ -184730,5 +184730,113 @@
     {
         "head": "pytorch",
         "tail": "architecture"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "nougat"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "pdf to markdown"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "qwen"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "neural"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "academic"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "knowledge"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "nougat"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "pdf to markdown"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "qwen"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "neural"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "academic"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "knowledge"
+    },
+    {
+        "head": "nougat",
+        "tail": "pdf to markdown"
+    },
+    {
+        "head": "nougat",
+        "tail": "qwen"
+    },
+    {
+        "head": "nougat",
+        "tail": "neural"
+    },
+    {
+        "head": "nougat",
+        "tail": "academic"
+    },
+    {
+        "head": "nougat",
+        "tail": "knowledge"
+    },
+    {
+        "head": "pdf to markdown",
+        "tail": "qwen"
+    },
+    {
+        "head": "pdf to markdown",
+        "tail": "neural"
+    },
+    {
+        "head": "pdf to markdown",
+        "tail": "academic"
+    },
+    {
+        "head": "pdf to markdown",
+        "tail": "knowledge"
+    },
+    {
+        "head": "qwen",
+        "tail": "neural"
+    },
+    {
+        "head": "qwen",
+        "tail": "academic"
+    },
+    {
+        "head": "qwen",
+        "tail": "knowledge"
+    },
+    {
+        "head": "neural",
+        "tail": "academic"
+    },
+    {
+        "head": "neural",
+        "tail": "knowledge"
+    },
+    {
+        "head": "academic",
+        "tail": "knowledge"
     }
 ]
