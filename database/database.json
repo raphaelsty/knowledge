@@ -40162,5 +40162,47 @@
             "pdf to markdown",
             "qwen"
         ]
+    },
+    "https://github.com/ironcalc/IronCalc": {
+        "extra-tags": [
+            "engine",
+            "system",
+            "engineer"
+        ],
+        "date": "2023-11-20",
+        "title": "IronCalc",
+        "summary": "Main engine of the IronCalc ecosystem",
+        "tags": [
+            "rust"
+        ]
+    },
+    "https://github.com/Photoroom/datago": {
+        "extra-tags": [
+            "data",
+            "golang",
+            "python",
+            "processing"
+        ],
+        "date": "2024-09-16",
+        "title": "datago",
+        "summary": "A golang-based data loader which can be used from Python. Processing data per sample at GB/s speeds, covering various use cases eventually.",
+        "tags": [
+            "dataloader",
+            "storage",
+            "go"
+        ]
+    },
+    "https://www.ironcalc.com/": {
+        "extra-tags": [
+            "open-source",
+            "spreadsheet",
+            "engine"
+        ],
+        "title": "Hackernews IronCalc \u2013 Open-Source Spreadsheet Engine (ironcalc.com)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2024-11-11"
     }
 }
