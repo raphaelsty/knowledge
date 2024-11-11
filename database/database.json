@@ -40204,5 +40204,18 @@
         ],
         "summary": "",
         "date": "2024-11-11"
+    },
+    "https://github.com/ml-explore/mlx-data": {
+        "extra-tags": [
+            "data",
+            "framework",
+            "efficientnet"
+        ],
+        "date": "2023-11-28",
+        "title": "mlx-data",
+        "summary": "Efficient framework-agnostic data loading",
+        "tags": [
+            "c++"
+        ]
     }
 }
