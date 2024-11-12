@@ -184910,5 +184910,109 @@
     {
         "head": "framework",
         "tail": "efficientnet"
+    },
+    {
+        "head": "scraper",
+        "tail": "epub"
+    },
+    {
+        "head": "scraper",
+        "tail": "ui"
+    },
+    {
+        "head": "scraper",
+        "tail": "extension-firefox"
+    },
+    {
+        "head": "scraper",
+        "tail": "extension-chrome"
+    },
+    {
+        "head": "scraper",
+        "tail": "typescript"
+    },
+    {
+        "head": "scraper",
+        "tail": "converter"
+    },
+    {
+        "head": "scraper",
+        "tail": "format-converter"
+    },
+    {
+        "head": "epub",
+        "tail": "ui"
+    },
+    {
+        "head": "epub",
+        "tail": "extension-firefox"
+    },
+    {
+        "head": "epub",
+        "tail": "extension-chrome"
+    },
+    {
+        "head": "epub",
+        "tail": "typescript"
+    },
+    {
+        "head": "epub",
+        "tail": "converter"
+    },
+    {
+        "head": "epub",
+        "tail": "format-converter"
+    },
+    {
+        "head": "ui",
+        "tail": "extension-firefox"
+    },
+    {
+        "head": "ui",
+        "tail": "extension-chrome"
+    },
+    {
+        "head": "ui",
+        "tail": "converter"
+    },
+    {
+        "head": "ui",
+        "tail": "format-converter"
+    },
+    {
+        "head": "extension-firefox",
+        "tail": "extension-chrome"
+    },
+    {
+        "head": "extension-firefox",
+        "tail": "typescript"
+    },
+    {
+        "head": "extension-firefox",
+        "tail": "converter"
+    },
+    {
+        "head": "extension-firefox",
+        "tail": "format-converter"
+    },
+    {
+        "head": "extension-chrome",
+        "tail": "typescript"
+    },
+    {
+        "head": "extension-chrome",
+        "tail": "converter"
+    },
+    {
+        "head": "extension-chrome",
+        "tail": "format-converter"
+    },
+    {
+        "head": "typescript",
+        "tail": "converter"
+    },
+    {
+        "head": "typescript",
+        "tail": "format-converter"
     }
 ]

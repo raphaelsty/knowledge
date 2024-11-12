@@ -40217,5 +40217,22 @@
         "tags": [
             "c++"
         ]
+    },
+    "https://github.com/maoserr/epublifier": {
+        "extra-tags": [
+            "converter",
+            "format-converter"
+        ],
+        "date": "2020-05-09",
+        "title": "epublifier",
+        "summary": "Converts some webnovels to epub format",
+        "tags": [
+            "scraper",
+            "epub",
+            "ui",
+            "extension-firefox",
+            "extension-chrome",
+            "typescript"
+        ]
     }
 }
