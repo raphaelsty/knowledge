@@ -40234,5 +40234,18 @@
             "extension-chrome",
             "typescript"
         ]
+    },
+    "https://github.com/nushell/nushell": {
+        "extra-tags": [
+            "powershell",
+            "entity type"
+        ],
+        "date": "2019-05-10",
+        "title": "nushell",
+        "summary": "A new type of shell",
+        "tags": [
+            "rust",
+            "shell"
+        ]
     }
 }

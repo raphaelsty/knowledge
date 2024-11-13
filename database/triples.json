@@ -185014,5 +185014,21 @@
     {
         "head": "typescript",
         "tail": "format-converter"
+    },
+    {
+        "head": "rust",
+        "tail": "entity type"
+    },
+    {
+        "head": "shell",
+        "tail": "powershell"
+    },
+    {
+        "head": "shell",
+        "tail": "entity type"
+    },
+    {
+        "head": "powershell",
+        "tail": "entity type"
     }
 ]
