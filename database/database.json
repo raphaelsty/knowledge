@@ -40263,5 +40263,36 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/D4Vinci/Scrapling": {
+        "extra-tags": [
+            "fast",
+            "web"
+        ],
+        "date": "2024-10-13",
+        "title": "Scrapling",
+        "summary": "Undetectable, Lightning-Fast, and Adaptive Web Scraping for Python",
+        "tags": [
+            "playwright",
+            "web-scraping",
+            "xpath",
+            "selectors",
+            "python",
+            "crawling",
+            "web-scraper",
+            "css",
+            "automation",
+            "crawler",
+            "hacktoberfest",
+            "lxml",
+            "stealth",
+            "scraping",
+            "selenium",
+            "webscraping",
+            "python3",
+            "web-scraping-python",
+            "crawling-python",
+            "dom-manipulation"
+        ]
     }
 }

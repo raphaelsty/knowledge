@@ -185074,5 +185074,797 @@
     {
         "head": "library",
         "tail": "bentoml"
+    },
+    {
+        "head": "playwright",
+        "tail": "web-scraping"
+    },
+    {
+        "head": "playwright",
+        "tail": "xpath"
+    },
+    {
+        "head": "playwright",
+        "tail": "selectors"
+    },
+    {
+        "head": "playwright",
+        "tail": "crawling"
+    },
+    {
+        "head": "playwright",
+        "tail": "web-scraper"
+    },
+    {
+        "head": "playwright",
+        "tail": "css"
+    },
+    {
+        "head": "playwright",
+        "tail": "automation"
+    },
+    {
+        "head": "playwright",
+        "tail": "crawler"
+    },
+    {
+        "head": "playwright",
+        "tail": "hacktoberfest"
+    },
+    {
+        "head": "playwright",
+        "tail": "lxml"
+    },
+    {
+        "head": "playwright",
+        "tail": "stealth"
+    },
+    {
+        "head": "playwright",
+        "tail": "scraping"
+    },
+    {
+        "head": "playwright",
+        "tail": "selenium"
+    },
+    {
+        "head": "playwright",
+        "tail": "webscraping"
+    },
+    {
+        "head": "playwright",
+        "tail": "python3"
+    },
+    {
+        "head": "playwright",
+        "tail": "web-scraping-python"
+    },
+    {
+        "head": "playwright",
+        "tail": "crawling-python"
+    },
+    {
+        "head": "playwright",
+        "tail": "dom-manipulation"
+    },
+    {
+        "head": "playwright",
+        "tail": "fast"
+    },
+    {
+        "head": "playwright",
+        "tail": "web"
+    },
+    {
+        "head": "web-scraping",
+        "tail": "xpath"
+    },
+    {
+        "head": "web-scraping",
+        "tail": "selectors"
+    },
+    {
+        "head": "web-scraping",
+        "tail": "crawling"
+    },
+    {
+        "head": "web-scraping",
+        "tail": "web-scraper"
+    },
+    {
+        "head": "web-scraping",
+        "tail": "css"
+    },
+    {
+        "head": "web-scraping",
+        "tail": "hacktoberfest"
+    },
+    {
+        "head": "web-scraping",
+        "tail": "lxml"
+    },
+    {
+        "head": "web-scraping",
+        "tail": "stealth"
+    },
+    {
+        "head": "web-scraping",
+        "tail": "selenium"
+    },
+    {
+        "head": "web-scraping",
+        "tail": "python3"
+    },
+    {
+        "head": "web-scraping",
+        "tail": "web-scraping-python"
+    },
+    {
+        "head": "web-scraping",
+        "tail": "crawling-python"
+    },
+    {
+        "head": "web-scraping",
+        "tail": "dom-manipulation"
+    },
+    {
+        "head": "web-scraping",
+        "tail": "fast"
+    },
+    {
+        "head": "web-scraping",
+        "tail": "web"
+    },
+    {
+        "head": "xpath",
+        "tail": "selectors"
+    },
+    {
+        "head": "xpath",
+        "tail": "python"
+    },
+    {
+        "head": "xpath",
+        "tail": "crawling"
+    },
+    {
+        "head": "xpath",
+        "tail": "web-scraper"
+    },
+    {
+        "head": "xpath",
+        "tail": "css"
+    },
+    {
+        "head": "xpath",
+        "tail": "automation"
+    },
+    {
+        "head": "xpath",
+        "tail": "crawler"
+    },
+    {
+        "head": "xpath",
+        "tail": "hacktoberfest"
+    },
+    {
+        "head": "xpath",
+        "tail": "lxml"
+    },
+    {
+        "head": "xpath",
+        "tail": "stealth"
+    },
+    {
+        "head": "xpath",
+        "tail": "scraping"
+    },
+    {
+        "head": "xpath",
+        "tail": "selenium"
+    },
+    {
+        "head": "xpath",
+        "tail": "webscraping"
+    },
+    {
+        "head": "xpath",
+        "tail": "python3"
+    },
+    {
+        "head": "xpath",
+        "tail": "web-scraping-python"
+    },
+    {
+        "head": "xpath",
+        "tail": "crawling-python"
+    },
+    {
+        "head": "xpath",
+        "tail": "dom-manipulation"
+    },
+    {
+        "head": "xpath",
+        "tail": "fast"
+    },
+    {
+        "head": "xpath",
+        "tail": "web"
+    },
+    {
+        "head": "selectors",
+        "tail": "python"
+    },
+    {
+        "head": "selectors",
+        "tail": "crawling"
+    },
+    {
+        "head": "selectors",
+        "tail": "web-scraper"
+    },
+    {
+        "head": "selectors",
+        "tail": "css"
+    },
+    {
+        "head": "selectors",
+        "tail": "automation"
+    },
+    {
+        "head": "selectors",
+        "tail": "crawler"
+    },
+    {
+        "head": "selectors",
+        "tail": "hacktoberfest"
+    },
+    {
+        "head": "selectors",
+        "tail": "lxml"
+    },
+    {
+        "head": "selectors",
+        "tail": "stealth"
+    },
+    {
+        "head": "selectors",
+        "tail": "scraping"
+    },
+    {
+        "head": "selectors",
+        "tail": "selenium"
+    },
+    {
+        "head": "selectors",
+        "tail": "webscraping"
+    },
+    {
+        "head": "selectors",
+        "tail": "python3"
+    },
+    {
+        "head": "selectors",
+        "tail": "web-scraping-python"
+    },
+    {
+        "head": "selectors",
+        "tail": "crawling-python"
+    },
+    {
+        "head": "selectors",
+        "tail": "dom-manipulation"
+    },
+    {
+        "head": "selectors",
+        "tail": "fast"
+    },
+    {
+        "head": "selectors",
+        "tail": "web"
+    },
+    {
+        "head": "python",
+        "tail": "crawling"
+    },
+    {
+        "head": "python",
+        "tail": "web-scraper"
+    },
+    {
+        "head": "python",
+        "tail": "lxml"
+    },
+    {
+        "head": "python",
+        "tail": "stealth"
+    },
+    {
+        "head": "python",
+        "tail": "selenium"
+    },
+    {
+        "head": "python",
+        "tail": "web-scraping-python"
+    },
+    {
+        "head": "python",
+        "tail": "crawling-python"
+    },
+    {
+        "head": "python",
+        "tail": "dom-manipulation"
+    },
+    {
+        "head": "crawling",
+        "tail": "web-scraper"
+    },
+    {
+        "head": "crawling",
+        "tail": "css"
+    },
+    {
+        "head": "crawling",
+        "tail": "automation"
+    },
+    {
+        "head": "crawling",
+        "tail": "lxml"
+    },
+    {
+        "head": "crawling",
+        "tail": "stealth"
+    },
+    {
+        "head": "crawling",
+        "tail": "selenium"
+    },
+    {
+        "head": "crawling",
+        "tail": "webscraping"
+    },
+    {
+        "head": "crawling",
+        "tail": "python3"
+    },
+    {
+        "head": "crawling",
+        "tail": "web-scraping-python"
+    },
+    {
+        "head": "crawling",
+        "tail": "crawling-python"
+    },
+    {
+        "head": "crawling",
+        "tail": "dom-manipulation"
+    },
+    {
+        "head": "crawling",
+        "tail": "fast"
+    },
+    {
+        "head": "crawling",
+        "tail": "web"
+    },
+    {
+        "head": "web-scraper",
+        "tail": "css"
+    },
+    {
+        "head": "web-scraper",
+        "tail": "automation"
+    },
+    {
+        "head": "web-scraper",
+        "tail": "crawler"
+    },
+    {
+        "head": "web-scraper",
+        "tail": "hacktoberfest"
+    },
+    {
+        "head": "web-scraper",
+        "tail": "lxml"
+    },
+    {
+        "head": "web-scraper",
+        "tail": "stealth"
+    },
+    {
+        "head": "web-scraper",
+        "tail": "scraping"
+    },
+    {
+        "head": "web-scraper",
+        "tail": "selenium"
+    },
+    {
+        "head": "web-scraper",
+        "tail": "webscraping"
+    },
+    {
+        "head": "web-scraper",
+        "tail": "python3"
+    },
+    {
+        "head": "web-scraper",
+        "tail": "web-scraping-python"
+    },
+    {
+        "head": "web-scraper",
+        "tail": "crawling-python"
+    },
+    {
+        "head": "web-scraper",
+        "tail": "dom-manipulation"
+    },
+    {
+        "head": "web-scraper",
+        "tail": "fast"
+    },
+    {
+        "head": "web-scraper",
+        "tail": "web"
+    },
+    {
+        "head": "css",
+        "tail": "automation"
+    },
+    {
+        "head": "css",
+        "tail": "crawler"
+    },
+    {
+        "head": "css",
+        "tail": "lxml"
+    },
+    {
+        "head": "css",
+        "tail": "stealth"
+    },
+    {
+        "head": "css",
+        "tail": "scraping"
+    },
+    {
+        "head": "css",
+        "tail": "selenium"
+    },
+    {
+        "head": "css",
+        "tail": "webscraping"
+    },
+    {
+        "head": "css",
+        "tail": "python3"
+    },
+    {
+        "head": "css",
+        "tail": "web-scraping-python"
+    },
+    {
+        "head": "css",
+        "tail": "crawling-python"
+    },
+    {
+        "head": "css",
+        "tail": "dom-manipulation"
+    },
+    {
+        "head": "css",
+        "tail": "fast"
+    },
+    {
+        "head": "css",
+        "tail": "web"
+    },
+    {
+        "head": "automation",
+        "tail": "lxml"
+    },
+    {
+        "head": "automation",
+        "tail": "stealth"
+    },
+    {
+        "head": "automation",
+        "tail": "selenium"
+    },
+    {
+        "head": "automation",
+        "tail": "web-scraping-python"
+    },
+    {
+        "head": "automation",
+        "tail": "crawling-python"
+    },
+    {
+        "head": "automation",
+        "tail": "dom-manipulation"
+    },
+    {
+        "head": "automation",
+        "tail": "fast"
+    },
+    {
+        "head": "automation",
+        "tail": "web"
+    },
+    {
+        "head": "crawler",
+        "tail": "lxml"
+    },
+    {
+        "head": "crawler",
+        "tail": "stealth"
+    },
+    {
+        "head": "crawler",
+        "tail": "selenium"
+    },
+    {
+        "head": "crawler",
+        "tail": "python3"
+    },
+    {
+        "head": "crawler",
+        "tail": "web-scraping-python"
+    },
+    {
+        "head": "crawler",
+        "tail": "crawling-python"
+    },
+    {
+        "head": "crawler",
+        "tail": "dom-manipulation"
+    },
+    {
+        "head": "crawler",
+        "tail": "fast"
+    },
+    {
+        "head": "crawler",
+        "tail": "web"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "lxml"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "stealth"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "selenium"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "webscraping"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "web-scraping-python"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "crawling-python"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "dom-manipulation"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "fast"
+    },
+    {
+        "head": "lxml",
+        "tail": "stealth"
+    },
+    {
+        "head": "lxml",
+        "tail": "scraping"
+    },
+    {
+        "head": "lxml",
+        "tail": "selenium"
+    },
+    {
+        "head": "lxml",
+        "tail": "webscraping"
+    },
+    {
+        "head": "lxml",
+        "tail": "python3"
+    },
+    {
+        "head": "lxml",
+        "tail": "web-scraping-python"
+    },
+    {
+        "head": "lxml",
+        "tail": "crawling-python"
+    },
+    {
+        "head": "lxml",
+        "tail": "dom-manipulation"
+    },
+    {
+        "head": "lxml",
+        "tail": "fast"
+    },
+    {
+        "head": "lxml",
+        "tail": "web"
+    },
+    {
+        "head": "stealth",
+        "tail": "scraping"
+    },
+    {
+        "head": "stealth",
+        "tail": "selenium"
+    },
+    {
+        "head": "stealth",
+        "tail": "webscraping"
+    },
+    {
+        "head": "stealth",
+        "tail": "python3"
+    },
+    {
+        "head": "stealth",
+        "tail": "web-scraping-python"
+    },
+    {
+        "head": "stealth",
+        "tail": "crawling-python"
+    },
+    {
+        "head": "stealth",
+        "tail": "dom-manipulation"
+    },
+    {
+        "head": "stealth",
+        "tail": "fast"
+    },
+    {
+        "head": "stealth",
+        "tail": "web"
+    },
+    {
+        "head": "scraping",
+        "tail": "selenium"
+    },
+    {
+        "head": "scraping",
+        "tail": "python3"
+    },
+    {
+        "head": "scraping",
+        "tail": "web-scraping-python"
+    },
+    {
+        "head": "scraping",
+        "tail": "crawling-python"
+    },
+    {
+        "head": "scraping",
+        "tail": "dom-manipulation"
+    },
+    {
+        "head": "scraping",
+        "tail": "fast"
+    },
+    {
+        "head": "scraping",
+        "tail": "web"
+    },
+    {
+        "head": "selenium",
+        "tail": "webscraping"
+    },
+    {
+        "head": "selenium",
+        "tail": "python3"
+    },
+    {
+        "head": "selenium",
+        "tail": "web-scraping-python"
+    },
+    {
+        "head": "selenium",
+        "tail": "crawling-python"
+    },
+    {
+        "head": "selenium",
+        "tail": "dom-manipulation"
+    },
+    {
+        "head": "selenium",
+        "tail": "fast"
+    },
+    {
+        "head": "selenium",
+        "tail": "web"
+    },
+    {
+        "head": "webscraping",
+        "tail": "python3"
+    },
+    {
+        "head": "webscraping",
+        "tail": "web-scraping-python"
+    },
+    {
+        "head": "webscraping",
+        "tail": "crawling-python"
+    },
+    {
+        "head": "webscraping",
+        "tail": "dom-manipulation"
+    },
+    {
+        "head": "webscraping",
+        "tail": "fast"
+    },
+    {
+        "head": "webscraping",
+        "tail": "web"
+    },
+    {
+        "head": "python3",
+        "tail": "web-scraping-python"
+    },
+    {
+        "head": "python3",
+        "tail": "crawling-python"
+    },
+    {
+        "head": "python3",
+        "tail": "dom-manipulation"
+    },
+    {
+        "head": "python3",
+        "tail": "fast"
+    },
+    {
+        "head": "web-scraping-python",
+        "tail": "crawling-python"
+    },
+    {
+        "head": "web-scraping-python",
+        "tail": "dom-manipulation"
+    },
+    {
+        "head": "web-scraping-python",
+        "tail": "fast"
+    },
+    {
+        "head": "web-scraping-python",
+        "tail": "web"
+    },
+    {
+        "head": "crawling-python",
+        "tail": "dom-manipulation"
+    },
+    {
+        "head": "crawling-python",
+        "tail": "fast"
+    },
+    {
+        "head": "crawling-python",
+        "tail": "web"
+    },
+    {
+        "head": "dom-manipulation",
+        "tail": "fast"
+    },
+    {
+        "head": "dom-manipulation",
+        "tail": "web"
     }
 ]
