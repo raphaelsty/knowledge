@@ -185030,5 +185030,49 @@
     {
         "head": "powershell",
         "tail": "entity type"
+    },
+    {
+        "head": "online",
+        "tail": "models"
+    },
+    {
+        "head": "online",
+        "tail": "library"
+    },
+    {
+        "head": "online",
+        "tail": "bentoml"
+    },
+    {
+        "head": "ml",
+        "tail": "models"
+    },
+    {
+        "head": "ml",
+        "tail": "river"
+    },
+    {
+        "head": "ml",
+        "tail": "library"
+    },
+    {
+        "head": "models",
+        "tail": "river"
+    },
+    {
+        "head": "models",
+        "tail": "bentoml"
+    },
+    {
+        "head": "river",
+        "tail": "library"
+    },
+    {
+        "head": "river",
+        "tail": "bentoml"
+    },
+    {
+        "head": "library",
+        "tail": "bentoml"
     }
 ]

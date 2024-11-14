@@ -40247,5 +40247,21 @@
             "rust",
             "shell"
         ]
+    },
+    "https://github.com/jsamantaucd/BentoRiverModel": {
+        "extra-tags": [
+            "online",
+            "ml",
+            "models",
+            "river",
+            "library",
+            "bentoml"
+        ],
+        "date": "2024-11-11",
+        "title": "BentoRiverModel",
+        "summary": "feature: add support for online ML models from River library in BentoML",
+        "tags": [
+            "python"
+        ]
     }
 }
