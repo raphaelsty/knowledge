@@ -40294,5 +40294,25 @@
             "crawling-python",
             "dom-manipulation"
         ]
+    },
+    "https://github.com/janestreet/magic-trace": {
+        "extra-tags": [
+            "resolution",
+            "display",
+            "super-resolution"
+        ],
+        "date": "2022-01-26",
+        "title": "magic-trace",
+        "summary": "magic-trace collects and displays high-resolution traces of what a process is doing",
+        "tags": [
+            "tracing",
+            "performance-tools",
+            "introspection",
+            "x86",
+            "visualizer",
+            "ocaml",
+            "intel",
+            "profile"
+        ]
     }
 }
