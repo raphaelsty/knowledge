@@ -40314,5 +40314,21 @@
             "intel",
             "profile"
         ]
+    },
+    "https://github.com/Xfennec/progress": {
+        "extra-tags": [
+            "tool",
+            "cv",
+            "progress-bar"
+        ],
+        "date": "2013-11-22",
+        "title": "progress",
+        "summary": "Linux tool to show progress for cp, mv, dd, ... (formerly known as cv)",
+        "tags": [
+            "coreutils",
+            "linux",
+            "c",
+            "monitoring"
+        ]
     }
 }

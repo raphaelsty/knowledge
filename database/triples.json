@@ -186078,5 +186078,85 @@
     {
         "head": "display",
         "tail": "super-resolution"
+    },
+    {
+        "head": "coreutils",
+        "tail": "linux"
+    },
+    {
+        "head": "coreutils",
+        "tail": "c"
+    },
+    {
+        "head": "coreutils",
+        "tail": "monitoring"
+    },
+    {
+        "head": "coreutils",
+        "tail": "tool"
+    },
+    {
+        "head": "coreutils",
+        "tail": "cv"
+    },
+    {
+        "head": "coreutils",
+        "tail": "progress-bar"
+    },
+    {
+        "head": "linux",
+        "tail": "c"
+    },
+    {
+        "head": "linux",
+        "tail": "monitoring"
+    },
+    {
+        "head": "linux",
+        "tail": "tool"
+    },
+    {
+        "head": "linux",
+        "tail": "cv"
+    },
+    {
+        "head": "linux",
+        "tail": "progress-bar"
+    },
+    {
+        "head": "c",
+        "tail": "tool"
+    },
+    {
+        "head": "c",
+        "tail": "cv"
+    },
+    {
+        "head": "c",
+        "tail": "progress-bar"
+    },
+    {
+        "head": "monitoring",
+        "tail": "tool"
+    },
+    {
+        "head": "monitoring",
+        "tail": "cv"
+    },
+    {
+        "head": "monitoring",
+        "tail": "progress-bar"
+    },
+    {
+        "head": "tool",
+        "tail": "cv"
+    },
+    {
+        "head": "tool",
+        "tail": "progress-bar"
+    },
+    {
+        "head": "cv",
+        "tail": "progress-bar"
     }
 ]
