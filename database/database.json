@@ -40330,5 +40330,22 @@
             "c",
             "monitoring"
         ]
+    },
+    "https://github.com/opendilab/awesome-diffusion-model-in-rl": {
+        "extra-tags": [
+            "rl",
+            "awesome",
+            "list",
+            "diffusion"
+        ],
+        "date": "2022-10-24",
+        "title": "awesome-diffusion-model-in-rl",
+        "summary": "A curated list of Diffusion Model in RL resources (continually updated)",
+        "tags": [
+            "deep-reinforcement-learning",
+            "diffusion-model",
+            "reinfocement-learning",
+            "diffusion-models"
+        ]
     }
 }
