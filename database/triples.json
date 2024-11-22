@@ -186258,5 +186258,25 @@
     {
         "head": "list",
         "tail": "diffusion"
+    },
+    {
+        "head": "go",
+        "tail": "summary"
+    },
+    {
+        "head": "go",
+        "tail": "summarization"
+    },
+    {
+        "head": "vim",
+        "tail": "summary"
+    },
+    {
+        "head": "vim",
+        "tail": "summarization"
+    },
+    {
+        "head": "summary",
+        "tail": "summarization"
     }
 ]

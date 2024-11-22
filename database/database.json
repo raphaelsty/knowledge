@@ -40347,5 +40347,18 @@
             "reinfocement-learning",
             "diffusion-models"
         ]
+    },
+    "https://github.com/lmossina/summax": {
+        "extra-tags": [
+            "vim",
+            "summary",
+            "summarization"
+        ],
+        "date": "2024-11-20",
+        "title": "summax",
+        "summary": "SummaX: a minigame about arithmetic and the number ten. With a sprinkle of VIM motions",
+        "tags": [
+            "go"
+        ]
     }
 }
