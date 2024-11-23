@@ -40379,5 +40379,25 @@
             "pytorch",
             "python"
         ]
+    },
+    "https://github.com/AnswerDotAI/fastcore": {
+        "extra-tags": [
+            "library"
+        ],
+        "date": "2019-12-02",
+        "title": "fastcore",
+        "summary": "Python supercharged for the fastai library",
+        "tags": [
+            "dispatch",
+            "python",
+            "jupyter notebook",
+            "fastai",
+            "functional-programming",
+            "languages",
+            "data-structures",
+            "parallel-processing",
+            "developer-tools",
+            "documentation-generator"
+        ]
     }
 }

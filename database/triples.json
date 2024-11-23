@@ -186386,5 +186386,37 @@
     {
         "head": "model",
         "tail": "research"
+    },
+    {
+        "head": "dispatch",
+        "tail": "library"
+    },
+    {
+        "head": "fastai",
+        "tail": "library"
+    },
+    {
+        "head": "functional-programming",
+        "tail": "library"
+    },
+    {
+        "head": "languages",
+        "tail": "library"
+    },
+    {
+        "head": "data-structures",
+        "tail": "library"
+    },
+    {
+        "head": "parallel-processing",
+        "tail": "library"
+    },
+    {
+        "head": "developer-tools",
+        "tail": "library"
+    },
+    {
+        "head": "documentation-generator",
+        "tail": "library"
     }
 ]
