@@ -186278,5 +186278,113 @@
     {
         "head": "summary",
         "tail": "summarization"
+    },
+    {
+        "head": "jax",
+        "tail": "large-scale-vision-models"
+    },
+    {
+        "head": "jax",
+        "tail": "mlx"
+    },
+    {
+        "head": "jax",
+        "tail": "repository"
+    },
+    {
+        "head": "jax",
+        "tail": "code"
+    },
+    {
+        "head": "large-scale-vision-models",
+        "tail": "mlx"
+    },
+    {
+        "head": "large-scale-vision-models",
+        "tail": "pytorch"
+    },
+    {
+        "head": "large-scale-vision-models",
+        "tail": "python"
+    },
+    {
+        "head": "large-scale-vision-models",
+        "tail": "ml"
+    },
+    {
+        "head": "large-scale-vision-models",
+        "tail": "repository"
+    },
+    {
+        "head": "large-scale-vision-models",
+        "tail": "code"
+    },
+    {
+        "head": "large-scale-vision-models",
+        "tail": "model"
+    },
+    {
+        "head": "large-scale-vision-models",
+        "tail": "research"
+    },
+    {
+        "head": "mlx",
+        "tail": "pytorch"
+    },
+    {
+        "head": "mlx",
+        "tail": "python"
+    },
+    {
+        "head": "mlx",
+        "tail": "ml"
+    },
+    {
+        "head": "mlx",
+        "tail": "repository"
+    },
+    {
+        "head": "mlx",
+        "tail": "code"
+    },
+    {
+        "head": "mlx",
+        "tail": "model"
+    },
+    {
+        "head": "mlx",
+        "tail": "research"
+    },
+    {
+        "head": "pytorch",
+        "tail": "code"
+    },
+    {
+        "head": "ml",
+        "tail": "repository"
+    },
+    {
+        "head": "ml",
+        "tail": "code"
+    },
+    {
+        "head": "ml",
+        "tail": "model"
+    },
+    {
+        "head": "ml",
+        "tail": "research"
+    },
+    {
+        "head": "repository",
+        "tail": "model"
+    },
+    {
+        "head": "code",
+        "tail": "model"
+    },
+    {
+        "head": "model",
+        "tail": "research"
     }
 ]

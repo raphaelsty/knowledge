@@ -40360,5 +40360,24 @@
         "tags": [
             "go"
         ]
+    },
+    "https://github.com/apple/ml-aim": {
+        "extra-tags": [
+            "ml",
+            "repository",
+            "code",
+            "model",
+            "research"
+        ],
+        "date": "2024-01-12",
+        "title": "ml-aim",
+        "summary": "This repository provides the code and model checkpoints for AIMv1 and AIMv2 research projects.",
+        "tags": [
+            "jax",
+            "large-scale-vision-models",
+            "mlx",
+            "pytorch",
+            "python"
+        ]
     }
 }
