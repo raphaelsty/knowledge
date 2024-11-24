@@ -186418,5 +186418,37 @@
     {
         "head": "documentation-generator",
         "tail": "library"
+    },
+    {
+        "head": "policy",
+        "tail": "diffusion"
+    },
+    {
+        "head": "policy",
+        "tail": "arxiv"
+    },
+    {
+        "head": "diffusion",
+        "tail": "optimization"
+    },
+    {
+        "head": "diffusion",
+        "tail": "arxiv"
+    },
+    {
+        "head": "optimization",
+        "tail": "arxiv"
+    },
+    {
+        "head": "pytorch",
+        "tail": "optimizer"
+    },
+    {
+        "head": "pytorch",
+        "tail": "adam-optimizer"
+    },
+    {
+        "head": "ai",
+        "tail": "art"
     }
 ]

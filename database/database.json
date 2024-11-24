@@ -40399,5 +40399,44 @@
             "developer-tools",
             "documentation-generator"
         ]
+    },
+    "https://github.com/irom-princeton/dppo": {
+        "extra-tags": [
+            "policy",
+            "diffusion",
+            "optimization",
+            "arxiv"
+        ],
+        "date": "2024-09-04",
+        "title": "dppo",
+        "summary": "Official implementation of Diffusion Policy Policy Optimization, arxiv 2024",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/ethansmith2000/fsdp_optimizers": {
+        "extra-tags": [
+            "pytorch",
+            "optimizer",
+            "adam-optimizer"
+        ],
+        "date": "2024-11-23",
+        "title": "fsdp_optimizers",
+        "summary": "supporting pytorch FSDP for optimizers",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://www.astralcodexten.com/p/how-did-you-do-on-the-ai-art-turing": {
+        "extra-tags": [
+            "ai",
+            "art"
+        ],
+        "title": "Hackernews How did you do on the AI art Turing test? (astralcodexten.com)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2024-11-24"
     }
 }
