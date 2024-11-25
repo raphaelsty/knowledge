@@ -40438,5 +40438,24 @@
         ],
         "summary": "",
         "date": "2024-11-24"
+    },
+    "https://github.com/zillow/quantile-forest": {
+        "extra-tags": [
+            "regression",
+            "scikit-learn"
+        ],
+        "date": "2022-03-23",
+        "title": "quantile-forest",
+        "summary": "Quantile Regression Forests compatible with scikit-learn.",
+        "tags": [
+            "prediction-intervals",
+            "quantile-regression-forests",
+            "machine-learning",
+            "random-forest",
+            "python",
+            "quantile-regression",
+            "uncertainty-estimation",
+            "scikit-learn-api"
+        ]
     }
 }

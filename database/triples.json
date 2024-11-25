@@ -186450,5 +186450,133 @@
     {
         "head": "ai",
         "tail": "art"
+    },
+    {
+        "head": "prediction-intervals",
+        "tail": "quantile-regression-forests"
+    },
+    {
+        "head": "prediction-intervals",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "prediction-intervals",
+        "tail": "random-forest"
+    },
+    {
+        "head": "prediction-intervals",
+        "tail": "python"
+    },
+    {
+        "head": "prediction-intervals",
+        "tail": "quantile-regression"
+    },
+    {
+        "head": "prediction-intervals",
+        "tail": "uncertainty-estimation"
+    },
+    {
+        "head": "prediction-intervals",
+        "tail": "scikit-learn-api"
+    },
+    {
+        "head": "prediction-intervals",
+        "tail": "regression"
+    },
+    {
+        "head": "prediction-intervals",
+        "tail": "scikit-learn"
+    },
+    {
+        "head": "quantile-regression-forests",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "quantile-regression-forests",
+        "tail": "random-forest"
+    },
+    {
+        "head": "quantile-regression-forests",
+        "tail": "python"
+    },
+    {
+        "head": "quantile-regression-forests",
+        "tail": "quantile-regression"
+    },
+    {
+        "head": "quantile-regression-forests",
+        "tail": "uncertainty-estimation"
+    },
+    {
+        "head": "quantile-regression-forests",
+        "tail": "scikit-learn-api"
+    },
+    {
+        "head": "quantile-regression-forests",
+        "tail": "regression"
+    },
+    {
+        "head": "quantile-regression-forests",
+        "tail": "scikit-learn"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "quantile-regression"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "scikit-learn-api"
+    },
+    {
+        "head": "random-forest",
+        "tail": "quantile-regression"
+    },
+    {
+        "head": "random-forest",
+        "tail": "uncertainty-estimation"
+    },
+    {
+        "head": "random-forest",
+        "tail": "scikit-learn-api"
+    },
+    {
+        "head": "python",
+        "tail": "scikit-learn-api"
+    },
+    {
+        "head": "quantile-regression",
+        "tail": "uncertainty-estimation"
+    },
+    {
+        "head": "quantile-regression",
+        "tail": "scikit-learn-api"
+    },
+    {
+        "head": "quantile-regression",
+        "tail": "regression"
+    },
+    {
+        "head": "quantile-regression",
+        "tail": "scikit-learn"
+    },
+    {
+        "head": "uncertainty-estimation",
+        "tail": "scikit-learn-api"
+    },
+    {
+        "head": "uncertainty-estimation",
+        "tail": "regression"
+    },
+    {
+        "head": "uncertainty-estimation",
+        "tail": "scikit-learn"
+    },
+    {
+        "head": "scikit-learn-api",
+        "tail": "regression"
+    },
+    {
+        "head": "scikit-learn-api",
+        "tail": "scikit-learn"
     }
 ]
