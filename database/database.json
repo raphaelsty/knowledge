@@ -40476,5 +40476,19 @@
             "online-learning",
             "incremental-learning"
         ]
+    },
+    "https://github.com/thib-s/orthogonium": {
+        "extra-tags": [
+            "training",
+            "orthogonality",
+            "paper-implementations",
+            "efficient-implementations"
+        ],
+        "date": "2024-03-13",
+        "title": "orthogonium",
+        "summary": "New implementations of old orthogonal layers unlock large scale training.",
+        "tags": [
+            "python"
+        ]
     }
 }
