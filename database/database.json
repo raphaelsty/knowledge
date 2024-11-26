@@ -40457,5 +40457,24 @@
             "uncertainty-estimation",
             "scikit-learn-api"
         ]
+    },
+    "https://github.com/outbrain-inc/fwumious_wabbit": {
+        "extra-tags": [
+            "fast",
+            "machine learning"
+        ],
+        "date": "2020-09-14",
+        "title": "fwumious_wabbit",
+        "summary": "Fwumious Wabbit, fast on-line machine learning toolkit written in Rust",
+        "tags": [
+            "rust",
+            "deep-learning",
+            "machine-learning",
+            "data-stream-mining",
+            "factorization-machines",
+            "logistic-regression",
+            "online-learning",
+            "incremental-learning"
+        ]
     }
 }

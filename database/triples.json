@@ -186578,5 +186578,77 @@
     {
         "head": "scikit-learn-api",
         "tail": "scikit-learn"
+    },
+    {
+        "head": "rust",
+        "tail": "data-stream-mining"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "data-stream-mining"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "logistic-regression"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "fast"
+    },
+    {
+        "head": "data-stream-mining",
+        "tail": "factorization-machines"
+    },
+    {
+        "head": "data-stream-mining",
+        "tail": "logistic-regression"
+    },
+    {
+        "head": "data-stream-mining",
+        "tail": "online-learning"
+    },
+    {
+        "head": "data-stream-mining",
+        "tail": "incremental-learning"
+    },
+    {
+        "head": "data-stream-mining",
+        "tail": "fast"
+    },
+    {
+        "head": "data-stream-mining",
+        "tail": "machine learning"
+    },
+    {
+        "head": "factorization-machines",
+        "tail": "fast"
+    },
+    {
+        "head": "factorization-machines",
+        "tail": "machine learning"
+    },
+    {
+        "head": "logistic-regression",
+        "tail": "fast"
+    },
+    {
+        "head": "logistic-regression",
+        "tail": "machine learning"
+    },
+    {
+        "head": "online-learning",
+        "tail": "fast"
+    },
+    {
+        "head": "incremental-learning",
+        "tail": "fast"
+    },
+    {
+        "head": "incremental-learning",
+        "tail": "machine learning"
+    },
+    {
+        "head": "fast",
+        "tail": "machine learning"
     }
 ]
