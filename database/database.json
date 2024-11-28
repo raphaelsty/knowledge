@@ -40490,5 +40490,33 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/jturner116/splax": {
+        "extra-tags": [
+            "splade",
+            "training",
+            "jax",
+            "flax"
+        ],
+        "date": "2024-11-07",
+        "title": "splax",
+        "summary": "SPLADE training in JAX/Flax",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/kyleliang919/C-Optim": {
+        "extra-tags": [
+            "c",
+            "optimizer",
+            "adam-optimizer",
+            "optimization"
+        ],
+        "date": "2024-07-22",
+        "title": "C-Optim",
+        "summary": "When it comes to optimizers, it's always better to be safe than sorry",
+        "tags": [
+            "python"
+        ]
     }
 }

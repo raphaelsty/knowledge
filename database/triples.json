@@ -186674,5 +186674,45 @@
     {
         "head": "orthogonality",
         "tail": "efficient-implementations"
+    },
+    {
+        "head": "splade",
+        "tail": "training"
+    },
+    {
+        "head": "splade",
+        "tail": "jax"
+    },
+    {
+        "head": "splade",
+        "tail": "flax"
+    },
+    {
+        "head": "training",
+        "tail": "jax"
+    },
+    {
+        "head": "training",
+        "tail": "flax"
+    },
+    {
+        "head": "c",
+        "tail": "optimizer"
+    },
+    {
+        "head": "c",
+        "tail": "adam-optimizer"
+    },
+    {
+        "head": "c",
+        "tail": "optimization"
+    },
+    {
+        "head": "optimizer",
+        "tail": "optimization"
+    },
+    {
+        "head": "adam-optimizer",
+        "tail": "optimization"
     }
 ]
