@@ -186714,5 +186714,77 @@
     {
         "head": "adam-optimizer",
         "tail": "optimization"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "statistics - machine learning"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "poincare"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "learning"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "hierarchical"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "poincare"
+    },
+    {
+        "head": "statistics - machine learning",
+        "tail": "hierarchical"
+    },
+    {
+        "head": "statistics - machine learning",
+        "tail": "poincare"
+    },
+    {
+        "head": "statistics - machine learning",
+        "tail": "embeddings"
+    },
+    {
+        "head": "statistics - machine learning",
+        "tail": "learning"
+    },
+    {
+        "head": "hierarchical",
+        "tail": "poincare"
+    },
+    {
+        "head": "hierarchical",
+        "tail": "embeddings"
+    },
+    {
+        "head": "hierarchical",
+        "tail": "learning"
+    },
+    {
+        "head": "hierarchical",
+        "tail": "data"
+    },
+    {
+        "head": "poincare",
+        "tail": "embeddings"
+    },
+    {
+        "head": "poincare",
+        "tail": "learning"
+    },
+    {
+        "head": "poincare",
+        "tail": "data"
+    },
+    {
+        "head": "embeddings",
+        "tail": "learning"
+    },
+    {
+        "head": "embeddings",
+        "tail": "data"
     }
 ]

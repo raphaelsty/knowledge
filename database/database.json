@@ -40518,5 +40518,22 @@
         "tags": [
             "python"
         ]
+    },
+    "http://arxiv.org/abs/1705.08039": {
+        "extra-tags": [
+            "embeddings",
+            "learning",
+            "data"
+        ],
+        "title": "Poincar\u00e9 Embeddings for Learning Hierarchical Representations",
+        "summary": "Representation learning has become an invaluable approach for learning from symbolic data such as text and graphs. However, while complex symbolic datasets often exhibit a latent hierarchical structure, state-of-the-art methods typically learn embeddings in Euclidean vector spaces, which do not account for this property. For this purpose, we introduce a new approach for learning hierarchical representations of symbolic data by embedding them into hyperbolic space -- or more precisely into an n-dimensional Poincar\\'e ball. Due to the underlying hyperbolic geometry, this allows us to learn parsimonious representations of symbolic data by simultaneously capturing hierarchy and similarity. We introduce an efficient algorithm to learn the embeddings based on Riemannian optimization and show experimentally that Poincar\\'e embeddings outperform Euclidean embeddings significantly on data with latent hierarchies, both in terms of representation capacity and in terms of generalization ability.",
+        "date": "2024-11-28",
+        "tags": [
+            "computer science - artificial intelligence",
+            "computer science - machine learning",
+            "statistics - machine learning",
+            "hierarchical",
+            "poincare"
+        ]
     }
 }
