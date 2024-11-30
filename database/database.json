@@ -40535,5 +40535,18 @@
             "hierarchical",
             "poincare"
         ]
+    },
+    "https://github.com/fracapuano/llami": {
+        "extra-tags": [
+            "local",
+            "arm",
+            "huggingface"
+        ],
+        "date": "2024-10-05",
+        "title": "llami",
+        "summary": "fully-local <200$ voice controlled robotic arm. Uses LeRobot by @huggingface",
+        "tags": [
+            "python"
+        ]
     }
 }

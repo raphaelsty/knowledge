@@ -186786,5 +186786,17 @@
     {
         "head": "embeddings",
         "tail": "data"
+    },
+    {
+        "head": "local",
+        "tail": "arm"
+    },
+    {
+        "head": "local",
+        "tail": "huggingface"
+    },
+    {
+        "head": "arm",
+        "tail": "huggingface"
     }
 ]
