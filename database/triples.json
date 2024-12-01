@@ -186798,5 +186798,25 @@
     {
         "head": "arm",
         "tail": "huggingface"
+    },
+    {
+        "head": "rust",
+        "tail": "generic"
+    },
+    {
+        "head": "rust",
+        "tail": "automatic"
+    },
+    {
+        "head": "generic",
+        "tail": "automatic"
+    },
+    {
+        "head": "generic",
+        "tail": "library"
+    },
+    {
+        "head": "automatic",
+        "tail": "library"
     }
 ]

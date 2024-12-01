@@ -40548,5 +40548,18 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/facebookresearch/gad": {
+        "extra-tags": [
+            "generic",
+            "automatic",
+            "library"
+        ],
+        "date": "2021-04-20",
+        "title": "gad",
+        "summary": "Generic Automatic Differentiation library for Rust (aka \"autograd\")",
+        "tags": [
+            "rust"
+        ]
     }
 }
