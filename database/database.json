@@ -40561,5 +40561,19 @@
         "tags": [
             "rust"
         ]
+    },
+    "https://github.com/PrimeIntellect-ai/prime": {
+        "extra-tags": [
+            "framework",
+            "distributed",
+            "training",
+            "ai"
+        ],
+        "date": "2024-09-11",
+        "title": "prime",
+        "summary": "prime is a framework for efficient, globally distributed training of AI models over the internet.",
+        "tags": [
+            "python"
+        ]
     }
 }

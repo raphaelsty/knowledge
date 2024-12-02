@@ -186818,5 +186818,9 @@
     {
         "head": "automatic",
         "tail": "library"
+    },
+    {
+        "head": "training",
+        "tail": "ai"
     }
 ]
