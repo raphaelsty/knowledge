@@ -40589,5 +40589,19 @@
             "optimization",
             "python"
         ]
+    },
+    "https://github.com/gverger/go-graph-layout": {
+        "extra-tags": [
+            "algorithms"
+        ],
+        "date": "2021-11-20",
+        "title": "go-graph-layout",
+        "summary": "\ud83d\udd2e Graph Layout Algorithms in Go",
+        "tags": [
+            "svg",
+            "graph",
+            "go",
+            "graph-visualization"
+        ]
     }
 }
