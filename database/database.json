@@ -40575,5 +40575,19 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/geoopt/geoopt": {
+        "extra-tags": [],
+        "date": "2018-11-07",
+        "title": "geoopt",
+        "summary": "Riemannian Adaptive Optimization Methods with pytorch optim",
+        "tags": [
+            "riemannian-optimization",
+            "riemannian-manifold",
+            "riemannian-geometry",
+            "pytorch",
+            "optimization",
+            "python"
+        ]
     }
 }

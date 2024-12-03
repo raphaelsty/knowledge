@@ -186822,5 +186822,53 @@
     {
         "head": "training",
         "tail": "ai"
+    },
+    {
+        "head": "riemannian-optimization",
+        "tail": "riemannian-manifold"
+    },
+    {
+        "head": "riemannian-optimization",
+        "tail": "riemannian-geometry"
+    },
+    {
+        "head": "riemannian-optimization",
+        "tail": "pytorch"
+    },
+    {
+        "head": "riemannian-optimization",
+        "tail": "optimization"
+    },
+    {
+        "head": "riemannian-optimization",
+        "tail": "python"
+    },
+    {
+        "head": "riemannian-manifold",
+        "tail": "riemannian-geometry"
+    },
+    {
+        "head": "riemannian-manifold",
+        "tail": "pytorch"
+    },
+    {
+        "head": "riemannian-manifold",
+        "tail": "optimization"
+    },
+    {
+        "head": "riemannian-manifold",
+        "tail": "python"
+    },
+    {
+        "head": "riemannian-geometry",
+        "tail": "pytorch"
+    },
+    {
+        "head": "riemannian-geometry",
+        "tail": "optimization"
+    },
+    {
+        "head": "riemannian-geometry",
+        "tail": "python"
     }
 ]
