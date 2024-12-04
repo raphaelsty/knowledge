@@ -40603,5 +40603,30 @@
             "go",
             "graph-visualization"
         ]
+    },
+    "https://github.com/SuReLI/TCRMDP": {
+        "extra-tags": [
+            "time",
+            "neurips 2024",
+            "neurips"
+        ],
+        "date": "2024-12-03",
+        "title": "TCRMDP",
+        "summary": "Official implementation of Time-Constrained Robust MDP, NeurIPS 2024",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://egoless.engineering": {
+        "extra-tags": [
+            "engineering",
+            "data-engineering"
+        ],
+        "title": "Hackernews Egoless Engineering (egoless.engineering)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2024-12-04"
     }
 }
