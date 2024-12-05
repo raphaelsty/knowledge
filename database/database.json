@@ -40628,5 +40628,16 @@
         ],
         "summary": "",
         "date": "2024-12-04"
+    },
+    "https://github.com/sonngdev/rose-pine-warp": {
+        "extra-tags": [
+            "terminal",
+            "terminal-color",
+            "terminal-emulators"
+        ],
+        "date": "2023-03-01",
+        "title": "rose-pine-warp",
+        "summary": "Soho vibes for Warp - The terminal for the 21st century",
+        "tags": []
     }
 }

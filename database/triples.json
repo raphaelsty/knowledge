@@ -186902,5 +186902,9 @@
     {
         "head": "engineering",
         "tail": "data-engineering"
+    },
+    {
+        "head": "terminal-color",
+        "tail": "terminal-emulators"
     }
 ]
