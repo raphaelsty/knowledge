@@ -40639,5 +40639,17 @@
         "title": "rose-pine-warp",
         "summary": "Soho vibes for Warp - The terminal for the 21st century",
         "tags": []
+    },
+    "https://github.com/NicolasBizzozzero/AdventOfCode-2024": {
+        "extra-tags": [
+            "2024",
+            "code"
+        ],
+        "date": "2024-12-01",
+        "title": "AdventOfCode-2024",
+        "summary": "Answers to the 2024th edition of the Advent of Code",
+        "tags": [
+            "python"
+        ]
     }
 }
