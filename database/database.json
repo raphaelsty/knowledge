@@ -40651,5 +40651,18 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/MaudBqrd/VBLE": {
+        "extra-tags": [
+            "table",
+            "ensemble",
+            "skytable"
+        ],
+        "date": "2023-11-27",
+        "title": "VBLE",
+        "summary": "",
+        "tags": [
+            "python"
+        ]
     }
 }

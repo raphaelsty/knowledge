@@ -186910,5 +186910,25 @@
     {
         "head": "2024",
         "tail": "code"
+    },
+    {
+        "head": "python",
+        "tail": "table"
+    },
+    {
+        "head": "python",
+        "tail": "skytable"
+    },
+    {
+        "head": "table",
+        "tail": "ensemble"
+    },
+    {
+        "head": "table",
+        "tail": "skytable"
+    },
+    {
+        "head": "ensemble",
+        "tail": "skytable"
     }
 ]
