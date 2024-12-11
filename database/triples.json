@@ -186930,5 +186930,25 @@
     {
         "head": "ensemble",
         "tail": "skytable"
+    },
+    {
+        "head": "paper",
+        "tail": "scaling"
+    },
+    {
+        "head": "paper",
+        "tail": "synthetic"
+    },
+    {
+        "head": "paper",
+        "tail": "data"
+    },
+    {
+        "head": "scaling",
+        "tail": "synthetic"
+    },
+    {
+        "head": "scaling",
+        "tail": "data"
     }
 ]

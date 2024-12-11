@@ -40664,5 +40664,19 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/tencent-ailab/persona-hub": {
+        "extra-tags": [
+            "paper",
+            "scaling",
+            "synthetic",
+            "data"
+        ],
+        "date": "2024-06-22",
+        "title": "persona-hub",
+        "summary": "Official repo for the paper \"Scaling Synthetic Data Creation with 1,000,000,000 Personas\"",
+        "tags": [
+            "python"
+        ]
     }
 }
