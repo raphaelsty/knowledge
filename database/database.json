@@ -40678,5 +40678,18 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/volcengine/verl": {
+        "extra-tags": [
+            "engine",
+            "reinforcement learning",
+            "llm"
+        ],
+        "date": "2024-10-31",
+        "title": "verl",
+        "summary": "veRL: Volcano Engine Reinforcement Learning for LLM",
+        "tags": [
+            "python"
+        ]
     }
 }
