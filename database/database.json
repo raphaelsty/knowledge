@@ -40691,5 +40691,31 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/alishobeiri/thread": {
+        "extra-tags": [
+            "jupyter notebook",
+            "local",
+            "code"
+        ],
+        "date": "2024-05-21",
+        "title": "thread",
+        "summary": "AI-powered Jupyter Notebook \u2014 use local AI to generate and edit code cells, automatically fix errors, and chat with your data",
+        "tags": [
+            "data-science",
+            "jupyter-notebook",
+            "jupyter-notebooks",
+            "jupyterlab",
+            "analysis",
+            "analytics",
+            "ai",
+            "jupyterhub",
+            "jupyter",
+            "python",
+            "javascript",
+            "reactjs",
+            "ollama",
+            "react"
+        ]
     }
 }
