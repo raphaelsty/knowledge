@@ -186974,5 +186974,121 @@
     {
         "head": "local",
         "tail": "code"
+    },
+    {
+        "head": "html",
+        "tail": "autogen"
+    },
+    {
+        "head": "html",
+        "tail": "openai"
+    },
+    {
+        "head": "html",
+        "tail": "autogen-extension"
+    },
+    {
+        "head": "html",
+        "tail": "tool"
+    },
+    {
+        "head": "html",
+        "tail": "files"
+    },
+    {
+        "head": "autogen",
+        "tail": "langchain"
+    },
+    {
+        "head": "autogen",
+        "tail": "openai"
+    },
+    {
+        "head": "autogen",
+        "tail": "autogen-extension"
+    },
+    {
+        "head": "autogen",
+        "tail": "python"
+    },
+    {
+        "head": "autogen",
+        "tail": "tool"
+    },
+    {
+        "head": "autogen",
+        "tail": "files"
+    },
+    {
+        "head": "autogen",
+        "tail": "markdown"
+    },
+    {
+        "head": "langchain",
+        "tail": "openai"
+    },
+    {
+        "head": "langchain",
+        "tail": "autogen-extension"
+    },
+    {
+        "head": "langchain",
+        "tail": "python"
+    },
+    {
+        "head": "langchain",
+        "tail": "tool"
+    },
+    {
+        "head": "langchain",
+        "tail": "files"
+    },
+    {
+        "head": "langchain",
+        "tail": "markdown"
+    },
+    {
+        "head": "openai",
+        "tail": "autogen-extension"
+    },
+    {
+        "head": "openai",
+        "tail": "tool"
+    },
+    {
+        "head": "openai",
+        "tail": "files"
+    },
+    {
+        "head": "openai",
+        "tail": "markdown"
+    },
+    {
+        "head": "autogen-extension",
+        "tail": "python"
+    },
+    {
+        "head": "autogen-extension",
+        "tail": "tool"
+    },
+    {
+        "head": "autogen-extension",
+        "tail": "files"
+    },
+    {
+        "head": "autogen-extension",
+        "tail": "markdown"
+    },
+    {
+        "head": "python",
+        "tail": "files"
+    },
+    {
+        "head": "tool",
+        "tail": "markdown"
+    },
+    {
+        "head": "files",
+        "tail": "markdown"
     }
 ]

@@ -40717,5 +40717,23 @@
             "ollama",
             "react"
         ]
+    },
+    "https://github.com/microsoft/markitdown": {
+        "extra-tags": [
+            "python",
+            "tool",
+            "files",
+            "markdown"
+        ],
+        "date": "2024-11-13",
+        "title": "markitdown",
+        "summary": "Python tool for converting files and office documents to Markdown.",
+        "tags": [
+            "html",
+            "autogen",
+            "langchain",
+            "openai",
+            "autogen-extension"
+        ]
     }
 }
