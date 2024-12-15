@@ -187090,5 +187090,53 @@
     {
         "head": "files",
         "tail": "markdown"
+    },
+    {
+        "head": "tabular-learning",
+        "tail": "deep-learning"
+    },
+    {
+        "head": "tabular-learning",
+        "tail": "pytorch"
+    },
+    {
+        "head": "tabular-learning",
+        "tail": "python"
+    },
+    {
+        "head": "tabular-learning",
+        "tail": "data-frame"
+    },
+    {
+        "head": "tabular-learning",
+        "tail": "deep learning"
+    },
+    {
+        "head": "tabular-learning",
+        "tail": "library"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "data-frame"
+    },
+    {
+        "head": "pytorch",
+        "tail": "data-frame"
+    },
+    {
+        "head": "python",
+        "tail": "data-frame"
+    },
+    {
+        "head": "data-frame",
+        "tail": "deep learning"
+    },
+    {
+        "head": "data-frame",
+        "tail": "library"
+    },
+    {
+        "head": "deep learning",
+        "tail": "library"
     }
 ]

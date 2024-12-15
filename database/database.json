@@ -40735,5 +40735,21 @@
             "openai",
             "autogen-extension"
         ]
+    },
+    "https://github.com/pyg-team/pytorch-frame": {
+        "extra-tags": [
+            "deep learning",
+            "library"
+        ],
+        "date": "2023-08-11",
+        "title": "pytorch-frame",
+        "summary": "Tabular Deep Learning Library for PyTorch",
+        "tags": [
+            "tabular-learning",
+            "deep-learning",
+            "pytorch",
+            "python",
+            "data-frame"
+        ]
     }
 }
