@@ -40751,5 +40751,275 @@
             "python",
             "data-frame"
         ]
+    },
+    "https://github.com/Felix-Petersen/difflogic": {
+        "extra-tags": [
+            "library",
+            "differentiable",
+            "differentiable reasoning over text"
+        ],
+        "date": "2022-11-28",
+        "title": "difflogic",
+        "summary": "A Library for Differentiable Logic Gate Networks",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/stanfordnlp/pyreft": {
+        "extra-tags": [
+            "finetuning",
+            "language models"
+        ],
+        "date": "2024-02-17",
+        "title": "pyreft",
+        "summary": "ReFT: Representation Finetuning for Language Models",
+        "tags": [
+            "reft",
+            "python",
+            "representation-finetuning",
+            "interpretability"
+        ]
+    },
+    "https://github.com/facebookresearch/spdl": {
+        "extra-tags": [
+            "data",
+            "performance",
+            "performance-cpu",
+            "performance-tools"
+        ],
+        "date": "2024-06-27",
+        "title": "spdl",
+        "summary": "Scalable and Performant Data Loading",
+        "tags": [
+            "python"
+        ]
+    },
+    "http://arxiv.org/abs/2407.02485": {
+        "extra-tags": [
+            "generation",
+            "gpt-4"
+        ],
+        "title": "RankRAG: Unifying Context Ranking with Retrieval-Augmented Generation in LLMs",
+        "summary": "Large language models (LLMs) typically utilize the top-k contexts from a retriever in retrieval-augmented generation (RAG). In this work, we propose a novel instruction fine-tuning framework RankRAG, which instruction-tunes a single LLM for the dual purpose of context ranking and answer generation in RAG. In particular, the instruction-tuned LLMs work surprisingly well by adding a small fraction of ranking data into the training blend, and outperform existing expert ranking models, including the same LLM exclusively fine-tuned on a large amount of ranking data. For generation, we compare our model with many strong baselines, including GPT-4-0613, GPT-4-turbo-2024-0409, and ChatQA-1.5, an open-sourced model with the state-of-the-art performance on RAG benchmarks. Specifically, our Llama3-RankRAG significantly outperforms Llama3-ChatQA-1.5 and GPT-4 models on nine knowledge-intensive benchmarks. In addition, it also performs comparably to GPT-4 on five RAG benchmarks in the biomedical domain without instruction fine-tuning on biomedical data, demonstrating its superb capability for generalization to new domains.",
+        "date": "2024-12-15",
+        "tags": [
+            "computer science - artificial intelligence",
+            "computer science - computation and language",
+            "computer science - information retrieval",
+            "computer science - machine learning",
+            "llms",
+            "rag",
+            "ranking"
+        ]
+    },
+    "http://arxiv.org/abs/2406.10310": {
+        "extra-tags": [
+            "textual",
+            "edge",
+            "benchmark",
+            "datasets"
+        ],
+        "title": "TEG-DB: A Comprehensive Dataset and Benchmark of Textual-Edge Graphs",
+        "summary": "Text-Attributed Graphs (TAGs) augment graph structures with natural language descriptions, facilitating detailed depictions of data and their interconnections across various real-world settings. However, existing TAG datasets predominantly feature textual information only at the nodes, with edges typically represented by mere binary or categorical attributes. This lack of rich textual edge annotations significantly limits the exploration of contextual relationships between entities, hindering deeper insights into graph-structured data. To address this gap, we introduce Textual-Edge Graphs Datasets and Benchmark (TEG-DB), a comprehensive and diverse collection of benchmark textual-edge datasets featuring rich textual descriptions on nodes and edges. The TEG-DB datasets are large-scale and encompass a wide range of domains, from citation networks to social networks. In addition, we conduct extensive benchmark experiments on TEG-DB to assess the extent to which current techniques, including pre-trained language models, graph neural networks, and their combinations, can utilize textual node and edge information. Our goal is to elicit advancements in textual-edge graph research, specifically in developing methodologies that exploit rich textual node and edge descriptions to enhance graph analysis and provide deeper insights into complex real-world networks. The entire TEG-DB project is publicly accessible as an open-source repository on Github, accessible at https://github.com/Zhuofeng-Li/TEG-Benchmark.",
+        "date": "2024-12-15",
+        "tags": [
+            "computer science - artificial intelligence",
+            "computer science - computation and language",
+            "dataset",
+            "knowledge graph",
+            "textual-edge graph"
+        ]
+    },
+    "http://arxiv.org/abs/2410.04739": {
+        "extra-tags": [
+            "retrieval",
+            "language models",
+            "lms"
+        ],
+        "title": "TableRAG: Million-Token Table Understanding with Language Models",
+        "summary": "Recent advancements in language models (LMs) have notably enhanced their ability to reason with tabular data, primarily through program-aided mechanisms that manipulate and analyze tables. However, these methods often require the entire table as input, leading to scalability challenges due to the positional bias or context length constraints. In response to these challenges, we introduce TableRAG, a Retrieval-Augmented Generation (RAG) framework specifically designed for LM-based table understanding. TableRAG leverages query expansion combined with schema and cell retrieval to pinpoint crucial information before providing it to the LMs. This enables more efficient data encoding and precise retrieval, significantly reducing prompt lengths and mitigating information loss. We have developed two new million-token benchmarks from the Arcade and BIRD-SQL datasets to thoroughly evaluate TableRAG's effectiveness at scale. Our results demonstrate that TableRAG's retrieval design achieves the highest retrieval quality, leading to the new state-of-the-art performance on large-scale table understanding.",
+        "date": "2024-12-15",
+        "tags": [
+            "computer science - artificial intelligence",
+            "computer science - computation and language",
+            "computer science - information retrieval",
+            "computer science - machine learning",
+            "llms",
+            "google",
+            "rag",
+            "table"
+        ]
+    },
+    "http://arxiv.org/abs/2407.12854": {
+        "extra-tags": [
+            "datastore",
+            "model"
+        ],
+        "title": "Scaling Retrieval-Based Language Models with a Trillion-Token Datastore",
+        "summary": "Scaling laws with respect to the amount of training data and the number of parameters allow us to predict the cost-benefit trade-offs of pretraining language models (LMs) in different configurations. In this paper, we consider another dimension of scaling: the amount of data available at inference time. Specifically, we find that increasing the size of the datastore used by a retrieval-based LM monotonically improves language modeling and several downstream tasks without obvious saturation, such that a smaller model augmented with a large datastore outperforms a larger LM-only model on knowledge-intensive tasks. By plotting compute-optimal scaling curves with varied datastore, model, and pretraining data sizes, we show that using larger datastores can significantly improve model performance for the same training compute budget. We carry out our study by constructing a 1.4 trillion-token datastore named MassiveDS, which is the largest and the most diverse open-sourced datastore for retrieval-based LMs to date, and designing an efficient pipeline for studying datastore scaling in a computationally accessible manner. Finally, we analyze the effect of improving the retriever, datastore quality filtering, and other design choices on our observed scaling trends. Overall, our results show that datastore size should be considered as an integral part of LM efficiency and performance trade-offs. To facilitate future research, we open-source our datastore and code at https://github.com/RulinShao/retrieval-scaling.",
+        "date": "2024-12-15",
+        "tags": [
+            "computer science - artificial intelligence",
+            "computer science - computation and language",
+            "computer science - information retrieval",
+            "computer science - machine learning",
+            "retrieval",
+            "scaling",
+            "training"
+        ]
+    },
+    "http://arxiv.org/abs/2405.17311": {
+        "extra-tags": [
+            "probabilistic",
+            "graph neural networks"
+        ],
+        "title": "Probabilistic Graph Rewiring via Virtual Nodes",
+        "summary": "Message-passing graph neural networks (MPNNs) have emerged as a powerful paradigm for graph-based machine learning. Despite their effectiveness, MPNNs face challenges such as under-reaching and over-squashing, where limited receptive fields and structural bottlenecks hinder information flow in the graph. While graph transformers hold promise in addressing these issues, their scalability is limited due to quadratic complexity regarding the number of nodes, rendering them impractical for larger graphs. Here, we propose implicitly rewired message-passing neural networks (IPR-MPNNs), a novel approach that integrates implicit probabilistic graph rewiring into MPNNs. By introducing a small number of virtual nodes, i.e., adding additional nodes to a given graph and connecting them to existing nodes, in a differentiable, end-to-end manner, IPR-MPNNs enable long-distance message propagation, circumventing quadratic complexity. Theoretically, we demonstrate that IPR-MPNNs surpass the expressiveness of traditional MPNNs. Empirically, we validate our approach by showcasing its ability to mitigate under-reaching and over-squashing effects, achieving state-of-the-art performance across multiple graph datasets. Notably, IPR-MPNNs outperform graph transformers while maintaining significantly faster computational efficiency.",
+        "date": "2024-12-15",
+        "tags": [
+            "computer science - machine learning",
+            "gnn",
+            "graph",
+            "graph rewiring",
+            "virtual nodes"
+        ]
+    },
+    "http://arxiv.org/abs/2404.02948": {
+        "extra-tags": [
+            "r",
+            "components"
+        ],
+        "title": "PiSSA: Principal Singular Values and Singular Vectors Adaptation of Large Language Models",
+        "summary": "To parameter-efficiently fine-tune (PEFT) large language models (LLMs), the low-rank adaptation (LoRA) method approximates the model changes $\\Delta W \\in \\mathbb{R}^{m \\times n}$ through the product of two matrices $A \\in \\mathbb{R}^{m \\times r}$ and $B \\in \\mathbb{R}^{r \\times n}$, where $r \\ll \\min(m, n)$, $A$ is initialized with Gaussian noise, and $B$ with zeros. LoRA freezes the original model $W$ and updates the \"Noise & Zero\" adapter, which may lead to slow convergence. To overcome this limitation, we introduce Principal Singular values and Singular vectors Adaptation (PiSSA). PiSSA shares the same architecture as LoRA, but initializes the adaptor matrices $A$ and $B$ with the principal components of the original matrix $W$, and put the remaining components into a residual matrix $W^{res} \\in \\mathbb{R}^{m \\times n}$ which is frozen during fine-tuning. Compared to LoRA, PiSSA updates the principal components while freezing the \"residual\" parts, allowing faster convergence and enhanced performance. Comparative experiments of PiSSA and LoRA across 12 different models, ranging from 184M to 70B, encompassing 5 NLG and 8 NLU tasks, reveal that PiSSA consistently outperforms LoRA under identical experimental setups. On the GSM8K benchmark, Mistral-7B fine-tuned with PiSSA achieves an accuracy of 72.86%, surpassing LoRA's 67.7% by 5.16%. Due to the same architecture, PiSSA is also compatible with quantization to further reduce the memory requirement of fine-tuning. Compared to QLoRA, QPiSSA (PiSSA with 4-bit quantization) exhibits smaller quantization errors in the initial stages. Fine-tuning LLaMA-3-70B on GSM8K, QPiSSA attains an accuracy of 86.05%, exceeding the performances of QLoRA at 81.73%. Leveraging a fast SVD technique, PiSSA can be initialized in only a few seconds, presenting a negligible cost for transitioning from LoRA to PiSSA.",
+        "date": "2024-12-15",
+        "tags": [
+            "computer science - artificial intelligence",
+            "computer science - machine learning",
+            "llm",
+            "fine-tuning",
+            "lora",
+            "pissa"
+        ]
+    },
+    "http://arxiv.org/abs/2406.00519": {
+        "extra-tags": [
+            "data",
+            "learning"
+        ],
+        "title": "Learning Discrete Concepts in Latent Hierarchical Models",
+        "summary": "Learning concepts from natural high-dimensional data (e.g., images) holds potential in building human-aligned and interpretable machine learning models. Despite its encouraging prospect, formalization and theoretical insights into this crucial task are still lacking. In this work, we formalize concepts as discrete latent causal variables that are related via a hierarchical causal model that encodes different abstraction levels of concepts embedded in high-dimensional data (e.g., a dog breed and its eye shapes in natural images). We formulate conditions to facilitate the identification of the proposed causal model, which reveals when learning such concepts from unsupervised data is possible. Our conditions permit complex causal hierarchical structures beyond latent trees and multi-level directed acyclic graphs in prior work and can handle high-dimensional, continuous observed variables, which is well-suited for unstructured data modalities such as images. We substantiate our theoretical claims with synthetic data experiments. Further, we discuss our theory's implications for understanding the underlying mechanisms of latent diffusion models and provide corresponding empirical evidence for our theoretical insights.",
+        "date": "2024-12-15",
+        "tags": [
+            "computer science - artificial intelligence",
+            "computer science - machine learning",
+            "statistics - machine learning",
+            "concepts",
+            "diffusion",
+            "hierarchical"
+        ]
+    },
+    "http://arxiv.org/abs/2402.06126": {
+        "extra-tags": [
+            "llms",
+            "inference",
+            "language models",
+            "training"
+        ],
+        "title": "Learn To be Efficient: Build Structured Sparsity in Large Language Models",
+        "summary": "Large Language Models (LLMs) have achieved remarkable success with their billion-level parameters, yet they incur high inference overheads. The emergence of activation sparsity in LLMs provides a natural approach to reduce this cost by involving only parts of the parameters for inference. However, existing methods only focus on utilizing this naturally formed activation sparsity in a post-training setting, overlooking the potential for further amplifying this inherent sparsity. In this paper, we hypothesize that LLMs can learn to be efficient by achieving more structured activation sparsity. To achieve this, we introduce a novel training algorithm, Learn-To-be-Efficient (LTE), designed to train efficiency-aware LLMs to learn to activate fewer neurons and achieve a better trade-off between sparsity and performance. Furthermore, unlike SOTA MoEfication methods, which mainly focus on ReLU-based models, LTE can also be applied to LLMs like LLaMA using non-ReLU activations. Extensive evaluation on language understanding, language generation, and instruction tuning tasks show that LTE consistently outperforms SOTA baselines. Along with our hardware-aware custom kernel implementation, LTE reduces LLaMA2-7B inference latency by 25% at 50% sparsity.",
+        "date": "2024-12-15",
+        "tags": [
+            "computer science - artificial intelligence",
+            "computer science - computation and language",
+            "computer science - machine learning",
+            "llm",
+            "sparse"
+        ]
+    },
+    "http://arxiv.org/abs/2405.16412": {
+        "extra-tags": [
+            "fit",
+            "knowledge"
+        ],
+        "title": "KG-FIT: Knowledge Graph Fine-Tuning Upon Open-World Knowledge",
+        "summary": "Knowledge Graph Embedding (KGE) techniques are crucial in learning compact representations of entities and relations within a knowledge graph, facilitating efficient reasoning and knowledge discovery. While existing methods typically focus either on training KGE models solely based on graph structure or fine-tuning pre-trained language models with classification data in KG, KG-FIT leverages LLM-guided refinement to construct a semantically coherent hierarchical structure of entity clusters. By incorporating this hierarchical knowledge along with textual information during the fine-tuning process, KG-FIT effectively captures both global semantics from the LLM and local semantics from the KG. Extensive experiments on the benchmark datasets FB15K-237, YAGO3-10, and PrimeKG demonstrate the superiority of KG-FIT over state-of-the-art pre-trained language model-based methods, achieving improvements of 14.4%, 13.5%, and 11.9% in the Hits@10 metric for the link prediction task, respectively. Furthermore, KG-FIT yields substantial performance gains of 12.6%, 6.7%, and 17.7% compared to the structure-based base models upon which it is built. These results highlight the effectiveness of KG-FIT in incorporating open-world knowledge from LLMs to significantly enhance the expressiveness and informativeness of KG embeddings.",
+        "date": "2024-12-15",
+        "tags": [
+            "computer science - computation and language",
+            "computer science - machine learning",
+            "fine-tuning",
+            "kg",
+            "knowledge graph"
+        ]
+    },
+    "http://arxiv.org/abs/2410.23584": {
+        "extra-tags": [
+            "learning",
+            "metrics",
+            "language models",
+            "model"
+        ],
+        "title": "End-to-End Ontology Learning with Large Language Models",
+        "summary": "Ontologies are useful for automatic machine processing of domain knowledge as they represent it in a structured format. Yet, constructing ontologies requires substantial manual effort. To automate part of this process, large language models (LLMs) have been applied to solve various subtasks of ontology learning. However, this partial ontology learning does not capture the interactions between subtasks. We address this gap by introducing OLLM, a general and scalable method for building the taxonomic backbone of an ontology from scratch. Rather than focusing on subtasks, like individual relations between entities, we model entire subcomponents of the target ontology by finetuning an LLM with a custom regulariser that reduces overfitting on high-frequency concepts. We introduce a novel suite of metrics for evaluating the quality of the generated ontology by measuring its semantic and structural similarity to the ground truth. In contrast to standard metrics, our metrics use deep learning techniques to define more robust distance measures between graphs. Both our quantitative and qualitative results on Wikipedia show that OLLM outperforms subtask composition methods, producing more semantically accurate ontologies while maintaining structural integrity. We further demonstrate that our model can be effectively adapted to new domains, like arXiv, needing only a small number of training examples. Our source code and datasets are available at https://github.com/andylolu2/ollm.",
+        "date": "2024-12-15",
+        "tags": [
+            "computer science - computation and language",
+            "computer science - machine learning",
+            "llm",
+            "kg",
+            "knowledge graph"
+        ]
+    },
+    "http://arxiv.org/abs/2401.10225": {
+        "extra-tags": [
+            "gpt-4",
+            "models"
+        ],
+        "title": "ChatQA: Surpassing GPT-4 on Conversational QA and RAG",
+        "summary": "In this work, we introduce ChatQA, a suite of models that outperform GPT-4 on retrieval-augmented generation (RAG) and conversational question answering (QA). To enhance generation, we propose a two-stage instruction tuning method that significantly boosts the performance of RAG. For effective retrieval, we introduce a dense retriever optimized for conversational QA, which yields results comparable to the alternative state-of-the-art query rewriting models, while substantially reducing deployment costs. We also present the ChatRAG Bench, which encompasses ten datasets covering comprehensive evaluations on RAG, table-related QA, arithmetic calculations, and scenarios involving unanswerable questions. Our ChatQA-1.0-70B (score: 54.14), built on Llama2, a weaker foundation model than GPT-4, can slightly outperform GPT-4-0613 (score: 53.90) and GPT-4-Turbo-2024-04-09 (score: 54.03) on the ChatRAG Bench, without relying on any synthetic data from OpenAI GPT models. Notably, the Llama3-ChatQA-1.5-70B model surpasses the accuracy of GPT-4-Turbo-2024-04-09, achieving a 4.4% improvement. To advance research in this field, we open-sourced the model weights, instruction tuning data, ChatRAG Bench, and retriever for the community: https://chatqa-project.github.io/.",
+        "date": "2024-12-15",
+        "tags": [
+            "computer science - artificial intelligence",
+            "computer science - computation and language",
+            "computer science - information retrieval",
+            "computer science - machine learning",
+            "gpt4",
+            "qa",
+            "question answering",
+            "rag",
+            "retrieval"
+        ]
+    },
+    "http://arxiv.org/abs/2406.02818": {
+        "extra-tags": [
+            "llms",
+            "language models"
+        ],
+        "title": "Chain of Agents: Large Language Models Collaborating on Long-Context Tasks",
+        "summary": "Addressing the challenge of effectively processing long contexts has become a critical issue for Large Language Models (LLMs). Two common strategies have emerged: 1) reducing the input length, such as retrieving relevant chunks by Retrieval-Augmented Generation (RAG), and 2) expanding the context window limit of LLMs. However, both strategies have drawbacks: input reduction has no guarantee of covering the part with needed information, while window extension struggles with focusing on the pertinent information for solving the task. To mitigate these limitations, we propose Chain-of-Agents (CoA), a novel framework that harnesses multi-agent collaboration through natural language to enable information aggregation and context reasoning across various LLMs over long-context tasks. CoA consists of multiple worker agents who sequentially communicate to handle different segmented portions of the text, followed by a manager agent who synthesizes these contributions into a coherent final output. CoA processes the entire input by interleaving reading and reasoning, and it mitigates long context focus issues by assigning each agent a short context. We perform comprehensive evaluation of CoA on a wide range of long-context tasks in question answering, summarization, and code completion, demonstrating significant improvements by up to 10% over strong baselines of RAG, Full-Context, and multi-agent LLMs.",
+        "date": "2024-12-15",
+        "tags": [
+            "computer science - computation and language",
+            "llm",
+            "agents",
+            "long-context"
+        ]
+    },
+    "https://openreview.net/forum?id=abXaOcvujs#discussion": {
+        "extra-tags": [
+            "databases",
+            "data",
+            "learning",
+            "database"
+        ],
+        "title": "WikiDBs: A Large-Scale Corpus Of Relational Databases From Wikidata",
+        "summary": "Deep learning on tabular data, and particularly tabular representation learning, has recently gained growing interest. However, representation learning for relational databases with multiple tables is still an underexplored area, which may be attributed to the lack of openly available resources. To support the development of foundation models for tabular data and relational databases, we introduce WikiDBs, a novel open-source corpus of 100,000 relational databases. Each database consists of multiple tables connected by foreign keys. The corpus is based on Wikidata and aims to follow certain characteristics of real-world databases. In this paper, we describe the dataset and our method for creating it. By making our code publicly available, we enable others to create tailored versions of the dataset, for example, by creating databases in different languages. Finally, we conduct a set of initial experiments to showcase how WikiDBs can be used to train for data engineering tasks, such as missing value imputation and column type annotation.",
+        "date": "2024-12-15",
+        "tags": [
+            "dataset",
+            "knowledge graph",
+            "neurips 2024",
+            "wikidata"
+        ]
     }
 }

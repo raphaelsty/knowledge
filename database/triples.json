@@ -187138,5 +187138,1041 @@
     {
         "head": "deep learning",
         "tail": "library"
+    },
+    {
+        "head": "python",
+        "tail": "differentiable reasoning over text"
+    },
+    {
+        "head": "library",
+        "tail": "differentiable"
+    },
+    {
+        "head": "library",
+        "tail": "differentiable reasoning over text"
+    },
+    {
+        "head": "differentiable",
+        "tail": "differentiable reasoning over text"
+    },
+    {
+        "head": "reft",
+        "tail": "python"
+    },
+    {
+        "head": "reft",
+        "tail": "representation-finetuning"
+    },
+    {
+        "head": "reft",
+        "tail": "interpretability"
+    },
+    {
+        "head": "reft",
+        "tail": "finetuning"
+    },
+    {
+        "head": "reft",
+        "tail": "language models"
+    },
+    {
+        "head": "python",
+        "tail": "representation-finetuning"
+    },
+    {
+        "head": "representation-finetuning",
+        "tail": "interpretability"
+    },
+    {
+        "head": "representation-finetuning",
+        "tail": "finetuning"
+    },
+    {
+        "head": "representation-finetuning",
+        "tail": "language models"
+    },
+    {
+        "head": "interpretability",
+        "tail": "finetuning"
+    },
+    {
+        "head": "interpretability",
+        "tail": "language models"
+    },
+    {
+        "head": "finetuning",
+        "tail": "language models"
+    },
+    {
+        "head": "python",
+        "tail": "performance-tools"
+    },
+    {
+        "head": "data",
+        "tail": "performance"
+    },
+    {
+        "head": "data",
+        "tail": "performance-cpu"
+    },
+    {
+        "head": "data",
+        "tail": "performance-tools"
+    },
+    {
+        "head": "performance",
+        "tail": "performance-cpu"
+    },
+    {
+        "head": "performance",
+        "tail": "performance-tools"
+    },
+    {
+        "head": "performance-cpu",
+        "tail": "performance-tools"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "rag"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "ranking"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "gpt-4"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "rag"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "ranking"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "generation"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "gpt-4"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "llms"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "rag"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "ranking"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "generation"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "gpt-4"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "rag"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "ranking"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "gpt-4"
+    },
+    {
+        "head": "llms",
+        "tail": "rag"
+    },
+    {
+        "head": "llms",
+        "tail": "ranking"
+    },
+    {
+        "head": "llms",
+        "tail": "gpt-4"
+    },
+    {
+        "head": "rag",
+        "tail": "ranking"
+    },
+    {
+        "head": "rag",
+        "tail": "generation"
+    },
+    {
+        "head": "rag",
+        "tail": "gpt-4"
+    },
+    {
+        "head": "ranking",
+        "tail": "generation"
+    },
+    {
+        "head": "ranking",
+        "tail": "gpt-4"
+    },
+    {
+        "head": "generation",
+        "tail": "gpt-4"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "textual-edge graph"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "textual"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "edge"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "knowledge graph"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "textual-edge graph"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "textual"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "edge"
+    },
+    {
+        "head": "dataset",
+        "tail": "knowledge graph"
+    },
+    {
+        "head": "dataset",
+        "tail": "textual-edge graph"
+    },
+    {
+        "head": "dataset",
+        "tail": "textual"
+    },
+    {
+        "head": "dataset",
+        "tail": "edge"
+    },
+    {
+        "head": "knowledge graph",
+        "tail": "textual-edge graph"
+    },
+    {
+        "head": "knowledge graph",
+        "tail": "textual"
+    },
+    {
+        "head": "knowledge graph",
+        "tail": "edge"
+    },
+    {
+        "head": "knowledge graph",
+        "tail": "benchmark"
+    },
+    {
+        "head": "knowledge graph",
+        "tail": "datasets"
+    },
+    {
+        "head": "textual-edge graph",
+        "tail": "textual"
+    },
+    {
+        "head": "textual-edge graph",
+        "tail": "edge"
+    },
+    {
+        "head": "textual-edge graph",
+        "tail": "benchmark"
+    },
+    {
+        "head": "textual-edge graph",
+        "tail": "datasets"
+    },
+    {
+        "head": "textual",
+        "tail": "edge"
+    },
+    {
+        "head": "textual",
+        "tail": "benchmark"
+    },
+    {
+        "head": "textual",
+        "tail": "datasets"
+    },
+    {
+        "head": "edge",
+        "tail": "benchmark"
+    },
+    {
+        "head": "edge",
+        "tail": "datasets"
+    },
+    {
+        "head": "benchmark",
+        "tail": "datasets"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "google"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "table"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "google"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "table"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "google"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "table"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "language models"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "lms"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "google"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "table"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "retrieval"
+    },
+    {
+        "head": "llms",
+        "tail": "google"
+    },
+    {
+        "head": "llms",
+        "tail": "table"
+    },
+    {
+        "head": "llms",
+        "tail": "retrieval"
+    },
+    {
+        "head": "llms",
+        "tail": "lms"
+    },
+    {
+        "head": "google",
+        "tail": "rag"
+    },
+    {
+        "head": "google",
+        "tail": "table"
+    },
+    {
+        "head": "google",
+        "tail": "retrieval"
+    },
+    {
+        "head": "google",
+        "tail": "language models"
+    },
+    {
+        "head": "google",
+        "tail": "lms"
+    },
+    {
+        "head": "rag",
+        "tail": "table"
+    },
+    {
+        "head": "rag",
+        "tail": "language models"
+    },
+    {
+        "head": "rag",
+        "tail": "lms"
+    },
+    {
+        "head": "table",
+        "tail": "language models"
+    },
+    {
+        "head": "table",
+        "tail": "lms"
+    },
+    {
+        "head": "retrieval",
+        "tail": "language models"
+    },
+    {
+        "head": "retrieval",
+        "tail": "lms"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "scaling"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "training"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "datastore"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "scaling"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "datastore"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "scaling"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "datastore"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "scaling"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "datastore"
+    },
+    {
+        "head": "retrieval",
+        "tail": "scaling"
+    },
+    {
+        "head": "retrieval",
+        "tail": "training"
+    },
+    {
+        "head": "retrieval",
+        "tail": "datastore"
+    },
+    {
+        "head": "scaling",
+        "tail": "training"
+    },
+    {
+        "head": "scaling",
+        "tail": "datastore"
+    },
+    {
+        "head": "training",
+        "tail": "datastore"
+    },
+    {
+        "head": "datastore",
+        "tail": "model"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "gnn"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "graph rewiring"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "virtual nodes"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "graph neural networks"
+    },
+    {
+        "head": "gnn",
+        "tail": "graph rewiring"
+    },
+    {
+        "head": "gnn",
+        "tail": "virtual nodes"
+    },
+    {
+        "head": "gnn",
+        "tail": "probabilistic"
+    },
+    {
+        "head": "graph",
+        "tail": "graph rewiring"
+    },
+    {
+        "head": "graph",
+        "tail": "virtual nodes"
+    },
+    {
+        "head": "graph",
+        "tail": "probabilistic"
+    },
+    {
+        "head": "graph rewiring",
+        "tail": "virtual nodes"
+    },
+    {
+        "head": "graph rewiring",
+        "tail": "probabilistic"
+    },
+    {
+        "head": "graph rewiring",
+        "tail": "graph neural networks"
+    },
+    {
+        "head": "virtual nodes",
+        "tail": "probabilistic"
+    },
+    {
+        "head": "virtual nodes",
+        "tail": "graph neural networks"
+    },
+    {
+        "head": "probabilistic",
+        "tail": "graph neural networks"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "fine-tuning"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "lora"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "pissa"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "r"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "components"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "lora"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "pissa"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "r"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "components"
+    },
+    {
+        "head": "llm",
+        "tail": "lora"
+    },
+    {
+        "head": "llm",
+        "tail": "pissa"
+    },
+    {
+        "head": "llm",
+        "tail": "r"
+    },
+    {
+        "head": "llm",
+        "tail": "components"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "pissa"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "r"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "components"
+    },
+    {
+        "head": "lora",
+        "tail": "pissa"
+    },
+    {
+        "head": "lora",
+        "tail": "r"
+    },
+    {
+        "head": "lora",
+        "tail": "components"
+    },
+    {
+        "head": "pissa",
+        "tail": "r"
+    },
+    {
+        "head": "pissa",
+        "tail": "components"
+    },
+    {
+        "head": "r",
+        "tail": "components"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "concepts"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "diffusion"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "concepts"
+    },
+    {
+        "head": "statistics - machine learning",
+        "tail": "concepts"
+    },
+    {
+        "head": "statistics - machine learning",
+        "tail": "diffusion"
+    },
+    {
+        "head": "concepts",
+        "tail": "diffusion"
+    },
+    {
+        "head": "concepts",
+        "tail": "hierarchical"
+    },
+    {
+        "head": "concepts",
+        "tail": "data"
+    },
+    {
+        "head": "diffusion",
+        "tail": "hierarchical"
+    },
+    {
+        "head": "diffusion",
+        "tail": "data"
+    },
+    {
+        "head": "diffusion",
+        "tail": "learning"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "sparse"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "inference"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "sparse"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "inference"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "sparse"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "inference"
+    },
+    {
+        "head": "llm",
+        "tail": "sparse"
+    },
+    {
+        "head": "sparse",
+        "tail": "llms"
+    },
+    {
+        "head": "sparse",
+        "tail": "inference"
+    },
+    {
+        "head": "sparse",
+        "tail": "language models"
+    },
+    {
+        "head": "sparse",
+        "tail": "training"
+    },
+    {
+        "head": "language models",
+        "tail": "training"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "fit"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "fit"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "kg"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "knowledge graph"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "fit"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "knowledge"
+    },
+    {
+        "head": "kg",
+        "tail": "fit"
+    },
+    {
+        "head": "knowledge graph",
+        "tail": "fit"
+    },
+    {
+        "head": "knowledge graph",
+        "tail": "knowledge"
+    },
+    {
+        "head": "fit",
+        "tail": "knowledge"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "metrics"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "metrics"
+    },
+    {
+        "head": "llm",
+        "tail": "learning"
+    },
+    {
+        "head": "llm",
+        "tail": "metrics"
+    },
+    {
+        "head": "kg",
+        "tail": "metrics"
+    },
+    {
+        "head": "kg",
+        "tail": "model"
+    },
+    {
+        "head": "knowledge graph",
+        "tail": "learning"
+    },
+    {
+        "head": "knowledge graph",
+        "tail": "metrics"
+    },
+    {
+        "head": "knowledge graph",
+        "tail": "language models"
+    },
+    {
+        "head": "knowledge graph",
+        "tail": "model"
+    },
+    {
+        "head": "learning",
+        "tail": "metrics"
+    },
+    {
+        "head": "learning",
+        "tail": "language models"
+    },
+    {
+        "head": "learning",
+        "tail": "model"
+    },
+    {
+        "head": "metrics",
+        "tail": "language models"
+    },
+    {
+        "head": "metrics",
+        "tail": "model"
+    },
+    {
+        "head": "language models",
+        "tail": "model"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "gpt4"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "qa"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "question answering"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "gpt4"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "qa"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "question answering"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "gpt4"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "qa"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "question answering"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "gpt4"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "qa"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "question answering"
+    },
+    {
+        "head": "gpt4",
+        "tail": "qa"
+    },
+    {
+        "head": "gpt4",
+        "tail": "question answering"
+    },
+    {
+        "head": "gpt4",
+        "tail": "rag"
+    },
+    {
+        "head": "gpt4",
+        "tail": "retrieval"
+    },
+    {
+        "head": "gpt4",
+        "tail": "gpt-4"
+    },
+    {
+        "head": "gpt4",
+        "tail": "models"
+    },
+    {
+        "head": "qa",
+        "tail": "question answering"
+    },
+    {
+        "head": "qa",
+        "tail": "retrieval"
+    },
+    {
+        "head": "qa",
+        "tail": "gpt-4"
+    },
+    {
+        "head": "qa",
+        "tail": "models"
+    },
+    {
+        "head": "question answering",
+        "tail": "rag"
+    },
+    {
+        "head": "question answering",
+        "tail": "retrieval"
+    },
+    {
+        "head": "question answering",
+        "tail": "gpt-4"
+    },
+    {
+        "head": "rag",
+        "tail": "models"
+    },
+    {
+        "head": "retrieval",
+        "tail": "gpt-4"
+    },
+    {
+        "head": "gpt-4",
+        "tail": "models"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "agents"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "long-context"
+    },
+    {
+        "head": "llm",
+        "tail": "agents"
+    },
+    {
+        "head": "llm",
+        "tail": "long-context"
+    },
+    {
+        "head": "agents",
+        "tail": "long-context"
+    },
+    {
+        "head": "agents",
+        "tail": "llms"
+    },
+    {
+        "head": "agents",
+        "tail": "language models"
+    },
+    {
+        "head": "long-context",
+        "tail": "llms"
+    },
+    {
+        "head": "long-context",
+        "tail": "language models"
+    },
+    {
+        "head": "dataset",
+        "tail": "neurips 2024"
+    },
+    {
+        "head": "dataset",
+        "tail": "wikidata"
+    },
+    {
+        "head": "dataset",
+        "tail": "databases"
+    },
+    {
+        "head": "dataset",
+        "tail": "learning"
+    },
+    {
+        "head": "dataset",
+        "tail": "database"
+    },
+    {
+        "head": "knowledge graph",
+        "tail": "wikidata"
+    },
+    {
+        "head": "knowledge graph",
+        "tail": "databases"
+    },
+    {
+        "head": "knowledge graph",
+        "tail": "database"
+    },
+    {
+        "head": "neurips 2024",
+        "tail": "wikidata"
+    },
+    {
+        "head": "neurips 2024",
+        "tail": "databases"
+    },
+    {
+        "head": "neurips 2024",
+        "tail": "data"
+    },
+    {
+        "head": "neurips 2024",
+        "tail": "learning"
+    },
+    {
+        "head": "neurips 2024",
+        "tail": "database"
+    },
+    {
+        "head": "wikidata",
+        "tail": "databases"
+    },
+    {
+        "head": "wikidata",
+        "tail": "data"
+    },
+    {
+        "head": "wikidata",
+        "tail": "learning"
+    },
+    {
+        "head": "wikidata",
+        "tail": "database"
+    },
+    {
+        "head": "databases",
+        "tail": "learning"
+    },
+    {
+        "head": "learning",
+        "tail": "database"
     }
 ]
