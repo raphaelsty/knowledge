@@ -41021,5 +41021,18 @@
             "neurips 2024",
             "wikidata"
         ]
+    },
+    "https://github.com/AnswerDotAI/ModernBERT": {
+        "extra-tags": [
+            "modern",
+            "bert",
+            "bert kb"
+        ],
+        "date": "2024-05-13",
+        "title": "ModernBERT",
+        "summary": "",
+        "tags": [
+            "python"
+        ]
     }
 }

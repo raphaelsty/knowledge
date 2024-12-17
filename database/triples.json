@@ -188174,5 +188174,17 @@
     {
         "head": "learning",
         "tail": "database"
+    },
+    {
+        "head": "python",
+        "tail": "modern"
+    },
+    {
+        "head": "modern",
+        "tail": "bert"
+    },
+    {
+        "head": "modern",
+        "tail": "bert kb"
     }
 ]
