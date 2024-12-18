@@ -41063,5 +41063,18 @@
             "llm",
             "test-time-compute"
         ]
+    },
+    "https://github.com/hashboard-hq/hashquery": {
+        "extra-tags": [
+            "framework",
+            "bi",
+            "models"
+        ],
+        "date": "2024-03-19",
+        "title": "hashquery",
+        "summary": "A Python framework for defining and querying BI models in your data warehouse",
+        "tags": [
+            "python"
+        ]
     }
 }

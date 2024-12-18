@@ -188266,5 +188266,13 @@
     {
         "head": "model",
         "tail": "inference"
+    },
+    {
+        "head": "framework",
+        "tail": "bi"
+    },
+    {
+        "head": "bi",
+        "tail": "models"
     }
 ]
