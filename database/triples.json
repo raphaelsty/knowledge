@@ -189442,5 +189442,133 @@
     {
         "head": "b-tree",
         "tail": "thoughtworks"
+    },
+    {
+        "head": "cpp",
+        "tail": "tutorial"
+    },
+    {
+        "head": "cpp",
+        "tail": "beginner-project"
+    },
+    {
+        "head": "cpp",
+        "tail": "webdevelopment"
+    },
+    {
+        "head": "cpp",
+        "tail": "javascript"
+    },
+    {
+        "head": "cpp",
+        "tail": "golang"
+    },
+    {
+        "head": "cpp",
+        "tail": "project"
+    },
+    {
+        "head": "cpp",
+        "tail": "project-based-learning"
+    },
+    {
+        "head": "cpp",
+        "tail": "list"
+    },
+    {
+        "head": "tutorial",
+        "tail": "beginner-project"
+    },
+    {
+        "head": "tutorial",
+        "tail": "webdevelopment"
+    },
+    {
+        "head": "tutorial",
+        "tail": "javascript"
+    },
+    {
+        "head": "tutorial",
+        "tail": "golang"
+    },
+    {
+        "head": "tutorial",
+        "tail": "list"
+    },
+    {
+        "head": "beginner-project",
+        "tail": "python"
+    },
+    {
+        "head": "beginner-project",
+        "tail": "webdevelopment"
+    },
+    {
+        "head": "beginner-project",
+        "tail": "javascript"
+    },
+    {
+        "head": "beginner-project",
+        "tail": "golang"
+    },
+    {
+        "head": "beginner-project",
+        "tail": "project"
+    },
+    {
+        "head": "beginner-project",
+        "tail": "project-based-learning"
+    },
+    {
+        "head": "beginner-project",
+        "tail": "list"
+    },
+    {
+        "head": "python",
+        "tail": "webdevelopment"
+    },
+    {
+        "head": "webdevelopment",
+        "tail": "golang"
+    },
+    {
+        "head": "webdevelopment",
+        "tail": "project"
+    },
+    {
+        "head": "webdevelopment",
+        "tail": "project-based-learning"
+    },
+    {
+        "head": "webdevelopment",
+        "tail": "list"
+    },
+    {
+        "head": "javascript",
+        "tail": "golang"
+    },
+    {
+        "head": "javascript",
+        "tail": "project-based-learning"
+    },
+    {
+        "head": "javascript",
+        "tail": "list"
+    },
+    {
+        "head": "golang",
+        "tail": "project-based-learning"
+    },
+    {
+        "head": "golang",
+        "tail": "list"
+    },
+    {
+        "head": "project",
+        "tail": "list"
+    },
+    {
+        "head": "project-based-learning",
+        "tail": "list"
     }
 ]

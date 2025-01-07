@@ -41408,5 +41408,24 @@
         ],
         "summary": "",
         "date": "2025-01-05"
+    },
+    "https://github.com/practical-tutorials/project-based-learning": {
+        "extra-tags": [
+            "project-based-learning",
+            "list"
+        ],
+        "date": "2017-04-12",
+        "title": "project-based-learning",
+        "summary": "Curated list of project-based tutorials",
+        "tags": [
+            "cpp",
+            "tutorial",
+            "beginner-project",
+            "python",
+            "webdevelopment",
+            "javascript",
+            "golang",
+            "project"
+        ]
     }
 }
