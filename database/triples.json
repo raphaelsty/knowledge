@@ -189614,5 +189614,217 @@
     {
         "head": "tokenization",
         "tail": "llms"
+    },
+    {
+        "head": "transformer-architecture",
+        "tail": "hyperbolic-embeddings"
+    },
+    {
+        "head": "transformer-architecture",
+        "tail": "nlp"
+    },
+    {
+        "head": "transformer-architecture",
+        "tail": "python"
+    },
+    {
+        "head": "transformer-architecture",
+        "tail": "geometry"
+    },
+    {
+        "head": "transformer-architecture",
+        "tail": "generalization"
+    },
+    {
+        "head": "transformer-architecture",
+        "tail": "models"
+    },
+    {
+        "head": "transformer-architecture",
+        "tail": "sequence to sequence learning"
+    },
+    {
+        "head": "hyperbolic-embeddings",
+        "tail": "nlp"
+    },
+    {
+        "head": "hyperbolic-embeddings",
+        "tail": "python"
+    },
+    {
+        "head": "hyperbolic-embeddings",
+        "tail": "geometry"
+    },
+    {
+        "head": "hyperbolic-embeddings",
+        "tail": "generalization"
+    },
+    {
+        "head": "hyperbolic-embeddings",
+        "tail": "models"
+    },
+    {
+        "head": "hyperbolic-embeddings",
+        "tail": "sequence to sequence learning"
+    },
+    {
+        "head": "nlp",
+        "tail": "geometry"
+    },
+    {
+        "head": "nlp",
+        "tail": "generalization"
+    },
+    {
+        "head": "nlp",
+        "tail": "sequence to sequence learning"
+    },
+    {
+        "head": "geometry",
+        "tail": "generalization"
+    },
+    {
+        "head": "geometry",
+        "tail": "models"
+    },
+    {
+        "head": "geometry",
+        "tail": "sequence to sequence learning"
+    },
+    {
+        "head": "generalization",
+        "tail": "models"
+    },
+    {
+        "head": "generalization",
+        "tail": "sequence to sequence learning"
+    },
+    {
+        "head": "models",
+        "tail": "sequence to sequence learning"
+    },
+    {
+        "head": "c#",
+        "tail": "project"
+    },
+    {
+        "head": "c#",
+        "tail": "project-template"
+    },
+    {
+        "head": "c#",
+        "tail": "project-management"
+    },
+    {
+        "head": "project",
+        "tail": "project-template"
+    },
+    {
+        "head": "project-template",
+        "tail": "project-management"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "web agent"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "visual"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "computer science - computer vision and pattern recognition"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "qwen"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "vlm"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "web agent"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "visual"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "resolution"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "web agent"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "visual"
+    },
+    {
+        "head": "qwen",
+        "tail": "vlm"
+    },
+    {
+        "head": "qwen",
+        "tail": "web agent"
+    },
+    {
+        "head": "qwen",
+        "tail": "model"
+    },
+    {
+        "head": "qwen",
+        "tail": "models"
+    },
+    {
+        "head": "qwen",
+        "tail": "visual"
+    },
+    {
+        "head": "qwen",
+        "tail": "resolution"
+    },
+    {
+        "head": "vlm",
+        "tail": "web agent"
+    },
+    {
+        "head": "vlm",
+        "tail": "model"
+    },
+    {
+        "head": "vlm",
+        "tail": "visual"
+    },
+    {
+        "head": "web agent",
+        "tail": "model"
+    },
+    {
+        "head": "web agent",
+        "tail": "models"
+    },
+    {
+        "head": "web agent",
+        "tail": "visual"
+    },
+    {
+        "head": "web agent",
+        "tail": "resolution"
+    },
+    {
+        "head": "model",
+        "tail": "visual"
+    },
+    {
+        "head": "model",
+        "tail": "resolution"
+    },
+    {
+        "head": "visual",
+        "tail": "resolution"
     }
 ]
