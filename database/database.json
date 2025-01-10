@@ -41509,5 +41509,19 @@
             "vlm",
             "qwen"
         ]
+    },
+    "https://github.com/UKPLab/eacl2024-lagonn": {
+        "extra-tags": [
+            "source",
+            "code",
+            "data",
+            "good"
+        ],
+        "date": "2023-02-16",
+        "title": "eacl2024-lagonn",
+        "summary": "Source code and data for Like a Good Nearest Neighbor",
+        "tags": [
+            "python"
+        ]
     }
 }
