@@ -189826,5 +189826,69 @@
     {
         "head": "visual",
         "tail": "resolution"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "performance"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "language model"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "performance"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "language model"
+    },
+    {
+        "head": "vlm",
+        "tail": "language models"
+    },
+    {
+        "head": "vlm",
+        "tail": "performance"
+    },
+    {
+        "head": "vlm",
+        "tail": "language model"
+    },
+    {
+        "head": "qwen",
+        "tail": "language models"
+    },
+    {
+        "head": "qwen",
+        "tail": "performance"
+    },
+    {
+        "head": "qwen",
+        "tail": "language model"
+    },
+    {
+        "head": "models",
+        "tail": "performance"
+    },
+    {
+        "head": "models",
+        "tail": "language model"
+    },
+    {
+        "head": "model",
+        "tail": "performance"
+    },
+    {
+        "head": "language models",
+        "tail": "performance"
+    },
+    {
+        "head": "language models",
+        "tail": "language model"
+    },
+    {
+        "head": "performance",
+        "tail": "language model"
     }
 ]
