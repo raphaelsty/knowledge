@@ -189910,5 +189910,245 @@
     {
         "head": "data",
         "tail": "good"
+    },
+    {
+        "head": "python",
+        "tail": "metadata"
+    },
+    {
+        "head": "nvidia",
+        "tail": "early"
+    },
+    {
+        "head": "nvidia",
+        "tail": "set"
+    },
+    {
+        "head": "nvidia",
+        "tail": "microservices"
+    },
+    {
+        "head": "nvidia",
+        "tail": "metadata"
+    },
+    {
+        "head": "early",
+        "tail": "set"
+    },
+    {
+        "head": "early",
+        "tail": "microservices"
+    },
+    {
+        "head": "early",
+        "tail": "metadata"
+    },
+    {
+        "head": "set",
+        "tail": "microservices"
+    },
+    {
+        "head": "set",
+        "tail": "metadata"
+    },
+    {
+        "head": "microservices",
+        "tail": "metadata"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "dataset generation"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "information retrieval"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "information-retrieval"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "multimodal"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "qwen"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "synthetic dataset"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "visual"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "document"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "source"
+    },
+    {
+        "head": "dataset generation",
+        "tail": "information retrieval"
+    },
+    {
+        "head": "dataset generation",
+        "tail": "information-retrieval"
+    },
+    {
+        "head": "dataset generation",
+        "tail": "multimodal"
+    },
+    {
+        "head": "dataset generation",
+        "tail": "qwen"
+    },
+    {
+        "head": "dataset generation",
+        "tail": "synthetic dataset"
+    },
+    {
+        "head": "dataset generation",
+        "tail": "visual"
+    },
+    {
+        "head": "dataset generation",
+        "tail": "document"
+    },
+    {
+        "head": "dataset generation",
+        "tail": "retrieval"
+    },
+    {
+        "head": "dataset generation",
+        "tail": "source"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "information-retrieval"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "multimodal"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "qwen"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "synthetic dataset"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "visual"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "document"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "source"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "multimodal"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "qwen"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "synthetic dataset"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "visual"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "document"
+    },
+    {
+        "head": "multimodal",
+        "tail": "visual"
+    },
+    {
+        "head": "multimodal",
+        "tail": "document"
+    },
+    {
+        "head": "multimodal",
+        "tail": "source"
+    },
+    {
+        "head": "qwen",
+        "tail": "synthetic dataset"
+    },
+    {
+        "head": "qwen",
+        "tail": "document"
+    },
+    {
+        "head": "synthetic dataset",
+        "tail": "visual"
+    },
+    {
+        "head": "synthetic dataset",
+        "tail": "document"
+    },
+    {
+        "head": "synthetic dataset",
+        "tail": "retrieval"
+    },
+    {
+        "head": "synthetic dataset",
+        "tail": "source"
+    },
+    {
+        "head": "visual",
+        "tail": "document"
+    },
+    {
+        "head": "visual",
+        "tail": "retrieval"
+    },
+    {
+        "head": "visual",
+        "tail": "source"
+    },
+    {
+        "head": "document",
+        "tail": "retrieval"
+    },
+    {
+        "head": "document",
+        "tail": "source"
+    },
+    {
+        "head": "retrieval",
+        "tail": "source"
+    },
+    {
+        "head": "nlp",
+        "tail": "kg"
+    },
+    {
+        "head": "text",
+        "tail": "kg"
+    },
+    {
+        "head": "text",
+        "tail": "embeddings"
+    },
+    {
+        "head": "kg",
+        "tail": "embeddings"
     }
 ]

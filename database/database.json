@@ -41523,5 +41523,54 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/NVIDIA/nv-ingest": {
+        "extra-tags": [
+            "nvidia",
+            "early",
+            "set",
+            "microservices",
+            "metadata"
+        ],
+        "date": "2024-08-22",
+        "title": "nv-ingest",
+        "summary": "NVIDIA Ingest is an early access set of microservices for parsing hundreds of thousands of complex, messy unstructured PDFs and other enterprise documents into metadata and text to embed into retrieval systems.",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://huggingface.co/blog/vdr-2b-multilingual": {
+        "extra-tags": [
+            "visual",
+            "document",
+            "retrieval",
+            "source"
+        ],
+        "title": "Visual Document Retrieval Goes Multilingual",
+        "summary": "We\u2019re on a journey to advance and democratize artificial intelligence through open source and open science.",
+        "date": "2025-01-10",
+        "tags": [
+            "computer science - information retrieval",
+            "dataset generation",
+            "information retrieval",
+            "information-retrieval",
+            "multimodal",
+            "qwen",
+            "synthetic dataset"
+        ]
+    },
+    "http://www.semanlink.net/tag/text_kg_and_embeddings.html?longListOfDocs=true": {
+        "extra-tags": [
+            "text",
+            "kg",
+            "embeddings"
+        ],
+        "title": "Semanlink - Text, KG and embeddings",
+        "summary": "",
+        "date": "2025-01-10",
+        "tags": [
+            "nlp",
+            "semanlink"
+        ]
     }
 }
