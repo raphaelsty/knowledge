@@ -190150,5 +190150,589 @@
     {
         "head": "kg",
         "tail": "embeddings"
+    },
+    {
+        "head": "transformers",
+        "tail": "embeddings"
+    },
+    {
+        "head": "transformers",
+        "tail": "multimodal"
+    },
+    {
+        "head": "transformers",
+        "tail": "contrastive-learning"
+    },
+    {
+        "head": "transformers",
+        "tail": "multimodal-rag"
+    },
+    {
+        "head": "transformers",
+        "tail": "rag"
+    },
+    {
+        "head": "transformers",
+        "tail": "text-embeddings"
+    },
+    {
+        "head": "transformers",
+        "tail": "image-embeddings"
+    },
+    {
+        "head": "transformers",
+        "tail": "dense-retrieval"
+    },
+    {
+        "head": "transformers",
+        "tail": "train"
+    },
+    {
+        "head": "transformers",
+        "tail": "contrast"
+    },
+    {
+        "head": "pytorch",
+        "tail": "multimodal"
+    },
+    {
+        "head": "pytorch",
+        "tail": "contrastive-learning"
+    },
+    {
+        "head": "pytorch",
+        "tail": "multimodal-rag"
+    },
+    {
+        "head": "pytorch",
+        "tail": "rag"
+    },
+    {
+        "head": "pytorch",
+        "tail": "text-embeddings"
+    },
+    {
+        "head": "pytorch",
+        "tail": "image-embeddings"
+    },
+    {
+        "head": "pytorch",
+        "tail": "dense-retrieval"
+    },
+    {
+        "head": "pytorch",
+        "tail": "train"
+    },
+    {
+        "head": "pytorch",
+        "tail": "contrast"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "contrastive-learning"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "multimodal-rag"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "rag"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "text-embeddings"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "image-embeddings"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "dense-retrieval"
+    },
+    {
+        "head": "embeddings",
+        "tail": "multimodal"
+    },
+    {
+        "head": "embeddings",
+        "tail": "contrastive-learning"
+    },
+    {
+        "head": "embeddings",
+        "tail": "multimodal-rag"
+    },
+    {
+        "head": "embeddings",
+        "tail": "rag"
+    },
+    {
+        "head": "embeddings",
+        "tail": "text-embeddings"
+    },
+    {
+        "head": "embeddings",
+        "tail": "image-embeddings"
+    },
+    {
+        "head": "embeddings",
+        "tail": "dense-retrieval"
+    },
+    {
+        "head": "embeddings",
+        "tail": "train"
+    },
+    {
+        "head": "embeddings",
+        "tail": "models"
+    },
+    {
+        "head": "embeddings",
+        "tail": "contrast"
+    },
+    {
+        "head": "multimodal",
+        "tail": "contrastive-learning"
+    },
+    {
+        "head": "multimodal",
+        "tail": "multimodal-rag"
+    },
+    {
+        "head": "multimodal",
+        "tail": "rag"
+    },
+    {
+        "head": "multimodal",
+        "tail": "text-embeddings"
+    },
+    {
+        "head": "multimodal",
+        "tail": "image-embeddings"
+    },
+    {
+        "head": "multimodal",
+        "tail": "dense-retrieval"
+    },
+    {
+        "head": "multimodal",
+        "tail": "train"
+    },
+    {
+        "head": "multimodal",
+        "tail": "contrast"
+    },
+    {
+        "head": "contrastive-learning",
+        "tail": "multimodal-rag"
+    },
+    {
+        "head": "contrastive-learning",
+        "tail": "python"
+    },
+    {
+        "head": "contrastive-learning",
+        "tail": "rag"
+    },
+    {
+        "head": "contrastive-learning",
+        "tail": "text-embeddings"
+    },
+    {
+        "head": "contrastive-learning",
+        "tail": "image-embeddings"
+    },
+    {
+        "head": "contrastive-learning",
+        "tail": "dense-retrieval"
+    },
+    {
+        "head": "contrastive-learning",
+        "tail": "train"
+    },
+    {
+        "head": "contrastive-learning",
+        "tail": "models"
+    },
+    {
+        "head": "contrastive-learning",
+        "tail": "contrast"
+    },
+    {
+        "head": "multimodal-rag",
+        "tail": "python"
+    },
+    {
+        "head": "multimodal-rag",
+        "tail": "rag"
+    },
+    {
+        "head": "multimodal-rag",
+        "tail": "text-embeddings"
+    },
+    {
+        "head": "multimodal-rag",
+        "tail": "image-embeddings"
+    },
+    {
+        "head": "multimodal-rag",
+        "tail": "dense-retrieval"
+    },
+    {
+        "head": "multimodal-rag",
+        "tail": "train"
+    },
+    {
+        "head": "multimodal-rag",
+        "tail": "models"
+    },
+    {
+        "head": "multimodal-rag",
+        "tail": "contrast"
+    },
+    {
+        "head": "python",
+        "tail": "text-embeddings"
+    },
+    {
+        "head": "python",
+        "tail": "image-embeddings"
+    },
+    {
+        "head": "rag",
+        "tail": "text-embeddings"
+    },
+    {
+        "head": "rag",
+        "tail": "image-embeddings"
+    },
+    {
+        "head": "rag",
+        "tail": "dense-retrieval"
+    },
+    {
+        "head": "rag",
+        "tail": "train"
+    },
+    {
+        "head": "rag",
+        "tail": "contrast"
+    },
+    {
+        "head": "text-embeddings",
+        "tail": "image-embeddings"
+    },
+    {
+        "head": "text-embeddings",
+        "tail": "dense-retrieval"
+    },
+    {
+        "head": "text-embeddings",
+        "tail": "train"
+    },
+    {
+        "head": "text-embeddings",
+        "tail": "models"
+    },
+    {
+        "head": "text-embeddings",
+        "tail": "contrast"
+    },
+    {
+        "head": "image-embeddings",
+        "tail": "dense-retrieval"
+    },
+    {
+        "head": "image-embeddings",
+        "tail": "train"
+    },
+    {
+        "head": "image-embeddings",
+        "tail": "models"
+    },
+    {
+        "head": "image-embeddings",
+        "tail": "contrast"
+    },
+    {
+        "head": "dense-retrieval",
+        "tail": "train"
+    },
+    {
+        "head": "dense-retrieval",
+        "tail": "models"
+    },
+    {
+        "head": "dense-retrieval",
+        "tail": "contrast"
+    },
+    {
+        "head": "train",
+        "tail": "models"
+    },
+    {
+        "head": "train",
+        "tail": "contrast"
+    },
+    {
+        "head": "models",
+        "tail": "contrast"
+    },
+    {
+        "head": "rust",
+        "tail": "cloud-storage"
+    },
+    {
+        "head": "rust",
+        "tail": "log-management"
+    },
+    {
+        "head": "rust",
+        "tail": "big-data"
+    },
+    {
+        "head": "rust",
+        "tail": "distributed-tracing"
+    },
+    {
+        "head": "rust",
+        "tail": "logs"
+    },
+    {
+        "head": "rust",
+        "tail": "tantivy"
+    },
+    {
+        "head": "rust",
+        "tail": "elasticsearch"
+    },
+    {
+        "head": "search-engine",
+        "tail": "cloud-storage"
+    },
+    {
+        "head": "search-engine",
+        "tail": "log-management"
+    },
+    {
+        "head": "search-engine",
+        "tail": "big-data"
+    },
+    {
+        "head": "search-engine",
+        "tail": "distributed-tracing"
+    },
+    {
+        "head": "search-engine",
+        "tail": "logs"
+    },
+    {
+        "head": "search-engine",
+        "tail": "tantivy"
+    },
+    {
+        "head": "search-engine",
+        "tail": "cloud-native"
+    },
+    {
+        "head": "search-engine",
+        "tail": "open-source"
+    },
+    {
+        "head": "cloud-storage",
+        "tail": "log-management"
+    },
+    {
+        "head": "cloud-storage",
+        "tail": "big-data"
+    },
+    {
+        "head": "cloud-storage",
+        "tail": "distributed-tracing"
+    },
+    {
+        "head": "cloud-storage",
+        "tail": "logs"
+    },
+    {
+        "head": "cloud-storage",
+        "tail": "tantivy"
+    },
+    {
+        "head": "cloud-storage",
+        "tail": "cloud-native"
+    },
+    {
+        "head": "cloud-storage",
+        "tail": "open-source"
+    },
+    {
+        "head": "cloud-storage",
+        "tail": "search"
+    },
+    {
+        "head": "cloud-storage",
+        "tail": "engine"
+    },
+    {
+        "head": "cloud-storage",
+        "tail": "elasticsearch"
+    },
+    {
+        "head": "log-management",
+        "tail": "big-data"
+    },
+    {
+        "head": "log-management",
+        "tail": "distributed-tracing"
+    },
+    {
+        "head": "log-management",
+        "tail": "logs"
+    },
+    {
+        "head": "log-management",
+        "tail": "tantivy"
+    },
+    {
+        "head": "log-management",
+        "tail": "cloud-native"
+    },
+    {
+        "head": "log-management",
+        "tail": "open-source"
+    },
+    {
+        "head": "log-management",
+        "tail": "search"
+    },
+    {
+        "head": "log-management",
+        "tail": "engine"
+    },
+    {
+        "head": "log-management",
+        "tail": "elasticsearch"
+    },
+    {
+        "head": "big-data",
+        "tail": "distributed-tracing"
+    },
+    {
+        "head": "big-data",
+        "tail": "logs"
+    },
+    {
+        "head": "big-data",
+        "tail": "tantivy"
+    },
+    {
+        "head": "big-data",
+        "tail": "cloud-native"
+    },
+    {
+        "head": "big-data",
+        "tail": "open-source"
+    },
+    {
+        "head": "big-data",
+        "tail": "search"
+    },
+    {
+        "head": "big-data",
+        "tail": "engine"
+    },
+    {
+        "head": "big-data",
+        "tail": "elasticsearch"
+    },
+    {
+        "head": "distributed-tracing",
+        "tail": "logs"
+    },
+    {
+        "head": "distributed-tracing",
+        "tail": "tantivy"
+    },
+    {
+        "head": "distributed-tracing",
+        "tail": "cloud-native"
+    },
+    {
+        "head": "distributed-tracing",
+        "tail": "open-source"
+    },
+    {
+        "head": "distributed-tracing",
+        "tail": "search"
+    },
+    {
+        "head": "distributed-tracing",
+        "tail": "engine"
+    },
+    {
+        "head": "distributed-tracing",
+        "tail": "elasticsearch"
+    },
+    {
+        "head": "logs",
+        "tail": "tantivy"
+    },
+    {
+        "head": "logs",
+        "tail": "cloud-native"
+    },
+    {
+        "head": "logs",
+        "tail": "open-source"
+    },
+    {
+        "head": "logs",
+        "tail": "engine"
+    },
+    {
+        "head": "tantivy",
+        "tail": "cloud-native"
+    },
+    {
+        "head": "tantivy",
+        "tail": "open-source"
+    },
+    {
+        "head": "tantivy",
+        "tail": "search"
+    },
+    {
+        "head": "tantivy",
+        "tail": "engine"
+    },
+    {
+        "head": "tantivy",
+        "tail": "elasticsearch"
+    },
+    {
+        "head": "cloud-native",
+        "tail": "open-source"
+    },
+    {
+        "head": "cloud-native",
+        "tail": "engine"
+    },
+    {
+        "head": "cloud-native",
+        "tail": "elasticsearch"
+    },
+    {
+        "head": "open-source",
+        "tail": "search"
+    },
+    {
+        "head": "open-source",
+        "tail": "elasticsearch"
+    },
+    {
+        "head": "engine",
+        "tail": "elasticsearch"
     }
 ]

@@ -41572,5 +41572,51 @@
             "nlp",
             "semanlink"
         ]
+    },
+    "https://github.com/nomic-ai/contrastors": {
+        "extra-tags": [
+            "train",
+            "models",
+            "contrast"
+        ],
+        "date": "2024-01-30",
+        "title": "contrastors",
+        "summary": "Train Models Contrastively in Pytorch",
+        "tags": [
+            "transformers",
+            "pytorch",
+            "deep-learning",
+            "embeddings",
+            "multimodal",
+            "contrastive-learning",
+            "multimodal-rag",
+            "python",
+            "rag",
+            "text-embeddings",
+            "image-embeddings",
+            "dense-retrieval"
+        ]
+    },
+    "https://github.com/quickwit-oss/quickwit": {
+        "extra-tags": [
+            "search",
+            "engine",
+            "elasticsearch"
+        ],
+        "date": "2021-04-13",
+        "title": "quickwit",
+        "summary": "Cloud-native search engine for observability. An open-source alternative to Datadog, Elasticsearch, Loki, and Tempo.",
+        "tags": [
+            "rust",
+            "search-engine",
+            "cloud-storage",
+            "log-management",
+            "big-data",
+            "distributed-tracing",
+            "logs",
+            "tantivy",
+            "cloud-native",
+            "open-source"
+        ]
     }
 }
