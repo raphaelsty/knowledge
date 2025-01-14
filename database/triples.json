@@ -190734,5 +190734,109 @@
     {
         "head": "engine",
         "tail": "elasticsearch"
+    },
+    {
+        "head": "typescript",
+        "tail": "slackbot"
+    },
+    {
+        "head": "typescript",
+        "tail": "slack-bot"
+    },
+    {
+        "head": "typescript",
+        "tail": "bot"
+    },
+    {
+        "head": "typescript",
+        "tail": "help"
+    },
+    {
+        "head": "typescript",
+        "tail": "share"
+    },
+    {
+        "head": "slackbot",
+        "tail": "slack-bot"
+    },
+    {
+        "head": "slackbot",
+        "tail": "slack"
+    },
+    {
+        "head": "slackbot",
+        "tail": "gitlab"
+    },
+    {
+        "head": "slackbot",
+        "tail": "bot"
+    },
+    {
+        "head": "slackbot",
+        "tail": "help"
+    },
+    {
+        "head": "slackbot",
+        "tail": "share"
+    },
+    {
+        "head": "slack-bot",
+        "tail": "slack"
+    },
+    {
+        "head": "slack-bot",
+        "tail": "gitlab"
+    },
+    {
+        "head": "slack-bot",
+        "tail": "bot"
+    },
+    {
+        "head": "slack-bot",
+        "tail": "help"
+    },
+    {
+        "head": "slack-bot",
+        "tail": "share"
+    },
+    {
+        "head": "slack",
+        "tail": "gitlab"
+    },
+    {
+        "head": "slack",
+        "tail": "bot"
+    },
+    {
+        "head": "slack",
+        "tail": "help"
+    },
+    {
+        "head": "slack",
+        "tail": "share"
+    },
+    {
+        "head": "gitlab",
+        "tail": "bot"
+    },
+    {
+        "head": "gitlab",
+        "tail": "help"
+    },
+    {
+        "head": "gitlab",
+        "tail": "share"
+    },
+    {
+        "head": "bot",
+        "tail": "help"
+    },
+    {
+        "head": "bot",
+        "tail": "share"
+    },
+    {
+        "head": "help",
+        "tail": "share"
     }
 ]

@@ -41618,5 +41618,22 @@
             "cloud-native",
             "open-source"
         ]
+    },
+    "https://github.com/ManoManoTech/homer": {
+        "extra-tags": [
+            "bot",
+            "help",
+            "share"
+        ],
+        "date": "2022-04-28",
+        "title": "homer",
+        "summary": "Homer is a Slack bot intended to help you to easily share and follow Gitlab merge requests.",
+        "tags": [
+            "typescript",
+            "slackbot",
+            "slack-bot",
+            "slack",
+            "gitlab"
+        ]
     }
 }
