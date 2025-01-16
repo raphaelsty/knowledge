@@ -190838,5 +190838,145 @@
     {
         "head": "help",
         "tail": "share"
+    },
+    {
+        "head": "rust",
+        "tail": "business-intelligence"
+    },
+    {
+        "head": "rust",
+        "tail": "analytics"
+    },
+    {
+        "head": "rust",
+        "tail": "data-modeling"
+    },
+    {
+        "head": "rust",
+        "tail": "elt"
+    },
+    {
+        "head": "rust",
+        "tail": "bi"
+    },
+    {
+        "head": "rust",
+        "tail": "open-source-tooling"
+    },
+    {
+        "head": "business-intelligence",
+        "tail": "big-data"
+    },
+    {
+        "head": "business-intelligence",
+        "tail": "open-source-tooling"
+    },
+    {
+        "head": "analytics",
+        "tail": "open-source-tooling"
+    },
+    {
+        "head": "data-modeling",
+        "tail": "big-data"
+    },
+    {
+        "head": "data-modeling",
+        "tail": "open-source"
+    },
+    {
+        "head": "data-modeling",
+        "tail": "bi"
+    },
+    {
+        "head": "data-modeling",
+        "tail": "open-source-tooling"
+    },
+    {
+        "head": "big-data",
+        "tail": "elt"
+    },
+    {
+        "head": "big-data",
+        "tail": "bi"
+    },
+    {
+        "head": "big-data",
+        "tail": "open-source-tooling"
+    },
+    {
+        "head": "elt",
+        "tail": "bi"
+    },
+    {
+        "head": "elt",
+        "tail": "open-source-tooling"
+    },
+    {
+        "head": "open-source",
+        "tail": "bi"
+    },
+    {
+        "head": "open-source",
+        "tail": "open-source-tooling"
+    },
+    {
+        "head": "bi",
+        "tail": "open-source-tooling"
+    },
+    {
+        "head": "full training set",
+        "tail": "nomic ai"
+    },
+    {
+        "head": "full training set",
+        "tail": "sentence-transformers"
+    },
+    {
+        "head": "full training set",
+        "tail": "datasets"
+    },
+    {
+        "head": "full training set",
+        "tail": "source"
+    },
+    {
+        "head": "full training set",
+        "tail": "science"
+    },
+    {
+        "head": "full training set",
+        "tail": "computer science - artificial intelligence"
+    },
+    {
+        "head": "nomic ai",
+        "tail": "sentence-transformers"
+    },
+    {
+        "head": "nomic ai",
+        "tail": "datasets"
+    },
+    {
+        "head": "nomic ai",
+        "tail": "source"
+    },
+    {
+        "head": "nomic ai",
+        "tail": "science"
+    },
+    {
+        "head": "nomic ai",
+        "tail": "computer science - artificial intelligence"
+    },
+    {
+        "head": "sentence-transformers",
+        "tail": "source"
+    },
+    {
+        "head": "sentence-transformers",
+        "tail": "science"
+    },
+    {
+        "head": "sentence-transformers",
+        "tail": "computer science - artificial intelligence"
     }
 ]
