@@ -41669,5 +41669,23 @@
             "nomic ai",
             "sentence-transformers"
         ]
+    },
+    "https://www.anthropic.com/research/building-effective-agents": {
+        "extra-tags": [
+            "workflows",
+            "ai"
+        ],
+        "title": "Building effective agents",
+        "summary": "A post for developers with advice and workflows for building effective AI agents",
+        "date": "2025-01-16",
+        "tags": [
+            "llm",
+            "llm;ir;generation",
+            "llms",
+            "agents",
+            "anthropic",
+            "blog",
+            "tutorial"
+        ]
     }
 }
