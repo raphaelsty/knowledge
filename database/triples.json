@@ -191094,5 +191094,33 @@
     {
         "head": "workflows",
         "tail": "ai"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "evaluation"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "evaluation"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "evaluation"
+    },
+    {
+        "head": "models",
+        "tail": "evaluation"
+    },
+    {
+        "head": "models",
+        "tail": "reasoning"
+    },
+    {
+        "head": "evaluation",
+        "tail": "reasoning"
+    },
+    {
+        "head": "evaluation",
+        "tail": "data"
     }
 ]
