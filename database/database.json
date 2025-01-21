@@ -41703,5 +41703,61 @@
             "computer science - computation and language",
             "computer science - machine learning"
         ]
+    },
+    "https://github.com/lightpanda-io/browser": {
+        "extra-tags": [
+            "open-source"
+        ],
+        "date": "2023-02-07",
+        "title": "browser",
+        "summary": "The open-source browser made for headless usage",
+        "tags": [
+            "browser",
+            "puppeteer",
+            "cdp",
+            "headless",
+            "playwright",
+            "zig"
+        ]
+    },
+    "https://github.com/asottile-archive/setuptools-golang": {
+        "extra-tags": [
+            "extension",
+            "cpython"
+        ],
+        "date": "2016-03-06",
+        "title": "setuptools-golang",
+        "summary": "A setuptools extension for building cpython extensions written in golang.",
+        "tags": [
+            "golang",
+            "python",
+            "setuptools"
+        ]
+    },
+    "https://github.com/axelbellec/websearch-smolagents": {
+        "extra-tags": [
+            "web",
+            "search",
+            "assistant"
+        ],
+        "date": "2025-01-19",
+        "title": "websearch-smolagents",
+        "summary": "Web Search Assistant with French Responses",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/huggingface/picotron_tutorial": {
+        "extra-tags": [
+            "tutorial",
+            "pytorch-tutorial",
+            "opencv-tutorial"
+        ],
+        "date": "2024-11-15",
+        "title": "picotron_tutorial",
+        "summary": "",
+        "tags": [
+            "python"
+        ]
     }
 }

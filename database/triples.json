@@ -191122,5 +191122,125 @@
     {
         "head": "evaluation",
         "tail": "data"
+    },
+    {
+        "head": "browser",
+        "tail": "puppeteer"
+    },
+    {
+        "head": "browser",
+        "tail": "cdp"
+    },
+    {
+        "head": "browser",
+        "tail": "headless"
+    },
+    {
+        "head": "browser",
+        "tail": "playwright"
+    },
+    {
+        "head": "browser",
+        "tail": "zig"
+    },
+    {
+        "head": "puppeteer",
+        "tail": "cdp"
+    },
+    {
+        "head": "puppeteer",
+        "tail": "headless"
+    },
+    {
+        "head": "puppeteer",
+        "tail": "playwright"
+    },
+    {
+        "head": "puppeteer",
+        "tail": "zig"
+    },
+    {
+        "head": "puppeteer",
+        "tail": "open-source"
+    },
+    {
+        "head": "cdp",
+        "tail": "headless"
+    },
+    {
+        "head": "cdp",
+        "tail": "playwright"
+    },
+    {
+        "head": "cdp",
+        "tail": "zig"
+    },
+    {
+        "head": "cdp",
+        "tail": "open-source"
+    },
+    {
+        "head": "headless",
+        "tail": "playwright"
+    },
+    {
+        "head": "headless",
+        "tail": "zig"
+    },
+    {
+        "head": "headless",
+        "tail": "open-source"
+    },
+    {
+        "head": "playwright",
+        "tail": "zig"
+    },
+    {
+        "head": "playwright",
+        "tail": "open-source"
+    },
+    {
+        "head": "zig",
+        "tail": "open-source"
+    },
+    {
+        "head": "golang",
+        "tail": "extension"
+    },
+    {
+        "head": "golang",
+        "tail": "cpython"
+    },
+    {
+        "head": "setuptools",
+        "tail": "extension"
+    },
+    {
+        "head": "setuptools",
+        "tail": "cpython"
+    },
+    {
+        "head": "extension",
+        "tail": "cpython"
+    },
+    {
+        "head": "web",
+        "tail": "search"
+    },
+    {
+        "head": "web",
+        "tail": "assistant"
+    },
+    {
+        "head": "search",
+        "tail": "assistant"
+    },
+    {
+        "head": "tutorial",
+        "tail": "opencv-tutorial"
+    },
+    {
+        "head": "pytorch-tutorial",
+        "tail": "opencv-tutorial"
     }
 ]
