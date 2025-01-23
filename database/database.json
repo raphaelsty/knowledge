@@ -41759,5 +41759,16 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/deepseek-ai/DeepSeek-R1": {
+        "extra-tags": [
+            "deepspeed",
+            "deep",
+            "deepspeed-library"
+        ],
+        "date": "2025-01-20",
+        "title": "DeepSeek-R1",
+        "summary": "",
+        "tags": []
     }
 }

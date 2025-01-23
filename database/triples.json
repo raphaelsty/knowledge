@@ -191242,5 +191242,17 @@
     {
         "head": "pytorch-tutorial",
         "tail": "opencv-tutorial"
+    },
+    {
+        "head": "deepspeed",
+        "tail": "deep"
+    },
+    {
+        "head": "deepspeed",
+        "tail": "deepspeed-library"
+    },
+    {
+        "head": "deep",
+        "tail": "deepspeed-library"
     }
 ]
