@@ -41814,5 +41814,18 @@
             "reinforcement learning",
             "trainer"
         ]
+    },
+    "https://github.com/kscalelabs/ksim-legacy": {
+        "extra-tags": [
+            "mujoco",
+            "simulation",
+            "code"
+        ],
+        "date": "2024-05-23",
+        "title": "ksim-legacy",
+        "summary": "MuJoCo simulation code",
+        "tags": [
+            "python"
+        ]
     }
 }
