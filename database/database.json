@@ -41827,5 +41827,17 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/lintool/history-of-open-source-ir-systems": {
+        "extra-tags": [
+            "history",
+            "open-source",
+            "ir",
+            "systems"
+        ],
+        "date": "2025-01-26",
+        "title": "history-of-open-source-ir-systems",
+        "summary": "History of Open-Source IR Systems",
+        "tags": []
     }
 }

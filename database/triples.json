@@ -191390,5 +191390,29 @@
     {
         "head": "trainer",
         "tail": "science"
+    },
+    {
+        "head": "history",
+        "tail": "open-source"
+    },
+    {
+        "head": "history",
+        "tail": "ir"
+    },
+    {
+        "head": "history",
+        "tail": "systems"
+    },
+    {
+        "head": "open-source",
+        "tail": "ir"
+    },
+    {
+        "head": "open-source",
+        "tail": "systems"
+    },
+    {
+        "head": "ir",
+        "tail": "systems"
     }
 ]
