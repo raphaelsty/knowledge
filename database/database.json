@@ -41839,5 +41839,51 @@
         "title": "history-of-open-source-ir-systems",
         "summary": "History of Open-Source IR Systems",
         "tags": []
+    },
+    "https://github.com/kiwix/kiwix-apple": {
+        "extra-tags": [
+            "apple"
+        ],
+        "date": "2015-08-12",
+        "title": "kiwix-apple",
+        "summary": "Kiwix for iOS & macOS",
+        "tags": [
+            "ios",
+            "offline",
+            "swift",
+            "wikipedia",
+            "macos",
+            "kiwix"
+        ]
+    },
+    "https://github.com/pirate/wikipedia-mirror": {
+        "extra-tags": [
+            "tools",
+            "offline"
+        ],
+        "date": "2019-09-08",
+        "title": "wikipedia-mirror",
+        "summary": "\ud83c\udf10 Guide and tools to run a full offline mirror of Wikipedia.org with three different approaches: Nginx caching proxy, Kiwix + ZIM dump, and MediaWiki/XOWA + XML dump",
+        "tags": [
+            "datascience",
+            "docker-compose",
+            "xowa",
+            "docker",
+            "nginx",
+            "archiving",
+            "kiwix-offline-wikipedia",
+            "kiwix",
+            "internet-archiving",
+            "wikipedia-mirror",
+            "openzim",
+            "html",
+            "mwdumper",
+            "wikipedia",
+            "zim",
+            "shell",
+            "mediawiki",
+            "wiki",
+            "wikipedia-dump"
+        ]
     }
 }

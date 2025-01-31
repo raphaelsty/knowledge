@@ -191414,5 +191414,881 @@
     {
         "head": "ir",
         "tail": "systems"
+    },
+    {
+        "head": "ios",
+        "tail": "offline"
+    },
+    {
+        "head": "ios",
+        "tail": "wikipedia"
+    },
+    {
+        "head": "ios",
+        "tail": "kiwix"
+    },
+    {
+        "head": "offline",
+        "tail": "swift"
+    },
+    {
+        "head": "offline",
+        "tail": "wikipedia"
+    },
+    {
+        "head": "offline",
+        "tail": "macos"
+    },
+    {
+        "head": "offline",
+        "tail": "kiwix"
+    },
+    {
+        "head": "offline",
+        "tail": "apple"
+    },
+    {
+        "head": "swift",
+        "tail": "wikipedia"
+    },
+    {
+        "head": "swift",
+        "tail": "kiwix"
+    },
+    {
+        "head": "swift",
+        "tail": "apple"
+    },
+    {
+        "head": "wikipedia",
+        "tail": "macos"
+    },
+    {
+        "head": "wikipedia",
+        "tail": "kiwix"
+    },
+    {
+        "head": "wikipedia",
+        "tail": "apple"
+    },
+    {
+        "head": "macos",
+        "tail": "kiwix"
+    },
+    {
+        "head": "kiwix",
+        "tail": "apple"
+    },
+    {
+        "head": "datascience",
+        "tail": "docker-compose"
+    },
+    {
+        "head": "datascience",
+        "tail": "xowa"
+    },
+    {
+        "head": "datascience",
+        "tail": "docker"
+    },
+    {
+        "head": "datascience",
+        "tail": "nginx"
+    },
+    {
+        "head": "datascience",
+        "tail": "archiving"
+    },
+    {
+        "head": "datascience",
+        "tail": "kiwix-offline-wikipedia"
+    },
+    {
+        "head": "datascience",
+        "tail": "kiwix"
+    },
+    {
+        "head": "datascience",
+        "tail": "internet-archiving"
+    },
+    {
+        "head": "datascience",
+        "tail": "wikipedia-mirror"
+    },
+    {
+        "head": "datascience",
+        "tail": "openzim"
+    },
+    {
+        "head": "datascience",
+        "tail": "html"
+    },
+    {
+        "head": "datascience",
+        "tail": "mwdumper"
+    },
+    {
+        "head": "datascience",
+        "tail": "wikipedia"
+    },
+    {
+        "head": "datascience",
+        "tail": "zim"
+    },
+    {
+        "head": "datascience",
+        "tail": "shell"
+    },
+    {
+        "head": "datascience",
+        "tail": "mediawiki"
+    },
+    {
+        "head": "datascience",
+        "tail": "wiki"
+    },
+    {
+        "head": "datascience",
+        "tail": "wikipedia-dump"
+    },
+    {
+        "head": "datascience",
+        "tail": "tools"
+    },
+    {
+        "head": "datascience",
+        "tail": "offline"
+    },
+    {
+        "head": "docker-compose",
+        "tail": "xowa"
+    },
+    {
+        "head": "docker-compose",
+        "tail": "nginx"
+    },
+    {
+        "head": "docker-compose",
+        "tail": "archiving"
+    },
+    {
+        "head": "docker-compose",
+        "tail": "kiwix-offline-wikipedia"
+    },
+    {
+        "head": "docker-compose",
+        "tail": "kiwix"
+    },
+    {
+        "head": "docker-compose",
+        "tail": "internet-archiving"
+    },
+    {
+        "head": "docker-compose",
+        "tail": "wikipedia-mirror"
+    },
+    {
+        "head": "docker-compose",
+        "tail": "openzim"
+    },
+    {
+        "head": "docker-compose",
+        "tail": "html"
+    },
+    {
+        "head": "docker-compose",
+        "tail": "mwdumper"
+    },
+    {
+        "head": "docker-compose",
+        "tail": "wikipedia"
+    },
+    {
+        "head": "docker-compose",
+        "tail": "zim"
+    },
+    {
+        "head": "docker-compose",
+        "tail": "shell"
+    },
+    {
+        "head": "docker-compose",
+        "tail": "mediawiki"
+    },
+    {
+        "head": "docker-compose",
+        "tail": "wiki"
+    },
+    {
+        "head": "docker-compose",
+        "tail": "wikipedia-dump"
+    },
+    {
+        "head": "docker-compose",
+        "tail": "tools"
+    },
+    {
+        "head": "docker-compose",
+        "tail": "offline"
+    },
+    {
+        "head": "xowa",
+        "tail": "docker"
+    },
+    {
+        "head": "xowa",
+        "tail": "nginx"
+    },
+    {
+        "head": "xowa",
+        "tail": "archiving"
+    },
+    {
+        "head": "xowa",
+        "tail": "kiwix-offline-wikipedia"
+    },
+    {
+        "head": "xowa",
+        "tail": "kiwix"
+    },
+    {
+        "head": "xowa",
+        "tail": "internet-archiving"
+    },
+    {
+        "head": "xowa",
+        "tail": "wikipedia-mirror"
+    },
+    {
+        "head": "xowa",
+        "tail": "openzim"
+    },
+    {
+        "head": "xowa",
+        "tail": "html"
+    },
+    {
+        "head": "xowa",
+        "tail": "mwdumper"
+    },
+    {
+        "head": "xowa",
+        "tail": "wikipedia"
+    },
+    {
+        "head": "xowa",
+        "tail": "zim"
+    },
+    {
+        "head": "xowa",
+        "tail": "shell"
+    },
+    {
+        "head": "xowa",
+        "tail": "mediawiki"
+    },
+    {
+        "head": "xowa",
+        "tail": "wiki"
+    },
+    {
+        "head": "xowa",
+        "tail": "wikipedia-dump"
+    },
+    {
+        "head": "xowa",
+        "tail": "tools"
+    },
+    {
+        "head": "xowa",
+        "tail": "offline"
+    },
+    {
+        "head": "docker",
+        "tail": "nginx"
+    },
+    {
+        "head": "docker",
+        "tail": "kiwix-offline-wikipedia"
+    },
+    {
+        "head": "docker",
+        "tail": "kiwix"
+    },
+    {
+        "head": "docker",
+        "tail": "internet-archiving"
+    },
+    {
+        "head": "docker",
+        "tail": "wikipedia-mirror"
+    },
+    {
+        "head": "docker",
+        "tail": "openzim"
+    },
+    {
+        "head": "docker",
+        "tail": "html"
+    },
+    {
+        "head": "docker",
+        "tail": "mwdumper"
+    },
+    {
+        "head": "docker",
+        "tail": "wikipedia"
+    },
+    {
+        "head": "docker",
+        "tail": "zim"
+    },
+    {
+        "head": "docker",
+        "tail": "mediawiki"
+    },
+    {
+        "head": "docker",
+        "tail": "wiki"
+    },
+    {
+        "head": "docker",
+        "tail": "wikipedia-dump"
+    },
+    {
+        "head": "docker",
+        "tail": "tools"
+    },
+    {
+        "head": "docker",
+        "tail": "offline"
+    },
+    {
+        "head": "nginx",
+        "tail": "archiving"
+    },
+    {
+        "head": "nginx",
+        "tail": "kiwix-offline-wikipedia"
+    },
+    {
+        "head": "nginx",
+        "tail": "kiwix"
+    },
+    {
+        "head": "nginx",
+        "tail": "internet-archiving"
+    },
+    {
+        "head": "nginx",
+        "tail": "wikipedia-mirror"
+    },
+    {
+        "head": "nginx",
+        "tail": "openzim"
+    },
+    {
+        "head": "nginx",
+        "tail": "html"
+    },
+    {
+        "head": "nginx",
+        "tail": "mwdumper"
+    },
+    {
+        "head": "nginx",
+        "tail": "wikipedia"
+    },
+    {
+        "head": "nginx",
+        "tail": "zim"
+    },
+    {
+        "head": "nginx",
+        "tail": "shell"
+    },
+    {
+        "head": "nginx",
+        "tail": "mediawiki"
+    },
+    {
+        "head": "nginx",
+        "tail": "wiki"
+    },
+    {
+        "head": "nginx",
+        "tail": "wikipedia-dump"
+    },
+    {
+        "head": "nginx",
+        "tail": "tools"
+    },
+    {
+        "head": "nginx",
+        "tail": "offline"
+    },
+    {
+        "head": "archiving",
+        "tail": "kiwix-offline-wikipedia"
+    },
+    {
+        "head": "archiving",
+        "tail": "kiwix"
+    },
+    {
+        "head": "archiving",
+        "tail": "internet-archiving"
+    },
+    {
+        "head": "archiving",
+        "tail": "wikipedia-mirror"
+    },
+    {
+        "head": "archiving",
+        "tail": "openzim"
+    },
+    {
+        "head": "archiving",
+        "tail": "html"
+    },
+    {
+        "head": "archiving",
+        "tail": "mwdumper"
+    },
+    {
+        "head": "archiving",
+        "tail": "wikipedia"
+    },
+    {
+        "head": "archiving",
+        "tail": "zim"
+    },
+    {
+        "head": "archiving",
+        "tail": "shell"
+    },
+    {
+        "head": "archiving",
+        "tail": "mediawiki"
+    },
+    {
+        "head": "archiving",
+        "tail": "wiki"
+    },
+    {
+        "head": "archiving",
+        "tail": "wikipedia-dump"
+    },
+    {
+        "head": "archiving",
+        "tail": "tools"
+    },
+    {
+        "head": "archiving",
+        "tail": "offline"
+    },
+    {
+        "head": "kiwix-offline-wikipedia",
+        "tail": "kiwix"
+    },
+    {
+        "head": "kiwix-offline-wikipedia",
+        "tail": "internet-archiving"
+    },
+    {
+        "head": "kiwix-offline-wikipedia",
+        "tail": "wikipedia-mirror"
+    },
+    {
+        "head": "kiwix-offline-wikipedia",
+        "tail": "openzim"
+    },
+    {
+        "head": "kiwix-offline-wikipedia",
+        "tail": "html"
+    },
+    {
+        "head": "kiwix-offline-wikipedia",
+        "tail": "mwdumper"
+    },
+    {
+        "head": "kiwix-offline-wikipedia",
+        "tail": "wikipedia"
+    },
+    {
+        "head": "kiwix-offline-wikipedia",
+        "tail": "zim"
+    },
+    {
+        "head": "kiwix-offline-wikipedia",
+        "tail": "shell"
+    },
+    {
+        "head": "kiwix-offline-wikipedia",
+        "tail": "mediawiki"
+    },
+    {
+        "head": "kiwix-offline-wikipedia",
+        "tail": "wiki"
+    },
+    {
+        "head": "kiwix-offline-wikipedia",
+        "tail": "wikipedia-dump"
+    },
+    {
+        "head": "kiwix-offline-wikipedia",
+        "tail": "tools"
+    },
+    {
+        "head": "kiwix-offline-wikipedia",
+        "tail": "offline"
+    },
+    {
+        "head": "kiwix",
+        "tail": "internet-archiving"
+    },
+    {
+        "head": "kiwix",
+        "tail": "wikipedia-mirror"
+    },
+    {
+        "head": "kiwix",
+        "tail": "openzim"
+    },
+    {
+        "head": "kiwix",
+        "tail": "html"
+    },
+    {
+        "head": "kiwix",
+        "tail": "mwdumper"
+    },
+    {
+        "head": "kiwix",
+        "tail": "zim"
+    },
+    {
+        "head": "kiwix",
+        "tail": "shell"
+    },
+    {
+        "head": "kiwix",
+        "tail": "mediawiki"
+    },
+    {
+        "head": "kiwix",
+        "tail": "wiki"
+    },
+    {
+        "head": "kiwix",
+        "tail": "wikipedia-dump"
+    },
+    {
+        "head": "kiwix",
+        "tail": "tools"
+    },
+    {
+        "head": "internet-archiving",
+        "tail": "wikipedia-mirror"
+    },
+    {
+        "head": "internet-archiving",
+        "tail": "openzim"
+    },
+    {
+        "head": "internet-archiving",
+        "tail": "html"
+    },
+    {
+        "head": "internet-archiving",
+        "tail": "mwdumper"
+    },
+    {
+        "head": "internet-archiving",
+        "tail": "wikipedia"
+    },
+    {
+        "head": "internet-archiving",
+        "tail": "zim"
+    },
+    {
+        "head": "internet-archiving",
+        "tail": "shell"
+    },
+    {
+        "head": "internet-archiving",
+        "tail": "mediawiki"
+    },
+    {
+        "head": "internet-archiving",
+        "tail": "wiki"
+    },
+    {
+        "head": "internet-archiving",
+        "tail": "wikipedia-dump"
+    },
+    {
+        "head": "internet-archiving",
+        "tail": "tools"
+    },
+    {
+        "head": "internet-archiving",
+        "tail": "offline"
+    },
+    {
+        "head": "wikipedia-mirror",
+        "tail": "openzim"
+    },
+    {
+        "head": "wikipedia-mirror",
+        "tail": "html"
+    },
+    {
+        "head": "wikipedia-mirror",
+        "tail": "mwdumper"
+    },
+    {
+        "head": "wikipedia-mirror",
+        "tail": "wikipedia"
+    },
+    {
+        "head": "wikipedia-mirror",
+        "tail": "zim"
+    },
+    {
+        "head": "wikipedia-mirror",
+        "tail": "shell"
+    },
+    {
+        "head": "wikipedia-mirror",
+        "tail": "mediawiki"
+    },
+    {
+        "head": "wikipedia-mirror",
+        "tail": "wiki"
+    },
+    {
+        "head": "wikipedia-mirror",
+        "tail": "wikipedia-dump"
+    },
+    {
+        "head": "wikipedia-mirror",
+        "tail": "tools"
+    },
+    {
+        "head": "wikipedia-mirror",
+        "tail": "offline"
+    },
+    {
+        "head": "openzim",
+        "tail": "html"
+    },
+    {
+        "head": "openzim",
+        "tail": "mwdumper"
+    },
+    {
+        "head": "openzim",
+        "tail": "wikipedia"
+    },
+    {
+        "head": "openzim",
+        "tail": "zim"
+    },
+    {
+        "head": "openzim",
+        "tail": "shell"
+    },
+    {
+        "head": "openzim",
+        "tail": "mediawiki"
+    },
+    {
+        "head": "openzim",
+        "tail": "wiki"
+    },
+    {
+        "head": "openzim",
+        "tail": "wikipedia-dump"
+    },
+    {
+        "head": "openzim",
+        "tail": "tools"
+    },
+    {
+        "head": "openzim",
+        "tail": "offline"
+    },
+    {
+        "head": "html",
+        "tail": "mwdumper"
+    },
+    {
+        "head": "html",
+        "tail": "wikipedia"
+    },
+    {
+        "head": "html",
+        "tail": "zim"
+    },
+    {
+        "head": "html",
+        "tail": "shell"
+    },
+    {
+        "head": "html",
+        "tail": "mediawiki"
+    },
+    {
+        "head": "html",
+        "tail": "wiki"
+    },
+    {
+        "head": "html",
+        "tail": "wikipedia-dump"
+    },
+    {
+        "head": "html",
+        "tail": "tools"
+    },
+    {
+        "head": "html",
+        "tail": "offline"
+    },
+    {
+        "head": "mwdumper",
+        "tail": "wikipedia"
+    },
+    {
+        "head": "mwdumper",
+        "tail": "zim"
+    },
+    {
+        "head": "mwdumper",
+        "tail": "shell"
+    },
+    {
+        "head": "mwdumper",
+        "tail": "mediawiki"
+    },
+    {
+        "head": "mwdumper",
+        "tail": "wiki"
+    },
+    {
+        "head": "mwdumper",
+        "tail": "wikipedia-dump"
+    },
+    {
+        "head": "mwdumper",
+        "tail": "tools"
+    },
+    {
+        "head": "mwdumper",
+        "tail": "offline"
+    },
+    {
+        "head": "wikipedia",
+        "tail": "zim"
+    },
+    {
+        "head": "wikipedia",
+        "tail": "shell"
+    },
+    {
+        "head": "wikipedia",
+        "tail": "wiki"
+    },
+    {
+        "head": "wikipedia",
+        "tail": "wikipedia-dump"
+    },
+    {
+        "head": "wikipedia",
+        "tail": "tools"
+    },
+    {
+        "head": "zim",
+        "tail": "shell"
+    },
+    {
+        "head": "zim",
+        "tail": "mediawiki"
+    },
+    {
+        "head": "zim",
+        "tail": "wiki"
+    },
+    {
+        "head": "zim",
+        "tail": "wikipedia-dump"
+    },
+    {
+        "head": "zim",
+        "tail": "tools"
+    },
+    {
+        "head": "zim",
+        "tail": "offline"
+    },
+    {
+        "head": "shell",
+        "tail": "mediawiki"
+    },
+    {
+        "head": "shell",
+        "tail": "wiki"
+    },
+    {
+        "head": "shell",
+        "tail": "wikipedia-dump"
+    },
+    {
+        "head": "shell",
+        "tail": "tools"
+    },
+    {
+        "head": "shell",
+        "tail": "offline"
+    },
+    {
+        "head": "mediawiki",
+        "tail": "wiki"
+    },
+    {
+        "head": "mediawiki",
+        "tail": "wikipedia-dump"
+    },
+    {
+        "head": "mediawiki",
+        "tail": "tools"
+    },
+    {
+        "head": "mediawiki",
+        "tail": "offline"
+    },
+    {
+        "head": "wiki",
+        "tail": "wikipedia-dump"
+    },
+    {
+        "head": "wiki",
+        "tail": "tools"
+    },
+    {
+        "head": "wiki",
+        "tail": "offline"
+    },
+    {
+        "head": "wikipedia-dump",
+        "tail": "tools"
+    },
+    {
+        "head": "wikipedia-dump",
+        "tail": "offline"
+    },
+    {
+        "head": "tools",
+        "tail": "offline"
     }
 ]
