@@ -192290,5 +192290,109 @@
     {
         "head": "tools",
         "tail": "offline"
+    },
+    {
+        "head": "python",
+        "tail": "libzim"
+    },
+    {
+        "head": "python",
+        "tail": "offline"
+    },
+    {
+        "head": "python",
+        "tail": "zim"
+    },
+    {
+        "head": "libzim",
+        "tail": "library"
+    },
+    {
+        "head": "libzim",
+        "tail": "offline"
+    },
+    {
+        "head": "libzim",
+        "tail": "webscraping"
+    },
+    {
+        "head": "libzim",
+        "tail": "binding"
+    },
+    {
+        "head": "libzim",
+        "tail": "zim"
+    },
+    {
+        "head": "library",
+        "tail": "offline"
+    },
+    {
+        "head": "library",
+        "tail": "webscraping"
+    },
+    {
+        "head": "library",
+        "tail": "binding"
+    },
+    {
+        "head": "library",
+        "tail": "zim"
+    },
+    {
+        "head": "offline",
+        "tail": "webscraping"
+    },
+    {
+        "head": "offline",
+        "tail": "binding"
+    },
+    {
+        "head": "webscraping",
+        "tail": "binding"
+    },
+    {
+        "head": "webscraping",
+        "tail": "zim"
+    },
+    {
+        "head": "binding",
+        "tail": "zim"
+    },
+    {
+        "head": "html",
+        "tail": "deep learning"
+    },
+    {
+        "head": "html",
+        "tail": "manim"
+    },
+    {
+        "head": "html",
+        "tail": "animations"
+    },
+    {
+        "head": "deep learning",
+        "tail": "manim"
+    },
+    {
+        "head": "deep learning",
+        "tail": "animations"
+    },
+    {
+        "head": "python",
+        "tail": "kg construction"
+    },
+    {
+        "head": "gensim",
+        "tail": "console"
+    },
+    {
+        "head": "gensim",
+        "tail": "kg construction"
+    },
+    {
+        "head": "console",
+        "tail": "kg construction"
     }
 ]

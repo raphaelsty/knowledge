@@ -41885,5 +41885,47 @@
             "wiki",
             "wikipedia-dump"
         ]
+    },
+    "https://github.com/openzim/python-libzim": {
+        "extra-tags": [
+            "zim"
+        ],
+        "date": "2020-03-18",
+        "title": "python-libzim",
+        "summary": "Libzim binding for Python: read/write ZIM files in Python",
+        "tags": [
+            "python",
+            "libzim",
+            "library",
+            "offline",
+            "webscraping",
+            "binding"
+        ]
+    },
+    "https://github.com/Lucas-rbnt/deep_learning_manim": {
+        "extra-tags": [
+            "deep learning",
+            "manim",
+            "animations"
+        ],
+        "date": "2025-01-31",
+        "title": "deep_learning_manim",
+        "summary": "Introduction to deep learning using manim animations",
+        "tags": [
+            "html"
+        ]
+    },
+    "https://github.com/AntoninPoche/ConSim": {
+        "extra-tags": [
+            "gensim",
+            "console",
+            "kg construction"
+        ],
+        "date": "2025-01-31",
+        "title": "ConSim",
+        "summary": "",
+        "tags": [
+            "python"
+        ]
     }
 }
