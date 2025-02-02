@@ -192394,5 +192394,673 @@
     {
         "head": "console",
         "tail": "kg construction"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "cvae"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "black-box-model"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "mixup"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "few-shot-classification"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "conditional-variational-autoencoder"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "synthetic-images"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "black-box"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "data-generation"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "knowledge distillation"
+    },
+    {
+        "head": "generative-model",
+        "tail": "data-augmentation"
+    },
+    {
+        "head": "generative-model",
+        "tail": "knowledge-distillation"
+    },
+    {
+        "head": "generative-model",
+        "tail": "few-shot-learning"
+    },
+    {
+        "head": "generative-model",
+        "tail": "cvae"
+    },
+    {
+        "head": "generative-model",
+        "tail": "black-box-model"
+    },
+    {
+        "head": "generative-model",
+        "tail": "few-shot"
+    },
+    {
+        "head": "generative-model",
+        "tail": "mixup"
+    },
+    {
+        "head": "generative-model",
+        "tail": "few-shot-classification"
+    },
+    {
+        "head": "generative-model",
+        "tail": "conditional-variational-autoencoder"
+    },
+    {
+        "head": "generative-model",
+        "tail": "synthetic-images"
+    },
+    {
+        "head": "generative-model",
+        "tail": "black-box"
+    },
+    {
+        "head": "generative-model",
+        "tail": "transfer-learning"
+    },
+    {
+        "head": "generative-model",
+        "tail": "knowledge distillation"
+    },
+    {
+        "head": "computer-vision",
+        "tail": "data-augmentation"
+    },
+    {
+        "head": "computer-vision",
+        "tail": "knowledge-distillation"
+    },
+    {
+        "head": "computer-vision",
+        "tail": "few-shot-learning"
+    },
+    {
+        "head": "computer-vision",
+        "tail": "cvae"
+    },
+    {
+        "head": "computer-vision",
+        "tail": "black-box-model"
+    },
+    {
+        "head": "computer-vision",
+        "tail": "few-shot"
+    },
+    {
+        "head": "computer-vision",
+        "tail": "mixup"
+    },
+    {
+        "head": "computer-vision",
+        "tail": "few-shot-classification"
+    },
+    {
+        "head": "computer-vision",
+        "tail": "conditional-variational-autoencoder"
+    },
+    {
+        "head": "computer-vision",
+        "tail": "synthetic-images"
+    },
+    {
+        "head": "computer-vision",
+        "tail": "black-box"
+    },
+    {
+        "head": "computer-vision",
+        "tail": "data-generation"
+    },
+    {
+        "head": "computer-vision",
+        "tail": "knowledge distillation"
+    },
+    {
+        "head": "data-augmentation",
+        "tail": "knowledge-distillation"
+    },
+    {
+        "head": "data-augmentation",
+        "tail": "few-shot-learning"
+    },
+    {
+        "head": "data-augmentation",
+        "tail": "cvae"
+    },
+    {
+        "head": "data-augmentation",
+        "tail": "black-box-model"
+    },
+    {
+        "head": "data-augmentation",
+        "tail": "few-shot"
+    },
+    {
+        "head": "data-augmentation",
+        "tail": "mixup"
+    },
+    {
+        "head": "data-augmentation",
+        "tail": "few-shot-classification"
+    },
+    {
+        "head": "data-augmentation",
+        "tail": "conditional-variational-autoencoder"
+    },
+    {
+        "head": "data-augmentation",
+        "tail": "synthetic-images"
+    },
+    {
+        "head": "data-augmentation",
+        "tail": "black-box"
+    },
+    {
+        "head": "data-augmentation",
+        "tail": "transfer-learning"
+    },
+    {
+        "head": "data-augmentation",
+        "tail": "data-generation"
+    },
+    {
+        "head": "data-augmentation",
+        "tail": "knowledge distillation"
+    },
+    {
+        "head": "python",
+        "tail": "cvae"
+    },
+    {
+        "head": "python",
+        "tail": "black-box-model"
+    },
+    {
+        "head": "python",
+        "tail": "few-shot-classification"
+    },
+    {
+        "head": "python",
+        "tail": "conditional-variational-autoencoder"
+    },
+    {
+        "head": "python",
+        "tail": "synthetic-images"
+    },
+    {
+        "head": "python",
+        "tail": "black-box"
+    },
+    {
+        "head": "python",
+        "tail": "knowledge distillation"
+    },
+    {
+        "head": "knowledge-distillation",
+        "tail": "few-shot-learning"
+    },
+    {
+        "head": "knowledge-distillation",
+        "tail": "cvae"
+    },
+    {
+        "head": "knowledge-distillation",
+        "tail": "black-box-model"
+    },
+    {
+        "head": "knowledge-distillation",
+        "tail": "few-shot"
+    },
+    {
+        "head": "knowledge-distillation",
+        "tail": "mixup"
+    },
+    {
+        "head": "knowledge-distillation",
+        "tail": "few-shot-classification"
+    },
+    {
+        "head": "knowledge-distillation",
+        "tail": "conditional-variational-autoencoder"
+    },
+    {
+        "head": "knowledge-distillation",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "knowledge-distillation",
+        "tail": "synthetic-images"
+    },
+    {
+        "head": "knowledge-distillation",
+        "tail": "black-box"
+    },
+    {
+        "head": "knowledge-distillation",
+        "tail": "transfer-learning"
+    },
+    {
+        "head": "knowledge-distillation",
+        "tail": "data-generation"
+    },
+    {
+        "head": "knowledge-distillation",
+        "tail": "knowledge distillation"
+    },
+    {
+        "head": "few-shot-learning",
+        "tail": "cvae"
+    },
+    {
+        "head": "few-shot-learning",
+        "tail": "black-box-model"
+    },
+    {
+        "head": "few-shot-learning",
+        "tail": "mixup"
+    },
+    {
+        "head": "few-shot-learning",
+        "tail": "few-shot-classification"
+    },
+    {
+        "head": "few-shot-learning",
+        "tail": "conditional-variational-autoencoder"
+    },
+    {
+        "head": "few-shot-learning",
+        "tail": "synthetic-images"
+    },
+    {
+        "head": "few-shot-learning",
+        "tail": "black-box"
+    },
+    {
+        "head": "few-shot-learning",
+        "tail": "data-generation"
+    },
+    {
+        "head": "few-shot-learning",
+        "tail": "knowledge distillation"
+    },
+    {
+        "head": "cvae",
+        "tail": "black-box-model"
+    },
+    {
+        "head": "cvae",
+        "tail": "few-shot"
+    },
+    {
+        "head": "cvae",
+        "tail": "mixup"
+    },
+    {
+        "head": "cvae",
+        "tail": "few-shot-classification"
+    },
+    {
+        "head": "cvae",
+        "tail": "conditional-variational-autoencoder"
+    },
+    {
+        "head": "cvae",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "cvae",
+        "tail": "synthetic-images"
+    },
+    {
+        "head": "cvae",
+        "tail": "black-box"
+    },
+    {
+        "head": "cvae",
+        "tail": "transfer-learning"
+    },
+    {
+        "head": "cvae",
+        "tail": "data-generation"
+    },
+    {
+        "head": "cvae",
+        "tail": "knowledge distillation"
+    },
+    {
+        "head": "black-box-model",
+        "tail": "few-shot"
+    },
+    {
+        "head": "black-box-model",
+        "tail": "mixup"
+    },
+    {
+        "head": "black-box-model",
+        "tail": "few-shot-classification"
+    },
+    {
+        "head": "black-box-model",
+        "tail": "conditional-variational-autoencoder"
+    },
+    {
+        "head": "black-box-model",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "black-box-model",
+        "tail": "synthetic-images"
+    },
+    {
+        "head": "black-box-model",
+        "tail": "black-box"
+    },
+    {
+        "head": "black-box-model",
+        "tail": "transfer-learning"
+    },
+    {
+        "head": "black-box-model",
+        "tail": "data-generation"
+    },
+    {
+        "head": "black-box-model",
+        "tail": "knowledge distillation"
+    },
+    {
+        "head": "few-shot",
+        "tail": "mixup"
+    },
+    {
+        "head": "few-shot",
+        "tail": "few-shot-classification"
+    },
+    {
+        "head": "few-shot",
+        "tail": "conditional-variational-autoencoder"
+    },
+    {
+        "head": "few-shot",
+        "tail": "synthetic-images"
+    },
+    {
+        "head": "few-shot",
+        "tail": "black-box"
+    },
+    {
+        "head": "few-shot",
+        "tail": "transfer-learning"
+    },
+    {
+        "head": "few-shot",
+        "tail": "data-generation"
+    },
+    {
+        "head": "few-shot",
+        "tail": "knowledge distillation"
+    },
+    {
+        "head": "mixup",
+        "tail": "few-shot-classification"
+    },
+    {
+        "head": "mixup",
+        "tail": "conditional-variational-autoencoder"
+    },
+    {
+        "head": "mixup",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "mixup",
+        "tail": "synthetic-images"
+    },
+    {
+        "head": "mixup",
+        "tail": "black-box"
+    },
+    {
+        "head": "mixup",
+        "tail": "transfer-learning"
+    },
+    {
+        "head": "mixup",
+        "tail": "data-generation"
+    },
+    {
+        "head": "mixup",
+        "tail": "knowledge distillation"
+    },
+    {
+        "head": "few-shot-classification",
+        "tail": "conditional-variational-autoencoder"
+    },
+    {
+        "head": "few-shot-classification",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "few-shot-classification",
+        "tail": "synthetic-images"
+    },
+    {
+        "head": "few-shot-classification",
+        "tail": "black-box"
+    },
+    {
+        "head": "few-shot-classification",
+        "tail": "transfer-learning"
+    },
+    {
+        "head": "few-shot-classification",
+        "tail": "data-generation"
+    },
+    {
+        "head": "few-shot-classification",
+        "tail": "knowledge distillation"
+    },
+    {
+        "head": "conditional-variational-autoencoder",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "conditional-variational-autoencoder",
+        "tail": "synthetic-images"
+    },
+    {
+        "head": "conditional-variational-autoencoder",
+        "tail": "black-box"
+    },
+    {
+        "head": "conditional-variational-autoencoder",
+        "tail": "transfer-learning"
+    },
+    {
+        "head": "conditional-variational-autoencoder",
+        "tail": "data-generation"
+    },
+    {
+        "head": "conditional-variational-autoencoder",
+        "tail": "knowledge distillation"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "synthetic-images"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "black-box"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "knowledge distillation"
+    },
+    {
+        "head": "synthetic-images",
+        "tail": "black-box"
+    },
+    {
+        "head": "synthetic-images",
+        "tail": "transfer-learning"
+    },
+    {
+        "head": "synthetic-images",
+        "tail": "data-generation"
+    },
+    {
+        "head": "synthetic-images",
+        "tail": "knowledge distillation"
+    },
+    {
+        "head": "black-box",
+        "tail": "transfer-learning"
+    },
+    {
+        "head": "black-box",
+        "tail": "data-generation"
+    },
+    {
+        "head": "black-box",
+        "tail": "knowledge distillation"
+    },
+    {
+        "head": "transfer-learning",
+        "tail": "data-generation"
+    },
+    {
+        "head": "transfer-learning",
+        "tail": "knowledge distillation"
+    },
+    {
+        "head": "data-generation",
+        "tail": "knowledge distillation"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "kd"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "black-box"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "train"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "knowledge distillation"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "distillation"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "kd"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "black-box"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "train"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "knowledge distillation"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "distillation"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "kd"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "black-box"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "train"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "knowledge distillation"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "distillation"
+    },
+    {
+        "head": "kd",
+        "tail": "black-box"
+    },
+    {
+        "head": "kd",
+        "tail": "training"
+    },
+    {
+        "head": "kd",
+        "tail": "train"
+    },
+    {
+        "head": "kd",
+        "tail": "knowledge distillation"
+    },
+    {
+        "head": "black-box",
+        "tail": "training"
+    },
+    {
+        "head": "black-box",
+        "tail": "train"
+    },
+    {
+        "head": "black-box",
+        "tail": "distillation"
+    },
+    {
+        "head": "training",
+        "tail": "knowledge distillation"
+    },
+    {
+        "head": "training",
+        "tail": "distillation"
+    },
+    {
+        "head": "train",
+        "tail": "knowledge distillation"
+    },
+    {
+        "head": "train",
+        "tail": "distillation"
+    },
+    {
+        "head": "knowledge distillation",
+        "tail": "distillation"
     }
 ]

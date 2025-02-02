@@ -41927,5 +41927,51 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/nphdang/FS-BBT": {
+        "extra-tags": [
+            "knowledge distillation"
+        ],
+        "date": "2022-07-19",
+        "title": "FS-BBT",
+        "summary": "Black-box Few-shot Knowledge Distillation",
+        "tags": [
+            "deep-learning",
+            "generative-model",
+            "computer-vision",
+            "data-augmentation",
+            "python",
+            "knowledge-distillation",
+            "few-shot-learning",
+            "cvae",
+            "black-box-model",
+            "few-shot",
+            "mixup",
+            "few-shot-classification",
+            "conditional-variational-autoencoder",
+            "machine-learning",
+            "synthetic-images",
+            "black-box",
+            "transfer-learning",
+            "data-generation"
+        ]
+    },
+    "http://arxiv.org/abs/2207.12106": {
+        "extra-tags": [
+            "kd",
+            "black-box",
+            "training",
+            "train",
+            "knowledge distillation",
+            "distillation"
+        ],
+        "title": "Black-box Few-shot Knowledge Distillation",
+        "summary": "Knowledge distillation (KD) is an efficient approach to transfer the knowledge from a large \"teacher\" network to a smaller \"student\" network. Traditional KD methods require lots of labeled training samples and a white-box teacher (parameters are accessible) to train a good student. However, these resources are not always available in real-world applications. The distillation process often happens at an external party side where we do not have access to much data, and the teacher does not disclose its parameters due to security and privacy concerns. To overcome these challenges, we propose a black-box few-shot KD method to train the student with few unlabeled training samples and a black-box teacher. Our main idea is to expand the training set by generating a diverse set of out-of-distribution synthetic images using MixUp and a conditional variational auto-encoder. These synthetic images along with their labels obtained from the teacher are used to train the student. We conduct extensive experiments to show that our method significantly outperforms recent SOTA few/zero-shot KD methods on image classification tasks. The code and models are available at: https://github.com/nphdang/FS-BBT",
+        "date": "2025-02-01",
+        "tags": [
+            "computer science - artificial intelligence",
+            "computer science - computer vision and pattern recognition",
+            "computer science - machine learning"
+        ]
     }
 }
