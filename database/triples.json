@@ -193062,5 +193062,325 @@
     {
         "head": "knowledge distillation",
         "tail": "distillation"
+    },
+    {
+        "head": "mixture-of-experts",
+        "tail": "deepspeed"
+    },
+    {
+        "head": "mixture-of-experts",
+        "tail": "deep learning"
+    },
+    {
+        "head": "mixture-of-experts",
+        "tail": "optimization"
+    },
+    {
+        "head": "mixture-of-experts",
+        "tail": "library"
+    },
+    {
+        "head": "mixture-of-experts",
+        "tail": "distributed"
+    },
+    {
+        "head": "inference",
+        "tail": "deepspeed"
+    },
+    {
+        "head": "inference",
+        "tail": "library"
+    },
+    {
+        "head": "inference",
+        "tail": "distributed"
+    },
+    {
+        "head": "zero",
+        "tail": "deepspeed"
+    },
+    {
+        "head": "zero",
+        "tail": "deep learning"
+    },
+    {
+        "head": "zero",
+        "tail": "optimization"
+    },
+    {
+        "head": "zero",
+        "tail": "library"
+    },
+    {
+        "head": "zero",
+        "tail": "distributed"
+    },
+    {
+        "head": "billion-parameters",
+        "tail": "deepspeed"
+    },
+    {
+        "head": "billion-parameters",
+        "tail": "deep learning"
+    },
+    {
+        "head": "billion-parameters",
+        "tail": "optimization"
+    },
+    {
+        "head": "billion-parameters",
+        "tail": "library"
+    },
+    {
+        "head": "billion-parameters",
+        "tail": "distributed"
+    },
+    {
+        "head": "pipeline-parallelism",
+        "tail": "deepspeed"
+    },
+    {
+        "head": "pipeline-parallelism",
+        "tail": "deep learning"
+    },
+    {
+        "head": "pipeline-parallelism",
+        "tail": "optimization"
+    },
+    {
+        "head": "pipeline-parallelism",
+        "tail": "library"
+    },
+    {
+        "head": "pipeline-parallelism",
+        "tail": "distributed"
+    },
+    {
+        "head": "trillion-parameters",
+        "tail": "deepspeed"
+    },
+    {
+        "head": "trillion-parameters",
+        "tail": "deep learning"
+    },
+    {
+        "head": "trillion-parameters",
+        "tail": "optimization"
+    },
+    {
+        "head": "trillion-parameters",
+        "tail": "library"
+    },
+    {
+        "head": "trillion-parameters",
+        "tail": "distributed"
+    },
+    {
+        "head": "gpu",
+        "tail": "deepspeed"
+    },
+    {
+        "head": "gpu",
+        "tail": "deep learning"
+    },
+    {
+        "head": "gpu",
+        "tail": "optimization"
+    },
+    {
+        "head": "gpu",
+        "tail": "distributed"
+    },
+    {
+        "head": "data-parallelism",
+        "tail": "deepspeed"
+    },
+    {
+        "head": "data-parallelism",
+        "tail": "deep learning"
+    },
+    {
+        "head": "data-parallelism",
+        "tail": "optimization"
+    },
+    {
+        "head": "data-parallelism",
+        "tail": "distributed"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "deepspeed"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "deep learning"
+    },
+    {
+        "head": "compression",
+        "tail": "deepspeed"
+    },
+    {
+        "head": "compression",
+        "tail": "optimization"
+    },
+    {
+        "head": "compression",
+        "tail": "library"
+    },
+    {
+        "head": "compression",
+        "tail": "distributed"
+    },
+    {
+        "head": "model-parallelism",
+        "tail": "deepspeed"
+    },
+    {
+        "head": "model-parallelism",
+        "tail": "deep learning"
+    },
+    {
+        "head": "model-parallelism",
+        "tail": "optimization"
+    },
+    {
+        "head": "model-parallelism",
+        "tail": "library"
+    },
+    {
+        "head": "model-parallelism",
+        "tail": "distributed"
+    },
+    {
+        "head": "deepspeed",
+        "tail": "deep learning"
+    },
+    {
+        "head": "deepspeed",
+        "tail": "optimization"
+    },
+    {
+        "head": "deepspeed",
+        "tail": "library"
+    },
+    {
+        "head": "deepspeed",
+        "tail": "distributed"
+    },
+    {
+        "head": "deep learning",
+        "tail": "optimization"
+    },
+    {
+        "head": "deep learning",
+        "tail": "distributed"
+    },
+    {
+        "head": "optimization",
+        "tail": "library"
+    },
+    {
+        "head": "library",
+        "tail": "distributed"
+    },
+    {
+        "head": "benchmark",
+        "tail": "image embedding"
+    },
+    {
+        "head": "benchmark",
+        "tail": "image retrieval"
+    },
+    {
+        "head": "benchmark",
+        "tail": "qwen"
+    },
+    {
+        "head": "benchmark",
+        "tail": "videore"
+    },
+    {
+        "head": "benchmark",
+        "tail": "ml"
+    },
+    {
+        "head": "benchmark",
+        "tail": "apps"
+    },
+    {
+        "head": "benchmark",
+        "tail": "community"
+    },
+    {
+        "head": "image embedding",
+        "tail": "image retrieval"
+    },
+    {
+        "head": "image embedding",
+        "tail": "qwen"
+    },
+    {
+        "head": "image embedding",
+        "tail": "videore"
+    },
+    {
+        "head": "image embedding",
+        "tail": "ml"
+    },
+    {
+        "head": "image embedding",
+        "tail": "apps"
+    },
+    {
+        "head": "image embedding",
+        "tail": "community"
+    },
+    {
+        "head": "image retrieval",
+        "tail": "qwen"
+    },
+    {
+        "head": "image retrieval",
+        "tail": "videore"
+    },
+    {
+        "head": "image retrieval",
+        "tail": "ml"
+    },
+    {
+        "head": "image retrieval",
+        "tail": "apps"
+    },
+    {
+        "head": "image retrieval",
+        "tail": "community"
+    },
+    {
+        "head": "qwen",
+        "tail": "videore"
+    },
+    {
+        "head": "qwen",
+        "tail": "ml"
+    },
+    {
+        "head": "qwen",
+        "tail": "apps"
+    },
+    {
+        "head": "qwen",
+        "tail": "community"
+    },
+    {
+        "head": "videore",
+        "tail": "ml"
+    },
+    {
+        "head": "videore",
+        "tail": "apps"
+    },
+    {
+        "head": "videore",
+        "tail": "community"
     }
 ]

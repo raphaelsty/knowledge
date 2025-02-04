@@ -41973,5 +41973,50 @@
             "computer science - computer vision and pattern recognition",
             "computer science - machine learning"
         ]
+    },
+    "https://github.com/deepspeedai/DeepSpeed": {
+        "extra-tags": [
+            "deepspeed",
+            "deep learning",
+            "optimization",
+            "library",
+            "distributed"
+        ],
+        "date": "2020-01-23",
+        "title": "DeepSpeed",
+        "summary": "DeepSpeed is a deep learning optimization library that makes distributed training and inference easy, efficient, and effective.",
+        "tags": [
+            "mixture-of-experts",
+            "inference",
+            "zero",
+            "python",
+            "pytorch",
+            "billion-parameters",
+            "pipeline-parallelism",
+            "deep-learning",
+            "trillion-parameters",
+            "gpu",
+            "data-parallelism",
+            "machine-learning",
+            "compression",
+            "model-parallelism"
+        ]
+    },
+    "https://huggingface.co/spaces/vidore/vidore-leaderboard": {
+        "extra-tags": [
+            "ml",
+            "apps",
+            "community"
+        ],
+        "title": "Vidore Leaderboard - a Hugging Face Space by vidore",
+        "summary": "Discover amazing ML apps made by the community",
+        "date": "2025-02-03",
+        "tags": [
+            "benchmark",
+            "image embedding",
+            "image retrieval",
+            "qwen",
+            "videore"
+        ]
     }
 }
