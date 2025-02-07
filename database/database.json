@@ -42067,5 +42067,31 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/KempnerInstitute/Overcomplete": {
+        "extra-tags": [
+            "vision",
+            "toolbox",
+            "knowledge graph completion"
+        ],
+        "date": "2024-06-14",
+        "title": "Overcomplete",
+        "summary": "\ud83d\udc4b Overcomplete is a Vision-based SAE Toolbox",
+        "tags": [
+            "deep-learning",
+            "computer-vision",
+            "interpretability",
+            "python"
+        ]
+    },
+    "https://github.com/IRT-Saint-Exupery/CoFMPy": {
+        "extra-tags": [
+            "numpy",
+            "rust-numpy"
+        ],
+        "date": "2025-02-06",
+        "title": "CoFMPy",
+        "summary": "",
+        "tags": []
     }
 }
