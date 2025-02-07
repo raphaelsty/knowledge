@@ -42018,5 +42018,54 @@
             "qwen",
             "videore"
         ]
+    },
+    "https://github.com/roboflow/maestro": {
+        "extra-tags": [
+            "models"
+        ],
+        "date": "2023-11-24",
+        "title": "maestro",
+        "summary": "streamline the fine-tuning process for multimodal models: PaliGemma, Florence-2, and Qwen2-VL",
+        "tags": [
+            "phi-3-vision",
+            "transformers",
+            "qwen2-vl",
+            "florence-2",
+            "paligemma",
+            "captioning",
+            "python",
+            "multimodal",
+            "vision-and-language",
+            "objectdetection",
+            "fine-tuning",
+            "vqa"
+        ]
+    },
+    "https://github.com/oxideai/mlx-rs": {
+        "extra-tags": [
+            "mlx",
+            "bindings",
+            "apple",
+            "framework"
+        ],
+        "date": "2023-12-23",
+        "title": "mlx-rs",
+        "summary": "Unofficial Rust bindings to Apple's mlx framework",
+        "tags": [
+            "rust"
+        ]
+    },
+    "https://github.com/seohongpark/fql": {
+        "extra-tags": [
+            "learning",
+            "deep-q-learning",
+            "deep learning"
+        ],
+        "date": "2025-02-03",
+        "title": "fql",
+        "summary": "Flow Q-Learning",
+        "tags": [
+            "python"
+        ]
     }
 }

@@ -193382,5 +193382,321 @@
     {
         "head": "videore",
         "tail": "community"
+    },
+    {
+        "head": "phi-3-vision",
+        "tail": "transformers"
+    },
+    {
+        "head": "phi-3-vision",
+        "tail": "qwen2-vl"
+    },
+    {
+        "head": "phi-3-vision",
+        "tail": "florence-2"
+    },
+    {
+        "head": "phi-3-vision",
+        "tail": "paligemma"
+    },
+    {
+        "head": "phi-3-vision",
+        "tail": "captioning"
+    },
+    {
+        "head": "phi-3-vision",
+        "tail": "python"
+    },
+    {
+        "head": "phi-3-vision",
+        "tail": "multimodal"
+    },
+    {
+        "head": "phi-3-vision",
+        "tail": "vision-and-language"
+    },
+    {
+        "head": "phi-3-vision",
+        "tail": "objectdetection"
+    },
+    {
+        "head": "phi-3-vision",
+        "tail": "fine-tuning"
+    },
+    {
+        "head": "phi-3-vision",
+        "tail": "vqa"
+    },
+    {
+        "head": "phi-3-vision",
+        "tail": "models"
+    },
+    {
+        "head": "transformers",
+        "tail": "qwen2-vl"
+    },
+    {
+        "head": "transformers",
+        "tail": "florence-2"
+    },
+    {
+        "head": "transformers",
+        "tail": "paligemma"
+    },
+    {
+        "head": "transformers",
+        "tail": "captioning"
+    },
+    {
+        "head": "transformers",
+        "tail": "vision-and-language"
+    },
+    {
+        "head": "transformers",
+        "tail": "objectdetection"
+    },
+    {
+        "head": "transformers",
+        "tail": "fine-tuning"
+    },
+    {
+        "head": "transformers",
+        "tail": "vqa"
+    },
+    {
+        "head": "qwen2-vl",
+        "tail": "florence-2"
+    },
+    {
+        "head": "qwen2-vl",
+        "tail": "paligemma"
+    },
+    {
+        "head": "qwen2-vl",
+        "tail": "captioning"
+    },
+    {
+        "head": "qwen2-vl",
+        "tail": "python"
+    },
+    {
+        "head": "qwen2-vl",
+        "tail": "multimodal"
+    },
+    {
+        "head": "qwen2-vl",
+        "tail": "vision-and-language"
+    },
+    {
+        "head": "qwen2-vl",
+        "tail": "objectdetection"
+    },
+    {
+        "head": "qwen2-vl",
+        "tail": "fine-tuning"
+    },
+    {
+        "head": "qwen2-vl",
+        "tail": "vqa"
+    },
+    {
+        "head": "qwen2-vl",
+        "tail": "models"
+    },
+    {
+        "head": "florence-2",
+        "tail": "paligemma"
+    },
+    {
+        "head": "florence-2",
+        "tail": "captioning"
+    },
+    {
+        "head": "florence-2",
+        "tail": "python"
+    },
+    {
+        "head": "florence-2",
+        "tail": "multimodal"
+    },
+    {
+        "head": "florence-2",
+        "tail": "vision-and-language"
+    },
+    {
+        "head": "florence-2",
+        "tail": "objectdetection"
+    },
+    {
+        "head": "florence-2",
+        "tail": "fine-tuning"
+    },
+    {
+        "head": "florence-2",
+        "tail": "vqa"
+    },
+    {
+        "head": "florence-2",
+        "tail": "models"
+    },
+    {
+        "head": "paligemma",
+        "tail": "captioning"
+    },
+    {
+        "head": "paligemma",
+        "tail": "python"
+    },
+    {
+        "head": "paligemma",
+        "tail": "multimodal"
+    },
+    {
+        "head": "paligemma",
+        "tail": "vision-and-language"
+    },
+    {
+        "head": "paligemma",
+        "tail": "objectdetection"
+    },
+    {
+        "head": "paligemma",
+        "tail": "fine-tuning"
+    },
+    {
+        "head": "paligemma",
+        "tail": "vqa"
+    },
+    {
+        "head": "paligemma",
+        "tail": "models"
+    },
+    {
+        "head": "captioning",
+        "tail": "python"
+    },
+    {
+        "head": "captioning",
+        "tail": "multimodal"
+    },
+    {
+        "head": "captioning",
+        "tail": "vision-and-language"
+    },
+    {
+        "head": "captioning",
+        "tail": "objectdetection"
+    },
+    {
+        "head": "captioning",
+        "tail": "fine-tuning"
+    },
+    {
+        "head": "captioning",
+        "tail": "vqa"
+    },
+    {
+        "head": "captioning",
+        "tail": "models"
+    },
+    {
+        "head": "python",
+        "tail": "objectdetection"
+    },
+    {
+        "head": "python",
+        "tail": "vqa"
+    },
+    {
+        "head": "multimodal",
+        "tail": "objectdetection"
+    },
+    {
+        "head": "multimodal",
+        "tail": "fine-tuning"
+    },
+    {
+        "head": "multimodal",
+        "tail": "vqa"
+    },
+    {
+        "head": "vision-and-language",
+        "tail": "objectdetection"
+    },
+    {
+        "head": "vision-and-language",
+        "tail": "fine-tuning"
+    },
+    {
+        "head": "vision-and-language",
+        "tail": "vqa"
+    },
+    {
+        "head": "vision-and-language",
+        "tail": "models"
+    },
+    {
+        "head": "objectdetection",
+        "tail": "fine-tuning"
+    },
+    {
+        "head": "objectdetection",
+        "tail": "vqa"
+    },
+    {
+        "head": "objectdetection",
+        "tail": "models"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "vqa"
+    },
+    {
+        "head": "vqa",
+        "tail": "models"
+    },
+    {
+        "head": "rust",
+        "tail": "mlx"
+    },
+    {
+        "head": "rust",
+        "tail": "apple"
+    },
+    {
+        "head": "mlx",
+        "tail": "bindings"
+    },
+    {
+        "head": "mlx",
+        "tail": "apple"
+    },
+    {
+        "head": "mlx",
+        "tail": "framework"
+    },
+    {
+        "head": "bindings",
+        "tail": "apple"
+    },
+    {
+        "head": "bindings",
+        "tail": "framework"
+    },
+    {
+        "head": "apple",
+        "tail": "framework"
+    },
+    {
+        "head": "learning",
+        "tail": "deep-q-learning"
+    },
+    {
+        "head": "learning",
+        "tail": "deep learning"
+    },
+    {
+        "head": "deep-q-learning",
+        "tail": "deep learning"
     }
 ]
