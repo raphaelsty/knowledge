@@ -193802,5 +193802,17 @@
     {
         "head": "streaming",
         "tail": "speech"
+    },
+    {
+        "head": "c++",
+        "tail": "automatic-differentiation"
+    },
+    {
+        "head": "c++",
+        "tail": "large-language-models"
+    },
+    {
+        "head": "c++",
+        "tail": "tensor-algebra"
     }
 ]

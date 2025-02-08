@@ -42121,5 +42121,22 @@
         "tags": [
             "rust"
         ]
+    },
+    "https://github.com/ggml-org/ggml": {
+        "extra-tags": [
+            "tensor",
+            "library",
+            "machine learning"
+        ],
+        "date": "2022-09-18",
+        "title": "ggml",
+        "summary": "Tensor library for machine learning",
+        "tags": [
+            "c++",
+            "machine-learning",
+            "automatic-differentiation",
+            "large-language-models",
+            "tensor-algebra"
+        ]
     }
 }
