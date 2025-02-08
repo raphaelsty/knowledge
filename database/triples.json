@@ -193746,5 +193746,61 @@
     {
         "head": "toolbox",
         "tail": "knowledge graph completion"
+    },
+    {
+        "head": "python",
+        "tail": "self-hosted"
+    },
+    {
+        "head": "self-hosted",
+        "tail": "api"
+    },
+    {
+        "head": "self-hosted",
+        "tail": "url"
+    },
+    {
+        "head": "self-hosted",
+        "tail": "browser"
+    },
+    {
+        "head": "api",
+        "tail": "url"
+    },
+    {
+        "head": "api",
+        "tail": "browser"
+    },
+    {
+        "head": "url",
+        "tail": "browser"
+    },
+    {
+        "head": "rust",
+        "tail": "speech"
+    },
+    {
+        "head": "translation",
+        "tail": "model"
+    },
+    {
+        "head": "translation",
+        "tail": "streaming"
+    },
+    {
+        "head": "translation",
+        "tail": "speech"
+    },
+    {
+        "head": "model",
+        "tail": "streaming"
+    },
+    {
+        "head": "model",
+        "tail": "speech"
+    },
+    {
+        "head": "streaming",
+        "tail": "speech"
     }
 ]

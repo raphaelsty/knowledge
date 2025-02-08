@@ -42093,5 +42093,33 @@
         "title": "CoFMPy",
         "summary": "",
         "tags": []
+    },
+    "https://github.com/US-Artificial-Intelligence/ScrapeServ": {
+        "extra-tags": [
+            "self-hosted",
+            "api",
+            "url",
+            "browser"
+        ],
+        "date": "2025-02-05",
+        "title": "ScrapeServ",
+        "summary": "A self-hosted API that takes a URL and returns a file with browser screenshots.",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/kyutai-labs/hibiki": {
+        "extra-tags": [
+            "translation",
+            "model",
+            "streaming",
+            "speech"
+        ],
+        "date": "2025-02-04",
+        "title": "hibiki",
+        "summary": "Hibiki is a model for streaming speech translation (also known as simultaneous translation). Unlike offline translation\u2014where one waits for the end of the source utterance to start translating--- Hibiki adapts its flow to accumulate just enough context to produce a correct translation in real-time, chunk by chunk. ",
+        "tags": [
+            "rust"
+        ]
     }
 }
