@@ -42138,5 +42138,49 @@
             "large-language-models",
             "tensor-algebra"
         ]
+    },
+    "https://github.com/goodreasonai/ScrapeServ": {
+        "extra-tags": [
+            "self-hosted",
+            "api",
+            "url",
+            "browser"
+        ],
+        "date": "2025-02-05",
+        "title": "ScrapeServ",
+        "summary": "A self-hosted API that takes a URL and returns a file with browser screenshots.",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/IliaLarchenko/dot_policy": {
+        "extra-tags": [
+            "transformer",
+            "policy"
+        ],
+        "date": "2025-01-29",
+        "title": "dot_policy",
+        "summary": "Decoder Only Transformer Policy for Behavior Cloning",
+        "tags": [
+            "robotics",
+            "python",
+            "lerobot",
+            "behavioral-cloning"
+        ]
+    },
+    "https://github.com/lucidrains/ppo": {
+        "extra-tags": [
+            "ppo",
+            "pytorch"
+        ],
+        "date": "2020-09-27",
+        "title": "ppo",
+        "summary": "An implementation of PPO in Pytorch",
+        "tags": [
+            "proximal-policy-optimization",
+            "python",
+            "artificial-intelligence",
+            "reinforcement-learning"
+        ]
     }
 }
