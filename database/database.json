@@ -42182,5 +42182,18 @@
             "artificial-intelligence",
             "reinforcement-learning"
         ]
+    },
+    "https://github.com/loopwork-ai/hype": {
+        "extra-tags": [
+            "functions",
+            "http",
+            "cli"
+        ],
+        "date": "2024-09-11",
+        "title": "hype",
+        "summary": "Write Python functions. Use them everywhere. HTTP, CLI, GUI, LLM (OMG)",
+        "tags": [
+            "python"
+        ]
     }
 }

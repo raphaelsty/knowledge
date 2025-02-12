@@ -193862,5 +193862,17 @@
     {
         "head": "transformer",
         "tail": "policy"
+    },
+    {
+        "head": "functions",
+        "tail": "http"
+    },
+    {
+        "head": "functions",
+        "tail": "cli"
+    },
+    {
+        "head": "http",
+        "tail": "cli"
     }
 ]
