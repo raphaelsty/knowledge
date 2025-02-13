@@ -42210,5 +42210,24 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/HomebrewML/revlib": {
+        "extra-tags": [
+            "simple",
+            "library"
+        ],
+        "date": "2021-08-17",
+        "title": "revlib",
+        "summary": "Simple and efficient RevNet-Library for PyTorch with XLA and DeepSpeed support and parameter offload",
+        "tags": [
+            "momentumnet",
+            "tpu",
+            "xla",
+            "python",
+            "deep-learning",
+            "deepspeed",
+            "revnet",
+            "pytorch"
+        ]
     }
 }

@@ -193906,5 +193906,41 @@
     {
         "head": "agents",
         "tail": "spaces"
+    },
+    {
+        "head": "momentumnet",
+        "tail": "simple"
+    },
+    {
+        "head": "momentumnet",
+        "tail": "library"
+    },
+    {
+        "head": "tpu",
+        "tail": "simple"
+    },
+    {
+        "head": "tpu",
+        "tail": "library"
+    },
+    {
+        "head": "xla",
+        "tail": "simple"
+    },
+    {
+        "head": "xla",
+        "tail": "library"
+    },
+    {
+        "head": "deepspeed",
+        "tail": "simple"
+    },
+    {
+        "head": "revnet",
+        "tail": "simple"
+    },
+    {
+        "head": "revnet",
+        "tail": "library"
     }
 ]
