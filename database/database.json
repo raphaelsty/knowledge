@@ -42195,5 +42195,20 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/LorisGaven/MAGELLAN": {
+        "extra-tags": [
+            "predictions",
+            "learning",
+            "llm",
+            "agents",
+            "spaces"
+        ],
+        "date": "2025-02-11",
+        "title": "MAGELLAN",
+        "summary": "MAGELLAN: Metacognitive predictions of learning progress guide autotelic LLM agents in large goal spaces",
+        "tags": [
+            "python"
+        ]
     }
 }
