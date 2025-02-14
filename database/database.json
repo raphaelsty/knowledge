@@ -42229,5 +42229,25 @@
             "revnet",
             "pytorch"
         ]
+    },
+    "https://github.com/MinishLab/model2vec": {
+        "extra-tags": [
+            "fast",
+            "state-of-the-art",
+            "static"
+        ],
+        "date": "2024-07-18",
+        "title": "model2vec",
+        "summary": "Fast State-of-the-Art Static Embeddings",
+        "tags": [
+            "python",
+            "sentence-transformers",
+            "machine-learning",
+            "embeddings",
+            "model2vec",
+            "ai",
+            "nlp",
+            "word-embeddings"
+        ]
     }
 }

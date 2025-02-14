@@ -193942,5 +193942,125 @@
     {
         "head": "revnet",
         "tail": "library"
+    },
+    {
+        "head": "python",
+        "tail": "model2vec"
+    },
+    {
+        "head": "python",
+        "tail": "static"
+    },
+    {
+        "head": "sentence-transformers",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "sentence-transformers",
+        "tail": "embeddings"
+    },
+    {
+        "head": "sentence-transformers",
+        "tail": "model2vec"
+    },
+    {
+        "head": "sentence-transformers",
+        "tail": "ai"
+    },
+    {
+        "head": "sentence-transformers",
+        "tail": "fast"
+    },
+    {
+        "head": "sentence-transformers",
+        "tail": "state-of-the-art"
+    },
+    {
+        "head": "sentence-transformers",
+        "tail": "static"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "model2vec"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "static"
+    },
+    {
+        "head": "embeddings",
+        "tail": "model2vec"
+    },
+    {
+        "head": "embeddings",
+        "tail": "state-of-the-art"
+    },
+    {
+        "head": "embeddings",
+        "tail": "static"
+    },
+    {
+        "head": "model2vec",
+        "tail": "ai"
+    },
+    {
+        "head": "model2vec",
+        "tail": "nlp"
+    },
+    {
+        "head": "model2vec",
+        "tail": "word-embeddings"
+    },
+    {
+        "head": "model2vec",
+        "tail": "fast"
+    },
+    {
+        "head": "model2vec",
+        "tail": "state-of-the-art"
+    },
+    {
+        "head": "model2vec",
+        "tail": "static"
+    },
+    {
+        "head": "ai",
+        "tail": "word-embeddings"
+    },
+    {
+        "head": "ai",
+        "tail": "fast"
+    },
+    {
+        "head": "ai",
+        "tail": "state-of-the-art"
+    },
+    {
+        "head": "ai",
+        "tail": "static"
+    },
+    {
+        "head": "nlp",
+        "tail": "static"
+    },
+    {
+        "head": "word-embeddings",
+        "tail": "state-of-the-art"
+    },
+    {
+        "head": "word-embeddings",
+        "tail": "static"
+    },
+    {
+        "head": "fast",
+        "tail": "state-of-the-art"
+    },
+    {
+        "head": "fast",
+        "tail": "static"
+    },
+    {
+        "head": "state-of-the-art",
+        "tail": "static"
     }
 ]
