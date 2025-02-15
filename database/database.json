@@ -42249,5 +42249,34 @@
             "nlp",
             "word-embeddings"
         ]
+    },
+    "https://github.com/yunhaif/fowm": {
+        "extra-tags": [
+            "finetuning",
+            "offline",
+            "models"
+        ],
+        "date": "2023-10-25",
+        "title": "fowm",
+        "summary": "Finetuning Offline World Models in the Real World",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://www.phind.com/": {
+        "extra-tags": [
+            "find",
+            "deepmind"
+        ],
+        "title": "Phind",
+        "summary": "",
+        "date": "2025-02-14",
+        "tags": [
+            "perplexity",
+            "phind",
+            "reports",
+            "search engine",
+            "website"
+        ]
     }
 }

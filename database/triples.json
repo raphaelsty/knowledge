@@ -194062,5 +194062,97 @@
     {
         "head": "state-of-the-art",
         "tail": "static"
+    },
+    {
+        "head": "finetuning",
+        "tail": "offline"
+    },
+    {
+        "head": "offline",
+        "tail": "models"
+    },
+    {
+        "head": "perplexity",
+        "tail": "phind"
+    },
+    {
+        "head": "perplexity",
+        "tail": "reports"
+    },
+    {
+        "head": "perplexity",
+        "tail": "search engine"
+    },
+    {
+        "head": "perplexity",
+        "tail": "website"
+    },
+    {
+        "head": "perplexity",
+        "tail": "find"
+    },
+    {
+        "head": "perplexity",
+        "tail": "deepmind"
+    },
+    {
+        "head": "phind",
+        "tail": "reports"
+    },
+    {
+        "head": "phind",
+        "tail": "search engine"
+    },
+    {
+        "head": "phind",
+        "tail": "website"
+    },
+    {
+        "head": "phind",
+        "tail": "find"
+    },
+    {
+        "head": "phind",
+        "tail": "deepmind"
+    },
+    {
+        "head": "reports",
+        "tail": "search engine"
+    },
+    {
+        "head": "reports",
+        "tail": "website"
+    },
+    {
+        "head": "reports",
+        "tail": "find"
+    },
+    {
+        "head": "reports",
+        "tail": "deepmind"
+    },
+    {
+        "head": "search engine",
+        "tail": "website"
+    },
+    {
+        "head": "search engine",
+        "tail": "find"
+    },
+    {
+        "head": "search engine",
+        "tail": "deepmind"
+    },
+    {
+        "head": "website",
+        "tail": "find"
+    },
+    {
+        "head": "website",
+        "tail": "deepmind"
+    },
+    {
+        "head": "find",
+        "tail": "deepmind"
     }
 ]
