@@ -42278,5 +42278,50 @@
             "search engine",
             "website"
         ]
+    },
+    "https://github.com/tomsanbear/candle-einops": {
+        "extra-tags": [
+            "candlestick-chart",
+            "emmanuel candes",
+            "canvas"
+        ],
+        "date": "2024-03-12",
+        "title": "candle-einops",
+        "summary": "",
+        "tags": [
+            "rust"
+        ]
+    },
+    "https://github.com/KGrewal1/candle-optimisers": {
+        "extra-tags": [
+            "collection",
+            "collections",
+            "data-collection"
+        ],
+        "date": "2023-10-24",
+        "title": "candle-optimisers",
+        "summary": "A collection of optimisers for use with candle",
+        "tags": [
+            "rust"
+        ]
+    },
+    "https://github.com/Goldziher/kreuzberg": {
+        "extra-tags": [
+            "text",
+            "extraction",
+            "library",
+            "pdfs"
+        ],
+        "date": "2025-01-31",
+        "title": "kreuzberg",
+        "summary": "A text extraction library supporting PDFs, images, office documents and more",
+        "tags": [
+            "asyncio",
+            "pdf",
+            "text-extraction",
+            "ocr",
+            "python",
+            "docx"
+        ]
     }
 }

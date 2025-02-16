@@ -194154,5 +194154,169 @@
     {
         "head": "find",
         "tail": "deepmind"
+    },
+    {
+        "head": "rust",
+        "tail": "emmanuel candes"
+    },
+    {
+        "head": "rust",
+        "tail": "canvas"
+    },
+    {
+        "head": "candlestick-chart",
+        "tail": "emmanuel candes"
+    },
+    {
+        "head": "candlestick-chart",
+        "tail": "canvas"
+    },
+    {
+        "head": "emmanuel candes",
+        "tail": "canvas"
+    },
+    {
+        "head": "rust",
+        "tail": "collection"
+    },
+    {
+        "head": "rust",
+        "tail": "collections"
+    },
+    {
+        "head": "rust",
+        "tail": "data-collection"
+    },
+    {
+        "head": "collection",
+        "tail": "collections"
+    },
+    {
+        "head": "collection",
+        "tail": "data-collection"
+    },
+    {
+        "head": "collections",
+        "tail": "data-collection"
+    },
+    {
+        "head": "asyncio",
+        "tail": "pdf"
+    },
+    {
+        "head": "asyncio",
+        "tail": "text-extraction"
+    },
+    {
+        "head": "asyncio",
+        "tail": "ocr"
+    },
+    {
+        "head": "asyncio",
+        "tail": "docx"
+    },
+    {
+        "head": "asyncio",
+        "tail": "text"
+    },
+    {
+        "head": "asyncio",
+        "tail": "extraction"
+    },
+    {
+        "head": "asyncio",
+        "tail": "library"
+    },
+    {
+        "head": "asyncio",
+        "tail": "pdfs"
+    },
+    {
+        "head": "pdf",
+        "tail": "text-extraction"
+    },
+    {
+        "head": "pdf",
+        "tail": "text"
+    },
+    {
+        "head": "pdf",
+        "tail": "pdfs"
+    },
+    {
+        "head": "text-extraction",
+        "tail": "ocr"
+    },
+    {
+        "head": "text-extraction",
+        "tail": "docx"
+    },
+    {
+        "head": "text-extraction",
+        "tail": "text"
+    },
+    {
+        "head": "text-extraction",
+        "tail": "extraction"
+    },
+    {
+        "head": "text-extraction",
+        "tail": "library"
+    },
+    {
+        "head": "text-extraction",
+        "tail": "pdfs"
+    },
+    {
+        "head": "ocr",
+        "tail": "library"
+    },
+    {
+        "head": "ocr",
+        "tail": "pdfs"
+    },
+    {
+        "head": "python",
+        "tail": "docx"
+    },
+    {
+        "head": "python",
+        "tail": "pdfs"
+    },
+    {
+        "head": "docx",
+        "tail": "text"
+    },
+    {
+        "head": "docx",
+        "tail": "extraction"
+    },
+    {
+        "head": "docx",
+        "tail": "library"
+    },
+    {
+        "head": "docx",
+        "tail": "pdfs"
+    },
+    {
+        "head": "text",
+        "tail": "extraction"
+    },
+    {
+        "head": "text",
+        "tail": "pdfs"
+    },
+    {
+        "head": "extraction",
+        "tail": "library"
+    },
+    {
+        "head": "extraction",
+        "tail": "pdfs"
+    },
+    {
+        "head": "library",
+        "tail": "pdfs"
     }
 ]
