@@ -194318,5 +194318,889 @@
     {
         "head": "library",
         "tail": "pdfs"
+    },
+    {
+        "head": "llm",
+        "tail": "awesome"
+    },
+    {
+        "head": "llm",
+        "tail": "synthetic-data"
+    },
+    {
+        "head": "llm",
+        "tail": "list"
+    },
+    {
+        "head": "awesome",
+        "tail": "synthetic-data"
+    },
+    {
+        "head": "synthetic-data",
+        "tail": "list"
+    },
+    {
+        "head": "python",
+        "tail": "deepseek-r1"
+    },
+    {
+        "head": "python",
+        "tail": "moe"
+    },
+    {
+        "head": "python",
+        "tail": "llama3"
+    },
+    {
+        "head": "python",
+        "tail": "vlm"
+    },
+    {
+        "head": "python",
+        "tail": "deepseek-v3"
+    },
+    {
+        "head": "python",
+        "tail": "llama3-1"
+    },
+    {
+        "head": "python",
+        "tail": "deepseek"
+    },
+    {
+        "head": "python",
+        "tail": "deepseek-r1-zero"
+    },
+    {
+        "head": "python",
+        "tail": "deepseek-llm"
+    },
+    {
+        "head": "deepseek-r1",
+        "tail": "inference"
+    },
+    {
+        "head": "deepseek-r1",
+        "tail": "moe"
+    },
+    {
+        "head": "deepseek-r1",
+        "tail": "llama3"
+    },
+    {
+        "head": "deepseek-r1",
+        "tail": "vlm"
+    },
+    {
+        "head": "deepseek-r1",
+        "tail": "llama"
+    },
+    {
+        "head": "deepseek-r1",
+        "tail": "llava"
+    },
+    {
+        "head": "deepseek-r1",
+        "tail": "llm"
+    },
+    {
+        "head": "deepseek-r1",
+        "tail": "deepseek-v3"
+    },
+    {
+        "head": "deepseek-r1",
+        "tail": "cuda"
+    },
+    {
+        "head": "deepseek-r1",
+        "tail": "llama3-1"
+    },
+    {
+        "head": "deepseek-r1",
+        "tail": "llm-serving"
+    },
+    {
+        "head": "deepseek-r1",
+        "tail": "pytorch"
+    },
+    {
+        "head": "deepseek-r1",
+        "tail": "transformer"
+    },
+    {
+        "head": "deepseek-r1",
+        "tail": "deepseek"
+    },
+    {
+        "head": "deepseek-r1",
+        "tail": "deepseek-r1-zero"
+    },
+    {
+        "head": "deepseek-r1",
+        "tail": "deepseek-llm"
+    },
+    {
+        "head": "deepseek-r1",
+        "tail": "language models"
+    },
+    {
+        "head": "deepseek-r1",
+        "tail": "fast"
+    },
+    {
+        "head": "deepseek-r1",
+        "tail": "serving"
+    },
+    {
+        "head": "deepseek-r1",
+        "tail": "framework"
+    },
+    {
+        "head": "inference",
+        "tail": "moe"
+    },
+    {
+        "head": "inference",
+        "tail": "llama3"
+    },
+    {
+        "head": "inference",
+        "tail": "vlm"
+    },
+    {
+        "head": "inference",
+        "tail": "llava"
+    },
+    {
+        "head": "inference",
+        "tail": "deepseek-v3"
+    },
+    {
+        "head": "inference",
+        "tail": "cuda"
+    },
+    {
+        "head": "inference",
+        "tail": "llama3-1"
+    },
+    {
+        "head": "inference",
+        "tail": "deepseek"
+    },
+    {
+        "head": "inference",
+        "tail": "deepseek-r1-zero"
+    },
+    {
+        "head": "inference",
+        "tail": "deepseek-llm"
+    },
+    {
+        "head": "moe",
+        "tail": "llama3"
+    },
+    {
+        "head": "moe",
+        "tail": "vlm"
+    },
+    {
+        "head": "moe",
+        "tail": "llama"
+    },
+    {
+        "head": "moe",
+        "tail": "llava"
+    },
+    {
+        "head": "moe",
+        "tail": "llm"
+    },
+    {
+        "head": "moe",
+        "tail": "deepseek-v3"
+    },
+    {
+        "head": "moe",
+        "tail": "cuda"
+    },
+    {
+        "head": "moe",
+        "tail": "llama3-1"
+    },
+    {
+        "head": "moe",
+        "tail": "llm-serving"
+    },
+    {
+        "head": "moe",
+        "tail": "pytorch"
+    },
+    {
+        "head": "moe",
+        "tail": "transformer"
+    },
+    {
+        "head": "moe",
+        "tail": "deepseek"
+    },
+    {
+        "head": "moe",
+        "tail": "deepseek-r1-zero"
+    },
+    {
+        "head": "moe",
+        "tail": "deepseek-llm"
+    },
+    {
+        "head": "moe",
+        "tail": "language models"
+    },
+    {
+        "head": "moe",
+        "tail": "fast"
+    },
+    {
+        "head": "moe",
+        "tail": "serving"
+    },
+    {
+        "head": "moe",
+        "tail": "framework"
+    },
+    {
+        "head": "llama3",
+        "tail": "vlm"
+    },
+    {
+        "head": "llama3",
+        "tail": "llama"
+    },
+    {
+        "head": "llama3",
+        "tail": "llava"
+    },
+    {
+        "head": "llama3",
+        "tail": "llm"
+    },
+    {
+        "head": "llama3",
+        "tail": "deepseek-v3"
+    },
+    {
+        "head": "llama3",
+        "tail": "cuda"
+    },
+    {
+        "head": "llama3",
+        "tail": "llama3-1"
+    },
+    {
+        "head": "llama3",
+        "tail": "llm-serving"
+    },
+    {
+        "head": "llama3",
+        "tail": "pytorch"
+    },
+    {
+        "head": "llama3",
+        "tail": "transformer"
+    },
+    {
+        "head": "llama3",
+        "tail": "deepseek"
+    },
+    {
+        "head": "llama3",
+        "tail": "deepseek-r1-zero"
+    },
+    {
+        "head": "llama3",
+        "tail": "deepseek-llm"
+    },
+    {
+        "head": "llama3",
+        "tail": "language models"
+    },
+    {
+        "head": "llama3",
+        "tail": "fast"
+    },
+    {
+        "head": "llama3",
+        "tail": "serving"
+    },
+    {
+        "head": "llama3",
+        "tail": "framework"
+    },
+    {
+        "head": "vlm",
+        "tail": "llama"
+    },
+    {
+        "head": "vlm",
+        "tail": "llava"
+    },
+    {
+        "head": "vlm",
+        "tail": "llm"
+    },
+    {
+        "head": "vlm",
+        "tail": "deepseek-v3"
+    },
+    {
+        "head": "vlm",
+        "tail": "cuda"
+    },
+    {
+        "head": "vlm",
+        "tail": "llama3-1"
+    },
+    {
+        "head": "vlm",
+        "tail": "llm-serving"
+    },
+    {
+        "head": "vlm",
+        "tail": "pytorch"
+    },
+    {
+        "head": "vlm",
+        "tail": "transformer"
+    },
+    {
+        "head": "vlm",
+        "tail": "deepseek"
+    },
+    {
+        "head": "vlm",
+        "tail": "deepseek-r1-zero"
+    },
+    {
+        "head": "vlm",
+        "tail": "deepseek-llm"
+    },
+    {
+        "head": "vlm",
+        "tail": "fast"
+    },
+    {
+        "head": "vlm",
+        "tail": "serving"
+    },
+    {
+        "head": "vlm",
+        "tail": "framework"
+    },
+    {
+        "head": "llama",
+        "tail": "llava"
+    },
+    {
+        "head": "llama",
+        "tail": "deepseek-v3"
+    },
+    {
+        "head": "llama",
+        "tail": "cuda"
+    },
+    {
+        "head": "llama",
+        "tail": "llama3-1"
+    },
+    {
+        "head": "llama",
+        "tail": "llm-serving"
+    },
+    {
+        "head": "llama",
+        "tail": "pytorch"
+    },
+    {
+        "head": "llama",
+        "tail": "transformer"
+    },
+    {
+        "head": "llama",
+        "tail": "deepseek"
+    },
+    {
+        "head": "llama",
+        "tail": "deepseek-r1-zero"
+    },
+    {
+        "head": "llama",
+        "tail": "deepseek-llm"
+    },
+    {
+        "head": "llama",
+        "tail": "fast"
+    },
+    {
+        "head": "llama",
+        "tail": "serving"
+    },
+    {
+        "head": "llama",
+        "tail": "framework"
+    },
+    {
+        "head": "llava",
+        "tail": "llm"
+    },
+    {
+        "head": "llava",
+        "tail": "deepseek-v3"
+    },
+    {
+        "head": "llava",
+        "tail": "cuda"
+    },
+    {
+        "head": "llava",
+        "tail": "llama3-1"
+    },
+    {
+        "head": "llava",
+        "tail": "llm-serving"
+    },
+    {
+        "head": "llava",
+        "tail": "pytorch"
+    },
+    {
+        "head": "llava",
+        "tail": "transformer"
+    },
+    {
+        "head": "llava",
+        "tail": "deepseek"
+    },
+    {
+        "head": "llava",
+        "tail": "deepseek-r1-zero"
+    },
+    {
+        "head": "llava",
+        "tail": "deepseek-llm"
+    },
+    {
+        "head": "llava",
+        "tail": "language models"
+    },
+    {
+        "head": "llava",
+        "tail": "fast"
+    },
+    {
+        "head": "llava",
+        "tail": "serving"
+    },
+    {
+        "head": "llava",
+        "tail": "framework"
+    },
+    {
+        "head": "llm",
+        "tail": "deepseek-v3"
+    },
+    {
+        "head": "llm",
+        "tail": "llama3-1"
+    },
+    {
+        "head": "llm",
+        "tail": "deepseek"
+    },
+    {
+        "head": "llm",
+        "tail": "deepseek-r1-zero"
+    },
+    {
+        "head": "llm",
+        "tail": "deepseek-llm"
+    },
+    {
+        "head": "llm",
+        "tail": "fast"
+    },
+    {
+        "head": "deepseek-v3",
+        "tail": "cuda"
+    },
+    {
+        "head": "deepseek-v3",
+        "tail": "llama3-1"
+    },
+    {
+        "head": "deepseek-v3",
+        "tail": "llm-serving"
+    },
+    {
+        "head": "deepseek-v3",
+        "tail": "pytorch"
+    },
+    {
+        "head": "deepseek-v3",
+        "tail": "transformer"
+    },
+    {
+        "head": "deepseek-v3",
+        "tail": "deepseek"
+    },
+    {
+        "head": "deepseek-v3",
+        "tail": "deepseek-r1-zero"
+    },
+    {
+        "head": "deepseek-v3",
+        "tail": "deepseek-llm"
+    },
+    {
+        "head": "deepseek-v3",
+        "tail": "language models"
+    },
+    {
+        "head": "deepseek-v3",
+        "tail": "fast"
+    },
+    {
+        "head": "deepseek-v3",
+        "tail": "serving"
+    },
+    {
+        "head": "deepseek-v3",
+        "tail": "framework"
+    },
+    {
+        "head": "cuda",
+        "tail": "llama3-1"
+    },
+    {
+        "head": "cuda",
+        "tail": "llm-serving"
+    },
+    {
+        "head": "cuda",
+        "tail": "deepseek"
+    },
+    {
+        "head": "cuda",
+        "tail": "deepseek-r1-zero"
+    },
+    {
+        "head": "cuda",
+        "tail": "deepseek-llm"
+    },
+    {
+        "head": "cuda",
+        "tail": "language models"
+    },
+    {
+        "head": "cuda",
+        "tail": "fast"
+    },
+    {
+        "head": "cuda",
+        "tail": "framework"
+    },
+    {
+        "head": "llama3-1",
+        "tail": "llm-serving"
+    },
+    {
+        "head": "llama3-1",
+        "tail": "pytorch"
+    },
+    {
+        "head": "llama3-1",
+        "tail": "transformer"
+    },
+    {
+        "head": "llama3-1",
+        "tail": "deepseek"
+    },
+    {
+        "head": "llama3-1",
+        "tail": "deepseek-r1-zero"
+    },
+    {
+        "head": "llama3-1",
+        "tail": "deepseek-llm"
+    },
+    {
+        "head": "llama3-1",
+        "tail": "language models"
+    },
+    {
+        "head": "llama3-1",
+        "tail": "fast"
+    },
+    {
+        "head": "llama3-1",
+        "tail": "serving"
+    },
+    {
+        "head": "llama3-1",
+        "tail": "framework"
+    },
+    {
+        "head": "llm-serving",
+        "tail": "deepseek"
+    },
+    {
+        "head": "llm-serving",
+        "tail": "deepseek-r1-zero"
+    },
+    {
+        "head": "llm-serving",
+        "tail": "deepseek-llm"
+    },
+    {
+        "head": "llm-serving",
+        "tail": "language models"
+    },
+    {
+        "head": "llm-serving",
+        "tail": "fast"
+    },
+    {
+        "head": "llm-serving",
+        "tail": "framework"
+    },
+    {
+        "head": "pytorch",
+        "tail": "deepseek"
+    },
+    {
+        "head": "pytorch",
+        "tail": "deepseek-r1-zero"
+    },
+    {
+        "head": "pytorch",
+        "tail": "deepseek-llm"
+    },
+    {
+        "head": "pytorch",
+        "tail": "fast"
+    },
+    {
+        "head": "transformer",
+        "tail": "deepseek"
+    },
+    {
+        "head": "transformer",
+        "tail": "deepseek-r1-zero"
+    },
+    {
+        "head": "transformer",
+        "tail": "deepseek-llm"
+    },
+    {
+        "head": "transformer",
+        "tail": "language models"
+    },
+    {
+        "head": "transformer",
+        "tail": "fast"
+    },
+    {
+        "head": "transformer",
+        "tail": "framework"
+    },
+    {
+        "head": "deepseek",
+        "tail": "deepseek-r1-zero"
+    },
+    {
+        "head": "deepseek",
+        "tail": "deepseek-llm"
+    },
+    {
+        "head": "deepseek",
+        "tail": "language models"
+    },
+    {
+        "head": "deepseek",
+        "tail": "fast"
+    },
+    {
+        "head": "deepseek",
+        "tail": "serving"
+    },
+    {
+        "head": "deepseek",
+        "tail": "framework"
+    },
+    {
+        "head": "deepseek-r1-zero",
+        "tail": "deepseek-llm"
+    },
+    {
+        "head": "deepseek-r1-zero",
+        "tail": "language models"
+    },
+    {
+        "head": "deepseek-r1-zero",
+        "tail": "fast"
+    },
+    {
+        "head": "deepseek-r1-zero",
+        "tail": "serving"
+    },
+    {
+        "head": "deepseek-r1-zero",
+        "tail": "framework"
+    },
+    {
+        "head": "deepseek-llm",
+        "tail": "language models"
+    },
+    {
+        "head": "deepseek-llm",
+        "tail": "fast"
+    },
+    {
+        "head": "deepseek-llm",
+        "tail": "serving"
+    },
+    {
+        "head": "deepseek-llm",
+        "tail": "framework"
+    },
+    {
+        "head": "language models",
+        "tail": "fast"
+    },
+    {
+        "head": "language models",
+        "tail": "serving"
+    },
+    {
+        "head": "language models",
+        "tail": "framework"
+    },
+    {
+        "head": "fast",
+        "tail": "serving"
+    },
+    {
+        "head": "fast",
+        "tail": "framework"
+    },
+    {
+        "head": "serving",
+        "tail": "framework"
+    },
+    {
+        "head": "survey",
+        "tail": "recommender-system"
+    },
+    {
+        "head": "survey",
+        "tail": "large-language-models"
+    },
+    {
+        "head": "survey",
+        "tail": "datasets"
+    },
+    {
+        "head": "survey",
+        "tail": "awesome"
+    },
+    {
+        "head": "survey",
+        "tail": "llm4rec"
+    },
+    {
+        "head": "survey",
+        "tail": "papers"
+    },
+    {
+        "head": "survey",
+        "tail": "list"
+    },
+    {
+        "head": "recommender-system",
+        "tail": "large-language-models"
+    },
+    {
+        "head": "recommender-system",
+        "tail": "datasets"
+    },
+    {
+        "head": "recommender-system",
+        "tail": "awesome"
+    },
+    {
+        "head": "recommender-system",
+        "tail": "llm4rec"
+    },
+    {
+        "head": "recommender-system",
+        "tail": "papers"
+    },
+    {
+        "head": "recommender-system",
+        "tail": "list"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "datasets"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "awesome"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "llm4rec"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "papers"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "list"
+    },
+    {
+        "head": "datasets",
+        "tail": "awesome"
+    },
+    {
+        "head": "datasets",
+        "tail": "llm4rec"
+    },
+    {
+        "head": "datasets",
+        "tail": "papers"
+    },
+    {
+        "head": "datasets",
+        "tail": "list"
+    },
+    {
+        "head": "awesome",
+        "tail": "llm4rec"
+    },
+    {
+        "head": "awesome",
+        "tail": "papers"
+    },
+    {
+        "head": "llm4rec",
+        "tail": "papers"
+    },
+    {
+        "head": "llm4rec",
+        "tail": "list"
+    },
+    {
+        "head": "papers",
+        "tail": "list"
     }
 ]

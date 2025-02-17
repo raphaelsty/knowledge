@@ -42323,5 +42323,65 @@
             "python",
             "docx"
         ]
+    },
+    "https://github.com/wasiahmad/Awesome-LLM-Synthetic-Data": {
+        "extra-tags": [
+            "llm",
+            "awesome",
+            "synthetic-data",
+            "list"
+        ],
+        "date": "2024-08-08",
+        "title": "Awesome-LLM-Synthetic-Data",
+        "summary": "A reading list on LLM based Synthetic Data Generation \ud83d\udd25",
+        "tags": []
+    },
+    "https://github.com/sgl-project/sglang": {
+        "extra-tags": [
+            "language models",
+            "fast",
+            "serving",
+            "framework"
+        ],
+        "date": "2024-01-08",
+        "title": "sglang",
+        "summary": "SGLang is a fast serving framework for large language models and vision language models.",
+        "tags": [
+            "python",
+            "deepseek-r1",
+            "inference",
+            "moe",
+            "llama3",
+            "vlm",
+            "llama",
+            "llava",
+            "llm",
+            "deepseek-v3",
+            "cuda",
+            "llama3-1",
+            "llm-serving",
+            "pytorch",
+            "transformer",
+            "deepseek",
+            "deepseek-r1-zero",
+            "deepseek-llm"
+        ]
+    },
+    "https://github.com/WLiK/LLM4Rec-Awesome-Papers": {
+        "extra-tags": [
+            "papers",
+            "list"
+        ],
+        "date": "2023-05-12",
+        "title": "LLM4Rec-Awesome-Papers",
+        "summary": "A list of awesome papers and resources of recommender system on large language model (LLM).",
+        "tags": [
+            "survey",
+            "recommender-system",
+            "large-language-models",
+            "datasets",
+            "awesome",
+            "llm4rec"
+        ]
     }
 }
