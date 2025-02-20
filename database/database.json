@@ -42383,5 +42383,17 @@
             "awesome",
             "llm4rec"
         ]
+    },
+    "https://github.com/Tavish9/openx2lerobot": {
+        "extra-tags": [
+            "dataset",
+            "lerobot"
+        ],
+        "date": "2025-02-19",
+        "title": "openx2lerobot",
+        "summary": "Scripts for converting OpenX(rlds) dataset to LeRobot dataset.",
+        "tags": [
+            "python"
+        ]
     }
 }
