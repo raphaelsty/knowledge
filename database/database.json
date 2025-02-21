@@ -42411,5 +42411,18 @@
             "deep-learning",
             "interpretability"
         ]
+    },
+    "https://github.com/pytorch/tensordict": {
+        "extra-tags": [
+            "pytorch",
+            "tensor",
+            "container"
+        ],
+        "date": "2022-10-19",
+        "title": "tensordict",
+        "summary": "TensorDict is a pytorch dedicated tensor container.",
+        "tags": [
+            "python"
+        ]
     }
 }
