@@ -42395,5 +42395,21 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/KempnerInstitute/overcomplete": {
+        "extra-tags": [
+            "vision",
+            "toolbox",
+            "knowledge graph completion"
+        ],
+        "date": "2024-06-14",
+        "title": "overcomplete",
+        "summary": "\ud83d\udc4b Overcomplete is a Vision-based SAE Toolbox",
+        "tags": [
+            "python",
+            "computer-vision",
+            "deep-learning",
+            "interpretability"
+        ]
     }
 }
