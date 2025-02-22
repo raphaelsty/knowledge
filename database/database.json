@@ -42424,5 +42424,34 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/ivanleomk/kura": {
+        "extra-tags": [
+            "simple",
+            "paper",
+            "language models",
+            "label",
+            "clustering"
+        ],
+        "date": "2025-01-04",
+        "title": "kura",
+        "summary": "Kura is a simple reproduction of the CLIO paper which uses language models to label user behaviour before clustering them based on embeddings recursively. This helps us understand user behaviour on a higher level without sacrificing PII.",
+        "tags": [
+            "typescript"
+        ]
+    },
+    "https://github.com/PufferAI/PufferLib": {
+        "extra-tags": [
+            "reinforcement learning",
+            "game",
+            "reinforcement-learning-environments"
+        ],
+        "date": "2022-09-17",
+        "title": "PufferLib",
+        "summary": "Simplifying reinforcement learning for complex game environments",
+        "tags": [
+            "reinforcement-learning",
+            "c"
+        ]
     }
 }
