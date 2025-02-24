@@ -42470,5 +42470,16 @@
             "rust",
             "time-series"
         ]
+    },
+    "https://github.com/microsoft/pyright": {
+        "extra-tags": [
+            "static"
+        ],
+        "date": "2019-03-12",
+        "title": "pyright",
+        "summary": "Static Type Checker for Python",
+        "tags": [
+            "python"
+        ]
     }
 }
