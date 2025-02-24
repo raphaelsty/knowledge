@@ -42453,5 +42453,22 @@
             "reinforcement-learning",
             "c"
         ]
+    },
+    "https://github.com/grafana/augurs": {
+        "extra-tags": [
+            "time series",
+            "analysis",
+            "bindings",
+            "javascript"
+        ],
+        "date": "2023-05-31",
+        "title": "augurs",
+        "summary": "Time series analysis for Rust, with bindings to Python and Javascript",
+        "tags": [
+            "hacktoberfest",
+            "time-series-analysis",
+            "rust",
+            "time-series"
+        ]
     }
 }

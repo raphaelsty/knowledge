@@ -195310,5 +195310,85 @@
     {
         "head": "game",
         "tail": "reinforcement-learning-environments"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "time-series-analysis"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "time-series"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "time series"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "analysis"
+    },
+    {
+        "head": "time-series-analysis",
+        "tail": "rust"
+    },
+    {
+        "head": "time-series-analysis",
+        "tail": "time series"
+    },
+    {
+        "head": "time-series-analysis",
+        "tail": "analysis"
+    },
+    {
+        "head": "time-series-analysis",
+        "tail": "bindings"
+    },
+    {
+        "head": "time-series-analysis",
+        "tail": "javascript"
+    },
+    {
+        "head": "rust",
+        "tail": "time-series"
+    },
+    {
+        "head": "rust",
+        "tail": "time series"
+    },
+    {
+        "head": "rust",
+        "tail": "analysis"
+    },
+    {
+        "head": "time-series",
+        "tail": "time series"
+    },
+    {
+        "head": "time-series",
+        "tail": "analysis"
+    },
+    {
+        "head": "time-series",
+        "tail": "bindings"
+    },
+    {
+        "head": "time-series",
+        "tail": "javascript"
+    },
+    {
+        "head": "time series",
+        "tail": "bindings"
+    },
+    {
+        "head": "time series",
+        "tail": "javascript"
+    },
+    {
+        "head": "analysis",
+        "tail": "bindings"
+    },
+    {
+        "head": "bindings",
+        "tail": "javascript"
     }
 ]
