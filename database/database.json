@@ -42481,5 +42481,41 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/arcee-ai/mergekit": {
+        "extra-tags": [
+            "tools",
+            "pretrained",
+            "language models",
+            "pretrained models"
+        ],
+        "date": "2023-08-21",
+        "title": "mergekit",
+        "summary": "Tools for merging pretrained large language models.",
+        "tags": [
+            "python",
+            "llm",
+            "llama",
+            "model-merging"
+        ]
+    },
+    "http://arxiv.org/abs/2502.13487": {
+        "extra-tags": [
+            "models",
+            "vision-language",
+            "textual",
+            "training"
+        ],
+        "title": "Transferring Textual Preferences to Vision-Language Understanding through Model Merging",
+        "summary": "Large vision-language models (LVLMs) perform outstandingly across various multimodal tasks. However, their ability to evaluate generated content remains limited, and training vision-language reward models (VLRMs) with preference data is computationally expensive. This paper explores a training-free alternative by merging text-based reward models (RMs) with LVLMs to create VLRMs. Our approach shows that integrating these models leads to improved performance over LVLMs' scoring and text-based RMs, offering an efficient method for incorporating textual preferences into LVLMs.",
+        "date": "2025-02-24",
+        "tags": [
+            "computer science - artificial intelligence",
+            "computer science - computation and language",
+            "computer science - computer vision and pattern recognition",
+            "computer science - machine learning",
+            "vlrm",
+            "reward model"
+        ]
     }
 }
