@@ -42517,5 +42517,18 @@
             "vlrm",
             "reward model"
         ]
+    },
+    "https://github.com/willccbb/verifiers": {
+        "extra-tags": [
+            "llm",
+            "reinforcement learning",
+            "reinforcement"
+        ],
+        "date": "2025-01-22",
+        "title": "verifiers",
+        "summary": "Verifiers for LLM Reinforcement Learning",
+        "tags": [
+            "python"
+        ]
     }
 }
