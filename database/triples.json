@@ -195582,5 +195582,41 @@
     {
         "head": "reinforcement learning",
         "tail": "reinforcement"
+    },
+    {
+        "head": "java",
+        "tail": "ocr"
+    },
+    {
+        "head": "java",
+        "tail": "web"
+    },
+    {
+        "head": "java",
+        "tail": "character ai"
+    },
+    {
+        "head": "java",
+        "tail": "optical-character-recognition"
+    },
+    {
+        "head": "ocr",
+        "tail": "web"
+    },
+    {
+        "head": "ocr",
+        "tail": "character ai"
+    },
+    {
+        "head": "web",
+        "tail": "character ai"
+    },
+    {
+        "head": "web",
+        "tail": "optical-character-recognition"
+    },
+    {
+        "head": "character ai",
+        "tail": "optical-character-recognition"
     }
 ]

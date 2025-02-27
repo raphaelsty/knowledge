@@ -42530,5 +42530,19 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/OCR4all/OCR4all": {
+        "extra-tags": [
+            "ocr",
+            "web",
+            "character ai",
+            "optical-character-recognition"
+        ],
+        "date": "2019-01-23",
+        "title": "OCR4all",
+        "summary": "Provides OCR (Optical Character Recognition) services through web applications",
+        "tags": [
+            "java"
+        ]
     }
 }
