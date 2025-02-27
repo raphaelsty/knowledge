@@ -195618,5 +195618,61 @@
     {
         "head": "character ai",
         "tail": "optical-character-recognition"
+    },
+    {
+        "head": "shell",
+        "tail": "git-scraping"
+    },
+    {
+        "head": "shell",
+        "tail": "scraper"
+    },
+    {
+        "head": "shell",
+        "tail": "template"
+    },
+    {
+        "head": "shell",
+        "tail": "repository"
+    },
+    {
+        "head": "git-scraping",
+        "tail": "git"
+    },
+    {
+        "head": "git-scraping",
+        "tail": "scraper"
+    },
+    {
+        "head": "git-scraping",
+        "tail": "template"
+    },
+    {
+        "head": "git-scraping",
+        "tail": "repository"
+    },
+    {
+        "head": "git",
+        "tail": "scraper"
+    },
+    {
+        "head": "git",
+        "tail": "template"
+    },
+    {
+        "head": "git",
+        "tail": "repository"
+    },
+    {
+        "head": "scraper",
+        "tail": "template"
+    },
+    {
+        "head": "scraper",
+        "tail": "repository"
+    },
+    {
+        "head": "template",
+        "tail": "repository"
     }
 ]

@@ -42544,5 +42544,20 @@
         "tags": [
             "java"
         ]
+    },
+    "https://github.com/simonw/git-scraper-template": {
+        "extra-tags": [
+            "git",
+            "scraper",
+            "template",
+            "repository"
+        ],
+        "date": "2025-02-26",
+        "title": "git-scraper-template",
+        "summary": "Template repository for setting up a new git scraper",
+        "tags": [
+            "shell",
+            "git-scraping"
+        ]
     }
 }
