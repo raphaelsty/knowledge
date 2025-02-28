@@ -42559,5 +42559,17 @@
             "shell",
             "git-scraping"
         ]
+    },
+    "https://github.com/cordx56/rustowl": {
+        "extra-tags": [],
+        "date": "2024-10-16",
+        "title": "rustowl",
+        "summary": "Visualize Ownership and Lifetimes in Rust",
+        "tags": [
+            "lifetime",
+            "rust",
+            "ownership",
+            "visualization"
+        ]
     }
 }

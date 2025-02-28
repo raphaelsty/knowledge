@@ -195674,5 +195674,25 @@
     {
         "head": "template",
         "tail": "repository"
+    },
+    {
+        "head": "lifetime",
+        "tail": "rust"
+    },
+    {
+        "head": "lifetime",
+        "tail": "ownership"
+    },
+    {
+        "head": "lifetime",
+        "tail": "visualization"
+    },
+    {
+        "head": "rust",
+        "tail": "ownership"
+    },
+    {
+        "head": "ownership",
+        "tail": "visualization"
     }
 ]
