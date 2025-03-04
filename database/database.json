@@ -42571,5 +42571,21 @@
             "ownership",
             "visualization"
         ]
+    },
+    "https://github.com/mitsuhiko/minijinja": {
+        "extra-tags": [
+            "minimal",
+            "template",
+            "engine"
+        ],
+        "date": "2021-09-15",
+        "title": "minijinja",
+        "summary": "MiniJinja is a powerful but minimal dependency template engine for Rust compatible with Jinja/Jinja2",
+        "tags": [
+            "rust",
+            "jinja2",
+            "jinja",
+            "templates"
+        ]
     }
 }

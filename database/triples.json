@@ -195694,5 +195694,81 @@
     {
         "head": "ownership",
         "tail": "visualization"
+    },
+    {
+        "head": "rust",
+        "tail": "jinja2"
+    },
+    {
+        "head": "rust",
+        "tail": "jinja"
+    },
+    {
+        "head": "rust",
+        "tail": "templates"
+    },
+    {
+        "head": "rust",
+        "tail": "minimal"
+    },
+    {
+        "head": "rust",
+        "tail": "template"
+    },
+    {
+        "head": "jinja2",
+        "tail": "jinja"
+    },
+    {
+        "head": "jinja2",
+        "tail": "templates"
+    },
+    {
+        "head": "jinja2",
+        "tail": "minimal"
+    },
+    {
+        "head": "jinja2",
+        "tail": "template"
+    },
+    {
+        "head": "jinja2",
+        "tail": "engine"
+    },
+    {
+        "head": "jinja",
+        "tail": "templates"
+    },
+    {
+        "head": "jinja",
+        "tail": "minimal"
+    },
+    {
+        "head": "jinja",
+        "tail": "template"
+    },
+    {
+        "head": "jinja",
+        "tail": "engine"
+    },
+    {
+        "head": "templates",
+        "tail": "minimal"
+    },
+    {
+        "head": "templates",
+        "tail": "engine"
+    },
+    {
+        "head": "minimal",
+        "tail": "template"
+    },
+    {
+        "head": "minimal",
+        "tail": "engine"
+    },
+    {
+        "head": "template",
+        "tail": "engine"
     }
 ]
