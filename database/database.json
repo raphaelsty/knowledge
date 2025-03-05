@@ -42587,5 +42587,18 @@
             "jinja",
             "templates"
         ]
+    },
+    "https://github.com/koaning/flowshow": {
+        "extra-tags": [
+            "python",
+            "python 3.",
+            "datawrapper"
+        ],
+        "date": "2025-01-14",
+        "title": "flowshow",
+        "summary": "Just a super thin wrapper for Python tasks that form a flow.",
+        "tags": [
+            "html"
+        ]
     }
 }

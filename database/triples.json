@@ -195770,5 +195770,21 @@
     {
         "head": "template",
         "tail": "engine"
+    },
+    {
+        "head": "html",
+        "tail": "python 3."
+    },
+    {
+        "head": "html",
+        "tail": "datawrapper"
+    },
+    {
+        "head": "python",
+        "tail": "datawrapper"
+    },
+    {
+        "head": "python 3.",
+        "tail": "datawrapper"
     }
 ]
