@@ -195786,5 +195786,81 @@
     {
         "head": "python 3.",
         "tail": "datawrapper"
+    },
+    {
+        "head": "hugging face",
+        "tail": "internvl"
+    },
+    {
+        "head": "hugging face",
+        "tail": "qwen"
+    },
+    {
+        "head": "hugging face",
+        "tail": "training"
+    },
+    {
+        "head": "hugging face",
+        "tail": "vlm"
+    },
+    {
+        "head": "hugging face",
+        "tail": "source"
+    },
+    {
+        "head": "hugging face",
+        "tail": "science"
+    },
+    {
+        "head": "hugging face",
+        "tail": "computer science - artificial intelligence"
+    },
+    {
+        "head": "internvl",
+        "tail": "qwen"
+    },
+    {
+        "head": "internvl",
+        "tail": "training"
+    },
+    {
+        "head": "internvl",
+        "tail": "vlm"
+    },
+    {
+        "head": "internvl",
+        "tail": "source"
+    },
+    {
+        "head": "internvl",
+        "tail": "science"
+    },
+    {
+        "head": "internvl",
+        "tail": "computer science - artificial intelligence"
+    },
+    {
+        "head": "qwen",
+        "tail": "training"
+    },
+    {
+        "head": "training",
+        "tail": "vlm"
+    },
+    {
+        "head": "training",
+        "tail": "source"
+    },
+    {
+        "head": "training",
+        "tail": "science"
+    },
+    {
+        "head": "vlm",
+        "tail": "source"
+    },
+    {
+        "head": "vlm",
+        "tail": "science"
     }
 ]
