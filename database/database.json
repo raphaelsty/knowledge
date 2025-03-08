@@ -42617,5 +42617,22 @@
             "training",
             "vlm"
         ]
+    },
+    "https://github.com/EleutherAI/lm-evaluation-harness": {
+        "extra-tags": [
+            "evaluation",
+            "framework",
+            "few-shot",
+            "language models"
+        ],
+        "date": "2020-08-28",
+        "title": "lm-evaluation-harness",
+        "summary": "A framework for few-shot evaluation of language models.",
+        "tags": [
+            "language-model",
+            "python",
+            "transformer",
+            "evaluation-framework"
+        ]
     }
 }
