@@ -195918,5 +195918,33 @@
     {
         "head": "few-shot",
         "tail": "language models"
+    },
+    {
+        "head": "data-processing",
+        "tail": "duckdb"
+    },
+    {
+        "head": "data-processing",
+        "tail": "data"
+    },
+    {
+        "head": "data-processing",
+        "tail": "processing"
+    },
+    {
+        "head": "data-processing",
+        "tail": "framework"
+    },
+    {
+        "head": "duckdb",
+        "tail": "processing"
+    },
+    {
+        "head": "duckdb",
+        "tail": "framework"
+    },
+    {
+        "head": "processing",
+        "tail": "framework"
     }
 ]

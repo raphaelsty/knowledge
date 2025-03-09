@@ -42634,5 +42634,20 @@
             "transformer",
             "evaluation-framework"
         ]
+    },
+    "https://github.com/deepseek-ai/smallpond": {
+        "extra-tags": [
+            "data",
+            "processing",
+            "framework"
+        ],
+        "date": "2025-02-24",
+        "title": "smallpond",
+        "summary": "A lightweight data processing framework built on DuckDB and 3FS.",
+        "tags": [
+            "data-processing",
+            "python",
+            "duckdb"
+        ]
     }
 }
