@@ -42649,5 +42649,31 @@
             "python",
             "duckdb"
         ]
+    },
+    "https://github.com/mistralai/mistral-evals": {
+        "extra-tags": [
+            "mistral",
+            "information-retrieval-evaluation",
+            "prediction-intervals"
+        ],
+        "date": "2024-09-13",
+        "title": "mistral-evals",
+        "summary": "",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/jzck/horQRux": {
+        "extra-tags": [
+            "code",
+            "overfitting",
+            "model-fitting"
+        ],
+        "date": "2023-04-15",
+        "title": "horQRux",
+        "summary": "QR code splitting",
+        "tags": [
+            "python"
+        ]
     }
 }
