@@ -196354,5 +196354,157 @@
     {
         "head": "datajournalism",
         "tail": "microsoft"
+    },
+    {
+        "head": "html",
+        "tail": "rag"
+    },
+    {
+        "head": "html",
+        "tail": "system"
+    },
+    {
+        "head": "html",
+        "tail": "automatically annotated data"
+    },
+    {
+        "head": "html",
+        "tail": "systems"
+    },
+    {
+        "head": "rag",
+        "tail": "system"
+    },
+    {
+        "head": "rag",
+        "tail": "automatically annotated data"
+    },
+    {
+        "head": "rag",
+        "tail": "systems"
+    },
+    {
+        "head": "system",
+        "tail": "automatically annotated data"
+    },
+    {
+        "head": "system",
+        "tail": "systems"
+    },
+    {
+        "head": "automatically annotated data",
+        "tail": "systems"
+    },
+    {
+        "head": "learning-by-doing",
+        "tail": "gpt"
+    },
+    {
+        "head": "learning-by-doing",
+        "tail": "llm"
+    },
+    {
+        "head": "learning-by-doing",
+        "tail": "graphrag"
+    },
+    {
+        "head": "learning-by-doing",
+        "tail": "gpt-4o"
+    },
+    {
+        "head": "learning-by-doing",
+        "tail": "rag"
+    },
+    {
+        "head": "learning-by-doing",
+        "tail": "python"
+    },
+    {
+        "head": "learning-by-doing",
+        "tail": "simple"
+    },
+    {
+        "head": "learning-by-doing",
+        "tail": "paper-implementations"
+    },
+    {
+        "head": "gpt",
+        "tail": "graphrag"
+    },
+    {
+        "head": "gpt",
+        "tail": "gpt-4o"
+    },
+    {
+        "head": "gpt",
+        "tail": "rag"
+    },
+    {
+        "head": "gpt",
+        "tail": "simple"
+    },
+    {
+        "head": "gpt",
+        "tail": "paper-implementations"
+    },
+    {
+        "head": "llm",
+        "tail": "graphrag"
+    },
+    {
+        "head": "llm",
+        "tail": "gpt-4o"
+    },
+    {
+        "head": "llm",
+        "tail": "paper-implementations"
+    },
+    {
+        "head": "graphrag",
+        "tail": "gpt-4o"
+    },
+    {
+        "head": "graphrag",
+        "tail": "rag"
+    },
+    {
+        "head": "graphrag",
+        "tail": "python"
+    },
+    {
+        "head": "graphrag",
+        "tail": "simple"
+    },
+    {
+        "head": "graphrag",
+        "tail": "paper-implementations"
+    },
+    {
+        "head": "gpt-4o",
+        "tail": "rag"
+    },
+    {
+        "head": "gpt-4o",
+        "tail": "python"
+    },
+    {
+        "head": "gpt-4o",
+        "tail": "simple"
+    },
+    {
+        "head": "gpt-4o",
+        "tail": "paper-implementations"
+    },
+    {
+        "head": "rag",
+        "tail": "simple"
+    },
+    {
+        "head": "rag",
+        "tail": "paper-implementations"
+    },
+    {
+        "head": "simple",
+        "tail": "paper-implementations"
     }
 ]

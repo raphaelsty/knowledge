@@ -42713,5 +42713,37 @@
         "tags": [
             "c"
         ]
+    },
+    "https://github.com/567-labs/systematically-improving-rag": {
+        "extra-tags": [
+            "rag",
+            "system",
+            "automatically annotated data",
+            "systems"
+        ],
+        "date": "2024-07-12",
+        "title": "systematically-improving-rag",
+        "summary": "",
+        "tags": [
+            "html"
+        ]
+    },
+    "https://github.com/gusye1234/nano-graphrag": {
+        "extra-tags": [
+            "simple",
+            "paper-implementations"
+        ],
+        "date": "2024-07-25",
+        "title": "nano-graphrag",
+        "summary": "A simple, easy-to-hack GraphRAG implementation",
+        "tags": [
+            "learning-by-doing",
+            "gpt",
+            "llm",
+            "graphrag",
+            "gpt-4o",
+            "rag",
+            "python"
+        ]
     }
 }
