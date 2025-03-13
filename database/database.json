@@ -42675,5 +42675,43 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/sparkfish/augraphy": {
+        "extra-tags": [
+            "augmentation",
+            "pipeline",
+            "synthetic",
+            "paper"
+        ],
+        "date": "2021-05-31",
+        "title": "augraphy",
+        "summary": "Augmentation pipeline for rendering synthetic paper printing, faxing, scanning and copy machine processes",
+        "tags": [
+            "synthetic-data",
+            "machine-learning",
+            "synthetic-dataset-generation",
+            "augmentation-pipeline",
+            "image-processing",
+            "crappification",
+            "training-data",
+            "computer-vision",
+            "python",
+            "data-pipeline",
+            "deep-neural-networks",
+            "data-augmentation"
+        ]
+    },
+    "https://github.com/unkyulee/micro-journal": {
+        "extra-tags": [
+            "journal",
+            "datajournalism",
+            "microsoft"
+        ],
+        "date": "2024-03-04",
+        "title": "micro-journal",
+        "summary": "",
+        "tags": [
+            "c"
+        ]
     }
 }

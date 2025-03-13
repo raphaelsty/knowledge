@@ -195974,5 +195974,385 @@
     {
         "head": "overfitting",
         "tail": "model-fitting"
+    },
+    {
+        "head": "synthetic-data",
+        "tail": "synthetic-dataset-generation"
+    },
+    {
+        "head": "synthetic-data",
+        "tail": "augmentation-pipeline"
+    },
+    {
+        "head": "synthetic-data",
+        "tail": "image-processing"
+    },
+    {
+        "head": "synthetic-data",
+        "tail": "crappification"
+    },
+    {
+        "head": "synthetic-data",
+        "tail": "training-data"
+    },
+    {
+        "head": "synthetic-data",
+        "tail": "computer-vision"
+    },
+    {
+        "head": "synthetic-data",
+        "tail": "data-pipeline"
+    },
+    {
+        "head": "synthetic-data",
+        "tail": "deep-neural-networks"
+    },
+    {
+        "head": "synthetic-data",
+        "tail": "data-augmentation"
+    },
+    {
+        "head": "synthetic-data",
+        "tail": "augmentation"
+    },
+    {
+        "head": "synthetic-data",
+        "tail": "pipeline"
+    },
+    {
+        "head": "synthetic-data",
+        "tail": "synthetic"
+    },
+    {
+        "head": "synthetic-data",
+        "tail": "paper"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "synthetic-dataset-generation"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "augmentation-pipeline"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "crappification"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "data-pipeline"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "synthetic"
+    },
+    {
+        "head": "synthetic-dataset-generation",
+        "tail": "augmentation-pipeline"
+    },
+    {
+        "head": "synthetic-dataset-generation",
+        "tail": "image-processing"
+    },
+    {
+        "head": "synthetic-dataset-generation",
+        "tail": "crappification"
+    },
+    {
+        "head": "synthetic-dataset-generation",
+        "tail": "training-data"
+    },
+    {
+        "head": "synthetic-dataset-generation",
+        "tail": "computer-vision"
+    },
+    {
+        "head": "synthetic-dataset-generation",
+        "tail": "python"
+    },
+    {
+        "head": "synthetic-dataset-generation",
+        "tail": "data-pipeline"
+    },
+    {
+        "head": "synthetic-dataset-generation",
+        "tail": "deep-neural-networks"
+    },
+    {
+        "head": "synthetic-dataset-generation",
+        "tail": "data-augmentation"
+    },
+    {
+        "head": "synthetic-dataset-generation",
+        "tail": "augmentation"
+    },
+    {
+        "head": "synthetic-dataset-generation",
+        "tail": "pipeline"
+    },
+    {
+        "head": "synthetic-dataset-generation",
+        "tail": "synthetic"
+    },
+    {
+        "head": "synthetic-dataset-generation",
+        "tail": "paper"
+    },
+    {
+        "head": "augmentation-pipeline",
+        "tail": "image-processing"
+    },
+    {
+        "head": "augmentation-pipeline",
+        "tail": "crappification"
+    },
+    {
+        "head": "augmentation-pipeline",
+        "tail": "training-data"
+    },
+    {
+        "head": "augmentation-pipeline",
+        "tail": "computer-vision"
+    },
+    {
+        "head": "augmentation-pipeline",
+        "tail": "python"
+    },
+    {
+        "head": "augmentation-pipeline",
+        "tail": "data-pipeline"
+    },
+    {
+        "head": "augmentation-pipeline",
+        "tail": "deep-neural-networks"
+    },
+    {
+        "head": "augmentation-pipeline",
+        "tail": "data-augmentation"
+    },
+    {
+        "head": "augmentation-pipeline",
+        "tail": "augmentation"
+    },
+    {
+        "head": "augmentation-pipeline",
+        "tail": "pipeline"
+    },
+    {
+        "head": "augmentation-pipeline",
+        "tail": "synthetic"
+    },
+    {
+        "head": "augmentation-pipeline",
+        "tail": "paper"
+    },
+    {
+        "head": "image-processing",
+        "tail": "crappification"
+    },
+    {
+        "head": "image-processing",
+        "tail": "training-data"
+    },
+    {
+        "head": "image-processing",
+        "tail": "data-pipeline"
+    },
+    {
+        "head": "image-processing",
+        "tail": "deep-neural-networks"
+    },
+    {
+        "head": "image-processing",
+        "tail": "data-augmentation"
+    },
+    {
+        "head": "image-processing",
+        "tail": "synthetic"
+    },
+    {
+        "head": "image-processing",
+        "tail": "paper"
+    },
+    {
+        "head": "crappification",
+        "tail": "training-data"
+    },
+    {
+        "head": "crappification",
+        "tail": "computer-vision"
+    },
+    {
+        "head": "crappification",
+        "tail": "python"
+    },
+    {
+        "head": "crappification",
+        "tail": "data-pipeline"
+    },
+    {
+        "head": "crappification",
+        "tail": "deep-neural-networks"
+    },
+    {
+        "head": "crappification",
+        "tail": "data-augmentation"
+    },
+    {
+        "head": "crappification",
+        "tail": "augmentation"
+    },
+    {
+        "head": "crappification",
+        "tail": "pipeline"
+    },
+    {
+        "head": "crappification",
+        "tail": "synthetic"
+    },
+    {
+        "head": "crappification",
+        "tail": "paper"
+    },
+    {
+        "head": "training-data",
+        "tail": "computer-vision"
+    },
+    {
+        "head": "training-data",
+        "tail": "data-pipeline"
+    },
+    {
+        "head": "training-data",
+        "tail": "deep-neural-networks"
+    },
+    {
+        "head": "training-data",
+        "tail": "augmentation"
+    },
+    {
+        "head": "training-data",
+        "tail": "pipeline"
+    },
+    {
+        "head": "training-data",
+        "tail": "synthetic"
+    },
+    {
+        "head": "training-data",
+        "tail": "paper"
+    },
+    {
+        "head": "computer-vision",
+        "tail": "data-pipeline"
+    },
+    {
+        "head": "computer-vision",
+        "tail": "deep-neural-networks"
+    },
+    {
+        "head": "computer-vision",
+        "tail": "synthetic"
+    },
+    {
+        "head": "computer-vision",
+        "tail": "paper"
+    },
+    {
+        "head": "data-pipeline",
+        "tail": "deep-neural-networks"
+    },
+    {
+        "head": "data-pipeline",
+        "tail": "data-augmentation"
+    },
+    {
+        "head": "data-pipeline",
+        "tail": "augmentation"
+    },
+    {
+        "head": "data-pipeline",
+        "tail": "pipeline"
+    },
+    {
+        "head": "data-pipeline",
+        "tail": "synthetic"
+    },
+    {
+        "head": "data-pipeline",
+        "tail": "paper"
+    },
+    {
+        "head": "deep-neural-networks",
+        "tail": "data-augmentation"
+    },
+    {
+        "head": "deep-neural-networks",
+        "tail": "augmentation"
+    },
+    {
+        "head": "deep-neural-networks",
+        "tail": "pipeline"
+    },
+    {
+        "head": "deep-neural-networks",
+        "tail": "synthetic"
+    },
+    {
+        "head": "deep-neural-networks",
+        "tail": "paper"
+    },
+    {
+        "head": "data-augmentation",
+        "tail": "pipeline"
+    },
+    {
+        "head": "data-augmentation",
+        "tail": "synthetic"
+    },
+    {
+        "head": "data-augmentation",
+        "tail": "paper"
+    },
+    {
+        "head": "augmentation",
+        "tail": "synthetic"
+    },
+    {
+        "head": "augmentation",
+        "tail": "paper"
+    },
+    {
+        "head": "pipeline",
+        "tail": "synthetic"
+    },
+    {
+        "head": "pipeline",
+        "tail": "paper"
+    },
+    {
+        "head": "c",
+        "tail": "journal"
+    },
+    {
+        "head": "c",
+        "tail": "datajournalism"
+    },
+    {
+        "head": "c",
+        "tail": "microsoft"
+    },
+    {
+        "head": "journal",
+        "tail": "datajournalism"
+    },
+    {
+        "head": "journal",
+        "tail": "microsoft"
+    },
+    {
+        "head": "datajournalism",
+        "tail": "microsoft"
     }
 ]
