@@ -42745,5 +42745,20 @@
             "rag",
             "python"
         ]
+    },
+    "https://github.com/adrialopezescoriza/demo3": {
+        "extra-tags": [
+            "efficient-implementations",
+            "paper-implementations",
+            "complementary"
+        ],
+        "date": "2025-02-20",
+        "title": "demo3",
+        "summary": "Official implementation of DEMO3",
+        "tags": [
+            "python",
+            "robotics",
+            "reinforcement-learning"
+        ]
     }
 }
