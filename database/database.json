@@ -42890,5 +42890,34 @@
         "tags": [
             "rust"
         ]
+    },
+    "https://github.com/maximilienroberti/lerobotdepot": {
+        "extra-tags": [
+            "community",
+            "repository",
+            "open-source",
+            "hardware",
+            "lerobot",
+            "robotics",
+            "state-of-the-art"
+        ],
+        "date": "2025-03-18",
+        "title": "lerobotdepot",
+        "summary": "LeRobotDepot is a community-driven repository listing open-source hardware, components, and 3D-printable projects compatible with the LeRobot library. It helps users easily discover, build, and contribute to affordable, accessible robotics solutions powered by state-of-the-art AI.",
+        "tags": []
+    },
+    "https://github.com/apirrone/Open_Duck_Playground": {
+        "extra-tags": [
+            "project",
+            "mujoco",
+            "playground",
+            "rl"
+        ],
+        "date": "2025-02-24",
+        "title": "Open_Duck_Playground",
+        "summary": "Open Duck Project's Mujoco playground RL environments",
+        "tags": [
+            "python"
+        ]
     }
 }
