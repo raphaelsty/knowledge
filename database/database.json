@@ -42919,5 +42919,32 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/drexalt/splax": {
+        "extra-tags": [
+            "splade",
+            "training",
+            "jax",
+            "flax"
+        ],
+        "date": "2024-11-07",
+        "title": "splax",
+        "summary": "SPLADE training in JAX/Flax",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/drexalt/vit_registers_jax": {
+        "extra-tags": [
+            "registry",
+            "oci-registry",
+            "image-registry"
+        ],
+        "date": "2024-02-01",
+        "title": "vit_registers_jax",
+        "summary": "",
+        "tags": [
+            "jupyter notebook"
+        ]
     }
 }
