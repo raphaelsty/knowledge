@@ -42946,5 +42946,38 @@
         "tags": [
             "jupyter notebook"
         ]
+    },
+    "https://github.com/flowersteam/MAGELLAN": {
+        "extra-tags": [
+            "predictions",
+            "learning",
+            "agents"
+        ],
+        "date": "2025-02-11",
+        "title": "MAGELLAN",
+        "summary": "MAGELLAN: Metacognitive predictions of learning progress guide autotelic LLM agents in large goal spaces",
+        "tags": [
+            "curriculum-learning",
+            "metacognition",
+            "python",
+            "rl",
+            "llm"
+        ]
+    },
+    "https://github.com/Slicer/light-the-torch": {
+        "extra-tags": [
+            "torch",
+            "backend"
+        ],
+        "date": "2020-07-09",
+        "title": "light-the-torch",
+        "summary": "Install PyTorch distributions with computation backend auto-detection",
+        "tags": [
+            "pip",
+            "install",
+            "cuda",
+            "python",
+            "pytorch"
+        ]
     }
 }
