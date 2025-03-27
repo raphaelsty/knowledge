@@ -42979,5 +42979,19 @@
             "python",
             "pytorch"
         ]
+    },
+    "https://github.com/datadisciple/strava-datastack": {
+        "extra-tags": [
+            "modern",
+            "data",
+            "pipeline",
+            "duckdb"
+        ],
+        "date": "2024-11-11",
+        "title": "strava-datastack",
+        "summary": "A \"modern\" Strava data pipeline fueled by dlt, duckdb, dbt, and evidence.dev",
+        "tags": [
+            "python"
+        ]
     }
 }
