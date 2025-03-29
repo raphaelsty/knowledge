@@ -42993,5 +42993,43 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/docling-project/docling": {
+        "extra-tags": [
+            "nlp long documents"
+        ],
+        "date": "2024-07-09",
+        "title": "docling",
+        "summary": "Get your documents ready for gen AI",
+        "tags": [
+            "document-parser",
+            "document-parsing",
+            "pptx",
+            "xlsx",
+            "tables",
+            "ai",
+            "python",
+            "html",
+            "markdown",
+            "pdf-converter",
+            "documents",
+            "pdf",
+            "pdf-to-json",
+            "pdf-to-text",
+            "convert",
+            "docx"
+        ]
+    },
+    "https://terrytao.wordpress.com/2025/03/26/decomposing-a-factorial-into-large-factors/": {
+        "extra-tags": [
+            "factorization",
+            "risk-factors"
+        ],
+        "title": "Hackernews Decomposing a Factorial into Large Factors (terrytao.wordpress.com)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2025-03-29"
     }
 }

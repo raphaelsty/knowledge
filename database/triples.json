@@ -197878,5 +197878,425 @@
     {
         "head": "pipeline",
         "tail": "duckdb"
+    },
+    {
+        "head": "document-parser",
+        "tail": "pptx"
+    },
+    {
+        "head": "document-parser",
+        "tail": "xlsx"
+    },
+    {
+        "head": "document-parser",
+        "tail": "tables"
+    },
+    {
+        "head": "document-parser",
+        "tail": "ai"
+    },
+    {
+        "head": "document-parser",
+        "tail": "python"
+    },
+    {
+        "head": "document-parser",
+        "tail": "markdown"
+    },
+    {
+        "head": "document-parser",
+        "tail": "pdf-converter"
+    },
+    {
+        "head": "document-parser",
+        "tail": "documents"
+    },
+    {
+        "head": "document-parser",
+        "tail": "convert"
+    },
+    {
+        "head": "document-parser",
+        "tail": "nlp long documents"
+    },
+    {
+        "head": "document-parsing",
+        "tail": "pptx"
+    },
+    {
+        "head": "document-parsing",
+        "tail": "xlsx"
+    },
+    {
+        "head": "document-parsing",
+        "tail": "tables"
+    },
+    {
+        "head": "document-parsing",
+        "tail": "ai"
+    },
+    {
+        "head": "document-parsing",
+        "tail": "python"
+    },
+    {
+        "head": "document-parsing",
+        "tail": "markdown"
+    },
+    {
+        "head": "document-parsing",
+        "tail": "pdf-converter"
+    },
+    {
+        "head": "document-parsing",
+        "tail": "documents"
+    },
+    {
+        "head": "document-parsing",
+        "tail": "convert"
+    },
+    {
+        "head": "document-parsing",
+        "tail": "nlp long documents"
+    },
+    {
+        "head": "pptx",
+        "tail": "xlsx"
+    },
+    {
+        "head": "pptx",
+        "tail": "tables"
+    },
+    {
+        "head": "pptx",
+        "tail": "ai"
+    },
+    {
+        "head": "pptx",
+        "tail": "python"
+    },
+    {
+        "head": "pptx",
+        "tail": "html"
+    },
+    {
+        "head": "pptx",
+        "tail": "markdown"
+    },
+    {
+        "head": "pptx",
+        "tail": "pdf-converter"
+    },
+    {
+        "head": "pptx",
+        "tail": "documents"
+    },
+    {
+        "head": "pptx",
+        "tail": "pdf"
+    },
+    {
+        "head": "pptx",
+        "tail": "pdf-to-json"
+    },
+    {
+        "head": "pptx",
+        "tail": "pdf-to-text"
+    },
+    {
+        "head": "pptx",
+        "tail": "convert"
+    },
+    {
+        "head": "pptx",
+        "tail": "docx"
+    },
+    {
+        "head": "pptx",
+        "tail": "nlp long documents"
+    },
+    {
+        "head": "xlsx",
+        "tail": "tables"
+    },
+    {
+        "head": "xlsx",
+        "tail": "ai"
+    },
+    {
+        "head": "xlsx",
+        "tail": "python"
+    },
+    {
+        "head": "xlsx",
+        "tail": "html"
+    },
+    {
+        "head": "xlsx",
+        "tail": "markdown"
+    },
+    {
+        "head": "xlsx",
+        "tail": "pdf-converter"
+    },
+    {
+        "head": "xlsx",
+        "tail": "documents"
+    },
+    {
+        "head": "xlsx",
+        "tail": "pdf"
+    },
+    {
+        "head": "xlsx",
+        "tail": "pdf-to-json"
+    },
+    {
+        "head": "xlsx",
+        "tail": "pdf-to-text"
+    },
+    {
+        "head": "xlsx",
+        "tail": "convert"
+    },
+    {
+        "head": "xlsx",
+        "tail": "docx"
+    },
+    {
+        "head": "xlsx",
+        "tail": "nlp long documents"
+    },
+    {
+        "head": "tables",
+        "tail": "ai"
+    },
+    {
+        "head": "tables",
+        "tail": "html"
+    },
+    {
+        "head": "tables",
+        "tail": "pdf-converter"
+    },
+    {
+        "head": "tables",
+        "tail": "documents"
+    },
+    {
+        "head": "tables",
+        "tail": "pdf"
+    },
+    {
+        "head": "tables",
+        "tail": "pdf-to-json"
+    },
+    {
+        "head": "tables",
+        "tail": "pdf-to-text"
+    },
+    {
+        "head": "tables",
+        "tail": "convert"
+    },
+    {
+        "head": "tables",
+        "tail": "docx"
+    },
+    {
+        "head": "tables",
+        "tail": "nlp long documents"
+    },
+    {
+        "head": "ai",
+        "tail": "html"
+    },
+    {
+        "head": "ai",
+        "tail": "markdown"
+    },
+    {
+        "head": "ai",
+        "tail": "pdf-converter"
+    },
+    {
+        "head": "ai",
+        "tail": "documents"
+    },
+    {
+        "head": "ai",
+        "tail": "pdf"
+    },
+    {
+        "head": "ai",
+        "tail": "pdf-to-json"
+    },
+    {
+        "head": "ai",
+        "tail": "pdf-to-text"
+    },
+    {
+        "head": "ai",
+        "tail": "convert"
+    },
+    {
+        "head": "ai",
+        "tail": "docx"
+    },
+    {
+        "head": "ai",
+        "tail": "nlp long documents"
+    },
+    {
+        "head": "python",
+        "tail": "documents"
+    },
+    {
+        "head": "python",
+        "tail": "pdf-to-json"
+    },
+    {
+        "head": "python",
+        "tail": "pdf-to-text"
+    },
+    {
+        "head": "python",
+        "tail": "convert"
+    },
+    {
+        "head": "python",
+        "tail": "nlp long documents"
+    },
+    {
+        "head": "html",
+        "tail": "pdf-converter"
+    },
+    {
+        "head": "html",
+        "tail": "documents"
+    },
+    {
+        "head": "html",
+        "tail": "convert"
+    },
+    {
+        "head": "html",
+        "tail": "nlp long documents"
+    },
+    {
+        "head": "markdown",
+        "tail": "pdf-converter"
+    },
+    {
+        "head": "markdown",
+        "tail": "documents"
+    },
+    {
+        "head": "markdown",
+        "tail": "pdf-to-json"
+    },
+    {
+        "head": "markdown",
+        "tail": "pdf-to-text"
+    },
+    {
+        "head": "markdown",
+        "tail": "convert"
+    },
+    {
+        "head": "markdown",
+        "tail": "docx"
+    },
+    {
+        "head": "markdown",
+        "tail": "nlp long documents"
+    },
+    {
+        "head": "pdf-converter",
+        "tail": "documents"
+    },
+    {
+        "head": "pdf-converter",
+        "tail": "pdf-to-json"
+    },
+    {
+        "head": "pdf-converter",
+        "tail": "pdf-to-text"
+    },
+    {
+        "head": "pdf-converter",
+        "tail": "convert"
+    },
+    {
+        "head": "pdf-converter",
+        "tail": "docx"
+    },
+    {
+        "head": "pdf-converter",
+        "tail": "nlp long documents"
+    },
+    {
+        "head": "documents",
+        "tail": "pdf"
+    },
+    {
+        "head": "documents",
+        "tail": "pdf-to-json"
+    },
+    {
+        "head": "documents",
+        "tail": "pdf-to-text"
+    },
+    {
+        "head": "documents",
+        "tail": "convert"
+    },
+    {
+        "head": "documents",
+        "tail": "docx"
+    },
+    {
+        "head": "documents",
+        "tail": "nlp long documents"
+    },
+    {
+        "head": "pdf",
+        "tail": "convert"
+    },
+    {
+        "head": "pdf",
+        "tail": "nlp long documents"
+    },
+    {
+        "head": "pdf-to-json",
+        "tail": "convert"
+    },
+    {
+        "head": "pdf-to-json",
+        "tail": "nlp long documents"
+    },
+    {
+        "head": "pdf-to-text",
+        "tail": "convert"
+    },
+    {
+        "head": "pdf-to-text",
+        "tail": "nlp long documents"
+    },
+    {
+        "head": "convert",
+        "tail": "docx"
+    },
+    {
+        "head": "convert",
+        "tail": "nlp long documents"
+    },
+    {
+        "head": "docx",
+        "tail": "nlp long documents"
+    },
+    {
+        "head": "factorization",
+        "tail": "risk-factors"
     }
 ]
