@@ -43031,5 +43031,24 @@
         ],
         "summary": "",
         "date": "2025-03-29"
+    },
+    "https://github.com/ariana-dot-dev/ariana": {
+        "extra-tags": [
+            "debug",
+            "js",
+            "code"
+        ],
+        "date": "2025-02-21",
+        "title": "ariana",
+        "summary": "Debug JS/TS/Python with an AI that spies on your code when it runs",
+        "tags": [
+            "cursor",
+            "typescript",
+            "python",
+            "extension",
+            "debugging",
+            "vscode",
+            "ai"
+        ]
     }
 }

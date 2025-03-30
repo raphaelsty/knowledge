@@ -198298,5 +198298,133 @@
     {
         "head": "factorization",
         "tail": "risk-factors"
+    },
+    {
+        "head": "cursor",
+        "tail": "typescript"
+    },
+    {
+        "head": "cursor",
+        "tail": "python"
+    },
+    {
+        "head": "cursor",
+        "tail": "extension"
+    },
+    {
+        "head": "cursor",
+        "tail": "debugging"
+    },
+    {
+        "head": "cursor",
+        "tail": "vscode"
+    },
+    {
+        "head": "cursor",
+        "tail": "ai"
+    },
+    {
+        "head": "cursor",
+        "tail": "debug"
+    },
+    {
+        "head": "cursor",
+        "tail": "js"
+    },
+    {
+        "head": "cursor",
+        "tail": "code"
+    },
+    {
+        "head": "typescript",
+        "tail": "debugging"
+    },
+    {
+        "head": "typescript",
+        "tail": "debug"
+    },
+    {
+        "head": "typescript",
+        "tail": "js"
+    },
+    {
+        "head": "python",
+        "tail": "vscode"
+    },
+    {
+        "head": "python",
+        "tail": "js"
+    },
+    {
+        "head": "extension",
+        "tail": "debugging"
+    },
+    {
+        "head": "extension",
+        "tail": "vscode"
+    },
+    {
+        "head": "extension",
+        "tail": "ai"
+    },
+    {
+        "head": "extension",
+        "tail": "debug"
+    },
+    {
+        "head": "extension",
+        "tail": "js"
+    },
+    {
+        "head": "extension",
+        "tail": "code"
+    },
+    {
+        "head": "debugging",
+        "tail": "vscode"
+    },
+    {
+        "head": "debugging",
+        "tail": "ai"
+    },
+    {
+        "head": "debugging",
+        "tail": "js"
+    },
+    {
+        "head": "debugging",
+        "tail": "code"
+    },
+    {
+        "head": "vscode",
+        "tail": "ai"
+    },
+    {
+        "head": "vscode",
+        "tail": "debug"
+    },
+    {
+        "head": "vscode",
+        "tail": "js"
+    },
+    {
+        "head": "ai",
+        "tail": "debug"
+    },
+    {
+        "head": "ai",
+        "tail": "js"
+    },
+    {
+        "head": "debug",
+        "tail": "js"
+    },
+    {
+        "head": "debug",
+        "tail": "code"
+    },
+    {
+        "head": "js",
+        "tail": "code"
     }
 ]
