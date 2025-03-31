@@ -198426,5 +198426,25 @@
     {
         "head": "js",
         "tail": "code"
+    },
+    {
+        "head": "javascript",
+        "tail": "tree"
+    },
+    {
+        "head": "javascript",
+        "tail": "hierarchical"
+    },
+    {
+        "head": "tree",
+        "tail": "visualization"
+    },
+    {
+        "head": "tree",
+        "tail": "hierarchical"
+    },
+    {
+        "head": "visualization",
+        "tail": "hierarchical"
     }
 ]

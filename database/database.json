@@ -43050,5 +43050,31 @@
             "vscode",
             "ai"
         ]
+    },
+    "https://github.com/jackyangzzh/Amazon-Product-Tree": {
+        "extra-tags": [
+            "tree",
+            "data",
+            "visualization",
+            "hierarchical"
+        ],
+        "date": "2019-12-02",
+        "title": "Amazon-Product-Tree",
+        "summary": "A tree data visualization based on hierarchical Amazon Products and their Categories",
+        "tags": [
+            "javascript"
+        ]
+    },
+    "http://blog.dusktreader.dev/2025/03/29/self-contained-python-scripts-with-uv/": {
+        "extra-tags": [
+            "python",
+            "dev"
+        ],
+        "title": "Hackernews Self-contained Python scripts with uv (dusktreader.dev)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2025-03-31"
     }
 }
