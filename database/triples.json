@@ -198446,5 +198446,57 @@
     {
         "head": "visualization",
         "tail": "hierarchical"
+    },
+    {
+        "head": "jamstack",
+        "tail": "js\n- graphql"
+    },
+    {
+        "head": "jamstack",
+        "tail": "strawberry-graphql"
+    },
+    {
+        "head": "typescript",
+        "tail": "js\n- graphql"
+    },
+    {
+        "head": "typescript",
+        "tail": "strawberry-graphql"
+    },
+    {
+        "head": "graphql",
+        "tail": "js\n- graphql"
+    },
+    {
+        "head": "graphql",
+        "tail": "strawberry-graphql"
+    },
+    {
+        "head": "react",
+        "tail": "js\n- graphql"
+    },
+    {
+        "head": "react",
+        "tail": "strawberry-graphql"
+    },
+    {
+        "head": "apollo",
+        "tail": "js\n- graphql"
+    },
+    {
+        "head": "apollo",
+        "tail": "strawberry-graphql"
+    },
+    {
+        "head": "prisma",
+        "tail": "js\n- graphql"
+    },
+    {
+        "head": "prisma",
+        "tail": "strawberry-graphql"
+    },
+    {
+        "head": "js\n- graphql",
+        "tail": "strawberry-graphql"
     }
 ]

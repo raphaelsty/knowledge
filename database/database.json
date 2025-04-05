@@ -43076,5 +43076,22 @@
         ],
         "summary": "",
         "date": "2025-03-31"
+    },
+    "https://github.com/redwoodjs/graphql": {
+        "extra-tags": [
+            "js\n- graphql",
+            "strawberry-graphql"
+        ],
+        "date": "2019-06-09",
+        "title": "graphql",
+        "summary": "RedwoodGraphQL",
+        "tags": [
+            "jamstack",
+            "typescript",
+            "graphql",
+            "react",
+            "apollo",
+            "prisma"
+        ]
     }
 }
