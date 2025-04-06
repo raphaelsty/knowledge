@@ -43093,5 +43093,49 @@
             "apollo",
             "prisma"
         ]
+    },
+    "https://github.com/mattiasthalen/adventure-works": {
+        "extra-tags": [
+            "modern",
+            "schema",
+            "principles"
+        ],
+        "date": "2025-02-01",
+        "title": "adventure-works",
+        "summary": "Modern serverless lakehouse implementing HOOK methodology, Unified Star Schema (USS), and Analytical Data Storage System (ADSS) principles on Adventure Works. Features programmatic model generation, event-enhanced Puppini bridges, and temporal resolution across DAS/DAB/DAR layers.",
+        "tags": [
+            "data-engineering",
+            "hook-methodology",
+            "iceberg",
+            "sqlmesh",
+            "dimensional-modeling",
+            "unified-star-schema",
+            "analytical-data-storage-system",
+            "data-modeling",
+            "serverless",
+            "data-architecture",
+            "lakehouse",
+            "data-warehouse",
+            "python",
+            "duckdb"
+        ]
+    },
+    "https://github.com/dfsnow/opentimes": {
+        "extra-tags": [
+            "geography",
+            "classification relations between classes"
+        ],
+        "date": "2024-09-27",
+        "title": "opentimes",
+        "summary": "Free travel times between U.S. Census geographies",
+        "tags": [
+            "accessibility",
+            "osm",
+            "travel-times",
+            "big-data",
+            "python",
+            "spatial-data",
+            "travel-time-estimation"
+        ]
     }
 }

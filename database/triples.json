@@ -198498,5 +198498,649 @@
     {
         "head": "js\n- graphql",
         "tail": "strawberry-graphql"
+    },
+    {
+        "head": "data-engineering",
+        "tail": "hook-methodology"
+    },
+    {
+        "head": "data-engineering",
+        "tail": "iceberg"
+    },
+    {
+        "head": "data-engineering",
+        "tail": "sqlmesh"
+    },
+    {
+        "head": "data-engineering",
+        "tail": "dimensional-modeling"
+    },
+    {
+        "head": "data-engineering",
+        "tail": "unified-star-schema"
+    },
+    {
+        "head": "data-engineering",
+        "tail": "analytical-data-storage-system"
+    },
+    {
+        "head": "data-engineering",
+        "tail": "data-modeling"
+    },
+    {
+        "head": "data-engineering",
+        "tail": "serverless"
+    },
+    {
+        "head": "data-engineering",
+        "tail": "data-architecture"
+    },
+    {
+        "head": "data-engineering",
+        "tail": "lakehouse"
+    },
+    {
+        "head": "data-engineering",
+        "tail": "modern"
+    },
+    {
+        "head": "data-engineering",
+        "tail": "schema"
+    },
+    {
+        "head": "data-engineering",
+        "tail": "principles"
+    },
+    {
+        "head": "hook-methodology",
+        "tail": "iceberg"
+    },
+    {
+        "head": "hook-methodology",
+        "tail": "sqlmesh"
+    },
+    {
+        "head": "hook-methodology",
+        "tail": "dimensional-modeling"
+    },
+    {
+        "head": "hook-methodology",
+        "tail": "unified-star-schema"
+    },
+    {
+        "head": "hook-methodology",
+        "tail": "analytical-data-storage-system"
+    },
+    {
+        "head": "hook-methodology",
+        "tail": "data-modeling"
+    },
+    {
+        "head": "hook-methodology",
+        "tail": "serverless"
+    },
+    {
+        "head": "hook-methodology",
+        "tail": "data-architecture"
+    },
+    {
+        "head": "hook-methodology",
+        "tail": "lakehouse"
+    },
+    {
+        "head": "hook-methodology",
+        "tail": "data-warehouse"
+    },
+    {
+        "head": "hook-methodology",
+        "tail": "python"
+    },
+    {
+        "head": "hook-methodology",
+        "tail": "duckdb"
+    },
+    {
+        "head": "hook-methodology",
+        "tail": "modern"
+    },
+    {
+        "head": "hook-methodology",
+        "tail": "schema"
+    },
+    {
+        "head": "hook-methodology",
+        "tail": "principles"
+    },
+    {
+        "head": "iceberg",
+        "tail": "sqlmesh"
+    },
+    {
+        "head": "iceberg",
+        "tail": "dimensional-modeling"
+    },
+    {
+        "head": "iceberg",
+        "tail": "unified-star-schema"
+    },
+    {
+        "head": "iceberg",
+        "tail": "analytical-data-storage-system"
+    },
+    {
+        "head": "iceberg",
+        "tail": "data-modeling"
+    },
+    {
+        "head": "iceberg",
+        "tail": "serverless"
+    },
+    {
+        "head": "iceberg",
+        "tail": "data-architecture"
+    },
+    {
+        "head": "iceberg",
+        "tail": "lakehouse"
+    },
+    {
+        "head": "iceberg",
+        "tail": "data-warehouse"
+    },
+    {
+        "head": "iceberg",
+        "tail": "python"
+    },
+    {
+        "head": "iceberg",
+        "tail": "duckdb"
+    },
+    {
+        "head": "iceberg",
+        "tail": "modern"
+    },
+    {
+        "head": "iceberg",
+        "tail": "schema"
+    },
+    {
+        "head": "iceberg",
+        "tail": "principles"
+    },
+    {
+        "head": "sqlmesh",
+        "tail": "dimensional-modeling"
+    },
+    {
+        "head": "sqlmesh",
+        "tail": "unified-star-schema"
+    },
+    {
+        "head": "sqlmesh",
+        "tail": "analytical-data-storage-system"
+    },
+    {
+        "head": "sqlmesh",
+        "tail": "data-modeling"
+    },
+    {
+        "head": "sqlmesh",
+        "tail": "serverless"
+    },
+    {
+        "head": "sqlmesh",
+        "tail": "data-architecture"
+    },
+    {
+        "head": "sqlmesh",
+        "tail": "lakehouse"
+    },
+    {
+        "head": "sqlmesh",
+        "tail": "data-warehouse"
+    },
+    {
+        "head": "sqlmesh",
+        "tail": "python"
+    },
+    {
+        "head": "sqlmesh",
+        "tail": "duckdb"
+    },
+    {
+        "head": "sqlmesh",
+        "tail": "modern"
+    },
+    {
+        "head": "sqlmesh",
+        "tail": "schema"
+    },
+    {
+        "head": "sqlmesh",
+        "tail": "principles"
+    },
+    {
+        "head": "dimensional-modeling",
+        "tail": "unified-star-schema"
+    },
+    {
+        "head": "dimensional-modeling",
+        "tail": "analytical-data-storage-system"
+    },
+    {
+        "head": "dimensional-modeling",
+        "tail": "data-modeling"
+    },
+    {
+        "head": "dimensional-modeling",
+        "tail": "serverless"
+    },
+    {
+        "head": "dimensional-modeling",
+        "tail": "data-architecture"
+    },
+    {
+        "head": "dimensional-modeling",
+        "tail": "lakehouse"
+    },
+    {
+        "head": "dimensional-modeling",
+        "tail": "data-warehouse"
+    },
+    {
+        "head": "dimensional-modeling",
+        "tail": "python"
+    },
+    {
+        "head": "dimensional-modeling",
+        "tail": "duckdb"
+    },
+    {
+        "head": "dimensional-modeling",
+        "tail": "modern"
+    },
+    {
+        "head": "dimensional-modeling",
+        "tail": "schema"
+    },
+    {
+        "head": "dimensional-modeling",
+        "tail": "principles"
+    },
+    {
+        "head": "unified-star-schema",
+        "tail": "analytical-data-storage-system"
+    },
+    {
+        "head": "unified-star-schema",
+        "tail": "data-modeling"
+    },
+    {
+        "head": "unified-star-schema",
+        "tail": "serverless"
+    },
+    {
+        "head": "unified-star-schema",
+        "tail": "data-architecture"
+    },
+    {
+        "head": "unified-star-schema",
+        "tail": "lakehouse"
+    },
+    {
+        "head": "unified-star-schema",
+        "tail": "data-warehouse"
+    },
+    {
+        "head": "unified-star-schema",
+        "tail": "python"
+    },
+    {
+        "head": "unified-star-schema",
+        "tail": "duckdb"
+    },
+    {
+        "head": "unified-star-schema",
+        "tail": "modern"
+    },
+    {
+        "head": "unified-star-schema",
+        "tail": "schema"
+    },
+    {
+        "head": "unified-star-schema",
+        "tail": "principles"
+    },
+    {
+        "head": "analytical-data-storage-system",
+        "tail": "data-modeling"
+    },
+    {
+        "head": "analytical-data-storage-system",
+        "tail": "serverless"
+    },
+    {
+        "head": "analytical-data-storage-system",
+        "tail": "data-architecture"
+    },
+    {
+        "head": "analytical-data-storage-system",
+        "tail": "lakehouse"
+    },
+    {
+        "head": "analytical-data-storage-system",
+        "tail": "data-warehouse"
+    },
+    {
+        "head": "analytical-data-storage-system",
+        "tail": "python"
+    },
+    {
+        "head": "analytical-data-storage-system",
+        "tail": "duckdb"
+    },
+    {
+        "head": "analytical-data-storage-system",
+        "tail": "modern"
+    },
+    {
+        "head": "analytical-data-storage-system",
+        "tail": "schema"
+    },
+    {
+        "head": "analytical-data-storage-system",
+        "tail": "principles"
+    },
+    {
+        "head": "data-modeling",
+        "tail": "serverless"
+    },
+    {
+        "head": "data-modeling",
+        "tail": "data-architecture"
+    },
+    {
+        "head": "data-modeling",
+        "tail": "lakehouse"
+    },
+    {
+        "head": "data-modeling",
+        "tail": "data-warehouse"
+    },
+    {
+        "head": "data-modeling",
+        "tail": "duckdb"
+    },
+    {
+        "head": "data-modeling",
+        "tail": "modern"
+    },
+    {
+        "head": "data-modeling",
+        "tail": "schema"
+    },
+    {
+        "head": "data-modeling",
+        "tail": "principles"
+    },
+    {
+        "head": "serverless",
+        "tail": "data-architecture"
+    },
+    {
+        "head": "serverless",
+        "tail": "lakehouse"
+    },
+    {
+        "head": "serverless",
+        "tail": "data-warehouse"
+    },
+    {
+        "head": "serverless",
+        "tail": "duckdb"
+    },
+    {
+        "head": "serverless",
+        "tail": "modern"
+    },
+    {
+        "head": "serverless",
+        "tail": "schema"
+    },
+    {
+        "head": "serverless",
+        "tail": "principles"
+    },
+    {
+        "head": "data-architecture",
+        "tail": "lakehouse"
+    },
+    {
+        "head": "data-architecture",
+        "tail": "data-warehouse"
+    },
+    {
+        "head": "data-architecture",
+        "tail": "python"
+    },
+    {
+        "head": "data-architecture",
+        "tail": "duckdb"
+    },
+    {
+        "head": "data-architecture",
+        "tail": "modern"
+    },
+    {
+        "head": "data-architecture",
+        "tail": "schema"
+    },
+    {
+        "head": "data-architecture",
+        "tail": "principles"
+    },
+    {
+        "head": "lakehouse",
+        "tail": "data-warehouse"
+    },
+    {
+        "head": "lakehouse",
+        "tail": "python"
+    },
+    {
+        "head": "lakehouse",
+        "tail": "duckdb"
+    },
+    {
+        "head": "lakehouse",
+        "tail": "modern"
+    },
+    {
+        "head": "lakehouse",
+        "tail": "schema"
+    },
+    {
+        "head": "lakehouse",
+        "tail": "principles"
+    },
+    {
+        "head": "data-warehouse",
+        "tail": "duckdb"
+    },
+    {
+        "head": "data-warehouse",
+        "tail": "modern"
+    },
+    {
+        "head": "data-warehouse",
+        "tail": "schema"
+    },
+    {
+        "head": "data-warehouse",
+        "tail": "principles"
+    },
+    {
+        "head": "python",
+        "tail": "principles"
+    },
+    {
+        "head": "duckdb",
+        "tail": "schema"
+    },
+    {
+        "head": "duckdb",
+        "tail": "principles"
+    },
+    {
+        "head": "modern",
+        "tail": "schema"
+    },
+    {
+        "head": "modern",
+        "tail": "principles"
+    },
+    {
+        "head": "schema",
+        "tail": "principles"
+    },
+    {
+        "head": "accessibility",
+        "tail": "osm"
+    },
+    {
+        "head": "accessibility",
+        "tail": "travel-times"
+    },
+    {
+        "head": "accessibility",
+        "tail": "big-data"
+    },
+    {
+        "head": "accessibility",
+        "tail": "python"
+    },
+    {
+        "head": "accessibility",
+        "tail": "spatial-data"
+    },
+    {
+        "head": "accessibility",
+        "tail": "travel-time-estimation"
+    },
+    {
+        "head": "accessibility",
+        "tail": "geography"
+    },
+    {
+        "head": "accessibility",
+        "tail": "classification relations between classes"
+    },
+    {
+        "head": "osm",
+        "tail": "travel-times"
+    },
+    {
+        "head": "osm",
+        "tail": "big-data"
+    },
+    {
+        "head": "osm",
+        "tail": "python"
+    },
+    {
+        "head": "osm",
+        "tail": "spatial-data"
+    },
+    {
+        "head": "osm",
+        "tail": "travel-time-estimation"
+    },
+    {
+        "head": "osm",
+        "tail": "geography"
+    },
+    {
+        "head": "osm",
+        "tail": "classification relations between classes"
+    },
+    {
+        "head": "travel-times",
+        "tail": "big-data"
+    },
+    {
+        "head": "travel-times",
+        "tail": "python"
+    },
+    {
+        "head": "travel-times",
+        "tail": "spatial-data"
+    },
+    {
+        "head": "travel-times",
+        "tail": "travel-time-estimation"
+    },
+    {
+        "head": "travel-times",
+        "tail": "geography"
+    },
+    {
+        "head": "travel-times",
+        "tail": "classification relations between classes"
+    },
+    {
+        "head": "big-data",
+        "tail": "spatial-data"
+    },
+    {
+        "head": "big-data",
+        "tail": "travel-time-estimation"
+    },
+    {
+        "head": "big-data",
+        "tail": "geography"
+    },
+    {
+        "head": "big-data",
+        "tail": "classification relations between classes"
+    },
+    {
+        "head": "python",
+        "tail": "spatial-data"
+    },
+    {
+        "head": "python",
+        "tail": "travel-time-estimation"
+    },
+    {
+        "head": "python",
+        "tail": "geography"
+    },
+    {
+        "head": "python",
+        "tail": "classification relations between classes"
+    },
+    {
+        "head": "spatial-data",
+        "tail": "travel-time-estimation"
+    },
+    {
+        "head": "spatial-data",
+        "tail": "geography"
+    },
+    {
+        "head": "spatial-data",
+        "tail": "classification relations between classes"
+    },
+    {
+        "head": "travel-time-estimation",
+        "tail": "geography"
+    },
+    {
+        "head": "travel-time-estimation",
+        "tail": "classification relations between classes"
+    },
+    {
+        "head": "geography",
+        "tail": "classification relations between classes"
     }
 ]
