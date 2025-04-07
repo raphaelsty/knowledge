@@ -199142,5 +199142,109 @@
     {
         "head": "geography",
         "tail": "classification relations between classes"
+    },
+    {
+        "head": "linux",
+        "tail": "adblocker"
+    },
+    {
+        "head": "linux",
+        "tail": "desktop-app"
+    },
+    {
+        "head": "linux",
+        "tail": "blocker"
+    },
+    {
+        "head": "privacy",
+        "tail": "adblocker"
+    },
+    {
+        "head": "privacy",
+        "tail": "desktop-app"
+    },
+    {
+        "head": "privacy",
+        "tail": "blocker"
+    },
+    {
+        "head": "adblock",
+        "tail": "desktop-app"
+    },
+    {
+        "head": "adblock",
+        "tail": "blocker"
+    },
+    {
+        "head": "go",
+        "tail": "adblocker"
+    },
+    {
+        "head": "go",
+        "tail": "desktop-app"
+    },
+    {
+        "head": "go",
+        "tail": "blocker"
+    },
+    {
+        "head": "adblocker",
+        "tail": "desktop-app"
+    },
+    {
+        "head": "adblocker",
+        "tail": "windows"
+    },
+    {
+        "head": "adblocker",
+        "tail": "gui"
+    },
+    {
+        "head": "adblocker",
+        "tail": "macos"
+    },
+    {
+        "head": "adblocker",
+        "tail": "simple"
+    },
+    {
+        "head": "adblocker",
+        "tail": "blocker"
+    },
+    {
+        "head": "desktop-app",
+        "tail": "windows"
+    },
+    {
+        "head": "desktop-app",
+        "tail": "gui"
+    },
+    {
+        "head": "desktop-app",
+        "tail": "macos"
+    },
+    {
+        "head": "desktop-app",
+        "tail": "simple"
+    },
+    {
+        "head": "desktop-app",
+        "tail": "blocker"
+    },
+    {
+        "head": "windows",
+        "tail": "blocker"
+    },
+    {
+        "head": "gui",
+        "tail": "blocker"
+    },
+    {
+        "head": "macos",
+        "tail": "blocker"
+    },
+    {
+        "head": "simple",
+        "tail": "blocker"
     }
 ]

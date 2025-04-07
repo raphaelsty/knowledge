@@ -43137,5 +43137,25 @@
             "spatial-data",
             "travel-time-estimation"
         ]
+    },
+    "https://github.com/ZenPrivacy/zen-desktop": {
+        "extra-tags": [
+            "simple",
+            "blocker"
+        ],
+        "date": "2023-05-27",
+        "title": "zen-desktop",
+        "summary": "Simple, free and efficient ad-blocker and privacy guard for Windows, macOS and Linux",
+        "tags": [
+            "linux",
+            "privacy",
+            "adblock",
+            "go",
+            "adblocker",
+            "desktop-app",
+            "windows",
+            "gui",
+            "macos"
+        ]
     }
 }
