@@ -43157,5 +43157,32 @@
             "gui",
             "macos"
         ]
+    },
+    "https://github.com/jfkback/hypencoder-paper": {
+        "extra-tags": [
+            "paper",
+            "repository",
+            "information retrieval"
+        ],
+        "date": "2025-02-07",
+        "title": "hypencoder-paper",
+        "summary": "Official Repository for \"Hypencoder: Hypernetworks for Information Retrieval\"",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/HansiZeng/scaling-retriever": {
+        "extra-tags": [
+            "scaling",
+            "retriever",
+            "sigir",
+            "sparse"
+        ],
+        "date": "2025-02-20",
+        "title": "scaling-retriever",
+        "summary": "[SIGIR 2025] The official repo for \"Scaling Sparse and Dense Retrieval in Decoder-Only LLMs\"",
+        "tags": [
+            "python"
+        ]
     }
 }

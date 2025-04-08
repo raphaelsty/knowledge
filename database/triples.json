@@ -199246,5 +199246,41 @@
     {
         "head": "simple",
         "tail": "blocker"
+    },
+    {
+        "head": "paper",
+        "tail": "repository"
+    },
+    {
+        "head": "paper",
+        "tail": "information retrieval"
+    },
+    {
+        "head": "repository",
+        "tail": "information retrieval"
+    },
+    {
+        "head": "scaling",
+        "tail": "retriever"
+    },
+    {
+        "head": "scaling",
+        "tail": "sigir"
+    },
+    {
+        "head": "scaling",
+        "tail": "sparse"
+    },
+    {
+        "head": "retriever",
+        "tail": "sigir"
+    },
+    {
+        "head": "retriever",
+        "tail": "sparse"
+    },
+    {
+        "head": "sigir",
+        "tail": "sparse"
     }
 ]
