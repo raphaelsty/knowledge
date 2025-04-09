@@ -199282,5 +199282,265 @@
     {
         "head": "sigir",
         "tail": "sparse"
+    },
+    {
+        "head": "python",
+        "tail": "generative-modeling"
+    },
+    {
+        "head": "python",
+        "tail": "flux"
+    },
+    {
+        "head": "python",
+        "tail": "flexible"
+    },
+    {
+        "head": "generative-modeling",
+        "tail": "training"
+    },
+    {
+        "head": "generative-modeling",
+        "tail": "deep-learning"
+    },
+    {
+        "head": "generative-modeling",
+        "tail": "image-generation"
+    },
+    {
+        "head": "generative-modeling",
+        "tail": "diffusion-models"
+    },
+    {
+        "head": "generative-modeling",
+        "tail": "flux"
+    },
+    {
+        "head": "generative-modeling",
+        "tail": "flow-matching"
+    },
+    {
+        "head": "generative-modeling",
+        "tail": "pytorch"
+    },
+    {
+        "head": "generative-modeling",
+        "tail": "simple"
+    },
+    {
+        "head": "generative-modeling",
+        "tail": "flexible"
+    },
+    {
+        "head": "generative-modeling",
+        "tail": "train"
+    },
+    {
+        "head": "generative-modeling",
+        "tail": "diffusion"
+    },
+    {
+        "head": "training",
+        "tail": "image-generation"
+    },
+    {
+        "head": "training",
+        "tail": "diffusion-models"
+    },
+    {
+        "head": "training",
+        "tail": "flux"
+    },
+    {
+        "head": "training",
+        "tail": "flow-matching"
+    },
+    {
+        "head": "training",
+        "tail": "flexible"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "flux"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "flexible"
+    },
+    {
+        "head": "image-generation",
+        "tail": "diffusion-models"
+    },
+    {
+        "head": "image-generation",
+        "tail": "flux"
+    },
+    {
+        "head": "image-generation",
+        "tail": "flow-matching"
+    },
+    {
+        "head": "image-generation",
+        "tail": "simple"
+    },
+    {
+        "head": "image-generation",
+        "tail": "flexible"
+    },
+    {
+        "head": "image-generation",
+        "tail": "train"
+    },
+    {
+        "head": "diffusion-models",
+        "tail": "flux"
+    },
+    {
+        "head": "diffusion-models",
+        "tail": "flow-matching"
+    },
+    {
+        "head": "diffusion-models",
+        "tail": "simple"
+    },
+    {
+        "head": "diffusion-models",
+        "tail": "flexible"
+    },
+    {
+        "head": "diffusion-models",
+        "tail": "train"
+    },
+    {
+        "head": "flux",
+        "tail": "flow-matching"
+    },
+    {
+        "head": "flux",
+        "tail": "pytorch"
+    },
+    {
+        "head": "flux",
+        "tail": "simple"
+    },
+    {
+        "head": "flux",
+        "tail": "flexible"
+    },
+    {
+        "head": "flux",
+        "tail": "train"
+    },
+    {
+        "head": "flux",
+        "tail": "diffusion"
+    },
+    {
+        "head": "flow-matching",
+        "tail": "simple"
+    },
+    {
+        "head": "flow-matching",
+        "tail": "flexible"
+    },
+    {
+        "head": "flow-matching",
+        "tail": "train"
+    },
+    {
+        "head": "flow-matching",
+        "tail": "diffusion"
+    },
+    {
+        "head": "pytorch",
+        "tail": "flexible"
+    },
+    {
+        "head": "simple",
+        "tail": "flexible"
+    },
+    {
+        "head": "simple",
+        "tail": "train"
+    },
+    {
+        "head": "simple",
+        "tail": "diffusion"
+    },
+    {
+        "head": "flexible",
+        "tail": "train"
+    },
+    {
+        "head": "flexible",
+        "tail": "diffusion"
+    },
+    {
+        "head": "train",
+        "tail": "diffusion"
+    },
+    {
+        "head": "dataset",
+        "tail": "information retrieval"
+    },
+    {
+        "head": "dataset",
+        "tail": "vidore"
+    },
+    {
+        "head": "dataset",
+        "tail": "vidore v2"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "vidore"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "vidore v2"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "collection"
+    },
+    {
+        "head": "vidore",
+        "tail": "vidore v2"
+    },
+    {
+        "head": "vidore",
+        "tail": "benchmark"
+    },
+    {
+        "head": "vidore",
+        "tail": "collection"
+    },
+    {
+        "head": "vidore",
+        "tail": "source"
+    },
+    {
+        "head": "vidore v2",
+        "tail": "benchmark"
+    },
+    {
+        "head": "vidore v2",
+        "tail": "collection"
+    },
+    {
+        "head": "vidore v2",
+        "tail": "source"
+    },
+    {
+        "head": "benchmark",
+        "tail": "collection"
+    },
+    {
+        "head": "benchmark",
+        "tail": "source"
+    },
+    {
+        "head": "collection",
+        "tail": "source"
     }
 ]

@@ -43184,5 +43184,43 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/LouisRouss/DiffuLab": {
+        "extra-tags": [
+            "simple",
+            "flexible",
+            "train",
+            "diffusion"
+        ],
+        "date": "2024-08-15",
+        "title": "DiffuLab",
+        "summary": "DiffuLab is designed to provide a simple and flexible way to train diffusion models while allowing full customization of its core components.",
+        "tags": [
+            "python",
+            "generative-modeling",
+            "training",
+            "deep-learning",
+            "image-generation",
+            "diffusion-models",
+            "flux",
+            "flow-matching",
+            "pytorch"
+        ]
+    },
+    "https://huggingface.co/collections/vidore/vidore-benchmark-v2-67ae03e3924e85b36e7f53b0": {
+        "extra-tags": [
+            "benchmark",
+            "collection",
+            "source"
+        ],
+        "title": "ViDoRe Benchmark v2 - a vidore Collection",
+        "summary": "We\u2019re on a journey to advance and democratize artificial intelligence through open source and open science.",
+        "date": "2025-04-08",
+        "tags": [
+            "dataset",
+            "information retrieval",
+            "vidore",
+            "vidore v2"
+        ]
     }
 }
