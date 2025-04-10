@@ -199542,5 +199542,121 @@
     {
         "head": "collection",
         "tail": "source"
+    },
+    {
+        "head": "modern",
+        "tail": "models"
+    },
+    {
+        "head": "typescript",
+        "tail": "lerobot"
+    },
+    {
+        "head": "typescript",
+        "tail": "robotics"
+    },
+    {
+        "head": "typescript",
+        "tail": "human in the loop"
+    },
+    {
+        "head": "lerobot",
+        "tail": "human in the loop"
+    },
+    {
+        "head": "robotics",
+        "tail": "human in the loop"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "list wise"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "set"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "attention"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "list wise"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "ranking"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "models"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "set"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "attention"
+    },
+    {
+        "head": "list wise",
+        "tail": "ranking"
+    },
+    {
+        "head": "list wise",
+        "tail": "models"
+    },
+    {
+        "head": "list wise",
+        "tail": "set"
+    },
+    {
+        "head": "list wise",
+        "tail": "attention"
+    },
+    {
+        "head": "ranking",
+        "tail": "models"
+    },
+    {
+        "head": "ranking",
+        "tail": "set"
+    },
+    {
+        "head": "ranking",
+        "tail": "attention"
+    },
+    {
+        "head": "models",
+        "tail": "set"
+    },
+    {
+        "head": "models",
+        "tail": "attention"
+    },
+    {
+        "head": "set",
+        "tail": "attention"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "labeled data"
+    },
+    {
+        "head": "llms",
+        "tail": "labeled data"
+    },
+    {
+        "head": "labeled data",
+        "tail": "ranking"
+    },
+    {
+        "head": "labeled data",
+        "tail": "language models"
+    },
+    {
+        "head": "ranking",
+        "tail": "language models"
     }
 ]

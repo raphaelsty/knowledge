@@ -43222,5 +43222,61 @@
             "vidore",
             "vidore v2"
         ]
+    },
+    "https://github.com/drexalt/modern_lexmae": {
+        "extra-tags": [
+            "modern",
+            "model",
+            "models"
+        ],
+        "date": "2025-04-08",
+        "title": "modern_lexmae",
+        "summary": "",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/timqian/bambot": {
+        "extra-tags": [
+            "lerobot",
+            "robotics",
+            "human in the loop"
+        ],
+        "date": "2025-03-17",
+        "title": "bambot",
+        "summary": "Low cost (~$300) humanoid robot \ud83c\udf31",
+        "tags": [
+            "typescript"
+        ]
+    },
+    "http://arxiv.org/abs/2404.06912": {
+        "extra-tags": [
+            "models",
+            "set",
+            "attention"
+        ],
+        "title": "Set-Encoder: Permutation-Invariant Inter-Passage Attention for Listwise Passage Re-Ranking with Cross-Encoders",
+        "summary": "Existing cross-encoder models can be categorized as pointwise, pairwise, or listwise. Pairwise and listwise models allow passage interactions, which typically makes them more effective than pointwise models but less efficient and less robust to input passage order permutations. To enable efficient permutation-invariant passage interactions during re-ranking, we propose a new cross-encoder architecture with inter-passage attention: the Set-Encoder. In experiments on TREC Deep Learning and TIREx, the Set-Encoder is as effective as state-of-the-art listwise models while being more efficient and invariant to input passage order permutations. Compared to pointwise models, the Set-Encoder is particularly more effective when considering inter-passage information, such as novelty, and retains its advantageous properties compared to other listwise models. Our code is publicly available at https://github.com/webis-de/ECIR-25.",
+        "date": "2025-04-09",
+        "tags": [
+            "computer science - information retrieval",
+            "information retrieval",
+            "list wise",
+            "ranking"
+        ]
+    },
+    "http://arxiv.org/abs/2405.07920": {
+        "extra-tags": [
+            "llms",
+            "labeled data",
+            "ranking",
+            "language models"
+        ],
+        "title": "Rank-DistiLLM: Closing the Effectiveness Gap Between Cross-Encoders and LLMs for Passage Re-Ranking",
+        "summary": "Cross-encoders distilled from large language models (LLMs) are often more effective re-rankers than cross-encoders fine-tuned on manually labeled data. However, distilled models do not match the effectiveness of their teacher LLMs. We hypothesize that this effectiveness gap is due to the fact that previous work has not applied the best-suited methods for fine-tuning cross-encoders on manually labeled data (e.g., hard-negative sampling, deep sampling, and listwise loss functions). To close this gap, we create a new dataset, Rank-DistiLLM. Cross-encoders trained on Rank-DistiLLM achieve the effectiveness of LLMs while being up to 173 times faster and 24 times more memory efficient. Our code and data is available at https://github.com/webis-de/ECIR-25.",
+        "date": "2025-04-09",
+        "tags": [
+            "computer science - information retrieval"
+        ]
     }
 }
