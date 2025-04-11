@@ -199658,5 +199658,377 @@
     {
         "head": "ranking",
         "tail": "language models"
+    },
+    {
+        "head": "uk-gov-data-science",
+        "tail": "spark"
+    },
+    {
+        "head": "uk-gov-data-science",
+        "tail": "record-linkage"
+    },
+    {
+        "head": "uk-gov-data-science",
+        "tail": "deduplicate-data"
+    },
+    {
+        "head": "uk-gov-data-science",
+        "tail": "deduplication"
+    },
+    {
+        "head": "uk-gov-data-science",
+        "tail": "data-science"
+    },
+    {
+        "head": "uk-gov-data-science",
+        "tail": "em-algorithm"
+    },
+    {
+        "head": "uk-gov-data-science",
+        "tail": "entity-resolution"
+    },
+    {
+        "head": "uk-gov-data-science",
+        "tail": "fuzzy-matching"
+    },
+    {
+        "head": "uk-gov-data-science",
+        "tail": "python"
+    },
+    {
+        "head": "uk-gov-data-science",
+        "tail": "data-matching"
+    },
+    {
+        "head": "uk-gov-data-science",
+        "tail": "duckdb"
+    },
+    {
+        "head": "uk-gov-data-science",
+        "tail": "fast"
+    },
+    {
+        "head": "uk-gov-data-science",
+        "tail": "probabilistic"
+    },
+    {
+        "head": "uk-gov-data-science",
+        "tail": "data"
+    },
+    {
+        "head": "uk-gov-data-science",
+        "tail": "sql"
+    },
+    {
+        "head": "spark",
+        "tail": "record-linkage"
+    },
+    {
+        "head": "spark",
+        "tail": "deduplicate-data"
+    },
+    {
+        "head": "spark",
+        "tail": "deduplication"
+    },
+    {
+        "head": "spark",
+        "tail": "data-science"
+    },
+    {
+        "head": "spark",
+        "tail": "em-algorithm"
+    },
+    {
+        "head": "spark",
+        "tail": "entity-resolution"
+    },
+    {
+        "head": "spark",
+        "tail": "fuzzy-matching"
+    },
+    {
+        "head": "spark",
+        "tail": "data-matching"
+    },
+    {
+        "head": "spark",
+        "tail": "fast"
+    },
+    {
+        "head": "spark",
+        "tail": "probabilistic"
+    },
+    {
+        "head": "spark",
+        "tail": "data"
+    },
+    {
+        "head": "record-linkage",
+        "tail": "deduplicate-data"
+    },
+    {
+        "head": "record-linkage",
+        "tail": "data-science"
+    },
+    {
+        "head": "record-linkage",
+        "tail": "em-algorithm"
+    },
+    {
+        "head": "record-linkage",
+        "tail": "fuzzy-matching"
+    },
+    {
+        "head": "record-linkage",
+        "tail": "duckdb"
+    },
+    {
+        "head": "record-linkage",
+        "tail": "fast"
+    },
+    {
+        "head": "record-linkage",
+        "tail": "probabilistic"
+    },
+    {
+        "head": "record-linkage",
+        "tail": "data"
+    },
+    {
+        "head": "record-linkage",
+        "tail": "sql"
+    },
+    {
+        "head": "deduplicate-data",
+        "tail": "deduplication"
+    },
+    {
+        "head": "deduplicate-data",
+        "tail": "data-science"
+    },
+    {
+        "head": "deduplicate-data",
+        "tail": "em-algorithm"
+    },
+    {
+        "head": "deduplicate-data",
+        "tail": "entity-resolution"
+    },
+    {
+        "head": "deduplicate-data",
+        "tail": "fuzzy-matching"
+    },
+    {
+        "head": "deduplicate-data",
+        "tail": "python"
+    },
+    {
+        "head": "deduplicate-data",
+        "tail": "data-matching"
+    },
+    {
+        "head": "deduplicate-data",
+        "tail": "duckdb"
+    },
+    {
+        "head": "deduplicate-data",
+        "tail": "fast"
+    },
+    {
+        "head": "deduplicate-data",
+        "tail": "probabilistic"
+    },
+    {
+        "head": "deduplicate-data",
+        "tail": "data"
+    },
+    {
+        "head": "deduplicate-data",
+        "tail": "sql"
+    },
+    {
+        "head": "deduplication",
+        "tail": "data-science"
+    },
+    {
+        "head": "deduplication",
+        "tail": "em-algorithm"
+    },
+    {
+        "head": "deduplication",
+        "tail": "fuzzy-matching"
+    },
+    {
+        "head": "deduplication",
+        "tail": "duckdb"
+    },
+    {
+        "head": "deduplication",
+        "tail": "fast"
+    },
+    {
+        "head": "deduplication",
+        "tail": "probabilistic"
+    },
+    {
+        "head": "deduplication",
+        "tail": "data"
+    },
+    {
+        "head": "deduplication",
+        "tail": "sql"
+    },
+    {
+        "head": "data-science",
+        "tail": "em-algorithm"
+    },
+    {
+        "head": "data-science",
+        "tail": "entity-resolution"
+    },
+    {
+        "head": "data-science",
+        "tail": "fuzzy-matching"
+    },
+    {
+        "head": "data-science",
+        "tail": "data-matching"
+    },
+    {
+        "head": "data-science",
+        "tail": "fast"
+    },
+    {
+        "head": "data-science",
+        "tail": "probabilistic"
+    },
+    {
+        "head": "em-algorithm",
+        "tail": "entity-resolution"
+    },
+    {
+        "head": "em-algorithm",
+        "tail": "fuzzy-matching"
+    },
+    {
+        "head": "em-algorithm",
+        "tail": "python"
+    },
+    {
+        "head": "em-algorithm",
+        "tail": "data-matching"
+    },
+    {
+        "head": "em-algorithm",
+        "tail": "duckdb"
+    },
+    {
+        "head": "em-algorithm",
+        "tail": "fast"
+    },
+    {
+        "head": "em-algorithm",
+        "tail": "probabilistic"
+    },
+    {
+        "head": "em-algorithm",
+        "tail": "data"
+    },
+    {
+        "head": "em-algorithm",
+        "tail": "sql"
+    },
+    {
+        "head": "entity-resolution",
+        "tail": "fuzzy-matching"
+    },
+    {
+        "head": "entity-resolution",
+        "tail": "duckdb"
+    },
+    {
+        "head": "entity-resolution",
+        "tail": "fast"
+    },
+    {
+        "head": "entity-resolution",
+        "tail": "probabilistic"
+    },
+    {
+        "head": "entity-resolution",
+        "tail": "data"
+    },
+    {
+        "head": "entity-resolution",
+        "tail": "sql"
+    },
+    {
+        "head": "fuzzy-matching",
+        "tail": "data-matching"
+    },
+    {
+        "head": "fuzzy-matching",
+        "tail": "duckdb"
+    },
+    {
+        "head": "fuzzy-matching",
+        "tail": "fast"
+    },
+    {
+        "head": "fuzzy-matching",
+        "tail": "probabilistic"
+    },
+    {
+        "head": "fuzzy-matching",
+        "tail": "data"
+    },
+    {
+        "head": "fuzzy-matching",
+        "tail": "sql"
+    },
+    {
+        "head": "data-matching",
+        "tail": "duckdb"
+    },
+    {
+        "head": "data-matching",
+        "tail": "fast"
+    },
+    {
+        "head": "data-matching",
+        "tail": "probabilistic"
+    },
+    {
+        "head": "data-matching",
+        "tail": "data"
+    },
+    {
+        "head": "data-matching",
+        "tail": "sql"
+    },
+    {
+        "head": "duckdb",
+        "tail": "fast"
+    },
+    {
+        "head": "duckdb",
+        "tail": "probabilistic"
+    },
+    {
+        "head": "fast",
+        "tail": "probabilistic"
+    },
+    {
+        "head": "fast",
+        "tail": "sql"
+    },
+    {
+        "head": "probabilistic",
+        "tail": "data"
+    },
+    {
+        "head": "probabilistic",
+        "tail": "sql"
     }
 ]

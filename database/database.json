@@ -43278,5 +43278,30 @@
         "tags": [
             "computer science - information retrieval"
         ]
+    },
+    "https://github.com/moj-analytical-services/splink": {
+        "extra-tags": [
+            "fast",
+            "probabilistic",
+            "data",
+            "sql"
+        ],
+        "date": "2019-11-22",
+        "title": "splink",
+        "summary": "Fast, accurate and scalable probabilistic data linkage with support for multiple SQL backends",
+        "tags": [
+            "uk-gov-data-science",
+            "spark",
+            "record-linkage",
+            "deduplicate-data",
+            "deduplication",
+            "data-science",
+            "em-algorithm",
+            "entity-resolution",
+            "fuzzy-matching",
+            "python",
+            "data-matching",
+            "duckdb"
+        ]
     }
 }
