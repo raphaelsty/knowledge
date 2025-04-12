@@ -43303,5 +43303,120 @@
             "data-matching",
             "duckdb"
         ]
+    },
+    "https://github.com/Tavish9/any4lerobot": {
+        "extra-tags": [
+            "collection",
+            "tools"
+        ],
+        "date": "2025-02-19",
+        "title": "any4lerobot",
+        "summary": "\ud83d\ude80 A collection of utilities and tools for LeRobot.",
+        "tags": [
+            "openx",
+            "rlds",
+            "agibot",
+            "robomind",
+            "robotics",
+            "utils",
+            "h5",
+            "python",
+            "lerobot"
+        ]
+    },
+    "https://ieeexplore.ieee.org/document/10377550/": {
+        "extra-tags": [
+            "batch",
+            "loss",
+            "image",
+            "language"
+        ],
+        "title": "Sigmoid Loss for Language Image Pre-Training",
+        "summary": "We propose a simple pairwise Sigmoid loss for Language-Image Pre-training (SigLIP). Unlike standard contrastive learning with softmax normalization, the sigmoid loss operates solely on image-text pairs and does not require a global view of the pairwise similarities for normalization. The sigmoid loss simultaneously allows further scaling up the batch size, while also performing better at smaller batch sizes. Combined with Locked-image Tuning, with only four TPUv4 chips, we train a SigLiT model that achieves 84.5% ImageNet zero-shot accuracy in two days. The disentanglement of the batch size from the loss further allows us to study the impact of examples vs pairs and negative to positive ratio. Finally, we push the batch size to the extreme, up to one million, and \ufb01nd that the bene\ufb01ts of growing batch size quickly diminish, with a more reasonable batch size of 32 k being suf\ufb01cient. We release our models at https://github. com/google-research/big_vision and hope our research motivates further explorations in improving the quality and ef\ufb01ciency of language-image pre-training.",
+        "date": "2025-04-12",
+        "tags": []
+    },
+    "https://www.philschmid.de/mini-deepseek-r1": {
+        "extra-tags": [
+            "rl",
+            "train",
+            "reinforcement learning"
+        ],
+        "title": "Mini-R1: Reproduce Deepseek R1 \u201eaha moment\u201c a RL tutorial",
+        "summary": "Reproduce Deepseek R1 \u201eaha moment\u201c and train an open model using reinforcement learning trying to teach it self-verification and search abilities all on its own to solve the Countdown Game.",
+        "date": "2025-04-12",
+        "tags": [
+            "blog",
+            "deepseek",
+            "grpo",
+            "trl",
+            "tutorial"
+        ]
+    },
+    "https://huggingface.co/learn/cookbook/en/fine_tuning_llm_grpo_trl": {
+        "extra-tags": [
+            "training",
+            "llm",
+            "reasoning",
+            "open-source"
+        ],
+        "title": "Post training an LLM for reasoning with GRPO in TRL - Hugging Face Open-Source AI Cookbook",
+        "summary": "We\u2019re on a journey to advance and democratize artificial intelligence through open source and open science.",
+        "date": "2025-04-11",
+        "tags": [
+            "grpo",
+            "huggingface",
+            "reasonning",
+            "trl",
+            "tutorial"
+        ]
+    },
+    "https://huggingface.co/papers/2412.19437": {
+        "extra-tags": [
+            "paper",
+            "page",
+            "deepseek-v3"
+        ],
+        "title": "Paper page - DeepSeek-V3 Technical Report",
+        "summary": "Join the discussion on this paper page",
+        "date": "2025-04-11",
+        "tags": [
+            "deepseek",
+            "technical report"
+        ]
+    },
+    "https://docs.unsloth.ai/basics/reasoning-grpo-and-rl/tutorial-train-your-own-reasoning-model-with-grpo": {
+        "extra-tags": [
+            "model"
+        ],
+        "title": "Tutorial: Train your own Reasoning model with GRPO | Unsloth Documentation",
+        "summary": "Beginner's Guide to transforming a model like Llama 3.1 (8B) into a reasoning model by using Unsloth and GRPO.",
+        "date": "2025-04-11",
+        "tags": [
+            "grpo",
+            "lora",
+            "reasoning",
+            "training",
+            "tutorial",
+            "unsloth"
+        ]
+    },
+    "https://huggingface.co/blog/sdiazlor/fine-tune-deepseek-with-a-synthetic-reasoning-data": {
+        "extra-tags": [
+            "deepseek-r1"
+        ],
+        "title": "Fine-tune Deepseek-R1 with a Synthetic Reasoning Dataset",
+        "summary": "A Blog post by Sara Han D\u00edaz on Hugging Face",
+        "date": "2025-04-11",
+        "tags": [
+            "blog",
+            "dataset",
+            "deepseek",
+            "fine-tuning",
+            "huggingface",
+            "reasoning",
+            "sft",
+            "synthetic"
+        ]
     }
 }
