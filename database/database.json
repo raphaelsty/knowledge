@@ -43418,5 +43418,21 @@
             "sft",
             "synthetic"
         ]
+    },
+    "https://github.com/marp-team/marp": {
+        "extra-tags": [
+            "repository"
+        ],
+        "date": "2018-03-25",
+        "title": "marp",
+        "summary": "The entrance repository of Markdown presentation ecosystem",
+        "tags": [
+            "marp",
+            "markdown",
+            "deck",
+            "typescript",
+            "slides",
+            "presentation"
+        ]
     }
 }

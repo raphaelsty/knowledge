@@ -200674,5 +200674,65 @@
     {
         "head": "synthetic",
         "tail": "deepseek-r1"
+    },
+    {
+        "head": "marp",
+        "tail": "markdown"
+    },
+    {
+        "head": "marp",
+        "tail": "deck"
+    },
+    {
+        "head": "marp",
+        "tail": "typescript"
+    },
+    {
+        "head": "marp",
+        "tail": "slides"
+    },
+    {
+        "head": "marp",
+        "tail": "presentation"
+    },
+    {
+        "head": "marp",
+        "tail": "repository"
+    },
+    {
+        "head": "markdown",
+        "tail": "typescript"
+    },
+    {
+        "head": "markdown",
+        "tail": "repository"
+    },
+    {
+        "head": "deck",
+        "tail": "typescript"
+    },
+    {
+        "head": "deck",
+        "tail": "repository"
+    },
+    {
+        "head": "typescript",
+        "tail": "slides"
+    },
+    {
+        "head": "typescript",
+        "tail": "presentation"
+    },
+    {
+        "head": "typescript",
+        "tail": "repository"
+    },
+    {
+        "head": "slides",
+        "tail": "repository"
+    },
+    {
+        "head": "presentation",
+        "tail": "repository"
     }
 ]
