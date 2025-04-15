@@ -43434,5 +43434,48 @@
             "slides",
             "presentation"
         ]
+    },
+    "https://github.com/hxu296/tariff": {
+        "extra-tags": [
+            "repository",
+            "template-repository",
+            "mirrored-repositories"
+        ],
+        "date": "2025-04-10",
+        "title": "tariff",
+        "summary": "The official repository for tariff",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/thuml/depyf": {
+        "extra-tags": [
+            "tool",
+            "help",
+            "torch"
+        ],
+        "date": "2023-08-28",
+        "title": "depyf",
+        "summary": "depyf is a tool to help you understand and adapt to PyTorch compiler torch.compile.",
+        "tags": [
+            "python",
+            "deep-learning",
+            "pytorch",
+            "compiler"
+        ]
+    },
+    "https://github.com/michaelyuancb/roboengine": {
+        "extra-tags": [
+            "data augmentation",
+            "segmentation",
+            "background",
+            "generation"
+        ],
+        "date": "2025-03-30",
+        "title": "roboengine",
+        "summary": "Official Reporsitory of \"RoboEngine: Plug-and-Play Robot Data Augmentation with Semantic Robot Segmentation and Background Generation\"",
+        "tags": [
+            "python"
+        ]
     }
 }

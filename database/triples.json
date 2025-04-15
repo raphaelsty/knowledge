@@ -200734,5 +200734,93 @@
     {
         "head": "presentation",
         "tail": "repository"
+    },
+    {
+        "head": "python",
+        "tail": "mirrored-repositories"
+    },
+    {
+        "head": "repository",
+        "tail": "template-repository"
+    },
+    {
+        "head": "repository",
+        "tail": "mirrored-repositories"
+    },
+    {
+        "head": "template-repository",
+        "tail": "mirrored-repositories"
+    },
+    {
+        "head": "python",
+        "tail": "help"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "tool"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "help"
+    },
+    {
+        "head": "pytorch",
+        "tail": "tool"
+    },
+    {
+        "head": "pytorch",
+        "tail": "help"
+    },
+    {
+        "head": "compiler",
+        "tail": "tool"
+    },
+    {
+        "head": "compiler",
+        "tail": "help"
+    },
+    {
+        "head": "compiler",
+        "tail": "torch"
+    },
+    {
+        "head": "tool",
+        "tail": "help"
+    },
+    {
+        "head": "tool",
+        "tail": "torch"
+    },
+    {
+        "head": "help",
+        "tail": "torch"
+    },
+    {
+        "head": "python",
+        "tail": "data augmentation"
+    },
+    {
+        "head": "data augmentation",
+        "tail": "segmentation"
+    },
+    {
+        "head": "data augmentation",
+        "tail": "background"
+    },
+    {
+        "head": "data augmentation",
+        "tail": "generation"
+    },
+    {
+        "head": "segmentation",
+        "tail": "background"
+    },
+    {
+        "head": "segmentation",
+        "tail": "generation"
+    },
+    {
+        "head": "background",
+        "tail": "generation"
     }
 ]
