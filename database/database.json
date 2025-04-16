@@ -43477,5 +43477,33 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/cccedric/conrft": {
+        "extra-tags": [
+            "paper",
+            "fine-tuning",
+            "models",
+            "policy"
+        ],
+        "date": "2025-04-11",
+        "title": "conrft",
+        "summary": "This is the official implementation of the paper \"ConRFT: A Reinforced Fine-tuning Method for VLA Models via Consistency Policy\".",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/lachlanhurst/so100-mujoco-sim": {
+        "extra-tags": [
+            "mujoco",
+            "arm",
+            "simulation",
+            "lerobot"
+        ],
+        "date": "2025-03-22",
+        "title": "so100-mujoco-sim",
+        "summary": "Robot arm simulation of the so100 (so-arm100) using MuJoCo, LeRobot, and Qt",
+        "tags": [
+            "python"
+        ]
     }
 }

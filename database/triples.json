@@ -200822,5 +200822,45 @@
     {
         "head": "background",
         "tail": "generation"
+    },
+    {
+        "head": "paper",
+        "tail": "fine-tuning"
+    },
+    {
+        "head": "paper",
+        "tail": "models"
+    },
+    {
+        "head": "paper",
+        "tail": "policy"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "policy"
+    },
+    {
+        "head": "models",
+        "tail": "policy"
+    },
+    {
+        "head": "mujoco",
+        "tail": "arm"
+    },
+    {
+        "head": "mujoco",
+        "tail": "lerobot"
+    },
+    {
+        "head": "arm",
+        "tail": "simulation"
+    },
+    {
+        "head": "arm",
+        "tail": "lerobot"
+    },
+    {
+        "head": "simulation",
+        "tail": "lerobot"
     }
 ]
