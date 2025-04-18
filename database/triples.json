@@ -200862,5 +200862,477 @@
     {
         "head": "simulation",
         "tail": "lerobot"
+    },
+    {
+        "head": "typescript",
+        "tail": "codex"
+    },
+    {
+        "head": "typescript",
+        "tail": "coding"
+    },
+    {
+        "head": "typescript",
+        "tail": "terminal"
+    },
+    {
+        "head": "codex",
+        "tail": "coding"
+    },
+    {
+        "head": "codex",
+        "tail": "agent"
+    },
+    {
+        "head": "codex",
+        "tail": "terminal"
+    },
+    {
+        "head": "coding",
+        "tail": "agent"
+    },
+    {
+        "head": "coding",
+        "tail": "terminal"
+    },
+    {
+        "head": "agent",
+        "tail": "terminal"
+    },
+    {
+        "head": "swift",
+        "tail": "ai-agent"
+    },
+    {
+        "head": "swift",
+        "tail": "virtualization-framework"
+    },
+    {
+        "head": "swift",
+        "tail": "computer-use"
+    },
+    {
+        "head": "swift",
+        "tail": "virtualization"
+    },
+    {
+        "head": "swift",
+        "tail": "cua"
+    },
+    {
+        "head": "swift",
+        "tail": "manus"
+    },
+    {
+        "head": "swift",
+        "tail": "python"
+    },
+    {
+        "head": "swift",
+        "tail": "lume"
+    },
+    {
+        "head": "swift",
+        "tail": "agent"
+    },
+    {
+        "head": "swift",
+        "tail": "operator"
+    },
+    {
+        "head": "swift",
+        "tail": "c"
+    },
+    {
+        "head": "swift",
+        "tail": "docker"
+    },
+    {
+        "head": "swift",
+        "tail": "container"
+    },
+    {
+        "head": "ai-agent",
+        "tail": "apple"
+    },
+    {
+        "head": "ai-agent",
+        "tail": "virtualization-framework"
+    },
+    {
+        "head": "ai-agent",
+        "tail": "computer-use"
+    },
+    {
+        "head": "ai-agent",
+        "tail": "virtualization"
+    },
+    {
+        "head": "ai-agent",
+        "tail": "macos"
+    },
+    {
+        "head": "ai-agent",
+        "tail": "cua"
+    },
+    {
+        "head": "ai-agent",
+        "tail": "manus"
+    },
+    {
+        "head": "ai-agent",
+        "tail": "python"
+    },
+    {
+        "head": "ai-agent",
+        "tail": "lume"
+    },
+    {
+        "head": "ai-agent",
+        "tail": "agent"
+    },
+    {
+        "head": "ai-agent",
+        "tail": "operator"
+    },
+    {
+        "head": "ai-agent",
+        "tail": "c"
+    },
+    {
+        "head": "ai-agent",
+        "tail": "docker"
+    },
+    {
+        "head": "ai-agent",
+        "tail": "container"
+    },
+    {
+        "head": "apple",
+        "tail": "virtualization-framework"
+    },
+    {
+        "head": "apple",
+        "tail": "computer-use"
+    },
+    {
+        "head": "apple",
+        "tail": "virtualization"
+    },
+    {
+        "head": "apple",
+        "tail": "cua"
+    },
+    {
+        "head": "apple",
+        "tail": "manus"
+    },
+    {
+        "head": "apple",
+        "tail": "python"
+    },
+    {
+        "head": "apple",
+        "tail": "lume"
+    },
+    {
+        "head": "apple",
+        "tail": "agent"
+    },
+    {
+        "head": "apple",
+        "tail": "operator"
+    },
+    {
+        "head": "apple",
+        "tail": "c"
+    },
+    {
+        "head": "apple",
+        "tail": "docker"
+    },
+    {
+        "head": "apple",
+        "tail": "container"
+    },
+    {
+        "head": "virtualization-framework",
+        "tail": "computer-use"
+    },
+    {
+        "head": "virtualization-framework",
+        "tail": "virtualization"
+    },
+    {
+        "head": "virtualization-framework",
+        "tail": "macos"
+    },
+    {
+        "head": "virtualization-framework",
+        "tail": "cua"
+    },
+    {
+        "head": "virtualization-framework",
+        "tail": "manus"
+    },
+    {
+        "head": "virtualization-framework",
+        "tail": "python"
+    },
+    {
+        "head": "virtualization-framework",
+        "tail": "lume"
+    },
+    {
+        "head": "virtualization-framework",
+        "tail": "agent"
+    },
+    {
+        "head": "virtualization-framework",
+        "tail": "operator"
+    },
+    {
+        "head": "virtualization-framework",
+        "tail": "c"
+    },
+    {
+        "head": "virtualization-framework",
+        "tail": "docker"
+    },
+    {
+        "head": "virtualization-framework",
+        "tail": "container"
+    },
+    {
+        "head": "computer-use",
+        "tail": "virtualization"
+    },
+    {
+        "head": "computer-use",
+        "tail": "macos"
+    },
+    {
+        "head": "computer-use",
+        "tail": "cua"
+    },
+    {
+        "head": "computer-use",
+        "tail": "manus"
+    },
+    {
+        "head": "computer-use",
+        "tail": "python"
+    },
+    {
+        "head": "computer-use",
+        "tail": "lume"
+    },
+    {
+        "head": "computer-use",
+        "tail": "agent"
+    },
+    {
+        "head": "computer-use",
+        "tail": "operator"
+    },
+    {
+        "head": "computer-use",
+        "tail": "c"
+    },
+    {
+        "head": "computer-use",
+        "tail": "docker"
+    },
+    {
+        "head": "computer-use",
+        "tail": "container"
+    },
+    {
+        "head": "virtualization",
+        "tail": "macos"
+    },
+    {
+        "head": "virtualization",
+        "tail": "cua"
+    },
+    {
+        "head": "virtualization",
+        "tail": "manus"
+    },
+    {
+        "head": "virtualization",
+        "tail": "python"
+    },
+    {
+        "head": "virtualization",
+        "tail": "lume"
+    },
+    {
+        "head": "virtualization",
+        "tail": "agent"
+    },
+    {
+        "head": "virtualization",
+        "tail": "operator"
+    },
+    {
+        "head": "virtualization",
+        "tail": "c"
+    },
+    {
+        "head": "virtualization",
+        "tail": "docker"
+    },
+    {
+        "head": "virtualization",
+        "tail": "container"
+    },
+    {
+        "head": "macos",
+        "tail": "cua"
+    },
+    {
+        "head": "macos",
+        "tail": "manus"
+    },
+    {
+        "head": "macos",
+        "tail": "python"
+    },
+    {
+        "head": "macos",
+        "tail": "lume"
+    },
+    {
+        "head": "macos",
+        "tail": "agent"
+    },
+    {
+        "head": "macos",
+        "tail": "operator"
+    },
+    {
+        "head": "macos",
+        "tail": "c"
+    },
+    {
+        "head": "cua",
+        "tail": "manus"
+    },
+    {
+        "head": "cua",
+        "tail": "python"
+    },
+    {
+        "head": "cua",
+        "tail": "lume"
+    },
+    {
+        "head": "cua",
+        "tail": "agent"
+    },
+    {
+        "head": "cua",
+        "tail": "operator"
+    },
+    {
+        "head": "cua",
+        "tail": "c"
+    },
+    {
+        "head": "cua",
+        "tail": "docker"
+    },
+    {
+        "head": "cua",
+        "tail": "container"
+    },
+    {
+        "head": "manus",
+        "tail": "python"
+    },
+    {
+        "head": "manus",
+        "tail": "lume"
+    },
+    {
+        "head": "manus",
+        "tail": "agent"
+    },
+    {
+        "head": "manus",
+        "tail": "operator"
+    },
+    {
+        "head": "manus",
+        "tail": "c"
+    },
+    {
+        "head": "manus",
+        "tail": "docker"
+    },
+    {
+        "head": "manus",
+        "tail": "container"
+    },
+    {
+        "head": "python",
+        "tail": "lume"
+    },
+    {
+        "head": "lume",
+        "tail": "agent"
+    },
+    {
+        "head": "lume",
+        "tail": "operator"
+    },
+    {
+        "head": "lume",
+        "tail": "c"
+    },
+    {
+        "head": "lume",
+        "tail": "docker"
+    },
+    {
+        "head": "lume",
+        "tail": "container"
+    },
+    {
+        "head": "agent",
+        "tail": "operator"
+    },
+    {
+        "head": "agent",
+        "tail": "c"
+    },
+    {
+        "head": "agent",
+        "tail": "docker"
+    },
+    {
+        "head": "agent",
+        "tail": "container"
+    },
+    {
+        "head": "operator",
+        "tail": "c"
+    },
+    {
+        "head": "operator",
+        "tail": "docker"
+    },
+    {
+        "head": "operator",
+        "tail": "container"
+    },
+    {
+        "head": "c",
+        "tail": "docker"
+    },
+    {
+        "head": "c",
+        "tail": "container"
     }
 ]

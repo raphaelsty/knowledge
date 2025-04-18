@@ -43505,5 +43505,44 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/openai/codex": {
+        "extra-tags": [
+            "codex",
+            "coding",
+            "agent",
+            "terminal"
+        ],
+        "date": "2025-04-13",
+        "title": "codex",
+        "summary": "Lightweight coding agent that runs in your terminal",
+        "tags": [
+            "typescript"
+        ]
+    },
+    "https://github.com/trycua/cua": {
+        "extra-tags": [
+            "c",
+            "docker",
+            "container"
+        ],
+        "date": "2025-01-31",
+        "title": "cua",
+        "summary": "c/ua is the Docker Container for Computer-Use AI Agents.",
+        "tags": [
+            "swift",
+            "ai-agent",
+            "apple",
+            "virtualization-framework",
+            "computer-use",
+            "virtualization",
+            "macos",
+            "cua",
+            "manus",
+            "python",
+            "lume",
+            "agent",
+            "operator"
+        ]
     }
 }
