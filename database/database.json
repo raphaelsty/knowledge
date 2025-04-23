@@ -43731,5 +43731,18 @@
         ],
         "summary": "",
         "date": "2025-04-21"
+    },
+    "https://github.com/tplr-ai/templar": {
+        "extra-tags": [
+            "training",
+            "co training",
+            "template"
+        ],
+        "date": "2024-12-05",
+        "title": "templar",
+        "summary": "incen\u03c4ivised in\u03c4erne\u03c4-wide \u03c4raining",
+        "tags": [
+            "python"
+        ]
     }
 }

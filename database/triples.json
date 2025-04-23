@@ -202006,5 +202006,13 @@
     {
         "head": "rolmocr",
         "tail": "science"
+    },
+    {
+        "head": "training",
+        "tail": "template"
+    },
+    {
+        "head": "co training",
+        "tail": "template"
     }
 ]
