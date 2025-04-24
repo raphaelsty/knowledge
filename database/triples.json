@@ -202014,5 +202014,117 @@
     {
         "head": "co training",
         "tail": "template"
+    },
+    {
+        "head": "vectordb",
+        "tail": "ai"
+    },
+    {
+        "head": "vectordb",
+        "tail": "rust"
+    },
+    {
+        "head": "vectordb",
+        "tail": "rag"
+    },
+    {
+        "head": "vectordb",
+        "tail": "build"
+    },
+    {
+        "head": "vectordb",
+        "tail": "postgres"
+    },
+    {
+        "head": "ai",
+        "tail": "postgres"
+    },
+    {
+        "head": "rag",
+        "tail": "build"
+    },
+    {
+        "head": "rag",
+        "tail": "postgres"
+    },
+    {
+        "head": "font",
+        "tail": "hacker"
+    },
+    {
+        "head": "encoder",
+        "tail": "information retrieval"
+    },
+    {
+        "head": "encoder",
+        "tail": "nomic"
+    },
+    {
+        "head": "encoder",
+        "tail": "supervised"
+    },
+    {
+        "head": "encoder",
+        "tail": "training data"
+    },
+    {
+        "head": "encoder",
+        "tail": "ai"
+    },
+    {
+        "head": "encoder",
+        "tail": "data"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "nomic"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "supervised"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "training data"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "ai"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "data"
+    },
+    {
+        "head": "nomic",
+        "tail": "supervised"
+    },
+    {
+        "head": "nomic",
+        "tail": "training data"
+    },
+    {
+        "head": "nomic",
+        "tail": "ai"
+    },
+    {
+        "head": "nomic",
+        "tail": "data"
+    },
+    {
+        "head": "supervised",
+        "tail": "training data"
+    },
+    {
+        "head": "supervised",
+        "tail": "ai"
+    },
+    {
+        "head": "supervised",
+        "tail": "data"
+    },
+    {
+        "head": "training data",
+        "tail": "ai"
     }
 ]
