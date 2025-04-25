@@ -202126,5 +202126,85 @@
     {
         "head": "training data",
         "tail": "ai"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "fine tuning"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "reinforcement learning"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "rl"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "fine tuning"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "reinforcement learning"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "rl"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "fine tuning"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "reasoning"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "llms"
+    },
+    {
+        "head": "fine tuning",
+        "tail": "reasoning"
+    },
+    {
+        "head": "fine tuning",
+        "tail": "reinforcement learning"
+    },
+    {
+        "head": "fine tuning",
+        "tail": "models"
+    },
+    {
+        "head": "fine tuning",
+        "tail": "rl"
+    },
+    {
+        "head": "fine tuning",
+        "tail": "llms"
+    },
+    {
+        "head": "reasoning",
+        "tail": "reinforcement learning"
+    },
+    {
+        "head": "reasoning",
+        "tail": "rl"
+    },
+    {
+        "head": "reasoning",
+        "tail": "llms"
+    },
+    {
+        "head": "reinforcement learning",
+        "tail": "llms"
+    },
+    {
+        "head": "models",
+        "tail": "llms"
+    },
+    {
+        "head": "rl",
+        "tail": "llms"
     }
 ]
