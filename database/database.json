@@ -43805,5 +43805,18 @@
             "reasoning",
             "reinforcement learning"
         ]
+    },
+    "https://github.com/huggingface/gym-genesis": {
+        "extra-tags": [
+            "gym",
+            "environment",
+            "gym-environment"
+        ],
+        "date": "2025-04-07",
+        "title": "gym-genesis",
+        "summary": "A gym environment for GENESIS",
+        "tags": [
+            "python"
+        ]
     }
 }
