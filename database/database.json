@@ -43818,5 +43818,39 @@
         "tags": [
             "python"
         ]
+    },
+    "https://yarchive.net/blog/prostate/": {
+        "extra-tags": [
+            "hacker",
+            "archive"
+        ],
+        "title": "Hackernews An end to all this prostate trouble? (yarchive.net)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2025-04-27"
+    },
+    "https://simonwillison.net/2025/Apr/26/o3-photo-locations/": {
+        "extra-tags": [
+            "location"
+        ],
+        "title": "Hackernews Watching o3 guess a photo's location is surreal, dystopian and entertaining (simonwillison.net)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2025-04-27"
+    },
+    "https://www.gleech.org/tplus": {
+        "extra-tags": [
+            "transformer",
+            "transformers",
+            "fast transformer"
+        ],
+        "title": "Transformer++",
+        "summary": "",
+        "date": "2025-04-26",
+        "tags": []
     }
 }
