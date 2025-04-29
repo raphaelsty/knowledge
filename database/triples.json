@@ -202222,5 +202222,33 @@
     {
         "head": "transformers",
         "tail": "fast transformer"
+    },
+    {
+        "head": "shell",
+        "tail": "language model"
+    },
+    {
+        "head": "shell",
+        "tail": "qwen"
+    },
+    {
+        "head": "shell",
+        "tail": "cloud"
+    },
+    {
+        "head": "language model",
+        "tail": "cloud"
+    },
+    {
+        "head": "qwen",
+        "tail": "cloud"
+    },
+    {
+        "head": "arm",
+        "tail": "mobile"
+    },
+    {
+        "head": "mobile",
+        "tail": "lerobot"
     }
 ]

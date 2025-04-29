@@ -43852,5 +43852,41 @@
         "summary": "",
         "date": "2025-04-26",
         "tags": []
+    },
+    "https://github.com/QwenLM/Qwen3": {
+        "extra-tags": [
+            "language model",
+            "qwen",
+            "cloud"
+        ],
+        "date": "2024-02-05",
+        "title": "Qwen3",
+        "summary": "Qwen3 is the large language model series developed by Qwen team, Alibaba Cloud.",
+        "tags": [
+            "shell"
+        ]
+    },
+    "https://github.com/Vector-Wangel/XLeRobot": {
+        "extra-tags": [
+            "arm",
+            "mobile",
+            "lerobot"
+        ],
+        "date": "2025-04-26",
+        "title": "XLeRobot",
+        "summary": "XLeRobot: Practical Household Dual-Arm Mobile Robot for ~$660",
+        "tags": []
+    },
+    "https://qwenlm.github.io/blog/qwen3/": {
+        "extra-tags": [
+            "github",
+            "hacker"
+        ],
+        "title": "Hackernews Qwen3: Think deeper, act faster (qwenlm.github.io)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2025-04-29"
     }
 }
