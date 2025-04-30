@@ -43888,5 +43888,31 @@
         ],
         "summary": "",
         "date": "2025-04-29"
+    },
+    "https://github.com/The-Pocket/PocketFlow-Tutorial-Codebase-Knowledge": {
+        "extra-tags": [
+            "tutorial",
+            "codebase",
+            "knowledge"
+        ],
+        "date": "2025-04-02",
+        "title": "PocketFlow-Tutorial-Codebase-Knowledge",
+        "summary": "Pocket Flow Tutorial Project: Turns GitHub repo into Easy Tutorial with AI",
+        "tags": [
+            "llm-apps",
+            "llm-framework",
+            "coding",
+            "pocketflow",
+            "llm",
+            "llms",
+            "llm-frameworks",
+            "python",
+            "large-language-model",
+            "large-language-models",
+            "pocket-flow",
+            "llm-application",
+            "llm-agents",
+            "llm-agent"
+        ]
     }
 }
