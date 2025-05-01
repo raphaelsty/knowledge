@@ -202738,5 +202738,57 @@
     {
         "head": "codebase",
         "tail": "knowledge"
+    },
+    {
+        "head": "retrieval-augmented-generation",
+        "tail": "reranking"
+    },
+    {
+        "head": "retrieval-augmented-generation",
+        "tail": "models"
+    },
+    {
+        "head": "retrieval-augmented-generation",
+        "tail": "neural ranking models"
+    },
+    {
+        "head": "retrieval",
+        "tail": "reranking"
+    },
+    {
+        "head": "retrieval",
+        "tail": "neural ranking models"
+    },
+    {
+        "head": "python",
+        "tail": "reranking"
+    },
+    {
+        "head": "python",
+        "tail": "neural ranking models"
+    },
+    {
+        "head": "reranking",
+        "tail": "models"
+    },
+    {
+        "head": "reranking",
+        "tail": "neural ranking models"
+    },
+    {
+        "head": "models",
+        "tail": "neural ranking models"
+    },
+    {
+        "head": "gym",
+        "tail": "human in the loop"
+    },
+    {
+        "head": "gym",
+        "tail": "reinforcement learning"
+    },
+    {
+        "head": "human in the loop",
+        "tail": "reinforcement learning"
     }
 ]

@@ -43914,5 +43914,46 @@
             "llm-agents",
             "llm-agent"
         ]
+    },
+    "https://github.com/mixedbread-ai/mxbai-rerank": {
+        "extra-tags": [
+            "models",
+            "neural ranking models"
+        ],
+        "date": "2025-03-12",
+        "title": "mxbai-rerank",
+        "summary": "Crispy reranking models by Mixedbread",
+        "tags": [
+            "retrieval-augmented-generation",
+            "retrieval",
+            "python",
+            "reranking"
+        ]
+    },
+    "https://github.com/huggingface/gym-hil": {
+        "extra-tags": [
+            "gym",
+            "human in the loop",
+            "reinforcement learning"
+        ],
+        "date": "2025-04-09",
+        "title": "gym-hil",
+        "summary": "Human in the loop Reinforcement Learning suite",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/XiaomiMiMo/MiMo": {
+        "extra-tags": [
+            "reasoning",
+            "model",
+            "github"
+        ],
+        "title": "Hackernews Xiaomi MiMo Reasoning Model (github.com/xiaomimimo)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2025-05-01"
     }
 }
