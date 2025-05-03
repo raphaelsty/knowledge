@@ -202790,5 +202790,225 @@
     {
         "head": "human in the loop",
         "tail": "reinforcement learning"
+    },
+    {
+        "head": "python",
+        "tail": "rlaif"
+    },
+    {
+        "head": "python",
+        "tail": "feedback"
+    },
+    {
+        "head": "huggingface",
+        "tail": "rlhf"
+    },
+    {
+        "head": "huggingface",
+        "tail": "rlaif"
+    },
+    {
+        "head": "huggingface",
+        "tail": "llms"
+    },
+    {
+        "head": "huggingface",
+        "tail": "synthetic-dataset-generation"
+    },
+    {
+        "head": "huggingface",
+        "tail": "synthetic-data"
+    },
+    {
+        "head": "huggingface",
+        "tail": "ai"
+    },
+    {
+        "head": "huggingface",
+        "tail": "openai"
+    },
+    {
+        "head": "huggingface",
+        "tail": "framework"
+    },
+    {
+        "head": "huggingface",
+        "tail": "data"
+    },
+    {
+        "head": "huggingface",
+        "tail": "feedback"
+    },
+    {
+        "head": "rlhf",
+        "tail": "rlaif"
+    },
+    {
+        "head": "rlhf",
+        "tail": "synthetic-dataset-generation"
+    },
+    {
+        "head": "rlhf",
+        "tail": "synthetic-data"
+    },
+    {
+        "head": "rlhf",
+        "tail": "openai"
+    },
+    {
+        "head": "rlhf",
+        "tail": "framework"
+    },
+    {
+        "head": "rlhf",
+        "tail": "synthetic"
+    },
+    {
+        "head": "rlhf",
+        "tail": "data"
+    },
+    {
+        "head": "rlhf",
+        "tail": "feedback"
+    },
+    {
+        "head": "rlaif",
+        "tail": "llms"
+    },
+    {
+        "head": "rlaif",
+        "tail": "synthetic-dataset-generation"
+    },
+    {
+        "head": "rlaif",
+        "tail": "synthetic-data"
+    },
+    {
+        "head": "rlaif",
+        "tail": "ai"
+    },
+    {
+        "head": "rlaif",
+        "tail": "openai"
+    },
+    {
+        "head": "rlaif",
+        "tail": "framework"
+    },
+    {
+        "head": "rlaif",
+        "tail": "synthetic"
+    },
+    {
+        "head": "rlaif",
+        "tail": "data"
+    },
+    {
+        "head": "rlaif",
+        "tail": "feedback"
+    },
+    {
+        "head": "llms",
+        "tail": "synthetic-dataset-generation"
+    },
+    {
+        "head": "llms",
+        "tail": "synthetic-data"
+    },
+    {
+        "head": "llms",
+        "tail": "framework"
+    },
+    {
+        "head": "llms",
+        "tail": "synthetic"
+    },
+    {
+        "head": "llms",
+        "tail": "feedback"
+    },
+    {
+        "head": "synthetic-dataset-generation",
+        "tail": "ai"
+    },
+    {
+        "head": "synthetic-dataset-generation",
+        "tail": "openai"
+    },
+    {
+        "head": "synthetic-dataset-generation",
+        "tail": "framework"
+    },
+    {
+        "head": "synthetic-dataset-generation",
+        "tail": "data"
+    },
+    {
+        "head": "synthetic-dataset-generation",
+        "tail": "feedback"
+    },
+    {
+        "head": "synthetic-data",
+        "tail": "ai"
+    },
+    {
+        "head": "synthetic-data",
+        "tail": "openai"
+    },
+    {
+        "head": "synthetic-data",
+        "tail": "framework"
+    },
+    {
+        "head": "synthetic-data",
+        "tail": "data"
+    },
+    {
+        "head": "synthetic-data",
+        "tail": "feedback"
+    },
+    {
+        "head": "ai",
+        "tail": "openai"
+    },
+    {
+        "head": "ai",
+        "tail": "synthetic"
+    },
+    {
+        "head": "ai",
+        "tail": "feedback"
+    },
+    {
+        "head": "openai",
+        "tail": "framework"
+    },
+    {
+        "head": "openai",
+        "tail": "synthetic"
+    },
+    {
+        "head": "openai",
+        "tail": "data"
+    },
+    {
+        "head": "openai",
+        "tail": "feedback"
+    },
+    {
+        "head": "framework",
+        "tail": "synthetic"
+    },
+    {
+        "head": "framework",
+        "tail": "feedback"
+    },
+    {
+        "head": "synthetic",
+        "tail": "feedback"
+    },
+    {
+        "head": "data",
+        "tail": "feedback"
     }
 ]

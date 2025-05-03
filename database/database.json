@@ -43955,5 +43955,27 @@
         ],
         "summary": "",
         "date": "2025-05-01"
+    },
+    "https://github.com/argilla-io/distilabel": {
+        "extra-tags": [
+            "framework",
+            "synthetic",
+            "data",
+            "feedback"
+        ],
+        "date": "2023-10-16",
+        "title": "distilabel",
+        "summary": "Distilabel is a framework for synthetic data and AI feedback for engineers who need fast, reliable and scalable pipelines based on verified research papers.",
+        "tags": [
+            "python",
+            "huggingface",
+            "rlhf",
+            "rlaif",
+            "llms",
+            "synthetic-dataset-generation",
+            "synthetic-data",
+            "ai",
+            "openai"
+        ]
     }
 }
