@@ -43977,5 +43977,23 @@
             "ai",
             "openai"
         ]
+    },
+    "https://rentry.co/samplers": {
+        "extra-tags": [
+            "modern"
+        ],
+        "title": "Dummy's Guide to Modern Samplers",
+        "summary": "An idiot's comprehensive guide to modern sampling",
+        "date": "2025-05-04",
+        "tags": [
+            "llm",
+            "blog",
+            "generation",
+            "generative",
+            "llm",
+            "sampling",
+            "temperature",
+            "tutorial"
+        ]
     }
 }

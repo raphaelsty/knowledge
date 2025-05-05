@@ -203010,5 +203010,101 @@
     {
         "head": "data",
         "tail": "feedback"
+    },
+    {
+        "head": "llm",
+        "tail": "generation"
+    },
+    {
+        "head": "llm",
+        "tail": "generative"
+    },
+    {
+        "head": "llm",
+        "tail": "llm"
+    },
+    {
+        "head": "llm",
+        "tail": "sampling"
+    },
+    {
+        "head": "llm",
+        "tail": "temperature"
+    },
+    {
+        "head": "llm",
+        "tail": "modern"
+    },
+    {
+        "head": "blog",
+        "tail": "generation"
+    },
+    {
+        "head": "blog",
+        "tail": "generative"
+    },
+    {
+        "head": "blog",
+        "tail": "sampling"
+    },
+    {
+        "head": "blog",
+        "tail": "temperature"
+    },
+    {
+        "head": "blog",
+        "tail": "modern"
+    },
+    {
+        "head": "generation",
+        "tail": "sampling"
+    },
+    {
+        "head": "generation",
+        "tail": "temperature"
+    },
+    {
+        "head": "generation",
+        "tail": "tutorial"
+    },
+    {
+        "head": "generation",
+        "tail": "modern"
+    },
+    {
+        "head": "generative",
+        "tail": "sampling"
+    },
+    {
+        "head": "generative",
+        "tail": "temperature"
+    },
+    {
+        "head": "generative",
+        "tail": "modern"
+    },
+    {
+        "head": "sampling",
+        "tail": "temperature"
+    },
+    {
+        "head": "sampling",
+        "tail": "tutorial"
+    },
+    {
+        "head": "sampling",
+        "tail": "modern"
+    },
+    {
+        "head": "temperature",
+        "tail": "tutorial"
+    },
+    {
+        "head": "temperature",
+        "tail": "modern"
+    },
+    {
+        "head": "tutorial",
+        "tail": "modern"
     }
 ]
