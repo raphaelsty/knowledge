@@ -43995,5 +43995,39 @@
             "temperature",
             "tutorial"
         ]
+    },
+    "https://github.com/567-labs/kura": {
+        "extra-tags": [
+            "simple",
+            "paper",
+            "language models",
+            "label",
+            "clustering"
+        ],
+        "date": "2025-01-04",
+        "title": "kura",
+        "summary": "Kura is a simple reproduction of the CLIO paper which uses language models to label user behaviour before clustering them based on embeddings recursively. This helps us understand user behaviour on a higher level without sacrificing PII.",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/567-labs/instructor": {
+        "extra-tags": [
+            "llms",
+            "structured knowledge",
+            "structured-data",
+            "unstructured-data"
+        ],
+        "date": "2023-06-14",
+        "title": "instructor",
+        "summary": "structured outputs for llms ",
+        "tags": [
+            "validation",
+            "openai",
+            "python",
+            "openai-functions",
+            "openai-function-calli",
+            "pydantic-v2"
+        ]
     }
 }
