@@ -44029,5 +44029,112 @@
             "openai-function-calli",
             "pydantic-v2"
         ]
+    },
+    "https://github.com/djc/instant-distance": {
+        "extra-tags": [
+            "distance",
+            "fast",
+            "searching"
+        ],
+        "date": "2020-12-14",
+        "title": "instant-distance",
+        "summary": "Fast approximate nearest neighbor searching in Rust, based on HNSW index",
+        "tags": [
+            "hnsw",
+            "approximate-nearest-neighbor-search",
+            "rust"
+        ]
+    },
+    "https://github.com/malloydata/publisher": {
+        "extra-tags": [
+            "publishers",
+            "publishing",
+            "patcher"
+        ],
+        "date": "2024-09-16",
+        "title": "publisher",
+        "summary": "",
+        "tags": [
+            "typescript"
+        ]
+    },
+    "https://github.com/apirrone/Open_Duck_Mini": {
+        "extra-tags": [
+            "discord",
+            "conversion",
+            "discord-bot"
+        ],
+        "date": "2024-05-16",
+        "title": "Open_Duck_Mini",
+        "summary": "Making a mini version of the BDX droid. https://discord.gg/UtJZsgfQGe",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/al13n321/nnd": {
+        "extra-tags": [
+            "debugger",
+            "linux"
+        ],
+        "date": "2024-04-19",
+        "title": "nnd",
+        "summary": "A debugger for Linux",
+        "tags": [
+            "rust"
+        ]
+    },
+    "https://github.com/MehdiZouitine/Learning_to_repair_infeasible_problems_with_DRL_and_GNN": {
+        "extra-tags": [
+            "learning",
+            "deep learning",
+            "learning to hash"
+        ],
+        "date": "2024-08-26",
+        "title": "Learning_to_repair_infeasible_problems_with_DRL_and_GNN",
+        "summary": "",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/Lucas-rbnt/BM-MAE": {
+        "extra-tags": [
+            "multimodal",
+            "autoencoder",
+            "training",
+            "3d"
+        ],
+        "date": "2025-05-02",
+        "title": "BM-MAE",
+        "summary": "BM-MAE: Multimodal Masked Autoencoder Pre-training for 3D MRI-based Brain Tumor Analysis with Missing Modalities",
+        "tags": [
+            "jupyter notebook"
+        ]
+    },
+    "https://github.com/pdbpp/pdbpp": {
+        "extra-tags": [],
+        "date": "2017-06-11",
+        "title": "pdbpp",
+        "summary": "pdb++, a drop-in replacement for pdb (the Python debugger)",
+        "tags": [
+            "python",
+            "pdb",
+            "completion",
+            "syntax-highlighting",
+            "debugger"
+        ]
+    },
+    "https://github.com/deel-ai/orthogonium": {
+        "extra-tags": [
+            "training",
+            "orthogonality",
+            "paper-implementations",
+            "efficient-implementations"
+        ],
+        "date": "2024-03-13",
+        "title": "orthogonium",
+        "summary": "New implementations of old orthogonal layers unlock large scale training.",
+        "tags": [
+            "python"
+        ]
     }
 }

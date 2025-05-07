@@ -203110,5 +203110,165 @@
     {
         "head": "python",
         "tail": "label"
+    },
+    {
+        "head": "hnsw",
+        "tail": "distance"
+    },
+    {
+        "head": "hnsw",
+        "tail": "fast"
+    },
+    {
+        "head": "hnsw",
+        "tail": "searching"
+    },
+    {
+        "head": "approximate-nearest-neighbor-search",
+        "tail": "distance"
+    },
+    {
+        "head": "approximate-nearest-neighbor-search",
+        "tail": "fast"
+    },
+    {
+        "head": "approximate-nearest-neighbor-search",
+        "tail": "searching"
+    },
+    {
+        "head": "rust",
+        "tail": "distance"
+    },
+    {
+        "head": "rust",
+        "tail": "searching"
+    },
+    {
+        "head": "distance",
+        "tail": "fast"
+    },
+    {
+        "head": "distance",
+        "tail": "searching"
+    },
+    {
+        "head": "fast",
+        "tail": "searching"
+    },
+    {
+        "head": "typescript",
+        "tail": "publishers"
+    },
+    {
+        "head": "typescript",
+        "tail": "publishing"
+    },
+    {
+        "head": "typescript",
+        "tail": "patcher"
+    },
+    {
+        "head": "publishers",
+        "tail": "publishing"
+    },
+    {
+        "head": "publishers",
+        "tail": "patcher"
+    },
+    {
+        "head": "publishing",
+        "tail": "patcher"
+    },
+    {
+        "head": "python",
+        "tail": "discord"
+    },
+    {
+        "head": "discord",
+        "tail": "conversion"
+    },
+    {
+        "head": "discord",
+        "tail": "discord-bot"
+    },
+    {
+        "head": "conversion",
+        "tail": "discord-bot"
+    },
+    {
+        "head": "rust",
+        "tail": "debugger"
+    },
+    {
+        "head": "debugger",
+        "tail": "linux"
+    },
+    {
+        "head": "python",
+        "tail": "learning to hash"
+    },
+    {
+        "head": "learning",
+        "tail": "learning to hash"
+    },
+    {
+        "head": "deep learning",
+        "tail": "learning to hash"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "multimodal"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "3d"
+    },
+    {
+        "head": "multimodal",
+        "tail": "autoencoder"
+    },
+    {
+        "head": "multimodal",
+        "tail": "training"
+    },
+    {
+        "head": "multimodal",
+        "tail": "3d"
+    },
+    {
+        "head": "autoencoder",
+        "tail": "training"
+    },
+    {
+        "head": "autoencoder",
+        "tail": "3d"
+    },
+    {
+        "head": "python",
+        "tail": "pdb"
+    },
+    {
+        "head": "python",
+        "tail": "completion"
+    },
+    {
+        "head": "pdb",
+        "tail": "completion"
+    },
+    {
+        "head": "pdb",
+        "tail": "syntax-highlighting"
+    },
+    {
+        "head": "pdb",
+        "tail": "debugger"
+    },
+    {
+        "head": "completion",
+        "tail": "syntax-highlighting"
+    },
+    {
+        "head": "completion",
+        "tail": "debugger"
     }
 ]
