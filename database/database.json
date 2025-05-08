@@ -44136,5 +44136,61 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/chongzhangFDU/ROOR-Datasets": {
+        "extra-tags": [
+            "datasets",
+            "emnlp",
+            "2024",
+            "paper"
+        ],
+        "date": "2024-09-26",
+        "title": "ROOR-Datasets",
+        "summary": "This is the official release of the datasets introduced in the EMNLP 2024 paper: Modeling Layout Reading Order as Ordering Relations for Visually-rich Document Understanding.",
+        "tags": []
+    },
+    "https://github.com/astral-sh/ty": {
+        "extra-tags": [
+            "fast",
+            "language",
+            "server"
+        ],
+        "date": "2025-05-02",
+        "title": "ty",
+        "summary": "An extremely fast Python type checker and language server, written in Rust.",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/dandavison/delta": {
+        "extra-tags": [
+            "syntax-highlighting"
+        ],
+        "date": "2019-06-24",
+        "title": "delta",
+        "summary": "A syntax-highlighting pager for git, diff, grep, and blame output",
+        "tags": [
+            "git",
+            "pager",
+            "syntax-highlighter",
+            "git-delta",
+            "color-themes",
+            "delta",
+            "diff",
+            "rust"
+        ]
+    },
+    "https://github.com/huggingface/nanoVLM": {
+        "extra-tags": [
+            "repository",
+            "training",
+            "finetuning"
+        ],
+        "date": "2025-05-02",
+        "title": "nanoVLM",
+        "summary": "The simplest, fastest repository for training/finetuning small-sized VLMs.",
+        "tags": [
+            "jupyter notebook"
+        ]
     }
 }
