@@ -44192,5 +44192,21 @@
         "tags": [
             "jupyter notebook"
         ]
+    },
+    "https://github.com/ivanbelenky/us-routing": {
+        "extra-tags": [
+            "us",
+            "graph"
+        ],
+        "date": "2024-09-05",
+        "title": "us-routing",
+        "summary": "us cached road graph, freeways, primary and secondary roads",
+        "tags": [
+            "cached-graph",
+            "routing-engine",
+            "united-states",
+            "python",
+            "routing"
+        ]
     }
 }
