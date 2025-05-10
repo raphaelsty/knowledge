@@ -203522,5 +203522,81 @@
     {
         "head": "us",
         "tail": "graph"
+    },
+    {
+        "head": "faiss",
+        "tail": "gpu"
+    },
+    {
+        "head": "faiss",
+        "tail": "vector database"
+    },
+    {
+        "head": "faiss",
+        "tail": "nvidia"
+    },
+    {
+        "head": "faiss",
+        "tail": "meta"
+    },
+    {
+        "head": "faiss",
+        "tail": "accelerate"
+    },
+    {
+        "head": "gpu",
+        "tail": "vector database"
+    },
+    {
+        "head": "gpu",
+        "tail": "meta"
+    },
+    {
+        "head": "gpu",
+        "tail": "search"
+    },
+    {
+        "head": "gpu",
+        "tail": "accelerate"
+    },
+    {
+        "head": "vector database",
+        "tail": "nvidia"
+    },
+    {
+        "head": "vector database",
+        "tail": "meta"
+    },
+    {
+        "head": "vector database",
+        "tail": "search"
+    },
+    {
+        "head": "vector database",
+        "tail": "accelerate"
+    },
+    {
+        "head": "nvidia",
+        "tail": "meta"
+    },
+    {
+        "head": "nvidia",
+        "tail": "search"
+    },
+    {
+        "head": "nvidia",
+        "tail": "accelerate"
+    },
+    {
+        "head": "meta",
+        "tail": "search"
+    },
+    {
+        "head": "meta",
+        "tail": "accelerate"
+    },
+    {
+        "head": "search",
+        "tail": "accelerate"
     }
 ]

@@ -44208,5 +44208,21 @@
             "python",
             "routing"
         ]
+    },
+    "https://engineering.fb.com/2025/05/08/data-infrastructure/accelerating-gpu-indexes-in-faiss-with-nvidia-cuvs/": {
+        "extra-tags": [
+            "nvidia",
+            "meta",
+            "search",
+            "accelerate"
+        ],
+        "title": "Accelerating GPU indexes in Faiss with NVIDIA cuVS",
+        "summary": "Meta and NVIDIA collaborated to accelerate vector search on GPUs by integrating NVIDIA cuVS into Faiss v1.10, Meta\u2019s open source library for similarity search. This new implementation of cuVS will \u2026",
+        "date": "2025-05-09",
+        "tags": [
+            "faiss",
+            "gpu",
+            "vector database"
+        ]
     }
 }
