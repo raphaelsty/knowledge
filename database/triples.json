@@ -203598,5 +203598,1925 @@
     {
         "head": "search",
         "tail": "accelerate"
+    },
+    {
+        "head": "llm",
+        "tail": "browser"
+    },
+    {
+        "head": "llm",
+        "tail": "oss"
+    },
+    {
+        "head": "llm",
+        "tail": "large-action-model"
+    },
+    {
+        "head": "llm",
+        "tail": "web"
+    },
+    {
+        "head": "rag",
+        "tail": "browser"
+    },
+    {
+        "head": "rag",
+        "tail": "oss"
+    },
+    {
+        "head": "rag",
+        "tail": "large-action-model"
+    },
+    {
+        "head": "rag",
+        "tail": "model"
+    },
+    {
+        "head": "rag",
+        "tail": "web"
+    },
+    {
+        "head": "rag",
+        "tail": "agents"
+    },
+    {
+        "head": "browser",
+        "tail": "oss"
+    },
+    {
+        "head": "browser",
+        "tail": "ai"
+    },
+    {
+        "head": "browser",
+        "tail": "large-action-model"
+    },
+    {
+        "head": "browser",
+        "tail": "model"
+    },
+    {
+        "head": "browser",
+        "tail": "framework"
+    },
+    {
+        "head": "browser",
+        "tail": "agents"
+    },
+    {
+        "head": "oss",
+        "tail": "python"
+    },
+    {
+        "head": "oss",
+        "tail": "ai"
+    },
+    {
+        "head": "oss",
+        "tail": "large-action-model"
+    },
+    {
+        "head": "oss",
+        "tail": "model"
+    },
+    {
+        "head": "oss",
+        "tail": "framework"
+    },
+    {
+        "head": "oss",
+        "tail": "web"
+    },
+    {
+        "head": "oss",
+        "tail": "agents"
+    },
+    {
+        "head": "python",
+        "tail": "large-action-model"
+    },
+    {
+        "head": "ai",
+        "tail": "large-action-model"
+    },
+    {
+        "head": "ai",
+        "tail": "model"
+    },
+    {
+        "head": "ai",
+        "tail": "web"
+    },
+    {
+        "head": "large-action-model",
+        "tail": "model"
+    },
+    {
+        "head": "large-action-model",
+        "tail": "framework"
+    },
+    {
+        "head": "large-action-model",
+        "tail": "web"
+    },
+    {
+        "head": "large-action-model",
+        "tail": "agents"
+    },
+    {
+        "head": "model",
+        "tail": "web"
+    },
+    {
+        "head": "model",
+        "tail": "agents"
+    },
+    {
+        "head": "web",
+        "tail": "agents"
+    },
+    {
+        "head": "pyo3",
+        "tail": "dataclasses"
+    },
+    {
+        "head": "pyo3",
+        "tail": "datetime"
+    },
+    {
+        "head": "pyo3",
+        "tail": "deserialization"
+    },
+    {
+        "head": "pyo3",
+        "tail": "numpy"
+    },
+    {
+        "head": "pyo3",
+        "tail": "serialization"
+    },
+    {
+        "head": "pyo3",
+        "tail": "json"
+    },
+    {
+        "head": "pyo3",
+        "tail": "fast"
+    },
+    {
+        "head": "pyo3",
+        "tail": "library"
+    },
+    {
+        "head": "dataclasses",
+        "tail": "datetime"
+    },
+    {
+        "head": "dataclasses",
+        "tail": "deserialization"
+    },
+    {
+        "head": "dataclasses",
+        "tail": "rust"
+    },
+    {
+        "head": "dataclasses",
+        "tail": "numpy"
+    },
+    {
+        "head": "dataclasses",
+        "tail": "fast"
+    },
+    {
+        "head": "dataclasses",
+        "tail": "library"
+    },
+    {
+        "head": "datetime",
+        "tail": "deserialization"
+    },
+    {
+        "head": "datetime",
+        "tail": "rust"
+    },
+    {
+        "head": "datetime",
+        "tail": "python"
+    },
+    {
+        "head": "datetime",
+        "tail": "numpy"
+    },
+    {
+        "head": "datetime",
+        "tail": "serialization"
+    },
+    {
+        "head": "datetime",
+        "tail": "json"
+    },
+    {
+        "head": "datetime",
+        "tail": "fast"
+    },
+    {
+        "head": "datetime",
+        "tail": "library"
+    },
+    {
+        "head": "deserialization",
+        "tail": "rust"
+    },
+    {
+        "head": "deserialization",
+        "tail": "numpy"
+    },
+    {
+        "head": "rust",
+        "tail": "serialization"
+    },
+    {
+        "head": "numpy",
+        "tail": "serialization"
+    },
+    {
+        "head": "numpy",
+        "tail": "fast"
+    },
+    {
+        "head": "numpy",
+        "tail": "library"
+    },
+    {
+        "head": "onprem-ocr",
+        "tail": "llm-ocr"
+    },
+    {
+        "head": "onprem-ocr",
+        "tail": "onpremise"
+    },
+    {
+        "head": "onprem-ocr",
+        "tail": "document-analysis"
+    },
+    {
+        "head": "onprem-ocr",
+        "tail": "vlms"
+    },
+    {
+        "head": "onprem-ocr",
+        "tail": "python"
+    },
+    {
+        "head": "onprem-ocr",
+        "tail": "document-information-extraction"
+    },
+    {
+        "head": "onprem-ocr",
+        "tail": "nlp"
+    },
+    {
+        "head": "onprem-ocr",
+        "tail": "onprem-vision"
+    },
+    {
+        "head": "onprem-ocr",
+        "tail": "rag"
+    },
+    {
+        "head": "onprem-ocr",
+        "tail": "extraction"
+    },
+    {
+        "head": "onprem-ocr",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "onprem-ocr",
+        "tail": "table-extraction"
+    },
+    {
+        "head": "onprem-ocr",
+        "tail": "unstructured-data"
+    },
+    {
+        "head": "onprem-ocr",
+        "tail": "ocr-onpremise"
+    },
+    {
+        "head": "onprem-ocr",
+        "tail": "onprem"
+    },
+    {
+        "head": "onprem-ocr",
+        "tail": "llms"
+    },
+    {
+        "head": "onprem-ocr",
+        "tail": "document-data-extraction"
+    },
+    {
+        "head": "onprem-ocr",
+        "tail": "ocr"
+    },
+    {
+        "head": "onprem-ocr",
+        "tail": "document"
+    },
+    {
+        "head": "onprem-ocr",
+        "tail": "data"
+    },
+    {
+        "head": "onprem-ocr",
+        "tail": "benchmarking"
+    },
+    {
+        "head": "llm-ocr",
+        "tail": "onpremise"
+    },
+    {
+        "head": "llm-ocr",
+        "tail": "document-analysis"
+    },
+    {
+        "head": "llm-ocr",
+        "tail": "vlms"
+    },
+    {
+        "head": "llm-ocr",
+        "tail": "python"
+    },
+    {
+        "head": "llm-ocr",
+        "tail": "document-information-extraction"
+    },
+    {
+        "head": "llm-ocr",
+        "tail": "nlp"
+    },
+    {
+        "head": "llm-ocr",
+        "tail": "onprem-vision"
+    },
+    {
+        "head": "llm-ocr",
+        "tail": "rag"
+    },
+    {
+        "head": "llm-ocr",
+        "tail": "extraction"
+    },
+    {
+        "head": "llm-ocr",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "llm-ocr",
+        "tail": "table-extraction"
+    },
+    {
+        "head": "llm-ocr",
+        "tail": "unstructured-data"
+    },
+    {
+        "head": "llm-ocr",
+        "tail": "ocr-onpremise"
+    },
+    {
+        "head": "llm-ocr",
+        "tail": "onprem"
+    },
+    {
+        "head": "llm-ocr",
+        "tail": "llms"
+    },
+    {
+        "head": "llm-ocr",
+        "tail": "document-data-extraction"
+    },
+    {
+        "head": "llm-ocr",
+        "tail": "ocr"
+    },
+    {
+        "head": "llm-ocr",
+        "tail": "document"
+    },
+    {
+        "head": "llm-ocr",
+        "tail": "data"
+    },
+    {
+        "head": "llm-ocr",
+        "tail": "benchmarking"
+    },
+    {
+        "head": "onpremise",
+        "tail": "document-analysis"
+    },
+    {
+        "head": "onpremise",
+        "tail": "vlms"
+    },
+    {
+        "head": "onpremise",
+        "tail": "python"
+    },
+    {
+        "head": "onpremise",
+        "tail": "document-information-extraction"
+    },
+    {
+        "head": "onpremise",
+        "tail": "nlp"
+    },
+    {
+        "head": "onpremise",
+        "tail": "onprem-vision"
+    },
+    {
+        "head": "onpremise",
+        "tail": "rag"
+    },
+    {
+        "head": "onpremise",
+        "tail": "extraction"
+    },
+    {
+        "head": "onpremise",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "onpremise",
+        "tail": "table-extraction"
+    },
+    {
+        "head": "onpremise",
+        "tail": "unstructured-data"
+    },
+    {
+        "head": "onpremise",
+        "tail": "ocr-onpremise"
+    },
+    {
+        "head": "onpremise",
+        "tail": "onprem"
+    },
+    {
+        "head": "onpremise",
+        "tail": "llms"
+    },
+    {
+        "head": "onpremise",
+        "tail": "document-data-extraction"
+    },
+    {
+        "head": "onpremise",
+        "tail": "ocr"
+    },
+    {
+        "head": "onpremise",
+        "tail": "document"
+    },
+    {
+        "head": "onpremise",
+        "tail": "data"
+    },
+    {
+        "head": "onpremise",
+        "tail": "benchmarking"
+    },
+    {
+        "head": "document-analysis",
+        "tail": "vlms"
+    },
+    {
+        "head": "document-analysis",
+        "tail": "python"
+    },
+    {
+        "head": "document-analysis",
+        "tail": "document-information-extraction"
+    },
+    {
+        "head": "document-analysis",
+        "tail": "nlp"
+    },
+    {
+        "head": "document-analysis",
+        "tail": "onprem-vision"
+    },
+    {
+        "head": "document-analysis",
+        "tail": "rag"
+    },
+    {
+        "head": "document-analysis",
+        "tail": "extraction"
+    },
+    {
+        "head": "document-analysis",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "document-analysis",
+        "tail": "table-extraction"
+    },
+    {
+        "head": "document-analysis",
+        "tail": "unstructured-data"
+    },
+    {
+        "head": "document-analysis",
+        "tail": "ocr-onpremise"
+    },
+    {
+        "head": "document-analysis",
+        "tail": "onprem"
+    },
+    {
+        "head": "document-analysis",
+        "tail": "llms"
+    },
+    {
+        "head": "document-analysis",
+        "tail": "document-data-extraction"
+    },
+    {
+        "head": "document-analysis",
+        "tail": "ocr"
+    },
+    {
+        "head": "document-analysis",
+        "tail": "document"
+    },
+    {
+        "head": "document-analysis",
+        "tail": "data"
+    },
+    {
+        "head": "document-analysis",
+        "tail": "benchmarking"
+    },
+    {
+        "head": "vlms",
+        "tail": "python"
+    },
+    {
+        "head": "vlms",
+        "tail": "document-information-extraction"
+    },
+    {
+        "head": "vlms",
+        "tail": "nlp"
+    },
+    {
+        "head": "vlms",
+        "tail": "onprem-vision"
+    },
+    {
+        "head": "vlms",
+        "tail": "rag"
+    },
+    {
+        "head": "vlms",
+        "tail": "extraction"
+    },
+    {
+        "head": "vlms",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "vlms",
+        "tail": "table-extraction"
+    },
+    {
+        "head": "vlms",
+        "tail": "unstructured-data"
+    },
+    {
+        "head": "vlms",
+        "tail": "ocr-onpremise"
+    },
+    {
+        "head": "vlms",
+        "tail": "onprem"
+    },
+    {
+        "head": "vlms",
+        "tail": "llms"
+    },
+    {
+        "head": "vlms",
+        "tail": "document-data-extraction"
+    },
+    {
+        "head": "vlms",
+        "tail": "ocr"
+    },
+    {
+        "head": "vlms",
+        "tail": "document"
+    },
+    {
+        "head": "vlms",
+        "tail": "data"
+    },
+    {
+        "head": "vlms",
+        "tail": "benchmarking"
+    },
+    {
+        "head": "python",
+        "tail": "document-information-extraction"
+    },
+    {
+        "head": "python",
+        "tail": "onprem-vision"
+    },
+    {
+        "head": "python",
+        "tail": "table-extraction"
+    },
+    {
+        "head": "python",
+        "tail": "ocr-onpremise"
+    },
+    {
+        "head": "python",
+        "tail": "onprem"
+    },
+    {
+        "head": "python",
+        "tail": "document-data-extraction"
+    },
+    {
+        "head": "document-information-extraction",
+        "tail": "nlp"
+    },
+    {
+        "head": "document-information-extraction",
+        "tail": "onprem-vision"
+    },
+    {
+        "head": "document-information-extraction",
+        "tail": "rag"
+    },
+    {
+        "head": "document-information-extraction",
+        "tail": "extraction"
+    },
+    {
+        "head": "document-information-extraction",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "document-information-extraction",
+        "tail": "table-extraction"
+    },
+    {
+        "head": "document-information-extraction",
+        "tail": "unstructured-data"
+    },
+    {
+        "head": "document-information-extraction",
+        "tail": "ocr-onpremise"
+    },
+    {
+        "head": "document-information-extraction",
+        "tail": "onprem"
+    },
+    {
+        "head": "document-information-extraction",
+        "tail": "llms"
+    },
+    {
+        "head": "document-information-extraction",
+        "tail": "document-data-extraction"
+    },
+    {
+        "head": "document-information-extraction",
+        "tail": "ocr"
+    },
+    {
+        "head": "document-information-extraction",
+        "tail": "document"
+    },
+    {
+        "head": "document-information-extraction",
+        "tail": "data"
+    },
+    {
+        "head": "document-information-extraction",
+        "tail": "benchmarking"
+    },
+    {
+        "head": "nlp",
+        "tail": "onprem-vision"
+    },
+    {
+        "head": "nlp",
+        "tail": "table-extraction"
+    },
+    {
+        "head": "nlp",
+        "tail": "unstructured-data"
+    },
+    {
+        "head": "nlp",
+        "tail": "ocr-onpremise"
+    },
+    {
+        "head": "nlp",
+        "tail": "onprem"
+    },
+    {
+        "head": "nlp",
+        "tail": "document-data-extraction"
+    },
+    {
+        "head": "nlp",
+        "tail": "benchmarking"
+    },
+    {
+        "head": "onprem-vision",
+        "tail": "rag"
+    },
+    {
+        "head": "onprem-vision",
+        "tail": "extraction"
+    },
+    {
+        "head": "onprem-vision",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "onprem-vision",
+        "tail": "table-extraction"
+    },
+    {
+        "head": "onprem-vision",
+        "tail": "unstructured-data"
+    },
+    {
+        "head": "onprem-vision",
+        "tail": "ocr-onpremise"
+    },
+    {
+        "head": "onprem-vision",
+        "tail": "onprem"
+    },
+    {
+        "head": "onprem-vision",
+        "tail": "llms"
+    },
+    {
+        "head": "onprem-vision",
+        "tail": "document-data-extraction"
+    },
+    {
+        "head": "onprem-vision",
+        "tail": "ocr"
+    },
+    {
+        "head": "onprem-vision",
+        "tail": "document"
+    },
+    {
+        "head": "onprem-vision",
+        "tail": "data"
+    },
+    {
+        "head": "onprem-vision",
+        "tail": "benchmarking"
+    },
+    {
+        "head": "rag",
+        "tail": "extraction"
+    },
+    {
+        "head": "rag",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "rag",
+        "tail": "table-extraction"
+    },
+    {
+        "head": "rag",
+        "tail": "unstructured-data"
+    },
+    {
+        "head": "rag",
+        "tail": "ocr-onpremise"
+    },
+    {
+        "head": "rag",
+        "tail": "onprem"
+    },
+    {
+        "head": "rag",
+        "tail": "document-data-extraction"
+    },
+    {
+        "head": "rag",
+        "tail": "ocr"
+    },
+    {
+        "head": "rag",
+        "tail": "document"
+    },
+    {
+        "head": "rag",
+        "tail": "data"
+    },
+    {
+        "head": "rag",
+        "tail": "benchmarking"
+    },
+    {
+        "head": "extraction",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "extraction",
+        "tail": "table-extraction"
+    },
+    {
+        "head": "extraction",
+        "tail": "unstructured-data"
+    },
+    {
+        "head": "extraction",
+        "tail": "ocr-onpremise"
+    },
+    {
+        "head": "extraction",
+        "tail": "onprem"
+    },
+    {
+        "head": "extraction",
+        "tail": "llms"
+    },
+    {
+        "head": "extraction",
+        "tail": "document-data-extraction"
+    },
+    {
+        "head": "extraction",
+        "tail": "benchmarking"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "table-extraction"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "ocr-onpremise"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "onprem"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "document-data-extraction"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "document"
+    },
+    {
+        "head": "table-extraction",
+        "tail": "unstructured-data"
+    },
+    {
+        "head": "table-extraction",
+        "tail": "ocr-onpremise"
+    },
+    {
+        "head": "table-extraction",
+        "tail": "onprem"
+    },
+    {
+        "head": "table-extraction",
+        "tail": "llms"
+    },
+    {
+        "head": "table-extraction",
+        "tail": "document-data-extraction"
+    },
+    {
+        "head": "table-extraction",
+        "tail": "ocr"
+    },
+    {
+        "head": "table-extraction",
+        "tail": "document"
+    },
+    {
+        "head": "table-extraction",
+        "tail": "data"
+    },
+    {
+        "head": "table-extraction",
+        "tail": "benchmarking"
+    },
+    {
+        "head": "unstructured-data",
+        "tail": "ocr-onpremise"
+    },
+    {
+        "head": "unstructured-data",
+        "tail": "onprem"
+    },
+    {
+        "head": "unstructured-data",
+        "tail": "document-data-extraction"
+    },
+    {
+        "head": "unstructured-data",
+        "tail": "ocr"
+    },
+    {
+        "head": "unstructured-data",
+        "tail": "document"
+    },
+    {
+        "head": "unstructured-data",
+        "tail": "data"
+    },
+    {
+        "head": "unstructured-data",
+        "tail": "benchmarking"
+    },
+    {
+        "head": "ocr-onpremise",
+        "tail": "onprem"
+    },
+    {
+        "head": "ocr-onpremise",
+        "tail": "llms"
+    },
+    {
+        "head": "ocr-onpremise",
+        "tail": "document-data-extraction"
+    },
+    {
+        "head": "ocr-onpremise",
+        "tail": "ocr"
+    },
+    {
+        "head": "ocr-onpremise",
+        "tail": "document"
+    },
+    {
+        "head": "ocr-onpremise",
+        "tail": "data"
+    },
+    {
+        "head": "ocr-onpremise",
+        "tail": "benchmarking"
+    },
+    {
+        "head": "onprem",
+        "tail": "llms"
+    },
+    {
+        "head": "onprem",
+        "tail": "document-data-extraction"
+    },
+    {
+        "head": "onprem",
+        "tail": "ocr"
+    },
+    {
+        "head": "onprem",
+        "tail": "document"
+    },
+    {
+        "head": "onprem",
+        "tail": "data"
+    },
+    {
+        "head": "onprem",
+        "tail": "benchmarking"
+    },
+    {
+        "head": "llms",
+        "tail": "document-data-extraction"
+    },
+    {
+        "head": "llms",
+        "tail": "ocr"
+    },
+    {
+        "head": "llms",
+        "tail": "document"
+    },
+    {
+        "head": "llms",
+        "tail": "benchmarking"
+    },
+    {
+        "head": "document-data-extraction",
+        "tail": "ocr"
+    },
+    {
+        "head": "document-data-extraction",
+        "tail": "document"
+    },
+    {
+        "head": "document-data-extraction",
+        "tail": "data"
+    },
+    {
+        "head": "document-data-extraction",
+        "tail": "benchmarking"
+    },
+    {
+        "head": "ocr",
+        "tail": "benchmarking"
+    },
+    {
+        "head": "document",
+        "tail": "benchmarking"
+    },
+    {
+        "head": "data",
+        "tail": "benchmarking"
+    },
+    {
+        "head": "llm",
+        "tail": "bytedance"
+    },
+    {
+        "head": "llm",
+        "tail": "ai-agents"
+    },
+    {
+        "head": "llm",
+        "tail": "multi-agent"
+    },
+    {
+        "head": "llm",
+        "tail": "agentic"
+    },
+    {
+        "head": "llm",
+        "tail": "deep-research"
+    },
+    {
+        "head": "llm",
+        "tail": "langgraph"
+    },
+    {
+        "head": "llm",
+        "tail": "agentic-workflow"
+    },
+    {
+        "head": "llm",
+        "tail": "langmanus"
+    },
+    {
+        "head": "llm",
+        "tail": "agentic-framework"
+    },
+    {
+        "head": "llm",
+        "tail": "podcast"
+    },
+    {
+        "head": "llm",
+        "tail": "nodejs"
+    },
+    {
+        "head": "llm",
+        "tail": "deep"
+    },
+    {
+        "head": "llm",
+        "tail": "research"
+    },
+    {
+        "head": "bytedance",
+        "tail": "ai-agents"
+    },
+    {
+        "head": "bytedance",
+        "tail": "multi-agent"
+    },
+    {
+        "head": "bytedance",
+        "tail": "agent"
+    },
+    {
+        "head": "bytedance",
+        "tail": "agentic"
+    },
+    {
+        "head": "bytedance",
+        "tail": "deep-research"
+    },
+    {
+        "head": "bytedance",
+        "tail": "langchain"
+    },
+    {
+        "head": "bytedance",
+        "tail": "langgraph"
+    },
+    {
+        "head": "bytedance",
+        "tail": "agentic-workflow"
+    },
+    {
+        "head": "bytedance",
+        "tail": "python"
+    },
+    {
+        "head": "bytedance",
+        "tail": "langmanus"
+    },
+    {
+        "head": "bytedance",
+        "tail": "typescript"
+    },
+    {
+        "head": "bytedance",
+        "tail": "agentic-framework"
+    },
+    {
+        "head": "bytedance",
+        "tail": "podcast"
+    },
+    {
+        "head": "bytedance",
+        "tail": "nodejs"
+    },
+    {
+        "head": "bytedance",
+        "tail": "ai"
+    },
+    {
+        "head": "bytedance",
+        "tail": "community"
+    },
+    {
+        "head": "bytedance",
+        "tail": "framework"
+    },
+    {
+        "head": "bytedance",
+        "tail": "deep"
+    },
+    {
+        "head": "bytedance",
+        "tail": "research"
+    },
+    {
+        "head": "bytedance",
+        "tail": "open-source"
+    },
+    {
+        "head": "ai-agents",
+        "tail": "multi-agent"
+    },
+    {
+        "head": "ai-agents",
+        "tail": "agent"
+    },
+    {
+        "head": "ai-agents",
+        "tail": "agentic"
+    },
+    {
+        "head": "ai-agents",
+        "tail": "deep-research"
+    },
+    {
+        "head": "ai-agents",
+        "tail": "langchain"
+    },
+    {
+        "head": "ai-agents",
+        "tail": "langgraph"
+    },
+    {
+        "head": "ai-agents",
+        "tail": "agentic-workflow"
+    },
+    {
+        "head": "ai-agents",
+        "tail": "python"
+    },
+    {
+        "head": "ai-agents",
+        "tail": "langmanus"
+    },
+    {
+        "head": "ai-agents",
+        "tail": "typescript"
+    },
+    {
+        "head": "ai-agents",
+        "tail": "agentic-framework"
+    },
+    {
+        "head": "ai-agents",
+        "tail": "podcast"
+    },
+    {
+        "head": "ai-agents",
+        "tail": "nodejs"
+    },
+    {
+        "head": "ai-agents",
+        "tail": "ai"
+    },
+    {
+        "head": "ai-agents",
+        "tail": "community"
+    },
+    {
+        "head": "ai-agents",
+        "tail": "framework"
+    },
+    {
+        "head": "ai-agents",
+        "tail": "deep"
+    },
+    {
+        "head": "ai-agents",
+        "tail": "research"
+    },
+    {
+        "head": "ai-agents",
+        "tail": "open-source"
+    },
+    {
+        "head": "multi-agent",
+        "tail": "agent"
+    },
+    {
+        "head": "multi-agent",
+        "tail": "agentic"
+    },
+    {
+        "head": "multi-agent",
+        "tail": "deep-research"
+    },
+    {
+        "head": "multi-agent",
+        "tail": "langchain"
+    },
+    {
+        "head": "multi-agent",
+        "tail": "langgraph"
+    },
+    {
+        "head": "multi-agent",
+        "tail": "agentic-workflow"
+    },
+    {
+        "head": "multi-agent",
+        "tail": "langmanus"
+    },
+    {
+        "head": "multi-agent",
+        "tail": "typescript"
+    },
+    {
+        "head": "multi-agent",
+        "tail": "agentic-framework"
+    },
+    {
+        "head": "multi-agent",
+        "tail": "podcast"
+    },
+    {
+        "head": "multi-agent",
+        "tail": "nodejs"
+    },
+    {
+        "head": "multi-agent",
+        "tail": "ai"
+    },
+    {
+        "head": "multi-agent",
+        "tail": "community"
+    },
+    {
+        "head": "multi-agent",
+        "tail": "framework"
+    },
+    {
+        "head": "multi-agent",
+        "tail": "deep"
+    },
+    {
+        "head": "multi-agent",
+        "tail": "research"
+    },
+    {
+        "head": "multi-agent",
+        "tail": "open-source"
+    },
+    {
+        "head": "agent",
+        "tail": "agentic"
+    },
+    {
+        "head": "agent",
+        "tail": "deep-research"
+    },
+    {
+        "head": "agent",
+        "tail": "langchain"
+    },
+    {
+        "head": "agent",
+        "tail": "langgraph"
+    },
+    {
+        "head": "agent",
+        "tail": "agentic-workflow"
+    },
+    {
+        "head": "agent",
+        "tail": "langmanus"
+    },
+    {
+        "head": "agent",
+        "tail": "agentic-framework"
+    },
+    {
+        "head": "agent",
+        "tail": "podcast"
+    },
+    {
+        "head": "agent",
+        "tail": "nodejs"
+    },
+    {
+        "head": "agent",
+        "tail": "community"
+    },
+    {
+        "head": "agent",
+        "tail": "framework"
+    },
+    {
+        "head": "agent",
+        "tail": "deep"
+    },
+    {
+        "head": "agent",
+        "tail": "research"
+    },
+    {
+        "head": "agent",
+        "tail": "open-source"
+    },
+    {
+        "head": "agentic",
+        "tail": "deep-research"
+    },
+    {
+        "head": "agentic",
+        "tail": "langchain"
+    },
+    {
+        "head": "agentic",
+        "tail": "langgraph"
+    },
+    {
+        "head": "agentic",
+        "tail": "agentic-workflow"
+    },
+    {
+        "head": "agentic",
+        "tail": "python"
+    },
+    {
+        "head": "agentic",
+        "tail": "langmanus"
+    },
+    {
+        "head": "agentic",
+        "tail": "typescript"
+    },
+    {
+        "head": "agentic",
+        "tail": "agentic-framework"
+    },
+    {
+        "head": "agentic",
+        "tail": "podcast"
+    },
+    {
+        "head": "agentic",
+        "tail": "nodejs"
+    },
+    {
+        "head": "agentic",
+        "tail": "ai"
+    },
+    {
+        "head": "agentic",
+        "tail": "community"
+    },
+    {
+        "head": "agentic",
+        "tail": "framework"
+    },
+    {
+        "head": "agentic",
+        "tail": "deep"
+    },
+    {
+        "head": "agentic",
+        "tail": "research"
+    },
+    {
+        "head": "agentic",
+        "tail": "open-source"
+    },
+    {
+        "head": "deep-research",
+        "tail": "langchain"
+    },
+    {
+        "head": "deep-research",
+        "tail": "langgraph"
+    },
+    {
+        "head": "deep-research",
+        "tail": "agentic-workflow"
+    },
+    {
+        "head": "deep-research",
+        "tail": "python"
+    },
+    {
+        "head": "deep-research",
+        "tail": "langmanus"
+    },
+    {
+        "head": "deep-research",
+        "tail": "typescript"
+    },
+    {
+        "head": "deep-research",
+        "tail": "agentic-framework"
+    },
+    {
+        "head": "deep-research",
+        "tail": "podcast"
+    },
+    {
+        "head": "deep-research",
+        "tail": "nodejs"
+    },
+    {
+        "head": "deep-research",
+        "tail": "ai"
+    },
+    {
+        "head": "deep-research",
+        "tail": "community"
+    },
+    {
+        "head": "deep-research",
+        "tail": "framework"
+    },
+    {
+        "head": "deep-research",
+        "tail": "deep"
+    },
+    {
+        "head": "deep-research",
+        "tail": "research"
+    },
+    {
+        "head": "deep-research",
+        "tail": "open-source"
+    },
+    {
+        "head": "langchain",
+        "tail": "langgraph"
+    },
+    {
+        "head": "langchain",
+        "tail": "agentic-workflow"
+    },
+    {
+        "head": "langchain",
+        "tail": "langmanus"
+    },
+    {
+        "head": "langchain",
+        "tail": "typescript"
+    },
+    {
+        "head": "langchain",
+        "tail": "agentic-framework"
+    },
+    {
+        "head": "langchain",
+        "tail": "podcast"
+    },
+    {
+        "head": "langchain",
+        "tail": "nodejs"
+    },
+    {
+        "head": "langchain",
+        "tail": "ai"
+    },
+    {
+        "head": "langchain",
+        "tail": "community"
+    },
+    {
+        "head": "langchain",
+        "tail": "framework"
+    },
+    {
+        "head": "langchain",
+        "tail": "deep"
+    },
+    {
+        "head": "langchain",
+        "tail": "research"
+    },
+    {
+        "head": "langchain",
+        "tail": "open-source"
+    },
+    {
+        "head": "langgraph",
+        "tail": "agentic-workflow"
+    },
+    {
+        "head": "langgraph",
+        "tail": "python"
+    },
+    {
+        "head": "langgraph",
+        "tail": "langmanus"
+    },
+    {
+        "head": "langgraph",
+        "tail": "typescript"
+    },
+    {
+        "head": "langgraph",
+        "tail": "agentic-framework"
+    },
+    {
+        "head": "langgraph",
+        "tail": "podcast"
+    },
+    {
+        "head": "langgraph",
+        "tail": "nodejs"
+    },
+    {
+        "head": "langgraph",
+        "tail": "ai"
+    },
+    {
+        "head": "langgraph",
+        "tail": "community"
+    },
+    {
+        "head": "langgraph",
+        "tail": "framework"
+    },
+    {
+        "head": "langgraph",
+        "tail": "deep"
+    },
+    {
+        "head": "langgraph",
+        "tail": "research"
+    },
+    {
+        "head": "langgraph",
+        "tail": "open-source"
+    },
+    {
+        "head": "agentic-workflow",
+        "tail": "python"
+    },
+    {
+        "head": "agentic-workflow",
+        "tail": "langmanus"
+    },
+    {
+        "head": "agentic-workflow",
+        "tail": "typescript"
+    },
+    {
+        "head": "agentic-workflow",
+        "tail": "agentic-framework"
+    },
+    {
+        "head": "agentic-workflow",
+        "tail": "podcast"
+    },
+    {
+        "head": "agentic-workflow",
+        "tail": "nodejs"
+    },
+    {
+        "head": "agentic-workflow",
+        "tail": "ai"
+    },
+    {
+        "head": "agentic-workflow",
+        "tail": "community"
+    },
+    {
+        "head": "agentic-workflow",
+        "tail": "framework"
+    },
+    {
+        "head": "agentic-workflow",
+        "tail": "deep"
+    },
+    {
+        "head": "agentic-workflow",
+        "tail": "research"
+    },
+    {
+        "head": "agentic-workflow",
+        "tail": "open-source"
+    },
+    {
+        "head": "python",
+        "tail": "langmanus"
+    },
+    {
+        "head": "python",
+        "tail": "agentic-framework"
+    },
+    {
+        "head": "python",
+        "tail": "podcast"
+    },
+    {
+        "head": "langmanus",
+        "tail": "typescript"
+    },
+    {
+        "head": "langmanus",
+        "tail": "agentic-framework"
+    },
+    {
+        "head": "langmanus",
+        "tail": "podcast"
+    },
+    {
+        "head": "langmanus",
+        "tail": "nodejs"
+    },
+    {
+        "head": "langmanus",
+        "tail": "ai"
+    },
+    {
+        "head": "langmanus",
+        "tail": "community"
+    },
+    {
+        "head": "langmanus",
+        "tail": "framework"
+    },
+    {
+        "head": "langmanus",
+        "tail": "deep"
+    },
+    {
+        "head": "langmanus",
+        "tail": "research"
+    },
+    {
+        "head": "langmanus",
+        "tail": "open-source"
+    },
+    {
+        "head": "typescript",
+        "tail": "agentic-framework"
+    },
+    {
+        "head": "typescript",
+        "tail": "podcast"
+    },
+    {
+        "head": "typescript",
+        "tail": "community"
+    },
+    {
+        "head": "typescript",
+        "tail": "deep"
+    },
+    {
+        "head": "typescript",
+        "tail": "research"
+    },
+    {
+        "head": "agentic-framework",
+        "tail": "podcast"
+    },
+    {
+        "head": "agentic-framework",
+        "tail": "nodejs"
+    },
+    {
+        "head": "agentic-framework",
+        "tail": "ai"
+    },
+    {
+        "head": "agentic-framework",
+        "tail": "community"
+    },
+    {
+        "head": "agentic-framework",
+        "tail": "framework"
+    },
+    {
+        "head": "agentic-framework",
+        "tail": "deep"
+    },
+    {
+        "head": "agentic-framework",
+        "tail": "research"
+    },
+    {
+        "head": "agentic-framework",
+        "tail": "open-source"
+    },
+    {
+        "head": "podcast",
+        "tail": "nodejs"
+    },
+    {
+        "head": "podcast",
+        "tail": "ai"
+    },
+    {
+        "head": "podcast",
+        "tail": "community"
+    },
+    {
+        "head": "podcast",
+        "tail": "framework"
+    },
+    {
+        "head": "podcast",
+        "tail": "deep"
+    },
+    {
+        "head": "podcast",
+        "tail": "research"
+    },
+    {
+        "head": "podcast",
+        "tail": "open-source"
+    },
+    {
+        "head": "nodejs",
+        "tail": "ai"
+    },
+    {
+        "head": "nodejs",
+        "tail": "community"
+    },
+    {
+        "head": "nodejs",
+        "tail": "framework"
+    },
+    {
+        "head": "nodejs",
+        "tail": "deep"
+    },
+    {
+        "head": "nodejs",
+        "tail": "research"
+    },
+    {
+        "head": "ai",
+        "tail": "community"
+    },
+    {
+        "head": "ai",
+        "tail": "deep"
+    },
+    {
+        "head": "ai",
+        "tail": "research"
+    },
+    {
+        "head": "community",
+        "tail": "deep"
+    },
+    {
+        "head": "community",
+        "tail": "research"
+    },
+    {
+        "head": "framework",
+        "tail": "deep"
+    },
+    {
+        "head": "deep",
+        "tail": "research"
+    },
+    {
+        "head": "deep",
+        "tail": "open-source"
+    },
+    {
+        "head": "llm",
+        "tail": "navigate the web"
+    },
+    {
+        "head": "llm",
+        "tail": "web browser automation"
+    },
+    {
+        "head": "llm",
+        "tail": "science"
+    },
+    {
+        "head": "vlm",
+        "tail": "agent"
+    },
+    {
+        "head": "vlm",
+        "tail": "navigate the web"
+    },
+    {
+        "head": "vlm",
+        "tail": "web browser automation"
+    },
+    {
+        "head": "vlm",
+        "tail": "agents"
+    },
+    {
+        "head": "agent",
+        "tail": "navigate the web"
+    },
+    {
+        "head": "agent",
+        "tail": "web browser automation"
+    },
+    {
+        "head": "agent",
+        "tail": "source"
+    },
+    {
+        "head": "agent",
+        "tail": "science"
+    },
+    {
+        "head": "navigate the web",
+        "tail": "web browser automation"
+    },
+    {
+        "head": "navigate the web",
+        "tail": "agents"
+    },
+    {
+        "head": "navigate the web",
+        "tail": "source"
+    },
+    {
+        "head": "navigate the web",
+        "tail": "science"
+    },
+    {
+        "head": "web browser automation",
+        "tail": "agents"
+    },
+    {
+        "head": "web browser automation",
+        "tail": "source"
+    },
+    {
+        "head": "web browser automation",
+        "tail": "science"
+    },
+    {
+        "head": "agents",
+        "tail": "source"
+    },
+    {
+        "head": "agents",
+        "tail": "science"
     }
 ]
