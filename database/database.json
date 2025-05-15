@@ -44374,5 +44374,32 @@
         ],
         "summary": "",
         "date": "2025-05-14"
+    },
+    "https://github.com/onnx/onnx-ir": {
+        "extra-tags": [
+            "onnx",
+            "ir",
+            "onnxruntime"
+        ],
+        "date": "2025-05-14",
+        "title": "onnx-ir",
+        "summary": "",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://brightbenchmark.github.io/": {
+        "extra-tags": [],
+        "title": "BRIGHT: A Realistic and Challenging Benchmark for Reasoning-Intensive Retrieval",
+        "summary": "",
+        "date": "2025-05-14",
+        "tags": [
+            "benchmark",
+            "bright",
+            "information-retrieval",
+            "reasoning",
+            "resonir",
+            "retrieval"
+        ]
     }
 }
