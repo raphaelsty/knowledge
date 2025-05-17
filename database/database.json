@@ -44401,5 +44401,32 @@
             "resonir",
             "retrieval"
         ]
+    },
+    "https://github.com/duckdb/extension-template-rs": {
+        "extra-tags": [
+            "template",
+            "extension",
+            "duckdb"
+        ],
+        "date": "2024-11-07",
+        "title": "extension-template-rs",
+        "summary": "(Experimental) Template for Rust-based DuckDB extensions",
+        "tags": [
+            "rust"
+        ]
+    },
+    "https://github.com/pgjones/sql-tstring": {
+        "extra-tags": [
+            "kg construction",
+            "docstring",
+            "knowledge graph construction"
+        ],
+        "date": "2024-08-29",
+        "title": "sql-tstring",
+        "summary": "SQL-tString allows for f-string like construction of sql queries ",
+        "tags": [
+            "sql",
+            "python"
+        ]
     }
 }

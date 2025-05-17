@@ -205570,5 +205570,49 @@
     {
         "head": "resonir",
         "tail": "retrieval"
+    },
+    {
+        "head": "rust",
+        "tail": "extension"
+    },
+    {
+        "head": "template",
+        "tail": "extension"
+    },
+    {
+        "head": "template",
+        "tail": "duckdb"
+    },
+    {
+        "head": "extension",
+        "tail": "duckdb"
+    },
+    {
+        "head": "sql",
+        "tail": "kg construction"
+    },
+    {
+        "head": "sql",
+        "tail": "docstring"
+    },
+    {
+        "head": "sql",
+        "tail": "knowledge graph construction"
+    },
+    {
+        "head": "python",
+        "tail": "knowledge graph construction"
+    },
+    {
+        "head": "kg construction",
+        "tail": "docstring"
+    },
+    {
+        "head": "kg construction",
+        "tail": "knowledge graph construction"
+    },
+    {
+        "head": "docstring",
+        "tail": "knowledge graph construction"
     }
 ]
