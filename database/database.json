@@ -44428,5 +44428,25 @@
             "sql",
             "python"
         ]
+    },
+    "https://github.com/paddymul/buckaroo": {
+        "extra-tags": [
+            "notebooks",
+            "dataframes",
+            "data"
+        ],
+        "date": "2023-04-19",
+        "title": "buckaroo",
+        "summary": "Buckaroo - The data table UI  for Notebooks.  Quickly explore dataframes, scroll through dataframes, search, sort, view summary stats and histograms. Works with Pandas, Polars, Jupyter, Marimo, VSCode Notebooks",
+        "tags": [
+            "paddy",
+            "jupyter",
+            "polars",
+            "typescript",
+            "buckaroo",
+            "data-science",
+            "pandas",
+            "marimo-notebook"
+        ]
     }
 }

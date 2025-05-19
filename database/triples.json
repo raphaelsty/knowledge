@@ -205614,5 +205614,149 @@
     {
         "head": "docstring",
         "tail": "knowledge graph construction"
+    },
+    {
+        "head": "paddy",
+        "tail": "jupyter"
+    },
+    {
+        "head": "paddy",
+        "tail": "polars"
+    },
+    {
+        "head": "paddy",
+        "tail": "typescript"
+    },
+    {
+        "head": "paddy",
+        "tail": "buckaroo"
+    },
+    {
+        "head": "paddy",
+        "tail": "data-science"
+    },
+    {
+        "head": "paddy",
+        "tail": "pandas"
+    },
+    {
+        "head": "paddy",
+        "tail": "marimo-notebook"
+    },
+    {
+        "head": "paddy",
+        "tail": "notebooks"
+    },
+    {
+        "head": "paddy",
+        "tail": "dataframes"
+    },
+    {
+        "head": "paddy",
+        "tail": "data"
+    },
+    {
+        "head": "jupyter",
+        "tail": "polars"
+    },
+    {
+        "head": "jupyter",
+        "tail": "buckaroo"
+    },
+    {
+        "head": "jupyter",
+        "tail": "marimo-notebook"
+    },
+    {
+        "head": "polars",
+        "tail": "typescript"
+    },
+    {
+        "head": "polars",
+        "tail": "buckaroo"
+    },
+    {
+        "head": "polars",
+        "tail": "data-science"
+    },
+    {
+        "head": "polars",
+        "tail": "marimo-notebook"
+    },
+    {
+        "head": "polars",
+        "tail": "notebooks"
+    },
+    {
+        "head": "typescript",
+        "tail": "buckaroo"
+    },
+    {
+        "head": "typescript",
+        "tail": "marimo-notebook"
+    },
+    {
+        "head": "typescript",
+        "tail": "dataframes"
+    },
+    {
+        "head": "buckaroo",
+        "tail": "data-science"
+    },
+    {
+        "head": "buckaroo",
+        "tail": "pandas"
+    },
+    {
+        "head": "buckaroo",
+        "tail": "marimo-notebook"
+    },
+    {
+        "head": "buckaroo",
+        "tail": "notebooks"
+    },
+    {
+        "head": "buckaroo",
+        "tail": "dataframes"
+    },
+    {
+        "head": "buckaroo",
+        "tail": "data"
+    },
+    {
+        "head": "data-science",
+        "tail": "marimo-notebook"
+    },
+    {
+        "head": "data-science",
+        "tail": "dataframes"
+    },
+    {
+        "head": "pandas",
+        "tail": "marimo-notebook"
+    },
+    {
+        "head": "pandas",
+        "tail": "notebooks"
+    },
+    {
+        "head": "marimo-notebook",
+        "tail": "notebooks"
+    },
+    {
+        "head": "marimo-notebook",
+        "tail": "dataframes"
+    },
+    {
+        "head": "marimo-notebook",
+        "tail": "data"
+    },
+    {
+        "head": "notebooks",
+        "tail": "dataframes"
+    },
+    {
+        "head": "dataframes",
+        "tail": "data"
     }
 ]
