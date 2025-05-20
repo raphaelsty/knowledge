@@ -44448,5 +44448,48 @@
             "pandas",
             "marimo-notebook"
         ]
+    },
+    "https://github.com/deel-ai/dina": {
+        "extra-tags": [
+            "imagenet",
+            "attribution",
+            "attributes"
+        ],
+        "date": "2025-05-14",
+        "title": "dina",
+        "summary": "DEEL ImageNet Attributions",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/kscalelabs/kinfer": {
+        "extra-tags": [
+            "model",
+            "inference",
+            "tool"
+        ],
+        "date": "2024-11-17",
+        "title": "kinfer",
+        "summary": "The K-Scale model export and inference tool",
+        "tags": [
+            "rust"
+        ]
+    },
+    "https://github.com/kscalelabs/ksim-gym": {
+        "extra-tags": [
+            "gym",
+            "rl",
+            "top"
+        ],
+        "date": "2025-04-25",
+        "title": "ksim-gym",
+        "summary": "K-Sim Gym: Making robots useful with RL. Built on top of K-Sim.",
+        "tags": [
+            "robotics",
+            "jupyter notebook",
+            "reinforcement-learning",
+            "reinforcement-learning-environments",
+            "robotframework"
+        ]
     }
 }
