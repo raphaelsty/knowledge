@@ -44491,5 +44491,49 @@
             "reinforcement-learning-environments",
             "robotframework"
         ]
+    },
+    "https://github.com/LaurentMazare/tch-ext": {
+        "extra-tags": [
+            "python",
+            "extension",
+            "pyo3",
+            "pytorch"
+        ],
+        "date": "2023-05-18",
+        "title": "tch-ext",
+        "summary": "Sample Python extension using Rust/PyO3/tch to interact with PyTorch",
+        "tags": [
+            "rust"
+        ]
+    },
+    "https://github.com/onnx/ir-py": {
+        "extra-tags": [
+            "ir",
+            "in-memory"
+        ],
+        "date": "2025-05-14",
+        "title": "ir-py",
+        "summary": "Efficient in-memory representation for ONNX, in Python",
+        "tags": [
+            "intermediate-representation",
+            "python",
+            "large-language-models",
+            "machine-learning",
+            "computation-graph",
+            "onnx"
+        ]
+    },
+    "https://github.com/huggingface/kernels": {
+        "extra-tags": [
+            "load",
+            "kernel",
+            "cuda-kernels"
+        ],
+        "date": "2024-11-29",
+        "title": "kernels",
+        "summary": "Load compute kernels from the Hub",
+        "tags": [
+            "python"
+        ]
     }
 }

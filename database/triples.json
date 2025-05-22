@@ -205846,5 +205846,121 @@
     {
         "head": "rl",
         "tail": "top"
+    },
+    {
+        "head": "extension",
+        "tail": "pyo3"
+    },
+    {
+        "head": "extension",
+        "tail": "pytorch"
+    },
+    {
+        "head": "pyo3",
+        "tail": "pytorch"
+    },
+    {
+        "head": "intermediate-representation",
+        "tail": "python"
+    },
+    {
+        "head": "intermediate-representation",
+        "tail": "large-language-models"
+    },
+    {
+        "head": "intermediate-representation",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "intermediate-representation",
+        "tail": "computation-graph"
+    },
+    {
+        "head": "intermediate-representation",
+        "tail": "onnx"
+    },
+    {
+        "head": "intermediate-representation",
+        "tail": "ir"
+    },
+    {
+        "head": "intermediate-representation",
+        "tail": "in-memory"
+    },
+    {
+        "head": "python",
+        "tail": "computation-graph"
+    },
+    {
+        "head": "python",
+        "tail": "in-memory"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "computation-graph"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "onnx"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "ir"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "in-memory"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "computation-graph"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "ir"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "in-memory"
+    },
+    {
+        "head": "computation-graph",
+        "tail": "onnx"
+    },
+    {
+        "head": "computation-graph",
+        "tail": "ir"
+    },
+    {
+        "head": "computation-graph",
+        "tail": "in-memory"
+    },
+    {
+        "head": "onnx",
+        "tail": "in-memory"
+    },
+    {
+        "head": "ir",
+        "tail": "in-memory"
+    },
+    {
+        "head": "python",
+        "tail": "kernel"
+    },
+    {
+        "head": "python",
+        "tail": "cuda-kernels"
+    },
+    {
+        "head": "load",
+        "tail": "kernel"
+    },
+    {
+        "head": "load",
+        "tail": "cuda-kernels"
+    },
+    {
+        "head": "kernel",
+        "tail": "cuda-kernels"
     }
 ]
