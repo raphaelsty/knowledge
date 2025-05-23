@@ -44535,5 +44535,46 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/michel-aractingi/lerobot-hilserl-guide": {
+        "extra-tags": [
+            "lerobot",
+            "tutorial"
+        ],
+        "date": "2025-04-21",
+        "title": "lerobot-hilserl-guide",
+        "summary": "Guide and tutorial to run the HILSerl implementation of LeRobot",
+        "tags": []
+    },
+    "https://github.com/echigot/CACTIF": {
+        "extra-tags": [
+            "transfer",
+            "diffusion",
+            "models",
+            "synthetic",
+            "domain adaptation"
+        ],
+        "date": "2025-05-22",
+        "title": "CACTIF",
+        "summary": "Official implementation of \"Style Transfer with Diffusion Models for Synthetic-to-Real Domain Adaptation\".",
+        "tags": []
+    },
+    "https://github.com/jolibrain/colette": {
+        "extra-tags": [
+            "documents",
+            "technical report"
+        ],
+        "date": "2025-04-04",
+        "title": "colette",
+        "summary": "Search and interact locally with technical documents of any kind",
+        "tags": [
+            "search",
+            "llm",
+            "multimodal-large-language-models",
+            "vision-language-model",
+            "retrieval-augmented-generation",
+            "multimodal-retrieval",
+            "html"
+        ]
     }
 }

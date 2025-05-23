@@ -205962,5 +205962,161 @@
     {
         "head": "kernel",
         "tail": "cuda-kernels"
+    },
+    {
+        "head": "lerobot",
+        "tail": "tutorial"
+    },
+    {
+        "head": "transfer",
+        "tail": "diffusion"
+    },
+    {
+        "head": "transfer",
+        "tail": "models"
+    },
+    {
+        "head": "transfer",
+        "tail": "synthetic"
+    },
+    {
+        "head": "transfer",
+        "tail": "domain adaptation"
+    },
+    {
+        "head": "diffusion",
+        "tail": "synthetic"
+    },
+    {
+        "head": "diffusion",
+        "tail": "domain adaptation"
+    },
+    {
+        "head": "models",
+        "tail": "synthetic"
+    },
+    {
+        "head": "models",
+        "tail": "domain adaptation"
+    },
+    {
+        "head": "synthetic",
+        "tail": "domain adaptation"
+    },
+    {
+        "head": "search",
+        "tail": "multimodal-large-language-models"
+    },
+    {
+        "head": "search",
+        "tail": "vision-language-model"
+    },
+    {
+        "head": "search",
+        "tail": "multimodal-retrieval"
+    },
+    {
+        "head": "search",
+        "tail": "documents"
+    },
+    {
+        "head": "search",
+        "tail": "technical report"
+    },
+    {
+        "head": "llm",
+        "tail": "multimodal-large-language-models"
+    },
+    {
+        "head": "llm",
+        "tail": "vision-language-model"
+    },
+    {
+        "head": "llm",
+        "tail": "multimodal-retrieval"
+    },
+    {
+        "head": "llm",
+        "tail": "documents"
+    },
+    {
+        "head": "llm",
+        "tail": "technical report"
+    },
+    {
+        "head": "multimodal-large-language-models",
+        "tail": "vision-language-model"
+    },
+    {
+        "head": "multimodal-large-language-models",
+        "tail": "retrieval-augmented-generation"
+    },
+    {
+        "head": "multimodal-large-language-models",
+        "tail": "multimodal-retrieval"
+    },
+    {
+        "head": "multimodal-large-language-models",
+        "tail": "html"
+    },
+    {
+        "head": "multimodal-large-language-models",
+        "tail": "documents"
+    },
+    {
+        "head": "multimodal-large-language-models",
+        "tail": "technical report"
+    },
+    {
+        "head": "vision-language-model",
+        "tail": "multimodal-retrieval"
+    },
+    {
+        "head": "vision-language-model",
+        "tail": "html"
+    },
+    {
+        "head": "vision-language-model",
+        "tail": "documents"
+    },
+    {
+        "head": "vision-language-model",
+        "tail": "technical report"
+    },
+    {
+        "head": "retrieval-augmented-generation",
+        "tail": "multimodal-retrieval"
+    },
+    {
+        "head": "retrieval-augmented-generation",
+        "tail": "html"
+    },
+    {
+        "head": "retrieval-augmented-generation",
+        "tail": "documents"
+    },
+    {
+        "head": "retrieval-augmented-generation",
+        "tail": "technical report"
+    },
+    {
+        "head": "multimodal-retrieval",
+        "tail": "html"
+    },
+    {
+        "head": "multimodal-retrieval",
+        "tail": "documents"
+    },
+    {
+        "head": "multimodal-retrieval",
+        "tail": "technical report"
+    },
+    {
+        "head": "html",
+        "tail": "technical report"
+    },
+    {
+        "head": "documents",
+        "tail": "technical report"
     }
 ]
