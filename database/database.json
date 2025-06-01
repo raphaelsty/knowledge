@@ -44576,5 +44576,166 @@
             "multimodal-retrieval",
             "html"
         ]
+    },
+    "https://github.com/allenai/olmocr": {
+        "extra-tags": [
+            "olmocr",
+            "pdfs",
+            "llm",
+            "datasets"
+        ],
+        "date": "2024-09-17",
+        "title": "olmocr",
+        "summary": "Toolkit for linearizing PDFs for LLM datasets/training",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/TheRobotStudio/HOPEJr": {
+        "extra-tags": [
+            "open-source",
+            "open-source-tooling",
+            "open-source-intelligence"
+        ],
+        "date": "2024-10-04",
+        "title": "HOPEJr",
+        "summary": "HOPEJr_open-source_DIY_Humanoid_Robot_with_dexterous_hands",
+        "tags": []
+    },
+    "https://github.com/TataKKKL/awesome-lerobot": {
+        "extra-tags": [
+            "lerobot",
+            "awesome",
+            "collection"
+        ],
+        "date": "2025-05-23",
+        "title": "awesome-lerobot",
+        "summary": "Collection of Materials on LeRobot",
+        "tags": [
+            "jupyter notebook"
+        ]
+    },
+    "https://github.com/julien-blanchon/lerobot": {
+        "extra-tags": [
+            "lerobot",
+            "ai",
+            "robotics",
+            "learning"
+        ],
+        "date": "2025-05-30",
+        "title": "lerobot",
+        "summary": "\ud83e\udd17 LeRobot: Making AI for Robotics more accessible with end-to-end learning",
+        "tags": []
+    },
+    "https://github.com/younggyoseo/FastTD3": {
+        "extra-tags": [
+            "fasttext",
+            "fast",
+            "fast ai"
+        ],
+        "date": "2025-05-12",
+        "title": "FastTD3",
+        "summary": "",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/sayakpaul/nanoDiT": {
+        "extra-tags": [
+            "minimal",
+            "training",
+            "transformers"
+        ],
+        "date": "2025-05-24",
+        "title": "nanoDiT",
+        "summary": "Just another reasonably minimal repo for class-conditional training of pixel-space diffusion transformers.",
+        "tags": [
+            "flow-matching",
+            "image-gen",
+            "diffusion",
+            "genai",
+            "dit",
+            "python"
+        ]
+    },
+    "https://github.com/facebookresearch/jepa-intuitive-physics": {
+        "extra-tags": [
+            "physics",
+            "code",
+            "paper",
+            "supervised"
+        ],
+        "date": "2025-02-14",
+        "title": "jepa-intuitive-physics",
+        "summary": "This repo contains the code for the paper \"Intuitive physics understanding emerges fromself-supervised pretraining on natural videos\"",
+        "tags": [
+            "jupyter notebook"
+        ]
+    },
+    "https://github.com/villekuosmanen/physical-AI-attention-mapper": {
+        "extra-tags": [
+            "ai",
+            "attention",
+            "transformer"
+        ],
+        "date": "2025-05-26",
+        "title": "physical-AI-attention-mapper",
+        "summary": "Attention mappers and visualisation for transformer-based Physical AI policies",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/facebookresearch/flow_matching": {
+        "extra-tags": [
+            "matching",
+            "pytorch",
+            "library",
+            "algorithms"
+        ],
+        "date": "2024-12-07",
+        "title": "flow_matching",
+        "summary": "A PyTorch library for implementing flow matching algorithms, featuring continuous and discrete flow matching implementations. It includes practical examples for both text and image modalities.",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://invariantlabs.ai/blog/mcp-github-vulnerability": {
+        "extra-tags": [
+            "github",
+            "ai"
+        ],
+        "title": "Hackernews GitHub MCP exploited: Accessing private repositories via MCP (invariantlabs.ai)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2025-06-01"
+    },
+    "https://ducklake.select/": {
+        "extra-tags": [
+            "data",
+            "integrations"
+        ],
+        "title": "Hackernews DuckLake is an integrated data lake and catalog format (ducklake.select)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2025-06-01"
+    },
+    "https://huggingface.co/ostris/Flex.1-alpha": {
+        "extra-tags": [
+            "hugging face",
+            "source",
+            "science",
+            "computer science - artificial intelligence"
+        ],
+        "title": "ostris/Flex.1-alpha \u00b7 Hugging Face",
+        "summary": "We\u2019re on a journey to advance and democratize artificial intelligence through open source and open science.",
+        "date": "2025-05-24",
+        "tags": [
+            "diffusion",
+            "knowledge distillation"
+        ]
     }
 }
