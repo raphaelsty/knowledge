@@ -206370,5 +206370,53 @@
     {
         "head": "knowledge distillation",
         "tail": "science"
+    },
+    {
+        "head": "fast",
+        "tail": "fastai"
+    },
+    {
+        "head": "fast ai",
+        "tail": "fastai"
+    },
+    {
+        "head": "rl",
+        "tail": "online"
+    },
+    {
+        "head": "rl",
+        "tail": "simple"
+    },
+    {
+        "head": "rl",
+        "tail": "training"
+    },
+    {
+        "head": "online",
+        "tail": "simple"
+    },
+    {
+        "head": "repository",
+        "tail": "image"
+    },
+    {
+        "head": "repository",
+        "tail": "control"
+    },
+    {
+        "head": "language",
+        "tail": "control"
+    },
+    {
+        "head": "image",
+        "tail": "control"
+    },
+    {
+        "head": "repository",
+        "tail": "visual"
+    },
+    {
+        "head": "visual",
+        "tail": "training"
     }
 ]

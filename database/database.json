@@ -44737,5 +44737,59 @@
             "diffusion",
             "knowledge distillation"
         ]
+    },
+    "https://github.com/AnswerDotAI/fastkmeans": {
+        "extra-tags": [
+            "fast",
+            "fast ai",
+            "fastai"
+        ],
+        "date": "2025-04-08",
+        "title": "fastkmeans",
+        "summary": "",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/PRIME-RL/SimpleVLA-RL": {
+        "extra-tags": [
+            "rl",
+            "online",
+            "simple",
+            "training"
+        ],
+        "date": "2025-05-25",
+        "title": "SimpleVLA-RL",
+        "summary": "Online RL with Simple Reward Enables Training VLA Models with Only One Trajectory",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/penn-pal-lab/LIV": {
+        "extra-tags": [
+            "repository",
+            "language",
+            "image",
+            "control"
+        ],
+        "date": "2023-05-24",
+        "title": "LIV",
+        "summary": "Official repository for \"LIV: Language-Image Representations and Rewards for Robotic Control\" (ICML 2023)",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/facebookresearch/vip": {
+        "extra-tags": [
+            "repository",
+            "visual",
+            "training"
+        ],
+        "date": "2022-09-27",
+        "title": "vip",
+        "summary": "Official repository for \"VIP: Towards Universal Visual Reward and Representation via Value-Implicit Pre-Training\"",
+        "tags": [
+            "python"
+        ]
     }
 }
