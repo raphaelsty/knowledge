@@ -44791,5 +44791,18 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/Boshen/cargo-shear": {
+        "extra-tags": [
+            "cargo",
+            "toml",
+            "universal-dependencies"
+        ],
+        "date": "2024-03-14",
+        "title": "cargo-shear",
+        "summary": "Detect and remove unused dependencies from Cargo.toml",
+        "tags": [
+            "rust"
+        ]
     }
 }

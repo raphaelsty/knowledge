@@ -206418,5 +206418,25 @@
     {
         "head": "visual",
         "tail": "training"
+    },
+    {
+        "head": "rust",
+        "tail": "toml"
+    },
+    {
+        "head": "rust",
+        "tail": "universal-dependencies"
+    },
+    {
+        "head": "cargo",
+        "tail": "toml"
+    },
+    {
+        "head": "cargo",
+        "tail": "universal-dependencies"
+    },
+    {
+        "head": "toml",
+        "tail": "universal-dependencies"
     }
 ]
