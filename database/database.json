@@ -44804,5 +44804,37 @@
         "tags": [
             "rust"
         ]
+    },
+    "https://github.com/lightonai/fast-plaid": {
+        "extra-tags": [
+            "fast",
+            "plaid",
+            "high-performance",
+            "engine",
+            "multi-vector"
+        ],
+        "date": "2025-06-02",
+        "title": "fast-plaid",
+        "summary": "High-Performance Engine for Multi-Vector Search",
+        "tags": [
+            "vector-database",
+            "rust",
+            "colbert",
+            "colpali",
+            "information-retrieval"
+        ]
+    },
+    "https://github.com/SimpleAutomationOrg/SimpleAutomation": {
+        "extra-tags": [
+            "automation",
+            "simple",
+            "webautomation"
+        ],
+        "date": "2024-10-16",
+        "title": "SimpleAutomation",
+        "summary": "",
+        "tags": [
+            "python"
+        ]
     }
 }

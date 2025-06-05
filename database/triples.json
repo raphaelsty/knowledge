@@ -206438,5 +206438,137 @@
     {
         "head": "toml",
         "tail": "universal-dependencies"
+    },
+    {
+        "head": "vector-database",
+        "tail": "colbert"
+    },
+    {
+        "head": "vector-database",
+        "tail": "colpali"
+    },
+    {
+        "head": "vector-database",
+        "tail": "fast"
+    },
+    {
+        "head": "vector-database",
+        "tail": "plaid"
+    },
+    {
+        "head": "vector-database",
+        "tail": "high-performance"
+    },
+    {
+        "head": "vector-database",
+        "tail": "multi-vector"
+    },
+    {
+        "head": "rust",
+        "tail": "colbert"
+    },
+    {
+        "head": "rust",
+        "tail": "colpali"
+    },
+    {
+        "head": "rust",
+        "tail": "plaid"
+    },
+    {
+        "head": "rust",
+        "tail": "multi-vector"
+    },
+    {
+        "head": "colbert",
+        "tail": "colpali"
+    },
+    {
+        "head": "colbert",
+        "tail": "fast"
+    },
+    {
+        "head": "colbert",
+        "tail": "high-performance"
+    },
+    {
+        "head": "colpali",
+        "tail": "fast"
+    },
+    {
+        "head": "colpali",
+        "tail": "plaid"
+    },
+    {
+        "head": "colpali",
+        "tail": "high-performance"
+    },
+    {
+        "head": "colpali",
+        "tail": "engine"
+    },
+    {
+        "head": "colpali",
+        "tail": "multi-vector"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "fast"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "plaid"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "high-performance"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "multi-vector"
+    },
+    {
+        "head": "fast",
+        "tail": "plaid"
+    },
+    {
+        "head": "fast",
+        "tail": "high-performance"
+    },
+    {
+        "head": "fast",
+        "tail": "engine"
+    },
+    {
+        "head": "fast",
+        "tail": "multi-vector"
+    },
+    {
+        "head": "plaid",
+        "tail": "high-performance"
+    },
+    {
+        "head": "plaid",
+        "tail": "multi-vector"
+    },
+    {
+        "head": "high-performance",
+        "tail": "engine"
+    },
+    {
+        "head": "high-performance",
+        "tail": "multi-vector"
+    },
+    {
+        "head": "engine",
+        "tail": "multi-vector"
+    },
+    {
+        "head": "automation",
+        "tail": "simple"
+    },
+    {
+        "head": "simple",
+        "tail": "webautomation"
     }
 ]
