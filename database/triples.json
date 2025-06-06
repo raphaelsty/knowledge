@@ -206570,5 +206570,953 @@
     {
         "head": "simple",
         "tail": "webautomation"
+    },
+    {
+        "head": "typescript",
+        "tail": "logs"
+    },
+    {
+        "head": "typescript",
+        "tail": "kubernetes"
+    },
+    {
+        "head": "typescript",
+        "tail": "traces"
+    },
+    {
+        "head": "typescript",
+        "tail": "apm"
+    },
+    {
+        "head": "typescript",
+        "tail": "observability"
+    },
+    {
+        "head": "typescript",
+        "tail": "application-monitoring"
+    },
+    {
+        "head": "typescript",
+        "tail": "opentelemetry"
+    },
+    {
+        "head": "typescript",
+        "tail": "frontend-monitoring"
+    },
+    {
+        "head": "typescript",
+        "tail": "log-management"
+    },
+    {
+        "head": "typescript",
+        "tail": "clickhouse"
+    },
+    {
+        "head": "typescript",
+        "tail": "session-replay"
+    },
+    {
+        "head": "typescript",
+        "tail": "production"
+    },
+    {
+        "head": "analytics",
+        "tail": "logs"
+    },
+    {
+        "head": "analytics",
+        "tail": "kubernetes"
+    },
+    {
+        "head": "analytics",
+        "tail": "traces"
+    },
+    {
+        "head": "analytics",
+        "tail": "self-hosted"
+    },
+    {
+        "head": "analytics",
+        "tail": "apm"
+    },
+    {
+        "head": "analytics",
+        "tail": "observability"
+    },
+    {
+        "head": "analytics",
+        "tail": "application-monitoring"
+    },
+    {
+        "head": "analytics",
+        "tail": "opentelemetry"
+    },
+    {
+        "head": "analytics",
+        "tail": "frontend-monitoring"
+    },
+    {
+        "head": "analytics",
+        "tail": "log-management"
+    },
+    {
+        "head": "analytics",
+        "tail": "session-replay"
+    },
+    {
+        "head": "analytics",
+        "tail": "production"
+    },
+    {
+        "head": "analytics",
+        "tail": "source"
+    },
+    {
+        "head": "logs",
+        "tail": "kubernetes"
+    },
+    {
+        "head": "logs",
+        "tail": "traces"
+    },
+    {
+        "head": "logs",
+        "tail": "alerting"
+    },
+    {
+        "head": "logs",
+        "tail": "self-hosted"
+    },
+    {
+        "head": "logs",
+        "tail": "apm"
+    },
+    {
+        "head": "logs",
+        "tail": "observability"
+    },
+    {
+        "head": "logs",
+        "tail": "application-monitoring"
+    },
+    {
+        "head": "logs",
+        "tail": "opentelemetry"
+    },
+    {
+        "head": "logs",
+        "tail": "dashboard"
+    },
+    {
+        "head": "logs",
+        "tail": "metrics"
+    },
+    {
+        "head": "logs",
+        "tail": "frontend-monitoring"
+    },
+    {
+        "head": "logs",
+        "tail": "clickhouse"
+    },
+    {
+        "head": "logs",
+        "tail": "react"
+    },
+    {
+        "head": "logs",
+        "tail": "session-replay"
+    },
+    {
+        "head": "logs",
+        "tail": "monitoring"
+    },
+    {
+        "head": "logs",
+        "tail": "production"
+    },
+    {
+        "head": "logs",
+        "tail": "fast"
+    },
+    {
+        "head": "logs",
+        "tail": "source"
+    },
+    {
+        "head": "kubernetes",
+        "tail": "traces"
+    },
+    {
+        "head": "kubernetes",
+        "tail": "alerting"
+    },
+    {
+        "head": "kubernetes",
+        "tail": "self-hosted"
+    },
+    {
+        "head": "kubernetes",
+        "tail": "apm"
+    },
+    {
+        "head": "kubernetes",
+        "tail": "observability"
+    },
+    {
+        "head": "kubernetes",
+        "tail": "application-monitoring"
+    },
+    {
+        "head": "kubernetes",
+        "tail": "dashboard"
+    },
+    {
+        "head": "kubernetes",
+        "tail": "metrics"
+    },
+    {
+        "head": "kubernetes",
+        "tail": "frontend-monitoring"
+    },
+    {
+        "head": "kubernetes",
+        "tail": "log-management"
+    },
+    {
+        "head": "kubernetes",
+        "tail": "clickhouse"
+    },
+    {
+        "head": "kubernetes",
+        "tail": "react"
+    },
+    {
+        "head": "kubernetes",
+        "tail": "session-replay"
+    },
+    {
+        "head": "kubernetes",
+        "tail": "production"
+    },
+    {
+        "head": "kubernetes",
+        "tail": "fast"
+    },
+    {
+        "head": "kubernetes",
+        "tail": "source"
+    },
+    {
+        "head": "traces",
+        "tail": "alerting"
+    },
+    {
+        "head": "traces",
+        "tail": "self-hosted"
+    },
+    {
+        "head": "traces",
+        "tail": "apm"
+    },
+    {
+        "head": "traces",
+        "tail": "observability"
+    },
+    {
+        "head": "traces",
+        "tail": "application-monitoring"
+    },
+    {
+        "head": "traces",
+        "tail": "opentelemetry"
+    },
+    {
+        "head": "traces",
+        "tail": "dashboard"
+    },
+    {
+        "head": "traces",
+        "tail": "metrics"
+    },
+    {
+        "head": "traces",
+        "tail": "frontend-monitoring"
+    },
+    {
+        "head": "traces",
+        "tail": "log-management"
+    },
+    {
+        "head": "traces",
+        "tail": "clickhouse"
+    },
+    {
+        "head": "traces",
+        "tail": "react"
+    },
+    {
+        "head": "traces",
+        "tail": "session-replay"
+    },
+    {
+        "head": "traces",
+        "tail": "monitoring"
+    },
+    {
+        "head": "traces",
+        "tail": "production"
+    },
+    {
+        "head": "traces",
+        "tail": "fast"
+    },
+    {
+        "head": "traces",
+        "tail": "source"
+    },
+    {
+        "head": "alerting",
+        "tail": "self-hosted"
+    },
+    {
+        "head": "alerting",
+        "tail": "apm"
+    },
+    {
+        "head": "alerting",
+        "tail": "observability"
+    },
+    {
+        "head": "alerting",
+        "tail": "application-monitoring"
+    },
+    {
+        "head": "alerting",
+        "tail": "opentelemetry"
+    },
+    {
+        "head": "alerting",
+        "tail": "frontend-monitoring"
+    },
+    {
+        "head": "alerting",
+        "tail": "log-management"
+    },
+    {
+        "head": "alerting",
+        "tail": "clickhouse"
+    },
+    {
+        "head": "alerting",
+        "tail": "react"
+    },
+    {
+        "head": "alerting",
+        "tail": "session-replay"
+    },
+    {
+        "head": "alerting",
+        "tail": "production"
+    },
+    {
+        "head": "alerting",
+        "tail": "fast"
+    },
+    {
+        "head": "alerting",
+        "tail": "source"
+    },
+    {
+        "head": "self-hosted",
+        "tail": "apm"
+    },
+    {
+        "head": "self-hosted",
+        "tail": "observability"
+    },
+    {
+        "head": "self-hosted",
+        "tail": "application-monitoring"
+    },
+    {
+        "head": "self-hosted",
+        "tail": "opentelemetry"
+    },
+    {
+        "head": "self-hosted",
+        "tail": "dashboard"
+    },
+    {
+        "head": "self-hosted",
+        "tail": "metrics"
+    },
+    {
+        "head": "self-hosted",
+        "tail": "frontend-monitoring"
+    },
+    {
+        "head": "self-hosted",
+        "tail": "log-management"
+    },
+    {
+        "head": "self-hosted",
+        "tail": "clickhouse"
+    },
+    {
+        "head": "self-hosted",
+        "tail": "session-replay"
+    },
+    {
+        "head": "self-hosted",
+        "tail": "monitoring"
+    },
+    {
+        "head": "self-hosted",
+        "tail": "production"
+    },
+    {
+        "head": "apm",
+        "tail": "observability"
+    },
+    {
+        "head": "apm",
+        "tail": "application-monitoring"
+    },
+    {
+        "head": "apm",
+        "tail": "opentelemetry"
+    },
+    {
+        "head": "apm",
+        "tail": "dashboard"
+    },
+    {
+        "head": "apm",
+        "tail": "metrics"
+    },
+    {
+        "head": "apm",
+        "tail": "frontend-monitoring"
+    },
+    {
+        "head": "apm",
+        "tail": "log-management"
+    },
+    {
+        "head": "apm",
+        "tail": "clickhouse"
+    },
+    {
+        "head": "apm",
+        "tail": "react"
+    },
+    {
+        "head": "apm",
+        "tail": "session-replay"
+    },
+    {
+        "head": "apm",
+        "tail": "monitoring"
+    },
+    {
+        "head": "apm",
+        "tail": "production"
+    },
+    {
+        "head": "apm",
+        "tail": "fast"
+    },
+    {
+        "head": "apm",
+        "tail": "source"
+    },
+    {
+        "head": "observability",
+        "tail": "application-monitoring"
+    },
+    {
+        "head": "observability",
+        "tail": "opentelemetry"
+    },
+    {
+        "head": "observability",
+        "tail": "dashboard"
+    },
+    {
+        "head": "observability",
+        "tail": "metrics"
+    },
+    {
+        "head": "observability",
+        "tail": "frontend-monitoring"
+    },
+    {
+        "head": "observability",
+        "tail": "log-management"
+    },
+    {
+        "head": "observability",
+        "tail": "clickhouse"
+    },
+    {
+        "head": "observability",
+        "tail": "react"
+    },
+    {
+        "head": "observability",
+        "tail": "session-replay"
+    },
+    {
+        "head": "observability",
+        "tail": "monitoring"
+    },
+    {
+        "head": "observability",
+        "tail": "production"
+    },
+    {
+        "head": "observability",
+        "tail": "fast"
+    },
+    {
+        "head": "observability",
+        "tail": "source"
+    },
+    {
+        "head": "application-monitoring",
+        "tail": "opentelemetry"
+    },
+    {
+        "head": "application-monitoring",
+        "tail": "dashboard"
+    },
+    {
+        "head": "application-monitoring",
+        "tail": "metrics"
+    },
+    {
+        "head": "application-monitoring",
+        "tail": "frontend-monitoring"
+    },
+    {
+        "head": "application-monitoring",
+        "tail": "log-management"
+    },
+    {
+        "head": "application-monitoring",
+        "tail": "clickhouse"
+    },
+    {
+        "head": "application-monitoring",
+        "tail": "react"
+    },
+    {
+        "head": "application-monitoring",
+        "tail": "session-replay"
+    },
+    {
+        "head": "application-monitoring",
+        "tail": "monitoring"
+    },
+    {
+        "head": "application-monitoring",
+        "tail": "production"
+    },
+    {
+        "head": "application-monitoring",
+        "tail": "fast"
+    },
+    {
+        "head": "application-monitoring",
+        "tail": "source"
+    },
+    {
+        "head": "opentelemetry",
+        "tail": "dashboard"
+    },
+    {
+        "head": "opentelemetry",
+        "tail": "metrics"
+    },
+    {
+        "head": "opentelemetry",
+        "tail": "frontend-monitoring"
+    },
+    {
+        "head": "opentelemetry",
+        "tail": "log-management"
+    },
+    {
+        "head": "opentelemetry",
+        "tail": "clickhouse"
+    },
+    {
+        "head": "opentelemetry",
+        "tail": "react"
+    },
+    {
+        "head": "opentelemetry",
+        "tail": "session-replay"
+    },
+    {
+        "head": "opentelemetry",
+        "tail": "monitoring"
+    },
+    {
+        "head": "opentelemetry",
+        "tail": "production"
+    },
+    {
+        "head": "opentelemetry",
+        "tail": "fast"
+    },
+    {
+        "head": "opentelemetry",
+        "tail": "source"
+    },
+    {
+        "head": "dashboard",
+        "tail": "frontend-monitoring"
+    },
+    {
+        "head": "dashboard",
+        "tail": "log-management"
+    },
+    {
+        "head": "dashboard",
+        "tail": "clickhouse"
+    },
+    {
+        "head": "dashboard",
+        "tail": "react"
+    },
+    {
+        "head": "dashboard",
+        "tail": "session-replay"
+    },
+    {
+        "head": "dashboard",
+        "tail": "production"
+    },
+    {
+        "head": "dashboard",
+        "tail": "fast"
+    },
+    {
+        "head": "dashboard",
+        "tail": "source"
+    },
+    {
+        "head": "metrics",
+        "tail": "frontend-monitoring"
+    },
+    {
+        "head": "metrics",
+        "tail": "log-management"
+    },
+    {
+        "head": "metrics",
+        "tail": "clickhouse"
+    },
+    {
+        "head": "metrics",
+        "tail": "react"
+    },
+    {
+        "head": "metrics",
+        "tail": "session-replay"
+    },
+    {
+        "head": "metrics",
+        "tail": "production"
+    },
+    {
+        "head": "metrics",
+        "tail": "fast"
+    },
+    {
+        "head": "metrics",
+        "tail": "source"
+    },
+    {
+        "head": "frontend-monitoring",
+        "tail": "log-management"
+    },
+    {
+        "head": "frontend-monitoring",
+        "tail": "clickhouse"
+    },
+    {
+        "head": "frontend-monitoring",
+        "tail": "react"
+    },
+    {
+        "head": "frontend-monitoring",
+        "tail": "session-replay"
+    },
+    {
+        "head": "frontend-monitoring",
+        "tail": "monitoring"
+    },
+    {
+        "head": "frontend-monitoring",
+        "tail": "production"
+    },
+    {
+        "head": "frontend-monitoring",
+        "tail": "fast"
+    },
+    {
+        "head": "frontend-monitoring",
+        "tail": "source"
+    },
+    {
+        "head": "log-management",
+        "tail": "clickhouse"
+    },
+    {
+        "head": "log-management",
+        "tail": "react"
+    },
+    {
+        "head": "log-management",
+        "tail": "session-replay"
+    },
+    {
+        "head": "log-management",
+        "tail": "monitoring"
+    },
+    {
+        "head": "log-management",
+        "tail": "production"
+    },
+    {
+        "head": "log-management",
+        "tail": "fast"
+    },
+    {
+        "head": "log-management",
+        "tail": "source"
+    },
+    {
+        "head": "clickhouse",
+        "tail": "react"
+    },
+    {
+        "head": "clickhouse",
+        "tail": "session-replay"
+    },
+    {
+        "head": "clickhouse",
+        "tail": "monitoring"
+    },
+    {
+        "head": "clickhouse",
+        "tail": "production"
+    },
+    {
+        "head": "clickhouse",
+        "tail": "fast"
+    },
+    {
+        "head": "clickhouse",
+        "tail": "source"
+    },
+    {
+        "head": "react",
+        "tail": "session-replay"
+    },
+    {
+        "head": "react",
+        "tail": "monitoring"
+    },
+    {
+        "head": "react",
+        "tail": "production"
+    },
+    {
+        "head": "session-replay",
+        "tail": "monitoring"
+    },
+    {
+        "head": "session-replay",
+        "tail": "production"
+    },
+    {
+        "head": "session-replay",
+        "tail": "fast"
+    },
+    {
+        "head": "session-replay",
+        "tail": "source"
+    },
+    {
+        "head": "monitoring",
+        "tail": "production"
+    },
+    {
+        "head": "monitoring",
+        "tail": "fast"
+    },
+    {
+        "head": "monitoring",
+        "tail": "source"
+    },
+    {
+        "head": "production",
+        "tail": "fast"
+    },
+    {
+        "head": "production",
+        "tail": "source"
+    },
+    {
+        "head": "fast",
+        "tail": "source"
+    },
+    {
+        "head": "motif-discovery",
+        "tail": "library"
+    },
+    {
+        "head": "motif-discovery",
+        "tail": "modern"
+    },
+    {
+        "head": "motif-discovery",
+        "tail": "time series"
+    },
+    {
+        "head": "pattern-matching",
+        "tail": "library"
+    },
+    {
+        "head": "pattern-matching",
+        "tail": "modern"
+    },
+    {
+        "head": "pattern-matching",
+        "tail": "time series"
+    },
+    {
+        "head": "numba",
+        "tail": "library"
+    },
+    {
+        "head": "numba",
+        "tail": "modern"
+    },
+    {
+        "head": "numba",
+        "tail": "time series"
+    },
+    {
+        "head": "anomaly-detection",
+        "tail": "library"
+    },
+    {
+        "head": "anomaly-detection",
+        "tail": "modern"
+    },
+    {
+        "head": "anomaly-detection",
+        "tail": "time series"
+    },
+    {
+        "head": "time-series-segmentation",
+        "tail": "library"
+    },
+    {
+        "head": "time-series-segmentation",
+        "tail": "modern"
+    },
+    {
+        "head": "time-series-segmentation",
+        "tail": "time series"
+    },
+    {
+        "head": "data-science",
+        "tail": "modern"
+    },
+    {
+        "head": "data-science",
+        "tail": "time series"
+    },
+    {
+        "head": "pydata",
+        "tail": "library"
+    },
+    {
+        "head": "pydata",
+        "tail": "modern"
+    },
+    {
+        "head": "pydata",
+        "tail": "time series"
+    },
+    {
+        "head": "matrix-profile",
+        "tail": "library"
+    },
+    {
+        "head": "matrix-profile",
+        "tail": "modern"
+    },
+    {
+        "head": "matrix-profile",
+        "tail": "time series"
+    },
+    {
+        "head": "dask",
+        "tail": "library"
+    },
+    {
+        "head": "dask",
+        "tail": "modern"
+    },
+    {
+        "head": "dask",
+        "tail": "time series"
+    },
+    {
+        "head": "time-series-data-mining",
+        "tail": "library"
+    },
+    {
+        "head": "time-series-data-mining",
+        "tail": "modern"
+    },
+    {
+        "head": "time-series-data-mining",
+        "tail": "time series"
+    },
+    {
+        "head": "time-series-analysis",
+        "tail": "library"
+    },
+    {
+        "head": "time-series-analysis",
+        "tail": "modern"
+    },
+    {
+        "head": "library",
+        "tail": "modern"
+    },
+    {
+        "head": "modern",
+        "tail": "time series"
+    },
+    {
+        "head": "python",
+        "tail": "interpreter"
+    },
+    {
+        "head": "documentation",
+        "tail": "interpreter"
+    },
+    {
+        "head": "documentation-tool",
+        "tail": "interpreter"
     }
 ]

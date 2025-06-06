@@ -44836,5 +44836,73 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/hyperdxio/hyperdx": {
+        "extra-tags": [
+            "production",
+            "fast",
+            "source"
+        ],
+        "date": "2023-09-13",
+        "title": "hyperdx",
+        "summary": "Resolve production issues, fast. An open source observability platform unifying session replays, logs, metrics, traces and errors powered by Clickhouse and OpenTelemetry.",
+        "tags": [
+            "typescript",
+            "analytics",
+            "logs",
+            "kubernetes",
+            "traces",
+            "alerting",
+            "self-hosted",
+            "apm",
+            "observability",
+            "application-monitoring",
+            "opentelemetry",
+            "dashboard",
+            "metrics",
+            "frontend-monitoring",
+            "log-management",
+            "clickhouse",
+            "react",
+            "session-replay",
+            "monitoring"
+        ]
+    },
+    "https://github.com/stumpy-dev/stumpy": {
+        "extra-tags": [
+            "library",
+            "modern",
+            "time series"
+        ],
+        "date": "2019-05-03",
+        "title": "stumpy",
+        "summary": "STUMPY is a powerful and scalable Python library for modern time series analysis",
+        "tags": [
+            "motif-discovery",
+            "pattern-matching",
+            "numba",
+            "anomaly-detection",
+            "time-series-segmentation",
+            "python",
+            "data-science",
+            "pydata",
+            "matrix-profile",
+            "dask",
+            "time-series-data-mining",
+            "time-series-analysis"
+        ]
+    },
+    "https://github.com/FOR-sight-ai/interpreto": {
+        "extra-tags": [
+            "documentation",
+            "documentation-tool",
+            "interpreter"
+        ],
+        "date": "2025-02-26",
+        "title": "interpreto",
+        "summary": "Documentation",
+        "tags": [
+            "python"
+        ]
     }
 }
