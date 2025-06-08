@@ -207518,5 +207518,177 @@
     {
         "head": "documentation-tool",
         "tail": "interpreter"
+    },
+    {
+        "head": "sqlite",
+        "tail": "typescript"
+    },
+    {
+        "head": "sqlite",
+        "tail": "local-first"
+    },
+    {
+        "head": "sqlite",
+        "tail": "signals"
+    },
+    {
+        "head": "sqlite",
+        "tail": "state-management"
+    },
+    {
+        "head": "sqlite",
+        "tail": "data-layer"
+    },
+    {
+        "head": "sqlite",
+        "tail": "sync-engine"
+    },
+    {
+        "head": "sqlite",
+        "tail": "generation"
+    },
+    {
+        "head": "sqlite",
+        "tail": "framework"
+    },
+    {
+        "head": "sqlite",
+        "tail": "sync"
+    },
+    {
+        "head": "typescript",
+        "tail": "local-first"
+    },
+    {
+        "head": "typescript",
+        "tail": "signals"
+    },
+    {
+        "head": "typescript",
+        "tail": "state-management"
+    },
+    {
+        "head": "typescript",
+        "tail": "data-layer"
+    },
+    {
+        "head": "typescript",
+        "tail": "sync-engine"
+    },
+    {
+        "head": "typescript",
+        "tail": "generation"
+    },
+    {
+        "head": "typescript",
+        "tail": "sync"
+    },
+    {
+        "head": "local-first",
+        "tail": "signals"
+    },
+    {
+        "head": "local-first",
+        "tail": "state-management"
+    },
+    {
+        "head": "local-first",
+        "tail": "data-layer"
+    },
+    {
+        "head": "local-first",
+        "tail": "sync-engine"
+    },
+    {
+        "head": "local-first",
+        "tail": "generation"
+    },
+    {
+        "head": "local-first",
+        "tail": "framework"
+    },
+    {
+        "head": "local-first",
+        "tail": "sync"
+    },
+    {
+        "head": "signals",
+        "tail": "state-management"
+    },
+    {
+        "head": "signals",
+        "tail": "data-layer"
+    },
+    {
+        "head": "signals",
+        "tail": "sync-engine"
+    },
+    {
+        "head": "signals",
+        "tail": "generation"
+    },
+    {
+        "head": "signals",
+        "tail": "framework"
+    },
+    {
+        "head": "signals",
+        "tail": "sync"
+    },
+    {
+        "head": "state-management",
+        "tail": "data-layer"
+    },
+    {
+        "head": "state-management",
+        "tail": "sync-engine"
+    },
+    {
+        "head": "state-management",
+        "tail": "generation"
+    },
+    {
+        "head": "state-management",
+        "tail": "framework"
+    },
+    {
+        "head": "state-management",
+        "tail": "sync"
+    },
+    {
+        "head": "data-layer",
+        "tail": "sync-engine"
+    },
+    {
+        "head": "data-layer",
+        "tail": "generation"
+    },
+    {
+        "head": "data-layer",
+        "tail": "framework"
+    },
+    {
+        "head": "data-layer",
+        "tail": "sync"
+    },
+    {
+        "head": "sync-engine",
+        "tail": "generation"
+    },
+    {
+        "head": "sync-engine",
+        "tail": "framework"
+    },
+    {
+        "head": "sync-engine",
+        "tail": "sync"
+    },
+    {
+        "head": "generation",
+        "tail": "sync"
+    },
+    {
+        "head": "framework",
+        "tail": "sync"
     }
 ]

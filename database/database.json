@@ -44904,5 +44904,24 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/livestorejs/livestore": {
+        "extra-tags": [
+            "generation",
+            "framework",
+            "sync"
+        ],
+        "date": "2023-09-21",
+        "title": "livestore",
+        "summary": "LiveStore is a next-generation state management framework based on reactive SQLite and built-in sync engine.",
+        "tags": [
+            "sqlite",
+            "typescript",
+            "local-first",
+            "signals",
+            "state-management",
+            "data-layer",
+            "sync-engine"
+        ]
     }
 }
