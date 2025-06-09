@@ -44923,5 +44923,16 @@
             "data-layer",
             "sync-engine"
         ]
+    },
+    "https://corentin.trebaol.com/Blog/8.+The+Homelessness+Experiment": {
+        "extra-tags": [
+            "experiment"
+        ],
+        "title": "Hackernews My experiment living in a tent in Hong Kong's jungle (trebaol.com)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2025-06-09"
     }
 }
