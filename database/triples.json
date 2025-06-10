@@ -207690,5 +207690,101 @@
     {
         "head": "framework",
         "tail": "sync"
+    },
+    {
+        "head": "rust",
+        "tail": "typing"
+    },
+    {
+        "head": "typing",
+        "tail": "tensor"
+    },
+    {
+        "head": "poetry",
+        "tail": "cicd"
+    },
+    {
+        "head": "poetry",
+        "tail": "dependencies"
+    },
+    {
+        "head": "poetry",
+        "tail": "pep621"
+    },
+    {
+        "head": "poetry",
+        "tail": "find"
+    },
+    {
+        "head": "poetry",
+        "tail": "project"
+    },
+    {
+        "head": "cicd",
+        "tail": "rust"
+    },
+    {
+        "head": "cicd",
+        "tail": "python"
+    },
+    {
+        "head": "cicd",
+        "tail": "dependencies"
+    },
+    {
+        "head": "cicd",
+        "tail": "pep621"
+    },
+    {
+        "head": "cicd",
+        "tail": "find"
+    },
+    {
+        "head": "cicd",
+        "tail": "project"
+    },
+    {
+        "head": "rust",
+        "tail": "dependencies"
+    },
+    {
+        "head": "rust",
+        "tail": "pep621"
+    },
+    {
+        "head": "rust",
+        "tail": "project"
+    },
+    {
+        "head": "python",
+        "tail": "dependencies"
+    },
+    {
+        "head": "python",
+        "tail": "pep621"
+    },
+    {
+        "head": "dependencies",
+        "tail": "pep621"
+    },
+    {
+        "head": "dependencies",
+        "tail": "find"
+    },
+    {
+        "head": "dependencies",
+        "tail": "project"
+    },
+    {
+        "head": "pep621",
+        "tail": "find"
+    },
+    {
+        "head": "pep621",
+        "tail": "project"
+    },
+    {
+        "head": "find",
+        "tail": "project"
     }
 ]

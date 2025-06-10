@@ -44934,5 +44934,34 @@
         ],
         "summary": "",
         "date": "2025-06-09"
+    },
+    "https://github.com/nicksenger/glowstick": {
+        "extra-tags": [
+            "typing",
+            "tensor"
+        ],
+        "date": "2025-05-15",
+        "title": "glowstick",
+        "summary": "Gradual typing for tensor shapes in Rust",
+        "tags": [
+            "rust"
+        ]
+    },
+    "https://github.com/fpgmaas/deptry": {
+        "extra-tags": [
+            "find",
+            "project"
+        ],
+        "date": "2022-09-01",
+        "title": "deptry",
+        "summary": "Find unused, missing and transitive dependencies in a Python project.",
+        "tags": [
+            "poetry",
+            "cicd",
+            "rust",
+            "python",
+            "dependencies",
+            "pep621"
+        ]
     }
 }
