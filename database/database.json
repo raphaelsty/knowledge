@@ -44963,5 +44963,18 @@
             "dependencies",
             "pep621"
         ]
+    },
+    "https://github.com/PathOn-AI/awesome-lerobot": {
+        "extra-tags": [
+            "lerobot",
+            "awesome",
+            "collection"
+        ],
+        "date": "2025-05-23",
+        "title": "awesome-lerobot",
+        "summary": "Collection of Materials on LeRobot",
+        "tags": [
+            "python"
+        ]
     }
 }
