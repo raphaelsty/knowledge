@@ -207786,5 +207786,57 @@
     {
         "head": "find",
         "tail": "project"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "flow-matching"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "matching"
+    },
+    {
+        "head": "lerobot",
+        "tail": "code"
+    },
+    {
+        "head": "lerobot",
+        "tail": "train"
+    },
+    {
+        "head": "lerobot",
+        "tail": "fast"
+    },
+    {
+        "head": "lerobot",
+        "tail": "visual"
+    },
+    {
+        "head": "code",
+        "tail": "visual"
+    },
+    {
+        "head": "train",
+        "tail": "fast"
+    },
+    {
+        "head": "train",
+        "tail": "simulation"
+    },
+    {
+        "head": "train",
+        "tail": "visual"
+    },
+    {
+        "head": "fast",
+        "tail": "simulation"
+    },
+    {
+        "head": "fast",
+        "tail": "visual"
+    },
+    {
+        "head": "simulation",
+        "tail": "visual"
     }
 ]
