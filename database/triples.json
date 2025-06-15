@@ -207838,5 +207838,341 @@
     {
         "head": "simulation",
         "tail": "visual"
+    },
+    {
+        "head": "c++",
+        "tail": "graph-database"
+    },
+    {
+        "head": "c++",
+        "tail": "graph"
+    },
+    {
+        "head": "c++",
+        "tail": "graphdb"
+    },
+    {
+        "head": "c++",
+        "tail": "embeddable"
+    },
+    {
+        "head": "c++",
+        "tail": "embedded"
+    },
+    {
+        "head": "c++",
+        "tail": "nosql"
+    },
+    {
+        "head": "c++",
+        "tail": "cypher"
+    },
+    {
+        "head": "c++",
+        "tail": "neo4j"
+    },
+    {
+        "head": "c++",
+        "tail": "wasm"
+    },
+    {
+        "head": "graph-database",
+        "tail": "embeddable"
+    },
+    {
+        "head": "graph-database",
+        "tail": "embedded"
+    },
+    {
+        "head": "graph-database",
+        "tail": "nosql"
+    },
+    {
+        "head": "graph-database",
+        "tail": "cypher"
+    },
+    {
+        "head": "graph-database",
+        "tail": "neo4j"
+    },
+    {
+        "head": "graph-database",
+        "tail": "vector"
+    },
+    {
+        "head": "graph-database",
+        "tail": "wasm"
+    },
+    {
+        "head": "graph-database",
+        "tail": "search"
+    },
+    {
+        "head": "graph",
+        "tail": "embeddable"
+    },
+    {
+        "head": "graph",
+        "tail": "embedded"
+    },
+    {
+        "head": "graph",
+        "tail": "nosql"
+    },
+    {
+        "head": "graph",
+        "tail": "cypher"
+    },
+    {
+        "head": "graph",
+        "tail": "neo4j"
+    },
+    {
+        "head": "graph",
+        "tail": "vector"
+    },
+    {
+        "head": "graph",
+        "tail": "wasm"
+    },
+    {
+        "head": "graphdb",
+        "tail": "embeddable"
+    },
+    {
+        "head": "graphdb",
+        "tail": "embedded"
+    },
+    {
+        "head": "graphdb",
+        "tail": "nosql"
+    },
+    {
+        "head": "graphdb",
+        "tail": "cypher"
+    },
+    {
+        "head": "graphdb",
+        "tail": "neo4j"
+    },
+    {
+        "head": "graphdb",
+        "tail": "vector"
+    },
+    {
+        "head": "graphdb",
+        "tail": "wasm"
+    },
+    {
+        "head": "graphdb",
+        "tail": "search"
+    },
+    {
+        "head": "database",
+        "tail": "embeddable"
+    },
+    {
+        "head": "database",
+        "tail": "embedded"
+    },
+    {
+        "head": "database",
+        "tail": "cypher"
+    },
+    {
+        "head": "database",
+        "tail": "neo4j"
+    },
+    {
+        "head": "embeddable",
+        "tail": "embedded"
+    },
+    {
+        "head": "embeddable",
+        "tail": "nosql"
+    },
+    {
+        "head": "embeddable",
+        "tail": "cypher"
+    },
+    {
+        "head": "embeddable",
+        "tail": "neo4j"
+    },
+    {
+        "head": "embeddable",
+        "tail": "vector"
+    },
+    {
+        "head": "embeddable",
+        "tail": "wasm"
+    },
+    {
+        "head": "embeddable",
+        "tail": "search"
+    },
+    {
+        "head": "embedded",
+        "tail": "nosql"
+    },
+    {
+        "head": "embedded",
+        "tail": "cypher"
+    },
+    {
+        "head": "embedded",
+        "tail": "neo4j"
+    },
+    {
+        "head": "embedded",
+        "tail": "vector"
+    },
+    {
+        "head": "embedded",
+        "tail": "wasm"
+    },
+    {
+        "head": "embedded",
+        "tail": "search"
+    },
+    {
+        "head": "nosql",
+        "tail": "cypher"
+    },
+    {
+        "head": "nosql",
+        "tail": "neo4j"
+    },
+    {
+        "head": "nosql",
+        "tail": "vector"
+    },
+    {
+        "head": "nosql",
+        "tail": "wasm"
+    },
+    {
+        "head": "nosql",
+        "tail": "search"
+    },
+    {
+        "head": "cypher",
+        "tail": "neo4j"
+    },
+    {
+        "head": "cypher",
+        "tail": "vector"
+    },
+    {
+        "head": "cypher",
+        "tail": "wasm"
+    },
+    {
+        "head": "cypher",
+        "tail": "search"
+    },
+    {
+        "head": "neo4j",
+        "tail": "vector"
+    },
+    {
+        "head": "neo4j",
+        "tail": "wasm"
+    },
+    {
+        "head": "neo4j",
+        "tail": "search"
+    },
+    {
+        "head": "vector",
+        "tail": "wasm"
+    },
+    {
+        "head": "wasm",
+        "tail": "search"
+    },
+    {
+        "head": "blog",
+        "tail": "hugo"
+    },
+    {
+        "head": "blog",
+        "tail": "style"
+    },
+    {
+        "head": "blog",
+        "tail": "no"
+    },
+    {
+        "head": "blog",
+        "tail": "css"
+    },
+    {
+        "head": "blog",
+        "tail": "fast"
+    },
+    {
+        "head": "blog",
+        "tail": "theme"
+    },
+    {
+        "head": "hugo",
+        "tail": "style"
+    },
+    {
+        "head": "hugo",
+        "tail": "no"
+    },
+    {
+        "head": "hugo",
+        "tail": "fast"
+    },
+    {
+        "head": "style",
+        "tail": "no"
+    },
+    {
+        "head": "style",
+        "tail": "css"
+    },
+    {
+        "head": "style",
+        "tail": "fast"
+    },
+    {
+        "head": "style",
+        "tail": "theme"
+    },
+    {
+        "head": "no",
+        "tail": "css"
+    },
+    {
+        "head": "no",
+        "tail": "fast"
+    },
+    {
+        "head": "no",
+        "tail": "theme"
+    },
+    {
+        "head": "fast",
+        "tail": "theme"
+    },
+    {
+        "head": "blog",
+        "tail": "responsive"
+    },
+    {
+        "head": "style",
+        "tail": "responsive"
+    },
+    {
+        "head": "fast",
+        "tail": "responsive"
+    },
+    {
+        "head": "responsive",
+        "tail": "theme"
     }
 ]

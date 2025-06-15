@@ -45004,5 +45004,69 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/kuzudb/kuzu": {
+        "extra-tags": [
+            "search"
+        ],
+        "date": "2020-09-26",
+        "title": "kuzu",
+        "summary": "Embedded property graph database built for speed. Vector search and full-text search built in. Implements Cypher.",
+        "tags": [
+            "c++",
+            "graph-database",
+            "graph",
+            "graphdb",
+            "database",
+            "embeddable",
+            "embedded",
+            "nosql",
+            "cypher",
+            "neo4j",
+            "vector",
+            "wasm"
+        ]
+    },
+    "https://philmckinney.substack.com/p/i-convinced-hps-board-to-buy-palm": {
+        "extra-tags": [
+            "palm"
+        ],
+        "title": "Hackernews I convinced HP's board to buy Palm and watched them kill it (philmckinney.substack.com)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2025-06-15"
+    },
+    "https://themes.gohugo.io/themes/hugo-theme-nostyleplease/": {
+        "extra-tags": [
+            "no",
+            "css",
+            "fast",
+            "theme"
+        ],
+        "title": "no-style-please",
+        "summary": "a (nearly) no-CSS, fast, minimalist Hugo theme ported from riggraz/no-style-please.",
+        "date": "2025-06-14",
+        "tags": [
+            "blog",
+            "hugo",
+            "style"
+        ]
+    },
+    "https://themes.gohugo.io/themes/hugo-theme-cactus-plus/": {
+        "extra-tags": [
+            "fast",
+            "responsive",
+            "theme"
+        ],
+        "title": "mini",
+        "summary": "A fast, minimalist and responsive hugo theme for bloggers.",
+        "date": "2025-06-14",
+        "tags": [
+            "blog",
+            "hugo",
+            "style"
+        ]
     }
 }
