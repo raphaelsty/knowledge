@@ -45068,5 +45068,18 @@
             "hugo",
             "style"
         ]
+    },
+    "https://github.com/pytorch-labs/monarch": {
+        "extra-tags": [
+            "pytorch",
+            "control",
+            "version-controlled-database"
+        ],
+        "date": "2025-04-29",
+        "title": "monarch",
+        "summary": "PyTorch Single Controller",
+        "tags": [
+            "rust"
+        ]
     }
 }
