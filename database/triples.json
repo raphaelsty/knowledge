@@ -208194,5 +208194,77 @@
     {
         "head": "control",
         "tail": "version-controlled-database"
+    },
+    {
+        "head": "perf",
+        "tail": "profiling"
+    },
+    {
+        "head": "perf",
+        "tail": "flamegraphs"
+    },
+    {
+        "head": "perf",
+        "tail": "rust"
+    },
+    {
+        "head": "perf",
+        "tail": "flamegraph"
+    },
+    {
+        "head": "perf",
+        "tail": "perl"
+    },
+    {
+        "head": "profiling",
+        "tail": "flamegraphs"
+    },
+    {
+        "head": "profiling",
+        "tail": "flamegraph"
+    },
+    {
+        "head": "profiling",
+        "tail": "perl"
+    },
+    {
+        "head": "flamegraphs",
+        "tail": "rust"
+    },
+    {
+        "head": "flamegraphs",
+        "tail": "perl"
+    },
+    {
+        "head": "rust",
+        "tail": "flamegraph"
+    },
+    {
+        "head": "rust",
+        "tail": "perl"
+    },
+    {
+        "head": "flamegraph",
+        "tail": "perl"
+    },
+    {
+        "head": "nvidia",
+        "tail": "open-source"
+    },
+    {
+        "head": "nvidia",
+        "tail": "testing"
+    },
+    {
+        "head": "nvidia",
+        "tail": "ai"
+    },
+    {
+        "head": "open-source",
+        "tail": "testing"
+    },
+    {
+        "head": "testing",
+        "tail": "ai"
     }
 ]

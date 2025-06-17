@@ -45081,5 +45081,34 @@
         "tags": [
             "rust"
         ]
+    },
+    "https://github.com/flamegraph-rs/flamegraph": {
+        "extra-tags": [
+            "flamegraph",
+            "perl"
+        ],
+        "date": "2019-03-07",
+        "title": "flamegraph",
+        "summary": "Easy flamegraphs for Rust projects and everything else, without Perl or pipes <3",
+        "tags": [
+            "perf",
+            "profiling",
+            "flamegraphs",
+            "rust"
+        ]
+    },
+    "https://github.com/isaac-sim/IsaacSim": {
+        "extra-tags": [
+            "nvidia",
+            "open-source",
+            "testing",
+            "ai"
+        ],
+        "date": "2025-05-28",
+        "title": "IsaacSim",
+        "summary": "NVIDIA Isaac Sim\u2122 is an open-source application on NVIDIA Omniverse for developing, simulating, and testing AI-driven robots in realistic virtual environments.",
+        "tags": [
+            "python"
+        ]
     }
 }
