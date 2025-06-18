@@ -45110,5 +45110,17 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/rorosen/zeekstd": {
+        "extra-tags": [
+            "rust",
+            "github"
+        ],
+        "title": "Hackernews Show HN: Zeekstd \u2013 Rust Implementation of the ZSTD Seekable Format (github.com/rorosen)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2025-06-18"
     }
 }
