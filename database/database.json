@@ -45122,5 +45122,43 @@
         ],
         "summary": "",
         "date": "2025-06-18"
+    },
+    "https://github.com/McGill-NLP/llm2vec": {
+        "extra-tags": [
+            "code",
+            "language models",
+            "text"
+        ],
+        "date": "2024-04-03",
+        "title": "llm2vec",
+        "summary": "Code for 'LLM2Vec: Large Language Models Are Secretly Powerful Text Encoders'",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/Rhoban/placo": {
+        "extra-tags": [
+            "control",
+            "planning-algorithms",
+            "path-planning"
+        ],
+        "date": "2022-10-19",
+        "title": "placo",
+        "summary": "Rhoban Planning and Control",
+        "tags": [
+            "c++"
+        ]
+    },
+    "https://github.com/ariana-dot-dev/ariana-ide": {
+        "extra-tags": [
+            "ide",
+            "future"
+        ],
+        "date": "2025-06-18",
+        "title": "ariana-ide",
+        "summary": "The IDE of the future",
+        "tags": [
+            "typescript"
+        ]
     }
 }
