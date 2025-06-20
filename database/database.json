@@ -45160,5 +45160,46 @@
         "tags": [
             "typescript"
         ]
+    },
+    "https://github.com/ronantakizawa/circuitrobot": {
+        "extra-tags": [
+            "build",
+            "hugging face"
+        ],
+        "date": "2025-06-14",
+        "title": "circuitrobot",
+        "summary": "SO-ARM101 to build electronic circuits (4th at Hugging Face Global Robotics Hackathon)",
+        "tags": [
+            "robotics",
+            "lerobot",
+            "so101"
+        ]
+    },
+    "https://github.com/iver56/torch-audiomentations": {
+        "extra-tags": [
+            "torch",
+            "fast",
+            "data augmentation"
+        ],
+        "date": "2020-06-22",
+        "title": "torch-audiomentations",
+        "summary": "Fast audio data augmentation in PyTorch. Inspired by audiomentations. Useful for deep learning.",
+        "tags": [
+            "audio",
+            "augmentation",
+            "dsp",
+            "music",
+            "pytorch",
+            "waveform",
+            "audio-effects",
+            "sound-processing",
+            "data-augmentation",
+            "audio-data-augmentation",
+            "differentiable-data-augmentation",
+            "sound",
+            "python",
+            "machine-learning",
+            "deep-learning"
+        ]
     }
 }
