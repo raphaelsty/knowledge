@@ -208494,5 +208494,121 @@
     {
         "head": "fast",
         "tail": "data augmentation"
+    },
+    {
+        "head": "python",
+        "tail": "vllm"
+    },
+    {
+        "head": "python",
+        "tail": "optimization llm"
+    },
+    {
+        "head": "vllm",
+        "tail": "optimization llm"
+    },
+    {
+        "head": "python",
+        "tail": "gemini"
+    },
+    {
+        "head": "python",
+        "tail": "cuda-toolkit"
+    },
+    {
+        "head": "opencv",
+        "tail": "robotics"
+    },
+    {
+        "head": "opencv",
+        "tail": "gemini"
+    },
+    {
+        "head": "opencv",
+        "tail": "lerobot"
+    },
+    {
+        "head": "opencv",
+        "tail": "quantitative-finance"
+    },
+    {
+        "head": "opencv",
+        "tail": "cuda-toolkit"
+    },
+    {
+        "head": "robotics",
+        "tail": "gemini"
+    },
+    {
+        "head": "robotics",
+        "tail": "quantitative-finance"
+    },
+    {
+        "head": "robotics",
+        "tail": "cuda-toolkit"
+    },
+    {
+        "head": "gemini",
+        "tail": "lerobot"
+    },
+    {
+        "head": "gemini",
+        "tail": "computer-vision"
+    },
+    {
+        "head": "gemini",
+        "tail": "quantitative-finance"
+    },
+    {
+        "head": "gemini",
+        "tail": "cuda-toolkit"
+    },
+    {
+        "head": "lerobot",
+        "tail": "computer-vision"
+    },
+    {
+        "head": "lerobot",
+        "tail": "quantitative-finance"
+    },
+    {
+        "head": "lerobot",
+        "tail": "cuda-toolkit"
+    },
+    {
+        "head": "computer-vision",
+        "tail": "quantitative-finance"
+    },
+    {
+        "head": "computer-vision",
+        "tail": "cuda-toolkit"
+    },
+    {
+        "head": "quantitative-finance",
+        "tail": "cuda-toolkit"
+    },
+    {
+        "head": "c++",
+        "tail": "fast"
+    },
+    {
+        "head": "c++",
+        "tail": "programming"
+    },
+    {
+        "head": "fast",
+        "tail": "programming"
+    },
+    {
+        "head": "fast",
+        "tail": "triton"
+    },
+    {
+        "head": "gpu",
+        "tail": "triton"
+    },
+    {
+        "head": "programming",
+        "tail": "triton"
     }
 ]
