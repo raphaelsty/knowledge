@@ -45257,5 +45257,35 @@
         "tags": [
             "c++"
         ]
+    },
+    "https://github.com/Automattic/harper": {
+        "extra-tags": [
+            "offline",
+            "privacy",
+            "grammar",
+            "fast",
+            "open-source"
+        ],
+        "date": "2023-10-22",
+        "title": "harper",
+        "summary": "Offline, privacy-first grammar checker. Fast, open-source, Rust-powered",
+        "tags": [
+            "developer-tools",
+            "grammar-checker",
+            "webassembly",
+            "rust",
+            "english-language"
+        ]
+    },
+    "https://writewithharper.com": {
+        "extra-tags": [
+            "open-source"
+        ],
+        "title": "Hackernews Harper \u2013 an open-source alternative to Grammarly (writewithharper.com)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2025-06-22"
     }
 }

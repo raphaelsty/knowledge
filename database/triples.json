@@ -208610,5 +208610,169 @@
     {
         "head": "programming",
         "tail": "triton"
+    },
+    {
+        "head": "developer-tools",
+        "tail": "grammar-checker"
+    },
+    {
+        "head": "developer-tools",
+        "tail": "webassembly"
+    },
+    {
+        "head": "developer-tools",
+        "tail": "rust"
+    },
+    {
+        "head": "developer-tools",
+        "tail": "english-language"
+    },
+    {
+        "head": "developer-tools",
+        "tail": "offline"
+    },
+    {
+        "head": "developer-tools",
+        "tail": "privacy"
+    },
+    {
+        "head": "developer-tools",
+        "tail": "grammar"
+    },
+    {
+        "head": "developer-tools",
+        "tail": "fast"
+    },
+    {
+        "head": "developer-tools",
+        "tail": "open-source"
+    },
+    {
+        "head": "grammar-checker",
+        "tail": "webassembly"
+    },
+    {
+        "head": "grammar-checker",
+        "tail": "rust"
+    },
+    {
+        "head": "grammar-checker",
+        "tail": "english-language"
+    },
+    {
+        "head": "grammar-checker",
+        "tail": "offline"
+    },
+    {
+        "head": "grammar-checker",
+        "tail": "privacy"
+    },
+    {
+        "head": "grammar-checker",
+        "tail": "fast"
+    },
+    {
+        "head": "grammar-checker",
+        "tail": "open-source"
+    },
+    {
+        "head": "webassembly",
+        "tail": "english-language"
+    },
+    {
+        "head": "webassembly",
+        "tail": "offline"
+    },
+    {
+        "head": "webassembly",
+        "tail": "privacy"
+    },
+    {
+        "head": "webassembly",
+        "tail": "grammar"
+    },
+    {
+        "head": "webassembly",
+        "tail": "fast"
+    },
+    {
+        "head": "webassembly",
+        "tail": "open-source"
+    },
+    {
+        "head": "rust",
+        "tail": "english-language"
+    },
+    {
+        "head": "rust",
+        "tail": "offline"
+    },
+    {
+        "head": "rust",
+        "tail": "privacy"
+    },
+    {
+        "head": "rust",
+        "tail": "grammar"
+    },
+    {
+        "head": "english-language",
+        "tail": "offline"
+    },
+    {
+        "head": "english-language",
+        "tail": "privacy"
+    },
+    {
+        "head": "english-language",
+        "tail": "grammar"
+    },
+    {
+        "head": "english-language",
+        "tail": "fast"
+    },
+    {
+        "head": "english-language",
+        "tail": "open-source"
+    },
+    {
+        "head": "offline",
+        "tail": "privacy"
+    },
+    {
+        "head": "offline",
+        "tail": "grammar"
+    },
+    {
+        "head": "offline",
+        "tail": "fast"
+    },
+    {
+        "head": "offline",
+        "tail": "open-source"
+    },
+    {
+        "head": "privacy",
+        "tail": "grammar"
+    },
+    {
+        "head": "privacy",
+        "tail": "fast"
+    },
+    {
+        "head": "privacy",
+        "tail": "open-source"
+    },
+    {
+        "head": "grammar",
+        "tail": "fast"
+    },
+    {
+        "head": "grammar",
+        "tail": "open-source"
+    },
+    {
+        "head": "fast",
+        "tail": "open-source"
     }
 ]
