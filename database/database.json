@@ -45287,5 +45287,17 @@
         ],
         "summary": "",
         "date": "2025-06-22"
+    },
+    "https://airpass.tiagoalves.me/": {
+        "extra-tags": [
+            "time",
+            "hacker"
+        ],
+        "title": "Hackernews Airpass \u2013 Easily overcome WiFi time limits (tiagoalves.me)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2025-06-23"
     }
 }
