@@ -208778,5 +208778,53 @@
     {
         "head": "time",
         "tail": "hacker"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "attention"
+    },
+    {
+        "head": "ai",
+        "tail": "interpretability"
+    },
+    {
+        "head": "interpretability",
+        "tail": "attention"
+    },
+    {
+        "head": "interpretability",
+        "tail": "transformer"
+    },
+    {
+        "head": "rust",
+        "tail": "tutorial"
+    },
+    {
+        "head": "rust",
+        "tail": "was"
+    },
+    {
+        "head": "tutorial",
+        "tail": "was"
+    },
+    {
+        "head": "tutorial",
+        "tail": "wasm"
+    },
+    {
+        "head": "tutorial",
+        "tail": "webassembly"
+    },
+    {
+        "head": "was",
+        "tail": "wasm"
+    },
+    {
+        "head": "was",
+        "tail": "webassembly"
+    },
+    {
+        "head": "wasm",
+        "tail": "webassembly"
     }
 ]

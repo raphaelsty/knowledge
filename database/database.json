@@ -45299,5 +45299,33 @@
         ],
         "summary": "",
         "date": "2025-06-23"
+    },
+    "https://github.com/villekuosmanen/physical-AI-interpretability": {
+        "extra-tags": [
+            "ai",
+            "interpretability",
+            "attention",
+            "transformer"
+        ],
+        "date": "2025-05-26",
+        "title": "physical-AI-interpretability",
+        "summary": "Attention mappers and visualisation for transformer-based Physical AI policies",
+        "tags": [
+            "jupyter notebook"
+        ]
+    },
+    "https://rustwasm.github.io/book/reference/code-size.html#why-care-about-code-size": {
+        "extra-tags": [
+            "wasm",
+            "webassembly"
+        ],
+        "title": "Shrinking .wasm Size - Rust and WebAssembly",
+        "summary": "",
+        "date": "2025-06-23",
+        "tags": [
+            "rust",
+            "tutorial",
+            "was"
+        ]
     }
 }
