@@ -45327,5 +45327,324 @@
             "tutorial",
             "was"
         ]
+    },
+    "https://github.com/M4THYOU/TokenDagger": {
+        "extra-tags": [
+            "high-performance",
+            "openai",
+            "high-performance-computing"
+        ],
+        "date": "2025-06-22",
+        "title": "TokenDagger",
+        "summary": "High-Performance Implementation of OpenAI's TikToken.",
+        "tags": [
+            "c++"
+        ]
+    },
+    "https://github.com/diffeo/kodama": {
+        "extra-tags": [
+            "fast",
+            "hierarchical",
+            "clustering"
+        ],
+        "date": "2017-08-07",
+        "title": "kodama",
+        "summary": "Fast hierarchical agglomerative clustering in Rust.",
+        "tags": [
+            "rust"
+        ]
+    },
+    "https://github.com/ZetloStudio/ZeQLplus": {
+        "extra-tags": [
+            "source",
+            "database",
+            "browser"
+        ],
+        "date": "2023-04-15",
+        "title": "ZeQLplus",
+        "summary": "Open Source Terminal SQLite Database Browser",
+        "tags": [
+            "sqlite",
+            "terminal",
+            "v",
+            "database-gui",
+            "vlang"
+        ]
+    },
+    "https://github.com/sirius-db/sirius": {
+        "extra-tags": [
+            "julius nielsen"
+        ],
+        "date": "2024-06-19",
+        "title": "sirius",
+        "summary": "",
+        "tags": [
+            "c++"
+        ]
+    },
+    "https://github.com/quickwit-oss/tantivy": {
+        "extra-tags": [
+            "tantivy",
+            "text",
+            "search engine",
+            "library"
+        ],
+        "date": "2016-01-11",
+        "title": "tantivy",
+        "summary": "Tantivy is a full-text search engine library inspired by Apache Lucene and written in Rust",
+        "tags": [
+            "search-engine",
+            "rust"
+        ]
+    },
+    "https://github.com/n0-computer/iroh": {
+        "extra-tags": [
+            "peer-to-peer",
+            "neural networks",
+            "memory networks"
+        ],
+        "date": "2022-03-14",
+        "title": "iroh",
+        "summary": "peer-2-peer that just works",
+        "tags": [
+            "tagsoftags",
+            "realtime",
+            "memes",
+            "p2p",
+            "does-anyone-read-these",
+            "tags",
+            "rust"
+        ]
+    },
+    "https://github.com/samuel-vitorino/lm.rs": {
+        "extra-tags": [
+            "minimal",
+            "llm",
+            "inference"
+        ],
+        "date": "2024-07-13",
+        "title": "lm.rs",
+        "summary": "Minimal LLM inference in Rust",
+        "tags": [
+            "rust"
+        ]
+    },
+    "https://github.com/nativefier/nativefier": {
+        "extra-tags": [
+            "make",
+            "web",
+            "page"
+        ],
+        "date": "2015-07-05",
+        "title": "nativefier",
+        "summary": "Make any web page a desktop application",
+        "tags": [
+            "typescript",
+            "macos",
+            "linux",
+            "electron",
+            "nodejs",
+            "desktop-application",
+            "windows"
+        ]
+    },
+    "https://github.com/ml-explore/mlx": {
+        "extra-tags": [
+            "framework",
+            "apple silicon"
+        ],
+        "date": "2023-11-28",
+        "title": "mlx",
+        "summary": "MLX: An array framework for Apple silicon",
+        "tags": [
+            "c++",
+            "mlx"
+        ]
+    },
+    "https://github.com/loopwork/hype": {
+        "extra-tags": [
+            "functions",
+            "http",
+            "cli"
+        ],
+        "date": "2024-09-11",
+        "title": "hype",
+        "summary": "Write Python functions. Use them everywhere. HTTP, CLI, GUI, LLM (OMG)",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/boringdata/boring-semantic-layer": {
+        "extra-tags": [
+            "semantic-web",
+            "semantic-search",
+            "latent-semantic-analysis"
+        ],
+        "date": "2025-06-13",
+        "title": "boring-semantic-layer",
+        "summary": "",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/riiswa/pointax": {
+        "extra-tags": [
+            "environment",
+            "jax",
+            "gym-environment"
+        ],
+        "date": "2025-06-18",
+        "title": "pointax",
+        "summary": "Pointax: PointMaze Environment for JAX",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/gradio-app/trackio": {
+        "extra-tags": [
+            "experiment",
+            "library",
+            "top"
+        ],
+        "date": "2025-05-08",
+        "title": "trackio",
+        "summary": "A lightweight, completely free experiment tracking Python library built on top of \ud83e\udd17 Datasets and Spaces.",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/LMCache/LMCache": {
+        "extra-tags": [
+            "llm",
+            "github"
+        ],
+        "title": "Hackernews Lossless LLM 3x Throughput Increase by LMCache (github.com/lmcache)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2025-07-01"
+    },
+    "https://sinja.io/blog/bot-or-not": {
+        "extra-tags": [
+            "history",
+            "web",
+            "bots",
+            "detection"
+        ],
+        "title": "Hackernews A short history of web bots and bot detection techniques (sinja.io)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2025-07-01"
+    },
+    "https://sharnoff.io/blog/why-rust-compiler-slow": {
+        "extra-tags": [
+            "rust",
+            "compiler"
+        ],
+        "title": "Hackernews Why is the Rust compiler so slow? (sharnoff.io)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2025-07-01"
+    },
+    "https://research.google/blog/muvera-making-multi-vector-retrieval-as-fast-as-single-vector-search/": {
+        "extra-tags": [
+            "multi-vector retrieval",
+            "fast",
+            "vector"
+        ],
+        "title": "Hackernews Muvera: Making multi-vector retrieval as fast as single-vector search (research.google)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2025-07-01"
+    },
+    "https://george.mand.is/2025/06/openai-charges-by-the-minute-so-make-the-minutes-shorter/": {
+        "extra-tags": [
+            "openai",
+            "audio"
+        ],
+        "title": "Hackernews OpenAI charges by the minute, so speed up your audio (mand.is)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2025-07-01"
+    },
+    "https://damek.github.io/random/basic-facts-about-gpus/": {
+        "extra-tags": [
+            "github",
+            "hacker"
+        ],
+        "title": "Hackernews Basic Facts about GPUs (damek.github.io)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2025-07-01"
+    },
+    "https://fortune.com/2025/06/20/hugging-face-thomas-wolf-ai-yes-men-on-servers-no-scientific-breakthroughs/": {
+        "extra-tags": [
+            "ai",
+            "nlp for scientific documents"
+        ],
+        "title": "Hackernews AI more likely to create 'yes-men on servers' than any scientific breakthroughs (fortune.com)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2025-07-01"
+    },
+    "https://www.ubicloud.com/blog/life-of-an-inference-request-vllm-v1": {
+        "extra-tags": [
+            "inference",
+            "llms",
+            "open-source"
+        ],
+        "title": "Life of an inference request (vLLM V1): How LLMs are served efficiently at scale",
+        "summary": "vLLM is an open-source inference engine that serves large language models. We deploy vLLM across GPUs and load open weight models like Llama 4 into it. vLLM sits at the intersection of AI and systems programming, so we thought that diving into its details might interest our readers.",
+        "date": "2025-06-28",
+        "tags": [
+            "blog",
+            "vllm"
+        ]
+    },
+    "https://sinja.io//blog/bot-or-not": {
+        "extra-tags": [
+            "bots",
+            "history",
+            "web",
+            "website"
+        ],
+        "title": "A short history of web bots and bot detection techniques \u00b7 OlegWock",
+        "summary": "Did you know your favorite website can detect when you're browsing it in public transport or when you scroll it in your bed? Moreover, this info sometimes helps them to fight bots.",
+        "date": "2025-06-28",
+        "tags": [
+            "bot",
+            "crawl",
+            "detection"
+        ]
+    },
+    "https://jordan-eckowitz.medium.com/make-any-website-into-a-desktop-app-with-1-line-of-code-ba53d59bf9e1": {
+        "extra-tags": [
+            "code",
+            "make",
+            "website",
+            "python",
+            "quickly"
+        ],
+        "title": "Make any website into a desktop app with 1 line of code\u2026",
+        "summary": "When I first began to learn to code I started with Python. The syntax was incredibly intuitive, user-friendly and I quickly worked my way\u2026",
+        "date": "2025-06-25",
+        "tags": [
+            "blog",
+            "electron",
+            "web"
+        ]
     }
 }
