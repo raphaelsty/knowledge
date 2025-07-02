@@ -209582,5 +209582,329 @@
     {
         "head": "website",
         "tail": "quickly"
+    },
+    {
+        "head": "quantization",
+        "tail": "cuda"
+    },
+    {
+        "head": "quantization",
+        "tail": "transformer"
+    },
+    {
+        "head": "quantization",
+        "tail": "mx"
+    },
+    {
+        "head": "quantization",
+        "tail": "optimizer"
+    },
+    {
+        "head": "quantization",
+        "tail": "sparsity"
+    },
+    {
+        "head": "quantization",
+        "tail": "brrr"
+    },
+    {
+        "head": "quantization",
+        "tail": "offloading"
+    },
+    {
+        "head": "quantization",
+        "tail": "llama"
+    },
+    {
+        "head": "quantization",
+        "tail": "training"
+    },
+    {
+        "head": "quantization",
+        "tail": "dtypes"
+    },
+    {
+        "head": "quantization",
+        "tail": "float8"
+    },
+    {
+        "head": "cuda",
+        "tail": "mx"
+    },
+    {
+        "head": "cuda",
+        "tail": "optimizer"
+    },
+    {
+        "head": "cuda",
+        "tail": "sparsity"
+    },
+    {
+        "head": "cuda",
+        "tail": "brrr"
+    },
+    {
+        "head": "cuda",
+        "tail": "offloading"
+    },
+    {
+        "head": "cuda",
+        "tail": "training"
+    },
+    {
+        "head": "cuda",
+        "tail": "dtypes"
+    },
+    {
+        "head": "cuda",
+        "tail": "float8"
+    },
+    {
+        "head": "transformer",
+        "tail": "mx"
+    },
+    {
+        "head": "transformer",
+        "tail": "optimizer"
+    },
+    {
+        "head": "transformer",
+        "tail": "sparsity"
+    },
+    {
+        "head": "transformer",
+        "tail": "brrr"
+    },
+    {
+        "head": "transformer",
+        "tail": "offloading"
+    },
+    {
+        "head": "transformer",
+        "tail": "dtypes"
+    },
+    {
+        "head": "transformer",
+        "tail": "float8"
+    },
+    {
+        "head": "mx",
+        "tail": "optimizer"
+    },
+    {
+        "head": "mx",
+        "tail": "sparsity"
+    },
+    {
+        "head": "mx",
+        "tail": "pytorch"
+    },
+    {
+        "head": "mx",
+        "tail": "brrr"
+    },
+    {
+        "head": "mx",
+        "tail": "python"
+    },
+    {
+        "head": "mx",
+        "tail": "offloading"
+    },
+    {
+        "head": "mx",
+        "tail": "llama"
+    },
+    {
+        "head": "mx",
+        "tail": "training"
+    },
+    {
+        "head": "mx",
+        "tail": "dtypes"
+    },
+    {
+        "head": "mx",
+        "tail": "float8"
+    },
+    {
+        "head": "mx",
+        "tail": "inference"
+    },
+    {
+        "head": "optimizer",
+        "tail": "sparsity"
+    },
+    {
+        "head": "optimizer",
+        "tail": "brrr"
+    },
+    {
+        "head": "optimizer",
+        "tail": "offloading"
+    },
+    {
+        "head": "optimizer",
+        "tail": "llama"
+    },
+    {
+        "head": "optimizer",
+        "tail": "training"
+    },
+    {
+        "head": "optimizer",
+        "tail": "dtypes"
+    },
+    {
+        "head": "optimizer",
+        "tail": "float8"
+    },
+    {
+        "head": "optimizer",
+        "tail": "inference"
+    },
+    {
+        "head": "sparsity",
+        "tail": "pytorch"
+    },
+    {
+        "head": "sparsity",
+        "tail": "brrr"
+    },
+    {
+        "head": "sparsity",
+        "tail": "python"
+    },
+    {
+        "head": "sparsity",
+        "tail": "offloading"
+    },
+    {
+        "head": "sparsity",
+        "tail": "llama"
+    },
+    {
+        "head": "sparsity",
+        "tail": "training"
+    },
+    {
+        "head": "sparsity",
+        "tail": "dtypes"
+    },
+    {
+        "head": "sparsity",
+        "tail": "float8"
+    },
+    {
+        "head": "sparsity",
+        "tail": "inference"
+    },
+    {
+        "head": "pytorch",
+        "tail": "brrr"
+    },
+    {
+        "head": "pytorch",
+        "tail": "offloading"
+    },
+    {
+        "head": "pytorch",
+        "tail": "dtypes"
+    },
+    {
+        "head": "pytorch",
+        "tail": "float8"
+    },
+    {
+        "head": "brrr",
+        "tail": "python"
+    },
+    {
+        "head": "brrr",
+        "tail": "offloading"
+    },
+    {
+        "head": "brrr",
+        "tail": "llama"
+    },
+    {
+        "head": "brrr",
+        "tail": "training"
+    },
+    {
+        "head": "brrr",
+        "tail": "dtypes"
+    },
+    {
+        "head": "brrr",
+        "tail": "float8"
+    },
+    {
+        "head": "brrr",
+        "tail": "inference"
+    },
+    {
+        "head": "python",
+        "tail": "offloading"
+    },
+    {
+        "head": "python",
+        "tail": "dtypes"
+    },
+    {
+        "head": "python",
+        "tail": "float8"
+    },
+    {
+        "head": "offloading",
+        "tail": "llama"
+    },
+    {
+        "head": "offloading",
+        "tail": "training"
+    },
+    {
+        "head": "offloading",
+        "tail": "dtypes"
+    },
+    {
+        "head": "offloading",
+        "tail": "float8"
+    },
+    {
+        "head": "offloading",
+        "tail": "inference"
+    },
+    {
+        "head": "llama",
+        "tail": "training"
+    },
+    {
+        "head": "llama",
+        "tail": "dtypes"
+    },
+    {
+        "head": "llama",
+        "tail": "float8"
+    },
+    {
+        "head": "training",
+        "tail": "dtypes"
+    },
+    {
+        "head": "training",
+        "tail": "float8"
+    },
+    {
+        "head": "dtypes",
+        "tail": "float8"
+    },
+    {
+        "head": "dtypes",
+        "tail": "inference"
+    },
+    {
+        "head": "float8",
+        "tail": "inference"
     }
 ]

@@ -45646,5 +45646,28 @@
             "electron",
             "web"
         ]
+    },
+    "https://github.com/pytorch/ao": {
+        "extra-tags": [],
+        "date": "2023-11-03",
+        "title": "ao",
+        "summary": "PyTorch native quantization and sparsity for training and inference",
+        "tags": [
+            "quantization",
+            "cuda",
+            "transformer",
+            "mx",
+            "optimizer",
+            "sparsity",
+            "pytorch",
+            "brrr",
+            "python",
+            "offloading",
+            "llama",
+            "training",
+            "dtypes",
+            "float8",
+            "inference"
+        ]
     }
 }
