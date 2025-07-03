@@ -45669,5 +45669,34 @@
             "float8",
             "inference"
         ]
+    },
+    "https://github.com/lightonai/pylate-rs": {
+        "extra-tags": [
+            "template-repository",
+            "intermediate-representation",
+            "pylucene"
+        ],
+        "date": "2025-07-01",
+        "title": "pylate-rs",
+        "summary": "",
+        "tags": []
+    },
+    "https://github.com/fabrahaingo/joel": {
+        "extra-tags": [],
+        "date": "2022-09-14",
+        "title": "joel",
+        "summary": "",
+        "tags": [
+            "typescript"
+        ]
+    },
+    "https://github.com/SimHacker/lloooomm": {
+        "extra-tags": [],
+        "date": "2025-06-08",
+        "title": "lloooomm",
+        "summary": "",
+        "tags": [
+            "python"
+        ]
     }
 }

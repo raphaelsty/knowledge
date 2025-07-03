@@ -209906,5 +209906,17 @@
     {
         "head": "float8",
         "tail": "inference"
+    },
+    {
+        "head": "template-repository",
+        "tail": "intermediate-representation"
+    },
+    {
+        "head": "template-repository",
+        "tail": "pylucene"
+    },
+    {
+        "head": "intermediate-representation",
+        "tail": "pylucene"
     }
 ]
