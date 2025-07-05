@@ -209918,5 +209918,113 @@
     {
         "head": "intermediate-representation",
         "tail": "pylucene"
+    },
+    {
+        "head": "nvidia",
+        "tail": "typescript"
+    },
+    {
+        "head": "nvidia",
+        "tail": "cuda-toolkit"
+    },
+    {
+        "head": "nvidia",
+        "tail": "nvidia-cuda"
+    },
+    {
+        "head": "nvidia",
+        "tail": "action"
+    },
+    {
+        "head": "nvidia",
+        "tail": "github-actions"
+    },
+    {
+        "head": "nvidia",
+        "tail": "github action"
+    },
+    {
+        "head": "nvidia",
+        "tail": "install"
+    },
+    {
+        "head": "typescript",
+        "tail": "cuda"
+    },
+    {
+        "head": "typescript",
+        "tail": "cuda-toolkit"
+    },
+    {
+        "head": "typescript",
+        "tail": "nvidia-cuda"
+    },
+    {
+        "head": "typescript",
+        "tail": "action"
+    },
+    {
+        "head": "cuda",
+        "tail": "nvidia-cuda"
+    },
+    {
+        "head": "cuda",
+        "tail": "action"
+    },
+    {
+        "head": "cuda",
+        "tail": "github-actions"
+    },
+    {
+        "head": "cuda",
+        "tail": "github action"
+    },
+    {
+        "head": "cuda-toolkit",
+        "tail": "nvidia-cuda"
+    },
+    {
+        "head": "cuda-toolkit",
+        "tail": "action"
+    },
+    {
+        "head": "cuda-toolkit",
+        "tail": "github-actions"
+    },
+    {
+        "head": "cuda-toolkit",
+        "tail": "github action"
+    },
+    {
+        "head": "cuda-toolkit",
+        "tail": "install"
+    },
+    {
+        "head": "nvidia-cuda",
+        "tail": "action"
+    },
+    {
+        "head": "nvidia-cuda",
+        "tail": "github-actions"
+    },
+    {
+        "head": "nvidia-cuda",
+        "tail": "github action"
+    },
+    {
+        "head": "nvidia-cuda",
+        "tail": "install"
+    },
+    {
+        "head": "action",
+        "tail": "github-actions"
+    },
+    {
+        "head": "action",
+        "tail": "github action"
+    },
+    {
+        "head": "action",
+        "tail": "install"
     }
 ]

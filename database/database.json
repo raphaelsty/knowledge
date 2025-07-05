@@ -45698,5 +45698,23 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/Jimver/cuda-toolkit": {
+        "extra-tags": [
+            "github action",
+            "install"
+        ],
+        "date": "2021-03-10",
+        "title": "cuda-toolkit",
+        "summary": "GitHub Action to install CUDA",
+        "tags": [
+            "nvidia",
+            "typescript",
+            "cuda",
+            "cuda-toolkit",
+            "nvidia-cuda",
+            "action",
+            "github-actions"
+        ]
     }
 }
