@@ -210026,5 +210026,41 @@
     {
         "head": "action",
         "tail": "install"
+    },
+    {
+        "head": "rust",
+        "tail": "paper"
+    },
+    {
+        "head": "rust",
+        "tail": "software"
+    },
+    {
+        "head": "rust",
+        "tail": "repository"
+    },
+    {
+        "head": "rust",
+        "tail": "c"
+    },
+    {
+        "head": "paper",
+        "tail": "software"
+    },
+    {
+        "head": "paper",
+        "tail": "c"
+    },
+    {
+        "head": "software",
+        "tail": "repository"
+    },
+    {
+        "head": "software",
+        "tail": "c"
+    },
+    {
+        "head": "repository",
+        "tail": "c"
     }
 ]

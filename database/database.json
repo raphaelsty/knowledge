@@ -45716,5 +45716,19 @@
             "action",
             "github-actions"
         ]
+    },
+    "https://github.com/TusKANNy/seismic": {
+        "extra-tags": [
+            "paper",
+            "software",
+            "repository",
+            "c"
+        ],
+        "date": "2024-04-04",
+        "title": "seismic",
+        "summary": "Official software repository of S. Bruch, F. M. Nardini, C. Rulli, and R. Venturini. \"Efficient Inverted Indexes for Approximate Retrieval over Learned Sparse Representations.\" Long Paper @ ACM SIGIR 2024. Best Paper Runner-up.",
+        "tags": [
+            "rust"
+        ]
     }
 }
