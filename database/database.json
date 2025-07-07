@@ -45730,5 +45730,18 @@
         "tags": [
             "rust"
         ]
+    },
+    "https://github.com/casey/just": {
+        "extra-tags": [
+            "gdb-command",
+            "command-line",
+            "task-runner"
+        ],
+        "date": "2016-06-17",
+        "title": "just",
+        "summary": "\ud83e\udd16 Just a command runner",
+        "tags": [
+            "rust"
+        ]
     }
 }
