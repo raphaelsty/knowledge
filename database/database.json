@@ -45743,5 +45743,43 @@
         "tags": [
             "rust"
         ]
+    },
+    "https://github.com/philfung/awesome-reliable-robotics": {
+        "extra-tags": [
+            "robotics",
+            "awesome",
+            "collection",
+            "research",
+            "robustness"
+        ],
+        "date": "2025-05-22",
+        "title": "awesome-reliable-robotics",
+        "summary": "Collection of robotics research demonstrating reliability and robustness in the real world.",
+        "tags": []
+    },
+    "https://github.com/CyberOrigin2077/open_cyber_glove": {
+        "extra-tags": [
+            "sdk",
+            "glove"
+        ],
+        "date": "2025-07-04",
+        "title": "open_cyber_glove",
+        "summary": "Python SDK for OpenCyberGlove",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://arxiv.org/abs/2506.17298": {
+        "extra-tags": [
+            "fast",
+            "language models",
+            "diffusion"
+        ],
+        "title": "Hackernews Mercury: Ultra-fast language models based on diffusion (arxiv.org)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2025-07-08"
     }
 }
