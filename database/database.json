@@ -45781,5 +45781,63 @@
         ],
         "summary": "",
         "date": "2025-07-08"
+    },
+    "http://arxiv.org/abs/2502.18418": {
+        "extra-tags": [
+            "reasoning",
+            "time",
+            "model",
+            "performance"
+        ],
+        "title": "Rank1: Test-Time Compute for Reranking in Information Retrieval",
+        "summary": "We introduce Rank1, the first reranking model trained to take advantage of test-time compute. Rank1 demonstrates the applicability within retrieval of using a reasoning language model (i.e. OpenAI's o1, Deepseek's R1, etc.) for distillation in order to rapidly improve the performance of a smaller model. We gather and open-source a dataset of more than 600,000 examples of R1 reasoning traces from queries and passages in MS MARCO. Models trained on this dataset show: (1) state-of-the-art performance on advanced reasoning and instruction following datasets; (2) work remarkably well out of distribution due to the ability to respond to user-input prompts; and (3) have explainable reasoning chains that can be given to users or RAG-based systems. Further, we demonstrate that quantized versions of these models retain strong performance while using less compute/memory. Overall, Rank1 shows that test-time compute allows for a fundamentally new type of explainable and performant reranker model for search.",
+        "date": "2025-07-08",
+        "tags": [
+            "computer science - computation and language",
+            "computer science - information retrieval",
+            "computer science - machine learning",
+            "llm",
+            "generative",
+            "information retrieval",
+            "rank1"
+        ]
+    },
+    "http://arxiv.org/abs/2409.11136": {
+        "extra-tags": [
+            "retrieval",
+            "language models",
+            "performance"
+        ],
+        "title": "Promptriever: Instruction-Trained Retrievers Can Be Prompted Like Language Models",
+        "summary": "Instruction-tuned language models (LM) are able to respond to imperative commands, providing a more natural user interface compared to their base counterparts. In this work, we present Promptriever, the first retrieval model able to be prompted like an LM. To train Promptriever, we curate and release a new instance-level instruction training set from MS MARCO, spanning nearly 500k instances. Promptriever not only achieves strong performance on standard retrieval tasks, but also follows instructions. We observe: (1) large gains (reaching SoTA) on following detailed relevance instructions (+14.3 p-MRR / +3.1 nDCG on FollowIR), (2) significantly increased robustness to lexical choices/phrasing in the query+instruction (+12.9 Robustness@10 on InstructIR), and (3) the ability to perform hyperparameter search via prompting to reliably improve retrieval performance (+1.4 average increase on BEIR). Promptriever demonstrates that retrieval models can be controlled with prompts on a per-query basis, setting the stage for future work aligning LM prompting techniques with information retrieval.",
+        "date": "2025-07-08",
+        "tags": [
+            "computer science - computation and language",
+            "computer science - information retrieval",
+            "computer science - machine learning",
+            "llm",
+            "generative",
+            "information retrieval",
+            "promptriever"
+        ]
+    },
+    "http://arxiv.org/abs/2310.08319": {
+        "extra-tags": [
+            "retrieval",
+            "language models",
+            "llms",
+            "study"
+        ],
+        "title": "Fine-Tuning LLaMA for Multi-Stage Text Retrieval",
+        "summary": "The effectiveness of multi-stage text retrieval has been solidly demonstrated since before the era of pre-trained language models. However, most existing studies utilize models that predate recent advances in large language models (LLMs). This study seeks to explore potential improvements that state-of-the-art LLMs can bring. We conduct a comprehensive study, fine-tuning the latest LLaMA model both as a dense retriever (RepLLaMA) and as a pointwise reranker (RankLLaMA) for both passage retrieval and document retrieval using the MS MARCO datasets. Our findings demonstrate that the effectiveness of large language models indeed surpasses that of smaller models. Additionally, since LLMs can inherently handle longer contexts, they can represent entire documents holistically, obviating the need for traditional segmenting and pooling strategies. Furthermore, evaluations on BEIR demonstrate that our RepLLaMA-RankLLaMA pipeline exhibits strong zero-shot effectiveness. Model checkpoints from this study are available on HuggingFace.",
+        "date": "2025-07-08",
+        "tags": [
+            "computer science - information retrieval",
+            "llama",
+            "generative",
+            "information retrieval",
+            "llm",
+            "search"
+        ]
     }
 }
