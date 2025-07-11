@@ -210386,5 +210386,177 @@
     {
         "head": "llms",
         "tail": "study"
+    },
+    {
+        "head": "python",
+        "tail": "max"
+    },
+    {
+        "head": "cpu",
+        "tail": "max"
+    },
+    {
+        "head": "max",
+        "tail": "performance-cpu"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "go"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "zero"
+    },
+    {
+        "head": "robotics",
+        "tail": "course"
+    },
+    {
+        "head": "robotics",
+        "tail": "go"
+    },
+    {
+        "head": "course",
+        "tail": "go"
+    },
+    {
+        "head": "course",
+        "tail": "zero"
+    },
+    {
+        "head": "go",
+        "tail": "zero"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "encoder"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "image"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "siglip"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "localization"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "embedding"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "encoder"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "siglip"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "localization"
+    },
+    {
+        "head": "embedding",
+        "tail": "encoder"
+    },
+    {
+        "head": "embedding",
+        "tail": "google"
+    },
+    {
+        "head": "embedding",
+        "tail": "image"
+    },
+    {
+        "head": "embedding",
+        "tail": "siglip"
+    },
+    {
+        "head": "embedding",
+        "tail": "vision"
+    },
+    {
+        "head": "embedding",
+        "tail": "vision-language"
+    },
+    {
+        "head": "embedding",
+        "tail": "localization"
+    },
+    {
+        "head": "encoder",
+        "tail": "google"
+    },
+    {
+        "head": "encoder",
+        "tail": "image"
+    },
+    {
+        "head": "encoder",
+        "tail": "siglip"
+    },
+    {
+        "head": "encoder",
+        "tail": "vision"
+    },
+    {
+        "head": "encoder",
+        "tail": "vision-language"
+    },
+    {
+        "head": "encoder",
+        "tail": "localization"
+    },
+    {
+        "head": "google",
+        "tail": "siglip"
+    },
+    {
+        "head": "google",
+        "tail": "vision-language"
+    },
+    {
+        "head": "google",
+        "tail": "localization"
+    },
+    {
+        "head": "image",
+        "tail": "siglip"
+    },
+    {
+        "head": "image",
+        "tail": "vision-language"
+    },
+    {
+        "head": "image",
+        "tail": "localization"
+    },
+    {
+        "head": "siglip",
+        "tail": "vision"
+    },
+    {
+        "head": "siglip",
+        "tail": "vision-language"
+    },
+    {
+        "head": "siglip",
+        "tail": "localization"
+    },
+    {
+        "head": "vision",
+        "tail": "vision-language"
+    },
+    {
+        "head": "vision",
+        "tail": "localization"
+    },
+    {
+        "head": "vision-language",
+        "tail": "localization"
     }
 ]
