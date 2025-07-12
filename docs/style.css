@@ -4,7 +4,7 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    /* Prevent horizontal scroll */
+    font-family: 'Futura', sans-serif;
 }
 
 /* Graph container positioning */
@@ -26,23 +26,48 @@ body {
     box-sizing: border-box;
 }
 
-/* Search input field */
-#search {
-    padding-left: 20px;
+/* --- CORRECTED STYLES START HERE --- */
+
+/* Container is now the fixed element, matching the old #search rules */
+#search-container {
     position: fixed;
     width: 44%;
     margin-left: 2%;
     top: 1%;
+    height: 35px;
+    /* Explicitly set height */
+}
+
+/* Search input now fills its fixed container */
+#search {
+    width: 100%;
+    height: 100%;
+    padding-left: 20px;
+    padding-right: 35px;
+    /* Make space for indicator */
     background-color: #1E1E1E;
     color: #FFFFFF;
     font-family: 'Futura', sans-serif;
     font-size: 15px;
-    height: 35px;
     border: none;
     outline: none;
     box-shadow: none;
     border-radius: 8px;
     box-sizing: border-box;
+}
+
+/* Status Indicator is now positioned inside the new fixed container */
+.status-indicator {
+    position: absolute;
+    right: 12px;
+    /* Position from the right edge of the container */
+    top: 50%;
+    /* Center vertically */
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
 }
 
 *:focus {
@@ -54,39 +79,58 @@ body {
     width: 100%;
     margin-top: 60px;
     color: #FFFFFF;
-    font-family: 'Futura', sans-serif;
     background-color: #131317;
 }
 
 /* Individual document item */
-#document {
-    background-color: #131317;
+.document {
     margin-bottom: 30px;
 }
 
 /* Document title link */
-a.title {
+.document a.title {
     font-size: 15px;
     color: #FFFFFF;
     text-decoration: none;
 }
 
-a.title:hover {
+.document a.title:hover {
     text-decoration: underline;
 }
 
-/* Date display */
-#date {
+.score-badge {
+    font-family: monospace;
     font-size: 12px;
-    font-family: 'Futura', sans-serif;
+    padding: 2px 8px;
+    border-radius: 5px;
+    font-weight: bold;
+    flex-shrink: 0;
+    /* Prevents badge from shrinking or wrapping */
+    align-self: center;
+    /* Ensures vertical alignment with tags */
+}
+
+.retriever-score {
+    color: #ACADA8;
+    background-color: #2a2a2e;
+}
+
+.reranker-score {
+    color: #131317;
+    background-color: #19bc8e;
+}
+
+/* Date display */
+.date {
+    font-size: 12px;
     color: #ACADA8;
     font-weight: lighter;
-    margin-top: 7px;
     cursor: pointer;
+    margin-top: 7px;
 }
 
 /* Tags container */
-#tags {
+.tags {
     margin-top: 12px;
     display: flex;
     flex-wrap: wrap;
@@ -94,7 +138,7 @@ a.title:hover {
 }
 
 /* Individual tag */
-#tag {
+.tag {
     cursor: pointer;
     display: inline-block;
     background-color: #2a2a2e;
@@ -105,65 +149,62 @@ a.title:hover {
     font-style: italic;
 }
 
-#tag:hover {
+.tag:hover {
     background-color: #19bc8e;
     color: #131317;
 }
 
 /* Summary text */
-#summary {
+.summary {
     margin-top: 10px;
     font-size: 14px;
     color: #CCCDC6;
-    font-family: 'Futura', sans-serif;
     font-weight: lighter;
     text-align: justify;
-    background-color: #131317;
 }
 
 /* Highlighting styles */
-#highlight {
+.highlight {
     color: #19bc8e;
     display: inline;
     background-color: transparent;
 }
 
-#inline {
+.inline {
     display: inline;
+}
+
+.status-loading {
+    background-color: #f59e0b;
+}
+
+.status-ready {
+    background-color: #22c55e;
+}
+
+.status-error {
+    background-color: #ef4444;
 }
 
 /* --- Responsive Styles for Mobile --- */
 @media (max-width: 768px) {
-
-    /* Hide the graph on small screens */
     #graph {
         display: none;
     }
 
-    /* Make the search content take up the full screen width */
     #searchbox {
         width: 100%;
         padding: 2%;
     }
 
-    /* Adjust search input to fit the new layout */
-    #search {
-        width: calc(100% - 85px);
-        /* Full width minus button and margins */
+    /* Make container full width in mobile */
+    #search-container {
+        width: calc(100% - 4%);
         margin-left: 0;
         left: 2%;
     }
 
-    /* Reposition the "Ask" button to the right */
-    .ask {
-        left: auto;
-        right: 2%;
-        margin-left: 0;
-    }
-
-    /* Ensure documents and chat take up available space */
-    #documents,
-    #chat {
+    #documents {
         width: 100%;
         margin-left: 0;
     }

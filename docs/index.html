@@ -1,126 +1,174 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Knowledge Search</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* * The button style is no longer needed as the re-rank is automatic,
+         * but it's kept here for potential future use or reference.
+         */
+        #rerank-button {
+            position: absolute;
+            top: 10px;
+            right: 45px;
+            padding: 8px 12px;
+            background-color: #3e4d88;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: sans-serif;
+            font-size: 14px;
+            transition: background-color 0.2s;
+        }
+
+        #rerank-button:hover {
+            background-color: #5063a8;
+        }
+
+        #rerank-button:disabled {
+            background-color: #555;
+            cursor: not-allowed;
+        }
+    </style>
 </head>
 
 <body>
+    <!-- Main container for the React application -->
     <div id="searchbox">
         <div id="backsearch"></div>
-        <div id="ask"></div>
-        <div id="documents"></div>
     </div>
+
+    <!-- Container for the 3D graph visualization -->
     <div class="graph" id="graph"></div>
 
-    <script src="https://cdn.jsdelivr.net/npm/react@18.0.0/umd/react.production.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/react-dom@18.0.0/umd/react-dom.production.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/babel-standalone@6.26.0/babel.min.js"></script>
+    <!-- External Scripts -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three-spritetext@1.9.3/dist/three-spritetext.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/react-force-graph-3d@1.25.1/dist/react-force-graph-3d.min.js"></script>
+    <script src="https://unpkg.com/three-spritetext"></script>
+    <script src="https://unpkg.com/react-force-graph-3d"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-    <script type="text/babel">
+    <!-- React Application Logic -->
+    <script type="text/babel" data-presets="react">
         const { useState, useEffect, useRef, useCallback } = React;
+        const { createRoot } = ReactDOM;
 
+        // Globally available libraries from the script tags above
+        // ForceGraph3D, SpriteText, THREE
+
+        const API_BASE_URL = "http://127.0.0.1:8000";
+        const SEARCH_DEBOUNCE_MS = 400;
+        const PLOT_DEBOUNCE_MS = 500;
+        const INITIAL_FETCH_COUNT = 30;
+
+        /**
+         * The main Search component that handles UI, state management,
+         * and interaction with the backend and the ColBERT worker.
+         */
         const Search = () => {
+            // --- State Management ---
             const [query, setQuery] = useState("");
-            const [node, setNode] = useState(null);
-            const [k, setK] = useState(40);
+            const [selectedNode, setSelectedNode] = useState(null);
+            const [documentsToFetch, setDocumentsToFetch] = useState(INITIAL_FETCH_COUNT);
             const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+            const [modelStatus, setModelStatus] = useState("Loading Script...");
+            const [documents, setDocuments] = useState([]);
+            const [isSortedByDate, setIsSortedByDate] = useState(false);
 
-            // Refs for the separate search and plot timers
+            // --- Refs ---
             const searchTimerRef = useRef(null);
             const plotTimerRef = useRef(null);
+            const workerRef = useRef(null);
+            const latestQueryIdRef = useRef(0); // Used to prevent race conditions with worker responses
+            const graphRootRef = useRef(null); // To hold the React root for the 3D graph
 
-            const highlight = useCallback((text) => {
-                if (!text) return "";
-                let keywords = query;
-                if (node) {
-                    keywords += ` ${node}`;
+            // --- Function Declarations (in dependency order) ---
+
+            /**
+             * Safely unmounts the 3D graph React component.
+             */
+            const unmountGraph = useCallback(() => {
+                if (graphRootRef.current) {
+                    graphRootRef.current.unmount();
+                    graphRootRef.current = null;
                 }
-                const keywordSet = new Set(keywords.split(/\s+/).filter(token => token.length > 2));
-                if (keywordSet.size === 0) return <div id="inline">{text}</div>;
+            }, []);
 
-                const parts = text.split(new RegExp(`(${Array.from(keywordSet).join("|")})`, 'gi'));
-                return (
-                    <div id="inline">
-                        {parts.map((part, i) =>
-                            keywordSet.has(part.toLowerCase()) ? <div id="highlight" key={i}>{part}</div> : part
-                        )}
-                    </div>
-                );
-            }, [query, node]);
-
-            const renderDocuments = useCallback((documents) => {
-                ReactDOM.render(
-                    <div>
-                        {(documents || []).map((doc, index) => (
-                            <div id="document" key={doc.url || index}>
-                                <a className="title" href={doc.url} target="_blank" rel="noopener noreferrer">{highlight(doc.title)}</a>
-                                <div id="date" onClick={() => handleClickDate()}>{highlight(doc.date)}</div>
-                                <div id="summary">{highlight(doc.summary)}</div>
-                                <div id="tags">
-                                    {(doc.tags || []).concat(doc["extra-tags"] || []).map((tag, i) => (
-                                        <div id="tag" key={i} onClick={() => handleClickTag(tag)}>
-                                            {highlight(tag)}
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        ))}
-                    </div>,
-                    document.getElementById('documents')
-                );
-            }, [highlight]);
-
+            /**
+             * Fetches the latest documents from the backend.
+             */
             const fetchLatest = useCallback(() => {
-                const graphContainer = document.getElementById('graph');
-                if (graphContainer) {
-                    ReactDOM.unmountComponentAtNode(graphContainer);
-                }
-                fetch(`http://127.0.0.1:8000/latest/30`)
+                unmountGraph();
+                fetch(`${API_BASE_URL}/latest/${INITIAL_FETCH_COUNT}`)
                     .then(res => res.json())
-                    .then(data => renderDocuments(data.documents))
-                    .catch(error => console.error("Failed to fetch latest documents:", error));
-            }, [renderDocuments]);
+                    .then(data => setDocuments(data.documents))
+                    .catch(error => console.error("[APP] Failed to fetch latest documents:", error));
+            }, [unmountGraph]);
 
-            const search = useCallback((searchQuery, searchK, sort = true) => {
+            /**
+             * Fetches search results from the backend API.
+             */
+            const search = useCallback((searchQuery, count, sortChronologically = false) => {
                 if (!searchQuery.trim()) {
                     fetchLatest();
                     return;
                 }
+                const queryId = ++latestQueryIdRef.current;
+                const sortType = sortChronologically ? 'true' : 'false';
+                const nodeFilter = selectedNode || 'null';
+                const endpoint = `${API_BASE_URL}/search/${sortType}/${nodeFilter}/${count}/${searchQuery.replace("/", "")}`;
 
-                fetch(`http://127.0.0.1:8000/search/${sort}/${node}/${searchK}/${searchQuery.replace("/", "")}`)
+                fetch(endpoint)
                     .then(res => res.json())
                     .then(data => {
-                        renderDocuments(Object.values(data["documents"]));
-                    })
-                    .catch(error => console.error("Failed to fetch search results:", error));
-            }, [node, fetchLatest, renderDocuments]);
+                        const initialDocs = Object.values(data["documents"]).map(doc => ({ ...doc }));
+                        setDocuments(initialDocs); // Display initial results immediately
 
+                        // Automatically trigger re-ranking if the model is ready
+                        if (modelStatus === 'Model Ready' && initialDocs.length > 0 && searchQuery.trim()) {
+                            workerRef.current.postMessage({
+                                type: 'rank',
+                                payload: { query: searchQuery, documents: initialDocs, queryId }
+                            });
+                        }
+                    })
+                    .catch(error => console.error(`[APP] Failed to fetch search results:`, error));
+            }, [selectedNode, modelStatus, fetchLatest]);
+
+            /**
+             * Handles hovering over a node in the 3D graph.
+             */
             const handleHoverNode = useCallback((hoveredNode) => {
                 if (hoveredNode) {
-                    setNode(hoveredNode.id);
-                    search(`${query} ${hoveredNode.id}`, k);
+                    setSelectedNode(hoveredNode.id);
+                    search(`${query} ${hoveredNode.id}`, documentsToFetch);
                     window.history.pushState({}, null, `?query=${encodeURIComponent(query)}&node=${encodeURIComponent(hoveredNode.id)}`);
                 }
-            }, [query, search, k]);
+            }, [query, search, documentsToFetch]);
 
-            const plot = useCallback((plotQuery, plotK) => {
+            /**
+             * Fetches data and renders the 3D force-directed graph.
+             */
+            const plot = useCallback((plotQuery, count) => {
+                const graphContainer = document.getElementById('graph');
                 if (isMobile || !plotQuery.trim()) {
-                    const graphContainer = document.getElementById('graph');
-                    if (graphContainer && graphContainer.hasChildNodes()) {
-                        ReactDOM.unmountComponentAtNode(graphContainer);
-                    }
+                    unmountGraph();
                     return;
                 }
-
-                fetch(`http://127.0.0.1:8000/plot/${plotK}/${plotQuery.replace("/", "")}`)
+                const endpoint = `${API_BASE_URL}/plot/${count}/${plotQuery.replace("/", "")}`;
+                fetch(endpoint)
                     .then(res => res.json())
                     .then(data => {
-                        ReactDOM.render(
+                        if (!graphContainer) return;
+                        if (!graphRootRef.current) {
+                            graphRootRef.current = createRoot(graphContainer);
+                        }
+                        graphRootRef.current.render(
                             <ForceGraph3D
                                 graphData={data}
                                 backgroundColor="#131317"
@@ -139,84 +187,214 @@
                                     return sprite;
                                 }}
                                 onNodeHover={handleHoverNode}
-                            />,
-                            document.getElementById('graph')
+                            />
                         );
-                    }).catch(error => console.error("Failed to plot graph:", error));
-            }, [isMobile, handleHoverNode]);
+                    }).catch(error => console.error("[APP] Failed to plot graph:", error));
+            }, [isMobile, handleHoverNode, unmountGraph]);
 
-            // This function runs the search and plot immediately.
-            // Used for clicks and initial page load.
-            const runNow = useCallback((runQuery, runK) => {
+            /**
+             * A utility to run search and plot immediately, clearing any pending debounced calls.
+             */
+            const runNow = useCallback((runQuery, runCount, sortChronologically = true) => {
                 clearTimeout(searchTimerRef.current);
                 clearTimeout(plotTimerRef.current);
-                search(runQuery, runK, false);
-                plot(runQuery, runK);
+                search(runQuery, runCount, sortChronologically);
+                plot(runQuery, runCount);
             }, [search, plot]);
 
+            // --- Effects ---
+
+            /**
+             * Initializes the Web Worker on component mount and sets up message handling.
+             */
+            useEffect(() => {
+                const worker = new Worker('colbert.worker.js', { type: 'module' });
+                workerRef.current = worker;
+                worker.postMessage({ type: 'load' });
+
+                worker.onmessage = event => {
+                    const { type, payload, queryId } = event.data;
+                    switch (type) {
+                        case 'status':
+                            setModelStatus(payload);
+                            break;
+                        case 'model-ready':
+                            setModelStatus("Model Ready");
+                            break;
+                        case 'rank-update':
+                        case 'rank-complete':
+                            if (queryId === latestQueryIdRef.current) {
+                                setDocuments(payload);
+                            }
+                            break;
+                        case 'error':
+                            setModelStatus(payload);
+                            console.error("[APP] Received error from worker:", payload);
+                            break;
+                    }
+                };
+
+                return () => worker.terminate();
+            }, []); // Empty dependency array ensures this runs only once.
+
+            /**
+             * Effect to handle initial page load, parsing query params from the URL.
+             */
+            useEffect(() => {
+                const params = new URLSearchParams(window.location.search);
+                const urlQuery = params.get("query") || "";
+                const urlNode = params.get("node") || null;
+                if (urlQuery) {
+                    setQuery(urlQuery);
+                    if (urlNode) {
+                        setSelectedNode(urlNode);
+                        runNow(`${urlQuery} ${urlNode}`, documentsToFetch);
+                    } else {
+                        runNow(urlQuery, documentsToFetch, true);
+                    }
+                } else {
+                    fetchLatest();
+                }
+            }, []); // Runs only on initial mount
+
+            /**
+             * Effect to handle window resizing for mobile detection.
+             */
             useEffect(() => {
                 const handleResize = () => setIsMobile(window.innerWidth <= 768);
                 window.addEventListener('resize', handleResize);
                 return () => window.removeEventListener('resize', handleResize);
             }, []);
 
-            useEffect(() => {
-                const params = new URLSearchParams(window.location.search);
-                const urlQuery = params.get("query") || "";
-                const urlNode = params.get("node") || null;
+            // --- Event Handlers ---
 
-                if (urlQuery) {
-                    setQuery(urlQuery);
-                    runNow(urlQuery, k); // Run immediately on initial load
-                    if (urlNode) {
-                        setNode(urlNode);
-                        search(`${urlQuery} ${urlNode}`, k);
-                    }
-                } else {
-                    fetchLatest();
-                }
-            }, []); // Run only once on component mount
-
-            const handleChangeText = (event) => {
+            /**
+             * Handles user input in the search box with debouncing.
+             */
+            const handleChangeText = useCallback((event) => {
                 const newQuery = event.target.value.toLowerCase();
                 setQuery(newQuery);
-                setNode(null);
+                setSelectedNode(null);
+                setIsSortedByDate(false);
                 window.history.pushState({}, null, `?query=${encodeURIComponent(newQuery)}`);
 
-                // Clear previous timers
                 clearTimeout(searchTimerRef.current);
                 clearTimeout(plotTimerRef.current);
+                searchTimerRef.current = setTimeout(() => search(newQuery, documentsToFetch), SEARCH_DEBOUNCE_MS);
+                plotTimerRef.current = setTimeout(() => plot(newQuery, documentsToFetch), PLOT_DEBOUNCE_MS);
+            }, [documentsToFetch, search, plot]);
 
-                // Set new timers with different delays
-                searchTimerRef.current = setTimeout(() => {
-                    search(newQuery, k);
-                }, 200); // 200ms delay for search bar results
+            /**
+             * Toggles the sort order between date and relevance.
+             */
+            const handleClickDate = useCallback(() => {
+                const newSortState = !isSortedByDate;
+                setIsSortedByDate(newSortState);
+                search(query, documentsToFetch, newSortState);
+            }, [isSortedByDate, query, documentsToFetch, search]);
 
-                plotTimerRef.current = setTimeout(() => {
-                    plot(newQuery, k);
-                }, 500); // 500ms delay for the plot
-            };
-
-            const handleClickDate = () => {
-                search(query, k, false); // Run search without sorting
-            };
-
-            const handleClickTag = (tag) => {
+            /**
+             * Adds a clicked tag to the current search query.
+             */
+            const handleClickTag = useCallback((tag) => {
                 const newQuery = `${query} ${tag}`.trim();
                 setQuery(newQuery);
-                document.getElementById("search").value = newQuery;
+                setIsSortedByDate(false);
+                const searchInput = document.getElementById("search");
+                if (searchInput) searchInput.value = newQuery;
                 window.history.pushState({}, null, `?query=${encodeURIComponent(newQuery)}`);
-                runNow(newQuery, k, false); // Run immediately on tag click
+                runNow(newQuery, documentsToFetch, true);
+            }, [query, documentsToFetch, runNow]);
+
+            // --- UI Helper Functions ---
+
+            /**
+             * Determines the CSS class for the status indicator light.
+             */
+            const getIndicatorClass = (status) => {
+                if (status === "Model Ready") return 'status-ready';
+                if (status.startsWith("Error")) return 'status-error';
+                return 'status-loading';
             };
 
+            /**
+             * Wraps matching keywords in a span to highlight them.
+             */
+            const highlight = useCallback((text) => {
+                if (!text) return "";
+                let keywords = query;
+                if (selectedNode) keywords += ` ${selectedNode}`;
+                const keywordSet = new Set(keywords.toLowerCase().split(/\s+/).filter(token => token.length > 2));
+                if (keywordSet.size === 0) return <div className="inline">{text}</div>;
+
+                const parts = text.split(new RegExp(`(${Array.from(keywordSet).join("|")})`, 'gi'));
+                return (
+                    <div className="inline">
+                        {parts.map((part, i) =>
+                            keywordSet.has(part.toLowerCase())
+                                ? <div className="highlight" key={i}>{part}</div>
+                                : part
+                        )}
+                    </div>
+                );
+            }, [query, selectedNode]);
+
+            // --- Render ---
             return (
                 <React.Fragment>
-                    <input id="search" type="textarea" placeholder="Neural Search" value={query} onChange={handleChangeText} autoFocus />
+                    <div id="search-container">
+                        <input
+                            id="search"
+                            type="textarea"
+                            placeholder="Neural Search"
+                            value={query}
+                            onChange={handleChangeText}
+                            autoFocus
+                        />
+                        <span
+                            className={`status-indicator ${getIndicatorClass(modelStatus)}`}
+                            title={modelStatus}>
+                        </span>
+                    </div>
+
+                    <div id="documents">
+                        {(documents || []).map((doc, index) => (
+                            <div className="document" key={doc.url || index}>
+                                <a className="title" href={doc.url} target="_blank" rel="noopener noreferrer">
+                                    {highlight(doc.title)}
+                                </a>
+                                <div className="date" onClick={handleClickDate}>
+                                    {highlight(doc.date)}
+                                </div>
+                                <div className="summary">
+                                    {highlight(doc.summary)}
+                                </div>
+                                <div className="tags">
+                                    {(doc.tags || []).concat(doc["extra-tags"] || []).map((tag, i) => (
+                                        <div className="tag" key={i} onClick={() => handleClickTag(tag)}>
+                                            {highlight(tag)}
+                                        </div>
+                                    ))}
+                                    {typeof doc.colbertScore === 'number' ? (
+                                        <span className="score-badge reranker-score" title="Re-ranker Score">
+                                            {doc.colbertScore.toFixed(3)}
+                                        </span>
+                                    ) : typeof doc.similarity === 'number' ? (
+                                        <span className="score-badge retriever-score" title="Retriever Score">
+                                            {doc.similarity.toFixed(3)}
+                                        </span>
+                                    ) : null}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </React.Fragment>
             );
         };
 
-        const root = ReactDOM.createRoot(document.getElementById('backsearch'));
+        // --- Mount Application ---
+        const container = document.getElementById('backsearch');
+        const root = createRoot(container);
         root.render(<Search />);
     </script>
 </body>
