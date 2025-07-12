@@ -210558,5 +210558,209 @@
     {
         "head": "vision-language",
         "tail": "localization"
+    },
+    {
+        "head": "python",
+        "tail": "multi-vector retrieval"
+    },
+    {
+        "head": "python",
+        "tail": "multi-vector"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "information retrieval"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "ir"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "llm2vec"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "mteb"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "text"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "state-of-the-art"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "encoder"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "ir"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "llm2vec"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "mteb"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "text"
+    },
+    {
+        "head": "embeddings",
+        "tail": "encoder"
+    },
+    {
+        "head": "embeddings",
+        "tail": "information retrieval"
+    },
+    {
+        "head": "embeddings",
+        "tail": "ir"
+    },
+    {
+        "head": "embeddings",
+        "tail": "llm2vec"
+    },
+    {
+        "head": "embeddings",
+        "tail": "mteb"
+    },
+    {
+        "head": "encoder",
+        "tail": "ir"
+    },
+    {
+        "head": "encoder",
+        "tail": "llm"
+    },
+    {
+        "head": "encoder",
+        "tail": "llm2vec"
+    },
+    {
+        "head": "encoder",
+        "tail": "mteb"
+    },
+    {
+        "head": "encoder",
+        "tail": "models"
+    },
+    {
+        "head": "encoder",
+        "tail": "text"
+    },
+    {
+        "head": "encoder",
+        "tail": "llms"
+    },
+    {
+        "head": "encoder",
+        "tail": "state-of-the-art"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "ir"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "llm2vec"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "mteb"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "state-of-the-art"
+    },
+    {
+        "head": "ir",
+        "tail": "llm"
+    },
+    {
+        "head": "ir",
+        "tail": "llm2vec"
+    },
+    {
+        "head": "ir",
+        "tail": "mteb"
+    },
+    {
+        "head": "ir",
+        "tail": "models"
+    },
+    {
+        "head": "ir",
+        "tail": "text"
+    },
+    {
+        "head": "ir",
+        "tail": "llms"
+    },
+    {
+        "head": "ir",
+        "tail": "state-of-the-art"
+    },
+    {
+        "head": "llm",
+        "tail": "llm2vec"
+    },
+    {
+        "head": "llm",
+        "tail": "mteb"
+    },
+    {
+        "head": "llm2vec",
+        "tail": "mteb"
+    },
+    {
+        "head": "llm2vec",
+        "tail": "models"
+    },
+    {
+        "head": "llm2vec",
+        "tail": "text"
+    },
+    {
+        "head": "llm2vec",
+        "tail": "llms"
+    },
+    {
+        "head": "llm2vec",
+        "tail": "state-of-the-art"
+    },
+    {
+        "head": "mteb",
+        "tail": "models"
+    },
+    {
+        "head": "mteb",
+        "tail": "text"
+    },
+    {
+        "head": "mteb",
+        "tail": "llms"
+    },
+    {
+        "head": "mteb",
+        "tail": "state-of-the-art"
+    },
+    {
+        "head": "models",
+        "tail": "text"
+    },
+    {
+        "head": "text",
+        "tail": "state-of-the-art"
+    },
+    {
+        "head": "llms",
+        "tail": "state-of-the-art"
     }
 ]
