@@ -1,4 +1,5 @@
 import datetime
+import json
 import pickle
 import typing
 
@@ -15,6 +16,7 @@ app = FastAPI(
 
 origins = [
     "https://raphaelsty.github.io",
+    "http://127.0.0.1:8000", 
 ]
 
 
@@ -32,12 +34,28 @@ class Knowledge:
 
     def __init__(self) -> None:
         self.pipeline = None
+        self.documents = None
 
     def start(self):
-        """Load the pipeline."""
+        """Load the pipeline and the documents."""
         with open("database/pipeline.pkl", "rb") as f:
             self.pipeline = pickle.load(f)
+        # Load documents into memory for easy access
+        with open("database/database.json", "r") as f:
+            db = json.load(f)
+        self.documents = []
+        for url, doc in db.items():
+            doc['url'] = url
+            self.documents.append(doc)
         return self
+
+    def get_latest_documents(self, count: int) -> typing.List[typing.Dict]:
+        """Returns the most recently added documents."""
+        return sorted(
+            self.documents,
+            key=lambda doc: datetime.datetime.strptime(doc["date"], "%Y-%m-%d"),
+            reverse=True,
+        )[:count]
 
     def search(
         self,
@@ -65,6 +83,44 @@ class Knowledge:
 
 
 knowledge = Knowledge()
+
+
+@app.get("/latest/{count}")
+def get_latest(count: int):
+    """Returns the most recently added documents."""
+    documents = knowledge.get_latest_documents(count=count)
+    return {"documents": documents}
+
+
+@app.get("/search/{sort}/{tags}/{k_tags}/{q}")
+def search(k_tags: int, tags: str, sort: bool, q: str):
+    """Search for documents."""
+    tags = tags != "null"
+    documents = knowledge.search(q=q, tags=tags)
+    if bool(sort):
+        documents = [
+            document
+            for _, document in sorted(
+                [(document["date"], document) for document in documents],
+                key=lambda document: datetime.datetime.strptime(
+                    document[0], "%Y-%m-%d"
+                ),
+                reverse=True,
+            )
+        ]
+    return {"documents": documents}
+
+
+@app.get("/plot/{k_tags}/{q}", response_class=ORJSONResponse)
+def plot(k_tags: int, q: str):
+    """Plot tags."""
+    return knowledge.plot(q=q, k_tags=k_tags)
+
+
+@app.on_event("startup")
+def start():
+    """Intialiaze the pipeline."""
+    return knowledge.start()
 
 
 async def async_chat(query: str, content: str):
@@ -100,37 +156,6 @@ async def async_chat(query: str, content: str):
 
         answer += token
         yield answer.strip()
-
-
-@app.get("/search/{sort}/{tags}/{k_tags}/{q}")
-def search(k_tags: int, tags: str, sort: bool, q: str):
-    """Search for documents."""
-    tags = tags != "null"
-    documents = knowledge.search(q=q, tags=tags)
-    if bool(sort):
-        documents = [
-            document
-            for _, document in sorted(
-                [(document["date"], document) for document in documents],
-                key=lambda document: datetime.datetime.strptime(
-                    document[0], "%Y-%m-%d"
-                ),
-                reverse=True,
-            )
-        ]
-    return {"documents": documents}
-
-
-@app.get("/plot/{k_tags}/{q}", response_class=ORJSONResponse)
-def plot(k_tags: int, q: str):
-    """Plot tags."""
-    return knowledge.plot(q=q, k_tags=k_tags)
-
-
-@app.on_event("startup")
-def start():
-    """Intialiaze the pipeline."""
-    return knowledge.start()
 
 
 @app.get("/chat/{k_tags}/{q}")

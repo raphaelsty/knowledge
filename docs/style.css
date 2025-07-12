@@ -1,158 +1,170 @@
+/* General Body Styles */
 body {
     background-color: #131317;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    /* Prevent horizontal scroll */
 }
 
+/* Graph container positioning */
 #graph {
     position: fixed;
-    top: 0%;
+    top: 0;
+    right: 0;
     width: 50%;
-    margin-left: 50%;
-
+    height: 100vh;
 }
 
+/* Search content container */
+#searchbox {
+    width: 50%;
+    float: left;
+    height: 100vh;
+    overflow-y: auto;
+    padding: 1%;
+    box-sizing: border-box;
+}
+
+/* Search input field */
 #search {
     padding-left: 20px;
     position: fixed;
-    float: left;
     width: 44%;
     margin-left: 2%;
     top: 1%;
     background-color: #1E1E1E;
-    border-width: 0%;
     color: #FFFFFF;
     font-family: 'Futura', sans-serif;
-    font-weight:normal;
     font-size: 15px;
-    height: 3%;
-    outline-width: 0;
+    height: 35px;
+    border: none;
+    outline: none;
     box-shadow: none;
-    border-width: 0;
-    vertical-align: bottom;
-
-}
-
-.ask {
-    position: fixed;
-    float: left;
-    height: 3%;
-    top: 1%;
-    margin-left: 47%;
-    background-color: #131317;
     border-radius: 8px;
-    border-width: 0;
-    color: #919191;
-    cursor: pointer;
-    font-family: 'Futura', sans-serif;
-    font-weight: lighter;
-    font-size: 12px;
-    padding: 3px 10px;
-    text-align: center;
-    vertical-align: bottom
+    box-sizing: border-box;
 }
-
-
-#chat {
-    position: flex;
-    width: 47%;
-    margin-left: 2%;
-    margin-top: 60px;
-    font-size: 14px;
-    color: #919191;
-    font-family: 'Futura', sans-serif;
-    font-weight: lighter;
-    font-style: italic;
-    text-align: justify;
-    white-space: pre-line;
-}
-
 
 *:focus {
     outline: none;
 }
 
+/* Documents container */
 #documents {
-    position: flex;
-    left: 0%;
-    width: 47%;
+    width: 100%;
     margin-top: 60px;
-    margin-left: 2%;
-    font-size: 1vw;
     color: #FFFFFF;
     font-family: 'Futura', sans-serif;
-    font-weight: bolder;
-    overflow: scroll;
     background-color: #131317;
 }
 
-#document{
-    position: flex;
+/* Individual document item */
+#document {
     background-color: #131317;
-    margin-bottom: 7%;
+    margin-bottom: 30px;
 }
 
-#title {
-    position: fixed;
+/* Document title link */
+a.title {
     font-size: 15px;
-    background-color: #131317;
+    color: #FFFFFF;
+    text-decoration: none;
 }
 
+a.title:hover {
+    text-decoration: underline;
+}
+
+/* Date display */
 #date {
-    position: flex;
-    font-size: 11px;
+    font-size: 12px;
     font-family: 'Futura', sans-serif;
-    color: #ACADA8 ;
+    color: #ACADA8;
     font-weight: lighter;
-    margin-top: 1%;
+    margin-top: 7px;
     cursor: pointer;
 }
 
+/* Tags container */
 #tags {
-    position: flex;
-    margin-top: 2%;
-    font-size: 14px;
-    color: #ACADA8 ;
-    font-family: 'Futura', sans-serif;
-    font-weight: lighter;
-    font-style: italic;
-    text-align: justify;
-    background-color: #131317;
-    max-height: 10%;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    margin-top: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
 }
 
+/* Individual tag */
 #tag {
-    margin-right: 1%;
     cursor: pointer;
-    display:inline;
+    display: inline-block;
+    background-color: #2a2a2e;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    color: #ACADA8;
+    font-style: italic;
 }
 
+#tag:hover {
+    background-color: #19bc8e;
+    color: #131317;
+}
+
+/* Summary text */
 #summary {
-    position: flex;
-    margin-top: 2%;
+    margin-top: 10px;
     font-size: 14px;
     color: #CCCDC6;
     font-family: 'Futura', sans-serif;
     font-weight: lighter;
     text-align: justify;
     background-color: #131317;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
-a {
-    color: #FFFFFF;
-    font-family: 'Futura', sans-serif;
-    font-size: 15px;
-    font-weight: lighter;
-    text-decoration: none;
-  }
-
+/* Highlighting styles */
 #highlight {
     color: #19bc8e;
     display: inline;
+    background-color: transparent;
 }
 
 #inline {
     display: inline;
+}
+
+/* --- Responsive Styles for Mobile --- */
+@media (max-width: 768px) {
+
+    /* Hide the graph on small screens */
+    #graph {
+        display: none;
+    }
+
+    /* Make the search content take up the full screen width */
+    #searchbox {
+        width: 100%;
+        padding: 2%;
+    }
+
+    /* Adjust search input to fit the new layout */
+    #search {
+        width: calc(100% - 85px);
+        /* Full width minus button and margins */
+        margin-left: 0;
+        left: 2%;
+    }
+
+    /* Reposition the "Ask" button to the right */
+    .ask {
+        left: auto;
+        right: 2%;
+        margin-left: 0;
+    }
+
+    /* Ensure documents and chat take up available space */
+    #documents,
+    #chat {
+        width: 100%;
+        margin-left: 0;
+    }
 }

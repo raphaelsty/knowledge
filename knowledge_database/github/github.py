@@ -20,9 +20,9 @@ class Github:
 
     >>> from knowledge_database import github
 
-    >>> github_raph = github.Github(user="user")
+    >>> github_raph = github.Github(user="raphaelsty")
 
-    >>> github_raph.stars(per_page=3, limit=3)
+    >>> github_raph(per_page=3, limit=3)
 
     """
 
@@ -65,12 +65,8 @@ class Github:
                 tags += [repository["language"].lower()]
             tags = list(set(tags))
 
-            date = datetime.datetime.strptime(
-                repository["created_at"], "%Y-%m-%dT%H:%M:%SZ"
-            ).strftime("%Y-%m-%d")
-
             data[url] = {
-                "date": date,
+                "date": datetime.datetime.today().strftime("%Y-%m-%d"),
                 "title": f"{repository['name']}",
                 "summary": repository["description"],
                 "tags": tags,
