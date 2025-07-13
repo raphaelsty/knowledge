@@ -114,6 +114,20 @@ for url, document in data.items():
         if document.get(field, None) is None:
             document[field] = ""
 
+# Sanity check and data cleaning.
+for url, document in data.items():
+    # Ensure all required fields exist, defaulting to an empty string.
+    for field in ["title", "tags", "summary", "date"]:
+        if document.get(field, None) is None:
+            document[field] = ""
+
+    # Clean text fields of invalid Unicode characters before they are processed by the pipeline.
+    # This handles malformed data like the lone surrogate '\udd4a'.
+    for field in ["title", "summary"]:
+        if isinstance(document.get(field), str):
+            cleaned_text = document[field].encode('utf-8', 'replace').decode('utf-8')
+            document[field] = cleaned_text
+
 print("Adding extra tags.")
 data = tags.get_extra_tags(data=data)
 
