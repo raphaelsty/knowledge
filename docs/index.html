@@ -6,46 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Knowledge Search</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        /* * The button style is no longer needed as the re-rank is automatic,
-         * but it's kept here for potential future use or reference.
-         */
-        #rerank-button {
-            position: absolute;
-            top: 10px;
-            right: 45px;
-            padding: 8px 12px;
-            background-color: #3e4d88;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-family: sans-serif;
-            font-size: 14px;
-            transition: background-color 0.2s;
-        }
-
-        #rerank-button:hover {
-            background-color: #5063a8;
-        }
-
-        #rerank-button:disabled {
-            background-color: #555;
-            cursor: not-allowed;
-        }
-    </style>
 </head>
 
 <body>
-    <!-- Main container for the React application -->
     <div id="searchbox">
         <div id="backsearch"></div>
     </div>
 
-    <!-- Container for the 3D graph visualization -->
     <div class="graph" id="graph"></div>
 
-    <!-- External Scripts -->
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.min.js"></script>
@@ -53,7 +22,6 @@
     <script src="https://unpkg.com/react-force-graph-3d"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-    <!-- React Application Logic -->
     <script type="text/babel" data-presets="react">
         const { useState, useEffect, useRef, useCallback } = React;
         const { createRoot } = ReactDOM;
@@ -65,6 +33,7 @@
         const SEARCH_DEBOUNCE_MS = 400;
         const PLOT_DEBOUNCE_MS = 500;
         const INITIAL_FETCH_COUNT = 30;
+        const RERANK_INACTIVITY_MS = 1000; // New: Constant for inactivity delay
 
         /**
          * The main Search component that handles UI, state management,
@@ -79,13 +48,15 @@
             const [modelStatus, setModelStatus] = useState("Loading Script...");
             const [documents, setDocuments] = useState([]);
             const [isSortedByDate, setIsSortedByDate] = useState(false);
+            const [resultsReranked, setResultsReranked] = useState(false); // New: Tracks re-ranking status
 
             // --- Refs ---
             const searchTimerRef = useRef(null);
             const plotTimerRef = useRef(null);
             const workerRef = useRef(null);
-            const latestQueryIdRef = useRef(0); // Used to prevent race conditions with worker responses
-            const graphRootRef = useRef(null); // To hold the React root for the 3D graph
+            const latestQueryIdRef = useRef(0);
+            const graphRootRef = useRef(null);
+            const rerankTimerRef = useRef(null); // New: Timer for inactivity-based re-ranking
 
             // --- Function Declarations (in dependency order) ---
 
@@ -112,6 +83,7 @@
 
             /**
              * Fetches search results from the backend API.
+             * The immediate re-ranking logic has been moved to a separate useEffect.
              */
             const search = useCallback((searchQuery, count, sortChronologically = false) => {
                 if (!searchQuery.trim()) {
@@ -127,18 +99,10 @@
                     .then(res => res.json())
                     .then(data => {
                         const initialDocs = Object.values(data["documents"]).map(doc => ({ ...doc }));
-                        setDocuments(initialDocs); // Display initial results immediately
-
-                        // Automatically trigger re-ranking if the model is ready
-                        if (modelStatus === 'Model Ready' && initialDocs.length > 0 && searchQuery.trim()) {
-                            workerRef.current.postMessage({
-                                type: 'rank',
-                                payload: { query: searchQuery, documents: initialDocs, queryId }
-                            });
-                        }
+                        setDocuments(initialDocs); // This will trigger the re-ranking useEffect
                     })
                     .catch(error => console.error(`[APP] Failed to fetch search results:`, error));
-            }, [selectedNode, modelStatus, fetchLatest]);
+            }, [selectedNode, fetchLatest]); // modelStatus dependency removed
 
             /**
              * Handles hovering over a node in the 3D graph.
@@ -196,6 +160,8 @@
              * A utility to run search and plot immediately, clearing any pending debounced calls.
              */
             const runNow = useCallback((runQuery, runCount, sortChronologically = true) => {
+                setResultsReranked(false); // New: Reset re-rank status
+                clearTimeout(rerankTimerRef.current); // New: Clear inactivity timer
                 clearTimeout(searchTimerRef.current);
                 clearTimeout(plotTimerRef.current);
                 search(runQuery, runCount, sortChronologically);
@@ -225,6 +191,7 @@
                         case 'rank-complete':
                             if (queryId === latestQueryIdRef.current) {
                                 setDocuments(payload);
+                                setResultsReranked(true); // New: Flag that results are now re-ranked
                             }
                             break;
                         case 'error':
@@ -235,7 +202,7 @@
                 };
 
                 return () => worker.terminate();
-            }, []); // Empty dependency array ensures this runs only once.
+            }, []);
 
             /**
              * Effect to handle initial page load, parsing query params from the URL.
@@ -255,7 +222,7 @@
                 } else {
                     fetchLatest();
                 }
-            }, []); // Runs only on initial mount
+            }, []);
 
             /**
              * Effect to handle window resizing for mobile detection.
@@ -265,6 +232,32 @@
                 window.addEventListener('resize', handleResize);
                 return () => window.removeEventListener('resize', handleResize);
             }, []);
+
+            /**
+             * New: Effect to automatically re-rank results after a period of inactivity.
+             */
+            useEffect(() => {
+                clearTimeout(rerankTimerRef.current);
+
+                const shouldAttemptRerank =
+                    modelStatus === 'Model Ready' &&
+                    !resultsReranked &&
+                    documents.length > 0 &&
+                    query.trim() &&
+                    !isSortedByDate;
+
+                if (shouldAttemptRerank) {
+                    rerankTimerRef.current = setTimeout(() => {
+                        workerRef.current.postMessage({
+                            type: 'rank',
+                            payload: { query, documents, queryId: latestQueryIdRef.current }
+                        });
+                    }, RERANK_INACTIVITY_MS);
+                }
+
+                return () => clearTimeout(rerankTimerRef.current);
+            }, [documents, query, modelStatus, resultsReranked, isSortedByDate]);
+
 
             // --- Event Handlers ---
 
@@ -276,8 +269,10 @@
                 setQuery(newQuery);
                 setSelectedNode(null);
                 setIsSortedByDate(false);
+                setResultsReranked(false); // New: Reset re-rank status on new input
                 window.history.pushState({}, null, `?query=${encodeURIComponent(newQuery)}`);
 
+                clearTimeout(rerankTimerRef.current); // New: Clear inactivity timer on new input
                 clearTimeout(searchTimerRef.current);
                 clearTimeout(plotTimerRef.current);
                 searchTimerRef.current = setTimeout(() => search(newQuery, documentsToFetch), SEARCH_DEBOUNCE_MS);
@@ -290,6 +285,8 @@
             const handleClickDate = useCallback(() => {
                 const newSortState = !isSortedByDate;
                 setIsSortedByDate(newSortState);
+                setResultsReranked(false); // New: Reset re-rank status
+                clearTimeout(rerankTimerRef.current); // New: Clear inactivity timer
                 search(query, documentsToFetch, newSortState);
             }, [isSortedByDate, query, documentsToFetch, search]);
 
@@ -300,6 +297,7 @@
                 const newQuery = `${query} ${tag}`.trim();
                 setQuery(newQuery);
                 setIsSortedByDate(false);
+                setResultsReranked(false); // New: Reset re-rank status
                 const searchInput = document.getElementById("search");
                 if (searchInput) searchInput.value = newQuery;
                 window.history.pushState({}, null, `?query=${encodeURIComponent(newQuery)}`);
