@@ -70,7 +70,7 @@ class Github:
 
             readme_text = self.get_readme_text_by_token_count(
                 repository["html_url"],
-                min_tokens=100,
+                min_tokens=50,
             )
 
             description = repository.get("description") or ""
@@ -89,7 +89,7 @@ class Github:
     @staticmethod
     def get_readme_text_by_token_count(
         github_url: str,
-        min_tokens: int = 100,
+        min_tokens: int = 50,
     ) -> str | None:
         """
         Fetches a README, removes HTML, markdown artifacts, and special tokens,
