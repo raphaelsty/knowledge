@@ -1,6 +1,6 @@
-from pyzotero import zotero
-
 import datetime
+
+from pyzotero import zotero
 
 __all__ = ["Zotero"]
 

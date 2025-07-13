@@ -1,6 +1,6 @@
 import collections
-import typing
 import datetime
+import typing
 
 import rdflib
 
