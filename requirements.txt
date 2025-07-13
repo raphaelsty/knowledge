@@ -1,13 +1,12 @@
 beautifulsoup4 == 4.9.3
-lxml == 4.9.2
 pandas == 1.5.3
 requests == 2.32.2
 rdflib == 6.1.1
 cherche == 2.2.1
 networkx == 2.8.5
 uvicorn == 0.17.5
-fastapi == 0.109.1
-pydantic == 1.10.13
+fastapi == 0.116.1
+pydantic == 2.11.7
 python-multipart == 0.0.18
 pyyaml_env_tag == 0.1
 pyzotero == 1.5.5
