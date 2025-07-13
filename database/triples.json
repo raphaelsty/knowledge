@@ -210846,5 +210846,185 @@
     {
         "head": "slides",
         "tail": "interface"
+    },
+    {
+        "head": "python",
+        "tail": "differentiable memory"
+    },
+    {
+        "head": "optimization",
+        "tail": "differentiable memory"
+    },
+    {
+        "head": "data-visualizations",
+        "tail": "list"
+    },
+    {
+        "head": "data-visualizations",
+        "tail": "awesome"
+    },
+    {
+        "head": "data-visualizations",
+        "tail": "machine learning"
+    },
+    {
+        "head": "chatgpt",
+        "tail": "list"
+    },
+    {
+        "head": "chatgpt",
+        "tail": "awesome"
+    },
+    {
+        "head": "chatgpt",
+        "tail": "machine learning"
+    },
+    {
+        "head": "gpt",
+        "tail": "list"
+    },
+    {
+        "head": "gpt",
+        "tail": "awesome"
+    },
+    {
+        "head": "gpt",
+        "tail": "machine learning"
+    },
+    {
+        "head": "jax",
+        "tail": "list"
+    },
+    {
+        "head": "jax",
+        "tail": "machine learning"
+    },
+    {
+        "head": "data-analysis",
+        "tail": "list"
+    },
+    {
+        "head": "data-analysis",
+        "tail": "awesome"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "list"
+    },
+    {
+        "head": "keras",
+        "tail": "list"
+    },
+    {
+        "head": "keras",
+        "tail": "awesome"
+    },
+    {
+        "head": "keras",
+        "tail": "machine learning"
+    },
+    {
+        "head": "gpt-3",
+        "tail": "list"
+    },
+    {
+        "head": "gpt-3",
+        "tail": "awesome"
+    },
+    {
+        "head": "gpt-3",
+        "tail": "machine learning"
+    },
+    {
+        "head": "tensorflow",
+        "tail": "list"
+    },
+    {
+        "head": "tensorflow",
+        "tail": "awesome"
+    },
+    {
+        "head": "tensorflow",
+        "tail": "machine learning"
+    },
+    {
+        "head": "ml",
+        "tail": "list"
+    },
+    {
+        "head": "ml",
+        "tail": "awesome"
+    },
+    {
+        "head": "automl",
+        "tail": "list"
+    },
+    {
+        "head": "automl",
+        "tail": "awesome"
+    },
+    {
+        "head": "automl",
+        "tail": "machine learning"
+    },
+    {
+        "head": "scikit-learn",
+        "tail": "list"
+    },
+    {
+        "head": "scikit-learn",
+        "tail": "awesome"
+    },
+    {
+        "head": "scikit-learn",
+        "tail": "machine learning"
+    },
+    {
+        "head": "nlp",
+        "tail": "machine learning"
+    },
+    {
+        "head": "transformer",
+        "tail": "list"
+    },
+    {
+        "head": "transformer",
+        "tail": "awesome"
+    },
+    {
+        "head": "transformer",
+        "tail": "machine learning"
+    },
+    {
+        "head": "data-science",
+        "tail": "awesome"
+    },
+    {
+        "head": "pytorch",
+        "tail": "list"
+    },
+    {
+        "head": "pytorch",
+        "tail": "awesome"
+    },
+    {
+        "head": "data-visualization",
+        "tail": "list"
+    },
+    {
+        "head": "data-visualization",
+        "tail": "awesome"
+    },
+    {
+        "head": "data-visualization",
+        "tail": "machine learning"
+    },
+    {
+        "head": "list",
+        "tail": "machine learning"
+    },
+    {
+        "head": "awesome",
+        "tail": "machine learning"
     }
 ]

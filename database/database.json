@@ -45958,5 +45958,49 @@
             "cli",
             "slides"
         ]
+    },
+    "https://github.com/cvxpy/cvxpylayers": {
+        "extra-tags": [
+            "differentiable",
+            "optimization",
+            "differentiable memory"
+        ],
+        "date": "2025-07-13",
+        "title": "cvxpylayers",
+        "summary": "Differentiable convex optimization layers",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/lukasmasuch/best-of-ml-python": {
+        "extra-tags": [
+            "list",
+            "awesome",
+            "machine learning"
+        ],
+        "date": "2025-07-13",
+        "title": "best-of-ml-python",
+        "summary": "\ud83c\udfc6 A ranked list of awesome machine learning Python libraries. Updated weekly.",
+        "tags": [
+            "data-visualizations",
+            "chatgpt",
+            "machine-learning",
+            "gpt",
+            "jax",
+            "data-analysis",
+            "deep-learning",
+            "keras",
+            "gpt-3",
+            "python",
+            "tensorflow",
+            "ml",
+            "automl",
+            "scikit-learn",
+            "nlp",
+            "transformer",
+            "data-science",
+            "pytorch",
+            "data-visualization"
+        ]
     }
 }
