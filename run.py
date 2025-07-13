@@ -26,7 +26,7 @@ zotero_api_key = os.environ.get("ZOTERO_API_KEY")
 data = {}
 
 if os.path.exists("database/database.json"):
-    with open("database/database.json", "r") as f:
+    with open("database/database.json", "r", encoding="utf-8", errors="replace") as f:
         data = json.load(f)
 
 # Twitter
