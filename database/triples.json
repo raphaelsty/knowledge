@@ -210766,5 +210766,85 @@
     {
         "head": "optimizer",
         "tail": "neural networks"
+    },
+    {
+        "head": "marp",
+        "tail": "marpit"
+    },
+    {
+        "head": "marp",
+        "tail": "cli"
+    },
+    {
+        "head": "marp",
+        "tail": "interface"
+    },
+    {
+        "head": "markdown",
+        "tail": "marpit"
+    },
+    {
+        "head": "markdown",
+        "tail": "cli"
+    },
+    {
+        "head": "markdown",
+        "tail": "interface"
+    },
+    {
+        "head": "presentation",
+        "tail": "marpit"
+    },
+    {
+        "head": "presentation",
+        "tail": "cli"
+    },
+    {
+        "head": "presentation",
+        "tail": "interface"
+    },
+    {
+        "head": "marpit",
+        "tail": "deck"
+    },
+    {
+        "head": "marpit",
+        "tail": "typescript"
+    },
+    {
+        "head": "marpit",
+        "tail": "cli"
+    },
+    {
+        "head": "marpit",
+        "tail": "slides"
+    },
+    {
+        "head": "marpit",
+        "tail": "interface"
+    },
+    {
+        "head": "deck",
+        "tail": "cli"
+    },
+    {
+        "head": "deck",
+        "tail": "interface"
+    },
+    {
+        "head": "typescript",
+        "tail": "interface"
+    },
+    {
+        "head": "cli",
+        "tail": "slides"
+    },
+    {
+        "head": "cli",
+        "tail": "interface"
+    },
+    {
+        "head": "slides",
+        "tail": "interface"
     }
 ]

@@ -45940,5 +45940,23 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/marp-team/marp-cli": {
+        "extra-tags": [
+            "interface"
+        ],
+        "date": "2025-07-13",
+        "title": "marp-cli",
+        "summary": "A CLI interface for Marp and Marpit based converters",
+        "tags": [
+            "marp",
+            "markdown",
+            "presentation",
+            "marpit",
+            "deck",
+            "typescript",
+            "cli",
+            "slides"
+        ]
     }
 }
