@@ -33,8 +33,9 @@ class Pipeline:
         self.retriever = Retriever(documents=documents)
         self.graph = Graph(triples=triples)
         self.excluded_tags = {} if excluded_tags is None else excluded_tags
+
         self.latest_documents = sorted(
-            documents,
+            [{"url": url, **document} for url, document in documents.items()],
             key=lambda doc: datetime.datetime.strptime(doc["date"], "%Y-%m-%d"),
             reverse=True,
         )[:k_latest_documents]
