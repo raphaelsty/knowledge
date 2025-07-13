@@ -45919,5 +45919,26 @@
             "llm2vec",
             "mteb"
         ]
+    },
+    "https://github.com/KellerJordan/Muon": {
+        "extra-tags": [
+            "optimizer",
+            "neural networks"
+        ],
+        "date": "2024-11-09",
+        "title": "Muon",
+        "summary": "Muon is an optimizer for hidden layers in neural networks",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/ColinQiyangLi/qc": {
+        "extra-tags": [],
+        "date": "2025-07-10",
+        "title": "qc",
+        "summary": "",
+        "tags": [
+            "python"
+        ]
     }
 }
