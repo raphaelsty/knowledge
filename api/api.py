@@ -24,7 +24,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["*"],
 )
 
@@ -44,7 +44,7 @@ class Knowledge:
 
     def get_latest_documents(self, count: int):
         """Returns the most recently added documents."""
-        return self.pipeline.get_latest_documents[:count]
+        return self.pipeline.get_latest_documents(count=count)
 
     def search(
         self,
