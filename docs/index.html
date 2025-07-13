@@ -6,6 +6,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Knowledge Search</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Simple style to align the logo and title. Add to your style.css */
+        .title-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 0.5em;
+            /* Adjust spacing between logo and title */
+        }
+
+        /* Container for the logo - works for both emojis and images */
+        .logo {
+            font-size: 1.2em;
+            /* Sets the base size for emojis and the image container */
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 1em;
+            /* Ensures container has a consistent width */
+            height: 1em;
+            /* Ensures container has a consistent height */
+        }
+
+        /* Styles the GitHub image to fit perfectly inside the .logo container */
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    </style>
 </head>
 
 <body>
@@ -34,6 +63,7 @@
         const PLOT_DEBOUNCE_MS = 500;
         const INITIAL_FETCH_COUNT = 30;
         const RERANK_INACTIVITY_MS = 1000; // New: Constant for inactivity delay
+        const SUMMARY_TOKEN_LIMIT = 30; // New: Constant for summary length
 
         /**
          * The main Search component that handles UI, state management,
@@ -307,12 +337,49 @@
             // --- UI Helper Functions ---
 
             /**
+             * UPDATED: Returns a logo based on the document's source.
+             * Uses an <img> tag for GitHub and emojis for others.
+             */
+            const getLinkLogo = (doc) => {
+                const url = doc.url || "";
+                const title = (doc.title || "").toLowerCase();
+                const allTags = (doc.tags || []).concat(doc["extra-tags"] || []);
+                const hasHackerNewsTag = allTags.some(tag => (tag || "").toLowerCase().includes("hackernews"));
+
+                if (url.includes("github.com")) {
+                    return <img src="github.png" alt="GitHub Logo" />;
+                }
+                if (url.includes("twitter.com")) {
+                    return <img src="twitter.png" alt="Twitter Logo" />;
+                }
+                if (title.includes("hackernews") || hasHackerNewsTag) {
+                    return <img src="hackernews.png" alt="Hackernews Logo" />;
+                }
+                return '📄';
+            };
+
+            /**
              * Determines the CSS class for the status indicator light.
              */
             const getIndicatorClass = (status) => {
                 if (status === "Model Ready") return 'status-ready';
                 if (status.startsWith("Error")) return 'status-error';
                 return 'status-loading';
+            };
+
+            /**
+             * UPDATED: Truncates text and normalizes whitespace.
+             */
+            const truncate = (text, limit) => {
+                if (!text) return "";
+                // Trim whitespace from ends, then split by one or more spaces.
+                const tokens = text.trim().split(/\s+/);
+
+                if (tokens.length <= limit) {
+                    return tokens.join(' '); // Re-join to ensure single spaces.
+                }
+
+                return tokens.slice(0, limit).join(" ") + "...";
             };
 
             /**
@@ -358,14 +425,17 @@
                     <div id="documents">
                         {(documents || []).map((doc, index) => (
                             <div className="document" key={doc.url || index}>
-                                <a className="title" href={doc.url} target="_blank" rel="noopener noreferrer">
-                                    {highlight(doc.title)}
-                                </a>
+                                <div className="title-wrapper">
+                                    <span className="logo">{getLinkLogo(doc)}</span>
+                                    <a className="title" href={doc.url} target="_blank" rel="noopener noreferrer">
+                                        {highlight(doc.title)}
+                                    </a>
+                                </div>
                                 <div className="date" onClick={handleClickDate}>
                                     {highlight(doc.date)}
                                 </div>
                                 <div className="summary">
-                                    {highlight(doc.summary)}
+                                    {highlight(truncate(doc.summary, SUMMARY_TOKEN_LIMIT))}
                                 </div>
                                 <div className="tags">
                                     {(doc.tags || []).concat(doc["extra-tags"] || []).map((tag, i) => (

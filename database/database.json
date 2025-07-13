@@ -29494,7 +29494,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "(There is good discussion on this article on Hacker News and Reddit) Reddit is currently the most popular search engine. The only people who don\u2019t know that are the team at Reddit, who can\u2019t be bothered to build a decent search interface. So instead we resort to using Google, and",
         "date": "2023-03-14"
     },
     "https://arxiv.org/abs/2009.01325": {
@@ -29503,7 +29503,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "Computer Science > Computation and Language [Submitted on 2 Sep 2020 (v1), last revised 15 Feb 2022 (this version, v3)] Title:Learning to summarize from human feedback View PDFAbstract:As language models become more powerful, training and evaluation are increasingly bottlenecked by the data and metrics used for a particular task. For",
         "date": "2023-03-14"
     },
     "https://commoncog.com/goodharts-law-not-useful/": {
@@ -29512,7 +29512,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "This is Part 1 of the Becoming Data Driven in Business series. Goodhart\u2019s Law is a famous adage that goes \u201cwhen a measure becomes a target, it ceases to be a good measure.\u201d If you\u2019re not familiar with the adage, you can go read all about its history on Wikipedia,",
         "date": "2023-03-14"
     },
     "https://www.w3.org/Provider/Style/URI": {
@@ -29521,7 +29521,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "What makes a cool URI? A cool URI is one which does not change. What sorts of URI change? URIs don't change: people change them. There are no reasons at all in theory for people to change URIs (or stop maintaining documents), but millions of reasons in practice. In theory,",
         "date": "2023-03-14"
     },
     "https://duckdb.org/2023/03/03/json.html": {
@@ -29530,7 +29530,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "Shredding Deeply Nested JSON, One Vector at a Time TL;DR: We recently improved DuckDB's JSON extension so JSON files can be directly queried as if they were tables. We updated this blog post in December 2024 to reflect the changes in DuckDB's JSON syntax. DuckDB has a JSON extension that",
         "date": "2023-03-14"
     },
     "https://github.com/openai/openai-python/blob/main/chatml.md": {
@@ -29566,7 +29566,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "Py03 lets you combine Rust's speed and memory safety with Python's ease of use. Get started writing Rust extensions for Python that work just like regular Python modules. Credit: tadamichi/Shutterstock Every programming language has strengths and weaknesses. Python offers many convenient programming conventions but is computationally slow. Rust gives you",
         "date": "2023-03-14"
     },
     "https://github.com/pgvector/pgvector": {
@@ -29584,7 +29584,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "Where Has All the Chartreuse Gone? On the Carthusian monks' decision to limit production of their famed liqueur and what it says about quality and scale in our soul-crushing modern world. Last month, a letter from the Carthusian monks in Voiron, France circulated through the world of spirits. It was,",
         "date": "2023-03-14"
     },
     "https://en.wikipedia.org/wiki/Bloom%27s_2_sigma_problem": {
@@ -29595,7 +29595,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "Bloom's 2 sigma problem Bloom's 2 sigma problem refers to the educational phenomenon that the average student tutored one-to-one using mastery learning techniques performed two standard deviations better than students educated in a classroom environment. It was originally observed by educational psychologist Benjamin Bloom and reported in 1984 in the",
         "date": "2023-03-14"
     },
     "https://danfitdegree.hashnode.dev/nothing-has-ever-angered-me-more-than-the-google-play-team": {
@@ -29613,7 +29613,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "[This fragment is available in an audio version.] Sometimes it\u2019s wrong to begin a phrase with the word \u201cjust\u201d. I offer as evidence two such situations. I think there\u2019s a common thread to be drawn. Stuck \u00b7 People with mental-health issues can get stuck. For example, when some combination of",
         "date": "2023-03-14"
     },
     "https://www.leidenmedievalistsblog.nl/articles/whats-wrong-with-medieval-pigs-in-videogames": {
@@ -29622,7 +29622,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "What\u2019s wrong with medieval pigs in videogames? Some medieval videogames claim historical authenticity, but one particular farm animal is often overlooked... Scholars have often remarked that pop-culture stereotypes regularly prevail over historical authenticity when it comes to depicting medieval life in modern entertainment media. Understandably, videogames are no exception to",
         "date": "2023-03-14"
     },
     "https://jackrusher.com/strange-loop-2022/": {
@@ -29631,7 +29631,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "00:12.95 My talk today is Stop Writing Dead Programs. 00:14.57 This is sort of the thesis statement 00:16.01 for the talk, even though it's 40 years 00:18.52 old, this Seymour Papert quote saying 00:19.91 that we're still digging ourselves into 00:21.65 a kind of a pit by continuing to 00:23.68",
         "date": "2023-03-14"
     },
     "https://objective-see.org/tools.html": {
@@ -29640,7 +29640,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "In today's connected world, it is rare to find an application or piece of malware that doesn't talk to a remote server. LuLu is the free, open-source, firewall for Macs, that can protect your network connections and detect malicious activity. Learn more \u00bb Physical access (or \"evil maid\") attacks are",
         "date": "2023-03-14"
     },
     "https://wakatime.com/blog/56-building-a-distributed-task-queue-in-python": {
@@ -29649,7 +29649,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "Why not just use Celery/RQ/Huey/TaskTiger? Unfortunately, WakaTime has been using Celery for almost 10 years now. During that time I\u2019ve experienced many critical bugs, some still open years after being introduced. Celery used to be pretty good, but feature bloat made the project difficult to maintain. Also in my opinion,",
         "date": "2023-03-14"
     },
     "https://febs.onlinelibrary.wiley.com/doi/10.1002/1873-3468.14473": {
@@ -29671,7 +29671,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "Stable Diffusion is a really big deal 29th August 2022 If you haven\u2019t been paying attention to what\u2019s going on with Stable Diffusion, you really should be. Stable Diffusion is a new \u201ctext-to-image diffusion model\u201d that was released to the public by Stability.ai six days ago, on August 22nd. It\u2019s",
         "date": "2023-03-14"
     },
     "https://pudding.cool/2022/08/censorship/": {
@@ -29680,7 +29680,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "The Big [Censored] Theory By Manyun Zou With Russell Samora and Rob Smith This story contains scroll-driven visuals. View them in static format Growing up in China, I had a blast watching American TV shows. They not only helped me learn English, but also introduced me to fresh perspectives and",
         "date": "2023-03-14"
     },
     "https://tjukanovt.github.io/notable-people": {
@@ -29709,7 +29709,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "Mojeek recently wrote a blog post about Privacy Browser Android. I thought it would be interesting to share some thoughts both about Mojeek and about how that post came to be published. I have joked before that selecting a default search engine in Privacy Browser is like trying to find",
         "date": "2023-03-14"
     },
     "https://github.com/browsh-org/browsh": {
@@ -29729,7 +29729,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "About Iceland Safetravel Visa information Geography of Iceland General Information The Northern lights Volcanic eruptions Iceland Academy Plan your trip How to get there Accommodation Things to do Map your journey Getting around Visitor numbers Carbon footprint Destinations The Regions Scenic Routes National Parks Trip suggestions Towns & Villages Inspiration",
         "date": "2023-03-14"
     },
     "http://petereliaskraft.net/blog/query-serving-systems": {
@@ -29738,7 +29738,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "These days, people are building more kinds of databases and data systems than anyone can count. We have OLTP systems like CockroachDB and the classic Postgres, OLAP systems like Druid and Clickhouse, search systems like ElasticSearch and Solr, NoSQL databases like MongoDB and Cassandra, vector databases like Pinecone and Vespa,",
         "date": "2023-03-14"
     },
     "https://fly.io/docs/": {
@@ -30007,7 +30007,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "Instruction-following models such as GPT-3.5 (text-davinci-003), ChatGPT, Claude, and Bing Chat have become increasingly powerful. Many users now interact with these models regularly and even use them for work. However, despite their widespread deployment, instruction-following models still have many deficiencies: they can generate false information, propagate social stereotypes, and produce",
         "date": "2023-03-14"
     },
     "https://twitter.com/hyperfp/status/1635791091709386752": {
@@ -30162,7 +30162,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "Knowledge ViperGPT can access the knowledge of large language models. Answering visual queries is a complex task that requires both visual processing and reasoning. End-to-end models, the dominant approach for this task, do not explicitly differentiate between the two, limiting interpretability and generalization. Learning modular programs presents a promising alternative,",
         "date": "2023-03-18"
     },
     "https://workers.cloudflare.com/": {
@@ -30239,7 +30239,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "We\u2019ve detected that JavaScript is disabled in this browser. Please enable JavaScript or switch to a supported browser to continue using x.com. You can see a list of supported browsers in our Help Center. Help Center Terms of Service Privacy Policy Cookie Policy Imprint Ads info \u00a9 2025 X Corp.",
         "date": "2023-03-20"
     },
     "https://en.wikipedia.org/wiki/Jaccard_index": {
@@ -30248,7 +30248,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "Jaccard index This article includes a list of general references, but it lacks sufficient corresponding inline citations. (March 2011) | The Jaccard index is a statistic used for gauging the similarity and diversity of sample sets. It is defined in general taking the ratio of two sizes (areas or volumes),",
         "date": "2023-03-20"
     },
     "https://twitter.com/mervenoyann/status/1638298629977800706": {
@@ -30540,7 +30540,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "Research paper Request API Access Universal Speech Model (USM) is a family of state-of-the-art speech models with 2B parameters trained on 12 million hours of speech and 28 billion sentences of text, spanning 300+ languages. USM, which is for use in YouTube (e.g., for closed captions), can perform automatic speech",
         "date": "2023-03-30"
     },
     "https://github.com/jina-ai/finetuner": {
@@ -30690,7 +30690,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "Think of language models like ChatGPT as a \u201ccalculator for words\u201d 2nd April 2023 One of the most pervasive mistakes I see people using with large language model tools like ChatGPT is trying to use them as a search engine. As with other LLM misconceptions, it\u2019s easy to understand why",
         "date": "2023-04-03"
     },
     "https://www.microsoft.com/en-us/research/video/no-interaction-as-indicator-of-search-satisfaction-by-widad-machmouchi/": {
@@ -31004,7 +31004,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "Spoiler alert: the answer is maybe! Although, my inclusion of the word \u201cactually\u201d betrays my bias. Vector databases are having their day right now. Three different vector DB companies have raised money on valuations up to $700 million (paywall link). Surprisingly, their rise in popularity is not for their \u201coriginal\u201d",
         "date": "2023-04-13"
     },
     "https://github.com/microsoft/DeepSpeed": {
@@ -31234,7 +31234,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "Home page The world's first hands-free touchpad. The MouthPad^ is smart mouthwear that allows you to control your phone, computer, and tablet hands-free. Perched on the roof of your mouth, the device converts subtle head and tongue gestures into seamless cursor control and clicks. It's virtually invisible to the world",
         "date": "2023-04-24"
     },
     "https://github.com/aslakey/CBM_Encoding": {
@@ -31326,7 +31326,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "You don\u2019t see a lot of good news about road safety in the United States. Unlike in most peer countries, American roadway deaths surged during the pandemic and have barely receded since. Pedestrian and cyclist fatalities recently hit their highest levels in 40 years, but U.S. transportation officials continue to",
         "date": "2023-04-27"
     },
     "https://github.com/philc/vimium": {
@@ -31882,7 +31882,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "Working with GenAI? Don\u2019t go it alone. Read our best practices guide. Earlier this month, we released the first version of our new natural language querying interface, Query Assistant. People are using it in all kinds of interesting ways! We\u2019ll have a post that really dives into that soon. However,",
         "date": "2023-05-28"
     },
     "https://twitter.com/predict_addict/status/1662397171361087493": {
@@ -32182,7 +32182,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "More precisely, I crawled 250,113,669 pages for just under 580 dollars in 39 hours and 25 minutes, using 20 Amazon EC2 machine instances. I carried out this project because (among several other reasons) I wanted to understand what resources are required to crawl a small but non-trivial fraction of the",
         "date": "2023-06-16"
     },
     "https://github.com/julien-blanchon/qrcode-diffusion": {
@@ -32555,7 +32555,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "A comprehensive guide to running Llama 2 locally We\u2019ve been talking a lot about how to run and fine-tune Llama 2 on Replicate. But you can also run Llama locally on your M1/M2 Mac, on Windows, on Linux, or even your phone. The cool thing about running Llama 2 locally",
         "date": "2023-07-26"
     },
     "https://thesephist.com/posts/hyperlink/": {
@@ -32564,7 +32564,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "I\u2019m a hyperlink maximalist: everything should be a hyperlink, including everything that is hyperlinked by the author, everything that isn\u2019t hyperlinked by the author, and perhaps even the hyperlinks themselves. Words should be hyperlinked, but so should be every interesting phrase, quote, name, proper noun, paragraph, document, and collection of",
         "date": "2023-07-26"
     },
     "https://invoicedragon.com/": {
@@ -32573,7 +32573,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "en fr es pt de du Invoice Dragon A fast and convenient solution for effortlessly creating Invoices and Receipts. Absolutely Free ! GET STARTED",
         "date": "2023-07-26"
     },
     "https://github.com/SwordHolderSH/Mang2Vec": {
@@ -32627,7 +32627,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "Read my manifesto on Code as an alternative to Mathematics. Code for this article can be found on this Colab Notebook should you choose to follow along. Why Kalman Filters? Kalman filters are ingenius. If you have never heard of them, then a very intuitive (and arguably reductive) way to",
         "date": "2023-08-03"
     },
     "https://github.com/andsens/homeshick": {
@@ -33109,7 +33109,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "I frequently reference a process called Reinforcement Learning with Human Feedback (RLHF) when discussing LLMs, whether in the research news or tutorials. RLHF is an integral part of the modern LLM training pipeline due to its ability to incorporate human preferences into the optimization landscape, which can improve the model's",
         "date": "2023-09-11"
     },
     "https://github.com/l1n0b1/TurboGP": {
@@ -33467,7 +33467,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "Computer Science > Computation and Language [Submitted on 10 Oct 2023] Title:Mistral 7B View PDFAbstract:We introduce Mistral 7B v0.1, a 7-billion-parameter language model engineered for superior performance and efficiency. Mistral 7B outperforms Llama 2 13B across all evaluated benchmarks, and Llama 1 34B in reasoning, mathematics, and code generation. Our",
         "date": "2023-10-12"
     },
     "http://arxiv.org/abs/2310.06825": {
@@ -33668,7 +33668,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "Commercially Available Chairs in Star Trek by Tadeo D'Oria, Eno Farley, Bernd Schneider and J\u00f6rg Hillebrand Lounge SeatingDining ChairsStoolsOffice ChairsVehicle Seats and Specialized Chairs Countless off-the-shelf office chairs, lounge chairs or car seats appeared in Star Trek productions. Here is a list of the models that we found, among them",
         "date": "2023-10-19"
     },
     "https://github.com/vllm-project/vllm": {
@@ -34033,7 +34033,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "Published on 16 May 2024 Mapping cosmological models from standard to modified gravity using bias relations This study investigates using a non-parametric bias model to generate mock halo catalogs for modified gravity cosmologies. Either the modified gravity or standard LambdaCDM matter distribution is relied on. The method aims to effectively",
         "date": "2023-11-09"
     },
     "https://github.com/sebastian-hofstaetter/matchmaker": {
@@ -34298,7 +34298,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "Practical Tips for Finetuning LLMs Using LoRA (Low-Rank Adaptation) Things I Learned From Hundreds of Experiments Low-rank adaptation (LoRA) is among the most widely used and effective techniques for efficiently training custom LLMs. For those interested in open-source LLMs, it's an essential technique worth familiarizing oneself with. Last month, I",
         "date": "2023-11-20"
     },
     "https://github.com/tldraw/make-real": {
@@ -34363,7 +34363,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "Computer Science > Artificial Intelligence [Submitted on 18 Nov 2023 (v1), last revised 21 Nov 2023 (this version, v2)] Title:Orca 2: Teaching Small Language Models How to Reason View PDFAbstract:Orca 1 learns from rich signals, such as explanation traces, allowing it to outperform conventional instruction-tuned models on benchmarks like BigBench",
         "date": "2023-11-22"
     },
     "https://arxiv.org/abs/2311.10770": {
@@ -34376,7 +34376,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "Computer Science > Computation and Language [Submitted on 15 Nov 2023 (v1), last revised 21 Nov 2023 (this version, v2)] Title:Exponentially Faster Language Modelling View PDFAbstract:Language models only really need to use an exponential fraction of their neurons for individual inferences. As proof, we present UltraFastBERT, a BERT variant that",
         "date": "2023-11-23"
     },
     "https://github.com/FLAIROx/JaxMARL": {
@@ -34646,7 +34646,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "abracadabra: How does Shazam work? Sat 19 February 2022 TutorialsYour phone's ability to identify any song it listens to is pure technological magic. In this article, I'll show you how one of the most popular apps, Shazam, does it. The founders of Shazam released a paper in 2003 documenting how",
         "date": "2023-12-06"
     },
     "https://github.com/OpenAccess-AI-Collective/axolotl": {
@@ -39119,7 +39119,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "In this article, I\u2019ll use Ubuntu 22.04 (Debian-derivative) and rockyOS 9.2 (RHEL-derivative) as references. If it is not mentioned, commands are the same for both systems. Basics # Cron jobs are scheduled and automated tasks that run commands or scripts on Linux. Common use cases are backups, updates, health checks,",
         "date": "2024-09-07"
     },
     "https://www.cs.virginia.edu/~robins/YouAndYourResearch.html": {
@@ -39206,7 +39206,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "The image\u2014created by legendary Japanese artist Katsushika Hokusai nearly 200 years ago\u2014has been turned into an emoji, is appearing on a Japanese bank note this year, and has inspired countless artists across decades. With the iconic artwork returning to the Art Institute\u2019s galleries this fall (on view September 5\u2013January 6),",
         "date": "2024-09-08"
     },
     "https://github.com/dottxt-ai/outlines": {
@@ -39685,7 +39685,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "E.F. Codd\u2019s \u201cA Relational Model of Data for Large Shared Data Banks\u201d10 is one of the most influential papers in all of computer science. In it, Codd defined concepts that are still in widespread use today, more than five decades later, including defining the theoretical foundation of the relational database",
         "date": "2024-10-10"
     },
     "https://github.com/instructor-ai/instructor": {
@@ -40066,7 +40066,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "Products & Services Support Services Support options for your use case, infrastructure, and budget Workloads Open-Source Extensions and Tools Time Series and Real-Time Analytics A reliable PostgreSQL cloud for your workloads AI and Vector Security Scanner Security, reliability, and support for demanding businesses. Industries That Rely On Us Featured Articles",
         "date": "2024-10-30"
     },
     "https://github.com/irom-princeton/Invariant-Policy-Optimization": {
@@ -40202,7 +40202,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "IronCalc is a spreadsheet engine and ecosystem MIT/Apache 2.0 licensed You can integrate it into your projects, customize it to your needs, and share it openly \u2013 no restrictions. Fast and lightweight Programmed in Rust, with minimal dependencies, every byte is accounted for. The spreadsheet engine runs in Wasm in",
         "date": "2024-11-11"
     },
     "https://github.com/ml-explore/mlx-data": {
@@ -40436,7 +40436,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "Last month, I challenged 11,000 people to classify fifty pictures as either human art or AI-generated images. I originally planned five human and five AI pictures in each of four styles: Renaissance, 19th Century, Abstract/Modern, and Digital, for a total of forty. After receiving many exceptionally good submissions from local",
         "date": "2024-11-24"
     },
     "https://github.com/zillow/quantile-forest": {
@@ -40626,7 +40626,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "Like many of you, I was raised in the background radiation of Calvinist thought. I expected little but redemptive hard labor, before presumably one day dying in a mine. I also read Hackers & Painters at an impressionable age and was kind of a jerk about it for a while.",
         "date": "2024-12-04"
     },
     "https://github.com/sonngdev/rose-pine-warp": {
@@ -41322,7 +41322,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "A HN user asked me0 how I run LLMs locally with some specific questions, I\u2019m documenting it here for everyone. Before I begin I would like to credit the thousands or millions of unknown artists, coders and writers upon whose work the Large Language Models(LLMs) are trained, often without due",
         "date": "2024-12-30"
     },
     "https://github.com/eza-community/eza": {
@@ -41406,7 +41406,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "Recently, I\u2019ve been reading through the excellent Database Internals (Alex Petrov, 2019). The first half of the book is dedicated to the implementation of database storage engines \u2013 the subsystem(s) of a DBMS that handles long-term persistence of data. A surprising amount of this section discusses the implementation and optimization",
         "date": "2025-01-05"
     },
     "https://github.com/practical-tutorials/project-based-learning": {
@@ -43029,7 +43029,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "I\u2019ve just uploaded to the arXiv the paper \u201cDecomposing a factorial into large factors\u201c. This paper studies the quantity , defined as the largest quantity such that it is possible to factorize into factors , each of which is at least . The first few values of this sequence are",
         "date": "2025-03-29"
     },
     "https://github.com/ariana-dot-dev/ariana": {
@@ -43074,7 +43074,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "Self-contained Python scripts with uv TLDR You can add uv into the shebang line for a Python script to make it a self-contained executable. I am working on a Go project to better learn the language. It's a simple API backed by a postgres database. When I need to test",
         "date": "2025-03-31"
     },
     "https://github.com/redwoodjs/graphql": {
@@ -43769,7 +43769,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "Please turn on your JavaScript Loading...",
         "date": "2025-04-24"
     },
     "https://huggingface.co/datasets/nomic-ai/nomic-embed-supervised-data": {
@@ -43828,7 +43828,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "An end to all this prostate trouble? The prostate gland causes entirely too many problems. In the US, prostate cancer kills about one man of every forty. \u201cBenign prostate hyperplasia\u201d (BPH) is even more common, affecting most men over age 60. It pinches the urinary tract, making it hard to",
         "date": "2025-04-27"
     },
     "https://simonwillison.net/2025/Apr/26/o3-photo-locations/": {
@@ -43839,7 +43839,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "Watching o3 guess a photo\u2019s location is surreal, dystopian and wildly entertaining 26th April 2025 Watching OpenAI\u2019s new o3 model guess where a photo was taken is one of those moments where decades of science fiction suddenly come to life. It\u2019s a cross between the Enhance Button and Omniscient Database",
         "date": "2025-04-27"
     },
     "https://www.gleech.org/tplus": {
@@ -44720,7 +44720,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "Data lake operations DuckLake supports snapshots, time travel queries, schema evolution and partitioning. DuckLake delivers advanced data lake features without traditional lakehouse complexity by using Parquet files and your SQL database. It's an open, standalone format from the DuckDB team. DuckLake uses a database system to manage your metadata for",
         "date": "2025-06-01"
     },
     "https://huggingface.co/ostris/Flex.1-alpha": {
@@ -45035,7 +45035,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "I Convinced HP's Board to Buy Palm for $1.2B. Then I Watched Them Kill It in 49 Days The systematic thinking errors that kill breakthrough technology and the decision framework that prevents these disasters I've never shared this story publicly before\u2014how I convinced HP's board to acquire Palm for $1.2",
         "date": "2025-06-15"
     },
     "https://themes.gohugo.io/themes/hugo-theme-nostyleplease/": {
@@ -45297,7 +45297,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "Why? Wifi networks collect a reference to your computer (called MAC address) when you login. That way, when you try to login again, even with different credentials, they detect that it is the same device and do not allow you to continue using it. How? By renewing your device's MAC",
         "date": "2025-06-23"
     },
     "https://github.com/villekuosmanen/physical-AI-interpretability": {
@@ -45536,7 +45536,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "Did you know your favorite website can detect when you\u2019re browsing it in public transport and when you scroll it laying in your bed? Today we\u2019ll learn how they can do it and how this info is used to fight bots. I gave this talk at Google Developer Student Club",
         "date": "2025-07-01"
     },
     "https://sharnoff.io/blog/why-rust-compiler-slow": {
@@ -45548,7 +45548,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "\"Why is the Rust compiler so slow?\" I spent a month repeatedly building my website in Docker, and now have horrors to share. I've got a problem. My website (the one you're reading right now) is mainly served by a single Rust binary. For far too long now, every time",
         "date": "2025-07-01"
     },
     "https://research.google/blog/muvera-making-multi-vector-retrieval-as-fast-as-single-vector-search/": {
@@ -45561,7 +45561,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "MUVERA: Making multi-vector retrieval as fast as single-vector search June 25, 2025 Rajesh Jayaram and Laxman Dhulipala, Research Scientists, Google Research We introduce MUVERA, a state-of-the-art retrieval algorithm that reduces complex multi-vector retrieval back to single-vector maximum inner product search. Neural embedding models have become a cornerstone of modern information",
         "date": "2025-07-01"
     },
     "https://george.mand.is/2025/06/openai-charges-by-the-minute-so-make-the-minutes-shorter/": {
@@ -45573,7 +45573,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "OpenAI Charges by the Minute, So Make the Minutes Shorter \u2022 ~2,000 words \u2022 9 minute read Want to make OpenAI transcriptions faster and cheaper? Just speed up your audio. I mean that very literally. Run your audio through ffmpeg at 2x or 3x before transcribing it. You\u2019ll spend fewer",
         "date": "2025-07-01"
     },
     "https://damek.github.io/random/basic-facts-about-gpus/": {
@@ -45597,7 +45597,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "- Hugging Face cofounder Thomas Wolf is pouring cold water on hopes that current AI systems could revolutionize scientific progress. Speaking to Fortune at VivaTech in Paris, Wolf argued that today\u2019s large language models excel at producing plausible answers but lack the creativity to ask original scientific questions. Rather than",
         "date": "2025-07-01"
     },
     "https://www.ubicloud.com/blog/life-of-an-inference-request-vllm-v1": {
@@ -45779,7 +45779,7 @@
         "tags": [
             "hackernews"
         ],
-        "summary": "",
+        "summary": "Computer Science > Computation and Language [Submitted on 17 Jun 2025] Title:Mercury: Ultra-Fast Language Models Based on Diffusion View PDF HTML (experimental)Abstract:We present Mercury, a new generation of commercial-scale large language models (LLMs) based on diffusion. These models are parameterized via the Transformer architecture and trained to predict multiple tokens",
         "date": "2025-07-08"
     },
     "http://arxiv.org/abs/2502.18418": {

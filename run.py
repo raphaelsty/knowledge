@@ -125,7 +125,7 @@ for url, document in data.items():
     # This handles malformed data like the lone surrogate '\udd4a'.
     for field in ["title", "summary"]:
         if isinstance(document.get(field), str):
-            cleaned_text = document[field].encode('utf-8', 'replace').decode('utf-8')
+            cleaned_text = document[field].encode("utf-8", "replace").decode("utf-8")
             document[field] = cleaned_text
 
 print("Adding extra tags.")
