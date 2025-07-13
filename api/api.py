@@ -34,28 +34,17 @@ class Knowledge:
 
     def __init__(self) -> None:
         self.pipeline = None
-        self.documents = None
 
     def start(self):
         """Load the pipeline and the documents."""
         with open("database/pipeline.pkl", "rb") as f:
             self.pipeline = pickle.load(f)
-        # Load documents into memory for easy access
-        with open("database/database.json", "r") as f:
-            db = json.load(f)
-        self.documents = []
-        for url, doc in db.items():
-            doc['url'] = url
-            self.documents.append(doc)
+
         return self
 
-    def get_latest_documents(self, count: int) -> typing.List[typing.Dict]:
+    def get_latest_documents(self, count: int):
         """Returns the most recently added documents."""
-        return sorted(
-            self.documents,
-            key=lambda doc: datetime.datetime.strptime(doc["date"], "%Y-%m-%d"),
-            reverse=True,
-        )[:count]
+        return self.pipeline.get_latest_documents[:count]
 
     def search(
         self,

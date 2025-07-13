@@ -1,5 +1,6 @@
 from ..graph import Graph
 from ..retriever import Retriever
+import datetime
 
 __all__ = ["Pipeline"]
 
@@ -28,10 +29,20 @@ class Pipeline:
 
     """
 
-    def __init__(self, documents, triples, excluded_tags=None):
+    def __init__(self, documents, triples, excluded_tags=None, k_latest_documents: int =200):
         self.retriever = Retriever(documents=documents)
         self.graph = Graph(triples=triples)
         self.excluded_tags = {} if excluded_tags is None else excluded_tags
+        self.latest_documents = sorted(
+            documents,
+            key=lambda doc: datetime.datetime.strptime(doc["date"], "%Y-%m-%d"),
+            reverse=True,
+        )[:k_latest_documents]
+
+    def get_latest_documents(self, count: int):
+        """Returns the most recently added documents."""
+        return self.latest_documents[:count]
+
 
     def search(self, q: str, tags: bool = False):
         """Search for documents.
