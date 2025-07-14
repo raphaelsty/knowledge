@@ -1,253 +1,207 @@
 <div align="center">
-  <h1>Knowledge</h1>
-  <p>Personal bookmarks</p>
+
+# Knowledge
+
 </div>
+
+<p align="center">
+<a href="https://raphaelsty.github.io/knowledge/"><strong>Personal Knowledge Base</strong></a>
+</p>
+
+<p align="center">
+<img src="img/demo.gif" alt="Demonstration GIF" style="width:100%; border-radius:10px; box-shadow:0 4px 8px rgba(0,0,0,0.1);">
+</p>
+
+**Knowledge** is a web application that automatically transforms the digital footprint into a personal search engine. It fetches content you interact with from various platforms—**GitHub**, **HackerNews**, and **Zotero**—and organizes it into a navigable knowledge graph.
+
+---
+
+## 🌟 Features
+
+- **🤖 Automatic Aggregation:** Daily, automated extraction of GitHub stars, HackerNews upvotes, and Zotero library.
+
+- **🔍 Powerful Search:** A built-in search engine to instantly find any item you've saved or interacted with.
+
+- **🕸️ Knowledge Graph:** Navigate bookmarks through a graph of automatically extracted topics and their connections.
+
+My Personal Knowledge Base is available at [raphaelsty.github.io/knowledge](https://raphaelsty.github.io/knowledge/).
+
+---
+
+## 🛠️ How It Works
+
+A GitHub Actions workflow runs twice a day to perform the following tasks:
+
+1.  **Extracts Content** from specified accounts:
+    - GitHub Stars
+    - HackerNews Upvotes
+    - Zotero Records
+2.  **Processes and Stores Data** in the `database/` directory:
+    - `database.json`: Contains all the raw records.
+    - `triples.json`: Stores the knowledge graph data (topics and relationships).
+    - `retriever.pkl`: The serialized search engine model.
+3.  **Deploys Updates**:
+    - The backend API is automatically updated and pushed to the Fly.io instance.
+    - The frontend on GitHub Pages is refreshed with the latest data.
+
+The backend is built with FastAPI and deployed on Fly.io, which offers a free tier suitable for this project. The frontend is a static site hosted on GitHub Pages. The search engine is powered by multiple [cherche](https://github.com/raphaelsty/cherche) lexical models and features a final [pylate-rs](https://github.com/lightonai/pylate-rs) model, which is compiled from Rust to WebAssembly (WASM) to run directly in the client's browser.
+
+## 🚀 Getting Started: Installation & Deployment
+
+Follow these steps to deploy your own instance of Knowledge.
+
+### 1\. Fork & Clone
+
+First, fork this repository to your own GitHub account and then clone it to your local machine.
+
+### 2\. Configuration
+
+#### A. Configure Secrets
+
+The application requires API keys and credentials to function. These must be set as **Repository secrets** in your forked repository's settings (`Settings` > `Secrets and variables` > `Actions`).
+
 <br>
 
-<div align="justify">
-<b>Knowledge</b> is a web application that automatically extract content you interact with from various social media platforms, including GitHub, HackerNews, Zotero, and Twitter. It creates a search engine, coupled with a knowledge graph that enables to navigate through documents and automatically extracted tags.
-</div>
+<table style="width:100%; border-collapse: collapse;">
+<thead>
+<tr>
+<th style="text-align:left; padding:8px; border-bottom: 1px solid \#ddd;">Secret</th>
+<th style="text-align:left; padding:8px; border-bottom: 1px solid \#ddd;">Service</th>
+<th style="text-align:center; padding:8px; border-bottom: 1px solid \#ddd;">Required</th>
+<th style="text-align:left; padding:8px; border-bottom: 1px solid \#ddd;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="padding:8px; border-bottom: 1px solid \#ddd;"><code>FLY_API_TOKEN</code></td>
+<td style="padding:8px; border-bottom: 1px solid \#ddd;"><a href="https://fly.io">Fly.io</a></td>
+<td style="text-align:center; padding:8px; border-bottom: 1px solid \#ddd;">Yes</td>
+<td style="padding:8px; border-bottom: 1px solid \#ddd;">Allows the GitHub Action to deploy your application. See the Fly.io section for instructions.</td>
+</tr>
+<tr>
+<td style="padding:8px; border-bottom: 1px solid \#ddd;"><code>ZOTERO_API_KEY</code></td>
+<td style="padding:8px; border-bottom: 1px solid \#ddd;"><a href="https://www.zotero.org/settings/keys">Zotero Settings</a></td>
+<td style="text-align:center; padding:8px; border-bottom: 1px solid \#ddd;">Optional</td>
+<td style="padding:8px; border-bottom: 1px solid \#ddd;">An API key to access your Zotero library.</td>
+</tr>
+<tr>
+<td style="padding:8px; border-bottom: 1px solid \#ddd;"><code>ZOTERO_LIBRARY_ID</code></td>
+<td style="padding:8px; border-bottom: 1px solid \#ddd;"><a href="https://www.zotero.org">Zotero</a></td>
+<td style="text-align:center; padding:8px; border-bottom: 1px solid \#ddd;">Optional</td>
+<td style="padding:8px; border-bottom: 1px solid \#ddd;">The ID of the Zotero group library you want to index.</td>
+</tr>
+<tr>
+<td style="padding:8px; border-bottom: 1px solid \#ddd;"><code>HACKERNEWS_USERNAME</code></td>
+<td style="padding:8px; border-bottom: 1px solid \#ddd;"><a href="https://news.ycombinator.com">Hacker News</a></td>
+<td style="text-align:center; padding:8px; border-bottom: 1px solid \#ddd;">Optional</td>
+<td style="padding:8px; border-bottom: 1px solid \#ddd;">HackerNews username to fetch upvoted posts.</td>
+</tr>
+<tr>
+<td style="padding:8px;"><code>HACKERNEWS_PASSWORD</code></td>
+<td style="padding:8px;"><a href="https://news.ycombinator.com/">Hacker News</a></td>
+<td style="text-align:center; padding:8px;">Optional</td>
+<td style="padding:8px;">HackerNews password.</td>
+</tr>
+</tbody>
+</table>
 
-A live version of [my personal knowledge graph](https://raphaelsty.github.io/knowledge/) is available online.
+#### B. Specify Sources
 
-<div align="justify">
-The web app is hosted with Fly.io, and its GitHub action workflow calls APIs from Twitter, GitHub, HackerNews, and Zotero on a daily basis to extract content from the user's starred repositories, upvoted posts, uploaded documents, and liked tweets. The extracted content is tagged to enhance the search experience, and the updated version of the web app is pushed automatically.
-</div>
-
-### How it works
-
-Twice a day, a dedicated github workflow extracts:
-
-- **GitHub stars**
-
-- **Twitter likes**
-
-- **HackerNews upvotes**
-
-- **Zotero records**
-
-<div align="justify">
-The data generated by the workflow of this tool is stored in various files located in the database directory. Specifically, the records are exported to the file <code>database/database.json</code>, while the knowledge graph of topics is saved in the file <code>database/triples.json</code>. Additionally, the workflow generates a search engine and saves it as <code>database/retriever.pkl</code>. Finally, the updated state of the application is pushed to the cloud provider Fly.io and the dedicated GitHub page is updated accordingly. The cost of hosting the application is under 8$ per month. It may increase if a large number of users query your bookmarks 24/7. Costs can be bounded via Fly.io and OpenAI dashboards.
-</div>
-
-<br>
-
-![Alt text](img/demo.gif)
-
-<br>
-
-### Zotero
-
-Zotero extension is available in most browsers in order in save documents. Saved documents will be indexed by the search engine.
-
-<div style="display: flex; justify-content: space-around; align-items: center;">
-  <img src="./img/arxiv_4.png" alt="arxiv_4" style="width: 100%;">
-</div>
-
-The Zotero app is available on most phones. The documents uploaded to Zotero will be indexed by the search engine automatically in the following hours.
-
-<div style="display: flex; justify-content: space-around; align-items: center;">
-  <img src="./img/arxiv_1.png" alt="arxiv_1" style="width: 30%;">
-  <img src="./img/arxiv_2.png" alt="arxiv_2" style="width: 30%;">
-  <img src="./img/arxiv_3.png" alt="arxiv_3" style="width: 30%;">
-</div>
-
-
-### Secrets
-
-<div align="justify">
-To deploy this tool, the first step is to fork the repository and clone it locally. The next step involves defining secrets in the repository configurations (fork) for the different APIs that the system requests. The application requires several secrets to access the different APIs. While it is possible to skip some of the secrets, it is necessary to set <code>FLY_API_TOKEN</code> and <code>OPENAI_API_KEY</code>. If you do not plan to use ChatGPT, you can leave <code>OPENAI_API_KEY</code> empty. It is important to set secrets as repository secrets and not as environment secrets.
-</div>
-
-![Alt text](img/secrets.png)
-
-##### [Twitter](https://developer.twitter.com/en/portal/dashboard)
-
-To extract likes, we will need a Twitter API TOKEN, available on the [Developer Portal](https://developer.twitter.com/en/portal/dashboard) after having creater an account.
-
-```sh
-TWITTER_TOKEN
-```
-
-##### [Zotero]((https://www.zotero.org))
-
-We will need a "group library" to index content from Zotero. The `ZOTERO_API_KEY` is available at `https://www.zotero.org/settings/keys`.
-
-```sh
-ZOTERO_API_KEY
-```
-
-The `ZOTERO_LIBRARY_ID` can be found by opening the group's page `https://www.zotero.org/groups/groupname`, and hovering over the group settings link. The ID is the integer after `/groups/`.
-
-```sh
-ZOTERO_LIBRARY_ID
-```
-
-##### [Hackernews](https://news.ycombinator.com/)
-
-We will need to create secrets for both Hackernews username and password.
-
-```sh
-HACKERNEWS_USERNAME
-```
-
-```sh
-HACKERNEWS_PASSWORD
-```
-
-##### [OpenAI](https://platform.openai.com/signup)
-
-OpenAI API is used to call ChatGPT when pressing the button "ask" to re-rank documents based on our query. If we do not plan to use ChatGPT, we will need to set the secret `OPENAI_API_KEY` with an empty value. We can get our OpenAI key [here](https://platform.openai.com/account/api-keys).
-
-```sh
-OPENAI_API_KEY
-```
-
-The prompt to ChatGPT is stored in the `api/api.py` file.
-
-
-##### [Fly.io](https://fly.io)
-
-We will need to install the flyctl client available [here](https://fly.io/docs/hands-on/install-flyctl/) to set the `FLY_API_TOKEN`. The fly.io api token enables the github action to automatically push the updated state of the api. We can get the token using the command line:
-
-```sh
-flyctl auth signup
-```
-
-```sh
-fly auth login
-```
-
-```sh
-flyctl auth token
-```
-
-```sh
-FLY_API_TOKEN
-```
-
-### Sources
-
-After finalizing the secrets, we can specify the Github and Twitter users whose liked content we wish to extract. To achieve this, we'll need to modify the sources.yml file located at the root of the repository. We'll be able to handpick the Github stars we want to index and set the Twitter ID and handle of the users whose content we want to include. To obtain the Twitter ID, we can use a tool like [tweeterid.com](https://tweeterid.com)."
+Next, edit the `sources.yml` file at the root of the repository to specify which GitHub users' starred repositories you want to track.
 
 ```yml
 github:
   - "raphaelsty"
   - "gbolmier"
   - "MaxHalford"
-  - "AdilZouitine"
-
-twitter:
-  - [1262679654239961088, "raphaelsrty"]
 ```
 
-#### Deployment
+### 3\. Deployment
 
-#### Fly.io
+#### A. Deploy the API to Fly.io
 
-Once secrets and sources are set. We will deploy the API following the [Fly.io documentation](https://fly.io/docs/hands-on/launch-app/). You won't need any database. fly client should generate a `fly.toml` file that looks like the toml file below where `app_name` is the name of our api.
+1.  **Install `flyctl`**, the Fly.io command-line tool. Instructions can be found [here](https://fly.io/docs/hands-on/install-flyctl/).
+2.  **Sign up and log in** to Fly.io via the command line:
+    ```sh
+    flyctl auth signup
+    flyctl auth login
+    ```
+3.  **Get API token** and add it to your GitHub repository secrets as `FLY_API_TOKEN`:
+    ```sh
+    flyctl auth token
+    ```
+4.  **Launch the app.** Follow the [Fly.io launch documentation](https://fly.io/docs/hands-on/launch-app/). This will generate a `fly.toml` file. You won't need a database.
 
-```toml
-app = "app_name"
-kill_signal = "SIGINT"
-kill_timeout = 5
-processes = []
+> ⚠️ **Update API URLs**
+> After deploying, you must replace all instances of `https://knowledge.fly.dev` in the `docs/index.html` file with your own Fly.io app URL (e.g., `https://app_name.fly.dev`).
 
-[env]
+#### B. Set up GitHub Pages
 
-[experimental]
-  auto_rollback = true
+1.  Go to your forked repository's settings (`Settings` > `Pages`).
+2.  Under `Build and deployment`, select the **Source** as `Deploy from a branch` and choose the `main` branch with the `/docs` folder.
 
-[[services]]
-  http_checks = []
-  internal_port = 8080
-  processes = ["app"]
-  protocol = "tcp"
-  script_checks = []
-  [services.concurrency]
-    hard_limit = 6
-    soft_limit = 3
-    type = "connections"
-
-  [[services.ports]]
-    force_https = true
-    handlers = ["http"]
-    port = 80
-
-  [[services.ports]]
-    handlers = ["tls", "http"]
-    port = 443
-
-  [[services.tcp_checks]]
-    grace_period = "1s"
-    interval = "15s"
-    restart_limit = 0
-    timeout = "2s"
-```
-
->  ⚠️ After having created our API, we will need to update the urls called by the web app in the file `docs/index.html`. There are 3 urls to replace: `https://knowledge.fly.dev` per `https://app_name.fly.dev` where `app_name` is your API name.
-
-##### Github Page
-
-We will need to set the Github Page from the repository configurations (fork).
-
-![Alt text](img/pages.png)
-
-> ⚠️ After creating your github page, you will have to modify the `origins` field of the `api/api.py` file:
+> ⚠️ **Update CORS Origins**
+> After your GitHub Pages site is live, you must add its URL to the `origins` list in the `api/api.py` file to allow cross-origin requests.
 
 ```python
 origins = [
-    "https://raphaelsty.github.io", # Put your own github page name here.
+    "https://your-github-username.github.io", # Add your GitHub Pages URL here
 ]
 ```
 
-#### Costs
+---
 
->  ⚠️ To avoid any financial incident, remember to define a `hard_limit` and a `soft_limit` which will bounder the number of instance Fly.io will deploy to answer to peak demands and therefore limit the costs. Those parameters are available in the `fly.toml` file.
+## 💸 Cost Management
 
-```
+This project is designed to be affordable, but you are responsible for the costs incurred on Fly.io. Here is how to keep them in check:
+
+> ⚠️ **Bound Fly.io Concurrency**
+> To prevent costs from scaling unexpectedly, define connection limits in the `fly.toml` file.
+
+```toml
 [services.concurrency]
-	hard_limit = 6
-	soft_limit = 3
-	type = "connections"
+  hard_limit = 6
+  soft_limit = 3
+  type = "connections"
 ```
 
->  ⚠️ Setting a 2GB memory VM with a single shared cpu on FLy.io will do the job for the app.
+> ⚠️ **Select a modest Fly.io VM**
+> A small virtual machine is sufficient. A **shared-cpu-1x@1024MB** is a good starting point.
 
-![Alt text](img/scale.png)
+---
 
->  ⚠️ Don't forget to define the limit amount you want to spend on OpenAI platform (10$ here).
+## 💻 Local Development
 
-![Alt text](img/openai.png)
+To run the API on local machine for development, simply run the following command from the root of the repository:
 
-
-#### Development
-
-To run the API locally using Docker, we can export the `OPENAI_API_KEY` to our environment variables using:
-
-```
-export OPENAI_API_KEY="sk-..."
-```
-
-Then, we can run `make launch` at the root of the repository.
-
-```
+```sh
 make launch
 ```
 
-We can also deploy the API manually using:
+---
 
-```
-fly deploy \
-    --build-secret OPENAI_API_KEY=$OPENAI_API_KEY
-```
+## 🔌 Zotero Integration
 
-#### Notes
+The Zotero integration allows you to save academic papers, articles, and other documents, which will then be automatically indexed by your search engine.
 
-My personal Knowledge Base is inspired and extract resources from the Knowledge Base of François-Paul Servant namely [Semanlink](http://www.semanlink.net/sl/home).
+- **Browser Extension:** Use the Zotero Connector extension for your browser to easily save documents from the web.
 
+- **Mobile App:** The Zotero mobile app lets you add documents on the go. Any uploads will be indexed within a few hours.
 
-#### License
+  <div style="display: flex; justify-content: space-around; align-items: center; gap: 10px;">
+  <img src="./img/arxiv_1.png" alt="Zotero mobile app" style="width: 30%;">
+  <img src="./img/arxiv_2.png" alt="Zotero mobile app" style="width: 30%;">
+  <img src="./img/arxiv_3.png" alt="Zotero mobile app" style="width: 30%;">
+  </div>
 
-GNU GENERAL PUBLIC LICENSE
-Knowledge Copyright (C) 2023  Raphaël Sourty
+---
+
+## 💡 Acknowledgements
+
+My personal Knowledge Base is inspired by and extracts resources from the Knowledge Base of François-Paul Servant, namely [Semanlink](http://www.semanlink.net/sl/home).
+
+## 📜 License
+
+This project is licensed under the **GNU General Public License v3.0**.
+
+Knowledge Copyright (C) 2023 Raphaël Sourty
