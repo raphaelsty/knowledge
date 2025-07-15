@@ -211026,5 +211026,609 @@
     {
         "head": "awesome",
         "tail": "machine learning"
+    },
+    {
+        "head": "python",
+        "tail": "hnet"
+    },
+    {
+        "head": "python",
+        "tail": "hierarchical"
+    },
+    {
+        "head": "python",
+        "tail": "config"
+    },
+    {
+        "head": "hnet",
+        "tail": "architecture"
+    },
+    {
+        "head": "hnet",
+        "tail": "code"
+    },
+    {
+        "head": "hnet",
+        "tail": "hierarchical"
+    },
+    {
+        "head": "hnet",
+        "tail": "config"
+    },
+    {
+        "head": "architecture",
+        "tail": "hierarchical"
+    },
+    {
+        "head": "architecture",
+        "tail": "config"
+    },
+    {
+        "head": "code",
+        "tail": "hierarchical"
+    },
+    {
+        "head": "code",
+        "tail": "config"
+    },
+    {
+        "head": "hierarchical",
+        "tail": "config"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "hnet"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "mamba"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "optimization llm"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "tokenizer"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "transformer"
+    },
+    {
+        "head": "llm",
+        "tail": "hnet"
+    },
+    {
+        "head": "llm",
+        "tail": "mamba"
+    },
+    {
+        "head": "llm",
+        "tail": "tokenizer"
+    },
+    {
+        "head": "llm",
+        "tail": "hierarchical"
+    },
+    {
+        "head": "llm",
+        "tail": "tokenization"
+    },
+    {
+        "head": "llm",
+        "tail": "hierarchy"
+    },
+    {
+        "head": "hnet",
+        "tail": "llms"
+    },
+    {
+        "head": "hnet",
+        "tail": "mamba"
+    },
+    {
+        "head": "hnet",
+        "tail": "optimization llm"
+    },
+    {
+        "head": "hnet",
+        "tail": "tokenizer"
+    },
+    {
+        "head": "hnet",
+        "tail": "data"
+    },
+    {
+        "head": "hnet",
+        "tail": "models"
+    },
+    {
+        "head": "hnet",
+        "tail": "transformer"
+    },
+    {
+        "head": "hnet",
+        "tail": "tokenization"
+    },
+    {
+        "head": "hnet",
+        "tail": "hierarchy"
+    },
+    {
+        "head": "llms",
+        "tail": "mamba"
+    },
+    {
+        "head": "llms",
+        "tail": "optimization llm"
+    },
+    {
+        "head": "llms",
+        "tail": "tokenizer"
+    },
+    {
+        "head": "llms",
+        "tail": "hierarchical"
+    },
+    {
+        "head": "llms",
+        "tail": "hierarchy"
+    },
+    {
+        "head": "mamba",
+        "tail": "optimization llm"
+    },
+    {
+        "head": "mamba",
+        "tail": "tokenizer"
+    },
+    {
+        "head": "mamba",
+        "tail": "data"
+    },
+    {
+        "head": "mamba",
+        "tail": "models"
+    },
+    {
+        "head": "mamba",
+        "tail": "hierarchical"
+    },
+    {
+        "head": "mamba",
+        "tail": "transformer"
+    },
+    {
+        "head": "mamba",
+        "tail": "tokenization"
+    },
+    {
+        "head": "mamba",
+        "tail": "hierarchy"
+    },
+    {
+        "head": "optimization llm",
+        "tail": "tokenizer"
+    },
+    {
+        "head": "optimization llm",
+        "tail": "data"
+    },
+    {
+        "head": "optimization llm",
+        "tail": "models"
+    },
+    {
+        "head": "optimization llm",
+        "tail": "hierarchical"
+    },
+    {
+        "head": "optimization llm",
+        "tail": "transformer"
+    },
+    {
+        "head": "optimization llm",
+        "tail": "tokenization"
+    },
+    {
+        "head": "optimization llm",
+        "tail": "hierarchy"
+    },
+    {
+        "head": "tokenizer",
+        "tail": "data"
+    },
+    {
+        "head": "tokenizer",
+        "tail": "models"
+    },
+    {
+        "head": "tokenizer",
+        "tail": "hierarchical"
+    },
+    {
+        "head": "tokenizer",
+        "tail": "transformer"
+    },
+    {
+        "head": "tokenizer",
+        "tail": "tokenization"
+    },
+    {
+        "head": "tokenizer",
+        "tail": "hierarchy"
+    },
+    {
+        "head": "data",
+        "tail": "transformer"
+    },
+    {
+        "head": "data",
+        "tail": "tokenization"
+    },
+    {
+        "head": "data",
+        "tail": "hierarchy"
+    },
+    {
+        "head": "models",
+        "tail": "hierarchical"
+    },
+    {
+        "head": "models",
+        "tail": "tokenization"
+    },
+    {
+        "head": "models",
+        "tail": "hierarchy"
+    },
+    {
+        "head": "hierarchical",
+        "tail": "transformer"
+    },
+    {
+        "head": "hierarchical",
+        "tail": "tokenization"
+    },
+    {
+        "head": "hierarchical",
+        "tail": "hierarchy"
+    },
+    {
+        "head": "transformer",
+        "tail": "tokenization"
+    },
+    {
+        "head": "transformer",
+        "tail": "hierarchy"
+    },
+    {
+        "head": "tokenization",
+        "tail": "hierarchy"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "deep learning"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "lightgbm"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "machine learning"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "xgboost"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "dl"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "ensemble"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "efficiency"
+    },
+    {
+        "head": "statistics - machine learning",
+        "tail": "deep learning"
+    },
+    {
+        "head": "statistics - machine learning",
+        "tail": "lightgbm"
+    },
+    {
+        "head": "statistics - machine learning",
+        "tail": "machine learning"
+    },
+    {
+        "head": "statistics - machine learning",
+        "tail": "table"
+    },
+    {
+        "head": "statistics - machine learning",
+        "tail": "xgboost"
+    },
+    {
+        "head": "statistics - machine learning",
+        "tail": "performance"
+    },
+    {
+        "head": "statistics - machine learning",
+        "tail": "dl"
+    },
+    {
+        "head": "statistics - machine learning",
+        "tail": "ensemble"
+    },
+    {
+        "head": "statistics - machine learning",
+        "tail": "efficiency"
+    },
+    {
+        "head": "deep learning",
+        "tail": "lightgbm"
+    },
+    {
+        "head": "deep learning",
+        "tail": "machine learning"
+    },
+    {
+        "head": "deep learning",
+        "tail": "table"
+    },
+    {
+        "head": "deep learning",
+        "tail": "xgboost"
+    },
+    {
+        "head": "deep learning",
+        "tail": "performance"
+    },
+    {
+        "head": "deep learning",
+        "tail": "dl"
+    },
+    {
+        "head": "deep learning",
+        "tail": "ensemble"
+    },
+    {
+        "head": "deep learning",
+        "tail": "efficiency"
+    },
+    {
+        "head": "lightgbm",
+        "tail": "machine learning"
+    },
+    {
+        "head": "lightgbm",
+        "tail": "table"
+    },
+    {
+        "head": "lightgbm",
+        "tail": "performance"
+    },
+    {
+        "head": "lightgbm",
+        "tail": "dl"
+    },
+    {
+        "head": "lightgbm",
+        "tail": "ensemble"
+    },
+    {
+        "head": "lightgbm",
+        "tail": "efficiency"
+    },
+    {
+        "head": "machine learning",
+        "tail": "table"
+    },
+    {
+        "head": "machine learning",
+        "tail": "xgboost"
+    },
+    {
+        "head": "machine learning",
+        "tail": "performance"
+    },
+    {
+        "head": "machine learning",
+        "tail": "dl"
+    },
+    {
+        "head": "machine learning",
+        "tail": "ensemble"
+    },
+    {
+        "head": "machine learning",
+        "tail": "efficiency"
+    },
+    {
+        "head": "table",
+        "tail": "xgboost"
+    },
+    {
+        "head": "table",
+        "tail": "performance"
+    },
+    {
+        "head": "table",
+        "tail": "dl"
+    },
+    {
+        "head": "table",
+        "tail": "efficiency"
+    },
+    {
+        "head": "xgboost",
+        "tail": "performance"
+    },
+    {
+        "head": "xgboost",
+        "tail": "dl"
+    },
+    {
+        "head": "xgboost",
+        "tail": "ensemble"
+    },
+    {
+        "head": "xgboost",
+        "tail": "efficiency"
+    },
+    {
+        "head": "performance",
+        "tail": "dl"
+    },
+    {
+        "head": "performance",
+        "tail": "ensemble"
+    },
+    {
+        "head": "performance",
+        "tail": "efficiency"
+    },
+    {
+        "head": "dl",
+        "tail": "ensemble"
+    },
+    {
+        "head": "dl",
+        "tail": "efficiency"
+    },
+    {
+        "head": "ensemble",
+        "tail": "efficiency"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "cross-encoder"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "information-retrieval"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "knowledge distillation"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "contrastive learning"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "distillation"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "cross-encoder"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "knowledge distillation"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "contrastive learning"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "distillation"
+    },
+    {
+        "head": "cross-encoder",
+        "tail": "information retrieval"
+    },
+    {
+        "head": "cross-encoder",
+        "tail": "information-retrieval"
+    },
+    {
+        "head": "cross-encoder",
+        "tail": "knowledge distillation"
+    },
+    {
+        "head": "cross-encoder",
+        "tail": "training"
+    },
+    {
+        "head": "cross-encoder",
+        "tail": "contrastive learning"
+    },
+    {
+        "head": "cross-encoder",
+        "tail": "model"
+    },
+    {
+        "head": "cross-encoder",
+        "tail": "distillation"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "knowledge distillation"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "training"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "contrastive learning"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "distillation"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "knowledge distillation"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "training"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "contrastive learning"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "model"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "distillation"
+    },
+    {
+        "head": "knowledge distillation",
+        "tail": "contrastive learning"
+    },
+    {
+        "head": "knowledge distillation",
+        "tail": "model"
+    },
+    {
+        "head": "training",
+        "tail": "contrastive learning"
+    },
+    {
+        "head": "contrastive learning",
+        "tail": "model"
+    },
+    {
+        "head": "contrastive learning",
+        "tail": "distillation"
+    },
+    {
+        "head": "model",
+        "tail": "distillation"
     }
 ]

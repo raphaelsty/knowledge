@@ -46002,5 +46002,82 @@
             "pytorch",
             "data-visualization"
         ]
+    },
+    "https://github.com/goombalab/hnet": {
+        "extra-tags": [
+            "hnet",
+            "architecture",
+            "code",
+            "hierarchical",
+            "config"
+        ],
+        "date": "2025-07-15",
+        "title": "hnet",
+        "summary": "H-Net: Hierarchical Network with Dynamic Chunking \n !H-Netassetsarch.png H-Net Architecture This repository contains code of the H-Net architecture. Most of the code lies in hnet, which has the following structure configs hnet models Directory for H-Net confighnet.py defines the config for the H-Net hnet.py h-net as a B, L, D - B, L, D sequence model",
+        "tags": [
+            "python"
+        ]
+    },
+    "http://arxiv.org/abs/2507.07955": {
+        "extra-tags": [
+            "data",
+            "models",
+            "hierarchical",
+            "transformer",
+            "tokenization",
+            "hierarchy"
+        ],
+        "title": "Dynamic Chunking for End-to-End Hierarchical Sequence Modeling",
+        "summary": "Despite incredible progress in language models (LMs) in recent years, largely resulting from moving away from specialized models designed for specific tasks to general models based on powerful architectures (e.g. the Transformer) that learn everything from raw data, pre-processing steps such as tokenization remain a barrier to true end-to-end foundation models. We introduce a collection of new techniques that enable a dynamic chunking mechanism which automatically learns content -- and context -- dependent segmentation strategies learned jointly with the rest of the model. Incorporating this into an explicit hierarchical network (H-Net) allows replacing the (implicitly hierarchical) tokenization-LM-detokenization pipeline with a single model learned fully end-to-end. When compute- and data- matched, an H-Net with one stage of hierarchy operating at the byte level outperforms a strong Transformer language model operating over BPE tokens. Iterating the hierarchy to multiple stages further increases its performance by modeling multiple levels of abstraction, demonstrating significantly better scaling with data and matching a token-based Transformer of twice its size. H-Nets pretrained on English show significantly increased character-level robustness, and qualitatively learn meaningful data-dependent chunking strategies without any heuristics or explicit supervision. Finally, the H-Net's improvement over tokenized pipelines is further increased in languages and modalities with weaker tokenization heuristics, such as Chinese and code, or DNA sequences (nearly 4x improvement in data efficiency over baselines), showing the potential of true end-to-end models that learn and scale better from unprocessed data.",
+        "date": "2025-07-14",
+        "tags": [
+            "computer science - machine learning",
+            "llm",
+            "hnet",
+            "llm",
+            "llms",
+            "mamba",
+            "optimization llm",
+            "tokenizer"
+        ]
+    },
+    "http://arxiv.org/abs/2410.24210": {
+        "extra-tags": [
+            "performance",
+            "dl",
+            "ensemble",
+            "efficiency"
+        ],
+        "title": "TabM: Advancing Tabular Deep Learning with Parameter-Efficient Ensembling",
+        "summary": "Deep learning architectures for supervised learning on tabular data range from simple multilayer perceptrons (MLP) to sophisticated Transformers and retrieval-augmented methods. This study highlights a major, yet so far overlooked opportunity for designing substantially better MLP-based tabular architectures. Namely, our new model TabM relies on efficient ensembling, where one TabM efficiently imitates an ensemble of MLPs and produces multiple predictions per object. Compared to a traditional deep ensemble, in TabM, the underlying implicit MLPs are trained simultaneously, and (by default) share most of their parameters, which results in significantly better performance and efficiency. Using TabM as a new baseline, we perform a large-scale evaluation of tabular DL architectures on public benchmarks in terms of both task performance and efficiency, which renders the landscape of tabular DL in a new light. Generally, we show that MLPs, including TabM, form a line of stronger and more practical models compared to attention- and retrieval-based architectures. In particular, we find that TabM demonstrates the best performance among tabular DL models. Then, we conduct an empirical analysis on the ensemble-like nature of TabM. We observe that the multiple predictions of TabM are weak individually, but powerful collectively. Overall, our work brings an impactful technique to tabular DL and advances the performance-efficiency trade-off with TabM -- a simple and powerful baseline for researchers and practitioners.",
+        "date": "2025-07-14",
+        "tags": [
+            "computer science - machine learning",
+            "statistics - machine learning",
+            "deep learning",
+            "lightgbm",
+            "machine learning",
+            "table",
+            "xgboost"
+        ]
+    },
+    "http://arxiv.org/abs/2507.08336": {
+        "extra-tags": [
+            "contrastive learning",
+            "model",
+            "distillation"
+        ],
+        "title": "Distillation versus Contrastive Learning: How to Train Your Rerankers",
+        "summary": "Training text rerankers is crucial for information retrieval. Two primary strategies are widely used: contrastive learning (optimizing directly on ground-truth labels) and knowledge distillation (transferring knowledge from a larger reranker). While both have been studied in the literature, a clear comparison of their effectiveness for training cross-encoder rerankers under practical conditions is needed. This paper empirically compares these strategies by training rerankers of different sizes and architectures using both methods on the same data, with a strong contrastive learning model acting as the distillation teacher. Our results show that knowledge distillation generally yields better in-domain and out-of-domain ranking performance than contrastive learning when distilling from a larger teacher model. This finding is consistent across student model sizes and architectures. However, distilling from a teacher of the same capacity does not provide the same advantage, particularly for out-of-domain tasks. These findings offer practical guidance for choosing a training strategy based on available teacher models. Therefore, we recommend using knowledge distillation to train smaller rerankers if a larger, more powerful teacher is accessible; in its absence, contrastive learning provides a strong and more reliable alternative otherwise.",
+        "date": "2025-07-14",
+        "tags": [
+            "computer science - computation and language",
+            "computer science - information retrieval",
+            "cross-encoder",
+            "information retrieval",
+            "information-retrieval",
+            "knowledge distillation",
+            "training"
+        ]
     }
 }
