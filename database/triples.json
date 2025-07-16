@@ -211630,5 +211630,1833 @@
     {
         "head": "model",
         "tail": "distillation"
+    },
+    {
+        "head": "ai",
+        "tail": "metal"
+    },
+    {
+        "head": "ai",
+        "tail": "high-performance"
+    },
+    {
+        "head": "ai",
+        "tail": "engine"
+    },
+    {
+        "head": "metal",
+        "tail": "rust"
+    },
+    {
+        "head": "metal",
+        "tail": "inference"
+    },
+    {
+        "head": "metal",
+        "tail": "llm"
+    },
+    {
+        "head": "metal",
+        "tail": "high-performance"
+    },
+    {
+        "head": "metal",
+        "tail": "models"
+    },
+    {
+        "head": "metal",
+        "tail": "engine"
+    },
+    {
+        "head": "rust",
+        "tail": "models"
+    },
+    {
+        "head": "inference",
+        "tail": "high-performance"
+    },
+    {
+        "head": "llm",
+        "tail": "high-performance"
+    },
+    {
+        "head": "high-performance",
+        "tail": "models"
+    },
+    {
+        "head": "models",
+        "tail": "engine"
+    },
+    {
+        "head": "llm-steering",
+        "tail": "sparse-autoencoder"
+    },
+    {
+        "head": "llm-steering",
+        "tail": "reasoning-agent"
+    },
+    {
+        "head": "llm-steering",
+        "tail": "phi4"
+    },
+    {
+        "head": "llm-steering",
+        "tail": "direct-preference-optimization"
+    },
+    {
+        "head": "llm-steering",
+        "tail": "tokens"
+    },
+    {
+        "head": "llm-steering",
+        "tail": "reasoning-models"
+    },
+    {
+        "head": "llm-steering",
+        "tail": "phi4-mini"
+    },
+    {
+        "head": "llm-steering",
+        "tail": "reasoning-language-models"
+    },
+    {
+        "head": "llm-steering",
+        "tail": "phi-4"
+    },
+    {
+        "head": "llm-steering",
+        "tail": "llm"
+    },
+    {
+        "head": "llm-steering",
+        "tail": "python"
+    },
+    {
+        "head": "llm-steering",
+        "tail": "phi-4-mini"
+    },
+    {
+        "head": "llm-steering",
+        "tail": "pivotal-token-search"
+    },
+    {
+        "head": "llm-steering",
+        "tail": "dpo"
+    },
+    {
+        "head": "llm-steering",
+        "tail": "llm-inference"
+    },
+    {
+        "head": "llm-steering",
+        "tail": "dataset-generation"
+    },
+    {
+        "head": "llm-steering",
+        "tail": "pivotal-tokens"
+    },
+    {
+        "head": "llm-steering",
+        "tail": "steering-vector"
+    },
+    {
+        "head": "llm-steering",
+        "tail": "sae"
+    },
+    {
+        "head": "llm-steering",
+        "tail": "mech-interp"
+    },
+    {
+        "head": "llm-steering",
+        "tail": "pts"
+    },
+    {
+        "head": "llm-steering",
+        "tail": "search"
+    },
+    {
+        "head": "llm-steering",
+        "tail": "pivotal tokens"
+    },
+    {
+        "head": "llm-steering",
+        "tail": "language model"
+    },
+    {
+        "head": "sparse-autoencoder",
+        "tail": "reasoning-agent"
+    },
+    {
+        "head": "sparse-autoencoder",
+        "tail": "phi4"
+    },
+    {
+        "head": "sparse-autoencoder",
+        "tail": "direct-preference-optimization"
+    },
+    {
+        "head": "sparse-autoencoder",
+        "tail": "tokens"
+    },
+    {
+        "head": "sparse-autoencoder",
+        "tail": "reasoning-models"
+    },
+    {
+        "head": "sparse-autoencoder",
+        "tail": "phi4-mini"
+    },
+    {
+        "head": "sparse-autoencoder",
+        "tail": "reasoning-language-models"
+    },
+    {
+        "head": "sparse-autoencoder",
+        "tail": "phi-4"
+    },
+    {
+        "head": "sparse-autoencoder",
+        "tail": "llm"
+    },
+    {
+        "head": "sparse-autoencoder",
+        "tail": "python"
+    },
+    {
+        "head": "sparse-autoencoder",
+        "tail": "phi-4-mini"
+    },
+    {
+        "head": "sparse-autoencoder",
+        "tail": "pivotal-token-search"
+    },
+    {
+        "head": "sparse-autoencoder",
+        "tail": "dpo"
+    },
+    {
+        "head": "sparse-autoencoder",
+        "tail": "llm-inference"
+    },
+    {
+        "head": "sparse-autoencoder",
+        "tail": "dataset-generation"
+    },
+    {
+        "head": "sparse-autoencoder",
+        "tail": "pivotal-tokens"
+    },
+    {
+        "head": "sparse-autoencoder",
+        "tail": "steering-vector"
+    },
+    {
+        "head": "sparse-autoencoder",
+        "tail": "sae"
+    },
+    {
+        "head": "sparse-autoencoder",
+        "tail": "mech-interp"
+    },
+    {
+        "head": "sparse-autoencoder",
+        "tail": "pts"
+    },
+    {
+        "head": "sparse-autoencoder",
+        "tail": "search"
+    },
+    {
+        "head": "sparse-autoencoder",
+        "tail": "pivotal tokens"
+    },
+    {
+        "head": "sparse-autoencoder",
+        "tail": "language model"
+    },
+    {
+        "head": "reasoning-agent",
+        "tail": "phi4"
+    },
+    {
+        "head": "reasoning-agent",
+        "tail": "direct-preference-optimization"
+    },
+    {
+        "head": "reasoning-agent",
+        "tail": "tokens"
+    },
+    {
+        "head": "reasoning-agent",
+        "tail": "reasoning-models"
+    },
+    {
+        "head": "reasoning-agent",
+        "tail": "phi4-mini"
+    },
+    {
+        "head": "reasoning-agent",
+        "tail": "reasoning-language-models"
+    },
+    {
+        "head": "reasoning-agent",
+        "tail": "phi-4"
+    },
+    {
+        "head": "reasoning-agent",
+        "tail": "llm"
+    },
+    {
+        "head": "reasoning-agent",
+        "tail": "python"
+    },
+    {
+        "head": "reasoning-agent",
+        "tail": "phi-4-mini"
+    },
+    {
+        "head": "reasoning-agent",
+        "tail": "pivotal-token-search"
+    },
+    {
+        "head": "reasoning-agent",
+        "tail": "dpo"
+    },
+    {
+        "head": "reasoning-agent",
+        "tail": "llm-inference"
+    },
+    {
+        "head": "reasoning-agent",
+        "tail": "dataset-generation"
+    },
+    {
+        "head": "reasoning-agent",
+        "tail": "pivotal-tokens"
+    },
+    {
+        "head": "reasoning-agent",
+        "tail": "steering-vector"
+    },
+    {
+        "head": "reasoning-agent",
+        "tail": "sae"
+    },
+    {
+        "head": "reasoning-agent",
+        "tail": "mech-interp"
+    },
+    {
+        "head": "reasoning-agent",
+        "tail": "pts"
+    },
+    {
+        "head": "reasoning-agent",
+        "tail": "search"
+    },
+    {
+        "head": "reasoning-agent",
+        "tail": "pivotal tokens"
+    },
+    {
+        "head": "reasoning-agent",
+        "tail": "language model"
+    },
+    {
+        "head": "phi4",
+        "tail": "direct-preference-optimization"
+    },
+    {
+        "head": "phi4",
+        "tail": "tokens"
+    },
+    {
+        "head": "phi4",
+        "tail": "reasoning-models"
+    },
+    {
+        "head": "phi4",
+        "tail": "phi4-mini"
+    },
+    {
+        "head": "phi4",
+        "tail": "reasoning-language-models"
+    },
+    {
+        "head": "phi4",
+        "tail": "phi-4"
+    },
+    {
+        "head": "phi4",
+        "tail": "llm"
+    },
+    {
+        "head": "phi4",
+        "tail": "python"
+    },
+    {
+        "head": "phi4",
+        "tail": "phi-4-mini"
+    },
+    {
+        "head": "phi4",
+        "tail": "pivotal-token-search"
+    },
+    {
+        "head": "phi4",
+        "tail": "dpo"
+    },
+    {
+        "head": "phi4",
+        "tail": "llm-inference"
+    },
+    {
+        "head": "phi4",
+        "tail": "dataset-generation"
+    },
+    {
+        "head": "phi4",
+        "tail": "pivotal-tokens"
+    },
+    {
+        "head": "phi4",
+        "tail": "steering-vector"
+    },
+    {
+        "head": "phi4",
+        "tail": "sae"
+    },
+    {
+        "head": "phi4",
+        "tail": "mech-interp"
+    },
+    {
+        "head": "phi4",
+        "tail": "pts"
+    },
+    {
+        "head": "phi4",
+        "tail": "search"
+    },
+    {
+        "head": "phi4",
+        "tail": "pivotal tokens"
+    },
+    {
+        "head": "phi4",
+        "tail": "language model"
+    },
+    {
+        "head": "direct-preference-optimization",
+        "tail": "tokens"
+    },
+    {
+        "head": "direct-preference-optimization",
+        "tail": "reasoning-models"
+    },
+    {
+        "head": "direct-preference-optimization",
+        "tail": "phi4-mini"
+    },
+    {
+        "head": "direct-preference-optimization",
+        "tail": "reasoning-language-models"
+    },
+    {
+        "head": "direct-preference-optimization",
+        "tail": "phi-4"
+    },
+    {
+        "head": "direct-preference-optimization",
+        "tail": "llm"
+    },
+    {
+        "head": "direct-preference-optimization",
+        "tail": "python"
+    },
+    {
+        "head": "direct-preference-optimization",
+        "tail": "phi-4-mini"
+    },
+    {
+        "head": "direct-preference-optimization",
+        "tail": "pivotal-token-search"
+    },
+    {
+        "head": "direct-preference-optimization",
+        "tail": "dpo"
+    },
+    {
+        "head": "direct-preference-optimization",
+        "tail": "llm-inference"
+    },
+    {
+        "head": "direct-preference-optimization",
+        "tail": "dataset-generation"
+    },
+    {
+        "head": "direct-preference-optimization",
+        "tail": "pivotal-tokens"
+    },
+    {
+        "head": "direct-preference-optimization",
+        "tail": "steering-vector"
+    },
+    {
+        "head": "direct-preference-optimization",
+        "tail": "sae"
+    },
+    {
+        "head": "direct-preference-optimization",
+        "tail": "mech-interp"
+    },
+    {
+        "head": "direct-preference-optimization",
+        "tail": "pts"
+    },
+    {
+        "head": "direct-preference-optimization",
+        "tail": "search"
+    },
+    {
+        "head": "direct-preference-optimization",
+        "tail": "pivotal tokens"
+    },
+    {
+        "head": "direct-preference-optimization",
+        "tail": "language model"
+    },
+    {
+        "head": "tokens",
+        "tail": "reasoning-models"
+    },
+    {
+        "head": "tokens",
+        "tail": "phi4-mini"
+    },
+    {
+        "head": "tokens",
+        "tail": "reasoning-language-models"
+    },
+    {
+        "head": "tokens",
+        "tail": "phi-4"
+    },
+    {
+        "head": "tokens",
+        "tail": "llm"
+    },
+    {
+        "head": "tokens",
+        "tail": "python"
+    },
+    {
+        "head": "tokens",
+        "tail": "phi-4-mini"
+    },
+    {
+        "head": "tokens",
+        "tail": "pivotal-token-search"
+    },
+    {
+        "head": "tokens",
+        "tail": "dpo"
+    },
+    {
+        "head": "tokens",
+        "tail": "llm-inference"
+    },
+    {
+        "head": "tokens",
+        "tail": "dataset-generation"
+    },
+    {
+        "head": "tokens",
+        "tail": "pivotal-tokens"
+    },
+    {
+        "head": "tokens",
+        "tail": "steering-vector"
+    },
+    {
+        "head": "tokens",
+        "tail": "sae"
+    },
+    {
+        "head": "tokens",
+        "tail": "mech-interp"
+    },
+    {
+        "head": "tokens",
+        "tail": "pts"
+    },
+    {
+        "head": "tokens",
+        "tail": "search"
+    },
+    {
+        "head": "tokens",
+        "tail": "pivotal tokens"
+    },
+    {
+        "head": "tokens",
+        "tail": "language model"
+    },
+    {
+        "head": "reasoning-models",
+        "tail": "phi4-mini"
+    },
+    {
+        "head": "reasoning-models",
+        "tail": "reasoning-language-models"
+    },
+    {
+        "head": "reasoning-models",
+        "tail": "phi-4"
+    },
+    {
+        "head": "reasoning-models",
+        "tail": "llm"
+    },
+    {
+        "head": "reasoning-models",
+        "tail": "python"
+    },
+    {
+        "head": "reasoning-models",
+        "tail": "phi-4-mini"
+    },
+    {
+        "head": "reasoning-models",
+        "tail": "pivotal-token-search"
+    },
+    {
+        "head": "reasoning-models",
+        "tail": "dpo"
+    },
+    {
+        "head": "reasoning-models",
+        "tail": "llm-inference"
+    },
+    {
+        "head": "reasoning-models",
+        "tail": "dataset-generation"
+    },
+    {
+        "head": "reasoning-models",
+        "tail": "pivotal-tokens"
+    },
+    {
+        "head": "reasoning-models",
+        "tail": "steering-vector"
+    },
+    {
+        "head": "reasoning-models",
+        "tail": "sae"
+    },
+    {
+        "head": "reasoning-models",
+        "tail": "mech-interp"
+    },
+    {
+        "head": "reasoning-models",
+        "tail": "pts"
+    },
+    {
+        "head": "reasoning-models",
+        "tail": "search"
+    },
+    {
+        "head": "reasoning-models",
+        "tail": "pivotal tokens"
+    },
+    {
+        "head": "reasoning-models",
+        "tail": "language model"
+    },
+    {
+        "head": "phi4-mini",
+        "tail": "reasoning-language-models"
+    },
+    {
+        "head": "phi4-mini",
+        "tail": "phi-4"
+    },
+    {
+        "head": "phi4-mini",
+        "tail": "llm"
+    },
+    {
+        "head": "phi4-mini",
+        "tail": "python"
+    },
+    {
+        "head": "phi4-mini",
+        "tail": "phi-4-mini"
+    },
+    {
+        "head": "phi4-mini",
+        "tail": "pivotal-token-search"
+    },
+    {
+        "head": "phi4-mini",
+        "tail": "dpo"
+    },
+    {
+        "head": "phi4-mini",
+        "tail": "llm-inference"
+    },
+    {
+        "head": "phi4-mini",
+        "tail": "dataset-generation"
+    },
+    {
+        "head": "phi4-mini",
+        "tail": "pivotal-tokens"
+    },
+    {
+        "head": "phi4-mini",
+        "tail": "steering-vector"
+    },
+    {
+        "head": "phi4-mini",
+        "tail": "sae"
+    },
+    {
+        "head": "phi4-mini",
+        "tail": "mech-interp"
+    },
+    {
+        "head": "phi4-mini",
+        "tail": "pts"
+    },
+    {
+        "head": "phi4-mini",
+        "tail": "search"
+    },
+    {
+        "head": "phi4-mini",
+        "tail": "pivotal tokens"
+    },
+    {
+        "head": "phi4-mini",
+        "tail": "language model"
+    },
+    {
+        "head": "reasoning-language-models",
+        "tail": "phi-4"
+    },
+    {
+        "head": "reasoning-language-models",
+        "tail": "llm"
+    },
+    {
+        "head": "reasoning-language-models",
+        "tail": "python"
+    },
+    {
+        "head": "reasoning-language-models",
+        "tail": "phi-4-mini"
+    },
+    {
+        "head": "reasoning-language-models",
+        "tail": "pivotal-token-search"
+    },
+    {
+        "head": "reasoning-language-models",
+        "tail": "dpo"
+    },
+    {
+        "head": "reasoning-language-models",
+        "tail": "llm-inference"
+    },
+    {
+        "head": "reasoning-language-models",
+        "tail": "dataset-generation"
+    },
+    {
+        "head": "reasoning-language-models",
+        "tail": "pivotal-tokens"
+    },
+    {
+        "head": "reasoning-language-models",
+        "tail": "steering-vector"
+    },
+    {
+        "head": "reasoning-language-models",
+        "tail": "sae"
+    },
+    {
+        "head": "reasoning-language-models",
+        "tail": "mech-interp"
+    },
+    {
+        "head": "reasoning-language-models",
+        "tail": "pts"
+    },
+    {
+        "head": "reasoning-language-models",
+        "tail": "search"
+    },
+    {
+        "head": "reasoning-language-models",
+        "tail": "pivotal tokens"
+    },
+    {
+        "head": "reasoning-language-models",
+        "tail": "language model"
+    },
+    {
+        "head": "phi-4",
+        "tail": "llm"
+    },
+    {
+        "head": "phi-4",
+        "tail": "python"
+    },
+    {
+        "head": "phi-4",
+        "tail": "phi-4-mini"
+    },
+    {
+        "head": "phi-4",
+        "tail": "pivotal-token-search"
+    },
+    {
+        "head": "phi-4",
+        "tail": "dpo"
+    },
+    {
+        "head": "phi-4",
+        "tail": "llm-inference"
+    },
+    {
+        "head": "phi-4",
+        "tail": "dataset-generation"
+    },
+    {
+        "head": "phi-4",
+        "tail": "pivotal-tokens"
+    },
+    {
+        "head": "phi-4",
+        "tail": "steering-vector"
+    },
+    {
+        "head": "phi-4",
+        "tail": "sae"
+    },
+    {
+        "head": "phi-4",
+        "tail": "mech-interp"
+    },
+    {
+        "head": "phi-4",
+        "tail": "pts"
+    },
+    {
+        "head": "phi-4",
+        "tail": "search"
+    },
+    {
+        "head": "phi-4",
+        "tail": "pivotal tokens"
+    },
+    {
+        "head": "phi-4",
+        "tail": "language model"
+    },
+    {
+        "head": "llm",
+        "tail": "phi-4-mini"
+    },
+    {
+        "head": "llm",
+        "tail": "pivotal-token-search"
+    },
+    {
+        "head": "llm",
+        "tail": "dpo"
+    },
+    {
+        "head": "llm",
+        "tail": "dataset-generation"
+    },
+    {
+        "head": "llm",
+        "tail": "pivotal-tokens"
+    },
+    {
+        "head": "llm",
+        "tail": "steering-vector"
+    },
+    {
+        "head": "llm",
+        "tail": "sae"
+    },
+    {
+        "head": "llm",
+        "tail": "mech-interp"
+    },
+    {
+        "head": "llm",
+        "tail": "pts"
+    },
+    {
+        "head": "llm",
+        "tail": "pivotal tokens"
+    },
+    {
+        "head": "llm",
+        "tail": "language model"
+    },
+    {
+        "head": "python",
+        "tail": "phi-4-mini"
+    },
+    {
+        "head": "python",
+        "tail": "pivotal-token-search"
+    },
+    {
+        "head": "python",
+        "tail": "dpo"
+    },
+    {
+        "head": "python",
+        "tail": "llm-inference"
+    },
+    {
+        "head": "python",
+        "tail": "dataset-generation"
+    },
+    {
+        "head": "python",
+        "tail": "pivotal-tokens"
+    },
+    {
+        "head": "python",
+        "tail": "steering-vector"
+    },
+    {
+        "head": "python",
+        "tail": "sae"
+    },
+    {
+        "head": "python",
+        "tail": "mech-interp"
+    },
+    {
+        "head": "python",
+        "tail": "pts"
+    },
+    {
+        "head": "python",
+        "tail": "pivotal tokens"
+    },
+    {
+        "head": "phi-4-mini",
+        "tail": "pivotal-token-search"
+    },
+    {
+        "head": "phi-4-mini",
+        "tail": "dpo"
+    },
+    {
+        "head": "phi-4-mini",
+        "tail": "llm-inference"
+    },
+    {
+        "head": "phi-4-mini",
+        "tail": "dataset-generation"
+    },
+    {
+        "head": "phi-4-mini",
+        "tail": "pivotal-tokens"
+    },
+    {
+        "head": "phi-4-mini",
+        "tail": "steering-vector"
+    },
+    {
+        "head": "phi-4-mini",
+        "tail": "sae"
+    },
+    {
+        "head": "phi-4-mini",
+        "tail": "mech-interp"
+    },
+    {
+        "head": "phi-4-mini",
+        "tail": "pts"
+    },
+    {
+        "head": "phi-4-mini",
+        "tail": "search"
+    },
+    {
+        "head": "phi-4-mini",
+        "tail": "pivotal tokens"
+    },
+    {
+        "head": "phi-4-mini",
+        "tail": "language model"
+    },
+    {
+        "head": "pivotal-token-search",
+        "tail": "dpo"
+    },
+    {
+        "head": "pivotal-token-search",
+        "tail": "llm-inference"
+    },
+    {
+        "head": "pivotal-token-search",
+        "tail": "dataset-generation"
+    },
+    {
+        "head": "pivotal-token-search",
+        "tail": "pivotal-tokens"
+    },
+    {
+        "head": "pivotal-token-search",
+        "tail": "steering-vector"
+    },
+    {
+        "head": "pivotal-token-search",
+        "tail": "sae"
+    },
+    {
+        "head": "pivotal-token-search",
+        "tail": "mech-interp"
+    },
+    {
+        "head": "pivotal-token-search",
+        "tail": "pts"
+    },
+    {
+        "head": "pivotal-token-search",
+        "tail": "search"
+    },
+    {
+        "head": "pivotal-token-search",
+        "tail": "pivotal tokens"
+    },
+    {
+        "head": "pivotal-token-search",
+        "tail": "language model"
+    },
+    {
+        "head": "dpo",
+        "tail": "llm-inference"
+    },
+    {
+        "head": "dpo",
+        "tail": "dataset-generation"
+    },
+    {
+        "head": "dpo",
+        "tail": "pivotal-tokens"
+    },
+    {
+        "head": "dpo",
+        "tail": "steering-vector"
+    },
+    {
+        "head": "dpo",
+        "tail": "sae"
+    },
+    {
+        "head": "dpo",
+        "tail": "mech-interp"
+    },
+    {
+        "head": "dpo",
+        "tail": "pts"
+    },
+    {
+        "head": "dpo",
+        "tail": "search"
+    },
+    {
+        "head": "dpo",
+        "tail": "pivotal tokens"
+    },
+    {
+        "head": "llm-inference",
+        "tail": "dataset-generation"
+    },
+    {
+        "head": "llm-inference",
+        "tail": "pivotal-tokens"
+    },
+    {
+        "head": "llm-inference",
+        "tail": "steering-vector"
+    },
+    {
+        "head": "llm-inference",
+        "tail": "sae"
+    },
+    {
+        "head": "llm-inference",
+        "tail": "mech-interp"
+    },
+    {
+        "head": "llm-inference",
+        "tail": "pts"
+    },
+    {
+        "head": "llm-inference",
+        "tail": "search"
+    },
+    {
+        "head": "llm-inference",
+        "tail": "pivotal tokens"
+    },
+    {
+        "head": "llm-inference",
+        "tail": "language model"
+    },
+    {
+        "head": "dataset-generation",
+        "tail": "pivotal-tokens"
+    },
+    {
+        "head": "dataset-generation",
+        "tail": "steering-vector"
+    },
+    {
+        "head": "dataset-generation",
+        "tail": "sae"
+    },
+    {
+        "head": "dataset-generation",
+        "tail": "mech-interp"
+    },
+    {
+        "head": "dataset-generation",
+        "tail": "pts"
+    },
+    {
+        "head": "dataset-generation",
+        "tail": "search"
+    },
+    {
+        "head": "dataset-generation",
+        "tail": "pivotal tokens"
+    },
+    {
+        "head": "dataset-generation",
+        "tail": "language model"
+    },
+    {
+        "head": "pivotal-tokens",
+        "tail": "steering-vector"
+    },
+    {
+        "head": "pivotal-tokens",
+        "tail": "sae"
+    },
+    {
+        "head": "pivotal-tokens",
+        "tail": "mech-interp"
+    },
+    {
+        "head": "pivotal-tokens",
+        "tail": "pts"
+    },
+    {
+        "head": "pivotal-tokens",
+        "tail": "search"
+    },
+    {
+        "head": "pivotal-tokens",
+        "tail": "pivotal tokens"
+    },
+    {
+        "head": "pivotal-tokens",
+        "tail": "language model"
+    },
+    {
+        "head": "steering-vector",
+        "tail": "sae"
+    },
+    {
+        "head": "steering-vector",
+        "tail": "mech-interp"
+    },
+    {
+        "head": "steering-vector",
+        "tail": "pts"
+    },
+    {
+        "head": "steering-vector",
+        "tail": "search"
+    },
+    {
+        "head": "steering-vector",
+        "tail": "pivotal tokens"
+    },
+    {
+        "head": "steering-vector",
+        "tail": "language model"
+    },
+    {
+        "head": "sae",
+        "tail": "mech-interp"
+    },
+    {
+        "head": "sae",
+        "tail": "pts"
+    },
+    {
+        "head": "sae",
+        "tail": "search"
+    },
+    {
+        "head": "sae",
+        "tail": "pivotal tokens"
+    },
+    {
+        "head": "sae",
+        "tail": "language model"
+    },
+    {
+        "head": "mech-interp",
+        "tail": "pts"
+    },
+    {
+        "head": "mech-interp",
+        "tail": "search"
+    },
+    {
+        "head": "mech-interp",
+        "tail": "pivotal tokens"
+    },
+    {
+        "head": "mech-interp",
+        "tail": "language model"
+    },
+    {
+        "head": "pts",
+        "tail": "search"
+    },
+    {
+        "head": "pts",
+        "tail": "pivotal tokens"
+    },
+    {
+        "head": "pts",
+        "tail": "language model"
+    },
+    {
+        "head": "search",
+        "tail": "pivotal tokens"
+    },
+    {
+        "head": "search",
+        "tail": "language model"
+    },
+    {
+        "head": "pivotal tokens",
+        "tail": "language model"
+    },
+    {
+        "head": "python",
+        "tail": "pre-trained"
+    },
+    {
+        "head": "clip",
+        "tail": "data"
+    },
+    {
+        "head": "clip",
+        "tail": "code"
+    },
+    {
+        "head": "clip",
+        "tail": "training"
+    },
+    {
+        "head": "clip",
+        "tail": "pre-trained"
+    },
+    {
+        "head": "data",
+        "tail": "pre-trained"
+    },
+    {
+        "head": "code",
+        "tail": "pre-trained"
+    },
+    {
+        "head": "training",
+        "tail": "pre-trained"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "beir"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "freshstack"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "beir"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "freshstack"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "beir"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "evaluation"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "freshstack"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "ir"
+    },
+    {
+        "head": "beir",
+        "tail": "evaluation"
+    },
+    {
+        "head": "beir",
+        "tail": "freshstack"
+    },
+    {
+        "head": "beir",
+        "tail": "retrieval"
+    },
+    {
+        "head": "beir",
+        "tail": "benchmarks"
+    },
+    {
+        "head": "beir",
+        "tail": "ir"
+    },
+    {
+        "head": "benchmark",
+        "tail": "evaluation"
+    },
+    {
+        "head": "benchmark",
+        "tail": "freshstack"
+    },
+    {
+        "head": "benchmark",
+        "tail": "ir"
+    },
+    {
+        "head": "evaluation",
+        "tail": "freshstack"
+    },
+    {
+        "head": "evaluation",
+        "tail": "information retrieval"
+    },
+    {
+        "head": "evaluation",
+        "tail": "retrieval"
+    },
+    {
+        "head": "evaluation",
+        "tail": "ir"
+    },
+    {
+        "head": "freshstack",
+        "tail": "information retrieval"
+    },
+    {
+        "head": "freshstack",
+        "tail": "retrieval"
+    },
+    {
+        "head": "freshstack",
+        "tail": "benchmarks"
+    },
+    {
+        "head": "freshstack",
+        "tail": "ir"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "benchmarks"
+    },
+    {
+        "head": "retrieval",
+        "tail": "ir"
+    },
+    {
+        "head": "benchmarks",
+        "tail": "ir"
+    },
+    {
+        "head": "dpo",
+        "tail": "hugging face"
+    },
+    {
+        "head": "llm",
+        "tail": "hugging face"
+    },
+    {
+        "head": "pivotal tokens",
+        "tail": "training"
+    },
+    {
+        "head": "pivotal tokens",
+        "tail": "hugging face"
+    },
+    {
+        "head": "pts",
+        "tail": "training"
+    },
+    {
+        "head": "pts",
+        "tail": "hugging face"
+    },
+    {
+        "head": "search",
+        "tail": "training"
+    },
+    {
+        "head": "search",
+        "tail": "hugging face"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "phi-4"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "pivotal tokens"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "phi-4"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "pivotal tokens"
+    },
+    {
+        "head": "phi-4",
+        "tail": "training"
+    },
+    {
+        "head": "phi-4",
+        "tail": "data"
+    },
+    {
+        "head": "phi-4",
+        "tail": "model"
+    },
+    {
+        "head": "pivotal tokens",
+        "tail": "data"
+    },
+    {
+        "head": "pivotal tokens",
+        "tail": "model"
+    },
+    {
+        "head": "data",
+        "tail": "model"
+    },
+    {
+        "head": "colbert",
+        "tail": "maturin"
+    },
+    {
+        "head": "colbert",
+        "tail": "max-sim"
+    },
+    {
+        "head": "colbert",
+        "tail": "mixedbread"
+    },
+    {
+        "head": "colbert",
+        "tail": "cpu"
+    },
+    {
+        "head": "colbert",
+        "tail": "efficiency"
+    },
+    {
+        "head": "colbert",
+        "tail": "operator"
+    },
+    {
+        "head": "colbert",
+        "tail": "modern"
+    },
+    {
+        "head": "colbert",
+        "tail": "hardware"
+    },
+    {
+        "head": "maturin",
+        "tail": "max-sim"
+    },
+    {
+        "head": "maturin",
+        "tail": "mixedbread"
+    },
+    {
+        "head": "maturin",
+        "tail": "python"
+    },
+    {
+        "head": "maturin",
+        "tail": "rust"
+    },
+    {
+        "head": "maturin",
+        "tail": "cpu"
+    },
+    {
+        "head": "maturin",
+        "tail": "efficiency"
+    },
+    {
+        "head": "maturin",
+        "tail": "operator"
+    },
+    {
+        "head": "maturin",
+        "tail": "modern"
+    },
+    {
+        "head": "maturin",
+        "tail": "hardware"
+    },
+    {
+        "head": "max-sim",
+        "tail": "mixedbread"
+    },
+    {
+        "head": "max-sim",
+        "tail": "python"
+    },
+    {
+        "head": "max-sim",
+        "tail": "rust"
+    },
+    {
+        "head": "max-sim",
+        "tail": "cpu"
+    },
+    {
+        "head": "max-sim",
+        "tail": "efficiency"
+    },
+    {
+        "head": "max-sim",
+        "tail": "operator"
+    },
+    {
+        "head": "max-sim",
+        "tail": "modern"
+    },
+    {
+        "head": "max-sim",
+        "tail": "hardware"
+    },
+    {
+        "head": "mixedbread",
+        "tail": "python"
+    },
+    {
+        "head": "mixedbread",
+        "tail": "rust"
+    },
+    {
+        "head": "mixedbread",
+        "tail": "cpu"
+    },
+    {
+        "head": "mixedbread",
+        "tail": "efficiency"
+    },
+    {
+        "head": "mixedbread",
+        "tail": "operator"
+    },
+    {
+        "head": "mixedbread",
+        "tail": "modern"
+    },
+    {
+        "head": "mixedbread",
+        "tail": "hardware"
+    },
+    {
+        "head": "rust",
+        "tail": "cpu"
+    },
+    {
+        "head": "rust",
+        "tail": "operator"
+    },
+    {
+        "head": "rust",
+        "tail": "hardware"
+    },
+    {
+        "head": "cpu",
+        "tail": "efficiency"
+    },
+    {
+        "head": "cpu",
+        "tail": "operator"
+    },
+    {
+        "head": "cpu",
+        "tail": "modern"
+    },
+    {
+        "head": "cpu",
+        "tail": "hardware"
+    },
+    {
+        "head": "efficiency",
+        "tail": "operator"
+    },
+    {
+        "head": "efficiency",
+        "tail": "modern"
+    },
+    {
+        "head": "efficiency",
+        "tail": "hardware"
+    },
+    {
+        "head": "operator",
+        "tail": "modern"
+    },
+    {
+        "head": "operator",
+        "tail": "hardware"
+    },
+    {
+        "head": "modern",
+        "tail": "hardware"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "clip"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "collection"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "gather data"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "vision"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "metadata"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "clip"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "collection"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "contrastive learning"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "gather data"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "information retrieval"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "metadata"
+    },
+    {
+        "head": "clip",
+        "tail": "collection"
+    },
+    {
+        "head": "clip",
+        "tail": "contrastive learning"
+    },
+    {
+        "head": "clip",
+        "tail": "datasets"
+    },
+    {
+        "head": "clip",
+        "tail": "gather data"
+    },
+    {
+        "head": "clip",
+        "tail": "information retrieval"
+    },
+    {
+        "head": "clip",
+        "tail": "vision"
+    },
+    {
+        "head": "clip",
+        "tail": "model"
+    },
+    {
+        "head": "clip",
+        "tail": "metadata"
+    },
+    {
+        "head": "collection",
+        "tail": "contrastive learning"
+    },
+    {
+        "head": "collection",
+        "tail": "datasets"
+    },
+    {
+        "head": "collection",
+        "tail": "gather data"
+    },
+    {
+        "head": "collection",
+        "tail": "vision"
+    },
+    {
+        "head": "collection",
+        "tail": "data"
+    },
+    {
+        "head": "collection",
+        "tail": "training"
+    },
+    {
+        "head": "collection",
+        "tail": "model"
+    },
+    {
+        "head": "collection",
+        "tail": "metadata"
+    },
+    {
+        "head": "contrastive learning",
+        "tail": "datasets"
+    },
+    {
+        "head": "contrastive learning",
+        "tail": "gather data"
+    },
+    {
+        "head": "contrastive learning",
+        "tail": "vision"
+    },
+    {
+        "head": "contrastive learning",
+        "tail": "data"
+    },
+    {
+        "head": "contrastive learning",
+        "tail": "metadata"
+    },
+    {
+        "head": "datasets",
+        "tail": "gather data"
+    },
+    {
+        "head": "datasets",
+        "tail": "information retrieval"
+    },
+    {
+        "head": "datasets",
+        "tail": "vision"
+    },
+    {
+        "head": "datasets",
+        "tail": "training"
+    },
+    {
+        "head": "datasets",
+        "tail": "model"
+    },
+    {
+        "head": "datasets",
+        "tail": "metadata"
+    },
+    {
+        "head": "gather data",
+        "tail": "information retrieval"
+    },
+    {
+        "head": "gather data",
+        "tail": "vision"
+    },
+    {
+        "head": "gather data",
+        "tail": "data"
+    },
+    {
+        "head": "gather data",
+        "tail": "training"
+    },
+    {
+        "head": "gather data",
+        "tail": "model"
+    },
+    {
+        "head": "gather data",
+        "tail": "metadata"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "vision"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "metadata"
+    },
+    {
+        "head": "vision",
+        "tail": "training"
+    },
+    {
+        "head": "vision",
+        "tail": "metadata"
+    },
+    {
+        "head": "data",
+        "tail": "metadata"
+    },
+    {
+        "head": "training",
+        "tail": "metadata"
+    },
+    {
+        "head": "model",
+        "tail": "metadata"
     }
 ]

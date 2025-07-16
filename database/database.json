@@ -46079,5 +46079,166 @@
             "knowledge distillation",
             "training"
         ]
+    },
+    "https://github.com/trymirai/uzu": {
+        "extra-tags": [
+            "models",
+            "engine"
+        ],
+        "date": "2025-07-16",
+        "title": "uzu",
+        "summary": "A high-performance inference engine for AI models \n A high-performance inference engine for AI models on Apple Silicon. Key features For a detailed explanation of the architecture, please refer to the documentationhttpsdocs.trymirai.comcomponentsinference-engine. uzu uses its own model format. To export a specific model, use lalamohttpsgithub.comtrymirailalamo. First, get the list of supported models bash uv run lalamo list-models",
+        "tags": [
+            "ai",
+            "metal",
+            "rust",
+            "inference",
+            "llm",
+            "high-performance"
+        ]
+    },
+    "https://github.com/codelion/pts": {
+        "extra-tags": [
+            "pts",
+            "search",
+            "pivotal tokens",
+            "language model"
+        ],
+        "date": "2025-07-16",
+        "title": "pts",
+        "summary": "Pivotal Token Search \n A tool for discovering pivotal tokens in large language model generations and creating DPO datasets and steering vectors from them. Pivotal Token Search PTS is a technique described in the Phi-4 Technical Reporthttpsarxiv.orgabs2412.08905 that identifies tokens in a language model's generation that significantly impact the probability of success for the task at hand. These pivotal tokens are decision points where the model's choice can dramatically alter the course of the solution.",
+        "tags": [
+            "llm-steering",
+            "sparse-autoencoder",
+            "reasoning-agent",
+            "phi4",
+            "direct-preference-optimization",
+            "tokens",
+            "reasoning-models",
+            "phi4-mini",
+            "reasoning-language-models",
+            "phi-4",
+            "llm",
+            "python",
+            "phi-4-mini",
+            "pivotal-token-search",
+            "dpo",
+            "llm-inference",
+            "dataset-generation",
+            "pivotal-tokens",
+            "steering-vector",
+            "sae",
+            "mech-interp"
+        ]
+    },
+    "https://github.com/facebookresearch/MetaCLIP": {
+        "extra-tags": [
+            "clip",
+            "data",
+            "code",
+            "training",
+            "pre-trained"
+        ],
+        "date": "2025-07-16",
+        "title": "MetaCLIP",
+        "summary": "ICLR2024 Spotlight: curation/training code, metadata, distribution and pre-trained models for MetaCLIP; CVPR 2024: MoDE: CLIP Data Experts via Clustering \n This repository contains the code for the MetaCLIP, described in the paper Demystifying CLIP Datahttpsarxiv.orgabs2309.16671 that formalizes CLIP data curation as a simple algorithm. The main contributions are We conclude that MetaCLIP is trained w face blurred images. bibtex inproceedingsxu2023metaclip, titleDemystifying CLIP Data, authorHu Xu, Saining Xie, Xiaoqing Ellen Tan, Po-Yao Huang, Russell Howes, Vasu Sharma, Shang-Wen Li, Gargi Ghosh, Luke Zettlemoyer and Christoph Feichtenhofer,",
+        "tags": [
+            "python"
+        ]
+    },
+    "http://arxiv.org/abs/2504.13128": {
+        "extra-tags": [
+            "retrieval",
+            "benchmarks",
+            "ir"
+        ],
+        "title": "FreshStack: Building Realistic Benchmarks for Evaluating Retrieval on Technical Documents",
+        "summary": "We introduce FreshStack, a holistic framework for automatically building information retrieval (IR) evaluation benchmarks by incorporating challenging questions and answers. FreshStack conducts the following steps: (1) automatic corpus collection from code and technical documentation, (2) nugget generation from community-asked questions and answers, and (3) nugget-level support, retrieving documents using a fusion of retrieval techniques and hybrid architectures. We use FreshStack to build five datasets on fast-growing, recent, and niche topics to ensure the tasks are sufficiently challenging. On FreshStack, existing retrieval models, when applied out-of-the-box, significantly underperform oracle approaches on all five topics, denoting plenty of headroom to improve IR quality. In addition, we identify cases where rerankers do not improve first-stage retrieval accuracy (two out of five topics) and oracle context helps an LLM generator generate a high-quality RAG answer. We hope FreshStack will facilitate future work toward constructing realistic, scalable, and uncontaminated IR and RAG evaluation benchmarks.",
+        "date": "2025-07-15",
+        "tags": [
+            "computer science - artificial intelligence",
+            "computer science - computation and language",
+            "computer science - information retrieval",
+            "beir",
+            "benchmark",
+            "evaluation",
+            "freshstack",
+            "information retrieval"
+        ]
+    },
+    "https://huggingface.co/blog/codelion/pts": {
+        "extra-tags": [
+            "search",
+            "training",
+            "hugging face"
+        ],
+        "title": "Introducing Pivotal Token Search (PTS): Targeting Critical Decision Points in LLM Training",
+        "summary": "A Blog post by Asankhaya Sharma on Hugging Face",
+        "date": "2025-07-15",
+        "tags": [
+            "dpo",
+            "llm",
+            "pivotal tokens",
+            "pts"
+        ]
+    },
+    "http://arxiv.org/abs/2412.08905": {
+        "extra-tags": [
+            "training",
+            "data",
+            "model"
+        ],
+        "title": "Phi-4 Technical Report",
+        "summary": "We present phi-4, a 14-billion parameter language model developed with a training recipe that is centrally focused on data quality. Unlike most language models, where pre-training is based primarily on organic data sources such as web content or code, phi-4 strategically incorporates synthetic data throughout the training process. While previous models in the Phi family largely distill the capabilities of a teacher model (specifically GPT-4), phi-4 substantially surpasses its teacher model on STEM-focused QA capabilities, giving evidence that our data-generation and post-training techniques go beyond distillation. Despite minimal changes to the phi-3 architecture, phi-4 achieves strong performance relative to its size -- especially on reasoning-focused benchmarks -- due to improved data, training curriculum, and innovations in the post-training scheme.",
+        "date": "2025-07-15",
+        "tags": [
+            "computer science - artificial intelligence",
+            "computer science - computation and language",
+            "llm",
+            "phi-4",
+            "pivotal tokens"
+        ]
+    },
+    "https://mixedbread.com/blog/maxsim-cpu": {
+        "extra-tags": [
+            "cpu",
+            "efficiency",
+            "operator",
+            "modern",
+            "hardware"
+        ],
+        "title": "maxsim-cpu: Maximising Maxsim Efficiency",
+        "summary": "Introducing maxsim-cpu, a much faster way to compute the late interaction's MaxSim operator on modern CPU hardware, optimised for both x86 and Mac ARM.",
+        "date": "2025-07-15",
+        "tags": [
+            "colbert",
+            "maturin",
+            "max-sim",
+            "mixedbread",
+            "python",
+            "rust"
+        ]
+    },
+    "http://arxiv.org/abs/2309.16671": {
+        "extra-tags": [
+            "data",
+            "training",
+            "model",
+            "metadata"
+        ],
+        "title": "Demystifying CLIP Data",
+        "summary": "Contrastive Language-Image Pre-training (CLIP) is an approach that has advanced research and applications in computer vision, fueling modern recognition systems and generative models. We believe that the main ingredient to the success of CLIP is its data and not the model architecture or pre-training objective. However, CLIP only provides very limited information about its data and how it has been collected, leading to works that aim to reproduce CLIP's data by filtering with its model parameters. In this work, we intend to reveal CLIP's data curation approach and in our pursuit of making it open to the community introduce Metadata-Curated Language-Image Pre-training (MetaCLIP). MetaCLIP takes a raw data pool and metadata (derived from CLIP's concepts) and yields a balanced subset over the metadata distribution. Our experimental study rigorously isolates the model and training settings, concentrating solely on data. MetaCLIP applied to CommonCrawl with 400M image-text data pairs outperforms CLIP's data on multiple standard benchmarks. In zero-shot ImageNet classification, MetaCLIP achieves 70.8% accuracy, surpassing CLIP's 68.3% on ViT-B models. Scaling to 1B data, while maintaining the same training budget, attains 72.4%. Our observations hold across various model sizes, exemplified by ViT-H achieving 80.5%, without any bells-and-whistles. Curation code and training data distribution on metadata is made available at https://github.com/facebookresearch/MetaCLIP.",
+        "date": "2025-07-15",
+        "tags": [
+            "computer science - computation and language",
+            "computer science - computer vision and pattern recognition",
+            "clip",
+            "collection",
+            "contrastive learning",
+            "datasets",
+            "gather data",
+            "information retrieval",
+            "vision"
+        ]
     }
 }
