@@ -213458,5 +213458,869 @@
     {
         "head": "model",
         "tail": "metadata"
+    },
+    {
+        "head": "quantization",
+        "tail": "transformers"
+    },
+    {
+        "head": "quantization",
+        "tail": "habana"
+    },
+    {
+        "head": "quantization",
+        "tail": "onnxruntime"
+    },
+    {
+        "head": "quantization",
+        "tail": "graphcore"
+    },
+    {
+        "head": "quantization",
+        "tail": "optimization"
+    },
+    {
+        "head": "quantization",
+        "tail": "intel"
+    },
+    {
+        "head": "quantization",
+        "tail": "onnx"
+    },
+    {
+        "head": "quantization",
+        "tail": "tflite"
+    },
+    {
+        "head": "quantization",
+        "tail": "hardware"
+    },
+    {
+        "head": "quantization",
+        "tail": "tools"
+    },
+    {
+        "head": "quantization",
+        "tail": "sentence-transformers"
+    },
+    {
+        "head": "transformers",
+        "tail": "inference"
+    },
+    {
+        "head": "transformers",
+        "tail": "habana"
+    },
+    {
+        "head": "transformers",
+        "tail": "onnxruntime"
+    },
+    {
+        "head": "transformers",
+        "tail": "graphcore"
+    },
+    {
+        "head": "transformers",
+        "tail": "optimization"
+    },
+    {
+        "head": "transformers",
+        "tail": "intel"
+    },
+    {
+        "head": "transformers",
+        "tail": "tflite"
+    },
+    {
+        "head": "transformers",
+        "tail": "hardware"
+    },
+    {
+        "head": "transformers",
+        "tail": "tools"
+    },
+    {
+        "head": "inference",
+        "tail": "habana"
+    },
+    {
+        "head": "inference",
+        "tail": "onnxruntime"
+    },
+    {
+        "head": "inference",
+        "tail": "graphcore"
+    },
+    {
+        "head": "inference",
+        "tail": "intel"
+    },
+    {
+        "head": "inference",
+        "tail": "onnx"
+    },
+    {
+        "head": "inference",
+        "tail": "tflite"
+    },
+    {
+        "head": "inference",
+        "tail": "hardware"
+    },
+    {
+        "head": "inference",
+        "tail": "tools"
+    },
+    {
+        "head": "inference",
+        "tail": "sentence-transformers"
+    },
+    {
+        "head": "habana",
+        "tail": "onnxruntime"
+    },
+    {
+        "head": "habana",
+        "tail": "graphcore"
+    },
+    {
+        "head": "habana",
+        "tail": "optimization"
+    },
+    {
+        "head": "habana",
+        "tail": "intel"
+    },
+    {
+        "head": "habana",
+        "tail": "pytorch"
+    },
+    {
+        "head": "habana",
+        "tail": "onnx"
+    },
+    {
+        "head": "habana",
+        "tail": "python"
+    },
+    {
+        "head": "habana",
+        "tail": "training"
+    },
+    {
+        "head": "habana",
+        "tail": "tflite"
+    },
+    {
+        "head": "habana",
+        "tail": "hardware"
+    },
+    {
+        "head": "habana",
+        "tail": "tools"
+    },
+    {
+        "head": "habana",
+        "tail": "sentence-transformers"
+    },
+    {
+        "head": "onnxruntime",
+        "tail": "graphcore"
+    },
+    {
+        "head": "onnxruntime",
+        "tail": "optimization"
+    },
+    {
+        "head": "onnxruntime",
+        "tail": "intel"
+    },
+    {
+        "head": "onnxruntime",
+        "tail": "pytorch"
+    },
+    {
+        "head": "onnxruntime",
+        "tail": "training"
+    },
+    {
+        "head": "onnxruntime",
+        "tail": "tflite"
+    },
+    {
+        "head": "onnxruntime",
+        "tail": "hardware"
+    },
+    {
+        "head": "onnxruntime",
+        "tail": "tools"
+    },
+    {
+        "head": "onnxruntime",
+        "tail": "sentence-transformers"
+    },
+    {
+        "head": "graphcore",
+        "tail": "optimization"
+    },
+    {
+        "head": "graphcore",
+        "tail": "intel"
+    },
+    {
+        "head": "graphcore",
+        "tail": "pytorch"
+    },
+    {
+        "head": "graphcore",
+        "tail": "onnx"
+    },
+    {
+        "head": "graphcore",
+        "tail": "python"
+    },
+    {
+        "head": "graphcore",
+        "tail": "training"
+    },
+    {
+        "head": "graphcore",
+        "tail": "tflite"
+    },
+    {
+        "head": "graphcore",
+        "tail": "hardware"
+    },
+    {
+        "head": "graphcore",
+        "tail": "tools"
+    },
+    {
+        "head": "graphcore",
+        "tail": "sentence-transformers"
+    },
+    {
+        "head": "optimization",
+        "tail": "intel"
+    },
+    {
+        "head": "optimization",
+        "tail": "onnx"
+    },
+    {
+        "head": "optimization",
+        "tail": "tflite"
+    },
+    {
+        "head": "optimization",
+        "tail": "hardware"
+    },
+    {
+        "head": "optimization",
+        "tail": "tools"
+    },
+    {
+        "head": "optimization",
+        "tail": "sentence-transformers"
+    },
+    {
+        "head": "intel",
+        "tail": "pytorch"
+    },
+    {
+        "head": "intel",
+        "tail": "onnx"
+    },
+    {
+        "head": "intel",
+        "tail": "python"
+    },
+    {
+        "head": "intel",
+        "tail": "training"
+    },
+    {
+        "head": "intel",
+        "tail": "tflite"
+    },
+    {
+        "head": "intel",
+        "tail": "hardware"
+    },
+    {
+        "head": "intel",
+        "tail": "tools"
+    },
+    {
+        "head": "intel",
+        "tail": "sentence-transformers"
+    },
+    {
+        "head": "pytorch",
+        "tail": "tflite"
+    },
+    {
+        "head": "pytorch",
+        "tail": "hardware"
+    },
+    {
+        "head": "pytorch",
+        "tail": "tools"
+    },
+    {
+        "head": "onnx",
+        "tail": "training"
+    },
+    {
+        "head": "onnx",
+        "tail": "tflite"
+    },
+    {
+        "head": "onnx",
+        "tail": "hardware"
+    },
+    {
+        "head": "onnx",
+        "tail": "tools"
+    },
+    {
+        "head": "python",
+        "tail": "tflite"
+    },
+    {
+        "head": "training",
+        "tail": "tflite"
+    },
+    {
+        "head": "training",
+        "tail": "hardware"
+    },
+    {
+        "head": "training",
+        "tail": "tools"
+    },
+    {
+        "head": "training",
+        "tail": "sentence-transformers"
+    },
+    {
+        "head": "tflite",
+        "tail": "hardware"
+    },
+    {
+        "head": "tflite",
+        "tail": "tools"
+    },
+    {
+        "head": "tflite",
+        "tail": "sentence-transformers"
+    },
+    {
+        "head": "hardware",
+        "tail": "tools"
+    },
+    {
+        "head": "hardware",
+        "tail": "sentence-transformers"
+    },
+    {
+        "head": "tools",
+        "tail": "sentence-transformers"
+    },
+    {
+        "head": "python",
+        "tail": "encoder"
+    },
+    {
+        "head": "python",
+        "tail": "decoder"
+    },
+    {
+        "head": "encoder",
+        "tail": "decoder"
+    },
+    {
+        "head": "decoder",
+        "tail": "models"
+    },
+    {
+        "head": "decoder",
+        "tail": "state-of-the-art"
+    },
+    {
+        "head": "search",
+        "tail": "apache2"
+    },
+    {
+        "head": "search",
+        "tail": "foss"
+    },
+    {
+        "head": "search",
+        "tail": "analytics"
+    },
+    {
+        "head": "search",
+        "tail": "source"
+    },
+    {
+        "head": "search",
+        "tail": "community"
+    },
+    {
+        "head": "search",
+        "tail": "wikipedia"
+    },
+    {
+        "head": "apache2",
+        "tail": "foss"
+    },
+    {
+        "head": "apache2",
+        "tail": "analytics"
+    },
+    {
+        "head": "apache2",
+        "tail": "java"
+    },
+    {
+        "head": "apache2",
+        "tail": "search-engine"
+    },
+    {
+        "head": "apache2",
+        "tail": "opensearch"
+    },
+    {
+        "head": "apache2",
+        "tail": "source"
+    },
+    {
+        "head": "apache2",
+        "tail": "community"
+    },
+    {
+        "head": "apache2",
+        "tail": "wikipedia"
+    },
+    {
+        "head": "foss",
+        "tail": "analytics"
+    },
+    {
+        "head": "foss",
+        "tail": "java"
+    },
+    {
+        "head": "foss",
+        "tail": "search-engine"
+    },
+    {
+        "head": "foss",
+        "tail": "opensearch"
+    },
+    {
+        "head": "foss",
+        "tail": "source"
+    },
+    {
+        "head": "foss",
+        "tail": "community"
+    },
+    {
+        "head": "foss",
+        "tail": "wikipedia"
+    },
+    {
+        "head": "analytics",
+        "tail": "search-engine"
+    },
+    {
+        "head": "analytics",
+        "tail": "opensearch"
+    },
+    {
+        "head": "analytics",
+        "tail": "community"
+    },
+    {
+        "head": "analytics",
+        "tail": "wikipedia"
+    },
+    {
+        "head": "java",
+        "tail": "search-engine"
+    },
+    {
+        "head": "java",
+        "tail": "opensearch"
+    },
+    {
+        "head": "java",
+        "tail": "source"
+    },
+    {
+        "head": "java",
+        "tail": "community"
+    },
+    {
+        "head": "java",
+        "tail": "wikipedia"
+    },
+    {
+        "head": "search-engine",
+        "tail": "opensearch"
+    },
+    {
+        "head": "search-engine",
+        "tail": "source"
+    },
+    {
+        "head": "search-engine",
+        "tail": "community"
+    },
+    {
+        "head": "search-engine",
+        "tail": "wikipedia"
+    },
+    {
+        "head": "opensearch",
+        "tail": "source"
+    },
+    {
+        "head": "opensearch",
+        "tail": "community"
+    },
+    {
+        "head": "opensearch",
+        "tail": "wikipedia"
+    },
+    {
+        "head": "source",
+        "tail": "community"
+    },
+    {
+        "head": "source",
+        "tail": "wikipedia"
+    },
+    {
+        "head": "community",
+        "tail": "wikipedia"
+    },
+    {
+        "head": "search",
+        "tail": "ranking"
+    },
+    {
+        "head": "search",
+        "tail": "chess"
+    },
+    {
+        "head": "ranking",
+        "tail": "chess"
+    },
+    {
+        "head": "manager",
+        "tail": "engineer"
+    },
+    {
+        "head": "manager",
+        "tail": "engineering"
+    },
+    {
+        "head": "engineer",
+        "tail": "engineering"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "decoder"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "encoder from decoder"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "encoder vs decoder"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "lighton"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "orion"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "decoder"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "encoder"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "encoder from decoder"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "encoder vs decoder"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "lighton"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "orion"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "decoder"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "encoder"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "encoder from decoder"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "encoder vs decoder"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "lighton"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "orion"
+    },
+    {
+        "head": "llm",
+        "tail": "decoder"
+    },
+    {
+        "head": "llm",
+        "tail": "encoder from decoder"
+    },
+    {
+        "head": "llm",
+        "tail": "encoder vs decoder"
+    },
+    {
+        "head": "llm",
+        "tail": "lighton"
+    },
+    {
+        "head": "llm",
+        "tail": "orion"
+    },
+    {
+        "head": "decoder",
+        "tail": "encoder from decoder"
+    },
+    {
+        "head": "decoder",
+        "tail": "encoder vs decoder"
+    },
+    {
+        "head": "decoder",
+        "tail": "lighton"
+    },
+    {
+        "head": "decoder",
+        "tail": "orion"
+    },
+    {
+        "head": "decoder",
+        "tail": "training"
+    },
+    {
+        "head": "encoder",
+        "tail": "encoder from decoder"
+    },
+    {
+        "head": "encoder",
+        "tail": "encoder vs decoder"
+    },
+    {
+        "head": "encoder",
+        "tail": "lighton"
+    },
+    {
+        "head": "encoder",
+        "tail": "orion"
+    },
+    {
+        "head": "encoder",
+        "tail": "training"
+    },
+    {
+        "head": "encoder from decoder",
+        "tail": "encoder vs decoder"
+    },
+    {
+        "head": "encoder from decoder",
+        "tail": "lighton"
+    },
+    {
+        "head": "encoder from decoder",
+        "tail": "orion"
+    },
+    {
+        "head": "encoder from decoder",
+        "tail": "models"
+    },
+    {
+        "head": "encoder from decoder",
+        "tail": "training"
+    },
+    {
+        "head": "encoder vs decoder",
+        "tail": "lighton"
+    },
+    {
+        "head": "encoder vs decoder",
+        "tail": "orion"
+    },
+    {
+        "head": "encoder vs decoder",
+        "tail": "models"
+    },
+    {
+        "head": "encoder vs decoder",
+        "tail": "training"
+    },
+    {
+        "head": "lighton",
+        "tail": "orion"
+    },
+    {
+        "head": "lighton",
+        "tail": "models"
+    },
+    {
+        "head": "lighton",
+        "tail": "training"
+    },
+    {
+        "head": "orion",
+        "tail": "models"
+    },
+    {
+        "head": "orion",
+        "tail": "training"
+    },
+    {
+        "head": "decoder",
+        "tail": "efficient"
+    },
+    {
+        "head": "decoder",
+        "tail": "sigir"
+    },
+    {
+        "head": "decoder",
+        "tail": "text"
+    },
+    {
+        "head": "decoder",
+        "tail": "retrieval"
+    },
+    {
+        "head": "decoder",
+        "tail": "vector"
+    },
+    {
+        "head": "decoder",
+        "tail": "information retrieval"
+    },
+    {
+        "head": "efficient",
+        "tail": "encoder"
+    },
+    {
+        "head": "efficient",
+        "tail": "encoder from decoder"
+    },
+    {
+        "head": "efficient",
+        "tail": "sigir"
+    },
+    {
+        "head": "efficient",
+        "tail": "text"
+    },
+    {
+        "head": "efficient",
+        "tail": "retrieval"
+    },
+    {
+        "head": "efficient",
+        "tail": "vector"
+    },
+    {
+        "head": "efficient",
+        "tail": "information retrieval"
+    },
+    {
+        "head": "encoder",
+        "tail": "sigir"
+    },
+    {
+        "head": "encoder",
+        "tail": "retrieval"
+    },
+    {
+        "head": "encoder",
+        "tail": "vector"
+    },
+    {
+        "head": "encoder from decoder",
+        "tail": "sigir"
+    },
+    {
+        "head": "encoder from decoder",
+        "tail": "text"
+    },
+    {
+        "head": "encoder from decoder",
+        "tail": "retrieval"
+    },
+    {
+        "head": "encoder from decoder",
+        "tail": "vector"
+    },
+    {
+        "head": "encoder from decoder",
+        "tail": "information retrieval"
+    },
+    {
+        "head": "sigir",
+        "tail": "text"
+    },
+    {
+        "head": "sigir",
+        "tail": "vector"
+    },
+    {
+        "head": "sigir",
+        "tail": "information retrieval"
+    },
+    {
+        "head": "text",
+        "tail": "vector"
+    },
+    {
+        "head": "retrieval",
+        "tail": "vector"
+    },
+    {
+        "head": "vector",
+        "tail": "information retrieval"
     }
 ]

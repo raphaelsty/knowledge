@@ -46240,5 +46240,128 @@
             "information retrieval",
             "vision"
         ]
+    },
+    "https://github.com/huggingface/optimum": {
+        "extra-tags": [
+            "hardware",
+            "tools",
+            "sentence-transformers"
+        ],
+        "date": "2025-07-17",
+        "title": "optimum",
+        "summary": "\ud83d\ude80 Accelerate inference and training of \ud83e\udd17 Transformers, Diffusers, TIMM and Sentence Transformers with easy to use hardware optimization tools \n Optimum Optimum is an extension of Transformers Diffusers TIMM and Sentence-Transformers , providing a set of optimization tools and enabling maximum efficiency to train and run models on targeted hardware, while keeping things easy to use. Optimum can be installed using pip as follows bash python -m pip install optimum",
+        "tags": [
+            "quantization",
+            "transformers",
+            "inference",
+            "habana",
+            "onnxruntime",
+            "graphcore",
+            "optimization",
+            "intel",
+            "pytorch",
+            "onnx",
+            "python",
+            "training",
+            "tflite"
+        ]
+    },
+    "https://github.com/JHU-CLSP/ettin-encoder-vs-decoder": {
+        "extra-tags": [
+            "encoder",
+            "decoder",
+            "models",
+            "state-of-the-art"
+        ],
+        "date": "2025-07-17",
+        "title": "ettin-encoder-vs-decoder",
+        "summary": "State-of-the-art paired encoder and decoder models (17M-1B params) \n Paperhttpsarxiv.orgabs2507.11412 Model Collectionhttpshuggingface.cojhu-clsp Training Datahttpshuggingface.codatasetsjhu-clsp This repository contains the first collection of paired encoder-only and decoder-only models trained with identical data, architecture, and training recipes. Ettin enables fair comparisons between encoder and decoder architectures across multiple scales, providing state-of-the-art performance for open-data models in their respective size categories.",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/opensearch-project/OpenSearch": {
+        "extra-tags": [
+            "opensearch",
+            "source",
+            "community",
+            "wikipedia"
+        ],
+        "date": "2025-07-17",
+        "title": "OpenSearch",
+        "summary": "\ud83d\udd0e Open source distributed and RESTful search engine. \n OpenSearch is a community-driven, open source forkhttpsaws.amazon.comblogsopensourceintroducing-opensearch of Elasticsearchhttpsen.wikipedia.orgwikiElasticsearch and Kibanahttpsen.wikipedia.orgwikiKibana following the license changehttpsblog.opensource.orgthe-sspl-is-not-an-open-source-license in early 2021. We're looking to sustain and evolve! a search and analytics suite for the multitude of businesses who are dependent on the rights granted by the original, Apache v2.0 LicenseLICENSE.txt. The project's Code of ConductCODEOFCONDUCT.md outlines our expectations for all participants in our community, based on the OpenSearch Code of Conducthttpsopensearch.orgcode-of-conduct. Please contact conductopensearch.foundationmailtoconductopensearch.foundation with any additional questions or comments.",
+        "tags": [
+            "search",
+            "apache2",
+            "foss",
+            "analytics",
+            "java",
+            "search-engine"
+        ]
+    },
+    "https://www.zeroentropy.dev/blog/improving-rag-with-elo-scores": {
+        "extra-tags": [
+            "search",
+            "ranking",
+            "chess"
+        ],
+        "title": "Hackernews Show HN: Improving search ranking with chess Elo scores (zeroentropy.dev)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2025-07-17"
+    },
+    "https://humansinsystems.com/blog/new-manager-essentials-a-practical-guide-to-your-first-months": {
+        "extra-tags": [
+            "manager",
+            "engineer",
+            "engineering"
+        ],
+        "title": "Hackernews From engineer to manager: A practical guide to your first months in leadership (humansinsystems.com)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "New Manager Essentials: A Practical Guide to Your First Months in Leadership Here you are, a new manager. Congrats! Perhaps, you\u2019ve been an Individual Contributor (IC) for a while, patiently waiting for the right moment to step into an Engineering Manager (EM) role. You've studied management books, offered mentorship within",
+        "date": "2025-07-17"
+    },
+    "http://arxiv.org/abs/2507.11412": {
+        "extra-tags": [
+            "models",
+            "training"
+        ],
+        "title": "Seq vs Seq: An Open Suite of Paired Encoders and Decoders",
+        "summary": "The large language model (LLM) community focuses almost exclusively on decoder-only language models, since they are easier to use for text generation. However, a large subset of the community still uses encoder-only models for tasks such as classification or retrieval. Previous work has attempted to compare these architectures, but is forced to make comparisons with models that have different numbers of parameters, training techniques, and datasets. We introduce the SOTA open-data Ettin suite of models: paired encoder-only and decoder-only models ranging from 17 million parameters to 1 billion, trained on up to 2 trillion tokens. Using the same recipe for both encoder-only and decoder-only models produces SOTA recipes in both categories for their respective sizes, beating ModernBERT as an encoder and Llama 3.2 and SmolLM2 as decoders. Like previous work, we find that encoder-only models excel at classification and retrieval tasks while decoders excel at generative tasks. However, we show that adapting a decoder model to encoder tasks (and vice versa) through continued training is subpar compared to using only the reverse objective (i.e. a 400M encoder outperforms a 1B decoder on MNLI, and vice versa for generative tasks). We open-source all artifacts of this study including training data, training order segmented by checkpoint, and 200+ checkpoints to allow future work to analyze or extend all aspects of training.",
+        "date": "2025-07-16",
+        "tags": [
+            "computer science - computation and language",
+            "computer science - information retrieval",
+            "computer science - machine learning",
+            "llm",
+            "decoder",
+            "encoder",
+            "encoder from decoder",
+            "encoder vs decoder",
+            "lighton",
+            "orion"
+        ]
+    },
+    "https://dl.acm.org/doi/10.1145/3726302.3730094": {
+        "extra-tags": [
+            "text",
+            "retrieval",
+            "vector",
+            "information retrieval"
+        ],
+        "title": "TITE: Token-Independent Text Encoder for Information Retrieval",
+        "summary": "Transformer-based retrieval approaches typically use the contextualized embedding of the first input token as a dense vector representation for queries and documents. The embeddings of all other tokens are also computed but then discarded, wasting resources. In this paper, we propose the Token-Independent Text Encoder (TITE) as a more efficient modification of the backbone encoder model. Using an attention-based pooling technique, TITE iteratively reduces the sequence length of hidden states layer by layer so that the final output is already a single sequence representation vector. Our empirical analyses on the TREC 2019 and 2020 Deep Learning tracks and the BEIR benchmark show that TITE is on par in terms of effectiveness compared to standard bi-encoder retrieval models while being up to 3.3 times faster at encoding queries and documents. Our code is available at: https://github.com/webis-de/SIGIR-25.",
+        "date": "2025-07-16",
+        "tags": [
+            "decoder",
+            "efficient",
+            "encoder",
+            "encoder from decoder",
+            "sigir"
+        ]
     }
 }
