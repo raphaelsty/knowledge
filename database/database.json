@@ -46363,5 +46363,33 @@
             "encoder from decoder",
             "sigir"
         ]
+    },
+    "https://blog.jxmo.io/p/there-is-only-one-model": {
+        "extra-tags": [
+            "ai",
+            "models",
+            "game"
+        ],
+        "title": "Hackernews All AI models might be the same (jxmo.io)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "All AI Models Might Be The Same What can language model embeddings tell us about understanding whale speech and decrypting ancient texts? On the Platonic Representation Hypothesis and 'universality' in AI models Growing up, I sometimes played a game with my friends called \u201cMussolini or Bread.\u201d It\u2019s a guessing game,",
+        "date": "2025-07-18"
+    },
+    "https://huggingface.co/vikhyatk/datasets": {
+        "extra-tags": [
+            "profile",
+            "hugging face"
+        ],
+        "title": "vikhyatk (Vik Korrapati)",
+        "summary": "User profile of Vik Korrapati on Hugging Face",
+        "date": "2025-07-17",
+        "tags": [
+            "dataset",
+            "huggingface",
+            "multimodal",
+            "vlm"
+        ]
     }
 }

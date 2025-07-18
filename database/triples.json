@@ -214322,5 +214322,57 @@
     {
         "head": "vector",
         "tail": "information retrieval"
+    },
+    {
+        "head": "models",
+        "tail": "game"
+    },
+    {
+        "head": "dataset",
+        "tail": "vlm"
+    },
+    {
+        "head": "dataset",
+        "tail": "profile"
+    },
+    {
+        "head": "dataset",
+        "tail": "hugging face"
+    },
+    {
+        "head": "huggingface",
+        "tail": "multimodal"
+    },
+    {
+        "head": "huggingface",
+        "tail": "vlm"
+    },
+    {
+        "head": "huggingface",
+        "tail": "profile"
+    },
+    {
+        "head": "huggingface",
+        "tail": "hugging face"
+    },
+    {
+        "head": "multimodal",
+        "tail": "vlm"
+    },
+    {
+        "head": "multimodal",
+        "tail": "profile"
+    },
+    {
+        "head": "multimodal",
+        "tail": "hugging face"
+    },
+    {
+        "head": "vlm",
+        "tail": "profile"
+    },
+    {
+        "head": "profile",
+        "tail": "hugging face"
     }
 ]
