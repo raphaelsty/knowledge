@@ -214374,5 +214374,1649 @@
     {
         "head": "profile",
         "tail": "hugging face"
+    },
+    {
+        "head": "dpr",
+        "tail": "education"
+    },
+    {
+        "head": "dpr",
+        "tail": "remote-teaching"
+    },
+    {
+        "head": "dpr",
+        "tail": "search-engine"
+    },
+    {
+        "head": "dpr",
+        "tail": "teaching"
+    },
+    {
+        "head": "dpr",
+        "tail": "course"
+    },
+    {
+        "head": "dpr",
+        "tail": "information retrieval"
+    },
+    {
+        "head": "dpr",
+        "tail": "open-source"
+    },
+    {
+        "head": "education",
+        "tail": "remote-teaching"
+    },
+    {
+        "head": "education",
+        "tail": "search-engine"
+    },
+    {
+        "head": "education",
+        "tail": "teaching"
+    },
+    {
+        "head": "education",
+        "tail": "course"
+    },
+    {
+        "head": "education",
+        "tail": "deep-learning"
+    },
+    {
+        "head": "education",
+        "tail": "neural-ir"
+    },
+    {
+        "head": "education",
+        "tail": "information-retrieval"
+    },
+    {
+        "head": "education",
+        "tail": "information retrieval"
+    },
+    {
+        "head": "education",
+        "tail": "open-source"
+    },
+    {
+        "head": "remote-teaching",
+        "tail": "search-engine"
+    },
+    {
+        "head": "remote-teaching",
+        "tail": "python"
+    },
+    {
+        "head": "remote-teaching",
+        "tail": "teaching"
+    },
+    {
+        "head": "remote-teaching",
+        "tail": "course"
+    },
+    {
+        "head": "remote-teaching",
+        "tail": "deep-learning"
+    },
+    {
+        "head": "remote-teaching",
+        "tail": "neural-ir"
+    },
+    {
+        "head": "remote-teaching",
+        "tail": "information-retrieval"
+    },
+    {
+        "head": "remote-teaching",
+        "tail": "information retrieval"
+    },
+    {
+        "head": "remote-teaching",
+        "tail": "open-source"
+    },
+    {
+        "head": "search-engine",
+        "tail": "teaching"
+    },
+    {
+        "head": "search-engine",
+        "tail": "course"
+    },
+    {
+        "head": "search-engine",
+        "tail": "deep-learning"
+    },
+    {
+        "head": "search-engine",
+        "tail": "neural-ir"
+    },
+    {
+        "head": "search-engine",
+        "tail": "information retrieval"
+    },
+    {
+        "head": "python",
+        "tail": "teaching"
+    },
+    {
+        "head": "python",
+        "tail": "course"
+    },
+    {
+        "head": "teaching",
+        "tail": "course"
+    },
+    {
+        "head": "teaching",
+        "tail": "deep-learning"
+    },
+    {
+        "head": "teaching",
+        "tail": "neural-ir"
+    },
+    {
+        "head": "teaching",
+        "tail": "information-retrieval"
+    },
+    {
+        "head": "teaching",
+        "tail": "information retrieval"
+    },
+    {
+        "head": "teaching",
+        "tail": "open-source"
+    },
+    {
+        "head": "course",
+        "tail": "deep-learning"
+    },
+    {
+        "head": "course",
+        "tail": "neural-ir"
+    },
+    {
+        "head": "course",
+        "tail": "information-retrieval"
+    },
+    {
+        "head": "course",
+        "tail": "information retrieval"
+    },
+    {
+        "head": "course",
+        "tail": "open-source"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "neural-ir"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "information retrieval"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "open-source"
+    },
+    {
+        "head": "neural-ir",
+        "tail": "information-retrieval"
+    },
+    {
+        "head": "neural-ir",
+        "tail": "information retrieval"
+    },
+    {
+        "head": "neural-ir",
+        "tail": "open-source"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "open-source"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "open-source"
+    },
+    {
+        "head": "webgpu",
+        "tail": "cuda"
+    },
+    {
+        "head": "webgpu",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "webgpu",
+        "tail": "wasm"
+    },
+    {
+        "head": "webgpu",
+        "tail": "neural-network"
+    },
+    {
+        "head": "webgpu",
+        "tail": "pytorch"
+    },
+    {
+        "head": "webgpu",
+        "tail": "tensor"
+    },
+    {
+        "head": "webgpu",
+        "tail": "metal"
+    },
+    {
+        "head": "webgpu",
+        "tail": "scientific-computing"
+    },
+    {
+        "head": "webgpu",
+        "tail": "kernel-fusion"
+    },
+    {
+        "head": "webgpu",
+        "tail": "ndarray"
+    },
+    {
+        "head": "webgpu",
+        "tail": "autodiff"
+    },
+    {
+        "head": "webgpu",
+        "tail": "rust"
+    },
+    {
+        "head": "webgpu",
+        "tail": "rocm"
+    },
+    {
+        "head": "webgpu",
+        "tail": "deep-learning"
+    },
+    {
+        "head": "webgpu",
+        "tail": "onnx"
+    },
+    {
+        "head": "webgpu",
+        "tail": "cross-platform"
+    },
+    {
+        "head": "webgpu",
+        "tail": "vulkan"
+    },
+    {
+        "head": "webgpu",
+        "tail": "deep learning"
+    },
+    {
+        "head": "webgpu",
+        "tail": "framework"
+    },
+    {
+        "head": "webgpu",
+        "tail": "efficiency"
+    },
+    {
+        "head": "webgpu",
+        "tail": "generation"
+    },
+    {
+        "head": "cuda",
+        "tail": "wasm"
+    },
+    {
+        "head": "cuda",
+        "tail": "metal"
+    },
+    {
+        "head": "cuda",
+        "tail": "scientific-computing"
+    },
+    {
+        "head": "cuda",
+        "tail": "kernel-fusion"
+    },
+    {
+        "head": "cuda",
+        "tail": "ndarray"
+    },
+    {
+        "head": "cuda",
+        "tail": "rocm"
+    },
+    {
+        "head": "cuda",
+        "tail": "onnx"
+    },
+    {
+        "head": "cuda",
+        "tail": "cross-platform"
+    },
+    {
+        "head": "cuda",
+        "tail": "vulkan"
+    },
+    {
+        "head": "cuda",
+        "tail": "deep learning"
+    },
+    {
+        "head": "cuda",
+        "tail": "efficiency"
+    },
+    {
+        "head": "cuda",
+        "tail": "generation"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "wasm"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "metal"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "kernel-fusion"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "ndarray"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "rocm"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "cross-platform"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "vulkan"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "efficiency"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "generation"
+    },
+    {
+        "head": "wasm",
+        "tail": "neural-network"
+    },
+    {
+        "head": "wasm",
+        "tail": "pytorch"
+    },
+    {
+        "head": "wasm",
+        "tail": "tensor"
+    },
+    {
+        "head": "wasm",
+        "tail": "metal"
+    },
+    {
+        "head": "wasm",
+        "tail": "scientific-computing"
+    },
+    {
+        "head": "wasm",
+        "tail": "kernel-fusion"
+    },
+    {
+        "head": "wasm",
+        "tail": "ndarray"
+    },
+    {
+        "head": "wasm",
+        "tail": "autodiff"
+    },
+    {
+        "head": "wasm",
+        "tail": "rocm"
+    },
+    {
+        "head": "wasm",
+        "tail": "deep-learning"
+    },
+    {
+        "head": "wasm",
+        "tail": "onnx"
+    },
+    {
+        "head": "wasm",
+        "tail": "cross-platform"
+    },
+    {
+        "head": "wasm",
+        "tail": "vulkan"
+    },
+    {
+        "head": "wasm",
+        "tail": "deep learning"
+    },
+    {
+        "head": "wasm",
+        "tail": "framework"
+    },
+    {
+        "head": "wasm",
+        "tail": "efficiency"
+    },
+    {
+        "head": "wasm",
+        "tail": "generation"
+    },
+    {
+        "head": "neural-network",
+        "tail": "metal"
+    },
+    {
+        "head": "neural-network",
+        "tail": "scientific-computing"
+    },
+    {
+        "head": "neural-network",
+        "tail": "kernel-fusion"
+    },
+    {
+        "head": "neural-network",
+        "tail": "ndarray"
+    },
+    {
+        "head": "neural-network",
+        "tail": "rocm"
+    },
+    {
+        "head": "neural-network",
+        "tail": "cross-platform"
+    },
+    {
+        "head": "neural-network",
+        "tail": "vulkan"
+    },
+    {
+        "head": "neural-network",
+        "tail": "deep learning"
+    },
+    {
+        "head": "neural-network",
+        "tail": "efficiency"
+    },
+    {
+        "head": "neural-network",
+        "tail": "generation"
+    },
+    {
+        "head": "pytorch",
+        "tail": "metal"
+    },
+    {
+        "head": "pytorch",
+        "tail": "scientific-computing"
+    },
+    {
+        "head": "pytorch",
+        "tail": "kernel-fusion"
+    },
+    {
+        "head": "pytorch",
+        "tail": "ndarray"
+    },
+    {
+        "head": "pytorch",
+        "tail": "autodiff"
+    },
+    {
+        "head": "pytorch",
+        "tail": "rocm"
+    },
+    {
+        "head": "pytorch",
+        "tail": "cross-platform"
+    },
+    {
+        "head": "pytorch",
+        "tail": "vulkan"
+    },
+    {
+        "head": "pytorch",
+        "tail": "generation"
+    },
+    {
+        "head": "tensor",
+        "tail": "metal"
+    },
+    {
+        "head": "tensor",
+        "tail": "scientific-computing"
+    },
+    {
+        "head": "tensor",
+        "tail": "kernel-fusion"
+    },
+    {
+        "head": "tensor",
+        "tail": "ndarray"
+    },
+    {
+        "head": "tensor",
+        "tail": "rocm"
+    },
+    {
+        "head": "tensor",
+        "tail": "onnx"
+    },
+    {
+        "head": "tensor",
+        "tail": "cross-platform"
+    },
+    {
+        "head": "tensor",
+        "tail": "vulkan"
+    },
+    {
+        "head": "tensor",
+        "tail": "deep learning"
+    },
+    {
+        "head": "tensor",
+        "tail": "framework"
+    },
+    {
+        "head": "tensor",
+        "tail": "efficiency"
+    },
+    {
+        "head": "tensor",
+        "tail": "generation"
+    },
+    {
+        "head": "metal",
+        "tail": "scientific-computing"
+    },
+    {
+        "head": "metal",
+        "tail": "kernel-fusion"
+    },
+    {
+        "head": "metal",
+        "tail": "ndarray"
+    },
+    {
+        "head": "metal",
+        "tail": "autodiff"
+    },
+    {
+        "head": "metal",
+        "tail": "rocm"
+    },
+    {
+        "head": "metal",
+        "tail": "deep-learning"
+    },
+    {
+        "head": "metal",
+        "tail": "onnx"
+    },
+    {
+        "head": "metal",
+        "tail": "cross-platform"
+    },
+    {
+        "head": "metal",
+        "tail": "vulkan"
+    },
+    {
+        "head": "metal",
+        "tail": "deep learning"
+    },
+    {
+        "head": "metal",
+        "tail": "framework"
+    },
+    {
+        "head": "metal",
+        "tail": "efficiency"
+    },
+    {
+        "head": "metal",
+        "tail": "generation"
+    },
+    {
+        "head": "scientific-computing",
+        "tail": "kernel-fusion"
+    },
+    {
+        "head": "scientific-computing",
+        "tail": "ndarray"
+    },
+    {
+        "head": "scientific-computing",
+        "tail": "autodiff"
+    },
+    {
+        "head": "scientific-computing",
+        "tail": "rocm"
+    },
+    {
+        "head": "scientific-computing",
+        "tail": "onnx"
+    },
+    {
+        "head": "scientific-computing",
+        "tail": "cross-platform"
+    },
+    {
+        "head": "scientific-computing",
+        "tail": "vulkan"
+    },
+    {
+        "head": "scientific-computing",
+        "tail": "deep learning"
+    },
+    {
+        "head": "scientific-computing",
+        "tail": "framework"
+    },
+    {
+        "head": "scientific-computing",
+        "tail": "efficiency"
+    },
+    {
+        "head": "scientific-computing",
+        "tail": "generation"
+    },
+    {
+        "head": "kernel-fusion",
+        "tail": "ndarray"
+    },
+    {
+        "head": "kernel-fusion",
+        "tail": "autodiff"
+    },
+    {
+        "head": "kernel-fusion",
+        "tail": "rust"
+    },
+    {
+        "head": "kernel-fusion",
+        "tail": "rocm"
+    },
+    {
+        "head": "kernel-fusion",
+        "tail": "deep-learning"
+    },
+    {
+        "head": "kernel-fusion",
+        "tail": "onnx"
+    },
+    {
+        "head": "kernel-fusion",
+        "tail": "cross-platform"
+    },
+    {
+        "head": "kernel-fusion",
+        "tail": "vulkan"
+    },
+    {
+        "head": "kernel-fusion",
+        "tail": "deep learning"
+    },
+    {
+        "head": "kernel-fusion",
+        "tail": "framework"
+    },
+    {
+        "head": "kernel-fusion",
+        "tail": "efficiency"
+    },
+    {
+        "head": "kernel-fusion",
+        "tail": "generation"
+    },
+    {
+        "head": "ndarray",
+        "tail": "autodiff"
+    },
+    {
+        "head": "ndarray",
+        "tail": "rocm"
+    },
+    {
+        "head": "ndarray",
+        "tail": "deep-learning"
+    },
+    {
+        "head": "ndarray",
+        "tail": "onnx"
+    },
+    {
+        "head": "ndarray",
+        "tail": "cross-platform"
+    },
+    {
+        "head": "ndarray",
+        "tail": "vulkan"
+    },
+    {
+        "head": "ndarray",
+        "tail": "deep learning"
+    },
+    {
+        "head": "ndarray",
+        "tail": "framework"
+    },
+    {
+        "head": "ndarray",
+        "tail": "efficiency"
+    },
+    {
+        "head": "ndarray",
+        "tail": "generation"
+    },
+    {
+        "head": "autodiff",
+        "tail": "rocm"
+    },
+    {
+        "head": "autodiff",
+        "tail": "onnx"
+    },
+    {
+        "head": "autodiff",
+        "tail": "cross-platform"
+    },
+    {
+        "head": "autodiff",
+        "tail": "vulkan"
+    },
+    {
+        "head": "autodiff",
+        "tail": "deep learning"
+    },
+    {
+        "head": "autodiff",
+        "tail": "framework"
+    },
+    {
+        "head": "autodiff",
+        "tail": "efficiency"
+    },
+    {
+        "head": "autodiff",
+        "tail": "generation"
+    },
+    {
+        "head": "rust",
+        "tail": "rocm"
+    },
+    {
+        "head": "rust",
+        "tail": "onnx"
+    },
+    {
+        "head": "rust",
+        "tail": "cross-platform"
+    },
+    {
+        "head": "rust",
+        "tail": "deep learning"
+    },
+    {
+        "head": "rust",
+        "tail": "generation"
+    },
+    {
+        "head": "rocm",
+        "tail": "deep-learning"
+    },
+    {
+        "head": "rocm",
+        "tail": "onnx"
+    },
+    {
+        "head": "rocm",
+        "tail": "cross-platform"
+    },
+    {
+        "head": "rocm",
+        "tail": "vulkan"
+    },
+    {
+        "head": "rocm",
+        "tail": "deep learning"
+    },
+    {
+        "head": "rocm",
+        "tail": "framework"
+    },
+    {
+        "head": "rocm",
+        "tail": "efficiency"
+    },
+    {
+        "head": "rocm",
+        "tail": "generation"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "cross-platform"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "vulkan"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "efficiency"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "generation"
+    },
+    {
+        "head": "onnx",
+        "tail": "cross-platform"
+    },
+    {
+        "head": "onnx",
+        "tail": "vulkan"
+    },
+    {
+        "head": "onnx",
+        "tail": "deep learning"
+    },
+    {
+        "head": "onnx",
+        "tail": "efficiency"
+    },
+    {
+        "head": "onnx",
+        "tail": "generation"
+    },
+    {
+        "head": "cross-platform",
+        "tail": "vulkan"
+    },
+    {
+        "head": "cross-platform",
+        "tail": "deep learning"
+    },
+    {
+        "head": "cross-platform",
+        "tail": "framework"
+    },
+    {
+        "head": "cross-platform",
+        "tail": "efficiency"
+    },
+    {
+        "head": "cross-platform",
+        "tail": "generation"
+    },
+    {
+        "head": "vulkan",
+        "tail": "deep learning"
+    },
+    {
+        "head": "vulkan",
+        "tail": "framework"
+    },
+    {
+        "head": "vulkan",
+        "tail": "efficiency"
+    },
+    {
+        "head": "vulkan",
+        "tail": "generation"
+    },
+    {
+        "head": "deep learning",
+        "tail": "generation"
+    },
+    {
+        "head": "framework",
+        "tail": "efficiency"
+    },
+    {
+        "head": "efficiency",
+        "tail": "generation"
+    },
+    {
+        "head": "swift",
+        "tail": "no"
+    },
+    {
+        "head": "swift",
+        "tail": "project"
+    },
+    {
+        "head": "swift",
+        "tail": "install"
+    },
+    {
+        "head": "swift",
+        "tail": "chat"
+    },
+    {
+        "head": "swift",
+        "tail": "peer-to-peer"
+    },
+    {
+        "head": "no",
+        "tail": "project"
+    },
+    {
+        "head": "no",
+        "tail": "install"
+    },
+    {
+        "head": "no",
+        "tail": "chat"
+    },
+    {
+        "head": "no",
+        "tail": "peer-to-peer"
+    },
+    {
+        "head": "project",
+        "tail": "install"
+    },
+    {
+        "head": "project",
+        "tail": "chat"
+    },
+    {
+        "head": "project",
+        "tail": "peer-to-peer"
+    },
+    {
+        "head": "install",
+        "tail": "chat"
+    },
+    {
+        "head": "install",
+        "tail": "peer-to-peer"
+    },
+    {
+        "head": "chat",
+        "tail": "peer-to-peer"
+    },
+    {
+        "head": "xml",
+        "tail": "webapps"
+    },
+    {
+        "head": "xml",
+        "tail": "typescript"
+    },
+    {
+        "head": "xml",
+        "tail": "ui-framework"
+    },
+    {
+        "head": "xml",
+        "tail": "webapplication"
+    },
+    {
+        "head": "xml",
+        "tail": "webapp"
+    },
+    {
+        "head": "xml",
+        "tail": "framework"
+    },
+    {
+        "head": "xml",
+        "tail": "markup"
+    },
+    {
+        "head": "xml",
+        "tail": "flexible"
+    },
+    {
+        "head": "xml",
+        "tail": "theming"
+    },
+    {
+        "head": "webapps",
+        "tail": "typescript"
+    },
+    {
+        "head": "webapps",
+        "tail": "ui-framework"
+    },
+    {
+        "head": "webapps",
+        "tail": "webapplication"
+    },
+    {
+        "head": "webapps",
+        "tail": "webapp"
+    },
+    {
+        "head": "webapps",
+        "tail": "framework"
+    },
+    {
+        "head": "webapps",
+        "tail": "markup"
+    },
+    {
+        "head": "webapps",
+        "tail": "flexible"
+    },
+    {
+        "head": "webapps",
+        "tail": "theming"
+    },
+    {
+        "head": "typescript",
+        "tail": "ui-framework"
+    },
+    {
+        "head": "typescript",
+        "tail": "webapplication"
+    },
+    {
+        "head": "typescript",
+        "tail": "webapp"
+    },
+    {
+        "head": "typescript",
+        "tail": "markup"
+    },
+    {
+        "head": "typescript",
+        "tail": "flexible"
+    },
+    {
+        "head": "typescript",
+        "tail": "theming"
+    },
+    {
+        "head": "ui-framework",
+        "tail": "webapplication"
+    },
+    {
+        "head": "ui-framework",
+        "tail": "webapp"
+    },
+    {
+        "head": "ui-framework",
+        "tail": "framework"
+    },
+    {
+        "head": "ui-framework",
+        "tail": "markup"
+    },
+    {
+        "head": "ui-framework",
+        "tail": "flexible"
+    },
+    {
+        "head": "ui-framework",
+        "tail": "theming"
+    },
+    {
+        "head": "webapplication",
+        "tail": "webapp"
+    },
+    {
+        "head": "webapplication",
+        "tail": "framework"
+    },
+    {
+        "head": "webapplication",
+        "tail": "markup"
+    },
+    {
+        "head": "webapplication",
+        "tail": "flexible"
+    },
+    {
+        "head": "webapplication",
+        "tail": "theming"
+    },
+    {
+        "head": "webapp",
+        "tail": "framework"
+    },
+    {
+        "head": "webapp",
+        "tail": "markup"
+    },
+    {
+        "head": "webapp",
+        "tail": "flexible"
+    },
+    {
+        "head": "webapp",
+        "tail": "theming"
+    },
+    {
+        "head": "framework",
+        "tail": "markup"
+    },
+    {
+        "head": "framework",
+        "tail": "flexible"
+    },
+    {
+        "head": "framework",
+        "tail": "theming"
+    },
+    {
+        "head": "markup",
+        "tail": "flexible"
+    },
+    {
+        "head": "markup",
+        "tail": "theming"
+    },
+    {
+        "head": "flexible",
+        "tail": "theming"
+    },
+    {
+        "head": "swift",
+        "tail": "force"
+    },
+    {
+        "head": "swift",
+        "tail": "modern"
+    },
+    {
+        "head": "swift",
+        "tail": "rest"
+    },
+    {
+        "head": "macos",
+        "tail": "force"
+    },
+    {
+        "head": "macos",
+        "tail": "modern"
+    },
+    {
+        "head": "macos",
+        "tail": "rest"
+    },
+    {
+        "head": "force",
+        "tail": "modern"
+    },
+    {
+        "head": "force",
+        "tail": "rest"
+    },
+    {
+        "head": "modern",
+        "tail": "rest"
+    },
+    {
+        "head": "pytorch",
+        "tail": "git"
+    },
+    {
+        "head": "install",
+        "tail": "git"
+    },
+    {
+        "head": "git",
+        "tail": "pip"
+    },
+    {
+        "head": "opencv",
+        "tail": "vision"
+    },
+    {
+        "head": "robotics",
+        "tail": "vision"
+    },
+    {
+        "head": "gemini",
+        "tail": "vision"
+    },
+    {
+        "head": "lerobot",
+        "tail": "vision"
+    },
+    {
+        "head": "architecture",
+        "tail": "comparison"
+    },
+    {
+        "head": "architecture",
+        "tail": "deepseek-v3"
+    },
+    {
+        "head": "llm",
+        "tail": "comparison"
+    },
+    {
+        "head": "comparison",
+        "tail": "deepseek-v3"
+    },
+    {
+        "head": "matrix",
+        "tail": "dev"
+    },
+    {
+        "head": "matrix",
+        "tail": "state-of-the-art"
+    },
+    {
+        "head": "dev",
+        "tail": "state-of-the-art"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "bread"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "pivotal"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "pts"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "verifiable reward"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "vlm fine tuning"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "sft"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "rl"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "traces"
+    },
+    {
+        "head": "bread",
+        "tail": "llm"
+    },
+    {
+        "head": "bread",
+        "tail": "pivotal"
+    },
+    {
+        "head": "bread",
+        "tail": "pts"
+    },
+    {
+        "head": "bread",
+        "tail": "reasoning"
+    },
+    {
+        "head": "bread",
+        "tail": "verifiable reward"
+    },
+    {
+        "head": "bread",
+        "tail": "vlm fine tuning"
+    },
+    {
+        "head": "bread",
+        "tail": "sft"
+    },
+    {
+        "head": "bread",
+        "tail": "rl"
+    },
+    {
+        "head": "bread",
+        "tail": "model"
+    },
+    {
+        "head": "bread",
+        "tail": "traces"
+    },
+    {
+        "head": "llm",
+        "tail": "pivotal"
+    },
+    {
+        "head": "llm",
+        "tail": "verifiable reward"
+    },
+    {
+        "head": "llm",
+        "tail": "vlm fine tuning"
+    },
+    {
+        "head": "llm",
+        "tail": "sft"
+    },
+    {
+        "head": "llm",
+        "tail": "traces"
+    },
+    {
+        "head": "pivotal",
+        "tail": "pts"
+    },
+    {
+        "head": "pivotal",
+        "tail": "reasoning"
+    },
+    {
+        "head": "pivotal",
+        "tail": "verifiable reward"
+    },
+    {
+        "head": "pivotal",
+        "tail": "vlm fine tuning"
+    },
+    {
+        "head": "pivotal",
+        "tail": "sft"
+    },
+    {
+        "head": "pivotal",
+        "tail": "rl"
+    },
+    {
+        "head": "pivotal",
+        "tail": "model"
+    },
+    {
+        "head": "pivotal",
+        "tail": "traces"
+    },
+    {
+        "head": "pts",
+        "tail": "reasoning"
+    },
+    {
+        "head": "pts",
+        "tail": "verifiable reward"
+    },
+    {
+        "head": "pts",
+        "tail": "vlm fine tuning"
+    },
+    {
+        "head": "pts",
+        "tail": "sft"
+    },
+    {
+        "head": "pts",
+        "tail": "rl"
+    },
+    {
+        "head": "pts",
+        "tail": "model"
+    },
+    {
+        "head": "pts",
+        "tail": "traces"
+    },
+    {
+        "head": "reasoning",
+        "tail": "verifiable reward"
+    },
+    {
+        "head": "reasoning",
+        "tail": "vlm fine tuning"
+    },
+    {
+        "head": "reasoning",
+        "tail": "traces"
+    },
+    {
+        "head": "verifiable reward",
+        "tail": "vlm fine tuning"
+    },
+    {
+        "head": "verifiable reward",
+        "tail": "sft"
+    },
+    {
+        "head": "verifiable reward",
+        "tail": "rl"
+    },
+    {
+        "head": "verifiable reward",
+        "tail": "model"
+    },
+    {
+        "head": "verifiable reward",
+        "tail": "traces"
+    },
+    {
+        "head": "vlm fine tuning",
+        "tail": "sft"
+    },
+    {
+        "head": "vlm fine tuning",
+        "tail": "rl"
+    },
+    {
+        "head": "vlm fine tuning",
+        "tail": "model"
+    },
+    {
+        "head": "vlm fine tuning",
+        "tail": "traces"
+    },
+    {
+        "head": "sft",
+        "tail": "rl"
+    },
+    {
+        "head": "sft",
+        "tail": "model"
+    },
+    {
+        "head": "sft",
+        "tail": "traces"
+    },
+    {
+        "head": "rl",
+        "tail": "model"
+    },
+    {
+        "head": "rl",
+        "tail": "traces"
+    },
+    {
+        "head": "model",
+        "tail": "traces"
+    },
+    {
+        "head": "prm",
+        "tail": "reward"
+    },
+    {
+        "head": "prm",
+        "tail": "reward model"
+    },
+    {
+        "head": "prm",
+        "tail": "vision"
+    },
+    {
+        "head": "prm",
+        "tail": "vision reward model"
+    },
+    {
+        "head": "prm",
+        "tail": "hugging face"
+    },
+    {
+        "head": "prm",
+        "tail": "source"
+    },
+    {
+        "head": "prm",
+        "tail": "science"
+    },
+    {
+        "head": "prm",
+        "tail": "computer science - artificial intelligence"
+    },
+    {
+        "head": "reward",
+        "tail": "reward model"
+    },
+    {
+        "head": "reward",
+        "tail": "vision"
+    },
+    {
+        "head": "reward",
+        "tail": "vision reward model"
+    },
+    {
+        "head": "reward",
+        "tail": "hugging face"
+    },
+    {
+        "head": "reward",
+        "tail": "source"
+    },
+    {
+        "head": "reward",
+        "tail": "science"
+    },
+    {
+        "head": "reward",
+        "tail": "computer science - artificial intelligence"
+    },
+    {
+        "head": "reward model",
+        "tail": "vision"
+    },
+    {
+        "head": "reward model",
+        "tail": "vision reward model"
+    },
+    {
+        "head": "reward model",
+        "tail": "hugging face"
+    },
+    {
+        "head": "reward model",
+        "tail": "source"
+    },
+    {
+        "head": "reward model",
+        "tail": "science"
+    },
+    {
+        "head": "vision",
+        "tail": "vision reward model"
+    },
+    {
+        "head": "vision",
+        "tail": "hugging face"
+    },
+    {
+        "head": "vision",
+        "tail": "source"
+    },
+    {
+        "head": "vision",
+        "tail": "science"
+    },
+    {
+        "head": "vision reward model",
+        "tail": "hugging face"
+    },
+    {
+        "head": "vision reward model",
+        "tail": "source"
+    },
+    {
+        "head": "vision reward model",
+        "tail": "science"
+    },
+    {
+        "head": "vision reward model",
+        "tail": "computer science - artificial intelligence"
+    },
+    {
+        "head": "llm",
+        "tail": "reward"
+    },
+    {
+        "head": "llm",
+        "tail": "reward model"
+    },
+    {
+        "head": "llm",
+        "tail": "skywork"
+    },
+    {
+        "head": "llm",
+        "tail": "value model"
+    },
+    {
+        "head": "reward",
+        "tail": "skywork"
+    },
+    {
+        "head": "reward",
+        "tail": "value model"
+    },
+    {
+        "head": "reward",
+        "tail": "llama"
+    },
+    {
+        "head": "reward model",
+        "tail": "skywork"
+    },
+    {
+        "head": "reward model",
+        "tail": "value model"
+    },
+    {
+        "head": "reward model",
+        "tail": "llama"
+    },
+    {
+        "head": "skywork",
+        "tail": "value model"
+    },
+    {
+        "head": "skywork",
+        "tail": "llama"
+    },
+    {
+        "head": "skywork",
+        "tail": "hugging face"
+    },
+    {
+        "head": "value model",
+        "tail": "llama"
+    },
+    {
+        "head": "value model",
+        "tail": "hugging face"
+    },
+    {
+        "head": "llama",
+        "tail": "hugging face"
     }
 ]

@@ -46391,5 +46391,217 @@
             "multimodal",
             "vlm"
         ]
+    },
+    "https://github.com/sebastian-hofstaetter/teaching": {
+        "extra-tags": [
+            "information retrieval",
+            "open-source"
+        ],
+        "date": "2025-07-22",
+        "title": "teaching",
+        "summary": "Open-Source Information Retrieval Courses @ TU Wien \n I'm working on Information Retrieval at the Vienna University of Technology TU Wien, mainly focusing on the award-wininghttpstwitter.comshofstaetterstatus1446193420222050309 master-level Advanced Information Retrieval course. I try to create engaging, fun, and informative lectures and exercises ndash both in-person and online! Please feel free to open up an issue or a pull request if you want to add something, find a mistake, or think something should be explained better!",
+        "tags": [
+            "dpr",
+            "education",
+            "remote-teaching",
+            "search-engine",
+            "python",
+            "teaching",
+            "course",
+            "deep-learning",
+            "neural-ir",
+            "information-retrieval"
+        ]
+    },
+    "https://github.com/tracel-ai/burn": {
+        "extra-tags": [
+            "deep learning",
+            "framework",
+            "efficiency",
+            "generation"
+        ],
+        "date": "2025-07-22",
+        "title": "burn",
+        "summary": "Burn is a next generation Deep Learning Framework that doesn't compromise on flexibility, efficiency and portability. \n Burn is a next generation Deep Learning Framework that doesn't compromise on flexibility, efficiency and portability. Because we believe the goal of a deep learning framework is to convert computation into useful intelligence, we have made performance a core pillar of Burn. We strive to achieve top efficiency by leveraging multiple optimization techniques described below.",
+        "tags": [
+            "webgpu",
+            "cuda",
+            "machine-learning",
+            "wasm",
+            "neural-network",
+            "pytorch",
+            "tensor",
+            "metal",
+            "scientific-computing",
+            "kernel-fusion",
+            "ndarray",
+            "autodiff",
+            "rust",
+            "rocm",
+            "deep-learning",
+            "onnx",
+            "cross-platform",
+            "vulkan"
+        ]
+    },
+    "https://github.com/permissionlesstech/bitchat": {
+        "extra-tags": [
+            "no",
+            "project",
+            "install",
+            "chat",
+            "peer-to-peer"
+        ],
+        "date": "2025-07-22",
+        "title": "bitchat",
+        "summary": "bluetooth mesh chat, IRC vibes \n A decentralized peer-to-peer messaging app that works over Bluetooth mesh networks. No internet required, no servers, no phone numbers. It's the side-groupchat. This project is released into the public domain. See the LICENSELICENSE file for details. 1. Install XcodeGen if you haven't already bash brew install xcodegen 2. Generate the Xcode project",
+        "tags": [
+            "swift"
+        ]
+    },
+    "https://github.com/xmlui-org/xmlui": {
+        "extra-tags": [
+            "framework",
+            "markup",
+            "flexible",
+            "theming"
+        ],
+        "date": "2025-07-22",
+        "title": "xmlui",
+        "summary": "A framework for building user interfaces declaratively, with XML markup and flexible theming \n !NPM Versionhttpsimg.shields.ionpmvxmlui?colorblue !Componentshttpsimg.shields.iobadgeComponents-92-brightgreen !Extension packageshttpsimg.shields.iobadgeExtension20packages-7-brightgreen !Theme variableshttpsimg.shields.iobadgetheme20variables-3639-brightgreen XMLUI is a framework for building user interfaces declaratively, with XML markup and flexible theming. Easy to create. Build on the web platform with little or no knowledge of React or CSS. Clean and modern. Enjoy themes that look great out of the box and are easy to modify. Create experiences that meet expectations for modern web apps.",
+        "tags": [
+            "xml",
+            "webapps",
+            "typescript",
+            "ui-framework",
+            "webapplication",
+            "webapp"
+        ]
+    },
+    "https://github.com/KrishKrosh/TrackWeight": {
+        "extra-tags": [
+            "macos",
+            "force",
+            "modern",
+            "rest"
+        ],
+        "date": "2025-07-22",
+        "title": "TrackWeight",
+        "summary": " \n Turn your MacBook's trackpad into a precise digital weighing scale TrackWeight httpsx.comKrishRShahstatus1947186835811193330 is a macOS application that transforms your MacBook's trackpad into an accurate weighing scale by leveraging the Force Touch pressure sensors built into modern MacBook trackpads. httpsgithub.comuser-attachmentsassets7eaf9e0b-3dec-4829-b868-f54a8fd53a84 To use it yourself 1. Open the scale 2. Rest your finger on the trackpad",
+        "tags": [
+            "swift"
+        ]
+    },
+    "https://github.com/s1lent4gnt/octo-pytorch": {
+        "extra-tags": [
+            "pytorch",
+            "install",
+            "git",
+            "pip"
+        ],
+        "date": "2025-07-22",
+        "title": "octo-pytorch",
+        "summary": "Octo VLA in PyTorch \n This repository contains a PyTorch implementation of the Octo VLA model. To get started, follow these steps to set up the environment and install the required dependencies. bash git clone httpsgithub.coms1lent4gntocto-pytorch.git git submodule update --init --recursive uv venv --python 3.10 source .venvbinactivate uv pip install -e . cd octojax uv pip install -e .",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/RoboticsData/score_lerobot_episodes": {
+        "extra-tags": [
+            "vision"
+        ],
+        "date": "2025-07-22",
+        "title": "score_lerobot_episodes",
+        "summary": "A lightweight toolkit for quantitatively scoring LeRobot episodes. \n A lightweight toolkit for quantitatively scoring LeRobot episodes. It combines classic Computer Vision heuristics blur exposure tests, kinematic smoothness, collision spikes with optional Gemini-powered visionlanguage checks to give each episode a 0 1 score for multiple quality dimensions. Dimension Function What it measures",
+        "tags": [
+            "opencv",
+            "computer-vision",
+            "python",
+            "robotics",
+            "gemini",
+            "lerobot"
+        ]
+    },
+    "https://magazine.sebastianraschka.com/p/the-big-llm-architecture-comparison": {
+        "extra-tags": [
+            "architecture",
+            "llm",
+            "comparison",
+            "deepseek-v3"
+        ],
+        "title": "Hackernews LLM architecture comparison (sebastianraschka.com)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "The Big LLM Architecture Comparison From DeepSeek-V3 to Kimi K2: A Look At Modern LLM Architecture Design It has been seven years since the original GPT architecture was developed. At first glance, looking back at GPT-2 (2019) and forward to DeepSeek-V3 and Llama 4 (2024-2025), one might be surprised at",
+        "date": "2025-07-22"
+    },
+    "https://burn.dev/blog/sota-multiplatform-matmul/": {
+        "extra-tags": [
+            "matrix",
+            "dev",
+            "state-of-the-art"
+        ],
+        "title": "Hackernews Multiplatform Matrix Multiplication Kernels (burn.dev)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "State-of-the-Art Multiplatform Matrix Multiplication Kernels Few algorithmic problems are as central to modern computing as matrix multiplication. It is fundamental to AI, forming the basis of fully connected layers used throughout neural networks. In transformer architectures, most of the computation is spent performing matrix multiplication. And since compute largely determines",
+        "date": "2025-07-22"
+    },
+    "http://arxiv.org/abs/2506.17211": {
+        "extra-tags": [
+            "sft",
+            "rl",
+            "model",
+            "traces"
+        ],
+        "title": "BREAD: Branched Rollouts from Expert Anchors Bridge SFT & RL for Reasoning",
+        "summary": "Small language models (SLMs) struggle to learn complex reasoning behaviors, especially when high-quality traces are scarce or difficult to learn from. The standard training approach combines a supervised fine-tuning (SFT) stage, often to distill capabilities of a larger model, followed by a reinforcement learning (RL)stage such as Group Relative Policy Optimization (GRPO). In this paper, we investigate the fundamental limitations of this SFT + RL paradigm and propose methods to overcome them. Under a suitable theoretical model, we demonstrate that the SFT + RL strategy can fail completely when (1) the expert's traces are too difficult for the small model to express, or (2) the small model's initialization has exponentially small likelihood of success. To address these, we introduce BREAD: a GRPO variant that unifies the SFT and RL stages via partial expert guidance and branched rollouts. When self-generated traces fail, BREAD adaptively inserts short expert prefixes/hints, allowing the small model to complete the rest of the reasoning path, and ensuring that each update includes at least one successful trace. This mechanism both densifies the reward signal and induces a natural learning curriculum. BREAD requires fewer than 40% of ground-truth traces, consistently outperforming standard GRPO while speeding up the training by about 3 times. Importantly, we demonstrate that BREAD helps the model solve problems that are otherwise unsolvable by the SFT + RL strategy, highlighting how branched rollouts and expert guidance can substantially boost SLM reasoning.",
+        "date": "2025-07-22",
+        "tags": [
+            "computer science - machine learning",
+            "bread",
+            "llm",
+            "pivotal",
+            "pts",
+            "reasoning",
+            "verifiable reward",
+            "vlm fine tuning"
+        ]
+    },
+    "https://huggingface.co/OpenGVLab/VisualPRM-8B-v1_1": {
+        "extra-tags": [
+            "hugging face",
+            "source",
+            "science",
+            "computer science - artificial intelligence"
+        ],
+        "title": "OpenGVLab/VisualPRM-8B-v1_1 \u00b7 Hugging Face",
+        "summary": "We\u2019re on a journey to advance and democratize artificial intelligence through open source and open science.",
+        "date": "2025-07-21",
+        "tags": [
+            "prm",
+            "reward",
+            "reward model",
+            "vision",
+            "vision reward model"
+        ]
+    },
+    "https://huggingface.co/Skywork/Skywork-Reward-V2-Llama-3.1-8B": {
+        "extra-tags": [
+            "llama",
+            "hugging face"
+        ],
+        "title": "Skywork/Skywork-Reward-V2-Llama-3.1-8B \u00b7 Hugging Face",
+        "summary": "We\u2019re on a journey to advance and democratize artificial intelligence through open source and open science.",
+        "date": "2025-07-21",
+        "tags": [
+            "llm",
+            "reward",
+            "reward model",
+            "skywork",
+            "value model"
+        ]
     }
 }
