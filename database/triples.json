@@ -216018,5 +216018,173 @@
     {
         "head": "llama",
         "tail": "hugging face"
+    },
+    {
+        "head": "rust",
+        "tail": "embedded-database"
+    },
+    {
+        "head": "rust",
+        "tail": "sqlite3"
+    },
+    {
+        "head": "rust",
+        "tail": "sqlite"
+    },
+    {
+        "head": "webassembly",
+        "tail": "embedded-database"
+    },
+    {
+        "head": "webassembly",
+        "tail": "sqlite3"
+    },
+    {
+        "head": "webassembly",
+        "tail": "database"
+    },
+    {
+        "head": "webassembly",
+        "tail": "sql"
+    },
+    {
+        "head": "webassembly",
+        "tail": "sqlite"
+    },
+    {
+        "head": "webassembly",
+        "tail": "project"
+    },
+    {
+        "head": "webassembly",
+        "tail": "build"
+    },
+    {
+        "head": "embedded-database",
+        "tail": "sqlite3"
+    },
+    {
+        "head": "embedded-database",
+        "tail": "sqlite"
+    },
+    {
+        "head": "embedded-database",
+        "tail": "project"
+    },
+    {
+        "head": "embedded-database",
+        "tail": "build"
+    },
+    {
+        "head": "sqlite3",
+        "tail": "database"
+    },
+    {
+        "head": "sqlite3",
+        "tail": "sql"
+    },
+    {
+        "head": "sqlite3",
+        "tail": "sqlite"
+    },
+    {
+        "head": "sqlite3",
+        "tail": "project"
+    },
+    {
+        "head": "sqlite3",
+        "tail": "build"
+    },
+    {
+        "head": "database",
+        "tail": "project"
+    },
+    {
+        "head": "database",
+        "tail": "build"
+    },
+    {
+        "head": "sql",
+        "tail": "project"
+    },
+    {
+        "head": "sql",
+        "tail": "build"
+    },
+    {
+        "head": "sqlite",
+        "tail": "project"
+    },
+    {
+        "head": "sqlite",
+        "tail": "build"
+    },
+    {
+        "head": "project",
+        "tail": "build"
+    },
+    {
+        "head": "tech",
+        "tail": "pdf"
+    },
+    {
+        "head": "tech",
+        "tail": "feedback"
+    },
+    {
+        "head": "tech",
+        "tail": "documentation"
+    },
+    {
+        "head": "pdf",
+        "tail": "feedback"
+    },
+    {
+        "head": "pdf",
+        "tail": "documentation"
+    },
+    {
+        "head": "feedback",
+        "tail": "documentation"
+    },
+    {
+        "head": "mathematics",
+        "tail": "science"
+    },
+    {
+        "head": "mathematics",
+        "tail": "course"
+    },
+    {
+        "head": "science",
+        "tail": "course"
+    },
+    {
+        "head": "vision",
+        "tail": "visual"
+    },
+    {
+        "head": "vision",
+        "tail": "language models"
+    },
+    {
+        "head": "vision",
+        "tail": "pretrained"
+    },
+    {
+        "head": "visual",
+        "tail": "pretrained"
+    },
+    {
+        "head": "language models",
+        "tail": "practice"
+    },
+    {
+        "head": "language models",
+        "tail": "research"
+    },
+    {
+        "head": "practice",
+        "tail": "research"
     }
 ]

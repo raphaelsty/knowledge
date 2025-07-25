@@ -46603,5 +46603,78 @@
             "skywork",
             "value model"
         ]
+    },
+    "https://github.com/tursodatabase/turso": {
+        "extra-tags": [
+            "sqlite",
+            "project",
+            "build"
+        ],
+        "date": "2025-07-25",
+        "title": "turso",
+        "summary": "Turso Database is a project to build the next evolution of SQLite. \n Turso Database Turso Database is an in-process SQL database, compatible with SQLite. Turso Database is a work-in-progress, in-process OLTP database engine library written in Rust that has The following features are on our current roadmap Please see the Turso Database Manualdocsmanual.md for more information. Command Line You can install the latest turso release with",
+        "tags": [
+            "rust",
+            "webassembly",
+            "embedded-database",
+            "sqlite3",
+            "database",
+            "sql"
+        ]
+    },
+    "https://github.com/MoonshotAI/Kimi-K2/blob/main/tech_report.pdf": {
+        "extra-tags": [
+            "tech",
+            "pdf",
+            "github",
+            "feedback",
+            "documentation"
+        ],
+        "title": "Hackernews Kimi-K2 Tech Report [pdf] (github.com/moonshotai)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "We read every piece of feedback, and take your input very seriously. To see all available qualifiers, see our documentation. There was an error while loading. Please reload this page.",
+        "date": "2025-07-25"
+    },
+    "https://ocw.mit.edu/courses/6-1200j-mathematics-for-computer-science-spring-2024/": {
+        "extra-tags": [
+            "mathematics",
+            "science",
+            "course"
+        ],
+        "title": "Hackernews Mathematics for Computer Science (2024) (ocw.mit.edu)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "Course Description This course covers elementary discrete mathematics for science and engineering, with a focus on mathematical tools and proof techniques useful in computer science. Topics include logical notation, sets, relations, elementary graph theory, state machines and invariants, induction and proofs by contradiction, \u00e2\u00a6 This course covers elementary discrete mathematics",
+        "date": "2025-07-25"
+    },
+    "https://machinelearning.apple.com/research/fast-vision-language-models": {
+        "extra-tags": [
+            "vision",
+            "visual",
+            "language models",
+            "pretrained"
+        ],
+        "title": "Hackernews FastVLM: Efficient Vision Encoding for Vision Language Models (machinelearning.apple.com)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "Vision Language Models (VLMs) enable visual understanding alongside textual inputs. They are typically built by passing visual tokens from a pretrained vision encoder to a pretrained Large Language Model (LLM) through a projection layer. By leveraging the rich visual representations of the vision encoder and the world knowledge and reasoning",
+        "date": "2025-07-25"
+    },
+    "https://www.nature.com/articles/s44222-025-00323-4": {
+        "extra-tags": [
+            "language models",
+            "practice",
+            "research"
+        ],
+        "title": "Hackernews Writing is thinking (nature.com)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "On the value of human-generated scientific writing in the age of large-language models. Writing scientific articles is an integral part of the scientific method and common practice to communicate research findings. However, writing is not only about reporting results; it also provides a tool to uncover new thoughts and ideas.",
+        "date": "2025-07-25"
     }
 }
