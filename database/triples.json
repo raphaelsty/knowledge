@@ -216186,5 +216186,241 @@
     {
         "head": "practice",
         "tail": "research"
+    },
+    {
+        "head": "typescript",
+        "tail": "files"
+    },
+    {
+        "head": "ai",
+        "tail": "coding"
+    },
+    {
+        "head": "ai",
+        "tail": "files"
+    },
+    {
+        "head": "ai",
+        "tail": "terminal"
+    },
+    {
+        "head": "coding",
+        "tail": "files"
+    },
+    {
+        "head": "coding",
+        "tail": "browser"
+    },
+    {
+        "head": "coding",
+        "tail": "agentic"
+    },
+    {
+        "head": "files",
+        "tail": "browser"
+    },
+    {
+        "head": "files",
+        "tail": "agentic"
+    },
+    {
+        "head": "browser",
+        "tail": "agentic"
+    },
+    {
+        "head": "agentic",
+        "tail": "terminal"
+    },
+    {
+        "head": "python",
+        "tail": "conda"
+    },
+    {
+        "head": "gym",
+        "tail": "conda"
+    },
+    {
+        "head": "gym",
+        "tail": "system"
+    },
+    {
+        "head": "environment",
+        "tail": "conda"
+    },
+    {
+        "head": "environment",
+        "tail": "system"
+    },
+    {
+        "head": "conda",
+        "tail": "system"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "jina"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "multilingual"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "multimodal"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "paper"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "retriever"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "jina"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "multilingual"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "multimodal"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "paper"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "retriever"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "embeddings"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "jina"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "multilingual"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "paper"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "retriever"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "vision"
+    },
+    {
+        "head": "embeddings",
+        "tail": "jina"
+    },
+    {
+        "head": "embeddings",
+        "tail": "multilingual"
+    },
+    {
+        "head": "embeddings",
+        "tail": "paper"
+    },
+    {
+        "head": "embeddings",
+        "tail": "retriever"
+    },
+    {
+        "head": "embeddings",
+        "tail": "vision"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "jina"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "multilingual"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "retriever"
+    },
+    {
+        "head": "jina",
+        "tail": "multilingual"
+    },
+    {
+        "head": "jina",
+        "tail": "multimodal"
+    },
+    {
+        "head": "jina",
+        "tail": "paper"
+    },
+    {
+        "head": "jina",
+        "tail": "retriever"
+    },
+    {
+        "head": "jina",
+        "tail": "vision"
+    },
+    {
+        "head": "jina",
+        "tail": "retrieval"
+    },
+    {
+        "head": "multilingual",
+        "tail": "multimodal"
+    },
+    {
+        "head": "multilingual",
+        "tail": "paper"
+    },
+    {
+        "head": "multilingual",
+        "tail": "retriever"
+    },
+    {
+        "head": "multilingual",
+        "tail": "vision"
+    },
+    {
+        "head": "multilingual",
+        "tail": "retrieval"
+    },
+    {
+        "head": "multimodal",
+        "tail": "paper"
+    },
+    {
+        "head": "multimodal",
+        "tail": "retriever"
+    },
+    {
+        "head": "multimodal",
+        "tail": "vision"
+    },
+    {
+        "head": "paper",
+        "tail": "retriever"
+    },
+    {
+        "head": "paper",
+        "tail": "vision"
+    },
+    {
+        "head": "retriever",
+        "tail": "vision"
+    },
+    {
+        "head": "vision",
+        "tail": "retrieval"
     }
 ]

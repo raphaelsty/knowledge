@@ -46676,5 +46676,56 @@
         ],
         "summary": "On the value of human-generated scientific writing in the age of large-language models. Writing scientific articles is an integral part of the scientific method and common practice to communicate research findings. However, writing is not only about reporting results; it also provides a tool to uncover new thoughts and ideas.",
         "date": "2025-07-25"
+    },
+    "https://github.com/cline/cline": {
+        "extra-tags": [
+            "ai",
+            "coding",
+            "files",
+            "browser",
+            "agentic",
+            "terminal"
+        ],
+        "date": "2025-07-26",
+        "title": "cline",
+        "summary": "Autonomous coding agent right in your IDE, capable of creating/editing files, executing commands, using the browser, and more with your permission every step of the way. \n English Espaol Deutsch Download on VS Marketplace Discord rcline Feature Requests Getting Started Meet Cline pronounced klan, like Klein, an AI assistant that can use your CLI aNd Editor. Thanks to Claude 3.7 Sonnet's agentic coding capabilitieshttpswww.anthropic.comclaudesonnet, Cline can handle complex software development tasks step-by-step. With tools that let him create edit files, explore large projects, use the browser, and execute terminal commands after you grant permission, he can assist you in ways that go beyond code completion or tech support. Cline can even use the Model Context Protocol MCP to create new tools and extend his own capabilities. While autonomous AI scripts traditionally run in sandboxed environments, this extension provides a human-in-the-loop GUI to approve every file change and terminal command, providing a safe and accessible way to explore the potential of agentic AI.",
+        "tags": [
+            "typescript"
+        ]
+    },
+    "https://github.com/fracapuano/gym-laser": {
+        "extra-tags": [
+            "gym",
+            "environment",
+            "conda",
+            "system"
+        ],
+        "date": "2025-07-26",
+        "title": "gym-laser",
+        "summary": "A gym environment for the pump of world's most powerful laser system \n gym-laser is a physics-informed simulated environment for laser pulse optimization using gymnasiumhttpsgymnasium.farama.org. Check out our demohttpshuggingface.cospacesfracapuanoRLaser to train and upload your own policy for pulse shaping. !httpshuggingface.codatasetsfracapuanorlaser-assetsresolvemainassetsgym-laser-render.gif We recommend installing this environment within a Conda environmenthttpsrepo.anaconda.comminiconda. Then, simply run bash conda create -n gymlaser python3.11 -y conda activate gymlaser pip install gym-laser",
+        "tags": [
+            "python"
+        ]
+    },
+    "http://arxiv.org/abs/2506.18902": {
+        "extra-tags": [
+            "retrieval"
+        ],
+        "title": "jina-embeddings-v4: Universal Embeddings for Multimodal Multilingual Retrieval",
+        "summary": "We introduce jina-embeddings-v4, a 3.8 billion parameter multimodal embedding model that unifies text and image representations through a novel architecture supporting both single-vector and multi-vector embeddings in the late interaction style. The model incorporates task-specific Low-Rank Adaptation (LoRA) adapters to optimize performance across diverse retrieval scenarios, including query-document retrieval, semantic text similarity, and code search. Comprehensive evaluations demonstrate that jina-embeddings-v4 achieves state-of-the-art performance on both single-modal and cross-modal retrieval tasks, with particular strength in processing visually rich content such as tables, charts, diagrams, and mixed-media formats. To facilitate evaluation of this capability, we also introduce Jina-VDR, a novel benchmark specifically designed for visually rich image retrieval.",
+        "date": "2025-07-25",
+        "tags": [
+            "computer science - artificial intelligence",
+            "computer science - computation and language",
+            "computer science - information retrieval",
+            "embeddings",
+            "information retrieval",
+            "jina",
+            "multilingual",
+            "multimodal",
+            "paper",
+            "retriever",
+            "vision"
+        ]
     }
 }
