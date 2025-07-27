@@ -216422,5 +216422,309 @@
     {
         "head": "vision",
         "tail": "retrieval"
+    },
+    {
+        "head": "rust",
+        "tail": "rust-cuda"
+    },
+    {
+        "head": "rust",
+        "tail": "rust-gpu"
+    },
+    {
+        "head": "rust",
+        "tail": "codebase"
+    },
+    {
+        "head": "rust-cuda",
+        "tail": "vulkan"
+    },
+    {
+        "head": "rust-cuda",
+        "tail": "rust-gpu"
+    },
+    {
+        "head": "rust-cuda",
+        "tail": "gpu"
+    },
+    {
+        "head": "rust-cuda",
+        "tail": "cuda"
+    },
+    {
+        "head": "rust-cuda",
+        "tail": "codebase"
+    },
+    {
+        "head": "rust-cuda",
+        "tail": "cpu"
+    },
+    {
+        "head": "rust-cuda",
+        "tail": "cross-platform"
+    },
+    {
+        "head": "vulkan",
+        "tail": "rust-gpu"
+    },
+    {
+        "head": "vulkan",
+        "tail": "codebase"
+    },
+    {
+        "head": "vulkan",
+        "tail": "cpu"
+    },
+    {
+        "head": "rust-gpu",
+        "tail": "gpu"
+    },
+    {
+        "head": "rust-gpu",
+        "tail": "cuda"
+    },
+    {
+        "head": "rust-gpu",
+        "tail": "codebase"
+    },
+    {
+        "head": "rust-gpu",
+        "tail": "cpu"
+    },
+    {
+        "head": "rust-gpu",
+        "tail": "cross-platform"
+    },
+    {
+        "head": "gpu",
+        "tail": "codebase"
+    },
+    {
+        "head": "gpu",
+        "tail": "cross-platform"
+    },
+    {
+        "head": "cuda",
+        "tail": "codebase"
+    },
+    {
+        "head": "cuda",
+        "tail": "cpu"
+    },
+    {
+        "head": "codebase",
+        "tail": "cpu"
+    },
+    {
+        "head": "codebase",
+        "tail": "cross-platform"
+    },
+    {
+        "head": "cpu",
+        "tail": "cross-platform"
+    },
+    {
+        "head": "control",
+        "tail": "tuning"
+    },
+    {
+        "head": "control",
+        "tail": "utility"
+    },
+    {
+        "head": "control",
+        "tail": "simulation"
+    },
+    {
+        "head": "control",
+        "tail": "hardware"
+    },
+    {
+        "head": "tuning",
+        "tail": "utility"
+    },
+    {
+        "head": "tuning",
+        "tail": "simulation"
+    },
+    {
+        "head": "tuning",
+        "tail": "hardware"
+    },
+    {
+        "head": "utility",
+        "tail": "simulation"
+    },
+    {
+        "head": "utility",
+        "tail": "hardware"
+    },
+    {
+        "head": "simulation",
+        "tail": "hardware"
+    },
+    {
+        "head": "yahoo",
+        "tail": "page"
+    },
+    {
+        "head": "yahoo",
+        "tail": "good"
+    },
+    {
+        "head": "page",
+        "tail": "good"
+    },
+    {
+        "head": "index",
+        "tail": "dev"
+    },
+    {
+        "head": "index",
+        "tail": "paper-implementations"
+    },
+    {
+        "head": "dev",
+        "tail": "paper-implementations"
+    },
+    {
+        "head": "rust",
+        "tail": "nvidia gpus"
+    },
+    {
+        "head": "rust",
+        "tail": "nvidia"
+    },
+    {
+        "head": "gpu",
+        "tail": "nvidia gpus"
+    },
+    {
+        "head": "rust-gpu",
+        "tail": "nvidia gpus"
+    },
+    {
+        "head": "rust-gpu",
+        "tail": "nvidia"
+    },
+    {
+        "head": "nvidia gpus",
+        "tail": "nvidia"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "blog"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "hnsw"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "vector"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "apache"
+    },
+    {
+        "head": "blog",
+        "tail": "faiss"
+    },
+    {
+        "head": "blog",
+        "tail": "hnsw"
+    },
+    {
+        "head": "blog",
+        "tail": "index"
+    },
+    {
+        "head": "blog",
+        "tail": "information retrieval"
+    },
+    {
+        "head": "blog",
+        "tail": "information-retrieval"
+    },
+    {
+        "head": "blog",
+        "tail": "search"
+    },
+    {
+        "head": "blog",
+        "tail": "vector"
+    },
+    {
+        "head": "blog",
+        "tail": "apache"
+    },
+    {
+        "head": "faiss",
+        "tail": "index"
+    },
+    {
+        "head": "faiss",
+        "tail": "information retrieval"
+    },
+    {
+        "head": "faiss",
+        "tail": "vector"
+    },
+    {
+        "head": "faiss",
+        "tail": "apache"
+    },
+    {
+        "head": "hnsw",
+        "tail": "index"
+    },
+    {
+        "head": "hnsw",
+        "tail": "information retrieval"
+    },
+    {
+        "head": "hnsw",
+        "tail": "information-retrieval"
+    },
+    {
+        "head": "hnsw",
+        "tail": "vector"
+    },
+    {
+        "head": "hnsw",
+        "tail": "apache"
+    },
+    {
+        "head": "index",
+        "tail": "information retrieval"
+    },
+    {
+        "head": "index",
+        "tail": "information-retrieval"
+    },
+    {
+        "head": "index",
+        "tail": "vector"
+    },
+    {
+        "head": "index",
+        "tail": "apache"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "apache"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "apache"
+    },
+    {
+        "head": "search",
+        "tail": "apache"
+    },
+    {
+        "head": "vector",
+        "tail": "apache"
     }
 ]

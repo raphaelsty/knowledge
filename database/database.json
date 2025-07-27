@@ -46727,5 +46727,98 @@
             "retriever",
             "vision"
         ]
+    },
+    "https://github.com/LegNeato/rust-gpu-chimera": {
+        "extra-tags": [
+            "codebase",
+            "cpu",
+            "cross-platform"
+        ],
+        "date": "2025-07-27",
+        "title": "rust-gpu-chimera",
+        "summary": "Demo project showing a single Rust codebase running on CPU and directly on GPUs \n A cross-platform demo of a single Rust codebase running on both the CPU and GPU via CUDA, Vulkan, Metal, and DirectX. There are no shader or kernel languages used, only Rust. Platform Rust Features Host Backend Driver How it Works Status ------------ ------------- ------ ------- ------------- -------------------- ------------------",
+        "tags": [
+            "rust",
+            "rust-cuda",
+            "vulkan",
+            "rust-gpu",
+            "gpu",
+            "cuda"
+        ]
+    },
+    "https://github.com/kscalelabs/ktune": {
+        "extra-tags": [
+            "control",
+            "tuning",
+            "utility",
+            "simulation",
+            "hardware"
+        ],
+        "date": "2025-07-27",
+        "title": "ktune",
+        "summary": "ktune is a servo control tuning utility for matching real2sim. It utilizes Kscales kos and kos-sim. \n ktune is a command-line utility for actuator tuning and simulation-to-reality Sim2Real validation. It enables running standardized motion tests sine, step, chirp simultaneously in simulation and hardware, providing quantitative comparison for actuator dynamics and control performance. bash pip install ktune Ensure the pykos library is also installed and configured for your hardware.",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://dfarq.homeip.net/what-went-wrong-for-yahoo/": {
+        "extra-tags": [
+            "yahoo",
+            "page",
+            "good"
+        ],
+        "title": "Hackernews What went wrong for Yahoo (homeip.net)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "Reddit calls itself the front page of the Internet. But for a good decade or even a decade and a half, Yahoo had as legitimate of a claim as any to the title of front page of the Internet. On July 25, 2016, Yahoo met an inglorious end as an",
+        "date": "2025-07-27"
+    },
+    "https://www.chashnikov.dev/post/inverted-indexes-a-step-by-step-implementation-guide": {
+        "extra-tags": [
+            "index",
+            "dev",
+            "paper-implementations"
+        ],
+        "title": "Hackernews Inverted Indexes: A Step-by-Step Implementation Guide (2023) (chashnikov.dev)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "Inverted Indexes: A Step-by-Step Implementation Guide - Leo Chashnikov - Jun 12, 2023 - 5 min read Updated: Jun 13, 2023 Before we start with the implementation, let's talk about why would you actually need an inverted index in a real life. Why would anyone need inverted index at all",
+        "date": "2025-07-27"
+    },
+    "https://rust-gpu.github.io/blog/2025/07/25/rust-on-every-gpu/": {
+        "extra-tags": [
+            "rust",
+            "gpu",
+            "rust-gpu",
+            "nvidia gpus",
+            "nvidia"
+        ],
+        "title": "Hackernews Rust running on every GPU (rust-gpu.github.io)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "Rust running on every GPU I've built a demo of a single shared Rust codebase that runs on every major GPU platform: - CUDA for NVIDIA GPUs - SPIR-V for Vulkan-compatible GPUs from AMD, Intel, NVIDIA, and Android devices - Metal for Apple devices - DirectX 12 for Windows -",
+        "date": "2025-07-27"
+    },
+    "https://www.elastic.co/search-labs/blog/filtered-hnsw-knn-search": {
+        "extra-tags": [
+            "search",
+            "vector",
+            "apache"
+        ],
+        "title": "Filtered HNSW & kNN search: Making searches faster",
+        "summary": "Explore the improvements we have made for HNSW vector search in Apache Lucene through our ACORN-1 algorithm implementation.",
+        "date": "2025-07-27",
+        "tags": [
+            "computer science - information retrieval",
+            "blog",
+            "faiss",
+            "hnsw",
+            "index",
+            "information retrieval",
+            "information-retrieval"
+        ]
     }
 }
