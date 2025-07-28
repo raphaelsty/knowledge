@@ -46820,5 +46820,32 @@
             "information retrieval",
             "information-retrieval"
         ]
+    },
+    "https://github.com/alienator88/Pearcleaner": {
+        "extra-tags": [
+            "source",
+            "code",
+            "mac",
+            "macos"
+        ],
+        "date": "2025-07-28",
+        "title": "Pearcleaner",
+        "summary": "A free, source-available and fair-code licensed mac app cleaner \n -- Status Maintained Version 4.5.3 Download Commits A free, source-available and fair-code licensed Mac app cleaner inspired by Freemacsoft's AppCleanerhttpsfreemacsoft.netappcleaner and Sun Knudsen's Privacy Guideshttpsgithub.comsunknudsenguidestreemainarchivehow-to-clean-uninstall-macos-apps-using-appcleaner-open-source-alternative post on his app-cleaner script. This project was born out of wanting to learn more on how macOS deals with app installationuninstallation and getting more Swift experience. If you have suggestions I'm open to hearing them, submit a feature request!",
+        "tags": [
+            "swift"
+        ]
+    },
+    "https://github.com/IINemo/lm-polygraph": {
+        "extra-tags": [
+            "uncertainty",
+            "svg",
+            "battery"
+        ],
+        "date": "2025-07-28",
+        "title": "lm-polygraph",
+        "summary": " \n !Python 3.11httpsimg.shields.iobadgepython-3.11-blue.svg LM-Polygraph provides a battery of state-of-the-art of uncertainty estimation UE methods for LMs in text generation tasks. High uncertainty can indicate the presence of hallucinations and knowing a score that estimates uncertainty can help to make applications of LLMs safer. The framework also introduces an extendable benchmark for consistent evaluation of UE techniques by researchers and a demo web application that enriches the standard chat dialog with confidence scores, empowering end-users to discern unreliable responses.",
+        "tags": [
+            "python"
+        ]
     }
 }

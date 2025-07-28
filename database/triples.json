@@ -216726,5 +216726,41 @@
     {
         "head": "vector",
         "tail": "apache"
+    },
+    {
+        "head": "swift",
+        "tail": "source"
+    },
+    {
+        "head": "swift",
+        "tail": "code"
+    },
+    {
+        "head": "source",
+        "tail": "mac"
+    },
+    {
+        "head": "source",
+        "tail": "macos"
+    },
+    {
+        "head": "code",
+        "tail": "mac"
+    },
+    {
+        "head": "python",
+        "tail": "battery"
+    },
+    {
+        "head": "uncertainty",
+        "tail": "svg"
+    },
+    {
+        "head": "uncertainty",
+        "tail": "battery"
+    },
+    {
+        "head": "svg",
+        "tail": "battery"
     }
 ]
