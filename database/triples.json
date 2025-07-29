@@ -216762,5 +216762,169 @@
     {
         "head": "svg",
         "tail": "battery"
+    },
+    {
+        "head": "pydantic",
+        "tail": "settings"
+    },
+    {
+        "head": "pydantic",
+        "tail": "configuration"
+    },
+    {
+        "head": "pydantic",
+        "tail": "environment"
+    },
+    {
+        "head": "settings",
+        "tail": "configuration"
+    },
+    {
+        "head": "settings",
+        "tail": "python"
+    },
+    {
+        "head": "settings",
+        "tail": "environment"
+    },
+    {
+        "head": "configuration",
+        "tail": "environment"
+    },
+    {
+        "head": "dpo",
+        "tail": "fine-tuning"
+    },
+    {
+        "head": "dpo",
+        "tail": "multimodal dpo"
+    },
+    {
+        "head": "dpo",
+        "tail": "trl"
+    },
+    {
+        "head": "dpo",
+        "tail": "tutorial"
+    },
+    {
+        "head": "dpo",
+        "tail": "vision"
+    },
+    {
+        "head": "dpo",
+        "tail": "language models"
+    },
+    {
+        "head": "dpo",
+        "tail": "source"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "hugging face"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "multimodal dpo"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "trl"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "tutorial"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "optimization"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "source"
+    },
+    {
+        "head": "hugging face",
+        "tail": "multimodal dpo"
+    },
+    {
+        "head": "hugging face",
+        "tail": "trl"
+    },
+    {
+        "head": "hugging face",
+        "tail": "tutorial"
+    },
+    {
+        "head": "hugging face",
+        "tail": "optimization"
+    },
+    {
+        "head": "hugging face",
+        "tail": "language models"
+    },
+    {
+        "head": "multimodal dpo",
+        "tail": "trl"
+    },
+    {
+        "head": "multimodal dpo",
+        "tail": "tutorial"
+    },
+    {
+        "head": "multimodal dpo",
+        "tail": "optimization"
+    },
+    {
+        "head": "multimodal dpo",
+        "tail": "vision"
+    },
+    {
+        "head": "multimodal dpo",
+        "tail": "language models"
+    },
+    {
+        "head": "multimodal dpo",
+        "tail": "source"
+    },
+    {
+        "head": "trl",
+        "tail": "optimization"
+    },
+    {
+        "head": "trl",
+        "tail": "vision"
+    },
+    {
+        "head": "trl",
+        "tail": "language models"
+    },
+    {
+        "head": "trl",
+        "tail": "source"
+    },
+    {
+        "head": "tutorial",
+        "tail": "optimization"
+    },
+    {
+        "head": "tutorial",
+        "tail": "vision"
+    },
+    {
+        "head": "tutorial",
+        "tail": "language models"
+    },
+    {
+        "head": "tutorial",
+        "tail": "source"
+    },
+    {
+        "head": "optimization",
+        "tail": "vision"
+    },
+    {
+        "head": "optimization",
+        "tail": "source"
     }
 ]
