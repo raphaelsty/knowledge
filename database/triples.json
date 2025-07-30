@@ -216926,5 +216926,413 @@
     {
         "head": "optimization",
         "tail": "source"
+    },
+    {
+        "head": "tensor",
+        "tail": "mobile"
+    },
+    {
+        "head": "tensor",
+        "tail": "embedded"
+    },
+    {
+        "head": "tensor",
+        "tail": "ai"
+    },
+    {
+        "head": "tensor",
+        "tail": "meta"
+    },
+    {
+        "head": "tensor",
+        "tail": "speech"
+    },
+    {
+        "head": "mobile",
+        "tail": "gpu"
+    },
+    {
+        "head": "mobile",
+        "tail": "embedded"
+    },
+    {
+        "head": "mobile",
+        "tail": "python"
+    },
+    {
+        "head": "mobile",
+        "tail": "neural-network"
+    },
+    {
+        "head": "mobile",
+        "tail": "ai"
+    },
+    {
+        "head": "mobile",
+        "tail": "meta"
+    },
+    {
+        "head": "mobile",
+        "tail": "speech"
+    },
+    {
+        "head": "gpu",
+        "tail": "embedded"
+    },
+    {
+        "head": "gpu",
+        "tail": "ai"
+    },
+    {
+        "head": "gpu",
+        "tail": "speech"
+    },
+    {
+        "head": "embedded",
+        "tail": "python"
+    },
+    {
+        "head": "embedded",
+        "tail": "deep-learning"
+    },
+    {
+        "head": "embedded",
+        "tail": "neural-network"
+    },
+    {
+        "head": "embedded",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "embedded",
+        "tail": "ai"
+    },
+    {
+        "head": "embedded",
+        "tail": "meta"
+    },
+    {
+        "head": "embedded",
+        "tail": "speech"
+    },
+    {
+        "head": "embedded",
+        "tail": "pytorch"
+    },
+    {
+        "head": "python",
+        "tail": "meta"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "meta"
+    },
+    {
+        "head": "neural-network",
+        "tail": "meta"
+    },
+    {
+        "head": "neural-network",
+        "tail": "speech"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "meta"
+    },
+    {
+        "head": "ai",
+        "tail": "meta"
+    },
+    {
+        "head": "ai",
+        "tail": "speech"
+    },
+    {
+        "head": "meta",
+        "tail": "speech"
+    },
+    {
+        "head": "meta",
+        "tail": "pytorch"
+    },
+    {
+        "head": "splade",
+        "tail": "index"
+    },
+    {
+        "head": "splade",
+        "tail": "retrieval"
+    },
+    {
+        "head": "index",
+        "tail": "sparse"
+    },
+    {
+        "head": "extension",
+        "tail": "visual"
+    },
+    {
+        "head": "rust",
+        "tail": "url"
+    },
+    {
+        "head": "rust",
+        "tail": "badge"
+    },
+    {
+        "head": "rust",
+        "tail": "testing"
+    },
+    {
+        "head": "rust",
+        "tail": "google"
+    },
+    {
+        "head": "url",
+        "tail": "badge"
+    },
+    {
+        "head": "url",
+        "tail": "testing"
+    },
+    {
+        "head": "url",
+        "tail": "library"
+    },
+    {
+        "head": "url",
+        "tail": "google"
+    },
+    {
+        "head": "badge",
+        "tail": "testing"
+    },
+    {
+        "head": "badge",
+        "tail": "library"
+    },
+    {
+        "head": "badge",
+        "tail": "google"
+    },
+    {
+        "head": "testing",
+        "tail": "google"
+    },
+    {
+        "head": "library",
+        "tail": "google"
+    },
+    {
+        "head": "huggingface",
+        "tail": "lora"
+    },
+    {
+        "head": "huggingface",
+        "tail": "merge"
+    },
+    {
+        "head": "huggingface",
+        "tail": "weights"
+    },
+    {
+        "head": "huggingface",
+        "tail": "model"
+    },
+    {
+        "head": "huggingface",
+        "tail": "help"
+    },
+    {
+        "head": "lora",
+        "tail": "merge"
+    },
+    {
+        "head": "lora",
+        "tail": "weights"
+    },
+    {
+        "head": "lora",
+        "tail": "help"
+    },
+    {
+        "head": "merge",
+        "tail": "tutorial"
+    },
+    {
+        "head": "merge",
+        "tail": "weights"
+    },
+    {
+        "head": "merge",
+        "tail": "model"
+    },
+    {
+        "head": "merge",
+        "tail": "help"
+    },
+    {
+        "head": "tutorial",
+        "tail": "weights"
+    },
+    {
+        "head": "tutorial",
+        "tail": "help"
+    },
+    {
+        "head": "weights",
+        "tail": "model"
+    },
+    {
+        "head": "weights",
+        "tail": "help"
+    },
+    {
+        "head": "model",
+        "tail": "help"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "review"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "text embeddings"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "survey"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "pretrained"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "review"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "text embeddings"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "survey"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "pretrained"
+    },
+    {
+        "head": "dataset",
+        "tail": "jina"
+    },
+    {
+        "head": "dataset",
+        "tail": "review"
+    },
+    {
+        "head": "dataset",
+        "tail": "text embeddings"
+    },
+    {
+        "head": "dataset",
+        "tail": "survey"
+    },
+    {
+        "head": "dataset",
+        "tail": "pretrained"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "review"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "text embeddings"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "survey"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "pretrained"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "jina"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "review"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "text embeddings"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "survey"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "pretrained"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "language models"
+    },
+    {
+        "head": "jina",
+        "tail": "review"
+    },
+    {
+        "head": "jina",
+        "tail": "text embeddings"
+    },
+    {
+        "head": "jina",
+        "tail": "survey"
+    },
+    {
+        "head": "jina",
+        "tail": "pretrained"
+    },
+    {
+        "head": "jina",
+        "tail": "language models"
+    },
+    {
+        "head": "review",
+        "tail": "text embeddings"
+    },
+    {
+        "head": "review",
+        "tail": "survey"
+    },
+    {
+        "head": "review",
+        "tail": "pretrained"
+    },
+    {
+        "head": "text embeddings",
+        "tail": "survey"
+    },
+    {
+        "head": "text embeddings",
+        "tail": "pretrained"
+    },
+    {
+        "head": "text embeddings",
+        "tail": "language models"
+    },
+    {
+        "head": "survey",
+        "tail": "pretrained"
+    },
+    {
+        "head": "survey",
+        "tail": "language models"
     }
 ]

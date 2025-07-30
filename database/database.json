@@ -46879,5 +46879,105 @@
             "trl",
             "tutorial"
         ]
+    },
+    "https://github.com/pytorch/executorch": {
+        "extra-tags": [
+            "ai",
+            "meta",
+            "speech",
+            "pytorch"
+        ],
+        "date": "2025-07-30",
+        "title": "executorch",
+        "summary": "On-device AI across mobile, embedded and edge for PyTorch \n ExecuTorch A powerful on-device AI Framework ExecuTorch is an end-to-end solution for on-device inference and training. It powers much of Meta's on-device AI experiences across Facebook, Instagram, Meta Quest, Ray-Ban Meta Smart Glasses, WhatsApp, and more. It supports a wide range of models including LLMs Large Language Models, CV Computer Vision, ASR Automatic Speech Recognition, and TTS Text to Speech.",
+        "tags": [
+            "tensor",
+            "mobile",
+            "gpu",
+            "embedded",
+            "python",
+            "deep-learning",
+            "neural-network",
+            "machine-learning"
+        ]
+    },
+    "https://github.com/rasyosef/splade-index": {
+        "extra-tags": [
+            "splade",
+            "index",
+            "sparse",
+            "retrieval"
+        ],
+        "date": "2025-07-30",
+        "title": "splade-index",
+        "summary": "Fast search index for SPLADE sparse retrieval models implemented in Python using Numpy, Numba and Scipy \n SPLADE-Index is an ultrafast index for SPLADE sparse retrieval models implemented in pure Python and powered by Scipy sparse matrices. It is built on top of the BM25s library. SPLADE is a neural retrieval model which learns querydocument sparse expansion. Sparse representations benefit from several advantages compared to dense approaches efficient use of inverted index, explicit lexical match, interpretability... They also seem to be better at generalizing on out-of-domain data BEIR benchmark.",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/astral-sh/ty-vscode": {
+        "extra-tags": [
+            "extension",
+            "visual",
+            "code",
+            "python"
+        ],
+        "date": "2025-07-30",
+        "title": "ty-vscode",
+        "summary": "A Visual Studio Code extension for ty. \n A Visual Studio Code extension for tyhttpsgithub.comastral-shty, an extremely fast Python type checker and language server, written in Rust. The extension ships with ty0.0.1a16. Currently, the extension supports the following features Once installed in Visual Studio Code, ty will automatically execute when you open or edit a Python or Jupyter Notebook file.",
+        "tags": [
+            "typescript"
+        ]
+    },
+    "https://github.com/google/googletest-rust": {
+        "extra-tags": [
+            "url",
+            "badge",
+            "testing",
+            "library",
+            "google"
+        ],
+        "date": "2025-07-30",
+        "title": "googletest-rust",
+        "summary": "A unit testing library which provides rich assertions, fixtures, and other advanced testing features. Inspired by Google's C++ testing library googletest. \n !crates.iocrates-badgecrates-url !docs.rsdocs-badgedocs-url !Apache licensedlicense-badgelicense-url !Build Statusactions-badgeactions-url !OpenSSF Best Practicesopenssf-badgeopenssf-url crates-badge httpsimg.shields.iocratesvgoogletest.svg crates-url httpscrates.iocratesgoogletest docs-badge httpsimg.shields.iobadgedocs.rs-googletest-66c2a5 docs-url httpsdocs.rsgoogletestgoogletest license-badge httpsimg.shields.iobadgelicense-Apache-blue.svg license-url httpsgithub.comgooglegoogletest-rustblobmainLICENSE actions-badge httpsgithub.comgooglegoogletest-rustworkflowsCIbadge.svg actions-url httpsgithub.comgooglegoogletest-rustactions?queryworkflow3ACIbranch3Amain openssf-badge httpswww.bestpractices.devprojects10037badge openssf-url httpswww.bestpractices.devprojects10037 This library brings the rich assertion types of Google's C testing library GoogleTesthttpsgithub.comgooglegoogletest to Rust. It provides of assertions on data,",
+        "tags": [
+            "rust"
+        ]
+    },
+    "https://discuss.huggingface.co/t/help-with-merging-lora-weights-back-into-base-model/40968": {
+        "extra-tags": [
+            "model",
+            "help"
+        ],
+        "title": "Help with merging LoRA weights back into base model :-) - Beginners",
+        "summary": "As best as I can tell, the LoraModel merge_and_unload attribute (peft/lora.py at main \u00b7 huggingface/peft \u00b7 GitHub) merges LoRA weights back into the main model.  However, I am having trouble getting a LoraModel type from my PeftModelForCausalLM. My current workflow is to define a pretrained model, define a LoraConfig, and use the get_peft_model function to being training. This works great, but I want to be able to merge the weights back into the base model and save.  My working assumption is tha...",
+        "date": "2025-07-29",
+        "tags": [
+            "huggingface",
+            "lora",
+            "merge",
+            "tutorial",
+            "weights"
+        ]
+    },
+    "http://arxiv.org/abs/2507.20783": {
+        "extra-tags": [
+            "text embeddings",
+            "survey",
+            "pretrained",
+            "language models"
+        ],
+        "title": "On The Role of Pretrained Language Models in General-Purpose Text Embeddings: A Survey",
+        "summary": "Text embeddings have attracted growing interest due to their effectiveness across a wide range of natural language processing (NLP) tasks, such as retrieval, classification, clustering, bitext mining, and summarization. With the emergence of pretrained language models (PLMs), general-purpose text embeddings (GPTE) have gained significant traction for their ability to produce rich, transferable representations. The general architecture of GPTE typically leverages PLMs to derive dense text representations, which are then optimized through contrastive learning on large-scale pairwise datasets. In this survey, we provide a comprehensive overview of GPTE in the era of PLMs, focusing on the roles PLMs play in driving its development. We first examine the fundamental architecture and describe the basic roles of PLMs in GPTE, i.e., embedding extraction, expressivity enhancement, training strategies, learning objectives, and data construction. Then, we describe advanced roles enabled by PLMs, such as multilingual support, multimodal integration, code understanding, and scenario-specific adaptation. Finally, we highlight potential future research directions that move beyond traditional improvement goals, including ranking integration, safety considerations, bias mitigation, structural information incorporation, and the cognitive extension of embeddings. This survey aims to serve as a valuable reference for both newcomers and established researchers seeking to understand the current state and future potential of GPTE.",
+        "date": "2025-07-29",
+        "tags": [
+            "computer science - computation and language",
+            "computer science - information retrieval",
+            "dataset",
+            "information retrieval",
+            "information-retrieval",
+            "jina",
+            "review"
+        ]
     }
 }
