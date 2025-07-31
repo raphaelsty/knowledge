@@ -46979,5 +46979,61 @@
             "jina",
             "review"
         ]
+    },
+    "https://github.com/browserbase/stagehand-python": {
+        "extra-tags": [
+            "browser",
+            "automation",
+            "framework",
+            "code"
+        ],
+        "date": "2025-07-31",
+        "title": "stagehand-python",
+        "summary": "The AI Browser Automation Framework \n The AI Browser Automation Framework Read the Docs If you're looking for the TypeScript implementation, you can find it here Vibe code Stagehand with Director Most existing browser automation tools either require you to write low-level code in a framework like Selenium, Playwright, or Puppeteer, or use high-level agents that can be unpredictable in production. By letting developers choose what to write in code vs. natural language, Stagehand is the natural choice for browser automations in production.",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/huggingface/kernel-builder": {
+        "extra-tags": [
+            "kernel",
+            "build",
+            "package",
+            "pytorch"
+        ],
+        "date": "2025-07-31",
+        "title": "kernel-builder",
+        "summary": "\ud83d\udc77 Build compute kernels \n This repo contains a Nix package that can be used to build custom machine learning kernels for PyTorch. The kernels are built using the PyTorch C Frontendhttpspytorch.orgcppdocsfrontend.html and can be loaded from the Hub with the kernelshttpsgithub.comhuggingfacekernels Python package. This builder is a core component of the larger kernel builddistribution system.",
+        "tags": [
+            "rust"
+        ]
+    },
+    "https://maxhalford.github.io/blog/llm-font-identification/": {
+        "extra-tags": [
+            "fonts",
+            "llms",
+            "github"
+        ],
+        "title": "Hackernews Do LLMs Identify Fonts? (maxhalford.github.io)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "Do LLMs identify fonts? Spoiler: not really dafont.com is a wonderful website that contains a large collection of fonts. It\u2019s more comprehensive and esoteric than Google Fonts. One of its features is a forum where users can ask for help identifying fonts \u2013 check out this poor fellow who\u2019s been",
+        "date": "2025-07-31"
+    },
+    "https://www.dafont.com/fr/": {
+        "extra-tags": [
+            "policy",
+            "policy-agent"
+        ],
+        "title": "DaFont - Polices \u00e0 t\u00e9l\u00e9charger",
+        "summary": "",
+        "date": "2025-07-30",
+        "tags": [
+            "custom font",
+            "font",
+            "max halford",
+            "website"
+        ]
     }
 }
