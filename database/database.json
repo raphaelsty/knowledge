@@ -47035,5 +47035,26 @@
             "max halford",
             "website"
         ]
+    },
+    "https://github.com/borb-pdf/borb": {
+        "extra-tags": [
+            "borb",
+            "files"
+        ],
+        "date": "2025-08-01",
+        "title": "borb",
+        "summary": "borb is a library for reading, creating and manipulating PDF files in python. \n borb is a powerful and flexible Python library for creating and manipulating PDF files. borb provides a pure Python solution for PDF document management, allowing users to read, write, and manipulate PDFs. It models PDF files in a JSON-like structure, using nested lists, dictionaries, and primitives numbers, strings, booleans, etc.. Created and maintained as a solo project, borb prioritizes common PDF use cases for practical and straightforward usage.",
+        "tags": [
+            "sdk",
+            "pdf-generation",
+            "library",
+            "python3",
+            "pdf-converter",
+            "typesetting",
+            "pdf-library",
+            "pdf",
+            "python",
+            "pdf-conversion"
+        ]
     }
 }

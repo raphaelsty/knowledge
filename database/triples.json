@@ -217430,5 +217430,77 @@
     {
         "head": "policy",
         "tail": "policy-agent"
+    },
+    {
+        "head": "sdk",
+        "tail": "borb"
+    },
+    {
+        "head": "sdk",
+        "tail": "files"
+    },
+    {
+        "head": "pdf-generation",
+        "tail": "borb"
+    },
+    {
+        "head": "pdf-generation",
+        "tail": "files"
+    },
+    {
+        "head": "library",
+        "tail": "borb"
+    },
+    {
+        "head": "library",
+        "tail": "files"
+    },
+    {
+        "head": "python3",
+        "tail": "borb"
+    },
+    {
+        "head": "python3",
+        "tail": "files"
+    },
+    {
+        "head": "pdf-converter",
+        "tail": "borb"
+    },
+    {
+        "head": "pdf-converter",
+        "tail": "files"
+    },
+    {
+        "head": "typesetting",
+        "tail": "borb"
+    },
+    {
+        "head": "typesetting",
+        "tail": "files"
+    },
+    {
+        "head": "pdf-library",
+        "tail": "borb"
+    },
+    {
+        "head": "pdf-library",
+        "tail": "files"
+    },
+    {
+        "head": "pdf",
+        "tail": "files"
+    },
+    {
+        "head": "pdf-conversion",
+        "tail": "borb"
+    },
+    {
+        "head": "pdf-conversion",
+        "tail": "files"
+    },
+    {
+        "head": "borb",
+        "tail": "files"
     }
 ]
