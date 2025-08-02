@@ -217502,5 +217502,181 @@
     {
         "head": "borb",
         "tail": "files"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "geolocation"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "visual"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "generative"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "location"
+    },
+    {
+        "head": "geolocation",
+        "tail": "diffusion"
+    },
+    {
+        "head": "geolocation",
+        "tail": "visual"
+    },
+    {
+        "head": "geolocation",
+        "tail": "generative"
+    },
+    {
+        "head": "geolocation",
+        "tail": "code"
+    },
+    {
+        "head": "geolocation",
+        "tail": "location"
+    },
+    {
+        "head": "diffusion",
+        "tail": "visual"
+    },
+    {
+        "head": "diffusion",
+        "tail": "code"
+    },
+    {
+        "head": "diffusion",
+        "tail": "location"
+    },
+    {
+        "head": "visual",
+        "tail": "generative"
+    },
+    {
+        "head": "visual",
+        "tail": "location"
+    },
+    {
+        "head": "generative",
+        "tail": "code"
+    },
+    {
+        "head": "generative",
+        "tail": "location"
+    },
+    {
+        "head": "code",
+        "tail": "location"
+    },
+    {
+        "head": "causal2vec",
+        "tail": "convert llm as encoder"
+    },
+    {
+        "head": "causal2vec",
+        "tail": "decoder"
+    },
+    {
+        "head": "causal2vec",
+        "tail": "embeddings"
+    },
+    {
+        "head": "causal2vec",
+        "tail": "encoder"
+    },
+    {
+        "head": "causal2vec",
+        "tail": "information retrieval"
+    },
+    {
+        "head": "causal2vec",
+        "tail": "llm"
+    },
+    {
+        "head": "causal2vec",
+        "tail": "model2vec"
+    },
+    {
+        "head": "causal2vec",
+        "tail": "llms"
+    },
+    {
+        "head": "causal2vec",
+        "tail": "embedding"
+    },
+    {
+        "head": "convert llm as encoder",
+        "tail": "decoder"
+    },
+    {
+        "head": "convert llm as encoder",
+        "tail": "embeddings"
+    },
+    {
+        "head": "convert llm as encoder",
+        "tail": "encoder"
+    },
+    {
+        "head": "convert llm as encoder",
+        "tail": "information retrieval"
+    },
+    {
+        "head": "convert llm as encoder",
+        "tail": "llm"
+    },
+    {
+        "head": "convert llm as encoder",
+        "tail": "model2vec"
+    },
+    {
+        "head": "convert llm as encoder",
+        "tail": "llms"
+    },
+    {
+        "head": "convert llm as encoder",
+        "tail": "embedding"
+    },
+    {
+        "head": "decoder",
+        "tail": "embeddings"
+    },
+    {
+        "head": "decoder",
+        "tail": "model2vec"
+    },
+    {
+        "head": "decoder",
+        "tail": "llms"
+    },
+    {
+        "head": "decoder",
+        "tail": "embedding"
+    },
+    {
+        "head": "encoder",
+        "tail": "model2vec"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "model2vec"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "embedding"
+    },
+    {
+        "head": "llm",
+        "tail": "model2vec"
+    },
+    {
+        "head": "model2vec",
+        "tail": "llms"
+    },
+    {
+        "head": "model2vec",
+        "tail": "embedding"
     }
 ]

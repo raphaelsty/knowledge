@@ -47056,5 +47056,40 @@
             "python",
             "pdf-conversion"
         ]
+    },
+    "https://github.com/nicolas-dufour/plonk": {
+        "extra-tags": [
+            "visual",
+            "generative",
+            "code",
+            "location"
+        ],
+        "date": "2025-08-02",
+        "title": "plonk",
+        "summary": "Code for \"Around the World in 80 Timesteps: A Generative Approach to Global Visual Geolocation\" \n !PLONK.mediateaser.png Nicolas Dufour, David Picard, Vicky Kalogeiton, Loic Landrieu Introducing the first generative geolocation method based on diffusion and flow matching! We learn the relationship between visual content and location by denoising random locations conditionally to images. New SOTA for visual geolocation on OpenStreetView-5M, YFCC-100M, and iNat-21 Generate global probability density maps and quantify localizability",
+        "tags": [
+            "jupyter notebook",
+            "geolocation",
+            "diffusion"
+        ]
+    },
+    "https://arxiv.org/html/2507.23386v1": {
+        "extra-tags": [
+            "llms",
+            "embedding"
+        ],
+        "title": "Causal2Vec: Improving Decoder-only LLMs as Versatile Embedding Models",
+        "summary": "",
+        "date": "2025-08-01",
+        "tags": [
+            "causal2vec",
+            "convert llm as encoder",
+            "decoder",
+            "embeddings",
+            "encoder",
+            "information retrieval",
+            "llm",
+            "model2vec"
+        ]
     }
 }
