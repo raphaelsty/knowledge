@@ -47091,5 +47091,53 @@
             "llm",
             "model2vec"
         ]
+    },
+    "https://github.com/so-fancy/diff-so-fancy": {
+        "extra-tags": [],
+        "date": "2025-08-05",
+        "title": "diff-so-fancy",
+        "summary": "Good-lookin' diffs. Actually\u2026 nah\u2026 The best-lookin' diffs. :tada: \n diff-so-fancy strives to make your diffs human readable instead of machine readable. This helps improve code quality and helps you spot defects faster. Vanilla git diff vs git and diff-so-fancy !diff-highlight vs diff-so-fancydiff-so-fancy.png Installation is as simple as cloning this repo and then putting the diff-so-fancy script in to your PATH. The lib directory will need to be kept relative to the core script.",
+        "tags": [
+            "fancy",
+            "hacktoberfest",
+            "perl",
+            "diffs",
+            "diff-highlight",
+            "git",
+            "diff"
+        ]
+    },
+    "https://github.com/pollen-robotics/rustypot": {
+        "extra-tags": [
+            "build",
+            "status",
+            "actions",
+            "svg",
+            "crates",
+            "robotics"
+        ],
+        "date": "2025-08-05",
+        "title": "rustypot",
+        "summary": "Communication with Dynamixel like devices. \n !Build Statusactions !Latest Versioncrates.io Build Status httpsimg.shields.iogithubactionsworkflowstatuspollen-roboticsrustypotrust.yml?branchmaster actions httpsgithub.compollen-roboticsrustypotactions?querybranch3Amaster Latest Version httpsimg.shields.iocratesvrustypot.svg crates.io httpscrates.iocratesrustypot Rustypot is a communication library for DynamixelFeetech motors. It is notably used in the Reachy projecthttpswww.pollen-robotics.comreachy. More types of servo can be added in the future. To add new servo, please refer to the Servo documentation.servoREADME.md.",
+        "tags": [
+            "rust"
+        ]
+    },
+    "https://pytorch.org/tutorials/intermediate/FSDP_tutorial.html, /intermediate/FSDP_tutorial.html": {
+        "extra-tags": [
+            "data",
+            "parallel",
+            "pytorch",
+            "documentation"
+        ],
+        "title": "Getting Started with Fully Sharded Data Parallel (FSDP2) \u2014 PyTorch Tutorials 2.7.0+cu126 documentation",
+        "summary": "",
+        "date": "2025-08-04",
+        "tags": [
+            "fsdp",
+            "llm",
+            "torch",
+            "training"
+        ]
     }
 }

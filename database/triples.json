@@ -217678,5 +217678,213 @@
     {
         "head": "model2vec",
         "tail": "embedding"
+    },
+    {
+        "head": "fancy",
+        "tail": "hacktoberfest"
+    },
+    {
+        "head": "fancy",
+        "tail": "perl"
+    },
+    {
+        "head": "fancy",
+        "tail": "diffs"
+    },
+    {
+        "head": "fancy",
+        "tail": "diff-highlight"
+    },
+    {
+        "head": "fancy",
+        "tail": "git"
+    },
+    {
+        "head": "fancy",
+        "tail": "diff"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "perl"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "diffs"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "diff-highlight"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "diff"
+    },
+    {
+        "head": "perl",
+        "tail": "diffs"
+    },
+    {
+        "head": "perl",
+        "tail": "diff-highlight"
+    },
+    {
+        "head": "perl",
+        "tail": "git"
+    },
+    {
+        "head": "perl",
+        "tail": "diff"
+    },
+    {
+        "head": "diffs",
+        "tail": "diff-highlight"
+    },
+    {
+        "head": "diffs",
+        "tail": "git"
+    },
+    {
+        "head": "diffs",
+        "tail": "diff"
+    },
+    {
+        "head": "diff-highlight",
+        "tail": "git"
+    },
+    {
+        "head": "diff-highlight",
+        "tail": "diff"
+    },
+    {
+        "head": "rust",
+        "tail": "status"
+    },
+    {
+        "head": "rust",
+        "tail": "actions"
+    },
+    {
+        "head": "rust",
+        "tail": "svg"
+    },
+    {
+        "head": "build",
+        "tail": "status"
+    },
+    {
+        "head": "build",
+        "tail": "actions"
+    },
+    {
+        "head": "build",
+        "tail": "svg"
+    },
+    {
+        "head": "status",
+        "tail": "actions"
+    },
+    {
+        "head": "status",
+        "tail": "crates"
+    },
+    {
+        "head": "status",
+        "tail": "robotics"
+    },
+    {
+        "head": "actions",
+        "tail": "svg"
+    },
+    {
+        "head": "actions",
+        "tail": "crates"
+    },
+    {
+        "head": "actions",
+        "tail": "robotics"
+    },
+    {
+        "head": "svg",
+        "tail": "crates"
+    },
+    {
+        "head": "svg",
+        "tail": "robotics"
+    },
+    {
+        "head": "crates",
+        "tail": "robotics"
+    },
+    {
+        "head": "fsdp",
+        "tail": "llm"
+    },
+    {
+        "head": "fsdp",
+        "tail": "torch"
+    },
+    {
+        "head": "fsdp",
+        "tail": "training"
+    },
+    {
+        "head": "fsdp",
+        "tail": "data"
+    },
+    {
+        "head": "fsdp",
+        "tail": "parallel"
+    },
+    {
+        "head": "fsdp",
+        "tail": "pytorch"
+    },
+    {
+        "head": "fsdp",
+        "tail": "documentation"
+    },
+    {
+        "head": "llm",
+        "tail": "torch"
+    },
+    {
+        "head": "llm",
+        "tail": "parallel"
+    },
+    {
+        "head": "llm",
+        "tail": "documentation"
+    },
+    {
+        "head": "torch",
+        "tail": "training"
+    },
+    {
+        "head": "torch",
+        "tail": "data"
+    },
+    {
+        "head": "torch",
+        "tail": "documentation"
+    },
+    {
+        "head": "training",
+        "tail": "parallel"
+    },
+    {
+        "head": "training",
+        "tail": "documentation"
+    },
+    {
+        "head": "data",
+        "tail": "parallel"
+    },
+    {
+        "head": "parallel",
+        "tail": "documentation"
+    },
+    {
+        "head": "pytorch",
+        "tail": "documentation"
     }
 ]
