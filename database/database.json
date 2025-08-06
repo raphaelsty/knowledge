@@ -47139,5 +47139,104 @@
             "torch",
             "training"
         ]
+    },
+    "https://github.com/abetlen/llama-cpp-python": {
+        "extra-tags": [
+            "cpp",
+            "install",
+            "llama",
+            "llama-cpp"
+        ],
+        "date": "2025-08-06",
+        "title": "llama-cpp-python",
+        "summary": "Python bindings for llama.cpp \n Simple Python bindings for ggerganov's llama.cpphttpsgithub.comggerganovllama.cpp library. This package provides Documentation is available at httpsllama-cpp-python.readthedocs.ioenlatesthttpsllama-cpp-python.readthedocs.ioenlatest. Requirements To install the package, run bash pip install llama-cpp-python This will also build llama.cpp from source and install it alongside this python package. If this fails, add --verbose to the pip install see the full cmake build log.",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/akkartik/lines.love": {
+        "extra-tags": [
+            "editor",
+            "text",
+            "early",
+            "html",
+            "open-source"
+        ],
+        "date": "2025-08-06",
+        "title": "lines.love",
+        "summary": "An editor for plain text where you can also seamlessly insert line drawings \n An editor for plain text where you can also seamlessly insert line drawings. Designed above all to be easy to modify and give you early warning if your modifications break something. httpakkartik.namelines.html Install LVEhttpslove2d.org. It's just a 5MB download, open-source and extremely well-behaved. To run from the terminal, pass this directory to LVEhttpslove2d.orgwikiGettingStartedRunningGames,",
+        "tags": [
+            "lua"
+        ]
+    },
+    "https://github.com/openai/gpt-oss": {
+        "extra-tags": [
+            "gpt",
+            "oss",
+            "openai",
+            "models",
+            "language models"
+        ],
+        "date": "2025-08-06",
+        "title": "gpt-oss",
+        "summary": "gpt-oss-120b and gpt-oss-20b are two open-weight language models by OpenAI \n Try gpt-oss Guides Model card OpenAI blog Download gpt-oss-120b and gpt-oss-20b on Hugging Face Welcome to the gpt-oss series, OpenAI's open-weight modelshttpsopenai.comopen-models designed for powerful reasoning, agentic tasks, and versatile developer use cases. We're releasing two flavors of these open models Both models were trained using our harmony response formatharmony and should only be used with this format otherwise, they will not work correctly.",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/openai/harmony": {
+        "extra-tags": [
+            "oss",
+            "gpt",
+            "openai",
+            "api"
+        ],
+        "date": "2025-08-06",
+        "title": "harmony",
+        "summary": "Renderer for the harmony response format to be used with gpt-oss \n OpenAI Harmony OpenAI's response format for its open-weight model series gpt-oss Try gpt-oss Learn more Model card The gpt-oss modelsgpt-oss were trained on the harmony response formatharmony-format for defining conversation structures, generating reasoning output and structuring function calls. If you are not using gpt-oss directly but through an API or a provider like HuggingFace, Ollama, or vLLM, you will not have to be concerned about this as your inference solution will handle the formatting. If you are building your own inference solution, this guide will walk you through the prompt format. The format is designed to mimic the OpenAI Responses API, so if you have used that API before, this format should hopefully feel familiar to you. gpt-oss should not be used without using the harmony format as it will not work correctly.",
+        "tags": [
+            "rust"
+        ]
+    },
+    "https://github.com/villekuosmanen/rewACT": {
+        "extra-tags": [
+            "supervised",
+            "learning",
+            "reward",
+            "semi supervised learning"
+        ],
+        "date": "2025-08-06",
+        "title": "rewACT",
+        "summary": "A supervised learning trained reward head for ACT \n A supervised learning trained reward head for ACT",
+        "tags": []
+    },
+    "https://github.com/Lucas-rbnt/MORPHEUS": {
+        "extra-tags": [
+            "modeling",
+            "multimodal",
+            "learning",
+            "profiles"
+        ],
+        "date": "2025-08-06",
+        "title": "MORPHEUS",
+        "summary": "Masked Omics Modeling for Multimodal Representation Learning across Histopathology and Molecular Profiles \n Masked Omics Modeling for Multimodal Representation Learning across Histopathology and Molecular Profiles We introduce the first multimodal pretraining strategy tailored for cancer biology, using a transformer with a masked modeling objective to reconstruct masked omics modalities RNA, DNAm, CNV, supported by histopathology. Supporting code for the corresponding paperhttpswww.arxiv.orgpdf2508.00969 MORPHEUS is a multimodal pre-training method based on masked omics modeling.",
+        "tags": [
+            "jupyter notebook"
+        ]
+    },
+    "https://github.com/jacooba/OfflineRLAIF": {
+        "extra-tags": [
+            "offline",
+            "vlm",
+            "code",
+            "feedback",
+            "reinforcement learning"
+        ],
+        "date": "2025-08-06",
+        "title": "OfflineRLAIF",
+        "summary": " \n !Offline RLAIFTitleImg.png This repository contains code for the paper Offline RLAIF Piloting VLM Feedback for RL via SFO Beck et al., 2025httpsarxiv.orgabs2503.01062, published at The RLC Workshop on Reinforcement Learning Beyond Rewards Ingredients for Developing Generalist Agentshttpsrlbrew2-workshop.github.io. The code includes an implementation of Sub-Trajectory Filtered Behavior Cloning SFBC, a method that leverages vision-language model VLM feedback to improve offline reinforcement learning RL. SFBC filters and weights sub-trajectories based on VLM-derived success probabilities, enabling effective policy learning in the absence of explicit rewards.",
+        "tags": [
+            "python"
+        ]
     }
 }
