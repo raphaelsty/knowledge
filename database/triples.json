@@ -218086,5 +218086,897 @@
     {
         "head": "feedback",
         "tail": "reinforcement learning"
+    },
+    {
+        "head": "tts",
+        "tail": "model"
+    },
+    {
+        "head": "tts",
+        "tail": "state-of-the-art"
+    },
+    {
+        "head": "tts",
+        "tail": "open-source"
+    },
+    {
+        "head": "model",
+        "tail": "state-of-the-art"
+    },
+    {
+        "head": "pytorch",
+        "tail": "conda"
+    },
+    {
+        "head": "pytorch",
+        "tail": "engine"
+    },
+    {
+        "head": "conda",
+        "tail": "distributed"
+    },
+    {
+        "head": "conda",
+        "tail": "engine"
+    },
+    {
+        "head": "pagerank",
+        "tail": "algorithm"
+    },
+    {
+        "head": "pagerank",
+        "tail": "bash"
+    },
+    {
+        "head": "algorithm",
+        "tail": "bash"
+    },
+    {
+        "head": "rest",
+        "tail": "asyncio"
+    },
+    {
+        "head": "rest",
+        "tail": "swagger"
+    },
+    {
+        "head": "rest",
+        "tail": "starlite-api"
+    },
+    {
+        "head": "rest",
+        "tail": "litestar-api"
+    },
+    {
+        "head": "rest",
+        "tail": "msgspec"
+    },
+    {
+        "head": "rest",
+        "tail": "openapi"
+    },
+    {
+        "head": "rest",
+        "tail": "hacktoberfest"
+    },
+    {
+        "head": "rest",
+        "tail": "litestar"
+    },
+    {
+        "head": "rest",
+        "tail": "asgi"
+    },
+    {
+        "head": "rest",
+        "tail": "pydantic"
+    },
+    {
+        "head": "rest",
+        "tail": "litestar-framework"
+    },
+    {
+        "head": "rest",
+        "tail": "rapidoc"
+    },
+    {
+        "head": "rest",
+        "tail": "redoc"
+    },
+    {
+        "head": "rest",
+        "tail": "starlite"
+    },
+    {
+        "head": "rest",
+        "tail": "pypi"
+    },
+    {
+        "head": "rest",
+        "tail": "dev"
+    },
+    {
+        "head": "rest",
+        "tail": "svg"
+    },
+    {
+        "head": "asyncio",
+        "tail": "swagger"
+    },
+    {
+        "head": "asyncio",
+        "tail": "starlite-api"
+    },
+    {
+        "head": "asyncio",
+        "tail": "litestar-api"
+    },
+    {
+        "head": "asyncio",
+        "tail": "msgspec"
+    },
+    {
+        "head": "asyncio",
+        "tail": "openapi"
+    },
+    {
+        "head": "asyncio",
+        "tail": "hacktoberfest"
+    },
+    {
+        "head": "asyncio",
+        "tail": "api"
+    },
+    {
+        "head": "asyncio",
+        "tail": "litestar"
+    },
+    {
+        "head": "asyncio",
+        "tail": "asgi"
+    },
+    {
+        "head": "asyncio",
+        "tail": "pydantic"
+    },
+    {
+        "head": "asyncio",
+        "tail": "litestar-framework"
+    },
+    {
+        "head": "asyncio",
+        "tail": "rapidoc"
+    },
+    {
+        "head": "asyncio",
+        "tail": "redoc"
+    },
+    {
+        "head": "asyncio",
+        "tail": "starlite"
+    },
+    {
+        "head": "asyncio",
+        "tail": "pypi"
+    },
+    {
+        "head": "asyncio",
+        "tail": "dev"
+    },
+    {
+        "head": "asyncio",
+        "tail": "svg"
+    },
+    {
+        "head": "swagger",
+        "tail": "starlite-api"
+    },
+    {
+        "head": "swagger",
+        "tail": "litestar-api"
+    },
+    {
+        "head": "swagger",
+        "tail": "msgspec"
+    },
+    {
+        "head": "swagger",
+        "tail": "hacktoberfest"
+    },
+    {
+        "head": "swagger",
+        "tail": "api"
+    },
+    {
+        "head": "swagger",
+        "tail": "litestar"
+    },
+    {
+        "head": "swagger",
+        "tail": "asgi"
+    },
+    {
+        "head": "swagger",
+        "tail": "litestar-framework"
+    },
+    {
+        "head": "swagger",
+        "tail": "rapidoc"
+    },
+    {
+        "head": "swagger",
+        "tail": "redoc"
+    },
+    {
+        "head": "swagger",
+        "tail": "starlite"
+    },
+    {
+        "head": "swagger",
+        "tail": "pypi"
+    },
+    {
+        "head": "swagger",
+        "tail": "dev"
+    },
+    {
+        "head": "swagger",
+        "tail": "svg"
+    },
+    {
+        "head": "starlite-api",
+        "tail": "litestar-api"
+    },
+    {
+        "head": "starlite-api",
+        "tail": "msgspec"
+    },
+    {
+        "head": "starlite-api",
+        "tail": "openapi"
+    },
+    {
+        "head": "starlite-api",
+        "tail": "hacktoberfest"
+    },
+    {
+        "head": "starlite-api",
+        "tail": "python"
+    },
+    {
+        "head": "starlite-api",
+        "tail": "api"
+    },
+    {
+        "head": "starlite-api",
+        "tail": "litestar"
+    },
+    {
+        "head": "starlite-api",
+        "tail": "asgi"
+    },
+    {
+        "head": "starlite-api",
+        "tail": "pydantic"
+    },
+    {
+        "head": "starlite-api",
+        "tail": "litestar-framework"
+    },
+    {
+        "head": "starlite-api",
+        "tail": "rapidoc"
+    },
+    {
+        "head": "starlite-api",
+        "tail": "redoc"
+    },
+    {
+        "head": "starlite-api",
+        "tail": "starlite"
+    },
+    {
+        "head": "starlite-api",
+        "tail": "pypi"
+    },
+    {
+        "head": "starlite-api",
+        "tail": "dev"
+    },
+    {
+        "head": "starlite-api",
+        "tail": "svg"
+    },
+    {
+        "head": "litestar-api",
+        "tail": "msgspec"
+    },
+    {
+        "head": "litestar-api",
+        "tail": "openapi"
+    },
+    {
+        "head": "litestar-api",
+        "tail": "hacktoberfest"
+    },
+    {
+        "head": "litestar-api",
+        "tail": "python"
+    },
+    {
+        "head": "litestar-api",
+        "tail": "api"
+    },
+    {
+        "head": "litestar-api",
+        "tail": "litestar"
+    },
+    {
+        "head": "litestar-api",
+        "tail": "asgi"
+    },
+    {
+        "head": "litestar-api",
+        "tail": "pydantic"
+    },
+    {
+        "head": "litestar-api",
+        "tail": "litestar-framework"
+    },
+    {
+        "head": "litestar-api",
+        "tail": "rapidoc"
+    },
+    {
+        "head": "litestar-api",
+        "tail": "redoc"
+    },
+    {
+        "head": "litestar-api",
+        "tail": "starlite"
+    },
+    {
+        "head": "litestar-api",
+        "tail": "pypi"
+    },
+    {
+        "head": "litestar-api",
+        "tail": "dev"
+    },
+    {
+        "head": "litestar-api",
+        "tail": "svg"
+    },
+    {
+        "head": "msgspec",
+        "tail": "openapi"
+    },
+    {
+        "head": "msgspec",
+        "tail": "hacktoberfest"
+    },
+    {
+        "head": "msgspec",
+        "tail": "python"
+    },
+    {
+        "head": "msgspec",
+        "tail": "api"
+    },
+    {
+        "head": "msgspec",
+        "tail": "litestar"
+    },
+    {
+        "head": "msgspec",
+        "tail": "asgi"
+    },
+    {
+        "head": "msgspec",
+        "tail": "pydantic"
+    },
+    {
+        "head": "msgspec",
+        "tail": "litestar-framework"
+    },
+    {
+        "head": "msgspec",
+        "tail": "rapidoc"
+    },
+    {
+        "head": "msgspec",
+        "tail": "redoc"
+    },
+    {
+        "head": "msgspec",
+        "tail": "starlite"
+    },
+    {
+        "head": "msgspec",
+        "tail": "pypi"
+    },
+    {
+        "head": "msgspec",
+        "tail": "dev"
+    },
+    {
+        "head": "msgspec",
+        "tail": "svg"
+    },
+    {
+        "head": "openapi",
+        "tail": "hacktoberfest"
+    },
+    {
+        "head": "openapi",
+        "tail": "api"
+    },
+    {
+        "head": "openapi",
+        "tail": "litestar"
+    },
+    {
+        "head": "openapi",
+        "tail": "asgi"
+    },
+    {
+        "head": "openapi",
+        "tail": "litestar-framework"
+    },
+    {
+        "head": "openapi",
+        "tail": "rapidoc"
+    },
+    {
+        "head": "openapi",
+        "tail": "redoc"
+    },
+    {
+        "head": "openapi",
+        "tail": "starlite"
+    },
+    {
+        "head": "openapi",
+        "tail": "pypi"
+    },
+    {
+        "head": "openapi",
+        "tail": "dev"
+    },
+    {
+        "head": "openapi",
+        "tail": "svg"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "api"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "litestar"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "asgi"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "pydantic"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "litestar-framework"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "rapidoc"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "redoc"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "starlite"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "dev"
+    },
+    {
+        "head": "python",
+        "tail": "litestar"
+    },
+    {
+        "head": "python",
+        "tail": "asgi"
+    },
+    {
+        "head": "python",
+        "tail": "litestar-framework"
+    },
+    {
+        "head": "python",
+        "tail": "rapidoc"
+    },
+    {
+        "head": "python",
+        "tail": "redoc"
+    },
+    {
+        "head": "python",
+        "tail": "starlite"
+    },
+    {
+        "head": "api",
+        "tail": "litestar"
+    },
+    {
+        "head": "api",
+        "tail": "asgi"
+    },
+    {
+        "head": "api",
+        "tail": "pydantic"
+    },
+    {
+        "head": "api",
+        "tail": "litestar-framework"
+    },
+    {
+        "head": "api",
+        "tail": "rapidoc"
+    },
+    {
+        "head": "api",
+        "tail": "redoc"
+    },
+    {
+        "head": "api",
+        "tail": "starlite"
+    },
+    {
+        "head": "api",
+        "tail": "pypi"
+    },
+    {
+        "head": "api",
+        "tail": "dev"
+    },
+    {
+        "head": "api",
+        "tail": "svg"
+    },
+    {
+        "head": "litestar",
+        "tail": "asgi"
+    },
+    {
+        "head": "litestar",
+        "tail": "pydantic"
+    },
+    {
+        "head": "litestar",
+        "tail": "litestar-framework"
+    },
+    {
+        "head": "litestar",
+        "tail": "rapidoc"
+    },
+    {
+        "head": "litestar",
+        "tail": "redoc"
+    },
+    {
+        "head": "litestar",
+        "tail": "starlite"
+    },
+    {
+        "head": "litestar",
+        "tail": "pypi"
+    },
+    {
+        "head": "litestar",
+        "tail": "dev"
+    },
+    {
+        "head": "litestar",
+        "tail": "svg"
+    },
+    {
+        "head": "asgi",
+        "tail": "pydantic"
+    },
+    {
+        "head": "asgi",
+        "tail": "litestar-framework"
+    },
+    {
+        "head": "asgi",
+        "tail": "rapidoc"
+    },
+    {
+        "head": "asgi",
+        "tail": "redoc"
+    },
+    {
+        "head": "asgi",
+        "tail": "starlite"
+    },
+    {
+        "head": "asgi",
+        "tail": "pypi"
+    },
+    {
+        "head": "asgi",
+        "tail": "dev"
+    },
+    {
+        "head": "asgi",
+        "tail": "svg"
+    },
+    {
+        "head": "pydantic",
+        "tail": "litestar-framework"
+    },
+    {
+        "head": "pydantic",
+        "tail": "rapidoc"
+    },
+    {
+        "head": "pydantic",
+        "tail": "redoc"
+    },
+    {
+        "head": "pydantic",
+        "tail": "starlite"
+    },
+    {
+        "head": "pydantic",
+        "tail": "pypi"
+    },
+    {
+        "head": "pydantic",
+        "tail": "dev"
+    },
+    {
+        "head": "pydantic",
+        "tail": "svg"
+    },
+    {
+        "head": "litestar-framework",
+        "tail": "rapidoc"
+    },
+    {
+        "head": "litestar-framework",
+        "tail": "redoc"
+    },
+    {
+        "head": "litestar-framework",
+        "tail": "starlite"
+    },
+    {
+        "head": "litestar-framework",
+        "tail": "pypi"
+    },
+    {
+        "head": "litestar-framework",
+        "tail": "dev"
+    },
+    {
+        "head": "litestar-framework",
+        "tail": "svg"
+    },
+    {
+        "head": "rapidoc",
+        "tail": "redoc"
+    },
+    {
+        "head": "rapidoc",
+        "tail": "starlite"
+    },
+    {
+        "head": "rapidoc",
+        "tail": "pypi"
+    },
+    {
+        "head": "rapidoc",
+        "tail": "dev"
+    },
+    {
+        "head": "rapidoc",
+        "tail": "svg"
+    },
+    {
+        "head": "redoc",
+        "tail": "starlite"
+    },
+    {
+        "head": "redoc",
+        "tail": "pypi"
+    },
+    {
+        "head": "redoc",
+        "tail": "dev"
+    },
+    {
+        "head": "redoc",
+        "tail": "svg"
+    },
+    {
+        "head": "starlite",
+        "tail": "pypi"
+    },
+    {
+        "head": "starlite",
+        "tail": "dev"
+    },
+    {
+        "head": "starlite",
+        "tail": "svg"
+    },
+    {
+        "head": "pypi",
+        "tail": "dev"
+    },
+    {
+        "head": "pypi",
+        "tail": "svg"
+    },
+    {
+        "head": "dev",
+        "tail": "svg"
+    },
+    {
+        "head": "graph-drawing",
+        "tail": "typescript"
+    },
+    {
+        "head": "graph-drawing",
+        "tail": "javascript"
+    },
+    {
+        "head": "graph-drawing",
+        "tail": "webgl"
+    },
+    {
+        "head": "graph-drawing",
+        "tail": "graph-drawing-framework"
+    },
+    {
+        "head": "graph-drawing",
+        "tail": "graph"
+    },
+    {
+        "head": "graph-drawing",
+        "tail": "data-visualization"
+    },
+    {
+        "head": "graph-drawing",
+        "tail": "graphs"
+    },
+    {
+        "head": "graph-drawing",
+        "tail": "library"
+    },
+    {
+        "head": "graph-drawing",
+        "tail": "project"
+    },
+    {
+        "head": "typescript",
+        "tail": "graph-drawing-framework"
+    },
+    {
+        "head": "typescript",
+        "tail": "graphs"
+    },
+    {
+        "head": "javascript",
+        "tail": "graph-drawing-framework"
+    },
+    {
+        "head": "javascript",
+        "tail": "graphs"
+    },
+    {
+        "head": "webgl",
+        "tail": "graph-drawing-framework"
+    },
+    {
+        "head": "webgl",
+        "tail": "graph"
+    },
+    {
+        "head": "webgl",
+        "tail": "graphs"
+    },
+    {
+        "head": "webgl",
+        "tail": "library"
+    },
+    {
+        "head": "webgl",
+        "tail": "project"
+    },
+    {
+        "head": "graph-drawing-framework",
+        "tail": "graph"
+    },
+    {
+        "head": "graph-drawing-framework",
+        "tail": "data-visualization"
+    },
+    {
+        "head": "graph-drawing-framework",
+        "tail": "graphs"
+    },
+    {
+        "head": "graph-drawing-framework",
+        "tail": "library"
+    },
+    {
+        "head": "graph-drawing-framework",
+        "tail": "project"
+    },
+    {
+        "head": "graph",
+        "tail": "data-visualization"
+    },
+    {
+        "head": "graph",
+        "tail": "graphs"
+    },
+    {
+        "head": "graph",
+        "tail": "project"
+    },
+    {
+        "head": "data-visualization",
+        "tail": "graphs"
+    },
+    {
+        "head": "data-visualization",
+        "tail": "library"
+    },
+    {
+        "head": "data-visualization",
+        "tail": "project"
+    },
+    {
+        "head": "graphs",
+        "tail": "library"
+    },
+    {
+        "head": "graphs",
+        "tail": "project"
+    },
+    {
+        "head": "library",
+        "tail": "project"
+    },
+    {
+        "head": "library",
+        "tail": "performance"
+    },
+    {
+        "head": "rl",
+        "tail": "performance"
+    },
+    {
+        "head": "float8",
+        "tail": "repository"
+    },
+    {
+        "head": "pytorch",
+        "tail": "segment-anything"
+    },
+    {
+        "head": "segment-anything",
+        "tail": "install"
+    },
+    {
+        "head": "segment-anything",
+        "tail": "torch"
     }
 ]

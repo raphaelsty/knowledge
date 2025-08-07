@@ -47238,5 +47238,136 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/KittenML/KittenTTS": {
+        "extra-tags": [
+            "tts",
+            "model",
+            "state-of-the-art",
+            "open-source"
+        ],
+        "date": "2025-08-07",
+        "title": "KittenTTS",
+        "summary": " State-of-the-art TTS model under 25MB \ud83d\ude3b  \n Kitten TTS is an open-source realistic text-to-speech model with just 15 million parameters, designed for lightweight deployment and high-quality voice synthesis. Currently in developer preview pip install httpsgithub.comKittenMLKittenTTSreleasesdownload0.1kittentts-0.1.0-py3-none-any.whl from kittentts import KittenTTS m KittenTTSKittenMLkitten-tts-nano-0.1 audio m.generateThis high quality TTS model works without a GPU, voice'expr-voice-2-f'",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/meta-pytorch/monarch": {
+        "extra-tags": [
+            "pytorch",
+            "conda",
+            "distributed",
+            "engine"
+        ],
+        "date": "2025-08-07",
+        "title": "monarch",
+        "summary": "PyTorch Single Controller \n Monarch is a distributed execution engine for PyTorch. Our overall goal is to deliver the high-quality user experience that people get from single-GPU PyTorch, but at cluster scale. Note Monarch is currently only supported on Linux systems pip install torchmonarch-nightly or manually sh conda create -n monarchenv python3.10 -y conda activate monarchenv",
+        "tags": [
+            "rust"
+        ]
+    },
+    "https://github.com/ashkonf/pagerank": {
+        "extra-tags": [
+            "pagerank",
+            "algorithm",
+            "bash"
+        ],
+        "date": "2025-08-07",
+        "title": "pagerank",
+        "summary": "A Python implementation of Larry's famous PageRank algorithm. \n A lightweight Python implementation of Google's PageRank algorithm with an example TextRank application for keyword extraction. This project requires Python 3.8 and uses uvhttpsgithub.comastral-shuv for dependency management. To install dependencies bash uv sync For development with additional tools bash uv sync --all-extras python from pagerank import poweriteration graph",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/litestar-org/litestar": {
+        "extra-tags": [
+            "pypi",
+            "dev",
+            "svg"
+        ],
+        "date": "2025-08-07",
+        "title": "litestar",
+        "summary": "Production-ready, Light, Flexible and Extensible ASGI API framework | Effortlessly Build Performant APIs \n Project Status ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- CICD !Latest Releasehttpsgithub.comlitestar-orglitestaractionsworkflowspublish.ymlbadge.svghttpsgithub.comlitestar-orglitestaractionsworkflowspublish.yml !cihttpsgithub.comlitestar-orglitestaractionsworkflowsci.ymlbadge.svghttpsgithub.comlitestar-orglitestaractionsworkflowsci.yml !Documentation Buildinghttpsgithub.comlitestar-orglitestaractionsworkflowsdocs.ymlbadge.svg?branchmainhttpsgithub.comlitestar-orglitestaractionsworkflowsdocs.yml Quality !Coveragehttpscodecov.iogithublitestar-orglitestargraphbadge.svg?tokenvKez4Pycrchttpscodecov.iogithublitestar-orglitestar Package !PyPI - Versionhttpsimg.shields.iopypivlitestar?labelColor202235coloredb641logopythonlogoColoredb641httpsbadge.fury.iopylitestar !PyPI - Support Python Versionshttpsimg.shields.iopypipyversionslitestar?labelColor202235coloredb641logopythonlogoColoredb641 !Starlite PyPI - Downloadshttpsimg.shields.iopypidmstarlite?logopythonlabelstarlite20downloadslabelColor202235coloredb641logoColoredb641 !Litestar PyPI - Downloadshttpsimg.shields.iopypidmlitestar?logopythonlabellitestar20downloadslabelColor202235coloredb641logoColoredb641 Community !Reddithttpsimg.shields.ioredditsubreddit-subscriberslitestarapi?labelr2FLitestarlogoredditlabelColor202235coloredb641logoColoredb641httpsreddit.comrlitestarapi !Discordhttpsimg.shields.iodiscord919193495116337154?labelColor202235coloredb641labelchat20on20discordlogodiscordlogoColoredb641httpsdiscord.gglitestar !Matrixhttpsimg.shields.iobadgechat20on20Matrix-bridged-202235?labelColor202235coloredb641logomatrixlogoColoredb641httpsmatrix.tolitestarmatrix.org !Mediumhttpsimg.shields.iobadgeMedium-202235?labelColor202235coloredb641logomediumlogoColoredb641httpsblog.litestar.dev !Twitterhttpsimg.shields.iotwitterfollowLitestarAPI?labelColor202235coloredb641logotwitterlogoColoredb641styleflathttpstwitter.comLitestarAPI !Bloghttpsimg.shields.iobadgeBlog-litestar.dev-202235?logobloggerlabelColor202235coloredb641logoColoredb641httpsblog.litestar.dev",
+        "tags": [
+            "rest",
+            "asyncio",
+            "swagger",
+            "starlite-api",
+            "litestar-api",
+            "msgspec",
+            "openapi",
+            "hacktoberfest",
+            "python",
+            "api",
+            "litestar",
+            "asgi",
+            "pydantic",
+            "litestar-framework",
+            "rapidoc",
+            "redoc",
+            "starlite"
+        ]
+    },
+    "https://github.com/jacomyal/sigma.js": {
+        "extra-tags": [
+            "library",
+            "project"
+        ],
+        "date": "2025-08-07",
+        "title": "sigma.js",
+        "summary": "A JavaScript library aimed at visualizing graphs of thousands of nodes and edges \n !Sigma.jspackageswebsitestaticimglogo-sigma-text.svg Websitehttpswww.sigmajs.org Documentationhttpswww.sigmajs.orgdocs Storybookhttpswww.sigmajs.orgstorybook Mastodon Sigma.jshttpswww.sigmajs.org is an open-source JavaScript library aimed at visualizing graphs of thousands of nodes and edges using WebGL, mainly developed by jacomyalhttpsgithub.comjacomyal and Yomguitherealhttpsgithub.comYomguithereal, and built on top of graphologyhttpsgraphology.github.io. To integrate sigma into your project, follow these simple steps 1. Installation Add sigma and graphology to your project by running the following command",
+        "tags": [
+            "graph-drawing",
+            "typescript",
+            "javascript",
+            "webgl",
+            "graph-drawing-framework",
+            "graph",
+            "data-visualization",
+            "graphs"
+        ]
+    },
+    "https://github.com/meta-pytorch/LeanRL": {
+        "extra-tags": [
+            "pytorch",
+            "library",
+            "rl",
+            "performance"
+        ],
+        "date": "2025-08-07",
+        "title": "LeanRL",
+        "summary": "LeanRL is a fork of CleanRL, where selected PyTorch scripts optimized for performance using compile and cudagraphs. \n LeanRL is a lightweight library consisting of single-file, pytorch-based implementations of popular Reinforcement Learning RL algorithms. The primary goal of this library is to inform the RL PyTorch user base of optimization tricks to cut training time by half or more. More precisely, LeanRL is a fork of CleanRL, where hand-picked scripts have been re-written using PyTorch 2 features,",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/meta-pytorch/float8_experimental": {
+        "extra-tags": [
+            "pytorch",
+            "float8",
+            "training",
+            "repository"
+        ],
+        "date": "2025-08-07",
+        "title": "float8_experimental",
+        "summary": "This repository contains the experimental PyTorch native float8 training UX \n We have moved float8experimental to This is an early version of a library for accelerating training with float8 in native PyTorch according to the recipes laid out in httpsarxiv.orgpdf2209.05433.pdf. The codebase strives to stay small, easily hackable, debuggable with native PyTorch tooling, and composable with key systems such as autograd, torch.compile and distributed.",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/meta-pytorch/segment-anything-fast": {
+        "extra-tags": [
+            "pytorch",
+            "segment-anything",
+            "install",
+            "torch"
+        ],
+        "date": "2025-08-07",
+        "title": "segment-anything-fast",
+        "summary": "A batched offline inference oriented version of segment-anything \n This work is based on a fork of httpsgithub.comfacebookresearchsegment-anything The corresponding blog post is httpspytorch.orgblogaccelerating-generative-ai Step 1 Get latest PyTorch nightly For example pip3 install --pre torch torchvision torchaudio --index-url httpsdownload.pytorch.orgwhlnightlycu121 or pip3 install --pre torch torchvision torchaudio --index-url httpsdownload.pytorch.orgwhlnightlycpu Installation instructions vary by platform. Please see the website httpspytorch.org",
+        "tags": [
+            "python"
+        ]
     }
 }
