@@ -218978,5 +218978,181 @@
     {
         "head": "segment-anything",
         "tail": "torch"
+    },
+    {
+        "head": "rust",
+        "tail": "word2vec"
+    },
+    {
+        "head": "rust",
+        "tail": "profile"
+    },
+    {
+        "head": "cargo",
+        "tail": "word2vec"
+    },
+    {
+        "head": "cargo",
+        "tail": "bash"
+    },
+    {
+        "head": "cargo",
+        "tail": "profile"
+    },
+    {
+        "head": "cargo",
+        "tail": "benchmark"
+    },
+    {
+        "head": "word2vec",
+        "tail": "bash"
+    },
+    {
+        "head": "word2vec",
+        "tail": "profile"
+    },
+    {
+        "head": "word2vec",
+        "tail": "benchmark"
+    },
+    {
+        "head": "bash",
+        "tail": "benchmark"
+    },
+    {
+        "head": "profile",
+        "tail": "benchmark"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "gte"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "mgte"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "gte"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "mgte"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "text"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "long-context"
+    },
+    {
+        "head": "dataset",
+        "tail": "gte"
+    },
+    {
+        "head": "dataset",
+        "tail": "mgte"
+    },
+    {
+        "head": "dataset",
+        "tail": "paper"
+    },
+    {
+        "head": "dataset",
+        "tail": "long-context"
+    },
+    {
+        "head": "dataset",
+        "tail": "models"
+    },
+    {
+        "head": "dataset",
+        "tail": "multilingual"
+    },
+    {
+        "head": "gte",
+        "tail": "information retrieval"
+    },
+    {
+        "head": "gte",
+        "tail": "mgte"
+    },
+    {
+        "head": "gte",
+        "tail": "paper"
+    },
+    {
+        "head": "gte",
+        "tail": "text"
+    },
+    {
+        "head": "gte",
+        "tail": "long-context"
+    },
+    {
+        "head": "gte",
+        "tail": "models"
+    },
+    {
+        "head": "gte",
+        "tail": "multilingual"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "mgte"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "long-context"
+    },
+    {
+        "head": "mgte",
+        "tail": "paper"
+    },
+    {
+        "head": "mgte",
+        "tail": "text"
+    },
+    {
+        "head": "mgte",
+        "tail": "long-context"
+    },
+    {
+        "head": "mgte",
+        "tail": "models"
+    },
+    {
+        "head": "mgte",
+        "tail": "multilingual"
+    },
+    {
+        "head": "paper",
+        "tail": "text"
+    },
+    {
+        "head": "paper",
+        "tail": "long-context"
+    },
+    {
+        "head": "text",
+        "tail": "long-context"
+    },
+    {
+        "head": "text",
+        "tail": "multilingual"
+    },
+    {
+        "head": "long-context",
+        "tail": "models"
+    },
+    {
+        "head": "long-context",
+        "tail": "multilingual"
+    },
+    {
+        "head": "models",
+        "tail": "multilingual"
     }
 ]

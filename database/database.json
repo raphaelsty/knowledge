@@ -47369,5 +47369,40 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/lucas-montes/word2vec": {
+        "extra-tags": [
+            "cargo",
+            "word2vec",
+            "bash",
+            "profile",
+            "benchmark"
+        ],
+        "date": "2025-08-08",
+        "title": "word2vec",
+        "summary": " \n The word2vec model in pure rust. To save a baseline, use cargo bench --bench w2vbench -- --save-baseline . To compare against an existing baseline, use cargo bench --bench w2vbench -- --baseline . To benchmark bash cargo bench To profile bash cargo bench --bench w2vbench -- --profile-time 30 text8 has 17005207 words",
+        "tags": [
+            "rust"
+        ]
+    },
+    "http://arxiv.org/abs/2407.19669": {
+        "extra-tags": [
+            "text",
+            "long-context",
+            "models",
+            "multilingual"
+        ],
+        "title": "mGTE: Generalized Long-Context Text Representation and Reranking Models for Multilingual Text Retrieval",
+        "summary": "We present systematic efforts in building long-context multilingual text representation model (TRM) and reranker from scratch for text retrieval. We first introduce a text encoder (base size) enhanced with RoPE and unpadding, pre-trained in a native 8192-token context (longer than 512 of previous multilingual encoders). Then we construct a hybrid TRM and a cross-encoder reranker by contrastive learning. Evaluations show that our text encoder outperforms the same-sized previous state-of-the-art XLM-R. Meanwhile, our TRM and reranker match the performance of large-sized state-of-the-art BGE-M3 models and achieve better results on long-context retrieval benchmarks. Further analysis demonstrate that our proposed models exhibit higher efficiency during both training and inference. We believe their efficiency and effectiveness could benefit various researches and industrial applications.",
+        "date": "2025-08-07",
+        "tags": [
+            "computer science - computation and language",
+            "computer science - information retrieval",
+            "dataset",
+            "gte",
+            "information retrieval",
+            "mgte",
+            "paper"
+        ]
     }
 }
