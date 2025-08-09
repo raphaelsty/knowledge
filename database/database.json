@@ -47404,5 +47404,37 @@
             "mgte",
             "paper"
         ]
+    },
+    "https://github.com/valeoai/vavim-vavam": {
+        "extra-tags": [
+            "video",
+            "generative",
+            "modeling",
+            "project",
+            "website",
+            "repository"
+        ],
+        "date": "2025-08-09",
+        "title": "vavim-vavam",
+        "summary": "VaViM and VaVAM: Autonomous Driving through Video Generative Modeling. \n This is the repo for VaViM and VaVaM project's website httpsvaleoai.github.iovavim-vavam The official repository for the trainingmodelsevals is at httpsgithub.comvaleoaiVideoActionModel",
+        "tags": [
+            "typescript"
+        ]
+    },
+    "https://github.com/lucidrains/rewind-reward-pytorch": {
+        "extra-tags": [
+            "reward",
+            "pytorch",
+            "language"
+        ],
+        "date": "2025-08-09",
+        "title": "rewind-reward-pytorch",
+        "summary": "Implementation of ReWiND, \"Language-Guided Rewards Teach Robot Policies without New Demonstrations\", from USC / Amazon Robotics \n Implementation of ReWiND, Language-Guided Rewards Teach Robot Policies without New Demonstrationshttpsrewind-reward.github.io, from USC Amazon Robotics bash pip install rewind-reward-pytorch python import torch from rewindrewardpytorch import RewardModel rewardmodel RewardModel commands 'pick up the blue ball and put it in the red tray', 'pick up the red cube and put it in the green bin'",
+        "tags": [
+            "deep-learning",
+            "robotics",
+            "python",
+            "artificial-intelligence"
+        ]
     }
 }

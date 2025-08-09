@@ -219154,5 +219154,117 @@
     {
         "head": "models",
         "tail": "multilingual"
+    },
+    {
+        "head": "typescript",
+        "tail": "video"
+    },
+    {
+        "head": "typescript",
+        "tail": "generative"
+    },
+    {
+        "head": "typescript",
+        "tail": "modeling"
+    },
+    {
+        "head": "video",
+        "tail": "generative"
+    },
+    {
+        "head": "video",
+        "tail": "modeling"
+    },
+    {
+        "head": "video",
+        "tail": "project"
+    },
+    {
+        "head": "video",
+        "tail": "website"
+    },
+    {
+        "head": "video",
+        "tail": "repository"
+    },
+    {
+        "head": "generative",
+        "tail": "modeling"
+    },
+    {
+        "head": "generative",
+        "tail": "project"
+    },
+    {
+        "head": "generative",
+        "tail": "website"
+    },
+    {
+        "head": "generative",
+        "tail": "repository"
+    },
+    {
+        "head": "modeling",
+        "tail": "project"
+    },
+    {
+        "head": "modeling",
+        "tail": "website"
+    },
+    {
+        "head": "modeling",
+        "tail": "repository"
+    },
+    {
+        "head": "project",
+        "tail": "website"
+    },
+    {
+        "head": "project",
+        "tail": "repository"
+    },
+    {
+        "head": "website",
+        "tail": "repository"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "reward"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "language"
+    },
+    {
+        "head": "robotics",
+        "tail": "reward"
+    },
+    {
+        "head": "robotics",
+        "tail": "language"
+    },
+    {
+        "head": "python",
+        "tail": "reward"
+    },
+    {
+        "head": "artificial-intelligence",
+        "tail": "reward"
+    },
+    {
+        "head": "artificial-intelligence",
+        "tail": "language"
+    },
+    {
+        "head": "reward",
+        "tail": "pytorch"
+    },
+    {
+        "head": "reward",
+        "tail": "language"
+    },
+    {
+        "head": "pytorch",
+        "tail": "language"
     }
 ]
