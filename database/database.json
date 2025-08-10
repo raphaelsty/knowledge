@@ -47436,5 +47436,27 @@
             "python",
             "artificial-intelligence"
         ]
+    },
+    "https://github.com/hyperknot/openfreemap": {
+        "extra-tags": [
+            "no",
+            "open-source",
+            "apps"
+        ],
+        "date": "2025-08-10",
+        "title": "openfreemap",
+        "summary": "Free and open-source map hosting solution with custom styles for websites and apps, using OpenStreetMap data \n OpenFreeMap lets you display custom maps on your website and apps for free. You can either self-hostdocsselfhosting.md or use our public instance. Everything is open-source, including the full production setup theres no 'open-core' model here. The map data comes from OpenStreetMap. Using our public instance is completely free there are no limits on the number of map views or requests. Theres no registration, no user database, no API keys, and no cookies. We aim to cover the running costs of our public instance through donations.",
+        "tags": [
+            "gis",
+            "mapping",
+            "maps",
+            "maplibre-gl-js",
+            "geospatial",
+            "python",
+            "openstreetmap",
+            "maplibre",
+            "osm",
+            "vector-tiles"
+        ]
     }
 }

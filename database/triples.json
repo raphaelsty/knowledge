@@ -219266,5 +219266,277 @@
     {
         "head": "pytorch",
         "tail": "language"
+    },
+    {
+        "head": "gis",
+        "tail": "mapping"
+    },
+    {
+        "head": "gis",
+        "tail": "maps"
+    },
+    {
+        "head": "gis",
+        "tail": "maplibre-gl-js"
+    },
+    {
+        "head": "gis",
+        "tail": "geospatial"
+    },
+    {
+        "head": "gis",
+        "tail": "python"
+    },
+    {
+        "head": "gis",
+        "tail": "openstreetmap"
+    },
+    {
+        "head": "gis",
+        "tail": "maplibre"
+    },
+    {
+        "head": "gis",
+        "tail": "osm"
+    },
+    {
+        "head": "gis",
+        "tail": "vector-tiles"
+    },
+    {
+        "head": "gis",
+        "tail": "no"
+    },
+    {
+        "head": "gis",
+        "tail": "open-source"
+    },
+    {
+        "head": "gis",
+        "tail": "apps"
+    },
+    {
+        "head": "mapping",
+        "tail": "maps"
+    },
+    {
+        "head": "mapping",
+        "tail": "maplibre-gl-js"
+    },
+    {
+        "head": "mapping",
+        "tail": "geospatial"
+    },
+    {
+        "head": "mapping",
+        "tail": "openstreetmap"
+    },
+    {
+        "head": "mapping",
+        "tail": "maplibre"
+    },
+    {
+        "head": "mapping",
+        "tail": "osm"
+    },
+    {
+        "head": "mapping",
+        "tail": "vector-tiles"
+    },
+    {
+        "head": "mapping",
+        "tail": "no"
+    },
+    {
+        "head": "mapping",
+        "tail": "open-source"
+    },
+    {
+        "head": "mapping",
+        "tail": "apps"
+    },
+    {
+        "head": "maps",
+        "tail": "maplibre-gl-js"
+    },
+    {
+        "head": "maps",
+        "tail": "geospatial"
+    },
+    {
+        "head": "maps",
+        "tail": "maplibre"
+    },
+    {
+        "head": "maps",
+        "tail": "vector-tiles"
+    },
+    {
+        "head": "maps",
+        "tail": "no"
+    },
+    {
+        "head": "maps",
+        "tail": "open-source"
+    },
+    {
+        "head": "maps",
+        "tail": "apps"
+    },
+    {
+        "head": "maplibre-gl-js",
+        "tail": "geospatial"
+    },
+    {
+        "head": "maplibre-gl-js",
+        "tail": "python"
+    },
+    {
+        "head": "maplibre-gl-js",
+        "tail": "openstreetmap"
+    },
+    {
+        "head": "maplibre-gl-js",
+        "tail": "maplibre"
+    },
+    {
+        "head": "maplibre-gl-js",
+        "tail": "osm"
+    },
+    {
+        "head": "maplibre-gl-js",
+        "tail": "vector-tiles"
+    },
+    {
+        "head": "maplibre-gl-js",
+        "tail": "no"
+    },
+    {
+        "head": "maplibre-gl-js",
+        "tail": "open-source"
+    },
+    {
+        "head": "maplibre-gl-js",
+        "tail": "apps"
+    },
+    {
+        "head": "geospatial",
+        "tail": "python"
+    },
+    {
+        "head": "geospatial",
+        "tail": "openstreetmap"
+    },
+    {
+        "head": "geospatial",
+        "tail": "maplibre"
+    },
+    {
+        "head": "geospatial",
+        "tail": "osm"
+    },
+    {
+        "head": "geospatial",
+        "tail": "vector-tiles"
+    },
+    {
+        "head": "geospatial",
+        "tail": "no"
+    },
+    {
+        "head": "geospatial",
+        "tail": "open-source"
+    },
+    {
+        "head": "geospatial",
+        "tail": "apps"
+    },
+    {
+        "head": "python",
+        "tail": "maplibre"
+    },
+    {
+        "head": "python",
+        "tail": "vector-tiles"
+    },
+    {
+        "head": "openstreetmap",
+        "tail": "maplibre"
+    },
+    {
+        "head": "openstreetmap",
+        "tail": "vector-tiles"
+    },
+    {
+        "head": "openstreetmap",
+        "tail": "no"
+    },
+    {
+        "head": "openstreetmap",
+        "tail": "open-source"
+    },
+    {
+        "head": "openstreetmap",
+        "tail": "apps"
+    },
+    {
+        "head": "maplibre",
+        "tail": "osm"
+    },
+    {
+        "head": "maplibre",
+        "tail": "vector-tiles"
+    },
+    {
+        "head": "maplibre",
+        "tail": "no"
+    },
+    {
+        "head": "maplibre",
+        "tail": "open-source"
+    },
+    {
+        "head": "maplibre",
+        "tail": "apps"
+    },
+    {
+        "head": "osm",
+        "tail": "vector-tiles"
+    },
+    {
+        "head": "osm",
+        "tail": "no"
+    },
+    {
+        "head": "osm",
+        "tail": "open-source"
+    },
+    {
+        "head": "osm",
+        "tail": "apps"
+    },
+    {
+        "head": "vector-tiles",
+        "tail": "no"
+    },
+    {
+        "head": "vector-tiles",
+        "tail": "open-source"
+    },
+    {
+        "head": "vector-tiles",
+        "tail": "apps"
+    },
+    {
+        "head": "no",
+        "tail": "open-source"
+    },
+    {
+        "head": "no",
+        "tail": "apps"
+    },
+    {
+        "head": "open-source",
+        "tail": "apps"
     }
 ]
