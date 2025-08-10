@@ -219538,5 +219538,357 @@
     {
         "head": "open-source",
         "tail": "apps"
+    },
+    {
+        "head": "structured-data",
+        "tail": "nlp"
+    },
+    {
+        "head": "structured-data",
+        "tail": "gemini-ai"
+    },
+    {
+        "head": "structured-data",
+        "tail": "llm"
+    },
+    {
+        "head": "structured-data",
+        "tail": "gemini-api"
+    },
+    {
+        "head": "structured-data",
+        "tail": "information-extration"
+    },
+    {
+        "head": "structured-data",
+        "tail": "gemini"
+    },
+    {
+        "head": "structured-data",
+        "tail": "gemini-pro"
+    },
+    {
+        "head": "structured-data",
+        "tail": "large-language-models"
+    },
+    {
+        "head": "structured-data",
+        "tail": "gemini-flash"
+    },
+    {
+        "head": "structured-data",
+        "tail": "source"
+    },
+    {
+        "head": "structured-data",
+        "tail": "library"
+    },
+    {
+        "head": "structured-data",
+        "tail": "extract"
+    },
+    {
+        "head": "structured-data",
+        "tail": "extraction"
+    },
+    {
+        "head": "nlp",
+        "tail": "gemini-ai"
+    },
+    {
+        "head": "nlp",
+        "tail": "gemini-api"
+    },
+    {
+        "head": "nlp",
+        "tail": "information-extration"
+    },
+    {
+        "head": "nlp",
+        "tail": "gemini"
+    },
+    {
+        "head": "nlp",
+        "tail": "gemini-pro"
+    },
+    {
+        "head": "nlp",
+        "tail": "gemini-flash"
+    },
+    {
+        "head": "nlp",
+        "tail": "extract"
+    },
+    {
+        "head": "gemini-ai",
+        "tail": "python"
+    },
+    {
+        "head": "gemini-ai",
+        "tail": "llm"
+    },
+    {
+        "head": "gemini-ai",
+        "tail": "gemini-api"
+    },
+    {
+        "head": "gemini-ai",
+        "tail": "information-extration"
+    },
+    {
+        "head": "gemini-ai",
+        "tail": "gemini"
+    },
+    {
+        "head": "gemini-ai",
+        "tail": "gemini-pro"
+    },
+    {
+        "head": "gemini-ai",
+        "tail": "large-language-models"
+    },
+    {
+        "head": "gemini-ai",
+        "tail": "gemini-flash"
+    },
+    {
+        "head": "gemini-ai",
+        "tail": "text"
+    },
+    {
+        "head": "gemini-ai",
+        "tail": "source"
+    },
+    {
+        "head": "gemini-ai",
+        "tail": "library"
+    },
+    {
+        "head": "gemini-ai",
+        "tail": "extract"
+    },
+    {
+        "head": "gemini-ai",
+        "tail": "extraction"
+    },
+    {
+        "head": "python",
+        "tail": "gemini-api"
+    },
+    {
+        "head": "python",
+        "tail": "information-extration"
+    },
+    {
+        "head": "python",
+        "tail": "gemini-pro"
+    },
+    {
+        "head": "python",
+        "tail": "gemini-flash"
+    },
+    {
+        "head": "llm",
+        "tail": "gemini-api"
+    },
+    {
+        "head": "llm",
+        "tail": "information-extration"
+    },
+    {
+        "head": "llm",
+        "tail": "gemini"
+    },
+    {
+        "head": "llm",
+        "tail": "gemini-pro"
+    },
+    {
+        "head": "llm",
+        "tail": "gemini-flash"
+    },
+    {
+        "head": "llm",
+        "tail": "extract"
+    },
+    {
+        "head": "llm",
+        "tail": "extraction"
+    },
+    {
+        "head": "gemini-api",
+        "tail": "information-extration"
+    },
+    {
+        "head": "gemini-api",
+        "tail": "gemini"
+    },
+    {
+        "head": "gemini-api",
+        "tail": "gemini-pro"
+    },
+    {
+        "head": "gemini-api",
+        "tail": "large-language-models"
+    },
+    {
+        "head": "gemini-api",
+        "tail": "gemini-flash"
+    },
+    {
+        "head": "gemini-api",
+        "tail": "text"
+    },
+    {
+        "head": "gemini-api",
+        "tail": "source"
+    },
+    {
+        "head": "gemini-api",
+        "tail": "library"
+    },
+    {
+        "head": "gemini-api",
+        "tail": "extract"
+    },
+    {
+        "head": "gemini-api",
+        "tail": "extraction"
+    },
+    {
+        "head": "information-extration",
+        "tail": "gemini"
+    },
+    {
+        "head": "information-extration",
+        "tail": "gemini-pro"
+    },
+    {
+        "head": "information-extration",
+        "tail": "large-language-models"
+    },
+    {
+        "head": "information-extration",
+        "tail": "gemini-flash"
+    },
+    {
+        "head": "information-extration",
+        "tail": "text"
+    },
+    {
+        "head": "information-extration",
+        "tail": "source"
+    },
+    {
+        "head": "information-extration",
+        "tail": "library"
+    },
+    {
+        "head": "information-extration",
+        "tail": "extract"
+    },
+    {
+        "head": "information-extration",
+        "tail": "extraction"
+    },
+    {
+        "head": "gemini",
+        "tail": "gemini-pro"
+    },
+    {
+        "head": "gemini",
+        "tail": "large-language-models"
+    },
+    {
+        "head": "gemini",
+        "tail": "gemini-flash"
+    },
+    {
+        "head": "gemini",
+        "tail": "text"
+    },
+    {
+        "head": "gemini",
+        "tail": "source"
+    },
+    {
+        "head": "gemini",
+        "tail": "library"
+    },
+    {
+        "head": "gemini",
+        "tail": "extract"
+    },
+    {
+        "head": "gemini",
+        "tail": "extraction"
+    },
+    {
+        "head": "gemini-pro",
+        "tail": "large-language-models"
+    },
+    {
+        "head": "gemini-pro",
+        "tail": "gemini-flash"
+    },
+    {
+        "head": "gemini-pro",
+        "tail": "text"
+    },
+    {
+        "head": "gemini-pro",
+        "tail": "source"
+    },
+    {
+        "head": "gemini-pro",
+        "tail": "library"
+    },
+    {
+        "head": "gemini-pro",
+        "tail": "extract"
+    },
+    {
+        "head": "gemini-pro",
+        "tail": "extraction"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "gemini-flash"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "source"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "extraction"
+    },
+    {
+        "head": "gemini-flash",
+        "tail": "text"
+    },
+    {
+        "head": "gemini-flash",
+        "tail": "source"
+    },
+    {
+        "head": "gemini-flash",
+        "tail": "library"
+    },
+    {
+        "head": "gemini-flash",
+        "tail": "extract"
+    },
+    {
+        "head": "gemini-flash",
+        "tail": "extraction"
+    },
+    {
+        "head": "source",
+        "tail": "extraction"
+    },
+    {
+        "head": "extract",
+        "tail": "extraction"
     }
 ]

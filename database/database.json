@@ -47458,5 +47458,30 @@
             "osm",
             "vector-tiles"
         ]
+    },
+    "https://github.com/google/langextract": {
+        "extra-tags": [
+            "text",
+            "source",
+            "library",
+            "extract",
+            "extraction"
+        ],
+        "date": "2025-08-10",
+        "title": "langextract",
+        "summary": "A Python library for extracting structured information from unstructured text using LLMs with precise source grounding and interactive visualization. \n !Testshttpsgithub.comgooglelangextractactionsworkflowsci.yamlbadge.svg LangExtract is a Python library that uses LLMs to extract structured information from unstructured text documents based on user-defined instructions. It processes materials such as clinical notes or reports, identifying and organizing key details while ensuring the extracted data corresponds to the source text. 1. Precise Source Grounding Maps every extraction to its exact location in the source text, enabling visual highlighting for easy traceability and verification.",
+        "tags": [
+            "structured-data",
+            "nlp",
+            "gemini-ai",
+            "python",
+            "llm",
+            "gemini-api",
+            "information-extration",
+            "gemini",
+            "gemini-pro",
+            "large-language-models",
+            "gemini-flash"
+        ]
     }
 }
