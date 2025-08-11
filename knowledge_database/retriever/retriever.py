@@ -54,46 +54,9 @@ class Retriever:
                 k=30,
                 tfidf=sparse.BM25Vectorizer(
                     normalize=True,
-                    ngram_range=(4, 7),
+                    ngram_range=(3, 7),
                     analyzer="char_wb",
                     b=0,
-                ),
-                documents=updated_documents,
-            )
-            | retrieve.TfIdf(
-                key="url",
-                on=["title", "tags", "summary", "date"],
-                k=10,
-                tfidf=sparse.BM25Vectorizer(
-                    normalize=True,
-                    ngram_range=(2, 5),
-                    analyzer="char_wb",
-                ),
-                documents=updated_documents,
-            )
-        ) + documents
-
-        # Retrieve documents that match a specific tag.
-        self.retriever_documents_tags = (
-            retrieve.TfIdf(
-                key="url",
-                on=["title", "tags", "summary", "date"],
-                k=40,
-                tfidf=sparse.BM25Vectorizer(
-                    normalize=True,
-                    ngram_range=(4, 7),
-                    analyzer="char_wb",
-                ),
-                documents=updated_documents,
-            )
-            & retrieve.TfIdf(
-                key="url",
-                on=["tags"],
-                k=40,
-                tfidf=sparse.BM25Vectorizer(
-                    normalize=True,
-                    ngram_range=(4, 7),
-                    analyzer="char_wb",
                 ),
                 documents=updated_documents,
             )
@@ -112,7 +75,7 @@ class Retriever:
                 k=5,
                 tfidf=sparse.BM25Vectorizer(
                     normalize=True,
-                    ngram_range=(3, 7),
+                    ngram_range=(2, 7),
                     analyzer="char_wb",
                 ),
                 documents=tags,
@@ -130,4 +93,4 @@ class Retriever:
 
     def documents_tags(self, q: str):
         """Match documents and tags."""
-        return self.retriever_documents_tags(q)
+        return self.retriever(q)
