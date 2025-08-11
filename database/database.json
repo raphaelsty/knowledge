@@ -47483,5 +47483,15 @@
             "large-language-models",
             "gemini-flash"
         ]
+    },
+    "https://fly.io/docs/flyctl/install/": {
+        "extra-tags": [
+            "install",
+            "documentation"
+        ],
+        "title": "Install flyctl",
+        "summary": "Documentation and guides from the team at Fly.io.",
+        "date": "2025-08-11",
+        "tags": []
     }
 }
