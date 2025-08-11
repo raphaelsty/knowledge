@@ -54,7 +54,7 @@ class Retriever:
                 k=30,
                 tfidf=sparse.BM25Vectorizer(
                     normalize=True,
-                    ngram_range=(3, 7),
+                    ngram_range=(4, 6),
                     analyzer="char_wb",
                     b=0,
                 ),
@@ -75,7 +75,7 @@ class Retriever:
                 k=5,
                 tfidf=sparse.BM25Vectorizer(
                     normalize=True,
-                    ngram_range=(2, 7),
+                    ngram_range=(3, 5),
                     analyzer="char_wb",
                 ),
                 documents=tags,
