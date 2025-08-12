@@ -73,7 +73,7 @@
             // --- State Management ---
             const [query, setQuery] = useState("");
             const [selectedNode, setSelectedNode] = useState(null);
-            const [documentsToFetch, setDocumentsToFetch] = useState(INITIAL_FETCH_COUNT);
+            const [documentsToFetch, setDocumentsToFetch] = useState();
             const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
             const [modelStatus, setModelStatus] = useState("Loading Script...");
             const [documents, setDocuments] = useState([]);
@@ -154,7 +154,7 @@
                     unmountGraph();
                     return;
                 }
-                const endpoint = `${API_BASE_URL}/plot/${count}/${plotQuery.replace("/", "")}`;
+                const endpoint = `${API_BASE_URL}/plot/25/${plotQuery.replace("/", "")}`;
                 fetch(endpoint)
                     .then(res => res.json())
                     .then(data => {
