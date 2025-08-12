@@ -47493,5 +47493,19 @@
         "summary": "Documentation and guides from the team at Fly.io.",
         "date": "2025-08-11",
         "tags": []
+    },
+    "https://github.com/sosuneko/PDPbox": {
+        "extra-tags": [
+            "plot",
+            "python",
+            "toolbox",
+            "github"
+        ],
+        "date": "2025-08-12",
+        "title": "PDPbox",
+        "summary": "python partial dependence plot toolbox \n !Build Statushttpsgithub.comSauceCatPDPboxactionsworkflowstox-test.ymlbadge.svg Python Partial Dependence Plot toolbox. Visualize the influence of certain features on model predictions for supervised machine learning algorithms, utilizing partial dependence plots. For a comprehensive explanation, I recommend referring to the Partial Dependence Plot PDPhttpschristophm.github.iointerpretable-ml-bookpdp.html chapter in Christoph Molnar's book, Interpretable Machine Learninghttpschristophm.github.iointerpretable-ml-book. After four years... I'm delighted to see how popular PDPbox has become it has exceeded all my expectations.",
+        "tags": [
+            "jupyter notebook"
+        ]
     }
 }

@@ -219894,5 +219894,13 @@
     {
         "head": "install",
         "tail": "documentation"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "plot"
+    },
+    {
+        "head": "plot",
+        "tail": "toolbox"
     }
 ]
