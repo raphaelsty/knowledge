@@ -23,7 +23,7 @@ const MODEL_FILES = [
   "special_tokens_map.json",
 ];
 const COLBERT_LATENCY_BUCKET = 32; // A ColBERT model parameter.
-const MAX_DOCS_TO_RANK = 15; // We only re-rank the top N documents for performance.
+const MAX_DOCS_TO_RANK = 30; // We only re-rank the top N documents for performance.
 
 // --- State ---
 
