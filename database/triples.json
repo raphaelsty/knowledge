@@ -219902,5 +219902,565 @@
     {
         "head": "plot",
         "tail": "toolbox"
+    },
+    {
+        "head": "rag",
+        "tail": "vectors"
+    },
+    {
+        "head": "rag",
+        "tail": "gpt-oss"
+    },
+    {
+        "head": "rag",
+        "tail": "localstorage"
+    },
+    {
+        "head": "rag",
+        "tail": "privacy"
+    },
+    {
+        "head": "rag",
+        "tail": "faiss"
+    },
+    {
+        "head": "rag",
+        "tail": "offline-first"
+    },
+    {
+        "head": "rag",
+        "tail": "ollama"
+    },
+    {
+        "head": "rag",
+        "tail": "langchain"
+    },
+    {
+        "head": "rag",
+        "tail": "vector-database"
+    },
+    {
+        "head": "rag",
+        "tail": "llama-index"
+    },
+    {
+        "head": "rag",
+        "tail": "storage"
+    },
+    {
+        "head": "rag",
+        "tail": "index"
+    },
+    {
+        "head": "rag",
+        "tail": "fast"
+    },
+    {
+        "head": "ai",
+        "tail": "vectors"
+    },
+    {
+        "head": "ai",
+        "tail": "gpt-oss"
+    },
+    {
+        "head": "ai",
+        "tail": "localstorage"
+    },
+    {
+        "head": "ai",
+        "tail": "privacy"
+    },
+    {
+        "head": "ai",
+        "tail": "faiss"
+    },
+    {
+        "head": "ai",
+        "tail": "offline-first"
+    },
+    {
+        "head": "ai",
+        "tail": "vector-database"
+    },
+    {
+        "head": "ai",
+        "tail": "llama-index"
+    },
+    {
+        "head": "ai",
+        "tail": "storage"
+    },
+    {
+        "head": "ai",
+        "tail": "index"
+    },
+    {
+        "head": "vectors",
+        "tail": "gpt-oss"
+    },
+    {
+        "head": "vectors",
+        "tail": "localstorage"
+    },
+    {
+        "head": "vectors",
+        "tail": "privacy"
+    },
+    {
+        "head": "vectors",
+        "tail": "faiss"
+    },
+    {
+        "head": "vectors",
+        "tail": "retrieval-augmented-generation"
+    },
+    {
+        "head": "vectors",
+        "tail": "offline-first"
+    },
+    {
+        "head": "vectors",
+        "tail": "ollama"
+    },
+    {
+        "head": "vectors",
+        "tail": "langchain"
+    },
+    {
+        "head": "vectors",
+        "tail": "vector-database"
+    },
+    {
+        "head": "vectors",
+        "tail": "llama-index"
+    },
+    {
+        "head": "vectors",
+        "tail": "llm"
+    },
+    {
+        "head": "vectors",
+        "tail": "storage"
+    },
+    {
+        "head": "vectors",
+        "tail": "index"
+    },
+    {
+        "head": "gpt-oss",
+        "tail": "localstorage"
+    },
+    {
+        "head": "gpt-oss",
+        "tail": "python"
+    },
+    {
+        "head": "gpt-oss",
+        "tail": "privacy"
+    },
+    {
+        "head": "gpt-oss",
+        "tail": "faiss"
+    },
+    {
+        "head": "gpt-oss",
+        "tail": "retrieval-augmented-generation"
+    },
+    {
+        "head": "gpt-oss",
+        "tail": "offline-first"
+    },
+    {
+        "head": "gpt-oss",
+        "tail": "ollama"
+    },
+    {
+        "head": "gpt-oss",
+        "tail": "vector-search"
+    },
+    {
+        "head": "gpt-oss",
+        "tail": "langchain"
+    },
+    {
+        "head": "gpt-oss",
+        "tail": "vector-database"
+    },
+    {
+        "head": "gpt-oss",
+        "tail": "llama-index"
+    },
+    {
+        "head": "gpt-oss",
+        "tail": "llm"
+    },
+    {
+        "head": "gpt-oss",
+        "tail": "storage"
+    },
+    {
+        "head": "gpt-oss",
+        "tail": "index"
+    },
+    {
+        "head": "gpt-oss",
+        "tail": "fast"
+    },
+    {
+        "head": "localstorage",
+        "tail": "python"
+    },
+    {
+        "head": "localstorage",
+        "tail": "privacy"
+    },
+    {
+        "head": "localstorage",
+        "tail": "faiss"
+    },
+    {
+        "head": "localstorage",
+        "tail": "retrieval-augmented-generation"
+    },
+    {
+        "head": "localstorage",
+        "tail": "offline-first"
+    },
+    {
+        "head": "localstorage",
+        "tail": "ollama"
+    },
+    {
+        "head": "localstorage",
+        "tail": "vector-search"
+    },
+    {
+        "head": "localstorage",
+        "tail": "langchain"
+    },
+    {
+        "head": "localstorage",
+        "tail": "vector-database"
+    },
+    {
+        "head": "localstorage",
+        "tail": "llama-index"
+    },
+    {
+        "head": "localstorage",
+        "tail": "llm"
+    },
+    {
+        "head": "localstorage",
+        "tail": "storage"
+    },
+    {
+        "head": "localstorage",
+        "tail": "index"
+    },
+    {
+        "head": "localstorage",
+        "tail": "fast"
+    },
+    {
+        "head": "python",
+        "tail": "offline-first"
+    },
+    {
+        "head": "python",
+        "tail": "llama-index"
+    },
+    {
+        "head": "privacy",
+        "tail": "faiss"
+    },
+    {
+        "head": "privacy",
+        "tail": "retrieval-augmented-generation"
+    },
+    {
+        "head": "privacy",
+        "tail": "offline-first"
+    },
+    {
+        "head": "privacy",
+        "tail": "ollama"
+    },
+    {
+        "head": "privacy",
+        "tail": "vector-search"
+    },
+    {
+        "head": "privacy",
+        "tail": "langchain"
+    },
+    {
+        "head": "privacy",
+        "tail": "vector-database"
+    },
+    {
+        "head": "privacy",
+        "tail": "llama-index"
+    },
+    {
+        "head": "privacy",
+        "tail": "llm"
+    },
+    {
+        "head": "privacy",
+        "tail": "storage"
+    },
+    {
+        "head": "privacy",
+        "tail": "index"
+    },
+    {
+        "head": "faiss",
+        "tail": "retrieval-augmented-generation"
+    },
+    {
+        "head": "faiss",
+        "tail": "offline-first"
+    },
+    {
+        "head": "faiss",
+        "tail": "ollama"
+    },
+    {
+        "head": "faiss",
+        "tail": "langchain"
+    },
+    {
+        "head": "faiss",
+        "tail": "llama-index"
+    },
+    {
+        "head": "faiss",
+        "tail": "llm"
+    },
+    {
+        "head": "faiss",
+        "tail": "storage"
+    },
+    {
+        "head": "faiss",
+        "tail": "fast"
+    },
+    {
+        "head": "retrieval-augmented-generation",
+        "tail": "offline-first"
+    },
+    {
+        "head": "retrieval-augmented-generation",
+        "tail": "ollama"
+    },
+    {
+        "head": "retrieval-augmented-generation",
+        "tail": "langchain"
+    },
+    {
+        "head": "retrieval-augmented-generation",
+        "tail": "vector-database"
+    },
+    {
+        "head": "retrieval-augmented-generation",
+        "tail": "llama-index"
+    },
+    {
+        "head": "retrieval-augmented-generation",
+        "tail": "storage"
+    },
+    {
+        "head": "retrieval-augmented-generation",
+        "tail": "index"
+    },
+    {
+        "head": "retrieval-augmented-generation",
+        "tail": "fast"
+    },
+    {
+        "head": "offline-first",
+        "tail": "ollama"
+    },
+    {
+        "head": "offline-first",
+        "tail": "vector-search"
+    },
+    {
+        "head": "offline-first",
+        "tail": "langchain"
+    },
+    {
+        "head": "offline-first",
+        "tail": "vector-database"
+    },
+    {
+        "head": "offline-first",
+        "tail": "llama-index"
+    },
+    {
+        "head": "offline-first",
+        "tail": "llm"
+    },
+    {
+        "head": "offline-first",
+        "tail": "storage"
+    },
+    {
+        "head": "offline-first",
+        "tail": "index"
+    },
+    {
+        "head": "offline-first",
+        "tail": "fast"
+    },
+    {
+        "head": "ollama",
+        "tail": "vector-search"
+    },
+    {
+        "head": "ollama",
+        "tail": "langchain"
+    },
+    {
+        "head": "ollama",
+        "tail": "vector-database"
+    },
+    {
+        "head": "ollama",
+        "tail": "llama-index"
+    },
+    {
+        "head": "ollama",
+        "tail": "storage"
+    },
+    {
+        "head": "ollama",
+        "tail": "index"
+    },
+    {
+        "head": "ollama",
+        "tail": "fast"
+    },
+    {
+        "head": "vector-search",
+        "tail": "langchain"
+    },
+    {
+        "head": "vector-search",
+        "tail": "llama-index"
+    },
+    {
+        "head": "vector-search",
+        "tail": "storage"
+    },
+    {
+        "head": "vector-search",
+        "tail": "index"
+    },
+    {
+        "head": "vector-search",
+        "tail": "fast"
+    },
+    {
+        "head": "langchain",
+        "tail": "vector-database"
+    },
+    {
+        "head": "langchain",
+        "tail": "llama-index"
+    },
+    {
+        "head": "langchain",
+        "tail": "storage"
+    },
+    {
+        "head": "langchain",
+        "tail": "index"
+    },
+    {
+        "head": "langchain",
+        "tail": "fast"
+    },
+    {
+        "head": "vector-database",
+        "tail": "llama-index"
+    },
+    {
+        "head": "vector-database",
+        "tail": "llm"
+    },
+    {
+        "head": "vector-database",
+        "tail": "storage"
+    },
+    {
+        "head": "vector-database",
+        "tail": "index"
+    },
+    {
+        "head": "llama-index",
+        "tail": "llm"
+    },
+    {
+        "head": "llama-index",
+        "tail": "storage"
+    },
+    {
+        "head": "llama-index",
+        "tail": "index"
+    },
+    {
+        "head": "llama-index",
+        "tail": "fast"
+    },
+    {
+        "head": "llm",
+        "tail": "storage"
+    },
+    {
+        "head": "llm",
+        "tail": "index"
+    },
+    {
+        "head": "storage",
+        "tail": "index"
+    },
+    {
+        "head": "storage",
+        "tail": "fast"
+    },
+    {
+        "head": "index",
+        "tail": "fast"
+    },
+    {
+        "head": "rust",
+        "tail": "anki"
+    },
+    {
+        "head": "rust",
+        "tail": "development"
+    },
+    {
+        "head": "anki",
+        "tail": "code"
+    },
+    {
+        "head": "anki",
+        "tail": "development"
+    },
+    {
+        "head": "anki",
+        "tail": "source"
+    },
+    {
+        "head": "code",
+        "tail": "development"
+    },
+    {
+        "head": "development",
+        "tail": "source"
     }
 ]

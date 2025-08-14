@@ -47507,5 +47507,47 @@
         "tags": [
             "jupyter notebook"
         ]
+    },
+    "https://github.com/yichuan-w/LEANN": {
+        "extra-tags": [
+            "storage",
+            "index",
+            "fast"
+        ],
+        "date": "2025-08-14",
+        "title": "LEANN",
+        "summary": "RAG on Everything with LEANN. Enjoy 97% storage savings while running a fast, accurate, and 100% private RAG application on your personal device. \n The smallest vector index in the world. RAG Everything with LEANN! LEANN is an innovative vector database that democratizes personal AI. Transform your laptop into a powerful RAG system that can index and search through millions of documents while using 97 less storage than traditional solutions without accuracy loss. LEANN achieves this through graph-based selective recomputation with high-degree preserving pruning, computing embeddings on-demand instead of storing them all. Illustration Fig -architecture--how-it-works Paper httpsarxiv.orgabs2506.08276",
+        "tags": [
+            "rag",
+            "ai",
+            "vectors",
+            "gpt-oss",
+            "localstorage",
+            "python",
+            "privacy",
+            "faiss",
+            "retrieval-augmented-generation",
+            "offline-first",
+            "ollama",
+            "vector-search",
+            "langchain",
+            "vector-database",
+            "llama-index",
+            "llm"
+        ]
+    },
+    "https://github.com/ankitects/anki": {
+        "extra-tags": [
+            "anki",
+            "code",
+            "development",
+            "source"
+        ],
+        "date": "2025-08-14",
+        "title": "anki",
+        "summary": "Anki is a smart spaced repetition flashcard program \n This repo contains the source code for the computer version of Ankihttpsapps.ankiweb.net. Anki is a spaced repetition program. Please see the websitehttpsapps.ankiweb.net to learn more. If you'd like to try development builds of Anki but don't feel comfortable building the code, please see Anki betashttpsbetas.ankiweb.net For more information on building and developing, please see Development.docsdevelopment.md.",
+        "tags": [
+            "rust"
+        ]
     }
 }
