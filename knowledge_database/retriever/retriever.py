@@ -76,7 +76,7 @@ class Retriever:
                 tfidf=sparse.BM25Vectorizer(
                     normalize=True,
                     ngram_range=(2, 5),
-                    analyzer="char_wb",
+                    analyzer="char",
                 ),
                 documents=tags,
             )
