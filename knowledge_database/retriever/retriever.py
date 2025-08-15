@@ -54,8 +54,8 @@ class Retriever:
                 k=30,
                 tfidf=sparse.BM25Vectorizer(
                     normalize=True,
-                    ngram_range=(2, 5),
-                    analyzer="char_wb",
+                    ngram_range=(3, 6),
+                    analyzer="char",
                     b=0,
                 ),
                 documents=updated_documents,
