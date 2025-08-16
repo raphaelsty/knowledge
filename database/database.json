@@ -47549,5 +47549,18 @@
         "tags": [
             "rust"
         ]
+    },
+    "https://github.com/codecflow/optr": {
+        "extra-tags": [
+            "operator",
+            "training",
+            "bash"
+        ],
+        "date": "2025-08-16",
+        "title": "optr",
+        "summary": "Unified toolkit for building, training, and testing digital and physical operators. \n A unified Python framework for building, training, and deploying intelligent operators across digital and physical environments. optr provides a flexible architecture for creating operators that can bash pip install optr bash git clone httpsgithub.comcodecflowoptr cd optr uv sync --dev Create an operator that automates login python from optr.operator import Operator",
+        "tags": [
+            "python"
+        ]
     }
 }

@@ -220462,5 +220462,17 @@
     {
         "head": "development",
         "tail": "source"
+    },
+    {
+        "head": "operator",
+        "tail": "training"
+    },
+    {
+        "head": "operator",
+        "tail": "bash"
+    },
+    {
+        "head": "training",
+        "tail": "bash"
     }
 ]
