@@ -81,8 +81,8 @@ def get_latest(count: int):
     return {"documents": documents}
 
 
-@app.get("/search/{sort}/{tags}/{k_tags}/{q}")
-def search(k_tags: int, tags: str, sort: bool, q: str):
+@app.get("/search/{sort}/{tags}/{q}")
+def search(tags: str, sort: bool, q: str):
     """Search for documents."""
     tags = tags != "null"
     documents = knowledge.search(q=q, tags=tags)

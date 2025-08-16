@@ -50,12 +50,12 @@ class Retriever:
         self.retriever = (
             retrieve.TfIdf(
                 key="url",
-                on=["title", "tags", "summary", "date"],
+                on=["title", "tags", "summary", "date", "extra-tags"],
                 k=30,
                 tfidf=sparse.BM25Vectorizer(
                     normalize=True,
-                    ngram_range=(3, 6),
-                    analyzer="char",
+                    ngram_range=(3, 5),
+                    analyzer="char_wb",
                     b=0,
                 ),
                 documents=updated_documents,
@@ -72,7 +72,7 @@ class Retriever:
             retrieve.TfIdf(
                 key="tag",
                 on=["tag"],
-                k=5,
+                k=10,
                 tfidf=sparse.BM25Vectorizer(
                     normalize=True,
                     ngram_range=(2, 5),

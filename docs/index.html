@@ -123,7 +123,7 @@
                 const queryId = ++latestQueryIdRef.current;
                 const sortType = sortChronologically ? 'true' : 'false';
                 const nodeFilter = selectedNode || 'null';
-                const endpoint = `${API_BASE_URL}/search/${sortType}/${nodeFilter}/${count}/${searchQuery.replace("/", "")}`;
+                const endpoint = `${API_BASE_URL}/search/${sortType}/${nodeFilter}/${searchQuery.replace("/", "")}`;
 
                 fetch(endpoint)
                     .then(res => res.json())

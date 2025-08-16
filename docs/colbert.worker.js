@@ -23,28 +23,19 @@ const MODEL_FILES = [
   "special_tokens_map.json",
 ];
 const COLBERT_LATENCY_BUCKET = 32; // A ColBERT model parameter.
-const MAX_DOCS_TO_RANK = 30; // We only re-rank the top N documents for performance.
+const MAX_DOCS_TO_RANK = 29; // We only re-rank the top N documents for performance.
 
 // --- State ---
 
 let colbertModel = null;
+let latestQueryId = 0; // Track the ID of the latest 'rank' request.
 
 // --- Helper Functions ---
-
-/**
- * Posts a status message back to the main thread.
- * @param {string} message The status message to send.
- */
+// ... (No changes to sendStatus, sendError, getCachedOrFetch, loadModel) ...
 const sendStatus = (message) => {
   console.log(`[WORKER][STATUS] ${message}`);
   self.postMessage({ type: "status", payload: message });
 };
-
-/**
- * Posts an error message back to the main thread.
- * @param {string} message The error message to send.
- * @param {Error} [error] The associated error object.
- */
 const sendError = (message, error) => {
   console.error(`[WORKER][ERROR] ${message}`, error);
   self.postMessage({
@@ -52,25 +43,14 @@ const sendError = (message, error) => {
     payload: `${message}${error ? `: ${error.message}` : ""}`,
   });
 };
-
-/**
- * Fetches a file from the browser Cache API or from the network if not present.
- * Caching model files is crucial for fast subsequent loads.
- * @param {string} url - The URL of the file to fetch.
- * @param {string} displayName - A user-friendly name for the file for logging.
- * @returns {Promise<Response>} A promise that resolves to the Response object.
- */
 const getCachedOrFetch = async (url, displayName) => {
   sendStatus(`Downloading ${displayName}...`);
-
   const cache = await caches.open(CACHE_NAME);
   const cachedResponse = await cache.match(url);
-
   if (cachedResponse) {
     console.log(`[WORKER] Cache hit for ${displayName}. Using cached version.`);
     return cachedResponse;
   }
-
   console.log(
     `[WORKER] Cache miss for ${displayName}. Fetching from network...`
   );
@@ -80,43 +60,29 @@ const getCachedOrFetch = async (url, displayName) => {
       `Download failed for ${displayName}: ${networkResponse.statusText}`
     );
   }
-
-  // Clone the response to put it in the cache, as a Response body can only be read once.
   await cache.put(url, networkResponse.clone());
   console.log(`[WORKER] Successfully fetched and cached ${displayName}.`);
   return networkResponse;
 };
-
-// --- Model Loading ---
-
-/**
- * Initializes the WASM module and loads the ColBERT model files.
- */
 const loadModel = async () => {
   if (colbertModel) {
-    console.log("[WORKER] Model already loaded. Not re-initializing.");
     self.postMessage({ type: "model-ready" });
     return;
   }
-
   try {
     sendStatus("Initializing WebAssembly module...");
     await init();
-
     const fileFetchPromises = MODEL_FILES.map((file) => {
       const url = `https://huggingface.co/${MODEL_REPO}/resolve/main/${file}`;
       const displayName = file.split("/").pop();
       return getCachedOrFetch(url, displayName);
     });
-
     const responses = await Promise.all(fileFetchPromises);
-
     sendStatus("Decoding model files...");
     const modelFileDataPromises = responses.map((response) =>
       response.arrayBuffer().then((buffer) => new Uint8Array(buffer))
     );
     const modelFilesData = await Promise.all(modelFileDataPromises);
-
     const [
       tokenizerData,
       modelData,
@@ -126,7 +92,6 @@ const loadModel = async () => {
       denseLayerConfigData,
       specialTokensMapData,
     ] = modelFilesData;
-
     sendStatus("Instantiating ColBERT model...");
     colbertModel = new ColBERT(
       modelData,
@@ -138,7 +103,6 @@ const loadModel = async () => {
       specialTokensMapData,
       COLBERT_LATENCY_BUCKET
     );
-
     self.postMessage({ type: "model-ready" });
   } catch (error) {
     sendError("Fatal error during model loading", error);
@@ -148,38 +112,47 @@ const loadModel = async () => {
 // --- Document Ranking ---
 
 /**
- * Ranks a set of documents against a query using the ColBERT model.
- * This function streams updates back to the main thread as each document is scored.
+ * Ranks documents asynchronously and cooperatively, allowing it to be interrupted.
  * @param {object} payload - The data for the ranking task.
- * @param {string} payload.query - The user's search query.
- * @param {Array<object>} payload.documents - The list of documents to rank.
- * @param {number|string} payload.queryId - An identifier for the specific query request.
  */
-const rankDocuments = (payload) => {
+const rankDocuments = async (payload) => {
   if (!colbertModel) {
-    console.warn(
-      "[WORKER] 'rank' message received, but the model is not ready. Ignoring."
-    );
     return;
   }
 
   const { query, documents, queryId } = payload;
+
+  if (queryId !== latestQueryId) {
+    console.log(
+      `[WORKER] Skipping stale ranking stream #${queryId}. Latest is #${latestQueryId}.`
+    );
+    return;
+  }
+
   console.log(
     `[WORKER] Ranking stream #${queryId}: Ranking top ${MAX_DOCS_TO_RANK} of ${documents.length} documents.`
   );
 
   const docsToRank = documents.slice(0, MAX_DOCS_TO_RANK);
   const docsToPassThrough = documents.slice(MAX_DOCS_TO_RANK);
-
   const rankedDocs = [];
-  // A copy to track progress for UI updates. These are docs that are in the queue to be ranked.
   const remainingForRanking = [...docsToRank];
 
   for (const document of docsToRank) {
+    // This line pauses the loop and allows the worker to process new messages.
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    // After the pause, we check if a newer query has arrived. If so, abort.
+    if (queryId !== latestQueryId) {
+      console.log(
+        `[WORKER] Aborting ranking stream #${queryId}. A newer query (#${latestQueryId}) has started.`
+      );
+      return; // Exit the function early.
+    }
+
     try {
       remainingForRanking.shift();
 
-      // Combine title, summary, and tags for a comprehensive document representation.
       const title = document.title || "";
       const summary = document.summary || "";
       const allTags = (document.tags || [])
@@ -187,7 +160,6 @@ const rankDocuments = (payload) => {
         .join(" ");
       const combinedText = `${title} ${summary} ${allTags}`.trim();
 
-      // The core similarity calculation.
       const { data: scores } = colbertModel.similarity({
         queries: [query],
         documents: [combinedText],
@@ -196,11 +168,8 @@ const rankDocuments = (payload) => {
 
       const scoredDocument = { ...document, colbertScore: score };
       rankedDocs.push(scoredDocument);
-
-      // Sort the already-ranked documents to maintain a live-sorted list.
       rankedDocs.sort((a, b) => b.colbertScore - a.colbertScore);
 
-      // Send a partial update to the main thread for a responsive UI.
       const partialResult = [
         ...rankedDocs,
         ...remainingForRanking,
@@ -216,48 +185,33 @@ const rankDocuments = (payload) => {
         `[WORKER] Failed to rank document for query #${queryId}.`,
         error
       );
-      // If a single document fails, push the original doc so it's not lost from the final result.
       rankedDocs.push(document);
     }
   }
 
-  // Final message with the fully sorted list.
-  const finalResult = [...rankedDocs, ...docsToPassThrough];
-  self.postMessage({
-    type: "rank-complete",
-    payload: finalResult,
-    queryId: queryId,
-  });
+  if (queryId === latestQueryId) {
+    const finalResult = [...rankedDocs, ...docsToPassThrough];
+    self.postMessage({
+      type: "rank-complete",
+      payload: finalResult,
+      queryId: queryId,
+    });
+  }
 };
 
 // --- Main Worker Entry Point ---
 
-/**
- * Handles incoming messages from the main thread and routes them to the appropriate function.
- */
 self.onmessage = async (event) => {
   const { type, payload } = event.data;
-  const startTime = performance.now();
-
-  console.log(`[WORKER] Received message of type: '${type}'`);
 
   switch (type) {
     case "load":
       await loadModel();
-      const loadTime = ((performance.now() - startTime) / 1000).toFixed(2);
-      if (colbertModel) {
-        console.log(
-          `[WORKER] Model loading process finished in ${loadTime} seconds.`
-        );
-      }
       break;
 
     case "rank":
-      rankDocuments(payload);
-      const rankTime = ((performance.now() - startTime) / 1000).toFixed(2);
-      console.log(
-        `[WORKER] Finished ranking stream for queryId #${payload.queryId} in ${rankTime}s.`
-      );
+      latestQueryId = payload.queryId;
+      rankDocuments(payload); // Fire and forget.
       break;
 
     default:
