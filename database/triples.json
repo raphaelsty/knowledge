@@ -220474,5 +220474,161 @@
     {
         "head": "training",
         "tail": "bash"
+    },
+    {
+        "head": "causal2vec",
+        "tail": "encoder from decoder"
+    },
+    {
+        "head": "causal2vec",
+        "tail": "huggingface"
+    },
+    {
+        "head": "causal2vec",
+        "tail": "llm2vec"
+    },
+    {
+        "head": "causal2vec",
+        "tail": "remove causal mask"
+    },
+    {
+        "head": "causal2vec",
+        "tail": "transformers"
+    },
+    {
+        "head": "causal2vec",
+        "tail": "llama"
+    },
+    {
+        "head": "causal2vec",
+        "tail": "model"
+    },
+    {
+        "head": "causal2vec",
+        "tail": "config"
+    },
+    {
+        "head": "encoder from decoder",
+        "tail": "huggingface"
+    },
+    {
+        "head": "encoder from decoder",
+        "tail": "llm2vec"
+    },
+    {
+        "head": "encoder from decoder",
+        "tail": "remove causal mask"
+    },
+    {
+        "head": "encoder from decoder",
+        "tail": "transformers"
+    },
+    {
+        "head": "encoder from decoder",
+        "tail": "llama"
+    },
+    {
+        "head": "encoder from decoder",
+        "tail": "model"
+    },
+    {
+        "head": "encoder from decoder",
+        "tail": "config"
+    },
+    {
+        "head": "huggingface",
+        "tail": "llm2vec"
+    },
+    {
+        "head": "huggingface",
+        "tail": "remove causal mask"
+    },
+    {
+        "head": "huggingface",
+        "tail": "llama"
+    },
+    {
+        "head": "huggingface",
+        "tail": "config"
+    },
+    {
+        "head": "huggingface",
+        "tail": "decoder"
+    },
+    {
+        "head": "llm2vec",
+        "tail": "remove causal mask"
+    },
+    {
+        "head": "llm2vec",
+        "tail": "transformers"
+    },
+    {
+        "head": "llm2vec",
+        "tail": "llama"
+    },
+    {
+        "head": "llm2vec",
+        "tail": "model"
+    },
+    {
+        "head": "llm2vec",
+        "tail": "config"
+    },
+    {
+        "head": "llm2vec",
+        "tail": "decoder"
+    },
+    {
+        "head": "remove causal mask",
+        "tail": "transformers"
+    },
+    {
+        "head": "remove causal mask",
+        "tail": "llama"
+    },
+    {
+        "head": "remove causal mask",
+        "tail": "model"
+    },
+    {
+        "head": "remove causal mask",
+        "tail": "config"
+    },
+    {
+        "head": "remove causal mask",
+        "tail": "decoder"
+    },
+    {
+        "head": "transformers",
+        "tail": "llama"
+    },
+    {
+        "head": "transformers",
+        "tail": "config"
+    },
+    {
+        "head": "transformers",
+        "tail": "decoder"
+    },
+    {
+        "head": "llama",
+        "tail": "config"
+    },
+    {
+        "head": "llama",
+        "tail": "decoder"
+    },
+    {
+        "head": "model",
+        "tail": "config"
+    },
+    {
+        "head": "model",
+        "tail": "decoder"
+    },
+    {
+        "head": "config",
+        "tail": "decoder"
     }
 ]

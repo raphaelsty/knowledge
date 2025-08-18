@@ -47562,5 +47562,24 @@
         "tags": [
             "python"
         ]
+    },
+    "https://discuss.huggingface.co/t/remove-causal-mask-from-llama-decoder/111506": {
+        "extra-tags": [
+            "llama",
+            "model",
+            "config",
+            "decoder"
+        ],
+        "title": "Remove causal mask from Llama decoder - Intermediate",
+        "summary": "Hi,  I want to train the recently released smaller Llama 3.2 models (link) for an NER task.  However, I would like to remove the causal LM triangular mask during training and inference. How do I go about this?  First of all, I thought the mask was automatically generated based on model.config.is_decoder in get_extended_attention_mask (link). If so, simply setting this to False should enable bidrectional attention.  However, model.config.is_decoder is False for AutoModelForCausalLM (as well as fo...",
+        "date": "2025-08-17",
+        "tags": [
+            "causal2vec",
+            "encoder from decoder",
+            "huggingface",
+            "llm2vec",
+            "remove causal mask",
+            "transformers"
+        ]
     }
 }
