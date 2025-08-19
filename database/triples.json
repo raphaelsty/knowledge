@@ -220630,5 +220630,81 @@
     {
         "head": "config",
         "tail": "decoder"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "adapter"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "memory decoder"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "pretrained"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "adapter"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "memory decoder"
+    },
+    {
+        "head": "llm",
+        "tail": "memory decoder"
+    },
+    {
+        "head": "adapter",
+        "tail": "memory"
+    },
+    {
+        "head": "adapter",
+        "tail": "memory decoder"
+    },
+    {
+        "head": "adapter",
+        "tail": "retrieval"
+    },
+    {
+        "head": "adapter",
+        "tail": "pretrained"
+    },
+    {
+        "head": "adapter",
+        "tail": "language models"
+    },
+    {
+        "head": "memory",
+        "tail": "memory decoder"
+    },
+    {
+        "head": "memory",
+        "tail": "retrieval"
+    },
+    {
+        "head": "memory",
+        "tail": "pretrained"
+    },
+    {
+        "head": "memory",
+        "tail": "language models"
+    },
+    {
+        "head": "memory decoder",
+        "tail": "retrieval"
+    },
+    {
+        "head": "memory decoder",
+        "tail": "pretrained"
+    },
+    {
+        "head": "memory decoder",
+        "tail": "language models"
+    },
+    {
+        "head": "retrieval",
+        "tail": "pretrained"
     }
 ]
