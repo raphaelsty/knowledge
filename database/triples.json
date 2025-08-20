@@ -220706,5 +220706,37 @@
     {
         "head": "retrieval",
         "tail": "pretrained"
+    },
+    {
+        "head": "build",
+        "tail": "duckdb"
+    },
+    {
+        "head": "build",
+        "tail": "yaml"
+    },
+    {
+        "head": "duckdb",
+        "tail": "yaml"
+    },
+    {
+        "head": "screen",
+        "tail": "question answering"
+    },
+    {
+        "head": "screen",
+        "tail": "document screenshot"
+    },
+    {
+        "head": "question answering",
+        "tail": "document screenshot"
+    },
+    {
+        "head": "screen",
+        "tail": "full training set"
+    },
+    {
+        "head": "document screenshot",
+        "tail": "full training set"
     }
 ]

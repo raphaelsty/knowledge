@@ -47599,5 +47599,106 @@
             "memory decoder",
             "retrieval"
         ]
+    },
+    "https://motherduck.com/blog/semantic-layer-duckdb-tutorial/": {
+        "extra-tags": [
+            "build",
+            "duckdb",
+            "yaml"
+        ],
+        "title": "Hackernews Why Semantic Layers Matter (and how to build one with DuckDB) (motherduck.com)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "Why Semantic Layers Matter \u2014 and How to Build One with DuckDB 2025/08/19 - 21 min read BYMany ask themselves, \"Why would I use a semantic layer? What is it anyway?\" In this hands-on guide, we\u2019ll build the simplest possible semantic layer using just a YAML file and a Python",
+        "date": "2025-08-20"
+    },
+    "https://superuser.com/a/1701817": {
+        "extra-tags": [
+            "screen",
+            "question answering",
+            "document screenshot"
+        ],
+        "title": "Answer to \"iTerm: Can I Get Transparency in Full Screen Mode\"",
+        "summary": "",
+        "date": "2025-08-19",
+        "tags": []
+    },
+    "https://superuser.com/a/170058": {
+        "extra-tags": [
+            "screen",
+            "question answering",
+            "document screenshot"
+        ],
+        "title": "Answer to \"iTerm: Can I Get Transparency in Full Screen Mode\"",
+        "summary": "",
+        "date": "2025-08-19",
+        "tags": []
+    },
+    "https://superuser.com/a/1117867": {
+        "extra-tags": [
+            "screen",
+            "question answering",
+            "document screenshot"
+        ],
+        "title": "Answer to \"iTerm: Can I Get Transparency in Full Screen Mode\"",
+        "summary": "",
+        "date": "2025-08-19",
+        "tags": []
+    },
+    "https://superuser.com/a/986047": {
+        "extra-tags": [
+            "screen",
+            "question answering",
+            "document screenshot"
+        ],
+        "title": "Answer to \"iTerm: Can I Get Transparency in Full Screen Mode\"",
+        "summary": "",
+        "date": "2025-08-19",
+        "tags": []
+    },
+    "https://superuser.com/a/214263": {
+        "extra-tags": [
+            "screen",
+            "question answering",
+            "document screenshot"
+        ],
+        "title": "Answer to \"iTerm: Can I Get Transparency in Full Screen Mode\"",
+        "summary": "",
+        "date": "2025-08-19",
+        "tags": []
+    },
+    "https://superuser.com/q/115811": {
+        "extra-tags": [
+            "screen",
+            "document screenshot",
+            "full training set"
+        ],
+        "title": "iTerm: Can I Get Transparency in Full Screen Mode",
+        "summary": "",
+        "date": "2025-08-19",
+        "tags": []
+    },
+    "https://superuser.com/a/115817": {
+        "extra-tags": [
+            "screen",
+            "question answering",
+            "document screenshot"
+        ],
+        "title": "Answer to \"iTerm: Can I Get Transparency in Full Screen Mode\"",
+        "summary": "",
+        "date": "2025-08-19",
+        "tags": []
+    },
+    "https://superuser.com/a/170056": {
+        "extra-tags": [
+            "screen",
+            "question answering",
+            "document screenshot"
+        ],
+        "title": "Answer to \"iTerm: Can I Get Transparency in Full Screen Mode\"",
+        "summary": "",
+        "date": "2025-08-19",
+        "tags": []
     }
 }
