@@ -47700,5 +47700,21 @@
         "summary": "",
         "date": "2025-08-19",
         "tags": []
+    },
+    "https://www.hetzner.com/cloud": {
+        "extra-tags": [
+            "cheap"
+        ],
+        "title": "Cheap hosted VPS by Hetzner: our cloud hosting services",
+        "summary": "",
+        "date": "2025-08-20",
+        "tags": [
+            "cloud",
+            "flyio",
+            "heroku",
+            "hetzner",
+            "server",
+            "vps"
+        ]
     }
 }

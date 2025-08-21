@@ -220738,5 +220738,85 @@
     {
         "head": "document screenshot",
         "tail": "full training set"
+    },
+    {
+        "head": "cloud",
+        "tail": "flyio"
+    },
+    {
+        "head": "cloud",
+        "tail": "heroku"
+    },
+    {
+        "head": "cloud",
+        "tail": "hetzner"
+    },
+    {
+        "head": "cloud",
+        "tail": "server"
+    },
+    {
+        "head": "cloud",
+        "tail": "vps"
+    },
+    {
+        "head": "flyio",
+        "tail": "heroku"
+    },
+    {
+        "head": "flyio",
+        "tail": "hetzner"
+    },
+    {
+        "head": "flyio",
+        "tail": "server"
+    },
+    {
+        "head": "flyio",
+        "tail": "vps"
+    },
+    {
+        "head": "flyio",
+        "tail": "cheap"
+    },
+    {
+        "head": "heroku",
+        "tail": "hetzner"
+    },
+    {
+        "head": "heroku",
+        "tail": "server"
+    },
+    {
+        "head": "heroku",
+        "tail": "vps"
+    },
+    {
+        "head": "heroku",
+        "tail": "cheap"
+    },
+    {
+        "head": "hetzner",
+        "tail": "server"
+    },
+    {
+        "head": "hetzner",
+        "tail": "vps"
+    },
+    {
+        "head": "hetzner",
+        "tail": "cheap"
+    },
+    {
+        "head": "server",
+        "tail": "vps"
+    },
+    {
+        "head": "server",
+        "tail": "cheap"
+    },
+    {
+        "head": "vps",
+        "tail": "cheap"
     }
 ]
