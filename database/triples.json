@@ -220818,5 +220818,81 @@
     {
         "head": "vps",
         "tail": "cheap"
+    },
+    {
+        "head": "contrastive",
+        "tail": "dataset"
+    },
+    {
+        "head": "contrastive",
+        "tail": "embeddings"
+    },
+    {
+        "head": "contrastive",
+        "tail": "lighton"
+    },
+    {
+        "head": "contrastive",
+        "tail": "pre-training"
+    },
+    {
+        "head": "contrastive",
+        "tail": "datasets"
+    },
+    {
+        "head": "contrastive",
+        "tail": "hugging face"
+    },
+    {
+        "head": "dataset",
+        "tail": "embeddings"
+    },
+    {
+        "head": "dataset",
+        "tail": "lighton"
+    },
+    {
+        "head": "dataset",
+        "tail": "pre-training"
+    },
+    {
+        "head": "embeddings",
+        "tail": "lighton"
+    },
+    {
+        "head": "embeddings",
+        "tail": "pre-training"
+    },
+    {
+        "head": "embeddings",
+        "tail": "datasets"
+    },
+    {
+        "head": "embeddings",
+        "tail": "hugging face"
+    },
+    {
+        "head": "lighton",
+        "tail": "pre-training"
+    },
+    {
+        "head": "lighton",
+        "tail": "datasets"
+    },
+    {
+        "head": "lighton",
+        "tail": "hugging face"
+    },
+    {
+        "head": "pre-training",
+        "tail": "datasets"
+    },
+    {
+        "head": "pre-training",
+        "tail": "hugging face"
+    },
+    {
+        "head": "datasets",
+        "tail": "hugging face"
     }
 ]

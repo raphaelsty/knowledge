@@ -47716,5 +47716,21 @@
             "server",
             "vps"
         ]
+    },
+    "https://huggingface.co/datasets/lightonai/embeddings-pre-training": {
+        "extra-tags": [
+            "datasets",
+            "hugging face"
+        ],
+        "title": "lightonai/embeddings-pre-training \u00b7 Datasets at Hugging Face",
+        "summary": "We\u2019re on a journey to advance and democratize artificial intelligence through open source and open science.",
+        "date": "2025-08-21",
+        "tags": [
+            "contrastive",
+            "dataset",
+            "embeddings",
+            "lighton",
+            "pre-training"
+        ]
     }
 }
