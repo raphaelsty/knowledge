@@ -47749,5 +47749,23 @@
             "min hash",
             "minhash"
         ]
+    },
+    "https://github.com/SWE-agent/mini-swe-agent": {
+        "extra-tags": [
+            "no",
+            "github"
+        ],
+        "date": "2025-08-25",
+        "title": "mini-swe-agent",
+        "summary": "The 100 line AI agent that solves GitHub issues or helps you in your command line. Radically simple, no huge configs, no giant monorepo\u2014but scores 68% on SWE-bench verified! \n New blogpost Randomly switching between GPT-5 and Sonnet 4 boosts performancehttpswww.swebench.comSWE-benchblog20250819mini-roulette In 2024, SWE-benchhttpsgithub.comswe-benchSWE-bench SWE-agenthttpsgithub.comswe-agentswe-agent helped kickstart the coding agent revolution. We now ask What if SWE-agent was 100x smaller, and still worked nearly as well? mini is for Here's some details modelhttpsgithub.comSWE-agentmini-swe-agentblobmainsrcminisweagentmodelslitellmmodel.py, scripthttpsgithub.comSWE-agentmini-swe-agentblobmainsrcminisweagentrunhelloworld.py no fancy dependencies!",
+        "tags": [
+            "ai-agent",
+            "ai",
+            "agentic-ai-cli",
+            "python",
+            "agentic-ai",
+            "textual",
+            "agent"
+        ]
     }
 }

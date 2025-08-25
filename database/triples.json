@@ -220990,5 +220990,89 @@
     {
         "head": "large-scale",
         "tail": "science"
+    },
+    {
+        "head": "ai-agent",
+        "tail": "ai"
+    },
+    {
+        "head": "ai-agent",
+        "tail": "agentic-ai-cli"
+    },
+    {
+        "head": "ai-agent",
+        "tail": "agentic-ai"
+    },
+    {
+        "head": "ai-agent",
+        "tail": "textual"
+    },
+    {
+        "head": "ai-agent",
+        "tail": "no"
+    },
+    {
+        "head": "ai",
+        "tail": "agentic-ai-cli"
+    },
+    {
+        "head": "ai",
+        "tail": "agentic-ai"
+    },
+    {
+        "head": "ai",
+        "tail": "textual"
+    },
+    {
+        "head": "ai",
+        "tail": "no"
+    },
+    {
+        "head": "agentic-ai-cli",
+        "tail": "python"
+    },
+    {
+        "head": "agentic-ai-cli",
+        "tail": "agentic-ai"
+    },
+    {
+        "head": "agentic-ai-cli",
+        "tail": "textual"
+    },
+    {
+        "head": "agentic-ai-cli",
+        "tail": "agent"
+    },
+    {
+        "head": "agentic-ai-cli",
+        "tail": "no"
+    },
+    {
+        "head": "python",
+        "tail": "agentic-ai"
+    },
+    {
+        "head": "agentic-ai",
+        "tail": "textual"
+    },
+    {
+        "head": "agentic-ai",
+        "tail": "agent"
+    },
+    {
+        "head": "agentic-ai",
+        "tail": "no"
+    },
+    {
+        "head": "textual",
+        "tail": "agent"
+    },
+    {
+        "head": "textual",
+        "tail": "no"
+    },
+    {
+        "head": "agent",
+        "tail": "no"
     }
 ]
