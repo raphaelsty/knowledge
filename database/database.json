@@ -47767,5 +47767,18 @@
             "textual",
             "agent"
         ]
+    },
+    "https://github.com/sionic-ai/muvera-py": {
+        "extra-tags": [
+            "search",
+            "multi-vector retrieval",
+            "was"
+        ],
+        "date": "2025-08-26",
+        "title": "muvera-py",
+        "summary": "Python Implementation of MUVERA (Multi-Vector Retrieval via Fixed Dimensional Encodings) \n This Python implementation was created to make the FDE algorithm more accessible while maintaining complete fidelity to the original C implementation. Every function and parameter has been carefully mapped to ensure identical behavior. Fixed-Dimensional Encoding FDE solves a fundamental problem in modern search systems how to efficiently search through billions of documents when each document is represented by hundreds of vectors as in ColBERT-style models.",
+        "tags": [
+            "python"
+        ]
     }
 }

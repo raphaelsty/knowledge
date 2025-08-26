@@ -221074,5 +221074,21 @@
     {
         "head": "agent",
         "tail": "no"
+    },
+    {
+        "head": "python",
+        "tail": "was"
+    },
+    {
+        "head": "search",
+        "tail": "multi-vector retrieval"
+    },
+    {
+        "head": "search",
+        "tail": "was"
+    },
+    {
+        "head": "multi-vector retrieval",
+        "tail": "was"
     }
 ]
