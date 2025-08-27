@@ -47780,5 +47780,31 @@
         "tags": [
             "python"
         ]
+    },
+    "https://www.smooth.sh/": {
+        "extra-tags": [
+            "browser",
+            "agent",
+            "api"
+        ],
+        "title": "Hackernews Show HN: Smooth \u2013 Faster, cheaper browser agent API (smooth.sh)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "Fast, simple, reliable browser agent Serverless browser agent API built from first principles: reliable, secure, 5x faster, 7x cheaper, and extremely scalable Backed by Start automating now Smooth is a browser agent that can go to the web and perform tasks autonomously. It's the most reliable browser agent yet while",
+        "date": "2025-08-27"
+    },
+    "https://developers.googleblog.com/en/introducing-gemini-2-5-flash-image/": {
+        "extra-tags": [
+            "image",
+            "gemini",
+            "state-of-the-art"
+        ],
+        "title": "Hackernews Gemini 2.5 Flash Image (googleblog.com)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "Today, we\u2019re excited to introduce Gemini 2.5 Flash Image (aka nano-banana), our state-of-the-art image generation and editing model. This update enables you to blend multiple images into a single image, maintain character consistency for rich storytelling, make targeted transformations using natural language, and use Gemini's world knowledge to generate and",
+        "date": "2025-08-27"
     }
 }

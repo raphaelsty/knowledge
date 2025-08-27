@@ -221090,5 +221090,21 @@
     {
         "head": "multi-vector retrieval",
         "tail": "was"
+    },
+    {
+        "head": "browser",
+        "tail": "agent"
+    },
+    {
+        "head": "agent",
+        "tail": "api"
+    },
+    {
+        "head": "image",
+        "tail": "gemini"
+    },
+    {
+        "head": "gemini",
+        "tail": "state-of-the-art"
     }
 ]
