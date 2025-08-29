@@ -47806,5 +47806,51 @@
         ],
         "summary": "Today, we\u2019re excited to introduce Gemini 2.5 Flash Image (aka nano-banana), our state-of-the-art image generation and editing model. This update enables you to blend multiple images into a single image, maintain character consistency for rich storytelling, make targeted transformations using natural language, and use Gemini's world knowledge to generate and",
         "date": "2025-08-27"
+    },
+    "https://github.com/NVIDIA-NeMo/NeMo": {
+        "extra-tags": [
+            "models",
+            "framework",
+            "ai",
+            "speech",
+            "hugging face"
+        ],
+        "date": "2025-08-29",
+        "title": "NeMo",
+        "summary": "A scalable generative AI framework built for researchers and developers working on Large Language Models, Multimodal, and Speech AI (Automatic Speech Recognition and Text-to-Speech) \n Pretrain and finetune hugsHugging Face models via AutoModel Nemo Framework's latest feature AutoModel enables broad support for hugsHugging Face models, with 25.04 focusing on More Details in Blog Run Hugging Face Models Instantly with Day-0 Support from NVIDIA NeMo Framework. Future releases will enable support for more model families such as Video Generation models.2025-05-19",
+        "tags": [
+            "neural-networks",
+            "python",
+            "tts",
+            "speech-translation",
+            "multimodal",
+            "machine-translation",
+            "large-language-models",
+            "speaker-recognition",
+            "asr",
+            "speech-synthesis",
+            "deeplearning",
+            "generative-ai",
+            "speaker-diariazation"
+        ]
+    },
+    "http://arxiv.org/abs/2201.08471": {
+        "extra-tags": [
+            "models",
+            "language",
+            "ms marco"
+        ],
+        "title": "Transfer Learning Approaches for Building Cross-Language Dense Retrieval Models",
+        "summary": "The advent of transformer-based models such as BERT has led to the rise of neural ranking models. These models have improved the effectiveness of retrieval systems well beyond that of lexical term matching models such as BM25. While monolingual retrieval tasks have benefited from large-scale training collections such as MS MARCO and advances in neural architectures, cross-language retrieval tasks have fallen behind these advancements. This paper introduces ColBERT-X, a generalization of the ColBERT multi-representation dense retrieval model that uses the XLM-RoBERTa (XLM-R) encoder to support cross-language information retrieval (CLIR). ColBERT-X can be trained in two ways. In zero-shot training, the system is trained on the English MS MARCO collection, relying on the XLM-R encoder for cross-language mappings. In translate-train, the system is trained on the MS MARCO English queries coupled with machine translations of the associated MS MARCO passages. Results on ad hoc document ranking tasks in several languages demonstrate substantial and statistically significant improvements of these trained dense retrieval models over traditional lexical CLIR baselines.",
+        "date": "2025-08-28",
+        "tags": [
+            "computer science - computation and language",
+            "computer science - information retrieval",
+            "colbert",
+            "dataset",
+            "multilingual",
+            "paper",
+            "retrieval"
+        ]
     }
 }

@@ -221106,5 +221106,489 @@
     {
         "head": "gemini",
         "tail": "state-of-the-art"
+    },
+    {
+        "head": "neural-networks",
+        "tail": "tts"
+    },
+    {
+        "head": "neural-networks",
+        "tail": "speech-translation"
+    },
+    {
+        "head": "neural-networks",
+        "tail": "multimodal"
+    },
+    {
+        "head": "neural-networks",
+        "tail": "machine-translation"
+    },
+    {
+        "head": "neural-networks",
+        "tail": "large-language-models"
+    },
+    {
+        "head": "neural-networks",
+        "tail": "speaker-recognition"
+    },
+    {
+        "head": "neural-networks",
+        "tail": "asr"
+    },
+    {
+        "head": "neural-networks",
+        "tail": "speech-synthesis"
+    },
+    {
+        "head": "neural-networks",
+        "tail": "generative-ai"
+    },
+    {
+        "head": "neural-networks",
+        "tail": "speaker-diariazation"
+    },
+    {
+        "head": "neural-networks",
+        "tail": "models"
+    },
+    {
+        "head": "neural-networks",
+        "tail": "framework"
+    },
+    {
+        "head": "neural-networks",
+        "tail": "speech"
+    },
+    {
+        "head": "neural-networks",
+        "tail": "hugging face"
+    },
+    {
+        "head": "python",
+        "tail": "speech-translation"
+    },
+    {
+        "head": "python",
+        "tail": "speaker-diariazation"
+    },
+    {
+        "head": "python",
+        "tail": "hugging face"
+    },
+    {
+        "head": "tts",
+        "tail": "speech-translation"
+    },
+    {
+        "head": "tts",
+        "tail": "multimodal"
+    },
+    {
+        "head": "tts",
+        "tail": "large-language-models"
+    },
+    {
+        "head": "tts",
+        "tail": "deeplearning"
+    },
+    {
+        "head": "tts",
+        "tail": "generative-ai"
+    },
+    {
+        "head": "tts",
+        "tail": "speaker-diariazation"
+    },
+    {
+        "head": "tts",
+        "tail": "models"
+    },
+    {
+        "head": "tts",
+        "tail": "framework"
+    },
+    {
+        "head": "tts",
+        "tail": "hugging face"
+    },
+    {
+        "head": "speech-translation",
+        "tail": "multimodal"
+    },
+    {
+        "head": "speech-translation",
+        "tail": "machine-translation"
+    },
+    {
+        "head": "speech-translation",
+        "tail": "large-language-models"
+    },
+    {
+        "head": "speech-translation",
+        "tail": "speaker-recognition"
+    },
+    {
+        "head": "speech-translation",
+        "tail": "asr"
+    },
+    {
+        "head": "speech-translation",
+        "tail": "speech-synthesis"
+    },
+    {
+        "head": "speech-translation",
+        "tail": "deeplearning"
+    },
+    {
+        "head": "speech-translation",
+        "tail": "generative-ai"
+    },
+    {
+        "head": "speech-translation",
+        "tail": "speaker-diariazation"
+    },
+    {
+        "head": "speech-translation",
+        "tail": "models"
+    },
+    {
+        "head": "speech-translation",
+        "tail": "framework"
+    },
+    {
+        "head": "speech-translation",
+        "tail": "ai"
+    },
+    {
+        "head": "speech-translation",
+        "tail": "speech"
+    },
+    {
+        "head": "speech-translation",
+        "tail": "hugging face"
+    },
+    {
+        "head": "multimodal",
+        "tail": "machine-translation"
+    },
+    {
+        "head": "multimodal",
+        "tail": "large-language-models"
+    },
+    {
+        "head": "multimodal",
+        "tail": "speaker-recognition"
+    },
+    {
+        "head": "multimodal",
+        "tail": "asr"
+    },
+    {
+        "head": "multimodal",
+        "tail": "speech-synthesis"
+    },
+    {
+        "head": "multimodal",
+        "tail": "deeplearning"
+    },
+    {
+        "head": "multimodal",
+        "tail": "speaker-diariazation"
+    },
+    {
+        "head": "multimodal",
+        "tail": "speech"
+    },
+    {
+        "head": "machine-translation",
+        "tail": "large-language-models"
+    },
+    {
+        "head": "machine-translation",
+        "tail": "deeplearning"
+    },
+    {
+        "head": "machine-translation",
+        "tail": "generative-ai"
+    },
+    {
+        "head": "machine-translation",
+        "tail": "speaker-diariazation"
+    },
+    {
+        "head": "machine-translation",
+        "tail": "models"
+    },
+    {
+        "head": "machine-translation",
+        "tail": "framework"
+    },
+    {
+        "head": "machine-translation",
+        "tail": "speech"
+    },
+    {
+        "head": "machine-translation",
+        "tail": "hugging face"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "speaker-recognition"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "asr"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "speech-synthesis"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "deeplearning"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "speaker-diariazation"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "models"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "framework"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "speech"
+    },
+    {
+        "head": "large-language-models",
+        "tail": "hugging face"
+    },
+    {
+        "head": "speaker-recognition",
+        "tail": "deeplearning"
+    },
+    {
+        "head": "speaker-recognition",
+        "tail": "generative-ai"
+    },
+    {
+        "head": "speaker-recognition",
+        "tail": "speaker-diariazation"
+    },
+    {
+        "head": "speaker-recognition",
+        "tail": "models"
+    },
+    {
+        "head": "speaker-recognition",
+        "tail": "framework"
+    },
+    {
+        "head": "speaker-recognition",
+        "tail": "hugging face"
+    },
+    {
+        "head": "asr",
+        "tail": "deeplearning"
+    },
+    {
+        "head": "asr",
+        "tail": "generative-ai"
+    },
+    {
+        "head": "asr",
+        "tail": "speaker-diariazation"
+    },
+    {
+        "head": "asr",
+        "tail": "models"
+    },
+    {
+        "head": "asr",
+        "tail": "framework"
+    },
+    {
+        "head": "asr",
+        "tail": "hugging face"
+    },
+    {
+        "head": "speech-synthesis",
+        "tail": "deeplearning"
+    },
+    {
+        "head": "speech-synthesis",
+        "tail": "generative-ai"
+    },
+    {
+        "head": "speech-synthesis",
+        "tail": "speaker-diariazation"
+    },
+    {
+        "head": "speech-synthesis",
+        "tail": "models"
+    },
+    {
+        "head": "speech-synthesis",
+        "tail": "framework"
+    },
+    {
+        "head": "speech-synthesis",
+        "tail": "hugging face"
+    },
+    {
+        "head": "deeplearning",
+        "tail": "generative-ai"
+    },
+    {
+        "head": "deeplearning",
+        "tail": "speaker-diariazation"
+    },
+    {
+        "head": "deeplearning",
+        "tail": "models"
+    },
+    {
+        "head": "deeplearning",
+        "tail": "framework"
+    },
+    {
+        "head": "deeplearning",
+        "tail": "speech"
+    },
+    {
+        "head": "deeplearning",
+        "tail": "hugging face"
+    },
+    {
+        "head": "generative-ai",
+        "tail": "speaker-diariazation"
+    },
+    {
+        "head": "generative-ai",
+        "tail": "models"
+    },
+    {
+        "head": "generative-ai",
+        "tail": "speech"
+    },
+    {
+        "head": "generative-ai",
+        "tail": "hugging face"
+    },
+    {
+        "head": "speaker-diariazation",
+        "tail": "models"
+    },
+    {
+        "head": "speaker-diariazation",
+        "tail": "framework"
+    },
+    {
+        "head": "speaker-diariazation",
+        "tail": "ai"
+    },
+    {
+        "head": "speaker-diariazation",
+        "tail": "speech"
+    },
+    {
+        "head": "speaker-diariazation",
+        "tail": "hugging face"
+    },
+    {
+        "head": "models",
+        "tail": "speech"
+    },
+    {
+        "head": "models",
+        "tail": "hugging face"
+    },
+    {
+        "head": "framework",
+        "tail": "speech"
+    },
+    {
+        "head": "framework",
+        "tail": "hugging face"
+    },
+    {
+        "head": "ai",
+        "tail": "hugging face"
+    },
+    {
+        "head": "speech",
+        "tail": "hugging face"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "ms marco"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "language"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "ms marco"
+    },
+    {
+        "head": "colbert",
+        "tail": "multilingual"
+    },
+    {
+        "head": "colbert",
+        "tail": "paper"
+    },
+    {
+        "head": "colbert",
+        "tail": "language"
+    },
+    {
+        "head": "colbert",
+        "tail": "ms marco"
+    },
+    {
+        "head": "dataset",
+        "tail": "language"
+    },
+    {
+        "head": "dataset",
+        "tail": "ms marco"
+    },
+    {
+        "head": "multilingual",
+        "tail": "language"
+    },
+    {
+        "head": "multilingual",
+        "tail": "ms marco"
+    },
+    {
+        "head": "paper",
+        "tail": "language"
+    },
+    {
+        "head": "paper",
+        "tail": "ms marco"
+    },
+    {
+        "head": "retrieval",
+        "tail": "language"
+    },
+    {
+        "head": "retrieval",
+        "tail": "ms marco"
+    },
+    {
+        "head": "models",
+        "tail": "ms marco"
+    },
+    {
+        "head": "language",
+        "tail": "ms marco"
     }
 ]
