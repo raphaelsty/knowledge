@@ -221590,5 +221590,105 @@
     {
         "head": "language",
         "tail": "ms marco"
+    },
+    {
+        "head": "cohere",
+        "tail": "command-a"
+    },
+    {
+        "head": "cohere",
+        "tail": "hugging-face"
+    },
+    {
+        "head": "cohere",
+        "tail": "llm"
+    },
+    {
+        "head": "cohere",
+        "tail": "translate"
+    },
+    {
+        "head": "cohere",
+        "tail": "translation"
+    },
+    {
+        "head": "cohere",
+        "tail": "hugging face"
+    },
+    {
+        "head": "cohere",
+        "tail": "source"
+    },
+    {
+        "head": "command-a",
+        "tail": "hugging-face"
+    },
+    {
+        "head": "command-a",
+        "tail": "llm"
+    },
+    {
+        "head": "command-a",
+        "tail": "translate"
+    },
+    {
+        "head": "command-a",
+        "tail": "translation"
+    },
+    {
+        "head": "command-a",
+        "tail": "hugging face"
+    },
+    {
+        "head": "command-a",
+        "tail": "source"
+    },
+    {
+        "head": "hugging-face",
+        "tail": "llm"
+    },
+    {
+        "head": "hugging-face",
+        "tail": "translate"
+    },
+    {
+        "head": "hugging-face",
+        "tail": "translation"
+    },
+    {
+        "head": "hugging-face",
+        "tail": "hugging face"
+    },
+    {
+        "head": "hugging-face",
+        "tail": "source"
+    },
+    {
+        "head": "llm",
+        "tail": "translate"
+    },
+    {
+        "head": "llm",
+        "tail": "translation"
+    },
+    {
+        "head": "translate",
+        "tail": "translation"
+    },
+    {
+        "head": "translate",
+        "tail": "hugging face"
+    },
+    {
+        "head": "translate",
+        "tail": "source"
+    },
+    {
+        "head": "translation",
+        "tail": "hugging face"
+    },
+    {
+        "head": "translation",
+        "tail": "source"
     }
 ]
