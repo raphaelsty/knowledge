@@ -47869,5 +47869,40 @@
             "translate",
             "translation"
         ]
+    },
+    "https://github.com/wilsonzlin/CoreNN": {
+        "extra-tags": [
+            "vectors",
+            "embeddable",
+            "library",
+            "indexing"
+        ],
+        "date": "2025-09-01",
+        "title": "CoreNN",
+        "summary": "Embeddable library or single binary for indexing and searching 1B vectors \n Database for querying billions of vectors and embeddings in sublinear time on commodity machines. Read the accompanying blog posthttpsblog.wilsonl.incorenn for details and an accessible deep dive and in-depth technical report. rust fn main let db CoreNNcreatepathtodb, Cfg Specify the dimensionality of your vectors. dim 3, All other config options are optional.",
+        "tags": [
+            "rust"
+        ]
+    },
+    "https://blog.wilsonl.in/search-engine": {
+        "extra-tags": [
+            "web",
+            "neural",
+            "embeddings",
+            "distributed"
+        ],
+        "title": "Building a web search engine from scratch in two months with 3 billion neural embeddings",
+        "summary": "End-to-end deep dive of the project, spanning a large GPU cluster, distributed RocksDB, and terabytes of sharded HNSW.",
+        "date": "2025-09-01",
+        "tags": [
+            "computer science - information retrieval",
+            "blog",
+            "hnsw",
+            "information retrieval",
+            "information-retrieval",
+            "large scale",
+            "rocksdb",
+            "search engine"
+        ]
     }
 }

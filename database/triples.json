@@ -221690,5 +221690,245 @@
     {
         "head": "translation",
         "tail": "source"
+    },
+    {
+        "head": "rust",
+        "tail": "vectors"
+    },
+    {
+        "head": "rust",
+        "tail": "embeddable"
+    },
+    {
+        "head": "rust",
+        "tail": "indexing"
+    },
+    {
+        "head": "vectors",
+        "tail": "embeddable"
+    },
+    {
+        "head": "vectors",
+        "tail": "library"
+    },
+    {
+        "head": "vectors",
+        "tail": "indexing"
+    },
+    {
+        "head": "embeddable",
+        "tail": "library"
+    },
+    {
+        "head": "embeddable",
+        "tail": "indexing"
+    },
+    {
+        "head": "library",
+        "tail": "indexing"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "large scale"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "rocksdb"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "search engine"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "web"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "neural"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "distributed"
+    },
+    {
+        "head": "blog",
+        "tail": "large scale"
+    },
+    {
+        "head": "blog",
+        "tail": "rocksdb"
+    },
+    {
+        "head": "blog",
+        "tail": "search engine"
+    },
+    {
+        "head": "blog",
+        "tail": "neural"
+    },
+    {
+        "head": "blog",
+        "tail": "embeddings"
+    },
+    {
+        "head": "blog",
+        "tail": "distributed"
+    },
+    {
+        "head": "hnsw",
+        "tail": "large scale"
+    },
+    {
+        "head": "hnsw",
+        "tail": "rocksdb"
+    },
+    {
+        "head": "hnsw",
+        "tail": "search engine"
+    },
+    {
+        "head": "hnsw",
+        "tail": "web"
+    },
+    {
+        "head": "hnsw",
+        "tail": "neural"
+    },
+    {
+        "head": "hnsw",
+        "tail": "embeddings"
+    },
+    {
+        "head": "hnsw",
+        "tail": "distributed"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "large scale"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "rocksdb"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "search engine"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "web"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "neural"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "distributed"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "large scale"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "rocksdb"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "search engine"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "web"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "distributed"
+    },
+    {
+        "head": "large scale",
+        "tail": "rocksdb"
+    },
+    {
+        "head": "large scale",
+        "tail": "search engine"
+    },
+    {
+        "head": "large scale",
+        "tail": "web"
+    },
+    {
+        "head": "large scale",
+        "tail": "neural"
+    },
+    {
+        "head": "large scale",
+        "tail": "embeddings"
+    },
+    {
+        "head": "large scale",
+        "tail": "distributed"
+    },
+    {
+        "head": "rocksdb",
+        "tail": "search engine"
+    },
+    {
+        "head": "rocksdb",
+        "tail": "web"
+    },
+    {
+        "head": "rocksdb",
+        "tail": "neural"
+    },
+    {
+        "head": "rocksdb",
+        "tail": "embeddings"
+    },
+    {
+        "head": "rocksdb",
+        "tail": "distributed"
+    },
+    {
+        "head": "search engine",
+        "tail": "web"
+    },
+    {
+        "head": "search engine",
+        "tail": "neural"
+    },
+    {
+        "head": "search engine",
+        "tail": "embeddings"
+    },
+    {
+        "head": "search engine",
+        "tail": "distributed"
+    },
+    {
+        "head": "web",
+        "tail": "neural"
+    },
+    {
+        "head": "web",
+        "tail": "embeddings"
+    },
+    {
+        "head": "web",
+        "tail": "distributed"
+    },
+    {
+        "head": "neural",
+        "tail": "embeddings"
+    },
+    {
+        "head": "neural",
+        "tail": "distributed"
+    },
+    {
+        "head": "embeddings",
+        "tail": "distributed"
     }
 ]
