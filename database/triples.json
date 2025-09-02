@@ -221930,5 +221930,17 @@
     {
         "head": "embeddings",
         "tail": "distributed"
+    },
+    {
+        "head": "transfer",
+        "tail": "url"
+    },
+    {
+        "head": "transfer",
+        "tail": "tags"
+    },
+    {
+        "head": "url",
+        "tail": "tags"
     }
 ]

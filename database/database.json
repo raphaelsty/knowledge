@@ -47904,5 +47904,18 @@
             "rocksdb",
             "search engine"
         ]
+    },
+    "https://woomarks.com": {
+        "extra-tags": [
+            "transfer",
+            "url",
+            "tags"
+        ],
+        "title": "Hackernews Show HN: Woomarks, transfer your Pocket links to this app or self-host it (woomarks.com)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "woomarks FAQ Add \u2795 Sort \u25b2 Title URL Tags (comma-separated) Bulk Transfer Cancel Add bookmark",
+        "date": "2025-09-02"
     }
 }
