@@ -221942,5 +221942,65 @@
     {
         "head": "url",
         "tail": "tags"
+    },
+    {
+        "head": "javascript",
+        "tail": "storage"
+    },
+    {
+        "head": "javascript",
+        "tail": "no"
+    },
+    {
+        "head": "javascript",
+        "tail": "csv"
+    },
+    {
+        "head": "storage",
+        "tail": "browser"
+    },
+    {
+        "head": "storage",
+        "tail": "no"
+    },
+    {
+        "head": "storage",
+        "tail": "csv"
+    },
+    {
+        "head": "browser",
+        "tail": "no"
+    },
+    {
+        "head": "browser",
+        "tail": "csv"
+    },
+    {
+        "head": "no",
+        "tail": "csv"
+    },
+    {
+        "head": "python",
+        "tail": "design"
+    },
+    {
+        "head": "pipeline",
+        "tail": "df"
+    },
+    {
+        "head": "pipeline",
+        "tail": "design"
+    },
+    {
+        "head": "df",
+        "tail": "design"
+    },
+    {
+        "head": "df",
+        "tail": "synthetic"
+    },
+    {
+        "head": "design",
+        "tail": "synthetic"
     }
 ]

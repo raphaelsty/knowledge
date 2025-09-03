@@ -47917,5 +47917,45 @@
         ],
         "summary": "woomarks FAQ Add \u2795 Sort \u25b2 Title URL Tags (comma-separated) Bulk Transfer Cancel Add bookmark",
         "date": "2025-09-02"
+    },
+    "https://github.com/earlyriser/woomarks": {
+        "extra-tags": [
+            "storage",
+            "browser",
+            "no",
+            "csv"
+        ],
+        "date": "2025-09-03",
+        "title": "woomarks",
+        "summary": "This is woomarks, an app that let's you save links in your browser storage, no account needed. It also can store/import/export to csv files. \n !faviconfavicon.svg woomarks is an app that let's you save links in your browser storage, no account needed. !screenshotscreenshot.png It's only frontend code, no database, backend server needed. It also can importexport to csv files or local storage. Option 1 If you want your links public Option 2 If you want your links saved on your browser's local storage",
+        "tags": [
+            "javascript"
+        ]
+    },
+    "https://github.com/EO-Robotics/EO-1": {
+        "extra-tags": [
+            "model",
+            "open-source",
+            "multimodal",
+            "data"
+        ],
+        "date": "2025-09-03",
+        "title": "EO-1",
+        "summary": "EO: Open-source Unified Embodied Foundation Model Series \n We introduce EO-1 model, an open-source unified embodied foundation model comprising 3B parameters, trained on the carefully curated interleaved embodied dataset EO-Data1.5M, Web Multimodal Data, and Robot Control Data AgiBotWorld, Open X-Embodiment, RoboMIND, SO100-Community, etc.. The EO-1 model adopt a single unified decoder-only transformer that integrates discrete auto-regressive decoding with continuous flow matching denoising for multimodal embodied reasoning and robot control, enabling seamless perception, planning, reasoning, and acting in single model. This work highlights the following features",
+        "tags": []
+    },
+    "https://github.com/julien-blanchon/peche": {
+        "extra-tags": [
+            "pipeline",
+            "df",
+            "design",
+            "synthetic"
+        ],
+        "date": "2025-09-03",
+        "title": "peche",
+        "summary": " \n Ultra-Light Synthetic Augmentation Pipeline with Composition-Based Design This is the redesigned Peche library implementing the new architecture outlined in DESIGNIMPROVEMENTS.md. The new design features python import polars as pl from peche import seed, Pipeline, TemplateStep, AddExprStep, FilterWhereStep df seedn100 df df.withcolumnspl.Seriestext, Sample text 100 pipeline Pipeline",
+        "tags": [
+            "python"
+        ]
     }
 }
