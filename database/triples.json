@@ -222002,5 +222002,129 @@
     {
         "head": "design",
         "tail": "synthetic"
+    },
+    {
+        "head": "embedding",
+        "tail": "gemma"
+    },
+    {
+        "head": "embedding",
+        "tail": "multilingual"
+    },
+    {
+        "head": "embedding",
+        "tail": "efficient"
+    },
+    {
+        "head": "gemma",
+        "tail": "google"
+    },
+    {
+        "head": "gemma",
+        "tail": "information-retrieval"
+    },
+    {
+        "head": "gemma",
+        "tail": "multilingual"
+    },
+    {
+        "head": "gemma",
+        "tail": "efficient"
+    },
+    {
+        "head": "gemma",
+        "tail": "model"
+    },
+    {
+        "head": "google",
+        "tail": "information-retrieval"
+    },
+    {
+        "head": "google",
+        "tail": "multilingual"
+    },
+    {
+        "head": "google",
+        "tail": "efficient"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "multilingual"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "efficient"
+    },
+    {
+        "head": "multilingual",
+        "tail": "efficient"
+    },
+    {
+        "head": "multilingual",
+        "tail": "model"
+    },
+    {
+        "head": "efficient",
+        "tail": "model"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "llm-from-encoder"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "llm-from-encoder"
+    },
+    {
+        "head": "encoder",
+        "tail": "llm-from-encoder"
+    },
+    {
+        "head": "encoder",
+        "tail": "text embeddings"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "llm-from-encoder"
+    },
+    {
+        "head": "llm",
+        "tail": "llm-from-encoder"
+    },
+    {
+        "head": "llm",
+        "tail": "text embeddings"
+    },
+    {
+        "head": "llm-from-encoder",
+        "tail": "embedding"
+    },
+    {
+        "head": "llm-from-encoder",
+        "tail": "text"
+    },
+    {
+        "head": "llm-from-encoder",
+        "tail": "training"
+    },
+    {
+        "head": "llm-from-encoder",
+        "tail": "text embeddings"
+    },
+    {
+        "head": "embedding",
+        "tail": "training"
+    },
+    {
+        "head": "embedding",
+        "tail": "text embeddings"
+    },
+    {
+        "head": "text",
+        "tail": "text embeddings"
+    },
+    {
+        "head": "training",
+        "tail": "text embeddings"
     }
 ]
