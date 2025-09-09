@@ -222126,5 +222126,125 @@
     {
         "head": "training",
         "tail": "text embeddings"
+    },
+    {
+        "head": "git",
+        "tail": "git-hooks"
+    },
+    {
+        "head": "git",
+        "tail": "framework"
+    },
+    {
+        "head": "git",
+        "tail": "dependencies"
+    },
+    {
+        "head": "git-hooks",
+        "tail": "pre-commit"
+    },
+    {
+        "head": "git-hooks",
+        "tail": "rust"
+    },
+    {
+        "head": "git-hooks",
+        "tail": "hooks"
+    },
+    {
+        "head": "git-hooks",
+        "tail": "framework"
+    },
+    {
+        "head": "git-hooks",
+        "tail": "dependencies"
+    },
+    {
+        "head": "pre-commit",
+        "tail": "rust"
+    },
+    {
+        "head": "pre-commit",
+        "tail": "hooks"
+    },
+    {
+        "head": "pre-commit",
+        "tail": "framework"
+    },
+    {
+        "head": "pre-commit",
+        "tail": "dependencies"
+    },
+    {
+        "head": "rust",
+        "tail": "hooks"
+    },
+    {
+        "head": "hooks",
+        "tail": "framework"
+    },
+    {
+        "head": "hooks",
+        "tail": "dependencies"
+    },
+    {
+        "head": "framework",
+        "tail": "dependencies"
+    },
+    {
+        "head": "rust",
+        "tail": "grep"
+    },
+    {
+        "head": "grep",
+        "tail": "code"
+    },
+    {
+        "head": "grep",
+        "tail": "search"
+    },
+    {
+        "head": "grep",
+        "tail": "tool"
+    },
+    {
+        "head": "search",
+        "tail": "tool"
+    },
+    {
+        "head": "torch",
+        "tail": "library"
+    },
+    {
+        "head": "torch",
+        "tail": "tensors"
+    },
+    {
+        "head": "torch",
+        "tail": "jit"
+    },
+    {
+        "head": "library",
+        "tail": "tensors"
+    },
+    {
+        "head": "library",
+        "tail": "jit"
+    },
+    {
+        "head": "library",
+        "tail": "install"
+    },
+    {
+        "head": "tensors",
+        "tail": "jit"
+    },
+    {
+        "head": "tensors",
+        "tail": "install"
+    },
+    {
+        "head": "jit",
+        "tail": "install"
     }
 ]

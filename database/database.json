@@ -47992,5 +47992,50 @@
             "llm",
             "llm-from-encoder"
         ]
+    },
+    "https://github.com/j178/prek": {
+        "extra-tags": [
+            "hooks",
+            "framework",
+            "dependencies"
+        ],
+        "date": "2025-09-09",
+        "title": "prek",
+        "summary": "\u26a1 Better `pre-commit`, re-engineered in Rust \n pre-commithttpspre-commit.com is a framework to run hooks written in many languages, and it manages the language toolchain and dependencies for running the hooks. prek is a reimagined version of pre-commit, built in Rust. It is designed to be a faster, dependency-free and drop-in alternative for it, while also providing some additional long-requested features.",
+        "tags": [
+            "git",
+            "git-hooks",
+            "pre-commit",
+            "rust"
+        ]
+    },
+    "https://github.com/BeaconBay/ck": {
+        "extra-tags": [
+            "grep",
+            "code",
+            "search",
+            "tool"
+        ],
+        "date": "2025-09-09",
+        "title": "ck",
+        "summary": "Semantic grep tool for use by AI and humans! \n ck seek finds code by meaning, not just keywords. It's a drop-in replacement for grep that understands what you're looking for search for error handling and find trycatch blocks, error returns, and exception handling code even when those exact words aren't present. bash cargo install ck-search git clone httpsgithub.comBeaconBayck",
+        "tags": [
+            "rust"
+        ]
+    },
+    "https://github.com/stackav-oss/dltype": {
+        "extra-tags": [
+            "torch",
+            "library",
+            "tensors",
+            "jit",
+            "install"
+        ],
+        "date": "2025-09-09",
+        "title": "dltype",
+        "summary": "Deep Learning Type Library \n This typing library is intended to replace jaxtyping for runtime type checking of torch tensors and numpy arrays. In particular, we support two functions that beartypejaxtype do not 1. Support for torch.jit.scripttorch.compiletorch.jit.trace 2. Pydantic model type annotations for torch tensors. Install dltype through pip bash pip3 install dltype Type hints are evaluated in a context in source-code order, so any references to dimension symbols must exist before an expression is evaluated.",
+        "tags": [
+            "python"
+        ]
     }
 }
