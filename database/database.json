@@ -48037,5 +48037,42 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/VectifyAI/PageIndex": {
+        "extra-tags": [
+            "similarity",
+            "professional"
+        ],
+        "date": "2025-09-10",
+        "title": "PageIndex",
+        "summary": "\ud83d\udcc4\ud83e\udde0 PageIndex: Document Index for Reasoning-based RAG \n Reasoning-based RAGnbsp nbspNo Vector DBnbsp nbspNo Chunkingnbsp nbspHuman-like Retrieval Homepagenbsp nbsp Dashboardnbsp nbsp Docsnbsp nbsp Discordnbsp nbsp Contactnbsp Are you frustrated with vector database retrieval accuracy for long professional documents? Traditional vector-based RAG relies on semantic similarity rather than true relevance. But similarity relevance what we truly need in retrieval is relevance, and that requires reasoning. When working with professional documents that demand domain expertise and multi-step reasoning, similarity search often falls short.",
+        "tags": [
+            "rag",
+            "reasoning",
+            "python",
+            "ai",
+            "llm",
+            "retrieval"
+        ]
+    },
+    "https://github.com/Rust-GPU/rust-cuda": {
+        "extra-tags": [
+            "project",
+            "fast",
+            "rust-cuda"
+        ],
+        "date": "2025-09-10",
+        "title": "rust-cuda",
+        "summary": "Ecosystem of libraries and tools for writing and executing fast GPU code fully in Rust. \n The Rust CUDA Project An ecosystem of libraries and tools for writing and executing extremely fast GPU code fully in Rust Guide Getting Started Features The project is still in early development, expect bugs, safety issues, and things that don't work The Rust CUDA Project is a project aimed at making Rust a tier-1 language for extremely fast GPU computing",
+        "tags": [
+            "rust",
+            "cuda-kernels",
+            "cuda",
+            "gpu",
+            "rust-lang",
+            "gpgpu",
+            "cuda-programming",
+            "gpu-programming"
+        ]
     }
 }

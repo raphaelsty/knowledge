@@ -222246,5 +222246,197 @@
     {
         "head": "jit",
         "tail": "install"
+    },
+    {
+        "head": "rag",
+        "tail": "similarity"
+    },
+    {
+        "head": "rag",
+        "tail": "professional"
+    },
+    {
+        "head": "reasoning",
+        "tail": "ai"
+    },
+    {
+        "head": "reasoning",
+        "tail": "similarity"
+    },
+    {
+        "head": "reasoning",
+        "tail": "professional"
+    },
+    {
+        "head": "ai",
+        "tail": "retrieval"
+    },
+    {
+        "head": "ai",
+        "tail": "similarity"
+    },
+    {
+        "head": "ai",
+        "tail": "professional"
+    },
+    {
+        "head": "llm",
+        "tail": "similarity"
+    },
+    {
+        "head": "llm",
+        "tail": "professional"
+    },
+    {
+        "head": "retrieval",
+        "tail": "professional"
+    },
+    {
+        "head": "similarity",
+        "tail": "professional"
+    },
+    {
+        "head": "rust",
+        "tail": "gpgpu"
+    },
+    {
+        "head": "rust",
+        "tail": "cuda-programming"
+    },
+    {
+        "head": "cuda-kernels",
+        "tail": "gpgpu"
+    },
+    {
+        "head": "cuda-kernels",
+        "tail": "cuda-programming"
+    },
+    {
+        "head": "cuda-kernels",
+        "tail": "gpu-programming"
+    },
+    {
+        "head": "cuda-kernels",
+        "tail": "project"
+    },
+    {
+        "head": "cuda-kernels",
+        "tail": "fast"
+    },
+    {
+        "head": "cuda-kernels",
+        "tail": "rust-cuda"
+    },
+    {
+        "head": "cuda",
+        "tail": "gpgpu"
+    },
+    {
+        "head": "cuda",
+        "tail": "cuda-programming"
+    },
+    {
+        "head": "cuda",
+        "tail": "gpu-programming"
+    },
+    {
+        "head": "cuda",
+        "tail": "project"
+    },
+    {
+        "head": "gpu",
+        "tail": "gpgpu"
+    },
+    {
+        "head": "gpu",
+        "tail": "cuda-programming"
+    },
+    {
+        "head": "gpu",
+        "tail": "project"
+    },
+    {
+        "head": "rust-lang",
+        "tail": "gpgpu"
+    },
+    {
+        "head": "rust-lang",
+        "tail": "cuda-programming"
+    },
+    {
+        "head": "rust-lang",
+        "tail": "gpu-programming"
+    },
+    {
+        "head": "rust-lang",
+        "tail": "project"
+    },
+    {
+        "head": "rust-lang",
+        "tail": "fast"
+    },
+    {
+        "head": "rust-lang",
+        "tail": "rust-cuda"
+    },
+    {
+        "head": "gpgpu",
+        "tail": "cuda-programming"
+    },
+    {
+        "head": "gpgpu",
+        "tail": "gpu-programming"
+    },
+    {
+        "head": "gpgpu",
+        "tail": "project"
+    },
+    {
+        "head": "gpgpu",
+        "tail": "fast"
+    },
+    {
+        "head": "gpgpu",
+        "tail": "rust-cuda"
+    },
+    {
+        "head": "cuda-programming",
+        "tail": "gpu-programming"
+    },
+    {
+        "head": "cuda-programming",
+        "tail": "project"
+    },
+    {
+        "head": "cuda-programming",
+        "tail": "fast"
+    },
+    {
+        "head": "cuda-programming",
+        "tail": "rust-cuda"
+    },
+    {
+        "head": "gpu-programming",
+        "tail": "project"
+    },
+    {
+        "head": "gpu-programming",
+        "tail": "fast"
+    },
+    {
+        "head": "gpu-programming",
+        "tail": "rust-cuda"
+    },
+    {
+        "head": "project",
+        "tail": "fast"
+    },
+    {
+        "head": "project",
+        "tail": "rust-cuda"
+    },
+    {
+        "head": "fast",
+        "tail": "rust-cuda"
     }
 ]
