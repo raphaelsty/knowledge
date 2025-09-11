@@ -222438,5 +222438,97 @@
     {
         "head": "fast",
         "tail": "rust-cuda"
+    },
+    {
+        "head": "rust",
+        "tail": "language models"
+    },
+    {
+        "head": "high-performance",
+        "tail": "language models"
+    },
+    {
+        "head": "models",
+        "tail": "open-source"
+    },
+    {
+        "head": "models",
+        "tail": "packages"
+    },
+    {
+        "head": "open-source",
+        "tail": "packages"
+    },
+    {
+        "head": "packages",
+        "tail": "robotics"
+    },
+    {
+        "head": "python",
+        "tail": "cmake"
+    },
+    {
+        "head": "cmake",
+        "tail": "nearest-neighbor-search"
+    },
+    {
+        "head": "cmake",
+        "tail": "faiss"
+    },
+    {
+        "head": "cmake",
+        "tail": "wheel"
+    },
+    {
+        "head": "cmake",
+        "tail": "package"
+    },
+    {
+        "head": "cmake",
+        "tail": "build"
+    },
+    {
+        "head": "cmake",
+        "tail": "packages"
+    },
+    {
+        "head": "nearest-neighbor-search",
+        "tail": "package"
+    },
+    {
+        "head": "nearest-neighbor-search",
+        "tail": "build"
+    },
+    {
+        "head": "nearest-neighbor-search",
+        "tail": "packages"
+    },
+    {
+        "head": "faiss",
+        "tail": "package"
+    },
+    {
+        "head": "faiss",
+        "tail": "build"
+    },
+    {
+        "head": "faiss",
+        "tail": "packages"
+    },
+    {
+        "head": "wheel",
+        "tail": "package"
+    },
+    {
+        "head": "wheel",
+        "tail": "packages"
+    },
+    {
+        "head": "llm",
+        "tail": "reproducibility"
+    },
+    {
+        "head": "inference",
+        "tail": "reproducibility"
     }
 ]

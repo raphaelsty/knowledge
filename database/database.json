@@ -48074,5 +48074,63 @@
             "cuda-programming",
             "gpu-programming"
         ]
+    },
+    "https://github.com/krypticmouse/DSRs": {
+        "extra-tags": [
+            "high-performance",
+            "llm",
+            "language models"
+        ],
+        "date": "2025-09-11",
+        "title": "DSRs",
+        "summary": "A DSPy rewrite to(not port) Rust \n A high-performance DSPy rewrite in Rust for building LLM-powered applications DSRs DSPy Rust is a ground-up rewrite of the DSPy frameworkhttpsgithub.comstanfordnlpdspy in Rust, designed for building robust, high-performance applications powered by Language Models. Unlike a simple port, DSRs leverages Rust's type system, memory safety, and concurrency features to provide a more efficient and reliable foundation for LLM applications.",
+        "tags": [
+            "rust"
+        ]
+    },
+    "https://github.com/Physical-Intelligence/openpi": {
+        "extra-tags": [
+            "models",
+            "open-source",
+            "packages",
+            "robotics"
+        ],
+        "date": "2025-09-11",
+        "title": "openpi",
+        "summary": " \n openpi holds open-source models and packages for robotics, published by the Physical Intelligence teamhttpswww.physicalintelligence.company. Currently, this repo contains three types of models For all models, we provide base model checkpoints, pre-trained on 10k hours of robot data, and examples for using them out of the box or fine-tuning them to your own datasets.",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/faiss-wheels/faiss-wheels": {
+        "extra-tags": [
+            "faiss",
+            "wheel",
+            "package",
+            "build",
+            "packages"
+        ],
+        "date": "2025-09-11",
+        "title": "faiss-wheels",
+        "summary": "Community-maintained faiss wheel builder \n Faiss Python wheel packages. This repository provides CI scripts to build wheel packages for the faisshttpsgithub.comfacebookresearchfaiss library. Install the CPU-only package by bash pip install faiss-cpu Note that the package name is faiss-cpu. The PyPI binary package does not support GPU by default. To support GPU methods or use faiss with a different build configuration, build a custom wheel. For building a wheel package, there are a few requirements.",
+        "tags": [
+            "python",
+            "cmake",
+            "nearest-neighbor-search"
+        ]
+    },
+    "https://thinkingmachines.ai/blog/defeating-nondeterminism-in-llm-inference/": {
+        "extra-tags": [
+            "llm",
+            "inference",
+            "ai",
+            "reproducibility"
+        ],
+        "title": "Hackernews Defeating Nondeterminism in LLM Inference (thinkingmachines.ai)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "Defeating Nondeterminism in LLM Inference Reproducibility is a bedrock of scientific progress. However, it\u2019s remarkably difficult to get reproducible results out of large language models. For example, you might observe that asking ChatGPT the same question multiple times provides different results. This by itself is not surprising, since getting a",
+        "date": "2025-09-11"
     }
 }
