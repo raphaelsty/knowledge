@@ -222530,5 +222530,81 @@
     {
         "head": "inference",
         "tail": "reproducibility"
+    },
+    {
+        "head": "go",
+        "tail": "openapi"
+    },
+    {
+        "head": "go",
+        "tail": "yaml"
+    },
+    {
+        "head": "openapi",
+        "tail": "yaml"
+    },
+    {
+        "head": "openapi",
+        "tail": "bash"
+    },
+    {
+        "head": "openapi",
+        "tail": "json"
+    },
+    {
+        "head": "yaml",
+        "tail": "bash"
+    },
+    {
+        "head": "bash",
+        "tail": "json"
+    },
+    {
+        "head": "plugin-manager",
+        "tail": "install"
+    },
+    {
+        "head": "neovim-plugin",
+        "tail": "install"
+    },
+    {
+        "head": "package-manager",
+        "tail": "install"
+    },
+    {
+        "head": "nvim",
+        "tail": "install"
+    },
+    {
+        "head": "neovim",
+        "tail": "install"
+    },
+    {
+        "head": "lua",
+        "tail": "install"
+    },
+    {
+        "head": "luarocks",
+        "tail": "install"
+    },
+    {
+        "head": "plugin",
+        "tail": "install"
+    },
+    {
+        "head": "cargo",
+        "tail": "install"
+    },
+    {
+        "head": "leetcode",
+        "tail": "tool"
+    },
+    {
+        "head": "leetcode",
+        "tail": "interview"
+    },
+    {
+        "head": "tool",
+        "tail": "interview"
     }
 ]
