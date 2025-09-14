@@ -48190,5 +48190,107 @@
         "summary": "We\u2019re on a journey to advance and democratize artificial intelligence through open source and open science.",
         "date": "2025-09-12",
         "tags": []
+    },
+    "https://huggingface.co/google/embeddinggemma-300m": {
+        "extra-tags": [
+            "hugging face",
+            "source",
+            "science"
+        ],
+        "title": "google/embeddinggemma-300m \u00b7 Hugging Face",
+        "summary": "We\u2019re on a journey to advance and democratize artificial intelligence through open source and open science.",
+        "date": "2025-09-13",
+        "tags": [
+            "embedding",
+            "gemma",
+            "google",
+            "retrieval",
+            "sota"
+        ]
+    },
+    "https://huggingface.co/Qwen/Qwen3-Reranker-8B": {
+        "extra-tags": [
+            "reranker",
+            "hugging face",
+            "source"
+        ],
+        "title": "Qwen/Qwen3-Reranker-8B \u00b7 Hugging Face",
+        "summary": "We\u2019re on a journey to advance and democratize artificial intelligence through open source and open science.",
+        "date": "2025-09-13",
+        "tags": [
+            "embedding",
+            "information retrieval",
+            "knwoledge distillation",
+            "qwen",
+            "sota"
+        ]
+    },
+    "https://huggingface.co/Alibaba-NLP/gte-multilingual-reranker-base": {
+        "extra-tags": [
+            "gte",
+            "multilingual",
+            "reranker"
+        ],
+        "title": "Alibaba-NLP/gte-multilingual-reranker-base \u00b7 Hugging Face",
+        "summary": "We\u2019re on a journey to advance and democratize artificial intelligence through open source and open science.",
+        "date": "2025-09-13",
+        "tags": [
+            "alibaba-nlp",
+            "cross-encoder",
+            "embedding",
+            "information retrieval",
+            "knowledge distillation",
+            "sota"
+        ]
+    },
+    "https://huggingface.co/BAAI/bge-reranker-v2.5-gemma2-lightweight": {
+        "extra-tags": [
+            "reranker",
+            "hugging face",
+            "source"
+        ],
+        "title": "BAAI/bge-reranker-v2.5-gemma2-lightweight \u00b7 Hugging Face",
+        "summary": "We\u2019re on a journey to advance and democratize artificial intelligence through open source and open science.",
+        "date": "2025-09-13",
+        "tags": [
+            "baai",
+            "cross-encoder",
+            "embedding",
+            "information retrieval",
+            "knowledge distillation",
+            "sota"
+        ]
+    },
+    "https://huggingface.co/mixedbread-ai/mxbai-rerank-large-v2": {
+        "extra-tags": [
+            "ai",
+            "hugging face",
+            "source"
+        ],
+        "title": "mixedbread-ai/mxbai-rerank-large-v2 \u00b7 Hugging Face",
+        "summary": "We\u2019re on a journey to advance and democratize artificial intelligence through open source and open science.",
+        "date": "2025-09-13",
+        "tags": [
+            "embeddings",
+            "knowledge distillation",
+            "mixedbread",
+            "reranker",
+            "sota"
+        ]
+    },
+    "https://guangxuanx.com/blog/stacking-swa": {
+        "extra-tags": [
+            "stacking",
+            "modern",
+            "llms"
+        ],
+        "title": "Why Stacking Sliding Windows Can't See Very Far",
+        "summary": "Modern LLMs use sliding window attention for efficiency, but why can't stacking sliding windows see as far as theory suggests? A mathematical exploration of information dilution and the exponential barrier created by residual connections.",
+        "date": "2025-09-13",
+        "tags": [
+            "attention",
+            "blog",
+            "sliding windows"
+        ]
     }
 }

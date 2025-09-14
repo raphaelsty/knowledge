@@ -222606,5 +222606,381 @@
     {
         "head": "tool",
         "tail": "interview"
+    },
+    {
+        "head": "embedding",
+        "tail": "sota"
+    },
+    {
+        "head": "embedding",
+        "tail": "hugging face"
+    },
+    {
+        "head": "embedding",
+        "tail": "source"
+    },
+    {
+        "head": "embedding",
+        "tail": "science"
+    },
+    {
+        "head": "gemma",
+        "tail": "retrieval"
+    },
+    {
+        "head": "gemma",
+        "tail": "sota"
+    },
+    {
+        "head": "gemma",
+        "tail": "hugging face"
+    },
+    {
+        "head": "gemma",
+        "tail": "source"
+    },
+    {
+        "head": "gemma",
+        "tail": "science"
+    },
+    {
+        "head": "google",
+        "tail": "sota"
+    },
+    {
+        "head": "google",
+        "tail": "hugging face"
+    },
+    {
+        "head": "google",
+        "tail": "source"
+    },
+    {
+        "head": "google",
+        "tail": "science"
+    },
+    {
+        "head": "retrieval",
+        "tail": "sota"
+    },
+    {
+        "head": "retrieval",
+        "tail": "hugging face"
+    },
+    {
+        "head": "retrieval",
+        "tail": "science"
+    },
+    {
+        "head": "sota",
+        "tail": "hugging face"
+    },
+    {
+        "head": "sota",
+        "tail": "source"
+    },
+    {
+        "head": "sota",
+        "tail": "science"
+    },
+    {
+        "head": "embedding",
+        "tail": "knwoledge distillation"
+    },
+    {
+        "head": "embedding",
+        "tail": "reranker"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "knwoledge distillation"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "sota"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "reranker"
+    },
+    {
+        "head": "information retrieval",
+        "tail": "hugging face"
+    },
+    {
+        "head": "knwoledge distillation",
+        "tail": "qwen"
+    },
+    {
+        "head": "knwoledge distillation",
+        "tail": "sota"
+    },
+    {
+        "head": "knwoledge distillation",
+        "tail": "reranker"
+    },
+    {
+        "head": "knwoledge distillation",
+        "tail": "hugging face"
+    },
+    {
+        "head": "knwoledge distillation",
+        "tail": "source"
+    },
+    {
+        "head": "qwen",
+        "tail": "sota"
+    },
+    {
+        "head": "qwen",
+        "tail": "reranker"
+    },
+    {
+        "head": "sota",
+        "tail": "reranker"
+    },
+    {
+        "head": "reranker",
+        "tail": "hugging face"
+    },
+    {
+        "head": "reranker",
+        "tail": "source"
+    },
+    {
+        "head": "alibaba-nlp",
+        "tail": "cross-encoder"
+    },
+    {
+        "head": "alibaba-nlp",
+        "tail": "embedding"
+    },
+    {
+        "head": "alibaba-nlp",
+        "tail": "information retrieval"
+    },
+    {
+        "head": "alibaba-nlp",
+        "tail": "knowledge distillation"
+    },
+    {
+        "head": "alibaba-nlp",
+        "tail": "sota"
+    },
+    {
+        "head": "alibaba-nlp",
+        "tail": "gte"
+    },
+    {
+        "head": "alibaba-nlp",
+        "tail": "multilingual"
+    },
+    {
+        "head": "alibaba-nlp",
+        "tail": "reranker"
+    },
+    {
+        "head": "cross-encoder",
+        "tail": "embedding"
+    },
+    {
+        "head": "cross-encoder",
+        "tail": "sota"
+    },
+    {
+        "head": "cross-encoder",
+        "tail": "gte"
+    },
+    {
+        "head": "cross-encoder",
+        "tail": "multilingual"
+    },
+    {
+        "head": "cross-encoder",
+        "tail": "reranker"
+    },
+    {
+        "head": "embedding",
+        "tail": "knowledge distillation"
+    },
+    {
+        "head": "embedding",
+        "tail": "gte"
+    },
+    {
+        "head": "knowledge distillation",
+        "tail": "sota"
+    },
+    {
+        "head": "knowledge distillation",
+        "tail": "gte"
+    },
+    {
+        "head": "knowledge distillation",
+        "tail": "multilingual"
+    },
+    {
+        "head": "knowledge distillation",
+        "tail": "reranker"
+    },
+    {
+        "head": "sota",
+        "tail": "gte"
+    },
+    {
+        "head": "sota",
+        "tail": "multilingual"
+    },
+    {
+        "head": "gte",
+        "tail": "reranker"
+    },
+    {
+        "head": "multilingual",
+        "tail": "reranker"
+    },
+    {
+        "head": "baai",
+        "tail": "cross-encoder"
+    },
+    {
+        "head": "baai",
+        "tail": "embedding"
+    },
+    {
+        "head": "baai",
+        "tail": "information retrieval"
+    },
+    {
+        "head": "baai",
+        "tail": "knowledge distillation"
+    },
+    {
+        "head": "baai",
+        "tail": "sota"
+    },
+    {
+        "head": "baai",
+        "tail": "reranker"
+    },
+    {
+        "head": "baai",
+        "tail": "hugging face"
+    },
+    {
+        "head": "baai",
+        "tail": "source"
+    },
+    {
+        "head": "cross-encoder",
+        "tail": "hugging face"
+    },
+    {
+        "head": "cross-encoder",
+        "tail": "source"
+    },
+    {
+        "head": "embeddings",
+        "tail": "knowledge distillation"
+    },
+    {
+        "head": "embeddings",
+        "tail": "mixedbread"
+    },
+    {
+        "head": "embeddings",
+        "tail": "reranker"
+    },
+    {
+        "head": "embeddings",
+        "tail": "sota"
+    },
+    {
+        "head": "knowledge distillation",
+        "tail": "mixedbread"
+    },
+    {
+        "head": "knowledge distillation",
+        "tail": "ai"
+    },
+    {
+        "head": "mixedbread",
+        "tail": "reranker"
+    },
+    {
+        "head": "mixedbread",
+        "tail": "sota"
+    },
+    {
+        "head": "mixedbread",
+        "tail": "ai"
+    },
+    {
+        "head": "mixedbread",
+        "tail": "hugging face"
+    },
+    {
+        "head": "mixedbread",
+        "tail": "source"
+    },
+    {
+        "head": "reranker",
+        "tail": "ai"
+    },
+    {
+        "head": "sota",
+        "tail": "ai"
+    },
+    {
+        "head": "attention",
+        "tail": "blog"
+    },
+    {
+        "head": "attention",
+        "tail": "sliding windows"
+    },
+    {
+        "head": "attention",
+        "tail": "stacking"
+    },
+    {
+        "head": "attention",
+        "tail": "modern"
+    },
+    {
+        "head": "attention",
+        "tail": "llms"
+    },
+    {
+        "head": "blog",
+        "tail": "sliding windows"
+    },
+    {
+        "head": "blog",
+        "tail": "stacking"
+    },
+    {
+        "head": "sliding windows",
+        "tail": "stacking"
+    },
+    {
+        "head": "sliding windows",
+        "tail": "modern"
+    },
+    {
+        "head": "sliding windows",
+        "tail": "llms"
+    },
+    {
+        "head": "stacking",
+        "tail": "modern"
+    },
+    {
+        "head": "stacking",
+        "tail": "llms"
+    },
+    {
+        "head": "modern",
+        "tail": "llms"
     }
 ]
