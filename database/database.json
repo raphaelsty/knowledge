@@ -48292,5 +48292,19 @@
             "blog",
             "sliding windows"
         ]
+    },
+    "https://github.com/brurucy/pydbsp": {
+        "extra-tags": [
+            "library",
+            "streaming",
+            "language",
+            "incremental"
+        ],
+        "date": "2025-09-15",
+        "title": "pydbsp",
+        "summary": "This library provides an implementation of the DBSP language for incremental streaming computations. \n This library provides an implementation of the DBSPhttpsarxiv.orgpdf2203.16684 language for incremental streaming computations. It is a tool primarily meant for research. See it as the PyTorchhttpsgithub.compytorchpytorch of streaming. It has zero dependencies, and is written in pure python. Herehttpsgithub.combrurucydbsp-from-scratchblobmasterdbsppaperwalkthroughimplementation.ipynb you can find a single-notebook implementation of almost everything in the DBSPhttpsarxiv.orgpdf2203.16684 paper. It mirrors what is in this library in an accessible way, and with more examples.",
+        "tags": [
+            "python"
+        ]
     }
 }
