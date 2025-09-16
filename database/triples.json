@@ -223006,5 +223006,93 @@
     {
         "head": "language",
         "tail": "incremental"
+    },
+    {
+        "head": "python",
+        "tail": "session"
+    },
+    {
+        "head": "python",
+        "tail": "pipelines"
+    },
+    {
+        "head": "data",
+        "tail": "session"
+    },
+    {
+        "head": "data",
+        "tail": "analysis"
+    },
+    {
+        "head": "data",
+        "tail": "pipelines"
+    },
+    {
+        "head": "session",
+        "tail": "processing"
+    },
+    {
+        "head": "session",
+        "tail": "analysis"
+    },
+    {
+        "head": "session",
+        "tail": "pipelines"
+    },
+    {
+        "head": "processing",
+        "tail": "analysis"
+    },
+    {
+        "head": "processing",
+        "tail": "pipelines"
+    },
+    {
+        "head": "analysis",
+        "tail": "pipelines"
+    },
+    {
+        "head": "training",
+        "tail": "large-scale"
+    },
+    {
+        "head": "documentation",
+        "tail": "large-scale"
+    },
+    {
+        "head": "framework",
+        "tail": "large-scale"
+    },
+    {
+        "head": "paris",
+        "tail": "wikipedia"
+    },
+    {
+        "head": "paris",
+        "tail": "france"
+    },
+    {
+        "head": "wikipedia",
+        "tail": "france"
+    },
+    {
+        "head": "website",
+        "tail": "server"
+    },
+    {
+        "head": "web",
+        "tail": "server"
+    },
+    {
+        "head": "react",
+        "tail": "innovation"
+    },
+    {
+        "head": "react",
+        "tail": "frontend"
+    },
+    {
+        "head": "innovation",
+        "tail": "frontend"
     }
 ]

@@ -48306,5 +48306,85 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/anishathalye/semlib": {
+        "extra-tags": [
+            "data",
+            "session",
+            "processing",
+            "analysis",
+            "pipelines"
+        ],
+        "date": "2025-09-16",
+        "title": "semlib",
+        "summary": "Build data processing and data analysis pipelines that leverage the power of LLMs \ud83e\udde0 \n Semlib is a Python library for building data processing and data analysis pipelines that leverage the power of large language models LLMs. Semlib provides, as building blocks, familiar functional programming primitives like maphttpssemlib.anish.ioapisemlib.Session.map, reducehttpssemlib.anish.ioapisemlib.Session.reduce, sorthttpssemlib.anish.ioapisemlib.Session.sort, and filterhttpssemlib.anish.ioapisemlib.Session.filter, but with a twist Semlib's implementation of these operations are programmed with natural language descriptions rather than code. Under the hood, Semlib handles complexities such as prompting, parsing, concurrency control, caching, and cost tracking.",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/one-covenant/templar": {
+        "extra-tags": [
+            "training",
+            "documentation",
+            "framework",
+            "large-scale"
+        ],
+        "date": "2025-09-16",
+        "title": "templar",
+        "summary": "incen\u03c4ivised in\u03c4erne\u03c4-wide \u03c4raining \n Documentation Miner Validator emplar is a decentralized training framework that enables large-scale model training across heterogeneous compute resources over the internet. By connecting diverse computational nodes through a carefully designed incentive mechanism, emplar makes it possible to train large models collaboratively while ensuring honest participation and quality contributions.",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://en.wikipedia.org/wiki/Turgot_map_of_Paris": {
+        "extra-tags": [
+            "paris",
+            "wikipedia",
+            "france"
+        ],
+        "title": "Hackernews Turgot Map of Paris (wikipedia.org)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "Turgot map of Paris The Turgot map of Paris (French: Plan de Turgot) is a highly accurate and detailed map of the city of Paris, France, as it existed in the 1730s. The map was commissioned by Parisian municipality chief Michel-\u00c9tienne Turgot, drawn up by surveyor Louis Bretez, and engraved",
+        "date": "2025-09-16"
+    },
+    "https://bogdanthegeek.github.io/blog/projects/vapeserver/": {
+        "extra-tags": [
+            "website",
+            "github",
+            "web",
+            "server"
+        ],
+        "title": "Hackernews Hosting a website on a disposable vape (bogdanthegeek.github.io)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "Hosting a WebSite on a Disposable Vape Preface# This article is NOT served from a web server running on a disposable vape. If you want to see the real deal, click here. The content is otherwise identical. Background# For a couple of years now, I have been collecting disposable vapes",
+        "date": "2025-09-16"
+    },
+    "https://www.lorenstew.art/blog/react-won-by-default/": {
+        "extra-tags": [
+            "react",
+            "innovation",
+            "frontend"
+        ],
+        "title": "Hackernews React is winning by default and slowing innovation (lorenstew.art)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "React Won by Default \u2013 And It's Killing Frontend Innovation React-by-default has hidden costs. Here's a case for making deliberate choices to select the right framework for the job. React Won by Default \u2013 And It\u2019s Killing Frontend Innovation React is no longer winning by technical merit. Today it is",
+        "date": "2025-09-16"
+    },
+    "https://nrehiew.github.io/blog/flow_matching/": {
+        "extra-tags": [
+            "matching",
+            "flow-matching",
+            "data-matching"
+        ],
+        "title": "Flow Matching in 5 Minutes | wh",
+        "summary": "",
+        "date": "2025-09-15",
+        "tags": []
     }
 }
