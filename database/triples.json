@@ -223094,5 +223094,213 @@
     {
         "head": "innovation",
         "tail": "frontend"
+    },
+    {
+        "head": "robotics",
+        "tail": "immit"
+    },
+    {
+        "head": "robotics",
+        "tail": "install"
+    },
+    {
+        "head": "robotics",
+        "tail": "git"
+    },
+    {
+        "head": "robotics",
+        "tail": "ml"
+    },
+    {
+        "head": "python",
+        "tail": "immit"
+    },
+    {
+        "head": "ai",
+        "tail": "immit"
+    },
+    {
+        "head": "ai",
+        "tail": "install"
+    },
+    {
+        "head": "ai",
+        "tail": "repository"
+    },
+    {
+        "head": "immit",
+        "tail": "install"
+    },
+    {
+        "head": "immit",
+        "tail": "git"
+    },
+    {
+        "head": "immit",
+        "tail": "ml"
+    },
+    {
+        "head": "immit",
+        "tail": "repository"
+    },
+    {
+        "head": "install",
+        "tail": "ml"
+    },
+    {
+        "head": "install",
+        "tail": "repository"
+    },
+    {
+        "head": "git",
+        "tail": "ml"
+    },
+    {
+        "head": "llama",
+        "tail": "efficient"
+    },
+    {
+        "head": "efficient",
+        "tail": "language models"
+    },
+    {
+        "head": "multimodal",
+        "tail": "cache"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "dsi"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "generative information retrieval"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "semantic token"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "transformer"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "dsi"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "generative information retrieval"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "semantic token"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "transformer"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "dsi"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "generative information retrieval"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "semantic token"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "transformer"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "differentiable"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "dsi"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "generative information retrieval"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "semantic token"
+    },
+    {
+        "head": "dsi",
+        "tail": "generative information retrieval"
+    },
+    {
+        "head": "dsi",
+        "tail": "google"
+    },
+    {
+        "head": "dsi",
+        "tail": "semantic token"
+    },
+    {
+        "head": "dsi",
+        "tail": "model"
+    },
+    {
+        "head": "dsi",
+        "tail": "transformer"
+    },
+    {
+        "head": "dsi",
+        "tail": "differentiable"
+    },
+    {
+        "head": "generative information retrieval",
+        "tail": "google"
+    },
+    {
+        "head": "generative information retrieval",
+        "tail": "semantic token"
+    },
+    {
+        "head": "generative information retrieval",
+        "tail": "model"
+    },
+    {
+        "head": "generative information retrieval",
+        "tail": "transformer"
+    },
+    {
+        "head": "generative information retrieval",
+        "tail": "differentiable"
+    },
+    {
+        "head": "google",
+        "tail": "semantic token"
+    },
+    {
+        "head": "google",
+        "tail": "transformer"
+    },
+    {
+        "head": "semantic token",
+        "tail": "model"
+    },
+    {
+        "head": "semantic token",
+        "tail": "transformer"
+    },
+    {
+        "head": "semantic token",
+        "tail": "differentiable"
+    },
+    {
+        "head": "model",
+        "tail": "differentiable"
+    },
+    {
+        "head": "transformer",
+        "tail": "differentiable"
     }
 ]

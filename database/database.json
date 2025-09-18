@@ -48386,5 +48386,63 @@
         "summary": "",
         "date": "2025-09-15",
         "tags": []
+    },
+    "https://github.com/Positronic-Robotics/positronic": {
+        "extra-tags": [
+            "install",
+            "git",
+            "ml",
+            "repository"
+        ],
+        "date": "2025-09-18",
+        "title": "positronic",
+        "summary": "Python-native stack for real-life ML robotics \n Main repository for the Positronic project. There are two supported ways to install and run Positronic 1 Docker recommended for reproducibility 2 Native install using uv fast and lockfile-driven bash git clone gitgithub.comPositronic-Roboticspositronic.git cd positronic .dockerbuild.sh .dockerrun.sh pytest run tests .dockerrun.sh python -m pimm example run a module",
+        "tags": [
+            "robotics",
+            "python",
+            "ai",
+            "immit"
+        ]
+    },
+    "https://arxiv.org/abs/2302.13971": {
+        "extra-tags": [
+            "llama",
+            "efficient",
+            "language models"
+        ],
+        "title": "[2302.13971] LLaMA: Open and Efficient Foundation Language Models",
+        "summary": "",
+        "date": "2025-09-17",
+        "tags": []
+    },
+    "https://docs.lmcache.ai/getting_started/quickstart/multimodality.html": {
+        "extra-tags": [
+            "multimodal",
+            "cache"
+        ],
+        "title": "Example: Multimodal KV Cache Support | LMCache",
+        "summary": "",
+        "date": "2025-09-17",
+        "tags": []
+    },
+    "http://arxiv.org/abs/2202.06991": {
+        "extra-tags": [
+            "model",
+            "transformer",
+            "differentiable"
+        ],
+        "title": "Transformer Memory as a Differentiable Search Index",
+        "summary": "In this paper, we demonstrate that information retrieval can be accomplished with a single Transformer, in which all information about the corpus is encoded in the parameters of the model. To this end, we introduce the Differentiable Search Index (DSI), a new paradigm that learns a text-to-text model that maps string queries directly to relevant docids; in other words, a DSI model answers queries directly using only its parameters, dramatically simplifying the whole retrieval process. We study variations in how documents and their identifiers are represented, variations in training procedures, and the interplay between models and corpus sizes. Experiments demonstrate that given appropriate design choices, DSI significantly outperforms strong baselines such as dual encoder models. Moreover, DSI demonstrates strong generalization capabilities, outperforming a BM25 baseline in a zero-shot setup.",
+        "date": "2025-09-17",
+        "tags": [
+            "computer science - artificial intelligence",
+            "computer science - computation and language",
+            "computer science - information retrieval",
+            "computer science - machine learning",
+            "dsi",
+            "generative information retrieval",
+            "google",
+            "semantic token"
+        ]
     }
 }
