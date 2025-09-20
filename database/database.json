@@ -48444,5 +48444,81 @@
             "google",
             "semantic token"
         ]
+    },
+    "https://github.com/hu-po/tatbot": {
+        "extra-tags": [
+            "github",
+            "watch",
+            "chatbot"
+        ],
+        "date": "2025-09-20",
+        "title": "tatbot",
+        "summary": "tattoo robot \ud83e\uddbe\ud83d\udd8b\ufe0f\ud83c\udfa8 \n Want a tattoo? Join the waitlisthttpsforms.gleZys6f5iLEtYCG8VW7 Follow the progressdocsprogress.md Read the documentationhttpshu-po.github.iotatbot Watch the livestreamhttpsyoutube.comliveym27ZHPMaec misctatbot-2025, titletatbot, authorHugo Ponte, year2025, urlhttpsgithub.comhu-potatbot",
+        "tags": [
+            "lerobot",
+            "jax",
+            "mcp",
+            "robot",
+            "python"
+        ]
+    },
+    "https://github.com/sunzhon/actuator_net": {
+        "extra-tags": [
+            "rl",
+            "project",
+            "model",
+            "neural",
+            "reinforcement learning"
+        ],
+        "date": "2025-09-20",
+        "title": "actuator_net",
+        "summary": " \n actuatornet is a project to model actuators using artificial neural network with deep-learning algorithm. Accurate modeling of real robots is crucial for developing reinforcement learning RL-based control systems. However, the complexities of electrical actuators make it challenging to simulate actuator dynamics accurately, resulting in a significant gap between simulated and real actuators. While domain randomization techniques can partially address this gap, finding the right randomization parameters is often difficult. As a result, poor joint movement tracking is a common issue that limits RL policy deployment in real robots and complicates training convergence.",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/huggingface/environments": {
+        "extra-tags": [
+            "simple",
+            "framework",
+            "hugging face",
+            "mcp",
+            "environment"
+        ],
+        "date": "2025-09-20",
+        "title": "environments",
+        "summary": " \n A simple framework to create and deploy custom environments on the Hugging Face Hub with MCP. bash pip install githttpsgithub.comhuggingfaceenvironments.git python from environments import Environment class CountToTenEnvironment def initself self.counter None def resetself - tupledict, float, bool self.counter 0 return fCounter reset to self.counter, 0.0, False def stepself - tupledict, float, bool",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/MuammerBay/isaac_so_arm101": {
+        "extra-tags": [
+            "project",
+            "robot",
+            "x"
+        ],
+        "date": "2025-09-20",
+        "title": "isaac_so_arm101",
+        "summary": "Isaac Lab external project for SO-ARM100/101 arm robot. \n This repository implements tasks for the SOARM100 and SOARM101 robots using Isaac Lab. It serves as the foundation for several tutorials in the LycheeAI Hub series Project SOARM101 Isaac Sim Isaac Labhttpslycheeai-hub.comproject-so-arm101-x-isaac-sim-x-isaac-lab-tutorial-series. There are official vendors who sell all the required parts and already assembled kits such as WowRobo who sponsor this project. Use code LYCHEEAI5 at checkout for a 5 discount on the SO-ARM101httpsshop.wowrobo.com?scaref8879221. Now also for LeKiwihttpsshop.wowrobo.comproductslekiwi-mobile-robot.",
+        "tags": [
+            "isaaclab",
+            "isaac-lab",
+            "omniverse",
+            "so101",
+            "reinforcement-learning",
+            "soarm-101",
+            "nvidia",
+            "so100",
+            "soarm",
+            "isaac-sim",
+            "so-100",
+            "soarm100",
+            "robotics",
+            "so-101",
+            "so-arm100",
+            "isaacsim",
+            "python"
+        ]
     }
 }
