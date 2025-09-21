@@ -48520,5 +48520,33 @@
             "isaacsim",
             "python"
         ]
+    },
+    "https://github.com/PrimeIntellect-ai/verifiers": {
+        "extra-tags": [
+            "llm",
+            "rl",
+            "training",
+            "reinforcement learning"
+        ],
+        "date": "2025-09-21",
+        "title": "verifiers",
+        "summary": "Environments for LLM Reinforcement Learning \n Verifiers Environments for LLM Reinforcement Learning Verifiers is a library of modular components for creating RL environments and training LLM agents. Environments built with Verifiers can be used directly as LLM evaluations, synthetic data pipelines, or agent harnesses for any OpenAI-compatible model endpoint, in addition to RL training. Verifiers includes an async GRPO implementation built around the transformers Trainer, is supported by prime-rl for large-scale FSDP training, and can easily be integrated into any RL framework which exposes an OpenAI-compatible inference client.",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/julien-blanchon/gsplat-kernel": {
+        "extra-tags": [
+            "torch",
+            "cuda",
+            "kernel",
+            "pytorch"
+        ],
+        "date": "2025-09-21",
+        "title": "gsplat-kernel",
+        "summary": " \n 2D Gaussian Splatting kernels for PyTorch, built with the HuggingFace kernel-builder system. python import torch import gsplat numgaussians 1000 means2d torch.randnumgaussians, 2, device'cuda' 0,1 coordinates scales2d torch.randnumgaussians, 2, device'cuda' 0.1 0.01 rotation torch.randnumgaussians, device'cuda' 2 3.14159 colors torch.randnumgaussians, 3, device'cuda' RGB",
+        "tags": [
+            "python"
+        ]
     }
 }
