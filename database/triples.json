@@ -224166,5 +224166,105 @@
     {
         "head": "torch",
         "tail": "kernel"
+    },
+    {
+        "head": "rust-bindings",
+        "tail": "faiss"
+    },
+    {
+        "head": "rust-bindings",
+        "tail": "hacktoberfest"
+    },
+    {
+        "head": "rust-bindings",
+        "tail": "library"
+    },
+    {
+        "head": "rust-bindings",
+        "tail": "bindings"
+    },
+    {
+        "head": "rust",
+        "tail": "faiss"
+    },
+    {
+        "head": "faiss",
+        "tail": "hacktoberfest"
+    },
+    {
+        "head": "faiss",
+        "tail": "library"
+    },
+    {
+        "head": "faiss",
+        "tail": "bindings"
+    },
+    {
+        "head": "library",
+        "tail": "bindings"
+    },
+    {
+        "head": "rust",
+        "tail": "no"
+    },
+    {
+        "head": "rust",
+        "tail": "aarch64"
+    },
+    {
+        "head": "macos",
+        "tail": "no"
+    },
+    {
+        "head": "macos",
+        "tail": "faiss"
+    },
+    {
+        "head": "no",
+        "tail": "linux"
+    },
+    {
+        "head": "no",
+        "tail": "faiss"
+    },
+    {
+        "head": "no",
+        "tail": "aarch64"
+    },
+    {
+        "head": "linux",
+        "tail": "faiss"
+    },
+    {
+        "head": "linux",
+        "tail": "aarch64"
+    },
+    {
+        "head": "faiss",
+        "tail": "aarch64"
+    },
+    {
+        "head": "glm",
+        "tail": "language model"
+    },
+    {
+        "head": "glm",
+        "tail": "autoregressive"
+    },
+    {
+        "head": "language model",
+        "tail": "autoregressive"
+    },
+    {
+        "head": "blog",
+        "tail": "skyblog"
+    },
+    {
+        "head": "blog",
+        "tail": "hugo-blog"
+    },
+    {
+        "head": "skyblog",
+        "tail": "hugo-blog"
     }
 ]

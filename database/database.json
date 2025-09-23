@@ -48548,5 +48548,57 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/Enet4/faiss-rs": {
+        "extra-tags": [
+            "library",
+            "bindings"
+        ],
+        "date": "2025-09-23",
+        "title": "faiss-rs",
+        "summary": "Rust language bindings for Faiss \n !Minimum Rust Version Stablehttpsimg.shields.iobadgeMinimum20Rust20Version-stable-green.svg This project provides Rust bindings to Faisshttpsgithub.comfacebookresearchfaiss, the state-of-the-art vector search and clustering library. By default, this crate is dynamically linked with the Faiss library installed in your system, so it does not build Faiss automatically for you. To build the library yourself 1. Follow the instructions herehttpsgithub.comEnet4faisstreecapiheadINSTALL.mdstep-1-invoking-cmake",
+        "tags": [
+            "rust-bindings",
+            "rust",
+            "faiss",
+            "hacktoberfest"
+        ]
+    },
+    "https://github.com/yexiangyu/faiss-next": {
+        "extra-tags": [
+            "macos",
+            "no",
+            "linux",
+            "faiss",
+            "aarch64"
+        ],
+        "date": "2025-09-23",
+        "title": "faiss-next",
+        "summary": " \n OS Arch Available ------- ------------- --------- MacOS aarch64 yes MacOS x6664 no Linux x8664 yes Linux x8664 cuda yes Windows x8664 no",
+        "tags": [
+            "rust"
+        ]
+    },
+    "https://aclanthology.org/2022.acl-long.26": {
+        "extra-tags": [
+            "glm",
+            "language model",
+            "autoregressive"
+        ],
+        "title": "GLM: General Language Model Pretraining with Autoregressive Blank Infilling",
+        "summary": "",
+        "date": "2025-09-22",
+        "tags": []
+    },
+    "https://haileyschoelkopf.github.io/blog/": {
+        "extra-tags": [
+            "blog",
+            "skyblog",
+            "hugo-blog"
+        ],
+        "title": "blog | Hailey Schoelkopf",
+        "summary": "",
+        "date": "2025-09-22",
+        "tags": []
     }
 }
