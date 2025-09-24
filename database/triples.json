@@ -224266,5 +224266,113 @@
     {
         "head": "skyblog",
         "tail": "hugo-blog"
+    },
+    {
+        "head": "scientific-computing",
+        "tail": "algorithms"
+    },
+    {
+        "head": "scientific-computing",
+        "tail": "machine learning"
+    },
+    {
+        "head": "scientific-computing",
+        "tail": "ml"
+    },
+    {
+        "head": "scientific-computing",
+        "tail": "learning"
+    },
+    {
+        "head": "algorithms",
+        "tail": "machine learning"
+    },
+    {
+        "head": "algorithms",
+        "tail": "ml"
+    },
+    {
+        "head": "machine learning",
+        "tail": "learning"
+    },
+    {
+        "head": "isaaclab",
+        "tail": "arm"
+    },
+    {
+        "head": "so101",
+        "tail": "arm"
+    },
+    {
+        "head": "robot",
+        "tail": "arm"
+    },
+    {
+        "head": "training",
+        "tail": "multi-modal"
+    },
+    {
+        "head": "ml",
+        "tail": "multi-modal"
+    },
+    {
+        "head": "coree",
+        "tail": "video"
+    },
+    {
+        "head": "coree",
+        "tail": "voyage"
+    },
+    {
+        "head": "coree",
+        "tail": "youtube"
+    },
+    {
+        "head": "coree",
+        "tail": "faire"
+    },
+    {
+        "head": "coree",
+        "tail": "os"
+    },
+    {
+        "head": "video",
+        "tail": "voyage"
+    },
+    {
+        "head": "video",
+        "tail": "youtube"
+    },
+    {
+        "head": "video",
+        "tail": "faire"
+    },
+    {
+        "head": "video",
+        "tail": "os"
+    },
+    {
+        "head": "voyage",
+        "tail": "youtube"
+    },
+    {
+        "head": "voyage",
+        "tail": "faire"
+    },
+    {
+        "head": "voyage",
+        "tail": "os"
+    },
+    {
+        "head": "youtube",
+        "tail": "faire"
+    },
+    {
+        "head": "youtube",
+        "tail": "os"
+    },
+    {
+        "head": "faire",
+        "tail": "os"
     }
 ]

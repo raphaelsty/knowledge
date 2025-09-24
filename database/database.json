@@ -48600,5 +48600,64 @@
         "summary": "",
         "date": "2025-09-22",
         "tags": []
+    },
+    "https://github.com/rust-ml/linfa": {
+        "extra-tags": [
+            "machine learning",
+            "ml",
+            "learning"
+        ],
+        "date": "2025-09-24",
+        "title": "linfa",
+        "summary": "A Rust machine learning framework. \n linfa aims to provide a comprehensive toolkit to build Machine Learning applications with Rust. Kin in spirit to Python's scikit-learn, it focuses on common preprocessing tasks and classical ML algorithms for your everyday ML tasks. Website Community chat Where does linfa stand right now? Are we learning yet?httpwww.arewelearningyet.com linfa currently provides sub-packages with the following algorithms",
+        "tags": [
+            "scientific-computing",
+            "machine-learning",
+            "algorithms",
+            "rust"
+        ]
+    },
+    "https://github.com/KyleM73/so101_isaac": {
+        "extra-tags": [
+            "isaaclab",
+            "so101",
+            "robot",
+            "arm"
+        ],
+        "date": "2025-09-24",
+        "title": "so101_isaac",
+        "summary": "IsaacLab environments for the so101 robot arm",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/apple/ml-l3m": {
+        "extra-tags": [
+            "training",
+            "model",
+            "ml",
+            "multi-modal"
+        ],
+        "date": "2025-09-24",
+        "title": "ml-l3m",
+        "summary": "Large multi-modal models (L3M) pre-training. \n l3m is a flexible library for training any type of large model, regardless of modality. Instead of more traditional approaches, we opt for a config-heavy approach, where each model training corresponds to a single .yaml file. This makes reproducibility a first-class citizen, as it is easy to share configs, as well as making the code as",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://www.youtube.com/": {
+        "extra-tags": [
+            "faire",
+            "os"
+        ],
+        "title": "Que faire \u00e0 S\u00e9oul en Cor\u00e9e du Sud | Guide de voyage - YouTube",
+        "summary": "Profitez des vid\u00e9os et de la musique que vous aimez, mettez en ligne des contenus originaux, et partagez-les avec vos amis, vos proches et le monde entier.",
+        "date": "2025-09-23",
+        "tags": [
+            "coree",
+            "video",
+            "voyage",
+            "youtube"
+        ]
     }
 }
