@@ -224374,5 +224374,161 @@
     {
         "head": "faire",
         "tail": "os"
+    },
+    {
+        "head": "git",
+        "tail": "conda"
+    },
+    {
+        "head": "git",
+        "tail": "visual"
+    },
+    {
+        "head": "install",
+        "tail": "conda"
+    },
+    {
+        "head": "install",
+        "tail": "visual"
+    },
+    {
+        "head": "conda",
+        "tail": "visual"
+    },
+    {
+        "head": "huggingface",
+        "tail": "mmbert"
+    },
+    {
+        "head": "huggingface",
+        "tail": "modernbert"
+    },
+    {
+        "head": "huggingface",
+        "tail": "multilingual"
+    },
+    {
+        "head": "huggingface",
+        "tail": "orion"
+    },
+    {
+        "head": "mmbert",
+        "tail": "modernbert"
+    },
+    {
+        "head": "mmbert",
+        "tail": "multilingual"
+    },
+    {
+        "head": "mmbert",
+        "tail": "orion"
+    },
+    {
+        "head": "mmbert",
+        "tail": "hugging face"
+    },
+    {
+        "head": "mmbert",
+        "tail": "source"
+    },
+    {
+        "head": "mmbert",
+        "tail": "science"
+    },
+    {
+        "head": "modernbert",
+        "tail": "multilingual"
+    },
+    {
+        "head": "modernbert",
+        "tail": "orion"
+    },
+    {
+        "head": "modernbert",
+        "tail": "hugging face"
+    },
+    {
+        "head": "modernbert",
+        "tail": "source"
+    },
+    {
+        "head": "modernbert",
+        "tail": "science"
+    },
+    {
+        "head": "multilingual",
+        "tail": "orion"
+    },
+    {
+        "head": "multilingual",
+        "tail": "hugging face"
+    },
+    {
+        "head": "multilingual",
+        "tail": "source"
+    },
+    {
+        "head": "multilingual",
+        "tail": "science"
+    },
+    {
+        "head": "orion",
+        "tail": "hugging face"
+    },
+    {
+        "head": "orion",
+        "tail": "source"
+    },
+    {
+        "head": "orion",
+        "tail": "science"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "multi-vector retrieval"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "computer science - information retrieval"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "retrieval"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "scaling"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "time"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "multi-vector retrieval"
+    },
+    {
+        "head": "retrieval",
+        "tail": "time"
+    },
+    {
+        "head": "multimodal",
+        "tail": "scaling"
+    },
+    {
+        "head": "multimodal",
+        "tail": "time"
+    },
+    {
+        "head": "multimodal",
+        "tail": "multi-vector retrieval"
+    },
+    {
+        "head": "scaling",
+        "tail": "multi-vector retrieval"
+    },
+    {
+        "head": "time",
+        "tail": "multi-vector retrieval"
     }
 ]
