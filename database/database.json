@@ -48707,5 +48707,33 @@
             "computer science - computer vision and pattern recognition",
             "computer science - information retrieval"
         ]
+    },
+    "https://github.com/meta-pytorch/data": {
+        "extra-tags": [
+            "data",
+            "pytorch",
+            "dataloader",
+            "torch"
+        ],
+        "date": "2025-09-27",
+        "title": "data",
+        "summary": "A PyTorch repo for data loading and utilities to be shared by the PyTorch domain libraries. \n What is TorchData?what-is-torchdata Stateful DataLoaderstateful-dataloader The TorchData project is an iterative enhancement to the PyTorch torch.utils.data.DataLoader and torch.utils.data.DatasetIterableDataset to make them scalable, performant dataloading solutions. We will be iterating on the enhancements under the torchdata repotorchdata. Our first change begins with adding checkpointing to torch.utils.data.DataLoader, which can be found in",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/meta-pytorch/botorch": {
+        "extra-tags": [
+            "optimization",
+            "bayesian",
+            "pytorch",
+            "library"
+        ],
+        "date": "2025-09-27",
+        "title": "botorch",
+        "summary": "Bayesian optimization in PyTorch \n BoTorch is a library for Bayesian Optimization built on PyTorch. BoTorch is currently in beta and under active development! BoTorch optimization primitives, including probabilistic models, acquisition functions, and optimizers. for highly parallelized modern hardware e.g. GPUs using device-agnostic code, and a dynamic computation graph. reparameterization trickhttpsarxiv.orgabs1312.6114, which makes it straightforward to implement new ideas without having to impose restrictive",
+        "tags": [
+            "jupyter notebook"
+        ]
     }
 }

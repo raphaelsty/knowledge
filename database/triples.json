@@ -224530,5 +224530,21 @@
     {
         "head": "time",
         "tail": "multi-vector retrieval"
+    },
+    {
+        "head": "dataloader",
+        "tail": "torch"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "bayesian"
+    },
+    {
+        "head": "optimization",
+        "tail": "bayesian"
+    },
+    {
+        "head": "bayesian",
+        "tail": "library"
     }
 ]
