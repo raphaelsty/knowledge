@@ -48735,5 +48735,19 @@
         "tags": [
             "jupyter notebook"
         ]
+    },
+    "https://chrisloy.dev/post/2025/09/28/the-ai-coding-trap": {
+        "extra-tags": [
+            "coding",
+            "ai",
+            "dev",
+            "development"
+        ],
+        "title": "Hackernews The AI coding trap (chrisloy.dev)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "If you ever watch someone \u201ccoding\u201d, you might see them spending far more time staring into space than typing on their keyboard. No, they (probably) aren\u2019t slacking off. Software development is fundamentally a practice of problem-solving, and so, as with solving a tricky crossword, most of the work is done",
+        "date": "2025-09-29"
     }
 }

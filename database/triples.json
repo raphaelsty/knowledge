@@ -224546,5 +224546,25 @@
     {
         "head": "bayesian",
         "tail": "library"
+    },
+    {
+        "head": "coding",
+        "tail": "dev"
+    },
+    {
+        "head": "coding",
+        "tail": "development"
+    },
+    {
+        "head": "ai",
+        "tail": "dev"
+    },
+    {
+        "head": "ai",
+        "tail": "development"
+    },
+    {
+        "head": "dev",
+        "tail": "development"
     }
 ]
