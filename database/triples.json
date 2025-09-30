@@ -224566,5 +224566,33 @@
     {
         "head": "dev",
         "tail": "development"
+    },
+    {
+        "head": "training",
+        "tail": "svg"
+    },
+    {
+        "head": "pytorch",
+        "tail": "svg"
+    },
+    {
+        "head": "zero-shot",
+        "tail": "robotics"
+    },
+    {
+        "head": "zero-shot",
+        "tail": "code"
+    },
+    {
+        "head": "zero-shot",
+        "tail": "generalization"
+    },
+    {
+        "head": "robotics",
+        "tail": "generalization"
+    },
+    {
+        "head": "code",
+        "tail": "generalization"
     }
 ]

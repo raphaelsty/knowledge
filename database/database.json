@@ -48749,5 +48749,33 @@
         ],
         "summary": "If you ever watch someone \u201ccoding\u201d, you might see them spending far more time staring into space than typing on their keyboard. No, they (probably) aren\u2019t slacking off. Software development is fundamentally a practice of problem-solving, and so, as with solving a tricky crossword, most of the work is done",
         "date": "2025-09-29"
+    },
+    "https://github.com/meta-pytorch/torchtune": {
+        "extra-tags": [
+            "training",
+            "pytorch",
+            "library",
+            "svg"
+        ],
+        "date": "2025-09-30",
+        "title": "torchtune",
+        "summary": "PyTorch native post-training library \n !Integration Testshttpsgithub.compytorchtorchtuneactionsworkflowsgputest.yamlbadge.svg nbsp torchtune is a PyTorch library for easily authoring, post-training, and experimenting with LLMs. It provides nbsp torchtune supports the entire post-training lifecyclehttpspytorch.orgtorchtunemainrecipesrecipesoverview.html. A successful post-trained model will likely utilize several of the below methods. Type of Weight Update 1 Device 1 Device 1 Node",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/thu-ml/RDT2": {
+        "extra-tags": [
+            "zero-shot",
+            "robotics",
+            "code",
+            "generalization"
+        ],
+        "date": "2025-09-30",
+        "title": "RDT2",
+        "summary": "Official code of RDT 2 \n -- RDT2 Enabling Zero-Shot Cross-Embodiment Generalization by Scaling Up UMI Data -- -- -- -- Blog Link -- Paper Link -- RDT2, the sequel to RDT-1Bhttpsrdt-robotics.github.iordt-robotics, is the first foundation model that can achieve zero-shot deployment on unseen embodiments for simple open-vocabulary tasks like picking, placing, shaking, wiping, etc. This milestone was made possible by multifaceted efforts",
+        "tags": [
+            "python"
+        ]
     }
 }
