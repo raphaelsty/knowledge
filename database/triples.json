@@ -224594,5 +224594,149 @@
     {
         "head": "code",
         "tail": "generalization"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "listwise"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "rank-k"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "reranking"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "sota"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "listwise"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "rank-k"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "reranking"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "sota"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "information-retrieval"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "listwise"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "rank-k"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "reranking"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "sota"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "retrieval"
+    },
+    {
+        "head": "fine-tuning",
+        "tail": "time"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "listwise"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "rank-k"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "reranking"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "sota"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "time"
+    },
+    {
+        "head": "listwise",
+        "tail": "rank-k"
+    },
+    {
+        "head": "listwise",
+        "tail": "reranking"
+    },
+    {
+        "head": "listwise",
+        "tail": "sota"
+    },
+    {
+        "head": "listwise",
+        "tail": "retrieval"
+    },
+    {
+        "head": "listwise",
+        "tail": "time"
+    },
+    {
+        "head": "listwise",
+        "tail": "reasoning"
+    },
+    {
+        "head": "rank-k",
+        "tail": "reranking"
+    },
+    {
+        "head": "rank-k",
+        "tail": "sota"
+    },
+    {
+        "head": "rank-k",
+        "tail": "retrieval"
+    },
+    {
+        "head": "rank-k",
+        "tail": "time"
+    },
+    {
+        "head": "rank-k",
+        "tail": "reasoning"
+    },
+    {
+        "head": "reranking",
+        "tail": "sota"
+    },
+    {
+        "head": "reranking",
+        "tail": "time"
+    },
+    {
+        "head": "reranking",
+        "tail": "reasoning"
+    },
+    {
+        "head": "sota",
+        "tail": "time"
+    },
+    {
+        "head": "sota",
+        "tail": "reasoning"
     }
 ]

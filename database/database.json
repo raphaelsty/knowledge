@@ -48777,5 +48777,25 @@
         "tags": [
             "python"
         ]
+    },
+    "http://arxiv.org/abs/2505.14432": {
+        "extra-tags": [
+            "retrieval",
+            "time",
+            "reasoning"
+        ],
+        "title": "Rank-K: Test-Time Reasoning for Listwise Reranking",
+        "summary": "Retrieve-and-rerank is a popular retrieval pipeline because of its ability to make slow but effective rerankers efficient enough at query time by reducing the number of comparisons. Recent works in neural rerankers take advantage of large language models for their capability in reasoning between queries and passages and have achieved state-of-the-art retrieval effectiveness. However, such rerankers are resource-intensive, even after heavy optimization. In this work, we introduce Rank-K, a listwise passage reranking model that leverages the reasoning capability of the reasoning language model at query time that provides test time scalability to serve hard queries. We show that Rank-K improves retrieval effectiveness by 23\\% over the RankZephyr, the state-of-the-art listwise reranker, when reranking a BM25 initial ranked list and 19\\% when reranking strong retrieval results by SPLADE-v3. Since Rank-K is inherently a multilingual model, we found that it ranks passages based on queries in different languages as effectively as it does in monolingual retrieval.",
+        "date": "2025-09-30",
+        "tags": [
+            "computer science - computation and language",
+            "computer science - information retrieval",
+            "fine-tuning",
+            "information-retrieval",
+            "listwise",
+            "rank-k",
+            "reranking",
+            "sota"
+        ]
     }
 }
