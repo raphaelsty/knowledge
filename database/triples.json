@@ -224738,5 +224738,677 @@
     {
         "head": "sota",
         "tail": "reasoning"
+    },
+    {
+        "head": "databases",
+        "tail": "vps"
+    },
+    {
+        "head": "databases",
+        "tail": "typescript"
+    },
+    {
+        "head": "databases",
+        "tail": "devops"
+    },
+    {
+        "head": "databases",
+        "tail": "backups"
+    },
+    {
+        "head": "databases",
+        "tail": "mariadb"
+    },
+    {
+        "head": "databases",
+        "tail": "frontend"
+    },
+    {
+        "head": "databases",
+        "tail": "deployment"
+    },
+    {
+        "head": "databases",
+        "tail": "backend"
+    },
+    {
+        "head": "databases",
+        "tail": "self-hosted"
+    },
+    {
+        "head": "databases",
+        "tail": "source"
+    },
+    {
+        "head": "databases",
+        "tail": "heroku"
+    },
+    {
+        "head": "databases",
+        "tail": "us"
+    },
+    {
+        "head": "databases",
+        "tail": "discord"
+    },
+    {
+        "head": "databases",
+        "tail": "self-hostable"
+    },
+    {
+        "head": "vps",
+        "tail": "docker"
+    },
+    {
+        "head": "vps",
+        "tail": "typescript"
+    },
+    {
+        "head": "vps",
+        "tail": "nextjs"
+    },
+    {
+        "head": "vps",
+        "tail": "postgresql"
+    },
+    {
+        "head": "vps",
+        "tail": "devops"
+    },
+    {
+        "head": "vps",
+        "tail": "backups"
+    },
+    {
+        "head": "vps",
+        "tail": "mongodb"
+    },
+    {
+        "head": "vps",
+        "tail": "mariadb"
+    },
+    {
+        "head": "vps",
+        "tail": "frontend"
+    },
+    {
+        "head": "vps",
+        "tail": "mysql"
+    },
+    {
+        "head": "vps",
+        "tail": "deployment"
+    },
+    {
+        "head": "vps",
+        "tail": "backend"
+    },
+    {
+        "head": "vps",
+        "tail": "self-hosted"
+    },
+    {
+        "head": "vps",
+        "tail": "source"
+    },
+    {
+        "head": "vps",
+        "tail": "us"
+    },
+    {
+        "head": "vps",
+        "tail": "discord"
+    },
+    {
+        "head": "vps",
+        "tail": "self-hostable"
+    },
+    {
+        "head": "docker",
+        "tail": "devops"
+    },
+    {
+        "head": "docker",
+        "tail": "backups"
+    },
+    {
+        "head": "docker",
+        "tail": "mariadb"
+    },
+    {
+        "head": "docker",
+        "tail": "frontend"
+    },
+    {
+        "head": "docker",
+        "tail": "deployment"
+    },
+    {
+        "head": "docker",
+        "tail": "backend"
+    },
+    {
+        "head": "docker",
+        "tail": "heroku"
+    },
+    {
+        "head": "docker",
+        "tail": "us"
+    },
+    {
+        "head": "docker",
+        "tail": "discord"
+    },
+    {
+        "head": "docker",
+        "tail": "self-hostable"
+    },
+    {
+        "head": "typescript",
+        "tail": "devops"
+    },
+    {
+        "head": "typescript",
+        "tail": "backups"
+    },
+    {
+        "head": "typescript",
+        "tail": "mariadb"
+    },
+    {
+        "head": "typescript",
+        "tail": "frontend"
+    },
+    {
+        "head": "typescript",
+        "tail": "deployment"
+    },
+    {
+        "head": "typescript",
+        "tail": "backend"
+    },
+    {
+        "head": "typescript",
+        "tail": "heroku"
+    },
+    {
+        "head": "typescript",
+        "tail": "us"
+    },
+    {
+        "head": "nextjs",
+        "tail": "devops"
+    },
+    {
+        "head": "nextjs",
+        "tail": "backups"
+    },
+    {
+        "head": "nextjs",
+        "tail": "mariadb"
+    },
+    {
+        "head": "nextjs",
+        "tail": "frontend"
+    },
+    {
+        "head": "nextjs",
+        "tail": "deployment"
+    },
+    {
+        "head": "nextjs",
+        "tail": "backend"
+    },
+    {
+        "head": "nextjs",
+        "tail": "self-hosted"
+    },
+    {
+        "head": "nextjs",
+        "tail": "source"
+    },
+    {
+        "head": "nextjs",
+        "tail": "heroku"
+    },
+    {
+        "head": "nextjs",
+        "tail": "us"
+    },
+    {
+        "head": "nextjs",
+        "tail": "discord"
+    },
+    {
+        "head": "nextjs",
+        "tail": "self-hostable"
+    },
+    {
+        "head": "postgresql",
+        "tail": "backups"
+    },
+    {
+        "head": "postgresql",
+        "tail": "mariadb"
+    },
+    {
+        "head": "postgresql",
+        "tail": "frontend"
+    },
+    {
+        "head": "postgresql",
+        "tail": "deployment"
+    },
+    {
+        "head": "postgresql",
+        "tail": "backend"
+    },
+    {
+        "head": "postgresql",
+        "tail": "self-hosted"
+    },
+    {
+        "head": "postgresql",
+        "tail": "source"
+    },
+    {
+        "head": "postgresql",
+        "tail": "heroku"
+    },
+    {
+        "head": "postgresql",
+        "tail": "us"
+    },
+    {
+        "head": "postgresql",
+        "tail": "discord"
+    },
+    {
+        "head": "devops",
+        "tail": "backups"
+    },
+    {
+        "head": "devops",
+        "tail": "mongodb"
+    },
+    {
+        "head": "devops",
+        "tail": "mariadb"
+    },
+    {
+        "head": "devops",
+        "tail": "frontend"
+    },
+    {
+        "head": "devops",
+        "tail": "mysql"
+    },
+    {
+        "head": "devops",
+        "tail": "deployment"
+    },
+    {
+        "head": "devops",
+        "tail": "backend"
+    },
+    {
+        "head": "devops",
+        "tail": "self-hosted"
+    },
+    {
+        "head": "devops",
+        "tail": "source"
+    },
+    {
+        "head": "devops",
+        "tail": "heroku"
+    },
+    {
+        "head": "devops",
+        "tail": "us"
+    },
+    {
+        "head": "devops",
+        "tail": "discord"
+    },
+    {
+        "head": "devops",
+        "tail": "self-hostable"
+    },
+    {
+        "head": "backups",
+        "tail": "mongodb"
+    },
+    {
+        "head": "backups",
+        "tail": "mariadb"
+    },
+    {
+        "head": "backups",
+        "tail": "frontend"
+    },
+    {
+        "head": "backups",
+        "tail": "mysql"
+    },
+    {
+        "head": "backups",
+        "tail": "deployment"
+    },
+    {
+        "head": "backups",
+        "tail": "backend"
+    },
+    {
+        "head": "backups",
+        "tail": "self-hosted"
+    },
+    {
+        "head": "backups",
+        "tail": "source"
+    },
+    {
+        "head": "backups",
+        "tail": "heroku"
+    },
+    {
+        "head": "backups",
+        "tail": "us"
+    },
+    {
+        "head": "backups",
+        "tail": "discord"
+    },
+    {
+        "head": "backups",
+        "tail": "self-hostable"
+    },
+    {
+        "head": "mongodb",
+        "tail": "mariadb"
+    },
+    {
+        "head": "mongodb",
+        "tail": "frontend"
+    },
+    {
+        "head": "mongodb",
+        "tail": "deployment"
+    },
+    {
+        "head": "mongodb",
+        "tail": "backend"
+    },
+    {
+        "head": "mongodb",
+        "tail": "self-hosted"
+    },
+    {
+        "head": "mongodb",
+        "tail": "source"
+    },
+    {
+        "head": "mongodb",
+        "tail": "heroku"
+    },
+    {
+        "head": "mongodb",
+        "tail": "us"
+    },
+    {
+        "head": "mongodb",
+        "tail": "discord"
+    },
+    {
+        "head": "mongodb",
+        "tail": "self-hostable"
+    },
+    {
+        "head": "mariadb",
+        "tail": "frontend"
+    },
+    {
+        "head": "mariadb",
+        "tail": "mysql"
+    },
+    {
+        "head": "mariadb",
+        "tail": "deployment"
+    },
+    {
+        "head": "mariadb",
+        "tail": "backend"
+    },
+    {
+        "head": "mariadb",
+        "tail": "self-hosted"
+    },
+    {
+        "head": "mariadb",
+        "tail": "source"
+    },
+    {
+        "head": "mariadb",
+        "tail": "heroku"
+    },
+    {
+        "head": "mariadb",
+        "tail": "us"
+    },
+    {
+        "head": "mariadb",
+        "tail": "discord"
+    },
+    {
+        "head": "mariadb",
+        "tail": "self-hostable"
+    },
+    {
+        "head": "frontend",
+        "tail": "mysql"
+    },
+    {
+        "head": "frontend",
+        "tail": "deployment"
+    },
+    {
+        "head": "frontend",
+        "tail": "backend"
+    },
+    {
+        "head": "frontend",
+        "tail": "self-hosted"
+    },
+    {
+        "head": "frontend",
+        "tail": "source"
+    },
+    {
+        "head": "frontend",
+        "tail": "heroku"
+    },
+    {
+        "head": "frontend",
+        "tail": "us"
+    },
+    {
+        "head": "frontend",
+        "tail": "discord"
+    },
+    {
+        "head": "frontend",
+        "tail": "self-hostable"
+    },
+    {
+        "head": "mysql",
+        "tail": "deployment"
+    },
+    {
+        "head": "mysql",
+        "tail": "backend"
+    },
+    {
+        "head": "mysql",
+        "tail": "self-hosted"
+    },
+    {
+        "head": "mysql",
+        "tail": "source"
+    },
+    {
+        "head": "mysql",
+        "tail": "heroku"
+    },
+    {
+        "head": "mysql",
+        "tail": "us"
+    },
+    {
+        "head": "mysql",
+        "tail": "discord"
+    },
+    {
+        "head": "mysql",
+        "tail": "self-hostable"
+    },
+    {
+        "head": "deployment",
+        "tail": "backend"
+    },
+    {
+        "head": "deployment",
+        "tail": "self-hosted"
+    },
+    {
+        "head": "deployment",
+        "tail": "source"
+    },
+    {
+        "head": "deployment",
+        "tail": "us"
+    },
+    {
+        "head": "deployment",
+        "tail": "discord"
+    },
+    {
+        "head": "deployment",
+        "tail": "self-hostable"
+    },
+    {
+        "head": "backend",
+        "tail": "self-hosted"
+    },
+    {
+        "head": "backend",
+        "tail": "source"
+    },
+    {
+        "head": "backend",
+        "tail": "heroku"
+    },
+    {
+        "head": "backend",
+        "tail": "us"
+    },
+    {
+        "head": "backend",
+        "tail": "discord"
+    },
+    {
+        "head": "backend",
+        "tail": "self-hostable"
+    },
+    {
+        "head": "self-hosted",
+        "tail": "heroku"
+    },
+    {
+        "head": "self-hosted",
+        "tail": "us"
+    },
+    {
+        "head": "self-hosted",
+        "tail": "discord"
+    },
+    {
+        "head": "self-hosted",
+        "tail": "self-hostable"
+    },
+    {
+        "head": "source",
+        "tail": "heroku"
+    },
+    {
+        "head": "source",
+        "tail": "us"
+    },
+    {
+        "head": "source",
+        "tail": "discord"
+    },
+    {
+        "head": "source",
+        "tail": "self-hostable"
+    },
+    {
+        "head": "heroku",
+        "tail": "us"
+    },
+    {
+        "head": "heroku",
+        "tail": "discord"
+    },
+    {
+        "head": "heroku",
+        "tail": "self-hostable"
+    },
+    {
+        "head": "us",
+        "tail": "discord"
+    },
+    {
+        "head": "us",
+        "tail": "self-hostable"
+    },
+    {
+        "head": "discord",
+        "tail": "self-hostable"
+    },
+    {
+        "head": "blog",
+        "tail": "lora"
+    },
+    {
+        "head": "blog",
+        "tail": "thinking machines"
+    },
+    {
+        "head": "blog",
+        "tail": "training"
+    },
+    {
+        "head": "blog",
+        "tail": "performance"
+    },
+    {
+        "head": "lora",
+        "tail": "thinking machines"
+    },
+    {
+        "head": "lora",
+        "tail": "performance"
+    },
+    {
+        "head": "thinking machines",
+        "tail": "training"
+    },
+    {
+        "head": "thinking machines",
+        "tail": "performance"
+    },
+    {
+        "head": "training",
+        "tail": "performance"
     }
 ]

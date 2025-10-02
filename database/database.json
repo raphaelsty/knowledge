@@ -48797,5 +48797,48 @@
             "reranking",
             "sota"
         ]
+    },
+    "https://github.com/Dokploy/dokploy": {
+        "extra-tags": [
+            "source",
+            "heroku",
+            "us",
+            "discord",
+            "self-hostable"
+        ],
+        "date": "2025-10-02",
+        "title": "dokploy",
+        "summary": "Open Source Alternative to Vercel, Netlify and Heroku. \n Join us on Discord for help, feedback, and discussions! Special thanks to Dokploy is a free, self-hostable Platform as a Service PaaS that simplifies the deployment and management of applications and databases. Dokploy includes multiple features to make your life easier. To get started, run the following command on a VPS",
+        "tags": [
+            "databases",
+            "vps",
+            "docker",
+            "typescript",
+            "nextjs",
+            "postgresql",
+            "devops",
+            "backups",
+            "mongodb",
+            "mariadb",
+            "frontend",
+            "mysql",
+            "deployment",
+            "backend",
+            "self-hosted"
+        ]
+    },
+    "https://thinkingmachines.ai/blog/lora/": {
+        "extra-tags": [
+            "training",
+            "performance"
+        ],
+        "title": "LoRA Without Regret",
+        "summary": "How LoRA matches full training performance more broadly than expected.",
+        "date": "2025-10-01",
+        "tags": [
+            "blog",
+            "lora",
+            "thinking machines"
+        ]
     }
 }
