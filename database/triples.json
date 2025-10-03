@@ -225410,5 +225410,117 @@
     {
         "head": "training",
         "tail": "performance"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "colbert"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "information-retrieval"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "late-interaction"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "reranking"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "document"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "reranker"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "late-interaction"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "document"
+    },
+    {
+        "head": "computer science - computation and language",
+        "tail": "reranker"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "late-interaction"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "reranker"
+    },
+    {
+        "head": "colbert",
+        "tail": "jina"
+    },
+    {
+        "head": "colbert",
+        "tail": "late-interaction"
+    },
+    {
+        "head": "colbert",
+        "tail": "reranking"
+    },
+    {
+        "head": "colbert",
+        "tail": "document"
+    },
+    {
+        "head": "colbert",
+        "tail": "reranker"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "late-interaction"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "reranker"
+    },
+    {
+        "head": "jina",
+        "tail": "late-interaction"
+    },
+    {
+        "head": "jina",
+        "tail": "reranking"
+    },
+    {
+        "head": "jina",
+        "tail": "document"
+    },
+    {
+        "head": "jina",
+        "tail": "reranker"
+    },
+    {
+        "head": "late-interaction",
+        "tail": "reranking"
+    },
+    {
+        "head": "late-interaction",
+        "tail": "document"
+    },
+    {
+        "head": "late-interaction",
+        "tail": "reranker"
+    },
+    {
+        "head": "reranking",
+        "tail": "document"
+    },
+    {
+        "head": "reranking",
+        "tail": "reranker"
+    },
+    {
+        "head": "document",
+        "tail": "reranker"
     }
 ]

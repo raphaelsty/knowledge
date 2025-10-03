@@ -48840,5 +48840,24 @@
             "lora",
             "thinking machines"
         ]
+    },
+    "http://arxiv.org/abs/2509.25085": {
+        "extra-tags": [
+            "document",
+            "reranker"
+        ],
+        "title": "jina-reranker-v3: Last but Not Late Interaction for Document Reranking",
+        "summary": "jina-reranker-v3 is a 0.6B parameter multilingual document reranker that introduces a novel last but not late interaction. Unlike late interaction models such as ColBERT that perform separate encoding followed by multi-vector matching, our approach conducts causal self-attention between query and documents within the same context window, enabling rich cross-document interactions before extracting contextual embeddings from the last token of each document. This compact architecture achieves state-of-the-art BEIR performance with 61.94 nDCG@10 while being significant smaller than generative listwise rerankers.",
+        "date": "2025-10-02",
+        "tags": [
+            "computer science - artificial intelligence",
+            "computer science - computation and language",
+            "computer science - information retrieval",
+            "colbert",
+            "information-retrieval",
+            "jina",
+            "late-interaction",
+            "reranking"
+        ]
     }
 }
