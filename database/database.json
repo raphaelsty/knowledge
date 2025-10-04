@@ -48859,5 +48859,52 @@
             "late-interaction",
             "reranking"
         ]
+    },
+    "https://github.com/liorbenhorin/lerobot_so101_teleop": {
+        "extra-tags": [
+            "lerobot",
+            "environment",
+            "so-101",
+            "robot"
+        ],
+        "date": "2025-10-04",
+        "title": "lerobot_so101_teleop",
+        "summary": "Sample Environment for the LeRobot SO-101 Robot in Isaac Lab to collect demonstrations in a simulation \n !.banner.jpg Sample Environment for the LeRobot SO-101 Robot in Isaac Lab to collect demonstrations in a simulation. This can be utilised to later procedurally scale up datasets using various methods of domain randomization and style transfer techniques Use Conda to be synced with the Lerobot installation guide.",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/riiswa/octax": {
+        "extra-tags": [
+            "game",
+            "jax",
+            "reinforcement learning",
+            "high-performance"
+        ],
+        "date": "2025-10-04",
+        "title": "octax",
+        "summary": "Octax: Accelerated CHIP-8 Arcade Environments for JAX \n High-performance CHIP-8 arcade game environments for reinforcement learning research Features Installation Quick Start Games Performance Citation Preprint is available at httpsarxiv.orgabs2510.01764httpsarxiv.orgabs2510.01764 WIP This project is under development OCTAX provides a JAX-based suite of classic arcade game environments implemented through CHIP-8 emulation. It offers orders-of-magnitude speedups over traditional CPU emulators while maintaining perfect fidelity to original game mechanics, making it ideal for large-scale reinforcement learning experimentation.",
+        "tags": [
+            "python"
+        ]
+    },
+    "http://arxiv.org/abs/2309.00071": {
+        "extra-tags": [
+            "models",
+            "extension",
+            "language models"
+        ],
+        "title": "YaRN: Efficient Context Window Extension of Large Language Models",
+        "summary": "Rotary Position Embeddings (RoPE) have been shown to effectively encode positional information in transformer-based language models. However, these models fail to generalize past the sequence length they were trained on. We present YaRN (Yet another RoPE extensioN method), a compute-efficient method to extend the context window of such models, requiring 10x less tokens and 2.5x less training steps than previous methods. Using YaRN, we show that LLaMA models can effectively utilize and extrapolate to context lengths much longer than their original pre-training would allow, while also surpassing previous the state-of-the-art at context window extension. In addition, we demonstrate that YaRN exhibits the capability to extrapolate beyond the limited context of a fine-tuning dataset. The models fine-tuned using YaRN has been made available and reproduced online up to 128k context length at https://github.com/jquesnelle/yarn",
+        "date": "2025-10-03",
+        "tags": [
+            "computer science - artificial intelligence",
+            "computer science - computation and language",
+            "computer science - machine learning",
+            "context",
+            "generation",
+            "llm",
+            "yarn"
+        ]
     }
 }
