@@ -48906,5 +48906,23 @@
             "llm",
             "yarn"
         ]
+    },
+    "https://github.com/t0mpr1c3/knotty": {
+        "extra-tags": [
+            "language",
+            "grid",
+            "maps"
+        ],
+        "date": "2025-10-05",
+        "title": "knotty",
+        "summary": "A domain-specific language for knitting patterns \n Domain Specific Language for knitting patterns Grid-based editors are handy for colorwork. Knitspeakhttpsstitch-maps.comaboutknitspeak is great for lace. Knotty aims for the best of both worlds. It's a way to design knitting patterns that incorporate both textured stitches and multiple colors of yarn. Knotty patterns are encoded in a format that is easy for humans to write and parse,",
+        "tags": [
+            "knitting-pattern",
+            "typed-racket",
+            "knitting",
+            "knitting-patterns",
+            "racket",
+            "dsl"
+        ]
     }
 }

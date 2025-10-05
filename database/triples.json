@@ -225662,5 +225662,149 @@
     {
         "head": "extension",
         "tail": "language models"
+    },
+    {
+        "head": "knitting-pattern",
+        "tail": "typed-racket"
+    },
+    {
+        "head": "knitting-pattern",
+        "tail": "knitting"
+    },
+    {
+        "head": "knitting-pattern",
+        "tail": "knitting-patterns"
+    },
+    {
+        "head": "knitting-pattern",
+        "tail": "racket"
+    },
+    {
+        "head": "knitting-pattern",
+        "tail": "dsl"
+    },
+    {
+        "head": "knitting-pattern",
+        "tail": "language"
+    },
+    {
+        "head": "knitting-pattern",
+        "tail": "grid"
+    },
+    {
+        "head": "knitting-pattern",
+        "tail": "maps"
+    },
+    {
+        "head": "typed-racket",
+        "tail": "knitting"
+    },
+    {
+        "head": "typed-racket",
+        "tail": "knitting-patterns"
+    },
+    {
+        "head": "typed-racket",
+        "tail": "racket"
+    },
+    {
+        "head": "typed-racket",
+        "tail": "dsl"
+    },
+    {
+        "head": "typed-racket",
+        "tail": "language"
+    },
+    {
+        "head": "typed-racket",
+        "tail": "grid"
+    },
+    {
+        "head": "typed-racket",
+        "tail": "maps"
+    },
+    {
+        "head": "knitting",
+        "tail": "knitting-patterns"
+    },
+    {
+        "head": "knitting",
+        "tail": "racket"
+    },
+    {
+        "head": "knitting",
+        "tail": "dsl"
+    },
+    {
+        "head": "knitting",
+        "tail": "language"
+    },
+    {
+        "head": "knitting",
+        "tail": "grid"
+    },
+    {
+        "head": "knitting",
+        "tail": "maps"
+    },
+    {
+        "head": "knitting-patterns",
+        "tail": "racket"
+    },
+    {
+        "head": "knitting-patterns",
+        "tail": "dsl"
+    },
+    {
+        "head": "knitting-patterns",
+        "tail": "language"
+    },
+    {
+        "head": "knitting-patterns",
+        "tail": "grid"
+    },
+    {
+        "head": "knitting-patterns",
+        "tail": "maps"
+    },
+    {
+        "head": "racket",
+        "tail": "dsl"
+    },
+    {
+        "head": "racket",
+        "tail": "language"
+    },
+    {
+        "head": "racket",
+        "tail": "grid"
+    },
+    {
+        "head": "racket",
+        "tail": "maps"
+    },
+    {
+        "head": "dsl",
+        "tail": "language"
+    },
+    {
+        "head": "dsl",
+        "tail": "grid"
+    },
+    {
+        "head": "dsl",
+        "tail": "maps"
+    },
+    {
+        "head": "language",
+        "tail": "grid"
+    },
+    {
+        "head": "language",
+        "tail": "maps"
+    },
+    {
+        "head": "grid",
+        "tail": "maps"
     }
 ]
