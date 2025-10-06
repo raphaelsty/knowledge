@@ -48924,5 +48924,34 @@
             "racket",
             "dsl"
         ]
+    },
+    "https://github.com/InternRobotics/VLAC": {
+        "extra-tags": [
+            "data",
+            "task",
+            "model",
+            "reinforcement learning"
+        ],
+        "date": "2025-10-06",
+        "title": "VLAC",
+        "summary": "VLAC: A Vision-Language-Action-Critic Model for Robotic Real-World Reinforcement Learning \n VLAC is a general-purpose pair-wise critic and manipulation model which designed for real world robot reinforcement learning and data refinement. It provides robust evaluation capabilities for task progress prediction and task completion verification base one images and task description. VLAC trained on 3000h human egocentric data, 1200h comprehensive public robotic manipulation data, and 15h self-collected manipulation data.",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/budzianowski/opengvl": {
+        "extra-tags": [
+            "benchmark",
+            "hugging face spaces",
+            "configuration",
+            "vision-language",
+            "robotics"
+        ],
+        "date": "2025-10-06",
+        "title": "opengvl",
+        "summary": "Open GLV \n Live Benchmark on Hugging Face Spaces Quick Start Getting Started Configuration Extending OpenGVL provides a benchmark and toolkit to evaluate how well vision-language models VLMs understand temporal progress in robotic tasks. It enables automatic annotation and curation of large-scale robotics datasets by predicting task completion from video frames, making it practical for data quality assessment and filtering.",
+        "tags": [
+            "jupyter notebook"
+        ]
     }
 }

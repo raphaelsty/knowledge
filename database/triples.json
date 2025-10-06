@@ -225806,5 +225806,69 @@
     {
         "head": "grid",
         "tail": "maps"
+    },
+    {
+        "head": "data",
+        "tail": "task"
+    },
+    {
+        "head": "data",
+        "tail": "reinforcement learning"
+    },
+    {
+        "head": "task",
+        "tail": "model"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "hugging face spaces"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "configuration"
+    },
+    {
+        "head": "jupyter notebook",
+        "tail": "vision-language"
+    },
+    {
+        "head": "benchmark",
+        "tail": "hugging face spaces"
+    },
+    {
+        "head": "benchmark",
+        "tail": "configuration"
+    },
+    {
+        "head": "benchmark",
+        "tail": "vision-language"
+    },
+    {
+        "head": "benchmark",
+        "tail": "robotics"
+    },
+    {
+        "head": "hugging face spaces",
+        "tail": "configuration"
+    },
+    {
+        "head": "hugging face spaces",
+        "tail": "vision-language"
+    },
+    {
+        "head": "hugging face spaces",
+        "tail": "robotics"
+    },
+    {
+        "head": "configuration",
+        "tail": "vision-language"
+    },
+    {
+        "head": "configuration",
+        "tail": "robotics"
+    },
+    {
+        "head": "vision-language",
+        "tail": "robotics"
     }
 ]
