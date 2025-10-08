@@ -48953,5 +48953,31 @@
         "tags": [
             "jupyter notebook"
         ]
+    },
+    "https://github.com/ajwagen/dsrl": {
+        "extra-tags": [
+            "diffusion",
+            "policy",
+            "reinforcement learning",
+            "git"
+        ],
+        "date": "2025-10-08",
+        "title": "dsrl",
+        "summary": "Official implementation for DSRL, Steering Your Diffusion Policy with Latent Space Reinforcement Learning (CoRL 2025) \n Diffusion steering via reinforcement learning DSRL is a lightweight and efficient method for RL finetuning of diffusion and flow policies. Rather than modifying the weights of the diffusionflow policy, DSRL instead modifies the noise distribution sampled from to begin the denoising process. 1. Clone repository git clone --recurse-submodules gitgithub.comajwagendsrl.git",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/apexrl/Diff4RLSurvey": {
+        "extra-tags": [
+            "models",
+            "diffusion",
+            "reinforcement learning",
+            "survey"
+        ],
+        "date": "2025-10-08",
+        "title": "Diff4RLSurvey",
+        "summary": "This repository contains a collection of resources and papers on Diffusion Models for RL, accompanying the paper \"Diffusion Models for Reinforcement Learning: A Survey\" \n This repository contains a collection of resources and papers on Diffusion Models for Sequential Decision-Making. rocket Please check out our survey paper Diffusion Models for Reinforcement Learning A Surveyhttpsarxiv.orgabs2311.01223 !image info.compare.png articlezhu2023diffusion, titleDiffusion Models for Reinforcement Learning A Survey, authorZhu, Zhengbang and Zhao, Hanye and He, Haoran and Zhong, Yichao and Zhang, Shenyu and Yu, Yong and Zhang, Weinan,",
+        "tags": []
     }
 }
