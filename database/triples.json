@@ -225902,5 +225902,189 @@
     {
         "head": "reinforcement learning",
         "tail": "survey"
+    },
+    {
+        "head": "azure",
+        "tail": "object-store"
+    },
+    {
+        "head": "azure",
+        "tail": "cloudflare-r2"
+    },
+    {
+        "head": "azure",
+        "tail": "azure-storage"
+    },
+    {
+        "head": "azure",
+        "tail": "amazon-s3"
+    },
+    {
+        "head": "azure",
+        "tail": "google-cloud-storage"
+    },
+    {
+        "head": "azure",
+        "tail": "s3"
+    },
+    {
+        "head": "azure",
+        "tail": "rust"
+    },
+    {
+        "head": "azure",
+        "tail": "pypi"
+    },
+    {
+        "head": "azure",
+        "tail": "storage"
+    },
+    {
+        "head": "object-store",
+        "tail": "cloudflare-r2"
+    },
+    {
+        "head": "object-store",
+        "tail": "azure-storage"
+    },
+    {
+        "head": "object-store",
+        "tail": "amazon-s3"
+    },
+    {
+        "head": "object-store",
+        "tail": "google-cloud-storage"
+    },
+    {
+        "head": "object-store",
+        "tail": "python"
+    },
+    {
+        "head": "object-store",
+        "tail": "s3"
+    },
+    {
+        "head": "object-store",
+        "tail": "rust"
+    },
+    {
+        "head": "object-store",
+        "tail": "pypi"
+    },
+    {
+        "head": "object-store",
+        "tail": "storage"
+    },
+    {
+        "head": "cloudflare-r2",
+        "tail": "azure-storage"
+    },
+    {
+        "head": "cloudflare-r2",
+        "tail": "amazon-s3"
+    },
+    {
+        "head": "cloudflare-r2",
+        "tail": "google-cloud-storage"
+    },
+    {
+        "head": "cloudflare-r2",
+        "tail": "python"
+    },
+    {
+        "head": "cloudflare-r2",
+        "tail": "s3"
+    },
+    {
+        "head": "cloudflare-r2",
+        "tail": "rust"
+    },
+    {
+        "head": "cloudflare-r2",
+        "tail": "pypi"
+    },
+    {
+        "head": "cloudflare-r2",
+        "tail": "storage"
+    },
+    {
+        "head": "azure-storage",
+        "tail": "amazon-s3"
+    },
+    {
+        "head": "azure-storage",
+        "tail": "google-cloud-storage"
+    },
+    {
+        "head": "azure-storage",
+        "tail": "python"
+    },
+    {
+        "head": "azure-storage",
+        "tail": "s3"
+    },
+    {
+        "head": "azure-storage",
+        "tail": "rust"
+    },
+    {
+        "head": "azure-storage",
+        "tail": "pypi"
+    },
+    {
+        "head": "azure-storage",
+        "tail": "storage"
+    },
+    {
+        "head": "amazon-s3",
+        "tail": "google-cloud-storage"
+    },
+    {
+        "head": "amazon-s3",
+        "tail": "python"
+    },
+    {
+        "head": "amazon-s3",
+        "tail": "s3"
+    },
+    {
+        "head": "amazon-s3",
+        "tail": "rust"
+    },
+    {
+        "head": "amazon-s3",
+        "tail": "pypi"
+    },
+    {
+        "head": "amazon-s3",
+        "tail": "storage"
+    },
+    {
+        "head": "google-cloud-storage",
+        "tail": "rust"
+    },
+    {
+        "head": "google-cloud-storage",
+        "tail": "pypi"
+    },
+    {
+        "head": "google-cloud-storage",
+        "tail": "storage"
+    },
+    {
+        "head": "s3",
+        "tail": "pypi"
+    },
+    {
+        "head": "s3",
+        "tail": "storage"
+    },
+    {
+        "head": "pypi",
+        "tail": "storage"
+    },
+    {
+        "head": "simd",
+        "tail": "programmer"
     }
 ]

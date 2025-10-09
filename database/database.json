@@ -48979,5 +48979,37 @@
         "title": "Diff4RLSurvey",
         "summary": "This repository contains a collection of resources and papers on Diffusion Models for RL, accompanying the paper \"Diffusion Models for Reinforcement Learning: A Survey\" \n This repository contains a collection of resources and papers on Diffusion Models for Sequential Decision-Making. rocket Please check out our survey paper Diffusion Models for Reinforcement Learning A Surveyhttpsarxiv.orgabs2311.01223 !image info.compare.png articlezhu2023diffusion, titleDiffusion Models for Reinforcement Learning A Survey, authorZhu, Zhengbang and Zhao, Hanye and He, Haoran and Zhong, Yichao and Zhang, Shenyu and Yu, Yong and Zhang, Weinan,",
         "tags": []
+    },
+    "https://github.com/developmentseed/obstore": {
+        "extra-tags": [
+            "pypi",
+            "storage"
+        ],
+        "date": "2025-10-09",
+        "title": "obstore",
+        "summary": "The simplest, highest-throughput Python interface to S3, GCS & Azure Storage, powered by Rust. \n !PyPIpypibadgepypilink !Conda Versioncondaversionbadgecondaversion !PyPI - Downloadspypi-imgpypi-link pypibadge httpsbadge.fury.iopyobstore.svg pypilink httpspypi.orgprojectobstore condaversionbadge httpsimg.shields.iocondavnconda-forgeobstore.svg condaversion httpsprefix.devchannelsconda-forgepackagesobstore pypi-img httpsstatic.pepy.techbadgeobstoremonth pypi-link httpspypi.orgprojectobstore The simplest, highest-throughput 1 Python interface to Amazon S3s3, Google Cloud Storagegcs, Azure Storageazurestorage, other S3-compliant APIs, powered by Rust. s3 httpsaws.amazon.coms3 gcs httpscloud.google.comstorage azurestorage httpslearn.microsoft.comen-usazurestoragecommonstorage-introduction For Rust developers looking to add objectstore support to their own Python packages, refer to pyo3-objectstorehttpsdocs.rspyo3-objectstorelatestpyo3objectstore.",
+        "tags": [
+            "azure",
+            "object-store",
+            "cloudflare-r2",
+            "azure-storage",
+            "amazon-s3",
+            "google-cloud-storage",
+            "python",
+            "s3",
+            "rust"
+        ]
+    },
+    "https://parallelprogrammer.substack.com/p/why-we-need-simd-the-real-reason": {
+        "extra-tags": [
+            "simd",
+            "programmer"
+        ],
+        "title": "Hackernews Why we need SIMD (parallelprogrammer.substack.com)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2025-10-09"
     }
 }
