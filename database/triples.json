@@ -226086,5 +226086,13 @@
     {
         "head": "simd",
         "tail": "programmer"
+    },
+    {
+        "head": "optimization",
+        "tail": "optimization llm"
+    },
+    {
+        "head": "deep learning",
+        "tail": "optimization llm"
     }
 ]

@@ -49011,5 +49011,16 @@
         ],
         "summary": "",
         "date": "2025-10-09"
+    },
+    "https://centralflows.github.io": {
+        "extra-tags": [
+            "optimization",
+            "deep learning",
+            "optimization llm"
+        ],
+        "title": "Understanding Optimization in Deep Learning with Central Flows",
+        "summary": "",
+        "date": "2025-10-08",
+        "tags": []
     }
 }
