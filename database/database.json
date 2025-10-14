@@ -49022,5 +49022,53 @@
         "summary": "",
         "date": "2025-10-08",
         "tags": []
+    },
+    "https://github.com/Pringled/pyversity": {
+        "extra-tags": [
+            "strategies",
+            "retrieval",
+            "fast",
+            "search"
+        ],
+        "date": "2025-10-14",
+        "title": "pyversity",
+        "summary": "Fast Diversification for Search & Retrieval \n Fast Diversification for Search Retrieval Quickstartquickstart Supported Strategiessupported-strategies Pyversity is a fast, lightweight library for diversifying retrieval results. Retrieval systems often return highly similar items. Pyversity efficiently re-ranks these results to encourage diversity, surfacing items that remain relevant but less redundant. It implements several popular diversification strategies such as MMR, MSD, DPP, and Cover with a clear, unified API. More information about the supported strategies can be found in the supported strategies sectionsupported-strategies. The only dependency is NumPy, making the package very lightweight.",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/unum-cloud/UCall": {
+        "extra-tags": [
+            "fastapi",
+            "rest",
+            "web",
+            "serving"
+        ],
+        "date": "2025-10-14",
+        "title": "UCall",
+        "summary": "Web Serving and Remote Procedure Calls at 50x lower latency and 70x higher bandwidth than FastAPI, implementing JSON-RPC & REST over io_uring \u260e\ufe0f \n UCall JSON Remote Procedure Calls Library Up to 100x Faster than FastAPI nbspnbspnbsp nbspnbspnbsp nbspnbspnbsp nbspnbspnbsp Most modern networking is built either on slow and ambiguous REST APIs or unnecessarily complex gRPC. FastAPI, for example, looks very approachable. We aim to be equally or even simpler to use. FastAPIUCall sh",
+        "tags": [
+            "json",
+            "simd",
+            "rpc",
+            "liburing",
+            "http",
+            "cpython",
+            "dpdk",
+            "io-uring",
+            "fast-api",
+            "epoll",
+            "rpc-framework",
+            "http-server",
+            "tcp-ip",
+            "json-rpc",
+            "python",
+            "rest-api",
+            "linux-kernel",
+            "c",
+            "flask",
+            "tcp",
+            "backend"
+        ]
     }
 }

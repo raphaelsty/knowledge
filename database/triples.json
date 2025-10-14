@@ -226094,5 +226094,429 @@
     {
         "head": "deep learning",
         "tail": "optimization llm"
+    },
+    {
+        "head": "strategies",
+        "tail": "retrieval"
+    },
+    {
+        "head": "strategies",
+        "tail": "fast"
+    },
+    {
+        "head": "strategies",
+        "tail": "search"
+    },
+    {
+        "head": "retrieval",
+        "tail": "fast"
+    },
+    {
+        "head": "json",
+        "tail": "rest-api"
+    },
+    {
+        "head": "json",
+        "tail": "fastapi"
+    },
+    {
+        "head": "json",
+        "tail": "rest"
+    },
+    {
+        "head": "json",
+        "tail": "web"
+    },
+    {
+        "head": "json",
+        "tail": "serving"
+    },
+    {
+        "head": "simd",
+        "tail": "rest-api"
+    },
+    {
+        "head": "simd",
+        "tail": "fastapi"
+    },
+    {
+        "head": "simd",
+        "tail": "rest"
+    },
+    {
+        "head": "simd",
+        "tail": "web"
+    },
+    {
+        "head": "simd",
+        "tail": "serving"
+    },
+    {
+        "head": "rpc",
+        "tail": "rest-api"
+    },
+    {
+        "head": "rpc",
+        "tail": "fastapi"
+    },
+    {
+        "head": "rpc",
+        "tail": "rest"
+    },
+    {
+        "head": "rpc",
+        "tail": "web"
+    },
+    {
+        "head": "rpc",
+        "tail": "serving"
+    },
+    {
+        "head": "liburing",
+        "tail": "rest-api"
+    },
+    {
+        "head": "liburing",
+        "tail": "fastapi"
+    },
+    {
+        "head": "liburing",
+        "tail": "rest"
+    },
+    {
+        "head": "liburing",
+        "tail": "web"
+    },
+    {
+        "head": "liburing",
+        "tail": "serving"
+    },
+    {
+        "head": "http",
+        "tail": "rest-api"
+    },
+    {
+        "head": "http",
+        "tail": "fastapi"
+    },
+    {
+        "head": "http",
+        "tail": "web"
+    },
+    {
+        "head": "http",
+        "tail": "serving"
+    },
+    {
+        "head": "cpython",
+        "tail": "rest-api"
+    },
+    {
+        "head": "cpython",
+        "tail": "fastapi"
+    },
+    {
+        "head": "cpython",
+        "tail": "rest"
+    },
+    {
+        "head": "cpython",
+        "tail": "web"
+    },
+    {
+        "head": "cpython",
+        "tail": "serving"
+    },
+    {
+        "head": "dpdk",
+        "tail": "rest-api"
+    },
+    {
+        "head": "dpdk",
+        "tail": "fastapi"
+    },
+    {
+        "head": "dpdk",
+        "tail": "rest"
+    },
+    {
+        "head": "dpdk",
+        "tail": "web"
+    },
+    {
+        "head": "dpdk",
+        "tail": "serving"
+    },
+    {
+        "head": "io-uring",
+        "tail": "rest-api"
+    },
+    {
+        "head": "io-uring",
+        "tail": "fastapi"
+    },
+    {
+        "head": "io-uring",
+        "tail": "rest"
+    },
+    {
+        "head": "io-uring",
+        "tail": "web"
+    },
+    {
+        "head": "io-uring",
+        "tail": "serving"
+    },
+    {
+        "head": "fast-api",
+        "tail": "rest-api"
+    },
+    {
+        "head": "fast-api",
+        "tail": "fastapi"
+    },
+    {
+        "head": "fast-api",
+        "tail": "rest"
+    },
+    {
+        "head": "fast-api",
+        "tail": "web"
+    },
+    {
+        "head": "fast-api",
+        "tail": "serving"
+    },
+    {
+        "head": "epoll",
+        "tail": "rest-api"
+    },
+    {
+        "head": "epoll",
+        "tail": "fastapi"
+    },
+    {
+        "head": "epoll",
+        "tail": "rest"
+    },
+    {
+        "head": "epoll",
+        "tail": "web"
+    },
+    {
+        "head": "epoll",
+        "tail": "serving"
+    },
+    {
+        "head": "rpc-framework",
+        "tail": "rest-api"
+    },
+    {
+        "head": "rpc-framework",
+        "tail": "fastapi"
+    },
+    {
+        "head": "rpc-framework",
+        "tail": "rest"
+    },
+    {
+        "head": "rpc-framework",
+        "tail": "web"
+    },
+    {
+        "head": "rpc-framework",
+        "tail": "serving"
+    },
+    {
+        "head": "http-server",
+        "tail": "rest-api"
+    },
+    {
+        "head": "http-server",
+        "tail": "fastapi"
+    },
+    {
+        "head": "http-server",
+        "tail": "rest"
+    },
+    {
+        "head": "http-server",
+        "tail": "web"
+    },
+    {
+        "head": "http-server",
+        "tail": "serving"
+    },
+    {
+        "head": "tcp-ip",
+        "tail": "rest-api"
+    },
+    {
+        "head": "tcp-ip",
+        "tail": "fastapi"
+    },
+    {
+        "head": "tcp-ip",
+        "tail": "rest"
+    },
+    {
+        "head": "tcp-ip",
+        "tail": "web"
+    },
+    {
+        "head": "tcp-ip",
+        "tail": "serving"
+    },
+    {
+        "head": "json-rpc",
+        "tail": "rest-api"
+    },
+    {
+        "head": "json-rpc",
+        "tail": "fastapi"
+    },
+    {
+        "head": "json-rpc",
+        "tail": "rest"
+    },
+    {
+        "head": "json-rpc",
+        "tail": "web"
+    },
+    {
+        "head": "json-rpc",
+        "tail": "serving"
+    },
+    {
+        "head": "rest-api",
+        "tail": "linux-kernel"
+    },
+    {
+        "head": "rest-api",
+        "tail": "c"
+    },
+    {
+        "head": "rest-api",
+        "tail": "flask"
+    },
+    {
+        "head": "rest-api",
+        "tail": "tcp"
+    },
+    {
+        "head": "rest-api",
+        "tail": "backend"
+    },
+    {
+        "head": "rest-api",
+        "tail": "fastapi"
+    },
+    {
+        "head": "rest-api",
+        "tail": "rest"
+    },
+    {
+        "head": "rest-api",
+        "tail": "web"
+    },
+    {
+        "head": "rest-api",
+        "tail": "serving"
+    },
+    {
+        "head": "linux-kernel",
+        "tail": "fastapi"
+    },
+    {
+        "head": "linux-kernel",
+        "tail": "rest"
+    },
+    {
+        "head": "linux-kernel",
+        "tail": "web"
+    },
+    {
+        "head": "linux-kernel",
+        "tail": "serving"
+    },
+    {
+        "head": "c",
+        "tail": "fastapi"
+    },
+    {
+        "head": "c",
+        "tail": "rest"
+    },
+    {
+        "head": "c",
+        "tail": "web"
+    },
+    {
+        "head": "c",
+        "tail": "serving"
+    },
+    {
+        "head": "flask",
+        "tail": "rest"
+    },
+    {
+        "head": "flask",
+        "tail": "web"
+    },
+    {
+        "head": "flask",
+        "tail": "serving"
+    },
+    {
+        "head": "tcp",
+        "tail": "fastapi"
+    },
+    {
+        "head": "tcp",
+        "tail": "rest"
+    },
+    {
+        "head": "tcp",
+        "tail": "web"
+    },
+    {
+        "head": "tcp",
+        "tail": "serving"
+    },
+    {
+        "head": "backend",
+        "tail": "fastapi"
+    },
+    {
+        "head": "backend",
+        "tail": "rest"
+    },
+    {
+        "head": "backend",
+        "tail": "serving"
+    },
+    {
+        "head": "fastapi",
+        "tail": "rest"
+    },
+    {
+        "head": "fastapi",
+        "tail": "web"
+    },
+    {
+        "head": "fastapi",
+        "tail": "serving"
+    },
+    {
+        "head": "rest",
+        "tail": "web"
+    },
+    {
+        "head": "rest",
+        "tail": "serving"
+    },
+    {
+        "head": "web",
+        "tail": "serving"
     }
 ]
