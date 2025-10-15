@@ -49070,5 +49070,49 @@
             "tcp",
             "backend"
         ]
+    },
+    "https://github.com/chongyi-zheng/value-flows": {
+        "extra-tags": [
+            "algorithm",
+            "website",
+            "rl",
+            "flow-matching"
+        ],
+        "date": "2025-10-15",
+        "title": "value-flows",
+        "summary": "The official implementation of Value Flows \n Value Flows Paperemsp Website Value Flows is an RL algorithm using flow-matching methods to model the return distribution. This repository contains code for running the Value Flows algorithm and 8 baselines IQL, ReBRAC, FBRAC, IFQL, FQL, C51, IQN, and CODAC. 1. Create an Anaconda environment conda create -n value-flows python3.10.13 -y",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/rewind-reward/ReWiND": {
+        "extra-tags": [
+            "bash",
+            "git",
+            "code",
+            "train",
+            "experiment",
+            "experiments"
+        ],
+        "date": "2025-10-15",
+        "title": "ReWiND",
+        "summary": " \n !ReWiND Teaserrewindteaser.png We provide code to train ReWiND reward models and policies on MetaWorld. The overall pipeline is as follows bash git clone gitgithub.comJiahui-3205ReWiNDRelease.git cd ReWiNDRelease bash bash -i setupReWiNDenv.sh conda activate rewind This project uses Weights Biases WandB for experiment tracking. Before running experiments 1. For Policy Training Edit metaworldpolicytrainingconfigsbaseconfig.yaml lines 15-16",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/karpathy/nanochat": {
+        "extra-tags": [
+            "chatgpt",
+            "llm",
+            "minimal",
+            "codebase"
+        ],
+        "date": "2025-10-15",
+        "title": "nanochat",
+        "summary": "The best ChatGPT that $100 can buy. \n !nanochat logodevnanochat.png This repo is a full-stack implementation of an LLM like ChatGPT in a single, clean, minimal, hackable, dependency-lite codebase. nanochat is designed to run on a single 8XH100 node via scripts like speedrun.shspeedrun.sh, that run the entire pipeline start to end. This includes tokenization, pretraining, finetuning, evaluation, inference, and web serving over a simple UI so that you can talk to your own LLM just like ChatGPT. nanochat will become the capstone project of the course LLM101n being developed by Eureka Labs.",
+        "tags": [
+            "python"
+        ]
     }
 }
