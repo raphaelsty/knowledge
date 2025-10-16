@@ -226606,5 +226606,93 @@
     {
         "head": "minimal",
         "tail": "codebase"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "tex"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "robot-learning"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "lerobot"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "robot"
+    },
+    {
+        "head": "open-source",
+        "tail": "tex"
+    },
+    {
+        "head": "open-source",
+        "tail": "robot-learning"
+    },
+    {
+        "head": "open-source",
+        "tail": "robot"
+    },
+    {
+        "head": "open-source",
+        "tail": "learning"
+    },
+    {
+        "head": "tex",
+        "tail": "robot-learning"
+    },
+    {
+        "head": "tex",
+        "tail": "robotics"
+    },
+    {
+        "head": "tex",
+        "tail": "lerobot"
+    },
+    {
+        "head": "tex",
+        "tail": "tutorial"
+    },
+    {
+        "head": "tex",
+        "tail": "robot"
+    },
+    {
+        "head": "tex",
+        "tail": "learning"
+    },
+    {
+        "head": "robot-learning",
+        "tail": "robotics"
+    },
+    {
+        "head": "robot-learning",
+        "tail": "lerobot"
+    },
+    {
+        "head": "robot-learning",
+        "tail": "tutorial"
+    },
+    {
+        "head": "robot-learning",
+        "tail": "robot"
+    },
+    {
+        "head": "robot-learning",
+        "tail": "learning"
+    },
+    {
+        "head": "robotics",
+        "tail": "tutorial"
+    },
+    {
+        "head": "tutorial",
+        "tail": "robot"
+    },
+    {
+        "head": "robot",
+        "tail": "learning"
     }
 ]

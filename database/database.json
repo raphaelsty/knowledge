@@ -49114,5 +49114,23 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/fracapuano/robot-learning-tutorial": {
+        "extra-tags": [
+            "tutorial",
+            "robot",
+            "learning"
+        ],
+        "date": "2025-10-16",
+        "title": "robot-learning-tutorial",
+        "summary": "All the source code for \"Robot Learning: A Tutorial\". Get involved to be featured in the next iteration! \n This repository contains the source code for the Robot Learning A Tutorial report. This tutorial covers many of the most pressing aspects in modern robot learning, and provides practice examples using lerobot, the robot-learning library developed by Hugging Face. Youre more than welcome to contribute to the next edition of the tutorial!",
+        "tags": [
+            "machine-learning",
+            "open-source",
+            "tex",
+            "robot-learning",
+            "robotics",
+            "lerobot"
+        ]
     }
 }
