@@ -49132,5 +49132,19 @@
             "robotics",
             "lerobot"
         ]
+    },
+    "https://github.com/huggingface/lerobot-libero": {
+        "extra-tags": [
+            "knowledge",
+            "lerobot",
+            "benchmark",
+            "robot"
+        ],
+        "date": "2025-10-17",
+        "title": "lerobot-libero",
+        "summary": "A fork of the official LIBERO benchmark, extended for Hugging Face\u2019s LeRobot  integration and large-scale robotics experiments. \n Bo Liu, Yifeng Zhu, Chongkai Gao, Yihao Feng, Qiang Liu, Yuke Zhu, Peter Stone !pullfigurehttpsgithub.comLifelong-Robot-LearningLIBEROblobmasterimagesfig1.png LIBERO is designed for studying knowledge transfer in multitask and lifelong robot learning problems. Successfully resolving these problems require both declarative knowledge about objectsspatial relationships and procedural knowledge about motionbehaviors. This repository started as a fork of the official LIBERO benchmark",
+        "tags": [
+            "jupyter notebook"
+        ]
     }
 }
