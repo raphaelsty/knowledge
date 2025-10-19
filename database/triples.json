@@ -226926,5 +226926,65 @@
     {
         "head": "finetuning",
         "tail": "source"
+    },
+    {
+        "head": "dataflow",
+        "tail": "static-analysis"
+    },
+    {
+        "head": "dataflow",
+        "tail": "vscode"
+    },
+    {
+        "head": "dataflow",
+        "tail": "code"
+    },
+    {
+        "head": "dataflow",
+        "tail": "ide"
+    },
+    {
+        "head": "dataflow",
+        "tail": "plugin"
+    },
+    {
+        "head": "rust",
+        "tail": "vscode"
+    },
+    {
+        "head": "rust",
+        "tail": "ide"
+    },
+    {
+        "head": "static-analysis",
+        "tail": "vscode"
+    },
+    {
+        "head": "static-analysis",
+        "tail": "code"
+    },
+    {
+        "head": "static-analysis",
+        "tail": "ide"
+    },
+    {
+        "head": "static-analysis",
+        "tail": "plugin"
+    },
+    {
+        "head": "vscode",
+        "tail": "plugin"
+    },
+    {
+        "head": "code",
+        "tail": "ide"
+    },
+    {
+        "head": "code",
+        "tail": "plugin"
+    },
+    {
+        "head": "ide",
+        "tail": "plugin"
     }
 ]

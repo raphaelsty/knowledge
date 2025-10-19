@@ -49248,5 +49248,21 @@
             "information-retrieval",
             "kalm-embedding"
         ]
+    },
+    "https://github.com/willcrichton/flowistry": {
+        "extra-tags": [
+            "code",
+            "ide",
+            "plugin"
+        ],
+        "date": "2025-10-19",
+        "title": "flowistry",
+        "summary": "Flowistry is an IDE plugin for Rust that helps you focus on relevant code. \n Flowistry is a tool that analyzes the information flowhttpsen.wikipedia.orgwikiInformationflowinformationtheory of Rust programs. Flowistry understands whether it's possible for one piece of code to affect another. Flowistry integrates into the IDE to provide a focus mode which helps you focus on the code that's related to your current task. For example, this GIF shows the focus mode when reading a function that unions two sets together",
+        "tags": [
+            "dataflow",
+            "rust",
+            "static-analysis",
+            "vscode"
+        ]
     }
 }
