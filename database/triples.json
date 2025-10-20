@@ -226986,5 +226986,141 @@
     {
         "head": "ide",
         "tail": "plugin"
+    },
+    {
+        "head": "python",
+        "tail": "observability"
+    },
+    {
+        "head": "cursor",
+        "tail": "observability"
+    },
+    {
+        "head": "cursor",
+        "tail": "zero"
+    },
+    {
+        "head": "extension",
+        "tail": "observability"
+    },
+    {
+        "head": "extension",
+        "tail": "zero"
+    },
+    {
+        "head": "ai",
+        "tail": "observability"
+    },
+    {
+        "head": "vscode",
+        "tail": "observability"
+    },
+    {
+        "head": "vscode",
+        "tail": "zero"
+    },
+    {
+        "head": "typescript",
+        "tail": "zero"
+    },
+    {
+        "head": "debugging",
+        "tail": "observability"
+    },
+    {
+        "head": "debugging",
+        "tail": "zero"
+    },
+    {
+        "head": "code",
+        "tail": "observability"
+    },
+    {
+        "head": "code",
+        "tail": "zero"
+    },
+    {
+        "head": "observability",
+        "tail": "zero"
+    },
+    {
+        "head": "blog",
+        "tail": "fastai"
+    },
+    {
+        "head": "blog",
+        "tail": "karpathy"
+    },
+    {
+        "head": "blog",
+        "tail": "tokenizer"
+    },
+    {
+        "head": "blog",
+        "tail": "build"
+    },
+    {
+        "head": "blog",
+        "tail": "gpt"
+    },
+    {
+        "head": "blog",
+        "tail": "tokenization"
+    },
+    {
+        "head": "fastai",
+        "tail": "karpathy"
+    },
+    {
+        "head": "fastai",
+        "tail": "tokenizer"
+    },
+    {
+        "head": "fastai",
+        "tail": "build"
+    },
+    {
+        "head": "fastai",
+        "tail": "gpt"
+    },
+    {
+        "head": "fastai",
+        "tail": "tokenization"
+    },
+    {
+        "head": "karpathy",
+        "tail": "tokenizer"
+    },
+    {
+        "head": "karpathy",
+        "tail": "build"
+    },
+    {
+        "head": "karpathy",
+        "tail": "gpt"
+    },
+    {
+        "head": "karpathy",
+        "tail": "tokenization"
+    },
+    {
+        "head": "tokenizer",
+        "tail": "build"
+    },
+    {
+        "head": "tokenizer",
+        "tail": "gpt"
+    },
+    {
+        "head": "build",
+        "tail": "gpt"
+    },
+    {
+        "head": "build",
+        "tail": "tokenization"
+    },
+    {
+        "head": "gpt",
+        "tail": "tokenization"
     }
 ]

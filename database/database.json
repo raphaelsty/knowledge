@@ -49264,5 +49264,40 @@
             "static-analysis",
             "vscode"
         ]
+    },
+    "https://github.com/ariana-dot-dev/ariana-debugger": {
+        "extra-tags": [
+            "code",
+            "observability",
+            "zero"
+        ],
+        "date": "2025-10-20",
+        "title": "ariana-debugger",
+        "summary": "Observability and runtime visualization for JS/TS/Python code with zero code change \n Ariana Debug what happens when your code runs, using Coding Agents with zero code change Ariana is a CLI to automatically add observability to your code and an IDE extension to consume it provide context-aware debugging capabilities to coding agents. You don't have to change any code in your codebase or specify breakpoints. Currently supports JSTS Python.",
+        "tags": [
+            "python",
+            "cursor",
+            "extension",
+            "ai",
+            "vscode",
+            "typescript",
+            "debugging"
+        ]
+    },
+    "https://www.fast.ai/posts/2025-10-16-karpathy-tokenizers": {
+        "extra-tags": [
+            "build",
+            "gpt",
+            "tokenization"
+        ],
+        "title": "Let\u2019s Build the GPT Tokenizer: A Complete Guide to Tokenization in LLMs",
+        "summary": "A text and code version of Karpathy\u2019s famous tokenizer video.",
+        "date": "2025-10-19",
+        "tags": [
+            "blog",
+            "fastai",
+            "karpathy",
+            "tokenizer"
+        ]
     }
 }
