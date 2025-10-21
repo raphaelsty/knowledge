@@ -49299,5 +49299,18 @@
             "karpathy",
             "tokenizer"
         ]
+    },
+    "https://github.com/thib-s/flash-newton-schulz": {
+        "extra-tags": [
+            "algorithm",
+            "paper-implementations",
+            "efficient-implementations"
+        ],
+        "date": "2025-10-21",
+        "title": "flash-newton-schulz",
+        "summary": "My attempt to improve the speed of the newton schulz algorithm, starting from the dion implementation. \n My attempt to improve the speed of the newton schulz algorithm, starting from the dion implementation. Disclaimer this work is still in progress, especially I want ot highlight that this approach change the underlying algorithm. So extra verification should be done before integrating it in optimizers like dionmuon. For this implementation I started from the dion implementation of newton schulzhttpsgithub.commicrosoftdion",
+        "tags": [
+            "python"
+        ]
     }
 }
