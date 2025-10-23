@@ -49312,5 +49312,20 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/huggingface/sentence-transformers": {
+        "extra-tags": [
+            "package",
+            "models",
+            "transformers",
+            "embeddings",
+            "sentence-transformers"
+        ],
+        "date": "2025-10-23",
+        "title": "sentence-transformers",
+        "summary": "State-of-the-Art Text Embeddings \n !GitHub - Licensehttpsimg.shields.iogithublicenseUKPLabsentence-transformers?logogithubstyleflatcolorgreengithub-license !PyPI - Python Versionhttpsimg.shields.iopypipyversionssentence-transformers?logopypistyleflatcolorbluepypi-package !PyPI - Package Versionhttpsimg.shields.iopypivsentence-transformers?logopypistyleflatcolororangepypi-package !Docs - GitHub.iohttpsimg.shields.iostaticv1?logogithubstyleflatcolorpinklabeldocsmessagesentence-transformersdocs-package This framework provides an easy method to compute embeddings for accessing, using, and training state-of-the-art embedding and reranker models. It can be used to compute embeddings using Sentence Transformer models quickstarthttpssbert.netdocsquickstart.htmlsentence-transformer, to calculate similarity scores using Cross-Encoder a.k.a. reranker models quickstarthttpssbert.netdocsquickstart.htmlcross-encoder or to generate sparse embeddings using Sparse Encoder models quickstarthttpssbert.netdocsquickstart.htmlsparse-encoder. This unlocks a wide range of applications, including semantic searchhttpssbert.netexamplesapplicationssemantic-searchREADME.html, semantic textual similarityhttpssbert.netdocssentencetransformerusagesemantictextualsimilarity.html, and paraphrase mininghttpssbert.netexamplesapplicationsparaphrase-miningREADME.html.",
+        "tags": [
+            "python"
+        ]
     }
 }

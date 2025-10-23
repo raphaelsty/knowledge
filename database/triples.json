@@ -227130,5 +227130,25 @@
     {
         "head": "algorithm",
         "tail": "efficient-implementations"
+    },
+    {
+        "head": "package",
+        "tail": "models"
+    },
+    {
+        "head": "package",
+        "tail": "transformers"
+    },
+    {
+        "head": "package",
+        "tail": "embeddings"
+    },
+    {
+        "head": "package",
+        "tail": "sentence-transformers"
+    },
+    {
+        "head": "models",
+        "tail": "sentence-transformers"
     }
 ]
