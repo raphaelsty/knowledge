@@ -49327,5 +49327,19 @@
         "tags": [
             "python"
         ]
+    },
+    "https://pytorch.org/blog/introducing-pytorch-monarch/": {
+        "extra-tags": [
+            "pytorch",
+            "now",
+            "ml",
+            "asynchronous"
+        ],
+        "title": "Hackernews PyTorch Monarch (pytorch.org)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "We now live in a world where ML workflows (pre-training, post training, etc) are heterogeneous, must contend with hardware failures, are increasingly asynchronous and highly dynamic. Traditionally, PyTorch has relied on an HPC-style multi-controller model, where multiple copies of the same script are launched across different machines, each running its",
+        "date": "2025-10-24"
     }
 }

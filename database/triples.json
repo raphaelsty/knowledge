@@ -227150,5 +227150,25 @@
     {
         "head": "models",
         "tail": "sentence-transformers"
+    },
+    {
+        "head": "pytorch",
+        "tail": "now"
+    },
+    {
+        "head": "pytorch",
+        "tail": "asynchronous"
+    },
+    {
+        "head": "now",
+        "tail": "ml"
+    },
+    {
+        "head": "now",
+        "tail": "asynchronous"
+    },
+    {
+        "head": "ml",
+        "tail": "asynchronous"
     }
 ]
