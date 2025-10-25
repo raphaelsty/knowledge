@@ -49341,5 +49341,19 @@
         ],
         "summary": "We now live in a world where ML workflows (pre-training, post training, etc) are heterogeneous, must contend with hardware failures, are increasingly asynchronous and highly dynamic. Traditionally, PyTorch has relied on an HPC-style multi-controller model, where multiple copies of the same script are launched across different machines, each running its",
         "date": "2025-10-24"
+    },
+    "https://github.com/kscalelabs/lekbot_vla_data": {
+        "extra-tags": [
+            "lerobot",
+            "package",
+            "hardware",
+            "repository"
+        ],
+        "date": "2025-10-25",
+        "title": "lekbot_vla_data",
+        "summary": " \n This repository contains Python packages for integrating custom hardware with the LeRobot ecosystem. Each package follows the LeRobot plugin conventions for automatic discovery. lerobot-hardware-integration README.md pyproject.toml Root workspace configuration requirements.txt Common dependencies lerobotrobotkbot KBot robot integration package lerobotteleoperatorteleop Teleop device integration package",
+        "tags": [
+            "python"
+        ]
     }
 }

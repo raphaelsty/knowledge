@@ -227170,5 +227170,17 @@
     {
         "head": "ml",
         "tail": "asynchronous"
+    },
+    {
+        "head": "lerobot",
+        "tail": "package"
+    },
+    {
+        "head": "package",
+        "tail": "hardware"
+    },
+    {
+        "head": "package",
+        "tail": "repository"
     }
 ]
