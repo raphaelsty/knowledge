@@ -227182,5 +227182,33 @@
     {
         "head": "package",
         "tail": "repository"
+    },
+    {
+        "head": "python",
+        "tail": "future"
+    },
+    {
+        "head": "was",
+        "tail": "future"
+    },
+    {
+        "head": "pytorch",
+        "tail": "api"
+    },
+    {
+        "head": "pytorch",
+        "tail": "modern"
+    },
+    {
+        "head": "api",
+        "tail": "modern"
+    },
+    {
+        "head": "api",
+        "tail": "backend"
+    },
+    {
+        "head": "modern",
+        "tail": "backend"
     }
 ]

@@ -49355,5 +49355,32 @@
         "tags": [
             "python"
         ]
+    },
+    "https://blog.baro.dev/p/the-future-of-python-web-services-looks-gil-free": {
+        "extra-tags": [
+            "python",
+            "was",
+            "future"
+        ],
+        "title": "Hackernews The future of Python web services looks GIL-free (baro.dev)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "Python 3.14 was released at the beginning of the month. This release was particularly interesting to me because of the improvements on the \"free-threaded\" variant of the interpreter. Specifically, the two major changes when compared to the free-threaded variant of Python 3.13 are: Miguel Grinberg put together a nice article",
+        "date": "2025-10-26"
+    },
+    "https://pytorch.org/blog/torchcomms/": {
+        "extra-tags": [
+            "pytorch",
+            "api",
+            "modern",
+            "backend"
+        ],
+        "title": "Hackernews Torchcomms: A modern PyTorch communications API (pytorch.org)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "Introduction Torchcomms is a new experimental, lightweight communication API intended for use with PyTorch Distributed (PTD). In addition to the core API, we are open-sourcing NCCLX, a new backend we developed to scale to over 100,000 GPUs. With our first release of torchcomms, we\u2019re delivering the foundational APIs and backends",
+        "date": "2025-10-26"
     }
 }
