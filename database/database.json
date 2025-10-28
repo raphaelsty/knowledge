@@ -49382,5 +49382,55 @@
         ],
         "summary": "Introduction Torchcomms is a new experimental, lightweight communication API intended for use with PyTorch Distributed (PTD). In addition to the core API, we are open-sourcing NCCLX, a new backend we developed to scale to over 100,000 GPUs. With our first release of torchcomms, we\u2019re delivering the foundational APIs and backends",
         "date": "2025-10-26"
+    },
+    "https://github.com/johannschopplich/toon": {
+        "extra-tags": [
+            "notation",
+            "data",
+            "json",
+            "llms"
+        ],
+        "date": "2025-10-28",
+        "title": "toon",
+        "summary": "\ud83c\udf92 Token-Oriented Object Notation \u2013 JSON for LLMs at half the token cost \n !TOON logo with stepbystep guide..githubog.png Token-Oriented Object Notation is a compact, human-readable format designed for passing structured data to Large Language Models with significantly reduced token usage. TOON excels at uniform complex objects multiple fields per row, same structure across items. It borrows YAML's indentation-based structure for nested objects and CSV's tabular format for uniform data rows, then optimizes both for token efficiency in LLM contexts.",
+        "tags": [
+            "typescript"
+        ]
+    },
+    "https://github.com/AmelieChatelain/long-context-surely-killed-RAG": {
+        "extra-tags": [
+            "rag",
+            "context",
+            "streamlit",
+            "long-context"
+        ],
+        "date": "2025-10-28",
+        "title": "long-context-surely-killed-RAG",
+        "summary": "Long context killed RAG - or, did it? \n A little Streamlit app for checking how much RAG vs long-context setups really cost. Stream it, tweak a few sliders, and see how rAg iS dEaD jUsT uSe LoNg cOnTeXt. The demo is available now at Long Context Surely Killed RAGhttpslong-context-surely-killed-rag.streamlit.app. bash pip install -r requirements.txt streamlit run app.py",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/perspective-dev/perspective": {
+        "extra-tags": [
+            "data",
+            "visualization",
+            "component",
+            "streaming"
+        ],
+        "date": "2025-10-28",
+        "title": "perspective",
+        "summary": "A data visualization and analytics component, especially well-suited for large and/or streaming datasets. \n Perspective is an interactive analytics and data visualization component, which is especially well-suited for large andor streaming datasets. Use it to create user-configurable reports, dashboards, notebooks and applications. for WebAssemblyhttpswebassembly.org, Pythonhttpswww.python.org and Rusthttpswww.rust-lang.org, with readwritestreaming for Apache Arrowhttpsarrow.apache.org, and a high-performance columnar expression language based on ExprTKhttpsgithub.comArashPartowexprtk. Custom Elementhttpsdeveloper.mozilla.orgen-USdocsWebWebComponentsUsingcustomelements, powered either in-browser via WebAssembly or virtually via WebSocket server",
+        "tags": [
+            "analytics",
+            "bi",
+            "javascript",
+            "python",
+            "webassembly",
+            "c++",
+            "jupyter",
+            "real-time",
+            "data-visualization"
+        ]
     }
 }
