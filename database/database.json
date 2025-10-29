@@ -49432,5 +49432,19 @@
             "real-time",
             "data-visualization"
         ]
+    },
+    "https://github.com/Alibaba-NLP/E2Rank": {
+        "extra-tags": [
+            "embedding",
+            "text",
+            "efficient",
+            "listwise"
+        ],
+        "date": "2025-10-29",
+        "title": "E2Rank",
+        "summary": "E2Rank: Your Text Embedding can Also be an Effective and Efficient Listwise Reranker \n E2Rank Your Text Embedding can Also be an Effective and Efficient Listwise Reranker Website Arxiv Paper Huggingface Collection Citation We introduce textrmE2textRank, meaning Efficient Embedding-based Ranking also meaning Embedding-to-Rank, which extends a single text embedding model to perform both high-quality retrieval and listwise reranking,",
+        "tags": [
+            "python"
+        ]
     }
 }

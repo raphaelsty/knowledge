@@ -227358,5 +227358,25 @@
     {
         "head": "component",
         "tail": "streaming"
+    },
+    {
+        "head": "python",
+        "tail": "efficient"
+    },
+    {
+        "head": "python",
+        "tail": "listwise"
+    },
+    {
+        "head": "embedding",
+        "tail": "listwise"
+    },
+    {
+        "head": "text",
+        "tail": "listwise"
+    },
+    {
+        "head": "efficient",
+        "tail": "listwise"
     }
 ]
