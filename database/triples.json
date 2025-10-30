@@ -227378,5 +227378,21 @@
     {
         "head": "efficient",
         "tail": "listwise"
+    },
+    {
+        "head": "python",
+        "tail": "mteb"
+    },
+    {
+        "head": "mteb",
+        "tail": "embedding"
+    },
+    {
+        "head": "mteb",
+        "tail": "data"
+    },
+    {
+        "head": "benchmark",
+        "tail": "embedding"
     }
 ]

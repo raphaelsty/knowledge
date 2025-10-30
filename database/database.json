@@ -49446,5 +49446,19 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/embeddings-benchmark/results": {
+        "extra-tags": [
+            "mteb",
+            "benchmark",
+            "embedding",
+            "data"
+        ],
+        "date": "2025-10-30",
+        "title": "results",
+        "summary": "Data for the MTEB leaderboard \n benchmark mteb type evaluation submissionname MTEB This repository contains the results of the embedding benchmark evaluated using the package mteb. Reference ------------------- ---------------------------------------------------------------------------------------- Leaderboard An up to date leaderboard of embedding models mteb Guides and instructions on how to use mteb, including running, submitting scores, etc.",
+        "tags": [
+            "python"
+        ]
     }
 }
