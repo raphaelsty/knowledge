@@ -49460,5 +49460,21 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/aoberai/trl": {
+        "extra-tags": [
+            "trl",
+            "rl",
+            "learning",
+            "divide",
+            "dependencies",
+            "install"
+        ],
+        "date": "2025-10-31",
+        "title": "trl",
+        "summary": "Code for \"Transitive RL: Value Learning via Divide and Conquer\" \n Transitive RL Value Learning via Divide and Conquer Paper emsp !teaserassetsteaser.png TRL requires Python 3.9 and is based on JAX. The main dependencies are jax 0.4.26, ogbench 1.1.0, and gymnasium 0.29.1. To install the full dependencies, simply run bash pip install -r requirements.txt The main implementation of TRL is in agentstrl.pyagentstrl.py,",
+        "tags": [
+            "python"
+        ]
     }
 }
