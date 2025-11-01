@@ -49476,5 +49476,55 @@
         "tags": [
             "python"
         ]
+    },
+    "https://ashishb.net/programming/using-python-uv-inside-docker/": {
+        "extra-tags": [
+            "practice"
+        ],
+        "title": "Best practices for using Python & uv inside Docker",
+        "summary": "Best practices for using Python & UV inside Docker",
+        "date": "2025-10-31",
+        "tags": [
+            "docker",
+            "python",
+            "uv"
+        ]
+    },
+    "http://arxiv.org/abs/2504.05181": {
+        "extra-tags": [
+            "optimization",
+            "document",
+            "reinforcement learning",
+            "retrieval"
+        ],
+        "title": "Lightweight and Direct Document Relevance Optimization for Generative Information Retrieval",
+        "summary": "Generative information retrieval (GenIR) is a promising neural retrieval paradigm that formulates document retrieval as a document identifier (docid) generation task, allowing for end-to-end optimization toward a unified global retrieval objective. However, existing GenIR models suffer from token-level misalignment, where models trained to predict the next token often fail to capture document-level relevance effectively. While reinforcement learning-based methods, such as reinforcement learning from relevance feedback (RLRF), aim to address this misalignment through reward modeling, they introduce significant complexity, requiring the optimization of an auxiliary reward function followed by reinforcement fine-tuning, which is computationally expensive and often unstable. To address these challenges, we propose direct document relevance optimization (DDRO), which aligns token-level docid generation with document-level relevance estimation through direct optimization via pairwise ranking, eliminating the need for explicit reward modeling and reinforcement learning. Experimental results on benchmark datasets, including MS MARCO document and Natural Questions, show that DDRO outperforms reinforcement learning-based methods, achieving a 7.4% improvement in MRR@10 for MS MARCO and a 19.9% improvement for Natural Questions. These findings highlight DDRO's potential to enhance retrieval effectiveness with a simplified optimization approach. By framing alignment as a direct optimization problem, DDRO simplifies the ranking optimization pipeline of GenIR models while offering a viable alternative to reinforcement learning-based methods.",
+        "date": "2025-10-31",
+        "tags": [
+            "2025",
+            "computer science - artificial intelligence",
+            "computer science - digital libraries",
+            "computer science - information retrieval",
+            "computer science - machine learning",
+            "sigir"
+        ]
+    },
+    "http://arxiv.org/abs/2407.17274": {
+        "extra-tags": [
+            "retrieval",
+            "image",
+            "text-to-image",
+            "generation"
+        ],
+        "title": "Revolutionizing Text-to-Image Retrieval as Autoregressive Token-to-Voken Generation",
+        "summary": "Text-to-image retrieval is a fundamental task in multimedia processing, aiming to retrieve semantically relevant cross-modal content. Traditional studies have typically approached this task as a discriminative problem, matching the text and image via the cross-attention mechanism (one-tower framework) or in a common embedding space (two-tower framework). Recently, generative cross-modal retrieval has emerged as a new research line, which assigns images with unique string identifiers and generates the target identifier as the retrieval target. Despite its great potential, existing generative approaches are limited due to the following issues: insufficient visual information in identifiers, misalignment with high-level semantics, and learning gap towards the retrieval target. To address the above issues, we propose an autoregressive voken generation method, named AVG. AVG tokenizes images into vokens, i.e., visual tokens, and innovatively formulates the text-to-image retrieval task as a token-to-voken generation problem. AVG discretizes an image into a sequence of vokens as the identifier of the image, while maintaining the alignment with both the visual information and high-level semantics of the image. Additionally, to bridge the learning gap between generative training and the retrieval target, we incorporate discriminative training to modify the learning direction during token-to-voken training. Extensive experiments demonstrate that AVG achieves superior results in both effectiveness and efficiency.",
+        "date": "2025-10-31",
+        "tags": [
+            "2025",
+            "computer science - artificial intelligence",
+            "computer science - computer vision and pattern recognition",
+            "computer science - multimedia",
+            "sigir"
+        ]
     }
 }

@@ -227446,5 +227446,245 @@
     {
         "head": "dependencies",
         "tail": "install"
+    },
+    {
+        "head": "docker",
+        "tail": "uv"
+    },
+    {
+        "head": "docker",
+        "tail": "practice"
+    },
+    {
+        "head": "python",
+        "tail": "uv"
+    },
+    {
+        "head": "uv",
+        "tail": "practice"
+    },
+    {
+        "head": "2025",
+        "tail": "computer science - artificial intelligence"
+    },
+    {
+        "head": "2025",
+        "tail": "computer science - digital libraries"
+    },
+    {
+        "head": "2025",
+        "tail": "computer science - information retrieval"
+    },
+    {
+        "head": "2025",
+        "tail": "computer science - machine learning"
+    },
+    {
+        "head": "2025",
+        "tail": "sigir"
+    },
+    {
+        "head": "2025",
+        "tail": "optimization"
+    },
+    {
+        "head": "2025",
+        "tail": "document"
+    },
+    {
+        "head": "2025",
+        "tail": "reinforcement learning"
+    },
+    {
+        "head": "2025",
+        "tail": "retrieval"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "computer science - digital libraries"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "sigir"
+    },
+    {
+        "head": "computer science - digital libraries",
+        "tail": "computer science - information retrieval"
+    },
+    {
+        "head": "computer science - digital libraries",
+        "tail": "computer science - machine learning"
+    },
+    {
+        "head": "computer science - digital libraries",
+        "tail": "sigir"
+    },
+    {
+        "head": "computer science - digital libraries",
+        "tail": "optimization"
+    },
+    {
+        "head": "computer science - digital libraries",
+        "tail": "document"
+    },
+    {
+        "head": "computer science - digital libraries",
+        "tail": "reinforcement learning"
+    },
+    {
+        "head": "computer science - digital libraries",
+        "tail": "retrieval"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "sigir"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "optimization"
+    },
+    {
+        "head": "computer science - information retrieval",
+        "tail": "reinforcement learning"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "sigir"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "document"
+    },
+    {
+        "head": "computer science - machine learning",
+        "tail": "reinforcement learning"
+    },
+    {
+        "head": "sigir",
+        "tail": "optimization"
+    },
+    {
+        "head": "sigir",
+        "tail": "document"
+    },
+    {
+        "head": "sigir",
+        "tail": "reinforcement learning"
+    },
+    {
+        "head": "optimization",
+        "tail": "document"
+    },
+    {
+        "head": "optimization",
+        "tail": "reinforcement learning"
+    },
+    {
+        "head": "optimization",
+        "tail": "retrieval"
+    },
+    {
+        "head": "document",
+        "tail": "reinforcement learning"
+    },
+    {
+        "head": "reinforcement learning",
+        "tail": "retrieval"
+    },
+    {
+        "head": "2025",
+        "tail": "computer science - computer vision and pattern recognition"
+    },
+    {
+        "head": "2025",
+        "tail": "computer science - multimedia"
+    },
+    {
+        "head": "2025",
+        "tail": "image"
+    },
+    {
+        "head": "2025",
+        "tail": "text-to-image"
+    },
+    {
+        "head": "2025",
+        "tail": "generation"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "computer science - multimedia"
+    },
+    {
+        "head": "computer science - artificial intelligence",
+        "tail": "text-to-image"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "computer science - multimedia"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "sigir"
+    },
+    {
+        "head": "computer science - computer vision and pattern recognition",
+        "tail": "text-to-image"
+    },
+    {
+        "head": "computer science - multimedia",
+        "tail": "sigir"
+    },
+    {
+        "head": "computer science - multimedia",
+        "tail": "retrieval"
+    },
+    {
+        "head": "computer science - multimedia",
+        "tail": "image"
+    },
+    {
+        "head": "computer science - multimedia",
+        "tail": "text-to-image"
+    },
+    {
+        "head": "computer science - multimedia",
+        "tail": "generation"
+    },
+    {
+        "head": "sigir",
+        "tail": "image"
+    },
+    {
+        "head": "sigir",
+        "tail": "text-to-image"
+    },
+    {
+        "head": "sigir",
+        "tail": "generation"
+    },
+    {
+        "head": "retrieval",
+        "tail": "image"
+    },
+    {
+        "head": "retrieval",
+        "tail": "text-to-image"
+    },
+    {
+        "head": "retrieval",
+        "tail": "generation"
+    },
+    {
+        "head": "image",
+        "tail": "text-to-image"
+    },
+    {
+        "head": "image",
+        "tail": "generation"
+    },
+    {
+        "head": "text-to-image",
+        "tail": "generation"
     }
 ]
