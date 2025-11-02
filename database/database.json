@@ -49526,5 +49526,45 @@
             "computer science - multimedia",
             "sigir"
         ]
+    },
+    "https://github.com/Dexmal/dexbotic": {
+        "extra-tags": [
+            "models",
+            "open-source",
+            "vision-language",
+            "pretrained models"
+        ],
+        "date": "2025-11-02",
+        "title": "dexbotic",
+        "summary": "Dexbotic: Open-Source Vision-Language-Action Toolbox \n Dexbotic aims to provide a one-stop VLA research service for professionals in embodied intelligence field. It offers a codebase that supports multiple mainstream VLA policies simultaneously, allowing users to reproduce various mainstream VLA methods with just a single environment setup based on the pretrained models we provide. Additionally, Dexbotic will continuously update to include more of the latest pre-trained foundation models and cutting-edge VLA models in the industry.",
+        "tags": [
+            "codebase",
+            "pi0",
+            "real-world",
+            "simulation",
+            "vla",
+            "python",
+            "toolbox",
+            "vln",
+            "robotics"
+        ]
+    },
+    "http://arxiv.org/abs/2510.17558": {
+        "extra-tags": [
+            "extension",
+            "transformer"
+        ],
+        "title": "The Free Transformer",
+        "summary": "We propose an extension of the decoder Transformer that conditions its generative process on random latent variables which are learned without supervision thanks to a variational procedure. Experimental evaluations show that allowing such a conditioning translates into substantial improvements on downstream tasks.",
+        "date": "2025-11-01",
+        "tags": [
+            "computer science - machine learning",
+            "decoder",
+            "encoder",
+            "francois fleuret",
+            "free transformer",
+            "meta",
+            "transformers"
+        ]
     }
 }
