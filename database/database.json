@@ -49566,5 +49566,22 @@
             "meta",
             "transformers"
         ]
+    },
+    "https://github.com/toon-format/toon": {
+        "extra-tags": [
+            "data",
+            "notation",
+            "json"
+        ],
+        "date": "2025-11-03",
+        "title": "toon",
+        "summary": "\ud83c\udf92 Token-Oriented Object Notation (TOON) \u2013 JSON for LLM prompts at half the tokens. Spec, benchmarks & reference implementation. \n !TOON logo with stepbystep guide..githubog.png Token-Oriented Object Notation is a compact, human-readable serialization format designed for passing structured data to Large Language Models with significantly reduced token usage. It's intended for LLM input, not output. TOON's sweet spot is uniform arrays of objects multiple fields per row, same structure across items. It borrows YAML's indentation-based structure for nested objects and CSV's tabular format for uniform data rows, then optimizes both for token efficiency in LLM contexts. For deeply nested or non-uniform data, JSON may be more efficient.",
+        "tags": [
+            "llm",
+            "typescript",
+            "serialization",
+            "tokenization",
+            "data-format"
+        ]
     }
 }
