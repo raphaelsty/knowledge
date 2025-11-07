@@ -49669,5 +49669,35 @@
             "pylate",
             "sentence-transformers"
         ]
+    },
+    "https://github.com/iblnkn/rosetta": {
+        "extra-tags": [
+            "policy",
+            "package",
+            "interface",
+            "lerobot"
+        ],
+        "date": "2025-11-07",
+        "title": "rosetta",
+        "summary": " \n rosetta is a ROS 2 package that standardizes the interface between ROS 2 topics and LeRobot policies using a small YAML contract. It provides This keeps train serve record aligned and minimizes datashape skew. ACT policy drive up to the red pillar ACT policy drive up to the red pillar",
+        "tags": [
+            "python"
+        ]
+    },
+    "http://arxiv.org/abs/2405.05374": {
+        "extra-tags": [
+            "models",
+            "text",
+            "embedding",
+            "model"
+        ],
+        "title": "Arctic-Embed: Scalable, Efficient, and Accurate Text Embedding Models",
+        "summary": "This report describes the training dataset creation and recipe behind the family of \\texttt{arctic-embed} text embedding models (a set of five models ranging from 22 to 334 million parameters with weights open-sourced under an Apache-2 license). At the time of their release, each model achieved state-of-the-art retrieval accuracy for models of their size on the MTEB Retrieval leaderboard, with the largest model, arctic-embed-l outperforming closed source embedding models such as Cohere's embed-v3 and Open AI's text-embed-3-large. In addition to the details of our training recipe, we have provided several informative ablation studies, which we believe are the cause of our model performance.",
+        "date": "2025-11-06",
+        "tags": [
+            "computer science - artificial intelligence",
+            "computer science - computation and language",
+            "computer science - information retrieval"
+        ]
     }
 }
