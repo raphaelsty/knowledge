@@ -49699,5 +49699,55 @@
             "computer science - computation and language",
             "computer science - information retrieval"
         ]
+    },
+    "https://github.com/dbos-inc/dbos-transact-py": {
+        "extra-tags": [
+            "postgres",
+            "workflow"
+        ],
+        "date": "2025-11-09",
+        "title": "dbos-transact-py",
+        "summary": "Lightweight Durable Python Workflows \n DBOS provides lightweight durable workflows built on top of Postgres. Instead of managing your own workflow orchestrator or task queue system, you can use DBOS to add durable workflows and queues to your program in just a few lines of code. To get started, follow the quickstarthttpsdocs.dbos.devquickstart to install this open-source library and connect it to a Postgres database.",
+        "tags": [
+            "workflow-engine",
+            "microservices-orchestration",
+            "python",
+            "orchestration",
+            "cronjob-scheduler",
+            "durable-execution",
+            "microservice-orchestration",
+            "dbos",
+            "agentic-workflow",
+            "sqlite",
+            "workflows",
+            "postgresql"
+        ]
+    },
+    "https://github.com/NVlabs/DiffusionNFT": {
+        "extra-tags": [
+            "diffusion",
+            "online",
+            "reinforcement",
+            "policy"
+        ],
+        "date": "2025-11-09",
+        "title": "DiffusionNFT",
+        "summary": "DiffusionNFT: Online Diffusion Reinforcement with Forward Process \n DiffusionNFTOnline Diffusion Reinforcement with Forward Process nbsp nbsp nbsp DiffusionNFT is a new online reinforcement learning paradigm for diffusion models that performs policy optimization directly on the forward diffusion process. The DiffusionNFT pipeline consists of 1. Data Collection The current sampling policy vtextold generates images, which are evaluated by a reward function.",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://fsfe.org/news/2025/news-20251105-01.en.html": {
+        "extra-tags": [
+            "apple",
+            "software",
+            "tech"
+        ],
+        "title": "Hackernews Apple's \"notarisation\" \u2013 blocking software freedom of developers and users (fsfe.org)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "Legal Corner: Apple\u2019s \u201cnotarisation\u201d \u2013 blocking software freedom of developers and users! The EU\u2019s Digital Markets Act is supposed to shake up the power of tech giants by giving developers and users more choice. Apple\u2019s \u201cnotarisation\u201d of mobile apps contradicts these objectives. A civil-society complaint against Apple\u2019s monopolistic control over",
+        "date": "2025-11-09"
     }
 }
