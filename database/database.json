@@ -49749,5 +49749,27 @@
         ],
         "summary": "Legal Corner: Apple\u2019s \u201cnotarisation\u201d \u2013 blocking software freedom of developers and users! The EU\u2019s Digital Markets Act is supposed to shake up the power of tech giants by giving developers and users more choice. Apple\u2019s \u201cnotarisation\u201d of mobile apps contradicts these objectives. A civil-society complaint against Apple\u2019s monopolistic control over",
         "date": "2025-11-09"
+    },
+    "http://arxiv.org/abs/2506.12229": {
+        "extra-tags": [
+            "text",
+            "data",
+            "index",
+            "search",
+            "benchmark",
+            "benchmarks"
+        ],
+        "title": "Infini-gram mini: Exact n-gram Search at the Internet Scale with FM-Index",
+        "summary": "Language models are trained mainly on massive text data from the Internet, and it becomes increasingly important to understand this data source. Exact-match search engines enable searching in large text corpora - counting string appearances and retrieving the enclosing documents - yet the high storage overhead hinders their application on Internet-scale data. We present infini-gram mini, an efficient and scalable system that can make petabyte-level text corpora searchable. Based on the FM-index data structure (Ferragina and Manzini, 2000), which simultaneously indexes and compresses text, our system creates indexes with size only 44% of the corpus. Infini-gram mini greatly improves upon the best existing implementation of FM-index in terms of indexing speed (18$\\times$) and memory use during both indexing (3.2$\\times$ reduction) and querying (down to a negligible amount). We index 83TB of Internet text in 99 days with a single CPU node with 128 vCPUs (or 19 hours if using 137 such nodes). We show one important use case of infini-gram mini in a large-scale analysis of benchmark contamination. We find several core LM evaluation benchmarks to be heavily contaminated in Internet crawls (up to 74.2% in GSM8K), which could lead to overestimating the capabilities of language models if trained on such data. We host a benchmark contamination bulletin to share the contamination rate of many core and community-contributed benchmarks. We also release a web interface and an API endpoint to serve general search queries on infini-gram mini indexes.",
+        "date": "2025-11-09",
+        "tags": [
+            "computer science - computation and language",
+            "best paper award",
+            "emnlp",
+            "information retrieval",
+            "information-retrieval",
+            "lexical search",
+            "ngrams"
+        ]
     }
 }
