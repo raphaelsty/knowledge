@@ -49771,5 +49771,294 @@
             "lexical search",
             "ngrams"
         ]
+    },
+    "https://github.com/ramkikannan/planc": {
+        "extra-tags": [
+            "data",
+            "matrix"
+        ],
+        "date": "2025-11-11",
+        "title": "planc",
+        "summary": "Distributed NMF/NTF Library \n Given an input matrix A, Nonnegative Matrix Factorization NMF is about determining two nonnegative matrices called factors, corresponding to the rows and columns of A respectively, such that the product of them closely approximates A. In recent times, there is a huge interest for nonnegative factorizations for data with more than two modes, which can be represented via a generalization of matrices known as tensors. There are wide applications of nonnegative matrix and tensor factorization NTF in the scientific community such as spectral unmixing, compressing scientific data, scientific visualization, inverse problems, feature engineering for deep learning etc., as the factors are scientifically interpretable and an important cornerstone for explainable AI and representation learning. Similarly for internet applications such as topic modeling, background separation from video data, hyper-spectral imaging, web-scale clustering, and community detection. There are many popular algorithms of NMF and NTF such as multiplicative update MU, hierarchical alternating least squares HALS, ANLSBPP etc., and it was a technically highly complex task for scaling them to large number of processor to handle the internet scale scientific data.",
+        "tags": [
+            "unmixing",
+            "ntf",
+            "factorization",
+            "nmf",
+            "c++",
+            "mpi-faun"
+        ]
+    },
+    "https://github.com/snap-research/GRID": {
+        "extra-tags": [
+            "generative",
+            "grid",
+            "recommendation",
+            "semantic ids"
+        ],
+        "date": "2025-11-11",
+        "title": "GRID",
+        "summary": "GRID: Generative Recommendation with Semantic IDs \n GRID Generative Recommendation with Semantic IDs is a state-of-the-art framework for generative recommendation systems using semantic IDs, developed by a group of scientists and engineers from Snap Researchhttpsresearch.snap.comteamuser-modeling-and-personalization.html. This project implements novel approaches for learning semantic IDs from text embedding and generating recommendations through transformer-based generative models. GRID facilitates generative recommendation three overarching steps",
+        "tags": [
+            "large-language-models",
+            "semantic-id",
+            "generative-recommenders",
+            "recommender-systems",
+            "python",
+            "recsys",
+            "sequential-recommendation"
+        ]
+    },
+    "https://github.com/isaac-sim2real/sage": {
+        "extra-tags": [
+            "robot",
+            "simulation",
+            "estimator"
+        ],
+        "date": "2025-11-11",
+        "title": "sage",
+        "summary": "Framework for measuring sim-to-real gaps in robot joint motions. Supports different humanoids with physics simulation, real hardware data collection, and statistical analysis. \n SAGE Sim2Real Actuator Gap Estimator SAGE Sim2Real Actuator Gap Estimator is a comprehensive toolkit for analyzing the differences between simulated and real robot joint motions. This project provides systematic tools for measuring, visualizing, and understanding sim-to-real gaps in robotic systems, enabling researchers and engineers to quantify and improve the transfer of robot behaviors from simulation to reality.",
+        "tags": [
+            "sim-to-real",
+            "joint-motion",
+            "python",
+            "robotics",
+            "isaac-sim"
+        ]
+    },
+    "https://github.com/PrimeIntellect-ai/prime-diloco": {
+        "extra-tags": [
+            "framework",
+            "efficient",
+            "distributed",
+            "training"
+        ],
+        "date": "2025-11-11",
+        "title": "prime-diloco",
+        "summary": "prime is a framework for efficient, globally distributed training of AI models over the internet. \n prime previously called ZeroBand is a framework for efficient, globally distributed training of AI models over the internet. httpsgithub.comuser-attachmentsassetsc034d2a2-400c-4bf8-acd0-c84b6c897d69 A research paper about the framework and our INTELLECT-1 10B experiment can be found herehttpsarxiv.orgabs2412.01152. For an easy install that download the data curl -sSL httpsraw.githubusercontent.comPrimeIntellect-aiprimemainscriptsinstallinstall.sh bash step by step",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://dl.acm.org/doi/10.1145/2487575.2487606": {
+        "extra-tags": [
+            "hierarchical",
+            "fast"
+        ],
+        "title": "Fast rank-2 nonnegative matrix factorization for hierarchical document clustering",
+        "summary": "Nonnegative matrix factorization (NMF) has been successfully used as a clustering method especially for \ufb02at partitioning of documents. In this paper, we propose an e\ufb03cient hierarchical document clustering method based on a new algorithm for rank-2 NMF. When the two block coordinate descent framework is applied to rank-2 NMF, each subproblem requires a solution for nonnegative least squares (NNLS) with only two columns. We design the algorithm for rank2 NMF by exploiting the fact that an exhaustive search for the optimal active set can be performed extremely fast when solving these NNLS problems. In addition, we design a measure on the results of rank-2 NMF for determining which leaf node should be further split. On a number of text data sets, our proposed method produces high-quality tree structures in signi\ufb01cantly less time compared to other methods such as hierarchical K-means, standard NMF, and latent Dirichlet allocation.",
+        "date": "2025-11-11",
+        "tags": [
+            "clustering",
+            "nmf",
+            "pdf",
+            "svd"
+        ]
+    },
+    "http://arxiv.org/abs/1509.01208": {
+        "extra-tags": [
+            "topic modeling",
+            "data",
+            "fast",
+            "hierarchical clustering"
+        ],
+        "title": "Fast Clustering and Topic Modeling Based on Rank-2 Nonnegative Matrix Factorization",
+        "summary": "The importance of unsupervised clustering and topic modeling is well recognized with ever-increasing volumes of text data. In this paper, we propose a fast method for hierarchical clustering and topic modeling called HierNMF2. Our method is based on fast Rank-2 nonnegative matrix factorization (NMF) that performs binary clustering and an efficient node splitting rule. Further utilizing the final leaf nodes generated in HierNMF2 and the idea of nonnegative least squares fitting, we propose a new clustering/topic modeling method called FlatNMF2 that recovers a flat clustering/topic modeling result in a very simple yet significantly more effective way than any other existing methods. We implement highly optimized open source software in C++ for both HierNMF2 and FlatNMF2 for hierarchical and partitional clustering/topic modeling of document data sets. Substantial experimental tests are presented that illustrate significant improvements both in computational time as well as quality of solutions. We compare our methods to other clustering methods including K-means, standard NMF, and CLUTO, and also topic modeling methods including latent Dirichlet allocation (LDA) and recently proposed algorithms for NMF with separability constraints. Overall, we present efficient tools for analyzing large-scale data sets, and techniques that can be generalized to many other data analytics problem domains.",
+        "date": "2025-11-11",
+        "tags": [
+            "computer science - information retrieval",
+            "computer science - machine learning",
+            "computer science - numerical analysis",
+            "cikm",
+            "clustering",
+            "nmf",
+            "svd"
+        ]
+    },
+    "http://arxiv.org/abs/1707.08183": {
+        "extra-tags": [
+            "data",
+            "framework",
+            "matrix",
+            "factorization"
+        ],
+        "title": "A Unified Joint Matrix Factorization Framework for Data Integration",
+        "summary": "Nonnegative matrix factorization (NMF) is a powerful tool in data exploratory analysis by discovering the hidden features and part-based patterns from high-dimensional data. NMF and its variants have been successfully applied into diverse fields such as pattern recognition, signal processing, data mining, bioinformatics and so on. Recently, NMF has been extended to analyze multiple matrices simultaneously. However, a unified framework is still lacking. In this paper, we introduce a sparse multiple relationship data regularized joint matrix factorization (JMF) framework and two adapted prediction models for pattern recognition and data integration. Next, we present four update algorithms to solve this framework. The merits and demerits of these algorithms are systematically explored. Furthermore, extensive computational experiments using both synthetic data and real data demonstrate the effectiveness of JMF framework and related algorithms on pattern recognition and data mining.",
+        "date": "2025-11-11",
+        "tags": [
+            "computer science - computer vision and pattern recognition",
+            "cikm",
+            "dimensionality reduction",
+            "jointnmf",
+            "nmf",
+            "svd"
+        ]
+    },
+    "https://large-genrec.github.io/cikm2025.html": {
+        "extra-tags": [
+            "generative",
+            "recommendation",
+            "models"
+        ],
+        "title": "Generative Recommendation Models - CIKM 2025 Tutorial",
+        "summary": "",
+        "date": "2025-11-10",
+        "tags": [
+            "cikm",
+            "semantic ids",
+            "slides",
+            "tutorial"
+        ]
+    },
+    "http://arxiv.org/abs/2305.05065": {
+        "extra-tags": [
+            "model",
+            "recommender systems",
+            "generative",
+            "semantic id"
+        ],
+        "title": "Recommender Systems with Generative Retrieval",
+        "summary": "Modern recommender systems perform large-scale retrieval by first embedding queries and item candidates in the same unified space, followed by approximate nearest neighbor search to select top candidates given a query embedding. In this paper, we propose a novel generative retrieval approach, where the retrieval model autoregressively decodes the identifiers of the target candidates. To that end, we create semantically meaningful tuple of codewords to serve as a Semantic ID for each item. Given Semantic IDs for items in a user session, a Transformer-based sequence-to-sequence model is trained to predict the Semantic ID of the next item that the user will interact with. To the best of our knowledge, this is the first Semantic ID-based generative model for recommendation tasks. We show that recommender systems trained with the proposed paradigm significantly outperform the current SOTA models on various datasets. In addition, we show that incorporating Semantic IDs into the sequence-to-sequence model enhances its ability to generalize, as evidenced by the improved retrieval performance observed for items with no prior interaction history.",
+        "date": "2025-11-10",
+        "tags": [
+            "computer science - information retrieval",
+            "computer science - machine learning",
+            "recommendation",
+            "retrieval",
+            "semantic ids"
+        ]
+    },
+    "http://arxiv.org/abs/2510.24431": {
+        "extra-tags": [
+            "generative",
+            "scaling",
+            "training"
+        ],
+        "title": "MiniOneRec: An Open-Source Framework for Scaling Generative Recommendation",
+        "summary": "The recent success of large language models (LLMs) has renewed interest in whether recommender systems can achieve similar scaling benefits. Conventional recommenders, dominated by massive embedding tables, tend to plateau as embedding dimensions grow. In contrast, the emerging generative paradigm replaces embeddings with compact Semantic ID (SID) sequences produced by autoregressive Transformers. Yet most industrial deployments remain proprietary, leaving two fundamental questions open: (1) Do the expected scaling laws hold on public benchmarks? (2) What is the minimal post-training recipe that enables competitive performance? We present MiniOneRec, to the best of our knowledge, the first fully open-source generative recommendation framework, which provides an end-to-end workflow spanning SID construction, supervised fine-tuning, and recommendation-oriented reinforcement learning. We generate SIDs via a Residual Quantized VAE and post-train Qwen backbones ranging from 0.5B to 7B parameters on the Amazon Review dataset. Our experiments reveal a consistent downward trend in both training and evaluation losses with increasing model size, validating the parameter efficiency of the generative approach. To further enhance performance, we propose a lightweight yet effective post-training pipeline that (1) enforces full-process SID alignment and (2) applies reinforcement learning with constrained decoding and hybrid rewards. Together, these techniques yield significant improvements in both ranking accuracy and candidate diversity.",
+        "date": "2025-11-10",
+        "tags": [
+            "computer science - artificial intelligence",
+            "computer science - information retrieval",
+            "cikm",
+            "recommendation",
+            "semantic id"
+        ]
+    },
+    "http://arxiv.org/abs/2510.11639": {
+        "extra-tags": [
+            "reasoning",
+            "generative",
+            "llms"
+        ],
+        "title": "OneRec-Think: In-Text Reasoning for Generative Recommendation",
+        "summary": "The powerful generative capacity of Large Language Models (LLMs) has instigated a paradigm shift in recommendation. However, existing generative models (e.g., OneRec) operate as implicit predictors, critically lacking the capacity for explicit and controllable reasoning-a key advantage of LLMs. To bridge this gap, we propose OneRec-Think, a unified framework that seamlessly integrates dialogue, reasoning, and personalized recommendation. OneRec-Think incorporates: (1) Itemic Alignment: cross-modal Item-Textual Alignment for semantic grounding; (2) Reasoning Activation: Reasoning Scaffolding to activate LLM reasoning within the recommendation context; and (3) Reasoning Enhancement, where we design a recommendation-specific reward function that accounts for the multi-validity nature of user preferences. Experiments across public benchmarks show state-of-the-art performance. Moreover, our proposed \"Think-Ahead\" architecture enables effective industrial deployment on Kuaishou, achieving a 0.159\\% gain in APP Stay Time and validating the practical efficacy of the model's explicit reasoning capability.",
+        "date": "2025-11-10",
+        "tags": [
+            "computer science - information retrieval",
+            "cikm",
+            "recommendation",
+            "semantic id"
+        ]
+    },
+    "http://arxiv.org/abs/2506.05781": {
+        "extra-tags": [
+            "recommendation",
+            "semantic id",
+            "tokens"
+        ],
+        "title": "Generating Long Semantic IDs in Parallel for Recommendation",
+        "summary": "Semantic ID-based recommendation models tokenize each item into a small number of discrete tokens that preserve specific semantics, leading to better performance, scalability, and memory efficiency. While recent models adopt a generative approach, they often suffer from inefficient inference due to the reliance on resource-intensive beam search and multiple forward passes through the neural sequence model. As a result, the length of semantic IDs is typically restricted (e.g. to just 4 tokens), limiting their expressiveness. To address these challenges, we propose RPG, a lightweight framework for semantic ID-based recommendation. The key idea is to produce unordered, long semantic IDs, allowing the model to predict all tokens in parallel. We train the model to predict each token independently using a multi-token prediction loss, directly integrating semantics into the learning objective. During inference, we construct a graph connecting similar semantic IDs and guide decoding to avoid generating invalid IDs. Experiments show that scaling up semantic ID length to 64 enables RPG to outperform generative baselines by an average of 12.6% on the NDCG@10, while also improving inference efficiency. Code is available at: https://github.com/facebookresearch/RPG_KDD2025.",
+        "date": "2025-11-10",
+        "tags": [
+            "computer science - information retrieval",
+            "cikm",
+            "kdd",
+            "recommender",
+            "semantic ids"
+        ]
+    },
+    "http://arxiv.org/abs/2405.16871": {
+        "extra-tags": [
+            "generative",
+            "task",
+            "tokens"
+        ],
+        "title": "Multi-Behavior Generative Recommendation",
+        "summary": "Multi-behavior sequential recommendation (MBSR) aims to incorporate behavior types of interactions for better recommendations. Existing approaches focus on the next-item prediction objective, neglecting the value of integrating the target behavior type into the learning objective. In this paper, we propose MBGen, a novel Multi-Behavior sequential Generative recommendation framework. We formulate the MBSR task into a consecutive two-step process: (1) given item sequences, MBGen first predicts the next behavior type to frame the user intention, (2) given item sequences and a target behavior type, MBGen then predicts the next items. To model such a two-step process, we tokenize both behaviors and items into tokens and construct one single token sequence with both behaviors and items placed interleaved. Furthermore, MBGen learns to autoregressively generate the next behavior and item tokens in a unified generative recommendation paradigm, naturally enabling a multi-task capability. Additionally, we exploit the heterogeneous nature of token sequences in the generative recommendation and propose a position-routed sparse architecture to efficiently and effectively scale up models. Extensive experiments on public datasets demonstrate that MBGen significantly outperforms existing MBSR models across multiple tasks.",
+        "date": "2025-11-10",
+        "tags": [
+            "computer science - information retrieval",
+            "cikm",
+            "recommendation",
+            "semantic ids"
+        ]
+    },
+    "http://arxiv.org/abs/2310.09233": {
+        "extra-tags": [
+            "agents",
+            "collaborative",
+            "modeling",
+            "recommender systems"
+        ],
+        "title": "AgentCF: Collaborative Learning with Autonomous Language Agents for Recommender Systems",
+        "summary": "Recently, there has been an emergence of employing LLM-powered agents as believable human proxies, based on their remarkable decision-making capability. However, existing studies mainly focus on simulating human dialogue. Human non-verbal behaviors, such as item clicking in recommender systems, although implicitly exhibiting user preferences and could enhance the modeling of users, have not been deeply explored. The main reasons lie in the gap between language modeling and behavior modeling, as well as the incomprehension of LLMs about user-item relations. To address this issue, we propose AgentCF for simulating user-item interactions in recommender systems through agent-based collaborative filtering. We creatively consider not only users but also items as agents, and develop a collaborative learning approach that optimizes both kinds of agents together. Specifically, at each time step, we first prompt the user and item agents to interact autonomously. Then, based on the disparities between the agents' decisions and real-world interaction records, user and item agents are prompted to reflect on and adjust the misleading simulations collaboratively, thereby modeling their two-sided relations. The optimized agents can also propagate their preferences to other agents in subsequent interactions, implicitly capturing the collaborative filtering idea. Overall, the optimized agents exhibit diverse interaction behaviors within our framework, including user-item, user-user, item-item, and collective interactions. The results show that these agents can demonstrate personalized behaviors akin to those of real-world individuals, sparking the development of next-generation user behavior simulation.",
+        "date": "2025-11-10",
+        "tags": [
+            "computer science - computation and language",
+            "computer science - information retrieval",
+            "agent",
+            "explore",
+            "llm",
+            "recommendation",
+            "search",
+            "website"
+        ]
+    },
+    "http://arxiv.org/abs/2308.08434": {
+        "extra-tags": [
+            "llms",
+            "llm4rec",
+            "bi"
+        ],
+        "title": "A Bi-Step Grounding Paradigm for Large Language Models in Recommendation Systems",
+        "summary": "As the focus on Large Language Models (LLMs) in the field of recommendation intensifies, the optimization of LLMs for recommendation purposes (referred to as LLM4Rec) assumes a crucial role in augmenting their effectiveness in providing recommendations. However, existing approaches for LLM4Rec often assess performance using restricted sets of candidates, which may not accurately reflect the models' overall ranking capabilities. In this paper, our objective is to investigate the comprehensive ranking capacity of LLMs and propose a two-step grounding framework known as BIGRec (Bi-step Grounding Paradigm for Recommendation). It initially grounds LLMs to the recommendation space by fine-tuning them to generate meaningful tokens for items and subsequently identifies appropriate actual items that correspond to the generated tokens. By conducting extensive experiments on two datasets, we substantiate the superior performance, capacity for handling few-shot scenarios, and versatility across multiple domains exhibited by BIGRec. Furthermore, we observe that the marginal benefits derived from increasing the quantity of training samples are modest for BIGRec, implying that LLMs possess the limited capability to assimilate statistical information, such as popularity and collaborative filtering, due to their robust semantic priors. These findings also underline the efficacy of integrating diverse statistical information into the LLM4Rec framework, thereby pointing towards a potential avenue for future research. Our code and data are available at https://github.com/SAI990323/Grounding4Rec.",
+        "date": "2025-11-10",
+        "tags": [
+            "computer science - information retrieval",
+            "cikm",
+            "rag",
+            "recommendation"
+        ]
+    },
+    "http://arxiv.org/abs/2406.09215": {
+        "extra-tags": [
+            "dpo",
+            "softmax",
+            "loss",
+            "recommendation"
+        ],
+        "title": "On Softmax Direct Preference Optimization for Recommendation",
+        "summary": "Recommender systems aim to predict personalized rankings based on user preference data. With the rise of Language Models (LMs), LM-based recommenders have been widely explored due to their extensive world knowledge and powerful reasoning abilities. Most of the LM-based recommenders convert historical interactions into language prompts, pairing with a positive item as the target response and fine-tuning LM with a language modeling loss. However, the current objective fails to fully leverage preference data and is not optimized for personalized ranking tasks, which hinders the performance of LM-based recommenders. Inspired by the current advancement of Direct Preference Optimization (DPO) in human preference alignment and the success of softmax loss in recommendations, we propose Softmax-DPO (S-DPO) to instill ranking information into the LM to help LM-based recommenders distinguish preferred items from negatives, rather than solely focusing on positives. Specifically, we incorporate multiple negatives in user preference data and devise an alternative version of DPO loss tailored for LM-based recommenders, which is extended from the traditional full-ranking Plackett-Luce (PL) model to partial rankings and connected to softmax sampling strategies. Theoretically, we bridge S-DPO with the softmax loss over negative sampling and find that it has an inherent benefit of mining hard negatives, which assures its exceptional capabilities in recommendation tasks. Empirically, extensive experiments conducted on three real-world datasets demonstrate the superiority of S-DPO to effectively model user preference and further boost recommendation performance while providing better rewards for preferred items. Our codes are available at https://github.com/chenyuxin1999/S-DPO.",
+        "date": "2025-11-10",
+        "tags": [
+            "computer science - artificial intelligence",
+            "computer science - information retrieval"
+        ]
+    },
+    "http://arxiv.org/abs/2305.07001": {
+        "extra-tags": [
+            "recommendation",
+            "llms",
+            "recommender systems",
+            "models"
+        ],
+        "title": "Recommendation as Instruction Following: A Large Language Model Empowered Recommendation Approach",
+        "summary": "In the past decades, recommender systems have attracted much attention in both research and industry communities, and a large number of studies have been devoted to developing effective recommendation models. Basically speaking, these models mainly learn the underlying user preference from historical behavior data, and then estimate the user-item matching relationships for recommendations. Inspired by the recent progress on large language models (LLMs), we take a different approach to developing the recommendation models, considering recommendation as instruction following by LLMs. The key idea is that the preferences or needs of a user can be expressed in natural language descriptions (called instructions), so that LLMs can understand and further execute the instruction for fulfilling the recommendation task. Instead of using public APIs of LLMs, we instruction tune an open-source LLM (3B Flan-T5-XL), in order to better adapt LLMs to recommender systems. For this purpose, we first design a general instruction format for describing the preference, intention, task form and context of a user in natural language. Then we manually design 39 instruction templates and automatically generate a large amount of user-personalized instruction data (252K instructions) with varying types of preferences and intentions. To demonstrate the effectiveness of our approach, we instantiate the instruction templates into several widely-studied recommendation (or search) tasks, and conduct extensive experiments on these tasks with real-world datasets. Experiment results show that the proposed approach can outperform several competitive baselines, including the powerful GPT-3.5, on these evaluation tasks. Our approach sheds light on developing more user-friendly recommender systems, in which users can freely communicate with the system and obtain more accurate recommendations via natural language instructions.",
+        "date": "2025-11-10",
+        "tags": [
+            "computer science - computation and language",
+            "computer science - information retrieval"
+        ]
     }
 }
