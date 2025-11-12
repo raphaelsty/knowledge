@@ -50060,5 +50060,76 @@
             "computer science - computation and language",
             "computer science - information retrieval"
         ]
+    },
+    "https://github.com/ZHZisZZ/dllm": {
+        "extra-tags": [
+            "diffusion",
+            "chat",
+            "simple",
+            "collection",
+            "instruction-following"
+        ],
+        "date": "2025-11-12",
+        "title": "dllm",
+        "summary": "dLLM: Simple Diffusion Language Modeling \n dLLM Simple Diffusion Language Modeling dLLM is a library that unifies the training and evaluation of diffusion language models, bringing transparency and reproducibility to the entire development pipeline !NOTE 202511 We released a collection of BERTs finetuned for instruction-following ModernBERT-large,base-chat-v0httpshuggingface.cocollectionsdllm-collectionbert-chat. This proof-of-concept shows that BERTs internal knowledge can be leveraged for generative tasks via masked instruction tuning. See !bloghttpsimg.shields.iobadgeWB-white?logoweightsandbiases BERT Chat Reporthttpsapi.wandb.ailinksasap-zzhou101h5xvg for detailed recipes, experimental results and lessons learned See examplesbertexamplesbert for training inference evaluation instructions.",
+        "tags": [
+            "discrete-diffusion-models",
+            "dllm",
+            "nlp",
+            "llm",
+            "python"
+        ]
+    },
+    "http://arxiv.org/abs/2505.11388": {
+        "extra-tags": [
+            "embedding",
+            "retrieval",
+            "compression",
+            "recommender systems",
+            "embeddings"
+        ],
+        "title": "The Future is Sparse: Embedding Compression for Scalable Retrieval in Recommender Systems",
+        "summary": "Industry-scale recommender systems face a core challenge: representing entities with high cardinality, such as users or items, using dense embeddings that must be accessible during both training and inference. However, as embedding sizes grow, memory constraints make storage and access increasingly difficult. We describe a lightweight, learnable embedding compression technique that projects dense embeddings into a high-dimensional, sparsely activated space. Designed for retrieval tasks, our method reduces memory requirements while preserving retrieval performance, enabling scalable deployment under strict resource constraints. Our results demonstrate that leveraging sparsity is a promising approach for improving the efficiency of large-scale recommenders. We release our code at https://github.com/recombee/CompresSAE.",
+        "date": "2025-11-11",
+        "tags": [
+            "computer science - information retrieval",
+            "computer science - machine learning",
+            "information retrieval",
+            "information-retrieval",
+            "sentence-transformers",
+            "sparse"
+        ]
+    },
+    "http://arxiv.org/abs/2505.09795": {
+        "extra-tags": [
+            "ranking",
+            "search",
+            "learning-to-rank"
+        ],
+        "title": "Beyond Pairwise Learning-To-Rank At Airbnb",
+        "summary": "There are three fundamental asks from a ranking algorithm: it should scale to handle a large number of items, sort items accurately by their utility, and impose a total order on the items for logical consistency. But here's the catch-no algorithm can achieve all three at the same time. We call this limitation the SAT theorem for ranking algorithms. Given the dilemma, how can we design a practical system that meets user needs? Our current work at Airbnb provides an answer, with a working solution deployed at scale. We start with pairwise learning-to-rank (LTR) models-the bedrock of search ranking tech stacks today. They scale linearly with the number of items ranked and perform strongly on metrics like NDCG by learning from pairwise comparisons. They are at a sweet spot of performance vs. cost, making them an ideal choice for several industrial applications. However, they have a drawback-by ignoring interactions between items, they compromise on accuracy. To improve accuracy, we create a \"true\" pairwise LTR model-one that captures interactions between items during pairwise comparisons. But accuracy comes at the expense of scalability and total order, and we discuss strategies to counter these challenges. For greater accuracy, we take each item in the search result, and compare it against the rest of the items along two dimensions: (1) Superiority: How strongly do searchers prefer the given item over the remaining ones? (2) Similarity: How similar is the given item to all the other items? This forms the basis of our \"all-pairwise\" LTR framework, which factors in interactions across all items at once. Looking at items on the search result page all together-superiority and similarity combined-gives us a deeper understanding of what searchers truly want. We quantify the resulting improvements in searcher experience through offline and online experiments at Airbnb.",
+        "date": "2025-11-11",
+        "tags": [
+            "computer science - information retrieval",
+            "airbnb",
+            "cikm2025",
+            "information-retrieval"
+        ]
+    },
+    "http://arxiv.org/abs/2002.02126": {
+        "extra-tags": [
+            "collaborative",
+            "model"
+        ],
+        "title": "LightGCN: Simplifying and Powering Graph Convolution Network for Recommendation",
+        "summary": "Graph Convolution Network (GCN) has become new state-of-the-art for collaborative filtering. Nevertheless, the reasons of its effectiveness for recommendation are not well understood. Existing work that adapts GCN to recommendation lacks thorough ablation analyses on GCN, which is originally designed for graph classification tasks and equipped with many neural network operations. However, we empirically find that the two most common designs in GCNs -- feature transformation and nonlinear activation -- contribute little to the performance of collaborative filtering. Even worse, including them adds to the difficulty of training and degrades recommendation performance. In this work, we aim to simplify the design of GCN to make it more concise and appropriate for recommendation. We propose a new model named LightGCN, including only the most essential component in GCN -- neighborhood aggregation -- for collaborative filtering. Specifically, LightGCN learns user and item embeddings by linearly propagating them on the user-item interaction graph, and uses the weighted sum of the embeddings learned at all layers as the final embedding. Such simple, linear, and neat model is much easier to implement and train, exhibiting substantial improvements (about 16.0\\% relative improvement on average) over Neural Graph Collaborative Filtering (NGCF) -- a state-of-the-art GCN-based recommender model -- under exactly the same experimental setting. Further analyses are provided towards the rationality of the simple LightGCN from both analytical and empirical perspectives.",
+        "date": "2025-11-11",
+        "tags": [
+            "computer science - information retrieval",
+            "computer science - machine learning",
+            "cikm",
+            "graph",
+            "recommendation"
+        ]
     }
 }
