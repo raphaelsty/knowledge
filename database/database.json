@@ -50131,5 +50131,23 @@
             "graph",
             "recommendation"
         ]
+    },
+    "http://arxiv.org/abs/2412.14405": {
+        "extra-tags": [
+            "fine-tuning",
+            "ranking",
+            "optimization"
+        ],
+        "title": "ChainRank-DPO: Chain Rank Direct Preference Optimization for LLM Rankers",
+        "summary": "Large language models (LLMs) have demonstrated remarkable effectiveness in text reranking through works like RankGPT, leveraging their human-like reasoning about relevance. However, supervised fine-tuning for ranking often diminishes these models' general-purpose capabilities, including the crucial reasoning abilities that make them valuable for ranking. We introduce a novel approach integrating Chain-of-Thought prompting with an SFT-DPO (Supervised Fine-Tuning followed by Direct Preference Optimization) pipeline to preserve these capabilities while improving ranking performance. Our experiments on TREC 2019 and 2020 Deep Learning datasets show that our approach outperforms the state-of-the-art RankZephyr while maintaining strong performance on the Massive Multitask Language Understanding (MMLU) benchmark, demonstrating effective preservation of general-purpose capabilities through thoughtful fine-tuning strategies. Our code and data will be publicly released upon the acceptance of the paper.",
+        "date": "2025-11-12",
+        "tags": [
+            "computer science - information retrieval",
+            "dpo",
+            "information-retrieval",
+            "llm",
+            "loss",
+            "reranking"
+        ]
     }
 }
