@@ -50149,5 +50149,149 @@
             "loss",
             "reranking"
         ]
+    },
+    "https://github.com/svg-project/flash-kmeans": {
+        "extra-tags": [
+            "install",
+            "pip",
+            "fast",
+            "bash",
+            "memory-efficient"
+        ],
+        "date": "2025-11-14",
+        "title": "flash-kmeans",
+        "summary": "Fast and memory-efficient exact kmeans \n Fast batched K-Means clustering implemented with Triton GPU kernels. This repository provides the official K-Means implementation of Sparse VideoGen2httpsarxiv.orgpdf2505.18875. !TeasorassetsClusterWorkflow.png Install flash-kmeans with pip bash pip install flash-kmeans From source bash git clone httpsgithub.comsvg-projectflash-kmeans.git cd flash-kmeans pip install -e . python import torch from flashkmeans import batchkmeansEuclid x torch.randn32, 75600, 128, devicecuda, dtypetorch.float16",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/Xmaster6y/xdrl": {
+        "extra-tags": [
+            "explainability",
+            "deep",
+            "svg",
+            "project"
+        ],
+        "date": "2025-11-14",
+        "title": "xdrl",
+        "summary": "\ud83d\udd2c Explainability for deep RL. \n !cihttpsgithub.comXmaster6yxdrlactionsworkflowsci.ymlbadge.svg !publishhttpsgithub.comXmaster6yxdrlactionsworkflowspublish.ymlbadge.svg Explainability for deep RL based on TorchRLhttpsgithub.compytorchrl. Using uv to manage python dependencies and run scripts. This project uses Justhttpsgithub.comcaseyjust to manage scripts, refer to their instructions for installation. This project is cluster-ready.",
+        "tags": [
+            "marl",
+            "xai",
+            "shell",
+            "rl"
+        ]
+    },
+    "https://github.com/pisa-engine/kentro": {
+        "extra-tags": [
+            "high-performance",
+            "clustering",
+            "library"
+        ],
+        "date": "2025-11-14",
+        "title": "kentro",
+        "summary": "High-Performance K-Means Clustering Library \n Kentro - High-Performance K-Means Clustering Library A high-performance Rust implementation of K-Means clustering algorithms. Kentro provides both standard and advanced K-Means variants with parallel processing support. Add this to your Cargo.toml toml dependencies kentro 0.1.0 ndarray 0.15 rust use kentroKMeans use ndarrayArray2 Create sample data 100 points, 2 dimensions",
+        "tags": [
+            "rust"
+        ]
+    },
+    "https://github.com/PathOn-AI/awesome-opensource-robots": {
+        "extra-tags": [
+            "mobile",
+            "awesome",
+            "opensource",
+            "collection",
+            "robotics"
+        ],
+        "date": "2025-11-14",
+        "title": "awesome-opensource-robots",
+        "summary": "Collection of Materials on LeRobot \n Step-by-step tutorial at httpslearn-robotics.pathon.ai Platform Type Description Repository --------------------------------------------------------- SO-100 SO-101 Robotic Arms Standard Open robotic arms httpsgithub.comTheRobotStudioSO-ARM100 LeKiwi Mobile Manipulator Low-Cost Mobile Manipulator for so-100101 arm httpsgithub.comSIGRobotics-UIUCLeKiwi XLeRobot Mobile Manipulator Built on top of LeKiwi httpsgithub.comVector-WangelXLeRobot",
+        "tags": [
+            "so101",
+            "ros2",
+            "mycobot280",
+            "python",
+            "ros2-jazzy",
+            "lerobot"
+        ]
+    },
+    "https://store.steampowered.com/sale/steammachine": {
+        "extra-tags": [
+            "machine",
+            "install",
+            "language"
+        ],
+        "title": "Hackernews Steam Machine (steampowered.com)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "Install Steam login | language \u7b80\u4f53\u4e2d\u6587 (Simplified Chinese) \u7e41\u9ad4\u4e2d\u6587 (Traditional Chinese) \u65e5\u672c\u8a9e (Japanese) \ud55c\uad6d\uc5b4 (Korean) \u0e44\u0e17\u0e22 (Thai) \u0411\u044a\u043b\u0433\u0430\u0440\u0441\u043a\u0438 (Bulgarian) \u010ce\u0161tina (Czech) Dansk (Danish) Deutsch (German) Espa\u00f1ol - Espa\u00f1a (Spanish - Spain) Espa\u00f1ol - Latinoam\u00e9rica (Spanish - Latin America) \u0395\u03bb\u03bb\u03b7\u03bd\u03b9\u03ba\u03ac (Greek) Fran\u00e7ais (French) Italiano (Italian) Bahasa Indonesia (Indonesian) Magyar (Hungarian) Nederlands",
+        "date": "2025-11-14"
+    },
+    "https://huggingface.co/intfloat/e5-mistral-7b-instruct": {
+        "extra-tags": [
+            "hugging face"
+        ],
+        "title": "intfloat/e5-mistral-7b-instruct \u00b7 Hugging Face",
+        "summary": "We\u2019re on a journey to advance and democratize artificial intelligence through open source and open science.",
+        "date": "2025-11-13",
+        "tags": [
+            "7b",
+            "e5",
+            "encoder",
+            "large encoder",
+            "mistral",
+            "sota"
+        ]
+    },
+    "https://arxiv.org/abs/2407.15831v2": {
+        "extra-tags": [
+            "models",
+            "embedding",
+            "nv-retriever",
+            "hard-negative mining"
+        ],
+        "title": "NV-Retriever: Improving text embedding models with effective hard-negative mining",
+        "summary": "Text embedding models have been popular for information retrieval applications such as semantic search and Question-Answering systems based on Retrieval-Augmented Generation (RAG). Those models are typically Transformer models that are fine-tuned with contrastive learning objectives. One of the challenging aspects of fine-tuning embedding models is the selection of high quality hard-negative passages for contrastive learning. In this paper we introduce a family of positive-aware mining methods that use the positive relevance score as an anchor for effective false negative removal, leading to faster training and more accurate retrieval models. We provide an ablation study on hard-negative mining methods over their configurations, exploring different teacher and base models. We further demonstrate the efficacy of our proposed mining methods at scale with the NV-Retriever-v1 model, which scores 60.9 on MTEB Retrieval (BEIR) benchmark and placed 1st when it was published to the MTEB Retrieval on July, 2024.",
+        "date": "2025-11-13",
+        "tags": [
+            "cikm",
+            "dense",
+            "fine-tuning",
+            "information-retrieval",
+            "nvidia",
+            "retrieval"
+        ]
+    },
+    "https://stephantul.github.io/blog/static-colbert/#fnref:9": {
+        "extra-tags": [
+            "models"
+        ],
+        "title": "Static late interaction models",
+        "summary": "",
+        "date": "2025-11-13",
+        "tags": [
+            "colbert",
+            "late interaction",
+            "sparse",
+            "static"
+        ]
+    },
+    "http://arxiv.org/abs/2508.13843": {
+        "extra-tags": [
+            "multimodal",
+            "search",
+            "retrieval"
+        ],
+        "title": "UniECS: Unified Multimodal E-Commerce Search Framework with Gated Cross-modal Fusion",
+        "summary": "Current e-commerce multimodal retrieval systems face two key limitations: they optimize for specific tasks with fixed modality pairings, and lack comprehensive benchmarks for evaluating unified retrieval approaches. To address these challenges, we introduce UniECS, a unified multimodal e-commerce search framework that handles all retrieval scenarios across image, text, and their combinations. Our work makes three key contributions. First, we propose a flexible architecture with a novel gated multimodal encoder that uses adaptive fusion mechanisms. This encoder integrates different modality representations while handling missing modalities. Second, we develop a comprehensive training strategy to optimize learning. It combines cross-modal alignment loss (CMAL), cohesive local alignment loss (CLAL), intra-modal contrastive loss (IMCL), and adaptive loss weighting. Third, we create M-BEER, a carefully curated multimodal benchmark containing 50K product pairs for e-commerce search evaluation. Extensive experiments demonstrate that UniECS consistently outperforms existing methods across four e-commerce benchmarks with fine-tuning or zero-shot evaluation. On our M-BEER bench, UniECS achieves substantial improvements in cross-modal tasks (up to 28\\% gain in R@10 for text-to-image retrieval) while maintaining parameter efficiency (0.2B parameters) compared to larger models like GME-Qwen2VL (2B) and MM-Embed (8B). Furthermore, we deploy UniECS in the e-commerce search platform of Kuaishou Inc. across two search scenarios, achieving notable improvements in Click-Through Rate (+2.74\\%) and Revenue (+8.33\\%). The comprehensive evaluation demonstrates the effectiveness of our approach in both experimental and real-world settings. Corresponding codes, models and datasets will be made publicly available at https://github.com/qzp2018/UniECS.",
+        "date": "2025-11-13",
+        "tags": [
+            "computer science - artificial intelligence",
+            "computer science - information retrieval",
+            "cikm",
+            "e-commerce",
+            "information retrieval"
+        ]
     }
 }
