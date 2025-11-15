@@ -50293,5 +50293,19 @@
             "e-commerce",
             "information retrieval"
         ]
+    },
+    "https://github.com/huggingface/lerobot-dataset-visualizer": {
+        "extra-tags": [
+            "lerobot",
+            "robotics",
+            "datasets",
+            "dataset"
+        ],
+        "date": "2025-11-15",
+        "title": "lerobot-dataset-visualizer",
+        "summary": "Web application for visualizing robotics datasets in LeRobot format \n LeRobot Dataset Visualizer is a web application for interactive exploration and visualization of robotics datasets, particularly those in the LeRobot format. It enables users to browse, view, and analyze episodes from large-scale robotics datasets, combining synchronized video playback with rich, interactive data graphs. This tool is designed to help robotics researchers and practitioners quickly inspect and understand large, complex datasets. It fetches dataset metadata and episode data including video and sensortelemetry data, and provides a unified interface for",
+        "tags": [
+            "typescript"
+        ]
     }
 }
