@@ -50307,5 +50307,36 @@
         "tags": [
             "typescript"
         ]
+    },
+    "https://github.com/chelsea0x3b/dfdx": {
+        "extra-tags": [
+            "deep learning",
+            "shape",
+            "tensors"
+        ],
+        "date": "2025-11-16",
+        "title": "dfdx",
+        "summary": "Deep learning in Rust, with shape checked tensors and neural networks \n Ergonomics safety focused deep learning in Rust. Still in pre-alpha state. The next few releases are planned to be breaking releases. Features at a glance 1. fire GPU accelerated tensor library with shapes up to 6d! 2. Shapes with both compile and runtime sized dimensions. e.g. Tensor and Tensor",
+        "tags": [
+            "autodifferentiation",
+            "autodiff",
+            "cuda-kernels",
+            "cuda-toolkit",
+            "autograd",
+            "rust",
+            "rust-lang",
+            "gpu-computing",
+            "backpropagation",
+            "machine-learning",
+            "tensor",
+            "gpu",
+            "gpu-acceleration",
+            "cudnn",
+            "cuda",
+            "deep-learning",
+            "cuda-support",
+            "deep-neural-networks",
+            "neural-network"
+        ]
     }
 }
