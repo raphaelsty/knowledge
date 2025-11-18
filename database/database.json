@@ -50338,5 +50338,68 @@
             "deep-neural-networks",
             "neural-network"
         ]
+    },
+    "https://github.com/RLinf/RLinf": {
+        "extra-tags": [
+            "infrastructure",
+            "training",
+            "reinforcement learning"
+        ],
+        "date": "2025-11-18",
+        "title": "RLinf",
+        "summary": "RLinf is a flexible and scalable open-source infrastructure designed for post-training foundation models (LLMs, VLMs, VLAs) via reinforcement learning. \n RLinf Reinforcement Learning Infrastructure for Agentic AI RLinf is a flexible and scalable open-source infrastructure designed for post-training foundation models via reinforcement learning. The 'inf' in RLinf stands for Infrastructure, highlighting its role as a robust backbone for next-generation training. It also stands for Infinite, symbolizing the systems support for open-ended learning, continuous generalization, and limitless possibilities in intelligence development.",
+        "tags": [
+            "python",
+            "vla-rl",
+            "embodied-ai",
+            "large-language-models",
+            "reinforcement-learning",
+            "rl-infra",
+            "ai-infra",
+            "rlinf",
+            "agentic-ai"
+        ]
+    },
+    "https://github.com/Lei-Kun/RLinf": {
+        "extra-tags": [
+            "rlinf",
+            "infrastructure",
+            "training",
+            "reinforcement learning"
+        ],
+        "date": "2025-11-18",
+        "title": "RLinf",
+        "summary": "RLinf is a flexible and scalable open-source infrastructure designed for post-training foundation models (LLMs, VLMs, VLAs) via reinforcement learning. \n RLinf Reinforcement Learning Infrastructure for Agentic AI RLinf is a flexible and scalable open-source infrastructure designed for post-training foundation models via reinforcement learning. The 'inf' in RLinf stands for Infrastructure, highlighting its role as a robust backbone for next-generation training. It also stands for Infinite, symbolizing the systems support for open-ended learning, continuous generalization, and limitless possibilities in intelligence development.",
+        "tags": []
+    },
+    "https://github.com/lance-format/lance": {
+        "extra-tags": [
+            "lakehouse",
+            "multimodal",
+            "ai",
+            "vector",
+            "integrations"
+        ],
+        "date": "2025-11-18",
+        "title": "lance",
+        "summary": "Open Lakehouse Format for Multimodal AI. Convert from Parquet in 2 lines of code for 100x faster random access, vector index, and data versioning. Compatible with Pandas, DuckDB, Polars, Pyarrow, and PyTorch with more integrations coming.. \n The Open Lakehouse Format for Multimodal AI High-performance vector search, full-text search, random access, and feature engineering capabilities for the lakehouse. Compatible with Pandas, DuckDB, Polars, PyArrow, Ray, Spark, and more integrations on the way. Documentation Community Discord CI httpsgithub.comlancedblanceactionsworkflowsrust.yml CI Badge httpsgithub.comlancedblanceactionsworkflowsrust.ymlbadge.svg Docs httpslance.org Docs Badge httpsimg.shields.iobadgedocs-passing-brightgreen",
+        "tags": [
+            "llms",
+            "mlops",
+            "deep-learning",
+            "data-centric",
+            "apache-arrow",
+            "python",
+            "data-analysis",
+            "data-format",
+            "data-science",
+            "computer-vision",
+            "rust",
+            "data-analytics",
+            "duckdb",
+            "machine-learning",
+            "dataops",
+            "embeddings"
+        ]
     }
 }
