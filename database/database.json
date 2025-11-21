@@ -50401,5 +50401,18 @@
             "dataops",
             "embeddings"
         ]
+    },
+    "https://jamesakl.com/posts/cuda-ontology/": {
+        "extra-tags": [
+            "cuda",
+            "concepts",
+            "tools"
+        ],
+        "title": "Hackernews CUDA Ontology (jamesakl.com)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "CUDA\u2019s terminology carries significant overloading: the word \u201cCUDA\u201d itself refers to at least five distinct concepts, \u201cdriver\u201d means different things in different contexts, and version numbers reported by various tools measure different subsystems. This article provides a rigorous ontology of CUDA components: a systematic description of what exists in the",
+        "date": "2025-11-21"
     }
 }
