@@ -50414,5 +50414,30 @@
         ],
         "summary": "CUDA\u2019s terminology carries significant overloading: the word \u201cCUDA\u201d itself refers to at least five distinct concepts, \u201cdriver\u201d means different things in different contexts, and version numbers reported by various tools measure different subsystems. This article provides a rigorous ontology of CUDA components: a systematic description of what exists in the",
         "date": "2025-11-21"
+    },
+    "https://github.com/ggao50/SO101-Parallel-Gripper": {
+        "extra-tags": [
+            "parallel",
+            "so-101",
+            "so101",
+            "3d"
+        ],
+        "date": "2025-11-23",
+        "title": "SO101-Parallel-Gripper",
+        "summary": " \n !SO-101 Parallel GripperSo101wGripper.png A lightweight, fully 3D-printable rack-and-pinion gripper that gives the SO-101 arm an ALOHA-style parallel jaw with a 105 mm opening and 72 mm forward reach for real-world manipulation. !SO-101 Parallel Gripper Demodemo.gif Watch the SO-101 Parallel Gripper in action View the full assembly instructions and CAD model here",
+        "tags": []
+    },
+    "https://github.com/eric-heiden/URDF2MJCF": {
+        "extra-tags": [
+            "convert",
+            "robot",
+            "mujoco"
+        ],
+        "date": "2025-11-23",
+        "title": "URDF2MJCF",
+        "summary": "Convert URDF robot definitions to MuJoCo environments \n Yes, this is used to convert URDF file to MJCF file. Thanks!",
+        "tags": [
+            "c++"
+        ]
     }
 }
