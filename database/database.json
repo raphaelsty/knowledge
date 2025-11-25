@@ -50439,5 +50439,22 @@
         "tags": [
             "c++"
         ]
+    },
+    "https://github.com/carbonfact/bloodline": {
+        "extra-tags": [
+            "data",
+            "tables",
+            "library",
+            "code",
+            "carbonfact"
+        ],
+        "date": "2025-11-25",
+        "title": "bloodline",
+        "summary": "\ud83e\udddb Track row-level data lineage in tables \n Bloodline is a small library to track row-level data lineage. It is not invasive and does not require modifying your code. Bloodline supports pandashttpspandas.pydata.org, but could to be extended to other dataframe libraries. We use Bloodline at Carbonfacthttpswww.carbonfact.com to manage data lineage across ETL pipelines which ingest our customers' heterogeneous data. This allows them to view where each data point we present to them comes from, as well as measuring data quality metrics.",
+        "tags": [
+            "data-lineage",
+            "python",
+            "pandas"
+        ]
     }
 }
