@@ -50456,5 +50456,42 @@
             "python",
             "pandas"
         ]
+    },
+    "https://github.com/vibrantlabsai/ragas": {
+        "extra-tags": [
+            "data-driven",
+            "documentation",
+            "discord"
+        ],
+        "date": "2025-11-27",
+        "title": "ragas",
+        "summary": "Supercharge Your LLM Application Evaluations \ud83d\ude80 \n Supercharge Your LLM Application Evaluations Documentation Quick start Join Discord Blog NewsLetter Careers Objective metrics, intelligent test generation, and data-driven insights for LLM apps Ragas is your ultimate toolkit for evaluating and optimizing Large Language Model LLM applications. Say goodbye to time-consuming, subjective assessments and hello to data-driven, efficient evaluation workflows.",
+        "tags": [
+            "llm",
+            "evaluation",
+            "python",
+            "llmops"
+        ]
+    },
+    "https://github.com/treeverse/dvc": {
+        "extra-tags": [
+            "dvc",
+            "data",
+            "ml",
+            "experiments"
+        ],
+        "date": "2025-11-27",
+        "title": "dvc",
+        "summary": "\ud83e\udd89 Data Versioning and ML Experiments",
+        "tags": [
+            "machine-learning",
+            "developer-tools",
+            "data-science",
+            "unstructured-data",
+            "data-version-control",
+            "python",
+            "ai",
+            "reproducibility"
+        ]
     }
 }
