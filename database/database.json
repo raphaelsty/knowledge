@@ -50493,5 +50493,19 @@
             "ai",
             "reproducibility"
         ]
+    },
+    "https://github.com/mit-han-lab/vlash": {
+        "extra-tags": [
+            "conda",
+            "inference",
+            "easy-to-use",
+            "efficient"
+        ],
+        "date": "2025-12-04",
+        "title": "vlash",
+        "summary": "Real-Time VLAs via Future-state-aware Asynchronous Inference. \n Easy-to-use VLA deployment, fast to react, smooth in motion. Paper VLASH is an efficient and easy-to-use framework for VLAs fine-tuning and inference. VLASH is efficient through VLASH is easy to use with bash conda create -n vlash python3.10 conda activate vlash conda install ffmpeg7.1.1 -c conda-forge pip install -e .",
+        "tags": [
+            "python"
+        ]
     }
 }
