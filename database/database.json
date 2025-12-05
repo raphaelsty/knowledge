@@ -50507,5 +50507,53 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/pykeio/ort": {
+        "extra-tags": [
+            "training"
+        ],
+        "date": "2025-12-05",
+        "title": "ort",
+        "summary": "Fast ML inference & training for ONNX models in Rust \n ort is a Rust interface for performing hardware-accelerated inference training on machine learning models in the Open Neural Network Exchangehttpsonnx.ai ONNX format. Based on the now-inactive onnxruntime-rshttpsgithub.comnbigaouetteonnxruntime-rs crate, ort is primarily a wrapper for Microsoft's ONNX Runtimehttpsonnxruntime.ai library, but offers support for other pure-Rust runtimeshttpsort.pyke.iobackends. ort with ONNX Runtime is super quick - and it supports almost any hardware acceleratorhttpsort.pyke.ioperfexecution-providers you can think of. Even still, it's light enough to run on your users' devices.",
+        "tags": [
+            "onnx",
+            "fine-tuning",
+            "onnxruntime",
+            "ai-training",
+            "ai",
+            "rust",
+            "machine-learning",
+            "inference"
+        ]
+    },
+    "https://github.com/kreuzberg-dev/kreuzberg": {
+        "extra-tags": [
+            "document",
+            "api",
+            "framework",
+            "documents"
+        ],
+        "date": "2025-12-05",
+        "title": "kreuzberg",
+        "summary": "A polyglot document intelligence framework with a Rust core. Extract text, metadata, and structured information from PDFs, Office documents, images, and 50+ formats. Available for Rust, Python, Ruby, Go, and TypeScript/Node.js\u2014or use via CLI, REST API, or MCP server. \n A polyglot document intelligence framework with a Rust core. Extract text, metadata, and structured information from PDFs, Office documents, images, and 56 formats. Available for Rust, Python, TypeScriptNode.js, Ruby, Go, Java, and Cor use via CLI, REST API, or MCP server. Complete Documentationhttpskreuzberg.dev Installation Guidesinstallation Don't want to manage Rust infrastructure? Kreuzberg Cloud is a managed document extraction API launching soon.",
+        "tags": [
+            "tesseract",
+            "html",
+            "ffi",
+            "rag",
+            "table-extraction",
+            "rust",
+            "pdf-extraction",
+            "python",
+            "document-intelligence",
+            "golang",
+            "wasm",
+            "ruby",
+            "node",
+            "text-extraction",
+            "pdfium",
+            "java",
+            "metadata-extraction"
+        ]
     }
 }
