@@ -50555,5 +50555,19 @@
             "java",
             "metadata-extraction"
         ]
+    },
+    "https://github.com/Tongyi-MAI/Z-Image": {
+        "extra-tags": [
+            "image",
+            "efficient",
+            "generation",
+            "model"
+        ],
+        "date": "2025-12-07",
+        "title": "Z-Image",
+        "summary": " \n - ImageAn Efficient Image Generation Foundation Model with Single-Stream Diffusion Transformer !Official Sitehttpsimg.shields.iobadgeOfficial20Site-333399.svg?logohomepagehttpstongyi-mai.github.ioZ-Image-blog160 !Hugging Facehttpsimg.shields.iobadgeF09FA49720Checkpoint-Z--Image--Turbo-yellowhttpshuggingface.coTongyi-MAIZ-Image-Turbo160 !Hugging Facehttpsimg.shields.iobadgeF09FA49720OnlineDemo-Z--Image--Turbo-bluehttpshuggingface.cospacesTongyi-MAIZ-Image-Turbo160 !ModelScope Modelhttpsimg.shields.iobadge20Checkpoint-Z--Image--Turbo-624affhttpswww.modelscope.cnmodelsTongyi-MAIZ-Image-Turbo160 !ModelScope Spacehttpsimg.shields.iobadge20OnlineDemo-Z--Image--Turbo-17c7a7httpswww.modelscope.cnaigcimageGeneration?tabadvancedversionId469191modelTypeCheckpointsdVersionZIMAGETURBOmodelUrlmodelscope253A252F252FTongyi-MAI252FZ-Image-Turbo253Frevision253Dmaster7D7BOnline160 !Art Gallery PDFhttpsimg.shields.iobadgeF09F96BC20ArtGallery-PDF-ff69b4assetsZ-Image-Gallery.pdf160 !Web Art Galleryhttpsimg.shields.iobadgeF09F8C9020WebArtGallery-online-00bfffhttpsmodelscope.cnstudiosTongyi-MAIZ-Image-Gallerysummary160 Welcome to the official repository for the Z-Imageproject! Z-Image is a powerful and highly efficient image generation model with 6B parameters. Currently there are three variants",
+        "tags": [
+            "python"
+        ]
     }
 }
