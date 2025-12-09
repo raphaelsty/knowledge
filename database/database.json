@@ -50569,5 +50569,63 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/markomanninen/mcp-debugpy": {
+        "extra-tags": [
+            "debug"
+        ],
+        "date": "2025-12-09",
+        "title": "mcp-debugpy",
+        "summary": "MCP server for AI-assisted Python debugging using debugpy and Debug Adapter Protocol \n MCP server for AI-assisted Python debugging using debugpy and Debug Adapter Protocol. Enable AI agents to debug your Python code through natural language. This MCP server provides macOSLinux bash git clone cd mvp-agent-debug .setup.sh source .venvbinactivate python srcdapstdiodirect.py direct adapter walkthrough python -m pytest teststestmcpserver.py verify MCP tooling",
+        "tags": [
+            "debugpy",
+            "ai-assisted-debugging",
+            "mcp",
+            "model-context-protocol",
+            "python",
+            "mcp-server",
+            "testing",
+            "pytest",
+            "developer-tools",
+            "debugging",
+            "debug-adapter-protocol",
+            "ai-tools",
+            "dap"
+        ]
+    },
+    "https://github.com/IliaLarchenko/behavior-1k-solution": {
+        "extra-tags": [
+            "2025",
+            "repository",
+            "pi0",
+            "stanford"
+        ],
+        "date": "2025-12-09",
+        "title": "behavior-1k-solution",
+        "summary": "1st place solution of 2025 BEHAVIOR Challenge \n 1st Place Public Leaderboard 26 Private Leaderboard 26 This repository contains our winning solution for the 2025 BEHAVIOR Challengehttpsbehavior.stanford.educhallenge, achieving a 26 success rate on both the public and private evaluation sets. Our approach builds upon Physical Intelligence's Pi0.5httpswww.physicalintelligence.companyblogpi0 vision-language-action model with several architectural and training innovations. We use policy based on Pi0.5 and built on top of openpihttpsgithub.comPhysical-Intelligenceopenpi repository.",
+        "tags": [
+            "machine-learning",
+            "python",
+            "ai",
+            "robotics",
+            "vla",
+            "competition"
+        ]
+    },
+    "https://github.com/google/grain": {
+        "extra-tags": [
+            "processing",
+            "library",
+            "data"
+        ],
+        "date": "2025-12-09",
+        "title": "grain",
+        "summary": "Library for reading and processing ML training data. \n Quickstartquickstart Reference docshttpsgoogle-grain.readthedocs.ioenlatest Change logshttpsgoogle-grain.readthedocs.ioenlatestchangelog.html Grain is a Python library for reading and processing data for training and evaluating JAX models. It is flexible, fast and deterministic. Grain allows to define data processing steps in a simple declarative way python import grain dataset grain.MapDataset.source0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10",
+        "tags": [
+            "data-pr",
+            "machine-learning",
+            "python",
+            "jax"
+        ]
     }
 }
