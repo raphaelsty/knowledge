@@ -50656,5 +50656,19 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/mjun0812/flash-attention-prebuild-wheels": {
+        "extra-tags": [
+            "flash-attention",
+            "wheels",
+            "attention",
+            "build"
+        ],
+        "date": "2025-12-11",
+        "title": "flash-attention-prebuild-wheels",
+        "summary": "Provide with pre-build flash-attention package wheels on Linux and Windows platforms using GitHub Actions \n !GitHub Downloads all assets, all releaseshttpsimg.shields.iogithubdownloadsmjun0812flash-attention-prebuild-wheelstotal?stylefor-the-badge This repository provides wheels for the pre-built flash-attentionhttpsgithub.comDao-AILabflash-attention. Since building flash-attention takes a very long time and is resource-intensive, I also build and provide combinations of CUDA and PyTorch that are not officially distributed. The building Github Actions Workflow can be found here..githubworkflowsbuild.yml. The built packages are available on the release pagehttpsgithub.commjun0812flash-attention-prebuild-wheelsreleases.",
+        "tags": [
+            "python"
+        ]
     }
 }
