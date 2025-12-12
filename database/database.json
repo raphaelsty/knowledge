@@ -50670,5 +50670,60 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/vllm-project/llm-compressor": {
+        "extra-tags": [
+            "vllm",
+            "llm",
+            "library",
+            "deployment"
+        ],
+        "date": "2025-12-12",
+        "title": "llm-compressor",
+        "summary": "Transformers-compatible library for applying various compression algorithms to LLMs for optimized deployment with vLLM \n LLM Compressor llmcompressor is an easy-to-use library for optimizing models for deployment with vllm, including Read the announcement blog herehttpsneuralmagic.comblogllm-compressor-is-here-faster-inference-with-vllm! Join us on the vLLM Community Slackhttpscommunityinviter.comappsvllm-devjoin-vllm-developers-slack and share your questions, thoughts, or ideas in Big updates have landed in LLM Compressor! To get a more in-depth look, check out the LLM Compressor overviewhttpsdocs.google.compresentationd1WNkYBKvCsrYs69lb7bJKjh2dWt8U1HXUw7Gr4Wn3gEedit?uspsharing.",
+        "tags": [
+            "compression",
+            "sparsity",
+            "python",
+            "quantization"
+        ]
+    },
+    "https://github.com/robot-descriptions/robot_descriptions.py": {
+        "extra-tags": [
+            "conda",
+            "robotics"
+        ],
+        "date": "2025-12-12",
+        "title": "robot_descriptions.py",
+        "summary": "Access 135+ robot descriptions from the main Python robotics frameworks \n Import open source robot descriptions as Python modules. Importing a description for the first time automatically downloads and caches files for future imports. Most Awesome Robot Descriptionshttpsgithub.comrobot-descriptionsawesome-robot-descriptions are available. All of them load successfully in respectively MuJoCo MJCF or Pinocchio, iDynTree, PyBullet and yourdfpy URDF. console conda install -c conda-forge robotdescriptions",
+        "tags": [
+            "robot-description",
+            "robot",
+            "urdf",
+            "urdf-descriptions",
+            "python",
+            "mjcf-descriptions",
+            "robot-model",
+            "urdf-models"
+        ]
+    },
+    "https://github.com/vinbhaskara/AdamS": {
+        "extra-tags": [
+            "paper",
+            "data"
+        ],
+        "date": "2025-12-12",
+        "title": "AdamS",
+        "summary": "PyTorch Code for the Paper: \"Exploiting Uncertainty of Loss Landscape for Stochastic Optimization [Bhaskara et al. (2019)] \n Paper httparxiv.orgabs1905.13200httparxiv.orgabs1905.13200 Cite as V.S. Bhaskara, and S. Desai. arXiv preprint, arXiv1905.13200 cs.LG 2019. We introduce variants of the Adamhttpsdocs.pytorch.orgdocs2.8generatedtorch.optim.Adam.html optimizer that either bias the updates along regions that conform across mini-batches or randomly explore unbiased in the parameter space along the variance-gradient. Our variants of the optimizer are shown to generalize better with improved test accuracy across multiple datasets and architectures. Particularly, our optimizer shines in low-data regime and when the data is noisy, sparseredundant, or missing.",
+        "tags": [
+            "optimization-algorithms",
+            "optimization",
+            "adam",
+            "pytorch",
+            "deep-learning",
+            "optimizer",
+            "python",
+            "neural-networks"
+        ]
     }
 }
