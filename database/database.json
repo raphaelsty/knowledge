@@ -50725,5 +50725,61 @@
             "python",
             "neural-networks"
         ]
+    },
+    "https://github.com/microsoft/DiskANN": {
+        "extra-tags": [
+            "code",
+            "fast",
+            "nearest neighbor search",
+            "pdf",
+            "nearest-neighbor-search"
+        ],
+        "date": "2025-12-13",
+        "title": "DiskANN",
+        "summary": "Graph-structured Indices for Scalable, Fast, Fresh and Filtered Approximate Nearest Neighbor Search \n DiskANN is a suite of scalable, accurate and cost-effective approximate nearest neighbor search algorithms for large-scale vector search that support real-time changes and simple filters. This code is based on ideas from the DiskANNhttpspapers.nips.ccpaper9527-rand-nsg-fast-accurate-billion-point-nearest-neighbor-search-on-a-single-node.pdf, Fresh-DiskANNhttpsarxiv.orgabs2105.09613 and the Filtered-DiskANNhttpsharsha-simhadri.orgpubsFiltered-DiskANN23.pdf papers with further improvements. This code forked off from code for NSGhttpsgithub.comZJULearningnsg algorithm.",
+        "tags": [
+            "c++"
+        ]
+    },
+    "https://github.com/datologyai/luxical": {
+        "extra-tags": [
+            "embeddings",
+            "logo",
+            "fast",
+            "tfidf"
+        ],
+        "date": "2025-12-13",
+        "title": "luxical",
+        "summary": " \n !logo.Luxicallogo.png Fast lexical embeddings built on token counts, TFIDF, and compact sparsetodense MLPs. Read the full story in our blog posthttpswww.datologyai.comblogintroducing-luxical-embeddings. shell pip install luxical We currently support MacOS and Linux and Python versions 3.11, 3.12, and 3.13. These limitations are due to the inclusion of complied Rust extension code via the included arrow-tokenize package.",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://www.dbpro.app/blog/sqlite-json-virtual-columns-indexing": {
+        "extra-tags": [
+            "sqlite",
+            "json",
+            "index",
+            "indexing"
+        ],
+        "title": "Hackernews SQLite JSON at full index speed using generated columns (dbpro.app)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "SQLite JSON Superpower: Virtual Columns + Indexing We absolutely love SQLite here at DB Pro. You'd be hard-pressed to find anyone who actively dislikes it. Sure, it has limitations, and I do mean limitations, not weaknesses. SQLite can absolutely be used in production when it's deployed properly and tuned with",
+        "date": "2025-12-13"
+    },
+    "https://docs.together.ai/docs/mixture-of-agents": {
+        "extra-tags": [],
+        "title": "Together Mixture Of Agents (MoA)",
+        "summary": "",
+        "date": "2025-12-12",
+        "tags": [
+            "computer science - multiagent systems",
+            "agents",
+            "mixture of agents",
+            "moa",
+            "prompt"
+        ]
     }
 }
