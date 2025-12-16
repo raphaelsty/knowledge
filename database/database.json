@@ -50781,5 +50781,75 @@
             "moa",
             "prompt"
         ]
+    },
+    "https://github.com/mondaytech-dev/deadlink": {
+        "extra-tags": [
+            "deadlink",
+            "http",
+            "install",
+            "code"
+        ],
+        "date": "2025-12-16",
+        "title": "deadlink",
+        "summary": ":skull: Checks and fixes URLs in code and documentation. \n Parses text files for HTTP URLs and checks if they are still valid. Install with pip install deadlink and use as sh deadlink check README.md or multiple filesdirectories To explicitly allow or ignore certain URLs, use deadlink check README.md -a http -i stackoverflow.com github",
+        "tags": [
+            "command-line",
+            "tool",
+            "url",
+            "python"
+        ]
+    },
+    "https://github.com/MilkClouds/vla0-trl": {
+        "extra-tags": [
+            "vla",
+            "trl",
+            "fine-tuning",
+            "predict",
+            "codebase"
+        ],
+        "date": "2025-12-16",
+        "title": "vla0-trl",
+        "summary": "Unofficial reimplementation of VLA-0 using TRL's SFTTrainer. \n Unofficial reimplementation of VLA-0httpsgithub.comNVlabsvla0 using TRLhttpsgithub.comhuggingfacetrl's SFTTrainer. While common VLA codebases are over 10,000 lines, vla0-trl contains only 1,200 lines total. Gets 90 on LIBERO by just fine-tuning Qwen2.5-VL to predict actions as text. No custom architecture needed. Good starting point if you want to build your own VLA. Codebase Lines of Code LIBERO Avg",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/IRT-Saint-Exupery/CoFmuPy": {
+        "extra-tags": [
+            "library",
+            "python",
+            "prototyping",
+            "simulation"
+        ],
+        "date": "2025-12-16",
+        "title": "CoFmuPy",
+        "summary": "CoFmuPy is a Python library designed for rapid prototyping of digital twins through the co-simulation of Functional Mock-up Units (FMUs) \n CoFmuPy is a Python library designed for rapid prototyping of digital twins through the co-simulation of Functional Mock-up Units FMUs. It offers advanced master coordination features, such as solving algebraic loops between FMUs and managing the interaction between various simulation components. This library provides a seamless interface to orchestrate complex physics simulations and handle the",
+        "tags": [
+            "functional-mockup-unit",
+            "digital-twins",
+            "functional-mockup-interface",
+            "co-simulation",
+            "jupyter notebook"
+        ]
+    },
+    "https://www.nature.com/articles/s41586-025-09761-x": {
+        "extra-tags": [
+            "rl",
+            "algorithms",
+            "state-of-the-art",
+            "agents"
+        ],
+        "title": "Discovering state-of-the-art reinforcement learning algorithms",
+        "summary": "Humans and other animals use powerful reinforcement learning (RL) mechanisms that have been discovered by evolution over many generations of trial and error. By contrast, artificial agents typically learn using handcrafted learning rules. Despite decades of interest, the goal of autonomously discovering powerful RL algorithms has proven to be elusive1\u20136. Here we show that it is possible for machines to discover a state-of-the-art RL rule that outperforms manually designed rules. This was achieved by meta-learning from the cumulative experiences of a population of agents across a large number of complex environments. Specifically, our method discovers the RL rule by which the agent\u2019s policy and predictions are updated. In our large-scale experiments, the discovered rule surpassed all existing rules on the well-established Atari benchmark and outperformed a number of state-of-the-art RL algorithms on challenging benchmarks that it had not seen during discovery. Our findings suggest that the RL algorithms required for advanced artificial intelligence may soon be automatically discovered from the experiences of agents, rather than manually designed.",
+        "date": "2025-12-16",
+        "tags": [
+            "computational science",
+            "computer science",
+            "deepmind",
+            "google",
+            "nature",
+            "papers",
+            "reinforcement learning"
+        ]
     }
 }
