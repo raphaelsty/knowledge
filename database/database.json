@@ -50864,5 +50864,53 @@
         "tags": [
             "rust"
         ]
+    },
+    "https://github.com/EmilStenstrom/justhtml": {
+        "extra-tags": [
+            "no",
+            "dependencies"
+        ],
+        "date": "2025-12-19",
+        "title": "justhtml",
+        "summary": "A pure Python HTML5 parser that just works. No C extensions to compile. No system dependencies to install. No complex API to learn. \n A pure Python HTML5 parser that just works. No C extensions to compile. No system dependencies to install. No complex API to learn. Read the full documentation heredocsindex.md It implements the official WHATWG HTML5 specification exactly. If a browser can parse it, JustHTML can parse it. It handles all the complex error-handling rules that browsers use.",
+        "tags": [
+            "parser",
+            "python",
+            "html5"
+        ]
+    },
+    "https://blog.google/technology/developers/t5gemma-2/": {
+        "extra-tags": [
+            "decoder",
+            "encoder",
+            "models",
+            "generation"
+        ],
+        "title": "Hackernews T5Gemma 2: The next generation of encoder-decoder models (blog.google)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "T5Gemma 2: The next generation of encoder-decoder models T5Gemma 2 is the next evolution of our encoder-decoder family based on Gemma 3, featuring the first multi-modal and long-context encoder-decoder models. Unlike T5Gemma, T5Gemma 2 adopts tied word embeddings (over encoder and decoder) and merged decoder self- and cross-attention to save",
+        "date": "2025-12-19"
+    },
+    "http://arxiv.org/abs/2512.14856": {
+        "extra-tags": [
+            "decoder",
+            "models",
+            "multimodal"
+        ],
+        "title": "T5Gemma 2: Seeing, Reading, and Understanding Longer",
+        "summary": "We introduce T5Gemma 2, the next generation of the T5Gemma family of lightweight open encoder-decoder models, featuring strong multilingual, multimodal and long-context capabilities. T5Gemma 2 follows the adaptation recipe (via UL2) in T5Gemma -- adapting a pretrained decoder-only model into an encoder-decoder model, and extends it from text-only regime to multimodal based on the Gemma 3 models. We further propose two methods to improve the efficiency: tied word embedding that shares all embeddings across encoder and decoder, and merged attention that unifies decoder self- and cross-attention into a single joint module. Experiments demonstrate the generality of the adaptation strategy over architectures and modalities as well as the unique strength of the encoder-decoder architecture on long context modeling. Similar to T5Gemma, T5Gemma 2 yields comparable or better pretraining performance and significantly improved post-training performance than its Gemma 3 counterpart. We release the pretrained models (270M-270M, 1B-1B and 4B-4B) to the community for future research.",
+        "date": "2025-12-18",
+        "tags": [
+            "computer science - computation and language",
+            "encoder",
+            "gemma",
+            "google",
+            "image",
+            "sota",
+            "t5",
+            "vision encoder"
+        ]
     }
 }
