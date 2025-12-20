@@ -50912,5 +50912,23 @@
             "t5",
             "vision encoder"
         ]
+    },
+    "https://abseil.io/fast/hints.html": {
+        "extra-tags": [
+            "performance",
+            "hints",
+            "open-source",
+            "collection"
+        ],
+        "title": "abseil / Performance Hints",
+        "summary": "An open-source collection of core C++ library code",
+        "date": "2025-12-19",
+        "tags": [
+            "blog",
+            "code",
+            "google",
+            "jeff dean",
+            "optimization"
+        ]
     }
 }
