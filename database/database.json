@@ -50930,5 +50930,31 @@
             "jeff dean",
             "optimization"
         ]
+    },
+    "https://openrouter.ai/announcements/response-healing-reduce-json-defects-by-80percent": {
+        "extra-tags": [
+            "json",
+            "ai",
+            "apis"
+        ],
+        "title": "Hackernews Response Healing: Reduce JSON defects by 80%+ (openrouter.ai)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "Response Healing: Reduce JSON Defects by 80%+ We expect our APIs to have 99.999% uptime. We'd never tolerate a payment processor that failed 2% of the time. So why do we accept LLMs that routinely break JSON syntax in structured output requests? Today we're launching Response Healing: a new feature",
+        "date": "2025-12-21"
+    },
+    "https://notgull.net/block-pattern/": {
+        "extra-tags": [
+            "rust",
+            "code",
+            "find"
+        ],
+        "title": "Hackernews Rust's Block Pattern (notgull.net)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "Here\u2019s a little idiom that I haven\u2019t really seen discussed anywhere, that I think makes Rust code much cleaner and more robust. I don\u2019t know if there\u2019s an actual name for this idiom; I\u2019m calling it the \u201cblock pattern\u201d for lack of a better word. I find myself reaching for",
+        "date": "2025-12-21"
     }
 }
