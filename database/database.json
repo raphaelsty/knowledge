@@ -50956,5 +50956,45 @@
         ],
         "summary": "Here\u2019s a little idiom that I haven\u2019t really seen discussed anywhere, that I think makes Rust code much cleaner and more robust. I don\u2019t know if there\u2019s an actual name for this idiom; I\u2019m calling it the \u201cblock pattern\u201d for lack of a better word. I find myself reaching for",
         "date": "2025-12-21"
+    },
+    "https://aminediro.com/posts/flash_attn/": {
+        "extra-tags": [
+            "performance",
+            "attention",
+            "triton"
+        ],
+        "title": "Hackernews I rebuilt FlashAttention in Triton to understand the performance archaeology (aminediro.com)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "Reimplementing FlashAttention for performance and giggles Table of Contents \u23f2\ufe0f Estimated reading time ~45min. Flash Attention: From Theory to Implementation Flash Attention has become one of the most impactful optimizations in modern deep learning. Since the original paper was published in 2022, we\u2019ve seen four major versions\u2014each squeezing more performance",
+        "date": "2025-12-25"
+    },
+    "https://terriblesoftware.org/2025/11/25/what-actually-makes-you-senior/": {
+        "extra-tags": [
+            "architecture",
+            "ownership",
+            "engineer"
+        ],
+        "title": "Hackernews What makes you senior (terriblesoftware.org)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "People love to describe senior engineers with a big checklist: architecture, communication, ownership, leadership, etc. But if you strip away the title, the salary, and the years of experience, there\u2019s one core skill that separates senior+ engineers from everyone else: reducing ambiguity. Everything else flows from that. Here\u2019s what I",
+        "date": "2025-12-25"
+    },
+    "https://armeet.bearblog.dev/becoming-the-machine/": {
+        "extra-tags": [
+            "c",
+            "machine",
+            "dev",
+            "productivity"
+        ],
+        "title": "Hackernews Don't Become the Machine (armeet.bearblog.dev)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "Don't Become the Machine I was recently recommended a YouTube video with the following title: Only a slave quantifies its existence through productivity '''''',,,,,,,,,,,'''''.''''''........................................................................... ......................................... ... '''''',,,,,,,,,,'''''''''''''''........................................................................... ............................................. ''''',;;,,,,,,'''''''''''''''''................................................................................................................... ...... ''',,,;;,,,,,,,''''''''''''''............................................................................................................................... ''',,,,,,,,,,,,,'''''''''''.................................................................................................................................... . '''''',,,,,,,,,,,,''''''''................................................................................................................................................... ''''''',,,,,,;;,,,'''''''............................................................................................................''.,:cclcllllllooooodxddxxxxkkxdddddddolcc:;, '''''',,,,,,,,,,,''''''''...................................................................................................'',:::cloooxOXNNXXXKKK0000OOO0K00OOOkOOkkkOOOOOOOO000OOkxdollccc:, '''',,,',,,,,,,,,''''''''''...................................................................................,:cooolodolllodoolloxkk0KXXXKK00kkkxxdddddxO000OxxxxxxdddxxkkO000KKKKKKKKKKKXXK0Oxoc: ''',,,,'',,,,,,,,,,,''''''...............................................................................,:ldkKXNNX0xoolccccllodk0KKKK0OkOkkxxxdoollccclodoolllllllllcllooddxxkOOO0KKXXXXXXXXXKK000Okxo:;;::,...... '',''''''',,,,,',,,'''''''...........................................................................,cox0XNWWWWWNNNXK0OOkkOO0KXKK0Okxollc::;;;,''..........................'',,,;:codxk0KKKKK00000OOOkxlclkklcllol'. ''',,,,'',,,,,,'',''''''''.......................................................................';lkKXXXXXNWNNNNNNNXNNXXKKK0Oxdol:;'.......'''''......''''.'',:ccc:,'''.''.............',,:ldxO00Okkkkkocldl,;;cxkl,... ''',,,,''',,,,,,,,'''''''''..................................................................':lx0XNNXK0KXXXNNNNNXXNXKKOxdo:;,.......''''''''',,,.......',,'''',;,'''''',;,.''..'..''..........':dkkkxkOocll;,:c::ll;;:;;,.. ''''',,,'',,,,,'''....'''................................................................';lx0XNXKOdoc;,cOXXNNXXKKKKOoc,.....................'...,'..,;,..'.....,::,,c:,:c;..,''cl,;l;.;c;........:dxxxdc;:;,cxOOkxl,';oxkdl:,.. ''',,,,''',,,,,''''....'''............................................................,coxOKK0kxxl,....;o0NNX00000Od;....''..............,;'';:;,';:,,;cc,,c;.,:;;cc;,c:';:,.';.,c,';:,':c,'::'';..lxxxl;,,;:lodxOKK0xlclokOOkxo:'.... . ,,,,,,,',,,,,,'''''''''''''.......................................................,;:codkOOxol::;'..':d0X0xo:;:xOOx,..':cc,...'..,::'';;,,:c:;:lc;';c;,,::,;:,,;;',c:',,.';;..;'.,,.';;..;,.,;'',,:ooddoooddlloxko:o0NN0xollxOKK0kdc;'.. .. ,''''''''',,,''''''''''''''.....................................................,lxkOkdddolcc;'..',cxOOdc;,,'.;dO0k:..,;,,;'',;cc:;;;;,;:;,:l:,:c;.':;,'':;'';,''..,;'....''..'..''',;;;:cllloodkOKXXXXNNKkxdxxkKKl'lOkkKX0xolxO0XXXKkdc,.... .. '''''''''',,,,'''''''''''.....................................................'lk0KOdooolooddolc:coxo:;;,'...'lkO00x;',,,,;cc;,,:lc'';;',:,.,;'.,,..,;;'.',..'.....',,',,,;,:lloddkOOOO0KKKKXX00KXNWWWWMWxlOOOOlxNx.,d:.;oOXXOxox0XXXXNXKOd:'..... ,,''''',,,,,,,,,'''''''''...................................................':xKNKd::clodxkkkxddddddoclc,....:xkkkkOxc:::c:,,;c;.,c:'.'......''.....',,'.',;;::cloddddddxxxOKKXXXNNNNWNNNNNNNX000XWMWWWWWKdollookk;.lkc',',:d0XKOxk00OOOO0KK0xl;'...",
+        "date": "2025-12-25"
     }
 }
