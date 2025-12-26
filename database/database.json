@@ -50996,5 +50996,76 @@
         ],
         "summary": "Don't Become the Machine I was recently recommended a YouTube video with the following title: Only a slave quantifies its existence through productivity '''''',,,,,,,,,,,'''''.''''''........................................................................... ......................................... ... '''''',,,,,,,,,,'''''''''''''''........................................................................... ............................................. ''''',;;,,,,,,'''''''''''''''''................................................................................................................... ...... ''',,,;;,,,,,,,''''''''''''''............................................................................................................................... ''',,,,,,,,,,,,,'''''''''''.................................................................................................................................... . '''''',,,,,,,,,,,,''''''''................................................................................................................................................... ''''''',,,,,,;;,,,'''''''............................................................................................................''.,:cclcllllllooooodxddxxxxkkxdddddddolcc:;, '''''',,,,,,,,,,,''''''''...................................................................................................'',:::cloooxOXNNXXXKKK0000OOO0K00OOOkOOkkkOOOOOOOO000OOkxdollccc:, '''',,,',,,,,,,,,''''''''''...................................................................................,:cooolodolllodoolloxkk0KXXXKK00kkkxxdddddxO000OxxxxxxdddxxkkO000KKKKKKKKKKKXXK0Oxoc: ''',,,,'',,,,,,,,,,,''''''...............................................................................,:ldkKXNNX0xoolccccllodk0KKKK0OkOkkxxxdoollccclodoolllllllllcllooddxxkOOO0KKXXXXXXXXXKK000Okxo:;;::,...... '',''''''',,,,,',,,'''''''...........................................................................,cox0XNWWWWWNNNXK0OOkkOO0KXKK0Okxollc::;;;,''..........................'',,,;:codxk0KKKKK00000OOOkxlclkklcllol'. ''',,,,'',,,,,,'',''''''''.......................................................................';lkKXXXXXNWNNNNNNNXNNXXKKK0Oxdol:;'.......'''''......''''.'',:ccc:,'''.''.............',,:ldxO00Okkkkkocldl,;;cxkl,... ''',,,,''',,,,,,,,'''''''''..................................................................':lx0XNNXK0KXXXNNNNNXXNXKKOxdo:;,.......''''''''',,,.......',,'''',;,'''''',;,.''..'..''..........':dkkkxkOocll;,:c::ll;;:;;,.. ''''',,,'',,,,,'''....'''................................................................';lx0XNXKOdoc;,cOXXNNXXKKKKOoc,.....................'...,'..,;,..'.....,::,,c:,:c;..,''cl,;l;.;c;........:dxxxdc;:;,cxOOkxl,';oxkdl:,.. ''',,,,''',,,,,''''....'''............................................................,coxOKK0kxxl,....;o0NNX00000Od;....''..............,;'';:;,';:,,;cc,,c;.,:;;cc;,c:';:,.';.,c,';:,':c,'::'';..lxxxl;,,;:lodxOKK0xlclokOOkxo:'.... . ,,,,,,,',,,,,,'''''''''''''.......................................................,;:codkOOxol::;'..':d0X0xo:;:xOOx,..':cc,...'..,::'';;,,:c:;:lc;';c;,,::,;:,,;;',c:',,.';;..;'.,,.';;..;,.,;'',,:ooddoooddlloxko:o0NN0xollxOKK0kdc;'.. .. ,''''''''',,,''''''''''''''.....................................................,lxkOkdddolcc;'..',cxOOdc;,,'.;dO0k:..,;,,;'',;cc:;;;;,;:;,:l:,:c;.':;,'':;'';,''..,;'....''..'..''',;;;:cllloodkOKXXXXNNKkxdxxkKKl'lOkkKX0xolxO0XXXKkdc,.... .. '''''''''',,,,'''''''''''.....................................................'lk0KOdooolooddolc:coxo:;;,'...'lkO00x;',,,,;cc;,,:lc'';;',:,.,;'.,,..,;;'.',..'.....',,',,,;,:lloddkOOOO0KKKKXX00KXNWWWWMWxlOOOOlxNx.,d:.;oOXXOxox0XXXXNXKOd:'..... ,,''''',,,,,,,,,'''''''''...................................................':xKNKd::clodxkkkxddddddoclc,....:xkkkkOxc:::c:,,;c;.,c:'.'......''.....',,'.',;;::cloddddddxxxOKKXXXNNNNWNNNNNNNX000XWMWWWWWKdollookk;.lkc',',:d0XKOxk00OOOO0KK0xl;'...",
         "date": "2025-12-25"
+    },
+    "https://github.com/Maxteabag/sqlit": {
+        "extra-tags": [
+            "databases",
+            "server",
+            "database"
+        ],
+        "date": "2025-12-26",
+        "title": "sqlit",
+        "summary": "A user friendly TUI for SQL databases. Written in python. Supports SQL server, Mysql, PostreSQL and SQLite, Turso and more. \n The lazygit of SQL databases Connect and query your database from your terminal in seconds. pipx install sqlit-tui Supports all major databases SQL Server, PostgreSQL, MySQL, SQLite, MariaDB, FirebirdSQL, Oracle, DuckDB, CockroachDB, ClickHouse, Snowflake, Supabase, CloudFlare D1, and Turso. !Database Providersdemosdemo-providers.gif Syntax highlighting. History. Vim-style keybindings. !Query Historydemosdemo-history.gif Load millions of rows. Inspect data, filter by content, fuzzy search, no more squinting eyes looking for what you need!",
+        "tags": [
+            "postgresql",
+            "cockroachdb",
+            "mysql",
+            "ssh",
+            "mariadb",
+            "turso",
+            "duckdb",
+            "oracle",
+            "sql",
+            "command-line-tool",
+            "python",
+            "tui",
+            "sqlite"
+        ]
+    },
+    "https://github.com/VibiumDev/vibium": {
+        "extra-tags": [
+            "browser",
+            "automation",
+            "ai",
+            "agents"
+        ],
+        "date": "2025-12-26",
+        "title": "vibium",
+        "summary": "Browser automation for AI agents and humans \n Browser automation without the drama. Vibium is browser automation infrastructure built for AI agents. A single binary handles browser lifecycle, WebDriver BiDi protocol, and exposes an MCP server so Claude Code or any MCP client can drive a browser with zero setup. Works great for AI agents, test automation, and anything else that needs a browser.",
+        "tags": [
+            "go"
+        ]
+    },
+    "https://blog.partykit.io/posts/using-vectorize-to-build-search/": {
+        "extra-tags": [
+            "build",
+            "good",
+            "search",
+            "search engine"
+        ],
+        "title": "Hackernews Using Vectorize to build an unreasonably good search engine in 160 lines of code (partykit.io)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "The tl;dr is that search got really good suddenly and really easy to build because of AI. For instance, this is the search experience I recently made for my side project website Braggoscope. Braggoscope is my unofficial directory of BBC Radio 4\u2019s show In Our Time. There are over 1,000",
+        "date": "2025-12-26"
+    },
+    "http://arxiv.org/abs/2512.21257": {
+        "extra-tags": [
+            "knowledge",
+            "reasoning",
+            "log",
+            "language models"
+        ],
+        "title": "ReaSeq: Unleashing World Knowledge via Reasoning for Sequential Modeling",
+        "summary": "Industrial recommender systems face two fundamental limitations under the log-driven paradigm: (1) knowledge poverty in ID-based item representations that causes brittle interest modeling under data sparsity, and (2) systemic blindness to beyond-log user interests that constrains model performance within platform boundaries. These limitations stem from an over-reliance on shallow interaction statistics and close-looped feedback while neglecting the rich world knowledge about product semantics and cross-domain behavioral patterns that Large Language Models have learned from vast corpora. To address these challenges, we introduce ReaSeq, a reasoning-enhanced framework that leverages world knowledge in Large Language Models to address both limitations through explicit and implicit reasoning. Specifically, ReaSeq employs explicit Chain-of-Thought reasoning via multi-agent collaboration to distill structured product knowledge into semantically enriched item representations, and latent reasoning via Diffusion Large Language Models to infer plausible beyond-log behaviors. Deployed on Taobao's ranking system serving hundreds of millions of users, ReaSeq achieves substantial gains: >6.0% in IPV and CTR, >2.9% in Orders, and >2.5% in GMV, validating the effectiveness of world-knowledge-enhanced reasoning over purely log-driven approaches.",
+        "date": "2025-12-25",
+        "tags": [
+            "computer science - computation and language",
+            "computer science - information retrieval",
+            "llm",
+            "llms",
+            "recommendation"
+        ]
     }
 }
