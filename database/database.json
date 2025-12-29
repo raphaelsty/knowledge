@@ -51067,5 +51067,265 @@
             "llms",
             "recommendation"
         ]
+    },
+    "https://github.com/asahi417/lm-vocab-trimmer": {
+        "extra-tags": [
+            "multilingual",
+            "language",
+            "tokens",
+            "model"
+        ],
+        "date": "2025-12-29",
+        "title": "lm-vocab-trimmer",
+        "summary": "Vocabulary Trimming (VT) is a model compression technique, which reduces a multilingual LM vocabulary to a target language by deleting irrelevant tokens from its vocabulary. This repository contains a python-library vocabtrimmer, that remove irrelevant tokens from a multilingual LM vocabulary for the target language. \n Figure 1 An illustration of vocabulary trimming to Korean and French. Vocabulary Trimming VThttpsarxiv.orgabs2305.15020 is a model compression technique, which reduces a multilingual LM vocabulary to a target language by deleting irrelevant tokens from its vocabulary see Figure 1. This repository contains a python-library vocabtrimmer, that remove irrelevant tokens from a multilingual LM vocabulary for the target language.",
+        "tags": [
+            "python",
+            "language-model",
+            "model-compression",
+            "gpt",
+            "t5",
+            "bert",
+            "nlp"
+        ]
+    },
+    "https://github.com/BloopAI/vibe-kanban": {
+        "extra-tags": [
+            "code",
+            "coding",
+            "codex"
+        ],
+        "date": "2025-12-29",
+        "title": "vibe-kanban",
+        "summary": "Get 10X more out of Claude Code, Codex or any coding agent \n Get 10X more out of Claude Code, Gemini CLI, Codex, Amp and other coding agents... We're hiring! !frontendpublicvibe-kanban-screenshot-overview.png AI coding agents are increasingly writing the world's code and human engineers now spend the majority of their time planning, reviewing, and orchestrating tasks. Vibe Kanban streamlines this process, enabling you to",
+        "tags": [
+            "management",
+            "rust",
+            "task-manager",
+            "kanban",
+            "agent",
+            "ai-agents"
+        ]
+    },
+    "https://github.com/alishobeiri/thread-notebook": {
+        "extra-tags": [
+            "jupyter notebook",
+            "notebook",
+            "code"
+        ],
+        "date": "2025-12-29",
+        "title": "thread-notebook",
+        "summary": "AI-powered Jupyter Notebook. Use AI to generate and edit code cells, automatically fix errors, and chat with your data \n AI-powered Jupyter Notebook Thread is a Jupyter alternative that integrates an AI copilot into your Jupyter Notebook editing experience. Thread runs locally and can be used for free with Ollamahttpsgithub.comollamaollama or your own API key. To start pip install thread-notebook To start thread, run any of the following commands",
+        "tags": [
+            "python",
+            "jupyterlab",
+            "react",
+            "jupyterhub",
+            "reactjs",
+            "analytics",
+            "jupyter",
+            "javascript",
+            "ai",
+            "ollama",
+            "analysis",
+            "data-science",
+            "jupyter-notebooks",
+            "jupyter-notebook"
+        ]
+    },
+    "https://huggingface.co/Parallia/ClinicalEncoder25-Diagnosable-Colbert-L2-for-medical-texts": {
+        "extra-tags": [
+            "colbert",
+            "reasoning",
+            "research"
+        ],
+        "title": "\ud83e\udd17 HuggingFace Parallia/ClinicalEncoder25-Diagnosable-Colbert-L2-for-medical-texts",
+        "tags": [
+            "huggingface",
+            "model"
+        ],
+        "summary": "| \u2696\ufe0f To use commercially, [please obtain a license](https://licensing.parallia.eu). \ud83d\ude4f Thank you for supporting my research! \ud83e\udd17 | |-----------------------------------------------------------------------------------------------------------------------------------| ClinicalEncoder25: The First Diagnosable ColBERT for Clinical Reasoning ClinicalEncoder25 is a breakthrough in AI for healthcare\u2014a non-generative, interpretable reasoning model that understands clinical text at millisecond speed, with token-level precision. Built",
+        "date": "2025-12-29"
+    },
+    "https://huggingface.co/lightonai/LightOnOCR-1B-1025": {
+        "extra-tags": [
+            "ocr",
+            "lighton",
+            "state-of-the-art"
+        ],
+        "title": "\ud83e\udd17 HuggingFace lightonai/LightOnOCR-1B-1025",
+        "tags": [
+            "huggingface",
+            "model"
+        ],
+        "summary": "<div align=\"center\"> <img src=\"lightonocr-banner.png\" alt=\"LightOn OCR-1B Banner\" width=\"600\"/> </div> LightOnOCR-1B-1025 Full BF16 version of the model. We recommend this variant for inference and further fine-tuning. LightOnOCR-1B is a compact, end-to-end vision\u2013language model for Optical Character Recognition (OCR) and document understanding. It achieves state-of-the-art accuracy in its weight class while being",
+        "date": "2025-12-29"
+    },
+    "https://huggingface.co/mistralai/Mistral-Small-24B-Instruct-2501": {
+        "extra-tags": [
+            "mistral",
+            "benchmark"
+        ],
+        "title": "\ud83e\udd17 HuggingFace mistralai/Mistral-Small-24B-Instruct-2501",
+        "tags": [
+            "huggingface",
+            "model"
+        ],
+        "summary": "Model Card for Mistral-Small-24B-Instruct-2501 Mistral Small 3 ( 2501 ) sets a new benchmark in the \"small\" Large Language Models category below 70B, boasting 24B parameters and achieving state-of-the-art capabilities comparable to larger models! This model is an instruction-fine-tuned version of the base model: [Mistral-Small-24B-Base-2501](https://huggingface.co/mistralai/Mistral-Small-24B-Base-2501). Mistral Small can be deployed",
+        "date": "2025-12-29"
+    },
+    "https://huggingface.co/lightonai/MonoQwen2-VL-v0.1": {
+        "extra-tags": [
+            "image",
+            "qwen2-vl"
+        ],
+        "title": "\ud83e\udd17 HuggingFace lightonai/MonoQwen2-VL-v0.1",
+        "tags": [
+            "huggingface",
+            "model"
+        ],
+        "summary": "MonoQwen2-VL-v0.1 Model Overview The MonoQwen2-VL-v0.1 is a multimodal reranker finetuned with LoRA from [Qwen2-VL-2B](https://huggingface.co/Qwen/Qwen2-VL-2B-Instruct), optimized for asserting pointwise image-query relevance using the [MonoT5](https://arxiv.org/pdf/2101.05667) objective. That is, given a couple of image and query fed into the prompt of the VLM, the model is tasked to generate \"True\" if the image",
+        "date": "2025-12-29"
+    },
+    "https://huggingface.co/colbert-ir/colbertv2.0_msmarco_64way": {
+        "extra-tags": [
+            "colbert",
+            "ir"
+        ],
+        "title": "\ud83e\udd17 HuggingFace colbert-ir/colbertv2.0_msmarco_64way",
+        "tags": [
+            "huggingface",
+            "model"
+        ],
+        "summary": "",
+        "date": "2025-12-29"
+    },
+    "https://huggingface.co/dangvantuan/sentence-camembert-large": {
+        "extra-tags": [
+            "embedding",
+            "vector"
+        ],
+        "title": "\ud83e\udd17 HuggingFace dangvantuan/sentence-camembert-large",
+        "tags": [
+            "huggingface",
+            "model"
+        ],
+        "summary": "Description: [Sentence-CamemBERT-Large](https://huggingface.co/dangvantuan/sentence-camembert-large) is the Embedding Model for French developed by [La Javaness](https://www.lajavaness.com/). The purpose of this embedding model is to represent the content and semantics of a French sentence in a mathematical vector which allows it to understand the meaning of the text-beyond individual words in queries and documents, offering",
+        "date": "2025-12-29"
+    },
+    "https://huggingface.co/bigscience/tr11-176B-logs": {
+        "extra-tags": [
+            "training",
+            "huggingface bigscience",
+            "logs",
+            "language model"
+        ],
+        "title": "\ud83e\udd17 HuggingFace bigscience/tr11-176B-logs",
+        "tags": [
+            "huggingface",
+            "model"
+        ],
+        "summary": "BigScience Large Language Model Training Training a multilingual 176 billion parameters model in the open ![BigScience Logo](https://assets.website-files.com/6139f3cdcbbff3a68486761d/613cd8997b270da063e230c5_Tekengebied%201-p-500.png) [BigScience](https://bigscience.huggingface.co) is a open and collaborative workshop around the study and creation of very large language models gathering more than 1000 researchers around the worlds. You can find more information on the main",
+        "date": "2025-12-29"
+    },
+    "https://huggingface.co/datasets/maastrichtlawtech/bsard": {
+        "extra-tags": [
+            "data",
+            "table",
+            "summary"
+        ],
+        "title": "\ud83e\udd17 HuggingFace maastrichtlawtech/bsard",
+        "tags": [
+            "huggingface",
+            "dataset"
+        ],
+        "summary": "Dataset Card for BSARD Table of Contents - [Table of Contents](table-of-contents) - [Dataset Description](dataset-description) - [Dataset Summary](dataset-summary) - [Supported Tasks and Leaderboards](supported-tasks-and-leaderboards) - [Languages](languages) - [Dataset Structure](dataset-structure) - [Data Instances](data-instances) - [Data Fields](data-fields) - [Data Splits](data-splits) - [Dataset Creation](dataset-creation) - [Curation Rationale](curation-rationale) - [Source Data](source-data) - [Annotations](annotations) - [Personal and",
+        "date": "2025-12-29"
+    },
+    "https://huggingface.co/datasets/lightonai/supervised_kalm": {
+        "extra-tags": [
+            "huggingface transformers",
+            "huggingface bigscience"
+        ],
+        "title": "\ud83e\udd17 HuggingFace lightonai/supervised_kalm",
+        "tags": [
+            "huggingface",
+            "dataset"
+        ],
+        "summary": "",
+        "date": "2025-12-29"
+    },
+    "https://huggingface.co/datasets/lightonai/embeddings_supervised": {
+        "extra-tags": [
+            "huggingface transformers",
+            "huggingface bigscience"
+        ],
+        "title": "\ud83e\udd17 HuggingFace lightonai/embeddings_supervised",
+        "tags": [
+            "huggingface",
+            "dataset"
+        ],
+        "summary": "",
+        "date": "2025-12-29"
+    },
+    "https://huggingface.co/datasets/sentence-transformers/msmarco-co-condenser-margin-mse-sym-mnrl-mean-v1": {
+        "extra-tags": [
+            "msmarco",
+            "ms marco",
+            "sentence-transformers"
+        ],
+        "title": "\ud83e\udd17 HuggingFace sentence-transformers/msmarco-co-condenser-margin-mse-sym-mnrl-mean-v1",
+        "tags": [
+            "huggingface",
+            "dataset"
+        ],
+        "summary": "MS MARCO with hard negatives from co-condenser-margin-mse-sym-mnrl-mean-v1 [MS MARCO](https://microsoft.github.io/msmarco/) is a large scale information retrieval corpus that was created based on real user search queries using the Bing search engine. For each query and gold positive passage, the 50 most similar paragraphs were mined using 13 different models. The resulting",
+        "date": "2025-12-29"
+    },
+    "https://huggingface.co/datasets/nomic-ai/nomic-embed-unsupervised-data": {
+        "extra-tags": [
+            "nomic",
+            "ai",
+            "data",
+            "training",
+            "training data"
+        ],
+        "title": "\ud83e\udd17 HuggingFace nomic-ai/nomic-embed-unsupervised-data",
+        "tags": [
+            "huggingface",
+            "dataset"
+        ],
+        "summary": "Weakly Supervised Contrastive Training data for Text Embedding models used in [Nomic Embed](https://huggingface.co/collections/nomic-ai/nomic-embed-65c0426827a5fdca81a87b89) models Training Click the Nomic Atlas map below to visualize a 5M sample of our contrastive pretraining data! [![image/webp](https://cdn-uploads.huggingface.co/production/uploads/607997c83a565c15675055b3/pjhJhuNyRfPagRd_c_iUz.webp)](https://atlas.nomic.ai/map/nomic-text-embed-v1-5m-sample) We train our embedder using a multi-stage training pipeline. Starting from a long-context [BERT model](https://huggingface.co/nomic-ai/nomic-bert-2048), the first unsupervised",
+        "date": "2025-12-29"
+    },
+    "https://huggingface.co/datasets/xlangai/DS-1000": {
+        "extra-tags": [
+            "ds",
+            "github",
+            "code",
+            "ai"
+        ],
+        "title": "\ud83e\udd17 HuggingFace xlangai/DS-1000",
+        "tags": [
+            "huggingface",
+            "dataset"
+        ],
+        "summary": "<h1 align=\"center\"> DS-1000 in simplified format </h1> \ud83d\udd25 Check the leaderboard from Eval-Arena on our [project page](https://ds1000-code-gen.github.io/). See testing code and more information (also the original [fill-in-the-middle/Insertion format](https://github.com/xlang-ai/DS-1000/tree/original_format)) in the [DS-1000 repo](https://github.com/xlang-ai/DS-1000/). Reformatting credits: Yuhang Lai, Sida Wang",
+        "date": "2025-12-29"
+    },
+    "https://huggingface.co/spaces/lightonai/MCPyLate": {
+        "extra-tags": [
+            "search",
+            "x",
+            "status",
+            "retrieval",
+            "pylate"
+        ],
+        "title": "\ud83e\udd17 HuggingFace lightonai/MCPyLate",
+        "tags": [
+            "huggingface",
+            "space"
+        ],
+        "summary": "MCPyLate Multi-vector search has shown very strong performance compared to single dense vector search in numerous domain, including out-of-domain, [long-context](https://x.com/antoine_chaffin/status/1919396926736257521) and [reasoning-intensive](https://x.com/antoine_chaffin/status/1925555110521798925) retrieval. They are thus particularly well suited for modern retrieval use cases, including agentic workflows. [PyLate](https://lightonai.github.io/pylate/) is library built on top of sentence-transformers that allows to easily train",
+        "date": "2025-12-29"
     }
 }
