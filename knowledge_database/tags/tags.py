@@ -17,10 +17,8 @@ def get_tags_triples(data: typing.List, excluded_tags=None):
     seen = collections.defaultdict(dict)
 
     for _, document in data.items():
-
         tags = document["tags"] + document["extra-tags"]
         for head, tail in itertools.combinations(tags, 2):
-
             if head in excluded_tags or tail in excluded_tags:
                 continue
 

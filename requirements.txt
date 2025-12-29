@@ -14,5 +14,9 @@ scikit-learn == 1.5.0
 openai == 1.35.2
 orjson == 3.9.15
 lenlp == 1.1.0
+sentence_transformers == 5.1.2
 numpy == 2.0.0
 trafilatura == 2.0.0
+transformers == 4.56.2
+huggingface-hub==0.36.0 
+tokenizers==0.22.1 

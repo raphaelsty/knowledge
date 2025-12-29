@@ -1,9 +1,7 @@
 import datetime
-import json
 import re
 
 import requests
-import tqdm
 import trafilatura
 from bs4 import BeautifulSoup
 
@@ -43,7 +41,6 @@ class HackerNews:
         data = {}
 
         with requests.Session() as session:
-
             p = session.post(
                 "https://news.ycombinator.com/login?goto=news",
                 data={"acct": self.username, "pw": self.password},
@@ -59,7 +56,6 @@ class HackerNews:
             soup = BeautifulSoup(html, "html.parser")
 
             for entry in soup.find_all("td", class_="title"):
-
                 record = entry.find("a")
                 if record is None:
                     continue

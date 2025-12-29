@@ -12,7 +12,7 @@
 <img src="img/demo.gif" alt="Demonstration GIF" style="width:100%; border-radius:10px; box-shadow:0 4px 8px rgba(0,0,0,0.1);">
 </p>
 
-**Knowledge** is a web application that automatically transforms the digital footprint into a personal search engine. It fetches content you interact with from various platforms—**GitHub**, **HackerNews**, and **Zotero**—and organizes it into a navigable knowledge graph.
+**Knowledge** is a web application that automatically transforms the digital footprint into a personal search engine. It fetches content you interact with from various platforms—**GitHub**, **HackerNews**, **Zotero**, **HuggingFace likes** and organizes it into a navigable knowledge graph.
 
 ---
 
@@ -36,6 +36,7 @@ A GitHub Actions workflow runs twice a day to perform the following tasks:
     - GitHub Stars
     - HackerNews Upvotes
     - Zotero Records
+    - HuggingFace Likes
 2.  **Processes and Stores Data** in the `database/` directory:
     - `database.json`: Contains all the raw records.
     - `triples.json`: Stores the knowledge graph data (topics and relationships).

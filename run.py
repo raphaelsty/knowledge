@@ -7,10 +7,10 @@ import yaml
 from knowledge_database import (
     github,
     hackernews,
+    huggingface,
     pipeline,
     semanlink,
     tags,
-    twitter,
     zotero,
 )
 
@@ -22,6 +22,7 @@ hackernews_username = os.environ.get("HACKERNEWS_USERNAME")
 hackernews_password = os.environ.get("HACKERNEWS_PASSWORD")
 zotero_library_id = os.environ.get("ZOTERO_LIBRARY_ID")
 zotero_api_key = os.environ.get("ZOTERO_API_KEY")
+huggingface_token = os.environ.get("HUGGINGFACE_TOKEN")
 
 data = {}
 
@@ -29,23 +30,6 @@ if os.path.exists("database/database.json"):
     with open("database/database.json", "r", encoding="utf-8", errors="replace") as f:
         data = json.load(f)
 
-# Twitter
-if twitter_token is not None and sources.get("twitter") is not None:
-    print("Twitter knowledge.")
-    for user_id_username in sources["twitter"]:
-        user_id = user_id_username[0]
-        username = user_id_username[1]
-
-        knowledge = twitter.Twitter(
-            username=username, user_id=user_id, token=twitter_token
-        )
-        knowledge = {
-            url: document for url, document in knowledge().items() if url not in data
-        }
-        print(f"Found {len(knowledge)} new Twitter documents.")
-        data = {**data, **knowledge}
-else:
-    print("No Twitter token.")
 
 # Github
 if sources.get("github") is not None:
@@ -106,6 +90,19 @@ if sources["semanlink"]:
     data = {**data, **knowledge}
 else:
     print("Semanlink disabled.")
+
+
+# HuggingFace
+if huggingface_token is not None and sources.get("huggingface") is not None:
+    print("HuggingFace knowledge.")
+    knowledge = huggingface.HuggingFace(token=huggingface_token)
+    knowledge = {
+        url: document for url, document in knowledge().items() if url not in data
+    }
+    print(f"Found {len(knowledge)} new HuggingFace documents.")
+    data = {**data, **knowledge}
+else:
+    print("No HuggingFace token.")
 
 
 # Sanity check.

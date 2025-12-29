@@ -35,11 +35,9 @@ class Semanlink:
         self.urls = urls
 
     def __call__(self):
-
         graph = rdflib.Graph()
         triples = []
         for url in self.urls:
-
             turtle = graph.parse(url, format="turtle")
 
             triples += [
@@ -55,7 +53,6 @@ class Semanlink:
         clean = collections.defaultdict(dict)
 
         for _, metadata in data.items():
-
             valid = True
 
             for relation in [
@@ -66,7 +63,6 @@ class Semanlink:
                 "arxiv_author",
             ]:
                 if relation not in metadata:
-
                     valid = False
                     break
 

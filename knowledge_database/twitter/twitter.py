@@ -48,7 +48,6 @@ class Twitter:
         next_token = ""
 
         for _ in range(limit):
-
             tweets = requests.get(
                 self.url + next_token, headers={"Authorization": f"Bearer {self.token}"}
             ).json()

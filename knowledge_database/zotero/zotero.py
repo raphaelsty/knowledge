@@ -42,7 +42,6 @@ class Zotero:
         data = {}
 
         for idx, document in enumerate(self.client.top(limit=limit)):
-
             date = datetime.datetime.strptime(
                 document["data"]["dateAdded"], "%Y-%m-%dT%H:%M:%SZ"
             ).strftime("%Y-%m-%d")
