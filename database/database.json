@@ -51327,5 +51327,19 @@
         ],
         "summary": "MCPyLate Multi-vector search has shown very strong performance compared to single dense vector search in numerous domain, including out-of-domain, [long-context](https://x.com/antoine_chaffin/status/1919396926736257521) and [reasoning-intensive](https://x.com/antoine_chaffin/status/1925555110521798925) retrieval. They are thus particularly well suited for modern retrieval use cases, including agentic workflows. [PyLate](https://lightonai.github.io/pylate/) is library built on top of sentence-transformers that allows to easily train",
         "date": "2025-12-29"
+    },
+    "https://opencontent.netflix.com/": {
+        "extra-tags": [
+            "netflix",
+            "make",
+            "sound",
+            "prototyping"
+        ],
+        "title": "Hackernews Netflix Open Content (netflix.com)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "At Netflix, we are always exploring ways to make our content look and sound even better. To provide a common reference for prototyping bleeding-edge technologies within entertainment, technology and academic circles without compromising the security of our original and licensed programming, we've developed test titles oriented around documentary, live action,",
+        "date": "2025-12-31"
     }
 }
