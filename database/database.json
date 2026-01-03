@@ -51341,5 +51341,37 @@
         ],
         "summary": "At Netflix, we are always exploring ways to make our content look and sound even better. To provide a common reference for prototyping bleeding-edge technologies within entertainment, technology and academic circles without compromising the security of our original and licensed programming, we've developed test titles oriented around documentary, live action,",
         "date": "2025-12-31"
+    },
+    "https://github.com/cjpais/Handy": {
+        "extra-tags": [
+            "source",
+            "offline"
+        ],
+        "date": "2026-01-03",
+        "title": "Handy",
+        "summary": "A free, open source, and extensible speech-to-text application that works completely offline. \n A free, open source, and extensible speech-to-text application that works completely offline. Handy is a cross-platform desktop application built with Tauri Rust ReactTypeScript that provides simple, privacy-focused speech transcription. Press a shortcut, speak, and have your words appear in any text fieldall without sending your voice to the cloud.",
+        "tags": [
+            "speech-to-text",
+            "accessibility",
+            "typescript",
+            "cross-platform",
+            "tauri-v2"
+        ]
+    },
+    "https://github.com/MaxHalford/wedplan": {
+        "extra-tags": [
+            "bash",
+            "git",
+            "uv",
+            "install",
+            "interactive",
+            "drag-and-drop"
+        ],
+        "date": "2026-01-03",
+        "title": "wedplan",
+        "summary": " \n A beautiful, interactive wedding seating planner with AI-powered optimization. Drag-and-drop table management, guest group constraints, and a CP-SAT solver to find the perfect seating arrangement. !Wedding Seating PlannerINTERFACE.png bash git clone httpsgithub.comyourusernamewedplan.git cd wedplan uv sync bun install or npm install bash uv run fastapi dev backendwedplanapimain.py",
+        "tags": [
+            "vue"
+        ]
     }
 }
