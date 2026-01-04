@@ -51373,5 +51373,63 @@
         "tags": [
             "vue"
         ]
+    },
+    "https://github.com/unum-cloud/USearch": {
+        "extra-tags": [
+            "c",
+            "engine",
+            "javascript"
+        ],
+        "date": "2026-01-04",
+        "title": "USearch",
+        "summary": "Fast Open-Source Search & Clustering engine \u00d7 for Vectors & Arbitrary Objects \u00d7 in C++, C, Python, JavaScript, Rust, Java, Objective-C, Swift, C#, GoLang, and Wolfram \ud83d\udd0d \n USearch Smaller Faster Single-File Similarity Search Clustering Engine for Vectors Texts nbspnbspnbsp nbspnbspnbsp nbspnbspnbsp nbspnbspnbsp Spatial Binary Probabilistic User-Defined Metrics C11 Python 3 JavaScript Java Rust C99 Objective-C Swift C Go Wolfram Linux macOS Windows iOS Android WebAssembly",
+        "tags": [
+            "database",
+            "fuzzy-search",
+            "approximate-nearest-neighbor-search",
+            "simd",
+            "c++",
+            "text-search",
+            "search",
+            "webassembly",
+            "full-text-search",
+            "faiss",
+            "similarity-search",
+            "search-engine",
+            "clustering",
+            "image-search",
+            "kann",
+            "nearest-neighbor-search",
+            "vector-search",
+            "recommender-system",
+            "semantic-search"
+        ]
+    },
+    "https://github.com/MaxHalford/squill": {
+        "extra-tags": [
+            "sql",
+            "editor",
+            "canvas",
+            "tools",
+            "open-source"
+        ],
+        "date": "2026-01-04",
+        "title": "squill",
+        "summary": "\u270d\ufe0f A practical and free SQL editor \n I write a lot of SQL queries. I enjoy the experience provided by canvas tools such as Count.cohttpscount.co. But they're either too expensive or too feature-bloated for my needs. So I made Squillhttpsmaxhalford.github.iosquill a lightweight, open-source SQL editor and database client that runs entirely in your browser.",
+        "tags": [
+            "vue"
+        ]
+    },
+    "https://www.cs.columbia.edu/~johnhew/vocab-expansion.html": {
+        "extra-tags": [
+            "embeddings",
+            "pretrained",
+            "language models",
+            "pretrained models"
+        ],
+        "title": "Initializing New Word Embeddings for Pretrained Language Models \u00b7 John Hewitt",
+        "summary": "",
+        "date": "2026-01-03",
+        "tags": []
     }
 }
