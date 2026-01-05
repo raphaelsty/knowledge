@@ -51431,5 +51431,37 @@
         "summary": "",
         "date": "2026-01-03",
         "tags": []
+    },
+    "https://github.com/AdilZouitine/ouakha.rs": {
+        "extra-tags": [
+            "code",
+            "tool",
+            "analysis"
+        ],
+        "date": "2026-01-05",
+        "title": "ouakha.rs",
+        "summary": "LLM-based code analysis tool for detecting suspicious or inconsistent code regions written in Rust \ud83e\udd80 \n LLM-based code analysis tool for detecting suspicious or inconsistent code regions. Ouakha means agree or okay in Moroccan Darija dialect. The name captures the core concept this tool finds places where the LLM model doesn't agree with your code highlighting tokens that seem surprising, inconsistent, or potentially buggy. When the model ouakha agrees with your code, everything looks fine. When it doesn't? That's where you should look closer.",
+        "tags": [
+            "rust",
+            "local-llm",
+            "vllm",
+            "open-source",
+            "code-analysis-tool",
+            "llm"
+        ]
+    },
+    "https://github.com/OpenGalaxea/GalaxeaVLA": {
+        "extra-tags": [
+            "vla",
+            "2025",
+            "model",
+            "robot"
+        ],
+        "date": "2026-01-05",
+        "title": "GalaxeaVLA",
+        "summary": "Galaxea's first VLA release \n Jan 4, 2026 We are releasing G0Plus, our latest pre-trained VLA model for multi-task robot manipulation. Oct 7, 2025 Now Lerobot Format Galaxea Open-World Dataset is available at Huggingfacehttpshuggingface.codatasetsOpenGalaxeaGalaxea-Open-World-Dataset! Sep 17, 2025 Release G0-VLA fine-tuning and real-robot inference code. Sep 9, 2025 Release G0-VLA pretrained model weights. Huggingfacehttpshuggingface.coOpenGalaxeaG0-VLA and Modelscopehttpswww.modelscope.cnmodelsGalaxeaG0-VLA!",
+        "tags": [
+            "python"
+        ]
     }
 }
