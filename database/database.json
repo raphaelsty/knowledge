@@ -51463,5 +51463,34 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/villekuosmanen/lerobot-arx5": {
+        "extra-tags": [
+            "lerobot",
+            "robot",
+            "plugin",
+            "arm"
+        ],
+        "date": "2026-01-06",
+        "title": "lerobot-arx5",
+        "summary": "An ARX5 robot arm plugin for LeRobot \n This repository provides LeRobothttpsgithub.comhuggingfacelerobot plugins for ARX5 robot armshttpswww.arx-robotics.com. This monorepo contains three packages Package Description ---------------------- arx5-common Shared low-level arm control and configuration lerobotrobotarx5 Follower robot plugin receives actions lerobotteleoperatorarx5 Leader teleoperator plugin produces actions lerobot-arx5",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://superwhisper.com/": {
+        "extra-tags": [
+            "ai",
+            "macos"
+        ],
+        "title": "superwhisper",
+        "summary": "AI powered voice to text for macOS",
+        "date": "2026-01-05",
+        "tags": [
+            "software",
+            "superwhisper",
+            "voice",
+            "voice to text"
+        ]
     }
 }
