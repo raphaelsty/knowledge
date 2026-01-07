@@ -51492,5 +51492,46 @@
             "voice",
             "voice to text"
         ]
+    },
+    "https://github.com/tokio-rs/axum": {
+        "extra-tags": [
+            "library"
+        ],
+        "date": "2026-01-07",
+        "title": "axum",
+        "summary": "HTTP routing and request-handling library for Rust that focuses on ergonomics and modularity \n axumREADME.md",
+        "tags": [
+            "rust",
+            "routing",
+            "http"
+        ]
+    },
+    "https://github.com/lightonai/fastkmeans-rs": {
+        "extra-tags": [
+            "clustering",
+            "cpu",
+            "crate"
+        ],
+        "date": "2026-01-07",
+        "title": "fastkmeans-rs",
+        "summary": "A Rust rewrite of FastKMeans for CPU-based clustering \n fastkmeans-rs A Rust rewrite of FastKMeans for CPU-based clustering. This crate is a straightforward Rust port of the excellent fastkmeanshttpsgithub.comAnswerDotAIfastkmeans Python library by Answer.AI. It provides the same double-chunking k-means algorithm optimized for large-scale clustering without running out of memory, now with Rust performance and multi-threaded parallelization via rayon. Add fastkmeans-rs to your Cargo.toml",
+        "tags": [
+            "rust"
+        ]
+    },
+    "https://github.com/InternRobotics/InternVLA-A1": {
+        "extra-tags": [
+            "conda",
+            "github",
+            "bash",
+            "pip",
+            "install"
+        ],
+        "date": "2026-01-07",
+        "title": "InternVLA-A1",
+        "summary": "InternVLA-A1: Unifying Understanding, Generation, and Action for Robotic Manipulation\u200b \n !image descriptionhttpsinternrobotics.github.iointernvla-a1.github.ioimgsmethod.jpg This repository has been tested on Python 3.10 and CUDA 12.8. We recommend using conda to create an isolated environment. bash conda create -y -n internvlaa1 python3.10 conda activate internvlaa1 pip install --upgrade pip We use FFmpeg for video encodingdecoding and SVT-AV1 for efficient storage. bash conda install -c conda-forge ffmpeg7.1.1 svt-av1 -y",
+        "tags": [
+            "python"
+        ]
     }
 }
