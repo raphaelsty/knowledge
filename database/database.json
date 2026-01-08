@@ -51533,5 +51533,31 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/rberg27/doom-coding": {
+        "extra-tags": [
+            "coding",
+            "doom",
+            "code",
+            "diy"
+        ],
+        "date": "2026-01-08",
+        "title": "doom-coding",
+        "summary": "A guide for how to use your smartphone to code anywhere at anytime.  \n A DIY approach to coding on-the-go! As an aspiring builder, I sought out a way to keep coding while not at home. Thanks to some Claude-assisted research and troubleshooting, I can now code via the terminal on my phone anywhere at anytime via Doom Coding think Doom Scrolling but more productive.",
+        "tags": []
+    },
+    "https://surgehq.ai/blog/lmarena-is-a-plague-on-ai": {
+        "extra-tags": [
+            "ai",
+            "system",
+            "no",
+            "community"
+        ],
+        "title": "Hackernews LMArena is a cancer on AI (surgehq.ai)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "Would you trust a medical system measured by: which doctor would the average Internet user vote for? No? Yet that malpractice is LMArena. The AI community treats this popular online leaderboard as gospel. Researchers cite it. Companies optimize for it and set it as their North Star. But beneath the",
+        "date": "2026-01-08"
     }
 }
