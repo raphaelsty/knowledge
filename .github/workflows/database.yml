@@ -27,7 +27,7 @@ jobs:
         run: uv python install 3.10
 
       - name: install python packages
-        run: uv pip install --system .
+        run: uv sync
 
       - name: track large files
         run: git lfs track "database/pipeline.pkl"
@@ -40,7 +40,7 @@ jobs:
           ZOTERO_API_KEY: ${{ secrets.ZOTERO_API_KEY }}
           ZOTERO_LIBRARY_ID: ${{ secrets.ZOTERO_LIBRARY_ID }}
           HUGGINGFACE_TOKEN: ${{ secrets.HUGGINGFACE_TOKEN }}
-        run: python run.py
+        run: uv run python run.py
 
       - name: commit files
         run: |
