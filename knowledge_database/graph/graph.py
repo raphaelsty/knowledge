@@ -26,6 +26,7 @@ class Graph:
 
     def __init__(self, triples):
         self.graph = nx.Graph()
+        self._document_counts = {}
 
         nodes = {
             **{node["head"]: True for node in triples},
@@ -40,6 +41,15 @@ class Graph:
             tail = triple["tail"]
             self.graph.add_edge(self.node_to_idx[head], self.node_to_idx[tail])
             self.graph.add_edge(self.node_to_idx[tail], self.node_to_idx[head])
+
+    @property
+    def document_counts(self) -> typing.Dict[str, int]:
+        """Get document counts, returning empty dict if not set (for backwards compatibility)."""
+        return getattr(self, '_document_counts', {})
+
+    def set_document_counts(self, document_counts: typing.Dict[str, int]):
+        """Set document counts for each tag."""
+        self._document_counts = document_counts
 
     def __call__(
         self,
@@ -57,9 +67,16 @@ class Graph:
                 idx = self.node_to_idx.get(tag, None)
                 if idx is None:
                     lonely.append(tag)
+                    degree = 0
                 else:
                     nodes.append(idx)
-                output_nodes[tag] = {"id": tag, "color": color}
+                    degree = self.graph.degree(idx)
+                output_nodes[tag] = {
+                    "id": tag,
+                    "color": color,
+                    "degree": degree,
+                    "documentCount": self.document_counts.get(tag, 0),
+                }
 
         paths = []
 
@@ -81,12 +98,14 @@ class Graph:
                 paths.append(self.walk(start=start, k=k_walk))
 
         for path in paths:
-            for node in path:
-                node = self.idx_to_node[node]
-                if node not in output_nodes:
-                    output_nodes[node] = {
-                        "id": node,
+            for node_idx in path:
+                node_name = self.idx_to_node[node_idx]
+                if node_name not in output_nodes:
+                    output_nodes[node_name] = {
+                        "id": node_name,
                         "color": "#FFFFFF",
+                        "degree": self.graph.degree(node_idx),
+                        "documentCount": self.document_counts.get(node_name, 0),
                     }
 
         return list(output_nodes.values()), self.format_triples(paths=paths)
@@ -122,25 +141,65 @@ class Graph:
         return neighbours
 
     def format_triples(self, paths: typing.List[typing.List[str]]):
-        """Convert nodes as triples."""
+        """Convert nodes as triples with edge weights."""
         triples = {}
         for path in paths:
             for start, end in zip(path[:-1], path[1:]):
-                if start != end and f"{end}_{start}" not in triples:
-                    triples[f"{start}_{end}"] = True
+                key = tuple(sorted([start, end]))
+                if key not in triples:
+                    triples[key] = 1
+                else:
+                    triples[key] += 1
+
+        max_weight = max(triples.values()) if triples else 1
 
         links = []
-        for triple in triples:
-            head, tail = tuple(triple.split("_"))
-            head = self.idx_to_node[int(head)]
-            tail = self.idx_to_node[int(tail)]
+        for (start, end), count in triples.items():
+            head = self.idx_to_node[start]
+            tail = self.idx_to_node[end]
             links.append(
                 {
                     "source": head,
                     "relation": "link",
                     "target": tail,
-                    "value": 1,
+                    "value": count,
+                    "weight": count / max_weight,
                 }
             )
 
         return links
+
+    def expand(self, node_id: str, k: int = 10):
+        """Get neighbors of a specific node for progressive graph expansion."""
+        idx = self.node_to_idx.get(node_id)
+        if idx is None:
+            return [], []
+
+        output_nodes = {
+            node_id: {
+                "id": node_id,
+                "color": "#86E5FF",
+                "degree": self.graph.degree(idx),
+                "documentCount": self.document_counts.get(node_id, 0),
+            }
+        }
+
+        links = []
+        for i, neighbor_idx in enumerate(nx.all_neighbors(self.graph, idx)):
+            if i >= k:
+                break
+            neighbor_name = self.idx_to_node[neighbor_idx]
+            output_nodes[neighbor_name] = {
+                "id": neighbor_name,
+                "color": "#FFFFFF",
+                "degree": self.graph.degree(neighbor_idx),
+                "documentCount": self.document_counts.get(neighbor_name, 0),
+            }
+            links.append({
+                "source": node_id,
+                "target": neighbor_name,
+                "value": 1,
+                "weight": 0.5,
+            })
+
+        return list(output_nodes.values()), links

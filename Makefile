@@ -5,3 +5,11 @@ launch:
 
 local-dev-api:
 	uvicorn api.api:app --reload
+
+# Start local dev server using uv
+dev:
+	uv run uvicorn api.api:app --reload --port 8000
+
+# Install dependencies with uv
+install:
+	uv pip install -r requirements.txt

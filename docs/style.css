@@ -53,10 +53,7 @@ html {
 }
 
 body {
-    background: var(--bg-primary);
-    background-image:
-        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(16, 185, 129, 0.08) 0%, transparent 50%),
-        radial-gradient(ellipse 60% 40% at 100% 100%, rgba(6, 214, 160, 0.05) 0%, transparent 50%);
+    background: #080808;
     min-height: 100vh;
     margin: 0;
     padding: 0;
@@ -104,8 +101,8 @@ body {
     right: 0;
     width: 50%;
     height: 100vh;
-    background: var(--bg-primary);
-    border-left: 1px solid var(--border-subtle);
+    background: #080808;
+    border-left: none;
 }
 
 /* Search content container */
@@ -114,13 +111,13 @@ body {
     float: left;
     min-height: 100vh;
     overflow-y: auto;
-    padding: 24px 32px;
+    padding: 24px 48px;
     box-sizing: border-box;
 }
 
 #backsearch {
-    max-width: 680px;
-    margin: 0 auto;
+    max-width: 100%;
+    margin: 0;
 }
 
 /* ============================================
@@ -129,9 +126,8 @@ body {
 
 #search-container {
     position: fixed;
-    width: calc(50% - 80px);
-    max-width: 600px;
-    left: 40px;
+    width: calc(50% - 96px);
+    left: 48px;
     top: 24px;
     height: 52px;
     z-index: 100;
@@ -213,8 +209,8 @@ body {
 
 #documents {
     width: 100%;
-    max-width: 680px;
-    margin: 90px auto 40px;
+    max-width: 100%;
+    margin: 90px 0 40px 0;
     padding: 0;
 }
 
@@ -511,3 +507,89 @@ body {
 .document:nth-child(8) { animation-delay: 0.16s; }
 .document:nth-child(9) { animation-delay: 0.18s; }
 .document:nth-child(10) { animation-delay: 0.20s; }
+
+/* ============================================
+   Graph Tooltips & Interactions
+   ============================================ */
+
+/* Override ForceGraph3D tooltip styles */
+.scene-tooltip {
+    background: rgba(10, 10, 15, 0.95) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border-subtle) !important;
+    border-radius: var(--radius-md) !important;
+    padding: 0 !important;
+    font-family: 'Inter', sans-serif !important;
+    color: var(--text-primary) !important;
+    box-shadow: var(--shadow-lg) !important;
+    max-width: 250px;
+    pointer-events: none;
+}
+
+/* Graph container enhancements */
+#graph canvas {
+    cursor: grab;
+}
+
+#graph canvas:active {
+    cursor: grabbing;
+}
+
+/* Graph Legend */
+.graph-legend {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 6px;
+    padding: 10px 12px;
+    z-index: 50;
+    font-size: 10px;
+}
+
+.graph-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 400;
+}
+
+.graph-legend-item:last-of-type {
+    margin-bottom: 0;
+}
+
+.graph-legend-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.graph-legend-dot.query {
+    background-color: #86E5FF;
+}
+
+.graph-legend-dot.retrieved {
+    background-color: #10b981;
+}
+
+.graph-legend-hint {
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 9px;
+}
+
+/* Hide legend on mobile */
+@media (max-width: 768px) {
+    .graph-legend {
+        display: none;
+    }
+}

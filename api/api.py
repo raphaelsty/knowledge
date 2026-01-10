@@ -17,6 +17,8 @@ app = FastAPI(
 origins = [
     "https://raphaelsty.github.io",
     "http://127.0.0.1:8000",
+    "http://127.0.0.1:3000",
+    "http://localhost:3000",
 ]
 
 
@@ -104,6 +106,13 @@ def search(tags: str, sort: bool, q: str):
 def plot(k_tags: int, q: str):
     """Plot tags."""
     return knowledge.plot(q=q, k_tags=k_tags)
+
+
+@app.get("/expand/{node_id}", response_class=ORJSONResponse)
+def expand_node(node_id: str):
+    """Get neighbors of a specific node for progressive graph expansion."""
+    nodes, links = knowledge.pipeline.graph.expand(node_id=node_id)
+    return {"nodes": nodes, "links": links}
 
 
 @app.on_event("startup")

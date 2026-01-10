@@ -37,6 +37,13 @@ class Pipeline:
         self.graph = Graph(triples=triples)
         self.excluded_tags = {} if excluded_tags is None else excluded_tags
 
+        # Calculate document counts per tag
+        document_counts = {}
+        for url, document in documents.items():
+            for tag in document.get("tags", []) + document.get("extra-tags", []):
+                document_counts[tag] = document_counts.get(tag, 0) + 1
+        self.graph.set_document_counts(document_counts)
+
         self.latest_documents = sorted(
             [{"url": url, **document} for url, document in documents.items()],
             key=lambda doc: datetime.datetime.strptime(doc["date"], "%Y-%m-%d"),

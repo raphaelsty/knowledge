@@ -69,6 +69,20 @@
 
     <div class="graph" id="graph"></div>
 
+    <div class="graph-legend" id="graph-legend">
+        <div class="graph-legend-item">
+            <span class="graph-legend-dot query"></span>
+            <span>From documents</span>
+        </div>
+        <div class="graph-legend-item">
+            <span class="graph-legend-dot retrieved"></span>
+            <span>From query</span>
+        </div>
+        <div class="graph-legend-hint">
+            Click to zoom | Double-click to expand
+        </div>
+    </div>
+
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.min.js"></script>
@@ -103,7 +117,12 @@
             const [modelStatus, setModelStatus] = useState("Loading Script...");
             const [documents, setDocuments] = useState([]);
             const [isSortedByDate, setIsSortedByDate] = useState(false);
-            const [resultsReranked, setResultsReranked] = useState(false); // New: Tracks re-ranking status
+            const [resultsReranked, setResultsReranked] = useState(false);
+
+            // --- Graph Interaction State ---
+            const [highlightNodes, setHighlightNodes] = useState(new Set());
+            const [highlightLinks, setHighlightLinks] = useState(new Set());
+            const [graphData, setGraphData] = useState({ nodes: [], links: [] });
 
             // --- Refs ---
             const searchTimerRef = useRef(null);
@@ -111,7 +130,9 @@
             const workerRef = useRef(null);
             const latestQueryIdRef = useRef(0);
             const graphRootRef = useRef(null);
-            const rerankTimerRef = useRef(null); // New: Timer for inactivity-based re-ranking
+            const rerankTimerRef = useRef(null);
+            const fgRef = useRef(null);
+            const lastClickTimeRef = useRef(0);
 
             // --- Function Declarations (in dependency order) ---
 
@@ -160,7 +181,34 @@
             }, [selectedNode, fetchLatest]); // modelStatus dependency removed
 
             /**
-             * Handles hovering over a node in the 3D graph.
+             * Preprocesses graph data to build neighbor and link references for highlighting.
+             */
+            const preprocessGraphData = useCallback((data) => {
+                const nodeById = {};
+                data.nodes.forEach(node => {
+                    nodeById[node.id] = node;
+                    node.neighbors = [];
+                    node.links = [];
+                });
+
+                data.links.forEach(link => {
+                    const sourceId = typeof link.source === 'object' ? link.source.id : link.source;
+                    const targetId = typeof link.target === 'object' ? link.target.id : link.target;
+                    const a = nodeById[sourceId];
+                    const b = nodeById[targetId];
+                    if (a && b) {
+                        a.neighbors.push(b);
+                        b.neighbors.push(a);
+                        a.links.push(link);
+                        b.links.push(link);
+                    }
+                });
+
+                return data;
+            }, []);
+
+            /**
+             * Handles hovering over a node in the 3D graph - triggers search.
              */
             const handleHoverNode = useCallback((hoveredNode) => {
                 if (hoveredNode) {
@@ -171,7 +219,101 @@
             }, [query, search, documentsToFetch]);
 
             /**
-             * Fetches data and renders the 3D force-directed graph.
+             * Handles node hover for path highlighting.
+             */
+            const handleGraphNodeHover = useCallback((node) => {
+                const newHighlightNodes = new Set();
+                const newHighlightLinks = new Set();
+
+                if (node) {
+                    newHighlightNodes.add(node);
+                    if (node.neighbors) {
+                        node.neighbors.forEach(neighbor => newHighlightNodes.add(neighbor));
+                    }
+                    if (node.links) {
+                        node.links.forEach(link => newHighlightLinks.add(link));
+                    }
+                }
+
+                setHighlightNodes(newHighlightNodes);
+                setHighlightLinks(newHighlightLinks);
+
+                if (node) {
+                    handleHoverNode(node);
+                }
+            }, [handleHoverNode]);
+
+            /**
+             * Handles link hover for highlighting.
+             */
+            const handleGraphLinkHover = useCallback((link) => {
+                const newHighlightNodes = new Set();
+                const newHighlightLinks = new Set();
+
+                if (link) {
+                    newHighlightLinks.add(link);
+                    newHighlightNodes.add(link.source);
+                    newHighlightNodes.add(link.target);
+                }
+
+                setHighlightNodes(newHighlightNodes);
+                setHighlightLinks(newHighlightLinks);
+            }, []);
+
+            /**
+             * Handles click on a node - zooms camera to it.
+             */
+            const handleGraphNodeClick = useCallback((node) => {
+                const now = Date.now();
+                const isDoubleClick = now - lastClickTimeRef.current < 300;
+                lastClickTimeRef.current = now;
+
+                if (isDoubleClick) {
+                    // Double-click: expand neighbors
+                    fetch(`${API_BASE_URL}/expand/${encodeURIComponent(node.id)}`)
+                        .then(res => res.json())
+                        .then(newData => {
+                            setGraphData(prev => {
+                                const existingNodeIds = new Set(prev.nodes.map(n => n.id));
+                                const existingLinkKeys = new Set(prev.links.map(l => {
+                                    const sId = typeof l.source === 'object' ? l.source.id : l.source;
+                                    const tId = typeof l.target === 'object' ? l.target.id : l.target;
+                                    return `${sId}-${tId}`;
+                                }));
+
+                                const newNodes = newData.nodes.filter(n => !existingNodeIds.has(n.id));
+                                const newLinks = newData.links.filter(l => {
+                                    const key = `${l.source}-${l.target}`;
+                                    const reverseKey = `${l.target}-${l.source}`;
+                                    return !existingLinkKeys.has(key) && !existingLinkKeys.has(reverseKey);
+                                });
+
+                                const merged = {
+                                    nodes: [...prev.nodes, ...newNodes],
+                                    links: [...prev.links, ...newLinks]
+                                };
+
+                                return preprocessGraphData(merged);
+                            });
+                        })
+                        .catch(error => console.error("[APP] Failed to expand node:", error));
+                } else {
+                    // Single click: zoom to node
+                    if (fgRef.current) {
+                        const distance = 120;
+                        const distRatio = 1 + distance / Math.hypot(node.x, node.y, node.z);
+                        fgRef.current.cameraPosition(
+                            { x: node.x * distRatio, y: node.y * distRatio, z: node.z * distRatio },
+                            node,
+                            2000
+                        );
+                    }
+                    handleHoverNode(node);
+                }
+            }, [handleHoverNode, preprocessGraphData]);
+
+            /**
+             * Fetches data and renders the 3D force-directed graph with enhanced features.
              */
             const plot = useCallback((plotQuery, count) => {
                 const graphContainer = document.getElementById('graph');
@@ -179,37 +321,78 @@
                     unmountGraph();
                     return;
                 }
-                const endpoint = `${API_BASE_URL}/plot/25/${plotQuery.replace("/", "")}`;
+                const endpoint = `${API_BASE_URL}/plot/12/${plotQuery.replace("/", "")}`;
                 fetch(endpoint)
                     .then(res => res.json())
                     .then(data => {
                         if (!graphContainer) return;
+
+                        const processedData = preprocessGraphData(data);
+                        setGraphData(processedData);
+
                         if (!graphRootRef.current) {
                             graphRootRef.current = createRoot(graphContainer);
                         }
                         graphRootRef.current.render(
                             <ForceGraph3D
-                                graphData={data}
-                                backgroundColor="#0a0a0f"
+                                ref={fgRef}
+                                graphData={processedData}
+                                backgroundColor="#080808"
                                 width={window.innerWidth / 2}
                                 height={window.innerHeight}
                                 showNavInfo={false}
-                                nodeAutoColorBy="group"
-                                linkOpacity={0.6}
-                                linkWidth={0.1}
+
+                                // Minimal node representation
+                                nodeVal={0.5}
+
+                                // Very thin, very transparent lines
+                                linkWidth={0.05}
+                                linkOpacity={link => highlightLinks.has(link) ? 0.15 : 0.02}
+                                linkColor={link => highlightLinks.has(link) ? '#ffffff' : 'rgba(255, 255, 255, 0.2)'}
+
+                                // Subtle single particles
+                                linkDirectionalParticles={1}
+                                linkDirectionalParticleSpeed={0.003}
+                                linkDirectionalParticleWidth={link => highlightLinks.has(link) ? 1 : 0.5}
+                                linkDirectionalParticleColor={link => highlightLinks.has(link) ? '#ffffff' : 'rgba(255, 255, 255, 0.4)'}
+
+                                // Clean text-only nodes - bigger text
                                 nodeThreeObject={node => {
                                     const sprite = new SpriteText(node.id);
-                                    sprite.color = node.color;
+                                    const isHighlighted = highlightNodes.size === 0 || highlightNodes.has(node);
+
+                                    sprite.color = isHighlighted ? node.color : 'rgba(255, 255, 255, 0.2)';
                                     sprite.textHeight = 4;
-                                    sprite.fontSize = 50;
+                                    sprite.fontSize = 120;
                                     sprite.fontFace = "Inter";
+                                    sprite.fontWeight = isHighlighted ? "500" : "400";
+
                                     return sprite;
                                 }}
-                                onNodeHover={handleHoverNode}
+
+                                // Minimal tooltip
+                                nodeLabel={node => `
+                                    <div style="background: rgba(0,0,0,0.85); padding: 6px 10px; border-radius: 4px; font-family: Inter, -apple-system, sans-serif; font-size: 11px; color: #fff; border: 1px solid rgba(255,255,255,0.1);">
+                                        ${node.id}
+                                    </div>
+                                `}
+
+                                // Interactions
+                                onNodeClick={handleGraphNodeClick}
+                                onNodeHover={handleGraphNodeHover}
+                                onLinkHover={handleGraphLinkHover}
+
+                                // Physics
+                                cooldownTicks={100}
+                                d3AlphaDecay={0.02}
+                                d3VelocityDecay={0.3}
+
+                                // Camera - closer zoom
+                                cameraPosition={{ x: 0, y: 0, z: 140 }}
                             />
                         );
                     }).catch(error => console.error("[APP] Failed to plot graph:", error));
-            }, [isMobile, handleHoverNode, unmountGraph]);
+            }, [isMobile, unmountGraph, preprocessGraphData, handleGraphNodeClick, handleGraphNodeHover, handleGraphLinkHover, highlightNodes, highlightLinks]);
 
             /**
              * A utility to run search and plot immediately, clearing any pending debounced calls.
