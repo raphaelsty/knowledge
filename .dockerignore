@@ -52,7 +52,6 @@ MANIFEST
 # Documentation & Local Configs
 # =================================================================
 # Markdown files for repository, not application
-README.md
 CONTRIBUTING.md
 CHANGELOG.md
 
@@ -60,7 +59,6 @@ CHANGELOG.md
 docker-compose.yml
 .pre-commit-config.yaml
 .flake8
-pyproject.toml
 
 # Sphinx or MkDocs generated sites
 docs/_build/
@@ -83,11 +81,10 @@ datasets/
 assets/
 media/
 *.csv
-*.json
 *.parquet
-*.pkl
 *.jpg
 *.png
+# Note: *.json and *.pkl are NOT ignored because database/*.json and database/*.pkl are needed
 
 # Local settings and secrets (should never be in the image)
 local_settings.py
