@@ -51599,5 +51599,25 @@
             "codebase",
             "robotics"
         ]
+    },
+    "https://github.com/buckaroo-data/buckaroo": {
+        "extra-tags": [
+            "data",
+            "table",
+            "ui"
+        ],
+        "date": "2026-01-10",
+        "title": "buckaroo",
+        "summary": "Buckaroo - The data table UI  for Notebooks.  Quickly explore dataframes, scroll through dataframes, search, sort, view summary stats and histograms. Works with Pandas, Polars, Jupyter, Marimo, VSCode Notebooks \n Buckaroo is a modern data table for Jupyter that expedites the most common exploratory data analysis tasks. The most basic data analysis task - looking at the raw data, is cumbersome with the existing pandas tooling. Buckaroo starts with a modern performant data table, is sortable, has value formatting, and scrolls infinitely. On top of the core table experience extra features like summary stats, histograms, smart sampling, auto-cleaning, and a low code UI are added. All of the functionality has sensible defaults that can be overridden to customize the experience for your workflow.",
+        "tags": [
+            "jupyter",
+            "marimo-notebook",
+            "buckaroo",
+            "polars",
+            "data-science",
+            "python",
+            "paddy",
+            "pandas"
+        ]
     }
 }
