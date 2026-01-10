@@ -51559,5 +51559,45 @@
         ],
         "summary": "Would you trust a medical system measured by: which doctor would the average Internet user vote for? No? Yet that malpractice is LMArena. The AI community treats this popular online leaderboard as gospel. Researchers cite it. Companies optimize for it and set it as their North Star. But beneath the",
         "date": "2026-01-08"
+    },
+    "https://github.com/asg017/sqlite-vec": {
+        "extra-tags": [
+            "vector",
+            "search",
+            "extension"
+        ],
+        "date": "2026-01-10",
+        "title": "sqlite-vec",
+        "summary": "A vector search SQLite extension that runs anywhere! \n An extremely small, fast enough vector search SQLite extension that runs anywhere! A successor to sqlite-vsshttpsgithub.comasg017sqlite-vss LinuxMacOSWindows, in the browser with WASM, Raspberry Pis, etc. sqlite-vec is a Mozilla Builders project, with additional sponsorship from Fly.io , Turso, SQLite Cloud, and Shinkai. See the Sponsors section for more details. See Installing sqlite-vechttpsalexgarcia.xyzsqlite-vecinstallation.html",
+        "tags": [
+            "c",
+            "sqlite-extension",
+            "sqlite"
+        ]
+    },
+    "https://github.com/dexmal/dexbotic": {
+        "extra-tags": [
+            "models",
+            "open-source",
+            "vision-language",
+            "pretrained models"
+        ],
+        "date": "2026-01-10",
+        "title": "dexbotic",
+        "summary": "Dexbotic: Open-Source Vision-Language-Action Toolbox \n Dexbotic aims to provide a one-stop VLA research service for professionals in embodied intelligence field. It offers a codebase that supports multiple mainstream VLA policies simultaneously, allowing users to reproduce various mainstream VLA methods with just a single environment setup based on the pretrained models we provide. Additionally, Dexbotic will continuously update to include more of the latest pre-trained foundation models and cutting-edge VLA models in the industry.",
+        "tags": [
+            "simulation",
+            "python",
+            "openvla-oft",
+            "toolbox",
+            "vln",
+            "pi0",
+            "cogact",
+            "real-world",
+            "memoryvla",
+            "vla",
+            "codebase",
+            "robotics"
+        ]
     }
 }
