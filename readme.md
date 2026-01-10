@@ -30,7 +30,7 @@ My Personal Knowledge Base is available at [raphaelsty.github.io/knowledge](http
 
 ## 🛠️ How It Works
 
-A GitHub Actions workflow runs twice a day to perform the following tasks:
+A GitHub Actions workflow runs once a day to perform the following tasks:
 
 1.  **Extracts Content** from specified accounts:
     - GitHub Stars
@@ -40,7 +40,7 @@ A GitHub Actions workflow runs twice a day to perform the following tasks:
 2.  **Processes and Stores Data** in the `database/` directory:
     - `database.json`: Contains all the raw records.
     - `triples.json`: Stores the knowledge graph data (topics and relationships).
-    - `retriever.pkl`: The serialized search engine model.
+    - `pipeline.pkl`: The serialized search engine and knowledge graph pipeline.
 3.  **Deploys Updates**:
     - The backend API is automatically updated and pushed to the Fly.io instance.
     - The frontend on GitHub Pages is refreshed with the latest data.
@@ -103,19 +103,33 @@ The application requires API keys and credentials to function. These must be set
 <td style="text-align:center; padding:8px;">Optional</td>
 <td style="padding:8px;">HackerNews password.</td>
 </tr>
+<tr>
+<td style="padding:8px;"><code>HUGGINGFACE_TOKEN</code></td>
+<td style="padding:8px;"><a href="https://huggingface.co/settings/tokens">HuggingFace</a></td>
+<td style="text-align:center; padding:8px;">Optional</td>
+<td style="padding:8px;">Token to fetch your HuggingFace liked models and datasets.</td>
+</tr>
 </tbody>
 </table>
 
 #### B. Specify Sources
 
-Next, edit the `sources.yml` file at the root of the repository to specify which GitHub users' starred repositories you want to track.
+Next, edit the `sources.yml` file at the root of the repository to configure your data sources.
 
 ```yml
 github:
   - "raphaelsty"
   - "gbolmier"
   - "MaxHalford"
+
+semanlink: False
+
+huggingface: True
 ```
+
+- **github**: List of GitHub usernames whose starred repositories you want to track.
+- **semanlink**: Set to `True` to enable Semanlink RDF data extraction.
+- **huggingface**: Set to `True` to fetch your HuggingFace liked models and datasets (requires `HUGGINGFACE_TOKEN` secret).
 
 ### 3\. Deployment
 
@@ -205,4 +219,4 @@ My personal Knowledge Base is inspired by and extracts resources from the Knowle
 
 This project is licensed under the **GNU General Public License v3.0**.
 
-Knowledge Copyright (C) 2023 Raphaël Sourty
+Knowledge Copyright (C) 2023-2025 Raphaël Sourty

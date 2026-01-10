@@ -1,18 +1,19 @@
 FROM python:3.10-slim
 
+# Install uv
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+
 # Clone the repository
 WORKDIR /code
 
-# Copy the necessary files (you may skip this if already in the repository)
+# Copy the necessary files
 COPY database/pipeline.pkl /code/database/pipeline.pkl
-COPY requirements.txt /code/requirements.txt
-COPY setup.py /code/setup.py
+COPY pyproject.toml /code/pyproject.toml
 COPY knowledge_database /code/knowledge_database
 COPY api /code/api
 
-# Install Python dependencies
-RUN pip install pip --upgrade
-RUN pip install --no-cache-dir -r requirements.txt
+# Install Python dependencies using uv
+RUN uv pip install --system .
 
 # Set up the secret environment variable for OpenAI API Key
 RUN --mount=type=secret,id=OPENAI_API_KEY sh -c 'echo "export OPENAI_API_KEY=$(cat /run/secrets/OPENAI_API_KEY)" >> /etc/profile.d/openai.sh'

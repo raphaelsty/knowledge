@@ -1,3 +1,10 @@
+"""
+HackerNews module for extracting upvoted posts.
+
+This module fetches upvoted posts from a HackerNews user's profile and
+extracts article content using web scraping.
+"""
+
 import datetime
 import re
 
@@ -9,52 +16,68 @@ __all__ = ["HackerNews"]
 
 
 class HackerNews:
-    """HackerNews upvoted posts.
+    """
+    Extract knowledge from HackerNews upvoted posts.
+
+    Authenticates with HackerNews and scrapes the user's upvoted posts,
+    extracting article titles and summarized content from linked URLs.
 
     Parameters
     ----------
-    username
+    username : str
         HackerNews username.
-    password
-        HackerNews password.
+    password : str
+        HackerNews password for authentication.
 
-    Examples
-    --------
-
+    Example
+    -------
     >>> from knowledge_database import hackernews
-
-    >>> news = hackernews.HackerNews(
-    ...     username="username",
-    ...     password="password",
+    >>>
+    >>> hn = hackernews.HackerNews(
+    ...     username="your_username",
+    ...     password="your_password",
     ... )
-
-    >>> documents = news()
-
+    >>> documents = hn()
+    >>>
+    >>> for url, doc in documents.items():
+    ...     print(f"{doc['title']}")
     """
 
     def __init__(self, username: str, password: str):
         self.username = username
         self.password = password
 
-    def __call__(self):
-        """Get upvoted content on HackerNews."""
-        data = {}
+    def __call__(self) -> dict[str, dict]:
+        """
+        Fetch upvoted posts and extract document metadata.
+
+        Returns
+        -------
+        dict[str, dict]
+            Dictionary mapping article URLs to document metadata containing:
+            - title: "Hackernews" prefix + article title
+            - summary: First ~50 tokens of article content
+            - date: Current date
+            - tags: ["hackernews"]
+        """
+        data: dict[str, dict] = {}
 
         with requests.Session() as session:
-            p = session.post(
+            # Authenticate with HackerNews
+            login_response = session.post(
                 "https://news.ycombinator.com/login?goto=news",
                 data={"acct": self.username, "pw": self.password},
             )
 
-            if ("user?id=" + self.username) in p.text:
+            if ("user?id=" + self.username) in login_response.text:
                 print("Hackernews - login successful")
 
-            html = session.get(
-                f"https://news.ycombinator.com/upvoted?id={self.username}"
-            ).text
+            # Fetch upvoted posts page
+            html = session.get(f"https://news.ycombinator.com/upvoted?id={self.username}").text
 
             soup = BeautifulSoup(html, "html.parser")
 
+            # Extract links from upvoted posts
             for entry in soup.find_all("td", class_="title"):
                 record = entry.find("a")
                 if record is None:
@@ -66,6 +89,7 @@ class HackerNews:
                 if attributes is None:
                     continue
 
+                # Skip self-referential links
                 if self.username in attributes["href"]:
                     continue
 
@@ -79,18 +103,24 @@ class HackerNews:
         return data
 
     @staticmethod
-    def get_summary(url, num_tokens=50):
+    def get_summary(url: str, num_tokens: int = 50) -> str:
         """
-        Fetches the core article content from a URL, cleans it,
-        and returns the first N tokens.
+        Extract article summary from a URL.
 
-        Args:
-            url (str): The URL of the webpage to process.
-            num_tokens (int): The number of tokens to return from the core body.
+        Uses trafilatura to extract main content from web pages,
+        returning the first N tokens as a summary.
 
-        Returns:
-            str: The first N words of the core article text,
-                or None if the content cannot be fetched or extracted.
+        Parameters
+        ----------
+        url : str
+            URL of the article to summarize.
+        num_tokens : int, default=50
+            Number of words to include in the summary.
+
+        Returns
+        -------
+        str
+            First N words of the article content, or empty string on failure.
         """
         try:
             headers = {
@@ -100,13 +130,14 @@ class HackerNews:
             response.raise_for_status()
             html_content = response.text
 
+            # Extract main article content
             core_text = trafilatura.extract(html_content)
 
             if not core_text:
                 return ""
 
+            # Normalize whitespace and truncate
             cleaned_text = re.sub(r"\s+", " ", core_text).strip()
-
             tokens = cleaned_text.split()
             first_n_tokens = tokens[:num_tokens]
 

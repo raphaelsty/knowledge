@@ -10,9 +10,9 @@
     <meta name="google-site-verification" content="-1EjnablvRwJITZucFLU44nYtII1cXhq4Ra3okO13fg" />
     <meta name="keywords"
         content="Raphael Sourty, personal search engine, deep learning search engine and recommender systems">
-    
+
     <link rel="canonical" href="https://raphaelsty.github.io/knowledge/">
-    
+
     <meta name="author" content="Raphael Sourty">
 
 
@@ -26,13 +26,13 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://github.com/raphaelsty/">
     <meta property="og:image" content="https://avatars.githubusercontent.com/u/24591024?v=4">
-    
-    
+
+
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Raphael Sourty - Personal Knowledge Search Engine">
     <meta name="twitter:description" content="Personal Search Engine, Raphaël Sourty, Knowledge">
     <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/24591024?v=4">
-    
+
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
@@ -321,7 +321,7 @@
                     unmountGraph();
                     return;
                 }
-                const endpoint = `${API_BASE_URL}/plot/12/${plotQuery.replace("/", "")}`;
+                const endpoint = `${API_BASE_URL}/plot/8/${plotQuery.replace("/", "")}`;
                 fetch(endpoint)
                     .then(res => res.json())
                     .then(data => {
@@ -347,7 +347,7 @@
 
                                 // Very thin, very transparent lines
                                 linkWidth={0.05}
-                                linkOpacity={link => highlightLinks.has(link) ? 0.15 : 0.02}
+                                linkOpacity={link => highlightLinks.has(link) ? 0.08 : 0.005}
                                 linkColor={link => highlightLinks.has(link) ? '#ffffff' : 'rgba(255, 255, 255, 0.2)'}
 
                                 // Subtle single particles
@@ -361,11 +361,11 @@
                                     const sprite = new SpriteText(node.id);
                                     const isHighlighted = highlightNodes.size === 0 || highlightNodes.has(node);
 
-                                    sprite.color = isHighlighted ? node.color : 'rgba(255, 255, 255, 0.2)';
-                                    sprite.textHeight = 4;
-                                    sprite.fontSize = 120;
+                                    sprite.color = isHighlighted ? node.color : 'rgba(255, 255, 255, 0.35)';
+                                    sprite.textHeight = 6;
+                                    sprite.fontSize = 140;
                                     sprite.fontFace = "Inter";
-                                    sprite.fontWeight = isHighlighted ? "500" : "400";
+                                    sprite.fontWeight = isHighlighted ? "600" : "500";
 
                                     return sprite;
                                 }}

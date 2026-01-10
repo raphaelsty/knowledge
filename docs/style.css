@@ -9,8 +9,8 @@
 :root {
     --bg-primary: #0a0a0f;
     --bg-secondary: #12121a;
-    --bg-card: rgba(22, 22, 32, 0.7);
-    --bg-card-hover: rgba(30, 30, 45, 0.85);
+    --bg-card: rgba(8, 8, 14, 0.85);
+    --bg-card-hover: rgba(16, 16, 26, 0.95);
     --bg-glass: rgba(255, 255, 255, 0.03);
     --bg-input: rgba(255, 255, 255, 0.05);
 
@@ -102,7 +102,7 @@ body {
     width: 50%;
     height: 100vh;
     background: #080808;
-    border-left: none;
+    border-left: 1px solid rgba(255, 255, 255, 0);
 }
 
 /* Search content container */
@@ -222,19 +222,25 @@ body {
     position: relative;
     padding: 24px;
     margin-bottom: 16px;
-    background: var(--bg-card);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid var(--border-subtle);
+    background: linear-gradient(145deg, rgba(12, 12, 20, 0.9), rgba(6, 6, 12, 0.95));
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.04);
     border-radius: var(--radius-lg);
     transition: all var(--transition-normal);
+    box-shadow:
+        0 4px 24px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.02);
 }
 
 .document:hover {
-    background: var(--bg-card-hover);
-    border-color: var(--border-hover);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
+    background: linear-gradient(145deg, rgba(18, 18, 28, 0.95), rgba(10, 10, 18, 0.98));
+    border-color: rgba(16, 185, 129, 0.15);
+    transform: translateY(-3px);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(16, 185, 129, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 /* Title wrapper */
@@ -437,6 +443,7 @@ body {
         padding: 20px;
         margin-bottom: 12px;
         border-radius: var(--radius-md);
+        background: linear-gradient(145deg, rgba(10, 10, 18, 0.92), rgba(5, 5, 10, 0.96));
     }
 
     .document a.title {
