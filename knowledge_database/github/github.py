@@ -1,7 +1,12 @@
+"""
+GitHub module for extracting starred repositories.
+
+This module fetches starred repositories from a GitHub user's profile and
+extracts relevant metadata including topics, descriptions, and README content.
+"""
+
 import collections
 import datetime
-import json
-import os
 import re
 import time
 
@@ -11,63 +16,93 @@ __all__ = ["Github"]
 
 
 class Github:
-    """Github Knowledge.
+    """
+    Extract knowledge from GitHub starred repositories.
+
+    Fetches starred repositories and extracts metadata including repository
+    topics, descriptions, and a clean text summary from README files.
 
     Parameters
     ----------
-    username
-        Github username.
+    user : str
+        GitHub username whose starred repositories to fetch.
 
-    Examples
-    --------
+    Attributes
+    ----------
+    user : str
+        The GitHub username.
 
+    Example
+    -------
     >>> from knowledge_database import github
-
-    >>> github_raph = github.Github(user="raphaelsty")
-
-    >>> github_raph(per_page=3, limit=3)
-
+    >>>
+    >>> gh = github.Github(user="raphaelsty")
+    >>> documents = gh(per_page=100, limit=10)
+    >>>
+    >>> # Each document contains: title, summary, date, tags
+    >>> for url, doc in documents.items():
+    ...     print(f"{doc['title']}: {len(doc['tags'])} tags")
     """
 
     def __init__(self, user: str):
         self.user = user
 
-    def __call__(self, per_page: int = 100, limit: int = 100):
+    def __call__(
+        self,
+        per_page: int = 100,
+        limit: int = 100,
+    ) -> dict[str, dict]:
+        """
+        Fetch starred repositories and extract document metadata.
 
+        Parameters
+        ----------
+        per_page : int, default=100
+            Number of results per API page (max 100).
+        limit : int, default=100
+            Maximum number of pages to fetch.
+
+        Returns
+        -------
+        dict[str, dict]
+            Dictionary mapping repository URLs to document metadata containing:
+            - title: Repository name
+            - summary: Description + README excerpt
+            - date: Current date (when starred info was fetched)
+            - tags: Repository topics + programming language
+        """
         stars = []
 
+        # Paginate through starred repositories
         for page in range(limit):
+            response = requests.get(f"https://api.github.com/users/{self.user}/starred?{per_page}=10&page={page}")
 
-            r = requests.get(
-                f"https://api.github.com/users/{self.user}/starred?{per_page}=10&page={page}"
-            )
-
-            if r.status_code != 200:
+            if response.status_code != 200:
                 print("Github request failed.")
                 break
 
-            r = r.json()
-            if len(r) == 0:
+            page_data = response.json()
+            if len(page_data) == 0:
                 break
 
-            stars += r
+            stars += page_data
+            time.sleep(0.1)  # Rate limiting
 
-            time.sleep(0.1)
-
-        data = collections.defaultdict(dict)
+        data: dict[str, dict] = collections.defaultdict(dict)
 
         for repository in stars:
-
             if "url" not in repository:
                 continue
 
             url = repository["html_url"]
 
+            # Collect tags from topics and language
             tags = [tag.lower() for tag in repository["topics"]]
-            if repository.get("language", None) is not None:
+            if repository.get("language") is not None:
                 tags += [repository["language"].lower()]
             tags = list(set(tags))
 
+            # Extract clean text from README
             readme_text = self.get_readme_text_by_token_count(
                 repository["html_url"],
                 min_tokens=50,
@@ -78,9 +113,7 @@ class Github:
             data[url] = {
                 "date": datetime.datetime.today().strftime("%Y-%m-%d"),
                 "title": f"{repository['name']}",
-                "summary": (
-                    f"{description} \n {readme_text}" if readme_text else description
-                ),
+                "summary": f"{description} \n {readme_text}" if readme_text else description,
                 "tags": tags,
             }
 
@@ -92,15 +125,22 @@ class Github:
         min_tokens: int = 50,
     ) -> str | None:
         """
-        Fetches a README, removes HTML, markdown artifacts, and special tokens,
-        and extracts clean plain text until a minimum token count is reached.
+        Extract clean plain text from a repository's README.
 
-        Args:
-            github_url: The URL of the GitHub repository.
-            min_tokens: The minimum number of tokens (words) to collect.
+        Fetches the README.md file and extracts readable paragraph text,
+        filtering out markdown artifacts, headings, and code blocks.
 
-        Returns:
-            A clean string of plain text from the README, or None if it cannot be found.
+        Parameters
+        ----------
+        github_url : str
+            URL of the GitHub repository.
+        min_tokens : int, default=50
+            Minimum number of words to collect before stopping.
+
+        Returns
+        -------
+        str | None
+            Clean text excerpt from the README, or None if not found.
         """
         match = re.search(r"github\.com/([^/]+)/([^/]+)", github_url)
         if not match:
@@ -108,13 +148,12 @@ class Github:
 
         user, repo = match.groups()
 
+        # Try common default branch names
         branches_to_try = ["main", "master"]
         readme_content = None
 
         for branch in branches_to_try:
-            raw_url = (
-                f"https://raw.githubusercontent.com/{user}/{repo}/{branch}/README.md"
-            )
+            raw_url = f"https://raw.githubusercontent.com/{user}/{repo}/{branch}/README.md"
             try:
                 response = requests.get(raw_url)
                 response.raise_for_status()
@@ -126,20 +165,20 @@ class Github:
         if not readme_content:
             return None
 
+        # Strip HTML tags
         text_only_content = re.sub(r"<[^>]+>", "", readme_content)
 
         collected_text = ""
         lines = text_only_content.splitlines()
 
+        # Extract only paragraph text, skipping markdown artifacts
         for line in lines:
             stripped_line = line.strip()
 
             is_heading = stripped_line.startswith("#")
             is_list_item = stripped_line.startswith(("* ", "- ", "+ "))
             is_blockquote = stripped_line.startswith(">")
-            is_just_an_image_or_link = stripped_line.startswith(
-                "["
-            ) and stripped_line.endswith(")")
+            is_just_an_image_or_link = stripped_line.startswith("[") and stripped_line.endswith(")")
             is_horizontal_rule = re.match(r"^[-*_]{3,}$", stripped_line) is not None
 
             if (
@@ -161,6 +200,7 @@ class Github:
         if not collected_text:
             return None
 
+        # Clean remaining special characters
         clean_text = re.sub(r"[^a-zA-Z0-9\s.,?!'-]", "", collected_text)
         normalized_text = re.sub(r"\s+", " ", clean_text)
 

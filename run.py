@@ -1,3 +1,39 @@
+#!/usr/bin/env python3
+"""
+Knowledge Database Builder
+
+This script aggregates knowledge from multiple sources (GitHub, HackerNews,
+Zotero, Semanlink, HuggingFace) into a unified database and builds the
+search pipeline.
+
+Environment Variables
+---------------------
+HACKERNEWS_USERNAME : str
+    HackerNews username for fetching upvoted posts.
+HACKERNEWS_PASSWORD : str
+    HackerNews password for authentication.
+ZOTERO_LIBRARY_ID : str
+    Zotero library ID for fetching bookmarks.
+ZOTERO_API_KEY : str
+    Zotero API key with read permissions.
+HUGGINGFACE_TOKEN : str
+    HuggingFace token for fetching liked items.
+
+Configuration
+-------------
+sources.yml : file
+    YAML configuration specifying which sources to enable.
+
+Output Files
+------------
+database/database.json : JSON
+    Aggregated document database.
+database/triples.json : JSON
+    Tag co-occurrence graph edges.
+database/pipeline.pkl : Pickle
+    Serialized search pipeline for the API.
+"""
+
 import json
 import os
 import pickle
@@ -14,125 +50,132 @@ from knowledge_database import (
     zotero,
 )
 
-with open("sources.yml", "r") as f:
+# =============================================================================
+# Configuration
+# =============================================================================
+
+# Load source configuration
+with open("sources.yml") as f:
     sources = yaml.load(f, Loader=yaml.FullLoader)
 
-twitter_token = os.environ.get("TWITTER_TOKEN")
+# Load credentials from environment
 hackernews_username = os.environ.get("HACKERNEWS_USERNAME")
 hackernews_password = os.environ.get("HACKERNEWS_PASSWORD")
 zotero_library_id = os.environ.get("ZOTERO_LIBRARY_ID")
 zotero_api_key = os.environ.get("ZOTERO_API_KEY")
 huggingface_token = os.environ.get("HUGGINGFACE_TOKEN")
 
-data = {}
+# =============================================================================
+# Load Existing Database
+# =============================================================================
+
+data: dict = {}
 
 if os.path.exists("database/database.json"):
-    with open("database/database.json", "r", encoding="utf-8", errors="replace") as f:
+    with open("database/database.json", encoding="utf-8", errors="replace") as f:
         data = json.load(f)
 
+# =============================================================================
+# Fetch Data from Sources
+# =============================================================================
 
-# Github
+
+def merge_new_documents(existing: dict, new: dict) -> dict:
+    """Merge new documents, skipping URLs already in the database."""
+    new_only = {url: doc for url, doc in new.items() if url not in existing}
+    print(f"Found {len(new_only)} new documents.")
+    return {**existing, **new_only}
+
+
+# GitHub starred repositories
 if sources.get("github") is not None:
-    print("Github knowledge.")
+    print("Fetching GitHub stars...")
     for user in sources["github"]:
-        knowledge = github.Github(user=user)
-        knowledge = {
-            url: document for url, document in knowledge().items() if url not in data
-        }
-        print(f"Found {len(knowledge)} new Github documents.")
-        data = {**data, **knowledge}
+        fetcher = github.Github(user=user)
+        data = merge_new_documents(data, fetcher())
 
-
-# Hackernews
+# HackerNews upvoted posts
 if hackernews_username is not None and hackernews_password is not None:
-    print("Hackernews knowledge.")
-    knowledge = hackernews.HackerNews(
+    print("Fetching HackerNews upvotes...")
+    fetcher = hackernews.HackerNews(
         username=hackernews_username,
         password=hackernews_password,
     )
-    knowledge = {
-        url: document for url, document in knowledge().items() if url not in data
-    }
-    print(f"Found {len(knowledge)} new Hackernews documents.")
-    data = {**data, **knowledge}
+    data = merge_new_documents(data, fetcher())
 else:
-    print("No Hackernews credentials.")
+    print("Skipping HackerNews (no credentials).")
 
-# Zotero
+# Zotero library
 if zotero_library_id is not None and zotero_api_key is not None:
-    print("Zotero knowledge.")
-    knowledge = zotero.Zotero(
+    print("Fetching Zotero library...")
+    fetcher = zotero.Zotero(
         library_id=zotero_library_id,
         library_type="group",
         api_key=zotero_api_key,
     )
-    knowledge = {
-        url: document for url, document in knowledge().items() if url not in data
-    }
-    print(f"Found {len(knowledge)} new Zotero documents.")
-    data = {**data, **knowledge}
+    data = merge_new_documents(data, fetcher())
 else:
-    print("No Zotero credentials.")
+    print("Skipping Zotero (no credentials).")
 
-# Semanlink
-if sources["semanlink"]:
-    print("Semanlink knowledge.")
-    knowledge = semanlink.Semanlink(
+# Semanlink knowledge base
+if sources.get("semanlink"):
+    print("Fetching Semanlink data...")
+    fetcher = semanlink.Semanlink(
         urls=[
             "https://raw.githubusercontent.com/fpservant/semanlink-kdmkb/master/files/sldocs-2023-01-26.ttl",
             "https://raw.githubusercontent.com/fpservant/semanlink-kdmkb/master/files/sltags-2020-11-18.ttl",
         ]
     )
-    knowledge = {
-        url: document for url, document in knowledge().items() if url not in data
-    }
-    print(f"Found {len(knowledge)} new semanlink documents.")
-    data = {**data, **knowledge}
+    data = merge_new_documents(data, fetcher())
 else:
-    print("Semanlink disabled.")
+    print("Skipping Semanlink (disabled).")
 
-
-# HuggingFace
+# HuggingFace liked items
 if huggingface_token is not None and sources.get("huggingface") is not None:
-    print("HuggingFace knowledge.")
-    knowledge = huggingface.HuggingFace(token=huggingface_token)
-    knowledge = {
-        url: document for url, document in knowledge().items() if url not in data
-    }
-    print(f"Found {len(knowledge)} new HuggingFace documents.")
-    data = {**data, **knowledge}
+    print("Fetching HuggingFace likes...")
+    fetcher = huggingface.HuggingFace(token=huggingface_token)
+    data = merge_new_documents(data, fetcher())
 else:
-    print("No HuggingFace token.")
+    print("Skipping HuggingFace (no token).")
 
+# =============================================================================
+# Data Cleaning
+# =============================================================================
 
-# Sanity check.
-for url, document in data.items():
+print("Cleaning document data...")
+
+for _url, document in data.items():
+    # Ensure all required fields exist
     for field in ["title", "tags", "summary", "date"]:
-        if document.get(field, None) is None:
-            document[field] = ""
+        if document.get(field) is None:
+            document[field] = "" if field != "tags" else []
 
-# Sanity check and data cleaning.
-for url, document in data.items():
-    # Ensure all required fields exist, defaulting to an empty string.
-    for field in ["title", "tags", "summary", "date"]:
-        if document.get(field, None) is None:
-            document[field] = ""
-
-    # Clean text fields of invalid Unicode characters before they are processed by the pipeline.
-    # This handles malformed data like the lone surrogate '\udd4a'.
+    # Clean invalid Unicode characters (e.g., lone surrogates)
     for field in ["title", "summary"]:
         if isinstance(document.get(field), str):
-            cleaned_text = document[field].encode("utf-8", "replace").decode("utf-8")
-            document[field] = cleaned_text
+            document[field] = document[field].encode("utf-8", "replace").decode("utf-8")
 
-print("Adding extra tags.")
+# =============================================================================
+# Generate Extra Tags
+# =============================================================================
+
+print("Generating extra tags from document content...")
 data = tags.get_extra_tags(data=data)
 
-print("Saving database.")
+# =============================================================================
+# Save Database
+# =============================================================================
+
+print("Saving database...")
 with open("database/database.json", "w") as f:
     json.dump(data, f, indent=4)
 
-excluded_tags = {
+# =============================================================================
+# Build Knowledge Graph
+# =============================================================================
+
+# Tags to exclude from graph visualization (too generic)
+EXCLUDED_TAGS = {
     "twitter": True,
     "github": True,
     "semanlink": True,
@@ -140,16 +183,24 @@ excluded_tags = {
     "arxiv doc": True,
 }
 
-print("Exporting tree of tags.")
-triples = tags.get_tags_triples(data=data, excluded_tags=excluded_tags)
+print("Building tag co-occurrence graph...")
+triples = tags.get_tags_triples(data=data, excluded_tags=EXCLUDED_TAGS)
 with open("database/triples.json", "w") as f:
     json.dump(triples, f, indent=4)
 
-print("Serializing pipeline.")
+# =============================================================================
+# Build Search Pipeline
+# =============================================================================
+
+print("Building search pipeline...")
 knowledge_pipeline = pipeline.Pipeline(
     documents=data,
     triples=triples,
-    excluded_tags=excluded_tags,
+    excluded_tags=EXCLUDED_TAGS,
 )
+
+print("Serializing pipeline...")
 with open("database/pipeline.pkl", "wb") as f:
     pickle.dump(knowledge_pipeline, f)
+
+print("Done!")
