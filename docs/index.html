@@ -60,35 +60,6 @@
         }
     </script>
     <link rel="stylesheet" href="style.css">
-    <style>
-        /* Simple style to align the logo and title. Add to your style.css */
-        .title-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 0.5em;
-            /* Adjust spacing between logo and title */
-        }
-
-        /* Container for the logo - works for both emojis and images */
-        .logo {
-            font-size: 1.2em;
-            /* Sets the base size for emojis and the image container */
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 1em;
-            /* Ensures container has a consistent width */
-            height: 1em;
-            /* Ensures container has a consistent height */
-        }
-
-        /* Styles the GitHub image to fit perfectly inside the .logo container */
-        .logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-    </style>
 </head>
 
 <body>
@@ -219,7 +190,7 @@
                         graphRootRef.current.render(
                             <ForceGraph3D
                                 graphData={data}
-                                backgroundColor="#131317"
+                                backgroundColor="#0a0a0f"
                                 width={window.innerWidth / 2}
                                 height={window.innerHeight}
                                 showNavInfo={false}
@@ -231,7 +202,7 @@
                                     sprite.color = node.color;
                                     sprite.textHeight = 4;
                                     sprite.fontSize = 50;
-                                    sprite.fontFace = "Futura";
+                                    sprite.fontFace = "Inter";
                                     return sprite;
                                 }}
                                 onNodeHover={handleHoverNode}
