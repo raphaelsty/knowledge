@@ -51619,5 +51619,50 @@
             "paddy",
             "pandas"
         ]
+    },
+    "https://github.com/pau-mensa/xtr-warp-rs": {
+        "extra-tags": [
+            "xtr",
+            "sigir",
+            "retrieval",
+            "engine",
+            "multi-vector",
+            "search engine",
+            "multi-vector retrieval"
+        ],
+        "date": "2026-01-12",
+        "title": "xtr-warp-rs",
+        "summary": "High performance implementation of the WARP (SIGIR'25) retrieval engine. \n Warp The Multi-Vector Search Engine To Rule Them All nbsp xtr-warp-rs is a high-performance implementation of the WARP engine for multi-vector retrieval, as described in the WARP paper SIGIR 2025httpsarxiv.orgabs2501.17788. Originally built with XTR models NeurIPS 2023httpsarxiv.orgabs2304.01982 in mind, as it turns out, it significantly outperforms all other multi-vector search engines while keeping retrieval metrics competitive.",
+        "tags": [
+            "rust"
+        ]
+    },
+    "https://github.com/agrimsingh/ralph-wiggum-cursor": {
+        "extra-tags": [
+            "context",
+            "cursor",
+            "ai",
+            "agent",
+            "development"
+        ],
+        "date": "2026-01-12",
+        "title": "ralph-wiggum-cursor",
+        "summary": "Cursor CLI implementation of Geoffrey Huntley's Ralph Wiggum autonomous iteration technique with deliberate context management \n An implementation of Geoffrey Huntley's Ralph Wiggum techniquehttpsghuntley.comralph for Cursor, enabling autonomous AI development with deliberate context management. Ralph is a technique for autonomous AI development that treats LLM context like memory bash while do cat PROMPT.md agent done The same prompt is fed repeatedly to an AI agent. Progress persists in files and git, not in the LLM's context window. When context fills up, you get a fresh agent with fresh context.",
+        "tags": [
+            "shell"
+        ]
+    },
+    "https://antirez.com/news/158": {
+        "extra-tags": [
+            "ai",
+            "software",
+            "was"
+        ],
+        "title": "Hackernews Don't fall into the anti-AI hype (antirez.com)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "I love writing software, line by line. It could be said that my career was a continuous effort to create software well written, minimal, where the human touch was the fundamental feature. I also hope for a society where the last are not forgotten. Moreover, I don't want AI to",
+        "date": "2026-01-12"
     }
 }
