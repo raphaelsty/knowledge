@@ -51664,5 +51664,20 @@
         ],
         "summary": "I love writing software, line by line. It could be said that my career was a continuous effort to create software well written, minimal, where the human touch was the fundamental feature. I also hope for a society where the last are not forgotten. Moreover, I don't want AI to",
         "date": "2026-01-12"
+    },
+    "https://github.com/Xmaster6y/tdhook": {
+        "extra-tags": [
+            "interpretability",
+            "torch",
+            "hooks",
+            "svg",
+            "gradients"
+        ],
+        "date": "2026-01-13",
+        "title": "tdhook",
+        "summary": "\ud83e\udd16\ud83e\ude9dInterpretability with tensordict and torch hooks. \n !cihttpsgithub.comXmaster6ytdhookactionsworkflowsci.ymlbadge.svg !publishhttpsgithub.comXmaster6ytdhookactionsworkflowspublish.ymlbadge.svg Interpretability with tensordict and torch hooks. Most methods should work with minimal configuration. Here's a basic example of running Integrated Gradients on a VGG16 model full example available here.docssourcenotebooksmethodsintegrated-gradients.ipynb python from tdhook.attribution import IntegratedGradients def initattrtargetstargets, zebralogit targetsoutput..., 340 return TensorDictoutzebralogit, batchsizetargets.batchsize with IntegratedGradientsinitattrtargetsinitattrtargets.preparemodel as hookedmodel",
+        "tags": [
+            "python"
+        ]
     }
 }
