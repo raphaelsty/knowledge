@@ -51679,5 +51679,20 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/parcadei/llm-tldr": {
+        "extra-tags": [
+            "tldr",
+            "llm",
+            "llms",
+            "codebase",
+            "code"
+        ],
+        "date": "2026-01-14",
+        "title": "llm-tldr",
+        "summary": "95% token savings. 155x faster queries. 16 languages.  LLMs can't read your entire codebase. TLDR extracts structure, traces dependencies, and gives them exactly what they need. \n Give LLMs exactly the code they need. Nothing more. bash pip install llm-tldr tldr warm . tldr semantic what you're looking for . Your codebase is 100K lines. Claude's context window is 200K tokens. Raw code won't fitand even if it did, the LLM would drown in irrelevant details.",
+        "tags": [
+            "python"
+        ]
     }
 }
