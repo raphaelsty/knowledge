@@ -51694,5 +51694,56 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/microsoft/onnxruntime": {
+        "extra-tags": [
+            "onnxruntime",
+            "cross-platform",
+            "performance",
+            "inference"
+        ],
+        "date": "2026-01-15",
+        "title": "onnxruntime",
+        "summary": "ONNX Runtime: cross-platform, high performance ML inferencing and training accelerator \n ONNX Runtime is a cross-platform inference and training machine-learning accelerator. ONNX Runtime inference can enable faster customer experiences and lower costs, supporting models from deep learning frameworks such as PyTorch and TensorFlowKeras as well as classical machine learning libraries such as scikit-learn, LightGBM, XGBoost, etc. ONNX Runtime is compatible with different hardware, drivers, and operating systems, and provides optimal performance by leveraging hardware accelerators where applicable alongside graph optimizations and transforms. Learn more rarrhttpswww.onnxruntime.aidocsonnx-runtime-for-inferencing",
+        "tags": [
+            "tensorflow",
+            "c++",
+            "scikit-learn",
+            "deep-learning",
+            "hardware-acceleration",
+            "ai-framework",
+            "machine-learning",
+            "onnx",
+            "neural-networks",
+            "pytorch"
+        ]
+    },
+    "https://github.com/tw93/Mole": {
+        "extra-tags": [
+            "bash",
+            "windows",
+            "deep",
+            "install"
+        ],
+        "date": "2026-01-15",
+        "title": "Mole",
+        "summary": "\ud83d\udc39 Deep clean and optimize your Mac. \n Mole Deep clean and optimize your Mac. Install via Homebrew recommended bash brew install mole Or via script bash curl -fsSL httpsraw.githubusercontent.comtw93molemaininstall.sh bash Windows Mole is designed for macOS, but we offer an experimental Windows version based on user demand. See the windows branchhttpsgithub.comtw93Moletreewindows for early adopters only.",
+        "tags": [
+            "command-line",
+            "daisydisk",
+            "optimize",
+            "cleaner",
+            "sensei",
+            "istat",
+            "cleaner-cli",
+            "mac",
+            "shell",
+            "macos",
+            "appcleaner",
+            "cleaner-script",
+            "analyzer",
+            "clean",
+            "uninstall"
+        ]
     }
 }
