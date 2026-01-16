@@ -51745,5 +51745,47 @@
             "clean",
             "uninstall"
         ]
+    },
+    "https://github.com/datalab-to/chandra": {
+        "extra-tags": [
+            "model",
+            "tables",
+            "art",
+            "documents",
+            "olmocr"
+        ],
+        "date": "2026-01-16",
+        "title": "chandra",
+        "summary": "OCR model that handles complex tables, forms, handwriting with full layout. \n Datalab State of the Art models for Document Intelligence An OCR model for complex documents handwriting, tables, math equations, and messy forms. Overall scores on the olmocr benchhttpsgithub.comallenaiolmocr A hosted API with additional accuracy improvements is available at datalab.tohttpswww.datalab.to. Try the free playgroundhttpswww.datalab.toplayground without installing. Join Discordhttpsdiscord.ggKuZwXNGnfH to discuss development and get help.",
+        "tags": [
+            "ai",
+            "ocr",
+            "python"
+        ]
+    },
+    "https://github.com/adamchainz/tprof": {
+        "extra-tags": [
+            "profiler",
+            "profile",
+            "profiles"
+        ],
+        "date": "2026-01-16",
+        "title": "tprof",
+        "summary": "A targeting profiler.",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://frontierai.substack.com/p/data-is-your-only-moat": {
+        "extra-tags": [
+            "data",
+            "hacker"
+        ],
+        "title": "Hackernews Data is the only moat (frontierai.substack.com)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "",
+        "date": "2026-01-16"
     }
 }
