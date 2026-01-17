@@ -51787,5 +51787,19 @@
         ],
         "summary": "",
         "date": "2026-01-16"
+    },
+    "https://github.com/nicklashansen/dreamer4": {
+        "extra-tags": [
+            "pytorch",
+            "paper",
+            "model",
+            "actions"
+        ],
+        "date": "2026-01-17",
+        "title": "dreamer4",
+        "summary": "Unofficial implementation of the Dreamer 4 world model in PyTorch. \n Dreamer 4 in PyTorch This is an unofficial PyTorch implementation of the Dreamer 4 world model from the paper Training Agents Inside of Scalable World Modelshttpsarxiv.orgabs2509.24527 by Danijar Hafner, Wilson Yan, Timothy Lillicrap. Our implementation is not a complete reproduction of the original work, but we believe that it may serve as a good starting point for anyone looking to extend or experiment with the Dreamer 4 architecture. Notably, the original paper applies Dreamer 4 to Minecraft discrete actions whereas this implementation applies it to multi-task DMControl continuous actions. We welcome contributions to improve the codebase and bring it closer to the original paper.",
+        "tags": [
+            "python"
+        ]
     }
 }
