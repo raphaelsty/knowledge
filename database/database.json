@@ -51801,5 +51801,49 @@
         "tags": [
             "python"
         ]
+    },
+    "https://github.com/grobidOrg/grobid": {
+        "extra-tags": [
+            "machine learning",
+            "software",
+            "documents",
+            "information extraction"
+        ],
+        "date": "2026-01-19",
+        "title": "grobid",
+        "summary": "A machine learning software for extracting information from scholarly documents",
+        "tags": [
+            "scientific-articles",
+            "rnn",
+            "transformers",
+            "deep-learning",
+            "bibliographical-references",
+            "fulltext",
+            "hamburger-to-cow",
+            "machine-learning",
+            "metadata",
+            "crf",
+            "pdf",
+            "java"
+        ]
+    },
+    "https://github.com/Liphos/ScreenRecorder": {
+        "extra-tags": [
+            "dataset",
+            "screen",
+            "keyboard",
+            "tool"
+        ],
+        "date": "2026-01-19",
+        "title": "ScreenRecorder",
+        "summary": "Screen Recording tool to create dataset from computer interaction(mouse, keyboard and controler) \n ScreenRecorder is a project that allows recording of screen, mouse, keyboard and gamepad inputs to form a dataset. The dataset will be composed of a folder containing the images png, jpeg or webp and a json for each input screen timestamps, mouse, keyboard and gamepad. The objective is to facilitate the creation of a dataset of human-computer interactions on various tasks exploring the web, working with Excel, playing games.",
+        "tags": [
+            "deep-learning",
+            "python",
+            "machine-learning",
+            "reinforcement-learning",
+            "datasets",
+            "dataset-generation"
+        ]
     }
 }
