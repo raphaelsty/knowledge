@@ -51845,5 +51845,32 @@
             "datasets",
             "dataset-generation"
         ]
+    },
+    "https://github.com/bmad-code-org/BMAD-METHOD": {
+        "extra-tags": [
+            "no",
+            "ai",
+            "development",
+            "build"
+        ],
+        "date": "2026-01-20",
+        "title": "BMAD-METHOD",
+        "summary": "Breakthrough Method for Agile Ai Driven Development \n !BMad Methodbanner-bmad-method.png Build More, Architect Dreams An AI-driven agile development framework with 21 specialized agents, 50 guided workflows, and scale-adaptive intelligence that adjusts from bug fixes to enterprise systems. 100 free and open source. No paywalls. No gated content. No gated Discord. We believe in empowering everyone, not just those who can pay.",
+        "tags": [
+            "javascript"
+        ]
+    },
+    "https://huggingface.co/datasets/lightonai/LightOnOCR-mix-0126": {
+        "extra-tags": [
+            "ocr",
+            "document"
+        ],
+        "title": "HuggingFace lightonai/LightOnOCR-mix-0126",
+        "tags": [
+            "huggingface",
+            "dataset"
+        ],
+        "summary": "LightOnOCR-mix-0126 LightOnOCR-mix-0126 is a large-scale OCR training dataset built via distillation: a strong vision\u2013language model is prompted to produce naturally ordered full-page transcriptions (Markdown with LaTeX math spans and HTML tables) from rendered document pages. The dataset is designed as supervision for end-to-end OCR / document-understanding models that aim to",
+        "date": "2026-01-20"
     }
 }
