@@ -51872,5 +51872,20 @@
         ],
         "summary": "LightOnOCR-mix-0126 LightOnOCR-mix-0126 is a large-scale OCR training dataset built via distillation: a strong vision\u2013language model is prompted to produce naturally ordered full-page transcriptions (Markdown with LaTeX math spans and HTML tables) from rendered document pages. The dataset is designed as supervision for end-to-end OCR / document-understanding models that aim to",
         "date": "2026-01-20"
+    },
+    "https://github.com/mixedbread-ai/mgrep": {
+        "extra-tags": [
+            "cli",
+            "native",
+            "grep",
+            "code",
+            "install"
+        ],
+        "date": "2026-01-21",
+        "title": "mgrep",
+        "summary": "A calm, CLI-native way to semantically grep everything, like code, images, pdfs and more. \n mgrep A calm, CLI-native way to semantically grep everything, like code, images, pdfs and more. Your browser does not support the video tag. bash mgrep watch mgrep where do we set up auth? 1. Install bash npm install -g mixedbreadmgrep or pnpm bun 2. Sign in once",
+        "tags": [
+            "typescript"
+        ]
     }
 }
