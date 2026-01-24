@@ -51887,5 +51887,33 @@
         "tags": [
             "typescript"
         ]
+    },
+    "https://github.com/gangiswag/cornstack": {
+        "extra-tags": [
+            "contrastive",
+            "training",
+            "evaluation",
+            "reranker"
+        ],
+        "date": "2026-01-24",
+        "title": "cornstack",
+        "summary": " \n nbspAbout nbspMore About CORNSTACK nbspQuick Start nbspRunning Evaluation nbspRunning Reranker The performance of code embedding models is highly contingent on the quality of the large-scale data used for contrastive training. Effective contrastive training hinges on satisfying two primary conditions 1 The positives are highly relevant to the query and not noisy",
+        "tags": [
+            "javascript"
+        ]
+    },
+    "https://huggingface.co/lightonai/LightOnOCR-2-1B": {
+        "extra-tags": [
+            "ocr",
+            "training",
+            "vision-language"
+        ],
+        "title": "HuggingFace lightonai/LightOnOCR-2-1B",
+        "tags": [
+            "huggingface",
+            "model"
+        ],
+        "summary": "<div align=\"center\"> <img src=\"lightonocr-banner.png\" alt=\"LightOnOCR-2-1B Banner\" width=\"600\"/> </div> LightOnOCR-2-1B Best OCR model . LightOnOCR-2-1B is our flagship OCR model, refined with RLVR training for maximum accuracy. We recommend this variant for most OCR tasks. About LightOnOCR-2 LightOnOCR-2 is an efficient end-to-end 1B-parameter vision-language model for converting documents (PDFs, scans, images)",
+        "date": "2026-01-24"
     }
 }
