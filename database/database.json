@@ -51915,5 +51915,57 @@
         ],
         "summary": "<div align=\"center\"> <img src=\"lightonocr-banner.png\" alt=\"LightOnOCR-2-1B Banner\" width=\"600\"/> </div> LightOnOCR-2-1B Best OCR model . LightOnOCR-2-1B is our flagship OCR model, refined with RLVR training for maximum accuracy. We recommend this variant for most OCR tasks. About LightOnOCR-2 LightOnOCR-2 is an efficient end-to-end 1B-parameter vision-language model for converting documents (PDFs, scans, images)",
         "date": "2026-01-24"
+    },
+    "https://github.com/jina-ai/jzip-compressor": {
+        "extra-tags": [
+            "compression",
+            "embedding",
+            "vectors",
+            "bash"
+        ],
+        "date": "2026-01-25",
+        "title": "jzip-compressor",
+        "summary": "Compression for unit-norm embedding vectors using spherical coordinates \n Near-lossless compression for unit-norm embedding vectors using spherical coordinates, 1.5x compression ratio. !jzip pipelinepipeline.png Requires zstd library. bash brew install zstd apt install libzstd-dev make bash jzip -c input.bin output.jz N D LEVEL jzip -d output.jz output.bin LEVEL is the zstd compression level 1-22, default 1. Higher levels are slower with negligible compression gain because the spherical transform already minimizes entropy.",
+        "tags": [
+            "c"
+        ]
+    },
+    "https://www.seangoedecke.com/how-i-estimate-work/": {
+        "extra-tags": [
+            "software",
+            "engineer",
+            "engineering"
+        ],
+        "title": "Hackernews How I estimate work (seangoedecke.com)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "How I estimate work as a staff software engineer There\u2019s a kind of polite fiction at the heart of the software industry. It goes something like this: Estimating how long software projects will take is very hard, but not impossible. A skilled engineering team can, with time and effort, learn",
+        "date": "2026-01-25"
+    },
+    "https://antoine.vandecreme.net/blog/rust-closures/": {
+        "extra-tags": [
+            "rust",
+            "blog",
+            "was"
+        ],
+        "title": "Hackernews Understanding Rust Closures (vandecreme.net)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "While reading the Explicit capture clauses blog post, I realized that my understanding of rust closures was very superficial. This article is an attempt at explaining what I learned while reading and experimenting on the subject. It starts from the very basics and then explore more complex topics. Note that",
+        "date": "2026-01-25"
+    },
+    "https://www.jerpint.io/blog/2026-01-24-i-dont-write-code-anymore-i-sculpt-it/": {
+        "extra-tags": [
+            "code",
+            "coding"
+        ],
+        "title": "Hackernews I don't write code anymore \u2013 I sculpt it (jerpint.io)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "I don't write code anymore - I sculpt it I\u2019ve noticed a shift in how I code. I rarely write code anymore - claude-code does most of the coding for me. I sculpt the outputs into something more durable. Once the code is in a working state, based on my",
+        "date": "2026-01-25"
     }
 }
