@@ -51967,5 +51967,81 @@
         ],
         "summary": "I don't write code anymore - I sculpt it I\u2019ve noticed a shift in how I code. I rarely write code anymore - claude-code does most of the coding for me. I sculpt the outputs into something more durable. Once the code is in a working state, based on my",
         "date": "2026-01-25"
+    },
+    "https://github.com/moltbot/moltbot": {
+        "extra-tags": [],
+        "date": "2026-01-28",
+        "title": "moltbot",
+        "summary": "Your own personal AI assistant. Any OS. Any Platform. The lobster way. \ud83e\udd9e  \n EXFOLIATE! EXFOLIATE! Moltbot is a personal AI assistant you run on your own devices. It answers you on the channels you already use WhatsApp, Telegram, Slack, Discord, Google Chat, Signal, iMessage, Microsoft Teams, WebChat, plus extension channels like BlueBubbles, Matrix, Zalo, and Zalo Personal. It can speak and listen on macOSiOSAndroid, and can render a live Canvas you control. The Gateway is just the control plane the product is the assistant.",
+        "tags": [
+            "typescript",
+            "clawd",
+            "assistant",
+            "ai",
+            "moltbot",
+            "molty",
+            "own-your-data",
+            "crustacean",
+            "personal"
+        ]
+    },
+    "https://github.com/verl-project/verl": {
+        "extra-tags": [
+            "llms",
+            "engine",
+            "reinforcement learning",
+            "rl"
+        ],
+        "date": "2026-01-28",
+        "title": "verl",
+        "summary": "verl: Volcano Engine Reinforcement Learning for LLMs \n Hi, everyone! verl is a RL training library initiated by ByteDance Seed team and maintained by the verl community. !seed logohttpsgithub.comuser-attachmentsassetsc42e675e-497c-4508-8bb9-093ad4d1f216 verl Volcano Engine Reinforcement Learning for LLMs verl is a flexible, efficient and production-ready RL training library for large language models LLMs. verl is the open-source version of HybridFlow A Flexible and Efficient RLHF Frameworkhttpsarxiv.orgabs2409.19256v2 paper.",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/getnao/nao": {
+        "extra-tags": [
+            "agent",
+            "context",
+            "cli"
+        ],
+        "date": "2026-01-28",
+        "title": "nao",
+        "summary": "\ud83d\udc7e nao is an open source analytics agent. (1) Create context with nao-core cli, (2) deploy nao chat interface for everyone \n nao The 1 Open-Source Analytics Agent Website Documentation Slack nao is a framework to build and deploy analytics agent. Create the context of your analytics agent with nao-core cli data, metadata, modeling, rules, etc. Deploy a UI for anyone to chat with your agent and run analytics on your data.",
+        "tags": [
+            "text-to-sql",
+            "bigquery",
+            "self-hosted",
+            "analytics-engineering",
+            "data-engineering",
+            "data-analyst",
+            "slack-bot",
+            "slackbot",
+            "data",
+            "analytics",
+            "typescript",
+            "agentic-analytics",
+            "data-analysis",
+            "postgresql",
+            "snowflake",
+            "databricks",
+            "business-intelligence",
+            "sql",
+            "chat-with-your-data",
+            "context-engineering"
+        ]
+    },
+    "https://www.vectorware.com/blog/rust-std-on-gpu/": {
+        "extra-tags": [
+            "gpu",
+            "rust",
+            "library"
+        ],
+        "title": "Hackernews Rust\u2019s Standard Library on the GPU (vectorware.com)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "GPU code can now use Rust's standard library. We share the implementation approach and what this unlocks for GPU programming. At VectorWare, we are building the first GPU-native software company. Today, we are excited to announce that we can successfully use Rust's standard library from GPUs. This milestone marks a",
+        "date": "2026-01-28"
     }
 }
