@@ -52043,5 +52043,22 @@
         ],
         "summary": "GPU code can now use Rust's standard library. We share the implementation approach and what this unlocks for GPU programming. At VectorWare, we are building the first GPU-native software company. Today, we are excited to announce that we can successfully use Rust's standard library from GPUs. This milestone marks a",
         "date": "2026-01-28"
+    },
+    "https://github.com/upstash/context7": {
+        "extra-tags": [
+            "code",
+            "documentation",
+            "llms"
+        ],
+        "date": "2026-01-29",
+        "title": "context7",
+        "summary": "Context7 MCP Server -- Up-to-date code documentation for LLMs and AI code editors \n !Coverhttpsgithub.comupstashcontext7blobmasterpubliccover.png?rawtrue LLMs rely on outdated or generic information about the libraries you use. You get Context7 MCP pulls up-to-date, version-specific documentation and code examples straight from the source and places them directly into your prompt. Add use context7 to your prompt or set up a ruleadd-a-rule to auto-invoke txt",
+        "tags": [
+            "llm",
+            "typescript",
+            "vibe-coding",
+            "mcp-server",
+            "mcp"
+        ]
     }
 }
