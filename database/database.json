@@ -52060,5 +52060,39 @@
             "mcp-server",
             "mcp"
         ]
+    },
+    "https://github.com/tree-sitter-grammars/tree-sitter-svelte": {
+        "extra-tags": [
+            "grammar",
+            "ci",
+            "discord"
+        ],
+        "date": "2026-01-30",
+        "title": "tree-sitter-svelte",
+        "summary": "Svelte grammar for tree-sitter \n ci httpsimg.shields.iogithubactionsworkflowstatustree-sitter-grammarstree-sitter-svelteci.yml?logogithublabelCI discord httpsimg.shields.iodiscord1063097320771698699?logodiscordlabeldiscord matrix httpsimg.shields.iomatrixtree-sitter-chat3Amatrix.org?logomatrixlabelmatrix npm httpsimg.shields.ionpmvtree-sitter-grammarstree-sitter-svelte?logonpm crates httpsimg.shields.iocratesvtree-sitter-svelte-ng?logorust pypi httpsimg.shields.iopypivtree-sitter-svelte?logopypilogoColorffd242",
+        "tags": [
+            "tree-sitter",
+            "c",
+            "svelte",
+            "parser"
+        ]
+    },
+    "http://arxiv.org/abs/2510.22037": {
+        "extra-tags": [
+            "scaling",
+            "laws",
+            "languages"
+        ],
+        "title": "ATLAS: Adaptive Transfer Scaling Laws for Multilingual Pretraining, Finetuning, and Decoding the Curse of Multilinguality",
+        "summary": "Scaling laws research has focused overwhelmingly on English -- yet the most prominent AI models explicitly serve billions of international users. In this work, we undertake the largest multilingual scaling laws study to date, totaling 774 multilingual training experiments, spanning 10M-8B model parameters, 400+ training languages and 48 evaluation languages. We introduce the Adaptive Transfer Scaling Law (ATLAS) for both monolingual and multilingual pretraining, which outperforms existing scaling laws' out-of-sample generalization often by more than 0.3 R^2. Our analyses of the experiments shed light on multilingual learning dynamics, transfer properties between languages, and the curse of multilinguality. First, we derive a cross-lingual transfer matrix, empirically measuring mutual benefit scores between 38 x 38=1444 language pairs. Second, we derive a language-agnostic scaling law that reveals how to optimally scale model size and data when adding languages without sacrificing performance. Third, we identify the computational crossover points for when to pretrain from scratch versus finetune from multilingual checkpoints. We hope these findings provide the scientific foundation for democratizing scaling laws across languages, and enable practitioners to efficiently scale models -- beyond English-first AI.",
+        "date": "2026-01-29",
+        "tags": [
+            "computer science - computation and language",
+            "computer science - machine learning",
+            "multilingual",
+            "recipe",
+            "training",
+            "training data"
+        ]
     }
 }
