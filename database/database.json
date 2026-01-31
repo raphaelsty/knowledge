@@ -52094,5 +52094,65 @@
             "training",
             "training data"
         ]
+    },
+    "https://github.com/vllm-project/speculators": {
+        "extra-tags": [
+            "model",
+            "decoding",
+            "llm",
+            "inference"
+        ],
+        "date": "2026-01-31",
+        "title": "speculators",
+        "summary": "A unified library for building, evaluating, and storing speculative decoding algorithms for LLM inference in vLLM \n Speculators is a unified library for building, training and storing speculative decoding algorithms for large language model LLM inference, including in frameworks like vLLM. Speculative decoding is a lossless technique that speeds up LLM inference by using a smaller, faster draft model i.e the speculator to propose tokens, which are then verified by the larger base model, reducing latency without compromising output quality. The speculator intelligently drafts multiple tokens ahead of time, and the base model verifies them in a single forward pass. This approach boosts performance without sacrificing output quality, as every accepted token is guaranteed to match what the main model would have generated on its own.",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/openclaw/openclaw": {
+        "extra-tags": [],
+        "date": "2026-01-31",
+        "title": "openclaw",
+        "summary": "Your own personal AI assistant. Any OS. Any Platform. The lobster way. \ud83e\udd9e  \n EXFOLIATE! EXFOLIATE! OpenClaw is a personal AI assistant you run on your own devices. It answers you on the channels you already use WhatsApp, Telegram, Slack, Discord, Google Chat, Signal, iMessage, Microsoft Teams, WebChat, plus extension channels like BlueBubbles, Matrix, Zalo, and Zalo Personal. It can speak and listen on macOSiOSAndroid, and can render a live Canvas you control. The Gateway is just the control plane the product is the assistant.",
+        "tags": [
+            "assistant",
+            "ai",
+            "personal",
+            "molty",
+            "crustacean",
+            "openclaw",
+            "typescript",
+            "own-your-data"
+        ]
+    },
+    "https://github.com/f/prompts.chat": {
+        "extra-tags": [
+            "chat",
+            "awesome",
+            "prompt"
+        ],
+        "date": "2026-01-31",
+        "title": "prompts.chat",
+        "summary": "a.k.a. Awesome ChatGPT Prompts. Share, discover, and collect prompts from the community. Free and open source \u2014 self-host for your organization with complete privacy. \n prompts.chat The world's largest open-source prompt library for AI Works with ChatGPT, Claude, Gemini, Llama, Mistral, and more formerly known as Awesome ChatGPT Prompts Browse Prompts Read the Book View on GitHub Self-Host Featured in Forbes Referenced by Harvard, Columbia",
+        "tags": [
+            "gpt",
+            "ai",
+            "prompts-chat",
+            "chatgpt",
+            "llm",
+            "nextjs",
+            "openai",
+            "gpt-4",
+            "gemini",
+            "artificial-intelligence",
+            "typescript",
+            "machine-learning",
+            "awesome-list",
+            "prompts",
+            "chatgpt-prompts",
+            "prompt-engineering",
+            "claude",
+            "open-source"
+        ]
     }
 }
