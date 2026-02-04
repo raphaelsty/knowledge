@@ -52154,5 +52154,32 @@
             "claude",
             "open-source"
         ]
+    },
+    "https://github.com/oxiglade/mlx-rs": {
+        "extra-tags": [
+            "mlx",
+            "bindings",
+            "apple",
+            "framework"
+        ],
+        "date": "2026-02-04",
+        "title": "mlx-rs",
+        "summary": "Unofficial Rust bindings to Apple's mlx framework \n mlx-rsREADME.md",
+        "tags": [
+            "rust"
+        ]
+    },
+    "https://github.com/whispem/minikv": {
+        "extra-tags": [
+            "distributed",
+            "production",
+            "raft"
+        ],
+        "date": "2026-02-04",
+        "title": "minikv",
+        "summary": "A production-ready distributed key-value store with Raft consensus. \n A distributed, multi-tenant key-value object store written in Rust minikv provides strong consistency Raft 2PC, durability WAL, and production-grade observability, security, and multi-tenancy all in a modern Rust codebase. Built in public as a learning-by-doing project now evolved into a complete, reference implementation of distributed systems in Rust.",
+        "tags": [
+            "rust"
+        ]
     }
 }
