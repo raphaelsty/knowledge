@@ -52181,5 +52181,50 @@
         "tags": [
             "rust"
         ]
+    },
+    "https://github.com/alibaba/AliSQL": {
+        "extra-tags": [
+            "native"
+        ],
+        "date": "2026-02-05",
+        "title": "AliSQL",
+        "summary": "AliSQL is a MySQL branch originated from Alibaba Group. Fetch document from Release Notes at bottom. \n AliSQL Alibaba's Enterprise MySQL Branch with DuckDB OLAP Native Vector Search Battle-tested in Alibaba's production environment, powering millions of databases Features Quick Start Docs Roadmap Contributing English AliSQL brings enterprise-grade capabilities to MySQL, combining the reliability of InnoDB OLTP with DuckDB's blazing-fast analytics and native vector search all through familiar MySQL interfaces.",
+        "tags": [
+            "c++",
+            "tokudb",
+            "alisql",
+            "vector",
+            "database",
+            "mysql",
+            "duckdb"
+        ]
+    },
+    "https://github.com/cmu-db/optd": {
+        "extra-tags": [
+            "query",
+            "optimizer",
+            "cli",
+            "bash"
+        ],
+        "date": "2026-02-05",
+        "title": "optd",
+        "summary": "Query Optimizer Service \n Query Optimizer Service. To interact with the CLI, run bash cargo run -p optd-cli",
+        "tags": [
+            "rust"
+        ]
+    },
+    "https://github.com/Kaggle/kaggle-cli": {
+        "extra-tags": [
+            "kaggle",
+            "cli",
+            "install",
+            "features"
+        ],
+        "date": "2026-02-05",
+        "title": "kaggle-cli",
+        "summary": "Official Kaggle CLI \n The official CLI to interact with Kagglehttpswww.kaggle.com. Some of the key features are Install the kaggle package with piphttpspypi.orgprojectpip sh pip install kaggle Additional installation instructions can be found heredocsREADME.mdinstallation. Explore the available commands by running sh kaggle --help See the User documentationdocsREADME.md for more examples tutorials.",
+        "tags": [
+            "python"
+        ]
     }
 }
