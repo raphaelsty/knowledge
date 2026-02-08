@@ -52258,5 +52258,19 @@
             "codex",
             "claude-code"
         ]
+    },
+    "https://github.com/TheOrcDev/warcraftcn-ui": {
+        "extra-tags": [
+            "ui",
+            "components",
+            "source",
+            "collection"
+        ],
+        "date": "2026-02-08",
+        "title": "warcraftcn-ui",
+        "summary": "A collection of accessible, retro-inspired UI components drawing from classic real-time strategy aesthetics. Built for modern web/apps. Fully open source \u2013 copy, paste, customize. \n Warcraft-themed UI components. Free. Open Source. Visit warcraftcn.comhttpswarcraftcn.com !warcraftcn UI Components.publicassetswarcraftcn-readme-showcase.png Please read the contributing guidecontributing.md. Licensed under the MIT licenselicense.md.",
+        "tags": [
+            "typescript"
+        ]
     }
 }
