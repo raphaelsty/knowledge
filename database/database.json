@@ -52272,5 +52272,38 @@
         "tags": [
             "typescript"
         ]
+    },
+    "https://github.com/C7-Game/Prototype": {
+        "extra-tags": [
+            "open-source",
+            "community",
+            "godot"
+        ],
+        "date": "2026-02-10",
+        "title": "Prototype",
+        "summary": "OpenCiv3 is an open-source, cross-platform, mod-oriented, modernized remake of Civilization III by the fan community built with the Godot Engine and C#, with capabilities inspired by the best of the 4X genre and lessons learned from modding Civ3. \n OpenCiv3 formerly known by the codename C7 is an open-source, mod-oriented remake of Civilization III by the fan community built with Godot and C, with capabilities inspired by other 4X games and lessons learned in Civ3 modding. We aim to create a new game that looks and plays like Civ3 but incorporates features from the best of the genre and our own dreams.",
+        "tags": [
+            "civilization",
+            "4x-strategy-game",
+            "csharp-game",
+            "game",
+            "strategy-game",
+            "godot-game",
+            "c#",
+            "remake-game",
+            "cross-platform"
+        ]
+    },
+    "https://github.com/lightonai/next-plaid": {
+        "extra-tags": [
+            "plaid",
+            "multi-vector",
+            "search",
+            "database"
+        ],
+        "title": "lightonai/next-plaid",
+        "summary": "Multi-vector search, from database to coding agents",
+        "date": "2026-02-09",
+        "tags": []
     }
 }
