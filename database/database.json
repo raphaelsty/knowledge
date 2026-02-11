@@ -52305,5 +52305,19 @@
         "summary": "Multi-vector search, from database to coding agents",
         "date": "2026-02-09",
         "tags": []
+    },
+    "https://github.com/staghado/better-live-text": {
+        "extra-tags": [
+            "text",
+            "macos",
+            "bash",
+            "paper"
+        ],
+        "date": "2026-02-11",
+        "title": "better-live-text",
+        "summary": "Better Live Text for MacOS \n Reading a paper and want to grab that equation? Screenshot a table from a slide? Copy text from a scanned PDF? O select region text in your clipboard. Local OCR for macOS. Runs LightOnOCR-2-1Bhttpshuggingface.colightonaiLightOnOCR-2-1B via llama.cpphttpsgithub.comggerganovllama.cpp. Pure bash, nothing leaves your machine. bash curl -LsSf httpsraw.githubusercontent.comstaghadobetter-live-textmaininstall.sh sh",
+        "tags": [
+            "shell"
+        ]
     }
 }
