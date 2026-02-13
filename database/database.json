@@ -52319,5 +52319,47 @@
         "tags": [
             "shell"
         ]
+    },
+    "https://github.com/jxnl/systematically-improving-rag": {
+        "extra-tags": [
+            "rag",
+            "systems",
+            "educational",
+            "teaching"
+        ],
+        "date": "2026-02-13",
+        "title": "systematically-improving-rag",
+        "summary": " \n A comprehensive educational resource teaching data-driven approaches to building and improving Retrieval-Augmented Generation systems that get better over time. Learn from real case studies with concrete metrics showing how RAG systems improve from 60 to 85 accuracy through systematic measurement and iteration. Transform RAG from a technical implementation into a continuously improving product through",
+        "tags": [
+            "html"
+        ]
+    },
+    "https://github.com/jxnl/kura": {
+        "extra-tags": [
+            "data",
+            "ai",
+            "assistant",
+            "anthropic"
+        ],
+        "date": "2026-02-13",
+        "title": "kura",
+        "summary": "Kura is a simple reproduction of the CLIO paper which uses language models to label user behaviour before clustering them based on embeddings recursively. This helps us understand user behaviour on a higher level without sacrificing PII. \n !Kura Architecture.kura.png Your AI assistant handles thousands of conversations daily. But do you know what users actually need? Kura is an open-source library for understanding chat data through machine learning, inspired by Anthropic's CLIOhttpswww.anthropic.comresearchclio. It automatically clusters conversations to reveal patterns, pain points, and opportunities hidden in your data. Every day, your AI assistant or chatbot has thousands of conversations. Within this data lies critical intelligence",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://maxhalford.github.io/blog/text-classification-zstd/": {
+        "extra-tags": [
+            "compression",
+            "python",
+            "text",
+            "classification"
+        ],
+        "title": "Hackernews Text classification with Python 3.14's ZSTD module (maxhalford.github.io)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "Text classification with Python 3.14's zstd module Python 3.14 introduced the compression.zstd module. It is a standard library implementation of Facebook\u2019s Zstandard (Zstd) compression algorithm. It was developed a decade ago by Yann Collet, who holds a blog devoted to compression algorithms. I am not a compression expert, but Zstd",
+        "date": "2026-02-13"
     }
 }
