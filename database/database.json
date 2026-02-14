@@ -52361,5 +52361,54 @@
         ],
         "summary": "Text classification with Python 3.14's zstd module Python 3.14 introduced the compression.zstd module. It is a standard library implementation of Facebook\u2019s Zstandard (Zstd) compression algorithm. It was developed a decade ago by Yann Collet, who holds a blog devoted to compression algorithms. I am not a compression expert, but Zstd",
         "date": "2026-02-13"
+    },
+    "https://github.com/PeonPing/peon-ping": {
+        "extra-tags": [
+            "adapter",
+            "voice",
+            "claude",
+            "code"
+        ],
+        "date": "2026-02-14",
+        "title": "peon-ping",
+        "summary": "Warcraft III Peon voice notifications (+ more!) for Claude Code, Codex, and other IDEs. Stop babysitting your terminal. \n !macOShttpsimg.shields.iobadgemacOS-blue !WSL2httpsimg.shields.iobadgeWSL2-blue !Linuxhttpsimg.shields.iobadgeLinux-blue !SSHhttpsimg.shields.iobadgeSSH-blue !Licensehttpsimg.shields.iobadgelicense-MIT-green !Claude Codehttpsimg.shields.iobadgeClaudeCode-hook-ffab01 !Codexhttpsimg.shields.iobadgeCodex-adapter-ffab01 !Cursorhttpsimg.shields.iobadgeCursor-adapter-ffab01 !OpenCodehttpsimg.shields.iobadgeOpenCode-adapter-ffab01 !Kilo CLIhttpsimg.shields.iobadgeKiloCLI-adapter-ffab01 !Kirohttpsimg.shields.iobadgeKiro-adapter-ffab01 !Windsurfhttpsimg.shields.iobadgeWindsurf-adapter-ffab01 !Antigravityhttpsimg.shields.iobadgeAntigravity-adapter-ffab01 Game character voice lines when your AI coding agent needs attention. AI coding agents don't notify you when they finish or need permission. You tab away, lose focus, and waste 15 minutes getting back into flow. peon-ping fixes this with voice lines from Warcraft, StarCraft, Portal, Zelda, and more works with Claude Code, Codex, Cursor, OpenCode, Kilo CLI, Kiro, Windsurf, and Google Antigravity.",
+        "tags": [
+            "ai-engineering",
+            "codex",
+            "ai",
+            "antigravity",
+            "terminal",
+            "opencode",
+            "shell",
+            "claude-code",
+            "cursor"
+        ]
+    },
+    "https://github.com/adrienhadjsalah/sweet-rl": {
+        "extra-tags": [
+            "rl",
+            "reinforcement learning",
+            "framework",
+            "algorithms"
+        ],
+        "date": "2026-02-14",
+        "title": "sweet-rl",
+        "summary": "The sweetest Reinforcement Learning framework \n !Sweet-RLhttpsraw.githubusercontent.comHadjubuntusweet-rldevelopmisclogo.png It exists dozens of Reinforcement Learning frameworks and algorithms implementations. Yet, most of them suffer of poor modularity and ease of understanding. This is why, I started to implement my own Sweet-RL. It's so sweet that you can switch from Tensorflow 2.1 to PyTorch 1.4 with a single configuration line",
+        "tags": [
+            "jupyter notebook"
+        ]
+    },
+    "https://github.com/lightonai/next-plaid/tree/main/colgrep": {
+        "extra-tags": [
+            "code",
+            "search",
+            "terminal"
+        ],
+        "title": "Hackernews ColGREP: Semantic code search for your terminal and your coding agents (github.com/lightonai)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "We read every piece of feedback, and take your input very seriously. To see all available qualifiers, see our documentation.",
+        "date": "2026-02-14"
     }
 }
