@@ -52410,5 +52410,20 @@
         ],
         "summary": "We read every piece of feedback, and take your input very seriously. To see all available qualifiers, see our documentation.",
         "date": "2026-02-14"
+    },
+    "https://github.com/tobilg/polyglot": {
+        "extra-tags": [
+            "api"
+        ],
+        "date": "2026-02-17",
+        "title": "polyglot",
+        "summary": "Rust/Wasm-powered SQL transpiler for more than 30 SQL dialects \n RustWasm-powered SQL transpiler for 32 dialects, inspired by sqlglothttpsgithub.comtobymaosqlglot. Polyglot parses, generates, transpiles, and formats SQL across 32 database dialects. It ships as a Rust crate polyglot-sqlhttpscrates.iocratespolyglot-sql and a TypeScriptWASM SDK polyglot-sqlsdkhttpswww.npmjs.compackagepolyglot-sqlsdk on npm. There's also a playgroundhttpspolyglot-playground.gh.tobilg.com where you can try it out in the browser, as well as the Rust API Docshttpsdocs.rspolyglot-sqllatestpolyglotsql and TypeScript API Docshttpspolyglot.gh.tobilg.com.",
+        "tags": [
+            "sql",
+            "transpiler",
+            "sqlglot",
+            "wasm",
+            "rust"
+        ]
     }
 }
