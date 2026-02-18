@@ -52425,5 +52425,32 @@
             "wasm",
             "rust"
         ]
+    },
+    "https://www.arthurcnops.blog/death-of-show-hn/": {
+        "extra-tags": [
+            "no",
+            "blog",
+            "good",
+            "quickly"
+        ],
+        "title": "Hackernews Is Show HN dead? No, but it's drowning (arthurcnops.blog)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "Is Show HN Dead? No, But It's Drowning A few days ago I posted to Show HN. I had good fun building that useless little internet experience. The post quickly disappeared from Show HN's first page, amongst the rest of the vibecoded pulp. And to be clear, I'm fine with",
+        "date": "2026-02-18"
+    },
+    "https://www.vectorware.com/blog/async-await-on-gpu/": {
+        "extra-tags": [
+            "gpu",
+            "async",
+            "rust"
+        ],
+        "title": "Hackernews Async/Await on the GPU (vectorware.com)",
+        "tags": [
+            "hackernews"
+        ],
+        "summary": "GPU code can now use Rust's async/await. We share the reasons why and what this unlocks for GPU programming. At VectorWare, we are building the first GPU-native software company. Today, we are excited to announce that we can successfully use Rust's Future trait and async /await on the GPU. This",
+        "date": "2026-02-18"
     }
 }
