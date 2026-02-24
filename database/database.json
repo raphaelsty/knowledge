@@ -52469,5 +52469,19 @@
             "max halford",
             "web"
         ]
+    },
+    "https://github.com/joe32140/fast-plaid-web": {
+        "extra-tags": [
+            "multi-vector",
+            "search",
+            "web",
+            "high-performance"
+        ],
+        "date": "2026-02-24",
+        "title": "fast-plaid-web",
+        "summary": "High-Performance Engine for Multi-Vector Search for Web Applications \n FastPlaid nbsp FastPlaid - High-Performance Multi-Vector Search with WASM Support nbsp FastPlaid implements efficient multi-vector search for ColBERT-style models. Unlike traditional single-vector search, multi-vector approaches maintain token-level embeddings for fine-grained similarity matching. Key Features FastPlaid has two implementations for different use cases Component Purpose Use Case",
+        "tags": [
+            "rust"
+        ]
     }
 }
