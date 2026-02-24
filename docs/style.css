@@ -204,13 +204,54 @@ body {
 }
 
 /* ============================================
+   Source Filter Bar
+   ============================================ */
+
+#source-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 90px 0 16px 0;
+    padding: 0;
+}
+
+.source-chip {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.04);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    border: 1px solid var(--border-subtle);
+    transition: all var(--transition-fast);
+}
+
+.source-chip:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--border-hover);
+    color: var(--text-primary);
+}
+
+.source-chip.active {
+    background: var(--accent-gradient);
+    color: var(--bg-primary);
+    border-color: transparent;
+    font-weight: 600;
+    box-shadow: 0 2px 8px var(--accent-glow);
+}
+
+/* ============================================
    Documents Container
    ============================================ */
 
 #documents {
     width: 100%;
     max-width: 100%;
-    margin: 90px 0 40px 0;
+    margin: 0 0 40px 0;
     padding: 0;
 }
 
@@ -433,9 +474,12 @@ body {
         padding: 0 45px 0 20px;
     }
 
+    #source-filter {
+        margin-top: 76px;
+    }
+
     #documents {
         width: 100%;
-        margin-top: 80px;
         max-width: 100%;
     }
 

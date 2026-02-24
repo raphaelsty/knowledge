@@ -75,7 +75,7 @@ class Retriever:
             retrieve.TfIdf(
                 key="url",
                 on=["title", "tags", "summary", "date", "extra-tags"],
-                k=30,
+                k=100,
                 tfidf=sparse.BM25Vectorizer(
                     normalize=True,
                     ngram_range=(3, 5),

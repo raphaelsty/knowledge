@@ -101,6 +101,7 @@
         const SEARCH_DEBOUNCE_MS = 400;
         const PLOT_DEBOUNCE_MS = 500;
         const INITIAL_FETCH_COUNT = 100;
+        const FILTERED_FETCH_COUNT = 500;
         const RERANK_INACTIVITY_MS = 1000; // New: Constant for inactivity delay
         const SUMMARY_TOKEN_LIMIT = 30; // New: Constant for summary length
 
@@ -118,6 +119,7 @@
             const [documents, setDocuments] = useState([]);
             const [isSortedByDate, setIsSortedByDate] = useState(false);
             const [resultsReranked, setResultsReranked] = useState(false);
+            const [sourceFilter, setSourceFilter] = useState("all");
 
             // --- Graph Interaction State ---
             const [highlightNodes, setHighlightNodes] = useState(new Set());
@@ -151,11 +153,12 @@
              */
             const fetchLatest = useCallback(() => {
                 unmountGraph();
-                fetch(`${API_BASE_URL}/latest/${INITIAL_FETCH_COUNT}`)
+                const count = sourceFilter !== "all" ? FILTERED_FETCH_COUNT : INITIAL_FETCH_COUNT;
+                fetch(`${API_BASE_URL}/latest/${count}`)
                     .then(res => res.json())
                     .then(data => setDocuments(data.documents))
                     .catch(error => console.error("[APP] Failed to fetch latest documents:", error));
-            }, [unmountGraph]);
+            }, [unmountGraph, sourceFilter]);
 
             /**
              * Fetches search results from the backend API.
@@ -463,6 +466,15 @@
             }, []);
 
             /**
+             * Re-fetch when source filter changes (to adjust document count).
+             */
+            useEffect(() => {
+                if (!query.trim()) {
+                    fetchLatest();
+                }
+            }, [sourceFilter]);
+
+            /**
              * Effect to handle window resizing for mobile detection.
              */
             useEffect(() => {
@@ -543,6 +555,23 @@
             }, [query, documentsToFetch, runNow]);
 
             // --- UI Helper Functions ---
+
+            /**
+             * Returns the source category for a document based on URL and tags.
+             */
+            const getDocumentSource = (doc) => {
+                const url = doc.url || "";
+                const title = (doc.title || "").toLowerCase();
+                const allTags = (doc.tags || []).concat(doc["extra-tags"] || []);
+                const tagsLower = allTags.map(t => (t || "").toLowerCase());
+
+                if (url.includes("github.com")) return "github";
+                if (url.includes("twitter.com") || url.includes("x.com")) return "twitter";
+                if (title.includes("hackernews") || tagsLower.some(t => t.includes("hackernews"))) return "hackernews";
+                if (url.includes("huggingface.co")) return "huggingface";
+                if (url.includes("arxiv.org") || tagsLower.some(t => t.includes("arxiv"))) return "arxiv";
+                return "other";
+            };
 
             /**
              * UPDATED: Returns a logo based on the document's source.
@@ -630,8 +659,30 @@
                         </span>
                     </div>
 
+                    <div id="source-filter">
+                        {[
+                            { key: "all", label: "All" },
+                            { key: "github", label: "GitHub" },
+                            { key: "twitter", label: "X" },
+                            { key: "hackernews", label: "HackerNews" },
+                            { key: "huggingface", label: "HuggingFace" },
+                            { key: "arxiv", label: "arXiv" },
+                            { key: "other", label: "Other" },
+                        ].map(({ key, label }) => (
+                            <button
+                                key={key}
+                                className={`source-chip ${sourceFilter === key ? "active" : ""}`}
+                                onClick={() => setSourceFilter(key)}
+                            >
+                                {label}
+                            </button>
+                        ))}
+                    </div>
+
                     <div id="documents">
-                        {(documents || []).map((doc, index) => (
+                        {(documents || [])
+                            .filter(doc => sourceFilter === "all" || getDocumentSource(doc) === sourceFilter)
+                            .map((doc, index) => (
                             <div className="document" key={doc.url || index}>
                                 <div className="title-wrapper">
                                     <span className="logo">{getLinkLogo(doc)}</span>
