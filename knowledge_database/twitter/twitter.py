@@ -1,84 +1,71 @@
 """
-Twitter module for extracting liked tweets.
+Twitter module for extracting bookmarked and liked tweets.
 
-This module uses the Twitter API v2 to fetch a user's liked tweets
-and extract relevant metadata including annotations and entities.
+This module uses Twikit to fetch a user's bookmarked and liked tweets.
+Bookmarks are filtered by minimum like count. Authentication uses
+browser cookies (auth_token and ct0) to bypass Cloudflare protection.
 """
 
-import datetime
+import asyncio
 import time
 
-import requests
+from twikit import Client
 
 __all__ = ["Twitter"]
 
 
 class Twitter:
     """
-    Extract knowledge from Twitter liked tweets.
+    Extract knowledge from Twitter bookmarked and liked tweets using Twikit.
 
-    Uses Twitter API v2 to fetch liked tweets and extract text content,
-    publication dates, and named entity annotations.
+    Authenticates with Twitter via browser cookies and fetches bookmarked
+    tweets (filtered by like count) and all liked tweets.
 
     Parameters
     ----------
+    auth_token : str
+        The ``auth_token`` cookie from a logged-in Twitter/X browser session.
+    ct0 : str
+        The ``ct0`` cookie (CSRF token) from a logged-in Twitter/X session.
     username : str
-        Twitter username (for constructing tweet URLs).
-    user_id : int
-        Numeric Twitter user ID (required for API calls).
-    token : str
-        Twitter API Bearer token with read permissions.
-
-    Attributes
-    ----------
-    url : str
-        Constructed API endpoint URL for fetching liked tweets.
+        Twitter/X screen name (used to fetch liked tweets).
+    min_likes : int, default=10
+        Minimum number of likes (favorite_count) a bookmarked tweet must
+        have to be included. Does not apply to liked tweets.
 
     Example
     -------
     >>> from knowledge_database import twitter
     >>>
     >>> tw = twitter.Twitter(
-    ...     username="your_username",
-    ...     user_id=123456789,
-    ...     token="your_bearer_token",
+    ...     auth_token="your_auth_token",
+    ...     ct0="your_ct0_token",
+    ...     username="raphaelsrty",
+    ...     min_likes=10,
     ... )
-    >>> documents = tw(limit=10)
-    >>>
-    >>> for url, doc in documents.items():
-    ...     print(f"{doc['title']}: {doc['summary'][:50]}...")
+    >>> documents = tw()
 
     Notes
     -----
-    To find your Twitter user ID, use https://tweeterid.com/
+    To get the cookies, log into x.com in your browser, open DevTools
+    (F12) > Application > Cookies > https://x.com, and copy the values
+    for ``auth_token`` and ``ct0``.
     """
 
-    def __init__(self, username: str, user_id: int, token: str):
+    def __init__(self, auth_token: str, ct0: str, username: str, min_likes: int = 10):
+        self.auth_token = auth_token
+        self.ct0 = ct0
         self.username = username
-        self.user_id = user_id
-        self.token = token
+        self.min_likes = min_likes
 
-        # Construct API URL with all required fields
-        self.url = (
-            f"https://api.twitter.com/2/users/{self.user_id}/liked_tweets"
-            f"?max_results=100"
-            f"&expansions=author_id"
-            f"&user.fields=name"
-            f"&tweet.fields=attachments,author_id,context_annotations,"
-            f"created_at,entities,id,referenced_tweets,source,text,withheld"
-        )
-
-    def __call__(self, limit: int = 100) -> dict[str, dict]:
+    def __call__(self, max_pages: int = 200) -> dict[str, dict]:
         """
-        Fetch liked tweets and extract document metadata.
-
-        Paginates through the user's liked tweets, extracting tweet content
-        and any named entity annotations.
+        Fetch bookmarked and liked tweets and extract document metadata.
 
         Parameters
         ----------
-        limit : int, default=100
-            Maximum number of API pages to fetch (100 tweets per page).
+        max_pages : int, default=200
+            Maximum number of pagination pages to fetch per source.
 
         Returns
         -------
@@ -87,49 +74,80 @@ class Twitter:
             - title: "Twitter @username" format
             - summary: Full tweet text
             - date: Tweet creation date
-            - tags: ["twitter"] + extracted entity annotations
+            - tags: ["twitter"]
         """
+        return asyncio.run(self._fetch_all(max_pages=max_pages))
+
+    async def _fetch_all(self, max_pages: int) -> dict[str, dict]:
+        """Fetch both bookmarks and likes."""
+        client = Client("en-US")
+        client.set_cookies(
+            {
+                "auth_token": self.auth_token,
+                "ct0": self.ct0,
+            }
+        )
+
         data: dict[str, dict] = {}
-        next_token = ""
 
-        for _ in range(limit):
-            # Fetch page of liked tweets
-            response = requests.get(
-                self.url + next_token,
-                headers={"Authorization": f"Bearer {self.token}"},
-            )
-            tweets = response.json()
+        # Fetch bookmarks (filtered by min_likes)
+        print("  Fetching bookmarks...")
+        bookmarks = await self._paginate(
+            await client.get_bookmarks(count=100),
+            max_pages=max_pages,
+            min_likes=self.min_likes,
+        )
+        data.update(bookmarks)
+        print(f"  Found {len(bookmarks)} bookmarks with {self.min_likes}+ likes.")
 
-            if "data" not in tweets:
+        # Fetch liked tweets (no like filter)
+        print("  Fetching liked tweets...")
+        user = await client.get_user_by_screen_name(self.username)
+        likes = await self._paginate(
+            await client.get_user_tweets(user.id, tweet_type="Likes", count=100),
+            max_pages=max_pages,
+            min_likes=0,
+        )
+        # Don't overwrite bookmarks (they take priority)
+        for url, doc in likes.items():
+            if url not in data:
+                data[url] = doc
+        print(f"  Found {len(likes)} liked tweets.")
+
+        return data
+
+    @staticmethod
+    async def _paginate(results, max_pages: int, min_likes: int) -> dict[str, dict]:
+        """Paginate through a Result[Tweet] and extract documents."""
+        data: dict[str, dict] = {}
+
+        for _page in range(max_pages):
+            if not results:
                 break
 
-            # Build user ID to username mapping
-            users = {user["id"]: user["username"] for user in tweets["includes"]["users"]}
+            for tweet in results:
+                if min_likes > 0 and tweet.favorite_count is not None and tweet.favorite_count < min_likes:
+                    continue
 
-            # Process each tweet in the response
-            for tweet in tweets["data"]:
-                author_username = users[tweet["author_id"]]
-                tweet_url = f"https://twitter.com/{author_username}/status/{tweet['id']}"
+                date = ""
+                if tweet.created_at_datetime is not None:
+                    date = tweet.created_at_datetime.strftime("%Y-%m-%d")
 
-                # Parse tweet timestamp
-                date = datetime.datetime.strptime(tweet["created_at"], "%Y-%m-%dT%H:%M:%S.%fZ").strftime("%Y-%m-%d")
-
-                # Extract entity annotations as tags
-                annotations = tweet.get("entities", {}).get("annotations", [])
-                entity_tags = [annotation["normalized_text"].lower() for annotation in annotations]
+                author = tweet.user.screen_name if tweet.user else "unknown"
+                tweet_url = f"https://x.com/{author}/status/{tweet.id}"
 
                 data[tweet_url] = {
                     "date": date,
-                    "title": f"Twitter @{author_username}",
-                    "summary": tweet["text"],
-                    "tags": list(set(["twitter"] + entity_tags)),
+                    "title": f"Twitter @{author}",
+                    "summary": tweet.text or "",
+                    "tags": ["twitter"],
                 }
 
-            # Check for more pages
-            if "next_token" not in tweets["meta"]:
+            try:
+                results = await results.next()
+            except Exception:
                 break
 
-            next_token = "&pagination_token=" + tweets["meta"]["next_token"]
-            time.sleep(1)  # Rate limiting
+            time.sleep(1)
 
         return data

@@ -12,7 +12,7 @@
 <img src="img/demo.gif" alt="Demonstration GIF" style="width:100%; border-radius:10px; box-shadow:0 4px 8px rgba(0,0,0,0.1);">
 </p>
 
-**Knowledge** is a web application that automatically transforms the digital footprint into a personal search engine. It fetches content you interact with from various platforms—**GitHub**, **HackerNews**, **Zotero**, **HuggingFace likes** and organizes it into a navigable knowledge graph.
+**Knowledge** is a web application that automatically transforms the digital footprint into a personal search engine. It fetches content you interact with from various platforms—**GitHub**, **HackerNews**, **Zotero**, **HuggingFace likes**, **X/Twitter**—and organizes it into a navigable knowledge graph.
 
 ---
 
@@ -37,6 +37,7 @@ A GitHub Actions workflow runs once a day to perform the following tasks:
     - HackerNews Upvotes
     - Zotero Records
     - HuggingFace Likes
+    - X/Twitter Bookmarks & Likes
 2.  **Processes and Stores Data** in the `database/` directory:
     - `database.json`: Contains all the raw records.
     - `triples.json`: Stores the knowledge graph data (topics and relationships).
@@ -109,6 +110,18 @@ The application requires API keys and credentials to function. These must be set
 <td style="text-align:center; padding:8px;">Optional</td>
 <td style="padding:8px;">Token to fetch your HuggingFace liked models and datasets.</td>
 </tr>
+<tr>
+<td style="padding:8px;"><code>TWITTER_AUTH_TOKEN</code></td>
+<td style="padding:8px;"><a href="https://x.com">X/Twitter</a></td>
+<td style="text-align:center; padding:8px;">Optional</td>
+<td style="padding:8px;">Browser <code>auth_token</code> cookie for X. See the <a href="#-xtwitter-integration">X/Twitter section</a> below.</td>
+</tr>
+<tr>
+<td style="padding:8px;"><code>TWITTER_CT0</code></td>
+<td style="padding:8px;"><a href="https://x.com">X/Twitter</a></td>
+<td style="text-align:center; padding:8px;">Optional</td>
+<td style="padding:8px;">Browser <code>ct0</code> cookie (CSRF token) for X. See the <a href="#-xtwitter-integration">X/Twitter section</a> below.</td>
+</tr>
 </tbody>
 </table>
 
@@ -122,12 +135,18 @@ github:
   - "gbolmier"
   - "MaxHalford"
 
+twitter:
+  username: "raphaelsrty"
+  min_likes: 10
+  max_pages: 2
+
 semanlink: False
 
 huggingface: True
 ```
 
 - **github**: List of GitHub usernames whose starred repositories you want to track.
+- **twitter**: X/Twitter configuration. Set `username` to your handle, `min_likes` to filter bookmarks, and `max_pages` to control how many pages of recent likes to fetch per run (~100 likes per page). Remove this block entirely to skip X/Twitter.
 - **semanlink**: Set to `True` to enable Semanlink RDF data extraction.
 - **huggingface**: Set to `True` to fetch your HuggingFace liked models and datasets (requires `HUGGINGFACE_TOKEN` secret).
 
@@ -208,6 +227,44 @@ The Zotero integration allows you to save academic papers, articles, and other d
   <img src="./img/arxiv_2.png" alt="Zotero mobile app" style="width: 30%;">
   <img src="./img/arxiv_3.png" alt="Zotero mobile app" style="width: 30%;">
   </div>
+
+---
+
+## 🐦 X/Twitter Integration
+
+> This source is **entirely optional**. If you don't need it, simply remove the `twitter` block from `sources.yml` and skip this section.
+
+The X/Twitter integration fetches your **bookmarked tweets** (filtered by a minimum like count) and your **liked tweets**. It uses [Twikit](https://github.com/d60/twikit), which connects to X's internal API — **no paid API key required**.
+
+The setup is a bit of a trick: since X blocks automated logins from servers (Cloudflare protection), authentication relies on **browser cookies** rather than username/password.
+
+### How to get your cookies
+
+1. Log into [x.com](https://x.com) in your browser.
+2. Open DevTools (**F12** or **Cmd+Option+I**).
+3. Go to **Application** > **Cookies** > `https://x.com`.
+4. Copy the values for `auth_token` and `ct0`.
+5. Add them as GitHub repository secrets: `TWITTER_AUTH_TOKEN` and `TWITTER_CT0`.
+
+**On macOS with Safari**, you can skip the manual step — the pipeline automatically extracts cookies from Safari when running locally (requires Full Disk Access for your terminal). This means `uv run python run.py` works out of the box on your Mac with no environment variables needed.
+
+### Cookie expiration
+
+The `auth_token` cookie typically lasts **about a year**. The `ct0` token may expire sooner. When the CI starts failing on the Twitter step, simply grab fresh cookies from your browser and update the GitHub secrets.
+
+### Configuration
+
+In `sources.yml`:
+
+```yml
+twitter:
+  username: "your_handle"   # Your X screen name
+  min_likes: 10             # Minimum likes for bookmarked tweets to be included
+  max_pages: 2              # Pages of recent likes to fetch per run (~100/page)
+```
+
+- **Bookmarks**: All pages are always fetched (typically small). Filtered by `min_likes`.
+- **Likes**: Only the `max_pages` most recent pages are fetched. This keeps daily CI runs fast while still catching new activity. For an initial backfill of your full like history, temporarily increase `max_pages` to `200` and run locally.
 
 ---
 
