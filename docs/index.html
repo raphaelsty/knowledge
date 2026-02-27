@@ -215,9 +215,29 @@
         /**
          * Recursive tree node component for folders and tags.
          */
+        const countSourceDocs = (node, filter, sourceKeys) => {
+            let n = 0;
+            for (const [, , docs] of (node.t || [])) {
+                for (const d of (docs || [])) {
+                    if (getSourceFromDoc(d, sourceKeys) === filter) n++;
+                }
+            }
+            for (const ch of (node.c || [])) {
+                n += countSourceDocs(ch, filter, sourceKeys);
+            }
+            return n;
+        };
+
         const TreeNode = ({ node, path, expanded, onToggle, onClickTag, isFiltered, expandedTags, onToggleTag, matchedUrls, showAllTags, onToggleShowAll, sourceFilter, treeDocFilter, sourceKeys }) => {
             const hasChildren = (node.c && node.c.length > 0) || (node.t && node.t.length > 0);
             const isExpanded = expanded.has(path);
+            const displayCount = treeDocFilter
+                ? countSourceDocs(node, treeDocFilter, sourceKeys)
+                : isFiltered && node._matchCount
+                    ? node._matchCount
+                    : node.n;
+
+            if (treeDocFilter && displayCount === 0) return null;
 
             return (
                 <div className="tree-node">
@@ -233,7 +253,7 @@
                             {node.name}
                         </span>
                         <span className="tree-count">
-                            {isFiltered && node._matchCount ? node._matchCount : node.n}
+                            {displayCount}
                         </span>
                     </div>
                     {isExpanded && hasChildren && (
@@ -264,6 +284,7 @@
                                     ? (tagDocs || []).filter(d => getSourceFromDoc(d, sourceKeys) === treeDocFilter)
                                     : tagDocs;
                                 const hasDocs = filteredTagDocs && filteredTagDocs.length > 0;
+                                if (treeDocFilter && !hasDocs) return null;
                                 const sorted = hasDocs ? sortTagDocs(filteredTagDocs, matchedUrls, sourceFilter, sourceKeys) : [];
                                 const showAll = showAllTags.has(tagPath);
                                 const visible = showAll ? sorted : sorted.slice(0, TAG_DOC_LIMIT);
@@ -281,7 +302,7 @@
                                             <span className="tree-name" onClick={(e) => { e.stopPropagation(); onClickTag(tagName); }}>
                                                 {tagName}
                                             </span>
-                                            <span className="tree-count">{tagCount}</span>
+                                            <span className="tree-count">{treeDocFilter ? filteredTagDocs.length : tagCount}</span>
                                         </div>
                                         {isTagExpanded && hasDocs && (
                                             <div className="tree-docs">

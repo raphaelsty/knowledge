@@ -1985,6 +1985,88 @@ def create_folders(tree, base, is_root=False):
     return d, f
 
 
+def build_folder_tree(tree):
+    """Convert tag_tree format to compact {name, n, c, t} format for the frontend."""
+
+    def compact_docs(docs):
+        seen = set()
+        result = []
+        for doc in docs:
+            url = doc.get("url", "")
+            if url in seen:
+                continue
+            seen.add(url)
+            result.append({"u": url, "t": doc.get("title", ""), "d": doc.get("date", "")})
+        return result
+
+    def convert_node(node):
+        name = node.get("name")
+
+        # Build tag entries from leaves
+        tag_merged = {}
+        for leaf in node.get("leaves", []):
+            if not isinstance(leaf, dict):
+                continue
+            tag_name = leaf.get("tag", "")
+            docs = leaf.get("documents", [])
+            if not docs:
+                continue
+            cdocs = compact_docs(docs)
+            if tag_name in tag_merged:
+                existing = tag_merged[tag_name]
+                existing_urls = {d["u"] for d in existing[2]}
+                for d in cdocs:
+                    if d["u"] not in existing_urls:
+                        existing[2].append(d)
+                existing[1] = len(existing[2])
+            else:
+                tag_merged[tag_name] = [tag_name, len(cdocs), cdocs]
+
+        # Add folder's own documents as a tag entry
+        folder_docs = node.get("documents", [])
+        if folder_docs and name:
+            cdocs = compact_docs(folder_docs)
+            if name in tag_merged:
+                existing = tag_merged[name]
+                existing_urls = {d["u"] for d in existing[2]}
+                for d in cdocs:
+                    if d["u"] not in existing_urls:
+                        existing[2].append(d)
+                existing[1] = len(existing[2])
+            else:
+                tag_merged[name] = [name, len(cdocs), cdocs]
+
+        tags = list(tag_merged.values())
+
+        # Convert children recursively, merging duplicates by name
+        child_merged = {}
+        for ch in node.get("children", []):
+            child = convert_node(ch)
+            cname = child["name"]
+            if cname in child_merged:
+                child_merged[cname]["t"].extend(child.get("t", []))
+                child_merged[cname]["c"].extend(child.get("c", []))
+                child_merged[cname]["n"] += child["n"]
+            else:
+                child_merged[cname] = child
+        children = list(child_merged.values())
+
+        # Absorb children whose name matches the parent: pull their tags/children up
+        absorbed = []
+        for child in children:
+            if child["name"] == name:
+                tags.extend(child.get("t", []))
+                absorbed.extend(child.get("c", []))
+            else:
+                absorbed.append(child)
+        children = absorbed
+
+        n = sum(t[1] for t in tags) + sum(c["n"] for c in children)
+        return {"name": name, "n": n, "c": children, "t": tags}
+
+    return convert_node(tree)
+
+
 # ─── Display ───
 
 
@@ -2720,10 +2802,13 @@ def merge_duplicate_folders(tree, model, adj, meta_tags=None, vocab_tags=None, v
 # ─── Main ───
 
 
-def main():
-    triples_path = sys.argv[1] if len(sys.argv) >= 2 else "database/triples.json"
-    output_dir = sys.argv[2] if len(sys.argv) >= 3 else "tree"
-    database_path = sys.argv[3] if len(sys.argv) >= 4 else "database/database.json"
+def main(triples_path=None, output_dir=None, database_path=None):
+    if triples_path is None:
+        triples_path = sys.argv[1] if len(sys.argv) >= 2 else "database/triples.json"
+    if output_dir is None:
+        output_dir = sys.argv[2] if len(sys.argv) >= 3 else "tree"
+    if database_path is None:
+        database_path = sys.argv[3] if len(sys.argv) >= 4 else "database/database.json"
 
     # Fix global random seed for deterministic results
     np.random.seed(42)
@@ -2920,18 +3005,19 @@ def main():
     print("\n─── Tree ───\n")
     print_tree(tree, max_depth=3)
 
-    print(f"\nCreating folders: {output_dir}")
     if os.path.exists(output_dir):
         shutil.rmtree(output_dir)
     os.makedirs(output_dir)
-    d, f = create_folders(tree, output_dir, is_root=True)
-    print(f"  {d} dirs, {f} files")
 
     with open(os.path.join(output_dir, "tag_tree.json"), "w") as f:
         json.dump(tree, f, indent=2)
-    with open(os.path.join(output_dir, "tag_tree.txt"), "w") as f:
-        print_tree(tree, max_depth=10, file=f)
-    print(f"  Written: {output_dir}/tag_tree.json, {output_dir}/tag_tree.txt")
+    print(f"\n  Written: {output_dir}/tag_tree.json")
+
+    folder_tree = build_folder_tree(tree)
+    folder_tree_path = os.path.join("docs", "folder_tree.json")
+    with open(folder_tree_path, "w") as f:
+        json.dump(folder_tree, f)
+    print(f"  Written: {folder_tree_path}")
 
 
 if __name__ == "__main__":
