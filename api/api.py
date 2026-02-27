@@ -6,6 +6,7 @@ the knowledge graph, and interacting with an LLM for document recommendations.
 """
 
 import datetime
+import json
 import pickle
 
 from fastapi import FastAPI
@@ -137,6 +138,23 @@ class Knowledge:
 
 # Global knowledge instance
 knowledge = Knowledge()
+
+
+@app.get("/sources")
+def get_sources() -> list:
+    """
+    Return available source filters extracted from database URLs.
+
+    Returns
+    -------
+    list
+        List of source filter objects with key, label, and count.
+    """
+    try:
+        with open("docs/sources.json") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return []
 
 
 @app.get("/latest/{count}")

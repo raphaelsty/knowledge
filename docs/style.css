@@ -79,7 +79,7 @@
     --toggle-bg: rgba(255, 255, 255, 0.06);
     --toggle-bg-hover: rgba(255, 255, 255, 0.1);
 
-    --logo-invert: 0;
+    --logo-invert: 1;
 }
 
 /* ============================================
@@ -144,7 +144,7 @@
     --toggle-bg: rgba(0, 0, 0, 0.05);
     --toggle-bg-hover: rgba(0, 0, 0, 0.08);
 
-    --logo-invert: 1;
+    --logo-invert: 0;
 }
 
 /* ============================================
@@ -596,10 +596,14 @@ body {
 .folder-tree-header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 8px;
     padding: 0 8px 16px 8px;
     border-bottom: 1px solid var(--border-subtle);
     margin-bottom: 12px;
+}
+
+.folder-tree-count {
+    margin-left: auto;
 }
 
 .folder-tree-title {
@@ -615,6 +619,39 @@ body {
     font-weight: 500;
     color: var(--text-muted);
     font-variant-numeric: tabular-nums;
+}
+
+.tree-filter-btn {
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--text-muted);
+    background: var(--bg-chip);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 3px 10px;
+    transition: all var(--transition-fast);
+    white-space: nowrap;
+}
+
+.tree-filter-btn:hover:not(.disabled) {
+    background: var(--bg-chip-hover);
+    border-color: var(--border-hover);
+    color: var(--text-primary);
+}
+
+.tree-filter-btn.active {
+    background: var(--accent-gradient);
+    color: #fff;
+    border-color: transparent;
+    font-weight: 600;
+    box-shadow: 0 1px 4px var(--accent-glow);
+}
+
+.tree-filter-btn.disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
 }
 
 .tree-node {

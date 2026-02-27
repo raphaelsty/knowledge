@@ -41,6 +41,8 @@ database/pipeline.pkl : Pickle
 import json
 import os
 import pickle
+from collections import Counter
+from urllib.parse import urlparse
 
 import yaml
 
@@ -203,6 +205,74 @@ data = tags.get_extra_tags(data=data)
 print("Saving database...")
 with open("database/database.json", "w") as f:
     json.dump(data, f, indent=4)
+
+# =============================================================================
+# Extract Source Filters
+# =============================================================================
+
+# Domain aliases: merge variants into a single source key
+DOMAIN_ALIASES = {
+    "x.com": "twitter.com",
+    "www.github.com": "github.com",
+    "www.arxiv.org": "arxiv.org",
+    "www.twitter.com": "twitter.com",
+    "mobile.twitter.com": "twitter.com",
+    "mobile.x.com": "twitter.com",
+}
+
+# Friendly labels for known domains
+DOMAIN_LABELS = {
+    "github.com": "GitHub",
+    "twitter.com": "X",
+    "arxiv.org": "arXiv",
+    "huggingface.co": "HuggingFace",
+}
+
+MIN_SOURCE_COUNT = 5  # Minimum documents to be a named source
+MAX_SOURCE_FILTERS = 8  # Cap the number of filters to keep UI clean
+
+print("Extracting source filters from URLs...")
+domain_counter: Counter = Counter()
+for url in data:
+    try:
+        domain = urlparse(url).netloc.lower()
+        domain = DOMAIN_ALIASES.get(domain, domain)
+        # Strip www. prefix for consistency
+        if domain.startswith("www."):
+            domain = domain[4:]
+        if domain:
+            domain_counter[domain] += 1
+    except Exception:
+        continue
+
+# Build sources list ordered by frequency, only domains above threshold
+sources_list = []
+for domain, count in domain_counter.most_common():
+    if count >= MIN_SOURCE_COUNT:
+        label = DOMAIN_LABELS.get(domain, domain.split(".")[0].capitalize())
+        sources_list.append({"key": domain, "label": label, "count": count})
+
+# Also check tags/titles for sources without distinct URLs (e.g. hackernews)
+hn_count = sum(
+    1
+    for doc in data.values()
+    if "hackernews" in (doc.get("title") or "").lower()
+    or any("hackernews" in (t or "").lower() for t in doc.get("tags", []))
+    or any("hackernews" in (t or "").lower() for t in doc.get("extra-tags", []))
+)
+if hn_count >= MIN_SOURCE_COUNT:
+    # Insert hackernews if not already covered by a domain
+    if not any(s["key"] == "hackernews" for s in sources_list):
+        sources_list.append({"key": "hackernews", "label": "HackerNews", "count": hn_count})
+        # Re-sort by count
+        sources_list.sort(key=lambda s: s["count"], reverse=True)
+
+# Keep only the top N sources to avoid UI clutter
+sources_list = sources_list[:MAX_SOURCE_FILTERS]
+
+print(f"Found {len(sources_list)} source filters: {', '.join(s['label'] + ' (' + str(s['count']) + ')' for s in sources_list)}")
+with open("docs/sources.json", "w") as f:
+    json.dump(sources_list, f, indent=2)
 
 # =============================================================================
 # Build Knowledge Graph

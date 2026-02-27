@@ -169,13 +169,45 @@
         const TAG_DOC_LIMIT = 10;
 
         /**
-         * Sorts docs: matched URLs first, then by date descending.
+         * Infer source type from a URL string.
          */
-        const sortTagDocs = (docs, matchedUrls) => {
+        const getSourceFromDoc = (doc, sourceKeys) => {
+            const url = doc.u || doc.url || "";
+            const title = (doc.t || doc.title || "").toLowerCase();
+            try {
+                const hostname = new URL(url).hostname.replace(/^www\./, '');
+                for (const key of (sourceKeys || [])) {
+                    if (key === hostname || hostname.endsWith('.' + key)) return key;
+                    if (key === 'twitter.com' && (hostname === 'x.com' || hostname.endsWith('.x.com'))) return key;
+                }
+            } catch {}
+            for (const key of (sourceKeys || [])) {
+                const prefix = key.split('.')[0];
+                if (title.includes(prefix)) return key;
+            }
+            return "other";
+        };
+
+        /**
+         * Sorts docs in 3 tiers:
+         * 1. Matched + same source as filter (by date desc)
+         * 2. Matched + other source (by date desc)
+         * 3. Unmatched + same source (by date desc)
+         * 4. Unmatched + other source (by date desc)
+         * When no sourceFilter (or "all"), tiers collapse to: matched first, then by date.
+         */
+        const sortTagDocs = (docs, matchedUrls, sourceFilter, sourceKeys) => {
             return [...docs].sort((a, b) => {
-                const aMatched = matchedUrls.has(a.u) ? 0 : 1;
-                const bMatched = matchedUrls.has(b.u) ? 0 : 1;
-                if (aMatched !== bMatched) return aMatched - bMatched;
+                const aMatched = matchedUrls.has(a.u);
+                const bMatched = matchedUrls.has(b.u);
+                const hasFilter = sourceFilter && sourceFilter !== "all";
+                const aSameSource = hasFilter && getSourceFromDoc(a, sourceKeys) === sourceFilter;
+                const bSameSource = hasFilter && getSourceFromDoc(b, sourceKeys) === sourceFilter;
+
+                // Tier: matched+sameSource=0, matched+other=1, unmatched+sameSource=2, unmatched+other=3
+                const aTier = (aMatched ? 0 : 2) + (aSameSource ? 0 : 1);
+                const bTier = (bMatched ? 0 : 2) + (bSameSource ? 0 : 1);
+                if (aTier !== bTier) return aTier - bTier;
                 return (b.d || '').localeCompare(a.d || '');
             });
         };
@@ -183,7 +215,7 @@
         /**
          * Recursive tree node component for folders and tags.
          */
-        const TreeNode = ({ node, path, expanded, onToggle, onClickTag, isFiltered, expandedTags, onToggleTag, matchedUrls, showAllTags, onToggleShowAll }) => {
+        const TreeNode = ({ node, path, expanded, onToggle, onClickTag, isFiltered, expandedTags, onToggleTag, matchedUrls, showAllTags, onToggleShowAll, sourceFilter, treeDocFilter, sourceKeys }) => {
             const hasChildren = (node.c && node.c.length > 0) || (node.t && node.t.length > 0);
             const isExpanded = expanded.has(path);
 
@@ -220,13 +252,19 @@
                                     matchedUrls={matchedUrls}
                                     showAllTags={showAllTags}
                                     onToggleShowAll={onToggleShowAll}
+                                    sourceFilter={sourceFilter}
+                                    treeDocFilter={treeDocFilter}
+                                    sourceKeys={sourceKeys}
                                 />
                             ))}
                             {(node.t || []).map(([tagName, tagCount, tagDocs]) => {
                                 const tagPath = `${path}/#${tagName}`;
                                 const isTagExpanded = expandedTags.has(tagPath);
-                                const hasDocs = tagDocs && tagDocs.length > 0;
-                                const sorted = hasDocs ? sortTagDocs(tagDocs, matchedUrls) : [];
+                                const filteredTagDocs = treeDocFilter
+                                    ? (tagDocs || []).filter(d => getSourceFromDoc(d, sourceKeys) === treeDocFilter)
+                                    : tagDocs;
+                                const hasDocs = filteredTagDocs && filteredTagDocs.length > 0;
+                                const sorted = hasDocs ? sortTagDocs(filteredTagDocs, matchedUrls, sourceFilter, sourceKeys) : [];
                                 const showAll = showAllTags.has(tagPath);
                                 const visible = showAll ? sorted : sorted.slice(0, TAG_DOC_LIMIT);
                                 const hasMore = sorted.length > TAG_DOC_LIMIT;
@@ -284,9 +322,16 @@
         /**
          * FolderTree component: renders the full or filtered tree.
          */
-        const FolderTree = ({ tree, documents, query, onClickTag }) => {
+        const FolderTree = ({ tree, documents, query, onClickTag, sourceFilter, sourceKeys }) => {
             const [expandedTags, setExpandedTags] = useState(new Set());
             const [showAllTags, setShowAllTags] = useState(new Set());
+            const [collapsedFolders, setCollapsedFolders] = useState(new Set());
+            const [filterTreeDocs, setFilterTreeDocs] = useState(false);
+
+            // Reset filter when source is "all"
+            useEffect(() => {
+                if (sourceFilter === 'all') setFilterTreeDocs(false);
+            }, [sourceFilter]);
 
             const handleToggleTag = useCallback((tagPath) => {
                 setExpandedTags(prev => {
@@ -366,6 +411,18 @@
                 );
             }, [tree, hasMatches, matchCounts, folderOrder]);
 
+            const handleToggleFolder = useCallback((path) => {
+                setCollapsedFolders(prev => {
+                    const next = new Set(prev);
+                    if (next.has(path)) {
+                        next.delete(path);
+                    } else {
+                        next.add(path);
+                    }
+                    return next;
+                });
+            }, []);
+
             // Auto-expand all folder paths and tag paths
             const { allFilteredPaths, autoExpandedTags } = useMemo(() => {
                 const paths = new Set();
@@ -385,11 +442,18 @@
                 return { allFilteredPaths: paths, autoExpandedTags: tagPaths };
             }, [children]);
 
-            // Merge auto-expanded tags with manually toggled ones
+            // Effective expanded folders: auto-expanded minus manually collapsed
+            const effectiveExpandedFolders = useMemo(() => {
+                const result = new Set(allFilteredPaths);
+                for (const p of collapsedFolders) result.delete(p);
+                return result;
+            }, [allFilteredPaths, collapsedFolders]);
+
+            // Effective expanded tags: auto-expanded minus manually collapsed
             const effectiveExpandedTags = useMemo(() => {
-                const merged = new Set(autoExpandedTags);
-                for (const p of expandedTags) merged.add(p);
-                return merged;
+                const result = new Set(autoExpandedTags);
+                for (const p of expandedTags) result.delete(p);
+                return result;
             }, [autoExpandedTags, expandedTags]);
 
             if (children.length === 0) return null;
@@ -399,14 +463,22 @@
                     <div className="folder-tree-header">
                         <span className="folder-tree-title">Matching Folders</span>
                         <span className="folder-tree-count">{children.length} folders</span>
+                        <button
+                            className={`tree-filter-btn ${filterTreeDocs ? 'active' : ''} ${sourceFilter === 'all' ? 'disabled' : ''}`}
+                            disabled={sourceFilter === 'all'}
+                            onClick={() => setFilterTreeDocs(prev => !prev)}
+                            title={sourceFilter === 'all' ? 'Select a source filter first' : filterTreeDocs ? 'Show all documents' : 'Only show documents matching the source filter'}
+                        >
+                            {filterTreeDocs ? 'Filtered' : 'Filter by source'}
+                        </button>
                     </div>
                     {children.map(child => (
                         <TreeNode
                             key={child.name}
                             node={child}
                             path={`root/${child.name}`}
-                            expanded={allFilteredPaths}
-                            onToggle={() => {}}
+                            expanded={effectiveExpandedFolders}
+                            onToggle={handleToggleFolder}
                             onClickTag={onClickTag}
                             isFiltered={true}
                             expandedTags={effectiveExpandedTags}
@@ -414,6 +486,9 @@
                             matchedUrls={matchedUrls}
                             showAllTags={showAllTags}
                             onToggleShowAll={handleToggleShowAll}
+                            sourceFilter={sourceFilter}
+                            treeDocFilter={filterTreeDocs && sourceFilter !== 'all' ? sourceFilter : null}
+                            sourceKeys={sourceKeys}
                         />
                     ))}
                 </div>
@@ -434,6 +509,7 @@
             const [resultsReranked, setResultsReranked] = useState(false);
             const [sourceFilter, setSourceFilter] = useState("all");
             const [tree, setTree] = useState(null);
+            const [sources, setSources] = useState([]);
             const [theme, setTheme] = useState(document.documentElement.getAttribute('data-theme') || 'dark');
 
             // --- Refs ---
@@ -496,6 +572,10 @@
                     .then(res => res.json())
                     .then(data => setTree(data))
                     .catch(error => console.error("[APP] Failed to load folder tree:", error));
+                fetch('sources.json')
+                    .then(res => res.json())
+                    .then(data => setSources(data))
+                    .catch(error => console.error("[APP] Failed to load sources:", error));
             }, []);
 
             /**
@@ -632,19 +712,30 @@
 
             // --- UI Helper Functions ---
 
-            const getDocumentSource = (doc) => {
+            const getDocumentSource = useCallback((doc) => {
                 const url = doc.url || "";
                 const title = (doc.title || "").toLowerCase();
                 const allTags = (doc.tags || []).concat(doc["extra-tags"] || []);
                 const tagsLower = allTags.map(t => (t || "").toLowerCase());
 
-                if (url.includes("github.com")) return "github";
-                if (url.includes("twitter.com") || url.includes("x.com")) return "twitter";
-                if (title.includes("hackernews") || tagsLower.some(t => t.includes("hackernews"))) return "hackernews";
-                if (url.includes("huggingface.co")) return "huggingface";
-                if (url.includes("arxiv.org") || tagsLower.some(t => t.includes("arxiv"))) return "arxiv";
+                // Check URL hostname against dynamic source keys
+                try {
+                    const hostname = new URL(url).hostname.replace(/^www\./, '');
+                    for (const src of sources) {
+                        if (src.key === hostname || hostname.endsWith('.' + src.key)) return src.key;
+                        // Handle aliases: x.com -> twitter.com
+                        if (src.key === 'twitter.com' && (hostname === 'x.com' || hostname.endsWith('.x.com'))) return src.key;
+                    }
+                } catch {}
+
+                // Tag/title-based detection for sources without distinct URLs
+                for (const src of sources) {
+                    if (tagsLower.some(t => t.includes(src.key.split('.')[0]))) return src.key;
+                    if (title.includes(src.key.split('.')[0])) return src.key;
+                }
+
                 return "other";
-            };
+            }, [sources]);
 
             const getLinkLogo = (doc) => {
                 const url = doc.url || "";
@@ -703,7 +794,7 @@
                 const filtered = (documents || [])
                     .filter(doc => sourceFilter === "all" || getDocumentSource(doc) === sourceFilter);
                 return filtered.slice(0, DISPLAY_COUNT);
-            }, [documents, sourceFilter]);
+            }, [documents, sourceFilter, getDocumentSource]);
 
             // --- Render ---
             const folderPanel = document.getElementById('folder-panel');
@@ -727,23 +818,18 @@
 
                     <div id="controls-row">
                         <div id="source-filter">
-                            {[
-                                { key: "all", label: "All" },
-                                { key: "github", label: "GitHub" },
-                                { key: "twitter", label: "X" },
-                                { key: "hackernews", label: "HackerNews" },
-                                { key: "huggingface", label: "HuggingFace" },
-                                { key: "arxiv", label: "arXiv" },
-                            { key: "other", label: "Other" },
-                        ].map(({ key, label }) => (
-                            <button
-                                key={key}
-                                className={`source-chip ${sourceFilter === key ? "active" : ""}`}
-                                onClick={() => setSourceFilter(key)}
-                            >
-                                {label}
-                            </button>
-                        ))}
+                            {[{ key: "all", label: "All" }]
+                                .concat(sources)
+                                .concat([{ key: "other", label: "Other" }])
+                                .map(({ key, label }) => (
+                                <button
+                                    key={key}
+                                    className={`source-chip ${sourceFilter === key ? "active" : ""}`}
+                                    onClick={() => setSourceFilter(key)}
+                                >
+                                    {label}
+                                </button>
+                            ))}
                         </div>
                         <button
                             className="theme-toggle"
@@ -816,6 +902,8 @@
                             documents={displayedDocs}
                             query={query}
                             onClickTag={handleClickTag}
+                            sourceFilter={sourceFilter}
+                            sourceKeys={sources.map(s => s.key)}
                         />,
                         folderPanel
                     )}
