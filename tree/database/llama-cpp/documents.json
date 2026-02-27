@@ -1,0 +1,68 @@
+[
+  {
+    "url": "https://x.com/staghado/status/1982836821043093624",
+    "title": "Twitter @staghado",
+    "date": "2025-10-27",
+    "tags": [
+      "ocr",
+      "llama-cpp",
+      "lighton"
+    ],
+    "summary": "\ud83e\udd89LightOnOCR has landed in llama.cpp!\nthanks to @ngxson for the quick integration!\n\nhttps://t.co/XMEJeIfwWD"
+  },
+  {
+    "url": "https://github.com/abetlen/llama-cpp-python",
+    "title": "llama-cpp-python",
+    "date": "2025-08-06",
+    "tags": [
+      "c++",
+      "llama",
+      "llama-cpp",
+      "python"
+    ],
+    "summary": "Python bindings for llama.cpp \n Simple Python bindings for ggerganov's llama.cpphttpsgithub.comggerganovllama.cpp library. This package provides Documentation is available at httpsllama-cpp-python.readthedocs.ioenlatesthttpsllama-cpp-python.readthedocs.ioenlatest. Requirements To install the package, run bash pip install llama-cpp-python This will also build llama.cpp from source and install it alongside this python package. If this fails, add --verbose to the pip install see the full cmake buil"
+  },
+  {
+    "url": "https://github.com/samuel-vitorino/lm.rs",
+    "title": "lm.rs",
+    "date": "2024-07-13",
+    "tags": [
+      "rust",
+      "llm",
+      "inference",
+      "llama-cpp",
+      "llm",
+      "llmops"
+    ],
+    "summary": "Minimal LLM inference in Rust \n lm.rs run inference on Language Models locally on the CPU with Rust Now supporting multimodality with PHI-3.5-vision model! PHI-3.5-mini text-only model also now supported. Inspired by Karpathy's llama2.chttpsgithub.comkarpathyllama2.c and llm.chttpsgithub.comkarpathyllm.c I decided to create the most minimal code not so minimal atm that can perform full inference on Language Models on the CPU without ML libraries. Previously only Google's Gemma 2 models were supp"
+  },
+  {
+    "url": "https://github.com/ggerganov/ggml",
+    "title": "ggml",
+    "date": "2022-09-18",
+    "tags": [
+      "llm",
+      "inference",
+      "c",
+      "ml",
+      "llama-cpp",
+      "cpp",
+      "github-gist"
+    ],
+    "summary": "Tensor library for machine learning \n Tensor library for machine learning Note that this project is under active development. Some of the development is currently happening in the llama.cpphttpsgithub.comggerganovllama.cpp and whisper.cpphttpsgithub.comggerganovwhisper.cpp repos bash git clone httpsgithub.comggml-orgggml cd ggml python3.10 -m venv .venv source .venvbinactivate pip install -r requirements.txt mkdir build cd build cmake .."
+  },
+  {
+    "url": "https://github.com/ggml-org/ggml",
+    "title": "ggml",
+    "date": "2022-09-18",
+    "tags": [
+      "inference",
+      "ml",
+      "c++",
+      "llama-cpp",
+      "cpp",
+      "github-gist"
+    ],
+    "summary": "Tensor library for machine learning \n Tensor library for machine learning Note that this project is under active development. Some of the development is currently happening in the llama.cpphttpsgithub.comggerganovllama.cpp and whisper.cpphttpsgithub.comggerganovwhisper.cpp repos bash git clone httpsgithub.comggml-orgggml cd ggml python3.10 -m venv .venv source .venvbinactivate pip install -r requirements.txt mkdir build cd build cmake .."
+  }
+]

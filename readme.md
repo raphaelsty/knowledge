@@ -258,9 +258,9 @@ In `sources.yml`:
 
 ```yml
 twitter:
-  username: "your_handle"   # Your X screen name
-  min_likes: 10             # Minimum likes for bookmarked tweets to be included
-  max_pages: 2              # Pages of recent likes to fetch per run (~100/page)
+  username: "your_handle" # Your X screen name
+  min_likes: 10 # Minimum likes for bookmarked tweets to be included
+  max_pages: 2 # Pages of recent likes to fetch per run (~100/page)
 ```
 
 - **Bookmarks**: All pages are always fetched (typically small). Filtered by `min_likes`.
@@ -277,3 +277,6 @@ My personal Knowledge Base is inspired by and extracts resources from the Knowle
 This project is licensed under the **GNU General Public License v3.0**.
 
 Knowledge Copyright (C) 2023-2025 Raphaël Sourty
+
+TODO: Finish first version of the tree. Put tags in the leafs. Then write a program which call chatgpt and reorganize the tree automatically. Then assign a document to the leaf where it has the most tags that matchs. Then find a way to update the index with new documents and re-create the tree once every week. Assert that if re-creation failed, then we keep the previous tree. Then integrate next-plaid and enable filtering search based on source.
+Improve tweet handling, only kept the main tweet of a thread or something like this, potentially extract arxiv / github / hackernews / article from the tweet and save it within the database. Then find a way to be gentle with twitter, the idea is to parse up to 5 tweets if all news then parse a bit more without re-parsing already parsed tweets.

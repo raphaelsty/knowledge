@@ -1,0 +1,103 @@
+[
+  {
+    "url": "https://github.com/alirezamika/autoscraper",
+    "title": "autoscraper",
+    "date": "2020-08-31",
+    "tags": [
+      "python",
+      "scraper",
+      "web-scraping",
+      "webscraping",
+      "scraping",
+      "ml",
+      "automation",
+      "crawler",
+      "webautomation",
+      "scrape",
+      "ai-research"
+    ],
+    "summary": "A Smart, Automatic, Fast and Lightweight Web Scraper for Python \n !imghttpsuser-images.githubusercontent.com1788161291968083-5ee92080-ed29-11ea-82ec-d99ec85367a5.png This project is made for automatic web scraping to make scraping easy. It gets a url or the html content of a web page and a list of sample data which we want to scrape from that page. This data can be text, url or any html tag value of that page. It learns the scraping rules and returns the similar elements. Then you can use this l"
+  },
+  {
+    "url": "https://github.com/MontFerret/ferret",
+    "title": "ferret",
+    "date": "2018-08-23",
+    "tags": [
+      "chrome",
+      "dsl",
+      "data-mining",
+      "query-language",
+      "scraper",
+      "scraping-websites",
+      "cli",
+      "scraping",
+      "crawling",
+      "crawler",
+      "cdp",
+      "tool",
+      "hacktoberfest2021"
+    ],
+    "summary": "Declarative web scraping \n !ferrethttpsraw.githubusercontent.comMontFerretferretmasterassetsintro.jpg Try it! Docs CLI Test runner Web worker ferret is a web scraping system. It aims to simplify data extraction from the web for UI testing, machine learning, analytics and more. ferret allows users to focus on the data. It abstracts away the technical details and complexity of underlying technologies using its own declarative language."
+  },
+  {
+    "url": "https://github.com/MontFerret/ferret",
+    "title": "ferret",
+    "date": "2018-08-23",
+    "tags": [
+      "chrome",
+      "dsl",
+      "data-mining",
+      "query-language",
+      "scraper",
+      "scraping-websites",
+      "cli",
+      "scraping",
+      "crawling",
+      "crawler",
+      "cdp",
+      "tool",
+      "hacktoberfest2021"
+    ],
+    "summary": "Declarative web scraping \n !ferrethttpsraw.githubusercontent.comMontFerretferretmasterassetsintro.jpg Try it! Docs CLI Test runner Web worker ferret is a web scraping system. It aims to simplify data extraction from the web for UI testing, machine learning, analytics and more. ferret allows users to focus on the data. It abstracts away the technical details and complexity of underlying technologies using its own declarative language."
+  },
+  {
+    "url": "https://github.com/alirezamika/autoscraper",
+    "title": "autoscraper",
+    "date": "2020-08-31",
+    "tags": [
+      "python",
+      "scraper",
+      "web-scraping",
+      "webscraping",
+      "scraping",
+      "ml",
+      "automation",
+      "crawler",
+      "webautomation",
+      "scrape",
+      "ai-research"
+    ],
+    "summary": "A Smart, Automatic, Fast and Lightweight Web Scraper for Python \n !imghttpsuser-images.githubusercontent.com1788161291968083-5ee92080-ed29-11ea-82ec-d99ec85367a5.png This project is made for automatic web scraping to make scraping easy. It gets a url or the html content of a web page and a list of sample data which we want to scrape from that page. This data can be text, url or any html tag value of that page. It learns the scraping rules and returns the similar elements. Then you can use this l"
+  },
+  {
+    "url": "https://github.com/MontFerret/ferret",
+    "title": "ferret",
+    "date": "2018-08-23",
+    "tags": [
+      "chrome",
+      "dsl",
+      "data-mining",
+      "query-language",
+      "scraper",
+      "scraping-websites",
+      "cli",
+      "scraping",
+      "crawling",
+      "crawler",
+      "cdp",
+      "tool",
+      "hacktoberfest2021"
+    ],
+    "summary": "Declarative web scraping \n !ferrethttpsraw.githubusercontent.comMontFerretferretmasterassetsintro.jpg Try it! Docs CLI Test runner Web worker ferret is a web scraping system. It aims to simplify data extraction from the web for UI testing, machine learning, analytics and more. ferret allows users to focus on the data. It abstracts away the technical details and complexity of underlying technologies using its own declarative language."
+  }
+]

@@ -1,0 +1,61 @@
+[
+  {
+    "url": "https://x.com/JFPuget/status/2005235990223343865",
+    "title": "Twitter @JFPuget",
+    "date": "2025-12-28",
+    "tags": [
+      "c++",
+      "javascript",
+      "language",
+      "languages",
+      "programming",
+      "python"
+    ],
+    "summary": "This happens each time a new programming paradigm emerges.\n\nAssembly code =&gt; high level compiled languages (e.g. FORTRAN, C, C++)\n\nCompiled languages =&gt; interpreted languages with a gazilion packages (e.g. Python, Javascript)\n\nAnd now:\nInterpreted languages =&gt; natural language"
+  },
+  {
+    "url": "https://x.com/antoinelouis/status/1762886810902868060",
+    "title": "Twitter @antoinelouis",
+    "date": "2024-02-28",
+    "tags": [
+      "colbert",
+      "languages",
+      "multilingual"
+    ],
+    "summary": "We not only show that ColBERT-XM learns faster and more efficiently than existing multilingual retrievers trained on large amounts of samples in multiple languages, but that it also generalizes extremely well to out-of-domain data. [3/4]"
+  },
+  {
+    "url": "https://x.com/cadurosar/status/1755221103499153784",
+    "title": "Twitter @cadurosar",
+    "date": "2024-02-07",
+    "tags": [
+      "bm25",
+      "languages"
+    ],
+    "summary": "Even outside English... BM25 is complicated because there's always the question of \"which BM25. I've did a quick reproduction of BM25 with Anserini (https://t.co/k0G3avIa1q) and it is pretty on par with M3. Maybe their BM25 was doing something weird with the other languages? https://t.co/FPGDWoje7W"
+  },
+  {
+    "url": "https://x.com/marktenenholtz/status/1692280499241095516",
+    "title": "Twitter @marktenenholtz",
+    "date": "2023-08-17",
+    "tags": [
+      "language",
+      "languages",
+      "open-source-software",
+      "python"
+    ],
+    "summary": "Python is a great example of open-source dominance.\n\nThe core team is basically gutting the language and rewriting the whole thing to remove the GIL and make it ML-friendly.\n\nMost big corp products (and most programming languages tbh) would have just withered away and died once a"
+  },
+  {
+    "url": "https://store.steampowered.com/sale/steammachine",
+    "title": "Hackernews Steam Machine (steampowered.com)",
+    "date": "2025-11-14",
+    "tags": [
+      "discussion",
+      "languages",
+      "bilingual-dictionary",
+      "language-server"
+    ],
+    "summary": "Install Steam login | language \u7b80\u4f53\u4e2d\u6587 (Simplified Chinese) \u7e41\u9ad4\u4e2d\u6587 (Traditional Chinese) \u65e5\u672c\u8a9e (Japanese) \ud55c\uad6d\uc5b4 (Korean) \u0e44\u0e17\u0e22 (Thai) \u0411\u044a\u043b\u0433\u0430\u0440\u0441\u043a\u0438 (Bulgarian) \u010ce\u0161tina (Czech) Dansk (Danish) Deutsch (German) Espa\u00f1ol - Espa\u00f1a (Spanish - Spain) Espa\u00f1ol - Latinoam\u00e9rica (Spanish - Latin America) \u0395\u03bb\u03bb\u03b7\u03bd\u03b9\u03ba\u03ac (Greek) Fran\u00e7ais (French) Italiano (Italian) Bahasa Indonesia (Indonesian) Magyar (Hungarian) Nederlands"
+  }
+]

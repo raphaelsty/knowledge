@@ -1,0 +1,100 @@
+[
+  {
+    "url": "https://x.com/mariannearr/status/1900212603822997789",
+    "title": "Twitter @mariannearr",
+    "date": "2025-03-13",
+    "tags": [
+      "nlp",
+      "text-generation",
+      "discussion"
+    ],
+    "summary": "Find out more here!\n\ud83d\udcc4https://t.co/TNcNoVt0oS\n\ud83c\udf10https://t.co/yRlJsTAvpC\n\ud83e\uddd1\u200d\ud83d\udcbbhttps://t.co/vLkbpiC6A6\n\ud83e\udd17https://t.co/VVDYrzClXk\n\nThis work was done @cornell_tech with a stellar team: @SkyLi0n @justintchiu @ZhihanYangZY @nauxihziq @jiaqihan99 @ssahoo_ @volokuleshov\n\nWe hope you'll"
+  },
+  {
+    "url": "https://github.com/krishnap25/mauve",
+    "title": "mauve",
+    "date": "2021-02-16",
+    "tags": [
+      "evaluation",
+      "text-generation",
+      "nlp",
+      "deep-learning"
+    ],
+    "summary": "Package to compute Mauve, a similarity score between neural text and human text. Install with `pip install mauve-text`. \n This is a library built on PyTorch and HuggingFace Transformers to measure the gap between neural text and human text with the MAUVE measure, introduced in this NeurIPS 2021 paperhttpsarxiv.orgpdf2102.01454.pdf Outstanding Paper Award and this JMLR 2023 paperhttpsarxiv.orgpdf2212.14578.pdf. MAUVE is a measure of the gap between neural text and human text. It is computed using"
+  },
+  {
+    "url": "https://github.com/patil-suraj/question_generation",
+    "title": "question_generation",
+    "date": "2020-07-03",
+    "tags": [
+      "question-answering",
+      "nlp",
+      "text-generation",
+      "transformer"
+    ],
+    "summary": "Neural question generation using transformers \n Question generation is the task of automatically generating questions from a text paragraph. The most straight-forward way for this is answer aware question generation. In answer aware question generation the model is presented with the answer and the passage and asked to generate a question for that answer by considering the passage context. While there are many papers available for QG task, it's still not as mainstream as QA. One of the reasons i"
+  },
+  {
+    "url": "https://arxiv.org/abs/1803.07828",
+    "title": "[1803.07828] Expeditious Generation of Knowledge Graph Embeddings",
+    "date": "2018-03-21",
+    "tags": [
+      "knowledge-graph-embedding",
+      "text-generation",
+      "graph-embedding",
+      "knowledge-graph",
+      "named-entity-recognition",
+      "nlp"
+    ],
+    "summary": "Knowledge Graph Embedding methods aim at representing entities and relations\nin a knowledge base as points or vectors in a continuous vector space. Several\napproaches using embeddings have shown promising results on tasks such as link\nprediction, entity recommendation, question answering, and triplet\nclassification. However, only a few methods can compute low-dimensional\nembeddings of very large knowledge bases without needing state-of-the-art\ncomputational resources. In this paper, we propose K"
+  },
+  {
+    "url": "https://arxiv.org/abs/2208.11663",
+    "title": "[2208.11663] PEER: A Collaborative Language Model",
+    "date": "2022-08-24",
+    "tags": [
+      "language-model",
+      "collaborative-writing",
+      "text-generation",
+      "nlp"
+    ],
+    "summary": "Textual content is often the output of a collaborative writing process: We\nstart with an initial draft, ask for suggestions, and repeatedly make changes.\nAgnostic of this process, today's language models are trained to generate only\nthe final result. As a consequence, they lack several abilities crucial for\ncollaborative writing: They are unable to update existing texts, difficult to\ncontrol and incapable of verbally planning or explaining their actions. To\naddress these shortcomings, we introdu"
+  },
+  {
+    "url": "https://arxiv.org/abs/1904.02342",
+    "title": "[1904.02342] Text Generation from Knowledge Graphs with Graph Transformers",
+    "date": "2019-04-04",
+    "tags": [
+      "natural-language-generation",
+      "knowledge-graph",
+      "text-generation",
+      "nlp"
+    ],
+    "summary": "Generating texts which express complex ideas spanning multiple sentences\nrequires a structured representation of their content (document plan), but\nthese representations are prohibitively expensive to manually produce. In this\nwork, we address the problem of generating coherent multi-sentence texts from\nthe output of an information extraction system, and in particular a knowledge\ngraph. Graphical knowledge representations are ubiquitous in computing, but\npose a significant challenge for text gen"
+  },
+  {
+    "url": "https://arxiv.org/abs/2210.13952",
+    "title": "[2210.13952] KnowGL: Knowledge Generation and Linking from Text",
+    "date": "2022-10-25",
+    "tags": [
+      "text-to-kg",
+      "information-extraction",
+      "named-entity-recognition",
+      "nlp",
+      "text-generation"
+    ],
+    "summary": "We propose KnowGL, a tool that allows converting text into structured\nrelational data represented as a set of ABox assertions compliant with the TBox\nof a given Knowledge Graph (KG), such as Wikidata. We address this problem as a\nsequence generation task by leveraging pre-trained sequence-to-sequence\nlanguage models, e.g. BART. Given a sentence, we fine-tune such models to\ndetect pairs of entity mentions and jointly generate a set of facts consisting\nof the full set of semantic annotations for a"
+  },
+  {
+    "url": "https://arxiv.org/abs/2208.01815",
+    "title": "[2208.01815] Effidit: Your AI Writing Assistant",
+    "date": "2022-08-03",
+    "tags": [
+      "writing-assistant",
+      "nlp",
+      "spell-checking",
+      "text-generation"
+    ],
+    "summary": "In this technical report, we introduce Effidit (Efficient and Intelligent\nEditing), a digital writing assistant that facilitates users to write\nhigher-quality text more efficiently by using artificial intelligence (AI)\ntechnologies. Previous writing assistants typically provide the function of\nerror checking (to detect and correct spelling and grammatical errors) and\nlimited text-rewriting functionality. With the emergence of large-scale neural\nlanguage models, some systems support automatically"
+  }
+]

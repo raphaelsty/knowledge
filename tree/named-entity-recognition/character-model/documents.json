@@ -1,0 +1,14 @@
+[
+  {
+    "url": "https://github.com/karpathy/makemore",
+    "title": "makemore",
+    "date": "2022-06-09",
+    "tags": [
+      "llm",
+      "language-model",
+      "character-model",
+      "deep-learning"
+    ],
+    "summary": "An autoregressive character-level language model for making more things \n makemore takes one text file as input, where each line is assumed to be one training thing, and generates more things like it. Under the hood, it is an autoregressive character-level language model, with a wide choice of models from bigrams all the way to a Transformer exactly as seen in GPT. For example, we can feed it a database of names, and makemore will generate cool baby name ideas that all sound name-like, but are n"
+  }
+]

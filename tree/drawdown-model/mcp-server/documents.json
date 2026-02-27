@@ -1,0 +1,15 @@
+[
+  {
+    "url": "https://github.com/upstash/context7",
+    "title": "context7",
+    "date": "2026-01-29",
+    "tags": [
+      "llm",
+      "mcp",
+      "mcp-server",
+      "typescript",
+      "vibe-coding"
+    ],
+    "summary": "Context7 MCP Server -- Up-to-date code documentation for LLMs and AI code editors \n !Coverhttpsgithub.comupstashcontext7blobmasterpubliccover.png?rawtrue LLMs rely on outdated or generic information about the libraries you use. You get Context7 MCP pulls up-to-date, version-specific documentation and code examples straight from the source and places them directly into your prompt. Add use context7 to your prompt or set up a ruleadd-a-rule to auto-invoke txt"
+  }
+]

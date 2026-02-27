@@ -1,0 +1,68 @@
+[
+  {
+    "url": "https://github.com/VieVie31/i-like-paintings",
+    "title": "i-like-paintings",
+    "date": "2023-03-15",
+    "tags": [
+      "python",
+      "art",
+      "image",
+      "image-restoration"
+    ],
+    "summary": "A package for predicting painting appreciation from images using a linear regressor on top of a frozen CLIP model \n I Like Paintings is a Python package that can predict the painting appreciation if people like or not the painting from the image using a linear regressor trained on top of a frozen CLIP features extractor model on two paintings appreciation datasets. The package contains pre-trained weights for nine models on two datasets VAPS-999 and Sidhu's one."
+  },
+  {
+    "url": "https://github.com/microsoft/Bringing-Old-Photos-Back-to-Life",
+    "title": "Bringing-Old-Photos-Back-to-Life",
+    "date": "2020-06-24",
+    "tags": [
+      "image-manipulation",
+      "python",
+      "gan",
+      "photos",
+      "old-photo-restoration",
+      "gans",
+      "photo-restoration",
+      "pytorch",
+      "image-restoration",
+      "cvpr"
+    ],
+    "summary": "Bringing Old Photo Back to Life (CVPR 2020 oral) \n Bringing Old Photos Back to Life, CVPR2020 Oral Old Photo Restoration via Deep Latent Space Translation, TPAMI 2022 Ziyu Wanhttpraywzy.com1, Bo Zhanghttpswww.microsoft.comen-usresearchpeoplezhanbo2, Dongdong Chenhttpwww.dongdongchen.bid3, Pan Zhanghttpspanzhang0212.github.io4, Dong Chenhttpswww.microsoft.comen-usresearchpeopledoch2, Jing Liaohttpsliaojing.github.iohtml1, Fang Wenhttpswww.microsoft.comen-usresearchpeoplefangwen2 1City University "
+  },
+  {
+    "url": "https://github.com/microsoft/Bringing-Old-Photos-Back-to-Life",
+    "title": "Bringing-Old-Photos-Back-to-Life",
+    "date": "2020-06-24",
+    "tags": [
+      "image-manipulation",
+      "python",
+      "gan",
+      "photos",
+      "old-photo-restoration",
+      "gans",
+      "photo-restoration",
+      "pytorch",
+      "image-restoration",
+      "cvpr"
+    ],
+    "summary": "Bringing Old Photo Back to Life (CVPR 2020 oral) \n Bringing Old Photos Back to Life, CVPR2020 Oral Old Photo Restoration via Deep Latent Space Translation, TPAMI 2022 Ziyu Wanhttpraywzy.com1, Bo Zhanghttpswww.microsoft.comen-usresearchpeoplezhanbo2, Dongdong Chenhttpwww.dongdongchen.bid3, Pan Zhanghttpspanzhang0212.github.io4, Dong Chenhttpswww.microsoft.comen-usresearchpeopledoch2, Jing Liaohttpsliaojing.github.iohtml1, Fang Wenhttpswww.microsoft.comen-usresearchpeoplefangwen2 1City University "
+  },
+  {
+    "url": "https://github.com/microsoft/Bringing-Old-Photos-Back-to-Life",
+    "title": "Bringing-Old-Photos-Back-to-Life",
+    "date": "2020-06-24",
+    "tags": [
+      "image-manipulation",
+      "python",
+      "gan",
+      "photos",
+      "old-photo-restoration",
+      "gans",
+      "photo-restoration",
+      "pytorch",
+      "image-restoration",
+      "cvpr"
+    ],
+    "summary": "Bringing Old Photo Back to Life (CVPR 2020 oral) \n Bringing Old Photos Back to Life, CVPR2020 Oral Old Photo Restoration via Deep Latent Space Translation, TPAMI 2022 Ziyu Wanhttpraywzy.com1, Bo Zhanghttpswww.microsoft.comen-usresearchpeoplezhanbo2, Dongdong Chenhttpwww.dongdongchen.bid3, Pan Zhanghttpspanzhang0212.github.io4, Dong Chenhttpswww.microsoft.comen-usresearchpeopledoch2, Jing Liaohttpsliaojing.github.iohtml1, Fang Wenhttpswww.microsoft.comen-usresearchpeoplefangwen2 1City University "
+  }
+]

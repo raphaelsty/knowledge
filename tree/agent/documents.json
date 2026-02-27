@@ -1,0 +1,62 @@
+[
+  {
+    "url": "https://x.com/antoine_chaffin/status/2021977686319468716",
+    "title": "Twitter @antoine_chaffin",
+    "date": "2026-02-12",
+    "tags": [
+      "agent",
+      "agents"
+    ],
+    "summary": "Agents go wild with this and have no issue leveraging its effectiveness\nWe ran 135 questions (variable difficulty) across 7 repos\nAnswers generated with ColGrep were preferred\u00a070% of the time, while using 15.7% fewer tokens on average and using 56% less search operations"
+  },
+  {
+    "url": "https://x.com/aaxsh18/status/2014063384782582091",
+    "title": "Twitter @aaxsh18",
+    "date": "2026-01-21",
+    "tags": [
+      "agent",
+      "agents",
+      "late-interaction",
+      "multimodal"
+    ],
+    "summary": "@mixedbreadai wow, late interaction is really an interesting paradigm. it helps to combine the best of both world, token level and semantic understanding. while beeing multimodal. mixedbreads offering makes it super easy for developers to give their agents state of the art search"
+  },
+  {
+    "url": "https://x.com/xueguang_ma/status/1954939003142078629",
+    "title": "Twitter @xueguang_ma",
+    "date": "2025-08-11",
+    "tags": [
+      "information-retrieval",
+      "benchmark",
+      "rag",
+      "agent"
+    ],
+    "summary": "\ud83d\ude80 Introducing BrowseComp-Plus: A More Fair and Transparent Evaluation Benchmark of Deep-Research Agent.\n\nIt is a new Deep-Research evaluation benchmark built on top of BrowseComp. It features\n- \ud83d\udcda a fixed, carefully curated corpus of web documents\n- \u2705 human-verified positive https://t.co/PMXLmkl88r"
+  },
+  {
+    "url": "https://x.com/RemiCadene/status/1874622996616548710",
+    "title": "Twitter @RemiCadene",
+    "date": "2025-01-02",
+    "tags": [
+      "agent",
+      "llm",
+      "lerobot",
+      "discussion"
+    ],
+    "summary": "I strongly advise to read the blog post as well. It explains the various kinds of agents that you can build with LLMs \ud83e\udd13\n\nA lot of insights!"
+  },
+  {
+    "url": "https://x.com/JinaAI_/status/1805652445302780016",
+    "title": "Twitter @JinaAI_",
+    "date": "2024-06-25",
+    "tags": [
+      "agent",
+      "agentic",
+      "huggingface",
+      "rag",
+      "reranker",
+      "reranking"
+    ],
+    "summary": "\ud83d\ude80https://t.co/agtWrIPXFt Jina Reranker v2 is here! The best-in-class reranker for Agentic RAG. Featuring cross-lingual retrieval over 100+ langs, function-calling, table &amp; code search and ultra-fast! Available via API, @huggingface; AWS &amp; Azure coming soon! Let's jump in:"
+  }
+]

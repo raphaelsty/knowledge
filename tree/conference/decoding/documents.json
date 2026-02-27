@@ -1,0 +1,59 @@
+[
+  {
+    "url": "https://x.com/JinaAI_/status/2021669316572385648",
+    "title": "Twitter @JinaAI_",
+    "date": "2026-02-11",
+    "tags": [
+      "action",
+      "decoding",
+      "training"
+    ],
+    "summary": "Check out the live demo https://t.co/W1EXpDFCAL and see it in action. Our read our repo and paper for more technical details on training and decoding."
+  },
+  {
+    "url": "https://github.com/vllm-project/speculators",
+    "title": "speculators",
+    "date": "2026-01-31",
+    "tags": [
+      "decoding",
+      "llm",
+      "python"
+    ],
+    "summary": "A unified library for building, evaluating, and storing speculative decoding algorithms for LLM inference in vLLM \n Speculators is a unified library for building, training and storing speculative decoding algorithms for large language model LLM inference, including in frameworks like vLLM. Speculative decoding is a lossless technique that speeds up LLM inference by using a smaller, faster draft model i.e the speculator to propose tokens, which are then verified by the larger base model, reducing"
+  },
+  {
+    "url": "https://x.com/mervenoyann/status/1851329130744217826",
+    "title": "Twitter @mervenoyann",
+    "date": "2024-10-29",
+    "tags": [
+      "llm",
+      "decoding",
+      "inference",
+      "opinion"
+    ],
+    "summary": "I'm so bullish on decoding techniques like this making a huge leap forward for LLMs instead of scaling things \ud83d\udc4b\ud83c\udffc\n\neven better that it's released open \u2728"
+  },
+  {
+    "url": "https://x.com/arena/status/1727056892671950887",
+    "title": "Twitter @arena",
+    "date": "2023-11-21",
+    "tags": [
+      "announcement",
+      "decoding",
+      "lookahead"
+    ],
+    "summary": "Introduce lookahead decoding:\n- a parallel decoding algo to accelerate LLM inference\n- w/o the need for a draft model or a data store\n- linearly decreases # decoding steps relative to log(FLOPs) used per decoding step.\n\nBlog: https://t.co/J4VvXgaBmm\nCode: https://t.co/EgYNtFXkjH https://t.co/3eoRGcYf2S"
+  },
+  {
+    "url": "https://x.com/apjacob03/status/1713890723534111169",
+    "title": "Twitter @apjacob03",
+    "date": "2023-10-16",
+    "tags": [
+      "decoding",
+      "game",
+      "language-model",
+      "llama"
+    ],
+    "summary": "\u2b50\ufe0fNew Paper\u2b50\ufe0f\n\nCan we use game theory to improve language model (LM) decoding?\n\nWe introduce Equilibrium-Ranking (ER), where we cast LM decoding as an imperfect-information game \ud83d\udc7e. \n\nOn multiple tasks, LLaMA-7B with ER can outperform the much larger LLaMA-65B model.\n\n\ud83e\uddf5\u2b07\ufe0f1/ https://t.co/J11vjNJcD2"
+  }
+]

@@ -1,0 +1,50 @@
+[
+  {
+    "url": "https://arxiv.org/abs/1901.04085",
+    "title": "[1901.04085] Passage Re-ranking with BERT",
+    "date": "2019-01-13",
+    "tags": [
+      "bert",
+      "machine-learned-ranking",
+      "ranking-information-retrieval",
+      "nlp"
+    ],
+    "summary": "Recently, neural models pretrained on a language modeling task, such as ELMo\n(Peters et al., 2017), OpenAI GPT (Radford et al., 2018), and BERT (Devlin et\nal., 2018), have achieved impressive results on various natural language\nprocessing tasks such as question-answering and natural language inference. In\nthis paper, we describe a simple re-implementation of BERT for query-based\npassage re-ranking. Our system is the state of the art on the TREC-CAR dataset\nand the top entry in the leaderboard of"
+  },
+  {
+    "url": "https://arxiv.org/abs/1602.01137",
+    "title": "[1602.01137] A Dual Embedding Space Model for Document Ranking",
+    "date": "2016-02-02",
+    "tags": [
+      "bhaskar-mitra",
+      "information-retrieval",
+      "ranking-information-retrieval",
+      "nlp"
+    ],
+    "summary": "A fundamental goal of search engines is to identify, given a query, documents\nthat have relevant text. This is intrinsically difficult because the query and\nthe document may use different vocabulary, or the document may contain query\nwords without being relevant. We investigate neural word embeddings as a source\nof evidence in document ranking. We train a word2vec embedding model on a large\nunlabelled query corpus, but in contrast to how the model is commonly used, we\nretain both the input and t"
+  },
+  {
+    "url": "https://arxiv.org/abs/1602.01137",
+    "title": "[1602.01137] A Dual Embedding Space Model for Document Ranking",
+    "date": "2016-02-02",
+    "tags": [
+      "bhaskar-mitra",
+      "information-retrieval",
+      "ranking-information-retrieval",
+      "nlp"
+    ],
+    "summary": "A fundamental goal of search engines is to identify, given a query, documents\nthat have relevant text. This is intrinsically difficult because the query and\nthe document may use different vocabulary, or the document may contain query\nwords without being relevant. We investigate neural word embeddings as a source\nof evidence in document ranking. We train a word2vec embedding model on a large\nunlabelled query corpus, but in contrast to how the model is commonly used, we\nretain both the input and t"
+  },
+  {
+    "url": "https://arxiv.org/abs/1901.04085",
+    "title": "[1901.04085] Passage Re-ranking with BERT",
+    "date": "2019-01-13",
+    "tags": [
+      "bert",
+      "machine-learned-ranking",
+      "ranking-information-retrieval",
+      "nlp"
+    ],
+    "summary": "Recently, neural models pretrained on a language modeling task, such as ELMo\n(Peters et al., 2017), OpenAI GPT (Radford et al., 2018), and BERT (Devlin et\nal., 2018), have achieved impressive results on various natural language\nprocessing tasks such as question-answering and natural language inference. In\nthis paper, we describe a simple re-implementation of BERT for query-based\npassage re-ranking. Our system is the state of the art on the TREC-CAR dataset\nand the top entry in the leaderboard of"
+  }
+]

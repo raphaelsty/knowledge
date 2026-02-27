@@ -1,0 +1,27 @@
+[
+  {
+    "url": "https://www.leidenmedievalistsblog.nl/articles/whats-wrong-with-medieval-pigs-in-videogames",
+    "title": "Hackernews What\u2019s wrong with medieval pigs in videogames (leidenmedievalistsblog.nl)",
+    "date": "2023-03-14",
+    "tags": [
+      "discussion",
+      "opinion",
+      "video-game",
+      "history",
+      "contextual-bandits"
+    ],
+    "summary": "What\u2019s wrong with medieval pigs in videogames? Some medieval videogames claim historical authenticity, but one particular farm animal is often overlooked... Scholars have often remarked that pop-culture stereotypes regularly prevail over historical authenticity when it comes to depicting medieval life in modern entertainment media. Understandably, videogames are no exception to"
+  },
+  {
+    "url": "https://github.com/diambra/arena",
+    "title": "arena",
+    "date": "2021-01-26",
+    "tags": [
+      "reinforcement-learning",
+      "video-game",
+      "deep-learning",
+      "python"
+    ],
+    "summary": "DIAMBRA Arena: a New Reinforcement Learning Platform for Research and Experimentation \n Documentation Website Linkedin Discord Twitch YouTube Twitter DIAMBRA Arena is a software package featuring a collection of high-quality environments for Reinforcement Learning research and experimentation. It provides a standard interface to popular arcade emulated video games, offering a Python API fully compliant with OpenAI GymGymnasium format, that makes its adoption smooth and straightforward."
+  }
+]

@@ -1,0 +1,210 @@
+[
+  {
+    "url": "https://x.com/HrantDavtian/status/1986326300525797780",
+    "title": "Twitter @HrantDavtian",
+    "date": "2025-11-06",
+    "tags": [
+      "visual-retrieval",
+      "benchmark",
+      "document-retrieval"
+    ],
+    "summary": "One thing we noticed in previous versions is that the benchmark rewards the keyword search ability of visual retrievers.\n\nVisual keyword search is strictly important (e.g. financial/legal docs), yet I'd love to see query-docimage pairs that require more intensive reasoning"
+  },
+  {
+    "url": "https://x.com/lateinteraction/status/1974067174625988719",
+    "title": "Twitter @lateinteraction",
+    "date": "2025-10-03",
+    "tags": [
+      "colbert",
+      "late-interaction",
+      "document-retrieval"
+    ],
+    "summary": "ColModernVBERT outperforms models 10-30x its size!"
+  },
+  {
+    "url": "https://x.com/ManuelFaysse/status/1974036811514052660",
+    "title": "Twitter @ManuelFaysse",
+    "date": "2025-10-03",
+    "tags": [
+      "document-retrieval",
+      "vlm",
+      "late-interaction"
+    ],
+    "summary": "Together, these findings enable us to train a model small enough to run query embeddings on CPUs with competitive performance - which we hope will unlock new use cases. Lots more insights in the paper:\nhttps://t.co/mCKx3RooTN\n(6/N)"
+  },
+  {
+    "url": "https://x.com/ManuelFaysse/status/1974036808615743680",
+    "title": "Twitter @ManuelFaysse",
+    "date": "2025-10-03",
+    "tags": [
+      "document-retrieval",
+      "multimodal",
+      "training"
+    ],
+    "summary": "Since document image-query pairs are scarce, we show that the model can benefit from augmenting training data  with text only query-doc pairs. This is one more example of embedding capabilities transferring across modalities (e5-v, DSE, nemoretriever) ! (5/N)"
+  },
+  {
+    "url": "https://x.com/ManuelFaysse/status/1974036790299250991",
+    "title": "Twitter @ManuelFaysse",
+    "date": "2025-10-03",
+    "tags": [
+      "document-retrieval",
+      "visual-retrieval",
+      "research"
+    ],
+    "summary": "Beyond a resource release, this paper studies the factors that make or break good visual document retrievers (data regimes, resolution, alignement, attention). \ud83e\uddea (2/N)"
+  },
+  {
+    "url": "https://x.com/ManuelFaysse/status/1974036787187028079",
+    "title": "Twitter @ManuelFaysse",
+    "date": "2025-10-03",
+    "tags": [
+      "modernbert",
+      "colpali",
+      "encoder",
+      "document-retrieval"
+    ],
+    "summary": "\ud83d\udea8 We release ModernVBert - a small bidirectional ModernBert encoder trained to process image inputs alongside text. When finetuned for document retrieval, it matches the original ColPali performance on ViDoRe with almost 10x fewer parameters (250M). (1/N) https://t.co/QngitiBJZE"
+  },
+  {
+    "url": "https://x.com/ManuelFaysse/status/1930940180678001003",
+    "title": "Twitter @ManuelFaysse",
+    "date": "2025-06-06",
+    "tags": [
+      "colpali",
+      "late-interaction",
+      "discussion",
+      "document-retrieval"
+    ],
+    "summary": "@raphaelsrty @tonywu_71 Awesome work ! I'll write my questions in the Github issues! and already am spamming you with them haha"
+  },
+  {
+    "url": "https://x.com/tonywu_71/status/1930278675225710635",
+    "title": "Twitter @tonywu_71",
+    "date": "2025-06-04",
+    "tags": [
+      "colbert",
+      "pylate",
+      "discussion",
+      "document-retrieval"
+    ],
+    "summary": "@raphaelsrty @ManuelFaysse \ud83d\udd25\ud83d\udd25\ud83d\udd25"
+  },
+  {
+    "url": "https://x.com/nanwang_t/status/1851512795873030622",
+    "title": "Twitter @nanwang_t",
+    "date": "2024-10-30",
+    "tags": [
+      "colpali",
+      "rag",
+      "document-retrieval",
+      "multimodal"
+    ],
+    "summary": "Impressive work by @OpenBMB  and the Tsinghua NLP group! https://t.co/ulXNNnSoMs\n- The training dataset size has nearly tripled compared to ColPali. 360k vs 127k\n- TextRAG performs best with longer documents, while VisionRAG excels with shorter ones! https://t.co/UulBPS5hrP"
+  },
+  {
+    "url": "https://x.com/CimolaiMarco/status/1850538233479737746",
+    "title": "Twitter @CimolaiMarco",
+    "date": "2024-10-27",
+    "tags": [
+      "embedding",
+      "document-retrieval",
+      "colpali",
+      "multilingual"
+    ],
+    "summary": "Introducing mcdse-2b-v1: a multilingual (\ud83c\uddee\ud83c\uddf9 \ud83c\uddea\ud83c\uddf8 \ud83c\uddec\ud83c\udde7 \ud83c\uddeb\ud83c\uddf7 \ud83c\udde9\ud83c\uddea) embedding model for flexible visual document retrieval.\n\nTrained on MrLight/dse-qwen2-2b-mrl-v1 (Qwen2-VL) using the DSE approach. It's like ColPali but multilingual and single-vector.\n\n- MRL: shrink embeddings from 1536 to https://t.co/W8GuYq08pe"
+  },
+  {
+    "url": "https://x.com/ManuelFaysse/status/1848767459609772121",
+    "title": "Twitter @ManuelFaysse",
+    "date": "2024-10-22",
+    "tags": [
+      "colpali",
+      "document-retrieval",
+      "evaluation"
+    ],
+    "summary": "Super cool ! Seems figure and document retrieval is supported so don't hesitate to eval and compare with ColPali and DSE on https://t.co/qSdBxorcHx\nContact me if help is needed !\n@itsSandraKublik @Nils_Reimers"
+  },
+  {
+    "url": "https://x.com/NielsRogge/status/1837228028255973384",
+    "title": "Twitter @NielsRogge",
+    "date": "2024-09-20",
+    "tags": [
+      "colpali",
+      "multimodal",
+      "document-retrieval",
+      "discussion"
+    ],
+    "summary": "Probably have the same conclusion regarding ColPali and the role of multimodal models like Gemini which can also \"retrieve\" relevant information from PDFs.\n\nBased on my tests, ColPali was a bit hit-and-miss, seems to be better at slides than at arxiv PDF papers for instance"
+  },
+  {
+    "url": "https://x.com/jobergum/status/1831412256351121847",
+    "title": "Twitter @jobergum",
+    "date": "2024-09-04",
+    "tags": [
+      "colpali",
+      "document-retrieval",
+      "vlm",
+      "announcement"
+    ],
+    "summary": "ColPali is a model checkpoint and, most importantly, a promising direction for effectively searching collections of complex document formats.  \n\nNow, you can train a custom model, e.g., replacing the VLM with Qwen2-VL-7B-Instruct, which demonstrates even stronger document"
+  },
+  {
+    "url": "https://x.com/ManuelFaysse/status/1831353860184547505",
+    "title": "Twitter @ManuelFaysse",
+    "date": "2024-09-04",
+    "tags": [
+      "colpali",
+      "fine-tuning",
+      "dataset",
+      "announcement",
+      "document-retrieval"
+    ],
+    "summary": "Enough people asked - we obliged- here's the entire ColPali training set: https://t.co/Av8Lm0EsY4 ! \n\nWe hope this can help bootstrap some ColPali finetuning efforts and we're eager to see cool work from the community !"
+  },
+  {
+    "url": "https://x.com/ManuelFaysse/status/1813972967958958452",
+    "title": "Twitter @ManuelFaysse",
+    "date": "2024-07-18",
+    "tags": [
+      "colpali",
+      "fine-tuning",
+      "document-retrieval"
+    ],
+    "summary": "New ColPali finetune coming as soon as I get allocated on SLURM \ud83d\ude80 It will be interesting to see if scaling that sort of data really helps for retrieval !"
+  },
+  {
+    "url": "https://x.com/jobergum/status/1812593295781978223",
+    "title": "Twitter @jobergum",
+    "date": "2024-07-14",
+    "tags": [
+      "colpali",
+      "document-retrieval",
+      "rag",
+      "late-interaction"
+    ],
+    "summary": "ColPali (visual language model with late interaction scoring) is probably one of the most significant innovations for document retrieval, especially for some of the primary RAG use cases with real business value (e.g., chat with your PDFs)."
+  },
+  {
+    "url": "https://x.com/mervenoyann/status/1812594998900408521",
+    "title": "Twitter @mervenoyann",
+    "date": "2024-07-14",
+    "tags": [
+      "colpali",
+      "document-retrieval",
+      "discussion"
+    ],
+    "summary": "yes \ud83d\udc4f\ud83c\udffc thank you \ud83d\udc4f\ud83c\udffc \nI've been excited about this for a long while! nice to see I wasn't exaggerating \ud83d\ude04"
+  },
+  {
+    "url": "https://x.com/ManuelFaysse/status/1812055152016199829",
+    "title": "Twitter @ManuelFaysse",
+    "date": "2024-07-13",
+    "tags": [
+      "colpali",
+      "document-retrieval",
+      "fine-tuning"
+    ],
+    "summary": "Awesome to see the amazing support speed ! It's now on us to roll out the next iteration of ColPali fine-tunes with better support for various document formats, types, and languages \ud83d\ude80"
+  }
+]

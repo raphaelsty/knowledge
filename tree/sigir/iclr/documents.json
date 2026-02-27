@@ -1,0 +1,73 @@
+[
+  {
+    "url": "https://x.com/SanghyukChun/status/1882661055635271940",
+    "title": "Twitter @SanghyukChun",
+    "date": "2025-01-24",
+    "tags": [
+      "vision-language",
+      "clip",
+      "probabilistic",
+      "iclr"
+    ],
+    "summary": "ProLIP has been accepted at #ICLR2025!\nProLIP is the first from-scratch trained probabilistic vision-language model, which is comparable with CLIP or SigLIP (trained on DataComp-1B)\n\nProbabilistic Language-Image Pre-Training\nhttps://t.co/KDDdjjch4p\nhttps://t.co/czlvHYNt6H"
+  },
+  {
+    "url": "https://x.com/antoine_chaffin/status/2016181201397284940",
+    "title": "Twitter @antoine_chaffin",
+    "date": "2026-01-27",
+    "tags": [
+      "comparison",
+      "iclr",
+      "training"
+    ],
+    "summary": "@orionweller is too humble to brag but I'm happy to announce that Ettin has been accepted to ICLR!\nI am really proud of this work because, besides providing proper comparison between encoders and decoders (and cross-training), it also resulted in various models of different sizes"
+  },
+  {
+    "url": "https://github.com/Lei-Kun/Uni-O4",
+    "title": "Uni-O4",
+    "date": "2025-10-18",
+    "tags": [
+      "fine-tuning",
+      "iclr",
+      "online",
+      "pytorch",
+      "reinforcement-learning",
+      "robotics"
+    ],
+    "summary": "Author's Pytorch implementation of our ICLR 2024 paper \"Uni-O4\" \n Uni-O4 Unifying Online and Offline Deep Reinforcement Learning with Multi-Step On-Policy Optimization ICLR 2024 Kun Lei Zhengmao He Chenhao Lu Kaizhe Hu Yang Gao Huazhe Xu Project Page arXiv Twitter We evaluate Uni-O4 on standard D4RL benchmarks during offline and online fine-tuning phases. In addition, we utilize Uni-O4 to enable rapid adaptation of our quadrupedal robot dog to new and challenging environments. This repo contains"
+  },
+  {
+    "url": "https://x.com/mariannearr/status/1900212581949673600",
+    "title": "Twitter @mariannearr",
+    "date": "2025-03-13",
+    "tags": [
+      "diffusion",
+      "language-model",
+      "text-generation",
+      "iclr"
+    ],
+    "summary": "\ud83d\udea8Announcing our #ICLR2025 Oral!\n\n\ud83d\udd25Diffusion LMs are on the rise for parallel text generation! But unlike autoregressive LMs, they struggle with quality, fixed-length constraints &amp; lack of KV caching.\n\n\ud83d\ude80Introducing Block Diffusion\u2014combining autoregressive and diffusion models https://t.co/cY7BbmWJwE"
+  },
+  {
+    "url": "https://x.com/hxiao/status/1821246891683881094",
+    "title": "Twitter @hxiao",
+    "date": "2024-08-07",
+    "tags": [
+      "iclr",
+      "research",
+      "opinion"
+    ],
+    "summary": "Based. I like ICLR more."
+  },
+  {
+    "url": "https://twitter.com/tydsh/status/1508211678466387972",
+    "title": "Twitter @tydsh",
+    "date": "2022-03-27",
+    "tags": [
+      "contrastive-learning",
+      "iclr",
+      "pascal-vincent"
+    ],
+    "summary": "Our ICLR'22 paper (https://t.co/SVWWryW431) studies the phenomenon of dimensional collapsing in contrastive learning, in which the learned representation has a few dimensions collapsed to zero. Thanks all co-authors (@jingli9111, Pascal Vincent and @ylecun) for the great work! 1/"
+  }
+]

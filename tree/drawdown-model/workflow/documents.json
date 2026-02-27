@@ -1,0 +1,86 @@
+[
+  {
+    "url": "https://x.com/Hesamation/status/1879578151770378246",
+    "title": "Twitter @Hesamation",
+    "date": "2025-01-15",
+    "tags": [
+      "agent",
+      "anthropic",
+      "workflow",
+      "discussion"
+    ],
+    "summary": "Anthropic released an article \u201cBuilding effective agents\u201d recently (Dec) and they share a bit of their experience in building their agents and explain common workflow patterns.\n\nCool read to get you started. https://t.co/QaB9DsL7MZ"
+  },
+  {
+    "url": "https://github.com/koaning/flowshow",
+    "title": "flowshow",
+    "date": "2025-01-14",
+    "tags": [
+      "python",
+      "workflow",
+      "visualization"
+    ],
+    "summary": "Just a super thin wrapper for Python tasks that form a flow. \n bash uv pip install flowshow Flowshow provides a task decorator that helps you track and visualize the execution of your Python functions. There is also a context manager called span that can do the same as well as some logging utilities like info, warning and addartifacts. In short, here's how to use it"
+  },
+  {
+    "url": "https://github.com/Netflix/metaflow",
+    "title": "metaflow",
+    "date": "2019-09-17",
+    "tags": [
+      "python",
+      "mlops",
+      "ml-platform",
+      "data-science",
+      "workflow"
+    ],
+    "summary": ":rocket: Build and manage real-life data science projects with ease! \n !MetaflowLogoHorizontalFullColorRibbonDarkRGBhttpsuser-images.githubusercontent.com76345189453116-96a57e00-d713-11ea-9fa6-82b29d4d6eff.png Metaflowhttpsmetaflow.org is a human-centric framework designed to help scientists and engineers build and manage real-life AI and ML systems. Serving teams of all sizes and scale, Metaflow streamlines the entire development lifecyclefrom rapid prototyping in notebooks to reliable, maintai"
+  },
+  {
+    "url": "https://github.com/wbkd/react-flow",
+    "title": "react-flow",
+    "date": "2019-07-15",
+    "tags": [
+      "typescript-library",
+      "node-based-ui",
+      "react",
+      "flowchart",
+      "graph",
+      "typescript",
+      "react-library",
+      "workflow"
+    ],
+    "summary": "Highly customizable library for building an interactive node-based UI, workflow editor, flow chart or static diagram  \n !xyflow-headerhttpsuser-images.githubusercontent.com2857535279643999-ffda9f91-6b6d-447d-82be-fcbd6103edb6.svggh-light-mode-only !xyflow-header-darkhttpsuser-images.githubusercontent.com2857535279644026-a01c231c-6c6e-4b41-96e0-a85c75c9acee.svggh-dark-mode-only !GitHub License MIThttpsimg.shields.iogithublicensewbkdreact-flow?color23ff0072 !npm downloadshttpsimg.shields.ionpmdtre"
+  },
+  {
+    "url": "https://github.com/wbkd/react-flow",
+    "title": "react-flow",
+    "date": "2019-07-15",
+    "tags": [
+      "typescript-library",
+      "node-based-ui",
+      "react",
+      "flowchart",
+      "graph",
+      "typescript",
+      "react-library",
+      "workflow"
+    ],
+    "summary": "Highly customizable library for building an interactive node-based UI, workflow editor, flow chart or static diagram  \n !xyflow-headerhttpsuser-images.githubusercontent.com2857535279643999-ffda9f91-6b6d-447d-82be-fcbd6103edb6.svggh-light-mode-only !xyflow-header-darkhttpsuser-images.githubusercontent.com2857535279644026-a01c231c-6c6e-4b41-96e0-a85c75c9acee.svggh-dark-mode-only !GitHub License MIThttpsimg.shields.iogithublicensewbkdreact-flow?color23ff0072 !npm downloadshttpsimg.shields.ionpmdtre"
+  },
+  {
+    "url": "https://github.com/wbkd/react-flow",
+    "title": "react-flow",
+    "date": "2019-07-15",
+    "tags": [
+      "typescript-library",
+      "node-based-ui",
+      "react",
+      "flowchart",
+      "graph",
+      "typescript",
+      "react-library",
+      "workflow"
+    ],
+    "summary": "Highly customizable library for building an interactive node-based UI, workflow editor, flow chart or static diagram  \n !xyflow-headerhttpsuser-images.githubusercontent.com2857535279643999-ffda9f91-6b6d-447d-82be-fcbd6103edb6.svggh-light-mode-only !xyflow-header-darkhttpsuser-images.githubusercontent.com2857535279644026-a01c231c-6c6e-4b41-96e0-a85c75c9acee.svggh-dark-mode-only !GitHub License MIThttpsimg.shields.iogithublicensewbkdreact-flow?color23ff0072 !npm downloadshttpsimg.shields.ionpmdtre"
+  }
+]

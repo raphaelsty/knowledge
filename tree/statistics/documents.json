@@ -1,0 +1,169 @@
+[
+  {
+    "url": "https://x.com/lateinteraction/status/1884337226055913798",
+    "title": "Twitter @lateinteraction",
+    "date": "2025-01-28",
+    "tags": [
+      "humor",
+      "statistics",
+      "discussion"
+    ],
+    "summary": "literally an average joke"
+  },
+  {
+    "url": "https://x.com/lateinteraction/status/1884336487577313311",
+    "title": "Twitter @lateinteraction",
+    "date": "2025-01-28",
+    "tags": [
+      "humor",
+      "statistics",
+      "discussion"
+    ],
+    "summary": "a statistician walks into an error bar\n\nsurprisingly, not everyone was mean to him"
+  },
+  {
+    "url": "https://x.com/paulg/status/1812172007775080867",
+    "title": "Twitter @paulg",
+    "date": "2024-07-13",
+    "tags": [
+      "data-visualization",
+      "statistics",
+      "discussion"
+    ],
+    "summary": "Cigarette sales and lung cancer deaths are the same curve, shifted 25 years. https://t.co/F7WIPNmuWr"
+  },
+  {
+    "url": "https://en.wikipedia.org/wiki/Jaccard_index",
+    "title": "Hackernews Jaccard Index (wikipedia.org)",
+    "date": "2023-03-20",
+    "tags": [
+      "statistics"
+    ],
+    "summary": "Jaccard index This article includes a list of general references, but it lacks sufficient corresponding inline citations. (March 2011) | The Jaccard index is a statistic used for gauging the similarity and diversity of sample sets. It is defined in general taking the ratio of two sizes (areas or volumes),"
+  },
+  {
+    "url": "https://github.com/AdilZouitine/online-statistics.rs",
+    "title": "Hackernews Online Statistics in Rust (github.com/adilzouitine)",
+    "date": "2023-03-14",
+    "tags": [
+      "rust",
+      "statistics"
+    ],
+    "summary": " \n watermill is crate for Blazingly fast, generic and serializable online statistics. Let's compute the online median and then serialize it rust use watermillquantileQuantile use watermillstatsUnivariate let data Vec vec!9., 7., 3., 2., 6., 1., 8., 5., 4. let mut runningmedian Quantile Quantilenew0.5f64.unwrap for x in data.intoiter"
+  },
+  {
+    "url": "https://github.com/cxli233/FriendsDontLetFriends",
+    "title": "FriendsDontLetFriends",
+    "date": "2022-05-24",
+    "tags": [
+      "data-visualization",
+      "statistics",
+      "r"
+    ],
+    "summary": "Friends don't let friends make certain types of data visualization - What are they and why are they bad.  \n Friends don't let friends make certain types of data visualization - What are they and why are they bad. This is an opinionated essay about good and bad practices in data visualization. Examples and explanations are below. The Scripts directory contains .Rmd files that generate the graphics shown below. It requires R, RStudio, and the rmarkdown package."
+  },
+  {
+    "url": "https://github.com/spotify/confidence",
+    "title": "confidence",
+    "date": "2021-03-15",
+    "tags": [
+      "ab-testing",
+      "statistics",
+      "python"
+    ],
+    "summary": " \n Spotify Confidence !Statushttpsimg.shields.iobadgeStatus-Beta-blue.svg !Latest releasehttpsimg.shields.iobadgerelease-4.0.0-green.svg Latest release 4.0.0 !Pythonhttpsimg.shields.iobadgePython-3.9-blue.svg Python !Pythonhttpsimg.shields.iobadgePython-3.10-blue.svg Python !Pythonhttpsimg.shields.iobadgePython-3.11-blue.svg Python Python library for AB test analysis. Why use Spotify Confidence? Spotify Confidence provides convenience wrappers around statsmodel's various functions for computing "
+  },
+  {
+    "url": "https://github.com/tlentali/leab",
+    "title": "leab",
+    "date": "2020-03-27",
+    "tags": [
+      "ab-testing",
+      "statistics",
+      "python"
+    ],
+    "summary": "?? Lets Python do AB testing analysis \n le AB is a Python library for AB testing analysis. Before launching your AB test, you can compute the needed sample size per variation python ... mindetectableeffect2 6347 After reaching the needed sample size, you can compare means obtained from A VS B python 'Sample A mean is greater'"
+  },
+  {
+    "url": "https://github.com/sendwithus/confidence",
+    "title": "confidence",
+    "date": "2014-03-18",
+    "tags": [
+      "ab-testing",
+      "statistics",
+      "javascript"
+    ],
+    "summary": "Confidence.js: Make sense of your A/B test results \n Confidence.js is a light-weight JavaScript library to help you make sense of your AB Testhttpen.wikipedia.orgwikiABtesting results. Given an AB test or Split Test result set, Confidence.js will tell you if a statistical winner can be determined. Include confidence.js in your HTML. HTML You're all ready! Start testing... with confidence."
+  },
+  {
+    "url": "https://github.com/salesforce/online_conformal",
+    "title": "online_conformal",
+    "date": "2023-01-18",
+    "tags": [
+      "online-learning",
+      "conformal-prediction",
+      "statistics",
+      "ml"
+    ],
+    "summary": "Methods for online conformal prediction. \n This library implements numerous algorithms which perform conformal prediction on data with arbitrary distribution shifts over time. This is the official implementation for the paperhttpsarxiv.orgabs2302.07869 Bhatnagar et al., Improved Online Conformal Prediction via Strongly Adaptive Online Learning, 2023. We include reference implementations for the proposed methods Strongly Adaptive Online Conformal Prediction SAOCP and Scale-Free Online Gradient De"
+  },
+  {
+    "url": "https://x.com/kritipraks/status/1409857129519869956",
+    "title": "Twitter @kritipraks",
+    "date": "2021-06-29",
+    "tags": [
+      "kullback",
+      "leibler",
+      "mathematics",
+      "statistics"
+    ],
+    "summary": "Kullback-Leibler divergence is not the same as Leibler-Kullback divergence"
+  },
+  {
+    "url": "https://github.com/Kaleidophon/deep-significance",
+    "title": "deep-significance",
+    "date": "2021-02-23",
+    "tags": [
+      "statistics",
+      "hypothesis-testing",
+      "deep-learning",
+      "ml"
+    ],
+    "summary": "Enabling easy statistical significance testing for deep neural networks.  \n !imglogo.png Contents Although Deep Learning has undergone spectacular growth in the recent decade, a large portion of experimental evidence is not supported by statistical hypothesis tests. Instead, conclusions are often drawn based on single performance scores. This is problematic Neural network display highly non-convex loss surfaces Li et al., 2018 and their performance depends on the specific hyperparameters that we"
+  },
+  {
+    "url": "https://github.com/neurodata/hyppo",
+    "title": "hyppo",
+    "date": "2019-10-10",
+    "tags": [
+      "python",
+      "hypothesis-testing",
+      "statistics"
+    ],
+    "summary": "Python package for multivariate hypothesis testing \n all-contrib httpsimg.shields.iobadgeallcontributors-36-orange.svg?styleflat 'All Contributors' hyppo HYPothesis Testing in PythOn, pronounced Hippo is an open-source software package for multivariate hypothesis testing. We decided to develop hyppo for the following reasons hyppo intends to be a comprehensive multivariate hypothesis testing package that runs on all major versions of operating systems. It also includes novel tests not found in o"
+  },
+  {
+    "url": "https://x.com/kritipraks/status/1409857129519869956",
+    "title": "Twitter @kritipraks",
+    "date": "2021-06-29",
+    "tags": [
+      "kullback",
+      "leibler",
+      "mathematics",
+      "statistics"
+    ],
+    "summary": "Kullback-Leibler divergence is not the same as Leibler-Kullback divergence"
+  },
+  {
+    "url": "https://github.com/arthurflor23/spelling-correction",
+    "title": "spelling-correction",
+    "date": "2019-08-24",
+    "tags": [
+      "python",
+      "tensorflow",
+      "statistics",
+      "spelling-correction"
+    ],
+    "summary": "Spelling correction using TensorFlow 2.x \n A spell corrector system implemented using the Statistical Language Model Ngramhttpsgithub.comgpoulterpython-ngram, Pyspellcheckerhttpsgithub.combarrustpyspellchecker and SymSpellhttpsgithub.commammothbsymspellpy and Neural Network Seq2Seqhttpstowardsdatascience.comseq2seq-model-in-tensorflow-ec0c557e560f and Transformerhttpswww.tensorflow.orgtutorialstexttransformer with TensorFlow 2.x. This project supports several text datasets and uses a noise rando"
+  }
+]

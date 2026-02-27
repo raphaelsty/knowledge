@@ -1,0 +1,71 @@
+[
+  {
+    "url": "https://github.com/MaxHalford/wedplan",
+    "title": "wedplan",
+    "date": "2026-01-03",
+    "tags": [
+      "drag-and-drop",
+      "interactive",
+      "uv",
+      "vue"
+    ],
+    "summary": " \n A beautiful, interactive wedding seating planner with AI-powered optimization. Drag-and-drop table management, guest group constraints, and a CP-SAT solver to find the perfect seating arrangement. !Wedding Seating PlannerINTERFACE.png bash git clone httpsgithub.comyourusernamewedplan.git cd wedplan uv sync bun install or npm install bash uv run fastapi dev backendwedplanapimain.py"
+  },
+  {
+    "url": "https://github.com/bevacqua/dragula",
+    "title": "dragula",
+    "date": "2015-04-13",
+    "tags": [
+      "dragging",
+      "javascript",
+      "drag-and-drop",
+      "vanilla",
+      "drag-drop",
+      "front-end",
+      "component"
+    ],
+    "summary": ":ok_hand: Drag and drop so simple it hurts"
+  },
+  {
+    "url": "https://github.com/MaxHalford/wedplan",
+    "title": "wedplan",
+    "date": "2026-01-03",
+    "tags": [
+      "drag-and-drop",
+      "interactive",
+      "uv",
+      "vue"
+    ],
+    "summary": " \n A beautiful, interactive wedding seating planner with AI-powered optimization. Drag-and-drop table management, guest group constraints, and a CP-SAT solver to find the perfect seating arrangement. !Wedding Seating PlannerINTERFACE.png bash git clone httpsgithub.comyourusernamewedplan.git cd wedplan uv sync bun install or npm install bash uv run fastapi dev backendwedplanapimain.py"
+  },
+  {
+    "url": "https://github.com/bevacqua/dragula",
+    "title": "dragula",
+    "date": "2015-04-13",
+    "tags": [
+      "dragging",
+      "javascript",
+      "drag-and-drop",
+      "vanilla",
+      "drag-drop",
+      "front-end",
+      "component"
+    ],
+    "summary": ":ok_hand: Drag and drop so simple it hurts"
+  },
+  {
+    "url": "https://github.com/bevacqua/dragula",
+    "title": "dragula",
+    "date": "2015-04-13",
+    "tags": [
+      "dragging",
+      "javascript",
+      "drag-and-drop",
+      "vanilla",
+      "drag-drop",
+      "front-end",
+      "component"
+    ],
+    "summary": ":ok_hand: Drag and drop so simple it hurts"
+  }
+]

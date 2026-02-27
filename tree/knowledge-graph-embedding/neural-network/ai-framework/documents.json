@@ -1,0 +1,30 @@
+[
+  {
+    "url": "https://github.com/microsoft/onnxruntime",
+    "title": "onnxruntime",
+    "date": "2026-01-15",
+    "tags": [
+      "ai-framework",
+      "c++",
+      "deep-learning",
+      "ml",
+      "neural-network",
+      "pytorch"
+    ],
+    "summary": "ONNX Runtime: cross-platform, high performance ML inferencing and training accelerator \n ONNX Runtime is a cross-platform inference and training machine-learning accelerator. ONNX Runtime inference can enable faster customer experiences and lower costs, supporting models from deep learning frameworks such as PyTorch and TensorFlowKeras as well as classical machine learning libraries such as scikit-learn, LightGBM, XGBoost, etc. ONNX Runtime is compatible with different hardware, drivers, and ope"
+  },
+  {
+    "url": "https://github.com/trymirai/uzu",
+    "title": "uzu",
+    "date": "2025-07-16",
+    "tags": [
+      "inference",
+      "rust",
+      "llm",
+      "ai-framework",
+      "ai-engineering",
+      "ai-coding"
+    ],
+    "summary": "A high-performance inference engine for AI models \n A high-performance inference engine for AI models on Apple Silicon. Key features For a detailed explanation of the architecture, please refer to the documentationhttpsdocs.trymirai.comcomponentsinference-engine. uzu uses its own model format. To export a specific model, use lalamohttpsgithub.comtrymirailalamo. First, get the list of supported models bash uv run lalamo list-models"
+  }
+]

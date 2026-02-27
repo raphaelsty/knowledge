@@ -1,0 +1,86 @@
+[
+  {
+    "url": "https://x.com/mervenoyann/status/1901606986862494165",
+    "title": "Twitter @mervenoyann",
+    "date": "2025-03-17",
+    "tags": [
+      "ml",
+      "computer-vision",
+      "object-detection",
+      "huggingface"
+    ],
+    "summary": "one of the most end-to-end blogs in an applied ML problem\n\nsomeone tried every model available with YOLO and @huggingface transformers to solve signature detection\n\ndocumented their findings and showed how to deploy too https://t.co/jTFfKtHv5y"
+  },
+  {
+    "url": "https://github.com/d-li14/involution",
+    "title": "involution",
+    "date": "2021-01-29",
+    "tags": [
+      "pytorch",
+      "computer-vision",
+      "object-detection",
+      "deep-learning"
+    ],
+    "summary": "[CVPR 2021] Involution: Inverting the Inherence of Convolution for Visual Recognition, a brand new neural operator \n Official implementation of a neural operator as described in Involution Inverting the Inherence of Convolution for Visual Recognitionhttpsarxiv.orgabs2103.06255 CVPR'21 By Duo Lihttpsduoli.org, Jie Huhttpsgithub.comhujie-frank, Changhu Wanghttpsscholar.google.comcitations?userDsVZkjAAAAAJ, Xiangtai Lihttpsgithub.comlxtGH, Qi Shehttpsscholar.google.comcitations?useriHoGTt4AAAAJ, Le"
+  },
+  {
+    "url": "https://github.com/implus/GFocalV2",
+    "title": "GFocalV2",
+    "date": "2020-09-04",
+    "tags": [
+      "pytorch",
+      "object-detection",
+      "computer-vision",
+      "deep-learning"
+    ],
+    "summary": "Generalized Focal Loss V2: Learning Reliable Localization Quality Estimation for Dense Object Detection, CVPR2021 \n GFocalV2 GFLV2 is a next generation of GFocalV1 GFLV1, which utilizes the statistics of learned bounding box distributions to guide the reliable localization quality estimation. Again, GFLV2 improves over GFLV1 about 1 AP without almost extra computing cost! Analysis of GFocalV2 in ZhiHu Generalized Focal Loss V2httpszhuanlan.zhihu.comp313684358. You can see more comments about GFo"
+  },
+  {
+    "url": "https://github.com/lilanxiao/Rotated_IoU",
+    "title": "Rotated_IoU",
+    "date": "2020-08-11",
+    "tags": [
+      "pytorch",
+      "object-detection",
+      "deep-learning",
+      "computer-vision"
+    ],
+    "summary": "Differentiable IoU of rotated bounding boxes using Pytorch"
+  },
+  {
+    "url": "https://github.com/facebookresearch/detr",
+    "title": "detr",
+    "date": "2020-05-26",
+    "tags": [
+      "pytorch",
+      "object-detection",
+      "transformer",
+      "computer-vision"
+    ],
+    "summary": "End-to-End Object Detection with Transformers \n DETR End-to-End Object Detection with Transformers PyTorch training code and pretrained models for DETR DEtection TRansformer. We replace the full complex hand-crafted object detection pipeline with a Transformer, and match Faster R-CNN with a ResNet-50, obtaining 42 AP on COCO using half the computation power FLOPs and the same number of parameters. Inference in 50 lines of PyTorch."
+  },
+  {
+    "url": "https://github.com/DocF/Soft-NMS",
+    "title": "Soft-NMS",
+    "date": "2019-01-10",
+    "tags": [
+      "python",
+      "object-detection",
+      "pytorch",
+      "deep-learning"
+    ],
+    "summary": "Python and Pytorch two implements of Soft NMS algorithm  \n Implements of Soft NMS algorithm Original PaperImproving Object Detection With One Line of Codehttpsarxiv.orgabs1704.04503 This repo include 1. Python version of Soft NMS algorithm 2. Pytorch version of Soft NMS algorithm The average running time was obtained using 1000 tests, and 100 candidate boxes and scores were randomly generated for each test. Because the algorithm has many complex operations that are not suitable for GPU processin"
+  },
+  {
+    "url": "https://github.com/kuangliu/torchcv",
+    "title": "torchcv",
+    "date": "2017-11-30",
+    "tags": [
+      "pytorch",
+      "computer-vision",
+      "object-detection",
+      "deep-learning"
+    ],
+    "summary": "TorchCV: a PyTorch vision library mimics ChainerCV \n Model Original Paper ChainerCV TorchCV -------------------- -------------- ---------- ------- SSD300voc07test 74.3 77.8 76.68 SSD512voc07test 76.8 79.2 78.89 FPNSSD512voc07test - - 81.46 The accuracy of TorchCV SSD is 1 lower than ChainerCV. This is because the VGG base model I use performs slightly worse."
+  }
+]

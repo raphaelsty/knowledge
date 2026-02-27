@@ -1,0 +1,52 @@
+[
+  {
+    "url": "https://github.com/sail-sg/envpool",
+    "title": "envpool",
+    "date": "2021-10-20",
+    "tags": [
+      "gym",
+      "dm-control",
+      "cpp17",
+      "reinforcement-learning",
+      "reinforcement-learning-environments",
+      "threadpool",
+      "dm-env",
+      "mujoco",
+      "atari-games",
+      "parallel-processing",
+      "vizdoom",
+      "box2d",
+      "robotics",
+      "lock-free-queue",
+      "cpp",
+      "pybind11",
+      "high-performance-computing"
+    ],
+    "summary": "C++-based high-performance parallel environment execution engine (vectorized env) for general RL environments. \n EnvPool is a C-based batched environment pool with pybind11 and thread pool. It has high performance 1M raw FPS with Atari games, 3M raw FPS with Mujoco simulator on DGX-A100 and compatible APIs supports both gym and dmenv, both sync and async, both single and multi player environment. Currently it supports"
+  },
+  {
+    "url": "https://github.com/sail-sg/envpool",
+    "title": "envpool",
+    "date": "2021-10-20",
+    "tags": [
+      "gym",
+      "dm-control",
+      "cpp17",
+      "reinforcement-learning",
+      "reinforcement-learning-environments",
+      "threadpool",
+      "dm-env",
+      "mujoco",
+      "atari-games",
+      "parallel-processing",
+      "vizdoom",
+      "box2d",
+      "robotics",
+      "lock-free-queue",
+      "cpp",
+      "pybind11",
+      "high-performance-computing"
+    ],
+    "summary": "C++-based high-performance parallel environment execution engine (vectorized env) for general RL environments. \n EnvPool is a C-based batched environment pool with pybind11 and thread pool. It has high performance 1M raw FPS with Atari games, 3M raw FPS with Mujoco simulator on DGX-A100 and compatible APIs supports both gym and dmenv, both sync and async, both single and multi player environment. Currently it supports"
+  }
+]

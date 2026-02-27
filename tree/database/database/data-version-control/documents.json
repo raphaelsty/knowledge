@@ -1,0 +1,80 @@
+[
+  {
+    "url": "https://github.com/treeverse/dvc",
+    "title": "dvc",
+    "date": "2025-11-27",
+    "tags": [
+      "data-science",
+      "data-version-control",
+      "developer-tools",
+      "dvc",
+      "ml",
+      "python"
+    ],
+    "summary": "\ud83e\udd89 Data Versioning and ML Experiments"
+  },
+  {
+    "url": "https://github.com/iterative/dvc",
+    "title": "dvc",
+    "date": "2017-03-04",
+    "tags": [
+      "python",
+      "reproducibility",
+      "ml",
+      "developer-tools",
+      "collaboration",
+      "data-science",
+      "data-version-control",
+      "git"
+    ],
+    "summary": "\ud83e\udd89Data Version Control | Git for Data & Models | ML Experiments Management"
+  },
+  {
+    "url": "https://github.com/dolthub/dolt",
+    "title": "dolt",
+    "date": "2019-07-24",
+    "tags": [
+      "data-versioning",
+      "git-for-databases",
+      "git-database",
+      "command-line",
+      "decentralized-database",
+      "sql",
+      "git",
+      "git-sql",
+      "version-controlled-database",
+      "git-for-data",
+      "database",
+      "data-version-control",
+      "database-version-control",
+      "database-versioning",
+      "mysql",
+      "immutable-database"
+    ],
+    "summary": "Dolt  Git for Data \n Dolt is a SQL database that you can fork, clone, branch, merge, push and pull just like a Git repository. Connect to Dolt just like any MySQL database to read or modify schema and data. Version control functionality is exposed in SQL via system tables, functions, and procedures. Or, use the Git-like command line interface to import CSV files, commit"
+  },
+  {
+    "url": "https://github.com/dolthub/dolt",
+    "title": "dolt",
+    "date": "2019-07-24",
+    "tags": [
+      "data-versioning",
+      "git-for-databases",
+      "git-database",
+      "command-line",
+      "decentralized-database",
+      "sql",
+      "git",
+      "git-sql",
+      "version-controlled-database",
+      "git-for-data",
+      "database",
+      "data-version-control",
+      "database-version-control",
+      "database-versioning",
+      "mysql",
+      "immutable-database"
+    ],
+    "summary": "Dolt  Git for Data \n Dolt is a SQL database that you can fork, clone, branch, merge, push and pull just like a Git repository. Connect to Dolt just like any MySQL database to read or modify schema and data. Version control functionality is exposed in SQL via system tables, functions, and procedures. Or, use the Git-like command line interface to import CSV files, commit"
+  }
+]

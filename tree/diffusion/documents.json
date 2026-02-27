@@ -1,0 +1,114 @@
+[
+  {
+    "url": "https://huggingface.co/ostris/Flex.1-alpha",
+    "title": "ostris/Flex.1-alpha \u00b7 Hugging Face",
+    "date": "2025-05-24",
+    "tags": [
+      "diffusion",
+      "knowledge-distillation",
+      "image-generation"
+    ],
+    "summary": "We\u2019re on a journey to advance and democratize artificial intelligence through open source and open science."
+  },
+  {
+    "url": "https://x.com/JinaAI_/status/2021669312973746324",
+    "title": "Twitter @JinaAI_",
+    "date": "2026-02-11",
+    "tags": [
+      "diffusion",
+      "embedding",
+      "vectors"
+    ],
+    "summary": "Most don't know (1) how easy it is to invert embedding vectors back into sentences, (2) this is a perfect task text diffusion models. Here's a 78M parameter model and live demo that recovers 80% of tokens from Qwen3-Embedding and EmbeddingGemma vectors. Works even on multilingual https://t.co/dn0sMAG4EL"
+  },
+  {
+    "url": "https://github.com/ajwagen/dsrl",
+    "title": "dsrl",
+    "date": "2025-10-08",
+    "tags": [
+      "diffusion",
+      "fine-tuning",
+      "python",
+      "reinforcement-learning"
+    ],
+    "summary": "Official implementation for DSRL, Steering Your Diffusion Policy with Latent Space Reinforcement Learning (CoRL 2025) \n Diffusion steering via reinforcement learning DSRL is a lightweight and efficient method for RL finetuning of diffusion and flow policies. Rather than modifying the weights of the diffusionflow policy, DSRL instead modifies the noise distribution sampled from to begin the denoising process. 1. Clone repository git clone --recurse-submodules gitgithub.comajwagendsrl.git"
+  },
+  {
+    "url": "https://github.com/apexrl/Diff4RLSurvey",
+    "title": "Diff4RLSurvey",
+    "date": "2025-10-08",
+    "tags": [
+      "diffusion",
+      "open-source-tool",
+      "reinforcement-learning"
+    ],
+    "summary": "This repository contains a collection of resources and papers on Diffusion Models for RL, accompanying the paper \"Diffusion Models for Reinforcement Learning: A Survey\" \n This repository contains a collection of resources and papers on Diffusion Models for Sequential Decision-Making. rocket Please check out our survey paper Diffusion Models for Reinforcement Learning A Surveyhttpsarxiv.orgabs2311.01223 !image info.compare.png articlezhu2023diffusion, titleDiffusion Models for Reinforcement Learn"
+  },
+  {
+    "url": "https://github.com/cloneofsimo/minMomentMatching",
+    "title": "minMomentMatching",
+    "date": "2024-12-11",
+    "tags": [
+      "diffusion",
+      "python",
+      "knowledge-distillation"
+    ],
+    "summary": " \n This repository implements Multistep Distillation of Diffusion Models via Moment Matchinghttpsarxiv.orgabs2406.04103 by Google, using LLaMA-DiT architecture and Flow matching scheduler. bash pip install torch torchvision tqdm tensorboard pillow click First train the teacher model bash python trainstudent.py --cifar --epochs 100 --batchsize 64 Then train the student models using moment matching"
+  },
+  {
+    "url": "https://github.com/irom-princeton/dppo",
+    "title": "dppo",
+    "date": "2024-09-04",
+    "tags": [
+      "reinforcement-learning",
+      "robotics",
+      "python",
+      "diffusion"
+    ],
+    "summary": "Official implementation of Diffusion Policy Policy Optimization, arxiv 2024 \n Paperhttpsarxiv.orgabs2409.00588nbspnbspWebsitehttpsdiffusion-ppo.github.io Allen Z. Renhttpsallenzren.github.io1, Justin Lidardhttpsjlidard.github.io1, Lars L. Ankilehttpsankile.com2,3, Anthony Simeonovhttpsanthonysimeonov.github.io3 Pulkit Agrawalhttpspeople.csail.mit.edupulkitag3, Anirudha Majumdarhttpsmae.princeton.edupeoplefacultymajumdar1, Benjamin Burchfielhttpwww.benburchfiel.com4, Hongkai Daihttpshongkai-dai.g"
+  },
+  {
+    "url": "https://arxiv.org/html/2408.11039v1",
+    "title": "Transfusion: Predict the Next Token and Diffuse Images with One Multi-Modal Model",
+    "date": "2024-08-23",
+    "tags": [
+      "diffusion",
+      "multimodal",
+      "nlp",
+      "llm"
+    ],
+    "summary": ""
+  },
+  {
+    "url": "https://github.com/LouisRouss/DiffuLab",
+    "title": "DiffuLab",
+    "date": "2024-08-15",
+    "tags": [
+      "diffusion",
+      "deep-learning",
+      "python"
+    ],
+    "summary": "DiffuLab is designed to provide a simple and flexible way to train diffusion models while allowing full customization of its core components. \n The easiest way to use DiffuLab is with Astral UVhttpsdocs.astral.shuv bash git clone gitgithub.comLouisRoussDiffuLab.git cd DiffuLab uv sync uv pip install -e . DiffuLab is designed to provide a simple and flexible way to train diffusion models while allowing full customization of its core components. The library is structured around three major buildin"
+  },
+  {
+    "url": "https://github.com/cloneofsimo/minDiffusion",
+    "title": "minDiffusion",
+    "date": "2022-04-14",
+    "tags": [
+      "diffusion",
+      "pytorch",
+      "python"
+    ],
+    "summary": "Self-contained, minimalistic implementation of diffusion models with Pytorch. \n Goal of this educational repository is to provide a self-contained, minimalistic implementation of diffusion models using Pytorch. Many implementations of diffusion models can be a bit overwhelming. Here, superminddpm under 200 lines of code, fully self contained implementation of DDPM with Pytorch is a good starting point for anyone who wants to get started with Denoising Diffusion Models, without having to spend ti"
+  },
+  {
+    "url": "https://simonwillison.net/2022/Aug/29/stable-diffusion/",
+    "title": "Hackernews Stable Diffusion is a big deal (simonwillison.net)",
+    "date": "2023-03-14",
+    "tags": [
+      "diffusion",
+      "stable-diffusion"
+    ],
+    "summary": "Stable Diffusion is a really big deal 29th August 2022 If you haven\u2019t been paying attention to what\u2019s going on with Stable Diffusion, you really should be. Stable Diffusion is a new \u201ctext-to-image diffusion model\u201d that was released to the public by Stability.ai six days ago, on August 22nd. It\u2019s"
+  }
+]

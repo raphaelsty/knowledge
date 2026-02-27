@@ -1,0 +1,115 @@
+[
+  {
+    "url": "https://github.com/replicate/cog",
+    "title": "cog",
+    "date": "2021-02-26",
+    "tags": [
+      "mlops",
+      "docker",
+      "model-deployment",
+      "ml"
+    ],
+    "summary": "Containers for machine learning \n Cog is an open-source tool that lets you package machine learning models in a standard, production-ready container. You can deploy your packaged model to your own infrastructure, or to Replicatehttpsreplicate.com. Define the Docker environment your model runs in with cog.yaml yaml build gpu true systempackages pythonversion 3.12 pythonpackages predict predict.pyPredictor"
+  },
+  {
+    "url": "https://github.com/MaxHalford/naked",
+    "title": "naked",
+    "date": "2021-02-05",
+    "tags": [
+      "ml",
+      "model-deployment",
+      "python"
+    ],
+    "summary": "The simplest way to deploy a machine learning model \n naked naked is a Python tool which allows you to strip a model and only keep what matters for making predictions. The result is a pure Python function with no third-party dependencies that you can simply copypaste wherever you wish. This is simpler than deploying an API endpoint or loading a serialized model. The jury is still out on whether this is sane or not. Of course I'm not the first one to have done this, for instance see sklearn-porte"
+  },
+  {
+    "url": "https://github.com/ebhy/budgetml",
+    "title": "budgetml",
+    "date": "2020-12-27",
+    "tags": [
+      "mlops",
+      "model-deployment",
+      "ml",
+      "python"
+    ],
+    "summary": "Deploy a ML inference service on a budget in less than 10 lines of code. \n BudgetML Deploy ML models on a budget Installation Quickstart Community Docs !GitHubhttpsimg.shields.iogithublicenseebhybudgetml Notice This library is not being actively maintained, and we're looking for someone to update it and keep it going! Reach out to me directly if you would like to help! BudgetML is perfect for practitioners who would like to quickly deploy their models to an endpoint, but not waste a lot of"
+  },
+  {
+    "url": "https://github.com/bentoml/BentoML",
+    "title": "BentoML",
+    "date": "2019-04-02",
+    "tags": [
+      "kubernetes",
+      "ml",
+      "ml-infrastructure",
+      "ml-platform",
+      "aws-sagemaker",
+      "inference-server",
+      "azure-ml",
+      "mlops",
+      "tensorflow",
+      "python",
+      "model-deployment",
+      "prediction-service",
+      "bentoml",
+      "deep-learning",
+      "model-serving",
+      "aws-lambda",
+      "pytorch",
+      "model-management"
+    ],
+    "summary": "Unified Model Serving Framework ? \n Build model inference APIs and multi-model serving systems with any open-source or custom AI models. Join our Slack community!httpsl.bentoml.comjoin-slack BentoML is a Python library for building online serving systems optimized for AI apps and model inference. Install BentoML pip install -U bentoml Define APIs in a service.py file."
+  },
+  {
+    "url": "https://github.com/bentoml/BentoML",
+    "title": "BentoML",
+    "date": "2019-04-02",
+    "tags": [
+      "kubernetes",
+      "ml",
+      "ml-infrastructure",
+      "ml-platform",
+      "aws-sagemaker",
+      "inference-server",
+      "azure-ml",
+      "mlops",
+      "tensorflow",
+      "python",
+      "model-deployment",
+      "prediction-service",
+      "bentoml",
+      "deep-learning",
+      "model-serving",
+      "aws-lambda",
+      "pytorch",
+      "model-management"
+    ],
+    "summary": "Unified Model Serving Framework ? \n Build model inference APIs and multi-model serving systems with any open-source or custom AI models. Join our Slack community!httpsl.bentoml.comjoin-slack BentoML is a Python library for building online serving systems optimized for AI apps and model inference. Install BentoML pip install -U bentoml Define APIs in a service.py file."
+  },
+  {
+    "url": "https://github.com/bentoml/BentoML",
+    "title": "BentoML",
+    "date": "2019-04-02",
+    "tags": [
+      "kubernetes",
+      "ml",
+      "ml-infrastructure",
+      "ml-platform",
+      "aws-sagemaker",
+      "inference-server",
+      "azure-ml",
+      "mlops",
+      "tensorflow",
+      "python",
+      "model-deployment",
+      "prediction-service",
+      "bentoml",
+      "deep-learning",
+      "model-serving",
+      "aws-lambda",
+      "pytorch",
+      "model-management"
+    ],
+    "summary": "Unified Model Serving Framework ? \n Build model inference APIs and multi-model serving systems with any open-source or custom AI models. Join our Slack community!httpsl.bentoml.comjoin-slack BentoML is a Python library for building online serving systems optimized for AI apps and model inference. Install BentoML pip install -U bentoml Define APIs in a service.py file."
+  }
+]

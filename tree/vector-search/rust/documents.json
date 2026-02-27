@@ -1,0 +1,211 @@
+[
+  {
+    "url": "https://github.com/tracel-ai/burn",
+    "title": "burn",
+    "date": "2025-07-22",
+    "tags": [
+      "rust",
+      "deep-learning",
+      "ml"
+    ],
+    "summary": "Burn is a next generation Deep Learning Framework that doesn't compromise on flexibility, efficiency and portability. \n Burn is a next generation Deep Learning Framework that doesn't compromise on flexibility, efficiency and portability. Because we believe the goal of a deep learning framework is to convert computation into useful intelligence, we have made performance a core pillar of Burn. We strive to achieve top efficiency by leveraging multiple optimization techniques described below."
+  },
+  {
+    "url": "https://github.com/mixedbread-ai/maxsim-cpu",
+    "title": "maxsim-cpu",
+    "date": "2025-07-08",
+    "tags": [
+      "colbert",
+      "rust",
+      "information-retrieval"
+    ],
+    "summary": " \n maxsim-cpu is a high-performance CPU implementation of MaxSim scoring for late-interaction ColBERT, ColPali workflows. It is a python library written in Rust and powered by libsxmm on x86 CPUs and Apple Accelerate on ARM macs. It only supports Linux x86 machines and ARM Macs at the moment. maxsim-cpu is built to run exclusively on CPU, and achieves speed-ups that scale with core count on the scoring machine. It's designed to be used in situations where indexscoring machines do not have access"
+  },
+  {
+    "url": "https://x.com/antoine_chaffin/status/1942678534008496286",
+    "title": "Twitter @antoine_chaffin",
+    "date": "2025-07-08",
+    "tags": [
+      "rust",
+      "colbert",
+      "opinion",
+      "information-retrieval"
+    ],
+    "summary": "@iacopo_poli @raphaelsrty @LightOnIO legends say that Rapha\u00ebl is coding in Rust to get answers about Rust quicker"
+  },
+  {
+    "url": "https://x.com/lateinteraction/status/1942585470095090145",
+    "title": "Twitter @lateinteraction",
+    "date": "2025-07-08",
+    "tags": [
+      "colbert",
+      "rust",
+      "late-interaction",
+      "opinion",
+      "information-retrieval"
+    ],
+    "summary": "late interaction been around long enough it\u2019s finally beginning to Rust"
+  },
+  {
+    "url": "https://x.com/bclavie/status/1942510402132402235",
+    "title": "Twitter @bclavie",
+    "date": "2025-07-08",
+    "tags": [
+      "rust",
+      "python",
+      "colbert",
+      "discussion",
+      "information-retrieval"
+    ],
+    "summary": "@raphaelsrty @antoine_chaffin I feel like I'm building a castle of cards when I'm calling a python api which calls a rust program which calls its own c++ bindings"
+  },
+  {
+    "url": "https://github.com/lightonai/pylate-rs",
+    "title": "pylate-rs",
+    "date": "2025-07-01",
+    "tags": [
+      "rust",
+      "information-retrieval",
+      "colbert"
+    ],
+    "summary": " \n pylate-rs Efficient Inference for PyLate nbsp pylate-rs is a high-performance inference engine for PyLatehttpsgithub.comlightonaipylate models, meticulously crafted in Rust for optimal speed and efficiency. While model training is handled by PyLate, which supports a variety of late interaction models, pylate-rs is engineered to execute these models at speeds. For a complete, high-performance multi-vector search pipeline, pair pylate-rs with its companion library, FastPlaidhttpsgithub.comlight"
+  },
+  {
+    "url": "https://github.com/lightonai/fast-plaid",
+    "title": "fast-plaid",
+    "date": "2025-06-02",
+    "tags": [
+      "information-retrieval",
+      "colbert",
+      "rust"
+    ],
+    "summary": "High-Performance Engine for Multi-Vector Search \n FastPlaid nbsp FastPlaid - A High-Performance Engine for Multi-Vector Search nbsp Traditional vector search relies on single, fixed-size embeddings dense vectors for documents and queries. While powerful, this approach can lose nuanced, token-level details. nbsp bash pip install fast-plaid nbsp Get started with creating an index and performing a search in just a few lines of Python."
+  },
+  {
+    "url": "https://github.com/entity-neural-network/entity-gym-rs",
+    "title": "entity-gym-rs",
+    "date": "2022-07-16",
+    "tags": [
+      "rust",
+      "reinforcement-learning"
+    ],
+    "summary": "Rust bindings for entity-gym. \n EntityGymhttpsgithub.comentity-neural-networkentity-gym is a Python library that defines a novel entity-based abstraction for reinforcement learning environments which enables highly ergonomic and efficient training of deep reinforcement learning agents. This crate provides bindings that allows Rust programs to be used as EntityGym training environments, and to load and run neural networks agents trained with Entity Neural Network Trainerhttpsgithub.comentity-neur"
+  },
+  {
+    "url": "https://twitter.com/fishnets88/status/1451119479287648260",
+    "title": "Twitter @fishnets88",
+    "date": "2021-10-21",
+    "tags": [
+      "python",
+      "rust",
+      "embedding"
+    ],
+    "summary": "I'd love to dabble more in Rust, but it's indeed stuff like *this* that makes it intimidating if you've mainly been doing python/R/js all these years. https://t.co/q5tcbINxdk"
+  },
+  {
+    "url": "https://github.com/MrRobb/gym-rs",
+    "title": "gym-rs",
+    "date": "2019-08-20",
+    "tags": [
+      "rust",
+      "reinforcement-learning"
+    ],
+    "summary": "OpenAI Gym bindings for Rust \n OpenAI gym binding for Rust. Just install the requierements layed out in the requirements.txthttpsgithub.comMrRobbgym-rsblobmasterrequirements.txt. sh curl httpsraw.githubusercontent.comMrRobbgym-rsmasterrequirements.txt requirements.txt pip3 install -r requirements.txt Once everything is installed, just add this crate to your your Rust project. toml dependencies gym Update with the latest version"
+  },
+  {
+    "url": "https://github.com/Enet4/faiss-rs",
+    "title": "faiss-rs",
+    "date": "2025-09-23",
+    "tags": [
+      "faiss",
+      "rust",
+      "rust-bindings",
+      "vector-database",
+      "vector-search"
+    ],
+    "summary": "Rust language bindings for Faiss \n !Minimum Rust Version Stablehttpsimg.shields.iobadgeMinimum20Rust20Version-stable-green.svg This project provides Rust bindings to Faisshttpsgithub.comfacebookresearchfaiss, the state-of-the-art vector search and clustering library. By default, this crate is dynamically linked with the Faiss library installed in your system, so it does not build Faiss automatically for you. To build the library yourself 1. Follow the instructions herehttpsgithub.comEnet4faisstr"
+  },
+  {
+    "url": "https://github.com/cordx56/rustowl",
+    "title": "rustowl",
+    "date": "2024-10-16",
+    "tags": [
+      "rust",
+      "visualization",
+      "debugging",
+      "rust",
+      "rust-bindings",
+      "rust-cv"
+    ],
+    "summary": "Visualize Ownership and Lifetimes in Rust \n Visualize ownership and lifetimes in Rust for debugging and optimization RustOwl visualizes ownership movement and lifetimes of variables. When you save Rust source code, it is analyzed, and the ownership and lifetimes of variables are visualized when you hover over a variable or function call. RustOwl visualizes those by using underlines"
+  },
+  {
+    "url": "https://github.com/noib3/nvim-oxi",
+    "title": "nvim-oxi",
+    "date": "2022-05-12",
+    "tags": [
+      "rust",
+      "rust-bindings",
+      "neovim"
+    ],
+    "summary": ":link: Rust bindings to all things Neovim \n Latest version httpsimg.shields.iocratesvnvim-oxi.svg CI httpsgithub.comnoib3nvim-oxiactionsworkflowsci.yamlbadge.svg Docs httpsdocs.rsnvim-oxibadge.svg nvim-oxi provides safe and idiomatic Rust bindings to the rich API exposed by the Neovimhttpsneovim.io text editor. The project is mostly intended for plugin authors, although nothing's stopping end users from writing their Neovim configs in Rust. The traditional way to write Neovim plugins in language"
+  },
+  {
+    "url": "https://github.com/rust-lang/rust-forge",
+    "title": "rust-forge",
+    "date": "2016-01-22",
+    "tags": [
+      "rust",
+      "programming-language",
+      "rust",
+      "rust-bindings",
+      "rust-lang"
+    ],
+    "summary": "Information useful to people contributing to Rust \n Welcome to the Rust Forge! Rust Forge serves as a repository of supplementary documentation useful for members of The Rust Programming Language. the rust programming language httpsrust-lang.org rust forge httpsforge.rust-lang.org You can build a local version by installing mdbook and running the following command. console mdbook build This will build and run the blacksmith tool automatically. When developing"
+  },
+  {
+    "url": "https://github.com/PyO3/rust-numpy",
+    "title": "rust-numpy",
+    "date": "2017-04-21",
+    "tags": [
+      "rust-ndarray",
+      "rust",
+      "numpy",
+      "ndarray",
+      "rust-bindings",
+      "rust-numpy",
+      "numpy-capi"
+    ],
+    "summary": "PyO3-based Rust bindings of the NumPy C-API \n rust-numpy Rust bindings for the NumPy C-API. Please see the simpleexamplessimple example for how to get started. There are also examples using ndarray-linalgexampleslinalg and rayonexamplesparallel. toml lib name rustext crate-type cdylib dependencies pyo3 version 0.22, features extension-module numpy 0.22 rust"
+  },
+  {
+    "url": "https://github.com/PyO3/rust-numpy",
+    "title": "rust-numpy",
+    "date": "2017-04-21",
+    "tags": [
+      "rust-ndarray",
+      "rust",
+      "numpy",
+      "ndarray",
+      "rust-bindings",
+      "rust-numpy",
+      "numpy-capi"
+    ],
+    "summary": "PyO3-based Rust bindings of the NumPy C-API \n rust-numpy Rust bindings for the NumPy C-API. Please see the simpleexamplessimple example for how to get started. There are also examples using ndarray-linalgexampleslinalg and rayonexamplesparallel. toml lib name rustext crate-type cdylib dependencies pyo3 version 0.22, features extension-module numpy 0.22 rust"
+  },
+  {
+    "url": "https://github.com/PyO3/rust-numpy",
+    "title": "rust-numpy",
+    "date": "2017-04-21",
+    "tags": [
+      "rust-ndarray",
+      "rust",
+      "numpy",
+      "ndarray",
+      "rust-bindings",
+      "rust-numpy",
+      "numpy-capi"
+    ],
+    "summary": "PyO3-based Rust bindings of the NumPy C-API \n rust-numpy Rust bindings for the NumPy C-API. Please see the simpleexamplessimple example for how to get started. There are also examples using ndarray-linalgexampleslinalg and rayonexamplesparallel. toml lib name rustext crate-type cdylib dependencies pyo3 version 0.22, features extension-module numpy 0.22 rust"
+  }
+]

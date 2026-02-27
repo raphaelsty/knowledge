@@ -1,0 +1,103 @@
+[
+  {
+    "url": "https://x.com/_reachsumit/status/1970340069010743614",
+    "title": "Twitter @_reachsumit",
+    "date": "2025-09-23",
+    "tags": [
+      "multimodal",
+      "late-interaction",
+      "information-retrieval"
+    ],
+    "summary": "MetaEmbed: Scaling Multimodal Retrieval at Test-Time with Flexible Late Interaction\n\n@ZilinXiao2 et al. at Meta present a framework for multimodal retrieval that uses learnable Meta Tokens and Matryoshka Multi-Vector training.\n\n\ud83d\udcddhttps://t.co/xiTZICSkkB"
+  },
+  {
+    "url": "https://huggingface.co/collections/vidore/vidore-benchmark-v2-67ae03e3924e85b36e7f53b0",
+    "title": "ViDoRe Benchmark v2 - a vidore Collection",
+    "date": "2025-04-08",
+    "tags": [
+      "benchmark",
+      "information-retrieval",
+      "multimodal"
+    ],
+    "summary": "We\u2019re on a journey to advance and democratize artificial intelligence through open source and open science."
+  },
+  {
+    "url": "https://github.com/jolibrain/colette",
+    "title": "colette",
+    "date": "2025-04-04",
+    "tags": [
+      "rag",
+      "information-retrieval",
+      "multimodal"
+    ],
+    "summary": "Search and interact locally with technical documents of any kind \n Search and interact locally with technical documents of any kind Colette is an open-source self-hosted RAG and LLM serving software. It is well-suited for searching and interacting with technical documents that cannot be leaked to external APIs. As the main core feature, Colette embeds a Vision-RAG V-RAG that transforms and analyzes all documents as images. This allows to conserve and handle all visual elements such as images, fi"
+  },
+  {
+    "url": "https://huggingface.co/spaces/vidore/vidore-leaderboard",
+    "title": "Vidore Leaderboard - a Hugging Face Space by vidore",
+    "date": "2025-02-03",
+    "tags": [
+      "benchmark",
+      "information-retrieval",
+      "multimodal"
+    ],
+    "summary": "Discover amazing ML apps made by the community"
+  },
+  {
+    "url": "https://huggingface.co/blog/vdr-2b-multilingual",
+    "title": "Visual Document Retrieval Goes Multilingual",
+    "date": "2025-01-10",
+    "tags": [
+      "information-retrieval",
+      "multimodal",
+      "embeddings"
+    ],
+    "summary": "We\u2019re on a journey to advance and democratize artificial intelligence through open source and open science."
+  },
+  {
+    "url": "https://arxiv.org/html/2406.11251v1",
+    "title": "Unifying Multimodal Retrieval via Document Screenshot Embedding",
+    "date": "2024-09-20",
+    "tags": [
+      "multimodal",
+      "information-retrieval",
+      "embeddings"
+    ],
+    "summary": ""
+  },
+  {
+    "url": "https://huggingface.co/MrLight/dse-qwen2-2b-mrl-v1",
+    "title": "MrLight/dse-qwen2-2b-mrl-v1 \u00b7 Hugging Face",
+    "date": "2024-09-20",
+    "tags": [
+      "embeddings",
+      "information-retrieval",
+      "multimodal"
+    ],
+    "summary": "We\u2019re on a journey to advance and democratize artificial intelligence through open source and open science."
+  },
+  {
+    "url": "https://x.com/lhoestq/status/1966540017871802801",
+    "title": "Twitter @lhoestq",
+    "date": "2025-09-12",
+    "tags": [
+      "dataset",
+      "pdf",
+      "information-retrieval"
+    ],
+    "summary": "So cool to be able to search the FinePDF dataset\n\nI was even able to find myself \ud83d\ude01 https://t.co/gD95jqL62M"
+  },
+  {
+    "url": "https://x.com/jobergum/status/1822017543655014878",
+    "title": "Twitter @jobergum",
+    "date": "2024-08-09",
+    "tags": [
+      "rag",
+      "long-context",
+      "pdf",
+      "discussion",
+      "information-retrieval"
+    ],
+    "summary": "If you mean chat with this single PDF, then yes, long context windows and prefix caching are game changers. \n\nStill, 1M tokens is just about 8MB of text and I know that there are collections of PDFs larger than that."
+  }
+]

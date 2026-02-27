@@ -1,0 +1,58 @@
+[
+  {
+    "url": "https://github.com/enthought/traits",
+    "title": "traits",
+    "date": "2011-01-28",
+    "tags": [
+      "types",
+      "python",
+      "observer-pattern",
+      "dataclasses",
+      "runtime-typechecking",
+      "gui",
+      "attributes"
+    ],
+    "summary": "Observable typed attributes for Python classes"
+  },
+  {
+    "url": "https://github.com/lidatong/dataclasses-json",
+    "title": "dataclasses-json",
+    "date": "2018-04-21",
+    "tags": [
+      "json",
+      "dataclasses",
+      "python"
+    ],
+    "summary": "Easily serialize Data Classes to and from JSON \n !httpsgithub.comlidatongdataclasses-jsonworkflowsdataclasses-jsonbadge.svg This library provides a simple API for encoding and decoding dataclasseshttpsdocs.python.org3librarydataclasses.html to and from JSON. It's very easy to get started. README Documentation websitehttpslidatong.github.iodataclasses-json. Features a navigation bar and search functionality, and should mirror this README exactly -- take a look! pip install dataclasses-json python"
+  },
+  {
+    "url": "https://github.com/enthought/traits",
+    "title": "traits",
+    "date": "2011-01-28",
+    "tags": [
+      "types",
+      "python",
+      "observer-pattern",
+      "dataclasses",
+      "runtime-typechecking",
+      "gui",
+      "attributes"
+    ],
+    "summary": "Observable typed attributes for Python classes"
+  },
+  {
+    "url": "https://github.com/enthought/traits",
+    "title": "traits",
+    "date": "2011-01-28",
+    "tags": [
+      "types",
+      "python",
+      "observer-pattern",
+      "dataclasses",
+      "runtime-typechecking",
+      "gui",
+      "attributes"
+    ],
+    "summary": "Observable typed attributes for Python classes"
+  }
+]

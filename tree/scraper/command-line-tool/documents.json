@@ -1,0 +1,96 @@
+[
+  {
+    "url": "https://github.com/Maxteabag/sqlit",
+    "title": "sqlit",
+    "date": "2025-12-26",
+    "tags": [
+      "cockroachdb",
+      "command-line-tool",
+      "database",
+      "databases",
+      "duckdb",
+      "mariadb"
+    ],
+    "summary": "A user friendly TUI for SQL databases. Written in python. Supports SQL server, Mysql, PostreSQL and SQLite, Turso and more. \n The lazygit of SQL databases Connect and query your database from your terminal in seconds. pipx install sqlit-tui Supports all major databases SQL Server, PostgreSQL, MySQL, SQLite, MariaDB, FirebirdSQL, Oracle, DuckDB, CockroachDB, ClickHouse, Snowflake, Supabase, CloudFlare D1, and Turso. !Database Providersdemosdemo-providers.gif Syntax highlighting. History. Vim-styl"
+  },
+  {
+    "url": "https://github.com/GeeeekExplorer/nano-vllm",
+    "title": "nano-vllm",
+    "date": "2025-06-09",
+    "tags": [
+      "llm",
+      "inference",
+      "python",
+      "qwen2-vl",
+      "vllm",
+      "command-line-tool"
+    ],
+    "summary": "Nano vLLM \n A lightweight vLLM implementation built from scratch. bash pip install githttpsgithub.comGeeeekExplorernano-vllm.git If you prefer to download the model weights manually, use the following command bash huggingface-cli download --resume-download QwenQwen3-0.6B --local-dir huggingfaceQwen3-0.6B --local-dir-use-symlinks False See example.py for usage. The API mirrors vLLM's interface with minor differences in the LLM.generate method"
+  },
+  {
+    "url": "https://github.com/Kaggle/kaggle-api",
+    "title": "kaggle-api",
+    "date": "2018-01-25",
+    "tags": [
+      "python",
+      "kaggle",
+      "api",
+      "ml",
+      "kaggle",
+      "python-c-api",
+      "command-line-tool"
+    ],
+    "summary": "Official Kaggle API \n Official API for httpswww.kaggle.com, accessible using a command line tool implemented in Python 3. Ensure you have Python 3 and the package manager pip installed. Run the following command to access the Kaggle API using the command line sh pip install kaggle Obviously, this depends on Kaggle services. When you're extending the API and modifying"
+  },
+  {
+    "url": "https://github.com/tfeldmann/organize",
+    "title": "organize",
+    "date": "2017-09-20",
+    "tags": [
+      "python",
+      "rule-based",
+      "document-management",
+      "platform-independent",
+      "command-line-tool",
+      "file-management",
+      "automatic",
+      "automation",
+      "tool"
+    ],
+    "summary": "The file management automation tool. \n -- organize - The file management automation tool Full documentation at Read the docs The new version should be much faster and fix a lot of bugs. It also comes with a some new actions, filters and options. If you encounter any other bugs or problems during the migration, please reach out!"
+  },
+  {
+    "url": "https://github.com/tfeldmann/organize",
+    "title": "organize",
+    "date": "2017-09-20",
+    "tags": [
+      "python",
+      "rule-based",
+      "document-management",
+      "platform-independent",
+      "command-line-tool",
+      "file-management",
+      "automatic",
+      "automation",
+      "tool"
+    ],
+    "summary": "The file management automation tool. \n -- organize - The file management automation tool Full documentation at Read the docs The new version should be much faster and fix a lot of bugs. It also comes with a some new actions, filters and options. If you encounter any other bugs or problems during the migration, please reach out!"
+  },
+  {
+    "url": "https://github.com/tfeldmann/organize",
+    "title": "organize",
+    "date": "2017-09-20",
+    "tags": [
+      "python",
+      "rule-based",
+      "document-management",
+      "platform-independent",
+      "command-line-tool",
+      "file-management",
+      "automatic",
+      "automation",
+      "tool"
+    ],
+    "summary": "The file management automation tool. \n -- organize - The file management automation tool Full documentation at Read the docs The new version should be much faster and fix a lot of bugs. It also comes with a some new actions, filters and options. If you encounter any other bugs or problems during the migration, please reach out!"
+  }
+]

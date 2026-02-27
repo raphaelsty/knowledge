@@ -1,0 +1,116 @@
+[
+  {
+    "url": "https://x.com/schteppe/status/1985612522536518102",
+    "title": "Twitter @schteppe",
+    "date": "2025-11-04",
+    "tags": [
+      "rust",
+      "programming-language",
+      "opinion",
+      "future",
+      "code-generation",
+      "text-generation"
+    ],
+    "summary": "\u201cI believe Rust is the next 40-year language. Just like the previous generation of programmers can build an entire career on C, I think the next generation will build their careers on Rust. And honestly, what an upgrade!\u201d https://t.co/hylc4ilAmh"
+  },
+  {
+    "url": "https://x.com/syhw/status/1970960837721653409",
+    "title": "Twitter @syhw",
+    "date": "2025-09-24",
+    "tags": [
+      "code-generation",
+      "llm",
+      "reasoning",
+      "meta"
+    ],
+    "summary": "(\ud83e\uddf5) Today, we release Meta Code World Model (CWM), a 32-billion-parameter dense LLM that enables novel research on improving code generation through agentic reasoning and planning with world models.\nhttps://t.co/BJSUCh2vtg"
+  },
+  {
+    "url": "https://x.com/TacoCohen/status/1970961233357701179",
+    "title": "Twitter @TacoCohen",
+    "date": "2025-09-24",
+    "tags": [
+      "code-generation",
+      "llm",
+      "humor"
+    ],
+    "summary": "We trained a big neural network to generate code"
+  },
+  {
+    "url": "https://x.com/huybery/status/1953838927519134007",
+    "title": "Twitter @huybery",
+    "date": "2025-08-08",
+    "tags": [
+      "qwen",
+      "code-generation",
+      "cli"
+    ],
+    "summary": "We'll continuously enhance the qwen code (cli tool) based on your feedback and even release improved qwen-coder (model)! Our goal is to match Claude Code's performance while remaining fully open-source!"
+  },
+  {
+    "url": "https://x.com/Alibaba_Qwen/status/1950925444057792808",
+    "title": "Twitter @Alibaba_Qwen",
+    "date": "2025-07-31",
+    "tags": [
+      "qwen",
+      "code-generation",
+      "long-context"
+    ],
+    "summary": "\ud83e\udda5 Qwen3-Coder-Flash: Qwen3-Coder-30B-A3B-Instruct\n\ud83d\udc9a Just lightning-fast, accurate code generation.\n\u2705 Native 256K context (supports up to 1M tokens with YaRN)\n\u2705 Optimized for platforms like Qwen Code, Cline, Roo Code, Kilo Code, etc.\n\u2705 Seamless function calling &amp; agent https://t.co/eqjeYManhS"
+  },
+  {
+    "url": "https://github.com/bigcode-project/starcoder2",
+    "title": "starcoder2",
+    "date": "2023-12-08",
+    "tags": [
+      "llm",
+      "code-generation",
+      "deep-learning"
+    ],
+    "summary": "Home of StarCoder2! \n Models Datasets Paper StarCoder2 is a family of code generation models 3B, 7B, and 15B, trained on 600 programming languages from The Stack v2httpshuggingface.codatasetsbigcodethe-stack-v2 and some natural language text such as Wikipedia, Arxiv, and GitHub issues. The models use Grouped Query Attention, a context window of 16,384 tokens, with sliding window attention of 4,096 tokens. The 3B 7B models were trained on 3 trillion tokens, while the 15B was trained on 4 trillion"
+  },
+  {
+    "url": "https://github.com/deepseek-ai/DeepSeek-Coder",
+    "title": "DeepSeek-Coder",
+    "date": "2023-10-20",
+    "tags": [
+      "llm",
+      "code-generation",
+      "finetuning"
+    ],
+    "summary": "DeepSeek Coder: Let the Code Write Itself \n Homepage Chat with DeepSeek Coder Models Download Discord WeChat Paper Link DeepSeek Coder is composed of a series of code language models, each trained from scratch on 2T tokens, with a composition of 87 code and 13 natural language in both English and Chinese. We provide various sizes of the code model, ranging from 1B to 33B versions. Each model is pre-trained on project-level code corpus by employing a window size of 16K and an extra fill-in-the-bl"
+  },
+  {
+    "url": "https://github.com/approximatelabs/sketch",
+    "title": "sketch",
+    "date": "2022-07-14",
+    "tags": [
+      "pandas",
+      "llm",
+      "code-generation",
+      "data-science"
+    ],
+    "summary": "AI code-writing assistant that understands data content \n Sketch is an AI code-writing assistant for pandas users that understands the context of your data, greatly improving the relevance of suggestions. Sketch is usable in seconds and doesn't require adding a plugin to your IDE. bash pip install sketch Here we follow a standard hypothetical data-analysis workflow, showing a Natural Language interface that successfully navigates many tasks in the data stack landscape."
+  },
+  {
+    "url": "https://github.com/github/copilot-docs",
+    "title": "copilot-docs",
+    "date": "2021-10-23",
+    "tags": [
+      "code-generation"
+    ],
+    "summary": "Documentation for GitHub Copilot \n This repository was used for GitHub Copilot documentation during the technical preview. GitHub Copilot is now generally available to all developershttpsgithub.blog2022-06-21-github-copilot-is-generally-available-to-all-developers. For up to date documentation for GitHub Copilot, please visit httpsdocs.github.comencopilot."
+  },
+  {
+    "url": "https://github.com/salesforce/CodeT5",
+    "title": "CodeT5",
+    "date": "2021-08-16",
+    "tags": [
+      "code-generation",
+      "llm",
+      "nlp",
+      "transformer"
+    ],
+    "summary": "Code for CodeT5: a new code-aware pre-trained encoder-decoder model. \n Official research release for CodeT5 and CodeT5 models for Code Understanding and Generation from Salesforce Research, which are introduced by the following papers Title CodeT5 Open Code Large Language Models for Code Understanding and Generationhttpsarxiv.orgpdf2305.07922.pdf Title CodeT5 Identifier-aware Unified Pre-trained Encoder-Decoder Models for Code Understanding and Generationhttpsarxiv.orgpdf2109.00859.pdf , Shafiq "
+  }
+]

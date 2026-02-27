@@ -1,0 +1,304 @@
+[
+  {
+    "url": "https://x.com/krypticmouse/status/2025468602984583172",
+    "title": "Twitter @krypticmouse",
+    "date": "2026-02-22",
+    "tags": [
+      "announcement",
+      "discussion",
+      "information-retrieval"
+    ],
+    "summary": "Getting back to speed on retrieval again, nothing better than this paper to get started with\ud83d\udc4c https://t.co/tVnCUipnYz"
+  },
+  {
+    "url": "https://x.com/bclavie/status/2025480296754495637",
+    "title": "Twitter @bclavie",
+    "date": "2026-02-22",
+    "tags": [
+      "announcement",
+      "discussion",
+      "information-retrieval"
+    ],
+    "summary": "what an excellent choice"
+  },
+  {
+    "url": "https://x.com/oskar_hallstrom/status/2024534323286716546",
+    "title": "Twitter @oskar_hallstrom",
+    "date": "2026-02-19",
+    "tags": [
+      "announcement",
+      "colbert",
+      "information-retrieval"
+    ],
+    "summary": "@antoine_chaffin This release made me think of my favourite freekick of all time, made by our dear Colbert0 Carlos https://t.co/CUuyOYwZ8l"
+  },
+  {
+    "url": "https://x.com/AmelieTabatta/status/2024517375257674073",
+    "title": "Twitter @AmelieTabatta",
+    "date": "2026-02-19",
+    "tags": [
+      "announcement",
+      "discussion",
+      "information-retrieval"
+    ],
+    "summary": "But! Even more exciting: you don't even need the full 400+ GH200-hour pipeline. A supervised + KD combo gets you more than 99% of the gains at ~10\u00d7 less compute.\nStop skipping the supervised contrastive step before distillation."
+  },
+  {
+    "url": "https://x.com/antoine_chaffin/status/2024524809778950185",
+    "title": "Twitter @antoine_chaffin",
+    "date": "2026-02-19",
+    "tags": [
+      "announcement",
+      "colbert",
+      "information-retrieval"
+    ],
+    "summary": "@din0s_ this one was _just above_ SOTA because we used old data\nLet me remind the public datasets we built with the help of IR avengers\nThe open source community has not received all its gifts just yet\nI won't stop until all the leaderboards are topped by PyLate boilerplates"
+  },
+  {
+    "url": "https://x.com/antoine_chaffin/status/2024516828442100028",
+    "title": "Twitter @antoine_chaffin",
+    "date": "2026-02-19",
+    "tags": [
+      "announcement",
+      "discussion",
+      "information-retrieval"
+    ],
+    "summary": "Time for thanks and cc!\nBig thanks to the amazing guys from the @EPFL_en for working with us on the project, @l_arnaboldi and @KrzakalaF (particular shoutout to Luca for bearing with all my ablations requests)\nAlso big thanks to my boss, @AmelieTabatta for helping making this"
+  },
+  {
+    "url": "https://x.com/antoine_chaffin/status/2024516826072260826",
+    "title": "Twitter @antoine_chaffin",
+    "date": "2026-02-19",
+    "tags": [
+      "announcement",
+      "discussion",
+      "information-retrieval"
+    ],
+    "summary": "Now that we showed that we can reach SOTA with non-SOTA data, what would happen if we ran these training with stronger data?\nGuess we'll find out very soon \ud83d\udc40"
+  },
+  {
+    "url": "https://x.com/antoine_chaffin/status/2024516790445858987",
+    "title": "Twitter @antoine_chaffin",
+    "date": "2026-02-19",
+    "tags": [
+      "announcement",
+      "colbert",
+      "information-retrieval"
+    ],
+    "summary": "Most ColBERT models only do phase 3 on top of models that performed the first two phases in a single vector setting\nBut is this really enough?\nTo explore this, we leverage the well known work of Nomic Embed and compare different setups"
+  },
+  {
+    "url": "https://x.com/AmelieTabatta/status/2022331308165501273",
+    "title": "Twitter @AmelieTabatta",
+    "date": "2026-02-13",
+    "tags": [
+      "announcement",
+      "discussion",
+      "information-retrieval"
+    ],
+    "summary": "@raphaelsrty Honestly the sad thing is I could third-party submit it, and it already has enough stars, but not enough forks or watchers :("
+  },
+  {
+    "url": "https://x.com/bclavie/status/2022120830231359887",
+    "title": "Twitter @bclavie",
+    "date": "2026-02-13",
+    "tags": [
+      "announcement",
+      "colbert",
+      "information-retrieval"
+    ],
+    "summary": "Very nice release! The first public, strong code ColBERT models, along with fantastic tooling for it!\n\n(Also, yes this model that is competitive with embeddinggemma and its 0.3B parameters is indeed based on our tiny ColBERt and its 0.017B params)"
+  },
+  {
+    "url": "https://x.com/bclavie/status/1976499098560987220",
+    "title": "Twitter @bclavie",
+    "date": "2025-10-10",
+    "tags": [
+      "announcement",
+      "information-retrieval"
+    ],
+    "summary": "soon https://t.co/Wvw3OJl3iY"
+  },
+  {
+    "url": "https://x.com/bclavie/status/1973566733412954113",
+    "title": "Twitter @bclavie",
+    "date": "2025-10-02",
+    "tags": [
+      "announcement",
+      "information-retrieval"
+    ],
+    "summary": "It's a sign, I have hit the big 6k by tweeting about this release, you should go and try it, 6000 strangers on the internet, only 70% of whom are likely to be bots, can't be wrong! https://t.co/kvZa0Fp4kk"
+  },
+  {
+    "url": "https://x.com/bclavie/status/1969948174237467013",
+    "title": "Twitter @bclavie",
+    "date": "2025-09-22",
+    "tags": [
+      "announcement",
+      "information-retrieval"
+    ],
+    "summary": "boy do we have something even better for you..."
+  },
+  {
+    "url": "https://x.com/bclavie/status/1941678265099591988",
+    "title": "Twitter @bclavie",
+    "date": "2025-07-06",
+    "tags": [
+      "colbert",
+      "information-retrieval",
+      "announcement"
+    ],
+    "summary": "You can just maintain things.\n\n@vishal_learner's gone on a great journey to truly undestand ColBERT and it's so nice that he'll be taking over maintenance!"
+  },
+  {
+    "url": "https://x.com/antoine_chaffin/status/1941561906222989496",
+    "title": "Twitter @antoine_chaffin",
+    "date": "2025-07-05",
+    "tags": [
+      "colbert",
+      "information-retrieval",
+      "announcement"
+    ],
+    "summary": "@lateinteraction @vishal_learner I do not think I could have thought of someone better than @vishal_learner for maintaining ColBERT lib\nCongrats!"
+  },
+  {
+    "url": "https://x.com/antoine_chaffin/status/1941093014446993859",
+    "title": "Twitter @antoine_chaffin",
+    "date": "2025-07-04",
+    "tags": [
+      "announcement",
+      "information-retrieval"
+    ],
+    "summary": "Finally got my certificate yesterday btw \ud83d\ude0e https://t.co/D2pzFurmq4"
+  },
+  {
+    "url": "https://x.com/vishal_learner/status/1940164132734718366",
+    "title": "Twitter @vishal_learner",
+    "date": "2025-07-01",
+    "tags": [
+      "ml",
+      "announcement",
+      "information-retrieval"
+    ],
+    "summary": "I have surpassed one of my 2025 goals: publish 50 ML videos!\n\n52 and counting...\n\nhttps://t.co/MXuHMEfIku \n\nNew goal is to break 100 by the end of year."
+  },
+  {
+    "url": "https://x.com/bclavie/status/1939304285239722405",
+    "title": "Twitter @bclavie",
+    "date": "2025-06-29",
+    "tags": [
+      "announcement",
+      "information-retrieval"
+    ],
+    "summary": "(In fact, I\u2019ll still be part of the AnswerAI family but more distantly so for the foreseeable future)"
+  },
+  {
+    "url": "https://x.com/bclavie/status/1939304282962227625",
+    "title": "Twitter @bclavie",
+    "date": "2025-06-29",
+    "tags": [
+      "announcement",
+      "information-retrieval"
+    ],
+    "summary": "Absolutely nothing bad happened and Answer is a fantastic place. I\u2019ve had the itch to explore some research directions for a while l, and @jeremyphoward has been really supportive, being a big believer in making sure people are doing the work that fulfils them most."
+  },
+  {
+    "url": "https://x.com/antoine_chaffin/status/1869645694841336008",
+    "title": "Twitter @antoine_chaffin",
+    "date": "2024-12-19",
+    "tags": [
+      "announcement",
+      "discussion",
+      "information-retrieval"
+    ],
+    "summary": "@jeremyphoward Looks like a very nice triangle"
+  },
+  {
+    "url": "https://x.com/bclavie/status/1824457941249905110",
+    "title": "Twitter @bclavie",
+    "date": "2024-08-16",
+    "tags": [
+      "announcement",
+      "discussion",
+      "information-retrieval"
+    ],
+    "summary": "Personal news: The Simpsons are, finally, officially, relocating to Japan \ud83c\udf89\ud83c\udf89\ud83c\udf89 https://t.co/Dxr80TEOY9"
+  },
+  {
+    "url": "https://x.com/bclavie/status/1823405963279241321",
+    "title": "Twitter @bclavie",
+    "date": "2024-08-13",
+    "tags": [
+      "colbert",
+      "information-retrieval",
+      "announcement"
+    ],
+    "summary": "Blog post: https://t.co/HCZaUXnDVG\nModel: https://t.co/Tqlh8zJ8dm\n\nThis model is the result of applying the JaColBERTv2.5 recipe, which we recently released, onto the English language, with some extra tweaks."
+  },
+  {
+    "url": "https://twitter.com/jobergum/status/1628519945544822786",
+    "title": "Twitter @jobergum",
+    "date": "2023-02-22",
+    "tags": [
+      "information-retrieval",
+      "announcement",
+      "discussion"
+    ],
+    "summary": "This will be interesting https://t.co/AQw0aNIJej"
+  },
+  {
+    "url": "https://twitter.com/jobergum/status/1545843922974478336",
+    "title": "Twitter @jobergum",
+    "date": "2022-07-09",
+    "tags": [
+      "information-retrieval",
+      "announcement",
+      "discussion"
+    ],
+    "summary": "Updated. Let\u2019s go 2022! https://t.co/Zv8twgCqIK"
+  },
+  {
+    "url": "https://x.com/lateinteraction/status/1955384445139292222",
+    "title": "Twitter @lateinteraction",
+    "date": "2025-08-12",
+    "tags": [
+      "dspy",
+      "announcement",
+      "release"
+    ],
+    "summary": "Well, in the most lowkey way possible, and on a random Tue afternoon, @DSPyOSS 3.0 is out of beta.\n\npip install -U dspy\n\nSo many amazing people contributed to this. Thank you all!\n\n(Release notes below. Stay tuned for a ton of stuff over the next few weeks!!) https://t.co/vkcmgRha87"
+  },
+  {
+    "url": "https://x.com/duckdb/status/1925229555117174960",
+    "title": "Twitter @duckdb",
+    "date": "2025-05-21",
+    "tags": [
+      "duckdb",
+      "announcement",
+      "release"
+    ],
+    "summary": "DuckDB v1.3.0 \u201cOssivalis\u201d is out and it packs a ton of new features, fixes and optimizations.\n\nSee the announcement blog post: https://t.co/kMNg4pxGHY https://t.co/1CtgtIoMIr"
+  },
+  {
+    "url": "https://x.com/duckdb/status/1897402978577080719",
+    "title": "Twitter @duckdb",
+    "date": "2025-03-05",
+    "tags": [
+      "duckdb",
+      "announcement",
+      "release"
+    ],
+    "summary": "DuckDB 1.2.1 is out: https://t.co/S3ROrTAYq9 https://t.co/Jt7z7UBgmo"
+  },
+  {
+    "url": "https://x.com/mervenoyann/status/1892511119639523837",
+    "title": "Twitter @mervenoyann",
+    "date": "2025-02-20",
+    "tags": [
+      "huggingface",
+      "release",
+      "announcement"
+    ],
+    "summary": "two more releases this week https://t.co/2p7F7mcITf"
+  }
+]

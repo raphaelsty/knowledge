@@ -1,0 +1,207 @@
+[
+  {
+    "url": "https://www.bulletpapers.ai",
+    "title": "Hackernews Show HN: Bulletpapers  ArXiv AI paper summarizer, won Anthropic Hackathon (bulletpapers.ai)",
+    "date": "2023-11-09",
+    "tags": [
+      "research",
+      "nlp",
+      "summarization",
+      "tool"
+    ],
+    "summary": "Published on 16 May 2024 Mapping cosmological models from standard to modified gravity using bias relations This study investigates using a non-parametric bias model to generate mock halo catalogs for modified gravity cosmologies. Either the modified gravity or standard LambdaCDM matter distribution is relied on. The method aims to effectively"
+  },
+  {
+    "url": "https://arxiv.org/abs/2009.01325",
+    "title": "Hackernews Learning to summarize from human feedback (2022) (arxiv.org)",
+    "date": "2023-03-14",
+    "tags": [
+      "summarization"
+    ],
+    "summary": "Computer Science > Computation and Language [Submitted on 2 Sep 2020 (v1), last revised 15 Feb 2022 (this version, v3)] Title:Learning to summarize from human feedback View PDFAbstract:As language models become more powerful, training and evaluation are increasingly bottlenecked by the data and metrics used for a particular task. For"
+  },
+  {
+    "url": "https://github.com/Yale-LILY/SummerTime",
+    "title": "SummerTime",
+    "date": "2021-03-18",
+    "tags": [
+      "summarization",
+      "nlp",
+      "deep-learning",
+      "python"
+    ],
+    "summary": "An open-source text summarization toolkit for non-experts. \n A library to help users choose appropriate summarization tools based on their specific tasks or needs. Includes models, evaluation metrics, and datasets. The library architecture is as follows NOTE SummerTime is in active development, any helpful comments are highly encouraged, please open an issue or reach out to any of the team members."
+  },
+  {
+    "url": "https://github.com/dmmiller612/bert-extractive-summarizer",
+    "title": "bert-extractive-summarizer",
+    "date": "2019-05-11",
+    "tags": [
+      "summarization",
+      "bert",
+      "nlp",
+      "python"
+    ],
+    "summary": "Easy to use extractive text summarization with BERT \n !Build Statushttpsgithub.comdmmiller612bert-extractive-summarizeractionsworkflowstest.ymlbadge.svg This repo is the generalization of the lecture-summarizer repo. This tool utilizes the HuggingFace Pytorch transformers library to run extractive summarizations. This works by first embedding the sentences, then running a clustering algorithm, finding the sentences that are closest to the cluster's centroids. This library also uses coreference t"
+  },
+  {
+    "url": "https://twitter.com/jgmorenof/status/1366425680486031364",
+    "title": "Twitter @jgmorenof",
+    "date": "2021-03-01",
+    "tags": [
+      "cimi",
+      "naveen-saini",
+      "summarization",
+      "toulouse"
+    ],
+    "summary": "An excellent talk from Naveen Saini about his recent work on cross-lingual summarization at @IRIToulouse  @embeddiaproject #CIMI #Toulouse https://t.co/yopa6mFVHU"
+  },
+  {
+    "url": "https://x.com/jgmorenof/status/1366425680486031364",
+    "title": "Twitter @jgmorenof",
+    "date": "2021-03-01",
+    "tags": [
+      "nlp",
+      "summarization",
+      "toulouse"
+    ],
+    "summary": "An excellent talk from Naveen Saini about his recent work on cross-lingual summarization at @IRIToulouse  @embeddiaproject #CIMI #Toulouse https://t.co/yopa6mFVHU"
+  },
+  {
+    "url": "https://x.com/LaureSoulier/status/1758546852960518249",
+    "title": "Twitter @LaureSoulier",
+    "date": "2024-02-16",
+    "tags": [
+      "learning",
+      "llms",
+      "summarization",
+      "ecir2023"
+    ],
+    "summary": "It is a pleasure to present our paper aiming at learning LLMs when to search. Accepted as a short paper #ECIR2024"
+  },
+  {
+    "url": "https://twitter.com/LaureSoulier/status/1643386412736081921",
+    "title": "Twitter @LaureSoulier",
+    "date": "2023-04-04",
+    "tags": [
+      "ecir2023",
+      "summarization"
+    ],
+    "summary": "@jgmorenof from @IRIToulouse presenting his #ecir2023 poster on summarization with entities. Great work! ??? https://t.co/jI8eL9u14W"
+  },
+  {
+    "url": "https://x.com/LaureSoulier/status/1643386412736081921",
+    "title": "Twitter @LaureSoulier",
+    "date": "2023-04-04",
+    "tags": [
+      "ecir2023",
+      "nlp",
+      "poster",
+      "summarization"
+    ],
+    "summary": "@jgmorenof from @IRIToulouse presenting his #ecir2023 poster on summarization with entities. Great work! \ud83d\udc4f\ud83d\udc4f\ud83d\udc4f https://t.co/jI8eL9u14W"
+  },
+  {
+    "url": "https://x.com/LaureSoulier/status/1643386412736081921",
+    "title": "Twitter @LaureSoulier",
+    "date": "2023-04-04",
+    "tags": [
+      "ecir2023",
+      "nlp",
+      "poster",
+      "summarization"
+    ],
+    "summary": "@jgmorenof from @IRIToulouse presenting his #ecir2023 poster on summarization with entities. Great work! \ud83d\udc4f\ud83d\udc4f\ud83d\udc4f https://t.co/jI8eL9u14W"
+  },
+  {
+    "url": "https://x.com/yb2698/status/1644341065091272704",
+    "title": "Twitter @yb2698",
+    "date": "2023-04-07",
+    "tags": [
+      "instruction-tuning",
+      "llm",
+      "matcha",
+      "nlp",
+      "summarization"
+    ],
+    "summary": "MatCha and DePlot from @GoogleAI ! \ud83e\udde0\n\nA set of foundation models for plots and charts that can perform complex visual reasoning tasks such as plot summarisation/VQA.\n\nWhen combined with instruction-tuned LMs, you can create interesting demos, such as the one below \u2193 https://t.co/E9tj6UfCtg"
+  },
+  {
+    "url": "https://arxiv.org/abs/1909.03186",
+    "title": "[1909.03186] On Extractive and Abstractive Neural Document Summarization with Transformer Language Models",
+    "date": "2019-09-07",
+    "tags": [
+      "automatic-summarization",
+      "rigolo",
+      "language-model",
+      "summarization",
+      "nlp"
+    ],
+    "summary": "We present a method to produce abstractive summaries of long documents that\nexceed several thousand words via neural abstractive summarization. We perform\na simple extractive step before generating a summary, which is then used to\ncondition the transformer language model on relevant information before being\ntasked with generating a summary. We show that this extractive step\nsignificantly improves summarization results. We also show that this approach\nproduces more abstractive summaries compared "
+  },
+  {
+    "url": "https://twitter.com/jgmorenof/status/1366425680486031364",
+    "title": "Twitter @jgmorenof",
+    "date": "2021-03-01",
+    "tags": [
+      "cimi",
+      "naveen-saini",
+      "summarization",
+      "toulouse"
+    ],
+    "summary": "An excellent talk from Naveen Saini about his recent work on cross-lingual summarization at @IRIToulouse  @embeddiaproject #CIMI #Toulouse https://t.co/yopa6mFVHU"
+  },
+  {
+    "url": "https://arxiv.org/abs/2208.09982",
+    "title": "[2208.09982] GRETEL: Graph Contrastive Topic Enhanced Language Model for Long Document Extractive Summarization",
+    "date": "2022-08-21",
+    "tags": [
+      "topic-modeling",
+      "long-document",
+      "lm-kb",
+      "extractive-summarization",
+      "language-model",
+      "summarization"
+    ],
+    "summary": "Recently, neural topic models (NTMs) have been incorporated into pre-trained\nlanguage models (PLMs), to capture the global semantic information for text\nsummarization. However, in these methods, there remain limitations in the way\nthey capture and integrate the global semantic information. In this paper, we\npropose a novel model, the graph contrastive topic enhanced language model\n(GRETEL), that incorporates the graph contrastive topic model with the\npre-trained language model, to fully leverage"
+  },
+  {
+    "url": "https://arxiv.org/abs/2208.09982",
+    "title": "[2208.09982] GRETEL: Graph Contrastive Topic Enhanced Language Model for Long Document Extractive Summarization",
+    "date": "2022-08-21",
+    "tags": [
+      "topic-modeling",
+      "long-document",
+      "lm-kb",
+      "extractive-summarization",
+      "language-model",
+      "summarization"
+    ],
+    "summary": "Recently, neural topic models (NTMs) have been incorporated into pre-trained\nlanguage models (PLMs), to capture the global semantic information for text\nsummarization. However, in these methods, there remain limitations in the way\nthey capture and integrate the global semantic information. In this paper, we\npropose a novel model, the graph contrastive topic enhanced language model\n(GRETEL), that incorporates the graph contrastive topic model with the\npre-trained language model, to fully leverage"
+  },
+  {
+    "url": "https://twitter.com/jgmorenof/status/1366425680486031364",
+    "title": "Twitter @jgmorenof",
+    "date": "2021-03-01",
+    "tags": [
+      "cimi",
+      "naveen-saini",
+      "summarization",
+      "toulouse"
+    ],
+    "summary": "An excellent talk from Naveen Saini about his recent work on cross-lingual summarization at @IRIToulouse  @embeddiaproject #CIMI #Toulouse https://t.co/yopa6mFVHU"
+  },
+  {
+    "url": "https://arxiv.org/abs/1909.03186",
+    "title": "[1909.03186] On Extractive and Abstractive Neural Document Summarization with Transformer Language Models",
+    "date": "2019-09-07",
+    "tags": [
+      "automatic-summarization",
+      "rigolo",
+      "language-model",
+      "summarization",
+      "nlp"
+    ],
+    "summary": "We present a method to produce abstractive summaries of long documents that\nexceed several thousand words via neural abstractive summarization. We perform\na simple extractive step before generating a summary, which is then used to\ncondition the transformer language model on relevant information before being\ntasked with generating a summary. We show that this extractive step\nsignificantly improves summarization results. We also show that this approach\nproduces more abstractive summaries compared "
+  }
+]

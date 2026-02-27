@@ -1,0 +1,37 @@
+[
+  {
+    "url": "https://openrouter.ai/announcements/response-healing-reduce-json-defects-by-80percent",
+    "title": "Hackernews Response Healing: Reduce JSON defects by 80%+ (openrouter.ai)",
+    "date": "2025-12-21",
+    "tags": [
+      "apis",
+      "discussion",
+      "anytime-repairing-astar",
+      "systems-programming",
+      "rest-api"
+    ],
+    "summary": "Response Healing: Reduce JSON Defects by 80%+ We expect our APIs to have 99.999% uptime. We'd never tolerate a payment processor that failed 2% of the time. So why do we accept LLMs that routinely break JSON syntax in structured output requests? Today we're launching Response Healing: a new feature"
+  },
+  {
+    "url": "https://github.com/lsc4719/MyViewOfLinuxSystems",
+    "title": "MyViewOfLinuxSystems",
+    "date": "2024-03-06",
+    "tags": [
+      "linux",
+      "systems-programming",
+      "education"
+    ],
+    "summary": " \n A view from a process within a Linux system towards the world. Dotted arrow means dependencies. 1 !Diagram A view from a process within a Linux system towards the world. A process leverages devices via abstractions provided by the kernel.httpsgithub.comlsc4719MyViewOfComputerSystemblobmainprocess-view-0.drawio.svg How Linux Works, 2nd edition. httpswww.yes24.comProductGoods22404368 FHS 3.0 httpsrefspecs.linuxfoundation.orgFHS3.0fhs-3.0.html The Dinosaur Book httpswww.amazon.comOperating-Syste"
+  },
+  {
+    "url": "https://github.com/geohot/fromthetransistor",
+    "title": "fromthetransistor",
+    "date": "2016-08-14",
+    "tags": [
+      "computer-architecture",
+      "systems-programming",
+      "education"
+    ],
+    "summary": "From the Transistor to the Web Browser, a rough outline for a 12 week course \n Hiring is hard, a lot of modern CS education is really bad, and it's hard to find people who understand the modern computer stack from first principles. Now cleaned up and going to be software only. Closer to being real."
+  }
+]

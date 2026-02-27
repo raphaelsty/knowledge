@@ -1,0 +1,464 @@
+[
+  {
+    "url": "https://x.com/lusxvr/status/1963609337546293448",
+    "title": "Twitter @lusxvr",
+    "date": "2025-09-04",
+    "tags": [
+      "vlm",
+      "dataset",
+      "vision-language",
+      "training"
+    ],
+    "summary": "Today, we are releasing FineVision, a huge open-source dataset for training state-of-the-art Vision-Language Models:\n\n&gt; 17.3M images\n&gt; 24.3M samples\n&gt; 88.9M turns\n&gt; 9.5B answer tokens\n\nHere are my favourite findings: https://t.co/pfP8OMBvmH"
+  },
+  {
+    "url": "https://x.com/giffmana/status/1953931117708669217",
+    "title": "Twitter @giffmana",
+    "date": "2025-08-08",
+    "tags": [
+      "vlm",
+      "benchmark",
+      "vision-language"
+    ],
+    "summary": "Oh wow, this VLM benchmark is pure evil, and I love it!\n\n\"Vision Language Models are Biased\" by @an_vo12, @taesiri, @anh_ng8, etal.\n\nAlso really good idea to have one-click copy-paste of images and prompts, makes trying it super easy. https://t.co/cxlJ7VoEBp"
+  },
+  {
+    "url": "https://x.com/vanstriendaniel/status/1981707442817012099",
+    "title": "Twitter @vanstriendaniel",
+    "date": "2025-10-24",
+    "tags": [
+      "ocr",
+      "vlm",
+      "lighton"
+    ],
+    "summary": "One very cool thing about this model is that it really flies. I'm very excited to see fine tunes of this model. I think 1B is a much more sensible size for a VLM that may be dealing with a huge volume of data (and OCR should be a cheap task). https://t.co/49SU4IuVg4"
+  },
+  {
+    "url": "https://x.com/vanstriendaniel/status/1981707418980794374",
+    "title": "Twitter @vanstriendaniel",
+    "date": "2025-10-24",
+    "tags": [
+      "ocr",
+      "vlm",
+      "lighton",
+      "evaluation"
+    ],
+    "summary": "Vibe checks of the new @LightOnIO OCR model on some 20th Century digitised books (from @natlibscot). \n\nThis collection has existing OCR (turns out OCR was a thing before VLMs \ud83d\ude1c)\n\nVs the old OCR:\n\nParagraph structure better maintained https://t.co/PsNzW8m2HG"
+  },
+  {
+    "url": "https://github.com/jacooba/OfflineRLAIF",
+    "title": "OfflineRLAIF",
+    "date": "2025-08-06",
+    "tags": [
+      "llm",
+      "multimodal",
+      "python",
+      "reinforcement-learning",
+      "vlm"
+    ],
+    "summary": " \n !Offline RLAIFTitleImg.png This repository contains code for the paper Offline RLAIF Piloting VLM Feedback for RL via SFO Beck et al., 2025httpsarxiv.orgabs2503.01062, published at The RLC Workshop on Reinforcement Learning Beyond Rewards Ingredients for Developing Generalist Agentshttpsrlbrew2-workshop.github.io. The code includes an implementation of Sub-Trajectory Filtered Behavior Cloning SFBC, a method that leverages vision-language model VLM feedback to improve offline reinforcement lea"
+  },
+  {
+    "url": "https://x.com/mervenoyann/status/1948313989307375626",
+    "title": "Twitter @mervenoyann",
+    "date": "2025-07-24",
+    "tags": [
+      "huggingface",
+      "announcement",
+      "vlm"
+    ],
+    "summary": "I waited for this feature for a looong time!"
+  },
+  {
+    "url": "https://x.com/mervenoyann/status/1947343279034401187",
+    "title": "Twitter @mervenoyann",
+    "date": "2025-07-21",
+    "tags": [
+      "huggingface",
+      "opinion",
+      "vlm"
+    ],
+    "summary": "I have the best bag look at thisss \ud83d\ude0d @huggingface \u2764\ufe0f\u200d\ud83d\udd25\n\nI also stole a beige one \ud83e\udd77\ud83c\udffb https://t.co/1ndPlrQ2zJ"
+  },
+  {
+    "url": "https://huggingface.co/vikhyatk/datasets",
+    "title": "vikhyatk (Vik Korrapati)",
+    "date": "2025-07-17",
+    "tags": [
+      "vlm",
+      "dataset",
+      "multimodal"
+    ],
+    "summary": "User profile of Vik Korrapati on Hugging Face"
+  },
+  {
+    "url": "http://arxiv.org/abs/2502.14786",
+    "title": "SigLIP 2: Multilingual Vision-Language Encoders with Improved Semantic Understanding, Localization, and Dense Features",
+    "date": "2025-07-10",
+    "tags": [
+      "vlm",
+      "computer-vision",
+      "embeddings"
+    ],
+    "summary": "We introduce SigLIP 2, a family of new multilingual vision-language encoders that build on the success of the original SigLIP. In this second iteration, we extend the original image-text training objective with several prior, independently developed techniques into a unified recipe -- this includes captioning-based pretraining, self-supervised losses (self-distillation, masked prediction) and online data curation. With these changes, SigLIP 2 models outperform their SigLIP counterparts at all mo"
+  },
+  {
+    "url": "https://x.com/bclavie/status/1932008462827036779",
+    "title": "Twitter @bclavie",
+    "date": "2025-06-09",
+    "tags": [
+      "rag",
+      "multimodal",
+      "vlm",
+      "benchmark"
+    ],
+    "summary": "Interestingly, there doesn't seem to be any \"killer input\". Mapping the overlap of degraded inputs across models and the # of models any given question tris up paint a pretty heterogeneous picture.\n\nThis seems to suggest that this is truly about model capability itself. https://t.co/ItDLl2ieeE"
+  },
+  {
+    "url": "https://x.com/bclavie/status/1932008468527100118",
+    "title": "Twitter @bclavie",
+    "date": "2025-06-09",
+    "tags": [
+      "rag",
+      "multimodal",
+      "vlm",
+      "benchmark"
+    ],
+    "summary": "Now the picture isn't actually so bleak! We've had VLMs for barely a year, and we can already see that while degradation is present, it's mild in lots of cases.\nThis benchmark isn't a herald of doom, it's just a useful measurement to understand where reading capabilities stand!"
+  },
+  {
+    "url": "https://x.com/bclavie/status/1932008465893130320",
+    "title": "Twitter @bclavie",
+    "date": "2025-06-09",
+    "tags": [
+      "vlm",
+      "rag",
+      "multimodal",
+      "benchmark"
+    ],
+    "summary": "Bonus: it's often said that VLMs can do very well on blurry input, and if you're like me, your reference is usually @giffmana's blog post mentioning this. \n\nWe generated screenshots across various resolutions, and it genuinely doesn't matter as long as it still looks like text. https://t.co/N3WnqX6deo"
+  },
+  {
+    "url": "https://x.com/bclavie/status/1932008460633395467",
+    "title": "Twitter @bclavie",
+    "date": "2025-06-09",
+    "tags": [
+      "vlm",
+      "rag",
+      "multimodal",
+      "benchmark"
+    ],
+    "summary": "The results are pretty straightforward: here is degradation.\nMore importantly, most models do well on short-context, 1-page inputs. They don't do so well when there's more than 1 page of context involved.\nThis is problematic, because that's 99% of visual RAG scenarios! https://t.co/nTMC5SgjbY"
+  },
+  {
+    "url": "https://x.com/bclavie/status/1932008458641179122",
+    "title": "Twitter @bclavie",
+    "date": "2025-06-09",
+    "tags": [
+      "rag",
+      "multimodal",
+      "benchmark",
+      "vlm"
+    ],
+    "summary": "We call this benchmark ReadBench. It's a very self-contained thing whose only aim is to measure the performance degradation between purely textual inputs and screenshots-of-text as inputs. \n\nTo mimic real-world RAG scenarios, questions and instructions are kept as text."
+  },
+  {
+    "url": "https://github.com/huggingface/nanoVLM",
+    "title": "nanoVLM",
+    "date": "2025-05-02",
+    "tags": [
+      "vlm",
+      "python",
+      "training"
+    ],
+    "summary": "The simplest, fastest repository for training/finetuning small-sized VLMs. \n !nanoVLMassetsnanoVLM.png nanoVLM is the simplest repository for trainingfinetuning a small sized Vision-Language Model with a lightweight implementation in pure PyTorch. The code itself is very readable and approachable, the model consists of a Vision Backbone modelsvisiontransformer.py 150 lines, Language Decoder modelslanguagemodel.py 250 lines, Modality Projection modelsmodalityprojection.py 50 lines and the VLM its"
+  },
+  {
+    "url": "https://huggingface.co/OpenGVLab/InternVL2_5-38B",
+    "title": "OpenGVLab/InternVL2_5-38B \u00b7 Hugging Face",
+    "date": "2025-03-06",
+    "tags": [
+      "vlm",
+      "multimodal",
+      "computer-vision"
+    ],
+    "summary": "We\u2019re on a journey to advance and democratize artificial intelligence through open source and open science."
+  },
+  {
+    "url": "https://x.com/Dorialexander/status/1897757149591126156",
+    "title": "Twitter @Dorialexander",
+    "date": "2025-03-06",
+    "tags": [
+      "vlm",
+      "ocr",
+      "discussion"
+    ],
+    "summary": "@staghado For all this I think the solution is to rethink VLMs in the first place. We *really* need some form of ocr confidence, maybe byte-level generation as well."
+  },
+  {
+    "url": "https://x.com/staghado/status/1897756724058374252",
+    "title": "Twitter @staghado",
+    "date": "2025-03-06",
+    "tags": [
+      "vlm",
+      "ocr",
+      "discussion"
+    ],
+    "summary": "@Dorialexander yeah it\u2019s impressive but a bit misleading! the date was the easiest part to check and it is wrong, the rest is much harder to verify."
+  },
+  {
+    "url": "https://x.com/mervenoyann/status/1865098460988342286",
+    "title": "Twitter @mervenoyann",
+    "date": "2024-12-06",
+    "tags": [
+      "vlm",
+      "discussion"
+    ],
+    "summary": "my wrapped 2025 \ud83c\udf20 \nthis year I have.. \n\ud83d\udc69\ud83c\udffb\u200d\ud83d\udcbb started working on VLMs, helped ship impactful projects and started my own, quite happy\n\ud83c\uddeb\ud83c\uddf7 improved my French close to B1\n\ud83c\udf4e lost 5 kgs and got rid of a metabolic disease\n\ud83d\udc69\ud83c\udffb\u200d\ud83c\udf93 defended my MSc thesis\n\ud83e\uddd8\ud83c\udffb\u200d\u2640\ufe0f most importantly understood better"
+  },
+  {
+    "url": "https://x.com/mervenoyann/status/1862509930193797226",
+    "title": "Twitter @mervenoyann",
+    "date": "2024-11-29",
+    "tags": [
+      "discussion",
+      "vlm"
+    ],
+    "summary": "we don't celebrate thanksgiving but in the past couple of days I've received so much love from people on this platform I just want to say I'm so thankful my work is seen and appreciated \ud83e\udd72\ud83d\udc97"
+  },
+  {
+    "url": "https://x.com/mervenoyann/status/1862152308739412423",
+    "title": "Twitter @mervenoyann",
+    "date": "2024-11-28",
+    "tags": [
+      "discussion",
+      "vlm"
+    ],
+    "summary": "@cgarciae88 yes we got our fair share of it lol"
+  },
+  {
+    "url": "https://x.com/mervenoyann/status/1856770604445376818",
+    "title": "Twitter @mervenoyann",
+    "date": "2024-11-13",
+    "tags": [
+      "huggingface",
+      "discussion",
+      "vlm"
+    ],
+    "summary": "had a week of company retreat at @huggingface \u2764\ufe0f\u200d\ud83d\udd25\ngreat time with amazing colleagues, big thanks @annatrdj and Stevie for organizing it\ud83c\udf34\ud83e\udde1\ud83e\udd17\n\napologies for the lack of ships, super inspired and can't wait to go back to work and keep shipping \ud83d\udce6\u26f4\ufe0f LFG! https://t.co/PzSzIsevuz"
+  },
+  {
+    "url": "https://x.com/mervenoyann/status/1850865068482715825",
+    "title": "Twitter @mervenoyann",
+    "date": "2024-10-28",
+    "tags": [
+      "huggingface",
+      "vlm",
+      "inference",
+      "announcement"
+    ],
+    "summary": "\u2728 @huggingface Hub Python library now comes with easy inference for vision language models! \n\n$ pip install huggingface_hub \ud83e\udd17 https://t.co/9RdwipSN55"
+  },
+  {
+    "url": "https://x.com/antoine_chaffin/status/1848630619019895182",
+    "title": "Twitter @antoine_chaffin",
+    "date": "2024-10-22",
+    "tags": [
+      "multimodal",
+      "embedding",
+      "vlm",
+      "discussion"
+    ],
+    "summary": "@bo_wangbo @michael_g_u This makes sense as hopefully thanks to the cross modal alignment the two embeddings should be somewhat close\nYou could even do a weighted average to put more emphasis on one modality (e.g augment a little the visual representation with its text description)"
+  },
+  {
+    "url": "https://github.com/roboflow/maestro",
+    "title": "maestro",
+    "date": "2023-11-24",
+    "tags": [
+      "vlm",
+      "fine-tuning",
+      "multimodal",
+      "python"
+    ],
+    "summary": "streamline the fine-tuning process for multimodal models: PaliGemma, Florence-2, and Qwen2-VL \n maestro VLM fine-tuning for everyone maestro is a streamlined tool to accelerate the fine-tuning of multimodal models. By encapsulating best practices from our core modules, maestro handles configuration, data loading, reproducibility, and training loop setup. It currently offers ready-to-use recipes for popular vision-language models such as Florence-2, PaliGemma 2, and"
+  },
+  {
+    "url": "https://x.com/mervenoyann/status/1668288902677905411",
+    "title": "Twitter @mervenoyann",
+    "date": "2023-06-12",
+    "tags": [
+      "discussion",
+      "ml",
+      "opinion",
+      "vlm"
+    ],
+    "summary": "how it started      /      how it's going \n\nit's been 7 years and I still love working on machine learning https://t.co/VliWWvFn3P"
+  },
+  {
+    "url": "https://github.com/penn-pal-lab/LIV",
+    "title": "LIV",
+    "date": "2023-05-24",
+    "tags": [
+      "robotics",
+      "python",
+      "vlm"
+    ],
+    "summary": "Official repository for \"LIV: Language-Image Representations and Rewards for Robotic Control\" (ICML 2023) \n International Conference on Machine Learning ICML, 2023 Jason Yecheng Mahttpswww.seas.upenn.edujasonyma1, Vikash Kumarhttpsvikashplus.github.io2, Amy Zhanghttpsamyzhang.github.io2, Osbert Bastanihttpsobastani.github.io1, Dinesh Jayaramanhttpswww.seas.upenn.edudineshj1 1University of Pennsylvania, 2Meta AI This is the official repository for LIV, an algorithm for pre-training, fine-tuning, "
+  },
+  {
+    "url": "https://x.com/mervenoyann/status/1649052210087727104",
+    "title": "Twitter @mervenoyann",
+    "date": "2023-04-20",
+    "tags": [
+      "huggingface",
+      "ml",
+      "opinion",
+      "vlm"
+    ],
+    "summary": "another day in @huggingface's humble Paris office (this is my desk) https://t.co/Iu0J5hnWIR"
+  },
+  {
+    "url": "https://twitter.com/mervenoyann/status/1633243957973995520",
+    "title": "Twitter @mervenoyann",
+    "date": "2023-03-07",
+    "tags": [
+      "ml",
+      "opinion",
+      "discussion",
+      "vlm"
+    ],
+    "summary": "who is going to tell him that this company already exists and has an emoji in it https://t.co/TjKF2TTxZl"
+  },
+  {
+    "url": "https://x.com/mervenoyann/status/1572171384553459713",
+    "title": "Twitter @mervenoyann",
+    "date": "2022-09-20",
+    "tags": [
+      "discussion",
+      "ml",
+      "opinion",
+      "vlm"
+    ],
+    "summary": "Check out the models \ud83d\udc47 \n\ud83c\udf69 https://t.co/UrkP4gAJCe\n\ud83d\udcc4 https://t.co/heBpOwUWuf\n\ud83e\udd89  You can try various models in this space made by @ImpiraHQ https://t.co/C4UBmw1cAt"
+  },
+  {
+    "url": "https://x.com/mervenoyann/status/1543569899565490177",
+    "title": "Twitter @mervenoyann",
+    "date": "2022-07-03",
+    "tags": [
+      "huggingface",
+      "ml",
+      "opinion",
+      "vlm"
+    ],
+    "summary": "this was the old hugging face employee uniform before @huggingface started doing computer vision, RL, audio and tabular data ML (circa 1870) I found it in an antiques store https://t.co/QN0icoHkms"
+  },
+  {
+    "url": "https://twitter.com/mervenoyann/status/1516424033801277446",
+    "title": "Twitter @mervenoyann",
+    "date": "2022-04-19",
+    "tags": [
+      "dataset",
+      "huggingface",
+      "vlm"
+    ],
+    "summary": "just putting this out there, you can host any dataset on @huggingface Hub, even datasets above 100 GB \nofc for free"
+  },
+  {
+    "url": "https://x.com/mervenoyann/status/1509887112652468252",
+    "title": "Twitter @mervenoyann",
+    "date": "2022-04-01",
+    "tags": [
+      "llm",
+      "ml",
+      "opinion",
+      "vlm"
+    ],
+    "summary": "\u201cfirst slightly conscious language model\u201d \ud83d\ude02 https://t.co/ZTxb6F6M41"
+  },
+  {
+    "url": "https://twitter.com/mervenoyann/status/1450539050008522766",
+    "title": "Twitter @mervenoyann",
+    "date": "2021-10-19",
+    "tags": [
+      "discussion",
+      "ml",
+      "vlm"
+    ],
+    "summary": "but working with a group of smartest people in ML doesn't relieve it, it inspired me to become even better in my job, I did question myself a lot, but in the end I thought that everyone has something different to offer and that's what matters."
+  },
+  {
+    "url": "https://twitter.com/mervenoyann/status/1450536592918077448",
+    "title": "Twitter @mervenoyann",
+    "date": "2021-10-19",
+    "tags": [
+      "discussion",
+      "vlm"
+    ],
+    "summary": "I opened up about my imposter syndrome. I learnt to embrace it to fuel me to learn and improve myself, if you manage to not turn into an anxiety you can let it fuel you ? https://t.co/E6Ri3G3QFO"
+  },
+  {
+    "url": "https://twitter.com/mervenoyann/status/1437543365998956546",
+    "title": "Twitter @mervenoyann",
+    "date": "2021-09-13",
+    "tags": [
+      "discussion",
+      "vlm"
+    ],
+    "summary": "I just started writing my thesis, wish me good luck ? \ud83e\udd17 https://t.co/uzx8Ukpgtc"
+  },
+  {
+    "url": "https://twitter.com/mervenoyann/status/1436345216693411840",
+    "title": "Twitter @mervenoyann",
+    "date": "2021-09-10",
+    "tags": [
+      "discussion",
+      "huggingface",
+      "vlm"
+    ],
+    "summary": "\ud83e\udd41  I'll start working at @huggingface \ud83e\udd17 as a developer advocate next week to build things that'll help developers \ud83e\udd41"
+  },
+  {
+    "url": "https://x.com/mervenoyann/status/1436345216693411840",
+    "title": "Twitter @mervenoyann",
+    "date": "2021-09-10",
+    "tags": [
+      "huggingface",
+      "ml",
+      "opinion",
+      "vlm"
+    ],
+    "summary": "\ud83e\udd41  I'll start working at @huggingface \ud83e\udd17 as a developer advocate next week to build things that'll help developers \ud83e\udd41"
+  },
+  {
+    "url": "https://twitter.com/mervenoyann/status/1423962307428765699",
+    "title": "Twitter @mervenoyann",
+    "date": "2021-08-07",
+    "tags": [
+      "discussion",
+      "vlm"
+    ],
+    "summary": "nope https://t.co/L9eoC7aKB2"
+  },
+  {
+    "url": "https://twitter.com/mervenoyann/status/1403012723311587329",
+    "title": "Twitter @mervenoyann",
+    "date": "2021-06-10",
+    "tags": [
+      "discussion",
+      "vlm"
+    ],
+    "summary": "\ud83e\uddb9?\u2640 https://t.co/ZhPwVWxnp9"
+  },
+  {
+    "url": "https://twitter.com/mervenoyann/status/1385698705165193229",
+    "title": "Twitter @mervenoyann",
+    "date": "2021-04-23",
+    "tags": [
+      "discussion",
+      "vlm"
+    ],
+    "summary": "trying to write some natural language inputs and letting AI turn it into code reminded me of this: https://t.co/QWkzkHJEy8 https://t.co/9X59Cuv0kN"
+  }
+]

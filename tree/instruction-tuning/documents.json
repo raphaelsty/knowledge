@@ -1,0 +1,44 @@
+[
+  {
+    "url": "https://arxiv.org/abs/1806.06478",
+    "title": "[1806.06478] Co-training Embeddings of Knowledge Graphs and Entity Descriptions for Cross-lingual Entity Alignment",
+    "date": "2018-06-18",
+    "tags": [
+      "entity-alignment",
+      "cross-lingual",
+      "knowledge-graph-embedding",
+      "co-training",
+      "using-literal-descriptions-of-entities",
+      "instruction-tuning"
+    ],
+    "summary": "Multilingual knowledge graph (KG) embeddings provide latent semantic\nrepresentations of entities and structured knowledge with cross-lingual\ninferences, which benefit various knowledge-driven cross-lingual NLP tasks.\nHowever, precisely learning such cross-lingual inferences is usually hindered\nby the low coverage of entity alignment in many KGs. Since many multilingual\nKGs also provide literal descriptions of entities, in this paper, we introduce\nan embedding-based approach which leverages a wea"
+  },
+  {
+    "url": "https://arxiv.org/abs/1806.06478",
+    "title": "[1806.06478] Co-training Embeddings of Knowledge Graphs and Entity Descriptions for Cross-lingual Entity Alignment",
+    "date": "2018-06-18",
+    "tags": [
+      "entity-alignment",
+      "cross-lingual",
+      "knowledge-graph-embedding",
+      "co-training",
+      "using-literal-descriptions-of-entities",
+      "instruction-tuning"
+    ],
+    "summary": "Multilingual knowledge graph (KG) embeddings provide latent semantic\nrepresentations of entities and structured knowledge with cross-lingual\ninferences, which benefit various knowledge-driven cross-lingual NLP tasks.\nHowever, precisely learning such cross-lingual inferences is usually hindered\nby the low coverage of entity alignment in many KGs. Since many multilingual\nKGs also provide literal descriptions of entities, in this paper, we introduce\nan embedding-based approach which leverages a wea"
+  },
+  {
+    "url": "https://arxiv.org/abs/1806.06478",
+    "title": "[1806.06478] Co-training Embeddings of Knowledge Graphs and Entity Descriptions for Cross-lingual Entity Alignment",
+    "date": "2018-06-18",
+    "tags": [
+      "entity-alignment",
+      "cross-lingual",
+      "knowledge-graph-embedding",
+      "co-training",
+      "using-literal-descriptions-of-entities",
+      "instruction-tuning"
+    ],
+    "summary": "Multilingual knowledge graph (KG) embeddings provide latent semantic\nrepresentations of entities and structured knowledge with cross-lingual\ninferences, which benefit various knowledge-driven cross-lingual NLP tasks.\nHowever, precisely learning such cross-lingual inferences is usually hindered\nby the low coverage of entity alignment in many KGs. Since many multilingual\nKGs also provide literal descriptions of entities, in this paper, we introduce\nan embedding-based approach which leverages a wea"
+  }
+]

@@ -1,0 +1,24 @@
+[
+  {
+    "url": "https://twitter.com/karpathy/status/1647025230546886658",
+    "title": "Twitter @karpathy",
+    "date": "2023-04-14",
+    "tags": [
+      "embedding",
+      "svm",
+      "svms"
+    ],
+    "summary": "Random note on k-Nearest Neighbor lookups on embeddings: in my experience much better results can be obtained by training SVMs instead. Not too widely known.\n\nShort example:\nhttps://t.co/RXO9xiOmAB\n\nWorks because SVM ranking considers the unique aspects of your query w.r.t. data."
+  },
+  {
+    "url": "https://twitter.com/karpathy/status/1647025230546886658",
+    "title": "Twitter @karpathy",
+    "date": "2023-04-14",
+    "tags": [
+      "embedding",
+      "svm",
+      "svms"
+    ],
+    "summary": "Random note on k-Nearest Neighbor lookups on embeddings: in my experience much better results can be obtained by training SVMs instead. Not too widely known.\n\nShort example:\nhttps://t.co/RXO9xiOmAB\n\nWorks because SVM ranking considers the unique aspects of your query w.r.t. data."
+  }
+]

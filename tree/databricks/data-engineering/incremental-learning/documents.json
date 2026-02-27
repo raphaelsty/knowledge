@@ -1,0 +1,83 @@
+[
+  {
+    "url": "https://github.com/jgaud/streamndr",
+    "title": "streamndr",
+    "date": "2023-02-22",
+    "tags": [
+      "python",
+      "incremental-learning",
+      "ml",
+      "novelty-detection",
+      "streaming",
+      "data-stream"
+    ],
+    "summary": "Novelty detection for data streams in Python \n Stream Novelty Detection for River StreamNDR is a Python library for online novelty detection. StreamNDR aims to enable novelty detection in data streams for Python. It is based on the river API and is currently in early stage of development. Contributors are welcome. StreamNDR implements in Python various algorithms for novelty detection that have been proposed in the literature. It follows river implementation and format. At this stage, the follow"
+  },
+  {
+    "url": "https://github.com/mmschlk/iXAI",
+    "title": "iXAI",
+    "date": "2022-09-02",
+    "tags": [
+      "explainability",
+      "online-learning",
+      "ml",
+      "incremental-learning",
+      "algorithm-implementation",
+      "explanation"
+    ],
+    "summary": " \n This is the first iteration of our incremental explanation package. Currently, it includes two explanation methods PFI and SAGE. Please look at the examples in the examples directory. Please help us in improving our work by contributing or pointing to issues. We will update this iteration soon with further information."
+  },
+  {
+    "url": "https://arxiv.org/abs/2104.11882",
+    "title": "[2104.11882] Incremental Few-shot Text Classification with Multi-round New Classes: Formulation, Dataset and System",
+    "date": "2021-04-24",
+    "tags": [
+      "text-classification",
+      "few-shot-learning",
+      "incremental-learning",
+      "nlp"
+    ],
+    "summary": "Text classification is usually studied by labeling natural language texts\nwith relevant categories from a predefined set. In the real world, new classes\nmight keep challenging the existing system with limited labeled data. The\nsystem should be intelligent enough to recognize upcoming new classes with a\nfew examples. In this work, we define a new task in the NLP domain, incremental\nfew-shot text classification, where the system incrementally handles multiple\nrounds of new classes. For each round,"
+  },
+  {
+    "url": "https://github.com/Continvvm/continuum",
+    "title": "continuum",
+    "date": "2020-04-11",
+    "tags": [
+      "online-learning",
+      "lifelong-learning",
+      "python",
+      "incremental-learning",
+      "dataset",
+      "pytorch",
+      "dataloader",
+      "continual-learning"
+    ],
+    "summary": "A clean and simple data loading library for Continual Learning \n Aka Continual Learning, Lifelong-Learning, Incremental Learning, etc. Read the documentationhttpscontinuum.readthedocs.ioenlatest. Test Continuum on Colabhttpscolab.research.google.comdrive1bRx3M1YFcol9RZxBZ51brxqGWrf4-Bzn?uspsharing ! Install from and PyPi bash pip3 install continuum And run! python from torch.utils.data import DataLoader from continuum import ClassIncremental from continuum.datasets import MNIST from continuum.ta"
+  },
+  {
+    "url": "https://github.com/janestreet/incremental",
+    "title": "incremental",
+    "date": "2015-07-06",
+    "tags": [
+      "ocaml",
+      "incremental-learning",
+      "online-learning"
+    ],
+    "summary": "A library for incremental computations"
+  },
+  {
+    "url": "https://github.com/jgaud/streamndr",
+    "title": "streamndr",
+    "date": "2023-02-22",
+    "tags": [
+      "python",
+      "incremental-learning",
+      "ml",
+      "novelty-detection",
+      "streaming",
+      "data-stream"
+    ],
+    "summary": "Novelty detection for data streams in Python \n Stream Novelty Detection for River StreamNDR is a Python library for online novelty detection. StreamNDR aims to enable novelty detection in data streams for Python. It is based on the river API and is currently in early stage of development. Contributors are welcome. StreamNDR implements in Python various algorithms for novelty detection that have been proposed in the literature. It follows river implementation and format. At this stage, the follow"
+  }
+]

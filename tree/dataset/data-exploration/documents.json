@@ -1,0 +1,91 @@
+[
+  {
+    "url": "https://github.com/ydataai/ydata-profiling",
+    "title": "ydata-profiling",
+    "date": "2016-01-09",
+    "tags": [
+      "pandas-dataframe",
+      "ml",
+      "eda",
+      "exploration",
+      "data-analysis",
+      "notebook",
+      "pandas-profiling",
+      "html-report",
+      "data-exploration",
+      "python",
+      "data-quality",
+      "data-science",
+      "exploratory-data-analysis",
+      "deep-learning",
+      "big-data-analytics",
+      "data-profiling",
+      "statistics",
+      "pandas"
+    ],
+    "summary": "Create HTML profiling reports from pandas DataFrame objects \n Documentation Discord Stack Overflow Latest changelog Do you like this project? Show us your love and give feedback! ydata-profiling primary goal is to provide a one-line Exploratory Data Analysis EDA experience in a consistent and fast solution. Like pandas df.describe function, that is so handy, ydata-profiling delivers an extended analysis of a DataFrame while allowing the data analysis to be exported in different formats such as h"
+  },
+  {
+    "url": "https://github.com/ydataai/ydata-profiling",
+    "title": "ydata-profiling",
+    "date": "2016-01-09",
+    "tags": [
+      "pandas-dataframe",
+      "ml",
+      "eda",
+      "exploration",
+      "data-analysis",
+      "notebook",
+      "pandas-profiling",
+      "html-report",
+      "data-exploration",
+      "python",
+      "data-quality",
+      "data-science",
+      "exploratory-data-analysis",
+      "deep-learning",
+      "big-data-analytics",
+      "data-profiling",
+      "statistics",
+      "pandas"
+    ],
+    "summary": "Create HTML profiling reports from pandas DataFrame objects \n Documentation Discord Stack Overflow Latest changelog Do you like this project? Show us your love and give feedback! ydata-profiling primary goal is to provide a one-line Exploratory Data Analysis EDA experience in a consistent and fast solution. Like pandas df.describe function, that is so handy, ydata-profiling delivers an extended analysis of a DataFrame while allowing the data analysis to be exported in different formats such as h"
+  },
+  {
+    "url": "https://x.com/leland_mcinnes/status/1844546148356292975",
+    "title": "Twitter @leland_mcinnes",
+    "date": "2024-10-11",
+    "tags": [
+      "arxiv",
+      "visualization",
+      "data-exploration"
+    ],
+    "summary": "An ArXiv data map you can browse yourself:\n\nhttps://t.co/ulpNmynrRf\n\n(an early demo; please be gentle; use shift to lasso-select; click on a point to open the paper) https://t.co/kKD7lqrs14"
+  },
+  {
+    "url": "https://github.com/ydataai/ydata-profiling",
+    "title": "ydata-profiling",
+    "date": "2016-01-09",
+    "tags": [
+      "pandas-dataframe",
+      "ml",
+      "eda",
+      "exploration",
+      "data-analysis",
+      "notebook",
+      "pandas-profiling",
+      "html-report",
+      "data-exploration",
+      "python",
+      "data-quality",
+      "data-science",
+      "exploratory-data-analysis",
+      "deep-learning",
+      "big-data-analytics",
+      "data-profiling",
+      "statistics",
+      "pandas"
+    ],
+    "summary": "Create HTML profiling reports from pandas DataFrame objects \n Documentation Discord Stack Overflow Latest changelog Do you like this project? Show us your love and give feedback! ydata-profiling primary goal is to provide a one-line Exploratory Data Analysis EDA experience in a consistent and fast solution. Like pandas df.describe function, that is so handy, ydata-profiling delivers an extended analysis of a DataFrame while allowing the data analysis to be exported in different formats such as h"
+  }
+]

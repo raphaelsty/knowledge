@@ -1,0 +1,201 @@
+[
+  {
+    "url": "https://x.com/hugues_va/status/1945513481916080625",
+    "title": "Twitter @hugues_va",
+    "date": "2025-07-16",
+    "tags": [
+      "dimensionality-reduction",
+      "gpu",
+      "discussion"
+    ],
+    "summary": "Link here : https://t.co/oiCCIx812y"
+  },
+  {
+    "url": "https://x.com/hugues_va/status/1945512779839868974",
+    "title": "Twitter @hugues_va",
+    "date": "2025-07-16",
+    "tags": [
+      "dimensionality-reduction",
+      "gpu",
+      "pytorch",
+      "announcement"
+    ],
+    "summary": "Come join us on the revolution of fast data analytics on the GPU! \nHope you'll enjoy the package, don't hesitate to provide feedbacks or raise issues, this is a collaborative effort. https://t.co/EnTJJpcJX7"
+  },
+  {
+    "url": "https://x.com/hugues_va/status/1945512772663410734",
+    "title": "Twitter @hugues_va",
+    "date": "2025-07-16",
+    "tags": [
+      "pytorch",
+      "dimensionality-reduction",
+      "gpu"
+    ],
+    "summary": "TorchDR\u202f0.3 comes with super-fast\u202ftorch.compile (just set compile=True in any module \ud83d\udcaa), PHATE &amp; PACMAP embeddings, hyperbolic COSNE, cleaner logs, and smart duplicate handling. Upgrade your DR toolkit today to enjoy these advances! https://t.co/OfLMbFwNEK"
+  },
+  {
+    "url": "https://x.com/hugues_va/status/1836068797243093449",
+    "title": "Twitter @hugues_va",
+    "date": "2024-09-17",
+    "tags": [
+      "dimensionality-reduction",
+      "pytorch",
+      "announcement"
+    ],
+    "summary": "Super happy to announce the release of TorchDR 0.1 : the Dimensionality Reduction (DR) library using @PyTorch. Joint work with an amazing team : @RFlamary , @mathusmassias, @nicolas_courty, @CedricCuaz, Titouan Vayer, Aur\u00e9lien Garivier. Thread \ud83e\uddf5.\n\nRepo : https://t.co/oiCCIx8yS6"
+  },
+  {
+    "url": "https://github.com/TorchDR/TorchDR",
+    "title": "TorchDR",
+    "date": "2024-02-07",
+    "tags": [
+      "dimensionality-reduction",
+      "pytorch",
+      "python"
+    ],
+    "summary": "TorchDR - PyTorch Dimensionality Reduction \n TorchDR is an open-source dimensionality reduction DR library using PyTorch. It provides GPU-accelerated implementations of popular DR algorithms in a single unified framework. DR aims to construct a low-dimensional representation or embedding of an input dataset that best preserves its geometry encoded via a pairwise affinity matrix. To this end, DR methods optimize the embedding such that its associated pairwise affinity matrix matches the input aff"
+  },
+  {
+    "url": "https://twitter.com/jamescalam/status/1524411778200969223",
+    "title": "Twitter @jamescalam",
+    "date": "2022-05-11",
+    "tags": [
+      "nlp",
+      "dimensionality-reduction",
+      "clustering"
+    ],
+    "summary": "Say hello to the future of NLP topic modeling!\n\n\ud83e\udd16 NLP transformer embedding\n\ud83e\udde0 Advanced dim reduction + clustering with UMAP and HDBSCAN\n? Identifies topics using c-TF-IDF\n\n@MaartenGr's BERTopic does all this + more in a few lines of code ?\nhttps://t.co/Dk6SuTGh28\n\n#NLProc"
+  },
+  {
+    "url": "https://github.com/facebookarchive/fbpca",
+    "title": "fbpca",
+    "date": "2014-09-09",
+    "tags": [
+      "python",
+      "dimensionality-reduction"
+    ],
+    "summary": "Fast Randomized PCA/SVD"
+  },
+  {
+    "url": "https://x.com/hugues_va/status/1945512776274719010",
+    "title": "Twitter @hugues_va",
+    "date": "2025-07-16",
+    "tags": [
+      "umap",
+      "dimensionality-reduction",
+      "gpu"
+    ],
+    "summary": "For 0.3, we\u2019ve dived deep into UMAP\u2019s code to exactly reproduce its gradient computations, clipping and edge\u2011sampling strategies: now in a super\u2011fast, fully vectorized implementation! \u26a1\ufe0f https://t.co/2y46dF8FeR"
+  },
+  {
+    "url": "https://x.com/hugues_va/status/1945512768531992619",
+    "title": "Twitter @hugues_va",
+    "date": "2025-07-16",
+    "tags": [
+      "pytorch",
+      "dimensionality-reduction",
+      "gpu",
+      "umap"
+    ],
+    "summary": "TorchDR 0.3 is here with some major improvements, taking the library to the next level! TorchDR leverages vectorized implementation on GPU for super fast dimensionality reduction.\nThanks to all the contributors!!  Description below\ud83e\uddf5 https://t.co/ukQcqrblHd"
+  },
+  {
+    "url": "https://x.com/DucheneJohan/status/1920819010221769022",
+    "title": "Twitter @DucheneJohan",
+    "date": "2025-05-09",
+    "tags": [
+      "dimensionality-reduction",
+      "umap",
+      "visualization"
+    ],
+    "summary": "Popular methods like UMAP &amp; t-SNE are stochastic and distort data structure. \n\nBonsai - a novel method - builds trees to relate high-dimensional objects, accounting for measurement noise.\n\nhttps://t.co/gSnjFOKqMP https://t.co/pdPoHQmkYF"
+  },
+  {
+    "url": "https://github.com/lmcinnes/umap",
+    "title": "umap",
+    "date": "2017-07-02",
+    "tags": [
+      "python",
+      "ml",
+      "umap",
+      "dimensionality-reduction",
+      "topological-data-analysis",
+      "visualization"
+    ],
+    "summary": "Uniform Manifold Approximation and Projection"
+  },
+  {
+    "url": "https://github.com/JustGlowing/minisom",
+    "title": "minisom",
+    "date": "2013-07-03",
+    "tags": [
+      "python",
+      "outlier-detection",
+      "neural-network",
+      "self-organizing-map",
+      "som",
+      "ml",
+      "clustering",
+      "dimensionality-reduction",
+      "vector-quantization",
+      "manifold-learning",
+      "unsupervised-learning",
+      "maps"
+    ],
+    "summary": ":red_circle: MiniSom is a minimalistic implementation of the Self Organizing Maps"
+  },
+  {
+    "url": "https://github.com/JustGlowing/minisom",
+    "title": "minisom",
+    "date": "2013-07-03",
+    "tags": [
+      "python",
+      "outlier-detection",
+      "neural-network",
+      "self-organizing-map",
+      "som",
+      "ml",
+      "clustering",
+      "dimensionality-reduction",
+      "vector-quantization",
+      "manifold-learning",
+      "unsupervised-learning",
+      "maps"
+    ],
+    "summary": ":red_circle: MiniSom is a minimalistic implementation of the Self Organizing Maps"
+  },
+  {
+    "url": "https://github.com/lmcinnes/umap",
+    "title": "umap",
+    "date": "2017-07-02",
+    "tags": [
+      "python",
+      "ml",
+      "umap",
+      "dimensionality-reduction",
+      "topological-data-analysis",
+      "visualization"
+    ],
+    "summary": "Uniform Manifold Approximation and Projection"
+  },
+  {
+    "url": "https://github.com/JustGlowing/minisom",
+    "title": "minisom",
+    "date": "2013-07-03",
+    "tags": [
+      "python",
+      "outlier-detection",
+      "neural-network",
+      "self-organizing-map",
+      "som",
+      "ml",
+      "clustering",
+      "dimensionality-reduction",
+      "vector-quantization",
+      "manifold-learning",
+      "unsupervised-learning",
+      "maps"
+    ],
+    "summary": ":red_circle: MiniSom is a minimalistic implementation of the Self Organizing Maps"
+  }
+]

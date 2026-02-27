@@ -1,0 +1,125 @@
+[
+  {
+    "url": "https://github.com/EvolveBeyond/NvPak",
+    "title": "NvPak",
+    "date": "2020-11-15",
+    "tags": [
+      "neovim",
+      "lua",
+      "dotfiles",
+      "editor"
+    ],
+    "summary": "A clean config for neovim to be of particular complexity \n Maybe you have tried to configure Neovim multiple times over the past few years. Neovim has undergone many changes, and every time, you had to follow new defaults to reach the minimum configuration and start writing your configuration for Neovim. The goal of the nvpak project is to provide these defaults."
+  },
+  {
+    "url": "https://github.com/e-cal/nvim",
+    "title": "nvim",
+    "date": "2021-04-21",
+    "tags": [
+      "neovim",
+      "lua",
+      "dotfiles"
+    ],
+    "summary": "the best nvim config there's ever been \n screenshots !imagehttpsgithub.comuser-attachmentsassetse6998091-abac-4fbb-a856-b4c12c5bbf4a !imagehttpsgithub.comuser-attachmentsassets8d25776f-fc6b-4ee4-b5be-137efd0448e8 !imagehttpsgithub.comuser-attachmentsassetsab752443-f1f3-4d9a-9836-dafd8aed6cd8"
+  },
+  {
+    "url": "https://github.com/NvChad/NvChad",
+    "title": "NvChad",
+    "date": "2021-03-07",
+    "tags": [
+      "dotfiles",
+      "neovim-configuration",
+      "vscode",
+      "nvim-configs",
+      "neovim-dotfiles",
+      "lua",
+      "rice",
+      "neovim-lua",
+      "neovim-config",
+      "neovim",
+      "vim",
+      "foss",
+      "ricing",
+      "ide",
+      "editor",
+      "vimrc",
+      "neovim-setup",
+      "nvim"
+    ],
+    "summary": "An attempt to make neovim cli functional like an IDE while being very beautiful, blazing fast startuptime  \n NvChad Home Install Contribute Support Features !nvdashhttpsgithub.comuser-attachmentsassets0c7e2c8f-8940-42ea-9c18-7456768d2d05 Images Click to expand! !4 themeshttpsnvchad.comscreenshotsfourThemes.webp !radium 1httpsnvchad.comscreenshotsradium1.webp !radium 2httpsnvchad.comscreenshotsradium2.webp !radium 3httpsnvchad.comscreenshotsradium3.webp Note these are just 4-5 themes, NvChad has "
+  },
+  {
+    "url": "https://github.com/brainfucksec/neovim-lua",
+    "title": "neovim-lua",
+    "date": "2021-05-29",
+    "tags": [
+      "neovim-dotfiles",
+      "vim",
+      "dotfiles",
+      "lua",
+      "vimrc",
+      "kiss",
+      "nvim-lua",
+      "ide",
+      "nvim",
+      "neovim-configuration",
+      "nvim-configs",
+      "neovim-lua",
+      "neovim-config",
+      "neovim"
+    ],
+    "summary": "Neovim KISS configuration with Lua \n Neovim KISS configuration with Lua and LSP lazy.nvimhttpsgithub.comfolkelazy.nvim - A modern plugin manager for Neovim lualine.nvimhttpsgithub.comnvim-lualinelualine.nvim - A blazing fast and easy to configure neovim statusline plugin written in pure lua. nvim-lspconfighttpsgithub.comneovimnvim-lspconfig - A collection of common configurations for Neovim's built-in language server client nvim-cmphttpsgithub.comhrsh7thnvim-cmp - Auto completion plugin LuaSniph"
+  },
+  {
+    "url": "https://github.com/NvChad/NvChad",
+    "title": "NvChad",
+    "date": "2021-03-07",
+    "tags": [
+      "dotfiles",
+      "neovim-configuration",
+      "vscode",
+      "nvim-configs",
+      "neovim-dotfiles",
+      "lua",
+      "rice",
+      "neovim-lua",
+      "neovim-config",
+      "neovim",
+      "vim",
+      "foss",
+      "ricing",
+      "ide",
+      "editor",
+      "vimrc",
+      "neovim-setup",
+      "nvim"
+    ],
+    "summary": "An attempt to make neovim cli functional like an IDE while being very beautiful, blazing fast startuptime  \n NvChad Home Install Contribute Support Features !nvdashhttpsgithub.comuser-attachmentsassets0c7e2c8f-8940-42ea-9c18-7456768d2d05 Images Click to expand! !4 themeshttpsnvchad.comscreenshotsfourThemes.webp !radium 1httpsnvchad.comscreenshotsradium1.webp !radium 2httpsnvchad.comscreenshotsradium2.webp !radium 3httpsnvchad.comscreenshotsradium3.webp Note these are just 4-5 themes, NvChad has "
+  },
+  {
+    "url": "https://github.com/NvChad/NvChad",
+    "title": "NvChad",
+    "date": "2021-03-07",
+    "tags": [
+      "dotfiles",
+      "neovim-configuration",
+      "vscode",
+      "nvim-configs",
+      "neovim-dotfiles",
+      "lua",
+      "rice",
+      "neovim-lua",
+      "neovim-config",
+      "neovim",
+      "vim",
+      "foss",
+      "ricing",
+      "ide",
+      "editor",
+      "vimrc",
+      "neovim-setup",
+      "nvim"
+    ],
+    "summary": "An attempt to make neovim cli functional like an IDE while being very beautiful, blazing fast startuptime  \n NvChad Home Install Contribute Support Features !nvdashhttpsgithub.comuser-attachmentsassets0c7e2c8f-8940-42ea-9c18-7456768d2d05 Images Click to expand! !4 themeshttpsnvchad.comscreenshotsfourThemes.webp !radium 1httpsnvchad.comscreenshotsradium1.webp !radium 2httpsnvchad.comscreenshotsradium2.webp !radium 3httpsnvchad.comscreenshotsradium3.webp Note these are just 4-5 themes, NvChad has "
+  }
+]

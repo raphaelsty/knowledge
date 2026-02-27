@@ -1,0 +1,75 @@
+[
+  {
+    "url": "https://x.com/kyrylo/status/1965744847496819154",
+    "title": "Twitter @kyrylo",
+    "date": "2025-09-10",
+    "tags": [
+      "sqlite",
+      "database",
+      "performance"
+    ],
+    "summary": "When N+1 queries in SQLite actually save the day: https://t.co/VM3aLijK2Y"
+  },
+  {
+    "url": "https://x.com/fractaledmind/status/1965810036992799104",
+    "title": "Twitter @fractaledmind",
+    "date": "2025-09-10",
+    "tags": [
+      "sqlite",
+      "database",
+      "performance"
+    ],
+    "summary": "Yes! SQLite is *completely* different than PG or MySQL. With a client/server db, you want a small number of large queries to reduce network overhead. With an embedded db, you want a large number of small queries to maximize indexes and in-memory data."
+  },
+  {
+    "url": "https://github.com/ZetloStudio/ZeQLplus",
+    "title": "ZeQLplus",
+    "date": "2023-04-15",
+    "tags": [
+      "sqlite",
+      "terminal",
+      "database"
+    ],
+    "summary": "Open Source Terminal SQLite Database Browser \n Pre-built binaries for macOS, Linux, Windows 10 are available as zip files in the releaseshttpsgithub.comZetloStudioZeQLplusreleases page. Just extract and run directly with no need to install. From the command line in a Terminal CMD window shell zeql Note you should move the zeql executable to a location in your path."
+  },
+  {
+    "url": "https://github.com/phiresky/sql.js-httpvfs",
+    "title": "sql.js-httpvfs",
+    "date": "2021-05-02",
+    "tags": [
+      "sqlite",
+      "database",
+      "javascript",
+      "web"
+    ],
+    "summary": "Hosting read-only SQLite databases on static file hosters like Github Pages \n See my blog post for an introduction httpsphiresky.github.ioblog2021hosting-sqlite-databases-on-github-pages sql.js is a light wrapper around SQLite compiled with EMScripten for use in the browser client-side. This repo is a fork of and wrapper around sql.js to provide a read-only HTTP-Range-request based virtual file system for SQLite. It allows hosting an SQLite database on a static file hoster and querying that data"
+  },
+  {
+    "url": "https://github.com/tursodatabase/turso",
+    "title": "turso",
+    "date": "2025-07-25",
+    "tags": [
+      "database",
+      "embedded-database",
+      "rust",
+      "sqlite",
+      "sqlite3",
+      "webassembly"
+    ],
+    "summary": "Turso Database is a project to build the next evolution of SQLite. \n Turso Database Turso Database is an in-process SQL database, compatible with SQLite. Turso Database is a work-in-progress, in-process OLTP database engine library written in Rust that has The following features are on our current roadmap Please see the Turso Database Manualdocsmanual.md for more information. Command Line You can install the latest turso release with"
+  },
+  {
+    "url": "https://github.com/tursodatabase/turso",
+    "title": "turso",
+    "date": "2025-07-25",
+    "tags": [
+      "database",
+      "embedded-database",
+      "rust",
+      "sqlite",
+      "sqlite3",
+      "webassembly"
+    ],
+    "summary": "Turso Database is a project to build the next evolution of SQLite. \n Turso Database Turso Database is an in-process SQL database, compatible with SQLite. Turso Database is a work-in-progress, in-process OLTP database engine library written in Rust that has The following features are on our current roadmap Please see the Turso Database Manualdocsmanual.md for more information. Command Line You can install the latest turso release with"
+  }
+]

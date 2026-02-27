@@ -1,0 +1,30 @@
+[
+  {
+    "url": "https://github.com/Rust-GPU/rust-cuda",
+    "title": "rust-cuda",
+    "date": "2025-09-10",
+    "tags": [
+      "cuda",
+      "cuda-kernels",
+      "cuda-programming",
+      "gpgpu",
+      "gpu",
+      "rust"
+    ],
+    "summary": "Ecosystem of libraries and tools for writing and executing fast GPU code fully in Rust. \n The Rust CUDA Project An ecosystem of libraries and tools for writing and executing extremely fast GPU code fully in Rust Guide Getting Started Features The project is still in early development, expect bugs, safety issues, and things that don't work The Rust CUDA Project is a project aimed at making Rust a tier-1 language for extremely fast GPU computing"
+  },
+  {
+    "url": "https://github.com/Rust-GPU/rust-cuda",
+    "title": "rust-cuda",
+    "date": "2025-09-10",
+    "tags": [
+      "cuda",
+      "cuda-kernels",
+      "cuda-programming",
+      "gpgpu",
+      "gpu",
+      "rust"
+    ],
+    "summary": "Ecosystem of libraries and tools for writing and executing fast GPU code fully in Rust. \n The Rust CUDA Project An ecosystem of libraries and tools for writing and executing extremely fast GPU code fully in Rust Guide Getting Started Features The project is still in early development, expect bugs, safety issues, and things that don't work The Rust CUDA Project is a project aimed at making Rust a tier-1 language for extremely fast GPU computing"
+  }
+]

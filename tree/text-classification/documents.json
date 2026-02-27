@@ -1,0 +1,241 @@
+[
+  {
+    "url": "https://github.com/huggingface/setfit",
+    "title": "setfit",
+    "date": "2022-06-30",
+    "tags": [
+      "few-shot-learning",
+      "sentence-transformer",
+      "text-classification",
+      "nlp"
+    ],
+    "summary": "Efficient few-shot learning with Sentence Transformers \n Models Datasets Documentation Blog Paper SetFit is an efficient and prompt-free framework for few-shot fine-tuning of Sentence Transformershttpssbert.net. It achieves high accuracy with little labeled data - for instance, with only 8 labeled examples per class on the Customer Reviews sentiment dataset, SetFit is competitive with fine-tuning RoBERTa Large on the full training set of 3k examples !"
+  },
+  {
+    "url": "https://github.com/pmbaumgartner/setfit",
+    "title": "setfit",
+    "date": "2021-12-15",
+    "tags": [
+      "few-shot-learning",
+      "text-classification",
+      "sentence-transformer",
+      "nlp"
+    ],
+    "summary": " \n A scikit-learn API version of a SetFit classifier. Model originally developed by Moshe Wasserblathttpstwitter.comMosheWasserblat. python from setfit import SetFitClassifier docs yay, boo, yes, no, yeah labels 1, 0, 1, 0, 1 clf SetFitClassifierparaphrase-MiniLM-L3-v2 clf.fitdocs, labels clf.predictaffirmitive, negative array1, 0 pip install githttpsgithub.compmbaumgartnersetfit Reference Notebook !Open In Colabhttpscolab.research.google.comassetscolab-badge.svghttpscolab.research.google.comgit"
+  },
+  {
+    "url": "https://twitter.com/Nils_Reimers/status/1649020329887399936",
+    "title": "Twitter @Nils_Reimers",
+    "date": "2023-04-20",
+    "tags": [
+      "classification",
+      "nlp",
+      "text-classification"
+    ],
+    "summary": "??Cross-Lingual Text-Classification just from English Data??\n\nDeveloping NLP apps for an international audience is challenging: It has to work for many languages.\n\nHow can you simplify this and get amazing classification results from a handful of ?? English training examples?\ud83e\uddf5"
+  },
+  {
+    "url": "https://x.com/Nils_Reimers/status/1649020329887399936",
+    "title": "Twitter @Nils_Reimers",
+    "date": "2023-04-20",
+    "tags": [
+      "classification",
+      "multilingual",
+      "nlp",
+      "text-classification"
+    ],
+    "summary": "\ud83c\uddfa\ud83c\uddf3Cross-Lingual Text-Classification just from English Data\ud83c\uddec\ud83c\udde7\n\nDeveloping NLP apps for an international audience is challenging: It has to work for many languages.\n\nHow can you simplify this and get amazing classification results from a handful of \ud83c\uddfa\ud83c\uddf8 English training examples?\ud83e\uddf5"
+  },
+  {
+    "url": "http://arxiv.org/abs/2302.08957",
+    "title": "Like a Good Nearest Neighbor: Practical Content Moderation with Sentence Transformers",
+    "date": "2023-03-17",
+    "tags": [
+      "contrastive-learning",
+      "fine-tuning",
+      "optimization",
+      "sentence-transformers",
+      "text-classification",
+      "transformer"
+    ],
+    "summary": "Modern text classification systems have impressive capabilities but are infeasible to deploy and use reliably due to their dependence on prompting and billion-parameter language models. SetFit (Tunstall et al., 2022) is a recent, practical approach that fine-tunes a Sentence Transformer under a contrastive learning paradigm and achieves similar results to more unwieldy systems. Text classification is important for addressing the problem of domain drift in detecting harmful content, which plagues"
+  },
+  {
+    "url": "https://github.com/PaulBarriere/TSE-NBSVM",
+    "title": "TSE-NBSVM",
+    "date": "2020-12-16",
+    "tags": [
+      "text-classification",
+      "nlp",
+      "ml"
+    ],
+    "summary": "The objective is to implement the NBSVM method. "
+  },
+  {
+    "url": "https://github.com/osainz59/Ask2Transformers",
+    "title": "Ask2Transformers",
+    "date": "2020-06-10",
+    "tags": [
+      "zero-shot-learning",
+      "text-classification",
+      "nlp",
+      "transformer"
+    ],
+    "summary": "A Framework for Textual Entailment based Zero Shot text classification \n Ask2Transformers A Framework for Textual Entailment based Zero Shot text classification This repository contains the code for out of the box ready to use zero-shot classifiers among different tasks, such as Topic Labelling or Relation Extraction. It is built on top of HuggingFace Transformershttpsgithub.comhuggingfacetransformers library, so you are free to choose among hundreds of models. You can either, use a dataset spec"
+  },
+  {
+    "url": "https://arxiv.org/abs/2004.03705",
+    "title": "[2004.03705] Deep Learning Based Text Classification: A Comprehensive Review",
+    "date": "2020-04-06",
+    "tags": [
+      "text-classification",
+      "deep-learning",
+      "survey",
+      "nlp"
+    ],
+    "summary": "Deep learning based models have surpassed classical machine learning based\napproaches in various text classification tasks, including sentiment analysis,\nnews categorization, question answering, and natural language inference. In\nthis work, we provide a detailed review of more than 150 deep learning based\nmodels for text classification developed in recent years, and discuss their\ntechnical contributions, similarities, and strengths. We also provide a summary\nof more than 40 popular datasets wide"
+  },
+  {
+    "url": "https://arxiv.org/abs/1905.11852",
+    "title": "[1905.11852] EDUCE: Explaining model Decisions through Unsupervised Concepts Extraction",
+    "date": "2019-05-28",
+    "tags": [
+      "explainability",
+      "nlp",
+      "text-classification",
+      "interpretability"
+    ],
+    "summary": "Providing explanations along with predictions is crucial in some text\nprocessing tasks. Therefore, we propose a new self-interpretable model that\nperforms output prediction and simultaneously provides an explanation in terms\nof the presence of particular concepts in the input. To do so, our model's\nprediction relies solely on a low-dimensional binary representation of the\ninput, where each feature denotes the presence or absence of concepts. The\npresence of a concept is decided from an excerpt i"
+  },
+  {
+    "url": "https://arxiv.org/abs/2010.07245",
+    "title": "[2010.07245] Text Classification Using Label Names Only: A Language Model Self-Training Approach",
+    "date": "2020-10-14",
+    "tags": [
+      "text-classification",
+      "self-training",
+      "zero-shot",
+      "nlp"
+    ],
+    "summary": "Current text classification methods typically require a good number of\nhuman-labeled documents as training data, which can be costly and difficult to\nobtain in real applications. Humans can perform classification without seeing\nany labeled examples but only based on a small set of words describing the\ncategories to be classified. In this paper, we explore the potential of only\nusing the label name of each class to train classification models on unlabeled\ndata, without using any labeled documents"
+  },
+  {
+    "url": "https://arxiv.org/abs/1911.11506",
+    "title": "[1911.11506] Word-Class Embeddings for Multiclass Text Classification",
+    "date": "2019-11-26",
+    "tags": [
+      "text-classification",
+      "label-embedding",
+      "nlp"
+    ],
+    "summary": "Pre-trained word embeddings encode general word semantics and lexical\nregularities of natural language, and have proven useful across many NLP tasks,\nincluding word sense disambiguation, machine translation, and sentiment\nanalysis, to name a few. In supervised tasks such as multiclass text\nclassification (the focus of this article) it seems appealing to enhance word\nrepresentations with ad-hoc embeddings that encode task-specific information.\nWe propose (supervised) word-class embeddings (WCEs),"
+  },
+  {
+    "url": "https://arxiv.org/abs/1812.02956",
+    "title": "[1812.02956] LNEMLC: Label Network Embeddings for Multi-Label Classification",
+    "date": "2018-12-07",
+    "tags": [
+      "multi-label-classification",
+      "label-embedding",
+      "nlp",
+      "text-classification"
+    ],
+    "summary": "Multi-label classification aims to classify instances with discrete\nnon-exclusive labels. Most approaches on multi-label classification focus on\neffective adaptation or transformation of existing binary and multi-class\nlearning approaches but fail in modelling the joint probability of labels or do\nnot preserve generalization abilities for unseen label combinations. To address\nthese issues we propose a new multi-label classification scheme, LNEMLC - Label\nNetwork Embedding for Multi-Label Classif"
+  },
+  {
+    "url": "https://arxiv.org/abs/1805.04174",
+    "title": "[1805.04174] Joint Embedding of Words and Labels for Text Classification (ACL Anthology 2018)",
+    "date": "2018-05-10",
+    "tags": [
+      "text-classification",
+      "label-embedding",
+      "attention",
+      "nlp"
+    ],
+    "summary": "Word embeddings are effective intermediate representations for capturing\nsemantic regularities between words, when learning the representations of text\nsequences. We propose to view text classification as a label-word joint\nembedding problem: each label is embedded in the same space with the word\nvectors. We introduce an attention framework that measures the compatibility of\nembeddings between text sequences and labels. The attention is learned on a\ntraining set of labeled samples to ensure that"
+  },
+  {
+    "url": "https://arxiv.org/abs/2003.11644",
+    "title": "[2003.11644] MAGNET: Multi-Label Text Classification using Attention-based Graph Neural Network",
+    "date": "2020-03-22",
+    "tags": [
+      "text-classification",
+      "graph-attention-network",
+      "multi-label-classification",
+      "nlp"
+    ],
+    "summary": "In Multi-Label Text Classification (MLTC), one sample can belong to more than\none class. It is observed that most MLTC tasks, there are dependencies or\ncorrelations among labels. Existing methods tend to ignore the relationship\namong labels. In this paper, a graph attention network-based model is proposed\nto capture the attentive dependency structure among the labels. The graph\nattention network uses a feature matrix and a correlation matrix to capture and\nexplore the crucial dependencies betwee"
+  },
+  {
+    "url": "https://arxiv.org/abs/1905.10070",
+    "title": "[1905.10070] Label-aware Document Representation via Hybrid Attention for Extreme Multi-Label Text Classification",
+    "date": "2019-05-24",
+    "tags": [
+      "text-classification",
+      "multi-label-classification",
+      "attention",
+      "nlp"
+    ],
+    "summary": "Extreme multi-label text classification (XMTC) aims at tagging a document\nwith most relevant labels from an extremely large-scale label set. It is a\nchallenging problem especially for the tail labels because there are only few\ntraining documents to build classifier. This paper is motivated to better\nexplore the semantic relationship between each document and extreme labels by\ntaking advantage of both document content and label correlation. Our objective\nis to establish an explicit label-aware re"
+  },
+  {
+    "url": "https://arxiv.org/abs/1812.02956",
+    "title": "[1812.02956] LNEMLC: Label Network Embeddings for Multi-Label Classification",
+    "date": "2018-12-07",
+    "tags": [
+      "multi-label-classification",
+      "label-embedding",
+      "nlp",
+      "text-classification"
+    ],
+    "summary": "Multi-label classification aims to classify instances with discrete\nnon-exclusive labels. Most approaches on multi-label classification focus on\neffective adaptation or transformation of existing binary and multi-class\nlearning approaches but fail in modelling the joint probability of labels or do\nnot preserve generalization abilities for unseen label combinations. To address\nthese issues we propose a new multi-label classification scheme, LNEMLC - Label\nNetwork Embedding for Multi-Label Classif"
+  },
+  {
+    "url": "https://arxiv.org/abs/1609.02521",
+    "title": "[1609.02521] DiSMEC - Distributed Sparse Machines for Extreme Multi-label Classification",
+    "date": "2016-09-08",
+    "tags": [
+      "multi-label-classification",
+      "text-classification",
+      "nlp"
+    ],
+    "summary": "Extreme multi-label classification refers to supervised multi-label learning\ninvolving hundreds of thousands or even millions of labels. Datasets in extreme\nclassification exhibit fit to power-law distribution, i.e. a large fraction of\nlabels have very few positive instances in the data distribution. Most\nstate-of-the-art approaches for extreme multi-label classification attempt to\ncapture correlation among labels by embedding the label matrix to a\nlow-dimensional linear sub-space. However, in t"
+  },
+  {
+    "url": "https://arxiv.org/abs/2203.14655",
+    "title": "[2203.14655] Few-Shot Learning with Siamese Networks and Label Tuning",
+    "date": "2022-03-28",
+    "tags": [
+      "few-shot-learning",
+      "text-classification",
+      "siamese-network",
+      "nlp"
+    ],
+    "summary": "We study the problem of building text classifiers with little or no training\ndata, commonly known as zero and few-shot text classification. In recent years,\nan approach based on neural textual entailment models has been found to give\nstrong results on a diverse range of tasks. In this work, we show that with\nproper pre-training, Siamese Networks that embed texts and labels offer a\ncompetitive alternative. These models allow for a large reduction in inference\ncost: constant in the number of label"
+  },
+  {
+    "url": "https://arxiv.org/abs/2104.14690",
+    "title": "[2104.14690] Entailment as Few-Shot Learner",
+    "date": "2021-04-29",
+    "tags": [
+      "nlp",
+      "few-shot-learning",
+      "entailment",
+      "text-classification"
+    ],
+    "summary": "Large pre-trained language models (LMs) have demonstrated remarkable ability\nas few-shot learners. However, their success hinges largely on scaling model\nparameters to a degree that makes it challenging to train and serve. In this\npaper, we propose a new approach, named as EFL, that can turn small LMs into\nbetter few-shot learners. The key idea of this approach is to reformulate\npotential NLP task into an entailment one, and then fine-tune the model with as\nlittle as 8 examples. We further demon"
+  },
+  {
+    "url": "https://arxiv.org/abs/1712.05972",
+    "title": "[1712.05972] Train Once, Test Anywhere: Zero-Shot Learning for Text Classification",
+    "date": "2017-12-16",
+    "tags": [
+      "zero-shot-learning",
+      "zero-shot-text-classifier",
+      "text-classification",
+      "few-shot-learning",
+      "nlp"
+    ],
+    "summary": "Zero-shot Learners are models capable of predicting unseen classes. In this\nwork, we propose a Zero-shot Learning approach for text categorization. Our\nmethod involves training model on a large corpus of sentences to learn the\nrelationship between a sentence and embedding of sentence's tags. Learning such\nrelationship makes the model generalize to unseen sentences, tags, and even new\ndatasets provided they can be put into same embedding space. The model learns\nto predict whether a given sentence"
+  }
+]

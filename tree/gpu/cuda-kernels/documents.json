@@ -1,0 +1,94 @@
+[
+  {
+    "url": "https://github.com/Rust-GPU/rust-cuda",
+    "title": "rust-cuda",
+    "date": "2025-09-10",
+    "tags": [
+      "cuda",
+      "cuda-kernels",
+      "cuda-programming",
+      "gpgpu",
+      "gpu",
+      "rust"
+    ],
+    "summary": "Ecosystem of libraries and tools for writing and executing fast GPU code fully in Rust. \n The Rust CUDA Project An ecosystem of libraries and tools for writing and executing extremely fast GPU code fully in Rust Guide Getting Started Features The project is still in early development, expect bugs, safety issues, and things that don't work The Rust CUDA Project is a project aimed at making Rust a tier-1 language for extremely fast GPU computing"
+  },
+  {
+    "url": "https://github.com/coreylowman/dfdx",
+    "title": "dfdx",
+    "date": "2021-10-12",
+    "tags": [
+      "neural-network",
+      "tensor",
+      "cuda-kernels",
+      "gpu-acceleration",
+      "cuda-toolkit",
+      "cuda",
+      "autograd",
+      "autodiff",
+      "gpu",
+      "cuda-support",
+      "ml",
+      "backpropagation",
+      "rust",
+      "rust-lang",
+      "deep-neural-networks",
+      "deep-learning",
+      "autodifferentiation",
+      "gpu-computing"
+    ],
+    "summary": "Deep learning in Rust, with shape checked tensors and neural networks \n Ergonomics safety focused deep learning in Rust. Still in pre-alpha state. The next few releases are planned to be breaking releases. Features at a glance 1. fire GPU accelerated tensor library with shapes up to 6d! 2. Shapes with both compile and runtime sized dimensions. e.g. Tensor and Tensor"
+  },
+  {
+    "url": "https://github.com/coreylowman/dfdx",
+    "title": "dfdx",
+    "date": "2021-10-12",
+    "tags": [
+      "neural-network",
+      "tensor",
+      "cuda-kernels",
+      "gpu-acceleration",
+      "cuda-toolkit",
+      "cuda",
+      "autograd",
+      "autodiff",
+      "gpu",
+      "cuda-support",
+      "ml",
+      "backpropagation",
+      "rust",
+      "rust-lang",
+      "deep-neural-networks",
+      "deep-learning",
+      "autodifferentiation",
+      "gpu-computing"
+    ],
+    "summary": "Deep learning in Rust, with shape checked tensors and neural networks \n Ergonomics safety focused deep learning in Rust. Still in pre-alpha state. The next few releases are planned to be breaking releases. Features at a glance 1. fire GPU accelerated tensor library with shapes up to 6d! 2. Shapes with both compile and runtime sized dimensions. e.g. Tensor and Tensor"
+  },
+  {
+    "url": "https://github.com/coreylowman/dfdx",
+    "title": "dfdx",
+    "date": "2021-10-12",
+    "tags": [
+      "neural-network",
+      "tensor",
+      "cuda-kernels",
+      "gpu-acceleration",
+      "cuda-toolkit",
+      "cuda",
+      "autograd",
+      "autodiff",
+      "gpu",
+      "cuda-support",
+      "ml",
+      "backpropagation",
+      "rust",
+      "rust-lang",
+      "deep-neural-networks",
+      "deep-learning",
+      "autodifferentiation",
+      "gpu-computing"
+    ],
+    "summary": "Deep learning in Rust, with shape checked tensors and neural networks \n Ergonomics safety focused deep learning in Rust. Still in pre-alpha state. The next few releases are planned to be breaking releases. Features at a glance 1. fire GPU accelerated tensor library with shapes up to 6d! 2. Shapes with both compile and runtime sized dimensions. e.g. Tensor and Tensor"
+  }
+]

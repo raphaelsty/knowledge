@@ -1,0 +1,60 @@
+[
+  {
+    "url": "https://github.com/unum-cloud/ujrpc",
+    "title": "ujrpc",
+    "date": "2023-01-03",
+    "tags": [
+      "linux-kernel",
+      "epoll",
+      "rpc",
+      "simd",
+      "tcp",
+      "io-uring",
+      "json",
+      "simdjson",
+      "python",
+      "http-server",
+      "flask",
+      "json-rpc",
+      "backend",
+      "liburing",
+      "tcp-ip",
+      "http",
+      "rpc-framework",
+      "dpdk",
+      "cpython",
+      "fast-api",
+      "cpp"
+    ],
+    "summary": "Up to 100x Faster FastAPI. JSON-RPC with io_uring, SIMDJSON, and pure CPython bindings \n UCall JSON Remote Procedure Calls Library Up to 100x Faster than FastAPI nbspnbspnbsp nbspnbspnbsp nbspnbspnbsp nbspnbspnbsp Most modern networking is built either on slow and ambiguous REST APIs or unnecessarily complex gRPC. FastAPI, for example, looks very approachable. We aim to be equally or even simpler to use. FastAPIUCall sh"
+  },
+  {
+    "url": "https://github.com/unum-cloud/ujrpc",
+    "title": "ujrpc",
+    "date": "2023-01-03",
+    "tags": [
+      "linux-kernel",
+      "epoll",
+      "rpc",
+      "simd",
+      "tcp",
+      "io-uring",
+      "json",
+      "simdjson",
+      "python",
+      "http-server",
+      "flask",
+      "json-rpc",
+      "backend",
+      "liburing",
+      "tcp-ip",
+      "http",
+      "rpc-framework",
+      "dpdk",
+      "cpython",
+      "fast-api",
+      "cpp"
+    ],
+    "summary": "Up to 100x Faster FastAPI. JSON-RPC with io_uring, SIMDJSON, and pure CPython bindings \n UCall JSON Remote Procedure Calls Library Up to 100x Faster than FastAPI nbspnbspnbsp nbspnbspnbsp nbspnbspnbsp nbspnbspnbsp Most modern networking is built either on slow and ambiguous REST APIs or unnecessarily complex gRPC. FastAPI, for example, looks very approachable. We aim to be equally or even simpler to use. FastAPIUCall sh"
+  }
+]

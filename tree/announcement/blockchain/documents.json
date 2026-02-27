@@ -1,0 +1,38 @@
+[
+  {
+    "url": "https://notgull.net/block-pattern/",
+    "title": "Hackernews Rust's Block Pattern (notgull.net)",
+    "date": "2025-12-21",
+    "tags": [
+      "discussion",
+      "rust",
+      "fact-checking",
+      "blockchain",
+      "hacker"
+    ],
+    "summary": "Here\u2019s a little idiom that I haven\u2019t really seen discussed anywhere, that I think makes Rust code much cleaner and more robust. I don\u2019t know if there\u2019s an actual name for this idiom; I\u2019m calling it the \u201cblock pattern\u201d for lack of a better word. I find myself reaching for"
+  },
+  {
+    "url": "https://github.com/molly/web3-is-going-great",
+    "title": "web3-is-going-great",
+    "date": "2021-12-08",
+    "tags": [
+      "blockchain",
+      "web3",
+      "criticism"
+    ],
+    "summary": "A timeline of some of the greatest hits in cryptocurrencies, NFTs, and other web3 projects since the beginning of 2021 \n A timeline recording only some of the many disasters happening in crypto, decentralized finance, NFTs, and other blockchain-based projects. !Website screenshotscreenshot.png Suggest an additionhttpsgithub.commollyweb3-is-going-greatissuesnew?assigneeslabelstemplatenew-entry.mdtitle5BNEW5D or a changehttpsgithub.commollyweb3-is-going-greatissuesnew?assigneeslabelstemplatechange"
+  },
+  {
+    "url": "https://twitter.com/idangazit/status/1463259046849355783",
+    "title": "Twitter @idangazit",
+    "date": "2021-11-23",
+    "tags": [
+      "blockchain",
+      "crypto",
+      "gpu",
+      "nfts"
+    ],
+    "summary": "\"I just want to buy a fucking GPU, year two\". Fuck you, crypto, NFTs, and everything blockchain. https://t.co/wkwx7Q4tCO"
+  }
+]

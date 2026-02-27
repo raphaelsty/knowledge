@@ -1,0 +1,212 @@
+[
+  {
+    "url": "https://x.com/julien_c/status/1863578422544384033",
+    "title": "Twitter @julien_c",
+    "date": "2024-12-02",
+    "tags": [
+      "huggingface",
+      "dataset",
+      "sql",
+      "nlp"
+    ],
+    "summary": "What if you could query every dataset on @huggingface from natural language? \ud83e\udd2f https://t.co/HgCoWHoVW9"
+  },
+  {
+    "url": "https://x.com/frankiethull/status/1837889564385726772",
+    "title": "Twitter @frankiethull",
+    "date": "2024-09-22",
+    "tags": [
+      "python",
+      "rust",
+      "sql",
+      "opinion"
+    ],
+    "summary": "10 years ago: \n\"python is OOP &amp; R is FP!\"\n\ntoday: \n\"python &amp; R are API tools for SQL and Rust..\""
+  },
+  {
+    "url": "https://maxhalford.github.io/blog/ogd-in-sql/",
+    "title": "Hackernews Stochastic gradient descent written in SQL (maxhalford.github.io)",
+    "date": "2023-03-14",
+    "tags": [
+      "optimization",
+      "sql"
+    ],
+    "summary": ""
+  },
+  {
+    "url": "https://github.com/Bl3f/yato",
+    "title": "yato",
+    "date": "2024-02-28",
+    "tags": [
+      "sql",
+      "python",
+      "dbt",
+      "data-engineering"
+    ],
+    "summary": "The smallest DuckDB SQL orchestrator on Earth. \n yato yet another transformation orchestrator yato is the smallest orchestrator on Earth to orchestrate SQL data transformations on top of DuckDB. You just give a folder with SQL queries and it guesses the DAG and runs the queries in the right order. yato works with Python 3.9. bash pip install yato-lib"
+  },
+  {
+    "url": "https://github.com/carbonfact/lea",
+    "title": "lea",
+    "date": "2023-10-08",
+    "tags": [
+      "data-engineering",
+      "sql",
+      "dbt",
+      "python"
+    ],
+    "summary": "?\u2640 Minimalist alternative to dbt \n lea lea is a minimalist alternative to SQL orchestrators like dbthttpswww.getdbt.com and SQLMeshhttpssqlmesh.com. lea aims to be simple and provides sane defaults. We happily use it every day at Carbonfacthttpswww.carbonfact.com to manage our BigQuery data warehouse. We will actively maintain it and add features, while welcoming contributions. Use one of the following commands, depending on which warehouse you wish to use"
+  },
+  {
+    "url": "https://github.com/sungchun12/fst",
+    "title": "fst",
+    "date": "2023-03-13",
+    "tags": [
+      "sql",
+      "dbt",
+      "data-engineering",
+      "python"
+    ],
+    "summary": "fst: flow state tool | smooth where you want it, friction where you need it when data engineering \n fstflow state tool A tool to help you stay in flow state while developing dbt models. Let's make it the overwhelming normal that these questions are answered in seconds or less when engineering datathink you don't need 10 tabs and 40 mouse clicks to do your jobs Questions to Answer"
+  },
+  {
+    "url": "https://github.com/MaterializeInc/mz-hack-day-2022",
+    "title": "mz-hack-day-2022",
+    "date": "2022-01-25",
+    "tags": [
+      "stream-processing",
+      "dbt",
+      "sql",
+      "real-time"
+    ],
+    "summary": "Official repo for the Materialize + Redpanda + dbt Hack Day 2022, including a sample project to get everyone started! \n Welcome to the first virtual Hack Day hosted by Materialize and our good friends at Redpanda and dbt Labs! The goal of this event is to encourage knowledge-sharing between our communities we've already learned so much just putting it together!, and give you a taste of what building streaming analytics pipelines with this stack looks like."
+  },
+  {
+    "url": "https://github.com/z3z1ma/dbt-osmosis",
+    "title": "dbt-osmosis",
+    "date": "2021-09-25",
+    "tags": [
+      "dbt",
+      "data-engineering",
+      "sql",
+      "developer-tools"
+    ],
+    "summary": "Provides a dbt server, streamlit workbench, automated YAML management, and git-integrated dbt model output diff tools \n !PyPIhttpsimg.shields.iopypivdbt-osmosis !License Apache 2.0httpsimg.shields.iobadgeLicense-Apache2.0-green.svg !blackhttpsimg.shields.iobadgecode20style-black-000000.svg We now have a spiffy dbt-osmosis documentation sitehttpsz3z1ma.github.iodbt-osmosis! Please check it out for a more in-depth introduction to dbt-osmosis. We have a migration guidehttpsz3z1ma.github.iodbt-osmos"
+  },
+  {
+    "url": "https://github.com/MaterializeInc/materialize-dbt-utils",
+    "title": "materialize-dbt-utils",
+    "date": "2021-01-12",
+    "tags": [
+      "dbt",
+      "stream-processing",
+      "sql",
+      "real-time"
+    ],
+    "summary": "Utility functions for dbt projects running on Materialize \n This dbthttpsgithub.comdtb-labsdbt package provides shims for using the following packages with Materialize Requirements Install this package by adding the following to the packages.yml file in your root dbt project packages version 0.9.5 version 0.7.0 Then set a dispatch config in your dbtproject.yml yml dispatch searchorder materializedbtutils, dbtutils searchorder materializedbtutils, audithelper"
+  },
+  {
+    "url": "https://x.com/duckdb/status/1967186646794948907",
+    "title": "Twitter @duckdb",
+    "date": "2025-09-14",
+    "tags": [
+      "duckdb",
+      "announcement",
+      "sql"
+    ],
+    "summary": "D .mode line\nD SELECT stargazers_count FROM read_json('https://t.co/logJ02bKWQ');\n\nstargazers_count = 32768\n\nIn other words: https://t.co/IVqfRTjyOr"
+  },
+  {
+    "url": "https://x.com/duckdb/status/1944016828130291760",
+    "title": "Twitter @duckdb",
+    "date": "2025-07-12",
+    "tags": [
+      "duckdb",
+      "sql",
+      "announcement"
+    ],
+    "summary": "All primary DuckDB clients \u2013 Go, Java, Node.js, R, Rust, etc. \u2013 have been upgraded to DuckDB v1.3.2."
+  },
+  {
+    "url": "https://x.com/duckdb/status/1942539517849665582",
+    "title": "Twitter @duckdb",
+    "date": "2025-07-08",
+    "tags": [
+      "duckdb",
+      "sql",
+      "announcement"
+    ],
+    "summary": "\ud83d\ude80 The DuckDB 1.3.2 bugfix release is out!\n\n\ud83d\udce6 The Python and CLI clients are already on the latest version, while the rest will follow in the coming days.\n\n\ud83d\udd16 See the detailed change log at https://t.co/lOPnrTDeZG https://t.co/TxEVzLHJg0"
+  },
+  {
+    "url": "https://x.com/lhoestq/status/1859994233882456389",
+    "title": "Twitter @lhoestq",
+    "date": "2024-11-22",
+    "tags": [
+      "duckdb",
+      "sql",
+      "huggingface",
+      "dataset"
+    ],
+    "summary": "\ud83d\udc25 DuckDB Spreadsheets \ud83d\udcdd\n\nNo need to know SQL to use DuckDB:\n\n1. Load any dataset on @huggingface  (250k available)\n2. Process using @duckdb functions: edit strings, lists, structs, conversations and more !\n3. Download using the resulting SQL command\n\ndetails in \ud83e\uddf5 https://t.co/7SzW90oKL9"
+  },
+  {
+    "url": "https://x.com/calebfahlgren/status/1841685337229189511",
+    "title": "Twitter @calebfahlgren",
+    "date": "2024-10-03",
+    "tags": [
+      "duckdb",
+      "sql",
+      "dataset",
+      "tutorial"
+    ],
+    "summary": "DuckDB SQL Query of the Week: struct_pack \ud83d\udce6\n\nLet's look at how we can use the @duckdb  struct_pack function to convert the @migtissera Synthia dataset into a conversational format. https://t.co/bEVrQar2FG"
+  },
+  {
+    "url": "https://x.com/ergestx/status/1809292831594614897",
+    "title": "Twitter @ergestx",
+    "date": "2024-07-05",
+    "tags": [
+      "duckdb",
+      "sql",
+      "opinion",
+      "discussion"
+    ],
+    "summary": "I predict DuckDB will become like a library of SQL data transformation functions eventually overtaking Python for that purpose."
+  },
+  {
+    "url": "https://github.com/jwills/dbt-duckdb",
+    "title": "jwills/dbt-duckdb",
+    "date": "2023-03-04",
+    "tags": [
+      "duckdb",
+      "python",
+      "sql"
+    ],
+    "summary": "dbt (http://getdbt.com) adapter for DuckDB (http://duckdb.org) \n DuckDBhttpduckdb.org is an embedded database, similar to SQLite, but designed for OLAP-style analytics. It is crazy fast and allows you to read and write data stored in CSV, JSON, and Parquet files directly, without requiring you to load them into the database first. dbthttpgetdbt.com is the best way to manage a collection of data transformations written in SQL or Python for analytics"
+  },
+  {
+    "url": "https://github.com/tobymao/sqlglot",
+    "title": "sqlglot",
+    "date": "2021-03-13",
+    "tags": [
+      "sql",
+      "parser",
+      "transpiler",
+      "database"
+    ],
+    "summary": "Python SQL Parser and Transpiler \n !SQLGlot logosqlglot.png SQLGlot is a no-dependency SQL parser, transpiler, optimizer, and engine. It can be used to format SQL or translate between 30 different dialectshttpsgithub.comtobymaosqlglotblobmainsqlglotdialectsinit.py like DuckDBhttpsduckdb.org, Prestohttpsprestodb.io Trinohttpstrino.io, Sparkhttpsspark.apache.org Databrickshttpswww.databricks.com, Snowflakehttpswww.snowflake.comen, and BigQueryhttpscloud.google.combigquery. It aims to read a wide v"
+  },
+  {
+    "url": "https://github.com/duckdb/duckdb",
+    "title": "duckdb",
+    "date": "2018-06-26",
+    "tags": [
+      "database",
+      "olap",
+      "sql",
+      "in-memory-database"
+    ],
+    "summary": "DuckDB is an in-process SQL OLAP Database Management System \n DuckDB is a high-performance analytical database system. It is designed to be fast, reliable, portable, and easy to use. DuckDB provides a rich SQL dialect, with support far beyond basic SQL. DuckDB supports arbitrary and nested correlated subqueries, window functions, collations, complex types arrays, structs, maps, and several extensions designed to make SQL easier to usehttpsduckdb.orgdocsstablesqldialectfriendlysql.html."
+  }
+]

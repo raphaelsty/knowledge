@@ -1,0 +1,854 @@
+[
+  {
+    "url": "https://x.com/AdilZtn/status/1988193860963758568",
+    "title": "Twitter @AdilZtn",
+    "date": "2025-11-11",
+    "tags": [
+      "discussion",
+      "lerobot"
+    ],
+    "summary": "@antoine_chaffin dream team"
+  },
+  {
+    "url": "https://github.com/kscalelabs/lekbot_vla_data",
+    "title": "lekbot_vla_data",
+    "date": "2025-10-25",
+    "tags": [
+      "lerobot",
+      "python",
+      "robotics"
+    ],
+    "summary": " \n This repository contains Python packages for integrating custom hardware with the LeRobot ecosystem. Each package follows the LeRobot plugin conventions for automatic discovery. lerobot-hardware-integration README.md pyproject.toml Root workspace configuration requirements.txt Common dependencies lerobotrobotkbot KBot robot integration package lerobotteleoperatorteleop Teleop device integration package"
+  },
+  {
+    "url": "https://github.com/robot-learning-co/trlc-dk1",
+    "title": "trlc-dk1",
+    "date": "2025-10-18",
+    "tags": [
+      "lerobot",
+      "python",
+      "robotics"
+    ],
+    "summary": "TRLC's Development Kit 1 \n An Open Source Dev Kit for AI-native Robotics by The Robot Learning Company TRLC-DK1 Follower CAD Fusion TRLC-DK1 Leader CAD Fusion Copyright 2025 The Robot Learning Company UG haftungsbeschrnkt. All rights reserved. conda create -n dk1 python3.10 conda activate dk1 pip install -e . This should also install TRLC's fork of LeRobothttpsgithub.comrobot-learning-colerobot and use branch trlc-dk1"
+  },
+  {
+    "url": "https://github.com/huggingface/lerobot-libero",
+    "title": "lerobot-libero",
+    "date": "2025-10-17",
+    "tags": [
+      "benchmark",
+      "lerobot",
+      "robotics"
+    ],
+    "summary": "A fork of the official LIBERO benchmark, extended for Hugging Face\u2019s LeRobot  integration and large-scale robotics experiments. \n Bo Liu, Yifeng Zhu, Chongkai Gao, Yihao Feng, Qiang Liu, Yuke Zhu, Peter Stone !pullfigurehttpsgithub.comLifelong-Robot-LearningLIBEROblobmasterimagesfig1.png LIBERO is designed for studying knowledge transfer in multitask and lifelong robot learning problems. Successfully resolving these problems require both declarative knowledge about objectsspatial relationships a"
+  },
+  {
+    "url": "https://x.com/AdilZtn/status/1978857571977973770",
+    "title": "Twitter @AdilZtn",
+    "date": "2025-10-16",
+    "tags": [
+      "discussion",
+      "lerobot"
+    ],
+    "summary": "@Napoolar @ylecun aura farming"
+  },
+  {
+    "url": "https://x.com/AdilZtn/status/1963940994870657374",
+    "title": "Twitter @AdilZtn",
+    "date": "2025-09-05",
+    "tags": [
+      "discussion",
+      "lerobot"
+    ],
+    "summary": "this guy cook!"
+  },
+  {
+    "url": "https://github.com/EO-Robotics/EO-1",
+    "title": "EO-1",
+    "date": "2025-09-03",
+    "tags": [
+      "lerobot",
+      "multimodal",
+      "robotics"
+    ],
+    "summary": "EO: Open-source Unified Embodied Foundation Model Series \n We introduce EO-1 model, an open-source unified embodied foundation model comprising 3B parameters, trained on the carefully curated interleaved embodied dataset EO-Data1.5M, Web Multimodal Data, and Robot Control Data AgiBotWorld, Open X-Embodiment, RoboMIND, SO100-Community, etc.. The EO-1 model adopt a single unified decoder-only transformer that integrates discrete auto-regressive decoding with continuous flow matching denoising for "
+  },
+  {
+    "url": "https://x.com/AdilZtn/status/1946572182219346098",
+    "title": "Twitter @AdilZtn",
+    "date": "2025-07-19",
+    "tags": [
+      "opinion",
+      "discussion",
+      "lerobot"
+    ],
+    "summary": "@grok @JulienBlanchon @janusch_patas @_fracapuano @AniC_dev @Tim_Qian @TommyFalkowski @BennyKokMusic @Prince_Canuma @adilmania let's go"
+  },
+  {
+    "url": "https://x.com/Thom_Wolf/status/1945866760663568831",
+    "title": "Twitter @Thom_Wolf",
+    "date": "2025-07-17",
+    "tags": [
+      "huggingface",
+      "announcement",
+      "lerobot",
+      "robotics"
+    ],
+    "summary": "and we're again on top of Hacker News https://t.co/7O9mGCYXNT"
+  },
+  {
+    "url": "https://x.com/AdilZtn/status/1945190723004899493",
+    "title": "Twitter @AdilZtn",
+    "date": "2025-07-15",
+    "tags": [
+      "opinion",
+      "lerobot"
+    ],
+    "summary": "lmfao"
+  },
+  {
+    "url": "https://x.com/AdilZtn/status/1943748978295943171",
+    "title": "Twitter @AdilZtn",
+    "date": "2025-07-11",
+    "tags": [
+      "discussion",
+      "opinion",
+      "lerobot"
+    ],
+    "summary": "@antoine_chaffin @raphaelsrty man what a chapter"
+  },
+  {
+    "url": "https://x.com/Thom_Wolf/status/1942852871629988021",
+    "title": "Twitter @Thom_Wolf",
+    "date": "2025-07-09",
+    "tags": [
+      "huggingface",
+      "announcement",
+      "lerobot",
+      "robotics"
+    ],
+    "summary": "A TLDR thread \ud83e\uddf5"
+  },
+  {
+    "url": "https://x.com/Thom_Wolf/status/1942887160983466096",
+    "title": "Twitter @Thom_Wolf",
+    "date": "2025-07-09",
+    "tags": [
+      "robotics",
+      "huggingface",
+      "lerobot",
+      "announcement"
+    ],
+    "summary": "Thrilled to finally share what we've been working on for months at @huggingface \ud83e\udd1d@pollenrobotics\n\nOur first robot: Reachy Mini\n\nA dream come true: cute and low priced, hackable yet easy to use, powered by open-source and the infinite community.\n\nTiny price, small size, huge https://t.co/yl71EtwTKs"
+  },
+  {
+    "url": "https://x.com/jackvial89/status/1941674402870882331",
+    "title": "Twitter @jackvial89",
+    "date": "2025-07-06",
+    "tags": [
+      "robotics",
+      "reinforcement-learning",
+      "lerobot"
+    ],
+    "summary": "Looking much better after training on the cleaned dataset. The robot is more consistently able to screw in the bolt and return to its rest position. This ACT model was trained on a H100 on @modal_labs. This was an early checkpoint, I expect the model will improve a little bit https://t.co/6sJvhnn8fI"
+  },
+  {
+    "url": "https://x.com/_fracapuano/status/1935839447201010129",
+    "title": "Twitter @_fracapuano",
+    "date": "2025-06-19",
+    "tags": [
+      "robotics",
+      "lerobot",
+      "huggingface"
+    ],
+    "summary": "@NepYope @AdilZtn and myself went back for a late night at @huggingface---we needed to see this through.\n\nTook HopeJr (https://t.co/70ktXIAXIU) to Mario Circuit. These are early results, but it's cool, ngl (HopeJr soon to be open-sourced btw \ud83d\udc40)"
+  },
+  {
+    "url": "https://x.com/_fracapuano/status/1935839445397184836",
+    "title": "Twitter @_fracapuano",
+    "date": "2025-06-19",
+    "tags": [
+      "robotics",
+      "lerobot",
+      "huggingface"
+    ],
+    "summary": "We went for drinks with @huggingface and @LeRobotHF  team earlier today, and realized humanoids don't play video games just yet---we just changed that https://t.co/okueoaxrYB"
+  },
+  {
+    "url": "https://github.com/sammyatman/score_lerobot_episodes",
+    "title": "score_lerobot_episodes",
+    "date": "2025-06-17",
+    "tags": [
+      "robotics",
+      "python",
+      "lerobot"
+    ],
+    "summary": "A lightweight toolkit for quantitatively scoring LeRobot episodes. \n A lightweight toolkit for quantitatively scoring LeRobot episodes. It combines classic Computer Vision heuristics blur exposure tests, kinematic smoothness, collision spikes with optional Gemini-powered visionlanguage checks to give each episode a 0 1 score for multiple quality dimensions. Dimension Function What it measures"
+  },
+  {
+    "url": "https://x.com/danaaubakir/status/1934635208898220504",
+    "title": "Twitter @danaaubakir",
+    "date": "2025-06-16",
+    "tags": [
+      "robotics",
+      "lerobot",
+      "announcement"
+    ],
+    "summary": "We\u2019re collectively watching the videos from the LeRobot WorldWide Hackathon with the whole @LerobotHF crew to pick the winners. So many awesome and funny videos! \ud83d\ude0d Stay tuned\u2026 https://t.co/TCAxmhu7Th"
+  },
+  {
+    "url": "https://x.com/jisu_han__/status/1934226975285252498",
+    "title": "Twitter @jisu_han__",
+    "date": "2025-06-15",
+    "tags": [
+      "robotics",
+      "lerobot",
+      "huggingface"
+    ],
+    "summary": "Just joined the LeRobot Hackathon Seoul district\u2014 and honestly, there\u2019s something about building things with others who are genuinely curious and kind \ud83e\udd16\u2728\nOur team made a simple robot that can catch mosquitoes (world-wide enemy\ud83e\udd9f)\n\nHow about your team?\n\n@huggingface @LeRobotHF https://t.co/BG0dVsKmRA"
+  },
+  {
+    "url": "https://x.com/Thom_Wolf/status/1934242824129487144",
+    "title": "Twitter @Thom_Wolf",
+    "date": "2025-06-15",
+    "tags": [
+      "robotics",
+      "lerobot",
+      "announcement"
+    ],
+    "summary": "Someone is building a UNO playing robot during the @LeRobotHF hackathon this weekend\n\nFinally!\n\nI\u2019ve been asking for this for months https://t.co/7YPClRMeak"
+  },
+  {
+    "url": "https://x.com/josephpollack/status/1934135526467985768",
+    "title": "Twitter @josephpollack",
+    "date": "2025-06-15",
+    "tags": [
+      "robotics",
+      "lerobot",
+      "huggingface"
+    ],
+    "summary": "What does your @LeRobotHF robotics lab set-up look like ?\n\nhere is ours \ud83d\ude05\ud83d\ude4f\ud83e\udd16\n\nboulogne-billancourt , france \ud83d\udc47\ud83c\udffb https://t.co/ohfZYmg4xb"
+  },
+  {
+    "url": "https://x.com/AdilZtn/status/1933800272536478117",
+    "title": "Twitter @AdilZtn",
+    "date": "2025-06-14",
+    "tags": [
+      "robotics",
+      "reinforcement-learning",
+      "lerobot"
+    ],
+    "summary": "@S_Ishimaru you can do it with RL \ud83d\udd25"
+  },
+  {
+    "url": "https://x.com/S_Ishimaru/status/1933742233733456029",
+    "title": "Twitter @S_Ishimaru",
+    "date": "2025-06-14",
+    "tags": [
+      "robotics",
+      "lerobot"
+    ],
+    "summary": "Current Work of Team npaka studio.\n LeRobot Worldwide Hackathon.\n#LeRobotWorldwideHackathon\n#lerobot https://t.co/Ua8ck6RIvE"
+  },
+  {
+    "url": "https://x.com/Thom_Wolf/status/1933808148260745287",
+    "title": "Twitter @Thom_Wolf",
+    "date": "2025-06-14",
+    "tags": [
+      "robotics",
+      "lerobot",
+      "huggingface",
+      "announcement"
+    ],
+    "summary": "The world\u2019s largest grassroots robotics hackathon is kicking off:\n\ud83c\udf0d 2300+ participants\n\ud83d\udccd 100+ locations across 5 continents\n\ud83d\udcac 8000+ in the Discord\n\nLocal hosts are waking up one by one, joining the massive Zoom call for a 52-hour global sprint of building and discovery.\n\nLet\u2019s https://t.co/4m7maWGq2d"
+  },
+  {
+    "url": "https://x.com/AdilZtn/status/1933808957643976736",
+    "title": "Twitter @AdilZtn",
+    "date": "2025-06-14",
+    "tags": [
+      "robotics",
+      "lerobot",
+      "announcement"
+    ],
+    "summary": "more local hackathon, this is so cool lfg https://t.co/E6t1Ak361l"
+  },
+  {
+    "url": "https://x.com/AdilZtn/status/1933675962610360672",
+    "title": "Twitter @AdilZtn",
+    "date": "2025-06-14",
+    "tags": [
+      "robotics",
+      "lerobot",
+      "announcement"
+    ],
+    "summary": "lerobot worldwide hackathon has started! australia, japan, south-korea  and benin are in! \ud83d\udd25 https://t.co/doF3YQn0WT"
+  },
+  {
+    "url": "https://x.com/AdilZtn/status/1933545682184405393",
+    "title": "Twitter @AdilZtn",
+    "date": "2025-06-13",
+    "tags": [
+      "lerobot",
+      "reinforcement-learning",
+      "announcement"
+    ],
+    "summary": "with the release of HIL-SERL, @LeRobotHF has also reached the milestone of 100 contributors https://t.co/dP2VSfAC45"
+  },
+  {
+    "url": "https://x.com/AdilZtn/status/1933540100454994100",
+    "title": "Twitter @AdilZtn",
+    "date": "2025-06-13",
+    "tags": [
+      "lerobot",
+      "reinforcement-learning",
+      "fine-tuning"
+    ],
+    "summary": "next step is to fine-tune SmolVla with HIL-SERL"
+  },
+  {
+    "url": "https://x.com/AdilZtn/status/1933540196584497416",
+    "title": "Twitter @AdilZtn",
+    "date": "2025-06-13",
+    "tags": [
+      "lerobot",
+      "robotics",
+      "opinion"
+    ],
+    "summary": "\ud83e\udd75"
+  },
+  {
+    "url": "https://x.com/AdilZtn/status/1933527781503033598",
+    "title": "Twitter @AdilZtn",
+    "date": "2025-06-13",
+    "tags": [
+      "lerobot",
+      "reinforcement-learning",
+      "robotics"
+    ],
+    "summary": "@helper2424 @_lilkm_ @jianlanluo @CharlesXu0124 @svlevine We\u2019re excited to see what you\u2019ll build this weekend with HIL-SERL during the @LeRobotHF Worldwide Hackathon! \ud83c\udf0d\n https://t.co/yiqkcHEg65"
+  },
+  {
+    "url": "https://x.com/AdilZtn/status/1933526811444383759",
+    "title": "Twitter @AdilZtn",
+    "date": "2025-06-13",
+    "tags": [
+      "lerobot",
+      "reinforcement-learning",
+      "robotics",
+      "announcement"
+    ],
+    "summary": "\ud83d\udc4f Huge thanks to the community members who helped implement and test HIL-SERL: @helper2424 @_lilkm_ Ke Wang and Yoel Chorton\n\nAlso, thanks to the HIL-SERL authors: @jianlanluo @CharlesXu0124 Jeffrey Wu and @svlevine \nPaper: https://t.co/rznDxmRKdX"
+  },
+  {
+    "url": "https://x.com/AdilZtn/status/1933524806160273659",
+    "title": "Twitter @AdilZtn",
+    "date": "2025-06-13",
+    "tags": [
+      "lerobot",
+      "reinforcement-learning",
+      "robotics"
+    ],
+    "summary": "\ud83d\udcd6Start learning Reinforcement Learning now with LeRobot: https://t.co/y5pYWIQXk1"
+  },
+  {
+    "url": "https://x.com/AdilZtn/status/1933523981778182625",
+    "title": "Twitter @AdilZtn",
+    "date": "2025-06-13",
+    "tags": [
+      "lerobot",
+      "reinforcement-learning",
+      "robotics",
+      "announcement"
+    ],
+    "summary": "\ud83c\udf81 We have a surprise for @LeRobotHF worldwide hackathon, with @AractingiMichel we released HIL-SERL on LeRobot! \ud83d\ude80\n&gt; Distributed RL Training\n&gt; Human in the loop\nHere\u2019s a slow-mo video of our \u2018Zidane-like\u2019 policy, trained with HIL-SERL in just 10 minutes of training! \u26bd\ufe0f https://t.co/aADfhDRHmb"
+  },
+  {
+    "url": "https://x.com/AdilZtn/status/1932037272305610954",
+    "title": "Twitter @AdilZtn",
+    "date": "2025-06-09",
+    "tags": [
+      "opinion",
+      "lerobot"
+    ],
+    "summary": "@antoine_chaffin best double page of one piece btw"
+  },
+  {
+    "url": "https://x.com/AdilZtn/status/1930977100892086457",
+    "title": "Twitter @AdilZtn",
+    "date": "2025-06-06",
+    "tags": [
+      "robotics",
+      "lerobot",
+      "discussion"
+    ],
+    "summary": "@hupobuboo NICEEEEEE!"
+  },
+  {
+    "url": "https://x.com/AdilZtn/status/1930271461945590030",
+    "title": "Twitter @AdilZtn",
+    "date": "2025-06-04",
+    "tags": [
+      "colbert",
+      "pylate",
+      "discussion",
+      "lerobot"
+    ],
+    "summary": "@antoine_chaffin CHAD https://t.co/noDGUL2WOW"
+  },
+  {
+    "url": "https://x.com/AdilZtn/status/1930269505063719224",
+    "title": "Twitter @AdilZtn",
+    "date": "2025-06-04",
+    "tags": [
+      "pylate",
+      "rust",
+      "discussion",
+      "lerobot"
+    ],
+    "summary": "@antoine_chaffin yup, i saw the code, it\u2019s impressive, especially building all the wheels for this project is hard"
+  },
+  {
+    "url": "https://x.com/AdilZtn/status/1930268962505318674",
+    "title": "Twitter @AdilZtn",
+    "date": "2025-06-04",
+    "tags": [
+      "pylate",
+      "colbert",
+      "discussion",
+      "lerobot"
+    ],
+    "summary": "@antoine_chaffin raphael ship hard as always"
+  },
+  {
+    "url": "https://github.com/julien-blanchon/lerobot",
+    "title": "lerobot",
+    "date": "2025-05-30",
+    "tags": [
+      "robotics",
+      "lerobot",
+      "python"
+    ],
+    "summary": "\ud83e\udd17 LeRobot: Making AI for Robotics more accessible with end-to-end learning \n Build Your Own SO-101 Robot! Meet the updated SO100, the SO-101 Just 114 per arm! Train it in minutes with a few simple moves on your laptop. Then sit back and watch your creation act autonomously! See the full SO-101 tutorial here. Want to take it to the next level? Make your SO-101 mobile by building LeKiwi!"
+  },
+  {
+    "url": "https://x.com/RemiCadene/status/1928015436630634517",
+    "title": "Twitter @RemiCadene",
+    "date": "2025-05-29",
+    "tags": [
+      "robotics",
+      "huggingface",
+      "lerobot",
+      "announcement"
+    ],
+    "summary": "Meet HopeJr, a full humanoid robot lowering the barrier to entry!\n\nCapable of walking, manipulating many objects, open-source and costs under $3000 \ud83e\udd2f\n\nDesigned by @therobotstudio and @huggingface \ud83d\udc47 https://t.co/wCwo8YPOGV"
+  },
+  {
+    "url": "https://x.com/AdilZtn/status/1917582668394553400",
+    "title": "Twitter @AdilZtn",
+    "date": "2025-04-30",
+    "tags": [
+      "pylate",
+      "colbert",
+      "discussion",
+      "lerobot"
+    ],
+    "summary": "@antoine_chaffin @raphaelsrty \ud83d\udc10"
+  },
+  {
+    "url": "https://x.com/_fracapuano/status/1912781076621148210",
+    "title": "Twitter @_fracapuano",
+    "date": "2025-04-17",
+    "tags": [
+      "robotics",
+      "huggingface",
+      "lerobot",
+      "discussion"
+    ],
+    "summary": "POV: you work at @LeRobotHF in the Paris HQ https://t.co/5KAinfCu7v"
+  },
+  {
+    "url": "https://x.com/_fracapuano/status/1912476942110019830",
+    "title": "Twitter @_fracapuano",
+    "date": "2025-04-16",
+    "tags": [
+      "robotics",
+      "huggingface",
+      "lerobot",
+      "announcement"
+    ],
+    "summary": "Paid to mess around with robots now (ikr)! \ud83e\udd17\n\nI joined @huggingface working with @RemiCadene at @LeRobotHF. So happy to be here (plus working with 3D-printer sound nearby is *insane*)\n\nhuge thank you to the boys at @cerebral_valley for having organized so many hackathons I could https://t.co/b2JWygctsA"
+  },
+  {
+    "url": "https://x.com/RemiCadene/status/1911047512389271917",
+    "title": "Twitter @RemiCadene",
+    "date": "2025-04-12",
+    "tags": [
+      "robotics",
+      "huggingface",
+      "lerobot",
+      "discussion"
+    ],
+    "summary": "Why @huggingface's robot has a @pollenrobotics vibe? \ud83e\udd17 https://t.co/Pj92Idw2CO"
+  },
+  {
+    "url": "https://x.com/RemiCadene/status/1900174466388267056",
+    "title": "Twitter @RemiCadene",
+    "date": "2025-03-13",
+    "tags": [
+      "robotics",
+      "lerobot",
+      "discussion"
+    ],
+    "summary": "I was really fortunate to be invited by @UnderscoreTalk to discuss @LeRobotHF\nCheck this out (subtitle included)\nhttps://t.co/klGuu5ucUL"
+  },
+  {
+    "url": "https://github.com/StoneT2000/lerobot-sim2real",
+    "title": "lerobot-sim2real",
+    "date": "2025-03-05",
+    "tags": [
+      "robotics",
+      "lerobot",
+      "reinforcement-learning"
+    ],
+    "summary": "LeRobot sim2real code. Train in fast simulation and deploy visual policies zero shot to the real world \n LeRobot Sim2real provides code to train with Reinforcement Learning in fast GPU parallelized simulation and rendering via ManiSkillhttpsgithub.comhaosulabManiSkill and deploy to the real-world. The codebase is designed for use with the LeRobothttpsgithub.comhuggingfacelerobot library, which handles all of the hardware interfacing code. Once you clone and follow the installation instructions y"
+  },
+  {
+    "url": "https://x.com/RemiCadene/status/1893722687333073013",
+    "title": "Twitter @RemiCadene",
+    "date": "2025-02-23",
+    "tags": [
+      "robotics",
+      "lerobot",
+      "announcement"
+    ],
+    "summary": "The wait is finally over!!!!\n\nYou can build it yourself now\n\nThanks to the amazing students at @UofIllinois \ud83e\udd17\n\nhttps://t.co/q3aMR4ZI2j"
+  },
+  {
+    "url": "https://x.com/AdilZtn/status/1893765085866209524",
+    "title": "Twitter @AdilZtn",
+    "date": "2025-02-23",
+    "tags": [
+      "robotics",
+      "lerobot",
+      "announcement"
+    ],
+    "summary": "a new cute robot in the collection (open-source and super duper cheap), with it, a lot of possibilities like collecting fallen leaves in the garden\ncc @natfriedman"
+  },
+  {
+    "url": "https://github.com/Tavish9/openx2lerobot",
+    "title": "openx2lerobot",
+    "date": "2025-02-19",
+    "tags": [
+      "robotics",
+      "python",
+      "lerobot"
+    ],
+    "summary": "Scripts for converting OpenX(rlds) dataset to LeRobot dataset. \n Any4LeRobot A tool collection for LeRobot A curated collection of utilities for LeRobot Projectshttpsgithub.comhuggingfacelerobot, including data conversion scripts, preprocessing tools, training workflow helpers and etc.. More News We appreciate all contributions to improving Any4LeRobot. Special thanks to the LeRobot teamshttpsgithub.comhuggingfacelerobot for making this great framework. Thanks to everyone for supporting this pro"
+  },
+  {
+    "url": "https://github.com/Tavish9/any4lerobot",
+    "title": "any4lerobot",
+    "date": "2025-02-19",
+    "tags": [
+      "robotics",
+      "python",
+      "lerobot"
+    ],
+    "summary": " A collection of utilities and tools for LeRobot. \n Any4LeRobot A tool collection for LeRobot A curated collection of utilities for LeRobot Projectshttpsgithub.comhuggingfacelerobot, including data conversion scripts, preprocessing tools, training workflow helpers and etc.. More News We appreciate all contributions to improving Any4LeRobot. Special thanks to the LeRobot teamshttpsgithub.comhuggingfacelerobot for making this great framework. Thanks to everyone for supporting this project."
+  },
+  {
+    "url": "https://x.com/AdilZtn/status/1891525070280905152",
+    "title": "Twitter @AdilZtn",
+    "date": "2025-02-17",
+    "tags": [
+      "huggingface",
+      "lerobot",
+      "discussion"
+    ],
+    "summary": "@mervenoyann @huggingface @raphaelsrty"
+  },
+  {
+    "url": "https://x.com/ClementDelangue/status/1889293085059719587",
+    "title": "Twitter @ClementDelangue",
+    "date": "2025-02-11",
+    "tags": [
+      "robotics",
+      "huggingface",
+      "lerobot",
+      "announcement"
+    ],
+    "summary": "Hanging out with the Paris @huggingface robotics team! Let\u2019s make robotics open-source and community-driven https://t.co/fx5AytCaDm"
+  },
+  {
+    "url": "https://x.com/RemiCadene/status/1889012467571081479",
+    "title": "Twitter @RemiCadene",
+    "date": "2025-02-10",
+    "tags": [
+      "robotics",
+      "lerobot",
+      "announcement"
+    ],
+    "summary": "New robot in town \ud83e\udd2f\n\nCheapest mobile manipulator ever (~$300) will be presented at the #AISummit at @joinstationf\n\nCreated with the help of @adv9p @pepijn2233 and many others from @LeRobotHF community.\n\nMore soon! https://t.co/HQ92AhtoUO"
+  },
+  {
+    "url": "https://github.com/IliaLarchenko/dot_policy",
+    "title": "dot_policy",
+    "date": "2025-01-29",
+    "tags": [
+      "robotics",
+      "python",
+      "lerobot"
+    ],
+    "summary": "Decoder Only Transformer Policy for Behavior Cloning \n This is a technical report about my experiments with Behavior Cloning models for robotics, using LeRobot library. I present a DOT-policy - simple and small BC model that beats the SOTA models like ACT, Diffusion policy, VQ-BET in two simulated environments PushT, and Bimanual Insert in ALOHA. I did most of my analysis based on simple simulation environments PushT and ALOHA, that don't fully represent the complexity of the real world robots, "
+  },
+  {
+    "url": "https://x.com/RemiCadene/status/1850294782926426387",
+    "title": "Twitter @RemiCadene",
+    "date": "2024-10-26",
+    "tags": [
+      "robotics",
+      "lerobot",
+      "huggingface"
+    ],
+    "summary": "The @LeRobotHF hackathon got out of hands with people roboting around in the streets of Toulouse \ud83d\ude02"
+  },
+  {
+    "url": "https://github.com/SimpleAutomationOrg/SimpleAutomation",
+    "title": "SimpleAutomation",
+    "date": "2024-10-16",
+    "tags": [
+      "robotics",
+      "python",
+      "lerobot"
+    ],
+    "summary": " \n Our goal is to make robots affordable so more people can try them out, discover useful applications, and eventually make money using them to do work. Currently, it's a set of helper scripts on top of LeRobot, plus a 300 robot arm compatible with and other foundational robotics models."
+  },
+  {
+    "url": "https://github.com/fracapuano/llami",
+    "title": "llami",
+    "date": "2024-10-05",
+    "tags": [
+      "robotics",
+      "python",
+      "lerobot"
+    ],
+    "summary": "fully-local <200$ voice controlled robotic arm. Uses LeRobot by @huggingface \n For LLami is a voice-controlled robot arm built on a shoestring budget and powered by cutting-edge edge AI technologies. Its simple, hacky, and fastcreated in under 2 days as a passion project by a small team of robotics and AI enthusiasts. Technology Role ------------------- ----------------------------------------------------------------"
+  },
+  {
+    "url": "https://x.com/AdilZtn/status/1841800467682054246",
+    "title": "Twitter @AdilZtn",
+    "date": "2024-10-03",
+    "tags": [
+      "discussion",
+      "lerobot"
+    ],
+    "summary": "@iacopo_poli @raphaelsrty @FedEx He is the fastest coder that I know"
+  },
+  {
+    "url": "https://x.com/RemiCadene/status/1841081581093732723",
+    "title": "Twitter @RemiCadene",
+    "date": "2024-10-01",
+    "tags": [
+      "robotics",
+      "huggingface",
+      "lerobot",
+      "announcement"
+    ],
+    "summary": "Meet the game-changer: SO-100 \ud83e\uddbe\n\nCrafted by @therobotstudio and @huggingface \ud83e\udd17\n\nAt 1/3 the cost and 2x the capabilities of our previous arms, it's the most accessible, high-performance robotic arm for $115. Easiest DIY at home!\n\n1/\ud83e\uddf5 Link and details in thread \ud83d\udc47 https://t.co/67VgOXvSNe"
+  },
+  {
+    "url": "https://x.com/AdilZtn/status/1795429289137234140",
+    "title": "Twitter @AdilZtn",
+    "date": "2024-05-28",
+    "tags": [
+      "discussion",
+      "pr-welcome",
+      "lerobot"
+    ],
+    "summary": "@raphaelsrty @davidhewittdev You're welcome \ud83e\udd17 Nice work!"
+  },
+  {
+    "url": "https://x.com/Thom_Wolf/status/1787384242277654786",
+    "title": "Twitter @Thom_Wolf",
+    "date": "2024-05-06",
+    "tags": [
+      "huggingface",
+      "lerobot",
+      "robotics"
+    ],
+    "summary": "Welcome LeRobot! the first robotics library at Hugging Face \ud83d\udd25\n\nOver the past months, we saw impressive research breakthroughs in robotics (ALOHA, diffusion policies, UMI and so many) enabling robots behaviors previously thought impossible to train with limited quantity of data"
+  },
+  {
+    "url": "https://x.com/Thom_Wolf/status/1629258494481137664",
+    "title": "Twitter @Thom_Wolf",
+    "date": "2023-02-24",
+    "tags": [
+      "discussion",
+      "ml",
+      "opinion",
+      "lerobot",
+      "robotics"
+    ],
+    "summary": "It's increasingly clear we've severely underestimated how much you can pack in a 10B parameters model"
+  },
+  {
+    "url": "https://twitter.com/AdilZtn/status/1524002828297121794",
+    "title": "Twitter @AdilZtn",
+    "date": "2022-05-10",
+    "tags": [
+      "discussion",
+      "lerobot"
+    ],
+    "summary": "@visualizevalue @raphaelsrty"
+  },
+  {
+    "url": "https://twitter.com/AdilZtn/status/1464269788792954880",
+    "title": "Twitter @AdilZtn",
+    "date": "2021-11-26",
+    "tags": [
+      "discussion",
+      "lerobot"
+    ],
+    "summary": "@ak92501 @raphaelsrty"
+  },
+  {
+    "url": "https://twitter.com/AdilZtn/status/1432583577963802625",
+    "title": "Twitter @AdilZtn",
+    "date": "2021-08-31",
+    "tags": [
+      "discussion",
+      "lerobot"
+    ],
+    "summary": "@ak92501 @raphaelsrty"
+  },
+  {
+    "url": "https://twitter.com/AdilZtn/status/1399651479993081857",
+    "title": "Twitter @AdilZtn",
+    "date": "2021-06-01",
+    "tags": [
+      "discussion",
+      "lerobot"
+    ],
+    "summary": "@TsinghuaNLP @raphaelsrty"
+  },
+  {
+    "url": "https://twitter.com/AdilZtn/status/1380623484561334279",
+    "title": "Twitter @AdilZtn",
+    "date": "2021-04-09",
+    "tags": [
+      "discussion",
+      "lerobot"
+    ],
+    "summary": "@PatrickKidger You're welcome ?"
+  },
+  {
+    "url": "https://twitter.com/AdilZtn/status/1340949547393146880",
+    "title": "Twitter @AdilZtn",
+    "date": "2020-12-21",
+    "tags": [
+      "discussion",
+      "lerobot"
+    ],
+    "summary": "@ak92501 @raphaelsrty"
+  },
+  {
+    "url": "https://twitter.com/AdilZtn/status/1320813408883716096",
+    "title": "Twitter @AdilZtn",
+    "date": "2020-10-26",
+    "tags": [
+      "discussion",
+      "lerobot"
+    ],
+    "summary": "https://t.co/v1XAU8SP0o"
+  },
+  {
+    "url": "https://twitter.com/AdilZtn/status/1296784668361207810",
+    "title": "Twitter @AdilZtn",
+    "date": "2020-08-21",
+    "tags": [
+      "discussion",
+      "lerobot"
+    ],
+    "summary": "@MLearnia La librairie standard"
+  },
+  {
+    "url": "https://github.com/fracapuano/robot-learning-tutorial",
+    "title": "robot-learning-tutorial",
+    "date": "2025-10-16",
+    "tags": [
+      "lerobot",
+      "ml",
+      "robot-learning",
+      "robotics",
+      "tex"
+    ],
+    "summary": "All the source code for \"Robot Learning: A Tutorial\". Get involved to be featured in the next iteration! \n This repository contains the source code for the Robot Learning A Tutorial report. This tutorial covers many of the most pressing aspects in modern robot learning, and provides practice examples using lerobot, the robot-learning library developed by Hugging Face. Youre more than welcome to contribute to the next edition of the tutorial!"
+  },
+  {
+    "url": "https://x.com/_fracapuano/status/1920183331649446351",
+    "title": "Twitter @_fracapuano",
+    "date": "2025-05-07",
+    "tags": [
+      "robotics",
+      "async-inference",
+      "lerobot",
+      "announcement"
+    ],
+    "summary": "Introducing \u2728async inference\u2728, a stack decoupling action prediction from action execution (it's open-source!)\n\nThis means deploying *the same network* can be (1) more adaptive, and that (2) the robot always acts. This means the robot tries again when it fails---recover mode \u2705 https://t.co/eliwCXCLRP"
+  },
+  {
+    "url": "https://github.com/PathOn-AI/awesome-opensource-robots",
+    "title": "awesome-opensource-robots",
+    "date": "2025-11-14",
+    "tags": [
+      "lerobot",
+      "mycobot280",
+      "opensource",
+      "python",
+      "robotics",
+      "ros2"
+    ],
+    "summary": "Collection of Materials on LeRobot \n Step-by-step tutorial at httpslearn-robotics.pathon.ai Platform Type Description Repository --------------------------------------------------------- SO-100 SO-101 Robotic Arms Standard Open robotic arms httpsgithub.comTheRobotStudioSO-ARM100 LeKiwi Mobile Manipulator Low-Cost Mobile Manipulator for so-100101 arm httpsgithub.comSIGRobotics-UIUCLeKiwi XLeRobot Mobile Manipulator Built on top of LeKiwi httpsgithub.comVector-WangelXLeRobot"
+  },
+  {
+    "url": "https://x.com/RemiCadene/status/1995602395754365217",
+    "title": "Twitter @RemiCadene",
+    "date": "2025-12-01",
+    "tags": [
+      "hardware",
+      "huggingface",
+      "lerobot",
+      "neon",
+      "robotics"
+    ],
+    "summary": "Grab your ticket to the Hardware Meetup at our event place ~Neon Noire~\n\nA chance to meet the team at UMA! \n\nSpeakers: Steven Palma (LeRobot Hugging Face), Aur\u00e9lien Cord (CTO Stanley Robotics), Roch Moll\u00e9ro (CTO Gobano Robotics), &amp; myself \n\nhttps://t.co/zY9JqTY6xY https://t.co/F60pBDB6Sz"
+  },
+  {
+    "url": "https://github.com/fracapuano/robot-learning-tutorial",
+    "title": "robot-learning-tutorial",
+    "date": "2025-10-16",
+    "tags": [
+      "lerobot",
+      "ml",
+      "robot-learning",
+      "robotics",
+      "tex"
+    ],
+    "summary": "All the source code for \"Robot Learning: A Tutorial\". Get involved to be featured in the next iteration! \n This repository contains the source code for the Robot Learning A Tutorial report. This tutorial covers many of the most pressing aspects in modern robot learning, and provides practice examples using lerobot, the robot-learning library developed by Hugging Face. Youre more than welcome to contribute to the next edition of the tutorial!"
+  },
+  {
+    "url": "https://github.com/PathOn-AI/awesome-opensource-robots",
+    "title": "awesome-opensource-robots",
+    "date": "2025-11-14",
+    "tags": [
+      "lerobot",
+      "mycobot280",
+      "opensource",
+      "python",
+      "robotics",
+      "ros2"
+    ],
+    "summary": "Collection of Materials on LeRobot \n Step-by-step tutorial at httpslearn-robotics.pathon.ai Platform Type Description Repository --------------------------------------------------------- SO-100 SO-101 Robotic Arms Standard Open robotic arms httpsgithub.comTheRobotStudioSO-ARM100 LeKiwi Mobile Manipulator Low-Cost Mobile Manipulator for so-100101 arm httpsgithub.comSIGRobotics-UIUCLeKiwi XLeRobot Mobile Manipulator Built on top of LeKiwi httpsgithub.comVector-WangelXLeRobot"
+  }
+]

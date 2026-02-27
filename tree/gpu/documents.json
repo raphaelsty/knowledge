@@ -1,0 +1,18 @@
+[
+  {
+    "url": "https://x.com/itsnamgyu/status/1807400609429307590",
+    "title": "Twitter @itsnamgyu",
+    "date": "2024-06-30",
+    "tags": [
+      "architecture",
+      "gpu",
+      "inference",
+      "llm",
+      "transformer",
+      "refactoring",
+      "google-deepmind",
+      "ai-research"
+    ],
+    "summary": "Do you know your LLM uses less than 1% of your GPU at inference? Too much time is wasted on KV cache memory access \u27a1\ufe0f\u00a0We tackle this with the \ud83c\udf81\u00a0Block Transformer: a global-to-local architecture that speeds up decoding up to\u00a020x \ud83d\ude80\n\n@kaist_ai @LG_AI_Research w/ @GoogleDeepMind \ud83e\uddf5 https://t.co/ina1b1tl0O"
+  }
+]

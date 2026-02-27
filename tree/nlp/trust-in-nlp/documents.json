@@ -1,0 +1,26 @@
+[
+  {
+    "url": "https://x.com/bclavie/status/1788214683696058461",
+    "title": "Twitter @bclavie",
+    "date": "2024-05-08",
+    "tags": [
+      "trust-in-nlp",
+      "twitter-data"
+    ],
+    "summary": "Don\u2019t trust big causal, demand the best, demand bidirectionality"
+  },
+  {
+    "url": "https://arxiv.org/abs/2006.09462",
+    "title": "[2006.09462] Selective Question Answering under Domain Shift",
+    "date": "2020-06-16",
+    "tags": [
+      "question-answering",
+      "uncertainty-in-deep-learning",
+      "softmax",
+      "trust-in-nlp",
+      "domain-adaptation",
+      "nlp"
+    ],
+    "summary": "To avoid giving wrong answers, question answering (QA) models need to know\nwhen to abstain from answering. Moreover, users often ask questions that\ndiverge from the model's training data, making errors more likely and thus\nabstention more critical. In this work, we propose the setting of selective\nquestion answering under domain shift, in which a QA model is tested on a\nmixture of in-domain and out-of-domain data, and must answer (i.e., not abstain\non) as many questions as possible while maintai"
+  }
+]

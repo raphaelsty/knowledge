@@ -1,0 +1,76 @@
+[
+  {
+    "url": "https://github.com/Volham22/light-lang",
+    "title": "light-lang",
+    "date": "2022-05-31",
+    "tags": [
+      "rust",
+      "parsing",
+      "compiler",
+      "programming-language"
+    ],
+    "summary": " \n Light is a staticaly typed compiled programming language that aims to be simple. Note that this is in early stage for now and the compiler is unstable. Here is a simple main function for light js fn main number return 0 And of course the traditional Hello World! program"
+  },
+  {
+    "url": "https://github.com/rust-lang/rust",
+    "title": "rust",
+    "date": "2010-06-16",
+    "tags": [
+      "rust",
+      "compiler",
+      "programming-language"
+    ],
+    "summary": "Empowering everyone to build reliable and efficient software. \n WebsiteRust Getting started Learn Documentation Contributing This is the main source code repository for Rust. It contains the compiler, standard library, and documentation. Rust httpswww.rust-lang.org Getting Started httpswww.rust-lang.orglearnget-started Learn httpswww.rust-lang.orglearn Documentation httpswww.rust-lang.orglearnlearn-use Contributing CONTRIBUTING.md Cargo httpsgithub.comrust-langcargo rustfmt httpsgithub.comrust-l"
+  },
+  {
+    "url": "https://x.com/editingemily/status/1851295811453202818",
+    "title": "Twitter @editingemily",
+    "date": "2024-10-29",
+    "tags": [
+      "python",
+      "programming-language",
+      "github",
+      "industry-news"
+    ],
+    "summary": "Python has surpassed JavaScript as the No. 1 language on GitHub. #githubuniverse https://t.co/gDUpgL0yt3"
+  },
+  {
+    "url": "https://github.com/ratansingh98/CPP-Learning",
+    "title": "CPP-Learning",
+    "date": "2019-10-25",
+    "tags": [
+      "cpp",
+      "programming-language",
+      "cpp",
+      "programming",
+      "programming-language"
+    ],
+    "summary": "This repo contains my roadmap for learning C++ from zero to hero. \n Unix based os with g command. For compiling use g .cpp and for execution use .a.out By the help of C programming language, we can develop different types of secured and robust applications"
+  },
+  {
+    "url": "https://github.com/rust-lang/book",
+    "title": "book",
+    "date": "2015-12-11",
+    "tags": [
+      "rust",
+      "programming-language",
+      "tutorial",
+      "education",
+      "github-api",
+      "programming-language",
+      "github"
+    ],
+    "summary": "The Rust Programming Language \n !Build Statushttpsgithub.comrust-langbookworkflowsCIbadge.svg This repository contains the source of The Rust Programming Language book. The book is available in dead-tree form from No Starch Pressnostarch. nostarch httpsnostarch.comrust-programming-language-2nd-edition You can also read the book for free online. Please see the book as shipped with the latest stable, beta, or nightly Rust releases. Be aware that issues"
+  },
+  {
+    "url": "https://github.com/jonhoo/lox",
+    "title": "lox",
+    "date": "2024-08-24",
+    "tags": [
+      "rust",
+      "interpreter",
+      "programming-language"
+    ],
+    "summary": "https://app.codecrafters.io/courses/interpreter \n My implementation of the Build your own Interpreter Challengehttpsapp.codecrafters.iocoursesinterpreteroverview. This challenge follows the book Crafting Interpretershttpscraftinginterpreters.com by Robert Nystrom. Live-streamed on YouTubehttpsyoutube.comliveFdZmJ0DAmn4?featureshare."
+  }
+]

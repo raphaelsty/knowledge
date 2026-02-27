@@ -1,0 +1,44 @@
+[
+  {
+    "url": "https://github.com/robot-descriptions/robot_descriptions.py",
+    "title": "robot_descriptions.py",
+    "date": "2025-12-12",
+    "tags": [
+      "mjcf-descriptions",
+      "python",
+      "robot-description",
+      "robot-model",
+      "robotics",
+      "simulation"
+    ],
+    "summary": "Access 135+ robot descriptions from the main Python robotics frameworks \n Import open source robot descriptions as Python modules. Importing a description for the first time automatically downloads and caches files for future imports. Most Awesome Robot Descriptionshttpsgithub.comrobot-descriptionsawesome-robot-descriptions are available. All of them load successfully in respectively MuJoCo MJCF or Pinocchio, iDynTree, PyBullet and yourdfpy URDF. console conda install -c conda-forge robotdescrip"
+  },
+  {
+    "url": "https://github.com/robot-descriptions/robot_descriptions.py",
+    "title": "robot_descriptions.py",
+    "date": "2025-12-12",
+    "tags": [
+      "mjcf-descriptions",
+      "python",
+      "robot-description",
+      "robot-model",
+      "robotics",
+      "simulation"
+    ],
+    "summary": "Access 135+ robot descriptions from the main Python robotics frameworks \n Import open source robot descriptions as Python modules. Importing a description for the first time automatically downloads and caches files for future imports. Most Awesome Robot Descriptionshttpsgithub.comrobot-descriptionsawesome-robot-descriptions are available. All of them load successfully in respectively MuJoCo MJCF or Pinocchio, iDynTree, PyBullet and yourdfpy URDF. console conda install -c conda-forge robotdescrip"
+  },
+  {
+    "url": "https://github.com/robot-descriptions/robot_descriptions.py",
+    "title": "robot_descriptions.py",
+    "date": "2025-12-12",
+    "tags": [
+      "mjcf-descriptions",
+      "python",
+      "robot-description",
+      "robot-model",
+      "robotics",
+      "simulation"
+    ],
+    "summary": "Access 135+ robot descriptions from the main Python robotics frameworks \n Import open source robot descriptions as Python modules. Importing a description for the first time automatically downloads and caches files for future imports. Most Awesome Robot Descriptionshttpsgithub.comrobot-descriptionsawesome-robot-descriptions are available. All of them load successfully in respectively MuJoCo MJCF or Pinocchio, iDynTree, PyBullet and yourdfpy URDF. console conda install -c conda-forge robotdescrip"
+  }
+]

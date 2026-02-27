@@ -1,0 +1,103 @@
+[
+  {
+    "url": "https://x.com/charliermarsh/status/1670883279870783527",
+    "title": "Twitter @charliermarsh",
+    "date": "2023-06-19",
+    "tags": [
+      "concurrency",
+      "information-retrieval",
+      "performance",
+      "python",
+      "xtr"
+    ],
+    "summary": "There's an extremely interesting conversation going on in Python right now around the future of performance.\n\nIt's centered on @colesbury's PEP 703, which makes the GIL optional (to be removed entirely in the future), but comes at a cost.\n\nHere's my summary..."
+  },
+  {
+    "url": "https://github.com/luchris429/purejaxrl",
+    "title": "purejaxrl",
+    "date": "2023-02-25",
+    "tags": [
+      "agent",
+      "concurrency",
+      "gpu",
+      "jax",
+      "pytorch",
+      "reinforcement-learning"
+    ],
+    "summary": "Really Fast End-to-End Jax RL Implementations \n PureJaxRL is a high-performance, end-to-end Jax Reinforcement Learning RL implementation. When running many agents in parallel on GPUs, our implementation is over 1000x faster than standard PyTorch RL implementations. Unlike other Jax RL implementations, we implement the entire training pipeline in JAX, including the environment. This allows us to get significant speedups through JIT compilation and by avoiding CPU-GPU data transfer. It also result"
+  },
+  {
+    "url": "https://x.com/davewongillies/status/1474871224652025857",
+    "title": "Twitter @davewongillies",
+    "date": "2021-12-25",
+    "tags": [
+      "concurrency",
+      "performance",
+      "python"
+    ],
+    "summary": "@mgdm Never forget https://t.co/jRADZwcVaC"
+  },
+  {
+    "url": "https://x.com/Gillesvdwiele/status/1454109978822856711",
+    "title": "Twitter @Gillesvdwiele",
+    "date": "2021-10-29",
+    "tags": [
+      "concurrency",
+      "performance",
+      "python"
+    ],
+    "summary": "Please upvote this tweet... https://t.co/8bwV2r0sYk"
+  },
+  {
+    "url": "https://x.com/le_science4all/status/1445118302573969422",
+    "title": "Twitter @le_science4all",
+    "date": "2021-10-04",
+    "tags": [
+      "concurrency",
+      "discussion",
+      "opinion"
+    ],
+    "summary": "Des employ\u00e9s sont pay\u00e9s pour troller les entreprises concurrentes sur les r\u00e9seaux sociaux \ud83d\ude05\n\nBienvenue en 2021.\nhttps://t.co/n33FEslbBD https://t.co/1NAQqpiO9x"
+  },
+  {
+    "url": "https://github.com/amidst/toolbox",
+    "title": "toolbox",
+    "date": "2014-04-01",
+    "tags": [
+      "bayesian",
+      "bayesian-networks",
+      "concurrency",
+      "graphical-models",
+      "java",
+      "ml"
+    ],
+    "summary": "A Java Toolbox for Scalable Probabilistic Machine Learning \n v.0.7.2 The AMIDST Toolbox allows you to model your problem using a flexible probabilistic language based on graphical models. Then you fit your model with data using a Bayesian approach to handle modeling uncertainty. AMIDST provides tailored parallel powered by Java 8 Streams and distributed powered by Flinkhttpsflink.apache.org or Sparkhttpspark.apache.org implementations of Bayesian parameter learning for batch and streaming data. "
+  },
+  {
+    "url": "https://github.com/amidst/toolbox",
+    "title": "toolbox",
+    "date": "2014-04-01",
+    "tags": [
+      "bayesian",
+      "bayesian-networks",
+      "concurrency",
+      "graphical-models",
+      "java",
+      "ml"
+    ],
+    "summary": "A Java Toolbox for Scalable Probabilistic Machine Learning \n v.0.7.2 The AMIDST Toolbox allows you to model your problem using a flexible probabilistic language based on graphical models. Then you fit your model with data using a Bayesian approach to handle modeling uncertainty. AMIDST provides tailored parallel powered by Java 8 Streams and distributed powered by Flinkhttpsflink.apache.org or Sparkhttpspark.apache.org implementations of Bayesian parameter learning for batch and streaming data. "
+  },
+  {
+    "url": "https://x.com/fchollet/status/1763629637689893228",
+    "title": "Twitter @fchollet",
+    "date": "2024-03-01",
+    "tags": [
+      "concurrency",
+      "future",
+      "llms",
+      "parallel",
+      "tech"
+    ],
+    "summary": "My view of the capabilities of LLMs is probably far below that of the median tech industry person. And yet, the more time passes the more I realize my 2023 views were actually overestimating their future potential and current usefulness.\n\nParallel to self-driving: circa 2016-2017"
+  }
+]

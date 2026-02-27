@@ -1,0 +1,26 @@
+[
+  {
+    "url": "https://x.com/lmazare/status/1887509705704018126",
+    "title": "Twitter @lmazare",
+    "date": "2025-02-06",
+    "tags": [
+      "speech",
+      "real-time",
+      "kyutai",
+      "discussion"
+    ],
+    "summary": "Neil showing Hibiki \ud83d\udfe2 running on an iphone. All local so whatever you say will stay on the iphone and latency is great! Get the code to build the ios app in our moshi-swift repo (it's brittle at the moment but we'll polish it \ud83d\ude05 )"
+  },
+  {
+    "url": "https://x.com/reach_vb/status/1910075191012602047",
+    "title": "Twitter @reach_vb",
+    "date": "2025-04-09",
+    "tags": [
+      "tts",
+      "speech",
+      "multilingual",
+      "announcement"
+    ],
+    "summary": "Fuck yeah! Multilingual Orpheus TTS 3B is here \ud83d\udd25\n\n&gt; Zero shot voice cloning\n&gt; ~100ms streaming latency\n&gt; Apache 2.0 license\n&gt; Guided emotion and intonation\n&gt; Human like speech\n\nWeights on the hub, Text to Speech scene on fire! \ud83e\udd29 https://t.co/xJlCLKckj0"
+  }
+]

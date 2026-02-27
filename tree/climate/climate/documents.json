@@ -1,0 +1,75 @@
+[
+  {
+    "url": "https://x.com/hyperfp/status/1766404306733813926",
+    "title": "Twitter @hyperfp",
+    "date": "2024-03-09",
+    "tags": [
+      "climate",
+      "ocean",
+      "query"
+    ],
+    "summary": "@jobergum Nice demo. Would be interesting to also highlight terms in the query. And - is that possible ? - to make visible the links between q and a (for instance using different colors: eg. blue for things related to ocean and pink for climate change). @raphaelsrty"
+  },
+  {
+    "url": "https://proceedings.neurips.cc/paper/2021/hash/bcc0d400288793e8bdcd7c19a8ac0c2b-Abstract.html",
+    "title": "Autoformer: Decomposition Transformers with Auto-Correlation for Long-Term Series Forecasting",
+    "date": "2023-03-04",
+    "tags": [
+      "attention",
+      "benchmark",
+      "climate",
+      "ner",
+      "transformer"
+    ],
+    "summary": "Extending the forecasting time is a critical demand for real applications, such as extreme weather early warning and long-term energy consumption planning. This paper studies the long-term forecasting problem of time series. Prior Transformer-based models adopt various self-attention mechanisms to discover the long-range dependencies. However, intricate temporal patterns of the long-term future prohibit the model from finding reliable dependencies. Also, Transformers have to adopt the sparse ver"
+  },
+  {
+    "url": "https://twitter.com/carbonfact/status/1551579545429475330",
+    "title": "Twitter @carbonfact",
+    "date": "2022-07-25",
+    "tags": [
+      "startup",
+      "climate",
+      "announcement"
+    ],
+    "summary": "Thrilled to welcome @mru2dev to @carbonfact! David was previously CTO of Pretto, a leading online mortgage broker. He coded the first app in 2016 and scaled it to 1B\u20ac lended to French homeowners. \nDavid now wants to cut carbon. We could not be more excited to have him? https://t.co/7xf8YuFkWA"
+  },
+  {
+    "url": "https://github.com/electricitymaps/electricitymaps-contrib",
+    "title": "electricitymaps-contrib",
+    "date": "2016-05-21",
+    "tags": [
+      "energy",
+      "climate",
+      "data-engineering",
+      "python"
+    ],
+    "summary": "A real-time visualisation of the CO2 emissions of electricity consumption \n Electricity Maps A real time and historical visualisation of the Greenhouse Gas Intensity in terms of CO2 equivalent of electricity production and consumption around the world. app.electricitymaps.com !imagewebpublicimageselectricitymapsocialimage.pnggh-light-mode-only !imagewebpublicimageselectricitymapsocialimagedark.pnggh-dark-mode-only This project aims to provide a free, open-source, and transparent visualisation of"
+  },
+  {
+    "url": "https://github.com/protontypes/open-sustainable-technology",
+    "title": "open-sustainable-technology",
+    "date": "2020-09-18",
+    "tags": [
+      "battery",
+      "renewable-energy",
+      "sustainable-development-goals",
+      "climate-science",
+      "wind-turbine",
+      "carbon-emissions",
+      "clean-energy",
+      "climate-data",
+      "energy-data",
+      "energy-consumption",
+      "energy",
+      "ocean",
+      "carbon-footprint",
+      "climate",
+      "climate-change",
+      "sustainability",
+      "geoscience",
+      "photovoltaic"
+    ],
+    "summary": "A curated list of open technology projects to sustain a stable climate, energy supply, biodiversity and natural resources.  \n httpstabletopwhale.comA directory and analysis of the open source ecosystem in the areas of climate change, sustainable energy, biodiversity and natural resources. Earth's uniqueness in creating a stable environment for life in a completely hostile space is a miracle. Various life forms have taken billions of years to build up the natural resources humans depend on, such "
+  }
+]

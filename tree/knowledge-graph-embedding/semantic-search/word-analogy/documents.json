@@ -1,0 +1,27 @@
+[
+  {
+    "url": "https://www.tbray.org/ongoing/When/202x/2022/11/07/Just-Dont",
+    "title": "Hackernews Just don\u2019t (tbray.org)",
+    "date": "2023-03-14",
+    "tags": [
+      "discussion",
+      "speech",
+      "word-analogy",
+      "works-with-reason",
+      "bug-fix"
+    ],
+    "summary": "[This fragment is available in an audio version.] Sometimes it\u2019s wrong to begin a phrase with the word \u201cjust\u201d. I offer as evidence two such situations. I think there\u2019s a common thread to be drawn. Stuck \u00b7 People with mental-health issues can get stuck. For example, when some combination of"
+  },
+  {
+    "url": "https://arxiv.org/abs/1810.04882",
+    "title": "[1810.04882] Towards Understanding Linear Word Analogies",
+    "date": "2018-10-11",
+    "tags": [
+      "word-embedding",
+      "word-analogy",
+      "nlp",
+      "representation-learning"
+    ],
+    "summary": "A surprising property of word vectors is that word analogies can often be\nsolved with vector arithmetic. However, it is unclear why arithmetic operators\ncorrespond to non-linear embedding models such as skip-gram with negative\nsampling (SGNS). We provide a formal explanation of this phenomenon without\nmaking the strong assumptions that past theories have made about the vector\nspace and word distribution. Our theory has several implications. Past work has\nconjectured that linear substructures exi"
+  }
+]

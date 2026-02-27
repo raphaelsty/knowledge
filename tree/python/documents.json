@@ -1,0 +1,210 @@
+[
+  {
+    "url": "https://github.com/huggingface/kernels",
+    "title": "kernels",
+    "date": "2024-11-29",
+    "tags": [
+      "cuda",
+      "python",
+      "gpu"
+    ],
+    "summary": "Load compute kernels from the Hub \n The Kernel Hub allows Python libraries and applications to load compute kernels directly from the Hubhttpshf.co. To support this kind of dynamic loading, Hub kernels differ from traditional Python kernel packages in that they are made to be same Python process. the different PyTorch build configurations various CUDA versions and C ABIs. Furthermore, older C library versions must be supported."
+  },
+  {
+    "url": "https://github.com/jangirrishabh/look-closer",
+    "title": "look-closer",
+    "date": "2022-01-19",
+    "tags": [
+      "python",
+      "pytorch",
+      "reinforcement-learning",
+      "gpu",
+      "cuda",
+      "robotics"
+    ],
+    "summary": "Code for https://jangirrishabh.github.io/lookcloser/ \n Official PyTorch implementation for the paper Look Closer Bridging Egocentric and Third-Person Views with Transformers for Robotic Manipulation GPU access with CUDA 11.1 support is required. Install MuJoCo if you do not have it installed already Then, the remainder of the dependencies can be installed with the following commands"
+  },
+  {
+    "url": "https://github.com/NVIDIA/cuda-python",
+    "title": "cuda-python",
+    "date": "2021-06-28",
+    "tags": [
+      "python",
+      "gpu",
+      "cuda"
+    ],
+    "summary": "CUDA Python Low-level Bindings \n CUDA Python is the home for accessing NVIDIAs CUDA platform from Python. It consists of multiple components CUDA Python is currently undergoing an overhaul to improve existing and bring up new components. All of the previously available functionalities from the cuda-python package will continue to be available, please refer to the cuda.bindingshttpsnvidia.github.iocuda-pythoncuda-bindingslatest documentation for installation guide and further detail."
+  },
+  {
+    "url": "https://github.com/triton-lang/triton",
+    "title": "triton",
+    "date": "2014-08-30",
+    "tags": [
+      "gpu",
+      "cuda",
+      "python",
+      "deep-learning"
+    ],
+    "summary": "Development repository for the Triton language and compiler \n Documentation Nightly Wheels -------------------- -------------------- !Documentationhttpsgithub.comtriton-langtritonactionsworkflowsdocumentation.ymlbadge.svghttpstriton-lang.org !Wheelshttpsgithub.comtriton-langtritonactionsworkflowswheels.ymlbadge.svghttpsgithub.comtriton-langtritonactionsworkflowswheels.yml This is the development repository of Triton, a language and compiler for writing highly efficient custom Deep-Learning primi"
+  },
+  {
+    "url": "https://github.com/ptrblck/pytorch_misc",
+    "title": "pytorch_misc",
+    "date": "2018-11-15",
+    "tags": [
+      "pytorch",
+      "deep-learning",
+      "python",
+      "tutorial"
+    ],
+    "summary": "Code snippets created for the PyTorch discussion board \n Collection of code snippets I've written for the PyTorch discussion boardhttpsdiscuss.pytorch.org. All scripts were testes using the PyTorch 1.0 preview and torchvision 0.2.1. Additional libraries, e.g. numpy or pandas, are used in a few scripts. Some scripts might be a good starter to create a tutorial. Feedback is very welcome!"
+  },
+  {
+    "url": "https://github.com/pytorch/examples",
+    "title": "examples",
+    "date": "2016-08-24",
+    "tags": [
+      "pytorch",
+      "deep-learning",
+      "python",
+      "tutorial"
+    ],
+    "summary": "A set of examples around pytorch in Vision, Text, Reinforcement Learning, etc. \n !Run Exampleshttpsgithub.compytorchexamplesworkflowsRun20Examplesbadge.svg httpspytorch.orgexamples pytorchexamples is a repository showcasing examples of using PyTorchhttpsgithub.compytorchpytorch. The goal is to have curated, short, fewno dependencies high quality examples that are substantially different from each other that can be emulated in your existing work. Additionally, a list of good examples hosted in th"
+  },
+  {
+    "url": "https://twitter.com/halford_max/status/1643066195900354566",
+    "title": "Twitter @halford_max",
+    "date": "2023-04-04",
+    "tags": [
+      "cpu",
+      "python",
+      "pytorch",
+      "river",
+      "scikit-learn"
+    ],
+    "summary": "Online logistic regression on CPU, in Python:\n\n? River 105ms\n\ud83e\udd48 Vowpal Wabbit 304ms\n\ud83e\udd49 PyTorch 903 ms\n\ud83e\udd44scikit-learn 1500ms\n\nhttps://t.co/MuyH6sHSHi\n\nCan anyone do better?"
+  },
+  {
+    "url": "https://github.com/julien-blanchon/gsplat-kernel",
+    "title": "gsplat-kernel",
+    "date": "2025-09-21",
+    "tags": [
+      "cuda",
+      "kernel",
+      "python",
+      "pytorch"
+    ],
+    "summary": " \n 2D Gaussian Splatting kernels for PyTorch, built with the HuggingFace kernel-builder system. python import torch import gsplat numgaussians 1000 means2d torch.randnumgaussians, 2, device'cuda' 0,1 coordinates scales2d torch.randnumgaussians, 2, device'cuda' 0.1 0.01 rotation torch.randnumgaussians, device'cuda' 2 3.14159 colors torch.randnumgaussians, 3, device'cuda' RGB"
+  },
+  {
+    "url": "https://github.com/trycua/cua",
+    "title": "cua",
+    "date": "2025-01-31",
+    "tags": [
+      "agents",
+      "docker",
+      "python"
+    ],
+    "summary": "c/ua is the Docker Container for Computer-Use AI Agents. \n cua koo-ah is Docker for Computer-Use Agentshttpswww.oneusefulthing.orgpwhen-you-give-a-claude-a-mouse - it enables AI agents to control full operating systems in virtual containers and deploy them locally or to the cloud. Check out more demos of the Computer-Use Agent in action MCP Server Work with Claude Desktop and Tableau AI-Gradio Multi-app workflow with browser, VS Code and terminal"
+  },
+  {
+    "url": "https://github.com/ufoym/deepo",
+    "title": "deepo",
+    "date": "2017-10-27",
+    "tags": [
+      "docker",
+      "deep-learning",
+      "python",
+      "gpu"
+    ],
+    "summary": "Setup and customize deep learning environment in seconds. \n !deepohttpsuser-images.githubusercontent.com227024032102393-aecf573c-bb4e-11e7-811c-dc673cae7b9c.png !workflowshttpsgithub.comufoymdeepoworkflowsdeepo20CIbadge.svg !buildhttpsimg.shields.iodockerautomatedufoymdeepo.svg !licensehttpsimg.shields.iogithublicenseufoymdeepo.svg PLEASE NOTE, THE DEEP LEARNING FRAMEWORK WAR IS OVER, THIS PROJECT IS NO LONGER BEING MAINTAINED. Deepo is an open framework to assemble specialized dockerhttpwww.doc"
+  },
+  {
+    "url": "https://github.com/pmeier/light-the-torch",
+    "title": "light-the-torch",
+    "date": "2020-07-09",
+    "tags": [
+      "install",
+      "python",
+      "cuda",
+      "pip",
+      "pytorch"
+    ],
+    "summary": "Install PyTorch distributions with computation backend auto-detection \n light-the-torch is a small utility that wraps pip to ease the installation process for PyTorch distributions like torch, torchvision, torchaudio, and so on as well as third-party packages that depend on them. It auto-detects compatible CUDA versions from the local setup and installs the correct PyTorch binaries without user interference."
+  },
+  {
+    "url": "https://github.com/DeMoriarty/custom_matmul_kernels",
+    "title": "custom_matmul_kernels",
+    "date": "2021-05-02",
+    "tags": [
+      "cuda",
+      "matrix-multiplication",
+      "deep-learning",
+      "python"
+    ],
+    "summary": "Customized matrix multiplication kernels \n This repository contains source code for this blog posthttpsdemoriarty.github.ioBMM-1."
+  },
+  {
+    "url": "https://twitter.com/fperez_org/status/1469197319253815299",
+    "title": "Twitter @fperez_org",
+    "date": "2021-12-10",
+    "tags": [
+      "john-hunter",
+      "python",
+      "pytorch-knn",
+      "tweet",
+      "pytorch"
+    ],
+    "summary": "20y ago today, as a failing physics grad student I posted @IPythonDev 0.2.0. This opened the door to an incredible community: @ellisonbg, @minrk, @Mbussonn, the late John Hunter... who made @ProjectJupyter &amp; scientific python possible.\n\nToo many to name..\n\nhttps://t.co/e2L4DesP4L https://t.co/m8BhQ1PEJA"
+  },
+  {
+    "url": "https://github.com/onnx/onnx-ir",
+    "title": "onnx-ir",
+    "date": "2025-05-14",
+    "tags": [
+      "python",
+      "onnx",
+      "ml",
+      "pip",
+      "github",
+      "github-gist"
+    ],
+    "summary": " \n An in-memory IR that supports the full ONNX spec, designed for graph construction, analysis and transformation. Via pip pip install onnx-ir Or from source pip install githttpsgithub.comonnxir-py.git"
+  },
+  {
+    "url": "https://github.com/onnx/ir-py",
+    "title": "ir-py",
+    "date": "2025-05-14",
+    "tags": [
+      "python",
+      "onnx",
+      "ml",
+      "pip",
+      "gitpython",
+      "github"
+    ],
+    "summary": "Efficient in-memory representation for ONNX, in Python \n An in-memory IR that supports the full ONNX spec, designed for graph construction, analysis and transformation. Via pip pip install onnx-ir Or from source pip install githttpsgithub.comonnxir-py.git"
+  },
+  {
+    "url": "https://github.com/Stonesjtu/pytorch_memlab",
+    "title": "pytorch_memlab",
+    "date": "2019-05-24",
+    "tags": [
+      "pytorch",
+      "memory-profiling",
+      "python",
+      "cuda"
+    ],
+    "summary": "Profiling and inspecting memory in pytorch \n pytorchmemlab !PyPIhttpsimg.shields.iopypivpytorchmemlab.svg !PyPI - Downloadshttpsimg.shields.iopypidmpytorchmemlab.svg A simple and accurate CUDA memory management laboratory for pytorch, it consists of different parts about the memory CPU memory for courtesy, and of course the backward transferring. commands. Installation bash pip install pytorchmemlab bash pip install githttpsgithub.comstonesjtupytorchmemlab What's for Out-Of-Memory errors in pyto"
+  },
+  {
+    "url": "https://github.com/jaraco/keyring",
+    "title": "keyring",
+    "date": "2015-02-24",
+    "tags": [
+      "python",
+      "credential-management"
+    ],
+    "summary": ""
+  }
+]

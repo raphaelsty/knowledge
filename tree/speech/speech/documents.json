@@ -1,0 +1,65 @@
+[
+  {
+    "url": "https://x.com/mixedbreadai/status/2014062157546267070",
+    "title": "Twitter @mixedbreadai",
+    "date": "2026-01-21",
+    "tags": [
+      "embedding",
+      "embeddings",
+      "multi-vector-retrieval",
+      "speech",
+      "vector",
+      "vectors"
+    ],
+    "summary": "The multi vector embeddings are created using our SOTA retrieval model mxbai-wholembed. It supports text, audio, video on over 300 languages. A key innovation is the dynamic vector allocation, which lets the model dynamically decide the amounts of vectors it needs to represent https://t.co/w3RviRYsAw"
+  },
+  {
+    "url": "https://x.com/kyutai_labs/status/1836427396959932492",
+    "title": "Twitter @kyutai_labs",
+    "date": "2024-09-18",
+    "tags": [
+      "speech",
+      "llm",
+      "streaming",
+      "rust"
+    ],
+    "summary": "Today, we release several Moshi artifacts: a long technical report with all the details behind our model, weights for Moshi and its Mimi codec, along with streaming inference code in Pytorch, Rust and MLX. More details below \ud83e\uddf5 \u2b07\ufe0f\nPaper: https://t.co/JQtEMppifK\nRepo:"
+  },
+  {
+    "url": "https://openai.com/blog/introducing-chatgpt-and-whisper-apis",
+    "title": "Hackernews Introducing ChatGPT and Whisper APIs (openai.com)",
+    "date": "2023-03-14",
+    "tags": [
+      "chatgpt",
+      "openai",
+      "speech"
+    ],
+    "summary": ""
+  },
+  {
+    "url": "https://x.com/musicaoriginal2/status/1942571891048263838",
+    "title": "Twitter @musicaoriginal2",
+    "date": "2025-07-08",
+    "tags": [
+      "colbert",
+      "late-interaction",
+      "discussion",
+      "speech",
+      "speech-to-text",
+      "text-to-speech"
+    ],
+    "summary": "@antoine_chaffin This is one of the stars of the whole series, won't missed for anything.\nI only ask for one thing, hold your horses on the french accent speech speed.\nTo give you a point of reference 3/4 @bclavie speech speed it's fine."
+  },
+  {
+    "url": "https://sites.research.google/usm/",
+    "title": "Hackernews Universal Speech Model (research.google)",
+    "date": "2023-03-30",
+    "tags": [
+      "speech",
+      "speech-to-text",
+      "text-to-speech",
+      "speech"
+    ],
+    "summary": "Research paper Request API Access Universal Speech Model (USM) is a family of state-of-the-art speech models with 2B parameters trained on 12 million hours of speech and 28 billion sentences of text, spanning 300+ languages. USM, which is for use in YouTube (e.g., for closed captions), can perform automatic speech"
+  }
+]

@@ -1,0 +1,99 @@
+[
+  {
+    "url": "https://x.com/antoine_chaffin/status/2021251267318653399",
+    "title": "Twitter @antoine_chaffin",
+    "date": "2026-02-10",
+    "tags": [
+      "anytime-dstar",
+      "discussion"
+    ],
+    "summary": "Congrats to @raphaelsrty for pulling this off, this guy is just wild (and it won't stop anytime soon)\n\ncc @n0riskn0r3ward it's essentially all you've always dreamed of"
+  },
+  {
+    "url": "https://github.com/zhm-real/PathPlanning",
+    "title": "PathPlanning",
+    "date": "2020-06-16",
+    "tags": [
+      "rrt",
+      "lifelong-planning-astar",
+      "anytime-dstar",
+      "informed-rrt-star",
+      "realtime-adaptive-astar",
+      "batch-informed-trees",
+      "fast-marching-trees",
+      "path-planning",
+      "dstar",
+      "python",
+      "rrt-star-smart",
+      "rrt-connect",
+      "rrt-star",
+      "extended-rrt",
+      "dynamic-rrt",
+      "astar",
+      "anytime-repairing-astar",
+      "learning-realtime-astar",
+      "dstar-lite",
+      "algorithm",
+      "animations"
+    ],
+    "summary": "Common used path planning algorithms with animations. \n Overview This repository implements some common path planning algorithms used in robotics, including Search-based algorithms and Sampling-based algorithms. We designed animation for each algorithm to display the running process. The related papers are listed in Papershttpsgithub.comzhm-realPathPlanningpapers. Directory Structure . Search-based Planning Breadth-First Searching BFS Depth-First Searching DFS"
+  },
+  {
+    "url": "https://github.com/zhm-real/PathPlanning",
+    "title": "PathPlanning",
+    "date": "2020-06-16",
+    "tags": [
+      "rrt",
+      "lifelong-planning-astar",
+      "anytime-dstar",
+      "informed-rrt-star",
+      "realtime-adaptive-astar",
+      "batch-informed-trees",
+      "fast-marching-trees",
+      "path-planning",
+      "dstar",
+      "python",
+      "rrt-star-smart",
+      "rrt-connect",
+      "rrt-star",
+      "extended-rrt",
+      "dynamic-rrt",
+      "astar",
+      "anytime-repairing-astar",
+      "learning-realtime-astar",
+      "dstar-lite",
+      "algorithm",
+      "animations"
+    ],
+    "summary": "Common used path planning algorithms with animations. \n Overview This repository implements some common path planning algorithms used in robotics, including Search-based algorithms and Sampling-based algorithms. We designed animation for each algorithm to display the running process. The related papers are listed in Papershttpsgithub.comzhm-realPathPlanningpapers. Directory Structure . Search-based Planning Breadth-First Searching BFS Depth-First Searching DFS"
+  },
+  {
+    "url": "https://github.com/zhm-real/PathPlanning",
+    "title": "PathPlanning",
+    "date": "2020-06-16",
+    "tags": [
+      "rrt",
+      "lifelong-planning-astar",
+      "anytime-dstar",
+      "informed-rrt-star",
+      "realtime-adaptive-astar",
+      "batch-informed-trees",
+      "fast-marching-trees",
+      "path-planning",
+      "dstar",
+      "python",
+      "rrt-star-smart",
+      "rrt-connect",
+      "rrt-star",
+      "extended-rrt",
+      "dynamic-rrt",
+      "astar",
+      "anytime-repairing-astar",
+      "learning-realtime-astar",
+      "dstar-lite",
+      "algorithm",
+      "animations"
+    ],
+    "summary": "Common used path planning algorithms with animations. \n Overview This repository implements some common path planning algorithms used in robotics, including Search-based algorithms and Sampling-based algorithms. We designed animation for each algorithm to display the running process. The related papers are listed in Papershttpsgithub.comzhm-realPathPlanningpapers. Directory Structure . Search-based Planning Breadth-First Searching BFS Depth-First Searching DFS"
+  }
+]

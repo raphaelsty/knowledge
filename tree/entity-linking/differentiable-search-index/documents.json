@@ -1,0 +1,14 @@
+[
+  {
+    "url": "https://arxiv.org/abs/2202.06991",
+    "title": "[2202.06991] Transformer Memory as a Differentiable Search Index",
+    "date": "2022-02-14",
+    "tags": [
+      "information-retrieval",
+      "transformer",
+      "differentiable-search-index",
+      "nlp"
+    ],
+    "summary": "In this paper, we demonstrate that information retrieval can be accomplished\nwith a single Transformer, in which all information about the corpus is encoded\nin the parameters of the model. To this end, we introduce the Differentiable\nSearch Index (DSI), a new paradigm that learns a text-to-text model that maps\nstring queries directly to relevant docids; in other words, a DSI model answers\nqueries directly using only its parameters, dramatically simplifying the whole\nretrieval process. We study v"
+  }
+]

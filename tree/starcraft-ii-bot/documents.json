@@ -1,0 +1,26 @@
+[
+  {
+    "url": "https://github.com/liuruoze/mini-AlphaStar",
+    "title": "mini-AlphaStar",
+    "date": "2021-01-31",
+    "tags": [
+      "self-playing-bot",
+      "python",
+      "reinforcement-learning",
+      "sc2replay",
+      "starcraft2-ai",
+      "multi-agent-systems",
+      "starcraft2",
+      "deep-reinforcement-learning",
+      "deep-neural-networks",
+      "imitation-learning",
+      "gaming",
+      "deep-learning",
+      "mini-alphastar",
+      "pytorch",
+      "starcraft-ii-bot",
+      "supervised-learning"
+    ],
+    "summary": "A mini-scale reproduction code of the AlphaStar program. Note: the original AlphaStar is the AI proposed by DeepMind to play StarCraft II."
+  }
+]

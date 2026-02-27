@@ -1,0 +1,55 @@
+[
+  {
+    "url": "https://x.com/aaxsh18/status/1988183624295084378",
+    "title": "Twitter @aaxsh18",
+    "date": "2025-11-11",
+    "tags": [
+      "antoine-bordes",
+      "antoine-dupont"
+    ],
+    "summary": "@bclavie what happened to antoine"
+  },
+  {
+    "url": "https://x.com/lateinteraction/status/1799147249508950150",
+    "title": "Twitter @lateinteraction",
+    "date": "2024-06-07",
+    "tags": [
+      "antoine-bordes",
+      "antoine-dupont",
+      "late-interaction"
+    ],
+    "summary": "@antoine_chaffin Can\u2019t wait to see it, Antoine!"
+  },
+  {
+    "url": "https://x.com/aaxsh18/status/1988183624295084378",
+    "title": "Twitter @aaxsh18",
+    "date": "2025-11-11",
+    "tags": [
+      "antoine-bordes",
+      "antoine-dupont"
+    ],
+    "summary": "@bclavie what happened to antoine"
+  },
+  {
+    "url": "https://x.com/lateinteraction/status/1799147249508950150",
+    "title": "Twitter @lateinteraction",
+    "date": "2024-06-07",
+    "tags": [
+      "antoine-bordes",
+      "antoine-dupont",
+      "late-interaction"
+    ],
+    "summary": "@antoine_chaffin Can\u2019t wait to see it, Antoine!"
+  },
+  {
+    "url": "https://arxiv.org/abs/1705.06476",
+    "title": "[1705.06476] ParlAI: A Dialog Research Software Platform",
+    "date": "2017-05-18",
+    "tags": [
+      "parlai",
+      "antoine-bordes",
+      "ml"
+    ],
+    "summary": "We introduce ParlAI (pronounced \"par-lay\"), an open-source software platform\nfor dialog research implemented in Python, available at http://parl.ai. Its\ngoal is to provide a unified framework for sharing, training and testing of\ndialog models, integration of Amazon Mechanical Turk for data collection, human\nevaluation, and online/reinforcement learning; and a repository of machine\nlearning models for comparing with others' models, and improving upon existing\narchitectures. Over 20 tasks are supp"
+  }
+]

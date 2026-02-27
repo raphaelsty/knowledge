@@ -1,0 +1,68 @@
+[
+  {
+    "url": "https://github.com/gvinciguerra/PGM-index",
+    "title": "PGM-index",
+    "date": "2019-10-18",
+    "tags": [
+      "compression",
+      "multidimensional-trees",
+      "b-tree",
+      "indexing",
+      "research",
+      "big-data",
+      "ml",
+      "spatial-index",
+      "data-structures",
+      "succinct-data-structure",
+      "database",
+      "multidimensional",
+      "cpp",
+      "header-only"
+    ],
+    "summary": "?State-of-the-art learned data structure that enables fast lookup, predecessor, range searches and updates in arrays of billions of items using orders of magnitude less space than traditional indexes \n The Piecewise Geometric Model index PGM-index is a data structure that enables fast lookup, predecessor, range searches and updates in arrays of billions of items using orders of magnitude less space than traditional indexes while providing the same worst-case query time guarantees. Website Docume"
+  },
+  {
+    "url": "https://github.com/gvinciguerra/PGM-index",
+    "title": "PGM-index",
+    "date": "2019-10-18",
+    "tags": [
+      "compression",
+      "multidimensional-trees",
+      "b-tree",
+      "indexing",
+      "research",
+      "big-data",
+      "ml",
+      "spatial-index",
+      "data-structures",
+      "succinct-data-structure",
+      "database",
+      "multidimensional",
+      "cpp",
+      "header-only"
+    ],
+    "summary": "?State-of-the-art learned data structure that enables fast lookup, predecessor, range searches and updates in arrays of billions of items using orders of magnitude less space than traditional indexes \n The Piecewise Geometric Model index PGM-index is a data structure that enables fast lookup, predecessor, range searches and updates in arrays of billions of items using orders of magnitude less space than traditional indexes while providing the same worst-case query time guarantees. Website Docume"
+  },
+  {
+    "url": "https://github.com/gvinciguerra/PGM-index",
+    "title": "PGM-index",
+    "date": "2019-10-18",
+    "tags": [
+      "compression",
+      "multidimensional-trees",
+      "b-tree",
+      "indexing",
+      "research",
+      "big-data",
+      "ml",
+      "spatial-index",
+      "data-structures",
+      "succinct-data-structure",
+      "database",
+      "multidimensional",
+      "cpp",
+      "header-only"
+    ],
+    "summary": "?State-of-the-art learned data structure that enables fast lookup, predecessor, range searches and updates in arrays of billions of items using orders of magnitude less space than traditional indexes \n The Piecewise Geometric Model index PGM-index is a data structure that enables fast lookup, predecessor, range searches and updates in arrays of billions of items using orders of magnitude less space than traditional indexes while providing the same worst-case query time guarantees. Website Docume"
+  }
+]

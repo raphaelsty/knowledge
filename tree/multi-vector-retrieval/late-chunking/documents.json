@@ -1,0 +1,38 @@
+[
+  {
+    "url": "https://x.com/antoine_chaffin/status/1871106792765198775",
+    "title": "Twitter @antoine_chaffin",
+    "date": "2024-12-23",
+    "tags": [
+      "token-pooling",
+      "pylate",
+      "late-chunking",
+      "discussion"
+    ],
+    "summary": "@doesdatmaksense Well I added our pooling method in PyLate (the one that pool most cosine similar tokens) and conceptually, to me late chunking is very similar\n\nSo instead of a fixed function, I want to abstract it to a post processing in PyLate that can be user defined through a function that"
+  },
+  {
+    "url": "https://x.com/doesdatmaksense/status/1870873642164470269",
+    "title": "Twitter @doesdatmaksense",
+    "date": "2024-12-22",
+    "tags": [
+      "modernbert",
+      "embedding",
+      "late-chunking",
+      "long-context"
+    ],
+    "summary": "modernBERT + late chunking as an embedding model for long documents where the context is spread across the full document\n\ni think it will work great and along with flash-attention it will be quite fast too, need to experiment though"
+  },
+  {
+    "url": "https://x.com/antoine_chaffin/status/1833129854943805700",
+    "title": "Twitter @antoine_chaffin",
+    "date": "2024-09-09",
+    "tags": [
+      "colbert",
+      "late-chunking",
+      "token-pooling",
+      "information-retrieval"
+    ],
+    "summary": "Late chunking is another type of pooling, but using spatial information rather than similarity as in our proposed pooling method\n\nWe still need to figure out how to compromise between keeping all the tokens and only one and it might even need to be considered during training https://t.co/LmooKTqsTr"
+  }
+]

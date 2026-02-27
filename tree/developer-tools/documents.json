@@ -1,0 +1,62 @@
+[
+  {
+    "url": "https://twitter.com/josh_wills/status/1634033187189055488",
+    "title": "Twitter @josh_wills",
+    "date": "2023-03-10",
+    "tags": [
+      "developer-tools",
+      "opinion",
+      "discussion",
+      "social-media"
+    ],
+    "summary": "@DSMoxon @vboykis Naw I\u2019ve been a fan of https://t.co/e8nwk6GBkZ for a long time"
+  },
+  {
+    "url": "https://twitter.com/fishnets88/status/1570399699043061760",
+    "title": "Twitter @fishnets88",
+    "date": "2022-09-15",
+    "tags": [
+      "developer-tools",
+      "python",
+      "announcement",
+      "embedding"
+    ],
+    "summary": "I'm working on new features for that tool by the way! https://t.co/uWpFv1dJnW"
+  },
+  {
+    "url": "https://twitter.com/fishnets88/status/1545032091812913153",
+    "title": "Twitter @fishnets88",
+    "date": "2022-07-07",
+    "tags": [
+      "python",
+      "developer-tools",
+      "announcement",
+      "embedding"
+    ],
+    "summary": "Yep. `pip install bulk` does the trick ? https://t.co/YvV2FnjOHO"
+  },
+  {
+    "url": "https://twitter.com/fishnets88/status/1530443807258558468",
+    "title": "Twitter @fishnets88",
+    "date": "2022-05-28",
+    "tags": [
+      "python",
+      "developer-tools",
+      "announcement",
+      "embedding"
+    ],
+    "summary": "TIL: deadlink. It's a tool that helps find dead links in documentation. It can even replace redirected links if you really want. \n\nhttps://t.co/j3g56oeSfm"
+  },
+  {
+    "url": "https://github.com/badges/shields",
+    "title": "shields",
+    "date": "2013-01-30",
+    "tags": [
+      "svg",
+      "badge",
+      "developer-tools",
+      "javascript"
+    ],
+    "summary": "Concise, consistent, and legible badges in SVG and raster format \n This is home to Shields.ioshields.io, a service for concise, consistent, and legible badges in SVG and raster format, which can easily be included in GitHub readmes or any other web page. The service supports dozens of continuous integration services, package registries, distributions, app stores, social networks, code coverage services, and code analysis services."
+  }
+]

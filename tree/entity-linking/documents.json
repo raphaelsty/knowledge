@@ -1,0 +1,237 @@
+[
+  {
+    "url": "https://x.com/m_chirculescu/status/1840815977207878081",
+    "title": "Twitter @m_chirculescu",
+    "date": "2024-09-30",
+    "tags": [
+      "nlp",
+      "entity-linking",
+      "discussion"
+    ],
+    "summary": "@art_zucker Very nice!\n\nWith this occasion, I discovered this hidden gem: https://t.co/MR6d17cqES (is this part of a subchapter? I can't see the title in the side menu)"
+  },
+  {
+    "url": "https://twitter.com/hyperfp/status/1602074521279791104",
+    "title": "Twitter @hyperfp",
+    "date": "2022-12-11",
+    "tags": [
+      "entity-linking",
+      "embedding",
+      "nlp",
+      "discussion"
+    ],
+    "summary": "@raphaelsrty a method that computes embeddings from entity descriptions and mention contexts (Yamada among the authors) https://t.co/ruzkQY5thQ"
+  },
+  {
+    "url": "https://arxiv.org/abs/2204.08173",
+    "title": "[2204.08173] TABi: Type-Aware Bi-Encoders for Open-Domain Entity Retrieval",
+    "date": "2022-04-18",
+    "tags": [
+      "entity-linking",
+      "information-retrieval",
+      "dense-retrieval",
+      "nlp"
+    ],
+    "summary": "Entity retrieval--retrieving information about entity mentions in a query--is\na key step in open-domain tasks, such as question answering or fact checking.\nHowever, state-of-the-art entity retrievers struggle to retrieve rare entities\nfor ambiguous mentions due to biases towards popular entities. Incorporating\nknowledge graph types during training could help overcome popularity biases,\nbut there are several challenges: (1) existing type-based retrieval methods\nrequire mention boundaries as input"
+  },
+  {
+    "url": "https://github.com/SapienzaNLP/extend",
+    "title": "extend",
+    "date": "2022-03-22",
+    "tags": [
+      "entity-linking",
+      "nlp",
+      "information-extraction",
+      "bert"
+    ],
+    "summary": "Entity Disambiguation as text extraction (ACL 2022) \n ExtEnD Extractive Entity Disambiguation This repository contains the code of ExtEnD Extractive Entity Disambiguationhttpswww.researchgate.netpublication359392427ExtEnDExtractiveEntityDisambiguation, a novel approach to Entity Disambiguation i.e. the task of linking a mention in context with its most suitable entity in a reference knowledge base where we reformulate this task as a text extraction problem. This work was accepted at ACL 2022."
+  },
+  {
+    "url": "https://github.com/tomasonjo/trinity-ie",
+    "title": "trinity-ie",
+    "date": "2021-02-08",
+    "tags": [
+      "information-extraction",
+      "nlp",
+      "ner",
+      "entity-linking"
+    ],
+    "summary": "Information extraction pipeline containing coreference resolution, named entity linking, and relationship extraction \n Run the project with docker-compose up -d You can find more information in my blog post httpstowardsdatascience.comfrom-text-to-knowledge-the-information-extraction-pipeline-b65e7e30273e"
+  },
+  {
+    "url": "https://arxiv.org/abs/2006.01969",
+    "title": "[2006.01969] REL: An Entity Linker Standing on the Shoulders of Giants",
+    "date": "2020-06-02",
+    "tags": [
+      "entity-linking",
+      "information-retrieval",
+      "nlp"
+    ],
+    "summary": "Entity linking is a standard component in modern retrieval system that is\noften performed by third-party toolkits. Despite the plethora of open source\noptions, it is difficult to find a single system that has a modular\narchitecture where certain components may be replaced, does not depend on\nexternal sources, can easily be updated to newer Wikipedia versions, and, most\nimportant of all, has state-of-the-art performance. The REL system presented in\nthis paper aims to fill that gap. Building on st"
+  },
+  {
+    "url": "https://github.com/samuelbroscheit/entity_knowledge_in_bert",
+    "title": "entity_knowledge_in_bert",
+    "date": "2020-05-25",
+    "tags": [
+      "entity-linking",
+      "bert",
+      "nlp",
+      "knowledge-graph"
+    ],
+    "summary": "This repository contains the code for the CONLL 2019 paper \"Investigating Entity Knowledge in BERT with Simple Neural End-To-End Entity Linking\". The code is provided as a documentation for the paper and also for follow-up research. \n This repository contains the code for the CONLL 2019 paper Investigating Entity Knowledge in BERT with Simple Neural End-To-End Entity Linkinghttpsarxiv.orgabs2003.05473. The code is provided as a documentation for the paper and also for follow-up research. The con"
+  },
+  {
+    "url": "https://github.com/dfdazac/blp",
+    "title": "blp",
+    "date": "2020-03-31",
+    "tags": [
+      "knowledge-graph",
+      "link-prediction",
+      "entity-linking",
+      "nlp"
+    ],
+    "summary": "\"Inductive Entity Representations from Text via Link Prediction\" @ The Web Conference 2021 \n This repository contains the code used for the experiments in the paper Inductive entity representations from text via link prediction, presented at The Web Conference, 2021. To refer to our work, please use the following bibtex inproceedingsdaza2021inductive, title Inductive Entity Representations from Text via Link Prediction, author Daniel Daza and Michael Cochez and Paul Groth,"
+  },
+  {
+    "url": "https://github.com/facebookresearch/BLINK",
+    "title": "BLINK",
+    "date": "2019-09-25",
+    "tags": [
+      "entity-linking",
+      "nlp",
+      "information-retrieval",
+      "python"
+    ],
+    "summary": "Entity Linker solution \n !BLINK logo.imgblinklogobanner.png BLINK is an Entity Linking python library that uses Wikipedia as the target knowledge base. The process of linking entities to Wikipedia is also known as Wikificationhttpsen.wikipedia.orgwikiWikification. The BLINK architecture is described in the following paper bibtex inproceedingswu2019zero, titleZero-shot Entity Linking with Dense Entity Retrieval, authorLedell Wu, Fabio Petroni, Martin Josifoski, Sebastian Riedel, Luke Zettlemoyer,"
+  },
+  {
+    "url": "https://arxiv.org/abs/1807.08447",
+    "title": "[1807.08447] LinkNBed: Multi-Graph Representation Learning with Entity Linkage",
+    "date": "2018-07-23",
+    "tags": [
+      "knowledge-graph",
+      "graph-embedding",
+      "entity-linking",
+      "nlp"
+    ],
+    "summary": "Knowledge graphs have emerged as an important model for studying complex\nmulti-relational data. This has given rise to the construction of numerous\nlarge scale but incomplete knowledge graphs encoding information extracted from\nvarious resources. An effective and scalable approach to jointly learn over\nmultiple graphs and eventually construct a unified graph is a crucial next step\nfor the success of knowledge-based inference for many downstream applications.\nTo this end, we propose LinkNBed, a d"
+  },
+  {
+    "url": "https://arxiv.org/abs/1909.10506",
+    "title": "[1909.10506] Learning Dense Representations for Entity Retrieval",
+    "date": "2019-09-23",
+    "tags": [
+      "dual-encoder",
+      "entity-linking",
+      "unsupervised-negative-mining",
+      "hard-negative-mining",
+      "nlp"
+    ],
+    "summary": "We show that it is feasible to perform entity linking by training a dual\nencoder (two-tower) model that encodes mentions and entities in the same dense\nvector space, where candidate entities are retrieved by approximate nearest\nneighbor search. Unlike prior work, this setup does not rely on an alias table\nfollowed by a re-ranker, and is thus the first fully learned entity retrieval\nmodel. We show that our dual encoder, trained using only anchor-text links in\nWikipedia, outperforms discrete alias"
+  },
+  {
+    "url": "https://arxiv.org/abs/2003.05473",
+    "title": "[2003.05473] Investigating Entity Knowledge in BERT with Simple Neural End-To-End Entity Linking (CoNNL 2019)",
+    "date": "2020-03-11",
+    "tags": [
+      "entity-linking",
+      "bert",
+      "end-to-end",
+      "nlp"
+    ],
+    "summary": "A typical architecture for end-to-end entity linking systems consists of\nthree steps: mention detection, candidate generation and entity disambiguation.\nIn this study we investigate the following questions: (a) Can all those steps\nbe learned jointly with a model for contextualized text-representations, i.e.\nBERT (Devlin et al., 2019)? (b) How much entity knowledge is already contained\nin pretrained BERT? (c) Does additional entity knowledge improve BERT's\nperformance in downstream tasks? To this"
+  },
+  {
+    "url": "https://arxiv.org/abs/1911.03814",
+    "title": "[1911.03814] Scalable Zero-shot Entity Linking with Dense Entity Retrieval",
+    "date": "2019-11-10",
+    "tags": [
+      "zero-shot-entity-linking",
+      "retrieval-augmented-generation",
+      "entity-linking",
+      "blink",
+      "bert-based-entity-linking",
+      "information-retrieval"
+    ],
+    "summary": "This paper introduces a conceptually simple, scalable, and highly effective\nBERT-based entity linking model, along with an extensive evaluation of its\naccuracy-speed trade-off. We present a two-stage zero-shot linking algorithm,\nwhere each entity is defined only by a short textual description. The first\nstage does retrieval in a dense space defined by a bi-encoder that\nindependently embeds the mention context and the entity descriptions. Each\ncandidate is then re-ranked with a cross-encoder, tha"
+  },
+  {
+    "url": "https://arxiv.org/abs/1911.03814",
+    "title": "[1911.03814] Scalable Zero-shot Entity Linking with Dense Entity Retrieval",
+    "date": "2019-11-10",
+    "tags": [
+      "zero-shot-entity-linking",
+      "retrieval-augmented-generation",
+      "entity-linking",
+      "blink",
+      "bert-based-entity-linking",
+      "information-retrieval"
+    ],
+    "summary": "This paper introduces a conceptually simple, scalable, and highly effective\nBERT-based entity linking model, along with an extensive evaluation of its\naccuracy-speed trade-off. We present a two-stage zero-shot linking algorithm,\nwhere each entity is defined only by a short textual description. The first\nstage does retrieval in a dense space defined by a bi-encoder that\nindependently embeds the mention context and the entity descriptions. Each\ncandidate is then re-ranked with a cross-encoder, tha"
+  },
+  {
+    "url": "https://arxiv.org/abs/1909.00426",
+    "title": "[1909.00426] Global Entity Disambiguation with BERT",
+    "date": "2019-09-01",
+    "tags": [
+      "entity-disambiguation",
+      "bert",
+      "entity-linking",
+      "nlp"
+    ],
+    "summary": "We propose a global entity disambiguation (ED) model based on BERT. To\ncapture global contextual information for ED, our model treats not only words\nbut also entities as input tokens, and solves the task by sequentially\nresolving mentions to their referent entities and using resolved entities as\ninputs at each step. We train the model using a large entity-annotated corpus\nobtained from Wikipedia. We achieve new state-of-the-art results on five\nstandard ED datasets: AIDA-CoNLL, MSNBC, AQUAINT, AC"
+  },
+  {
+    "url": "https://arxiv.org/abs/2010.00904",
+    "title": "[2010.00904] Autoregressive Entity Retrieval",
+    "date": "2020-10-02",
+    "tags": [
+      "entity-linking",
+      "entity-retrieval",
+      "generative-model",
+      "nlp"
+    ],
+    "summary": "Entities are at the center of how we represent and aggregate knowledge. For\ninstance, Encyclopedias such as Wikipedia are structured by entities (e.g., one\nper article). The ability to retrieve such entities given a query is\nfundamental for knowledge-intensive tasks such as entity linking and\nopen-domain question answering. One way to understand current approaches is as\nclassifiers among atomic labels, one for each entity. Their weight vectors are\ndense entity representations produced by encodin"
+  },
+  {
+    "url": "https://arxiv.org/abs/1909.10506",
+    "title": "[1909.10506] Learning Dense Representations for Entity Retrieval",
+    "date": "2019-09-23",
+    "tags": [
+      "dual-encoder",
+      "entity-linking",
+      "unsupervised-negative-mining",
+      "hard-negative-mining",
+      "nlp"
+    ],
+    "summary": "We show that it is feasible to perform entity linking by training a dual\nencoder (two-tower) model that encodes mentions and entities in the same dense\nvector space, where candidate entities are retrieved by approximate nearest\nneighbor search. Unlike prior work, this setup does not rely on an alias table\nfollowed by a re-ranker, and is thus the first fully learned entity retrieval\nmodel. We show that our dual encoder, trained using only anchor-text links in\nWikipedia, outperforms discrete alias"
+  },
+  {
+    "url": "https://arxiv.org/abs/1909.10506",
+    "title": "[1909.10506] Learning Dense Representations for Entity Retrieval",
+    "date": "2019-09-23",
+    "tags": [
+      "dual-encoder",
+      "entity-linking",
+      "unsupervised-negative-mining",
+      "hard-negative-mining",
+      "nlp"
+    ],
+    "summary": "We show that it is feasible to perform entity linking by training a dual\nencoder (two-tower) model that encodes mentions and entities in the same dense\nvector space, where candidate entities are retrieved by approximate nearest\nneighbor search. Unlike prior work, this setup does not rely on an alias table\nfollowed by a re-ranker, and is thus the first fully learned entity retrieval\nmodel. We show that our dual encoder, trained using only anchor-text links in\nWikipedia, outperforms discrete alias"
+  },
+  {
+    "url": "https://arxiv.org/abs/1911.03814",
+    "title": "[1911.03814] Scalable Zero-shot Entity Linking with Dense Entity Retrieval",
+    "date": "2019-11-10",
+    "tags": [
+      "zero-shot-entity-linking",
+      "retrieval-augmented-generation",
+      "entity-linking",
+      "blink",
+      "bert-based-entity-linking",
+      "information-retrieval"
+    ],
+    "summary": "This paper introduces a conceptually simple, scalable, and highly effective\nBERT-based entity linking model, along with an extensive evaluation of its\naccuracy-speed trade-off. We present a two-stage zero-shot linking algorithm,\nwhere each entity is defined only by a short textual description. The first\nstage does retrieval in a dense space defined by a bi-encoder that\nindependently embeds the mention context and the entity descriptions. Each\ncandidate is then re-ranked with a cross-encoder, tha"
+  }
+]

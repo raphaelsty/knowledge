@@ -1,0 +1,106 @@
+[
+  {
+    "url": "https://x.com/lateinteraction/status/1977007105149485153",
+    "title": "Twitter @lateinteraction",
+    "date": "2025-10-11",
+    "tags": [
+      "inference",
+      "discussion",
+      "information-retrieval"
+    ],
+    "summary": "wait what, most of that compute wasn\u2019t inference??"
+  },
+  {
+    "url": "https://x.com/LightOnIO/status/1942611852589949184",
+    "title": "Twitter @LightOnIO",
+    "date": "2025-07-08",
+    "tags": [
+      "pylate",
+      "rust",
+      "late-interaction",
+      "inference",
+      "announcement",
+      "information-retrieval"
+    ],
+    "summary": "\ud83c\udfce\ufe0f Introducing PyLate-rs\n\n@raphaelsrty is back at it to make you love late-interaction models!\n\nAfter quickening the retrieval process with FastPlaid, he\u2019s now making inference lightning-fast with this lightweight tool crafted in Rust for optimal speed and efficiency!\n\n\ud83d\udcabAnd https://t.co/ww63V1qHYm"
+  },
+  {
+    "url": "https://x.com/_fracapuano/status/1920183316335956053",
+    "title": "Twitter @_fracapuano",
+    "date": "2025-05-07",
+    "tags": [
+      "robotics",
+      "inference",
+      "lerobot",
+      "huggingface"
+    ],
+    "summary": "So you want your robot to be super-adaptive, fast and never laggy, right?\u2728boooring\ud83e\udd71\nTruth is you want to mess around with it, or at least that's @RemiCadene and us at @LeRobotHF by @huggingface \n\nHow we improved runtime performance for *the same neural network*: a thread \ud83e\uddf5 https://t.co/Gmv7bhJEVa"
+  },
+  {
+    "url": "https://github.com/kscalelabs/kinfer",
+    "title": "kinfer",
+    "date": "2024-11-17",
+    "tags": [
+      "rust",
+      "robotics",
+      "inference"
+    ],
+    "summary": "The K-Scale model export and inference tool \n This package is designed to support running real-time robotics models. For more information, see the documentation herehttpsdocs.kscale.devdocsk-infer. To enable logging, set your log path in the environment variable KINFERLOGPATH. For example, export KINFERLOGPATHhomedpshkinfer-logs"
+  },
+  {
+    "url": "https://twitter.com/joao_gante/status/1747322413006643259",
+    "title": "Up to 3x faster LLM generation with no extra resources/requirements - ngram speculation has landed in \ud83e\udd17 transformers! ?? All you need to do is to add `prompt_lookup_num_tokens=10` to your `generate` call and you'll get faster LLMs? \ud83e\uddf5How does it work? https://t.co/DS7YJfw7Cw",
+    "date": "2024-01-16",
+    "tags": [
+      "llm",
+      "transformers",
+      "inference",
+      "discussion"
+    ],
+    "summary": ""
+  },
+  {
+    "url": "https://github.com/huggingface/candle",
+    "title": "candle",
+    "date": "2023-06-19",
+    "tags": [
+      "deep-learning",
+      "rust",
+      "ml",
+      "inference"
+    ],
+    "summary": "Minimalist ML framework for Rust \n Candle is a minimalist ML framework for Rust with a focus on performance including GPU support and ease of use. Try our online demos whisperhttpshuggingface.cospaceslmzcandle-whisper, LLaMA2httpshuggingface.cospaceslmzcandle-llama2, T5httpshuggingface.cospacesradamesCandle-T5-Generation-Wasm, yolohttpshuggingface.cospaceslmzcandle-yolo, Segment Anythinghttpshuggingface.cospacesradamescandle-segment-anything-wasm. Make sure that you have candle-corehttpsgithub.c"
+  },
+  {
+    "url": "https://github.com/LABouteille/torchinfer",
+    "title": "torchinfer",
+    "date": "2022-07-08",
+    "tags": [
+      "pytorch",
+      "inference",
+      "python"
+    ],
+    "summary": "Deep learning inference framework [WIP]"
+  },
+  {
+    "url": "https://twitter.com/PyTorch/status/1437838231505096708",
+    "title": "Twitter @PyTorch",
+    "date": "2021-09-14",
+    "tags": [
+      "inference",
+      "pytorch"
+    ],
+    "summary": "Want to make your inference code in PyTorch run faster? Here\u2019s a quick thread on doing exactly that. \n\n1. Replace https://t.co/OG6jlroK1O_grad() with the \u2728torch.inference_mode()\u2728 context manager. https://t.co/EbKarCvrGT"
+  },
+  {
+    "url": "https://x.com/PyTorch/status/1437838231505096708",
+    "title": "Twitter @PyTorch",
+    "date": "2021-09-14",
+    "tags": [
+      "deep-learning",
+      "inference",
+      "pytorch"
+    ],
+    "summary": "Want to make your inference code in PyTorch run faster? Here\u2019s a quick thread on doing exactly that. \n\n1. Replace https://t.co/OG6jlroK1O_grad() with the \u2728torch.inference_mode()\u2728 context manager. https://t.co/EbKarCvrGT"
+  }
+]

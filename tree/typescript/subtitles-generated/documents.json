@@ -1,0 +1,56 @@
+[
+  {
+    "url": "https://github.com/m1guelpf/yt-whisper",
+    "title": "yt-whisper",
+    "date": "2022-09-22",
+    "tags": [
+      "ffmpeg",
+      "python",
+      "openai",
+      "whisper",
+      "openai-whisper",
+      "transcribe",
+      "youtube-dl",
+      "youtube",
+      "subtitles",
+      "subtitles-generated"
+    ],
+    "summary": "Using OpenAI's Whisper to automatically generate YouTube subtitles \n This repository uses yt-dlp and OpenAI's Whisperhttpsopenai.comblogwhisper to generate subtitle files for any youtube video. To get started, you'll need Python 3.7 or newer. Install the binary by running the following command pip install githttpsgithub.comm1guelpfyt-whisper.git You'll also need to install ffmpeghttpsffmpeg.org, which is available from most package managers bash sudo apt update sudo apt install ffmpeg"
+  },
+  {
+    "url": "https://github.com/m1guelpf/yt-whisper",
+    "title": "yt-whisper",
+    "date": "2022-09-22",
+    "tags": [
+      "ffmpeg",
+      "python",
+      "openai",
+      "whisper",
+      "openai-whisper",
+      "transcribe",
+      "youtube-dl",
+      "youtube",
+      "subtitles",
+      "subtitles-generated"
+    ],
+    "summary": "Using OpenAI's Whisper to automatically generate YouTube subtitles \n This repository uses yt-dlp and OpenAI's Whisperhttpsopenai.comblogwhisper to generate subtitle files for any youtube video. To get started, you'll need Python 3.7 or newer. Install the binary by running the following command pip install githttpsgithub.comm1guelpfyt-whisper.git You'll also need to install ffmpeghttpsffmpeg.org, which is available from most package managers bash sudo apt update sudo apt install ffmpeg"
+  },
+  {
+    "url": "https://github.com/m1guelpf/yt-whisper",
+    "title": "yt-whisper",
+    "date": "2022-09-22",
+    "tags": [
+      "ffmpeg",
+      "python",
+      "openai",
+      "whisper",
+      "openai-whisper",
+      "transcribe",
+      "youtube-dl",
+      "youtube",
+      "subtitles",
+      "subtitles-generated"
+    ],
+    "summary": "Using OpenAI's Whisper to automatically generate YouTube subtitles \n This repository uses yt-dlp and OpenAI's Whisperhttpsopenai.comblogwhisper to generate subtitle files for any youtube video. To get started, you'll need Python 3.7 or newer. Install the binary by running the following command pip install githttpsgithub.comm1guelpfyt-whisper.git You'll also need to install ffmpeghttpsffmpeg.org, which is available from most package managers bash sudo apt update sudo apt install ffmpeg"
+  }
+]

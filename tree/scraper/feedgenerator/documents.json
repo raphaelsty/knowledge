@@ -1,0 +1,74 @@
+[
+  {
+    "url": "https://github.com/huginn/huginn",
+    "title": "huginn",
+    "date": "2013-03-10",
+    "tags": [
+      "notifications",
+      "agent",
+      "feedgenerator",
+      "scraper",
+      "webscraping",
+      "rss",
+      "twitter-streaming",
+      "automation",
+      "ruby",
+      "monitoring",
+      "huginn",
+      "feed"
+    ],
+    "summary": "Create agents that monitor and act on your behalf.  Your agents are standing by! \n !Huginnhttpsraw.github.comhuginnhuginnmastermediahuginn-logo.png Your agents are standing by. Huginn is a system for building agents that perform automated tasks for you online. They can read the web, watch for events, and take actions on your behalf. Huginn's Agents create and consume events, propagating them along a directed graph. Think of it as a hackable version of IFTTT or Zapier on your own server. You alwa"
+  },
+  {
+    "url": "https://github.com/more-itertools/more-itertools",
+    "title": "more-itertools",
+    "date": "2012-04-26",
+    "tags": [
+      "python",
+      "data-preprocessing",
+      "preprocessing",
+      "feedgenerator"
+    ],
+    "summary": "More routines for operating on iterables, beyond itertools"
+  },
+  {
+    "url": "https://github.com/huginn/huginn",
+    "title": "huginn",
+    "date": "2013-03-10",
+    "tags": [
+      "notifications",
+      "agent",
+      "feedgenerator",
+      "scraper",
+      "webscraping",
+      "rss",
+      "twitter-streaming",
+      "automation",
+      "ruby",
+      "monitoring",
+      "huginn",
+      "feed"
+    ],
+    "summary": "Create agents that monitor and act on your behalf.  Your agents are standing by! \n !Huginnhttpsraw.github.comhuginnhuginnmastermediahuginn-logo.png Your agents are standing by. Huginn is a system for building agents that perform automated tasks for you online. They can read the web, watch for events, and take actions on your behalf. Huginn's Agents create and consume events, propagating them along a directed graph. Think of it as a hackable version of IFTTT or Zapier on your own server. You alwa"
+  },
+  {
+    "url": "https://github.com/huginn/huginn",
+    "title": "huginn",
+    "date": "2013-03-10",
+    "tags": [
+      "notifications",
+      "agent",
+      "feedgenerator",
+      "scraper",
+      "webscraping",
+      "rss",
+      "twitter-streaming",
+      "automation",
+      "ruby",
+      "monitoring",
+      "huginn",
+      "feed"
+    ],
+    "summary": "Create agents that monitor and act on your behalf.  Your agents are standing by! \n !Huginnhttpsraw.github.comhuginnhuginnmastermediahuginn-logo.png Your agents are standing by. Huginn is a system for building agents that perform automated tasks for you online. They can read the web, watch for events, and take actions on your behalf. Huginn's Agents create and consume events, propagating them along a directed graph. Think of it as a hackable version of IFTTT or Zapier on your own server. You alwa"
+  }
+]

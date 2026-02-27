@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://x.com/halford_max/status/1673623256274993153",
+    "title": "Twitter @halford_max",
+    "date": "2023-06-27",
+    "tags": [
+      "environment",
+      "programming",
+      "python"
+    ],
+    "summary": "Here's how to quantify the environmental impact of different pizzas, in Python, using open data https://t.co/UX16DOoSxE"
+  },
+  {
+    "url": "https://x.com/AnecdotesMaths/status/1310595725135314945",
+    "title": "Twitter @AnecdotesMaths",
+    "date": "2020-09-28",
+    "tags": [
+      "environment",
+      "mathematics",
+      "opinion"
+    ],
+    "summary": "En prenant deux nombres cons\u00e9cutifs de la suite de Fibonacci (1, 2, 3, 5, 8, 13, 21, 34, ...), on peut approximativement convertir des miles en kilom\u00e8tres.\n\nPar exemple, 5 miles valent environ 8 km et 21 miles valent environ 34 km."
+  },
+  {
+    "url": "https://github.com/openai/gym3",
+    "title": "gym3",
+    "date": "2020-06-03",
+    "tags": [
+      "python",
+      "reinforcement-learning",
+      "environment"
+    ],
+    "summary": "Vectorized interface for reinforcement learning environments \n Status Maintenance expect bug fixes and minor updates gym3 provides a unified interface for reinforcement learning environments that improves upon the gym interface and includes vectorization, which is invaluable for performance. gym3 is just the interface and associated tools, and includes no environments beyond some simple testing environments. gym3 is used internally inside OpenAI and is released here primarily for use by OpenAI e"
+  },
+  {
+    "url": "https://github.com/deepmind/dm_hard_eight",
+    "title": "dm_hard_eight",
+    "date": "2020-04-23",
+    "tags": [
+      "reinforcement-learning",
+      "environment",
+      "deep-learning",
+      "python"
+    ],
+    "summary": " \n DeepMind Hard Eight Tasks is a set of 8 diverse machine-learning tasks that require exploration in partially observable environments to solve. !Hard Eight videodocsdmhardeight.gif These tasks are provided through pre-packaged Docker containershttpwww.docker.com. This package consists of support code to run these Docker containers. You interact with the task environment via a"
+  },
+  {
+    "url": "https://github.com/ucla-rlcourse/competitive-rl",
+    "title": "competitive-rl",
+    "date": "2020-03-30",
+    "tags": [
+      "reinforcement-learning",
+      "environment",
+      "python"
+    ],
+    "summary": "A set of competitive environments for Reinforcement Learning research. \n Compeititive Pong Compeititive Car-Racing In this repo, we provide two interesting competitive RL environments 1. Competitive Pong cPong The environment extends the classic Atari Game Pong into a competitive environment, where both side can be trainable agents. 2. Competitive Car-Racing cCarRacing The environment allows multiple cars to race and compete in the same map."
+  },
+  {
+    "url": "https://github.com/deepmind/dm_env",
+    "title": "dm_env",
+    "date": "2019-07-08",
+    "tags": [
+      "python",
+      "reinforcement-learning",
+      "environment",
+      "api"
+    ],
+    "summary": "A Python interface for reinforcement learning environments \n !PyPI Python versionhttpsimg.shields.iopypipyversionsdm-env !PyPI versionhttpsbadge.fury.iopydm-env.svg This package describes an interface for Python reinforcement learning RL environments. It consists of the following core components environment on each time step transition. format of the actions consumed by an environment, as well as the observations, rewards, and discounts it returns. implementations conform to the dmenv.Environmen"
+  },
+  {
+    "url": "https://github.com/google-deepmind/dm_env",
+    "title": "dm_env",
+    "date": "2019-07-08",
+    "tags": [
+      "reinforcement-learning",
+      "environment",
+      "python"
+    ],
+    "summary": "A Python interface for reinforcement learning environments \n !PyPI Python versionhttpsimg.shields.iopypipyversionsdm-env !PyPI versionhttpsbadge.fury.iopydm-env.svg This package describes an interface for Python reinforcement learning RL environments. It consists of the following core components environment on each time step transition. format of the actions consumed by an environment, as well as the observations, rewards, and discounts it returns. implementations conform to the dmenv.Environmen"
+  },
+  {
+    "url": "https://github.com/openai/gym",
+    "title": "gym",
+    "date": "2016-04-27",
+    "tags": [
+      "python",
+      "reinforcement-learning",
+      "environment"
+    ],
+    "summary": "A toolkit for developing and comparing reinforcement learning algorithms. \n Gym is an open source Python library for developing and comparing reinforcement learning algorithms by providing a standard API to communicate between learning algorithms and environments, as well as a standard set of environments compliant with that API. Since its release, Gym's API has become the field standard for doing this."
+  }
+]

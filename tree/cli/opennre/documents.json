@@ -1,0 +1,50 @@
+[
+  {
+    "url": "https://github.com/raphaelsty/textokb",
+    "title": "textokb",
+    "date": "2021-08-11",
+    "tags": [
+      "relation-extraction",
+      "python",
+      "transformer",
+      "luke",
+      "spacy",
+      "opennre",
+      "knowledge",
+      "text"
+    ],
+    "summary": "Extract knowledge from raw text \n This repository is a nearly copy-paste of From Text to Knowledge The Information Extraction Pipelinehttpstowardsdatascience.comfrom-text-to-knowledge-the-information-extraction-pipeline-b65e7e30273e with some cosmetic updates. I made an installable version to evaluate it easily. The original code is available trinity-iehttpsgithub.comtomasonjotrinity-ie. To create some value, I added the Lukehttpsgithub.comstudio-ousialuke model to predict relations between enti"
+  },
+  {
+    "url": "https://github.com/raphaelsty/textokb",
+    "title": "textokb",
+    "date": "2021-08-11",
+    "tags": [
+      "relation-extraction",
+      "python",
+      "transformer",
+      "luke",
+      "spacy",
+      "opennre",
+      "knowledge",
+      "text"
+    ],
+    "summary": "Extract knowledge from raw text \n This repository is a nearly copy-paste of From Text to Knowledge The Information Extraction Pipelinehttpstowardsdatascience.comfrom-text-to-knowledge-the-information-extraction-pipeline-b65e7e30273e with some cosmetic updates. I made an installable version to evaluate it easily. The original code is available trinity-iehttpsgithub.comtomasonjotrinity-ie. To create some value, I added the Lukehttpsgithub.comstudio-ousialuke model to predict relations between enti"
+  },
+  {
+    "url": "https://github.com/raphaelsty/textokb",
+    "title": "textokb",
+    "date": "2021-08-11",
+    "tags": [
+      "relation-extraction",
+      "python",
+      "transformer",
+      "luke",
+      "spacy",
+      "opennre",
+      "knowledge",
+      "text"
+    ],
+    "summary": "Extract knowledge from raw text \n This repository is a nearly copy-paste of From Text to Knowledge The Information Extraction Pipelinehttpstowardsdatascience.comfrom-text-to-knowledge-the-information-extraction-pipeline-b65e7e30273e with some cosmetic updates. I made an installable version to evaluate it easily. The original code is available trinity-iehttpsgithub.comtomasonjotrinity-ie. To create some value, I added the Lukehttpsgithub.comstudio-ousialuke model to predict relations between enti"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "url": "https://x.com/fishnets88/status/1635653726403796993",
+    "title": "Twitter @fishnets88",
+    "date": "2023-03-14",
+    "tags": [
+      "embeddings",
+      "nlp",
+      "sentence-transformers",
+      "spacy",
+      "spelling"
+    ],
+    "summary": "@ceyda_cinarel For phrases -&gt; sense2vec. \nFor bad spelling -&gt; bytepair or floret \nFor sentences -&gt; sentence-transformers\nJust words: spaCy. \n\nI wrote a library that makes it pretty easy to just use any of them: \n\nhttps://t.co/tTK7QASm4U"
+  },
+  {
+    "url": "https://x.com/halford_max/status/1479641965415174145",
+    "title": "Twitter @halford_max",
+    "date": "2022-01-08",
+    "tags": [
+      "keyboard",
+      "package",
+      "python",
+      "spelling",
+      "string-matching"
+    ],
+    "summary": "I made a Python package to measure string edit distances based on keyboard layouts -&gt; https://t.co/sQZd33oP4Z. It should be useful for spelling correction as well as analyzing keystroke dynamics \ud83e\udd13"
+  }
+]

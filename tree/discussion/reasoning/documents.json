@@ -1,0 +1,413 @@
+[
+  {
+    "url": "https://huggingface.co/Parallia/ClinicalEncoder25-Diagnosable-Colbert-L2-for-medical-texts",
+    "title": "\ud83e\udd17 HuggingFace Parallia/ClinicalEncoder25-Diagnosable-Colbert-L2-for-medical-texts",
+    "date": "2025-12-29",
+    "tags": [
+      "colbert",
+      "information-retrieval",
+      "reasoning",
+      "research"
+    ],
+    "summary": "| \u2696\ufe0f To use commercially, [please obtain a license](https://licensing.parallia.eu). \ud83d\ude4f Thank you for supporting my research! \ud83e\udd17 | |-----------------------------------------------------------------------------------------------------------------------------------| ClinicalEncoder25: The First Diagnosable ColBERT for Clinical Reasoning ClinicalEncoder25 is a breakthrough in AI for healthcare\u2014a non-generative, interpretable reasoning model that understands clinical text at millisecond speed, with tok"
+  },
+  {
+    "url": "https://x.com/lateinteraction/status/1978476154022457404",
+    "title": "Twitter @lateinteraction",
+    "date": "2025-10-15",
+    "tags": [
+      "llm",
+      "information-retrieval",
+      "reasoning"
+    ],
+    "summary": "btw Alex is a second-month PhD student; he did this work in 4 weeks\n\ni have my suspicions that Alex has secret recursive Alexes that do his work for him, but i haven't been able to confirm that\n\nhaha really fun post on recursive LMs with interesting trace examples, check it out!"
+  },
+  {
+    "url": "https://x.com/antoine_chaffin/status/1930625989643587598",
+    "title": "Twitter @antoine_chaffin",
+    "date": "2025-06-05",
+    "tags": [
+      "colbert",
+      "reasoning",
+      "retrieval",
+      "modernbert"
+    ],
+    "summary": "Modern retrievers can perform reasoning internally, yet they benefit from using reasoning traces from LLM! \nSo how does Reason-ModernColBERT perform when used in collaboration with GPT4?\nWell this time it takes the crown, outperforming ReasonIR-8B and 7B rerankers! https://t.co/7kTKuzt3lA"
+  },
+  {
+    "url": "https://x.com/helloiamleonie/status/1925916062232547699",
+    "title": "Twitter @helloiamleonie",
+    "date": "2025-05-23",
+    "tags": [
+      "information-retrieval",
+      "reasoning",
+      "retrieval"
+    ],
+    "summary": "Level 1: Keyword-based retrieval\nLevel 2: Semantic-based retrieval\nLevel 3: Reasoning-based retrieval\n\n\ud835\uddea\ud835\uddf5\ud835\uddee\ud835\ude01 \ud835\uddf6\ud835\ude00 \ud835\udde5\ud835\uddf2\ud835\uddee\ud835\ude00\ud835\uddfc\ud835\uddfb\ud835\uddf6\ud835\uddfb\ud835\uddf4 \ud835\udddc\ud835\uddfb\ud835\uddf3\ud835\uddfc\ud835\uddff\ud835\uddfa\ud835\uddee\ud835\ude01\ud835\uddf6\ud835\uddfc\ud835\uddfb \ud835\udde5\ud835\uddf2\ud835\ude01\ud835\uddff\ud835\uddf6\ud835\uddf2\ud835\ude03\ud835\uddee\ud835\uddf9?I\nIt is the ability to find relevant information that requires logical thinking to connect your query https://t.co/YkbvWNF2dU"
+  },
+  {
+    "url": "https://x.com/philipbankier/status/1925593917665226912",
+    "title": "Twitter @philipbankier",
+    "date": "2025-05-22",
+    "tags": [
+      "colbert",
+      "modernbert",
+      "reasoning",
+      "retrieval",
+      "announcement"
+    ],
+    "summary": "Huge congrats to @antoine_chaffin and the @LightOnIO team for releasing Reason-ModernColBERT, it tops the BRIGHT benchmark and outperforms models 45 times its size in reasoning-intensive retrieval!"
+  },
+  {
+    "url": "https://x.com/IgorCarron/status/1925587015388516753",
+    "title": "Twitter @IgorCarron",
+    "date": "2025-05-22",
+    "tags": [
+      "colbert",
+      "reasoning",
+      "retrieval",
+      "lighton"
+    ],
+    "summary": "A new SOTA in Reasoning at @LightOnIO !"
+  },
+  {
+    "url": "https://x.com/bvttuan/status/1925586311274270763",
+    "title": "Twitter @bvttuan",
+    "date": "2025-05-22",
+    "tags": [
+      "colbert",
+      "modernbert",
+      "reasoning",
+      "retrieval"
+    ],
+    "summary": "Reason-ModernColBERT hits BRIGHT top scores with just 150M params. Kudos to the @LightOnIO team!"
+  },
+  {
+    "url": "https://x.com/mochizukimr/status/1925563809017864226",
+    "title": "Twitter @mochizukimr",
+    "date": "2025-05-22",
+    "tags": [
+      "colbert",
+      "reasoning",
+      "retrieval",
+      "announcement"
+    ],
+    "summary": "150M params. \u201creasoning-intensive retrieval\u201d.. comparatively low latency. Amazing reveal \ud83d\udd25"
+  },
+  {
+    "url": "https://x.com/LightOnIO/status/1925579567281926462",
+    "title": "Twitter @LightOnIO",
+    "date": "2025-05-22",
+    "tags": [
+      "colbert",
+      "reasoning",
+      "retrieval",
+      "modernbert",
+      "announcement"
+    ],
+    "summary": "\ud83c\udf10 From Matching to Reasoning \u2014 Retrieval just grew a brain.\n\nLightOn introduces Reason-ModernColBERT, a State-of-the-Art multi-vector model purpose-built for the era of Deep Research \u2014 where matching isn\u2019t enough, and true insight demands reasoning.\n\nBuilt on #ModernBERT and https://t.co/z7RcyFZXdx"
+  },
+  {
+    "url": "https://x.com/gm8xx8/status/1925563522563383397",
+    "title": "Twitter @gm8xx8",
+    "date": "2025-05-22",
+    "tags": [
+      "colbert",
+      "modernbert",
+      "reasoning",
+      "retrieval",
+      "late-interaction"
+    ],
+    "summary": "Reason-ModernColBERT is a 150M late-interaction retrieval model trained on ReasonIR-HQ via PyLate (from GTE-ModernColBERT-v1). It uses 128-dim MaxSim embeddings for reasoning-focused retrieval.\n\n- SoTA on BRIGHT; beats all models up to 7B, incl. ReasonIR-8B (+2.5 NDCG@10)\n-"
+  },
+  {
+    "url": "https://x.com/antoine_chaffin/status/1925555137226969485",
+    "title": "Twitter @antoine_chaffin",
+    "date": "2025-05-22",
+    "tags": [
+      "colbert",
+      "reasoning",
+      "retrieval",
+      "llm"
+    ],
+    "summary": "Reason-ModernColBERT fits perfectly in the deep research ecosystem, where the LLM can generate various reasoning-intensive queries\nBeing only 150M parameters greatly reduces latency compared to 7-8B models"
+  },
+  {
+    "url": "https://x.com/antoine_chaffin/status/1925555125696843997",
+    "title": "Twitter @antoine_chaffin",
+    "date": "2025-05-22",
+    "tags": [
+      "colbert",
+      "reasoning",
+      "modernbert",
+      "retrieval"
+    ],
+    "summary": "Even wilder, Reason-ModernColBERT is the best on Stack Exchange splits by far, even outperforming ReasonIR-8B itself by more than 2.5 points of NDCG@10!\nHowever, it falls a bit short to some of the LLMs on the coding and theorems ones (but still is very competitive compared to"
+  },
+  {
+    "url": "https://x.com/antoine_chaffin/status/1925555118692327839",
+    "title": "Twitter @antoine_chaffin",
+    "date": "2025-05-22",
+    "tags": [
+      "late-interaction",
+      "colbert",
+      "reasoning",
+      "fine-tuning",
+      "information-retrieval"
+    ],
+    "summary": "When applied to such reasoning queries, existing models fail pretty hard\nMeta recently released ReasonIR, where they train Llama 8B to perform this task\nAfter training GTE-ModernColBERT, I figured I should give their data a shot for fine-tuning!"
+  },
+  {
+    "url": "https://x.com/antoine_chaffin/status/1925555115689160863",
+    "title": "Twitter @antoine_chaffin",
+    "date": "2025-05-22",
+    "tags": [
+      "late-interaction",
+      "colbert",
+      "reasoning",
+      "information-retrieval",
+      "benchmark"
+    ],
+    "summary": "Model: https://t.co/Zyg9yt7dWn\nSo what is reasoning-intensive retrieval?\nAs explained in the BRIGHT paper, most existing retrieval tasks leverage lexical or semantic-based retrieval, but in practice, some tasks can require reasoning to determine what the target relevancy is https://t.co/cf6vFaHhaz"
+  },
+  {
+    "url": "https://x.com/antoine_chaffin/status/1925555110521798925",
+    "title": "Twitter @antoine_chaffin",
+    "date": "2025-05-22",
+    "tags": [
+      "late-interaction",
+      "colbert",
+      "rag",
+      "reasoning",
+      "benchmark"
+    ],
+    "summary": "Agentic RAG is the\u2728hot\u2728new\u2728thing\nThat is why I am thrilled to announce that @LightOnIO is releasing Reason-ModernColBERT, reaching the top of the popular BRIGHT benchmark and outperforming models more than 45 times its size on reasoning-intensive retrieval! https://t.co/MWK5LfqUKh"
+  },
+  {
+    "url": "https://brightbenchmark.github.io/",
+    "title": "BRIGHT: A Realistic and Challenging Benchmark for Reasoning-Intensive Retrieval",
+    "date": "2025-05-14",
+    "tags": [
+      "information-retrieval",
+      "benchmark",
+      "reasoning"
+    ],
+    "summary": ""
+  },
+  {
+    "url": "https://github.com/XiaomiMiMo/MiMo",
+    "title": "Hackernews Xiaomi MiMo Reasoning Model (github.com/xiaomimimo)",
+    "date": "2025-05-01",
+    "tags": [
+      "llm",
+      "reasoning",
+      "discussion"
+    ],
+    "summary": " \n Unlocking the Reasoning Potential of Language ModelFrom Pretraining to Posttraining HuggingFace nbsp ModelScope nbsp Technical Report nbsp 2025.05.30 We scaled the SFT dataset from approximately 500K to 6M instances and continuously expanding the RL training window size from 32K to 48K, the performance of MiMo-7B-RL-0530httpshuggingface.coXiaomiMiMoMiMo-7B-RL-0530 on AIME24 can be continuously improved and eventually surpass that of DeepSeek R1 79.8."
+  },
+  {
+    "url": "http://arxiv.org/abs/2504.13837",
+    "title": "Does Reinforcement Learning Really Incentivize Reasoning Capacity in LLMs Beyond the Base Model?",
+    "date": "2025-04-24",
+    "tags": [
+      "reinforcement-learning",
+      "llm",
+      "reasoning"
+    ],
+    "summary": "Reinforcement Learning with Verifiable Rewards (RLVR) has recently demonstrated notable success in enhancing the reasoning capabilities of LLMs, particularly in mathematics and programming tasks. It is widely believed that RLVR enables LLMs to continuously self-improve, thus acquiring novel reasoning abilities that exceed corresponding base models' capacity. In this study, however, we critically re-examines this assumption by measuring the pass@\\textit{k} metric with large values of \\textit{k} t"
+  },
+  {
+    "url": "https://x.com/lateinteraction/status/1909011076605518124",
+    "title": "Twitter @lateinteraction",
+    "date": "2025-04-06",
+    "tags": [
+      "announcement",
+      "llm",
+      "reasoning"
+    ],
+    "summary": "You cannot separate reasoning and knowledge as cleanly as you think.\n\nIf you'd asked me what I care about in 2020/2021, I'd have said it was \u201cdecoupling the capacity that language models have for understanding text\u00a0from how they store knowledge\u201d (quote from link below this"
+  },
+  {
+    "url": "https://x.com/Dorialexander/status/1888913452942442804",
+    "title": "Twitter @Dorialexander",
+    "date": "2025-02-10",
+    "tags": [
+      "llm",
+      "pre-training",
+      "reasoning",
+      "discussion"
+    ],
+    "summary": "So arrived at the Grand Palais with @ana_stasenko Available for anything small reasoning models and open pretraining data. https://t.co/2UEQWVxtuk"
+  },
+  {
+    "url": "https://github.com/Jiayi-Pan/TinyZero",
+    "title": "TinyZero",
+    "date": "2025-01-21",
+    "tags": [
+      "llm",
+      "reasoning",
+      "python"
+    ],
+    "summary": " \n !imagecover.png TinyZero is a reproduction of DeepSeek R1 Zerohttpsgithub.comdeepseek-aiDeepSeek-R1 in countdown and multiplication tasks. We built upon veRLhttpsgithub.comvolcengineverl. Through RL, the 3B base LM develops self-verification and search abilities all on its own You can experience the Ahah moment yourself for We release Apative Parallel Reasoninghttpsgithub.comParallel-ReasoningAPR, where we explore a new dimension in scaling reasoining models"
+  },
+  {
+    "url": "https://github.com/deepseek-ai/DeepSeek-R1",
+    "title": "DeepSeek-R1",
+    "date": "2025-01-20",
+    "tags": [
+      "llm",
+      "reasoning",
+      "reinforcement-learning"
+    ],
+    "summary": " \n Paper Link We introduce our first-generation reasoning models, DeepSeek-R1-Zero and DeepSeek-R1. DeepSeek-R1-Zero, a model trained via large-scale reinforcement learning RL without supervised fine-tuning SFT as a preliminary step, demonstrated remarkable performance on reasoning. With RL, DeepSeek-R1-Zero naturally emerged with numerous powerful and interesting reasoning behaviors. However, DeepSeek-R1-Zero encounters challenges such as endless repetition, poor readability, and language mixin"
+  },
+  {
+    "url": "http://arxiv.org/abs/2501.07301",
+    "title": "The Lessons of Developing Process Reward Models in Mathematical Reasoning",
+    "date": "2025-01-19",
+    "tags": [
+      "llm",
+      "reasoning",
+      "reinforcement-learning"
+    ],
+    "summary": "Process Reward Models (PRMs) emerge as a promising approach for process supervision in mathematical reasoning of Large Language Models (LLMs), which aim to identify and mitigate intermediate errors in the reasoning processes. However, the development of effective PRMs faces significant challenges, particularly in data annotation and evaluation methodologies. In this paper, through extensive experiments, we demonstrate that commonly used Monte Carlo (MC) estimation-based data synthesis for PRMs t"
+  },
+  {
+    "url": "http://arxiv.org/abs/2412.17747",
+    "title": "Deliberation in Latent Space via Differentiable Cache Augmentation",
+    "date": "2024-12-24",
+    "tags": [
+      "llm",
+      "reasoning",
+      "inference"
+    ],
+    "summary": "Techniques enabling large language models (LLMs) to \"think more\" by generating and attending to intermediate reasoning steps have shown promise in solving complex problems. However, the standard approaches generate sequences of discrete tokens immediately before responding, and so they can incur significant latency costs and be challenging to optimize. In this work, we demonstrate that a frozen LLM can be augmented with an offline coprocessor that operates on the model's key-value (kv) cache. Th"
+  },
+  {
+    "url": "https://x.com/Dorialexander/status/1870772860878233836",
+    "title": "Twitter @Dorialexander",
+    "date": "2024-12-22",
+    "tags": [
+      "llm",
+      "reasoning",
+      "benchmark",
+      "discussion"
+    ],
+    "summary": "Les mod\u00e8les O progressent vite. O1 est sorti en septembre dernier et nous avons d\u00e9j\u00e0 la g\u00e9n\u00e9ration suivante, O3. Le mod\u00e8le marque un saut significatif sur des \u00e9valuations complexes en maths, mais aussi une \u00e9valuation simple pour les humains et compliqu\u00e9e pour les mod\u00e8les, ARC-AGI"
+  },
+  {
+    "url": "https://arxiv.org/abs/2408.03314",
+    "title": "Scaling LLM Test-Time Compute Optimally can be More Effective than Scaling Model Parameters",
+    "date": "2024-12-17",
+    "tags": [
+      "llm",
+      "inference",
+      "reasoning"
+    ],
+    "summary": "Enabling LLMs to improve their outputs by using more test-time computation is a critical step towards building generally self-improving agents that can operate on open-ended natural language. In this paper, we study the scaling of inference-time computation in LLMs, with a focus on answering the question: if an LLM is allowed to use a fixed but non-trivial amount of inference-time compute, how much can it improve its performance on a challenging prompt? Answering this question has implications n"
+  },
+  {
+    "url": "https://github.com/huggingface/search-and-learn",
+    "title": "search-and-learn",
+    "date": "2024-12-09",
+    "tags": [
+      "llm",
+      "python",
+      "reasoning"
+    ],
+    "summary": " \n Models Datasets Blog Post Recipes to enhance LLM capabilities by scaling inference-time compute. Name inspired by Rich Sutton's Bitter Lessonhttpswww.cs.utexas.edueunsolcoursesdatabitterlesson.pdf Over the last few years, the scaling of train-time compute has dominated the progress of LLMs. Although this paradigm has proven to be remarkably effective, the resources needed to pretrain ever larger models are becoming prohibitively expensive, with billion-dollar clusters already on the horizon. "
+  },
+  {
+    "url": "https://x.com/bclavie/status/1758585982893343208",
+    "title": "Twitter @bclavie",
+    "date": "2024-02-16",
+    "tags": [
+      "discussion",
+      "reasoning"
+    ],
+    "summary": "Definitely one of the most pleasant endorsements possible, thanks @jeremyphoward \ud83d\ude0a\n\nVery happy to be joining https://t.co/9pjYJOkl7j soon, check this post out for my reasoning if you haven't yet!"
+  },
+  {
+    "url": "https://arxiv.org/abs/2311.10770",
+    "title": "Hackernews Exponentially faster language modelling (arxiv.org)",
+    "date": "2023-11-23",
+    "tags": [
+      "llm",
+      "reasoning",
+      "nlp"
+    ],
+    "summary": "Computer Science > Computation and Language [Submitted on 15 Nov 2023 (v1), last revised 21 Nov 2023 (this version, v2)] Title:Exponentially Faster Language Modelling View PDFAbstract:Language models only really need to use an exponential fraction of their neurons for individual inferences. As proof, we present UltraFastBERT, a BERT variant that"
+  },
+  {
+    "url": "https://x.com/vanstriendaniel/status/1899385572570845487",
+    "title": "Twitter @vanstriendaniel",
+    "date": "2025-03-11",
+    "tags": [
+      "rl",
+      "dataset",
+      "math",
+      "reasoning"
+    ],
+    "summary": "II-Thought RL v0: First large-scale multi-domain RL dataset\n- 960K+ high-quality question-answer pairs\n- 735K math problems from multiple sources\n- 98K code problems with execution validation\n- 74K science &amp; specialized domain samples https://t.co/gnT1fGmOoG"
+  },
+  {
+    "url": "https://x.com/Dorialexander/status/1870773212575101154",
+    "title": "Twitter @Dorialexander",
+    "date": "2024-12-22",
+    "tags": [
+      "llm",
+      "reasoning",
+      "math",
+      "discussion"
+    ],
+    "summary": "Il n\u2019est aussi pas tr\u00e8s clair dans quelle mesure les capacit\u00e9s avanc\u00e9es en math vont se traduire en cas d\u2019usage pratique (probablement en programmation ?). En devenant plus performants, les mod\u00e8les O se sont aussi plus sp\u00e9cialis\u00e9s et ne sont pas si facile \u00e0 prendre en main."
+  },
+  {
+    "url": "https://arxiv.org/abs/1905.06088",
+    "title": "[1905.06088] Neural-Symbolic Computing: An Effective Methodology for Principled Integration of Machine Learning and Reasoning",
+    "date": "2019-05-15",
+    "tags": [
+      "neural-symbolic",
+      "reasoning",
+      "deep-learning",
+      "ml"
+    ],
+    "summary": "Current advances in Artificial Intelligence and machine learning in general,\nand deep learning in particular have reached unprecedented impact not only\nacross research communities, but also over popular media channels. However,\nconcerns about interpretability and accountability of AI have been raised by\ninfluential thinkers. In spite of the recent impact of AI, several works have\nidentified the need for principled knowledge representation and reasoning\nmechanisms integrated with deep learning-ba"
+  },
+  {
+    "url": "https://x.com/orionweller/status/1894761822290583804",
+    "title": "Twitter @orionweller",
+    "date": "2025-02-26",
+    "tags": [
+      "reranker",
+      "reasoning",
+      "information-retrieval",
+      "test-time-compute"
+    ],
+    "summary": "Ever wonder how test-time compute would do in retrieval? \ud83e\udd14\n\nintroducing \u2728rank1\u2728\n\nrank1 is distilled from R1 &amp; designed for reranking. \n\nrank1 is state-of-the-art at complex reranking tasks in reasoning, instruction-following, and general semantics (often 2x RankLlama \ud83e\udd2f)\n\n\ud83e\uddf5 https://t.co/c6dIw7j1l9"
+  },
+  {
+    "url": "https://x.com/Dorialexander/status/1870772220186034190",
+    "title": "Twitter @Dorialexander",
+    "date": "2024-12-22",
+    "tags": [
+      "llm",
+      "scaling-laws",
+      "reasoning",
+      "test-time-compute"
+    ],
+    "summary": "Les mod\u00e8les O reposent sur un pari : il existe une nouvelle loi d\u2019\u00e9chelle, la g\u00e9n\u00e9ration de texte. Au lieu de juste cr\u00e9er une r\u00e9ponse directement, les mod\u00e8les O g\u00e9n\u00e8rent d\u2019abord plein de brouillons en coulisse avant d\u2019arriver \u00e0 une solution satisfaisante."
+  },
+  {
+    "url": "https://x.com/_philschmid/status/1868919520741445797",
+    "title": "Twitter @_philschmid",
+    "date": "2024-12-17",
+    "tags": [
+      "llm",
+      "test-time-compute",
+      "reasoning",
+      "inference"
+    ],
+    "summary": "How we implemented test-time computing for open models to solve complex math problems like @OpenAI  o1. \ud83d\udc40\u00a0\nTest-time compute methods use dynamic inference strategies to have LLMs \u201cthink longer\u201d on harder problems, e.g. difficult math problems. By scaling test-time compute, https://t.co/C0XZ8fUmAj"
+  }
+]

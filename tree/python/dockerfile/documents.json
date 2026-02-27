@@ -1,0 +1,91 @@
+[
+  {
+    "url": "https://github.com/cresset-template/cresset",
+    "title": "cresset",
+    "date": "2021-09-16",
+    "tags": [
+      "docker",
+      "python",
+      "template-repository",
+      "build",
+      "cuda",
+      "dockerfile",
+      "source-python",
+      "ml",
+      "mlops",
+      "deep-learning-tutorial",
+      "mlops-template",
+      "deep-learning",
+      "makefile",
+      "docker-compose",
+      "pytorch",
+      "wheel",
+      "source",
+      "template"
+    ],
+    "summary": "Template repository to build PyTorch projects from source on any version of PyTorch/CUDA/cuDNN. \n !Cresset Logohttpsgithub.comcresset-templatecressetblobmainassetslogo.png Logo A new MLOps system for deep learning development using Docker Compose with the aim of providing reproducible and easy-to-use interactive development environments for deep learning practitioners. Hopefully, the methods presented here will become best practice in both academia and industry. If this is your first time using "
+  },
+  {
+    "url": "https://github.com/arnemertz/docker4c",
+    "title": "docker4c",
+    "date": "2021-05-21",
+    "tags": [
+      "docker",
+      "cpp",
+      "dockerfile"
+    ],
+    "summary": "Docker container with compilers and tooling for basic C++ projects \n bangbang Very much work in progress! The Dockerfile contains two container definitions The compose file contains a basic setup to run the DEV container locally. Since some IDEs depend on an SSH connection to a container or for remote development in general, SSHD is started in the service defined by the compose file."
+  },
+  {
+    "url": "https://github.com/cresset-template/cresset",
+    "title": "cresset",
+    "date": "2021-09-16",
+    "tags": [
+      "docker",
+      "python",
+      "template-repository",
+      "build",
+      "cuda",
+      "dockerfile",
+      "source-python",
+      "ml",
+      "mlops",
+      "deep-learning-tutorial",
+      "mlops-template",
+      "deep-learning",
+      "makefile",
+      "docker-compose",
+      "pytorch",
+      "wheel",
+      "source",
+      "template"
+    ],
+    "summary": "Template repository to build PyTorch projects from source on any version of PyTorch/CUDA/cuDNN. \n !Cresset Logohttpsgithub.comcresset-templatecressetblobmainassetslogo.png Logo A new MLOps system for deep learning development using Docker Compose with the aim of providing reproducible and easy-to-use interactive development environments for deep learning practitioners. Hopefully, the methods presented here will become best practice in both academia and industry. If this is your first time using "
+  },
+  {
+    "url": "https://github.com/cresset-template/cresset",
+    "title": "cresset",
+    "date": "2021-09-16",
+    "tags": [
+      "docker",
+      "python",
+      "template-repository",
+      "build",
+      "cuda",
+      "dockerfile",
+      "source-python",
+      "ml",
+      "mlops",
+      "deep-learning-tutorial",
+      "mlops-template",
+      "deep-learning",
+      "makefile",
+      "docker-compose",
+      "pytorch",
+      "wheel",
+      "source",
+      "template"
+    ],
+    "summary": "Template repository to build PyTorch projects from source on any version of PyTorch/CUDA/cuDNN. \n !Cresset Logohttpsgithub.comcresset-templatecressetblobmainassetslogo.png Logo A new MLOps system for deep learning development using Docker Compose with the aim of providing reproducible and easy-to-use interactive development environments for deep learning practitioners. Hopefully, the methods presented here will become best practice in both academia and industry. If this is your first time using "
+  }
+]

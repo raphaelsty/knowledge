@@ -1,0 +1,315 @@
+[
+  {
+    "url": "https://github.com/riiswa/octax",
+    "title": "octax",
+    "date": "2025-10-04",
+    "tags": [
+      "game",
+      "jax",
+      "python",
+      "reinforcement-learning"
+    ],
+    "summary": "Octax: Accelerated CHIP-8 Arcade Environments for JAX \n High-performance CHIP-8 arcade game environments for reinforcement learning research Features Installation Quick Start Games Performance Citation Preprint is available at httpsarxiv.orgabs2510.01764httpsarxiv.orgabs2510.01764 WIP This project is under development OCTAX provides a JAX-based suite of classic arcade game environments implemented through CHIP-8 emulation. It offers orders-of-magnitude speedups over traditional CPU emulators whi"
+  },
+  {
+    "url": "https://github.com/hardmaru/slimevolleygym",
+    "title": "slimevolleygym",
+    "date": "2020-06-08",
+    "tags": [
+      "python",
+      "reinforcement-learning",
+      "environment",
+      "game"
+    ],
+    "summary": "A simple OpenAI Gym environment for single and multi-agent reinforcement learning \n Slime Volleyball is a game created in the early 2000s by an unknown author. The physics of the game are a little dodgy, but its simple gameplay made it instantly addictive. Update May 12, 2022 This environment has been ported over to EvoJAXhttpsgithub.comgoogleevojax, hardware-accelerated neuroevolution toolkit that allows SlimeVolley to run on GPUs, enabling training time in minutes rather than hours."
+  },
+  {
+    "url": "https://github.com/Farama-Foundation/MicroRTS-Py",
+    "title": "MicroRTS-Py",
+    "date": "2019-04-03",
+    "tags": [
+      "python",
+      "reinforcement-learning",
+      "environment",
+      "game"
+    ],
+    "summary": "A simple and highly efficient RTS-game-inspired environment for reinforcement learning (formerly Gym-MicroRTS) \n Formerly Gym-RTSGym-MicroRTS httpspypi.orgprojectgym-microrts This repo contains the source code for the gym wrapper of RTS authored by Santiago Ontanhttpsgithub.comsantiontanonmicrorts. MicroRTS-Py will eventually be updated, maintained, and made compliant with the standards of the Farama Foundation httpsfarama.orgprojectstandards. However, this is currently a lower priority than oth"
+  },
+  {
+    "url": "https://github.com/bruzat/SC2ReinforcementLearning",
+    "title": "SC2ReinforcementLearning",
+    "date": "2019-02-05",
+    "tags": [
+      "python",
+      "reinforcement-learning",
+      "deep-learning",
+      "game"
+    ],
+    "summary": "Work on SC2 minigames with reinforcement learning \n Work on reinforcement learing in startcarft2 using pysc2. On MoveToBeacon with policy gradient and simple model with two Dense. !MoveToBeacon.gifhttpsgithub.combruzatSC2ReinforcementLearningblobmasterresultMoveToBeaconsimpleDenseMoveToBeaconSmall.gif On CollectMineralShards with proximal policy optimization and convolution and selectedunits. !CollectMineralShards.gifhttpsgithub.combruzatSC2ReinforcementLearningblobmasterresultCollectMineralShar"
+  },
+  {
+    "url": "https://github.com/kngwyu/rogue-gym",
+    "title": "rogue-gym",
+    "date": "2018-04-20",
+    "tags": [
+      "rust",
+      "reinforcement-learning",
+      "simulation",
+      "game"
+    ],
+    "summary": "[WIP] Highly customizable rogue-like game for AI expmeriments \n A highly customizable roguelike game, with APIs for training AI agents. Now the paper of Rogue-Gymhttpsarxiv.orgabs1904.08129 is on arxiv. We also published the traning codehttpsgithub.comkngwyurogue-gym-agents-cog19 used for the paper. git clone httpsgithub.comkngwyurogue-gym.git cd rogue-gymdevui cargo run --release !Double DQN gifdatagifddqn-small-16.gif There's also the action history file, and you can watch it by"
+  },
+  {
+    "url": "https://github.com/deepmind/pycolab",
+    "title": "pycolab",
+    "date": "2017-11-14",
+    "tags": [
+      "python",
+      "reinforcement-learning",
+      "environment",
+      "game"
+    ],
+    "summary": "A highly-customisable gridworld game engine with some batteries included. Make your own gridworld games to test reinforcement learning agents! \n A highly-customisable gridworld game engine with some batteries included. Make your own gridworld games to test reinforcement learning agents! If you're new, why not try playing some games first? For the full colour experience on most UNIX-compatible systems 1. crack open a nice, new, modern terminal iterm2 on Mac, gnome-terminal or"
+  },
+  {
+    "url": "https://github.com/indylab/nxdo",
+    "title": "nxdo",
+    "date": "2021-03-10",
+    "tags": [
+      "reinforcement-learning",
+      "game-theory",
+      "python",
+      "pytorch"
+    ],
+    "summary": "Deep RL Code for XDO: A Double Oracle Algorithm for Extensive-Form Games \n Includes RLlibhttpsdocs.ray.ioenmasterrllib.html PyTorch implementations of NXDO, PSRO, and NFSP. 1. Installationdocsinstall.md 1. Running Experimentsdocsexperiments.md Check this repohttpsgithub.comindylabtabularxdo for tabular experiment code. Feel free to reach out to JB for help at jblanieruci.edu!"
+  },
+  {
+    "url": "https://github.com/indylab/tabular_xdo",
+    "title": "tabular_xdo",
+    "date": "2021-02-25",
+    "tags": [
+      "reinforcement-learning",
+      "game-theory",
+      "multi-agent-reinforcement-learning"
+    ],
+    "summary": " \n Tested on Ubuntu 20.04 1. Clone the repo 2. Set up a Conda env 3. Install OpenSpiel shell script git clone --recursive gitgithub.comindylabtabularxdo.git cd tabularxdo If you've already cloned this repo but not the submodulesdependencies, you can clone them with shell script git submodule update --init --recursive After installing Anacondahttpsdocs.anaconda.comanacondainstall, enter the repo directory and create the new"
+  },
+  {
+    "url": "https://github.com/taliesinb/spieeltjie",
+    "title": "spieeltjie",
+    "date": "2019-08-13",
+    "tags": [
+      "python",
+      "reinforcement-learning",
+      "game-theory",
+      "multi-agent-reinforcement-learning"
+    ],
+    "summary": "Small lab for experiments with PSRO, game theoretic niching, etc. \n This is a single-file package for doing simple experiments with multi-agent reinforcement learning on symmetric zero-sum games. For more information see Open-ended learning in Symmetric Zero-Sum Gameshttpsarxiv.orgabs1901.08106 and A Unified Game-Theoretic Approach to Multiagent Reinforcement Learninghttpsarxiv.orgabs1711.00832. The name spieeltjie comes from the Afrikaans word for tournament. Explanation of animations The top r"
+  },
+  {
+    "url": "https://github.com/deepmind/open_spiel",
+    "title": "open_spiel",
+    "date": "2019-07-22",
+    "tags": [
+      "reinforcement-learning",
+      "game-theory",
+      "python",
+      "cpp"
+    ],
+    "summary": "OpenSpiel is a collection of environments and algorithms for research in general reinforcement learning and search/planning in games. \n !buildandtesthttpsgithub.comdeepmindopenspielworkflowsbuildandtestbadge.svg OpenSpiel is a collection of environments and algorithms for research in general reinforcement learning and searchplanning in games. OpenSpiel supports n-player single- and multi- agent zero-sum, cooperative and general-sum, one-shot and sequential, strictly turn-taking and simultaneous-"
+  },
+  {
+    "url": "https://github.com/google-deepmind/open_spiel",
+    "title": "open_spiel",
+    "date": "2019-07-22",
+    "tags": [
+      "reinforcement-learning",
+      "game-theory",
+      "python"
+    ],
+    "summary": "OpenSpiel is a collection of environments and algorithms for research in general reinforcement learning and search/planning in games. \n !buildandtesthttpsgithub.comdeepmindopenspielworkflowsbuildandtestbadge.svg OpenSpiel is a collection of environments and algorithms for research in general reinforcement learning and searchplanning in games. OpenSpiel supports n-player single- and multi- agent zero-sum, cooperative and general-sum, one-shot and sequential, strictly turn-taking and simultaneous-"
+  },
+  {
+    "url": "https://github.com/hsvgbkhgbv/SQDDPG",
+    "title": "SQDDPG",
+    "date": "2019-01-17",
+    "tags": [
+      "pytorch",
+      "reinforcement-learning",
+      "multi-agent-reinforcement-learning",
+      "game-theory"
+    ],
+    "summary": "This is a framework for the research on multi-agent reinforcement learning and the implementation of the experiments in the paper titled by ''Shapley Q-value: A Local Reward Approach to Solve Global Reward Games''. \n exclamation News ----------------------------------------- The Jax version of SQDDPG was implemented in the repository of SHAQhttpsgithub.comhsvgbkhgbvshapley-q-learning under the framework of PyMARL, to adapt to the environment of SMAC and some related environments. This project im"
+  },
+  {
+    "url": "https://github.com/dam-grassman/unity-6eme-etage",
+    "title": "unity-6eme-etage",
+    "date": "2021-04-22",
+    "tags": [
+      "unity3d",
+      "reinforcement-learning",
+      "games"
+    ],
+    "summary": "FIrst attempt to use unity : find the guy in a work office \n FIrst attempt to use unity find the guy in a work office Explore the environment in order to find the character which is randomly placed at each reset. Get closer enough to him to win. On reset Find the guy -------------------------"
+  },
+  {
+    "url": "https://github.com/simoninithomas/MLAgents-Tanks",
+    "title": "MLAgents-Tanks",
+    "date": "2021-04-09",
+    "tags": [
+      "unity3d",
+      "reinforcement-learning",
+      "multi-agent-reinforcement-learning",
+      "pytorch"
+    ],
+    "summary": "A multi-agent environment using Unity ML-Agents Toolkit where two agents compete in a 1vs1 tank fight game \n A multi-agent environment using Unity ML-Agents Toolkit where two agents compete in a 1vs1 tank fight game. STATUS Published, will have some minor updates. 2 scenes A good idea, when you train, is to uncheck mesh render for all your assets, this way you can save computational power. In scenes open Play scene."
+  },
+  {
+    "url": "https://github.com/simoninithomas/ml-agents-snowball-fight",
+    "title": "ml-agents-snowball-fight",
+    "date": "2020-12-09",
+    "tags": [
+      "unity3d",
+      "reinforcement-learning",
+      "multi-agent-reinforcement-learning",
+      "deep-learning"
+    ],
+    "summary": "A multi-agent environment using Unity ML-Agents Toolkit \n A multi-agent environment using Unity ML-Agents Toolkit where four agents compete in a 2vs2 snowball fight game."
+  },
+  {
+    "url": "https://github.com/simoninithomas/the_mayan_adventure",
+    "title": "the_mayan_adventure",
+    "date": "2020-03-23",
+    "tags": [
+      "unity3d",
+      "reinforcement-learning",
+      "game"
+    ],
+    "summary": "The Mayan Adventure is an open-source reinforcement learning environment for Unity ML-Agents.  In this environment, you train your agent (Indie) to find the golden statue in this dangerous environment full of traps. \n The Mayan Adventure is an open-source reinforcement learning environment for Unity ML-Agents. In this environment, you train your agent Indie to find the golden statue in this dangerous environment full of traps. You can see the trained agent result here Link to the videohttpsyoutu"
+  },
+  {
+    "url": "https://github.com/unixpickle/obs-tower2",
+    "title": "obs-tower2",
+    "date": "2019-03-07",
+    "tags": [
+      "python",
+      "reinforcement-learning",
+      "unity3d",
+      "deep-learning"
+    ],
+    "summary": "My solution to the Unity Obstacle Tower Challenge \n This is my solution to the Unity Obstacle Tower Challengehttpswww.aicrowd.comchallengesunity-obstacle-tower-challenge. Almost all of the code was freshly written for this contest, including a simple implementation of Proximal Policy Optimizationhttpsarxiv.orgabs1707.06347. The final agent has the following components. This is what is included in my contest submissions The agents are pre-trained with behavior cloning on roughly 2 million frames "
+  },
+  {
+    "url": "https://github.com/david-cortes/contextualbandits",
+    "title": "contextualbandits",
+    "date": "2018-03-27",
+    "tags": [
+      "python",
+      "contextual-bandits",
+      "reinforcement-learning",
+      "exploration-exploitation",
+      "bandits"
+    ],
+    "summary": "Python implementations of contextual bandits algorithms \n This Python package contains implementations of methods from different papers dealing with contextual bandit problems, as well as adaptations from typical multi-armed bandits strategies. It aims to provide an easy way to prototype and compare ideas, to reproduce research papers that don't provide easily-available implementations of their proposed algorithms, and to serve as a guide in learning about contextual bandits."
+  },
+  {
+    "url": "https://github.com/google/brax",
+    "title": "brax",
+    "date": "2021-06-02",
+    "tags": [
+      "reinforcement-learning",
+      "jax",
+      "physics-simulation",
+      "robotics"
+    ],
+    "summary": "Massively parallel rigidbody physics simulation on accelerator hardware. \n Brax is a fast and fully differentiable physics engine used for research and development of robotics, human perception, materials science, reinforcement learning, and other simulation-heavy applications. Brax is written in JAXhttpsgithub.comgooglejax and is designed for use on acceleration hardware. It is both efficient for single-device simulation, and scalable to massively parallel simulation on multiple devices, withou"
+  },
+  {
+    "url": "https://github.com/deepmind/dm_control",
+    "title": "dm_control",
+    "date": "2017-12-29",
+    "tags": [
+      "python",
+      "reinforcement-learning",
+      "mujoco",
+      "physics-simulation"
+    ],
+    "summary": "DeepMind's software stack for physics-based simulation and Reinforcement Learning environments, using MuJoCo. \n Google DeepMind's software stack for physics-based simulation and Reinforcement Learning environments, using MuJoCo physics. An introductory tutorial for this package is available as a Colaboratory notebook This package consists of the following core components physics engine. powered by the MuJoCo physics engine. Additionally, the following components are available for the creation of"
+  },
+  {
+    "url": "https://github.com/david-cortes/contextualbandits",
+    "title": "contextualbandits",
+    "date": "2018-03-27",
+    "tags": [
+      "python",
+      "contextual-bandits",
+      "reinforcement-learning",
+      "exploration-exploitation",
+      "bandits"
+    ],
+    "summary": "Python implementations of contextual bandits algorithms \n This Python package contains implementations of methods from different papers dealing with contextual bandit problems, as well as adaptations from typical multi-armed bandits strategies. It aims to provide an easy way to prototype and compare ideas, to reproduce research papers that don't provide easily-available implementations of their proposed algorithms, and to serve as a guide in learning about contextual bandits."
+  },
+  {
+    "url": "https://github.com/Baekalfen/PyBoy",
+    "title": "PyBoy",
+    "date": "2015-05-29",
+    "tags": [
+      "python",
+      "emulator",
+      "game",
+      "reinforcement-learning"
+    ],
+    "summary": "Game Boy emulator written in Python \n If you have any questions, or just want to chat, join us on Discordhttpsdiscord.ggwUbag3KNqQ. Train RL agents to play Pokemon Red Rewind any game -- -- Play the classics Create your own AI Beat world records with AI Getting Started The instructions are simple sh pip install pyboy"
+  },
+  {
+    "url": "https://github.com/david-cortes/contextualbandits",
+    "title": "contextualbandits",
+    "date": "2018-03-27",
+    "tags": [
+      "python",
+      "contextual-bandits",
+      "reinforcement-learning",
+      "exploration-exploitation",
+      "bandits"
+    ],
+    "summary": "Python implementations of contextual bandits algorithms \n This Python package contains implementations of methods from different papers dealing with contextual bandit problems, as well as adaptations from typical multi-armed bandits strategies. It aims to provide an easy way to prototype and compare ideas, to reproduce research papers that don't provide easily-available implementations of their proposed algorithms, and to serve as a guide in learning about contextual bandits."
+  },
+  {
+    "url": "https://github.com/ccthien/MetalWarfareML",
+    "title": "MetalWarfareML",
+    "date": "2018-01-28",
+    "tags": [
+      "unity3d",
+      "reinforcement-learning",
+      "ml-agents",
+      "game"
+    ],
+    "summary": "Metal Warfare game for ML-Agents challenge \n !alt text..imagesbanner.png Unity ML - Agents To install dependencies, run pip install . or pip3 install . If your Python environment doesn't include pip, see these instructionshttpspackaging.python.orgguidesinstalling-using-linux-toolsinstalling-pip-setuptools-wheel-with-linux-package-managers on installing it. To launch jupyter, run jupyter notebook Then navigate to localhost8888 to access each training notebook. To monitor training progress, run th"
+  },
+  {
+    "url": "https://github.com/instadeepai/fastpbrl",
+    "title": "fastpbrl",
+    "date": "2022-06-22",
+    "tags": [
+      "python",
+      "reinforcement-learning",
+      "jax",
+      "vectorization",
+      "population-based-training"
+    ],
+    "summary": "Vectorization techniques for fast population-based training. \n This repository contains the code for the paper Fast Population-Based Reinforcement Learning on a Single Machine paper from InstaDeep, computerzap. This code requires docker to run. To install docker please follow the online instructions herehttpsdocs.docker.comengineinstallubuntu. To enable the code to run on GPU, please install Nvidia-dockerhttpsdocs.nvidia.comdatacentercloud-nativecontainer-toolkitinstall-guide.html as well as the"
+  },
+  {
+    "url": "https://github.com/instadeepai/fastpbrl",
+    "title": "fastpbrl",
+    "date": "2022-06-22",
+    "tags": [
+      "python",
+      "reinforcement-learning",
+      "jax",
+      "vectorization",
+      "population-based-training"
+    ],
+    "summary": "Vectorization techniques for fast population-based training. \n This repository contains the code for the paper Fast Population-Based Reinforcement Learning on a Single Machine paper from InstaDeep, computerzap. This code requires docker to run. To install docker please follow the online instructions herehttpsdocs.docker.comengineinstallubuntu. To enable the code to run on GPU, please install Nvidia-dockerhttpsdocs.nvidia.comdatacentercloud-nativecontainer-toolkitinstall-guide.html as well as the"
+  }
+]

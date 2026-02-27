@@ -1,0 +1,147 @@
+[
+  {
+    "url": "https://github.com/cuda-mode/profiling-cuda-in-torch",
+    "title": "profiling-cuda-in-torch",
+    "date": "2024-01-11",
+    "tags": [
+      "cuda",
+      "profiling",
+      "pytorch",
+      "performance"
+    ],
+    "summary": " \n Used these for the first lecture of the CUDA mode series Most of them are about profiling or authoring kernels in various GPU programming languages"
+  },
+  {
+    "url": "https://github.com/flamegraph-rs/flamegraph",
+    "title": "flamegraph",
+    "date": "2019-03-07",
+    "tags": [
+      "rust",
+      "profiling",
+      "performance"
+    ],
+    "summary": "Easy flamegraphs for Rust projects and everything else, without Perl or pipes <3 \n A Rust-powered flamegraph generator with additional support for Cargo projects! It can be used to profile anything, not just Rust projects! No perl or pipes required !TIP Install it, and run bash cargo flamegraph flamegraph -- pathtobinary How to use flamegraphs what's a flamegraph, and how can I use it to guide systems performance work?systems-performance-work-guided-by-flamegraphs"
+  },
+  {
+    "url": "https://x.com/duckdb/status/1898654943705194698",
+    "title": "Twitter @duckdb",
+    "date": "2025-03-09",
+    "tags": [
+      "duckdb",
+      "performance",
+      "benchmark",
+      "announcement",
+      "sql"
+    ],
+    "summary": "Since the release of DuckDB v1.0.0 last summer, the time needed to run all TPC-H queries on the 300 GB data set went from 5 minutes to less than 2 minutes!\n\nThese experiments were run on a MacBook Pro (M1 Max / 64 GB RAM) with the Hyperfine benchmark tool to reduce noise. https://t.co/APhiogKoyQ"
+  },
+  {
+    "url": "https://x.com/duckdb/status/1863612554896941404",
+    "title": "Twitter @duckdb",
+    "date": "2024-12-02",
+    "tags": [
+      "duckdb",
+      "sql",
+      "performance"
+    ],
+    "summary": "Fun fact: DuckDB is faster at counting the lines of a CSV file than the UNIX word count command \u2013 and it also parses the file to identify its dialect (separator, quote character, etc.).\n\nHere are the timings for a 3 GB CSV file: 2.966 seconds for `wc -l` and 1.261 seconds for https://t.co/ab5BUa5Yia"
+  },
+  {
+    "url": "https://x.com/jobergum/status/1845042542775058634",
+    "title": "Twitter @jobergum",
+    "date": "2024-10-12",
+    "tags": [
+      "information-retrieval",
+      "performance",
+      "discussion"
+    ],
+    "summary": "What I find very useful is to see how systems behave with increased load/arrival rate and observe throughput, latency and resource utilization. https://t.co/7vt6hEXDnz"
+  },
+  {
+    "url": "https://pytorch.org/blog/maximizing-training/",
+    "title": "",
+    "date": "2024-05-21",
+    "tags": [
+      "pytorch",
+      "training",
+      "performance",
+      "optimization"
+    ],
+    "summary": ""
+  },
+  {
+    "url": "https://pytorch.org/blog/maximizing-training-throughput/?utm_content=293931523&utm_medium=social&utm_source=twitter&hss_channel=tw-776585502606721024",
+    "title": "",
+    "date": "2024-05-21",
+    "tags": [
+      "pytorch",
+      "training",
+      "performance",
+      "optimization"
+    ],
+    "summary": ""
+  },
+  {
+    "url": "https://x.com/rasbt/status/1628799272287182850",
+    "title": "Twitter @rasbt",
+    "date": "2023-02-23",
+    "tags": [
+      "bert",
+      "deep-learning",
+      "performance",
+      "pytorch",
+      "transformers"
+    ],
+    "summary": "Wrote a new blog post outlining techniques for improving the training performance of your PyTorch model without compromising its accuracy.\nBy changing only a few lines of code, we are going from 22.63 minutes to 3.15 minutes when finetuning BERT:\nhttps://t.co/36ptnaFOzz"
+  },
+  {
+    "url": "https://twitter.com/pommedeterre33/status/1623593858679570433",
+    "title": "Twitter @pommedeterre33",
+    "date": "2023-02-09",
+    "tags": [
+      "gpu",
+      "inference",
+      "pytorch",
+      "performance"
+    ],
+    "summary": "Unlock blazing fast GPU inference for your generative models! Our team achieved 2.3x improvement on @OpenAI Whisper (large) vs HuggingFace FP16 + PyTorch 2.0. CUDA Graphs &amp; a simple trick for avoiding OOM, follow this thread to find out more (links at the end) ?"
+  },
+  {
+    "url": "https://x.com/pommedeterre33/status/1555283345998741504",
+    "title": "Twitter @pommedeterre33",
+    "date": "2022-08-04",
+    "tags": [
+      "benchmark",
+      "cuda",
+      "deep-learning",
+      "gpu",
+      "performance",
+      "pytorch"
+    ],
+    "summary": "#protip to benchmark @PyTorch speed on GPU (from xformer repo, never saw it before):\ncreate a big tensor before starting and just clear it before each PyTorch call (clear GPU L2 cache).\nOn small kernels (exec in &lt; 10ms), makes a *BIG* diff (X2/X3 diff)\n+do not forget to cuda sync https://t.co/fFOCvShNYN"
+  },
+  {
+    "url": "https://x.com/PyTorch/status/1451229118486368256",
+    "title": "Twitter @PyTorch",
+    "date": "2021-10-21",
+    "tags": [
+      "cuda",
+      "deep-learning",
+      "gpu",
+      "performance",
+      "pytorch"
+    ],
+    "summary": "PyTorch 1.10 is here! \n\nHighlights include updates for:\n- CUDA Graphs APIs updates\n- Several frontend APIs moved to Stable\n- Automatic fusion in JIT Compiler support for CPU/GPUs\n-  Android NNAPI now in beta\n\nBlog: https://t.co/jMRDpA6T22\nRelease: https://t.co/QuaxJA2xfh"
+  },
+  {
+    "url": "https://x.com/agarwl_/status/1432800830621687817",
+    "title": "Twitter @agarwl_",
+    "date": "2021-08-31",
+    "tags": [
+      "benchmarks",
+      "performance",
+      "reinforcement-learning"
+    ],
+    "summary": "tl;dr: Our findings call for a change in how we evaluate performance on deep RL benchmarks, for which we present more reliable protocols, easily applicable with *even a handful of runs*, to prevent unreliable results from stagnating the field.\n\nhttps://t.co/qMyDEiNqR6 (1/N) https://t.co/ShXAGNRhBM"
+  }
+]
