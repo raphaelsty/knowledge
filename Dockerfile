@@ -1,22 +1,19 @@
-FROM python:3.10-slim
+# Stage 1: Build Rust binaries
+FROM rust:1.82-slim AS builder
 
-# Install uv
-COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+RUN apt-get update && apt-get install -y pkg-config libssl-dev && rm -rf /var/lib/apt/lists/*
+RUN cargo install next-plaid-api --features model
+COPY indexer /build/indexer
+RUN cargo build --release --manifest-path /build/indexer/Cargo.toml
+
+# Stage 2: Runtime (serves the pre-built index)
+FROM debian:bookworm-slim
+
+COPY --from=builder /usr/local/cargo/bin/next-plaid-api /usr/local/bin/
 
 WORKDIR /code
 
-# Copy the necessary files
-COPY pyproject.toml /code/pyproject.toml
-COPY readme.md /code/readme.md
-COPY database/pipeline.pkl /code/database/pipeline.pkl
-COPY knowledge_database /code/knowledge_database
-COPY api /code/api
+COPY indices /code/indices
+COPY docs /code/docs
 
-# Install Python dependencies using uv with a virtual environment
-RUN uv venv /code/.venv && uv pip install --python /code/.venv/bin/python .
-
-# Set up the secret environment variable for OpenAI API Key
-RUN --mount=type=secret,id=OPENAI_API_KEY sh -c 'echo "export OPENAI_API_KEY=$(cat /run/secrets/OPENAI_API_KEY)" >> /etc/profile.d/openai.sh'
-
-# Set the command to run the application
-CMD ["/bin/bash", "-c", "source /etc/profile && /code/.venv/bin/uvicorn api.api:app --host 0.0.0.0 --port 8080"]
+CMD ["next-plaid-api", "--index-dir", "indices", "--model", "lightonai/answerai-colbert-small-v1-onnx", "--int8", "--port", "8080"]

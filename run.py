@@ -40,7 +40,8 @@ database/pipeline.pkl : Pickle
 
 import json
 import os
-import pickle
+import subprocess
+import sys
 from collections import Counter
 from urllib.parse import urlparse
 
@@ -50,7 +51,6 @@ from knowledge_database import (
     github,
     hackernews,
     huggingface,
-    pipeline,
     semanlink,
     tags,
     twitter,
@@ -308,18 +308,10 @@ from build_tag_tree import main as build_tag_tree
 build_tag_tree()
 
 # =============================================================================
-# Build Search Pipeline
+# Index Documents into Search Engine
 # =============================================================================
 
-print("Building search pipeline...")
-knowledge_pipeline = pipeline.Pipeline(
-    documents=data,
-    triples=triples,
-    excluded_tags=EXCLUDED_TAGS,
-)
-
-print("Serializing pipeline...")
-with open("database/pipeline.pkl", "wb") as f:
-    pickle.dump(knowledge_pipeline, f)
+print("Indexing documents into search engine...")
+subprocess.run(["cargo", "run", "--release", "--manifest-path", "indexer/Cargo.toml"], check=True)
 
 print("Done!")

@@ -86,11 +86,114 @@
         const { createRoot, createPortal } = ReactDOM;
 
         const API_BASE_URL = "https://knowledge.fly.dev";
+        const INDEX_NAME = "knowledge";
         const SEARCH_DEBOUNCE_MS = 400;
         const FETCH_COUNT = 300;
         const DISPLAY_COUNT = 30;
         const RERANK_INACTIVITY_MS = 1000;
         const SUMMARY_TOKEN_LIMIT = 30;
+
+        /**
+         * Transforms a metadata row from the API (comma-separated tags) into
+         * the frontend document format (array tags).
+         */
+        const transformMeta = (meta) => ({
+            url: meta.url || "",
+            title: meta.title || "",
+            summary: meta.summary || "",
+            date: meta.date || "",
+            tags: meta.tags ? meta.tags.split(",").filter(Boolean) : [],
+            "extra-tags": meta.extra_tags ? meta.extra_tags.split(",").filter(Boolean) : [],
+        });
+
+        /**
+         * Builds a SQL WHERE condition + parameters for a source filter key.
+         * Returns { condition, parameters } or null if no filter.
+         */
+        const buildSourceCondition = (source) => {
+            if (!source || source === "all") return null;
+            if (source === "other") return null; // "other" is handled client-side
+            // Tag/title based sources (e.g. hackernews)
+            if (!source.includes(".")) {
+                return {
+                    condition: "tags LIKE ? OR extra_tags LIKE ? OR title LIKE ?",
+                    parameters: [`%${source}%`, `%${source}%`, `%${source}%`],
+                };
+            }
+            // Domain-based sources — also match common aliases
+            const patterns = [source];
+            if (source === "twitter.com") patterns.push("x.com");
+            const urlClauses = patterns.map(() => "url LIKE ?");
+            return {
+                condition: urlClauses.join(" OR "),
+                parameters: patterns.map(p => `%${p}%`),
+            };
+        };
+
+        /**
+         * Gets the subset of document IDs matching a source filter.
+         * Returns an array of IDs, or null if no filter is active.
+         */
+        const getFilteredSubset = async (source) => {
+            const cond = buildSourceCondition(source);
+            if (!cond) return null;
+            const resp = await fetch(`${API_BASE_URL}/indices/${INDEX_NAME}/metadata/query`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(cond),
+            });
+            const data = await resp.json();
+            return data.document_ids || null;
+        };
+
+        /**
+         * Fetches the latest documents via metadata query.
+         */
+        const apiLatest = async (count, source) => {
+            const cond = buildSourceCondition(source);
+            const body = cond
+                ? { condition: `(${cond.condition}) AND date != ''`, parameters: cond.parameters }
+                : { condition: "date IS NOT NULL AND date != ''", parameters: [] };
+            const resp = await fetch(`${API_BASE_URL}/indices/${INDEX_NAME}/metadata/get`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(body),
+            });
+            const data = await resp.json();
+            const rows = (data.metadata || []).map(transformMeta);
+            rows.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+            return rows.slice(0, count);
+        };
+
+        /**
+         * Searches documents via ColBERT encoding and returns results.
+         * When a source filter is active, restricts search to matching doc IDs.
+         */
+        const apiSearch = async (query, sortByDate = false, source) => {
+            const subset = await getFilteredSubset(source);
+            const body = {
+                queries: [query],
+                params: { top_k: FETCH_COUNT },
+            };
+            if (subset) body.subset = subset;
+            const resp = await fetch(`${API_BASE_URL}/indices/${INDEX_NAME}/search_with_encoding`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(body),
+            });
+            const data = await resp.json();
+            const result = (data.results && data.results[0]) || {};
+            const metadata = result.metadata || [];
+            const scores = result.scores || [];
+            let docs = metadata.map((meta, i) => ({
+                ...transformMeta(meta),
+                similarity: scores[i] || 0,
+            }));
+            if (sortByDate) {
+                docs.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+            }
+            return docs;
+        };
 
         /**
          * Builds a reverse index: tagName -> top-level folder name.
@@ -581,11 +684,10 @@
              * Fetches the latest documents from the backend.
              */
             const fetchLatest = useCallback(() => {
-                fetch(`${API_BASE_URL}/latest/${FETCH_COUNT}`)
-                    .then(res => res.json())
-                    .then(data => setDocuments(data.documents))
+                apiLatest(FETCH_COUNT, sourceFilter)
+                    .then(docs => setDocuments(docs))
                     .catch(error => console.error("[APP] Failed to fetch latest documents:", error));
-            }, []);
+            }, [sourceFilter]);
 
             /**
              * Fetches search results from the backend API.
@@ -596,18 +698,13 @@
                     return;
                 }
                 const queryId = ++latestQueryIdRef.current;
-                const sortType = sortChronologically ? 'true' : 'false';
-                const nodeFilter = selectedNode || 'null';
-                const endpoint = `${API_BASE_URL}/search/${sortType}/${nodeFilter}/${searchQuery.replace("/", "")}`;
+                // Append tag filter to the query string if a node is selected
+                const fullQuery = selectedNode ? `${searchQuery} ${selectedNode}` : searchQuery;
 
-                fetch(endpoint)
-                    .then(res => res.json())
-                    .then(data => {
-                        const initialDocs = Object.values(data["documents"]).map(doc => ({ ...doc }));
-                        setDocuments(initialDocs);
-                    })
+                apiSearch(fullQuery, sortChronologically, sourceFilter)
+                    .then(docs => setDocuments(docs))
                     .catch(error => console.error(`[APP] Failed to fetch search results:`, error));
-            }, [selectedNode, fetchLatest]);
+            }, [selectedNode, fetchLatest, sourceFilter]);
 
             /**
              * Runs search immediately, clearing any pending debounced calls.
@@ -693,7 +790,9 @@
              * Re-fetch when source filter changes.
              */
             useEffect(() => {
-                if (!query.trim()) {
+                if (query.trim()) {
+                    search(query, isSortedByDate);
+                } else {
                     fetchLatest();
                 }
             }, [sourceFilter]);
