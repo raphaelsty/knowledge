@@ -58272,10 +58272,6 @@
         "tail": "pytorch"
     },
     {
-        "head": "gpt4",
-        "tail": "openai"
-    },
-    {
         "head": "inference",
         "tail": "llama"
     },
@@ -59786,10 +59782,6 @@
     {
         "head": "optimization",
         "tail": "rlhf"
-    },
-    {
-        "head": "llms",
-        "tail": "training"
     },
     {
         "head": "multiples-gpus",
@@ -62492,14 +62484,6 @@
         "tail": "productivity"
     },
     {
-        "head": "thesis",
-        "tail": "information-retrieval"
-    },
-    {
-        "head": "thesis",
-        "tail": "nlp"
-    },
-    {
         "head": "git",
         "tail": "tutorial"
     },
@@ -62980,18 +62964,6 @@
         "tail": "tutorial"
     },
     {
-        "head": "training",
-        "tail": "performance"
-    },
-    {
-        "head": "training",
-        "tail": "optimization"
-    },
-    {
-        "head": "performance",
-        "tail": "optimization"
-    },
-    {
         "head": "python",
         "tail": "table"
     },
@@ -63022,10 +62994,6 @@
     {
         "head": "stemming",
         "tail": "rust"
-    },
-    {
-        "head": "long-context",
-        "tail": "evaluation"
     },
     {
         "head": "python",
@@ -63164,14 +63132,6 @@
         "tail": "code-analysis"
     },
     {
-        "head": "reinforcement-learning",
-        "tail": "planning"
-    },
-    {
-        "head": "model-based-rl",
-        "tail": "planning"
-    },
-    {
         "head": "inference",
         "tail": "production"
     },
@@ -63266,10 +63226,6 @@
     {
         "head": "rag",
         "tail": "knowledge-graph"
-    },
-    {
-        "head": "long-context",
-        "tail": "nlp"
     },
     {
         "head": "nlp",
@@ -84372,6 +84328,10 @@
         "tail": "long-context"
     },
     {
+        "head": "long-context",
+        "tail": "evaluation"
+    },
+    {
         "head": "encoder",
         "tail": "zero-shot"
     },
@@ -87328,6 +87288,10 @@
         "tail": "announcement"
     },
     {
+        "head": "performance",
+        "tail": "training"
+    },
+    {
         "head": "training",
         "tail": "tip"
     },
@@ -88597,6 +88561,10 @@
     },
     {
         "head": "compression",
+        "tail": "training"
+    },
+    {
+        "head": "optimization",
         "tail": "training"
     },
     {

@@ -116,14 +116,14 @@
          * Recursively filters the tree to only include paths that contain matching tags.
          * Returns null if no match found in this subtree.
          */
-        const filterTree = (node, matchCounts) => {
+        const filterTree = (node, matchCounts, extraDocs) => {
             let filteredChildren = [];
             let filteredTags = [];
             let totalMatch = 0;
 
             if (node.c) {
                 for (const child of node.c) {
-                    const fc = filterTree(child, matchCounts);
+                    const fc = filterTree(child, matchCounts, extraDocs);
                     if (fc) {
                         filteredChildren.push(fc);
                         totalMatch += fc._matchCount || 0;
@@ -134,7 +134,17 @@
             if (node.t) {
                 for (const [tagName, tagCount, tagDocs] of node.t) {
                     if (matchCounts[tagName]) {
-                        filteredTags.push([tagName, matchCounts[tagName], tagDocs]);
+                        // Merge search result docs not already in tree tag
+                        let mergedDocs = tagDocs;
+                        const extra = extraDocs[tagName];
+                        if (extra && extra.length > 0) {
+                            const existing = new Set((tagDocs || []).map(d => d.u));
+                            const toAdd = extra.filter(d => !existing.has(d.u));
+                            if (toAdd.length > 0) {
+                                mergedDocs = [...(tagDocs || []), ...toAdd];
+                            }
+                        }
+                        filteredTags.push([tagName, matchCounts[tagName], mergedDocs]);
                         totalMatch += matchCounts[tagName];
                     }
                 }
@@ -196,10 +206,17 @@
          * 4. Unmatched + other source (by date desc)
          * When no sourceFilter (or "all"), tiers collapse to: matched first, then by date.
          */
-        const sortTagDocs = (docs, matchedUrls, sourceFilter, sourceKeys) => {
+        const sortTagDocs = (docs, matchedUrls, sourceFilter, sourceKeys, sortByDate) => {
             return [...docs].sort((a, b) => {
                 const aMatched = matchedUrls.has(a.u);
                 const bMatched = matchedUrls.has(b.u);
+
+                if (sortByDate) {
+                    // Matched first, then by date
+                    if (aMatched !== bMatched) return aMatched ? -1 : 1;
+                    return (b.d || '').localeCompare(a.d || '');
+                }
+
                 const hasFilter = sourceFilter && sourceFilter !== "all";
                 const aSameSource = hasFilter && getSourceFromDoc(a, sourceKeys) === sourceFilter;
                 const bSameSource = hasFilter && getSourceFromDoc(b, sourceKeys) === sourceFilter;
@@ -228,7 +245,7 @@
             return n;
         };
 
-        const TreeNode = ({ node, path, expanded, onToggle, onClickTag, isFiltered, expandedTags, onToggleTag, matchedUrls, showAllTags, onToggleShowAll, sourceFilter, treeDocFilter, sourceKeys }) => {
+        const TreeNode = ({ node, path, expanded, onToggle, onClickTag, isFiltered, expandedTags, onToggleTag, matchedUrls, showAllTags, onToggleShowAll, sourceFilter, treeDocFilter, sourceKeys, sortByDate }) => {
             const hasChildren = (node.c && node.c.length > 0) || (node.t && node.t.length > 0);
             const isExpanded = expanded.has(path);
             const displayCount = treeDocFilter
@@ -275,6 +292,7 @@
                                     sourceFilter={sourceFilter}
                                     treeDocFilter={treeDocFilter}
                                     sourceKeys={sourceKeys}
+                                    sortByDate={sortByDate}
                                 />
                             ))}
                             {(node.t || []).map(([tagName, tagCount, tagDocs]) => {
@@ -285,7 +303,7 @@
                                     : tagDocs;
                                 const hasDocs = filteredTagDocs && filteredTagDocs.length > 0;
                                 if (treeDocFilter && !hasDocs) return null;
-                                const sorted = hasDocs ? sortTagDocs(filteredTagDocs, matchedUrls, sourceFilter, sourceKeys) : [];
+                                const sorted = hasDocs ? sortTagDocs(filteredTagDocs, matchedUrls, sourceFilter, sourceKeys, sortByDate) : [];
                                 const showAll = showAllTags.has(tagPath);
                                 const visible = showAll ? sorted : sorted.slice(0, TAG_DOC_LIMIT);
                                 const hasMore = sorted.length > TAG_DOC_LIMIT;
@@ -343,7 +361,7 @@
         /**
          * FolderTree component: renders the full or filtered tree.
          */
-        const FolderTree = ({ tree, documents, query, onClickTag, sourceFilter, sourceKeys }) => {
+        const FolderTree = ({ tree, documents, query, onClickTag, sourceFilter, sourceKeys, sortByDate }) => {
             const [expandedTags, setExpandedTags] = useState(new Set());
             const [showAllTags, setShowAllTags] = useState(new Set());
             const [collapsedFolders, setCollapsedFolders] = useState(new Set());
@@ -402,6 +420,23 @@
 
             const hasMatches = query.trim().length > 0 && Object.keys(matchCounts).length > 0;
 
+            // Build tag -> compact docs from search results for injection into tree
+            const extraDocs = useMemo(() => {
+                if (!hasMatches) return {};
+                const byTag = {};
+                for (const doc of documents) {
+                    const compact = { u: doc.url, t: doc.title || "", d: doc.date || "" };
+                    const allTags = (doc.tags || []).concat(doc["extra-tags"] || []);
+                    for (const tag of allTags) {
+                        if (tag && matchCounts[tag]) {
+                            if (!byTag[tag]) byTag[tag] = [];
+                            byTag[tag].push(compact);
+                        }
+                    }
+                }
+                return byTag;
+            }, [documents, matchCounts, hasMatches]);
+
             // Reverse index: tag -> top-level folder name
             const tagIndex = useMemo(() => buildTagIndex(tree), [tree]);
 
@@ -425,7 +460,7 @@
             // Filter tree then sort children by document order
             const children = useMemo(() => {
                 if (!tree || !hasMatches) return [];
-                const filtered = filterTree(tree, matchCounts);
+                const filtered = filterTree(tree, matchCounts, extraDocs);
                 if (!filtered || !filtered.c) return [];
                 return [...filtered.c].sort((a, b) =>
                     (folderOrder[a.name] ?? Infinity) - (folderOrder[b.name] ?? Infinity)
@@ -510,6 +545,7 @@
                             sourceFilter={sourceFilter}
                             treeDocFilter={filterTreeDocs && sourceFilter !== 'all' ? sourceFilter : null}
                             sourceKeys={sourceKeys}
+                            sortByDate={sortByDate}
                         />
                     ))}
                 </div>
@@ -853,6 +889,18 @@
                             ))}
                         </div>
                         <button
+                            className={`sort-date-toggle ${isSortedByDate ? 'active' : ''}`}
+                            onClick={handleClickDate}
+                            title={isSortedByDate ? 'Sort by relevance' : 'Sort by date'}
+                        >
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                                <line x1="16" y1="2" x2="16" y2="6" />
+                                <line x1="8" y1="2" x2="8" y2="6" />
+                                <line x1="3" y1="10" x2="21" y2="10" />
+                            </svg>
+                        </button>
+                        <button
                             className="theme-toggle"
                             onClick={() => {
                                 const next = theme === 'dark' ? 'light' : 'dark';
@@ -925,6 +973,7 @@
                             onClickTag={handleClickTag}
                             sourceFilter={sourceFilter}
                             sourceKeys={sources.map(s => s.key)}
+                            sortByDate={isSortedByDate}
                         />,
                         folderPanel
                     )}

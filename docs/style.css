@@ -208,13 +208,14 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
-    margin: 90px 0 16px 0;
+    margin: 82px 0 12px 0;
 }
 
 #controls-row #source-filter {
     margin: 0;
 }
 
+.sort-date-toggle,
 .theme-toggle {
     cursor: pointer;
     display: inline-flex;
@@ -229,15 +230,31 @@ body {
     border: 1px solid var(--border-subtle);
     transition: all var(--transition-fast);
     flex-shrink: 0;
+}
+
+.sort-date-toggle {
     margin-left: auto;
 }
 
+.sort-date-toggle.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+}
+
+.sort-date-toggle:hover,
 .theme-toggle:hover {
     background: var(--bg-chip-hover);
     border-color: var(--border-hover);
     color: var(--text-primary);
 }
 
+.sort-date-toggle.active:hover {
+    background: var(--accent-hover);
+    color: #fff;
+}
+
+.sort-date-toggle svg,
 .theme-toggle svg {
     display: block;
 }

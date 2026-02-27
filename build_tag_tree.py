@@ -1987,15 +1987,15 @@ def create_folders(tree, base, is_root=False):
 
 def build_folder_tree(tree):
     """Convert tag_tree format to compact {name, n, c, t} format for the frontend."""
+    global_seen = set()  # Each document appears in only one folder
 
     def compact_docs(docs):
-        seen = set()
         result = []
         for doc in docs:
             url = doc.get("url", "")
-            if url in seen:
+            if url in global_seen:
                 continue
-            seen.add(url)
+            global_seen.add(url)
             result.append({"u": url, "t": doc.get("title", ""), "d": doc.get("date", "")})
         return result
 

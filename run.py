@@ -191,6 +191,13 @@ for _url, document in data.items():
         if isinstance(document.get(field), str):
             document[field] = document[field].encode("utf-8", "replace").decode("utf-8")
 
+# Remove documents with empty title or URL
+before = len(data)
+data = {url: doc for url, doc in data.items() if url.strip() and doc.get("title", "").strip()}
+removed = before - len(data)
+if removed:
+    print(f"  Removed {removed} documents with empty title or URL")
+
 # =============================================================================
 # Generate Extra Tags
 # =============================================================================

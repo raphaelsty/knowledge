@@ -12,7 +12,7 @@
   {
     "key": "arxiv.org",
     "label": "arXiv",
-    "count": 446
+    "count": 440
   },
   {
     "key": "hackernews",
@@ -32,11 +32,6 @@
   {
     "key": "ieeexplore.ieee.org",
     "label": "Ieeexplore",
-    "count": 5
-  },
-  {
-    "key": "pytorch.org",
-    "label": "Pytorch",
     "count": 5
   }
 ]
