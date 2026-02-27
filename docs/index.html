@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Raphael Sourty - Personal Knowledge Search Engine</title>
     <meta name="description"
-        content="Discover the personal knowledge search engine created by Raphael Sourty. A unique project featuring neural search, ColBERT re-ranking, and a 3D graph visualization of interconnected notes.">
+        content="Discover the personal knowledge search engine created by Raphael Sourty. A unique project featuring neural search, ColBERT re-ranking, and an interactive folder tree visualization of interconnected notes.">
     <meta name="google-site-verification" content="-1EjnablvRwJITZucFLU44nYtII1cXhq4Ra3okO13fg" />
     <meta name="keywords"
         content="Raphael Sourty, personal search engine, deep learning search engine and recommender systems">
@@ -53,7 +53,7 @@
                 "@type": "Person",
                 "name": "Raphael Sourty"
                 },
-                "description": "A personal search engine built by Raphael Sourty to explore interconnected notes using neural search and 3D graph visualizations.",
+                "description": "A personal search engine built by Raphael Sourty to explore interconnected notes using neural search and an interactive folder tree visualization.",
                 "keywords": "Raphael Sourty, personal search engine, deep learning search engine and recommender systems"
             }
             ]
@@ -63,108 +63,401 @@
 </head>
 
 <body>
+    <script>
+        // Apply saved theme immediately to prevent flash
+        (function() {
+            var theme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+
     <div id="searchbox">
         <div id="backsearch"></div>
     </div>
 
-    <div class="graph" id="graph"></div>
-
-    <div class="graph-legend" id="graph-legend">
-        <div class="graph-legend-item">
-            <span class="graph-legend-dot query"></span>
-            <span>From documents</span>
-        </div>
-        <div class="graph-legend-item">
-            <span class="graph-legend-dot retrieved"></span>
-            <span>From query</span>
-        </div>
-        <div class="graph-legend-hint">
-            Click to zoom | Double-click to expand
-        </div>
-    </div>
+    <div id="folder-panel"></div>
 
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.min.js"></script>
-    <script src="https://unpkg.com/three-spritetext"></script>
-    <script src="https://unpkg.com/react-force-graph-3d"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
     <script type="text/babel" data-presets="react">
-        const { useState, useEffect, useRef, useCallback } = React;
-        const { createRoot } = ReactDOM;
-
-        // Globally available libraries from the script tags above
-        // ForceGraph3D, SpriteText, THREE
+        const { useState, useEffect, useRef, useCallback, useMemo } = React;
+        const { createRoot, createPortal } = ReactDOM;
 
         const API_BASE_URL = "https://knowledge.fly.dev";
         const SEARCH_DEBOUNCE_MS = 400;
-        const PLOT_DEBOUNCE_MS = 500;
-        const INITIAL_FETCH_COUNT = 100;
-        const FILTERED_FETCH_COUNT = 500;
-        const RERANK_INACTIVITY_MS = 1000; // New: Constant for inactivity delay
-        const SUMMARY_TOKEN_LIMIT = 30; // New: Constant for summary length
+        const FETCH_COUNT = 300;
+        const DISPLAY_COUNT = 30;
+        const RERANK_INACTIVITY_MS = 1000;
+        const SUMMARY_TOKEN_LIMIT = 30;
 
         /**
-         * The main Search component that handles UI, state management,
-         * and interaction with the backend and the ColBERT worker.
+         * Builds a reverse index: tagName -> top-level folder name.
+         */
+        const buildTagIndex = (tree) => {
+            const index = {};
+            if (!tree || !tree.c) return index;
+            const walk = (node, topName) => {
+                if (node.t) {
+                    for (const [tagName] of node.t) {
+                        if (!index[tagName]) index[tagName] = topName;
+                    }
+                }
+                if (node.c) {
+                    for (const child of node.c) walk(child, topName);
+                }
+            };
+            for (const top of tree.c) walk(top, top.name);
+            return index;
+        };
+
+        /**
+         * Recursively filters the tree to only include paths that contain matching tags.
+         * Returns null if no match found in this subtree.
+         */
+        const filterTree = (node, matchCounts) => {
+            let filteredChildren = [];
+            let filteredTags = [];
+            let totalMatch = 0;
+
+            if (node.c) {
+                for (const child of node.c) {
+                    const fc = filterTree(child, matchCounts);
+                    if (fc) {
+                        filteredChildren.push(fc);
+                        totalMatch += fc._matchCount || 0;
+                    }
+                }
+            }
+
+            if (node.t) {
+                for (const [tagName, tagCount, tagDocs] of node.t) {
+                    if (matchCounts[tagName]) {
+                        filteredTags.push([tagName, matchCounts[tagName], tagDocs]);
+                        totalMatch += matchCounts[tagName];
+                    }
+                }
+            }
+
+            if (filteredChildren.length === 0 && filteredTags.length === 0) return null;
+
+            return {
+                name: node.name,
+                n: node.n,
+                c: filteredChildren.length > 0 ? filteredChildren : undefined,
+                t: filteredTags.length > 0 ? filteredTags : undefined,
+                _matchCount: totalMatch
+            };
+        };
+
+        /**
+         * Returns a small emoji logo based on URL domain.
+         */
+        const getDocLogo = (url) => {
+            if (!url) return '\uD83D\uDCC4';
+            if (url.includes('github.com')) return '\uD83D\uDCBB';
+            if (url.includes('twitter.com') || url.includes('x.com')) return '\uD835\uDD4F';
+            if (url.includes('arxiv.org')) return '\uD83D\uDCDD';
+            if (url.includes('huggingface.co')) return '\uD83E\uDD17';
+            return '\uD83D\uDD17';
+        };
+
+        /**
+         * Recursive tree node component for folders and tags.
+         */
+        const TAG_DOC_LIMIT = 10;
+
+        /**
+         * Sorts docs: matched URLs first, then by date descending.
+         */
+        const sortTagDocs = (docs, matchedUrls) => {
+            return [...docs].sort((a, b) => {
+                const aMatched = matchedUrls.has(a.u) ? 0 : 1;
+                const bMatched = matchedUrls.has(b.u) ? 0 : 1;
+                if (aMatched !== bMatched) return aMatched - bMatched;
+                return (b.d || '').localeCompare(a.d || '');
+            });
+        };
+
+        /**
+         * Recursive tree node component for folders and tags.
+         */
+        const TreeNode = ({ node, path, expanded, onToggle, onClickTag, isFiltered, expandedTags, onToggleTag, matchedUrls, showAllTags, onToggleShowAll }) => {
+            const hasChildren = (node.c && node.c.length > 0) || (node.t && node.t.length > 0);
+            const isExpanded = expanded.has(path);
+
+            return (
+                <div className="tree-node">
+                    <div
+                        className={`tree-header ${isFiltered && node._matchCount ? 'matching' : ''}`}
+                        onClick={() => hasChildren && onToggle(path)}
+                    >
+                        <span className="tree-chevron">
+                            {hasChildren ? (isExpanded ? '\u25BE' : '\u25B8') : '\u2003'}
+                        </span>
+                        <span className="tree-icon">{'\uD83D\uDCC1'}</span>
+                        <span className="tree-name" onClick={(e) => { e.stopPropagation(); onClickTag(node.name); }}>
+                            {node.name}
+                        </span>
+                        <span className="tree-count">
+                            {isFiltered && node._matchCount ? node._matchCount : node.n}
+                        </span>
+                    </div>
+                    {isExpanded && hasChildren && (
+                        <div className="tree-children">
+                            {(node.c || []).map(child => (
+                                <TreeNode
+                                    key={child.name}
+                                    node={child}
+                                    path={`${path}/${child.name}`}
+                                    expanded={expanded}
+                                    onToggle={onToggle}
+                                    onClickTag={onClickTag}
+                                    isFiltered={isFiltered}
+                                    expandedTags={expandedTags}
+                                    onToggleTag={onToggleTag}
+                                    matchedUrls={matchedUrls}
+                                    showAllTags={showAllTags}
+                                    onToggleShowAll={onToggleShowAll}
+                                />
+                            ))}
+                            {(node.t || []).map(([tagName, tagCount, tagDocs]) => {
+                                const tagPath = `${path}/#${tagName}`;
+                                const isTagExpanded = expandedTags.has(tagPath);
+                                const hasDocs = tagDocs && tagDocs.length > 0;
+                                const sorted = hasDocs ? sortTagDocs(tagDocs, matchedUrls) : [];
+                                const showAll = showAllTags.has(tagPath);
+                                const visible = showAll ? sorted : sorted.slice(0, TAG_DOC_LIMIT);
+                                const hasMore = sorted.length > TAG_DOC_LIMIT;
+                                return (
+                                    <div key={tagName} className="tree-tag-group">
+                                        <div
+                                            className={`tree-leaf ${isFiltered ? 'matching' : ''}`}
+                                            onClick={() => hasDocs && onToggleTag(tagPath)}
+                                        >
+                                            <span className="tree-chevron">
+                                                {hasDocs ? (isTagExpanded ? '\u25BE' : '\u25B8') : '\u2003'}
+                                            </span>
+                                            <span className="tree-icon">{'\uD83C\uDFF7\uFE0F'}</span>
+                                            <span className="tree-name" onClick={(e) => { e.stopPropagation(); onClickTag(tagName); }}>
+                                                {tagName}
+                                            </span>
+                                            <span className="tree-count">{tagCount}</span>
+                                        </div>
+                                        {isTagExpanded && hasDocs && (
+                                            <div className="tree-docs">
+                                                {visible.map((doc, i) => (
+                                                    <a
+                                                        key={doc.u || i}
+                                                        className={`tree-doc ${matchedUrls.has(doc.u) ? 'tree-doc-matched' : ''}`}
+                                                        href={doc.u}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                    >
+                                                        <span className="tree-doc-logo">{getDocLogo(doc.u)}</span>
+                                                        <span className="tree-doc-title">{doc.t}</span>
+                                                        <span className="tree-doc-date">{doc.d}</span>
+                                                    </a>
+                                                ))}
+                                                {hasMore && (
+                                                    <button
+                                                        className="tree-doc-show-more"
+                                                        onClick={() => onToggleShowAll(tagPath)}
+                                                    >
+                                                        {showAll
+                                                            ? 'Show less'
+                                                            : `Show all ${sorted.length} documents`}
+                                                    </button>
+                                                )}
+                                            </div>
+                                        )}
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    )}
+                </div>
+            );
+        };
+
+        /**
+         * FolderTree component: renders the full or filtered tree.
+         */
+        const FolderTree = ({ tree, documents, query, onClickTag }) => {
+            const [expandedTags, setExpandedTags] = useState(new Set());
+            const [showAllTags, setShowAllTags] = useState(new Set());
+
+            const handleToggleTag = useCallback((tagPath) => {
+                setExpandedTags(prev => {
+                    const next = new Set(prev);
+                    if (next.has(tagPath)) {
+                        next.delete(tagPath);
+                    } else {
+                        next.add(tagPath);
+                    }
+                    return next;
+                });
+            }, []);
+
+            const handleToggleShowAll = useCallback((tagPath) => {
+                setShowAllTags(prev => {
+                    const next = new Set(prev);
+                    if (next.has(tagPath)) {
+                        next.delete(tagPath);
+                    } else {
+                        next.add(tagPath);
+                    }
+                    return next;
+                });
+            }, []);
+
+            // Set of matched document URLs for relevancy sorting
+            const matchedUrls = useMemo(() => {
+                const urls = new Set();
+                for (const doc of documents) {
+                    if (doc.url) urls.add(doc.url);
+                }
+                return urls;
+            }, [documents]);
+
+            // Build match counts from search result tags
+            const matchCounts = useMemo(() => {
+                if (!query.trim() || !documents.length) return {};
+                const counts = {};
+                for (const doc of documents) {
+                    const allTags = (doc.tags || []).concat(doc["extra-tags"] || []);
+                    for (const tag of allTags) {
+                        if (tag) counts[tag] = (counts[tag] || 0) + 1;
+                    }
+                }
+                return counts;
+            }, [documents, query]);
+
+            const hasMatches = query.trim().length > 0 && Object.keys(matchCounts).length > 0;
+
+            // Reverse index: tag -> top-level folder name
+            const tagIndex = useMemo(() => buildTagIndex(tree), [tree]);
+
+            // Folder order based on document position
+            const folderOrder = useMemo(() => {
+                if (!hasMatches) return {};
+                const order = {};
+                let rank = 0;
+                for (const doc of documents) {
+                    const allTags = (doc.tags || []).concat(doc["extra-tags"] || []);
+                    for (const tag of allTags) {
+                        const folder = tagIndex[tag];
+                        if (folder && !(folder in order)) {
+                            order[folder] = rank++;
+                        }
+                    }
+                }
+                return order;
+            }, [documents, tagIndex, hasMatches]);
+
+            // Filter tree then sort children by document order
+            const children = useMemo(() => {
+                if (!tree || !hasMatches) return [];
+                const filtered = filterTree(tree, matchCounts);
+                if (!filtered || !filtered.c) return [];
+                return [...filtered.c].sort((a, b) =>
+                    (folderOrder[a.name] ?? Infinity) - (folderOrder[b.name] ?? Infinity)
+                );
+            }, [tree, hasMatches, matchCounts, folderOrder]);
+
+            // Auto-expand all folder paths and tag paths
+            const { allFilteredPaths, autoExpandedTags } = useMemo(() => {
+                const paths = new Set();
+                const tagPaths = new Set();
+                const walk = (node, path) => {
+                    paths.add(path);
+                    if (node.t) {
+                        for (const [tagName] of node.t) {
+                            tagPaths.add(`${path}/#${tagName}`);
+                        }
+                    }
+                    if (node.c) {
+                        for (const child of node.c) walk(child, `${path}/${child.name}`);
+                    }
+                };
+                for (const child of children) walk(child, `root/${child.name}`);
+                return { allFilteredPaths: paths, autoExpandedTags: tagPaths };
+            }, [children]);
+
+            // Merge auto-expanded tags with manually toggled ones
+            const effectiveExpandedTags = useMemo(() => {
+                const merged = new Set(autoExpandedTags);
+                for (const p of expandedTags) merged.add(p);
+                return merged;
+            }, [autoExpandedTags, expandedTags]);
+
+            if (children.length === 0) return null;
+
+            return (
+                <div className="folder-tree">
+                    <div className="folder-tree-header">
+                        <span className="folder-tree-title">Matching Folders</span>
+                        <span className="folder-tree-count">{children.length} folders</span>
+                    </div>
+                    {children.map(child => (
+                        <TreeNode
+                            key={child.name}
+                            node={child}
+                            path={`root/${child.name}`}
+                            expanded={allFilteredPaths}
+                            onToggle={() => {}}
+                            onClickTag={onClickTag}
+                            isFiltered={true}
+                            expandedTags={effectiveExpandedTags}
+                            onToggleTag={handleToggleTag}
+                            matchedUrls={matchedUrls}
+                            showAllTags={showAllTags}
+                            onToggleShowAll={handleToggleShowAll}
+                        />
+                    ))}
+                </div>
+            );
+        };
+
+        /**
+         * The main Search component.
          */
         const Search = () => {
             // --- State Management ---
             const [query, setQuery] = useState("");
             const [selectedNode, setSelectedNode] = useState(null);
-            const [documentsToFetch, setDocumentsToFetch] = useState();
             const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
             const [modelStatus, setModelStatus] = useState("Loading Script...");
             const [documents, setDocuments] = useState([]);
             const [isSortedByDate, setIsSortedByDate] = useState(false);
             const [resultsReranked, setResultsReranked] = useState(false);
             const [sourceFilter, setSourceFilter] = useState("all");
-
-            // --- Graph Interaction State ---
-            const [highlightNodes, setHighlightNodes] = useState(new Set());
-            const [highlightLinks, setHighlightLinks] = useState(new Set());
-            const [graphData, setGraphData] = useState({ nodes: [], links: [] });
+            const [tree, setTree] = useState(null);
+            const [theme, setTheme] = useState(document.documentElement.getAttribute('data-theme') || 'dark');
 
             // --- Refs ---
             const searchTimerRef = useRef(null);
-            const plotTimerRef = useRef(null);
             const workerRef = useRef(null);
             const latestQueryIdRef = useRef(0);
-            const graphRootRef = useRef(null);
             const rerankTimerRef = useRef(null);
-            const fgRef = useRef(null);
-            const lastClickTimeRef = useRef(0);
 
-            // --- Function Declarations (in dependency order) ---
-
-            /**
-             * Safely unmounts the 3D graph React component.
-             */
-            const unmountGraph = useCallback(() => {
-                if (graphRootRef.current) {
-                    graphRootRef.current.unmount();
-                    graphRootRef.current = null;
-                }
-            }, []);
+            // --- Function Declarations ---
 
             /**
              * Fetches the latest documents from the backend.
              */
             const fetchLatest = useCallback(() => {
-                unmountGraph();
-                const count = sourceFilter !== "all" ? FILTERED_FETCH_COUNT : INITIAL_FETCH_COUNT;
-                fetch(`${API_BASE_URL}/latest/${count}`)
+                fetch(`${API_BASE_URL}/latest/${FETCH_COUNT}`)
                     .then(res => res.json())
                     .then(data => setDocuments(data.documents))
                     .catch(error => console.error("[APP] Failed to fetch latest documents:", error));
-            }, [unmountGraph, sourceFilter]);
+            }, []);
 
             /**
              * Fetches search results from the backend API.
-             * The immediate re-ranking logic has been moved to a separate useEffect.
              */
-            const search = useCallback((searchQuery, count, sortChronologically = false) => {
+            const search = useCallback((searchQuery, sortChronologically = false) => {
                 if (!searchQuery.trim()) {
                     fetchLatest();
                     return;
@@ -178,241 +471,35 @@
                     .then(res => res.json())
                     .then(data => {
                         const initialDocs = Object.values(data["documents"]).map(doc => ({ ...doc }));
-                        setDocuments(initialDocs); // This will trigger the re-ranking useEffect
+                        setDocuments(initialDocs);
                     })
                     .catch(error => console.error(`[APP] Failed to fetch search results:`, error));
-            }, [selectedNode, fetchLatest]); // modelStatus dependency removed
+            }, [selectedNode, fetchLatest]);
 
             /**
-             * Preprocesses graph data to build neighbor and link references for highlighting.
+             * Runs search immediately, clearing any pending debounced calls.
              */
-            const preprocessGraphData = useCallback((data) => {
-                const nodeById = {};
-                data.nodes.forEach(node => {
-                    nodeById[node.id] = node;
-                    node.neighbors = [];
-                    node.links = [];
-                });
-
-                data.links.forEach(link => {
-                    const sourceId = typeof link.source === 'object' ? link.source.id : link.source;
-                    const targetId = typeof link.target === 'object' ? link.target.id : link.target;
-                    const a = nodeById[sourceId];
-                    const b = nodeById[targetId];
-                    if (a && b) {
-                        a.neighbors.push(b);
-                        b.neighbors.push(a);
-                        a.links.push(link);
-                        b.links.push(link);
-                    }
-                });
-
-                return data;
-            }, []);
-
-            /**
-             * Handles hovering over a node in the 3D graph - triggers search.
-             */
-            const handleHoverNode = useCallback((hoveredNode) => {
-                if (hoveredNode) {
-                    setSelectedNode(hoveredNode.id);
-                    search(`${query} ${hoveredNode.id}`, documentsToFetch);
-                    window.history.pushState({}, null, `?query=${encodeURIComponent(query)}&node=${encodeURIComponent(hoveredNode.id)}`);
-                }
-            }, [query, search, documentsToFetch]);
-
-            /**
-             * Handles node hover for path highlighting.
-             */
-            const handleGraphNodeHover = useCallback((node) => {
-                const newHighlightNodes = new Set();
-                const newHighlightLinks = new Set();
-
-                if (node) {
-                    newHighlightNodes.add(node);
-                    if (node.neighbors) {
-                        node.neighbors.forEach(neighbor => newHighlightNodes.add(neighbor));
-                    }
-                    if (node.links) {
-                        node.links.forEach(link => newHighlightLinks.add(link));
-                    }
-                }
-
-                setHighlightNodes(newHighlightNodes);
-                setHighlightLinks(newHighlightLinks);
-
-                if (node) {
-                    handleHoverNode(node);
-                }
-            }, [handleHoverNode]);
-
-            /**
-             * Handles link hover for highlighting.
-             */
-            const handleGraphLinkHover = useCallback((link) => {
-                const newHighlightNodes = new Set();
-                const newHighlightLinks = new Set();
-
-                if (link) {
-                    newHighlightLinks.add(link);
-                    newHighlightNodes.add(link.source);
-                    newHighlightNodes.add(link.target);
-                }
-
-                setHighlightNodes(newHighlightNodes);
-                setHighlightLinks(newHighlightLinks);
-            }, []);
-
-            /**
-             * Handles click on a node - zooms camera to it.
-             */
-            const handleGraphNodeClick = useCallback((node) => {
-                const now = Date.now();
-                const isDoubleClick = now - lastClickTimeRef.current < 300;
-                lastClickTimeRef.current = now;
-
-                if (isDoubleClick) {
-                    // Double-click: expand neighbors
-                    fetch(`${API_BASE_URL}/expand/${encodeURIComponent(node.id)}`)
-                        .then(res => res.json())
-                        .then(newData => {
-                            setGraphData(prev => {
-                                const existingNodeIds = new Set(prev.nodes.map(n => n.id));
-                                const existingLinkKeys = new Set(prev.links.map(l => {
-                                    const sId = typeof l.source === 'object' ? l.source.id : l.source;
-                                    const tId = typeof l.target === 'object' ? l.target.id : l.target;
-                                    return `${sId}-${tId}`;
-                                }));
-
-                                const newNodes = newData.nodes.filter(n => !existingNodeIds.has(n.id));
-                                const newLinks = newData.links.filter(l => {
-                                    const key = `${l.source}-${l.target}`;
-                                    const reverseKey = `${l.target}-${l.source}`;
-                                    return !existingLinkKeys.has(key) && !existingLinkKeys.has(reverseKey);
-                                });
-
-                                const merged = {
-                                    nodes: [...prev.nodes, ...newNodes],
-                                    links: [...prev.links, ...newLinks]
-                                };
-
-                                return preprocessGraphData(merged);
-                            });
-                        })
-                        .catch(error => console.error("[APP] Failed to expand node:", error));
-                } else {
-                    // Single click: zoom to node
-                    if (fgRef.current) {
-                        const distance = 120;
-                        const distRatio = 1 + distance / Math.hypot(node.x, node.y, node.z);
-                        fgRef.current.cameraPosition(
-                            { x: node.x * distRatio, y: node.y * distRatio, z: node.z * distRatio },
-                            node,
-                            2000
-                        );
-                    }
-                    handleHoverNode(node);
-                }
-            }, [handleHoverNode, preprocessGraphData]);
-
-            /**
-             * Fetches data and renders the 3D force-directed graph with enhanced features.
-             */
-            const plot = useCallback((plotQuery, count) => {
-                const graphContainer = document.getElementById('graph');
-                if (isMobile || !plotQuery.trim()) {
-                    unmountGraph();
-                    return;
-                }
-                const endpoint = `${API_BASE_URL}/plot/8/${plotQuery.replace("/", "")}`;
-                fetch(endpoint)
-                    .then(res => res.json())
-                    .then(data => {
-                        if (!graphContainer) return;
-
-                        const processedData = preprocessGraphData(data);
-                        setGraphData(processedData);
-
-                        if (!graphRootRef.current) {
-                            graphRootRef.current = createRoot(graphContainer);
-                        }
-                        graphRootRef.current.render(
-                            <ForceGraph3D
-                                ref={fgRef}
-                                graphData={processedData}
-                                backgroundColor="#080808"
-                                width={window.innerWidth / 2}
-                                height={window.innerHeight}
-                                showNavInfo={false}
-
-                                // Minimal node representation
-                                nodeVal={0.5}
-
-                                // Very thin, very transparent lines
-                                linkWidth={0.05}
-                                linkOpacity={link => highlightLinks.has(link) ? 0.08 : 0.005}
-                                linkColor={link => highlightLinks.has(link) ? '#ffffff' : 'rgba(255, 255, 255, 0.2)'}
-
-                                // Subtle single particles
-                                linkDirectionalParticles={1}
-                                linkDirectionalParticleSpeed={0.003}
-                                linkDirectionalParticleWidth={link => highlightLinks.has(link) ? 1 : 0.5}
-                                linkDirectionalParticleColor={link => highlightLinks.has(link) ? '#ffffff' : 'rgba(255, 255, 255, 0.4)'}
-
-                                // Clean text-only nodes - bigger text
-                                nodeThreeObject={node => {
-                                    const sprite = new SpriteText(node.id);
-                                    const isHighlighted = highlightNodes.size === 0 || highlightNodes.has(node);
-
-                                    sprite.color = isHighlighted ? node.color : 'rgba(255, 255, 255, 0.35)';
-                                    sprite.textHeight = 6;
-                                    sprite.fontSize = 140;
-                                    sprite.fontFace = "Inter";
-                                    sprite.fontWeight = isHighlighted ? "600" : "500";
-
-                                    return sprite;
-                                }}
-
-                                // Minimal tooltip
-                                nodeLabel={node => `
-                                    <div style="background: rgba(0,0,0,0.85); padding: 6px 10px; border-radius: 4px; font-family: Inter, -apple-system, sans-serif; font-size: 11px; color: #fff; border: 1px solid rgba(255,255,255,0.1);">
-                                        ${node.id}
-                                    </div>
-                                `}
-
-                                // Interactions
-                                onNodeClick={handleGraphNodeClick}
-                                onNodeHover={handleGraphNodeHover}
-                                onLinkHover={handleGraphLinkHover}
-
-                                // Physics
-                                cooldownTicks={100}
-                                d3AlphaDecay={0.02}
-                                d3VelocityDecay={0.3}
-
-                                // Camera - closer zoom
-                                cameraPosition={{ x: 0, y: 0, z: 140 }}
-                            />
-                        );
-                    }).catch(error => console.error("[APP] Failed to plot graph:", error));
-            }, [isMobile, unmountGraph, preprocessGraphData, handleGraphNodeClick, handleGraphNodeHover, handleGraphLinkHover, highlightNodes, highlightLinks]);
-
-            /**
-             * A utility to run search and plot immediately, clearing any pending debounced calls.
-             */
-            const runNow = useCallback((runQuery, runCount, sortChronologically = true) => {
-                setResultsReranked(false); // New: Reset re-rank status
-                clearTimeout(rerankTimerRef.current); // New: Clear inactivity timer
+            const runNow = useCallback((runQuery, sortChronologically = true) => {
+                setResultsReranked(false);
+                clearTimeout(rerankTimerRef.current);
                 clearTimeout(searchTimerRef.current);
-                clearTimeout(plotTimerRef.current);
-                search(runQuery, runCount, sortChronologically);
-                plot(runQuery, runCount);
-            }, [search, plot]);
+                search(runQuery, sortChronologically);
+            }, [search]);
 
             // --- Effects ---
 
             /**
-             * Initializes the Web Worker on component mount and sets up message handling.
+             * Load folder tree on mount.
+             */
+            useEffect(() => {
+                fetch('folder_tree.json')
+                    .then(res => res.json())
+                    .then(data => setTree(data))
+                    .catch(error => console.error("[APP] Failed to load folder tree:", error));
+            }, []);
+
+            /**
+             * Initializes the Web Worker on component mount.
              */
             useEffect(() => {
                 const worker = new Worker('colbert.worker.js', { type: 'module' });
@@ -432,7 +519,7 @@
                         case 'rank-complete':
                             if (queryId === latestQueryIdRef.current) {
                                 setDocuments(payload);
-                                setResultsReranked(true); // New: Flag that results are now re-ranked
+                                setResultsReranked(true);
                             }
                             break;
                         case 'error':
@@ -446,7 +533,7 @@
             }, []);
 
             /**
-             * Effect to handle initial page load, parsing query params from the URL.
+             * Effect to handle initial page load.
              */
             useEffect(() => {
                 const params = new URLSearchParams(window.location.search);
@@ -456,9 +543,9 @@
                     setQuery(urlQuery);
                     if (urlNode) {
                         setSelectedNode(urlNode);
-                        runNow(`${urlQuery} ${urlNode}`, documentsToFetch);
+                        runNow(`${urlQuery} ${urlNode}`);
                     } else {
-                        runNow(urlQuery, documentsToFetch, true);
+                        runNow(urlQuery, true);
                     }
                 } else {
                     fetchLatest();
@@ -466,7 +553,7 @@
             }, []);
 
             /**
-             * Re-fetch when source filter changes (to adjust document count).
+             * Re-fetch when source filter changes.
              */
             useEffect(() => {
                 if (!query.trim()) {
@@ -484,7 +571,7 @@
             }, []);
 
             /**
-             * New: Effect to automatically re-rank results after a period of inactivity.
+             * Effect to automatically re-rank results after inactivity.
              */
             useEffect(() => {
                 clearTimeout(rerankTimerRef.current);
@@ -511,54 +598,40 @@
 
             // --- Event Handlers ---
 
-            /**
-             * Handles user input in the search box with debouncing.
-             */
             const handleChangeText = useCallback((event) => {
                 const newQuery = event.target.value.toLowerCase();
                 setQuery(newQuery);
                 setSelectedNode(null);
                 setIsSortedByDate(false);
-                setResultsReranked(false); // New: Reset re-rank status on new input
+                setResultsReranked(false);
                 window.history.pushState({}, null, `?query=${encodeURIComponent(newQuery)}`);
 
-                clearTimeout(rerankTimerRef.current); // New: Clear inactivity timer on new input
+                clearTimeout(rerankTimerRef.current);
                 clearTimeout(searchTimerRef.current);
-                clearTimeout(plotTimerRef.current);
-                searchTimerRef.current = setTimeout(() => search(newQuery, documentsToFetch), SEARCH_DEBOUNCE_MS);
-                plotTimerRef.current = setTimeout(() => plot(newQuery, documentsToFetch), PLOT_DEBOUNCE_MS);
-            }, [documentsToFetch, search, plot]);
+                searchTimerRef.current = setTimeout(() => search(newQuery), SEARCH_DEBOUNCE_MS);
+            }, [search]);
 
-            /**
-             * Toggles the sort order between date and relevance.
-             */
             const handleClickDate = useCallback(() => {
                 const newSortState = !isSortedByDate;
                 setIsSortedByDate(newSortState);
-                setResultsReranked(false); // New: Reset re-rank status
-                clearTimeout(rerankTimerRef.current); // New: Clear inactivity timer
-                search(query, documentsToFetch, newSortState);
-            }, [isSortedByDate, query, documentsToFetch, search]);
+                setResultsReranked(false);
+                clearTimeout(rerankTimerRef.current);
+                search(query, newSortState);
+            }, [isSortedByDate, query, search]);
 
-            /**
-             * Adds a clicked tag to the current search query.
-             */
             const handleClickTag = useCallback((tag) => {
                 const newQuery = `${query} ${tag}`.trim();
                 setQuery(newQuery);
                 setIsSortedByDate(false);
-                setResultsReranked(false); // New: Reset re-rank status
+                setResultsReranked(false);
                 const searchInput = document.getElementById("search");
                 if (searchInput) searchInput.value = newQuery;
                 window.history.pushState({}, null, `?query=${encodeURIComponent(newQuery)}`);
-                runNow(newQuery, documentsToFetch, true);
-            }, [query, documentsToFetch, runNow]);
+                runNow(newQuery, true);
+            }, [query, runNow]);
 
             // --- UI Helper Functions ---
 
-            /**
-             * Returns the source category for a document based on URL and tags.
-             */
             const getDocumentSource = (doc) => {
                 const url = doc.url || "";
                 const title = (doc.title || "").toLowerCase();
@@ -573,10 +646,6 @@
                 return "other";
             };
 
-            /**
-             * UPDATED: Returns a logo based on the document's source.
-             * Uses an <img> tag for GitHub and emojis for others.
-             */
             const getLinkLogo = (doc) => {
                 const url = doc.url || "";
                 const title = (doc.title || "").toLowerCase();
@@ -592,36 +661,24 @@
                 if (title.includes("hackernews") || hasHackerNewsTag) {
                     return <img src="hackernews.png" alt="Hackernews Logo" />;
                 }
-                return '📄';
+                return '\uD83D\uDCC4';
             };
 
-            /**
-             * Determines the CSS class for the status indicator light.
-             */
             const getIndicatorClass = (status) => {
                 if (status === "Model Ready") return 'status-ready';
                 if (status.startsWith("Error")) return 'status-error';
                 return 'status-loading';
             };
 
-            /**
-             * UPDATED: Truncates text and normalizes whitespace.
-             */
             const truncate = (text, limit) => {
                 if (!text) return "";
-                // Trim whitespace from ends, then split by one or more spaces.
                 const tokens = text.trim().split(/\s+/);
-
                 if (tokens.length <= limit) {
-                    return tokens.join(' '); // Re-join to ensure single spaces.
+                    return tokens.join(' ');
                 }
-
                 return tokens.slice(0, limit).join(" ") + "...";
             };
 
-            /**
-             * Wraps matching keywords in a span to highlight them.
-             */
             const highlight = useCallback((text) => {
                 if (!text) return "";
                 let keywords = query;
@@ -641,7 +698,16 @@
                 );
             }, [query, selectedNode]);
 
+            // --- Computed: filter by source then cap at DISPLAY_COUNT ---
+            const displayedDocs = useMemo(() => {
+                const filtered = (documents || [])
+                    .filter(doc => sourceFilter === "all" || getDocumentSource(doc) === sourceFilter);
+                return filtered.slice(0, DISPLAY_COUNT);
+            }, [documents, sourceFilter]);
+
             // --- Render ---
+            const folderPanel = document.getElementById('folder-panel');
+
             return (
                 <React.Fragment>
                     <div id="search-container">
@@ -659,14 +725,15 @@
                         </span>
                     </div>
 
-                    <div id="source-filter">
-                        {[
-                            { key: "all", label: "All" },
-                            { key: "github", label: "GitHub" },
-                            { key: "twitter", label: "X" },
-                            { key: "hackernews", label: "HackerNews" },
-                            { key: "huggingface", label: "HuggingFace" },
-                            { key: "arxiv", label: "arXiv" },
+                    <div id="controls-row">
+                        <div id="source-filter">
+                            {[
+                                { key: "all", label: "All" },
+                                { key: "github", label: "GitHub" },
+                                { key: "twitter", label: "X" },
+                                { key: "hackernews", label: "HackerNews" },
+                                { key: "huggingface", label: "HuggingFace" },
+                                { key: "arxiv", label: "arXiv" },
                             { key: "other", label: "Other" },
                         ].map(({ key, label }) => (
                             <button
@@ -677,12 +744,39 @@
                                 {label}
                             </button>
                         ))}
+                        </div>
+                        <button
+                            className="theme-toggle"
+                            onClick={() => {
+                                const next = theme === 'dark' ? 'light' : 'dark';
+                                document.documentElement.setAttribute('data-theme', next);
+                                localStorage.setItem('theme', next);
+                                setTheme(next);
+                            }}
+                            aria-label="Toggle theme"
+                        >
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                {theme === 'dark' ? (
+                                    <React.Fragment>
+                                        <circle cx="12" cy="12" r="5" />
+                                        <line x1="12" y1="1" x2="12" y2="3" />
+                                        <line x1="12" y1="21" x2="12" y2="23" />
+                                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                                        <line x1="1" y1="12" x2="3" y2="12" />
+                                        <line x1="21" y1="12" x2="23" y2="12" />
+                                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                                    </React.Fragment>
+                                ) : (
+                                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                                )}
+                            </svg>
+                        </button>
                     </div>
 
                     <div id="documents">
-                        {(documents || [])
-                            .filter(doc => sourceFilter === "all" || getDocumentSource(doc) === sourceFilter)
-                            .map((doc, index) => (
+                        {displayedDocs.map((doc, index) => (
                             <div className="document" key={doc.url || index}>
                                 <div className="title-wrapper">
                                     <span className="logo">{getLinkLogo(doc)}</span>
@@ -715,6 +809,16 @@
                             </div>
                         ))}
                     </div>
+
+                    {folderPanel && !isMobile && createPortal(
+                        <FolderTree
+                            tree={tree}
+                            documents={displayedDocs}
+                            query={query}
+                            onClickTag={handleClickTag}
+                        />,
+                        folderPanel
+                    )}
                 </React.Fragment>
             );
         };
