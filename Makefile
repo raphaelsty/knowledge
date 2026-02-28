@@ -1,4 +1,8 @@
-.PHONY: install install-dev sync run index serve web lint lint-fix check pre-commit pre-commit-install docker-build docker-run launch docker-stop clean install-api db api migrate up down events events-build deploy deploy-build deploy-down deploy-logs
+.PHONY: install install-dev sync run index serve web lint lint-fix check pre-commit pre-commit-install docker-build docker-run launch docker-stop clean install-api db api migrate up down events events-build deploy deploy-build deploy-down deploy-logs ssh remote-status remote-logs remote-restart remote-update
+
+# Load .env if present
+-include .env
+export
 
 INDEX_DIR        = multi-vector-database
 MODEL            = models/answerai-colbert-small-v1-onnx
@@ -9,6 +13,14 @@ EVENTS_PORT      = 3002
 DATABASE_URL    ?= postgresql://knowledge:knowledge@localhost:5433/knowledge
 NEXT_PLAID_API   = /Users/raphael/Documents/lighton/lategrep/target/release/next-plaid-api
 ORT_DYLIB_PATH  ?= $(shell find ~/Library/Caches ~/.cache -name "libonnxruntime*.dylib" -print -quit 2>/dev/null)
+
+# Remote connection
+HETZNER_IP      ?= 65.21.111.133
+SSH_KEY         ?= ~/.ssh/hetzner_knowledge
+SSH_USER        ?= root
+DOMAIN          ?= knowledge-web.org
+POSTGRES_PASSWORD ?= knowledge
+SSH_CMD          = ssh -i $(SSH_KEY) $(SSH_USER)@$(HETZNER_IP)
 
 # ── Dependencies ──────────────────────────────────────────────
 
@@ -95,6 +107,28 @@ deploy-down:
 # View production logs
 deploy-logs:
 	docker compose -f docker-compose.prod.yml logs -f
+
+# ── Remote Server ──────────────────────────────────────────
+
+# SSH into the server
+ssh:
+	$(SSH_CMD)
+
+# Show container status on server
+remote-status:
+	$(SSH_CMD) "cd knowledge && docker compose -f docker-compose.prod.yml ps"
+
+# Stream server logs
+remote-logs:
+	$(SSH_CMD) "cd knowledge && docker compose -f docker-compose.prod.yml logs -f --tail 100"
+
+# Restart all services on server
+remote-restart:
+	$(SSH_CMD) "cd knowledge && docker compose -f docker-compose.prod.yml restart"
+
+# Pull latest code and rebuild on server
+remote-update:
+	$(SSH_CMD) "cd knowledge && git pull && DOMAIN=$(DOMAIN) POSTGRES_PASSWORD=$(POSTGRES_PASSWORD) docker compose -f docker-compose.prod.yml up -d --build"
 
 # ── Lint ──────────────────────────────────────────────────────
 

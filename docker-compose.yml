@@ -19,6 +19,7 @@ services:
     build:
       context: .
       target: runtime-cpu
+    user: root
     ports:
       - "8080:8080"
     volumes:
