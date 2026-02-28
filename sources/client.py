@@ -217,6 +217,31 @@ def main():
     removed = before - len(data)
     if removed:
         print(f"  Removed {removed} documents with empty title or URL")
+
+    # Deduplicate by normalized URL (strip trailing slash, www., force https)
+    def _normalize_url(u: str) -> str:
+        u = u.strip().rstrip("/")
+        if u.startswith("http://"):
+            u = "https://" + u[7:]
+        parsed = urlparse(u)
+        host = parsed.netloc.lower()
+        if host.startswith("www."):
+            host = host[4:]
+        return f"{parsed.scheme}://{host}{parsed.path}{parsed.query}"
+
+    seen: dict[str, str] = {}  # normalized -> original url
+    duplicates: list[str] = []
+    for url in list(data.keys()):
+        norm = _normalize_url(url)
+        if norm in seen:
+            duplicates.append(url)
+        else:
+            seen[norm] = url
+    for url in duplicates:
+        del data[url]
+    if duplicates:
+        print(f"  Removed {len(duplicates)} duplicate URLs (after normalization)")
+
     timings.append(("Clean data", time.perf_counter() - t0))
 
     # =============================================================================
