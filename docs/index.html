@@ -85,7 +85,7 @@
         const { useState, useEffect, useRef, useCallback, useMemo } = React;
         const { createRoot, createPortal } = ReactDOM;
 
-        const API_BASE_URL = "https://knowledge.fly.dev";
+        const API_BASE_URL = "http://localhost:8080";
         const INDEX_NAME = "knowledge";
         const SEARCH_DEBOUNCE_MS = 400;
         const FETCH_COUNT = 300;
@@ -196,40 +196,23 @@
         };
 
         /**
-         * Builds a reverse index: tagName -> top-level folder name.
-         */
-        const buildTagIndex = (tree) => {
-            const index = {};
-            if (!tree || !tree.c) return index;
-            const walk = (node, topName) => {
-                if (node.t) {
-                    for (const [tagName] of node.t) {
-                        if (!index[tagName]) index[tagName] = topName;
-                    }
-                }
-                if (node.c) {
-                    for (const child of node.c) walk(child, topName);
-                }
-            };
-            for (const top of tree.c) walk(top, top.name);
-            return index;
-        };
-
-        /**
          * Recursively filters the tree to only include paths that contain matching tags.
+         * Annotates each node with _bestRank (min document rank in subtree) for sorting.
          * Returns null if no match found in this subtree.
          */
-        const filterTree = (node, matchCounts, extraDocs) => {
+        const filterTree = (node, matchCounts, extraDocs, matchedUrls) => {
             let filteredChildren = [];
             let filteredTags = [];
             let totalMatch = 0;
+            let bestRank = Infinity;
 
             if (node.c) {
                 for (const child of node.c) {
-                    const fc = filterTree(child, matchCounts, extraDocs);
+                    const fc = filterTree(child, matchCounts, extraDocs, matchedUrls);
                     if (fc) {
                         filteredChildren.push(fc);
                         totalMatch += fc._matchCount || 0;
+                        if (fc._bestRank < bestRank) bestRank = fc._bestRank;
                     }
                 }
             }
@@ -247,8 +230,15 @@
                                 mergedDocs = [...(tagDocs || []), ...toAdd];
                             }
                         }
-                        filteredTags.push([tagName, matchCounts[tagName], mergedDocs]);
+                        // Compute best rank for this tag from its docs
+                        let tagBestRank = Infinity;
+                        for (const d of (mergedDocs || [])) {
+                            const rank = matchedUrls.get(d.u);
+                            if (rank !== undefined && rank < tagBestRank) tagBestRank = rank;
+                        }
+                        filteredTags.push([tagName, matchCounts[tagName], mergedDocs, tagBestRank]);
                         totalMatch += matchCounts[tagName];
+                        if (tagBestRank < bestRank) bestRank = tagBestRank;
                     }
                 }
             }
@@ -260,8 +250,45 @@
                 n: node.n,
                 c: filteredChildren.length > 0 ? filteredChildren : undefined,
                 t: filteredTags.length > 0 ? filteredTags : undefined,
-                _matchCount: totalMatch
+                _matchCount: totalMatch,
+                _bestRank: bestRank
             };
+        };
+
+        /**
+         * Deduplicates docs across the tree: each document appears under only one tag
+         * (the highest-ranked one). Walks in sorted render order (sub-folders by _bestRank,
+         * then tags by best rank) so docs land in the most relevant tag first.
+         */
+        const deduplicateTree = (nodes) => {
+            const seen = new Set();
+            const walk = (node) => {
+                // Process sub-folders first (render before tags), sorted by _bestRank
+                let children = node.c
+                    ? [...node.c].sort((a, b) => (a._bestRank ?? Infinity) - (b._bestRank ?? Infinity))
+                        .map(walk).filter(Boolean)
+                    : [];
+                // Then tags sorted by best rank, dedup their docs
+                let tags = node.t
+                    ? [...node.t].sort((a, b) => (a[3] ?? Infinity) - (b[3] ?? Infinity))
+                        .map(([tagName, tagCount, tagDocs, tagBestRank]) => {
+                            const uniqueDocs = (tagDocs || []).filter(d => {
+                                if (seen.has(d.u)) return false;
+                                seen.add(d.u);
+                                return true;
+                            });
+                            return [tagName, uniqueDocs.length, uniqueDocs, tagBestRank];
+                        }).filter(([, count]) => count > 0)
+                    : [];
+                if (children.length === 0 && tags.length === 0) return null;
+                return {
+                    ...node,
+                    c: children.length > 0 ? children : undefined,
+                    t: tags.length > 0 ? tags : undefined,
+                };
+            };
+            return [...nodes].sort((a, b) => (a._bestRank ?? Infinity) - (b._bestRank ?? Infinity))
+                .map(walk).filter(Boolean);
         };
 
         /**
@@ -302,12 +329,12 @@
         };
 
         /**
-         * Sorts docs in 3 tiers:
-         * 1. Matched + same source as filter (by date desc)
-         * 2. Matched + other source (by date desc)
+         * Sorts docs in tiers, using ColBERT reranked position for matched docs:
+         * 1. Matched + same source as filter (by rerank position)
+         * 2. Matched + other source (by rerank position)
          * 3. Unmatched + same source (by date desc)
          * 4. Unmatched + other source (by date desc)
-         * When no sourceFilter (or "all"), tiers collapse to: matched first, then by date.
+         * When no sourceFilter (or "all"), tiers collapse to: matched (by rank) first, then unmatched (by date).
          */
         const sortTagDocs = (docs, matchedUrls, sourceFilter, sourceKeys, sortByDate) => {
             return [...docs].sort((a, b) => {
@@ -328,6 +355,8 @@
                 const aTier = (aMatched ? 0 : 2) + (aSameSource ? 0 : 1);
                 const bTier = (bMatched ? 0 : 2) + (bSameSource ? 0 : 1);
                 if (aTier !== bTier) return aTier - bTier;
+                // Within matched tiers, sort by ColBERT rerank position
+                if (aMatched && bMatched) return matchedUrls.get(a.u) - matchedUrls.get(b.u);
                 return (b.d || '').localeCompare(a.d || '');
             });
         };
@@ -464,7 +493,7 @@
         /**
          * FolderTree component: renders the full or filtered tree.
          */
-        const FolderTree = ({ tree, documents, query, onClickTag, sourceFilter, sourceKeys, sortByDate }) => {
+        const FolderTree = ({ tree, documents, rankedDocs, query, onClickTag, sourceFilter, sourceKeys, sortByDate }) => {
             const [expandedTags, setExpandedTags] = useState(new Set());
             const [showAllTags, setShowAllTags] = useState(new Set());
             const [collapsedFolders, setCollapsedFolders] = useState(new Set());
@@ -499,14 +528,17 @@
                 });
             }, []);
 
-            // Set of matched document URLs for relevancy sorting
+            // Map of matched document URLs → rank position for relevancy sorting.
+            // Built from rankedDocs (the same slice shown in the main view) so that
+            // folder ordering exactly mirrors the main view, including after ColBERT reranking.
             const matchedUrls = useMemo(() => {
-                const urls = new Set();
-                for (const doc of documents) {
-                    if (doc.url) urls.add(doc.url);
+                const urls = new Map();
+                const source = rankedDocs && rankedDocs.length > 0 ? rankedDocs : documents;
+                for (let i = 0; i < source.length; i++) {
+                    if (source[i].url) urls.set(source[i].url, i);
                 }
                 return urls;
-            }, [documents]);
+            }, [rankedDocs, documents]);
 
             // Build match counts from search result tags
             const matchCounts = useMemo(() => {
@@ -540,35 +572,13 @@
                 return byTag;
             }, [documents, matchCounts, hasMatches]);
 
-            // Reverse index: tag -> top-level folder name
-            const tagIndex = useMemo(() => buildTagIndex(tree), [tree]);
-
-            // Folder order based on document position
-            const folderOrder = useMemo(() => {
-                if (!hasMatches) return {};
-                const order = {};
-                let rank = 0;
-                for (const doc of documents) {
-                    const allTags = (doc.tags || []).concat(doc["extra-tags"] || []);
-                    for (const tag of allTags) {
-                        const folder = tagIndex[tag];
-                        if (folder && !(folder in order)) {
-                            order[folder] = rank++;
-                        }
-                    }
-                }
-                return order;
-            }, [documents, tagIndex, hasMatches]);
-
-            // Filter tree then sort children by document order
+            // Filter tree, deduplicate docs (one tag per doc), sort by best rank
             const children = useMemo(() => {
                 if (!tree || !hasMatches) return [];
-                const filtered = filterTree(tree, matchCounts, extraDocs);
+                const filtered = filterTree(tree, matchCounts, extraDocs, matchedUrls);
                 if (!filtered || !filtered.c) return [];
-                return [...filtered.c].sort((a, b) =>
-                    (folderOrder[a.name] ?? Infinity) - (folderOrder[b.name] ?? Infinity)
-                );
-            }, [tree, hasMatches, matchCounts, folderOrder]);
+                return deduplicateTree(filtered.c);
+            }, [tree, hasMatches, matchCounts, extraDocs, matchedUrls]);
 
             const handleToggleFolder = useCallback((path) => {
                 setCollapsedFolders(prev => {
@@ -677,6 +687,7 @@
             const workerRef = useRef(null);
             const latestQueryIdRef = useRef(0);
             const rerankTimerRef = useRef(null);
+            const immediateRerankRef = useRef(false);
 
             // --- Function Declarations ---
 
@@ -702,7 +713,10 @@
                 const fullQuery = selectedNode ? `${searchQuery} ${selectedNode}` : searchQuery;
 
                 apiSearch(fullQuery, sortChronologically, sourceFilter)
-                    .then(docs => setDocuments(docs))
+                    .then(docs => {
+                        setDocuments(docs);
+                        setResultsReranked(false);
+                    })
                     .catch(error => console.error(`[APP] Failed to fetch search results:`, error));
             }, [selectedNode, fetchLatest, sourceFilter]);
 
@@ -790,6 +804,8 @@
              * Re-fetch when source filter changes.
              */
             useEffect(() => {
+                clearTimeout(rerankTimerRef.current);
+                immediateRerankRef.current = true;
                 if (query.trim()) {
                     search(query, isSortedByDate);
                 } else {
@@ -820,12 +836,14 @@
                     !isSortedByDate;
 
                 if (shouldAttemptRerank) {
+                    const delay = immediateRerankRef.current ? 0 : RERANK_INACTIVITY_MS;
+                    immediateRerankRef.current = false;
                     rerankTimerRef.current = setTimeout(() => {
                         workerRef.current.postMessage({
                             type: 'rank',
                             payload: { query, documents, queryId: latestQueryIdRef.current }
                         });
-                    }, RERANK_INACTIVITY_MS);
+                    }, delay);
                 }
 
                 return () => clearTimeout(rerankTimerRef.current);
@@ -1067,7 +1085,8 @@
                     {folderPanel && !isMobile && createPortal(
                         <FolderTree
                             tree={tree}
-                            documents={displayedDocs}
+                            documents={documents}
+                            rankedDocs={displayedDocs}
                             query={query}
                             onClickTag={handleClickTag}
                             sourceFilter={sourceFilter}
