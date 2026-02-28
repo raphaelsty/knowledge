@@ -9,6 +9,4 @@ twitter:
   min_likes: 10
   max_pages: 2  # ~200 most recent likes per run (increase for initial backfill)
 
-semanlink: False
-
 huggingface: True

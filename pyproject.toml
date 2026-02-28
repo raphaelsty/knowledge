@@ -17,7 +17,6 @@ dependencies = [
     "beautifulsoup4==4.9.3",
     "pandas==1.5.3",
     "requests==2.32.2",
-    "rdflib==6.1.1",
     "cherche==2.2.1",
     "pyyaml_env_tag==0.1",
     "pyzotero==1.5.5",

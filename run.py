@@ -3,8 +3,7 @@
 Knowledge Database Builder
 
 This script aggregates knowledge from multiple sources (GitHub, HackerNews,
-Zotero, Semanlink, HuggingFace) into a unified database and builds the
-search pipeline.
+Zotero, HuggingFace) into a unified database and builds the search pipeline.
 
 Environment Variables
 ---------------------
@@ -48,7 +47,6 @@ from sources import (
     github,
     hackernews,
     huggingface,
-    semanlink,
     tags,
     twitter,
     zotero,
@@ -122,19 +120,6 @@ if zotero_library_id is not None and zotero_api_key is not None:
     data = merge_new_documents(data, fetcher())
 else:
     print("Skipping Zotero (no credentials).")
-
-# Semanlink knowledge base
-if sources.get("semanlink"):
-    print("Fetching Semanlink data...")
-    fetcher = semanlink.Semanlink(
-        urls=[
-            "https://raw.githubusercontent.com/fpservant/semanlink-kdmkb/master/files/sldocs-2023-01-26.ttl",
-            "https://raw.githubusercontent.com/fpservant/semanlink-kdmkb/master/files/sltags-2020-11-18.ttl",
-        ]
-    )
-    data = merge_new_documents(data, fetcher())
-else:
-    print("Skipping Semanlink (disabled).")
 
 # HuggingFace liked items
 if huggingface_token is not None and sources.get("huggingface") is not None:
@@ -286,7 +271,6 @@ with open("docs/sources.json", "w") as f:
 EXCLUDED_TAGS = {
     "twitter": True,
     "github": True,
-    "semanlink": True,
     "hackernews": True,
     "arxiv doc": True,
 }

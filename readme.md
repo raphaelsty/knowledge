@@ -140,14 +140,11 @@ twitter:
   min_likes: 10
   max_pages: 2
 
-semanlink: False
-
 huggingface: True
 ```
 
 - **github**: List of GitHub usernames whose starred repositories you want to track.
 - **twitter**: X/Twitter configuration. Set `username` to your handle, `min_likes` to filter bookmarks, and `max_pages` to control how many pages of recent likes to fetch per run (~100 likes per page). Remove this block entirely to skip X/Twitter.
-- **semanlink**: Set to `True` to enable Semanlink RDF data extraction.
 - **huggingface**: Set to `True` to fetch your HuggingFace liked models and datasets (requires `HUGGINGFACE_TOKEN` secret).
 
 ### 3\. Deployment
@@ -267,10 +264,6 @@ twitter:
 - **Likes**: Only the `max_pages` most recent pages are fetched. This keeps daily CI runs fast while still catching new activity. For an initial backfill of your full like history, temporarily increase `max_pages` to `200` and run locally.
 
 ---
-
-## 💡 Acknowledgements
-
-My personal Knowledge Base is inspired by and extracts resources from the Knowledge Base of François-Paul Servant, namely [Semanlink](http://www.semanlink.net/sl/home).
 
 ## 📜 License
 

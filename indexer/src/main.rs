@@ -80,7 +80,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         println!(
             "  Encoded batch {}/{} ({} docs)",
             i + 1,
-            (texts.len() + BATCH_SIZE - 1) / BATCH_SIZE,
+            texts.len().div_ceil(BATCH_SIZE),
             all_embeddings.len()
         );
     }
