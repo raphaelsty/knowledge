@@ -1,4 +1,4 @@
-.PHONY: install install-dev sync run index serve web lint lint-fix check pre-commit pre-commit-install docker-build docker-run launch docker-stop clean install-api db api migrate up down events events-build deploy deploy-build deploy-down deploy-logs ssh remote-status remote-logs remote-restart remote-update
+.PHONY: install install-dev sync run index serve web lint lint-fix check pre-commit pre-commit-install docker-build docker-run launch docker-stop clean install-api db api migrate up down events events-build deploy deploy-build deploy-down deploy-logs ssh remote-status remote-logs remote-restart remote-update redeploy
 
 # Load .env if present
 -include .env
@@ -129,6 +129,11 @@ remote-restart:
 # Pull latest code and rebuild on server
 remote-update:
 	$(SSH_CMD) "cd knowledge && git pull && DOMAIN=$(DOMAIN) POSTGRES_PASSWORD=$(POSTGRES_PASSWORD) docker compose -f docker-compose.prod.yml up -d --build"
+
+# One-shot redeploy: push local changes, pull + rebuild on server, stream logs
+redeploy:
+	git push
+	$(SSH_CMD) "cd knowledge && git pull && DOMAIN=$(DOMAIN) POSTGRES_PASSWORD=$(POSTGRES_PASSWORD) docker compose -f docker-compose.prod.yml up -d --build && docker compose -f docker-compose.prod.yml logs -f --tail 20"
 
 # ── Lint ──────────────────────────────────────────────────────
 
