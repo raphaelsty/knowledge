@@ -409,21 +409,21 @@ const sortTagDocs = (
 /**
  * Recursive tree node component for folders and tags.
  */
-const countMatchedDocs = (node, matchedUrls, treeDocFilter, sourceKeys) => {
+const countMatchedDocs = (node, matchedUrls, sourceFilter, sourceKeys) => {
   let n = 0;
   for (const [tagName, , docs] of node.t || []) {
     for (const d of docs || []) {
       if (!matchedUrls.has(d.u)) continue;
       if (
-        treeDocFilter &&
-        !treeDocFilter.has(getSourceFromDoc(d, sourceKeys, tagName))
+        sourceFilter.size > 0 &&
+        !sourceFilter.has(getSourceFromDoc(d, sourceKeys, tagName))
       )
         continue;
       n++;
     }
   }
   for (const ch of node.c || []) {
-    n += countMatchedDocs(ch, matchedUrls, treeDocFilter, sourceKeys);
+    n += countMatchedDocs(ch, matchedUrls, sourceFilter, sourceKeys);
   }
   return n;
 };
@@ -441,7 +441,6 @@ const TreeNode = ({
   showAllTags,
   onToggleShowAll,
   sourceFilter,
-  treeDocFilter,
   sourceKeys,
   sortByDate,
 }) => {
@@ -451,7 +450,7 @@ const TreeNode = ({
   const displayCount = countMatchedDocs(
     node,
     matchedUrls,
-    treeDocFilter,
+    sourceFilter,
     sourceKeys,
   );
 
@@ -472,7 +471,7 @@ const TreeNode = ({
           onClick={(e) => {
             e.stopPropagation();
             trackEvent("folder_browse", { folder_name: node.name });
-            onClickTag(node.name);
+            if (hasChildren) onToggle(path);
           }}
         >
           {node.name}
@@ -496,7 +495,6 @@ const TreeNode = ({
               showAllTags={showAllTags}
               onToggleShowAll={onToggleShowAll}
               sourceFilter={sourceFilter}
-              treeDocFilter={treeDocFilter}
               sourceKeys={sourceKeys}
               sortByDate={sortByDate}
             />
@@ -504,28 +502,24 @@ const TreeNode = ({
           {(node.t || []).map(([tagName, tagCount, tagDocs]) => {
             const tagPath = `${path}/#${tagName}`;
             const isTagExpanded = expandedTags.has(tagPath);
-            // Only keep docs that appear in search results
-            let filteredTagDocs = (tagDocs || []).filter((d) =>
-              matchedUrls.has(d.u),
-            );
-            // Additionally filter by source when treeDocFilter is active
-            if (treeDocFilter) {
-              filteredTagDocs = filteredTagDocs.filter((d) =>
-                treeDocFilter.has(getSourceFromDoc(d, sourceKeys, tagName)),
+            // All docs for this tag, filtered by source if active
+            let allTagDocs = tagDocs || [];
+            if (sourceFilter.size > 0) {
+              allTagDocs = allTagDocs.filter((d) =>
+                sourceFilter.has(getSourceFromDoc(d, sourceKeys, tagName)),
               );
             }
-            const hasDocs = filteredTagDocs.length > 0;
-            if (!hasDocs) return null;
-            const sorted = hasDocs
-              ? sortTagDocs(
-                  filteredTagDocs,
-                  matchedUrls,
-                  sourceFilter,
-                  sourceKeys,
-                  sortByDate,
-                  tagName,
-                )
-              : [];
+            // Only show tag if at least one doc matches the search
+            const hasMatchedDocs = allTagDocs.some((d) => matchedUrls.has(d.u));
+            if (!hasMatchedDocs) return null;
+            const sorted = sortTagDocs(
+              allTagDocs,
+              matchedUrls,
+              sourceFilter,
+              sourceKeys,
+              sortByDate,
+              tagName,
+            );
             const showAll = showAllTags.has(tagPath);
             const visible = showAll ? sorted : sorted.slice(0, TAG_DOC_LIMIT);
             const hasMore = sorted.length > TAG_DOC_LIMIT;
@@ -533,24 +527,24 @@ const TreeNode = ({
               <div key={tagName} className="tree-tag-group">
                 <div
                   className={`tree-leaf ${isFiltered ? "matching" : ""}`}
-                  onClick={() => hasDocs && onToggleTag(tagPath)}
+                  onClick={() => onToggleTag(tagPath)}
                 >
                   <span className="tree-chevron">
-                    {hasDocs ? (isTagExpanded ? "\u25BE" : "\u25B8") : "\u2003"}
+                    {isTagExpanded ? "\u25BE" : "\u25B8"}
                   </span>
                   <span className="tree-icon">{"\uD83C\uDFF7\uFE0F"}</span>
                   <span
                     className="tree-name"
                     onClick={(e) => {
                       e.stopPropagation();
-                      onClickTag(tagName);
+                      onToggleTag(tagPath);
                     }}
                   >
                     {tagName}
                   </span>
-                  <span className="tree-count">{filteredTagDocs.length}</span>
+                  <span className="tree-count">{allTagDocs.length}</span>
                 </div>
-                {isTagExpanded && hasDocs && (
+                {isTagExpanded && (
                   <div className="tree-docs">
                     {visible.map((doc, i) => (
                       <a
@@ -615,13 +609,6 @@ const FolderTree = ({
   const [expandedTags, setExpandedTags] = useState(new Set());
   const [showAllTags, setShowAllTags] = useState(new Set());
   const [collapsedFolders, setCollapsedFolders] = useState(new Set());
-  const [filterTreeDocs, setFilterTreeDocs] = useState(false);
-
-  // Reset filter when no source is selected
-  useEffect(() => {
-    if (!(sourceFilter instanceof Set) || sourceFilter.size === 0)
-      setFilterTreeDocs(false);
-  }, [sourceFilter]);
 
   const handleToggleTag = useCallback((tagPath) => {
     setExpandedTags((prev) => {
@@ -757,20 +744,6 @@ const FolderTree = ({
       <div className="folder-tree-header">
         <span className="folder-tree-title">Matching Folders</span>
         <span className="folder-tree-count">{children.length} folders</span>
-        <button
-          className={`tree-filter-btn ${filterTreeDocs ? "active" : ""} ${sourceFilter.size === 0 ? "disabled" : ""}`}
-          disabled={sourceFilter.size === 0}
-          onClick={() => setFilterTreeDocs((prev) => !prev)}
-          title={
-            sourceFilter.size === 0
-              ? "Select a source filter first"
-              : filterTreeDocs
-                ? "Show all documents"
-                : "Only show documents matching the source filter"
-          }
-        >
-          {filterTreeDocs ? "Filtered" : "Filter by source"}
-        </button>
       </div>
       {children.map((child) => (
         <TreeNode
@@ -787,9 +760,6 @@ const FolderTree = ({
           showAllTags={showAllTags}
           onToggleShowAll={handleToggleShowAll}
           sourceFilter={sourceFilter}
-          treeDocFilter={
-            filterTreeDocs && sourceFilter.size > 0 ? sourceFilter : null
-          }
           sourceKeys={sourceKeys}
           sortByDate={sortByDate}
         />
