@@ -171,10 +171,10 @@ const apiLatest = async (count, source) => {
   const cond = buildSourceCondition(source);
   const body = cond
     ? {
-        condition: `(${cond.condition}) AND date != ''`,
-        parameters: cond.parameters,
+        condition: `(${cond.condition}) AND date != ?`,
+        parameters: [...cond.parameters, ""],
       }
-    : { condition: "date IS NOT NULL AND date != ''", parameters: [] };
+    : { condition: "date IS NOT NULL AND date != ?", parameters: [""] };
   const resp = await fetch(
     `${API_BASE_URL}/indices/${INDEX_NAME}/metadata/get`,
     {
