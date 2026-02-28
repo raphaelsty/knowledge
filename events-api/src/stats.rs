@@ -27,6 +27,7 @@ impl StatsParams {
 
 #[derive(Debug, Serialize)]
 pub struct OverviewResponse {
+    page_views: i64,
     searches: i64,
     clicks: i64,
     ctr: f64,
@@ -40,8 +41,9 @@ pub async fn overview(
 ) -> Json<OverviewResponse> {
     let days = params.days();
 
-    let row = sqlx::query_as::<_, (i64, i64, i64, Option<f64>)>(
+    let row = sqlx::query_as::<_, (i64, i64, i64, i64, Option<f64>)>(
         "SELECT
+            COUNT(*) FILTER (WHERE event_type = 'page_view'),
             COUNT(*) FILTER (WHERE event_type = 'search'),
             COUNT(*) FILTER (WHERE event_type = 'click'),
             COUNT(DISTINCT session_id),
@@ -52,12 +54,13 @@ pub async fn overview(
     .bind(days)
     .fetch_one(&state.pool)
     .await
-    .unwrap_or((0, 0, 0, None));
+    .unwrap_or((0, 0, 0, 0, None));
 
-    let searches = row.0;
-    let clicks = row.1;
-    let sessions = row.2;
-    let avg_latency_ms = row.3.unwrap_or(0.0);
+    let page_views = row.0;
+    let searches = row.1;
+    let clicks = row.2;
+    let sessions = row.3;
+    let avg_latency_ms = row.4.unwrap_or(0.0);
     let ctr = if searches > 0 {
         (clicks as f64 / searches as f64) * 100.0
     } else {
@@ -65,6 +68,7 @@ pub async fn overview(
     };
 
     Json(OverviewResponse {
+        page_views,
         searches,
         clicks,
         ctr: (ctr * 100.0).round() / 100.0,
@@ -78,6 +82,7 @@ pub async fn overview(
 #[derive(Debug, Serialize)]
 pub struct ActivityBucket {
     period: String,
+    page_views: i64,
     searches: i64,
     clicks: i64,
     browses: i64,
@@ -94,6 +99,7 @@ pub async fn activity(
     let query = format!(
         "SELECT
             date_trunc('{trunc}', created_at)::text AS period,
+            COUNT(*) FILTER (WHERE event_type = 'page_view'),
             COUNT(*) FILTER (WHERE event_type = 'search'),
             COUNT(*) FILTER (WHERE event_type = 'click'),
             COUNT(*) FILTER (WHERE event_type = 'folder_browse'),
@@ -104,7 +110,7 @@ pub async fn activity(
          ORDER BY 1"
     );
 
-    let rows = sqlx::query_as::<_, (String, i64, i64, i64, i64)>(&query)
+    let rows = sqlx::query_as::<_, (String, i64, i64, i64, i64, i64)>(&query)
         .bind(days)
         .fetch_all(&state.pool)
         .await
@@ -114,10 +120,11 @@ pub async fn activity(
         rows.into_iter()
             .map(|r| ActivityBucket {
                 period: r.0,
-                searches: r.1,
-                clicks: r.2,
-                browses: r.3,
-                filters: r.4,
+                page_views: r.1,
+                searches: r.2,
+                clicks: r.3,
+                browses: r.4,
+                filters: r.5,
             })
             .collect(),
     )

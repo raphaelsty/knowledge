@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacy - Knowledge Search Engine</title>
+    <link rel="icon" type="image/svg+xml" href="./favicon/favicon.svg" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .privacy-container {
+        max-width: 640px;
+        margin: 2rem auto;
+        padding: 0 1.5rem;
+        line-height: 1.7;
+        color: var(--text-primary);
+      }
+      .privacy-container h1 {
+        font-size: 1.4rem;
+        margin-bottom: 1.5rem;
+      }
+      .privacy-container h2 {
+        font-size: 1.1rem;
+        margin-top: 1.5rem;
+      }
+      .privacy-container p,
+      .privacy-container ul {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+      }
+      .privacy-container ul {
+        padding-left: 1.2rem;
+      }
+      .privacy-container a {
+        color: var(--accent-primary);
+      }
+      .opt-out-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+        padding: 0.4rem 0.8rem;
+        border-radius: 6px;
+        border: 1px solid var(--border-subtle);
+        background: var(--bg-secondary);
+        color: var(--text-primary);
+        cursor: pointer;
+        font-size: 0.85rem;
+      }
+      .opt-out-toggle.opted-out {
+        border-color: var(--accent-primary);
+      }
+      .back-link {
+        display: inline-block;
+        margin-bottom: 1rem;
+        color: var(--text-secondary);
+        font-size: 0.85rem;
+        text-decoration: none;
+      }
+      .back-link:hover {
+        color: var(--text-primary);
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      (function () {
+        var theme = localStorage.getItem("theme") || "dark";
+        document.documentElement.setAttribute("data-theme", theme);
+      })();
+    </script>
+    <div class="privacy-container">
+      <a href="/" class="back-link">&larr; Back to search</a>
+      <h1>Privacy Notice</h1>
+
+      <h2>What we collect</h2>
+      <p>
+        This site collects anonymous usage statistics to understand how the
+        search engine is used and improve it. Under the CNIL audience
+        measurement exemption, no consent banner is required because we only
+        collect:
+      </p>
+      <ul>
+        <li>
+          <strong>Page views</strong> &mdash; that you visited the site, with
+          the referring domain (e.g. "google.com", not the full URL)
+        </li>
+        <li>
+          <strong>Search queries</strong> &mdash; what you searched for, result
+          count, and response time
+        </li>
+        <li>
+          <strong>Clicks</strong> &mdash; which document you clicked (once per
+          URL per session)
+        </li>
+        <li>
+          <strong>Filter &amp; folder interactions</strong> &mdash; which source
+          filters and folders you used
+        </li>
+        <li>
+          <strong>Device type</strong> &mdash; mobile or desktop (not your
+          browser or OS)
+        </li>
+      </ul>
+
+      <h2>What we do NOT collect</h2>
+      <ul>
+        <li>No IP addresses are stored</li>
+        <li>
+          No cookies &mdash; only a random session ID in sessionStorage (cleared
+          when you close the tab)
+        </li>
+        <li>No cross-site tracking</li>
+        <li>No personal data</li>
+        <li>No fingerprinting (browser, OS, screen size, etc.)</li>
+      </ul>
+
+      <h2>Data retention</h2>
+      <p>Events are automatically deleted after 90 days.</p>
+
+      <h2>Third parties</h2>
+      <p>
+        Analytics data is not shared with any third party. It is stored on our
+        own server.
+      </p>
+
+      <h2>Opt out</h2>
+      <p>
+        You can disable all analytics collection. This preference is saved in
+        your browser and persists across sessions.
+      </p>
+      <button class="opt-out-toggle" id="opt-out-btn" onclick="toggleOptOut()">
+        <span id="opt-out-icon"></span>
+        <span id="opt-out-label"></span>
+      </button>
+
+      <h2>Contact</h2>
+      <p>
+        For questions about this privacy notice, contact
+        <a href="https://github.com/raphaelsty">Raphael Sourty</a>.
+      </p>
+    </div>
+    <script>
+      function updateBtn() {
+        var out = localStorage.getItem("_analytics_optout") === "1";
+        document.getElementById("opt-out-icon").textContent = out
+          ? "\u2705"
+          : "\u26AA";
+        document.getElementById("opt-out-label").textContent = out
+          ? "Analytics disabled"
+          : "Analytics enabled";
+        document.getElementById("opt-out-btn").className = out
+          ? "opt-out-toggle opted-out"
+          : "opt-out-toggle";
+      }
+      function toggleOptOut() {
+        var current = localStorage.getItem("_analytics_optout") === "1";
+        if (current) {
+          localStorage.removeItem("_analytics_optout");
+        } else {
+          localStorage.setItem("_analytics_optout", "1");
+        }
+        updateBtn();
+      }
+      updateBtn();
+    </script>
+  </body>
+</html>

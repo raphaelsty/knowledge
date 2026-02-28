@@ -29,7 +29,10 @@ const syncURL = (params) => {
   window.history.pushState({}, null, qs ? `?${qs}` : window.location.pathname);
 };
 
-// --- Anonymous Analytics (RGPD-compliant) ---
+// --- Anonymous Analytics (RGPD-compliant, CNIL audience measurement exemption) ---
+
+const analyticsOptedOut = () =>
+  localStorage.getItem("_analytics_optout") === "1";
 
 const getSessionId = () => {
   let id = sessionStorage.getItem("_sid");
@@ -40,8 +43,18 @@ const getSessionId = () => {
   return id;
 };
 
+const deviceType = window.innerWidth <= 768 ? "mobile" : "desktop";
+const referrerDomain = (() => {
+  try {
+    return document.referrer ? new URL(document.referrer).hostname : "";
+  } catch {
+    return "";
+  }
+})();
+
 const eventBuffer = [];
 const clickedUrls = new Set();
+const browsedFolders = new Set();
 
 const flushEvents = (useBeacon = false) => {
   if (eventBuffer.length === 0) return;
@@ -64,13 +77,22 @@ const flushEvents = (useBeacon = false) => {
 };
 
 const trackEvent = (eventType, payload) => {
+  if (analyticsOptedOut()) return;
   if (eventBuffer.length >= MAX_BUFFER_SIZE) eventBuffer.shift();
   eventBuffer.push({
     session_id: getSessionId(),
     event_type: eventType,
-    payload,
+    payload: { ...payload, device_type: deviceType },
   });
 };
+
+// Track page view once per session
+if (!analyticsOptedOut() && !sessionStorage.getItem("_pv")) {
+  sessionStorage.setItem("_pv", "1");
+  trackEvent("page_view", {
+    referrer_domain: referrerDomain,
+  });
+}
 
 // Flush every 10s via fetch; use sendBeacon only on page unload
 setInterval(flushEvents, FLUSH_INTERVAL_MS);
@@ -470,7 +492,10 @@ const TreeNode = ({
           className="tree-name"
           onClick={(e) => {
             e.stopPropagation();
-            trackEvent("folder_browse", { folder_name: node.name });
+            if (!browsedFolders.has(node.name)) {
+              browsedFolders.add(node.name);
+              trackEvent("folder_browse", { folder_name: node.name });
+            }
             if (hasChildren) onToggle(path);
           }}
         >
@@ -1020,20 +1045,30 @@ const Search = () => {
     (event) => {
       const newQuery = event.target.value.toLowerCase();
       setQuery(newQuery);
+      clearTimeout(rerankTimerRef.current);
+      clearTimeout(searchTimerRef.current);
+
+      if (!newQuery.trim()) {
+        // Reset all state when search is cleared
+        setSelectedNode(null);
+        setIsSortedByDate(false);
+        setResultsReranked(false);
+        syncURL({ source: sourceFilter });
+        fetchLatest();
+        return;
+      }
+
       setSelectedNode(null);
       setIsSortedByDate(false);
       setResultsReranked(false);
       syncURL({ query: newQuery, source: sourceFilter });
-
-      clearTimeout(rerankTimerRef.current);
-      clearTimeout(searchTimerRef.current);
       searchTimerRef.current = setTimeout(
         () => search(newQuery),
         SEARCH_DEBOUNCE_MS,
       );
       resetSettleTimer(newQuery);
     },
-    [search, resetSettleTimer, sourceFilter],
+    [search, resetSettleTimer, sourceFilter, fetchLatest],
   );
 
   const handleClickDate = useCallback(() => {

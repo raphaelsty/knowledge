@@ -18,7 +18,7 @@ const MAX_BATCH_SIZE: usize = 100;
 const MAX_PAYLOAD_BYTES: usize = 8192;
 const RETENTION_DAYS: i32 = 90;
 
-const ALLOWED_EVENT_TYPES: &[&str] = &["search", "click", "folder_browse", "filter_apply"];
+const ALLOWED_EVENT_TYPES: &[&str] = &["search", "click", "folder_browse", "filter_apply", "page_view"];
 
 #[derive(Debug, Deserialize)]
 struct EventInput {
