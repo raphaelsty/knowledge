@@ -97026,5 +97026,1749 @@
     {
         "head": "files",
         "tail": "code"
+    },
+    {
+        "head": "document-parser",
+        "tail": "documents"
+    },
+    {
+        "head": "document-parser",
+        "tail": "pdf"
+    },
+    {
+        "head": "document-parser",
+        "tail": "pdf-converter"
+    },
+    {
+        "head": "document-parser",
+        "tail": "document-parsing"
+    },
+    {
+        "head": "document-parser",
+        "tail": "json"
+    },
+    {
+        "head": "document-parser",
+        "tail": "ocr-recognition"
+    },
+    {
+        "head": "document-parser",
+        "tail": "dataloader"
+    },
+    {
+        "head": "document-parser",
+        "tail": "pdf-parser"
+    },
+    {
+        "head": "document-parser",
+        "tail": "pdf-to-markdown"
+    },
+    {
+        "head": "document-parser",
+        "tail": "pdf-to-html"
+    },
+    {
+        "head": "document-parser",
+        "tail": "html"
+    },
+    {
+        "head": "document-parser",
+        "tail": "recognition"
+    },
+    {
+        "head": "document-parser",
+        "tail": "markdown"
+    },
+    {
+        "head": "document-parser",
+        "tail": "java"
+    },
+    {
+        "head": "document-parser",
+        "tail": "ai"
+    },
+    {
+        "head": "document-parser",
+        "tail": "rag"
+    },
+    {
+        "head": "document-parser",
+        "tail": "pdf-to-json"
+    },
+    {
+        "head": "document-parser",
+        "tail": "sdk"
+    },
+    {
+        "head": "document-parser",
+        "tail": "tables"
+    },
+    {
+        "head": "document-parser",
+        "tail": "convert"
+    },
+    {
+        "head": "documents",
+        "tail": "pdf"
+    },
+    {
+        "head": "documents",
+        "tail": "pdf-converter"
+    },
+    {
+        "head": "documents",
+        "tail": "document-parsing"
+    },
+    {
+        "head": "documents",
+        "tail": "json"
+    },
+    {
+        "head": "documents",
+        "tail": "ocr-recognition"
+    },
+    {
+        "head": "documents",
+        "tail": "dataloader"
+    },
+    {
+        "head": "documents",
+        "tail": "pdf-parser"
+    },
+    {
+        "head": "documents",
+        "tail": "pdf-to-markdown"
+    },
+    {
+        "head": "documents",
+        "tail": "pdf-to-html"
+    },
+    {
+        "head": "documents",
+        "tail": "html"
+    },
+    {
+        "head": "documents",
+        "tail": "recognition"
+    },
+    {
+        "head": "documents",
+        "tail": "markdown"
+    },
+    {
+        "head": "documents",
+        "tail": "java"
+    },
+    {
+        "head": "documents",
+        "tail": "ai"
+    },
+    {
+        "head": "documents",
+        "tail": "pdf-to-json"
+    },
+    {
+        "head": "documents",
+        "tail": "sdk"
+    },
+    {
+        "head": "documents",
+        "tail": "tables"
+    },
+    {
+        "head": "documents",
+        "tail": "convert"
+    },
+    {
+        "head": "pdf",
+        "tail": "pdf-converter"
+    },
+    {
+        "head": "pdf",
+        "tail": "json"
+    },
+    {
+        "head": "pdf",
+        "tail": "ocr-recognition"
+    },
+    {
+        "head": "pdf",
+        "tail": "dataloader"
+    },
+    {
+        "head": "pdf",
+        "tail": "pdf-parser"
+    },
+    {
+        "head": "pdf",
+        "tail": "pdf-to-markdown"
+    },
+    {
+        "head": "pdf",
+        "tail": "pdf-to-html"
+    },
+    {
+        "head": "pdf",
+        "tail": "html"
+    },
+    {
+        "head": "pdf",
+        "tail": "recognition"
+    },
+    {
+        "head": "pdf",
+        "tail": "markdown"
+    },
+    {
+        "head": "pdf",
+        "tail": "ai"
+    },
+    {
+        "head": "pdf",
+        "tail": "pdf-to-json"
+    },
+    {
+        "head": "pdf",
+        "tail": "sdk"
+    },
+    {
+        "head": "pdf",
+        "tail": "tables"
+    },
+    {
+        "head": "pdf",
+        "tail": "convert"
+    },
+    {
+        "head": "pdf-converter",
+        "tail": "document-parsing"
+    },
+    {
+        "head": "pdf-converter",
+        "tail": "json"
+    },
+    {
+        "head": "pdf-converter",
+        "tail": "ocr-recognition"
+    },
+    {
+        "head": "pdf-converter",
+        "tail": "dataloader"
+    },
+    {
+        "head": "pdf-converter",
+        "tail": "pdf-parser"
+    },
+    {
+        "head": "pdf-converter",
+        "tail": "pdf-to-markdown"
+    },
+    {
+        "head": "pdf-converter",
+        "tail": "pdf-to-html"
+    },
+    {
+        "head": "pdf-converter",
+        "tail": "html"
+    },
+    {
+        "head": "pdf-converter",
+        "tail": "recognition"
+    },
+    {
+        "head": "pdf-converter",
+        "tail": "markdown"
+    },
+    {
+        "head": "pdf-converter",
+        "tail": "java"
+    },
+    {
+        "head": "pdf-converter",
+        "tail": "ai"
+    },
+    {
+        "head": "pdf-converter",
+        "tail": "rag"
+    },
+    {
+        "head": "pdf-converter",
+        "tail": "pdf-to-json"
+    },
+    {
+        "head": "pdf-converter",
+        "tail": "sdk"
+    },
+    {
+        "head": "pdf-converter",
+        "tail": "tables"
+    },
+    {
+        "head": "pdf-converter",
+        "tail": "convert"
+    },
+    {
+        "head": "document-parsing",
+        "tail": "json"
+    },
+    {
+        "head": "document-parsing",
+        "tail": "ocr-recognition"
+    },
+    {
+        "head": "document-parsing",
+        "tail": "dataloader"
+    },
+    {
+        "head": "document-parsing",
+        "tail": "pdf-parser"
+    },
+    {
+        "head": "document-parsing",
+        "tail": "pdf-to-markdown"
+    },
+    {
+        "head": "document-parsing",
+        "tail": "pdf-to-html"
+    },
+    {
+        "head": "document-parsing",
+        "tail": "html"
+    },
+    {
+        "head": "document-parsing",
+        "tail": "recognition"
+    },
+    {
+        "head": "document-parsing",
+        "tail": "markdown"
+    },
+    {
+        "head": "document-parsing",
+        "tail": "ai"
+    },
+    {
+        "head": "document-parsing",
+        "tail": "rag"
+    },
+    {
+        "head": "document-parsing",
+        "tail": "pdf-to-json"
+    },
+    {
+        "head": "document-parsing",
+        "tail": "sdk"
+    },
+    {
+        "head": "document-parsing",
+        "tail": "tables"
+    },
+    {
+        "head": "document-parsing",
+        "tail": "convert"
+    },
+    {
+        "head": "json",
+        "tail": "ocr-recognition"
+    },
+    {
+        "head": "json",
+        "tail": "dataloader"
+    },
+    {
+        "head": "json",
+        "tail": "pdf-parser"
+    },
+    {
+        "head": "json",
+        "tail": "pdf-to-markdown"
+    },
+    {
+        "head": "json",
+        "tail": "pdf-to-html"
+    },
+    {
+        "head": "json",
+        "tail": "html"
+    },
+    {
+        "head": "json",
+        "tail": "recognition"
+    },
+    {
+        "head": "json",
+        "tail": "markdown"
+    },
+    {
+        "head": "json",
+        "tail": "java"
+    },
+    {
+        "head": "json",
+        "tail": "ai"
+    },
+    {
+        "head": "json",
+        "tail": "rag"
+    },
+    {
+        "head": "json",
+        "tail": "pdf-to-json"
+    },
+    {
+        "head": "json",
+        "tail": "sdk"
+    },
+    {
+        "head": "json",
+        "tail": "tables"
+    },
+    {
+        "head": "json",
+        "tail": "convert"
+    },
+    {
+        "head": "ocr-recognition",
+        "tail": "dataloader"
+    },
+    {
+        "head": "ocr-recognition",
+        "tail": "pdf-parser"
+    },
+    {
+        "head": "ocr-recognition",
+        "tail": "pdf-to-markdown"
+    },
+    {
+        "head": "ocr-recognition",
+        "tail": "pdf-to-html"
+    },
+    {
+        "head": "ocr-recognition",
+        "tail": "html"
+    },
+    {
+        "head": "ocr-recognition",
+        "tail": "recognition"
+    },
+    {
+        "head": "ocr-recognition",
+        "tail": "markdown"
+    },
+    {
+        "head": "ocr-recognition",
+        "tail": "java"
+    },
+    {
+        "head": "ocr-recognition",
+        "tail": "ai"
+    },
+    {
+        "head": "ocr-recognition",
+        "tail": "rag"
+    },
+    {
+        "head": "ocr-recognition",
+        "tail": "pdf-to-json"
+    },
+    {
+        "head": "ocr-recognition",
+        "tail": "sdk"
+    },
+    {
+        "head": "ocr-recognition",
+        "tail": "tables"
+    },
+    {
+        "head": "ocr-recognition",
+        "tail": "convert"
+    },
+    {
+        "head": "dataloader",
+        "tail": "pdf-parser"
+    },
+    {
+        "head": "dataloader",
+        "tail": "pdf-to-markdown"
+    },
+    {
+        "head": "dataloader",
+        "tail": "pdf-to-html"
+    },
+    {
+        "head": "dataloader",
+        "tail": "html"
+    },
+    {
+        "head": "dataloader",
+        "tail": "recognition"
+    },
+    {
+        "head": "dataloader",
+        "tail": "markdown"
+    },
+    {
+        "head": "dataloader",
+        "tail": "java"
+    },
+    {
+        "head": "dataloader",
+        "tail": "ai"
+    },
+    {
+        "head": "dataloader",
+        "tail": "rag"
+    },
+    {
+        "head": "dataloader",
+        "tail": "pdf-to-json"
+    },
+    {
+        "head": "dataloader",
+        "tail": "sdk"
+    },
+    {
+        "head": "dataloader",
+        "tail": "tables"
+    },
+    {
+        "head": "dataloader",
+        "tail": "convert"
+    },
+    {
+        "head": "pdf-parser",
+        "tail": "pdf-to-markdown"
+    },
+    {
+        "head": "pdf-parser",
+        "tail": "pdf-to-html"
+    },
+    {
+        "head": "pdf-parser",
+        "tail": "html"
+    },
+    {
+        "head": "pdf-parser",
+        "tail": "recognition"
+    },
+    {
+        "head": "pdf-parser",
+        "tail": "markdown"
+    },
+    {
+        "head": "pdf-parser",
+        "tail": "java"
+    },
+    {
+        "head": "pdf-parser",
+        "tail": "ai"
+    },
+    {
+        "head": "pdf-parser",
+        "tail": "rag"
+    },
+    {
+        "head": "pdf-parser",
+        "tail": "pdf-to-json"
+    },
+    {
+        "head": "pdf-parser",
+        "tail": "sdk"
+    },
+    {
+        "head": "pdf-parser",
+        "tail": "tables"
+    },
+    {
+        "head": "pdf-parser",
+        "tail": "convert"
+    },
+    {
+        "head": "pdf-to-markdown",
+        "tail": "pdf-to-html"
+    },
+    {
+        "head": "pdf-to-markdown",
+        "tail": "html"
+    },
+    {
+        "head": "pdf-to-markdown",
+        "tail": "recognition"
+    },
+    {
+        "head": "pdf-to-markdown",
+        "tail": "markdown"
+    },
+    {
+        "head": "pdf-to-markdown",
+        "tail": "java"
+    },
+    {
+        "head": "pdf-to-markdown",
+        "tail": "ai"
+    },
+    {
+        "head": "pdf-to-markdown",
+        "tail": "rag"
+    },
+    {
+        "head": "pdf-to-markdown",
+        "tail": "pdf-to-json"
+    },
+    {
+        "head": "pdf-to-markdown",
+        "tail": "sdk"
+    },
+    {
+        "head": "pdf-to-markdown",
+        "tail": "tables"
+    },
+    {
+        "head": "pdf-to-markdown",
+        "tail": "convert"
+    },
+    {
+        "head": "pdf-to-html",
+        "tail": "html"
+    },
+    {
+        "head": "pdf-to-html",
+        "tail": "recognition"
+    },
+    {
+        "head": "pdf-to-html",
+        "tail": "markdown"
+    },
+    {
+        "head": "pdf-to-html",
+        "tail": "java"
+    },
+    {
+        "head": "pdf-to-html",
+        "tail": "ai"
+    },
+    {
+        "head": "pdf-to-html",
+        "tail": "rag"
+    },
+    {
+        "head": "pdf-to-html",
+        "tail": "pdf-to-json"
+    },
+    {
+        "head": "pdf-to-html",
+        "tail": "sdk"
+    },
+    {
+        "head": "pdf-to-html",
+        "tail": "tables"
+    },
+    {
+        "head": "pdf-to-html",
+        "tail": "convert"
+    },
+    {
+        "head": "html",
+        "tail": "recognition"
+    },
+    {
+        "head": "html",
+        "tail": "java"
+    },
+    {
+        "head": "html",
+        "tail": "ai"
+    },
+    {
+        "head": "html",
+        "tail": "pdf-to-json"
+    },
+    {
+        "head": "html",
+        "tail": "sdk"
+    },
+    {
+        "head": "html",
+        "tail": "tables"
+    },
+    {
+        "head": "html",
+        "tail": "convert"
+    },
+    {
+        "head": "recognition",
+        "tail": "markdown"
+    },
+    {
+        "head": "recognition",
+        "tail": "java"
+    },
+    {
+        "head": "recognition",
+        "tail": "ai"
+    },
+    {
+        "head": "recognition",
+        "tail": "rag"
+    },
+    {
+        "head": "recognition",
+        "tail": "pdf-to-json"
+    },
+    {
+        "head": "recognition",
+        "tail": "sdk"
+    },
+    {
+        "head": "recognition",
+        "tail": "tables"
+    },
+    {
+        "head": "recognition",
+        "tail": "convert"
+    },
+    {
+        "head": "markdown",
+        "tail": "java"
+    },
+    {
+        "head": "markdown",
+        "tail": "ai"
+    },
+    {
+        "head": "markdown",
+        "tail": "rag"
+    },
+    {
+        "head": "markdown",
+        "tail": "pdf-to-json"
+    },
+    {
+        "head": "markdown",
+        "tail": "sdk"
+    },
+    {
+        "head": "markdown",
+        "tail": "tables"
+    },
+    {
+        "head": "markdown",
+        "tail": "convert"
+    },
+    {
+        "head": "java",
+        "tail": "ai"
+    },
+    {
+        "head": "java",
+        "tail": "rag"
+    },
+    {
+        "head": "java",
+        "tail": "pdf-to-json"
+    },
+    {
+        "head": "java",
+        "tail": "sdk"
+    },
+    {
+        "head": "java",
+        "tail": "tables"
+    },
+    {
+        "head": "java",
+        "tail": "convert"
+    },
+    {
+        "head": "ai",
+        "tail": "rag"
+    },
+    {
+        "head": "ai",
+        "tail": "pdf-to-json"
+    },
+    {
+        "head": "ai",
+        "tail": "sdk"
+    },
+    {
+        "head": "ai",
+        "tail": "tables"
+    },
+    {
+        "head": "ai",
+        "tail": "convert"
+    },
+    {
+        "head": "rag",
+        "tail": "pdf-to-json"
+    },
+    {
+        "head": "rag",
+        "tail": "sdk"
+    },
+    {
+        "head": "rag",
+        "tail": "tables"
+    },
+    {
+        "head": "rag",
+        "tail": "convert"
+    },
+    {
+        "head": "pdf-to-json",
+        "tail": "sdk"
+    },
+    {
+        "head": "pdf-to-json",
+        "tail": "tables"
+    },
+    {
+        "head": "pdf-to-json",
+        "tail": "convert"
+    },
+    {
+        "head": "sdk",
+        "tail": "tables"
+    },
+    {
+        "head": "sdk",
+        "tail": "convert"
+    },
+    {
+        "head": "tables",
+        "tail": "convert"
+    },
+    {
+        "head": "python",
+        "tail": "jina-embeddings-v5"
+    },
+    {
+        "head": "python",
+        "tail": "mlx"
+    },
+    {
+        "head": "python",
+        "tail": "grep"
+    },
+    {
+        "head": "python",
+        "tail": "apple-silicon"
+    },
+    {
+        "head": "python",
+        "tail": "jina"
+    },
+    {
+        "head": "python",
+        "tail": "natural-language-search"
+    },
+    {
+        "head": "embeddings",
+        "tail": "jina-embeddings-v5"
+    },
+    {
+        "head": "embeddings",
+        "tail": "mlx"
+    },
+    {
+        "head": "embeddings",
+        "tail": "apple-silicon"
+    },
+    {
+        "head": "embeddings",
+        "tail": "natural-language-search"
+    },
+    {
+        "head": "embeddings",
+        "tail": "classification"
+    },
+    {
+        "head": "jina-embeddings-v5",
+        "tail": "semantic-search"
+    },
+    {
+        "head": "jina-embeddings-v5",
+        "tail": "cli"
+    },
+    {
+        "head": "jina-embeddings-v5",
+        "tail": "mlx"
+    },
+    {
+        "head": "jina-embeddings-v5",
+        "tail": "grep"
+    },
+    {
+        "head": "jina-embeddings-v5",
+        "tail": "apple-silicon"
+    },
+    {
+        "head": "jina-embeddings-v5",
+        "tail": "vector-search"
+    },
+    {
+        "head": "jina-embeddings-v5",
+        "tail": "jina"
+    },
+    {
+        "head": "jina-embeddings-v5",
+        "tail": "natural-language-search"
+    },
+    {
+        "head": "jina-embeddings-v5",
+        "tail": "classification"
+    },
+    {
+        "head": "semantic-search",
+        "tail": "cli"
+    },
+    {
+        "head": "semantic-search",
+        "tail": "mlx"
+    },
+    {
+        "head": "semantic-search",
+        "tail": "apple-silicon"
+    },
+    {
+        "head": "semantic-search",
+        "tail": "jina"
+    },
+    {
+        "head": "semantic-search",
+        "tail": "natural-language-search"
+    },
+    {
+        "head": "semantic-search",
+        "tail": "classification"
+    },
+    {
+        "head": "cli",
+        "tail": "mlx"
+    },
+    {
+        "head": "cli",
+        "tail": "apple-silicon"
+    },
+    {
+        "head": "cli",
+        "tail": "vector-search"
+    },
+    {
+        "head": "cli",
+        "tail": "jina"
+    },
+    {
+        "head": "cli",
+        "tail": "natural-language-search"
+    },
+    {
+        "head": "cli",
+        "tail": "classification"
+    },
+    {
+        "head": "mlx",
+        "tail": "grep"
+    },
+    {
+        "head": "mlx",
+        "tail": "apple-silicon"
+    },
+    {
+        "head": "mlx",
+        "tail": "vector-search"
+    },
+    {
+        "head": "mlx",
+        "tail": "jina"
+    },
+    {
+        "head": "mlx",
+        "tail": "natural-language-search"
+    },
+    {
+        "head": "mlx",
+        "tail": "classification"
+    },
+    {
+        "head": "grep",
+        "tail": "apple-silicon"
+    },
+    {
+        "head": "grep",
+        "tail": "vector-search"
+    },
+    {
+        "head": "grep",
+        "tail": "jina"
+    },
+    {
+        "head": "grep",
+        "tail": "natural-language-search"
+    },
+    {
+        "head": "grep",
+        "tail": "classification"
+    },
+    {
+        "head": "apple-silicon",
+        "tail": "vector-search"
+    },
+    {
+        "head": "apple-silicon",
+        "tail": "jina"
+    },
+    {
+        "head": "apple-silicon",
+        "tail": "natural-language-search"
+    },
+    {
+        "head": "apple-silicon",
+        "tail": "classification"
+    },
+    {
+        "head": "vector-search",
+        "tail": "natural-language-search"
+    },
+    {
+        "head": "vector-search",
+        "tail": "classification"
+    },
+    {
+        "head": "jina",
+        "tail": "natural-language-search"
+    },
+    {
+        "head": "jina",
+        "tail": "classification"
+    },
+    {
+        "head": "natural-language-search",
+        "tail": "classification"
+    },
+    {
+        "head": "python",
+        "tail": "retriever"
+    },
+    {
+        "head": "python",
+        "tail": "extraction"
+    },
+    {
+        "head": "python",
+        "tail": "tables"
+    },
+    {
+        "head": "python",
+        "tail": "extract"
+    },
+    {
+        "head": "retriever",
+        "tail": "extraction"
+    },
+    {
+        "head": "retriever",
+        "tail": "text"
+    },
+    {
+        "head": "retriever",
+        "tail": "tables"
+    },
+    {
+        "head": "retriever",
+        "tail": "extract"
+    },
+    {
+        "head": "extraction",
+        "tail": "text"
+    },
+    {
+        "head": "extraction",
+        "tail": "tables"
+    },
+    {
+        "head": "text",
+        "tail": "tables"
+    },
+    {
+        "head": "text",
+        "tail": "extract"
+    },
+    {
+        "head": "tables",
+        "tail": "extract"
+    },
+    {
+        "head": "rust",
+        "tail": "functions"
+    },
+    {
+        "head": "rust",
+        "tail": "language"
+    },
+    {
+        "head": "functions",
+        "tail": "language"
+    },
+    {
+        "head": "functions",
+        "tail": "postgresql"
+    },
+    {
+        "head": "language",
+        "tail": "postgresql"
+    },
+    {
+        "head": "python",
+        "tail": "snowflake"
+    },
+    {
+        "head": "python",
+        "tail": "ai"
+    },
+    {
+        "head": "python",
+        "tail": "analytics-engineering"
+    },
+    {
+        "head": "python",
+        "tail": "clickhouse"
+    },
+    {
+        "head": "python",
+        "tail": "bash"
+    },
+    {
+        "head": "python",
+        "tail": "data"
+    },
+    {
+        "head": "duckdb",
+        "tail": "bigquery"
+    },
+    {
+        "head": "duckdb",
+        "tail": "spark"
+    },
+    {
+        "head": "duckdb",
+        "tail": "snowflake"
+    },
+    {
+        "head": "duckdb",
+        "tail": "ai"
+    },
+    {
+        "head": "duckdb",
+        "tail": "analytics-engineering"
+    },
+    {
+        "head": "duckdb",
+        "tail": "mcp"
+    },
+    {
+        "head": "duckdb",
+        "tail": "visualization"
+    },
+    {
+        "head": "duckdb",
+        "tail": "clickhouse"
+    },
+    {
+        "head": "duckdb",
+        "tail": "semantic-layer"
+    },
+    {
+        "head": "duckdb",
+        "tail": "postgresql"
+    },
+    {
+        "head": "duckdb",
+        "tail": "uv"
+    },
+    {
+        "head": "duckdb",
+        "tail": "metrics"
+    },
+    {
+        "head": "duckdb",
+        "tail": "bash"
+    },
+    {
+        "head": "duckdb",
+        "tail": "data"
+    },
+    {
+        "head": "bigquery",
+        "tail": "snowflake"
+    },
+    {
+        "head": "bigquery",
+        "tail": "ai"
+    },
+    {
+        "head": "bigquery",
+        "tail": "mcp"
+    },
+    {
+        "head": "bigquery",
+        "tail": "sql"
+    },
+    {
+        "head": "bigquery",
+        "tail": "clickhouse"
+    },
+    {
+        "head": "bigquery",
+        "tail": "semantic-layer"
+    },
+    {
+        "head": "bigquery",
+        "tail": "data-engineering"
+    },
+    {
+        "head": "bigquery",
+        "tail": "uv"
+    },
+    {
+        "head": "bigquery",
+        "tail": "metrics"
+    },
+    {
+        "head": "bigquery",
+        "tail": "bash"
+    },
+    {
+        "head": "bigquery",
+        "tail": "data"
+    },
+    {
+        "head": "spark",
+        "tail": "snowflake"
+    },
+    {
+        "head": "spark",
+        "tail": "ai"
+    },
+    {
+        "head": "spark",
+        "tail": "analytics-engineering"
+    },
+    {
+        "head": "spark",
+        "tail": "mcp"
+    },
+    {
+        "head": "spark",
+        "tail": "sql"
+    },
+    {
+        "head": "spark",
+        "tail": "clickhouse"
+    },
+    {
+        "head": "spark",
+        "tail": "semantic-layer"
+    },
+    {
+        "head": "spark",
+        "tail": "data-engineering"
+    },
+    {
+        "head": "spark",
+        "tail": "uv"
+    },
+    {
+        "head": "spark",
+        "tail": "metrics"
+    },
+    {
+        "head": "spark",
+        "tail": "bash"
+    },
+    {
+        "head": "spark",
+        "tail": "data"
+    },
+    {
+        "head": "analytics",
+        "tail": "ai"
+    },
+    {
+        "head": "analytics",
+        "tail": "analytics-engineering"
+    },
+    {
+        "head": "analytics",
+        "tail": "mcp"
+    },
+    {
+        "head": "analytics",
+        "tail": "uv"
+    },
+    {
+        "head": "analytics",
+        "tail": "metrics"
+    },
+    {
+        "head": "analytics",
+        "tail": "bash"
+    },
+    {
+        "head": "analytics",
+        "tail": "data"
+    },
+    {
+        "head": "snowflake",
+        "tail": "ai"
+    },
+    {
+        "head": "snowflake",
+        "tail": "analytics-engineering"
+    },
+    {
+        "head": "snowflake",
+        "tail": "mcp"
+    },
+    {
+        "head": "snowflake",
+        "tail": "sql"
+    },
+    {
+        "head": "snowflake",
+        "tail": "visualization"
+    },
+    {
+        "head": "snowflake",
+        "tail": "clickhouse"
+    },
+    {
+        "head": "snowflake",
+        "tail": "semantic-layer"
+    },
+    {
+        "head": "snowflake",
+        "tail": "postgresql"
+    },
+    {
+        "head": "snowflake",
+        "tail": "uv"
+    },
+    {
+        "head": "snowflake",
+        "tail": "metrics"
+    },
+    {
+        "head": "snowflake",
+        "tail": "bash"
+    },
+    {
+        "head": "snowflake",
+        "tail": "data"
+    },
+    {
+        "head": "ai",
+        "tail": "analytics-engineering"
+    },
+    {
+        "head": "ai",
+        "tail": "mcp"
+    },
+    {
+        "head": "ai",
+        "tail": "sql"
+    },
+    {
+        "head": "ai",
+        "tail": "visualization"
+    },
+    {
+        "head": "ai",
+        "tail": "clickhouse"
+    },
+    {
+        "head": "ai",
+        "tail": "semantic-layer"
+    },
+    {
+        "head": "ai",
+        "tail": "postgresql"
+    },
+    {
+        "head": "ai",
+        "tail": "data-engineering"
+    },
+    {
+        "head": "ai",
+        "tail": "uv"
+    },
+    {
+        "head": "ai",
+        "tail": "metrics"
+    },
+    {
+        "head": "ai",
+        "tail": "bash"
+    },
+    {
+        "head": "ai",
+        "tail": "data"
+    },
+    {
+        "head": "analytics-engineering",
+        "tail": "mcp"
+    },
+    {
+        "head": "analytics-engineering",
+        "tail": "sql"
+    },
+    {
+        "head": "analytics-engineering",
+        "tail": "visualization"
+    },
+    {
+        "head": "analytics-engineering",
+        "tail": "clickhouse"
+    },
+    {
+        "head": "analytics-engineering",
+        "tail": "semantic-layer"
+    },
+    {
+        "head": "analytics-engineering",
+        "tail": "postgresql"
+    },
+    {
+        "head": "analytics-engineering",
+        "tail": "data-engineering"
+    },
+    {
+        "head": "analytics-engineering",
+        "tail": "uv"
+    },
+    {
+        "head": "analytics-engineering",
+        "tail": "metrics"
+    },
+    {
+        "head": "analytics-engineering",
+        "tail": "bash"
+    },
+    {
+        "head": "analytics-engineering",
+        "tail": "data"
+    },
+    {
+        "head": "mcp",
+        "tail": "sql"
+    },
+    {
+        "head": "mcp",
+        "tail": "visualization"
+    },
+    {
+        "head": "mcp",
+        "tail": "clickhouse"
+    },
+    {
+        "head": "mcp",
+        "tail": "semantic-layer"
+    },
+    {
+        "head": "mcp",
+        "tail": "postgresql"
+    },
+    {
+        "head": "mcp",
+        "tail": "data-engineering"
+    },
+    {
+        "head": "mcp",
+        "tail": "uv"
+    },
+    {
+        "head": "mcp",
+        "tail": "metrics"
+    },
+    {
+        "head": "mcp",
+        "tail": "bash"
+    },
+    {
+        "head": "mcp",
+        "tail": "data"
+    },
+    {
+        "head": "sql",
+        "tail": "visualization"
+    },
+    {
+        "head": "sql",
+        "tail": "semantic-layer"
+    },
+    {
+        "head": "sql",
+        "tail": "uv"
+    },
+    {
+        "head": "sql",
+        "tail": "metrics"
+    },
+    {
+        "head": "sql",
+        "tail": "bash"
+    },
+    {
+        "head": "sql",
+        "tail": "data"
+    },
+    {
+        "head": "visualization",
+        "tail": "clickhouse"
+    },
+    {
+        "head": "visualization",
+        "tail": "semantic-layer"
+    },
+    {
+        "head": "visualization",
+        "tail": "data-engineering"
+    },
+    {
+        "head": "visualization",
+        "tail": "uv"
+    },
+    {
+        "head": "visualization",
+        "tail": "metrics"
+    },
+    {
+        "head": "visualization",
+        "tail": "bash"
+    },
+    {
+        "head": "visualization",
+        "tail": "data"
+    },
+    {
+        "head": "clickhouse",
+        "tail": "semantic-layer"
+    },
+    {
+        "head": "clickhouse",
+        "tail": "postgresql"
+    },
+    {
+        "head": "clickhouse",
+        "tail": "data-engineering"
+    },
+    {
+        "head": "clickhouse",
+        "tail": "uv"
+    },
+    {
+        "head": "clickhouse",
+        "tail": "metrics"
+    },
+    {
+        "head": "clickhouse",
+        "tail": "bash"
+    },
+    {
+        "head": "clickhouse",
+        "tail": "data"
+    },
+    {
+        "head": "semantic-layer",
+        "tail": "postgresql"
+    },
+    {
+        "head": "semantic-layer",
+        "tail": "data-engineering"
+    },
+    {
+        "head": "semantic-layer",
+        "tail": "uv"
+    },
+    {
+        "head": "semantic-layer",
+        "tail": "metrics"
+    },
+    {
+        "head": "semantic-layer",
+        "tail": "bash"
+    },
+    {
+        "head": "semantic-layer",
+        "tail": "data"
+    },
+    {
+        "head": "postgresql",
+        "tail": "data-engineering"
+    },
+    {
+        "head": "postgresql",
+        "tail": "uv"
+    },
+    {
+        "head": "postgresql",
+        "tail": "metrics"
+    },
+    {
+        "head": "postgresql",
+        "tail": "bash"
+    },
+    {
+        "head": "postgresql",
+        "tail": "data"
+    },
+    {
+        "head": "data-engineering",
+        "tail": "uv"
+    },
+    {
+        "head": "data-engineering",
+        "tail": "metrics"
+    },
+    {
+        "head": "data-engineering",
+        "tail": "bash"
+    },
+    {
+        "head": "data-engineering",
+        "tail": "data"
+    },
+    {
+        "head": "uv",
+        "tail": "metrics"
+    },
+    {
+        "head": "uv",
+        "tail": "bash"
+    },
+    {
+        "head": "uv",
+        "tail": "data"
+    },
+    {
+        "head": "metrics",
+        "tail": "bash"
+    },
+    {
+        "head": "metrics",
+        "tail": "data"
+    },
+    {
+        "head": "bash",
+        "tail": "data"
+    },
+    {
+        "head": "embedding",
+        "tail": "context"
+    },
+    {
+        "head": "context",
+        "tail": "sota"
+    },
+    {
+        "head": "awesome",
+        "tail": "performance"
+    },
+    {
+        "head": "awesome",
+        "tail": "end-to-end"
+    },
+    {
+        "head": "retrieval",
+        "tail": "performance"
+    },
+    {
+        "head": "retrieval",
+        "tail": "end-to-end"
+    },
+    {
+        "head": "performance",
+        "tail": "end-to-end"
+    },
+    {
+        "head": "weights",
+        "tail": "state-of-the-art"
+    },
+    {
+        "head": "weights",
+        "tail": "multilingual"
+    },
+    {
+        "head": "weights",
+        "tail": "embedding"
+    },
+    {
+        "head": "weights",
+        "tail": "embeddings"
+    },
+    {
+        "head": "state-of-the-art",
+        "tail": "multilingual"
+    },
+    {
+        "head": "matching",
+        "tail": "reranking"
+    },
+    {
+        "head": "collection",
+        "tail": "state-of-the-art"
+    },
+    {
+        "head": "collection",
+        "tail": "multilingual"
+    },
+    {
+        "head": "future",
+        "tail": "code"
+    },
+    {
+        "head": "future",
+        "tail": "dense"
+    },
+    {
+        "head": "future",
+        "tail": "pylate"
+    },
+    {
+        "head": "code",
+        "tail": "dense"
+    },
+    {
+        "head": "code",
+        "tail": "pylate"
+    },
+    {
+        "head": "dense",
+        "tail": "pylate"
+    },
+    {
+        "head": "retriever",
+        "tail": "dense"
+    },
+    {
+        "head": "retriever",
+        "tail": "top"
+    },
+    {
+        "head": "retriever",
+        "tail": "single-vector"
+    },
+    {
+        "head": "dense",
+        "tail": "top"
+    },
+    {
+        "head": "dense",
+        "tail": "single-vector"
+    },
+    {
+        "head": "top",
+        "tail": "single-vector"
     }
 ]
