@@ -15,6 +15,20 @@ const DISPLAY_COUNT = 30;
 const RERANK_INACTIVITY_MS = 1000;
 const SUMMARY_TOKEN_LIMIT = 30;
 
+const syncURL = (params) => {
+  const url = new URL(window.location);
+  Object.entries(params).forEach(([k, v]) => {
+    if (k === "source") {
+      if (v instanceof Set && v.size > 0)
+        url.searchParams.set(k, [...v].join(","));
+      else url.searchParams.delete(k);
+    } else if (v) url.searchParams.set(k, v);
+    else url.searchParams.delete(k);
+  });
+  const qs = url.searchParams.toString();
+  window.history.pushState({}, null, qs ? `?${qs}` : window.location.pathname);
+};
+
 // --- Anonymous Analytics (RGPD-compliant) ---
 
 const getSessionId = () => {
@@ -81,23 +95,31 @@ const transformMeta = (meta) => ({
  * Builds a SQL WHERE condition + parameters for a source filter key.
  * Returns { condition, parameters } or null if no filter.
  */
-const buildSourceCondition = (source) => {
-  if (!source || source === "all") return null;
-  if (source === "other") return null; // "other" is handled client-side
-  // Tag/title based sources (e.g. hackernews)
-  if (!source.includes(".")) {
-    return {
-      condition: "tags LIKE ? OR extra_tags LIKE ? OR title LIKE ?",
-      parameters: [`%${source}%`, `%${source}%`, `%${source}%`],
-    };
+const buildSourceCondition = (sourceSet) => {
+  if (!(sourceSet instanceof Set) || sourceSet.size === 0) return null;
+  // "other" is handled client-side only
+  const keys = [...sourceSet].filter((k) => k !== "other");
+  if (keys.length === 0) return null;
+
+  const clauses = [];
+  const parameters = [];
+  for (const source of keys) {
+    if (!source.includes(".")) {
+      // Tag/title based sources (e.g. hackernews)
+      clauses.push("(tags LIKE ? OR extra_tags LIKE ? OR title LIKE ?)");
+      parameters.push(`%${source}%`, `%${source}%`, `%${source}%`);
+    } else {
+      // Domain-based sources — also match common aliases
+      const patterns = [source];
+      if (source === "twitter.com") patterns.push("x.com");
+      const urlParts = patterns.map(() => "url LIKE ?");
+      clauses.push(`(${urlParts.join(" OR ")})`);
+      parameters.push(...patterns.map((p) => `%${p}%`));
+    }
   }
-  // Domain-based sources — also match common aliases
-  const patterns = [source];
-  if (source === "twitter.com") patterns.push("x.com");
-  const urlClauses = patterns.map(() => "url LIKE ?");
   return {
-    condition: urlClauses.join(" OR "),
-    parameters: patterns.map((p) => `%${p}%`),
+    condition: clauses.join(" OR "),
+    parameters,
   };
 };
 
@@ -367,11 +389,11 @@ const sortTagDocs = (
       return (b.d || "").localeCompare(a.d || "");
     }
 
-    const hasFilter = sourceFilter && sourceFilter !== "all";
+    const hasFilter = sourceFilter instanceof Set && sourceFilter.size > 0;
     const aSameSource =
-      hasFilter && getSourceFromDoc(a, sourceKeys, parentTag) === sourceFilter;
+      hasFilter && sourceFilter.has(getSourceFromDoc(a, sourceKeys, parentTag));
     const bSameSource =
-      hasFilter && getSourceFromDoc(b, sourceKeys, parentTag) === sourceFilter;
+      hasFilter && sourceFilter.has(getSourceFromDoc(b, sourceKeys, parentTag));
 
     // Tier: matched+sameSource=0, matched+other=1, unmatched+sameSource=2, unmatched+other=3
     const aTier = (aMatched ? 0 : 2) + (aSameSource ? 0 : 1);
@@ -394,7 +416,7 @@ const countMatchedDocs = (node, matchedUrls, treeDocFilter, sourceKeys) => {
       if (!matchedUrls.has(d.u)) continue;
       if (
         treeDocFilter &&
-        getSourceFromDoc(d, sourceKeys, tagName) !== treeDocFilter
+        !treeDocFilter.has(getSourceFromDoc(d, sourceKeys, tagName))
       )
         continue;
       n++;
@@ -488,9 +510,8 @@ const TreeNode = ({
             );
             // Additionally filter by source when treeDocFilter is active
             if (treeDocFilter) {
-              filteredTagDocs = filteredTagDocs.filter(
-                (d) =>
-                  getSourceFromDoc(d, sourceKeys, tagName) === treeDocFilter,
+              filteredTagDocs = filteredTagDocs.filter((d) =>
+                treeDocFilter.has(getSourceFromDoc(d, sourceKeys, tagName)),
               );
             }
             const hasDocs = filteredTagDocs.length > 0;
@@ -596,9 +617,10 @@ const FolderTree = ({
   const [collapsedFolders, setCollapsedFolders] = useState(new Set());
   const [filterTreeDocs, setFilterTreeDocs] = useState(false);
 
-  // Reset filter when source is "all"
+  // Reset filter when no source is selected
   useEffect(() => {
-    if (sourceFilter === "all") setFilterTreeDocs(false);
+    if (!(sourceFilter instanceof Set) || sourceFilter.size === 0)
+      setFilterTreeDocs(false);
   }, [sourceFilter]);
 
   const handleToggleTag = useCallback((tagPath) => {
@@ -736,11 +758,11 @@ const FolderTree = ({
         <span className="folder-tree-title">Matching Folders</span>
         <span className="folder-tree-count">{children.length} folders</span>
         <button
-          className={`tree-filter-btn ${filterTreeDocs ? "active" : ""} ${sourceFilter === "all" ? "disabled" : ""}`}
-          disabled={sourceFilter === "all"}
+          className={`tree-filter-btn ${filterTreeDocs ? "active" : ""} ${sourceFilter.size === 0 ? "disabled" : ""}`}
+          disabled={sourceFilter.size === 0}
           onClick={() => setFilterTreeDocs((prev) => !prev)}
           title={
-            sourceFilter === "all"
+            sourceFilter.size === 0
               ? "Select a source filter first"
               : filterTreeDocs
                 ? "Show all documents"
@@ -766,7 +788,7 @@ const FolderTree = ({
           onToggleShowAll={handleToggleShowAll}
           sourceFilter={sourceFilter}
           treeDocFilter={
-            filterTreeDocs && sourceFilter !== "all" ? sourceFilter : null
+            filterTreeDocs && sourceFilter.size > 0 ? sourceFilter : null
           }
           sourceKeys={sourceKeys}
           sortByDate={sortByDate}
@@ -788,7 +810,7 @@ const Search = () => {
   const [documents, setDocuments] = useState([]);
   const [isSortedByDate, setIsSortedByDate] = useState(false);
   const [resultsReranked, setResultsReranked] = useState(false);
-  const [sourceFilter, setSourceFilter] = useState("all");
+  const [sourceFilter, setSourceFilter] = useState(new Set());
   const [tree, setTree] = useState(null);
   const [sources, setSources] = useState([]);
   const [theme, setTheme] = useState(
@@ -861,7 +883,8 @@ const Search = () => {
             query: searchQuery,
             result_count: meta.resultCount,
             latency_ms: meta.latencyMs,
-            source_filter: sourceFilter,
+            source_filter:
+              sourceFilter.size > 0 ? [...sourceFilter].join(",") : "all",
             sort_mode: isSortedByDate ? "date" : "relevance",
           });
         }
@@ -955,6 +978,10 @@ const Search = () => {
     const params = new URLSearchParams(window.location.search);
     const urlQuery = params.get("query") || "";
     const urlNode = params.get("node") || null;
+    const urlSource = params.get("source") || "";
+    if (urlSource) {
+      setSourceFilter(new Set(urlSource.split(",").filter(Boolean)));
+    }
     if (urlQuery) {
       setQuery(urlQuery);
       if (urlNode) {
@@ -1026,11 +1053,7 @@ const Search = () => {
       setSelectedNode(null);
       setIsSortedByDate(false);
       setResultsReranked(false);
-      window.history.pushState(
-        {},
-        null,
-        `?query=${encodeURIComponent(newQuery)}`,
-      );
+      syncURL({ query: newQuery, source: sourceFilter });
 
       clearTimeout(rerankTimerRef.current);
       clearTimeout(searchTimerRef.current);
@@ -1040,7 +1063,7 @@ const Search = () => {
       );
       resetSettleTimer(newQuery);
     },
-    [search, resetSettleTimer],
+    [search, resetSettleTimer, sourceFilter],
   );
 
   const handleClickDate = useCallback(() => {
@@ -1059,14 +1082,10 @@ const Search = () => {
       setResultsReranked(false);
       const searchInput = document.getElementById("search");
       if (searchInput) searchInput.value = newQuery;
-      window.history.pushState(
-        {},
-        null,
-        `?query=${encodeURIComponent(newQuery)}`,
-      );
+      syncURL({ query: newQuery, source: sourceFilter });
       runNow(newQuery, true);
     },
-    [query, runNow],
+    [query, runNow, sourceFilter],
   );
 
   // --- UI Helper Functions ---
@@ -1177,7 +1196,7 @@ const Search = () => {
   const displayedDocs = useMemo(() => {
     const filtered = (documents || []).filter(
       (doc) =>
-        sourceFilter === "all" || getDocumentSource(doc) === sourceFilter,
+        sourceFilter.size === 0 || sourceFilter.has(getDocumentSource(doc)),
     );
     return filtered.slice(0, DISPLAY_COUNT);
   }, [documents, sourceFilter, getDocumentSource]);
@@ -1210,10 +1229,21 @@ const Search = () => {
             .map(({ key, label }) => (
               <button
                 key={key}
-                className={`source-chip ${sourceFilter === key ? "active" : ""}`}
+                className={`source-chip ${key === "all" ? (sourceFilter.size === 0 ? "active" : "") : sourceFilter.has(key) ? "active" : ""}`}
                 onClick={() => {
-                  setSourceFilter(key);
-                  trackEvent("filter_apply", { source_key: key });
+                  let next;
+                  if (key === "all") {
+                    next = new Set();
+                  } else {
+                    next = new Set(sourceFilter);
+                    if (next.has(key)) next.delete(key);
+                    else next.add(key);
+                  }
+                  setSourceFilter(next);
+                  syncURL({ query, source: next });
+                  trackEvent("filter_apply", {
+                    source_key: next.size > 0 ? [...next].join(",") : "all",
+                  });
                 }}
               >
                 {label}
