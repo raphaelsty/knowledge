@@ -2,12 +2,64 @@ const { useState, useEffect, useRef, useCallback, useMemo } = React;
 const { createRoot, createPortal } = ReactDOM;
 
 const API_BASE_URL = "http://localhost:8080";
+const DATA_API_URL = "http://localhost:3001";
+const EVENTS_API_URL = "http://localhost:3002";
 const INDEX_NAME = "knowledge";
 const SEARCH_DEBOUNCE_MS = 400;
+const SEARCH_SETTLE_MS = 2000;
+const FLUSH_INTERVAL_MS = 10000;
+const MAX_BUFFER_SIZE = 50;
 const FETCH_COUNT = 300;
 const DISPLAY_COUNT = 30;
 const RERANK_INACTIVITY_MS = 1000;
 const SUMMARY_TOKEN_LIMIT = 30;
+
+// --- Anonymous Analytics (RGPD-compliant) ---
+
+const getSessionId = () => {
+  let id = sessionStorage.getItem("_sid");
+  if (!id) {
+    id = crypto.randomUUID();
+    sessionStorage.setItem("_sid", id);
+  }
+  return id;
+};
+
+const eventBuffer = [];
+const clickedUrls = new Set();
+
+const flushEvents = (useBeacon = false) => {
+  if (eventBuffer.length === 0) return;
+  const batch = eventBuffer.splice(0, MAX_BUFFER_SIZE);
+  const body = JSON.stringify(batch);
+  if (useBeacon && navigator.sendBeacon) {
+    // sendBeacon with text/plain avoids CORS preflight on cross-origin
+    navigator.sendBeacon(
+      `${EVENTS_API_URL}/events`,
+      new Blob([body], { type: "text/plain" }),
+    );
+  } else {
+    fetch(`${EVENTS_API_URL}/events`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body,
+      keepalive: true,
+    }).catch(() => {});
+  }
+};
+
+const trackEvent = (eventType, payload) => {
+  if (eventBuffer.length >= MAX_BUFFER_SIZE) eventBuffer.shift();
+  eventBuffer.push({
+    session_id: getSessionId(),
+    event_type: eventType,
+    payload,
+  });
+};
+
+// Flush every 10s via fetch; use sendBeacon only on page unload
+setInterval(flushEvents, FLUSH_INTERVAL_MS);
+window.addEventListener("beforeunload", () => flushEvents(true));
 
 /**
  * Transforms a metadata row from the API (comma-separated tags) into
@@ -374,6 +426,7 @@ const TreeNode = ({
           className="tree-name"
           onClick={(e) => {
             e.stopPropagation();
+            trackEvent("folder_browse", { folder_name: node.name });
             onClickTag(node.name);
           }}
         >
@@ -457,6 +510,17 @@ const TreeNode = ({
                         href={doc.u}
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={() => {
+                          if (doc.u && !clickedUrls.has(doc.u)) {
+                            clickedUrls.add(doc.u);
+                            trackEvent("click", {
+                              doc_url: doc.u,
+                              position: i,
+                              score: null,
+                              query: "",
+                            });
+                          }
+                        }}
                       >
                         <span className="tree-doc-logo">
                           {getDocLogo(doc.u)}
@@ -704,6 +768,8 @@ const Search = () => {
   const latestQueryIdRef = useRef(0);
   const rerankTimerRef = useRef(null);
   const immediateRerankRef = useRef(false);
+  const settleTimerRef = useRef(null);
+  const lastSearchMeta = useRef(null);
 
   // --- Function Declarations ---
 
@@ -733,8 +799,11 @@ const Search = () => {
         ? `${searchQuery} ${selectedNode}`
         : searchQuery;
 
+      const t0 = performance.now();
       apiSearch(fullQuery, sortChronologically, sourceFilter)
         .then((docs) => {
+          const latencyMs = Math.round(performance.now() - t0);
+          lastSearchMeta.current = { resultCount: docs.length, latencyMs };
           setDocuments(docs);
           setResultsReranked(false);
         })
@@ -743,6 +812,29 @@ const Search = () => {
         );
     },
     [selectedNode, fetchLatest, sourceFilter],
+  );
+
+  /**
+   * Resets the 2s settle timer. When the user stops typing for 2s,
+   * logs a `search` analytics event with the settled query metadata.
+   */
+  const resetSettleTimer = useCallback(
+    (searchQuery) => {
+      clearTimeout(settleTimerRef.current);
+      settleTimerRef.current = setTimeout(() => {
+        const meta = lastSearchMeta.current;
+        if (meta && searchQuery.trim()) {
+          trackEvent("search", {
+            query: searchQuery,
+            result_count: meta.resultCount,
+            latency_ms: meta.latencyMs,
+            source_filter: sourceFilter,
+            sort_mode: isSortedByDate ? "date" : "relevance",
+          });
+        }
+      }, SEARCH_SETTLE_MS);
+    },
+    [sourceFilter, isSortedByDate],
   );
 
   /**
@@ -764,16 +856,29 @@ const Search = () => {
    * Load folder tree on mount.
    */
   useEffect(() => {
-    fetch("data/folder_tree.json")
+    fetch(`${DATA_API_URL}/api/folder_tree`)
       .then((res) => res.json())
       .then((data) => setTree(data))
-      .catch((error) =>
-        console.error("[APP] Failed to load folder tree:", error),
-      );
-    fetch("data/sources.json")
+      .catch(() => {
+        // Fallback to static JSON files if data API is unavailable
+        fetch("data/folder_tree.json")
+          .then((res) => res.json())
+          .then((data) => setTree(data))
+          .catch((error) =>
+            console.error("[APP] Failed to load folder tree:", error),
+          );
+      });
+    fetch(`${DATA_API_URL}/api/sources`)
       .then((res) => res.json())
       .then((data) => setSources(data))
-      .catch((error) => console.error("[APP] Failed to load sources:", error));
+      .catch(() => {
+        fetch("data/sources.json")
+          .then((res) => res.json())
+          .then((data) => setSources(data))
+          .catch((error) =>
+            console.error("[APP] Failed to load sources:", error),
+          );
+      });
   }, []);
 
   /**
@@ -900,8 +1005,9 @@ const Search = () => {
         () => search(newQuery),
         SEARCH_DEBOUNCE_MS,
       );
+      resetSettleTimer(newQuery);
     },
-    [search],
+    [search, resetSettleTimer],
   );
 
   const handleClickDate = useCallback(() => {
@@ -1072,7 +1178,10 @@ const Search = () => {
               <button
                 key={key}
                 className={`source-chip ${sourceFilter === key ? "active" : ""}`}
-                onClick={() => setSourceFilter(key)}
+                onClick={() => {
+                  setSourceFilter(key);
+                  trackEvent("filter_apply", { source_key: key });
+                }}
               >
                 {label}
               </button>
@@ -1168,6 +1277,17 @@ const Search = () => {
                 href={doc.url}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => {
+                  if (doc.url && !clickedUrls.has(doc.url)) {
+                    clickedUrls.add(doc.url);
+                    trackEvent("click", {
+                      doc_url: doc.url,
+                      position: index,
+                      score: doc.colbertScore ?? doc.similarity ?? null,
+                      query,
+                    });
+                  }
+                }}
               >
                 {highlight(doc.title)}
               </a>
