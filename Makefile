@@ -1,4 +1,4 @@
-.PHONY: install install-dev sync run index serve web lint lint-fix check pre-commit pre-commit-install docker-build docker-run launch docker-stop clean install-api db api migrate up down events events-build
+.PHONY: install install-dev sync run index serve web lint lint-fix check pre-commit pre-commit-install docker-build docker-run launch docker-stop clean install-api db api migrate up down events events-build deploy deploy-build deploy-down deploy-logs
 
 INDEX_DIR        = multi-vector-database
 MODEL            = models/answerai-colbert-small-v1-onnx
@@ -68,15 +68,33 @@ events-build:
 web:
 	python3 -m http.server $(WEB_PORT) --directory web
 
-# ── Docker Compose ───────────────────────────────────────────
+# ── Docker Compose (local dev) ──────────────────────────────
 
-# Start all services via Docker Compose
+# Start all services via Docker Compose (local dev)
 up:
 	docker compose up -d
 
-# Stop all services
+# Stop all services (local dev)
 down:
 	docker compose down
+
+# ── Production Deploy (Hetzner VPS) ────────────────────────
+
+# Build and start production stack (Caddy + all services)
+deploy:
+	docker compose -f docker-compose.prod.yml up -d
+
+# Rebuild and restart production stack
+deploy-build:
+	docker compose -f docker-compose.prod.yml up -d --build
+
+# Stop production stack
+deploy-down:
+	docker compose -f docker-compose.prod.yml down
+
+# View production logs
+deploy-logs:
+	docker compose -f docker-compose.prod.yml logs -f
 
 # ── Lint ──────────────────────────────────────────────────────
 

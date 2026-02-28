@@ -5,7 +5,7 @@
 .ruff_cache
 __pycache__
 *.py[cod]
-fly.toml
+node_modules
 *.md
 !README.md
 LICENSE

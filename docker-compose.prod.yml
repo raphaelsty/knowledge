@@ -1,0 +1,104 @@
+services:
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./web:/web:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    environment:
+      DOMAIN: ${DOMAIN:-localhost}
+    depends_on:
+      search-api:
+        condition: service_healthy
+      data-api:
+        condition: service_started
+      events-api:
+        condition: service_started
+
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: knowledge
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-knowledge}
+      POSTGRES_DB: knowledge
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U knowledge"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  search-api:
+    build:
+      context: .
+      target: runtime-cpu
+    restart: unless-stopped
+    volumes:
+      - ./multi-vector-database/knowledge:/data/indices/knowledge
+      - models:/models
+    environment:
+      - RUST_LOG=info
+      - OPENBLAS_NUM_THREADS=1
+    command:
+      - --host
+      - "0.0.0.0"
+      - --port
+      - "8080"
+      - --index-dir
+      - /data/indices
+      - --model
+      - lightonai/answerai-colbert-small-v1-onnx
+      - --int8
+      - --parallel
+      - "8"
+      - --batch-size
+      - "2"
+      - --model-pool-size
+      - "1"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "--max-time", "5", "http://localhost:8080/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 120s
+    deploy:
+      resources:
+        limits:
+          memory: 6G
+        reservations:
+          memory: 3G
+
+  data-api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql://knowledge:${POSTGRES_PASSWORD:-knowledge}@postgres:5432/knowledge
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  events-api:
+    build:
+      context: events-api
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql://knowledge:${POSTGRES_PASSWORD:-knowledge}@postgres:5432/knowledge
+      PORT: "3002"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  pgdata:
+  models:
+  caddy_data:
+  caddy_config:

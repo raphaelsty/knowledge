@@ -1,0 +1,28 @@
+{$DOMAIN:localhost} {
+	# Search API — ColBERT index queries
+	handle /indices/* {
+		reverse_proxy search-api:8080
+	}
+
+	# Data API — folder tree & sources from PostgreSQL
+	handle /api/* {
+		reverse_proxy data-api:3001
+	}
+
+	# Events API — analytics ingestion
+	handle /events {
+		reverse_proxy events-api:3002
+	}
+
+	# Events API — analytics stats
+	handle /stats/* {
+		reverse_proxy events-api:3002
+	}
+
+	# Static frontend files
+	handle {
+		root * /web
+		try_files {path} /index.html
+		file_server
+	}
+}

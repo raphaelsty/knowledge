@@ -1,9 +1,10 @@
 const { useState, useEffect, useRef, useCallback, useMemo } = React;
 const { createRoot, createPortal } = ReactDOM;
 
-const API_BASE_URL = "http://localhost:8080";
-const DATA_API_URL = "http://localhost:3001";
-const EVENTS_API_URL = "http://localhost:3002";
+const IS_LOCAL = window.location.hostname === "localhost";
+const API_BASE_URL = IS_LOCAL ? "http://localhost:8080" : "";
+const DATA_API_URL = IS_LOCAL ? "http://localhost:3001" : "";
+const EVENTS_API_URL = IS_LOCAL ? "http://localhost:3002" : "";
 const INDEX_NAME = "knowledge";
 const SEARCH_DEBOUNCE_MS = 400;
 const SEARCH_SETTLE_MS = 2000;

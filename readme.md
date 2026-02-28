@@ -41,10 +41,9 @@ A GitHub Actions workflow runs once a day to perform the following tasks:
 2.  **Processes and Stores Data** in the `web/data/` directory:
     - `database.json`: Contains all the raw records.
 3.  **Deploys Updates**:
-    - The backend API is automatically updated and pushed to the Fly.io instance.
     - The frontend on GitHub Pages is refreshed with the latest data.
 
-The backend is built with FastAPI and deployed on Fly.io, which offers a free tier suitable for this project. The frontend is a static site hosted on GitHub Pages. The search engine is powered by multiple [cherche](https://github.com/raphaelsty/cherche) lexical models and features a final [pylate-rs](https://github.com/lightonai/pylate-rs) model, which is compiled from Rust to WebAssembly (WASM) to run directly in the client's browser.
+The search engine is powered by a [ColBERT](https://github.com/lightonai/pylate-rs) model served by a Rust API, with a static frontend hosted on GitHub Pages.
 
 ## 🚀 Getting Started: Installation & Deployment
 
@@ -72,12 +71,6 @@ The application requires API keys and credentials to function. These must be set
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="padding:8px; border-bottom: 1px solid \#ddd;"><code>FLY_API_TOKEN</code></td>
-<td style="padding:8px; border-bottom: 1px solid \#ddd;"><a href="https://fly.io">Fly.io</a></td>
-<td style="text-align:center; padding:8px; border-bottom: 1px solid \#ddd;">Yes</td>
-<td style="padding:8px; border-bottom: 1px solid \#ddd;">Allows the GitHub Action to deploy your application. See the Fly.io section for instructions.</td>
-</tr>
 <tr>
 <td style="padding:8px; border-bottom: 1px solid \#ddd;"><code>ZOTERO_API_KEY</code></td>
 <td style="padding:8px; border-bottom: 1px solid \#ddd;"><a href="https://www.zotero.org/settings/keys">Zotero Settings</a></td>
@@ -147,22 +140,16 @@ huggingface: True
 
 ### 3\. Deployment
 
-#### A. Deploy the API to Fly.io
+#### A. Deploy to a VPS
 
-1.  **Install `flyctl`**, the Fly.io command-line tool. Instructions can be found [here](https://fly.io/docs/hands-on/install-flyctl/).
-2.  **Sign up and log in** to Fly.io via the command line:
-    ```sh
-    flyctl auth signup
-    flyctl auth login
-    ```
-3.  **Get API token** and add it to your GitHub repository secrets as `FLY_API_TOKEN`:
-    ```sh
-    flyctl auth token
-    ```
-4.  **Launch the app.** Follow the [Fly.io launch documentation](https://fly.io/docs/hands-on/launch-app/). This will generate a `fly.toml` file. You won't need a database.
+The recommended deployment uses Docker Compose on a VPS (e.g. Hetzner CX32: 4 vCPU, 8GB RAM, ~€7.49/month).
 
-> ⚠️ **Update API URLs**
-> After deploying, you must replace all instances of `https://knowledge.fly.dev` in the `web/index.html` file with your own Fly.io app URL (e.g., `https://app_name.fly.dev`).
+1.  Point your domain's DNS A record to the server IP.
+2.  Clone the repository on the server and run:
+    ```sh
+    DOMAIN=your-domain.com POSTGRES_PASSWORD=a-strong-password make deploy-build
+    ```
+    Caddy handles HTTPS automatically via Let's Encrypt.
 
 #### B. Set up GitHub Pages
 
@@ -171,32 +158,15 @@ huggingface: True
 
 ---
 
-## 💸 Cost Management
-
-This project is designed to be affordable, but you are responsible for the costs incurred on Fly.io. Here is how to keep them in check:
-
-> ⚠️ **Bound Fly.io Concurrency**
-> To prevent costs from scaling unexpectedly, define connection limits in the `fly.toml` file.
-
-```toml
-[services.concurrency]
-  hard_limit = 6
-  soft_limit = 3
-  type = "connections"
-```
-
-> ⚠️ **Select a modest Fly.io VM**
-> A small virtual machine is sufficient. A **shared-cpu-1x@1024MB** is a good starting point.
-
----
-
 ## 💻 Local Development
 
-To run the API on local machine for development, simply run the following command from the root of the repository:
+Start all services locally with Docker Compose:
 
 ```sh
-make launch
+make up
 ```
+
+This starts PostgreSQL, the search API, data API, events API, and a local web server on port 3000.
 
 ---
 
