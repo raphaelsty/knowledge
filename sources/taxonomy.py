@@ -2819,7 +2819,7 @@ def merge_duplicate_folders(tree, model, adj, meta_tags=None, vocab_tags=None, v
 # ─── Main ───
 
 
-def build(triples_path=None, database_path=None, *, triples=None):
+def build(triples_path=None, database_path=None, *, triples=None, database=None, use_pg=False):
     if triples_path is None:
         triples_path = sys.argv[1] if len(sys.argv) >= 2 else "database/triples.json"
     if database_path is None:
@@ -2836,7 +2836,8 @@ def build(triples_path=None, database_path=None, *, triples=None):
         triples = load_triples(triples_path)
     print(f"  {len(triples)} triples from co-occurrence data")
 
-    database = load_database(database_path)
+    if database is None:
+        database = load_database(database_path)
     print(f"  {len(database)} documents from database")
 
     print("\n─── Splitting compound tags ───")
@@ -3022,9 +3023,15 @@ def build(triples_path=None, database_path=None, *, triples=None):
     print("\n─── Tree ───\n")
     print_tree(tree, max_depth=3)
 
-    with open("web/data/tree.json", "w") as f:
-        json.dump(tree, f, indent=2)
-    print("\n  Written: web/data/tree.json")
+    if use_pg:
+        from .database import save_generated
+
+        save_generated("tree", tree)
+        print("\n  Saved: tree → PostgreSQL")
+    else:
+        with open("web/data/tree.json", "w") as f:
+            json.dump(tree, f, indent=2)
+        print("\n  Written: web/data/tree.json")
 
     folder_tree = build_folder_tree(tree)
 
@@ -3032,10 +3039,16 @@ def build(triples_path=None, database_path=None, *, triples=None):
     folder_tree, n_rescued = rescue_unplaced_docs(folder_tree, database, model)
     print(f"  {n_rescued} documents rescued into best-matching folders")
 
-    folder_tree_path = os.path.join("web", "data", "folder_tree.json")
-    with open(folder_tree_path, "w") as f:
-        json.dump(folder_tree, f)
-    print(f"  Written: {folder_tree_path}")
+    if use_pg:
+        from .database import save_generated
+
+        save_generated("folder_tree", folder_tree)
+        print("  Saved: folder_tree → PostgreSQL")
+    else:
+        folder_tree_path = os.path.join("web", "data", "folder_tree.json")
+        with open(folder_tree_path, "w") as f:
+            json.dump(folder_tree, f)
+        print(f"  Written: {folder_tree_path}")
 
 
 if __name__ == "__main__":

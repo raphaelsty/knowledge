@@ -3,7 +3,7 @@ name = "knowledge"
 version = "0.0.1"
 description = "Database"
 authors = [{ name = "Raphael Sourty", email = "raphael.sourty@gmail.com" }]
-readme = "readme.md"
+readme = "README.md"
 requires-python = ">=3.10,<3.13"
 license = { text = "MIT" }
 classifiers = [
@@ -31,6 +31,9 @@ dependencies = [
     "model2vec>=0.7.0",
     "nltk>=3.9",
     "scipy>=1.13",
+    "psycopg[binary]>=3.1",
+    "fastapi>=0.115",
+    "uvicorn>=0.32",
 ]
 
 [project.optional-dependencies]

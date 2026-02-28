@@ -43,6 +43,7 @@ from urllib.parse import urlparse
 import yaml
 
 from . import github, hackernews, huggingface, tags, twitter, zotero
+from .database import ensure_schema, load_all_documents, save_all_documents, save_generated
 from .taxonomy import build as build_taxonomy
 
 
@@ -64,6 +65,17 @@ def merge_new_documents(existing: dict, new: dict) -> dict:
 def main():
     pipeline_start = time.perf_counter()
     timings: list[tuple[str, float]] = []
+
+    # =============================================================================
+    # Database Setup
+    # =============================================================================
+
+    use_pg = os.environ.get("DATABASE_URL") is not None
+    if use_pg:
+        print("Using PostgreSQL database...")
+        ensure_schema()
+    else:
+        print("No DATABASE_URL set, using JSON file storage.")
 
     # =============================================================================
     # Configuration
@@ -89,7 +101,9 @@ def main():
     data: dict = {}
 
     t0 = time.perf_counter()
-    if os.path.exists("web/data/database.json"):
+    if use_pg:
+        data = load_all_documents()
+    elif os.path.exists("web/data/database.json"):
         with open("web/data/database.json", encoding="utf-8", errors="replace") as f:
             data = json.load(f)
     timings.append(("Load database", time.perf_counter() - t0))
@@ -220,8 +234,11 @@ def main():
 
     t0 = time.perf_counter()
     print("Saving database...")
-    with open("web/data/database.json", "w") as f:
-        json.dump(data, f, indent=4)
+    if use_pg:
+        save_all_documents(data)
+    else:
+        with open("web/data/database.json", "w") as f:
+            json.dump(data, f, indent=4)
     timings.append(("Save database", time.perf_counter() - t0))
 
     # =============================================================================
@@ -293,8 +310,11 @@ def main():
     print(
         f"Found {len(sources_list)} source filters: {', '.join(s['label'] + ' (' + str(s['count']) + ')' for s in sources_list)}"
     )
-    with open("web/data/sources.json", "w") as f:
-        json.dump(sources_list, f, indent=2)
+    if use_pg:
+        save_generated("sources", sources_list)
+    else:
+        with open("web/data/sources.json", "w") as f:
+            json.dump(sources_list, f, indent=2)
     timings.append(("Extract source filters", time.perf_counter() - t0))
 
     # =============================================================================
@@ -320,7 +340,7 @@ def main():
 
     t0 = time.perf_counter()
     print("Building tag tree...")
-    build_taxonomy(triples=triples)
+    build_taxonomy(triples=triples, database=data, use_pg=use_pg)
     timings.append(("Build taxonomy", time.perf_counter() - t0))
 
     # =============================================================================

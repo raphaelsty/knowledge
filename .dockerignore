@@ -7,9 +7,9 @@ __pycache__
 *.py[cod]
 fly.toml
 *.md
+!README.md
 LICENSE
 .pre-commit-config.yaml
 .github
-sources
 database
 img

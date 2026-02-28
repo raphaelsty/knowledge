@@ -22,3 +22,4 @@ tree/
 
 # Rust build output
 embeddings/target/
+events-api/target/
