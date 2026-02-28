@@ -1,0 +1,21 @@
+{
+  "name": "pylate-rs",
+  "type": "module",
+  "description": "Rust and WebAssembly library for late interaction models.",
+  "version": "1.0.2",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lightonai/pylate-rs"
+  },
+  "files": [
+    "pylate_rs_bg.wasm",
+    "pylate_rs.js",
+    "pylate_rs.d.ts"
+  ],
+  "main": "pylate_rs.js",
+  "types": "pylate_rs.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}

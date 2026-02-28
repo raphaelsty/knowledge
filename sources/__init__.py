@@ -13,6 +13,8 @@ Example
 """
 
 __all__ = [
+    "taxonomy",
+    "client",
     "github",
     "hackernews",
     "huggingface",

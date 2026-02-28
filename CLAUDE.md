@@ -22,18 +22,18 @@ make clean        # wipe caches and venv
 
 ## Project layout
 
-- `sources/` — Python data fetchers (one subpackage per platform)
-- `indexer/` — Rust binary that builds the ColBERT index
-- `docs/` — static frontend (index.html, CSS, WASM worker, images)
-- `database/` — generated JSON files (database.json, triples.json)
-- `indices/` — generated ColBERT index (committed for deploy)
-- `api/start.sh` — entrypoint for the Rust API server
-- `run.py` — main pipeline script
-- `build_tag_tree.py` — builds the folder tree from tag triples
+- `sources/` — Python package: data fetchers, tag tree builder, and pipeline client
+  - `sources/client.py` — main pipeline orchestrator (`from sources.client import main`)
+  - `sources/taxonomy.py` — builds the folder tree from tag triples
+- `embeddings/` — Rust binary that builds the ColBERT index
+- `web/` — static frontend (index.html, app.jsx, CSS, WASM worker, images)
+- `web/data/` — generated JSON files (database.json, sources.json, folder_tree.json, tree.json)
+- `multi-vector-database/` — generated ColBERT index (committed for deploy)
+- `run.py` — thin entry point (calls `sources.client.main()`)
 
 ## Key details
 
 - Python package is `sources`, not `knowledge_database` (renamed)
 - The API is `next-plaid-api` (Rust binary, installed via cargo or built in Docker)
-- Frontend `API_BASE_URL` in `docs/index.html` must match the API host
-- The indexer requires `libonnxruntime` — if it fails locally, the existing `indices/` still works
+- Frontend `API_BASE_URL` in `web/app.jsx` must match the API host
+- The embeddings crate requires `libonnxruntime` — if it fails locally, the existing `multi-vector-database/` still works

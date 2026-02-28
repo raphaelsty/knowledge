@@ -1,0 +1,37 @@
+[
+  {
+    "key": "twitter.com",
+    "label": "X",
+    "count": 3994
+  },
+  {
+    "key": "github.com",
+    "label": "GitHub",
+    "count": 2568
+  },
+  {
+    "key": "arxiv.org",
+    "label": "arXiv",
+    "count": 465
+  },
+  {
+    "key": "hackernews",
+    "label": "HackerNews",
+    "count": 151
+  },
+  {
+    "key": "huggingface.co",
+    "label": "HuggingFace",
+    "count": 71
+  },
+  {
+    "key": "superuser.com",
+    "label": "Superuser",
+    "count": 8
+  },
+  {
+    "key": "ieeexplore.ieee.org",
+    "label": "Ieeexplore",
+    "count": 5
+  }
+]

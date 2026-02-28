@@ -3,11 +3,12 @@ repos:
     rev: v4.5.0
     hooks:
       - id: trailing-whitespace
-        exclude: ^database/
+        exclude: ^web/data/
       - id: end-of-file-fixer
-        exclude: ^database/
+        exclude: ^web/data/
       - id: check-yaml
       - id: check-added-large-files
+        exclude: ^web/data/
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.8.0
@@ -23,17 +24,25 @@ repos:
         additional_dependencies: []
         args: [--ignore-missing-imports]
 
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v4.0.0-alpha.8
+    hooks:
+      - id: prettier
+        files: ^web/
+        exclude: ^web/pkg/
+        types_or: [javascript, jsx, css, html]
+
   - repo: local
     hooks:
       - id: cargo-fmt
         name: cargo fmt
-        entry: cargo fmt --manifest-path indexer/Cargo.toml --
+        entry: cargo fmt --manifest-path embeddings/Cargo.toml --
         language: system
         types: [rust]
         pass_filenames: false
       - id: cargo-clippy
         name: cargo clippy
-        entry: cargo clippy --manifest-path indexer/Cargo.toml -- -D warnings
+        entry: cargo clippy --manifest-path embeddings/Cargo.toml -- -D warnings
         language: system
         types: [rust]
         pass_filenames: false

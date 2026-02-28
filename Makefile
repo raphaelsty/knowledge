@@ -1,7 +1,7 @@
 .PHONY: install install-dev sync run index serve web lint lint-fix check pre-commit pre-commit-install docker-build docker-run launch docker-stop clean install-api
 
-INDEX_DIR        = indices
-MODEL            = lightonai/answerai-colbert-small-v1-onnx
+INDEX_DIR        = multi-vector-database
+MODEL            = models/answerai-colbert-small-v1-onnx
 PORT             = 8080
 WEB_PORT         = 3000
 NEXT_PLAID_API   = /Users/raphael/Documents/lighton/lategrep/target/release/next-plaid-api
@@ -31,7 +31,7 @@ run:
 
 # Build only the Rust search index
 index:
-	cargo run --release --manifest-path indexer/Cargo.toml
+	cargo run --release --manifest-path embeddings/Cargo.toml
 
 # ── Serve ─────────────────────────────────────────────────────
 
@@ -41,7 +41,7 @@ serve:
 
 # Serve the frontend locally
 web:
-	python3 -m http.server $(WEB_PORT) --directory docs
+	python3 -m http.server $(WEB_PORT) --directory web
 
 # ── Lint ──────────────────────────────────────────────────────
 

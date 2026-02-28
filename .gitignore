@@ -15,11 +15,10 @@ __pycache__/
 *DS_Store
 
 # Generated artifacts (rebuilt by run.py)
-lightonai/
-tag_tree.json
+models/
 tag_tree.txt
 tree/
 *.pkl
 
 # Rust build output
-indexer/target/
+embeddings/target/

@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-<img src="docs/img/demo.gif" alt="Demonstration GIF" style="width:100%; border-radius:10px; box-shadow:0 4px 8px rgba(0,0,0,0.1);">
+<img src="web/img/demo.gif" alt="Demonstration GIF" style="width:100%; border-radius:10px; box-shadow:0 4px 8px rgba(0,0,0,0.1);">
 </p>
 
 **Knowledge** is a web application that automatically transforms the digital footprint into a personal search engine. It fetches content you interact with from various platforms—**GitHub**, **HackerNews**, **Zotero**, **HuggingFace likes**, **X/Twitter**—and organizes it into a navigable knowledge graph.
@@ -38,10 +38,8 @@ A GitHub Actions workflow runs once a day to perform the following tasks:
     - Zotero Records
     - HuggingFace Likes
     - X/Twitter Bookmarks & Likes
-2.  **Processes and Stores Data** in the `database/` directory:
+2.  **Processes and Stores Data** in the `web/data/` directory:
     - `database.json`: Contains all the raw records.
-    - `triples.json`: Stores the knowledge graph data (topics and relationships).
-    - `pipeline.pkl`: The serialized search engine and knowledge graph pipeline.
 3.  **Deploys Updates**:
     - The backend API is automatically updated and pushed to the Fly.io instance.
     - The frontend on GitHub Pages is refreshed with the latest data.
@@ -164,21 +162,12 @@ huggingface: True
 4.  **Launch the app.** Follow the [Fly.io launch documentation](https://fly.io/docs/hands-on/launch-app/). This will generate a `fly.toml` file. You won't need a database.
 
 > ⚠️ **Update API URLs**
-> After deploying, you must replace all instances of `https://knowledge.fly.dev` in the `docs/index.html` file with your own Fly.io app URL (e.g., `https://app_name.fly.dev`).
+> After deploying, you must replace all instances of `https://knowledge.fly.dev` in the `web/index.html` file with your own Fly.io app URL (e.g., `https://app_name.fly.dev`).
 
 #### B. Set up GitHub Pages
 
 1.  Go to your forked repository's settings (`Settings` > `Pages`).
-2.  Under `Build and deployment`, select the **Source** as `Deploy from a branch` and choose the `main` branch with the `/docs` folder.
-
-> ⚠️ **Update CORS Origins**
-> After your GitHub Pages site is live, you must add its URL to the `origins` list in the `api/api.py` file to allow cross-origin requests.
-
-```python
-origins = [
-    "https://your-github-username.github.io", # Add your GitHub Pages URL here
-]
-```
+2.  Under `Build and deployment`, select the **Source** as `GitHub Actions` (the `web/` folder is not supported by branch-based deployment, which only allows `/` or `/docs`).
 
 ---
 
@@ -220,9 +209,9 @@ The Zotero integration allows you to save academic papers, articles, and other d
 - **Mobile App:** The Zotero mobile app lets you add documents on the go. Any uploads will be indexed within a few hours.
 
   <div style="display: flex; justify-content: space-around; align-items: center; gap: 10px;">
-  <img src="./docs/img/arxiv_1.png" alt="Zotero mobile app" style="width: 30%;">
-  <img src="./docs/img/arxiv_2.png" alt="Zotero mobile app" style="width: 30%;">
-  <img src="./docs/img/arxiv_3.png" alt="Zotero mobile app" style="width: 30%;">
+  <img src="./web/img/arxiv_1.png" alt="Zotero mobile app" style="width: 30%;">
+  <img src="./web/img/arxiv_2.png" alt="Zotero mobile app" style="width: 30%;">
+  <img src="./web/img/arxiv_3.png" alt="Zotero mobile app" style="width: 30%;">
   </div>
 
 ---

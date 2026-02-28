@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Raphael Sourty - Personal Knowledge Search Engine</title>
+    <meta
+      name="description"
+      content="Discover the personal knowledge search engine created by Raphael Sourty. A unique project featuring neural search, ColBERT re-ranking, and an interactive folder tree visualization of interconnected notes."
+    />
+    <meta
+      name="google-site-verification"
+      content="-1EjnablvRwJITZucFLU44nYtII1cXhq4Ra3okO13fg"
+    />
+    <meta
+      name="keywords"
+      content="Raphael Sourty, personal search engine, deep learning search engine and recommender systems"
+    />
+
+    <link rel="canonical" href="https://raphaelsty.github.io/knowledge/" />
+
+    <meta name="author" content="Raphael Sourty" />
+
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./favicon/apple-touch-icon.png"
+    />
+    <link rel="icon" type="image/svg+xml" href="./favicon/favicon.svg" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="./favicon/site.webmanifest" />
+
+    <meta
+      property="og:title"
+      content="Raphael Sourty - Personal Knowledge Search Engine"
+    />
+    <meta
+      property="og:description"
+      content="Personal Search Engine, Raphaël Sourty, Knowledge"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://github.com/raphaelsty/" />
+    <meta
+      property="og:image"
+      content="https://avatars.githubusercontent.com/u/24591024?v=4"
+    />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Raphael Sourty - Personal Knowledge Search Engine"
+    />
+    <meta
+      name="twitter:description"
+      content="Personal Search Engine, Raphaël Sourty, Knowledge"
+    />
+    <meta
+      name="twitter:image"
+      content="https://avatars.githubusercontent.com/u/24591024?v=4"
+    />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "name": "Raphael Sourty",
+            "url": "https://github.com/raphaelsty/",
+            "sameAs": ["https://twitter.com/raphaelsrty"]
+          },
+          {
+            "@type": "WebSite",
+            "name": "Raphael Sourty's Personal Knowledge Search Engine",
+            "url": "https://github.com/raphaelsty/",
+            "author": {
+              "@type": "Person",
+              "name": "Raphael Sourty"
+            },
+            "description": "A personal search engine built by Raphael Sourty to explore interconnected notes using neural search and an interactive folder tree visualization.",
+            "keywords": "Raphael Sourty, personal search engine, deep learning search engine and recommender systems"
+          }
+        ]
+      }
+    </script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <script>
+      // Apply saved theme immediately to prevent flash
+      (function () {
+        var theme = localStorage.getItem("theme") || "dark";
+        document.documentElement.setAttribute("data-theme", theme);
+      })();
+    </script>
+
+    <div id="searchbox">
+      <div id="backsearch"></div>
+    </div>
+
+    <div id="folder-panel"></div>
+
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel" data-presets="react" src="app.jsx"></script>
+  </body>
+</html>
