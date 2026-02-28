@@ -303,9 +303,11 @@ const getDocLogo = (url) => {
 const TAG_DOC_LIMIT = 10;
 
 /**
- * Infer source type from a URL string.
+ * Infer source type from a document (compact tree format or full format).
+ * Checks URL hostname, title, tags, and an optional parentTag (the tree tag
+ * name the doc is grouped under) to match against known source keys.
  */
-const getSourceFromDoc = (doc, sourceKeys) => {
+const getSourceFromDoc = (doc, sourceKeys, parentTag) => {
   const url = doc.u || doc.url || "";
   const title = (doc.t || doc.title || "").toLowerCase();
   try {
@@ -319,9 +321,21 @@ const getSourceFromDoc = (doc, sourceKeys) => {
         return key;
     }
   } catch {}
+  // Check tags if available (full doc format)
+  const allTags = (doc.tags || []).concat(doc["extra-tags"] || []);
+  const tagsLower = allTags.map((t) => (t || "").toLowerCase());
   for (const key of sourceKeys || []) {
     const prefix = key.split(".")[0];
+    if (tagsLower.some((t) => t.includes(prefix))) return key;
     if (title.includes(prefix)) return key;
+  }
+  // Check parent tag name from tree context (compact docs lack tags)
+  if (parentTag) {
+    const ptLower = parentTag.toLowerCase();
+    for (const key of sourceKeys || []) {
+      const prefix = key.split(".")[0];
+      if (ptLower.includes(prefix)) return key;
+    }
   }
   return "other";
 };
@@ -340,6 +354,7 @@ const sortTagDocs = (
   sourceFilter,
   sourceKeys,
   sortByDate,
+  parentTag,
 ) => {
   return [...docs].sort((a, b) => {
     const aMatched = matchedUrls.has(a.u);
@@ -353,9 +368,9 @@ const sortTagDocs = (
 
     const hasFilter = sourceFilter && sourceFilter !== "all";
     const aSameSource =
-      hasFilter && getSourceFromDoc(a, sourceKeys) === sourceFilter;
+      hasFilter && getSourceFromDoc(a, sourceKeys, parentTag) === sourceFilter;
     const bSameSource =
-      hasFilter && getSourceFromDoc(b, sourceKeys) === sourceFilter;
+      hasFilter && getSourceFromDoc(b, sourceKeys, parentTag) === sourceFilter;
 
     // Tier: matched+sameSource=0, matched+other=1, unmatched+sameSource=2, unmatched+other=3
     const aTier = (aMatched ? 0 : 2) + (aSameSource ? 0 : 1);
@@ -371,15 +386,21 @@ const sortTagDocs = (
 /**
  * Recursive tree node component for folders and tags.
  */
-const countSourceDocs = (node, filter, sourceKeys) => {
+const countMatchedDocs = (node, matchedUrls, treeDocFilter, sourceKeys) => {
   let n = 0;
-  for (const [, , docs] of node.t || []) {
+  for (const [tagName, , docs] of node.t || []) {
     for (const d of docs || []) {
-      if (getSourceFromDoc(d, sourceKeys) === filter) n++;
+      if (!matchedUrls.has(d.u)) continue;
+      if (
+        treeDocFilter &&
+        getSourceFromDoc(d, sourceKeys, tagName) !== treeDocFilter
+      )
+        continue;
+      n++;
     }
   }
   for (const ch of node.c || []) {
-    n += countSourceDocs(ch, filter, sourceKeys);
+    n += countMatchedDocs(ch, matchedUrls, treeDocFilter, sourceKeys);
   }
   return n;
 };
@@ -404,13 +425,14 @@ const TreeNode = ({
   const hasChildren =
     (node.c && node.c.length > 0) || (node.t && node.t.length > 0);
   const isExpanded = expanded.has(path);
-  const displayCount = treeDocFilter
-    ? countSourceDocs(node, treeDocFilter, sourceKeys)
-    : isFiltered && node._matchCount
-      ? node._matchCount
-      : node.n;
+  const displayCount = countMatchedDocs(
+    node,
+    matchedUrls,
+    treeDocFilter,
+    sourceKeys,
+  );
 
-  if (treeDocFilter && displayCount === 0) return null;
+  if (displayCount === 0) return null;
 
   return (
     <div className="tree-node">
@@ -459,13 +481,19 @@ const TreeNode = ({
           {(node.t || []).map(([tagName, tagCount, tagDocs]) => {
             const tagPath = `${path}/#${tagName}`;
             const isTagExpanded = expandedTags.has(tagPath);
-            const filteredTagDocs = treeDocFilter
-              ? (tagDocs || []).filter(
-                  (d) => getSourceFromDoc(d, sourceKeys) === treeDocFilter,
-                )
-              : tagDocs;
-            const hasDocs = filteredTagDocs && filteredTagDocs.length > 0;
-            if (treeDocFilter && !hasDocs) return null;
+            // Only keep docs that appear in search results
+            let filteredTagDocs = (tagDocs || []).filter((d) =>
+              matchedUrls.has(d.u),
+            );
+            // Additionally filter by source when treeDocFilter is active
+            if (treeDocFilter) {
+              filteredTagDocs = filteredTagDocs.filter(
+                (d) =>
+                  getSourceFromDoc(d, sourceKeys, tagName) === treeDocFilter,
+              );
+            }
+            const hasDocs = filteredTagDocs.length > 0;
+            if (!hasDocs) return null;
             const sorted = hasDocs
               ? sortTagDocs(
                   filteredTagDocs,
@@ -473,6 +501,7 @@ const TreeNode = ({
                   sourceFilter,
                   sourceKeys,
                   sortByDate,
+                  tagName,
                 )
               : [];
             const showAll = showAllTags.has(tagPath);
@@ -497,9 +526,7 @@ const TreeNode = ({
                   >
                     {tagName}
                   </span>
-                  <span className="tree-count">
-                    {treeDocFilter ? filteredTagDocs.length : tagCount}
-                  </span>
+                  <span className="tree-count">{filteredTagDocs.length}</span>
                 </div>
                 {isTagExpanded && hasDocs && (
                   <div className="tree-docs">
@@ -630,7 +657,12 @@ const FolderTree = ({
     if (!hasMatches) return {};
     const byTag = {};
     for (const doc of documents) {
-      const compact = { u: doc.url, t: doc.title || "", d: doc.date || "" };
+      const compact = {
+        u: doc.url,
+        t: doc.title || "",
+        d: doc.date || "",
+        tags: (doc.tags || []).concat(doc["extra-tags"] || []),
+      };
       const allTags = (doc.tags || []).concat(doc["extra-tags"] || []);
       for (const tag of allTags) {
         if (tag && matchCounts[tag]) {
