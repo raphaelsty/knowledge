@@ -20,6 +20,9 @@ tag_tree.txt
 tree/
 *.pkl
 
+# Node
+node_modules/
+
 # Rust build output
 embeddings/target/
 events-api/target/

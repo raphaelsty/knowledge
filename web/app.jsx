@@ -1158,7 +1158,7 @@ const Search = () => {
         <input
           id="search"
           type="textarea"
-          placeholder="Neural Search"
+          placeholder="Search"
           value={query}
           onChange={handleChangeText}
           autoFocus
