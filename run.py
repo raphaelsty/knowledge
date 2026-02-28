@@ -34,20 +34,17 @@ database/database.json : JSON
     Aggregated document database.
 database/triples.json : JSON
     Tag co-occurrence graph edges.
-database/pipeline.pkl : Pickle
-    Serialized search pipeline for the API.
 """
 
 import json
 import os
 import subprocess
-import sys
 from collections import Counter
 from urllib.parse import urlparse
 
 import yaml
 
-from knowledge_database import (
+from sources import (
     github,
     hackernews,
     huggingface,
@@ -304,7 +301,7 @@ with open("database/triples.json", "w") as f:
 # =============================================================================
 
 print("Building tag tree...")
-from build_tag_tree import main as build_tag_tree
+from build_tag_tree import main as build_tag_tree  # noqa: E402, I001
 build_tag_tree()
 
 # =============================================================================

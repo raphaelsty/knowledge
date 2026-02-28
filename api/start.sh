@@ -1,6 +1,6 @@
 #!/bin/bash
 exec next-plaid-api \
-  --index-dir indices \
-  --model lightonai/answerai-colbert-small-v1-onnx \
+  --index-dir "${INDEX_DIR:-indices}" \
+  --model "${MODEL:-lightonai/answerai-colbert-small-v1-onnx}" \
   --int8 \
-  --port 8080
+  --port "${PORT:-8080}"

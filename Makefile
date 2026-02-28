@@ -1,74 +1,86 @@
-.PHONY: install install-dev sync dev api run lint lint-fix check pre-commit pre-commit-install docker-build docker-run launch clean
+.PHONY: install install-dev sync run index serve web lint lint-fix check pre-commit pre-commit-install docker-build docker-run launch docker-stop clean install-api
 
-# Install dependencies
+INDEX_DIR        = indices
+MODEL            = lightonai/answerai-colbert-small-v1-onnx
+PORT             = 8080
+WEB_PORT         = 3000
+NEXT_PLAID_API   = /Users/raphael/Documents/lighton/lategrep/target/release/next-plaid-api
+ORT_DYLIB_PATH  ?= $(shell find ~/Library/Caches ~/.cache -name "libonnxruntime*.dylib" -print -quit 2>/dev/null)
+
+# ── Dependencies ──────────────────────────────────────────────
+
+# Install Python prod dependencies
 install:
 	uv sync --no-dev
 
-# Install with dev dependencies
+# Install Python dev dependencies (ruff, mypy, pre-commit)
 install-dev:
 	uv sync --all-extras
 
-# Sync dependencies (alias for install-dev)
-sync:
-	uv sync --all-extras
+sync: install-dev
 
-# Start local dev server
-dev:
-	uv run uvicorn api.api:app --reload --port 8000
+# Install the Rust API server binary (with ONNX model support)
+install-api:
+	cargo install next-plaid-api --features model
 
-# Start API server (production-like)
-api:
-	uv run uvicorn api.api:app --host 0.0.0.0 --port 8080
+# ── Pipeline ──────────────────────────────────────────────────
 
-# Run the data extraction pipeline
+# Fetch sources, generate tags, build tree, and index
 run:
 	uv run python run.py
 
-# Linting and formatting check
+# Build only the Rust search index
+index:
+	cargo run --release --manifest-path indexer/Cargo.toml
+
+# ── Serve ─────────────────────────────────────────────────────
+
+# Start the Rust API (serves index + ONNX reranking model)
+serve:
+	ORT_DYLIB_PATH=$(ORT_DYLIB_PATH) $(NEXT_PLAID_API) --index-dir $(INDEX_DIR) --model $(MODEL) --int8 --port $(PORT)
+
+# Serve the frontend locally
+web:
+	python3 -m http.server $(WEB_PORT) --directory docs
+
+# ── Lint ──────────────────────────────────────────────────────
+
 lint:
 	uv run ruff check .
 	uv run ruff format --check .
 	uv run mypy . --ignore-missing-imports
 
-# Auto-fix linting issues
 lint-fix:
 	uv run ruff check --fix .
 	uv run ruff format .
 
-# Run all checks (lint + type check)
 check: lint
 
-# Run pre-commit hooks on all files
+# ── Pre-commit ────────────────────────────────────────────────
+
 pre-commit:
 	uv run pre-commit run --all-files
 
-# Install pre-commit hooks
 pre-commit-install:
 	uv run pre-commit install
 
-# Build Docker image
+# ── Docker ────────────────────────────────────────────────────
+
 docker-build:
-	echo ${OPENAI_API_KEY} > mysecret.txt
-	docker build --secret id=OPENAI_API_KEY,src=mysecret.txt -t knowledge .
-	rm -f mysecret.txt
+	docker build -t knowledge .
 
-# Run Docker container
 docker-run:
-	docker run -d --add-host host.docker.internal:host-gateway --name run_knowledge -p 8080:8080 knowledge
+	docker run -d --add-host host.docker.internal:host-gateway --name run_knowledge -p $(PORT):$(PORT) knowledge
 
-# Build and run Docker (legacy command)
 launch: docker-build docker-run
 
-# Stop and remove Docker container
 docker-stop:
 	docker stop run_knowledge || true
 	docker rm run_knowledge || true
 
-# Clean up
+# ── Cleanup ───────────────────────────────────────────────────
+
 clean:
-	rm -rf .venv
-	rm -rf __pycache__
-	rm -rf .mypy_cache
-	rm -rf .ruff_cache
+	rm -rf .venv __pycache__ .mypy_cache .ruff_cache
 	find . -type d -name "__pycache__" -exec rm -rf {} + 2>/dev/null || true
 	find . -type f -name "*.pyc" -delete 2>/dev/null || true

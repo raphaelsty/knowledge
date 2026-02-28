@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-<img src="img/demo.gif" alt="Demonstration GIF" style="width:100%; border-radius:10px; box-shadow:0 4px 8px rgba(0,0,0,0.1);">
+<img src="docs/img/demo.gif" alt="Demonstration GIF" style="width:100%; border-radius:10px; box-shadow:0 4px 8px rgba(0,0,0,0.1);">
 </p>
 
 **Knowledge** is a web application that automatically transforms the digital footprint into a personal search engine. It fetches content you interact with from various platforms—**GitHub**, **HackerNews**, **Zotero**, **HuggingFace likes**, **X/Twitter**—and organizes it into a navigable knowledge graph.
@@ -223,9 +223,9 @@ The Zotero integration allows you to save academic papers, articles, and other d
 - **Mobile App:** The Zotero mobile app lets you add documents on the go. Any uploads will be indexed within a few hours.
 
   <div style="display: flex; justify-content: space-around; align-items: center; gap: 10px;">
-  <img src="./img/arxiv_1.png" alt="Zotero mobile app" style="width: 30%;">
-  <img src="./img/arxiv_2.png" alt="Zotero mobile app" style="width: 30%;">
-  <img src="./img/arxiv_3.png" alt="Zotero mobile app" style="width: 30%;">
+  <img src="./docs/img/arxiv_1.png" alt="Zotero mobile app" style="width: 30%;">
+  <img src="./docs/img/arxiv_2.png" alt="Zotero mobile app" style="width: 30%;">
+  <img src="./docs/img/arxiv_3.png" alt="Zotero mobile app" style="width: 30%;">
   </div>
 
 ---

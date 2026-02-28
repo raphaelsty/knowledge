@@ -1,119 +1,15 @@
-# =================================================================
-# General & OS-Specific
-# =================================================================
-# Git history and Fly.io configuration
 .git
-fly.toml
-
-# macOS and Windows artifacts
-.DS_Store
-Thumbs.db
-
-# IDE and editor configuration
-.vscode/
-.idea/
-*.swp
-
-# =================================================================
-# Python Virtual Environments & Caches
-# =================================================================
-# Common environment folder names
-.env
 .venv
-env/
-venv/
-ENV/
-__pypackages__/
-
-# Python bytecode and cache folders
-__pycache__/
+.env
+.mypy_cache
+.ruff_cache
+__pycache__
 *.py[cod]
-*$py.class
-.pytest_cache/
-.mypy_cache/
-
-# =================================================================
-# Build, Distribution & Packaging Artifacts
-# =================================================================
-build/
-dist/
-downloads/
-eggs/
-lib/
-lib64/
-sdist/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
-
-# =================================================================
-# Documentation & Local Configs
-# =================================================================
-# Markdown files for repository, not application
-CONTRIBUTING.md
-CHANGELOG.md
-
-# Local dev configs
-docker-compose.yml
+fly.toml
+*.md
+LICENSE
 .pre-commit-config.yaml
-.flake8
-
-# Sphinx or MkDocs generated sites
-docs/_build/
-site/
-
-# =================================================================
-# Data, Models, Logs & Secrets
-# =================================================================
-# General log files
-*.log
-pip-log.txt
-
-# Local databases
-*.sqlite3
-*.sqlite3-journal
-
-# Local data, models, and media files
-data/
-datasets/
-assets/
-media/
-*.csv
-*.parquet
-*.jpg
-*.png
-# Note: *.json and *.pkl are NOT ignored because database/*.json and database/*.pkl are needed
-
-# Local settings and secrets (should never be in the image)
-local_settings.py
-
-# =================================================================
-# Testing & Code Coverage
-# =================================================================
-.coverage
-.coverage.*
-.tox
-htmlcov/
-nosetests.xml
-coverage.xml
-
-# =================================================================
-# Frontend / Node.js
-# =================================================================
-node_modules/
-npm-debug.log
-.npm/
-package-lock.json
-webpack.config.js
-vite.config.js
-
-# =================================================================
-# Infrastructure & Cloud Credentials (Sensitive)
-# =================================================================
-*.tfstate
-*.tfstate.*
-.terraform/
-.aws/
-.gcloud/
+.github
+sources
+database
+img
