@@ -2,7 +2,7 @@ const { useState, useEffect, useRef, useCallback, useMemo } = React;
 const { createRoot } = ReactDOM;
 
 const IS_LOCAL = window.location.hostname === "localhost";
-const EVENTS_API_URL = IS_LOCAL ? "http://localhost:3002" : "";
+const EVENTS_API_URL = IS_LOCAL ? "http://localhost:8080" : "";
 
 const RANGES = [
   { label: "24h", days: 1 },

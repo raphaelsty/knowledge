@@ -159,10 +159,32 @@ pub async fn search(
     let index = &**idx;
     let index_query_start = std::time::Instant::now();
     let raw_results: Vec<(usize, Vec<i64>, Vec<f32>)> = if queries.len() == 1 {
-        let result = index.search(&queries[0], &params, req.subset.as_deref())?;
+        let result = index
+            .search(&queries[0], &params, req.subset.as_deref())
+            .map_err(|e| {
+                tracing::error!(
+                    trace_id = %trace_id,
+                    index = %name,
+                    index_path = %path_str,
+                    error = %e,
+                    "search.index_query.failed"
+                );
+                e
+            })?;
         vec![(result.query_id, result.passage_ids, result.scores)]
     } else {
-        let batch_results = index.search_batch(&queries, &params, true, req.subset.as_deref())?;
+        let batch_results = index
+            .search_batch(&queries, &params, true, req.subset.as_deref())
+            .map_err(|e| {
+                tracing::error!(
+                    trace_id = %trace_id,
+                    index = %name,
+                    index_path = %path_str,
+                    error = %e,
+                    "search.index_query.failed"
+                );
+                e
+            })?;
         batch_results
             .into_iter()
             .map(|r| (r.query_id, r.passage_ids, r.scores))
@@ -189,7 +211,6 @@ pub async fn search(
 
     let total_ms = start.elapsed().as_millis() as u64;
 
-    // Single comprehensive completion log
     tracing::info!(
         trace_id = %trace_id,
         index = %name,
@@ -202,7 +223,6 @@ pub async fn search(
         "search.complete"
     );
 
-    // Warn on slow searches (>1s)
     if total_ms > 1000 {
         tracing::warn!(
             trace_id = %trace_id,
@@ -273,7 +293,7 @@ pub async fn search_filtered(
         subset: Some(subset),
     };
 
-    // Delegate to normal search
+    // Delegate to normal search (logs its own errors with index_path context)
     let result = search(
         State(state),
         Path(name.clone()),
@@ -282,18 +302,18 @@ pub async fn search_filtered(
     )
     .await;
 
-    let total_ms = start.elapsed().as_millis() as u64;
-
-    // Log filtered search completion with filter-specific metrics
-    tracing::info!(
-        trace_id = %trace_id_val,
-        index = %name,
-        filter = %req.filter_condition,
-        matching_docs = matching_docs,
-        sql_filter_ms = sql_filter_ms,
-        total_ms = total_ms,
-        "search.filtered.complete"
-    );
+    if result.is_ok() {
+        let total_ms = start.elapsed().as_millis() as u64;
+        tracing::info!(
+            trace_id = %trace_id_val,
+            index = %name,
+            filter = %req.filter_condition,
+            matching_docs = matching_docs,
+            sql_filter_ms = sql_filter_ms,
+            total_ms = total_ms,
+            "search.filtered.complete"
+        );
+    }
 
     result
 }
@@ -352,19 +372,20 @@ pub async fn search_with_encoding(
         subset: req.subset,
     };
 
-    // Delegate to the standard search
+    // Delegate to the standard search (logs its own errors with index_path context)
     let result = search(State(state), Path(name.clone()), trace_id, Json(search_req)).await;
 
-    let total_ms = start.elapsed().as_millis() as u64;
-
-    tracing::info!(
-        trace_id = %trace_id_val,
-        index = %name,
-        num_queries = num_queries,
-        encode_ms = encode_ms,
-        total_ms = total_ms,
-        "search.with_encoding.complete"
-    );
+    if result.is_ok() {
+        let total_ms = start.elapsed().as_millis() as u64;
+        tracing::info!(
+            trace_id = %trace_id_val,
+            index = %name,
+            num_queries = num_queries,
+            encode_ms = encode_ms,
+            total_ms = total_ms,
+            "search.with_encoding.complete"
+        );
+    }
 
     result
 }
@@ -424,7 +445,7 @@ pub async fn search_filtered_with_encoding(
         filter_parameters: req.filter_parameters,
     };
 
-    // Delegate to the filtered search
+    // Delegate to the filtered search (logs its own errors with index_path context)
     let result = search_filtered(
         State(state),
         Path(name.clone()),
@@ -433,17 +454,18 @@ pub async fn search_filtered_with_encoding(
     )
     .await;
 
-    let total_ms = start.elapsed().as_millis() as u64;
-
-    tracing::info!(
-        trace_id = %trace_id_val,
-        index = %name,
-        num_queries = num_queries,
-        filter = %req.filter_condition,
-        encode_ms = encode_ms,
-        total_ms = total_ms,
-        "search.filtered_with_encoding.complete"
-    );
+    if result.is_ok() {
+        let total_ms = start.elapsed().as_millis() as u64;
+        tracing::info!(
+            trace_id = %trace_id_val,
+            index = %name,
+            num_queries = num_queries,
+            filter = %req.filter_condition,
+            encode_ms = encode_ms,
+            total_ms = total_ms,
+            "search.filtered_with_encoding.complete"
+        );
+    }
 
     result
 }
