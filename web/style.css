@@ -619,7 +619,7 @@ body {
 }
 
 /* ============================================
-   Favorite Button
+   Favorite Button (per-card heart)
    ============================================ */
 
 .favorite-btn {
@@ -650,6 +650,69 @@ body {
 
 .favorite-btn.active:hover {
   opacity: 0.8;
+}
+
+/* ============================================
+   Favorites Toggle (controls row)
+   ============================================ */
+
+.favorites-toggle {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background: var(--bg-chip);
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border-radius: 50%;
+  color: var(--text-muted);
+  border: 1px solid var(--border-subtle);
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+  position: relative;
+}
+
+.favorites-toggle:hover {
+  background: var(--bg-chip-hover);
+  border-color: var(--border-hover);
+  color: #ef4444;
+}
+
+.favorites-toggle.active {
+  background: #ef4444;
+  color: #fff;
+  border-color: #ef4444;
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+}
+
+.favorites-toggle.active:hover {
+  background: #dc2626;
+  border-color: #dc2626;
+}
+
+.favorites-count {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: 8px;
+  background: #ef4444;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  font-family: "Inter", sans-serif;
+  line-height: 16px;
+  text-align: center;
+  pointer-events: none;
+}
+
+.favorites-toggle.active .favorites-count {
+  background: #fff;
+  color: #ef4444;
 }
 
 /* ============================================
