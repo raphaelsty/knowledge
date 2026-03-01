@@ -51,9 +51,15 @@ class Github:
         self,
         per_page: int = 100,
         limit: int = 100,
+        existing_urls: set[str] | None = None,
     ) -> dict[str, dict]:
         """
         Fetch starred repositories and extract document metadata.
+
+        Uses an early-exit strategy: fetches a small probe page first, and
+        stops paginating as soon as a page contains no new repositories
+        (all URLs already in existing_urls). README content is only fetched
+        for new repositories.
 
         Parameters
         ----------
@@ -61,6 +67,9 @@ class Github:
             Number of results per API page (max 100).
         limit : int, default=100
             Maximum number of pages to fetch.
+        existing_urls : set[str] | None, default=None
+            URLs already in the database. When provided, enables early exit
+            and skips README fetching for known repos.
 
         Returns
         -------
@@ -73,22 +82,37 @@ class Github:
         """
         stars = []
 
-        # Paginate through starred repositories
+        # Paginate through starred repositories (most recent first)
         for page in range(limit):
-            response = requests.get(f"https://api.github.com/users/{self.user}/starred?{per_page}=10&page={page}")
+            response = requests.get(
+                f"https://api.github.com/users/{self.user}/starred" f"?per_page={per_page}&page={page + 1}"
+            )
 
             if response.status_code != 200:
-                print("Github request failed.")
+                print(f"    GitHub request failed (status {response.status_code}).")
                 break
 
             page_data = response.json()
             if len(page_data) == 0:
                 break
 
-            stars += page_data
+            # Early exit: if all repos on this page are already known, stop
+            if existing_urls is not None:
+                new_in_page = sum(
+                    1 for repo in page_data if "html_url" in repo and repo["html_url"] not in existing_urls
+                )
+                stars += page_data
+                if new_in_page == 0:
+                    print(f"    No new stars on page {page + 1}, stopping early.")
+                    break
+                print(f"    Page {page + 1}: {new_in_page} new stars.")
+            else:
+                stars += page_data
+
             time.sleep(0.1)  # Rate limiting
 
         data: dict[str, dict] = collections.defaultdict(dict)
+        today = datetime.datetime.today().strftime("%Y-%m-%d")
 
         for repository in stars:
             if "url" not in repository:
@@ -97,24 +121,27 @@ class Github:
             url = repository["html_url"]
 
             # Collect tags from topics and language
-            tags = [tag.lower() for tag in repository["topics"]]
+            repo_tags = [tag.lower() for tag in repository["topics"]]
             if repository.get("language") is not None:
-                tags += [repository["language"].lower()]
-            tags = list(set(tags))
-
-            # Extract clean text from README
-            readme_text = self.get_readme_text_by_token_count(
-                repository["html_url"],
-                min_tokens=50,
-            )
+                repo_tags += [repository["language"].lower()]
+            repo_tags = list(set(repo_tags))
 
             description = repository.get("description") or ""
 
+            # Only fetch README for new repositories
+            if existing_urls is not None and url in existing_urls:
+                readme_text = None
+            else:
+                readme_text = self.get_readme_text_by_token_count(
+                    repository["html_url"],
+                    min_tokens=50,
+                )
+
             data[url] = {
-                "date": datetime.datetime.today().strftime("%Y-%m-%d"),
-                "title": f"{repository['name']}",
+                "date": today,
+                "title": repository["name"],
                 "summary": f"{description} \n {readme_text}" if readme_text else description,
-                "tags": tags,
+                "tags": repo_tags,
             }
 
         return data

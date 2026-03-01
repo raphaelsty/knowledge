@@ -29,6 +29,10 @@
 //!
 //! ## Ingest
 //! - `POST /api/bookmark` - Ingest a bookmark
+//!
+//! ## Pipeline
+//! - `POST /api/pipeline` - Trigger the Python pipeline (run.py)
+//! - `GET /api/pipeline` - Pipeline status and last run result
 
 use std::net::SocketAddr;
 use std::path::PathBuf;
@@ -459,6 +463,14 @@ fn build_router(state: Arc<AppState>, pg_pool: Option<sqlx::PgPool>) -> Router {
         ))
         .with_state(state);
 
+    // --- Pipeline router (trigger run.py) ---
+    let pipeline_state = handlers::pipeline::new_state();
+    let pipeline_router = Router::new()
+        .route("/api/pipeline", get(handlers::pipeline::status))
+        .route("/api/pipeline", post(handlers::pipeline::trigger))
+        .layer(cors.clone())
+        .with_state(pipeline_state);
+
     // Start merging all routers
     let mut app = Router::new()
         .merge(health_router)
@@ -467,7 +479,8 @@ fn build_router(state: Arc<AppState>, pg_pool: Option<sqlx::PgPool>) -> Router {
         .merge(encode_router)
         .merge(delete_router)
         .merge(search_api_router)
-        .merge(ingest_router);
+        .merge(ingest_router)
+        .merge(pipeline_router);
 
     // --- PG-backed routers (data + events) ---
     if let Some(pool) = pg_pool {
@@ -523,6 +536,8 @@ async fn main() {
     let mut _query_length: Option<usize> = None;
     let mut _document_length: Option<usize> = None;
     let mut _model_pool_size: Option<usize> = None;
+    let mut buffer_dir: Option<String> = None;
+    let mut buffer_interval: u64 = 30;
 
     let mut i = 1;
     while i < args.len() {
@@ -646,6 +661,27 @@ async fn main() {
                     std::process::exit(1);
                 }
             }
+            "--buffer-dir" => {
+                if i + 1 < args.len() {
+                    buffer_dir = Some(args[i + 1].clone());
+                    i += 2;
+                } else {
+                    eprintln!("Error: --buffer-dir requires a value");
+                    std::process::exit(1);
+                }
+            }
+            "--buffer-interval" => {
+                if i + 1 < args.len() {
+                    buffer_interval = args[i + 1].parse().unwrap_or_else(|_| {
+                        eprintln!("Error: Invalid buffer interval");
+                        std::process::exit(1);
+                    });
+                    i += 2;
+                } else {
+                    eprintln!("Error: --buffer-interval requires a value");
+                    std::process::exit(1);
+                }
+            }
             "--help" => {
                 println!(
                     r#"Knowledge API Server
@@ -665,6 +701,8 @@ Options:
   --query-length <N>       Maximum query length in tokens
   --document-length <N>    Maximum document length in tokens
   --model-pool-size <N>    Number of model worker instances
+  --buffer-dir <DIR>       Directory to scan for buffer JSON files (enables buffer scanner)
+  --buffer-interval <SECS> Scan interval in seconds (default: 30)
   --help                   Show this help message
 
 Environment Variables:
@@ -854,6 +892,11 @@ Environment Variables:
         }
         Arc::new(app_state)
     };
+
+    // Start buffer scanner if configured
+    if let Some(ref buf_dir) = buffer_dir {
+        handlers::buffer::start_buffer_scanner(state.clone(), buf_dir.clone(), buffer_interval);
+    }
 
     // Build router
     let app = build_router(state, pg_pool);

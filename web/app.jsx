@@ -794,6 +794,128 @@ const FolderTree = ({
 };
 
 /**
+ * Pipeline progress bar — overlays on top of the folder view.
+ */
+function parsePipelineStep(output) {
+  if (!output)
+    return { label: "Starting", detail: "Initializing sources", pct: 1 };
+  var last = { label: "Starting", detail: "Initializing sources", pct: 1 };
+  var lines = output.split("\n");
+  for (var i = 0; i < lines.length; i++) {
+    var line = lines[i];
+    var start = line.indexOf("@@");
+    var end = line.lastIndexOf("@@");
+    if (start !== -1 && end > start + 2) {
+      var inner = line.substring(start + 2, end);
+      var parts = inner.split("|");
+      if (parts.length >= 2) {
+        last = {
+          pct: parseInt(parts[0], 10) || 0,
+          label: parts[1],
+          detail: parts[2] || "",
+        };
+      }
+    }
+  }
+  return last;
+}
+
+var PipelineBar = function (props) {
+  var data = props.data;
+  var onClose = props.onClose;
+  var isRunning = data && data.status === "running";
+  var lastRun = data && data.last_run;
+
+  var output = isRunning
+    ? (data && data.output) || ""
+    : (lastRun && lastRun.output) || "";
+  var parsed = parsePipelineStep(output);
+  var pct = isRunning ? parsed.pct : lastRun ? 100 : 0;
+  var label = isRunning
+    ? parsed.label
+    : lastRun
+      ? lastRun.success
+        ? "Sources updated"
+        : "Update failed"
+      : "Starting";
+  var detail = isRunning
+    ? parsed.detail
+    : lastRun
+      ? parsePipelineStep(lastRun.output).detail
+      : "";
+  var isDone = !isRunning && lastRun;
+  var isFailed = isDone && !lastRun.success;
+
+  return React.createElement(
+    "div",
+    {
+      className:
+        "pipe-bar" +
+        (isDone ? (isFailed ? " pipe-bar-fail" : " pipe-bar-done") : ""),
+    },
+    React.createElement(
+      "div",
+      { className: "pipe-bar-inner" },
+      React.createElement(
+        "div",
+        { className: "pipe-bar-info" },
+        React.createElement(
+          "div",
+          { className: "pipe-bar-status" },
+          React.createElement(
+            "span",
+            { className: "pipe-bar-label" },
+            isRunning
+              ? React.createElement("span", { className: "pipe-bar-dot" })
+              : isDone
+                ? React.createElement(
+                    "span",
+                    { className: "pipe-bar-icon" },
+                    isFailed ? "\u2717" : "\u2713",
+                  )
+                : null,
+            " ",
+            label,
+          ),
+          detail
+            ? React.createElement(
+                "span",
+                { className: "pipe-bar-detail" },
+                detail,
+              )
+            : null,
+        ),
+        isRunning
+          ? React.createElement(
+              "span",
+              { className: "pipe-bar-pct" },
+              pct + "%",
+            )
+          : null,
+      ),
+      React.createElement(
+        "div",
+        { className: "pipe-bar-track" },
+        React.createElement("div", {
+          className:
+            "pipe-bar-fill" + (isRunning ? " pipe-bar-fill-active" : ""),
+          style: { width: pct + "%" },
+        }),
+      ),
+    ),
+    React.createElement(
+      "button",
+      {
+        className: "pipe-bar-close",
+        onClick: onClose,
+        title: "Dismiss",
+      },
+      "\u00d7",
+    ),
+  );
+};
+
+/**
  * The main Search component.
  */
 const Search = () => {
@@ -813,6 +935,8 @@ const Search = () => {
   const [theme, setTheme] = useState(
     document.documentElement.getAttribute("data-theme") || "dark",
   );
+  const [pipelineData, setPipelineData] = useState(null);
+  const [pipelineOpen, setPipelineOpen] = useState(false);
 
   // --- Refs ---
   const searchTimerRef = useRef(null);
@@ -822,6 +946,7 @@ const Search = () => {
   const immediateRerankRef = useRef(false);
   const settleTimerRef = useRef(null);
   const lastSearchMeta = useRef(null);
+  const pipelineIntervalRef = useRef(null);
 
   // --- Function Declarations ---
 
@@ -1046,6 +1171,72 @@ const Search = () => {
 
     return () => clearTimeout(rerankTimerRef.current);
   }, [documents, query, modelStatus, resultsReranked, isSortedByDate]);
+
+  // --- Pipeline ---
+
+  useEffect(() => {
+    fetch(`${API_BASE_URL}/api/pipeline`)
+      .then((r) => r.json())
+      .then((data) => {
+        setPipelineData(data);
+        if (data.status === "running") setPipelineOpen(true);
+      })
+      .catch(() => {});
+  }, []);
+
+  useEffect(() => {
+    if (!pipelineOpen || !(pipelineData && pipelineData.status === "running"))
+      return;
+    const poll = () =>
+      fetch(`${API_BASE_URL}/api/pipeline`)
+        .then((r) => r.json())
+        .then((data) => setPipelineData(data))
+        .catch(() => {});
+    pipelineIntervalRef.current = setInterval(poll, 2000);
+    return () => clearInterval(pipelineIntervalRef.current);
+  }, [pipelineOpen, pipelineData && pipelineData.status]);
+
+  // Auto-dismiss progress bar 6s after pipeline finishes
+  useEffect(() => {
+    if (!pipelineOpen) return;
+    if (
+      pipelineData &&
+      pipelineData.status !== "running" &&
+      pipelineData.last_run
+    ) {
+      var t = setTimeout(function () {
+        setPipelineOpen(false);
+      }, 6000);
+      return function () {
+        clearTimeout(t);
+      };
+    }
+  }, [
+    pipelineOpen,
+    pipelineData && pipelineData.status,
+    pipelineData && pipelineData.last_run,
+  ]);
+
+  const triggerPipeline = useCallback(() => {
+    if (pipelineData && pipelineData.status === "running") {
+      setPipelineOpen(true);
+      return;
+    }
+    fetch(`${API_BASE_URL}/api/pipeline`, { method: "POST" })
+      .then((r) => r.json())
+      .then((data) => {
+        if (data.status === "started" || data.status === "already_running") {
+          setPipelineData({
+            status: "running",
+            started_at: data.started_at,
+            output: "",
+            elapsed_secs: 0,
+          });
+          setPipelineOpen(true);
+        }
+      })
+      .catch(() => {});
+  }, [pipelineData && pipelineData.status]);
 
   // --- Event Handlers ---
 
@@ -1345,6 +1536,41 @@ const Search = () => {
           </svg>
         </a>
         <button
+          className={
+            "pipeline-toggle" +
+            (pipelineData && pipelineData.status === "running" ? " active" : "")
+          }
+          onClick={() => {
+            if (pipelineOpen) {
+              setPipelineOpen(false);
+            } else if (pipelineData && pipelineData.status === "running") {
+              setPipelineOpen(true);
+            } else {
+              triggerPipeline();
+            }
+          }}
+          title="Update sources"
+        >
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className={
+              pipelineData && pipelineData.status === "running" ? "spin" : ""
+            }
+          >
+            <path d="M21 2v6h-6" />
+            <path d="M3 12a9 9 0 0 1 15-6.7L21 8" />
+            <path d="M3 22v-6h6" />
+            <path d="M21 12a9 9 0 0 1-15 6.7L3 16" />
+          </svg>
+        </button>
+        <button
           className={`favorites-toggle ${showFavorites ? "active" : ""}`}
           onClick={() => setShowFavorites((v) => !v)}
           title={showFavorites ? "Show all" : "Show favorites"}
@@ -1476,16 +1702,26 @@ const Search = () => {
       {folderPanel &&
         !isMobile &&
         createPortal(
-          <FolderTree
-            tree={tree}
-            documents={documents}
-            rankedDocs={displayedDocs}
-            query={query}
-            onClickTag={handleClickTag}
-            sourceFilter={sourceFilter}
-            sourceKeys={sources.map((s) => s.key)}
-            sortByDate={isSortedByDate}
-          />,
+          <React.Fragment>
+            {pipelineOpen && (
+              <PipelineBar
+                data={pipelineData}
+                onClose={() => setPipelineOpen(false)}
+              />
+            )}
+            <div className="folder-panel-content">
+              <FolderTree
+                tree={tree}
+                documents={documents}
+                rankedDocs={displayedDocs}
+                query={query}
+                onClickTag={handleClickTag}
+                sourceFilter={sourceFilter}
+                sourceKeys={sources.map((s) => s.key)}
+                sortByDate={isSortedByDate}
+              />
+            </div>
+          </React.Fragment>,
           folderPanel,
         )}
     </React.Fragment>

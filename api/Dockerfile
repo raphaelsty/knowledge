@@ -90,7 +90,14 @@ RUN apt-get update && apt-get install -y \
     libsqlite3-0 \
     libopenblas0 \
     curl \
+    python3 \
+    python3-venv \
     && rm -rf /var/lib/apt/lists/*
+
+# Install uv (Python package manager) for pipeline execution
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh \
+    && mv /root/.local/bin/uv /usr/local/bin/uv \
+    && mv /root/.local/bin/uvx /usr/local/bin/uvx 2>/dev/null || true
 
 # Create non-root user
 RUN useradd -m -u 1000 -s /bin/bash knowledge

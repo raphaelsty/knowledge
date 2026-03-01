@@ -7,6 +7,7 @@ pub mod encode;
 pub mod events;
 pub mod ingest;
 pub mod metadata;
+pub mod pipeline;
 pub mod rerank;
 pub mod rescue;
 pub mod search;
