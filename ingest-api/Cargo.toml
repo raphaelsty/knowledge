@@ -1,0 +1,19 @@
+[package]
+name = "ingest-api"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+axum = "0.8"
+next-plaid = "1.0"
+next-plaid-onnx = "1.0"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sqlx = { version = "0.8", default-features = false, features = ["runtime-tokio", "postgres"] }
+tokio = { version = "1", features = ["full"] }
+tower-http = { version = "0.6", features = ["cors"] }
+
+[features]
+default = []
+coreml = ["next-plaid-onnx/coreml", "next-plaid/accelerate"]
+openblas = ["next-plaid/openblas"]

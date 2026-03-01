@@ -1,4 +1,4 @@
-.PHONY: install install-dev sync run index serve web lint lint-fix check pre-commit pre-commit-install docker-build docker-run launch docker-stop clean install-api db api migrate up down events events-build deploy deploy-build deploy-down deploy-logs ssh remote-status remote-logs remote-restart remote-update redeploy
+.PHONY: install install-dev sync run index serve web lint lint-fix check pre-commit pre-commit-install docker-build docker-run launch docker-stop clean install-api db api migrate up down events events-build ingest ingest-build deploy deploy-build deploy-down deploy-logs ssh remote-status remote-logs remote-restart remote-update redeploy extension
 
 # Load .env if present
 -include .env
@@ -10,6 +10,7 @@ PORT             = 8080
 WEB_PORT         = 3000
 API_PORT         = 3001
 EVENTS_PORT      = 3002
+INGEST_PORT      = 3003
 DATABASE_URL    ?= postgresql://knowledge:knowledge@localhost:5433/knowledge
 NEXT_PLAID_API   = /Users/raphael/Documents/lighton/lategrep/target/release/next-plaid-api
 ORT_DYLIB_PATH  ?= $(shell find ~/Library/Caches ~/.cache -name "libonnxruntime*.dylib" -print -quit 2>/dev/null)
@@ -75,6 +76,14 @@ events:
 # Build the events API binary
 events-build:
 	cargo build --release --manifest-path events-api/Cargo.toml
+
+# Start the ingest API (real-time bookmark embedding + indexing)
+ingest:
+	DATABASE_URL=$(DATABASE_URL) MODEL_PATH=$(MODEL) INDEX_PATH=$(INDEX_DIR)/knowledge PORT=$(INGEST_PORT) ORT_DYLIB_PATH=$(ORT_DYLIB_PATH) cargo run --release --manifest-path ingest-api/Cargo.toml --features coreml
+
+# Build the ingest API binary
+ingest-build:
+	cargo build --release --manifest-path ingest-api/Cargo.toml --features coreml
 
 # Serve the frontend locally
 web:
@@ -169,6 +178,12 @@ launch: docker-build docker-run
 docker-stop:
 	docker stop run_knowledge || true
 	docker rm run_knowledge || true
+
+# ── Extension ─────────────────────────────────────────────────
+
+# Package the browser extension into a zip for download
+extension:
+	cd extension && zip -r ../web/extension.zip . -x ".*" "__MACOSX/*"
 
 # ── Cleanup ───────────────────────────────────────────────────
 

@@ -26,3 +26,4 @@ node_modules/
 # Rust build output
 embeddings/target/
 events-api/target/
+ingest-api/target/

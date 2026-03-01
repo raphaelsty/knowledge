@@ -19,6 +19,8 @@ services:
         condition: service_started
       events-api:
         condition: service_started
+      ingest-api:
+        condition: service_started
 
   postgres:
     image: postgres:16-alpine
@@ -96,6 +98,24 @@ services:
       PORT: "3002"
     depends_on:
       postgres:
+        condition: service_healthy
+
+  ingest-api:
+    build:
+      context: ingest-api
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql://knowledge:${POSTGRES_PASSWORD:-knowledge}@postgres:5432/knowledge
+      MODEL_PATH: /models/answerai-colbert-small-v1-onnx
+      INDEX_PATH: /data/indices/knowledge
+      PORT: "3003"
+    volumes:
+      - models:/models
+      - ./multi-vector-database/knowledge:/data/indices/knowledge
+    depends_on:
+      postgres:
+        condition: service_healthy
+      search-api:
         condition: service_healthy
 
 volumes:

@@ -1,10 +1,10 @@
 {
-  "num_chunks": 1,
+  "num_chunks": 2,
   "nbits": 2,
-  "num_partitions": 4096,
-  "num_embeddings": 184004,
-  "avg_doclen": 25.264863380475077,
-  "num_documents": 7283,
+  "num_partitions": 4876,
+  "num_embeddings": 370759,
+  "avg_doclen": 25.318150778475825,
+  "num_documents": 14644,
   "embedding_dim": 96,
   "next_plaid_compatible": true
 }

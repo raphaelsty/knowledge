@@ -81,6 +81,25 @@ services:
       postgres:
         condition: service_healthy
 
+  ingest-api:
+    build:
+      context: ingest-api
+    ports:
+      - "3003:3003"
+    environment:
+      DATABASE_URL: postgresql://knowledge:knowledge@postgres:5432/knowledge
+      MODEL_PATH: /models/answerai-colbert-small-v1-onnx
+      INDEX_PATH: /data/indices/knowledge
+      PORT: "3003"
+    volumes:
+      - models:/models
+      - ./multi-vector-database/knowledge:/data/indices/knowledge
+    depends_on:
+      postgres:
+        condition: service_healthy
+      search-api:
+        condition: service_healthy
+
   web:
     image: python:3.12-slim
     working_dir: /web

@@ -4,6 +4,11 @@
 		reverse_proxy search-api:8080
 	}
 
+	# Ingest API — real-time bookmark ingestion
+	handle /api/bookmark {
+		reverse_proxy ingest-api:3003
+	}
+
 	# Data API — folder tree & sources from PostgreSQL
 	handle /api/* {
 		reverse_proxy data-api:3001
