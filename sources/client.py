@@ -35,7 +35,6 @@ web/data/database.json : JSON
 
 import json
 import os
-import subprocess
 import time
 from collections import Counter
 from urllib.parse import urlparse
@@ -43,7 +42,7 @@ from urllib.parse import urlparse
 import yaml
 
 from . import github, hackernews, huggingface, tags, twitter, zotero
-from .database import ensure_schema, load_all_documents, save_all_documents, save_generated
+from .database import ensure_schema, load_all_documents, load_generated, save_all_documents, save_generated
 from .taxonomy import build as build_taxonomy
 
 
@@ -55,11 +54,14 @@ def _fmt(seconds: float) -> str:
     return f"{int(m)}m {s:.1f}s"
 
 
-def merge_new_documents(existing: dict, new: dict) -> dict:
-    """Merge new documents, skipping URLs already in the database."""
+def merge_new_documents(existing: dict, new: dict) -> tuple[dict, set[str]]:
+    """Merge new documents, skipping URLs already in the database.
+
+    Returns the merged dict and the set of newly added URLs.
+    """
     new_only = {url: doc for url, doc in new.items() if url not in existing}
     print(f"Found {len(new_only)} new documents.")
-    return {**existing, **new_only}
+    return {**existing, **new_only}, set(new_only.keys())
 
 
 def main():
@@ -112,13 +114,16 @@ def main():
     # Fetch Data from Sources
     # =============================================================================
 
+    new_urls: set[str] = set()
+
     # GitHub starred repositories
     if sources.get("github") is not None:
         t0 = time.perf_counter()
         print("Fetching GitHub stars...")
         for user in sources["github"]:
             fetcher = github.Github(user=user)
-            data = merge_new_documents(data, fetcher())
+            data, added = merge_new_documents(data, fetcher())
+            new_urls |= added
         timings.append(("Fetch GitHub", time.perf_counter() - t0))
 
     # HackerNews upvoted posts
@@ -129,7 +134,8 @@ def main():
             username=hackernews_username,
             password=hackernews_password,
         )
-        data = merge_new_documents(data, fetcher())
+        data, added = merge_new_documents(data, fetcher())
+        new_urls |= added
         timings.append(("Fetch HackerNews", time.perf_counter() - t0))
     else:
         print("Skipping HackerNews (no credentials).")
@@ -143,7 +149,8 @@ def main():
             library_type="group",
             api_key=zotero_api_key,
         )
-        data = merge_new_documents(data, fetcher())
+        data, added = merge_new_documents(data, fetcher())
+        new_urls |= added
         timings.append(("Fetch Zotero", time.perf_counter() - t0))
     else:
         print("Skipping Zotero (no credentials).")
@@ -153,7 +160,8 @@ def main():
         t0 = time.perf_counter()
         print("Fetching HuggingFace likes...")
         fetcher = huggingface.HuggingFace(token=huggingface_token)
-        data = merge_new_documents(data, fetcher())
+        data, added = merge_new_documents(data, fetcher())
+        new_urls |= added
         timings.append(("Fetch HuggingFace", time.perf_counter() - t0))
     else:
         print("Skipping HuggingFace (no token).")
@@ -182,13 +190,14 @@ def main():
                 min_likes=twitter_config.get("min_likes", 10),
             )
             max_pages = twitter_config.get("max_pages", 5)
-            data = merge_new_documents(
+            data, added = merge_new_documents(
                 data,
                 twitter_fetcher(
                     max_pages=max_pages,
                     existing_urls=set(data.keys()),
                 ),
             )
+            new_urls |= added
         timings.append(("Fetch Twitter/X", time.perf_counter() - t0))
     else:
         print("Skipping Twitter/X (disabled).")
@@ -369,15 +378,51 @@ def main():
     timings.append(("Build taxonomy", time.perf_counter() - t0))
 
     # =============================================================================
-    # Index Documents into Search Engine
+    # Write Buffer for Incremental Indexing
     # =============================================================================
 
     t0 = time.perf_counter()
-    print("Indexing documents into search engine...")
-    result = subprocess.run(["cargo", "run", "--release", "--manifest-path", "embeddings/Cargo.toml"])
-    timings.append(("Index (Rust)", time.perf_counter() - t0))
-    if result.returncode != 0:
-        print("  Warning: indexing failed (libonnxruntime missing?). Existing index unchanged.")
+    buffer_dir = os.environ.get("BUFFER_DIR", "buffer")
+    # Filter new_urls to only those that survived cleaning/dedup
+    new_urls = {url for url in new_urls if url in data}
+    if new_urls:
+        os.makedirs(buffer_dir, exist_ok=True)
+        batch = [
+            {
+                "url": url,
+                "title": data[url].get("title", ""),
+                "summary": data[url].get("summary", ""),
+                "date": data[url].get("date", ""),
+                "tags": data[url].get("tags", []),
+                "extra_tags": data[url].get("extra-tags", []),
+            }
+            for url in new_urls
+        ]
+        filename = f"{int(time.time() * 1000)}_{os.getpid()}.json"
+        filepath = os.path.join(buffer_dir, filename)
+        with open(filepath, "w") as f:
+            json.dump(batch, f)
+        print(f"Wrote {len(batch)} new documents to {filepath}")
+    else:
+        print("No new documents to buffer.")
+    timings.append(("Write buffer", time.perf_counter() - t0))
+
+    # =============================================================================
+    # Rescue Placement
+    # =============================================================================
+
+    if new_urls and use_pg:
+        t0 = time.perf_counter()
+        folder_tree = load_generated("folder_tree")
+        if folder_tree:
+            from .taxonomy import load_model, rescue_unplaced_docs
+
+            model = load_model("minishlab/potion-base-8M")
+            folder_tree, n = rescue_unplaced_docs(folder_tree, data, model)
+            if n:
+                save_generated("folder_tree", folder_tree)
+                print(f"Rescued {n} documents into folder tree.")
+        timings.append(("Rescue placement", time.perf_counter() - t0))
 
     # =============================================================================
     # Summary

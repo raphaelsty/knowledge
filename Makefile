@@ -1,4 +1,4 @@
-.PHONY: install install-dev sync run index serve web lint lint-fix check pre-commit pre-commit-install docker-build docker-run launch docker-stop clean install-api api-build db migrate up down deploy deploy-build deploy-down deploy-logs ssh remote-status remote-logs remote-restart remote-update redeploy extension
+.PHONY: install install-dev sync run index serve web lint lint-fix check pre-commit pre-commit-install docker-build docker-run launch docker-stop clean install-api api-build db migrate up down deploy deploy-build deploy-down deploy-logs ssh remote-status remote-logs remote-restart remote-update redeploy extension rescue
 
 # Load .env if present
 -include .env
@@ -49,9 +49,13 @@ migrate:
 
 # ── Pipeline ──────────────────────────────────────────────────
 
-# Fetch sources, generate tags, build tree, and index
+# Fetch sources, generate tags, build tree, and write buffer
 run:
-	DATABASE_URL=$(DATABASE_URL) uv run python run.py
+	DATABASE_URL=$(DATABASE_URL) BUFFER_DIR=buffer uv run python run.py
+
+# Place unplaced documents into existing folder tree (fast, idempotent)
+rescue:
+	DATABASE_URL=$(DATABASE_URL) uv run python scripts/rescue_placement.py
 
 # Build only the Rust search index (reads from PG when DATABASE_URL is set)
 index:
@@ -61,7 +65,7 @@ index:
 
 # Start the unified Rust API (search + data + events + ingest)
 serve:
-	DATABASE_URL=$(DATABASE_URL) ORT_DYLIB_PATH=$(ORT_DYLIB_PATH) cargo run --release --manifest-path $(KNOWLEDGE_API)/Cargo.toml --features "accelerate,model" -- --index-dir $(INDEX_DIR) --model $(MODEL) --int8 --port $(PORT)
+	DATABASE_URL=$(DATABASE_URL) ORT_DYLIB_PATH=$(ORT_DYLIB_PATH) cargo run --release --manifest-path $(KNOWLEDGE_API)/Cargo.toml --features "accelerate,model" -- --index-dir $(INDEX_DIR) --model $(MODEL) --int8 --port $(PORT) --buffer-dir buffer
 
 # Build the unified API binary
 api-build:
