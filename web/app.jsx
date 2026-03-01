@@ -1174,12 +1174,49 @@ const Search = () => {
 
   // --- Pipeline ---
 
+  // On mount: check if pipeline is running, or auto-refresh if stale (> 3 min)
   useEffect(() => {
     fetch(`${API_BASE_URL}/api/pipeline`)
       .then((r) => r.json())
       .then((data) => {
         setPipelineData(data);
-        if (data.status === "running") setPipelineOpen(true);
+        if (data.status === "running") {
+          setPipelineOpen(true);
+          return;
+        }
+        // Check last run time from DB to decide auto-refresh
+        fetch(`${API_BASE_URL}/api/pipeline_run`)
+          .then((r) => {
+            if (r.ok) return r.json();
+            throw new Error();
+          })
+          .then((run) => {
+            if (run && run.finished_at) {
+              var elapsed =
+                (Date.now() - new Date(run.finished_at).getTime()) / 1000;
+              if (elapsed > 180) {
+                // Stale — auto-refresh
+                fetch(`${API_BASE_URL}/api/pipeline`, { method: "POST" })
+                  .then((r) => r.json())
+                  .then((d) => {
+                    if (
+                      d.status === "started" ||
+                      d.status === "already_running"
+                    ) {
+                      setPipelineData({
+                        status: "running",
+                        started_at: d.started_at,
+                        output: "",
+                        elapsed_secs: 0,
+                      });
+                      setPipelineOpen(true);
+                    }
+                  })
+                  .catch(function () {});
+              }
+            }
+          })
+          .catch(function () {});
       })
       .catch(() => {});
   }, []);

@@ -456,6 +456,23 @@ def main():
     total = time.perf_counter() - pipeline_start
     step(100, "Sources updated", f"{len(data):,} documents, {total_new} new ({_fmt(total)})")
 
+    # =============================================================================
+    # Save Run Metadata
+    # =============================================================================
+
+    from datetime import datetime, timezone
+
+    run_data = {
+        "finished_at": datetime.now(timezone.utc).isoformat(),
+        "duration_secs": round(total, 2),
+        "new_documents": total_new,
+        "total_documents": len(data),
+        "success": True,
+        "timings": [{"step": label, "duration_secs": round(elapsed, 2)} for label, elapsed in timings],
+    }
+    if use_pg:
+        save_generated("pipeline_run", run_data)
+
     print("\n" + "=" * 60)
     print("  Pipeline timing summary")
     print("=" * 60)

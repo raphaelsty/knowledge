@@ -487,6 +487,7 @@ fn build_router(state: Arc<AppState>, pg_pool: Option<sqlx::PgPool>) -> Router {
         let data_router = Router::new()
             .route("/api/folder_tree", get(handlers::data::folder_tree))
             .route("/api/sources", get(handlers::data::sources))
+            .route("/api/pipeline_run", get(handlers::data::pipeline_run))
             .route("/api/favorites", get(handlers::data::favorites))
             .route("/api/favorites", post(handlers::data::toggle_favorite))
             .route("/api/health", get(handlers::data::data_health))
