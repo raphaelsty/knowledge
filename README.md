@@ -368,6 +368,13 @@ twitter:
 |--------|------|-------------|
 | POST | `/api/bookmark` | Ingest a single bookmark (encode + index + PG) |
 
+### Pipeline
+
+| Method | Path | Description |
+|--------|------|-------------|
+| POST | `/api/pipeline` | Trigger the Python pipeline (`run.py`) |
+| GET | `/api/pipeline` | Pipeline status (idle/running) and last run result |
+
 ### Analytics
 
 | Method | Path | Description |

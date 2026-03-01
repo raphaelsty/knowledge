@@ -23,6 +23,9 @@ tree/
 # Node
 node_modules/
 
+# Buffer (processed by API scanner)
+buffer/
+
 # Rust build output
 embeddings/target/
 api/target/

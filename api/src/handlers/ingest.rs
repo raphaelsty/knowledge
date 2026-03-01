@@ -41,23 +41,24 @@ pub struct IngestErrorResponse {
     pub error: String,
 }
 
-fn build_document_text(title: &str, tags: &[String], summary: &str) -> String {
+pub fn build_document_text(title: &str, tags: &[String], extra_tags: &[String], summary: &str) -> String {
     let tags_str = tags.join(" ");
+    let extra_tags_str = extra_tags.join(" ");
     let summary_short: String = summary.chars().take(200).collect();
-    format!("{} {} {}", title, tags_str, summary_short)
+    format!("{} {} {} {}", title, tags_str, extra_tags_str, summary_short)
         .trim()
         .to_string()
 }
 
 #[cfg(feature = "model")]
-fn build_metadata(url: &str, title: &str, summary: &str, date: &str, tags: &[String]) -> Value {
+pub fn build_metadata(url: &str, title: &str, summary: &str, date: &str, tags: &[String], extra_tags: &[String]) -> Value {
     json!({
         "url": url,
         "title": title,
         "summary": summary,
         "date": date,
         "tags": tags.join(","),
-        "extra_tags": "",
+        "extra_tags": extra_tags.join(","),
     })
 }
 
@@ -113,7 +114,7 @@ pub async fn ingest_bookmark(
     })?;
 
     // 2. Build document text
-    let text = build_document_text(&req.title, &req.tags, &req.summary);
+    let text = build_document_text(&req.title, &req.tags, &[], &req.summary);
     if text.is_empty() {
         return Ok(Json(BookmarkResponse {
             status: "ok".to_string(),
@@ -151,7 +152,7 @@ pub async fn ingest_bookmark(
                 })?;
 
             // Build metadata
-            let metadata = vec![build_metadata(&url, &title, &summary, &date, &tags)];
+            let metadata = vec![build_metadata(&url, &title, &summary, &date, &tags, &[])];
 
             // Get the index path from state
             let index_name = "knowledge";
@@ -210,7 +211,7 @@ pub async fn ingest_bookmark(
 
 /// Build a Colbert model from configuration (used for ingest encoding).
 #[cfg(feature = "model")]
-fn build_model_from_config(
+pub fn build_model_from_config(
     config: &crate::state::ModelConfig,
 ) -> Result<next_plaid_onnx::Colbert, String> {
     let execution_provider = if config.use_cuda {
