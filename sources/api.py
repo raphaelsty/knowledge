@@ -2,9 +2,11 @@
 FastAPI data server — serves generated data from PostgreSQL.
 
 Endpoints:
-    GET /api/folder_tree — folder tree structure
-    GET /api/sources     — source filter list
-    GET /api/health      — health check
+    GET  /api/folder_tree — folder tree structure
+    GET  /api/sources     — source filter list
+    GET  /api/favorites   — list of favorited URLs
+    POST /api/favorites   — toggle favorite for a URL
+    GET  /api/health      — health check
 
 Run:
     uvicorn sources.api:app --port 3001
@@ -13,15 +15,16 @@ Run:
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
+from pydantic import BaseModel
 
-from .database import ensure_schema, load_generated
+from .database import ensure_schema, load_favorites, load_generated, toggle_favorite
 
 app = FastAPI(title="Knowledge Data API")
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
-    allow_methods=["GET"],
+    allow_methods=["GET", "POST"],
     allow_headers=["*"],
 )
 
@@ -45,6 +48,21 @@ def sources():
     if data is None:
         return JSONResponse(status_code=404, content={"error": "sources not found"})
     return data
+
+
+class FavoriteRequest(BaseModel):
+    url: str
+
+
+@app.get("/api/favorites")
+def favorites():
+    return load_favorites()
+
+
+@app.post("/api/favorites")
+def toggle_fav(body: FavoriteRequest):
+    favorited = toggle_favorite(body.url)
+    return {"favorited": favorited, "url": body.url}
 
 
 @app.get("/api/health")

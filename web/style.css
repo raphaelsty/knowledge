@@ -619,6 +619,40 @@ body {
 }
 
 /* ============================================
+   Favorite Button
+   ============================================ */
+
+.favorite-btn {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border-radius: 50%;
+  margin-left: auto;
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+}
+
+.favorite-btn:hover {
+  color: #ef4444;
+  transform: scale(1.15);
+}
+
+.favorite-btn.active {
+  color: #ef4444;
+}
+
+.favorite-btn.active:hover {
+  opacity: 0.8;
+}
+
+/* ============================================
    Highlighting
    ============================================ */
 

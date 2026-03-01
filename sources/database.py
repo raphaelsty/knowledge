@@ -40,6 +40,11 @@ CREATE TABLE IF NOT EXISTS generated_data (
     data        JSONB NOT NULL,
     updated_at  TIMESTAMPTZ NOT NULL DEFAULT now()
 );
+
+CREATE TABLE IF NOT EXISTS favorites (
+    url         TEXT PRIMARY KEY REFERENCES documents(url) ON DELETE CASCADE,
+    created_at  TIMESTAMPTZ NOT NULL DEFAULT now()
+);
 """
 
 
@@ -154,3 +159,22 @@ def load_generated(key: str):
     if row is None:
         return None
     return row["data"]
+
+
+def load_favorites() -> list[str]:
+    """Return list of favorited document URLs."""
+    with _connect() as conn:
+        rows = conn.execute("SELECT url FROM favorites ORDER BY created_at DESC").fetchall()
+    return [row["url"] for row in rows]
+
+
+def toggle_favorite(url: str) -> bool:
+    """Toggle favorite status for a URL. Returns True if now favorited, False if removed."""
+    with _connect() as conn:
+        existing = conn.execute("SELECT url FROM favorites WHERE url = %s", (url,)).fetchone()
+        if existing:
+            conn.execute("DELETE FROM favorites WHERE url = %s", (url,))
+            return False
+        else:
+            conn.execute("INSERT INTO favorites (url) VALUES (%s)", (url,))
+            return True

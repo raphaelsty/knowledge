@@ -808,6 +808,8 @@ const Search = () => {
   const [sourceFilter, setSourceFilter] = useState(new Set());
   const [tree, setTree] = useState(null);
   const [sources, setSources] = useState([]);
+  const [favorites, setFavorites] = useState(new Set());
+  const [showFavorites, setShowFavorites] = useState(false);
   const [theme, setTheme] = useState(
     document.documentElement.getAttribute("data-theme") || "dark",
   );
@@ -930,6 +932,12 @@ const Search = () => {
             console.error("[APP] Failed to load sources:", error),
           );
       });
+    fetch(`${DATA_API_URL}/api/favorites`)
+      .then((res) => res.json())
+      .then((urls) => setFavorites(new Set(urls)))
+      .catch((error) =>
+        console.error("[APP] Failed to load favorites:", error),
+      );
   }, []);
 
   /**
@@ -1197,14 +1205,17 @@ const Search = () => {
     [query, selectedNode],
   );
 
-  // --- Computed: filter by source then cap at DISPLAY_COUNT ---
+  // --- Computed: filter by source + favorites then cap at DISPLAY_COUNT ---
   const displayedDocs = useMemo(() => {
-    const filtered = (documents || []).filter(
+    let filtered = (documents || []).filter(
       (doc) =>
         sourceFilter.size === 0 || sourceFilter.has(getDocumentSource(doc)),
     );
+    if (showFavorites) {
+      filtered = filtered.filter((doc) => favorites.has(doc.url));
+    }
     return filtered.slice(0, DISPLAY_COUNT);
-  }, [documents, sourceFilter, getDocumentSource]);
+  }, [documents, sourceFilter, getDocumentSource, showFavorites, favorites]);
 
   // --- Render ---
   const folderPanel = document.getElementById("folder-panel");
@@ -1255,6 +1266,26 @@ const Search = () => {
               </button>
             ))}
         </div>
+        <button
+          className={`source-chip ${showFavorites ? "active" : ""}`}
+          onClick={() => setShowFavorites((v) => !v)}
+          title={showFavorites ? "Show all" : "Show favorites"}
+        >
+          <svg
+            width="12"
+            height="12"
+            viewBox="0 0 24 24"
+            fill={showFavorites ? "currentColor" : "none"}
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            style={{ marginRight: 4 }}
+          >
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+          </svg>
+          Favorites{favorites.size > 0 ? ` (${favorites.size})` : ""}
+        </button>
         <button
           className={`sort-date-toggle ${isSortedByDate ? "active" : ""}`}
           onClick={handleClickDate}
@@ -1393,6 +1424,49 @@ const Search = () => {
                   {doc.similarity.toFixed(3)}
                 </span>
               ) : null}
+              <button
+                className={`favorite-btn ${favorites.has(doc.url) ? "active" : ""}`}
+                title={
+                  favorites.has(doc.url)
+                    ? "Remove from favorites"
+                    : "Add to favorites"
+                }
+                onClick={(e) => {
+                  e.stopPropagation();
+                  const url = doc.url;
+                  setFavorites((prev) => {
+                    const next = new Set(prev);
+                    if (next.has(url)) next.delete(url);
+                    else next.add(url);
+                    return next;
+                  });
+                  fetch(`${DATA_API_URL}/api/favorites`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ url }),
+                  }).catch(() => {
+                    setFavorites((prev) => {
+                      const rollback = new Set(prev);
+                      if (rollback.has(url)) rollback.delete(url);
+                      else rollback.add(url);
+                      return rollback;
+                    });
+                  });
+                }}
+              >
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill={favorites.has(doc.url) ? "currentColor" : "none"}
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                </svg>
+              </button>
             </div>
           </div>
         ))}
