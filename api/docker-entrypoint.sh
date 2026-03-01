@@ -4,50 +4,30 @@
 # =============================================================================
 # Handles HuggingFace model downloads and passes arguments to the API.
 #
-# Arguments are passed directly to knowledge-api. If a --model argument
-# contains a HuggingFace model ID (org/model format), it will be automatically
-# downloaded to /models/ before starting the API.
-#
-# Usage:
-#   --model <path>              Use local model directory
-#   --model <org/model>         Auto-download from HuggingFace Hub
-#   --int8                      Use INT8 quantized model
-#   --cuda                      Use CUDA for inference
-#   --parallel <N>              Number of parallel ONNX sessions
-#   --batch-size <N>            Batch size per session
-#   --threads <N>               Threads per session
-#   --query-length <N>          Max query length in tokens (default: 48)
-#   --document-length <N>       Max document length in tokens (default: 300)
-#   --model-pool-size <N>       Number of model worker instances for concurrent encoding
-#
-# Examples:
-#   docker-entrypoint.sh --model /models/my-model --parallel 8
-#   docker-entrypoint.sh --model lightonai/GTE-ModernColBERT-v1 --int8
-#   docker-entrypoint.sh --model lightonai/GTE-ModernColBERT-v1 --cuda --batch-size 64
+# If --model contains a HuggingFace model ID (org/model format), it will be
+# automatically downloaded to /models/ before starting the API.
 #
 # Environment variables:
 #   HF_TOKEN     HuggingFace token for private models
 #   MODELS_DIR   Directory to store downloaded models (default: /models)
+#   DATABASE_URL PostgreSQL connection string (enables data/events/ingest)
 # =============================================================================
 
 set -e
 
-# Colors for output
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
-NC='\033[0m' # No Color
+NC='\033[0m'
 
 log_info() { echo -e "${GREEN}[INFO]${NC} $1"; }
 log_warn() { echo -e "${YELLOW}[WARN]${NC} $1"; }
 log_error() { echo -e "${RED}[ERROR]${NC} $1"; }
 
-# Check if a string looks like a HuggingFace model ID (org/model format)
 is_hf_model_id() {
     [[ "$1" =~ ^[a-zA-Z0-9_-]+/[a-zA-Z0-9_.-]+$ ]]
 }
 
-# Download a file from HuggingFace Hub
 download_hf_file() {
     local repo_id="$1" filename="$2" dest_path="$3" token="$4"
     local url="https://huggingface.co/${repo_id}/resolve/main/${filename}"
@@ -66,7 +46,6 @@ download_hf_file() {
     fi
 }
 
-# Download model from HuggingFace Hub
 download_model() {
     local model_path="$1" repo_id="$2" token="${3:-}" use_int8="${4:-false}"
 
@@ -91,7 +70,6 @@ download_model() {
     log_info "Model download complete"
 }
 
-# Check if model directory has required files
 model_exists() {
     local model_path="$1" use_int8="${2:-false}"
 
@@ -106,7 +84,6 @@ model_exists() {
     return 0
 }
 
-# Main entrypoint logic
 main() {
     log_info "Starting Knowledge API..."
 
@@ -143,7 +120,6 @@ main() {
 
                 final_args+=("--model" "$local_path")
             else
-                # Local path
                 if [ ! -d "$model_id" ]; then
                     log_warn "Model path ${model_id} does not exist"
                 fi
@@ -156,7 +132,6 @@ main() {
         fi
     done
 
-    # Log final configuration
     log_info "Executing: knowledge-api ${final_args[*]}"
 
     exec knowledge-api "${final_args[@]}"

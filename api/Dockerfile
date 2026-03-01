@@ -1,17 +1,23 @@
 # =============================================================================
-# Knowledge Search API Dockerfile
+# Knowledge API Dockerfile
 # =============================================================================
-# Legacy Dockerfile (installs from crates.io).
-# Uses cargo install from crates.io instead of building from the workspace.
+# Unified API: search + data + events + ingest in a single binary.
 #
-# Build:   docker compose up -d search-api
-# Run:     docker run -p 8080:8080 -v ./multi-vector-database:/data/indices/knowledge knowledge-search-api
+# Build:
+#   docker build -t knowledge-api api/
+#
+# Run:
+#   docker run -p 8080:8080 \
+#     -e DATABASE_URL=postgresql://knowledge:knowledge@host:5432/knowledge \
+#     -v ./multi-vector-database/knowledge:/data/indices/knowledge \
+#     -v models:/models \
+#     knowledge-api --model lightonai/answerai-colbert-small-v1-onnx --int8
 # =============================================================================
 
 # =============================================================================
-# Builder stage - Install dependencies and build from crates.io
+# Chef stage — install cargo-chef for dependency caching
 # =============================================================================
-FROM debian:bookworm-slim AS builder
+FROM debian:bookworm-slim AS chef
 
 RUN apt-get update && apt-get install -y \
     curl \
@@ -22,9 +28,10 @@ RUN apt-get update && apt-get install -y \
     wget \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Rust
+# Install Rust and cargo-chef
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 ENV PATH="/root/.cargo/bin:${PATH}"
+RUN cargo install cargo-chef
 
 # Download ONNX Runtime CPU (architecture-aware)
 ARG ORT_VERSION=1.23.0
@@ -43,17 +50,40 @@ RUN mkdir -p /opt/ort_cpu && \
 ENV ORT_DYLIB_PATH=/opt/ort_cpu/libonnxruntime.so.${ORT_VERSION}
 ENV LD_LIBRARY_PATH=/opt/ort_cpu:${LD_LIBRARY_PATH}
 
-# Install next-plaid-api from crates.io
-RUN cargo install next-plaid-api --features "openblas,model"
+WORKDIR /app
 
 # =============================================================================
-# Runtime stage - CPU with model support
+# Planner stage — create dependency recipe
 # =============================================================================
-FROM debian:bookworm-slim AS runtime-cpu
+FROM chef AS planner
+
+COPY Cargo.toml Cargo.lock ./
+COPY src ./src
+
+RUN cargo chef prepare --recipe-path recipe.json
+
+# =============================================================================
+# Builder stage — build dependencies (cached) then application
+# =============================================================================
+FROM chef AS builder
+
+# Build dependencies first (cached if recipe.json unchanged)
+COPY --from=planner /app/recipe.json recipe.json
+RUN cargo chef cook --release --recipe-path recipe.json --features "openblas,model"
+
+# Build the application
+COPY Cargo.toml Cargo.lock ./
+COPY src ./src
+
+RUN cargo build --release --features "openblas,model"
+
+# =============================================================================
+# Runtime stage
+# =============================================================================
+FROM debian:bookworm-slim AS runtime
 
 WORKDIR /app
 
-# Install runtime dependencies
 RUN apt-get update && apt-get install -y \
     ca-certificates \
     libssl3 \
@@ -63,42 +93,34 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Create non-root user
-RUN useradd -m -u 1000 -s /bin/bash nextplaid
+RUN useradd -m -u 1000 -s /bin/bash knowledge
 
-# Create directories for indices, models, and ONNX Runtime
-RUN mkdir -p /data/indices /models /opt/ort_cpu && chown -R nextplaid:nextplaid /data /models
+# Create directories
+RUN mkdir -p /data/indices /models /opt/ort_cpu && chown -R knowledge:knowledge /data /models
 
-# Copy ONNX Runtime CPU libraries from builder
+# Copy ONNX Runtime libraries from builder
 COPY --from=builder /opt/ort_cpu /opt/ort_cpu
 
 # Copy binary from builder
-COPY --from=builder /root/.cargo/bin/next-plaid-api /usr/local/bin/knowledge-api
+COPY --from=builder /app/target/release/knowledge-api /usr/local/bin/knowledge-api
 
 # Copy entrypoint script
 COPY --chmod=755 docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 
-# Set library paths for ONNX Runtime
+# Set library paths
 ARG ORT_VERSION=1.23.0
 ENV ORT_DYLIB_PATH=/opt/ort_cpu/libonnxruntime.so.${ORT_VERSION}
 ENV LD_LIBRARY_PATH=/opt/ort_cpu:${LD_LIBRARY_PATH}
 
-# Switch to non-root user
-USER nextplaid
+USER knowledge
 
-# Expose API port
 EXPOSE 8080
 
-# Default environment variables
 ENV RUST_LOG=info
-ENV INDEX_DIR=/data/indices
-# Prevent OpenBLAS thread explosion when used alongside rayon parallelism
 ENV OPENBLAS_NUM_THREADS=1
 
-# Health check
-HEALTHCHECK --interval=15s --timeout=5s --start-period=10s --retries=2 \
+HEALTHCHECK --interval=15s --timeout=5s --start-period=120s --retries=3 \
     CMD curl -f --max-time 5 http://localhost:8080/health || exit 1
 
-# Run the API via entrypoint script (handles model download)
 ENTRYPOINT ["docker-entrypoint.sh"]
-# CPU defaults: 16 parallel sessions, batch size 4, 1 model pool worker
-CMD ["--host", "0.0.0.0", "--port", "8080", "--index-dir", "/data/indices", "--parallel", "16", "--batch-size", "4", "--model-pool-size", "1"]
+CMD ["--host", "0.0.0.0", "--port", "8080", "--index-dir", "/data/indices", "--parallel", "8", "--batch-size", "2", "--model-pool-size", "1"]

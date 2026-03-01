@@ -1,4 +1,4 @@
-.PHONY: install install-dev sync run index serve web lint lint-fix check pre-commit pre-commit-install docker-build docker-run launch docker-stop clean install-api db api migrate up down events events-build ingest ingest-build deploy deploy-build deploy-down deploy-logs ssh remote-status remote-logs remote-restart remote-update redeploy extension
+.PHONY: install install-dev sync run index serve web lint lint-fix check pre-commit pre-commit-install docker-build docker-run launch docker-stop clean install-api api-build db migrate up down deploy deploy-build deploy-down deploy-logs ssh remote-status remote-logs remote-restart remote-update redeploy extension
 
 # Load .env if present
 -include .env
@@ -9,10 +9,8 @@ MODEL            = models/answerai-colbert-small-v1-onnx
 PORT             = 8080
 WEB_PORT         = 3000
 API_PORT         = 3001
-EVENTS_PORT      = 3002
-INGEST_PORT      = 3003
 DATABASE_URL    ?= postgresql://knowledge:knowledge@localhost:5433/knowledge
-NEXT_PLAID_API   = /Users/raphael/Documents/lighton/lategrep/target/release/next-plaid-api
+KNOWLEDGE_API    = api
 ORT_DYLIB_PATH  ?= $(shell find ~/Library/Caches ~/.cache -name "libonnxruntime*.dylib" -print -quit 2>/dev/null)
 
 # Remote connection
@@ -35,9 +33,9 @@ install-dev:
 
 sync: install-dev
 
-# Install the Rust API server binary (with ONNX model support)
+# Build the unified Rust API (search + data + events + ingest)
 install-api:
-	cargo install next-plaid-api --features model
+	cargo build --release --manifest-path $(KNOWLEDGE_API)/Cargo.toml --features model
 
 # ── Database ─────────────────────────────────────────────────
 
@@ -61,29 +59,13 @@ index:
 
 # ── Serve ─────────────────────────────────────────────────────
 
-# Start the Rust search API (serves index + ONNX reranking model)
+# Start the unified Rust API (search + data + events + ingest)
 serve:
-	ORT_DYLIB_PATH=$(ORT_DYLIB_PATH) $(NEXT_PLAID_API) --index-dir $(INDEX_DIR) --model $(MODEL) --int8 --port $(PORT)
+	DATABASE_URL=$(DATABASE_URL) ORT_DYLIB_PATH=$(ORT_DYLIB_PATH) cargo run --release --manifest-path $(KNOWLEDGE_API)/Cargo.toml --features "accelerate,model" -- --index-dir $(INDEX_DIR) --model $(MODEL) --int8 --port $(PORT)
 
-# Start the FastAPI data server (serves tree/sources from PG)
-api:
-	DATABASE_URL=$(DATABASE_URL) uv run uvicorn sources.api:app --port $(API_PORT)
-
-# Start the events analytics API (anonymous, RGPD-compliant)
-events:
-	DATABASE_URL=$(DATABASE_URL) PORT=$(EVENTS_PORT) cargo run --release --manifest-path events-api/Cargo.toml
-
-# Build the events API binary
-events-build:
-	cargo build --release --manifest-path events-api/Cargo.toml
-
-# Start the ingest API (real-time bookmark embedding + indexing)
-ingest:
-	DATABASE_URL=$(DATABASE_URL) MODEL_PATH=$(MODEL) INDEX_PATH=$(INDEX_DIR)/knowledge PORT=$(INGEST_PORT) ORT_DYLIB_PATH=$(ORT_DYLIB_PATH) cargo run --release --manifest-path ingest-api/Cargo.toml --features coreml
-
-# Build the ingest API binary
-ingest-build:
-	cargo build --release --manifest-path ingest-api/Cargo.toml --features coreml
+# Build the unified API binary
+api-build:
+	cargo build --release --manifest-path $(KNOWLEDGE_API)/Cargo.toml --features "accelerate,model"
 
 # Serve the frontend locally
 web:

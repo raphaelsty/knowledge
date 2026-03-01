@@ -1,27 +1,19 @@
 {$DOMAIN:localhost} {
-	# Search API — ColBERT index queries
+	# Knowledge API — all backend routes
 	handle /indices/* {
-		reverse_proxy search-api:8080
+		reverse_proxy knowledge-api:8080
 	}
 
-	# Ingest API — real-time bookmark ingestion
-	handle /api/bookmark {
-		reverse_proxy ingest-api:3003
-	}
-
-	# Data API — folder tree & sources from PostgreSQL
 	handle /api/* {
-		reverse_proxy data-api:3001
+		reverse_proxy knowledge-api:8080
 	}
 
-	# Events API — analytics ingestion
 	handle /events {
-		reverse_proxy events-api:3002
+		reverse_proxy knowledge-api:8080
 	}
 
-	# Events API — analytics stats
 	handle /stats/* {
-		reverse_proxy events-api:3002
+		reverse_proxy knowledge-api:8080
 	}
 
 	# Static frontend files

@@ -13,14 +13,8 @@ services:
     environment:
       DOMAIN: ${DOMAIN:-localhost}
     depends_on:
-      search-api:
+      knowledge-api:
         condition: service_healthy
-      data-api:
-        condition: service_started
-      events-api:
-        condition: service_started
-      ingest-api:
-        condition: service_started
 
   postgres:
     image: postgres:16-alpine
@@ -37,16 +31,16 @@ services:
       timeout: 3s
       retries: 5
 
-  search-api:
+  knowledge-api:
     build:
-      context: .
-      target: runtime-cpu
+      context: api
     restart: unless-stopped
     user: root
     volumes:
       - ./multi-vector-database/knowledge:/data/indices/knowledge
       - models:/models
     environment:
+      - DATABASE_URL=postgresql://knowledge:${POSTGRES_PASSWORD:-knowledge}@postgres:5432/knowledge
       - RUST_LOG=info
       - OPENBLAS_NUM_THREADS=1
     command:
@@ -65,6 +59,9 @@ services:
       - "2"
       - --model-pool-size
       - "1"
+    depends_on:
+      postgres:
+        condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "-f", "--max-time", "5", "http://localhost:8080/health"]
       interval: 15s
@@ -77,46 +74,6 @@ services:
           memory: 6G
         reservations:
           memory: 3G
-
-  data-api:
-    build:
-      context: .
-      dockerfile: Dockerfile.api
-    restart: unless-stopped
-    environment:
-      DATABASE_URL: postgresql://knowledge:${POSTGRES_PASSWORD:-knowledge}@postgres:5432/knowledge
-    depends_on:
-      postgres:
-        condition: service_healthy
-
-  events-api:
-    build:
-      context: events-api
-    restart: unless-stopped
-    environment:
-      DATABASE_URL: postgresql://knowledge:${POSTGRES_PASSWORD:-knowledge}@postgres:5432/knowledge
-      PORT: "3002"
-    depends_on:
-      postgres:
-        condition: service_healthy
-
-  ingest-api:
-    build:
-      context: ingest-api
-    restart: unless-stopped
-    environment:
-      DATABASE_URL: postgresql://knowledge:${POSTGRES_PASSWORD:-knowledge}@postgres:5432/knowledge
-      MODEL_PATH: /models/answerai-colbert-small-v1-onnx
-      INDEX_PATH: /data/indices/knowledge
-      PORT: "3003"
-    volumes:
-      - models:/models
-      - ./multi-vector-database/knowledge:/data/indices/knowledge
-    depends_on:
-      postgres:
-        condition: service_healthy
-      search-api:
-        condition: service_healthy
 
 volumes:
   pgdata:

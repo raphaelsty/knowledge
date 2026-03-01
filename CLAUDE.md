@@ -12,9 +12,7 @@ make install      # install prod dependencies
 make install-dev  # install with dev tools (ruff, mypy, pre-commit)
 make run          # fetch sources → generate tags → build tree → index
 make index        # rebuild only the Rust search index
-make serve        # start the search API on :8080
-make api          # start the data API on :3001
-make events       # start the events API on :3002
+make serve        # start the unified API on :8080 (search + data + events + ingest)
 make web          # serve the frontend on :3000
 make up           # start all services via Docker Compose (local dev)
 make down         # stop all local services
@@ -39,10 +37,9 @@ make deploy-logs     # view production logs (run on server)
 - `sources/` — Python package: data fetchers, tag tree builder, and pipeline client
   - `sources/client.py` — main pipeline orchestrator (`from sources.client import main`)
   - `sources/taxonomy.py` — builds the folder tree from tag triples
-  - `sources/api.py` — FastAPI data server (folder tree + sources from PostgreSQL)
   - `sources/database.py` — PostgreSQL abstraction layer
+- `api/` — Unified Rust API: search + data + events + ingest in a single binary
 - `embeddings/` — Rust binary that builds the ColBERT index
-- `events-api/` — Rust service for anonymous analytics (search, click, browse events)
 - `web/` — static frontend (index.html, app.jsx, dashboard.html, dashboard.jsx, CSS, WASM worker)
 - `web/data/` — generated JSON files (database.json, sources.json, folder_tree.json, tree.json)
 - `multi-vector-database/` — generated ColBERT index (committed for deploy)
@@ -52,14 +49,14 @@ make deploy-logs     # view production logs (run on server)
 
 - **Server:** Hetzner CX33 VPS (4 vCPU, 8GB RAM) at `65.21.111.133`
 - **Domain:** https://knowledge-web.org
-- **Stack:** Docker Compose with Caddy (reverse proxy + HTTPS), PostgreSQL, search-api, data-api, events-api
+- **Stack:** Docker Compose with Caddy (reverse proxy + HTTPS), PostgreSQL, knowledge-api
 - **Config:** `docker-compose.prod.yml` (production), `docker-compose.yml` (local dev), `Caddyfile` (routing)
 - **Secrets:** `.env` file (gitignored) — contains SSH key path, server IP, domain, Postgres password
 
 ## Key details
 
 - Python package is `sources`, not `knowledge_database` (renamed)
-- The search API is `next-plaid-api` (Rust binary, installed via cargo or built in Docker)
+- The API is `knowledge-api` (Rust binary in `api/`, built in Docker or via `make serve`)
 - Frontend API URLs auto-detect: `localhost` → hardcoded ports, production → relative paths (same origin via Caddy)
 - The embeddings crate requires `libonnxruntime` — if it fails locally, the existing `multi-vector-database/` still works
-- Caddy routes: `/indices/*` → search-api, `/api/*` → data-api, `/events` + `/stats/*` → events-api, `/*` → static files
+- All routes go through the single knowledge-api on port 8080: `/indices/*` (search), `/api/*` (data + ingest), `/events` + `/stats/*` (analytics)

@@ -1,11 +1,128 @@
+//! Events and stats handlers.
+
 use axum::{
+    body::Bytes,
     extract::{Query, State},
+    http::StatusCode,
     response::Json,
 };
 use serde::{Deserialize, Serialize};
-use std::sync::Arc;
+use sqlx::PgPool;
 
-use crate::AppState;
+const MAX_BATCH_SIZE: usize = 100;
+const MAX_PAYLOAD_BYTES: usize = 8192;
+const ALLOWED_EVENT_TYPES: &[&str] =
+    &["search", "click", "folder_browse", "filter_apply", "page_view"];
+
+// --- Event ingestion ---
+
+#[derive(Debug, Deserialize)]
+struct EventInput {
+    session_id: String,
+    event_type: String,
+    payload: serde_json::Value,
+}
+
+#[derive(Debug, Serialize)]
+pub struct IngestResponse {
+    inserted: usize,
+}
+
+#[derive(Debug, Serialize)]
+pub struct EventErrorResponse {
+    error: String,
+}
+
+/// POST /events
+pub async fn ingest_events(
+    State(pool): State<PgPool>,
+    body: Bytes,
+) -> Result<Json<IngestResponse>, (StatusCode, Json<EventErrorResponse>)> {
+    let events: Vec<EventInput> = serde_json::from_slice(&body).map_err(|e| {
+        (
+            StatusCode::BAD_REQUEST,
+            Json(EventErrorResponse {
+                error: format!("Invalid JSON: {e}"),
+            }),
+        )
+    })?;
+
+    if events.is_empty() {
+        return Ok(Json(IngestResponse { inserted: 0 }));
+    }
+
+    if events.len() > MAX_BATCH_SIZE {
+        return Err((
+            StatusCode::BAD_REQUEST,
+            Json(EventErrorResponse {
+                error: format!(
+                    "Batch too large: {} events (max {})",
+                    events.len(),
+                    MAX_BATCH_SIZE
+                ),
+            }),
+        ));
+    }
+
+    for event in &events {
+        if !ALLOWED_EVENT_TYPES.contains(&event.event_type.as_str()) {
+            return Err((
+                StatusCode::BAD_REQUEST,
+                Json(EventErrorResponse {
+                    error: format!("Unknown event_type: {}", event.event_type),
+                }),
+            ));
+        }
+
+        if event.session_id.is_empty() || event.session_id.len() > 64 {
+            return Err((
+                StatusCode::BAD_REQUEST,
+                Json(EventErrorResponse {
+                    error: "Invalid session_id".to_string(),
+                }),
+            ));
+        }
+
+        let payload_size = event.payload.to_string().len();
+        if payload_size > MAX_PAYLOAD_BYTES {
+            return Err((
+                StatusCode::BAD_REQUEST,
+                Json(EventErrorResponse {
+                    error: format!(
+                        "Payload too large: {} bytes (max {})",
+                        payload_size, MAX_PAYLOAD_BYTES
+                    ),
+                }),
+            ));
+        }
+    }
+
+    let mut inserted = 0;
+    for event in &events {
+        sqlx::query(
+            "INSERT INTO events (session_id, event_type, payload) VALUES ($1, $2, $3)",
+        )
+        .bind(&event.session_id)
+        .bind(&event.event_type)
+        .bind(&event.payload)
+        .execute(&pool)
+        .await
+        .map_err(|e| {
+            tracing::error!("DB insert error: {e}");
+            (
+                StatusCode::INTERNAL_SERVER_ERROR,
+                Json(EventErrorResponse {
+                    error: "Database error".to_string(),
+                }),
+            )
+        })?;
+        inserted += 1;
+    }
+
+    Ok(Json(IngestResponse { inserted }))
+}
+
+// --- Stats ---
 
 #[derive(Debug, Deserialize)]
 pub struct StatsParams {
@@ -23,8 +140,6 @@ impl StatsParams {
     }
 }
 
-// --- Overview ---
-
 #[derive(Debug, Serialize)]
 pub struct OverviewResponse {
     page_views: i64,
@@ -35,8 +150,9 @@ pub struct OverviewResponse {
     sessions: i64,
 }
 
+/// GET /stats/overview
 pub async fn overview(
-    State(state): State<Arc<AppState>>,
+    State(pool): State<PgPool>,
     Query(params): Query<StatsParams>,
 ) -> Json<OverviewResponse> {
     let days = params.days();
@@ -52,7 +168,7 @@ pub async fn overview(
          WHERE created_at >= now() - make_interval(days => $1)",
     )
     .bind(days)
-    .fetch_one(&state.pool)
+    .fetch_one(&pool)
     .await
     .unwrap_or((0, 0, 0, 0, None));
 
@@ -77,8 +193,6 @@ pub async fn overview(
     })
 }
 
-// --- Activity over time ---
-
 #[derive(Debug, Serialize)]
 pub struct ActivityBucket {
     period: String,
@@ -89,8 +203,9 @@ pub struct ActivityBucket {
     filters: i64,
 }
 
+/// GET /stats/activity
 pub async fn activity(
-    State(state): State<Arc<AppState>>,
+    State(pool): State<PgPool>,
     Query(params): Query<StatsParams>,
 ) -> Json<Vec<ActivityBucket>> {
     let days = params.days();
@@ -112,7 +227,7 @@ pub async fn activity(
 
     let rows = sqlx::query_as::<_, (String, i64, i64, i64, i64, i64)>(&query)
         .bind(days)
-        .fetch_all(&state.pool)
+        .fetch_all(&pool)
         .await
         .unwrap_or_default();
 
@@ -130,16 +245,15 @@ pub async fn activity(
     )
 }
 
-// --- Top queries ---
-
 #[derive(Debug, Serialize)]
 pub struct TopQuery {
     query: String,
     count: i64,
 }
 
+/// GET /stats/top-queries
 pub async fn top_queries(
-    State(state): State<Arc<AppState>>,
+    State(pool): State<PgPool>,
     Query(params): Query<StatsParams>,
 ) -> Json<Vec<TopQuery>> {
     let days = params.days();
@@ -157,7 +271,7 @@ pub async fn top_queries(
     )
     .bind(days)
     .bind(limit)
-    .fetch_all(&state.pool)
+    .fetch_all(&pool)
     .await
     .unwrap_or_default();
 
@@ -171,16 +285,15 @@ pub async fn top_queries(
     )
 }
 
-// --- Top clicks ---
-
 #[derive(Debug, Serialize)]
 pub struct TopClick {
     doc_url: String,
     count: i64,
 }
 
+/// GET /stats/top-clicks
 pub async fn top_clicks(
-    State(state): State<Arc<AppState>>,
+    State(pool): State<PgPool>,
     Query(params): Query<StatsParams>,
 ) -> Json<Vec<TopClick>> {
     let days = params.days();
@@ -198,7 +311,7 @@ pub async fn top_clicks(
     )
     .bind(days)
     .bind(limit)
-    .fetch_all(&state.pool)
+    .fetch_all(&pool)
     .await
     .unwrap_or_default();
 
@@ -212,16 +325,15 @@ pub async fn top_clicks(
     )
 }
 
-// --- Source filter usage ---
-
 #[derive(Debug, Serialize)]
 pub struct SourceUsage {
     source_key: String,
     count: i64,
 }
 
+/// GET /stats/sources
 pub async fn sources(
-    State(state): State<Arc<AppState>>,
+    State(pool): State<PgPool>,
     Query(params): Query<StatsParams>,
 ) -> Json<Vec<SourceUsage>> {
     let days = params.days();
@@ -236,7 +348,7 @@ pub async fn sources(
          ORDER BY c DESC",
     )
     .bind(days)
-    .fetch_all(&state.pool)
+    .fetch_all(&pool)
     .await
     .unwrap_or_default();
 
@@ -250,16 +362,15 @@ pub async fn sources(
     )
 }
 
-// --- Folder browse counts ---
-
 #[derive(Debug, Serialize)]
 pub struct FolderUsage {
     folder_name: String,
     count: i64,
 }
 
+/// GET /stats/folders
 pub async fn folders(
-    State(state): State<Arc<AppState>>,
+    State(pool): State<PgPool>,
     Query(params): Query<StatsParams>,
 ) -> Json<Vec<FolderUsage>> {
     let days = params.days();
@@ -277,7 +388,7 @@ pub async fn folders(
     )
     .bind(days)
     .bind(limit)
-    .fetch_all(&state.pool)
+    .fetch_all(&pool)
     .await
     .unwrap_or_default();
 
