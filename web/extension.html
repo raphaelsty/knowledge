@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Browser Extension - Knowledge Search Engine</title>
+    <link rel="icon" type="image/svg+xml" href="./favicon/favicon.svg" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .ext-container {
+        max-width: 640px;
+        margin: 2rem auto;
+        padding: 0 1.5rem;
+        color: var(--text-primary);
+      }
+      .ext-container h1 {
+        font-size: 1.4rem;
+        margin-bottom: 0.5rem;
+      }
+      .ext-subtitle {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+      }
+      .download-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.6rem 1.2rem;
+        border-radius: 8px;
+        background: linear-gradient(
+          135deg,
+          var(--accent-primary),
+          var(--accent-secondary)
+        );
+        color: #080808;
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 600;
+        transition: opacity 0.2s;
+      }
+      .download-btn:hover {
+        opacity: 0.9;
+      }
+      .browser-section {
+        margin-top: 1.5rem;
+        border: 1px solid var(--border-subtle);
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      .browser-header {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.8rem 1rem;
+        background: var(--bg-secondary);
+        cursor: pointer;
+        user-select: none;
+      }
+      .browser-header:hover {
+        background: var(--bg-input-hover);
+      }
+      .browser-header svg {
+        width: 22px;
+        height: 22px;
+        flex-shrink: 0;
+      }
+      .browser-header h2 {
+        font-size: 0.95rem;
+        font-weight: 600;
+        flex: 1;
+      }
+      .browser-chevron {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        transition: transform 0.2s;
+      }
+      .browser-section.open .browser-chevron {
+        transform: rotate(90deg);
+      }
+      .browser-body {
+        display: none;
+        padding: 0.8rem 1rem 1rem;
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        line-height: 1.7;
+      }
+      .browser-section.open .browser-body {
+        display: block;
+      }
+      .browser-body ol {
+        padding-left: 1.2rem;
+        margin: 0;
+      }
+      .browser-body li {
+        margin-bottom: 0.3rem;
+      }
+      .browser-body code {
+        background: var(--bg-chip);
+        padding: 0.15rem 0.4rem;
+        border-radius: 4px;
+        font-size: 0.8rem;
+      }
+      .browser-body a {
+        color: var(--accent-primary);
+        text-decoration: none;
+      }
+      .browser-body a:hover {
+        text-decoration: underline;
+      }
+      .browser-body .note {
+        margin-top: 0.5rem;
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        font-style: italic;
+      }
+      .back-link {
+        display: inline-block;
+        margin-bottom: 1rem;
+        color: var(--text-secondary);
+        font-size: 0.85rem;
+        text-decoration: none;
+      }
+      .back-link:hover {
+        color: var(--text-primary);
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      (function () {
+        var theme = localStorage.getItem("theme") || "dark";
+        document.documentElement.setAttribute("data-theme", theme);
+      })();
+    </script>
+    <div class="ext-container">
+      <a href="/" class="back-link">&larr; Back to search</a>
+      <h1>Knowledge Bookmark</h1>
+      <p class="ext-subtitle">
+        A browser extension that saves the current page to your Knowledge base
+        with one click. It extracts the page title, description, and keywords
+        automatically.
+      </p>
+
+      <a href="/extension.zip" class="download-btn" download>
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 16 16"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M8 1v9m0 0L5 7m3 3 3-3M2 12v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+        Download extension.zip
+      </a>
+
+      <!-- Chrome / Edge -->
+      <div class="browser-section open">
+        <div class="browser-header" onclick="toggle(this)">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="var(--text-secondary)"
+              stroke-width="1.5"
+            />
+            <circle
+              cx="12"
+              cy="12"
+              r="4"
+              stroke="var(--text-secondary)"
+              stroke-width="1.5"
+            />
+            <line
+              x1="12"
+              y1="2"
+              x2="12"
+              y2="8"
+              stroke="var(--text-secondary)"
+              stroke-width="1.5"
+            />
+            <line
+              x1="3.5"
+              y1="17"
+              x2="8.5"
+              y2="13.5"
+              stroke="var(--text-secondary)"
+              stroke-width="1.5"
+            />
+            <line
+              x1="20.5"
+              y1="17"
+              x2="15.5"
+              y2="13.5"
+              stroke="var(--text-secondary)"
+              stroke-width="1.5"
+            />
+          </svg>
+          <h2>Chrome / Edge</h2>
+          <span class="browser-chevron">&#9654;</span>
+        </div>
+        <div class="browser-body">
+          <ol>
+            <li>Download and unzip <code>extension.zip</code></li>
+            <li>
+              Open <code>chrome://extensions</code> (or
+              <code>edge://extensions</code>)
+            </li>
+            <li>Enable <strong>Developer mode</strong> (top-right toggle)</li>
+            <li>
+              Click <strong>Load unpacked</strong> and select the unzipped
+              folder
+            </li>
+            <li>
+              The extension icon appears in the toolbar &mdash; click it on any
+              page
+            </li>
+          </ol>
+          <p class="note">
+            The extension persists across browser restarts. You only need to
+            reload it after updating.
+          </p>
+        </div>
+      </div>
+
+      <!-- Firefox -->
+      <div class="browser-section">
+        <div class="browser-header" onclick="toggle(this)">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="var(--text-secondary)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M12 6c-3.3 0-6 2.7-6 6s2.7 6 6 6c1.7 0 3.2-.7 4.2-1.8"
+              stroke="var(--text-secondary)"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            />
+            <path
+              d="M15 5.5c1 .5 2.5 2 2.8 3.5.3 1.5-.3 3-1.3 3s-1.5-1-1-2.5"
+              stroke="var(--text-secondary)"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            />
+          </svg>
+          <h2>Firefox</h2>
+          <span class="browser-chevron">&#9654;</span>
+        </div>
+        <div class="browser-body">
+          <ol>
+            <li>Download and unzip <code>extension.zip</code></li>
+            <li>Open <code>about:debugging#/runtime/this-firefox</code></li>
+            <li>Click <strong>Load Temporary Add-on</strong></li>
+            <li>
+              Select <code>manifest.json</code> inside the unzipped folder
+            </li>
+            <li>The extension icon appears in the toolbar</li>
+          </ol>
+          <p class="note">
+            Temporary add-ons are removed when Firefox closes. You need to
+            reload after each restart.
+          </p>
+        </div>
+      </div>
+
+      <!-- Safari -->
+      <div class="browser-section">
+        <div class="browser-header" onclick="toggle(this)">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="var(--text-secondary)"
+              stroke-width="1.5"
+            />
+            <polygon
+              points="16.24,7.76 14.12,14.12 7.76,16.24 9.88,9.88"
+              stroke="var(--text-secondary)"
+              stroke-width="1.5"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <h2>Safari</h2>
+          <span class="browser-chevron">&#9654;</span>
+        </div>
+        <div class="browser-body">
+          <ol>
+            <li>Download and unzip <code>extension.zip</code></li>
+            <li>
+              Open Terminal and run:<br />
+              <code
+                >xcrun safari-web-extension-converter /path/to/extension</code
+              >
+            </li>
+            <li>
+              Xcode opens with the generated project &mdash; click
+              <strong>Run</strong>
+            </li>
+            <li>
+              In Safari, go to <strong>Settings &rarr; Extensions</strong> and
+              enable <strong>Knowledge Bookmark</strong>
+            </li>
+          </ol>
+          <p class="note">
+            Requires macOS with Xcode and the Safari Web Extension Converter
+            tool installed.
+          </p>
+        </div>
+      </div>
+    </div>
+    <script>
+      function toggle(header) {
+        header.parentElement.classList.toggle("open");
+      }
+    </script>
+  </body>
+</html>
