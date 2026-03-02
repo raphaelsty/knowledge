@@ -8,7 +8,7 @@ repos:
         exclude: ^web/data/
       - id: check-yaml
       - id: check-added-large-files
-        exclude: ^web/data/
+        exclude: ^(web/data/|multi-vector-database/)
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.8.0
@@ -36,13 +36,13 @@ repos:
     hooks:
       - id: cargo-fmt
         name: cargo fmt
-        entry: cargo fmt --manifest-path embeddings/Cargo.toml --
+        entry: cargo fmt --manifest-path api/Cargo.toml --
         language: system
         types: [rust]
         pass_filenames: false
       - id: cargo-clippy
         name: cargo clippy
-        entry: cargo clippy --manifest-path embeddings/Cargo.toml -- -D warnings
+        entry: cargo clippy --manifest-path api/Cargo.toml -- -D warnings
         language: system
         types: [rust]
         pass_filenames: false

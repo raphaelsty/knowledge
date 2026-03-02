@@ -22,10 +22,12 @@ pub async fn run_migrations(pool: &PgPool) {
     .await
     .expect("Failed to create documents table");
 
-    sqlx::query("CREATE INDEX IF NOT EXISTS idx_documents_date ON documents (date DESC NULLS LAST)")
-        .execute(pool)
-        .await
-        .expect("Failed to create documents date index");
+    sqlx::query(
+        "CREATE INDEX IF NOT EXISTS idx_documents_date ON documents (date DESC NULLS LAST)",
+    )
+    .execute(pool)
+    .await
+    .expect("Failed to create documents date index");
 
     sqlx::query("CREATE INDEX IF NOT EXISTS idx_documents_tags ON documents USING GIN (tags)")
         .execute(pool)

@@ -4,11 +4,7 @@
 
 use std::sync::Arc;
 
-use axum::{
-    extract::State,
-    http::StatusCode,
-    response::Json,
-};
+use axum::{extract::State, http::StatusCode, response::Json};
 use serde::{Deserialize, Serialize};
 #[cfg(feature = "model")]
 use serde_json::{json, Value};
@@ -41,17 +37,32 @@ pub struct IngestErrorResponse {
     pub error: String,
 }
 
-pub fn build_document_text(title: &str, tags: &[String], extra_tags: &[String], summary: &str) -> String {
+pub fn build_document_text(
+    title: &str,
+    tags: &[String],
+    extra_tags: &[String],
+    summary: &str,
+) -> String {
     let tags_str = tags.join(" ");
     let extra_tags_str = extra_tags.join(" ");
     let summary_short: String = summary.chars().take(200).collect();
-    format!("{} {} {} {}", title, tags_str, extra_tags_str, summary_short)
-        .trim()
-        .to_string()
+    format!(
+        "{} {} {} {}",
+        title, tags_str, extra_tags_str, summary_short
+    )
+    .trim()
+    .to_string()
 }
 
 #[cfg(feature = "model")]
-pub fn build_metadata(url: &str, title: &str, summary: &str, date: &str, tags: &[String], extra_tags: &[String]) -> Value {
+pub fn build_metadata(
+    url: &str,
+    title: &str,
+    summary: &str,
+    date: &str,
+    tags: &[String],
+    extra_tags: &[String],
+) -> Value {
     json!({
         "url": url,
         "title": title,
@@ -80,9 +91,10 @@ pub async fn ingest_bookmark(
         return Err(err(StatusCode::BAD_REQUEST, "url and title are required"));
     }
 
-    let pool = state.pg_pool.as_ref().ok_or_else(|| {
-        err(StatusCode::SERVICE_UNAVAILABLE, "Database not configured")
-    })?;
+    let pool = state
+        .pg_pool
+        .as_ref()
+        .ok_or_else(|| err(StatusCode::SERVICE_UNAVAILABLE, "Database not configured"))?;
 
     let date_str: Option<&str> = if req.date.is_empty() {
         None
@@ -134,9 +146,10 @@ pub async fn ingest_bookmark(
         // Use the model pool's encode_texts for encoding
         #[cfg(feature = "model")]
         {
-            let model_pool = state2.model_pool.as_ref().ok_or_else(|| {
-                err(StatusCode::SERVICE_UNAVAILABLE, "Model not loaded")
-            })?;
+            let model_pool = state2
+                .model_pool
+                .as_ref()
+                .ok_or_else(|| err(StatusCode::SERVICE_UNAVAILABLE, "Model not loaded"))?;
 
             // Build a model from config for this blocking operation
             let model = build_model_from_config(&model_pool.model_config).map_err(|e| {
@@ -173,11 +186,18 @@ pub async fn ingest_bookmark(
                 err(StatusCode::INTERNAL_SERVER_ERROR, "Indexing error")
             })?;
 
-            // Update metadata store
-            filtering::create(&index_path, &metadata, &doc_ids).map_err(|e| {
-                tracing::error!("Metadata error: {e}");
-                err(StatusCode::INTERNAL_SERVER_ERROR, "Metadata store error")
-            })?;
+            // Update metadata store (append if exists, create if new)
+            if filtering::exists(&index_path) {
+                filtering::update(&index_path, &metadata, &doc_ids).map_err(|e| {
+                    tracing::error!("Metadata update error: {e}");
+                    err(StatusCode::INTERNAL_SERVER_ERROR, "Metadata store error")
+                })?;
+            } else {
+                filtering::create(&index_path, &metadata, &doc_ids).map_err(|e| {
+                    tracing::error!("Metadata create error: {e}");
+                    err(StatusCode::INTERNAL_SERVER_ERROR, "Metadata store error")
+                })?;
+            }
 
             // Reload index in AppState
             state2.reload_index(index_name).map_err(|e| {
@@ -193,7 +213,10 @@ pub async fn ingest_bookmark(
         {
             // Suppress unused variable warnings
             let _ = (text, url, title, summary, date, tags, state2);
-            Err(err(StatusCode::SERVICE_UNAVAILABLE, "Model support not compiled"))
+            Err(err(
+                StatusCode::SERVICE_UNAVAILABLE,
+                "Model support not compiled",
+            ))
         }
     })
     .await

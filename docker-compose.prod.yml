@@ -38,7 +38,6 @@ services:
     user: root
     volumes:
       - ./multi-vector-database/knowledge:/data/indices/knowledge
-      - ./buffer:/data/buffer
       - models:/models
       - ./run.py:/app/run.py:ro
       - ./sources:/app/sources:ro
@@ -49,7 +48,7 @@ services:
       - ./.env:/app/.env:ro
     environment:
       - DATABASE_URL=postgresql://knowledge:${POSTGRES_PASSWORD:-knowledge}@postgres:5432/knowledge
-      - BUFFER_DIR=/data/buffer
+      - API_URL=http://localhost:8080
       - RUST_LOG=info
       - OPENBLAS_NUM_THREADS=1
     command:
@@ -68,8 +67,6 @@ services:
       - "2"
       - --model-pool-size
       - "1"
-      - --buffer-dir
-      - /data/buffer
     depends_on:
       postgres:
         condition: service_healthy

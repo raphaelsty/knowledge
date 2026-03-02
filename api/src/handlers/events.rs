@@ -11,8 +11,13 @@ use sqlx::PgPool;
 
 const MAX_BATCH_SIZE: usize = 100;
 const MAX_PAYLOAD_BYTES: usize = 8192;
-const ALLOWED_EVENT_TYPES: &[&str] =
-    &["search", "click", "folder_browse", "filter_apply", "page_view"];
+const ALLOWED_EVENT_TYPES: &[&str] = &[
+    "search",
+    "click",
+    "folder_browse",
+    "filter_apply",
+    "page_view",
+];
 
 // --- Event ingestion ---
 
@@ -99,23 +104,21 @@ pub async fn ingest_events(
 
     let mut inserted = 0;
     for event in &events {
-        sqlx::query(
-            "INSERT INTO events (session_id, event_type, payload) VALUES ($1, $2, $3)",
-        )
-        .bind(&event.session_id)
-        .bind(&event.event_type)
-        .bind(&event.payload)
-        .execute(&pool)
-        .await
-        .map_err(|e| {
-            tracing::error!("DB insert error: {e}");
-            (
-                StatusCode::INTERNAL_SERVER_ERROR,
-                Json(EventErrorResponse {
-                    error: "Database error".to_string(),
-                }),
-            )
-        })?;
+        sqlx::query("INSERT INTO events (session_id, event_type, payload) VALUES ($1, $2, $3)")
+            .bind(&event.session_id)
+            .bind(&event.event_type)
+            .bind(&event.payload)
+            .execute(&pool)
+            .await
+            .map_err(|e| {
+                tracing::error!("DB insert error: {e}");
+                (
+                    StatusCode::INTERNAL_SERVER_ERROR,
+                    Json(EventErrorResponse {
+                        error: "Database error".to_string(),
+                    }),
+                )
+            })?;
         inserted += 1;
     }
 

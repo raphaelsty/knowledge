@@ -56,11 +56,10 @@ pub async fn sources(State(pool): State<PgPool>) -> impl IntoResponse {
 
 /// GET /api/favorites
 pub async fn favorites(State(pool): State<PgPool>) -> Json<Vec<String>> {
-    let rows: Vec<(String,)> =
-        sqlx::query_as("SELECT url FROM favorites ORDER BY created_at DESC")
-            .fetch_all(&pool)
-            .await
-            .unwrap_or_default();
+    let rows: Vec<(String,)> = sqlx::query_as("SELECT url FROM favorites ORDER BY created_at DESC")
+        .fetch_all(&pool)
+        .await
+        .unwrap_or_default();
 
     Json(rows.into_iter().map(|(url,)| url).collect())
 }
@@ -70,12 +69,11 @@ pub async fn toggle_favorite(
     State(pool): State<PgPool>,
     Json(body): Json<FavoriteRequest>,
 ) -> Json<serde_json::Value> {
-    let existing: Option<(String,)> =
-        sqlx::query_as("SELECT url FROM favorites WHERE url = $1")
-            .bind(&body.url)
-            .fetch_optional(&pool)
-            .await
-            .unwrap_or(None);
+    let existing: Option<(String,)> = sqlx::query_as("SELECT url FROM favorites WHERE url = $1")
+        .bind(&body.url)
+        .fetch_optional(&pool)
+        .await
+        .unwrap_or(None);
 
     let favorited = if existing.is_some() {
         sqlx::query("DELETE FROM favorites WHERE url = $1")

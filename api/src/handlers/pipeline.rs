@@ -16,22 +16,12 @@ use tokio::sync::Mutex;
 
 // ─── Shared state ──────────────────────────────────────────────────
 
+#[derive(Default)]
 pub struct PipelineState {
     running: bool,
     started: Option<(std::time::Instant, String)>,
     lines: Vec<String>,
     last_run: Option<RunResult>,
-}
-
-impl Default for PipelineState {
-    fn default() -> Self {
-        Self {
-            running: false,
-            started: None,
-            lines: Vec::new(),
-            last_run: None,
-        }
-    }
 }
 
 #[derive(Clone, Serialize)]
@@ -76,7 +66,11 @@ pub async fn trigger(State(state): State<SharedPipeline>) -> Json<serde_json::Va
     let mut inner = state.lock().await;
 
     if inner.running {
-        let started_at = inner.started.as_ref().map(|(_, s)| s.as_str()).unwrap_or("");
+        let started_at = inner
+            .started
+            .as_ref()
+            .map(|(_, s)| s.as_str())
+            .unwrap_or("");
         return Json(json!({
             "status": "already_running",
             "started_at": started_at,
@@ -117,11 +111,11 @@ async fn run_pipeline(state: &SharedPipeline) -> RunResult {
 
     tracing::info!("pipeline.starting");
 
-    let buffer_dir = std::env::var("BUFFER_DIR").unwrap_or_else(|_| "buffer".into());
+    let api_url = std::env::var("API_URL").unwrap_or_else(|_| "http://localhost:8080".into());
 
     let child = tokio::process::Command::new("uv")
         .args(["run", "python", "-u", "run.py"])
-        .env("BUFFER_DIR", &buffer_dir)
+        .env("API_URL", &api_url)
         .env("PYTHONUNBUFFERED", "1")
         .kill_on_drop(true)
         .stdout(std::process::Stdio::piped())

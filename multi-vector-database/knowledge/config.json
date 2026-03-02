@@ -1,0 +1,7 @@
+{
+  "nbits": 2,
+  "batch_size": 50000,
+  "seed": null,
+  "start_from_scratch": 999,
+  "max_documents": null
+}

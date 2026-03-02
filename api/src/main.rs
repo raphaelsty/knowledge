@@ -64,8 +64,8 @@ mod models;
 mod state;
 mod tracing_middleware;
 
-use models::HealthResponse;
 use knowledge_api::PrettyJson;
+use models::HealthResponse;
 use state::{ApiConfig, AppState};
 
 const RETENTION_DAYS: i32 = 90;

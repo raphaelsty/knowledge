@@ -41,11 +41,7 @@ const BATCH_SIZE: usize = 64;
 ///
 /// Spawns a tokio task that wakes every `interval_secs` seconds, scans
 /// `buffer_dir` for `.json` files, and processes them.
-pub fn start_buffer_scanner(
-    state: Arc<AppState>,
-    buffer_dir: String,
-    interval_secs: u64,
-) {
+pub fn start_buffer_scanner(state: Arc<AppState>, buffer_dir: String, interval_secs: u64) {
     let interval = Duration::from_secs(interval_secs);
     let dir = PathBuf::from(&buffer_dir);
 
@@ -73,10 +69,7 @@ pub fn start_buffer_scanner(
 }
 
 /// One scan cycle: recover stale files, then process all `.json` files.
-async fn scan_and_process(
-    state: &Arc<AppState>,
-    dir: &Path,
-) -> Result<(), String> {
+async fn scan_and_process(state: &Arc<AppState>, dir: &Path) -> Result<(), String> {
     // 1. Recover any stale .processing files back to .json
     recover_stale_files(dir).await;
 
@@ -144,10 +137,7 @@ async fn collect_json_files(dir: &Path) -> Vec<PathBuf> {
 }
 
 /// Process a single buffer file: rename → parse → encode → index → upsert → delete.
-async fn process_file(
-    state: &Arc<AppState>,
-    json_path: &Path,
-) -> Result<(), String> {
+async fn process_file(state: &Arc<AppState>, json_path: &Path) -> Result<(), String> {
     // Rename to .processing for atomicity
     let processing_path = json_path.with_extension("processing");
     tokio::fs::rename(json_path, &processing_path)
@@ -175,11 +165,9 @@ async fn process_file(
 
     // Encode and index in a blocking task (docs moved into closure)
     let state2 = Arc::clone(state);
-    let result = tokio::task::spawn_blocking(move || {
-        process_documents_blocking(&state2, &docs)
-    })
-    .await
-    .map_err(|e| format!("task join: {e}"))?;
+    let result = tokio::task::spawn_blocking(move || process_documents_blocking(&state2, &docs))
+        .await
+        .map_err(|e| format!("task join: {e}"))?;
 
     match result {
         Ok(count) => {
@@ -284,9 +272,14 @@ fn process_documents_blocking(
     )
     .map_err(|e| format!("index update: {e}"))?;
 
-    // Update metadata store
-    filtering::create(&index_path, &metadata, &doc_ids)
-        .map_err(|e| format!("metadata: {e}"))?;
+    // Update metadata store (append if exists, create if new)
+    if filtering::exists(&index_path) {
+        filtering::update(&index_path, &metadata, &doc_ids)
+            .map_err(|e| format!("metadata update: {e}"))?;
+    } else {
+        filtering::create(&index_path, &metadata, &doc_ids)
+            .map_err(|e| format!("metadata create: {e}"))?;
+    }
 
     // Reload index for live queries
     state
@@ -307,10 +300,7 @@ fn process_documents_blocking(
 }
 
 /// Batch-upsert documents to PostgreSQL.
-async fn upsert_to_pg(
-    pool: &sqlx::PgPool,
-    docs: &[BufferDocument],
-) -> Result<(), String> {
+async fn upsert_to_pg(pool: &sqlx::PgPool, docs: &[BufferDocument]) -> Result<(), String> {
     for doc in docs {
         let date_str: Option<&str> = if doc.date.is_empty() {
             None

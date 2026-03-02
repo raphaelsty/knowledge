@@ -39,7 +39,6 @@ make deploy-logs     # view production logs (run on server)
   - `sources/taxonomy.py` — builds the folder tree from tag triples
   - `sources/database.py` — PostgreSQL abstraction layer
 - `api/` — Unified Rust API: search + data + events + ingest in a single binary
-- `embeddings/` — Rust binary that builds the ColBERT index
 - `web/` — static frontend (index.html, app.jsx, dashboard.html, dashboard.jsx, CSS, WASM worker)
 - `web/data/` — generated JSON files (database.json, sources.json, folder_tree.json, tree.json)
 - `multi-vector-database/` — generated ColBERT index (committed for deploy)
@@ -58,5 +57,4 @@ make deploy-logs     # view production logs (run on server)
 - Python package is `sources`, not `knowledge_database` (renamed)
 - The API is `knowledge-api` (Rust binary in `api/`, built in Docker or via `make serve`)
 - Frontend API URLs auto-detect: `localhost` → hardcoded ports, production → relative paths (same origin via Caddy)
-- The embeddings crate requires `libonnxruntime` — if it fails locally, the existing `multi-vector-database/` still works
 - All routes go through the single knowledge-api on port 8080: `/indices/*` (search), `/api/*` (data + ingest), `/events` + `/stats/*` (analytics)

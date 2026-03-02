@@ -401,33 +401,105 @@ def main():
         step(94, "Taxonomy", "Skipped (no new documents)")
 
     # =============================================================================
-    # Write Buffer for Incremental Indexing
+    # Index Documents via API
     # =============================================================================
 
     t0 = time.perf_counter()
-    buffer_dir = os.environ.get("BUFFER_DIR", "buffer")
+    import urllib.error
+    import urllib.request
+
+    api_base = os.environ.get("API_URL", "http://localhost:8080")
+    BATCH = 300
+
+    # Check if the search index already exists
+    index_exists = False
+    try:
+        with urllib.request.urlopen(f"{api_base}/indices/knowledge", timeout=5) as resp:
+            index_exists = resp.status == 200
+    except Exception:
+        pass
+
+    # Decide what to index: all docs if fresh, only new if incremental
     new_urls = {url for url in new_urls if url in data}
-    if new_urls:
-        os.makedirs(buffer_dir, exist_ok=True)
-        batch = [
-            {
-                "url": url,
-                "title": data[url].get("title", ""),
-                "summary": data[url].get("summary", ""),
-                "date": data[url].get("date", ""),
-                "tags": data[url].get("tags", []),
-                "extra_tags": data[url].get("extra-tags", []),
-            }
-            for url in new_urls
-        ]
-        filename = f"{int(time.time() * 1000)}_{os.getpid()}.json"
-        filepath = os.path.join(buffer_dir, filename)
-        with open(filepath, "w") as f:
-            json.dump(batch, f)
-        step(96, "Buffer written", f"{len(batch)} documents queued for indexing")
+    urls_to_index = list(data.keys()) if not index_exists else list(new_urls)
+
+    if urls_to_index:
+        # Ensure index is declared
+        if not index_exists:
+            step(96, "Creating index", "Declaring search index")
+            payload = json.dumps({"name": "knowledge", "config": {"nbits": 2}}).encode()
+            req = urllib.request.Request(
+                f"{api_base}/indices",
+                data=payload,
+                headers={"Content-Type": "application/json"},
+                method="POST",
+            )
+            try:
+                with urllib.request.urlopen(req, timeout=10):
+                    pass
+            except urllib.error.HTTPError as e:
+                if e.code != 409:  # 409 = already exists, that's fine
+                    print(f"  Warning: create index failed: {e}")
+
+        # Build document texts and metadata
+        docs_to_index = []
+        metadata_to_index = []
+        for url in urls_to_index:
+            doc = data[url]
+            title = doc.get("title", "")
+            doc_tags = doc.get("tags", [])
+            extra = doc.get("extra-tags", [])
+            summary = doc.get("summary", "")
+            text = f"{title} {' '.join(doc_tags)} {' '.join(extra)} {summary[:200]}".strip()
+            if not text:
+                continue
+            docs_to_index.append(text)
+            metadata_to_index.append(
+                {
+                    "url": url,
+                    "title": title,
+                    "summary": summary,
+                    "date": doc.get("date", ""),
+                    "tags": ",".join(doc_tags),
+                    "extra_tags": ",".join(extra),
+                }
+            )
+
+        if docs_to_index:
+            n_batches = (len(docs_to_index) + BATCH - 1) // BATCH
+            label = "Building index" if not index_exists else "Indexing"
+            step(96, label, f"{len(docs_to_index)} documents in {n_batches} batches")
+            indexed = 0
+            for i in range(0, len(docs_to_index), BATCH):
+                batch_docs = docs_to_index[i : i + BATCH]
+                batch_meta = metadata_to_index[i : i + BATCH]
+                batch_num = i // BATCH + 1
+                payload = json.dumps(
+                    {
+                        "documents": batch_docs,
+                        "metadata": batch_meta,
+                        "pool_factor": 2,
+                    }
+                ).encode()
+                req = urllib.request.Request(
+                    f"{api_base}/indices/knowledge/update_with_encoding",
+                    data=payload,
+                    headers={"Content-Type": "application/json"},
+                    method="POST",
+                )
+                try:
+                    with urllib.request.urlopen(req, timeout=300):
+                        indexed += len(batch_docs)
+                        pct = 96 + (batch_num * 2) // n_batches
+                        step(min(pct, 98), label, f"Batch {batch_num}/{n_batches} ({indexed:,} docs)")
+                except Exception as e:
+                    print(f"  Warning: batch {batch_num} failed: {e}")
+            step(98, "Indexed", f"{indexed:,} documents in search engine")
+        else:
+            step(98, "Index", "No indexable documents")
     else:
-        step(96, "Buffer", "No new documents to index")
-    timings.append(("Write buffer", time.perf_counter() - t0))
+        step(98, "Index", "No new documents to index")
+    timings.append(("Index documents", time.perf_counter() - t0))
 
     # =============================================================================
     # Rescue Placement
