@@ -641,12 +641,17 @@ body {
   background: transparent;
   border: none;
   color: var(--text-muted);
-  width: 24px;
-  height: 24px;
+  width: 30px;
+  height: 30px;
   padding: 0;
   border-radius: 50%;
   flex-shrink: 0;
   transition: all var(--transition-fast);
+}
+
+.favorite-btn svg {
+  width: 18px;
+  height: 18px;
 }
 
 .favorite-btn:hover {
@@ -1114,13 +1119,18 @@ body {
   background: transparent;
   border: none;
   color: var(--text-muted);
-  width: 24px;
-  height: 24px;
+  width: 30px;
+  height: 30px;
   padding: 0;
   border-radius: 50%;
   margin-left: auto;
   flex-shrink: 0;
   transition: all var(--transition-fast);
+}
+
+.similar-btn svg {
+  width: 18px;
+  height: 18px;
 }
 
 .similar-btn:hover {
