@@ -98770,5 +98770,225 @@
     {
         "head": "top",
         "tail": "single-vector"
+    },
+    {
+        "head": "strategy-game",
+        "tail": "godot-game"
+    },
+    {
+        "head": "strategy-game",
+        "tail": "civilization"
+    },
+    {
+        "head": "strategy-game",
+        "tail": "remake-game"
+    },
+    {
+        "head": "strategy-game",
+        "tail": "cross-platform"
+    },
+    {
+        "head": "strategy-game",
+        "tail": "4x-strategy-game"
+    },
+    {
+        "head": "strategy-game",
+        "tail": "game"
+    },
+    {
+        "head": "strategy-game",
+        "tail": "csharp-game"
+    },
+    {
+        "head": "strategy-game",
+        "tail": "c#"
+    },
+    {
+        "head": "strategy-game",
+        "tail": "open-source"
+    },
+    {
+        "head": "strategy-game",
+        "tail": "community"
+    },
+    {
+        "head": "strategy-game",
+        "tail": "godot"
+    },
+    {
+        "head": "godot-game",
+        "tail": "civilization"
+    },
+    {
+        "head": "godot-game",
+        "tail": "remake-game"
+    },
+    {
+        "head": "godot-game",
+        "tail": "cross-platform"
+    },
+    {
+        "head": "godot-game",
+        "tail": "4x-strategy-game"
+    },
+    {
+        "head": "godot-game",
+        "tail": "game"
+    },
+    {
+        "head": "godot-game",
+        "tail": "csharp-game"
+    },
+    {
+        "head": "godot-game",
+        "tail": "c#"
+    },
+    {
+        "head": "godot-game",
+        "tail": "open-source"
+    },
+    {
+        "head": "godot-game",
+        "tail": "community"
+    },
+    {
+        "head": "godot-game",
+        "tail": "godot"
+    },
+    {
+        "head": "civilization",
+        "tail": "remake-game"
+    },
+    {
+        "head": "civilization",
+        "tail": "open-source"
+    },
+    {
+        "head": "civilization",
+        "tail": "community"
+    },
+    {
+        "head": "civilization",
+        "tail": "godot"
+    },
+    {
+        "head": "remake-game",
+        "tail": "cross-platform"
+    },
+    {
+        "head": "remake-game",
+        "tail": "4x-strategy-game"
+    },
+    {
+        "head": "remake-game",
+        "tail": "game"
+    },
+    {
+        "head": "remake-game",
+        "tail": "csharp-game"
+    },
+    {
+        "head": "remake-game",
+        "tail": "c#"
+    },
+    {
+        "head": "remake-game",
+        "tail": "open-source"
+    },
+    {
+        "head": "remake-game",
+        "tail": "community"
+    },
+    {
+        "head": "remake-game",
+        "tail": "godot"
+    },
+    {
+        "head": "cross-platform",
+        "tail": "open-source"
+    },
+    {
+        "head": "cross-platform",
+        "tail": "community"
+    },
+    {
+        "head": "cross-platform",
+        "tail": "godot"
+    },
+    {
+        "head": "4x-strategy-game",
+        "tail": "open-source"
+    },
+    {
+        "head": "4x-strategy-game",
+        "tail": "community"
+    },
+    {
+        "head": "4x-strategy-game",
+        "tail": "godot"
+    },
+    {
+        "head": "game",
+        "tail": "open-source"
+    },
+    {
+        "head": "game",
+        "tail": "community"
+    },
+    {
+        "head": "game",
+        "tail": "godot"
+    },
+    {
+        "head": "csharp-game",
+        "tail": "open-source"
+    },
+    {
+        "head": "csharp-game",
+        "tail": "community"
+    },
+    {
+        "head": "csharp-game",
+        "tail": "godot"
+    },
+    {
+        "head": "c#",
+        "tail": "open-source"
+    },
+    {
+        "head": "c#",
+        "tail": "community"
+    },
+    {
+        "head": "c#",
+        "tail": "godot"
+    },
+    {
+        "head": "open-source",
+        "tail": "godot"
+    },
+    {
+        "head": "community",
+        "tail": "godot"
+    },
+    {
+        "head": "cli",
+        "tail": "anthropic"
+    },
+    {
+        "head": "code",
+        "tail": "twitter-api"
+    },
+    {
+        "head": "tricks",
+        "tail": "adamw"
+    },
+    {
+        "head": "tricks",
+        "tail": "pretrained"
+    },
+    {
+        "head": "adamw",
+        "tail": "pretrained"
     }
 ]
