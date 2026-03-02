@@ -17,6 +17,8 @@ const ALLOWED_EVENT_TYPES: &[&str] = &[
     "folder_browse",
     "filter_apply",
     "page_view",
+    "find_similar",
+    "click_similar",
 ];
 
 // --- Event ingestion ---

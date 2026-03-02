@@ -199,6 +199,58 @@ const rankDocuments = async (payload) => {
   }
 };
 
+// --- Similar Document Re-ranking ---
+
+/**
+ * Re-ranks similar documents by scoring each against the source document's content.
+ * The source doc's text acts as the "query" and each similar result is scored as a "document".
+ */
+const rankSimilar = async (payload) => {
+  if (!colbertModel) return;
+
+  const { sourceUrl, sourceText, results } = payload;
+  const ranked = [];
+  const remaining = [...results];
+
+  for (const doc of results) {
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    try {
+      remaining.shift();
+      const title = doc.title || "";
+      const summary = doc.summary || "";
+      const allTags = (doc.tags || [])
+        .concat(doc["extra-tags"] || [])
+        .join(" ");
+      const combinedText = `${title} ${summary} ${allTags}`.trim();
+
+      const { data: scores } = colbertModel.similarity({
+        queries: [sourceText],
+        documents: [combinedText],
+      });
+
+      ranked.push({ ...doc, colbertScore: scores[0][0] });
+      ranked.sort((a, b) => b.colbertScore - a.colbertScore);
+
+      self.postMessage({
+        type: "rank-similar-update",
+        payload: { sourceUrl, results: [...ranked, ...remaining] },
+      });
+    } catch (error) {
+      console.error(
+        `[WORKER] Failed to rank similar doc for ${sourceUrl}.`,
+        error,
+      );
+      ranked.push(doc);
+    }
+  }
+
+  self.postMessage({
+    type: "rank-similar-complete",
+    payload: { sourceUrl, results: [...ranked] },
+  });
+};
+
 // --- Main Worker Entry Point ---
 
 self.onmessage = async (event) => {
@@ -212,6 +264,10 @@ self.onmessage = async (event) => {
     case "rank":
       latestQueryId = payload.queryId;
       rankDocuments(payload); // Fire and forget.
+      break;
+
+    case "rank-similar":
+      rankSimilar(payload); // Fire and forget.
       break;
 
     default:

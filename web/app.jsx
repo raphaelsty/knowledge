@@ -14,6 +14,7 @@ const FETCH_COUNT = 300;
 const DISPLAY_COUNT = 30;
 const RERANK_INACTIVITY_MS = 1000;
 const SUMMARY_TOKEN_LIMIT = 30;
+const SIMILAR_COUNT = 10;
 
 const syncURL = (params) => {
   const url = new URL(window.location);
@@ -220,6 +221,37 @@ const apiSearch = async (query, sortByDate = false, source) => {
     docs.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
   }
   return docs;
+};
+
+/**
+ * Fetches documents similar to a given doc by searching with its content.
+ */
+const fetchSimilar = async (doc) => {
+  const parts = [doc.title];
+  const allTags = (doc.tags || []).concat(doc["extra-tags"] || []);
+  if (allTags.length) parts.push(allTags.join(" "));
+  if (doc.summary) parts.push(doc.summary.split(/\s+/).slice(0, 20).join(" "));
+  const queryText = parts.join(" ");
+
+  const resp = await fetch(
+    `${API_BASE_URL}/indices/${INDEX_NAME}/search_with_encoding`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        queries: [queryText],
+        params: { top_k: SIMILAR_COUNT + 1 },
+      }),
+    },
+  );
+  const data = await resp.json();
+  const result = (data.results && data.results[0]) || {};
+  const metadata = result.metadata || [];
+  const scores = result.scores || [];
+  return metadata
+    .map((meta, i) => ({ ...transformMeta(meta), similarity: scores[i] || 0 }))
+    .filter((d) => d.url !== doc.url)
+    .slice(0, SIMILAR_COUNT);
 };
 
 /**
@@ -937,6 +969,7 @@ const Search = () => {
   );
   const [pipelineData, setPipelineData] = useState(null);
   const [pipelineOpen, setPipelineOpen] = useState(false);
+  const [similarMap, setSimilarMap] = useState(new Map());
 
   // --- Refs ---
   const searchTimerRef = useRef(null);
@@ -947,6 +980,7 @@ const Search = () => {
   const settleTimerRef = useRef(null);
   const lastSearchMeta = useRef(null);
   const pipelineIntervalRef = useRef(null);
+  const similarMapRef = useRef(new Map());
 
   // --- Function Declarations ---
 
@@ -1089,6 +1123,18 @@ const Search = () => {
             setResultsReranked(true);
           }
           break;
+        case "rank-similar-update":
+        case "rank-similar-complete": {
+          const simUrl = payload.sourceUrl;
+          if (similarMapRef.current.has(simUrl)) {
+            similarMapRef.current.set(simUrl, {
+              loading: false,
+              results: payload.results,
+            });
+            setSimilarMap(new Map(similarMapRef.current));
+          }
+          break;
+        }
         case "error":
           setModelStatus(payload);
           console.error("[APP] Received error from worker:", payload);
@@ -1327,6 +1373,51 @@ const Search = () => {
       runNow(newQuery, true);
     },
     [query, runNow, sourceFilter],
+  );
+
+  const updateSimilarMap = useCallback((fn) => {
+    fn(similarMapRef.current);
+    setSimilarMap(new Map(similarMapRef.current));
+  }, []);
+
+  const handleSimilar = useCallback(
+    async (doc) => {
+      const url = doc.url;
+      if (similarMapRef.current.has(url)) {
+        updateSimilarMap((m) => m.delete(url));
+        return;
+      }
+      updateSimilarMap((m) => m.set(url, { loading: true, results: [] }));
+      try {
+        const results = await fetchSimilar(doc);
+        if (!similarMapRef.current.has(url)) return;
+        updateSimilarMap((m) => m.set(url, { loading: false, results }));
+        trackEvent("find_similar", {
+          doc_url: url,
+          result_count: results.length,
+        });
+        // Dispatch to ColBERT worker for re-ranking against source doc content
+        // Worker guards with if (!colbertModel) return, so always safe to post
+        if (workerRef.current && results.length > 0) {
+          const parts = [doc.title];
+          const allTags = (doc.tags || []).concat(doc["extra-tags"] || []);
+          if (allTags.length) parts.push(allTags.join(" "));
+          if (doc.summary) parts.push(doc.summary);
+          workerRef.current.postMessage({
+            type: "rank-similar",
+            payload: {
+              sourceUrl: url,
+              sourceText: parts.join(" "),
+              results,
+            },
+          });
+        }
+      } catch (err) {
+        console.error("[APP] Failed to fetch similar docs:", err);
+        updateSimilarMap((m) => m.delete(url));
+      }
+    },
+    [updateSimilarMap],
   );
 
   // --- UI Helper Functions ---
@@ -1632,107 +1723,260 @@ const Search = () => {
 
       <div id="documents">
         {displayedDocs.map((doc, index) => (
-          <div className="document" key={doc.url || index}>
-            <div className="title-wrapper">
-              <span className="logo">{getLinkLogo(doc)}</span>
-              <a
-                className="title"
-                href={doc.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => {
-                  if (doc.url && !clickedUrls.has(doc.url)) {
-                    clickedUrls.add(doc.url);
-                    trackEvent("click", {
-                      doc_url: doc.url,
-                      position: index,
-                      score: doc.colbertScore ?? doc.similarity ?? null,
-                      query,
-                    });
-                  }
-                }}
-              >
-                {highlight(doc.title)}
-              </a>
-            </div>
-            <div className="date" onClick={handleClickDate}>
-              {highlight(doc.date)}
-            </div>
-            <div className="summary">
-              {highlight(truncate(doc.summary, SUMMARY_TOKEN_LIMIT))}
-            </div>
-            <div className="tags">
-              {(doc.tags || [])
-                .concat(doc["extra-tags"] || [])
-                .map((tag, i) => (
-                  <div
-                    className="tag"
-                    key={i}
-                    onClick={() => handleClickTag(tag)}
+          <React.Fragment key={doc.url || index}>
+            <div
+              className={`document${similarMap.has(doc.url) ? " document--similar-active" : ""}`}
+            >
+              <div className="title-wrapper">
+                <span className="logo">{getLinkLogo(doc)}</span>
+                <a
+                  className="title"
+                  href={doc.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => {
+                    if (doc.url && !clickedUrls.has(doc.url)) {
+                      clickedUrls.add(doc.url);
+                      trackEvent("click", {
+                        doc_url: doc.url,
+                        position: index,
+                        score: doc.colbertScore ?? doc.similarity ?? null,
+                        query,
+                      });
+                    }
+                  }}
+                >
+                  {highlight(doc.title)}
+                </a>
+              </div>
+              <div className="date" onClick={handleClickDate}>
+                {highlight(doc.date)}
+              </div>
+              <div className="summary">
+                {highlight(truncate(doc.summary, SUMMARY_TOKEN_LIMIT))}
+              </div>
+              <div className="tags">
+                {(doc.tags || [])
+                  .concat(doc["extra-tags"] || [])
+                  .map((tag, i) => (
+                    <div
+                      className="tag"
+                      key={i}
+                      onClick={() => handleClickTag(tag)}
+                    >
+                      {highlight(tag)}
+                    </div>
+                  ))}
+                {typeof doc.colbertScore === "number" ? (
+                  <span
+                    className="score-badge reranker-score"
+                    title="Re-ranker Score"
                   >
-                    {highlight(tag)}
-                  </div>
-                ))}
-              {typeof doc.colbertScore === "number" ? (
-                <span
-                  className="score-badge reranker-score"
-                  title="Re-ranker Score"
+                    {doc.colbertScore.toFixed(3)}
+                  </span>
+                ) : typeof doc.similarity === "number" ? (
+                  <span
+                    className="score-badge retriever-score"
+                    title="Retriever Score"
+                  >
+                    {doc.similarity.toFixed(3)}
+                  </span>
+                ) : null}
+                <button
+                  className={`similar-btn${similarMap.has(doc.url) ? " active" : ""}`}
+                  title="Find similar documents"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleSimilar(doc);
+                  }}
                 >
-                  {doc.colbertScore.toFixed(3)}
-                </span>
-              ) : typeof doc.similarity === "number" ? (
-                <span
-                  className="score-badge retriever-score"
-                  title="Retriever Score"
-                >
-                  {doc.similarity.toFixed(3)}
-                </span>
-              ) : null}
-              <button
-                className={`favorite-btn ${favorites.has(doc.url) ? "active" : ""}`}
-                title={
-                  favorites.has(doc.url)
-                    ? "Remove from favorites"
-                    : "Add to favorites"
-                }
-                onClick={(e) => {
-                  e.stopPropagation();
-                  const url = doc.url;
-                  setFavorites((prev) => {
-                    const next = new Set(prev);
-                    if (next.has(url)) next.delete(url);
-                    else next.add(url);
-                    return next;
-                  });
-                  fetch(`${DATA_API_URL}/api/favorites`, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ url }),
-                  }).catch(() => {
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <circle cx="11" cy="11" r="8" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                    <line x1="11" y1="8" x2="11" y2="14" />
+                    <line x1="8" y1="11" x2="14" y2="11" />
+                  </svg>
+                </button>
+                <button
+                  className={`favorite-btn ${favorites.has(doc.url) ? "active" : ""}`}
+                  title={
+                    favorites.has(doc.url)
+                      ? "Remove from favorites"
+                      : "Add to favorites"
+                  }
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    const url = doc.url;
                     setFavorites((prev) => {
-                      const rollback = new Set(prev);
-                      if (rollback.has(url)) rollback.delete(url);
-                      else rollback.add(url);
-                      return rollback;
+                      const next = new Set(prev);
+                      if (next.has(url)) next.delete(url);
+                      else next.add(url);
+                      return next;
                     });
-                  });
-                }}
-              >
-                <svg
-                  width="14"
-                  height="14"
-                  viewBox="0 0 24 24"
-                  fill={favorites.has(doc.url) ? "currentColor" : "none"}
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+                    fetch(`${DATA_API_URL}/api/favorites`, {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({ url }),
+                    }).catch(() => {
+                      setFavorites((prev) => {
+                        const rollback = new Set(prev);
+                        if (rollback.has(url)) rollback.delete(url);
+                        else rollback.add(url);
+                        return rollback;
+                      });
+                    });
+                  }}
                 >
-                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                </svg>
-              </button>
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill={favorites.has(doc.url) ? "currentColor" : "none"}
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                  </svg>
+                </button>
+              </div>
             </div>
-          </div>
+            {similarMap.has(doc.url) &&
+              (() => {
+                const entry = similarMap.get(doc.url);
+                return (
+                  <div className="similar-results">
+                    {entry.loading ? (
+                      <div className="similar-loading">
+                        <span className="similar-loading-dot"></span> Finding
+                        similar...
+                      </div>
+                    ) : (
+                      entry.results.map((sim, si) => (
+                        <div
+                          className="document similar-doc"
+                          key={sim.url || si}
+                          style={{ animationDelay: `${si * 0.04}s` }}
+                        >
+                          <div className="title-wrapper">
+                            <span className="logo">{getLinkLogo(sim)}</span>
+                            <a
+                              className="title"
+                              href={sim.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={() =>
+                                trackEvent("click_similar", {
+                                  source_url: doc.url,
+                                  doc_url: sim.url,
+                                  position: si,
+                                  score: sim.similarity,
+                                })
+                              }
+                            >
+                              {highlight(sim.title)}
+                            </a>
+                          </div>
+                          <div className="date">{highlight(sim.date)}</div>
+                          <div className="summary">
+                            {highlight(
+                              truncate(sim.summary, SUMMARY_TOKEN_LIMIT),
+                            )}
+                          </div>
+                          <div className="tags">
+                            {(sim.tags || [])
+                              .concat(sim["extra-tags"] || [])
+                              .map((tag, ti) => (
+                                <div
+                                  className="tag"
+                                  key={ti}
+                                  onClick={() => handleClickTag(tag)}
+                                >
+                                  {highlight(tag)}
+                                </div>
+                              ))}
+                            {typeof sim.colbertScore === "number" ? (
+                              <span
+                                className="score-badge reranker-score"
+                                title="Re-ranker Score"
+                              >
+                                {sim.colbertScore.toFixed(3)}
+                              </span>
+                            ) : (
+                              <span
+                                className="score-badge retriever-score"
+                                title="Similarity"
+                              >
+                                {sim.similarity.toFixed(3)}
+                              </span>
+                            )}
+                            <button
+                              className={`favorite-btn ${favorites.has(sim.url) ? "active" : ""}`}
+                              title={
+                                favorites.has(sim.url)
+                                  ? "Remove from favorites"
+                                  : "Add to favorites"
+                              }
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                const url = sim.url;
+                                setFavorites((prev) => {
+                                  const next = new Set(prev);
+                                  if (next.has(url)) next.delete(url);
+                                  else next.add(url);
+                                  return next;
+                                });
+                                fetch(`${DATA_API_URL}/api/favorites`, {
+                                  method: "POST",
+                                  headers: {
+                                    "Content-Type": "application/json",
+                                  },
+                                  body: JSON.stringify({ url }),
+                                }).catch(() => {
+                                  setFavorites((prev) => {
+                                    const rollback = new Set(prev);
+                                    if (rollback.has(url)) rollback.delete(url);
+                                    else rollback.add(url);
+                                    return rollback;
+                                  });
+                                });
+                              }}
+                            >
+                              <svg
+                                width="14"
+                                height="14"
+                                viewBox="0 0 24 24"
+                                fill={
+                                  favorites.has(sim.url)
+                                    ? "currentColor"
+                                    : "none"
+                                }
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              >
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                      ))
+                    )}
+                  </div>
+                );
+              })()}
+          </React.Fragment>
         ))}
       </div>
 

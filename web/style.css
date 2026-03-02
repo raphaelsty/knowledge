@@ -645,7 +645,6 @@ body {
   height: 24px;
   padding: 0;
   border-radius: 50%;
-  margin-left: auto;
   flex-shrink: 0;
   transition: all var(--transition-fast);
 }
@@ -1039,6 +1038,98 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* ============================================
+   Find Similar
+   ============================================ */
+
+/* Active source card */
+.document--similar-active {
+  border-color: var(--accent-border);
+  box-shadow:
+    var(--shadow-card),
+    0 0 0 1px var(--accent-border);
+}
+
+/* Similar results container */
+.similar-results {
+  margin-left: 24px;
+  margin-bottom: 16px;
+  padding-left: 16px;
+  border-left: 2px solid var(--accent-border-line);
+}
+
+/* Similar document cards (smaller, indented) */
+.similar-doc {
+  padding: 16px 20px;
+  margin-bottom: 8px;
+  opacity: 0;
+  animation: fadeInUp 0.3s ease forwards;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-subtle);
+}
+
+.similar-doc .title {
+  font-size: 14px;
+}
+.similar-doc .summary {
+  font-size: 12px;
+}
+
+/* Loading state */
+.similar-loading {
+  padding: 12px 16px;
+  font-size: 12px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.similar-loading-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-primary);
+  animation: similarPulse 1s ease infinite;
+}
+
+@keyframes similarPulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+/* Find similar button (next to heart) */
+.similar-btn {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border-radius: 50%;
+  margin-left: auto;
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+}
+
+.similar-btn:hover {
+  color: var(--accent-primary);
+  transform: scale(1.15);
+}
+
+.similar-btn.active {
+  color: var(--accent-primary);
 }
 
 /* ============================================
