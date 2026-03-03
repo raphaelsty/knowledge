@@ -424,6 +424,44 @@ const getFinderDocIcon = (doc) => {
   return "\uD83D\uDCC4";
 };
 
+// Determine the known source key for a URL (null if unknown/other)
+const sourceKeyFromUrl = (url) => {
+  if (!url) return null;
+  if (url.includes("github.com")) return "github.com";
+  if (url.includes("twitter.com") || url.includes("x.com"))
+    return "twitter.com";
+  if (url.includes("ycombinator.com")) return "hackernews";
+  return null;
+};
+
+// Compute the majority source key from an array of URL strings
+const majoritySourceFromUrls = (urls) => {
+  const counts = {};
+  for (const url of urls) {
+    const key = sourceKeyFromUrl(url);
+    if (key) counts[key] = (counts[key] || 0) + 1;
+  }
+  const entries = Object.entries(counts);
+  if (!entries.length) return null;
+  return entries.sort((a, b) => b[1] - a[1])[0][0];
+};
+
+// Compute the majority source key from an array of doc objects
+const majoritySourceFromDocs = (docs) => {
+  const counts = {};
+  for (const doc of docs) {
+    const allTags = (doc.tags || []).concat(doc["extra-tags"] || []);
+    const isHN =
+      (doc.title || "").toLowerCase().includes("hackernews") ||
+      allTags.some((t) => t.toLowerCase().includes("hackernews"));
+    const key = isHN ? "hackernews" : sourceKeyFromUrl(doc.url);
+    if (key) counts[key] = (counts[key] || 0) + 1;
+  }
+  const entries = Object.entries(counts);
+  if (!entries.length) return null;
+  return entries.sort((a, b) => b[1] - a[1])[0][0];
+};
+
 /**
  * CreateFolderModal — overlay for creating a custom folder.
  */
@@ -904,6 +942,8 @@ const FinderBrowser = ({
   const [customFolders, setCustomFolders] = useState(loadCustomFolders);
   // null = closed; "" = open at root; "uuid" = open under that folder
   const [showCreateModal, setShowCreateModal] = useState(null);
+  // Majority-source icon cache: { [folderId]: sourceKey }
+  const [folderSourceCache, setFolderSourceCache] = useState({});
   const [columnWidths, setColumnWidths] = useState(() => {
     try {
       return JSON.parse(localStorage.getItem("finder-col-widths")) || {};
@@ -999,6 +1039,40 @@ const FinderBrowser = ({
       }),
     );
   }, [customFolders]);
+
+  // Precompute majority-source icon for folders that have stored URLs
+  // (urls type + non-live snapshot folders) — zero API calls
+  useEffect(() => {
+    const updates = {};
+    const visit = (folder) => {
+      if (
+        !folderSourceCache[folder.id] &&
+        folder.urls &&
+        folder.urls.length > 0
+      ) {
+        const key = majoritySourceFromUrls(folder.urls);
+        if (key) updates[folder.id] = key;
+      }
+      (folder.children || []).forEach(visit);
+    };
+    customFolders.forEach(visit);
+    if (Object.keys(updates).length)
+      setFolderSourceCache((prev) => ({ ...prev, ...updates }));
+  }, [customFolders]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Cache majority-source icon from already-loaded docs column entries
+  useEffect(() => {
+    const updates = {};
+    for (const dcol of docsColumnStack) {
+      if (dcol.loading || !dcol.contextFolder) continue;
+      const id = dcol.contextFolder.id;
+      if (folderSourceCache[id] !== undefined) continue;
+      const key = majoritySourceFromDocs(dcol.items);
+      if (key) updates[id] = key;
+    }
+    if (Object.keys(updates).length)
+      setFolderSourceCache((prev) => ({ ...prev, ...updates }));
+  }, [docsColumnStack]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Silently refresh the favorites docs column whenever the favorites Set changes
   useEffect(() => {
@@ -1531,13 +1605,15 @@ const FinderBrowser = ({
                       ? "\u2764\uFE0F"
                       : item.kind === "source"
                         ? getFinderSourceIcon(item.key)
-                        : item.filterType === "search"
-                          ? "\uD83D\uDD0D"
-                          : item.filterType === "tag"
-                            ? "\uD83C\uDFF7\uFE0F"
-                            : item.filterType === "urls"
-                              ? "\uD83D\uDD17"
-                              : "\uD83D\uDCC1"}
+                        : folderSourceCache[item.id]
+                          ? getFinderSourceIcon(folderSourceCache[item.id])
+                          : item.filterType === "search"
+                            ? "\uD83D\uDD0D"
+                            : item.filterType === "tag"
+                              ? "\uD83C\uDFF7\uFE0F"
+                              : item.filterType === "urls"
+                                ? "\uD83D\uDD17"
+                                : "\uD83D\uDCC1"}
                   </span>
                   <span className="finder-row-label">{item.label}</span>
                   {item.kind === "custom" && (
@@ -1635,13 +1711,15 @@ const FinderBrowser = ({
                         className="finder-row-icon"
                         style={{ fontSize: 13 }}
                       >
-                        {sf.filterType === "search"
-                          ? "\uD83D\uDD0D"
-                          : sf.filterType === "tag"
-                            ? "\uD83C\uDFF7\uFE0F"
-                            : sf.filterType === "urls"
-                              ? "\uD83D\uDD17"
-                              : "\uD83D\uDCC1"}
+                        {folderSourceCache[sf.id]
+                          ? getFinderSourceIcon(folderSourceCache[sf.id])
+                          : sf.filterType === "search"
+                            ? "\uD83D\uDD0D"
+                            : sf.filterType === "tag"
+                              ? "\uD83C\uDFF7\uFE0F"
+                              : sf.filterType === "urls"
+                                ? "\uD83D\uDD17"
+                                : "\uD83D\uDCC1"}
                       </span>
                       <span className="finder-row-label">{sf.label}</span>
                       {((sf.folderData?.children || []).length > 0 ||
