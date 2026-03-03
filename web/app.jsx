@@ -19,7 +19,7 @@ const SIMILAR_COUNT = 10;
 const syncURL = (params) => {
   const url = new URL(window.location);
   Object.entries(params).forEach(([k, v]) => {
-    if (k === "source") {
+    if (k === "source" || k === "tags") {
       if (v instanceof Set && v.size > 0)
         url.searchParams.set(k, [...v].join(","));
       else url.searchParams.delete(k);
@@ -117,6 +117,31 @@ const transformMeta = (meta) => ({
  * Builds a SQL WHERE condition + parameters for a source filter key.
  * Returns { condition, parameters } or null if no filter.
  */
+const buildTagConditionExact = (tagFilters) => {
+  if (!(tagFilters instanceof Set) || tagFilters.size === 0) return null;
+  const clauses = [];
+  const parameters = [];
+  for (const tag of tagFilters) {
+    // Comma-boundary match: ",python," won't match "cpython" or "python3".
+    clauses.push(
+      "(',' || tags || ',' LIKE ? OR ',' || extra_tags || ',' LIKE ?)",
+    );
+    parameters.push(`%,${tag},%`, `%,${tag},%`);
+  }
+  return { condition: clauses.join(" AND "), parameters };
+};
+
+const buildTagConditionLike = (tagFilters) => {
+  if (!(tagFilters instanceof Set) || tagFilters.size === 0) return null;
+  const clauses = [];
+  const parameters = [];
+  for (const tag of tagFilters) {
+    clauses.push("(tags LIKE ? OR extra_tags LIKE ?)");
+    parameters.push(`%${tag}%`, `%${tag}%`);
+  }
+  return { condition: clauses.join(" AND "), parameters };
+};
+
 const buildSourceCondition = (sourceSet) => {
   if (!(sourceSet instanceof Set) || sourceSet.size === 0) return null;
   // "other" is handled client-side only
@@ -149,15 +174,26 @@ const buildSourceCondition = (sourceSet) => {
  * Gets the subset of document IDs matching a source filter.
  * Returns an array of IDs, or null if no filter is active.
  */
-const getFilteredSubset = async (source) => {
-  const cond = buildSourceCondition(source);
-  if (!cond) return null;
+const getFilteredSubset = async (source, tagCond = null) => {
+  const sourceCond = buildSourceCondition(source);
+  if (!sourceCond && !tagCond) return null;
+  let condition, parameters;
+  if (sourceCond && tagCond) {
+    condition = `(${sourceCond.condition}) AND (${tagCond.condition})`;
+    parameters = [...sourceCond.parameters, ...tagCond.parameters];
+  } else if (sourceCond) {
+    condition = sourceCond.condition;
+    parameters = sourceCond.parameters;
+  } else {
+    condition = tagCond.condition;
+    parameters = tagCond.parameters;
+  }
   const resp = await fetch(
     `${API_BASE_URL}/indices/${INDEX_NAME}/metadata/query`,
     {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(cond),
+      body: JSON.stringify({ condition, parameters }),
     },
   );
   const data = await resp.json();
@@ -166,60 +202,144 @@ const getFilteredSubset = async (source) => {
 
 /**
  * Fetches the latest documents via metadata query.
+ * When tagFilters is non-empty, runs two queries (exact then LIKE) and
+ * concatenates results without duplicates, exact-match first.
  */
-const apiLatest = async (count, source) => {
-  const cond = buildSourceCondition(source);
-  const body = cond
-    ? {
-        condition: `(${cond.condition}) AND date != ?`,
-        parameters: [...cond.parameters, ""],
-      }
-    : { condition: "date IS NOT NULL AND date != ?", parameters: [""] };
-  const resp = await fetch(
-    `${API_BASE_URL}/indices/${INDEX_NAME}/metadata/get`,
-    {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
-    },
-  );
-  const data = await resp.json();
-  const rows = (data.metadata || []).map(transformMeta);
-  rows.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
-  return rows.slice(0, count);
+const apiLatest = async (count, source, tagFilters = null) => {
+  const sourceCond = buildSourceCondition(source);
+  const hasTagFilters = tagFilters instanceof Set && tagFilters.size > 0;
+
+  const fetchMeta = async (tagCond) => {
+    const parts = [];
+    const params = [];
+    if (sourceCond) {
+      parts.push(`(${sourceCond.condition})`);
+      params.push(...sourceCond.parameters);
+    }
+    if (tagCond) {
+      parts.push(`(${tagCond.condition})`);
+      params.push(...tagCond.parameters);
+    }
+    parts.push("date != ?");
+    params.push("");
+    const resp = await fetch(
+      `${API_BASE_URL}/indices/${INDEX_NAME}/metadata/get`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          condition: parts.join(" AND "),
+          parameters: params,
+        }),
+      },
+    );
+    const data = await resp.json();
+    return (data.metadata || []).map(transformMeta);
+  };
+
+  if (!hasTagFilters) {
+    const rows = await fetchMeta(null);
+    rows.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+    return rows.slice(0, count);
+  }
+
+  // Two-stage: exact match first, then LIKE %tag%
+  const [exactRows, likeRows] = await Promise.all([
+    fetchMeta(buildTagConditionExact(tagFilters)),
+    fetchMeta(buildTagConditionLike(tagFilters)),
+  ]);
+  exactRows.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+  const exactUrls = new Set(exactRows.map((r) => r.url));
+  const broadOnly = likeRows.filter((r) => !exactUrls.has(r.url));
+  broadOnly.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+  return [...exactRows, ...broadOnly].slice(0, count);
 };
 
 /**
  * Searches documents via ColBERT encoding and returns results.
- * When a source filter is active, restricts search to matching doc IDs.
+ * When tagFilters is non-empty, uses a broad LIKE subset for the single
+ * ColBERT search, then reorders results so exact-match docs come first.
  */
-const apiSearch = async (query, sortByDate = false, source) => {
-  const subset = await getFilteredSubset(source);
-  const body = {
-    queries: [query],
-    params: { top_k: FETCH_COUNT },
+const apiSearch = async (
+  query,
+  sortByDate = false,
+  source,
+  tagFilters = null,
+) => {
+  const hasTagFilters = tagFilters instanceof Set && tagFilters.size > 0;
+
+  const runSearch = async (subset) => {
+    const body = { queries: [query], params: { top_k: FETCH_COUNT } };
+    if (subset) body.subset = subset;
+    const resp = await fetch(
+      `${API_BASE_URL}/indices/${INDEX_NAME}/search_with_encoding`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      },
+    );
+    const data = await resp.json();
+    const result = (data.results && data.results[0]) || {};
+    const metadata = result.metadata || [];
+    const scores = result.scores || [];
+    return metadata.map((meta, i) => ({
+      ...transformMeta(meta),
+      similarity: scores[i] || 0,
+    }));
   };
-  if (subset) body.subset = subset;
-  const resp = await fetch(
-    `${API_BASE_URL}/indices/${INDEX_NAME}/search_with_encoding`,
-    {
+
+  if (!hasTagFilters) {
+    const subset = await getFilteredSubset(source, null);
+    let docs = await runSearch(subset);
+    if (sortByDate)
+      docs.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+    return docs;
+  }
+
+  // Two-stage: get exact URLs and broad subset IDs in parallel, single ColBERT call.
+  const sourceCond = buildSourceCondition(source);
+  const exactTagCond = buildTagConditionExact(tagFilters);
+  const likeTagCond = buildTagConditionLike(tagFilters);
+
+  const buildMetaGetBody = (tagCond) => {
+    const parts = [];
+    const params = [];
+    if (sourceCond) {
+      parts.push(`(${sourceCond.condition})`);
+      params.push(...sourceCond.parameters);
+    }
+    if (tagCond) {
+      parts.push(`(${tagCond.condition})`);
+      params.push(...tagCond.parameters);
+    }
+    return { condition: parts.join(" AND ") || "1=1", parameters: params };
+  };
+
+  const [exactMetaData, likeSubset] = await Promise.all([
+    fetch(`${API_BASE_URL}/indices/${INDEX_NAME}/metadata/get`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
-    },
-  );
-  const data = await resp.json();
-  const result = (data.results && data.results[0]) || {};
-  const metadata = result.metadata || [];
-  const scores = result.scores || [];
-  let docs = metadata.map((meta, i) => ({
-    ...transformMeta(meta),
-    similarity: scores[i] || 0,
-  }));
+      body: JSON.stringify(buildMetaGetBody(exactTagCond)),
+    }).then((r) => r.json()),
+    getFilteredSubset(source, likeTagCond),
+  ]);
+
+  const exactUrls = new Set((exactMetaData.metadata || []).map((m) => m.url));
+
+  // Single ColBERT search restricted to broad (LIKE) subset
+  const docs = await runSearch(likeSubset);
+
+  // Reorder: exact-match docs first (preserving ColBERT score order within each group)
+  const exactDocs = docs.filter((d) => exactUrls.has(d.url));
+  const broadOnly = docs.filter((d) => !exactUrls.has(d.url));
+
   if (sortByDate) {
-    docs.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+    exactDocs.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+    broadOnly.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
   }
-  return docs;
+
+  return [...exactDocs, ...broadOnly];
 };
 
 /**
@@ -796,6 +916,15 @@ var PipelineBar = function (props) {
               pct + "%",
             )
           : null,
+        React.createElement(
+          "button",
+          {
+            className: "pipe-bar-close",
+            onClick: onClose,
+            title: "Dismiss",
+          },
+          "\u00d7",
+        ),
       ),
       React.createElement(
         "div",
@@ -806,15 +935,6 @@ var PipelineBar = function (props) {
           style: { width: pct + "%" },
         }),
       ),
-    ),
-    React.createElement(
-      "button",
-      {
-        className: "pipe-bar-close",
-        onClick: onClose,
-        title: "Dismiss",
-      },
-      "\u00d7",
     ),
   );
 };
@@ -841,6 +961,7 @@ const Search = () => {
   const [pipelineData, setPipelineData] = useState(null);
   const [pipelineOpen, setPipelineOpen] = useState(false);
   const [similarMap, setSimilarMap] = useState(new Map());
+  const [tagFilters, setTagFilters] = useState(new Set());
   const [showFinder, setShowFinder] = useState(
     () => localStorage.getItem("finder-visible") !== "false",
   );
@@ -870,12 +991,12 @@ const Search = () => {
    * Fetches the latest documents from the backend.
    */
   const fetchLatest = useCallback(() => {
-    apiLatest(FETCH_COUNT, sourceFilter)
+    apiLatest(FETCH_COUNT, sourceFilter, tagFilters)
       .then((docs) => setDocuments(docs))
       .catch((error) =>
         console.error("[APP] Failed to fetch latest documents:", error),
       );
-  }, [sourceFilter]);
+  }, [sourceFilter, tagFilters]);
 
   /**
    * Fetches search results from the backend API.
@@ -893,7 +1014,7 @@ const Search = () => {
         : searchQuery;
 
       const t0 = performance.now();
-      apiSearch(fullQuery, sortChronologically, sourceFilter)
+      apiSearch(fullQuery, sortChronologically, sourceFilter, tagFilters)
         .then((docs) => {
           const latencyMs = Math.round(performance.now() - t0);
           lastSearchMeta.current = { resultCount: docs.length, latencyMs };
@@ -904,7 +1025,7 @@ const Search = () => {
           console.error(`[APP] Failed to fetch search results:`, error),
         );
     },
-    [selectedNode, fetchLatest, sourceFilter],
+    [selectedNode, fetchLatest, sourceFilter, tagFilters],
   );
 
   /**
@@ -1023,8 +1144,12 @@ const Search = () => {
     const urlQuery = params.get("query") || "";
     const urlNode = params.get("node") || null;
     const urlSource = params.get("source") || "";
+    const urlTags = params.get("tags") || "";
     if (urlSource) {
       setSourceFilter(new Set(urlSource.split(",").filter(Boolean)));
+    }
+    if (urlTags) {
+      setTagFilters(new Set(urlTags.split(",").filter(Boolean)));
     }
     if (urlQuery) {
       setQuery(urlQuery);
@@ -1053,6 +1178,20 @@ const Search = () => {
   }, [sourceFilter]);
 
   /**
+   * Re-fetch when tag filters change.
+   */
+  useEffect(() => {
+    syncURL({ query, source: sourceFilter, tags: tagFilters });
+    clearTimeout(rerankTimerRef.current);
+    immediateRerankRef.current = true;
+    if (query.trim()) {
+      search(query, isSortedByDate);
+    } else {
+      fetchLatest();
+    }
+  }, [tagFilters]);
+
+  /**
    * Effect to handle window resizing for mobile detection.
    */
   useEffect(() => {
@@ -1072,7 +1211,8 @@ const Search = () => {
       !resultsReranked &&
       documents.length > 0 &&
       query.trim() &&
-      !isSortedByDate;
+      !isSortedByDate &&
+      tagFilters.size === 0;
 
     if (shouldAttemptRerank) {
       const delay = immediateRerankRef.current ? 0 : RERANK_INACTIVITY_MS;
@@ -1086,7 +1226,14 @@ const Search = () => {
     }
 
     return () => clearTimeout(rerankTimerRef.current);
-  }, [documents, query, modelStatus, resultsReranked, isSortedByDate]);
+  }, [
+    documents,
+    query,
+    modelStatus,
+    resultsReranked,
+    isSortedByDate,
+    tagFilters,
+  ]);
 
   // --- Pipeline ---
 
@@ -1205,7 +1352,7 @@ const Search = () => {
         setSelectedNode(null);
         setIsSortedByDate(false);
         setResultsReranked(false);
-        syncURL({ source: sourceFilter });
+        syncURL({ source: sourceFilter, tags: tagFilters });
         fetchLatest();
         return;
       }
@@ -1213,7 +1360,7 @@ const Search = () => {
       setSelectedNode(null);
       setIsSortedByDate(false);
       setResultsReranked(false);
-      syncURL({ query: newQuery, source: sourceFilter });
+      syncURL({ query: newQuery, source: sourceFilter, tags: tagFilters });
       searchTimerRef.current = setTimeout(
         () => search(newQuery),
         SEARCH_DEBOUNCE_MS,
@@ -1231,19 +1378,15 @@ const Search = () => {
     search(query, newSortState);
   }, [isSortedByDate, query, search]);
 
-  const handleClickTag = useCallback(
-    (tag) => {
-      const newQuery = `${query} ${tag}`.trim();
-      setQuery(newQuery);
-      setIsSortedByDate(false);
-      setResultsReranked(false);
-      const searchInput = document.getElementById("search");
-      if (searchInput) searchInput.value = newQuery;
-      syncURL({ query: newQuery, source: sourceFilter });
-      runNow(newQuery, true);
-    },
-    [query, runNow, sourceFilter],
-  );
+  const handleClickTag = useCallback((tag) => {
+    setTagFilters((prev) => {
+      const next = new Set(prev);
+      if (next.has(tag)) next.delete(tag);
+      else next.add(tag);
+      return next;
+    });
+    setResultsReranked(false);
+  }, []);
 
   const updateSimilarMap = useCallback((fn) => {
     fn(similarMapRef.current);
@@ -1374,8 +1517,9 @@ const Search = () => {
       );
       if (keywordSet.size === 0) return <div className="inline">{text}</div>;
 
+      const escape = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
       const parts = text.split(
-        new RegExp(`(${Array.from(keywordSet).join("|")})`, "gi"),
+        new RegExp(`(${Array.from(keywordSet).map(escape).join("|")})`, "gi"),
       );
       return (
         <div className="inline">
@@ -1473,7 +1617,7 @@ const Search = () => {
                     else next.add(key);
                   }
                   setSourceFilter(next);
-                  syncURL({ query, source: next });
+                  syncURL({ query, source: next, tags: tagFilters });
                   trackEvent("filter_apply", {
                     source_key: next.size > 0 ? [...next].join(",") : "all",
                   });
@@ -1619,6 +1763,37 @@ const Search = () => {
         </button>
       </div>
 
+      {tagFilters.size > 0 && (
+        <div id="tag-filters-row">
+          {[...tagFilters].map((tag) => (
+            <div key={tag} className="tag-filter-chip">
+              <span>{tag}</span>
+              <button
+                className="tag-filter-chip-remove"
+                title={`Remove: ${tag}`}
+                onClick={() =>
+                  setTagFilters((prev) => {
+                    const next = new Set(prev);
+                    next.delete(tag);
+                    return next;
+                  })
+                }
+              >
+                {"\u00D7"}
+              </button>
+            </div>
+          ))}
+          {tagFilters.size > 1 && (
+            <button
+              className="tag-filter-clear"
+              onClick={() => setTagFilters(new Set())}
+            >
+              Clear all
+            </button>
+          )}
+        </div>
+      )}
+
       <div id="documents">
         {displayedDocs.map((doc, index) => (
           <React.Fragment key={doc.url || index}>
@@ -1658,7 +1833,7 @@ const Search = () => {
                   .concat(doc["extra-tags"] || [])
                   .map((tag, i) => (
                     <div
-                      className="tag"
+                      className={`tag${tagFilters.has(tag) ? " tag--active" : ""}`}
                       key={i}
                       onClick={() => handleClickTag(tag)}
                     >
@@ -1689,12 +1864,12 @@ const Search = () => {
                   }}
                 >
                   <svg
-                    width="14"
-                    height="14"
+                    width="13"
+                    height="13"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
-                    strokeWidth="2"
+                    strokeWidth="2.5"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   >
@@ -1703,6 +1878,7 @@ const Search = () => {
                     <line x1="11" y1="8" x2="11" y2="14" />
                     <line x1="8" y1="11" x2="14" y2="11" />
                   </svg>
+                  <span>Similar</span>
                 </button>
                 <button
                   className={`favorite-btn ${favorites.has(doc.url) ? "active" : ""}`}
@@ -1878,21 +2054,20 @@ const Search = () => {
         ))}
       </div>
 
+      {pipelineOpen && (
+        <PipelineBar
+          data={pipelineData}
+          onClose={() => setPipelineOpen(false)}
+        />
+      )}
+
       {folderPanel &&
         !isMobile &&
         createPortal(
-          <React.Fragment>
-            {pipelineOpen && (
-              <PipelineBar
-                data={pipelineData}
-                onClose={() => setPipelineOpen(false)}
-              />
-            )}
-            <FinderBrowser
-              sources={sources}
-              sourceKeys={sources.map((s) => s.key)}
-            />
-          </React.Fragment>,
+          <FinderBrowser
+            sources={sources}
+            sourceKeys={sources.map((s) => s.key)}
+          />,
           folderPanel,
         )}
     </React.Fragment>

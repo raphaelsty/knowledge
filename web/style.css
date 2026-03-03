@@ -629,6 +629,79 @@ body {
   box-shadow: 0 4px 12px var(--accent-glow);
 }
 
+.tag--active {
+  background: var(--accent-gradient);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 2px 8px var(--accent-glow);
+}
+
+#tag-filters-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.tag-filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--accent-gradient);
+  color: #fff;
+  padding: 5px 6px 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: "Inter", sans-serif;
+  box-shadow: 0 2px 8px var(--accent-glow);
+  user-select: none;
+}
+
+.tag-filter-chip-remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: #fff;
+  font-size: 13px;
+  line-height: 1;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background var(--transition-fast);
+  padding: 0;
+}
+
+.tag-filter-chip-remove:hover {
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.tag-filter-clear {
+  display: inline-flex;
+  align-items: center;
+  background: var(--bg-chip);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+  transition: all var(--transition-fast);
+}
+
+.tag-filter-clear:hover {
+  background: var(--bg-chip-hover);
+  color: var(--text-primary);
+  border-color: var(--border-hover);
+}
+
 /* Score badges */
 .score-badge {
   font-family: "SF Mono", "Fira Code", monospace;
@@ -759,6 +832,10 @@ body {
 /* ============================================
    Highlighting
    ============================================ */
+
+.tag--active .highlight {
+  color: #fff;
+}
 
 .highlight {
   color: var(--accent-secondary);
@@ -1333,36 +1410,37 @@ body {
   }
 }
 
-/* Find similar button (next to heart) */
+/* Find similar button */
 .similar-btn {
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
+  gap: 5px;
   background: transparent;
-  border: none;
-  color: var(--text-muted);
-  width: 30px;
-  height: 30px;
-  padding: 0;
-  border-radius: 50%;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  height: 26px;
+  padding: 0 10px;
+  border-radius: 13px;
   margin-left: auto;
   flex-shrink: 0;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
   transition: all var(--transition-fast);
-}
-
-.similar-btn svg {
-  width: 18px;
-  height: 18px;
 }
 
 .similar-btn:hover {
   color: var(--accent-primary);
-  transform: scale(1.15);
+  border-color: var(--accent-primary);
+  background: color-mix(in srgb, var(--accent-primary) 8%, transparent);
+  transform: none;
 }
 
 .similar-btn.active {
-  color: var(--accent-primary);
+  color: #fff;
+  background: var(--accent-gradient);
+  border-color: transparent;
 }
 
 /* ============================================
@@ -1551,24 +1629,25 @@ body {
    ============================================ */
 
 .pipe-bar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 10;
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 300;
+  width: 320px;
   padding: 14px 16px;
   background: var(--card-bg);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--card-border);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
   animation: pipeSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @keyframes pipeSlideIn {
   from {
     opacity: 0;
-    transform: translateY(-100%);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
@@ -1683,15 +1762,13 @@ body {
 }
 
 .pipe-bar-close {
-  position: absolute;
-  top: 8px;
-  right: 10px;
+  flex-shrink: 0;
   background: none;
   border: none;
   color: var(--text-muted);
   font-size: 16px;
   cursor: pointer;
-  padding: 4px 8px;
+  padding: 4px 6px;
   border-radius: 6px;
   line-height: 1;
   transition: all var(--transition-fast);
