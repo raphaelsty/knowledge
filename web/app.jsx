@@ -578,6 +578,7 @@ const CreateFolderModal = ({
   const [excludedDocs, setExcludedDocs] = useState(
     initialFolder?.excludedDocs ?? [],
   );
+  const [sortBy, setSortBy] = useState(initialFolder?.sortBy ?? "default");
 
   // Load tags from metadata API (guarantees every tag has at least one document)
   useEffect(() => {
@@ -664,6 +665,8 @@ const CreateFolderModal = ({
               .filter(Boolean)
           : [],
       excludedDocs,
+      pinnedUrls: initialFolder?.pinnedUrls ?? [],
+      sortBy,
     };
     onCreate(folder);
   };
@@ -875,6 +878,26 @@ const CreateFolderModal = ({
             </div>
           )}
 
+          {filterType !== "none" && (
+            <div>
+              <div className="finder-modal-label">Sort</div>
+              <div className="finder-modal-tabs">
+                {[
+                  ["default", "Relevance"],
+                  ["date", "Date ↓"],
+                ].map(([val, lbl]) => (
+                  <button
+                    key={val}
+                    className={`finder-modal-tab${sortBy === val ? " active" : ""}`}
+                    onClick={() => setSortBy(val)}
+                  >
+                    {lbl}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
           {excludedDocs.length > 0 && (
             <div>
               <div className="finder-modal-label">
@@ -998,6 +1021,8 @@ const FinderBrowser = ({
     }
   });
   const [showEditModal, setShowEditModal] = useState(null); // folder object | null
+  const [dropTargetId, setDropTargetId] = useState(null);
+  const dragStateRef = useRef(null); // { doc, sourceFolderId: string|null }
   const columnsRef = useRef(null);
   const dragRef = useRef(null);
 
@@ -1341,7 +1366,12 @@ const FinderBrowser = ({
         ...(folder.excludedDocs || []).filter((d) => d.url !== doc.url),
         { url: doc.url, title: doc.title },
       ];
-      const next = updateFolderInTree(prev, { ...folder, excludedDocs });
+      const pinnedUrls = (folder.pinnedUrls || []).filter((u) => u !== doc.url);
+      const next = updateFolderInTree(prev, {
+        ...folder,
+        excludedDocs,
+        pinnedUrls,
+      });
       saveCustomFolders(next);
       return next;
     });
@@ -1350,6 +1380,37 @@ const FinderBrowser = ({
       prev.map((e) =>
         e.contextFolder?.id === folderId
           ? { ...e, items: e.items.filter((d) => d.url !== doc.url) }
+          : e,
+      ),
+    );
+  }, []);
+
+  const handleAddPinnedDoc = useCallback((folderId, doc) => {
+    setCustomFolders((prev) => {
+      const folder = findFolderById(prev, folderId);
+      if (!folder) return prev;
+      const pinnedUrls = [
+        ...(folder.pinnedUrls || []).filter((u) => u !== doc.url),
+        doc.url,
+      ];
+      // Also un-exclude this doc if it was previously excluded
+      const excludedDocs = (folder.excludedDocs || []).filter(
+        (d) => d.url !== doc.url,
+      );
+      const next = updateFolderInTree(prev, {
+        ...folder,
+        pinnedUrls,
+        excludedDocs,
+      });
+      saveCustomFolders(next);
+      return next;
+    });
+    // Optimistically add to open docs columns for this folder
+    setDocsColumnStack((prev) =>
+      prev.map((e) =>
+        e.contextFolder?.id === folderId &&
+        !e.items.some((d) => d.url === doc.url)
+          ? { ...e, items: [doc, ...e.items] }
           : e,
       ),
     );
@@ -1388,94 +1449,130 @@ const FinderBrowser = ({
     }
     if (item.kind === "custom") {
       const folder = item.folderData;
-      if (folder.filterType === "none") {
-        return {
-          subfolders: (folder.children || []).map(folderToItem),
-          items: [],
-        };
-      }
-      let docs = [];
-      const useStoredUrls =
-        folder.live === false || folder.filterType === "urls";
-      if (useStoredUrls && folder.urls && folder.urls.length > 0) {
-        const placeholders = folder.urls.map(() => "?").join(", ");
-        const resp = await fetch(
-          `${API_BASE_URL}/indices/${INDEX_NAME}/metadata/get`,
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              condition: `url IN (${placeholders})`,
-              parameters: folder.urls,
-            }),
-          },
-        );
-        const data = await resp.json();
-        docs = (data.metadata || []).map(transformMeta);
-      } else if (folder.filterType === "search") {
-        docs = await apiSearch(
-          folder.searchQuery,
-          false,
-          new Set(folder.searchSources || []),
-          null,
-          folder.topK || 50,
-        );
-      } else if (folder.filterType === "tag") {
-        const tagList = Array.isArray(folder.tagFilter)
-          ? folder.tagFilter
-          : folder.tagFilter
-            ? [folder.tagFilter]
-            : [];
-        if (tagList.length > 0) {
-          const clauses = tagList.map(
-            () => "(tags LIKE ? OR extra_tags LIKE ?)",
-          );
-          const srcCond = buildSourceCondition(
-            new Set(folder.searchSources || []),
-          );
-          const tagClause = clauses.join(
-            folder.tagIntersect ? " AND " : " OR ",
-          );
+
+      // Load pinned docs first (applies to all filter types)
+      const pinnedUrlList = folder.pinnedUrls || [];
+      let pinnedDocs = [];
+      if (pinnedUrlList.length > 0) {
+        try {
+          const placeholders = pinnedUrlList.map(() => "?").join(", ");
           const resp = await fetch(
             `${API_BASE_URL}/indices/${INDEX_NAME}/metadata/get`,
             {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({
-                condition: srcCond
-                  ? `(${srcCond.condition}) AND (${tagClause})`
-                  : tagClause,
-                parameters: [
-                  ...(srcCond ? srcCond.parameters : []),
-                  ...tagList.flatMap((t) => [`%${t}%`, `%${t}%`]),
-                ],
+                condition: `url IN (${placeholders})`,
+                parameters: pinnedUrlList,
+              }),
+            },
+          );
+          const data = await resp.json();
+          const metaMap = new Map((data.metadata || []).map((m) => [m.url, m]));
+          pinnedDocs = pinnedUrlList
+            .map((url) => metaMap.get(url))
+            .filter(Boolean)
+            .map(transformMeta);
+        } catch {}
+      }
+
+      // Load docs from the folder's filter
+      let docs = [];
+      if (folder.filterType !== "none") {
+        const useStoredUrls =
+          folder.live === false || folder.filterType === "urls";
+        if (useStoredUrls && folder.urls && folder.urls.length > 0) {
+          const placeholders = folder.urls.map(() => "?").join(", ");
+          const resp = await fetch(
+            `${API_BASE_URL}/indices/${INDEX_NAME}/metadata/get`,
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                condition: `url IN (${placeholders})`,
+                parameters: folder.urls,
               }),
             },
           );
           const data = await resp.json();
           docs = (data.metadata || []).map(transformMeta);
-          if (folder.tagIntersect) {
-            docs.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
-          } else {
-            docs.sort((a, b) => {
-              const diff =
-                countTagMatches(b, tagList) - countTagMatches(a, tagList);
-              return diff !== 0
-                ? diff
-                : (b.date || "").localeCompare(a.date || "");
-            });
+        } else if (folder.filterType === "search") {
+          docs = await apiSearch(
+            folder.searchQuery,
+            false,
+            new Set(folder.searchSources || []),
+            null,
+            folder.topK || 50,
+          );
+        } else if (folder.filterType === "tag") {
+          const tagList = Array.isArray(folder.tagFilter)
+            ? folder.tagFilter
+            : folder.tagFilter
+              ? [folder.tagFilter]
+              : [];
+          if (tagList.length > 0) {
+            const clauses = tagList.map(
+              () => "(tags LIKE ? OR extra_tags LIKE ?)",
+            );
+            const srcCond = buildSourceCondition(
+              new Set(folder.searchSources || []),
+            );
+            const tagClause = clauses.join(
+              folder.tagIntersect ? " AND " : " OR ",
+            );
+            const resp = await fetch(
+              `${API_BASE_URL}/indices/${INDEX_NAME}/metadata/get`,
+              {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  condition: srcCond
+                    ? `(${srcCond.condition}) AND (${tagClause})`
+                    : tagClause,
+                  parameters: [
+                    ...(srcCond ? srcCond.parameters : []),
+                    ...tagList.flatMap((t) => [`%${t}%`, `%${t}%`]),
+                  ],
+                }),
+              },
+            );
+            const data = await resp.json();
+            docs = (data.metadata || []).map(transformMeta);
+            if (folder.tagIntersect) {
+              docs.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+            } else {
+              docs.sort((a, b) => {
+                const diff =
+                  countTagMatches(b, tagList) - countTagMatches(a, tagList);
+                return diff !== 0
+                  ? diff
+                  : (b.date || "").localeCompare(a.date || "");
+              });
+            }
           }
         }
       }
+
+      // Apply date sort to filter results if requested
+      if (folder.sortBy === "date") {
+        docs.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+      }
+
+      // Merge: pinned first, then filter results (dedup), then apply exclusions
+      const pinnedUrlSet = new Set(pinnedUrlList);
       const excludedUrls = new Set(
         (folder.excludedDocs || []).map((d) => d.url),
       );
-      if (excludedUrls.size > 0) {
-        docs = docs.filter((d) => !excludedUrls.has(d.url));
-      }
+      const items = [
+        ...pinnedDocs.filter((d) => !excludedUrls.has(d.url)),
+        ...docs.filter(
+          (d) => !pinnedUrlSet.has(d.url) && !excludedUrls.has(d.url),
+        ),
+      ];
+
       return {
         subfolders: (folder.children || []).map(folderToItem),
-        items: docs,
+        items,
       };
     }
     return { subfolders: [], items: [] };
@@ -1593,6 +1690,53 @@ const FinderBrowser = ({
   const filterDocs = (docs) =>
     fq ? docs.filter((d) => (d.title || "").toLowerCase().includes(fq)) : docs;
 
+  // Drag-and-drop helpers
+  const onDocDragStart = useCallback((e, doc, sourceFolderId) => {
+    dragStateRef.current = { doc, sourceFolderId };
+    // Custom macOS-style ghost
+    const ghost = document.createElement("div");
+    ghost.className = "finder-drag-ghost";
+    ghost.textContent = doc.title || doc.url;
+    document.body.appendChild(ghost);
+    e.dataTransfer.setDragImage(ghost, 12, 12);
+    e.dataTransfer.effectAllowed = "move";
+    setTimeout(() => document.body.removeChild(ghost), 0);
+  }, []);
+
+  const onDocDragEnd = useCallback(() => {
+    dragStateRef.current = null;
+    setDropTargetId(null);
+  }, []);
+
+  const onFolderDragOver = useCallback((e, targetId) => {
+    const drag = dragStateRef.current;
+    if (!drag || targetId === drag.sourceFolderId) return;
+    e.preventDefault();
+    e.dataTransfer.dropEffect = "move";
+    setDropTargetId(targetId);
+  }, []);
+
+  const onFolderDragLeave = useCallback((e) => {
+    if (!e.currentTarget.contains(e.relatedTarget)) {
+      setDropTargetId(null);
+    }
+  }, []);
+
+  const onFolderDrop = useCallback(
+    (e, targetId) => {
+      e.preventDefault();
+      setDropTargetId(null);
+      const drag = dragStateRef.current;
+      dragStateRef.current = null;
+      if (!drag || targetId === drag.sourceFolderId) return;
+      handleAddPinnedDoc(targetId, drag.doc);
+      if (drag.sourceFolderId) {
+        handleExcludeDoc(drag.sourceFolderId, drag.doc);
+      }
+    },
+    [handleAddPinnedDoc, handleExcludeDoc],
+  );
+
   return (
     <div className="finder">
       {/* Toolbar: filter input */}
@@ -1679,15 +1823,29 @@ const FinderBrowser = ({
                         ? `s-${item.key}`
                         : `c-${item.id}`
                   }
-                  className={`finder-row${isSelected ? " finder-row--selected" : ""}`}
+                  className={`finder-row${isSelected ? " finder-row--selected" : ""}${item.kind === "custom" && dropTargetId === item.id ? " finder-row--drop-target" : ""}`}
                   onClick={() => selectItem(colIdx, origIdx, item)}
+                  onDragOver={
+                    item.kind === "custom"
+                      ? (e) => onFolderDragOver(e, item.id)
+                      : undefined
+                  }
+                  onDragLeave={
+                    item.kind === "custom" ? onFolderDragLeave : undefined
+                  }
+                  onDrop={
+                    item.kind === "custom"
+                      ? (e) => onFolderDrop(e, item.id)
+                      : undefined
+                  }
                 >
                   <span className="finder-row-icon" style={{ fontSize: 13 }}>
                     {item.kind === "favorites"
                       ? "\u2764\uFE0F"
                       : item.kind === "source"
                         ? getFinderSourceIcon(item.key)
-                        : folderSourceCache[item.id]
+                        : col.parentFolderId === null &&
+                            folderSourceCache[item.id]
                           ? getFinderSourceIcon(folderSourceCache[item.id])
                           : item.filterType === "search"
                             ? "\uD83D\uDD0D"
@@ -1771,7 +1929,7 @@ const FinderBrowser = ({
                   return (
                     <div
                       key={`sf-${sf.id}`}
-                      className={`finder-row${isSelected ? " finder-row--selected" : ""}`}
+                      className={`finder-row${isSelected ? " finder-row--selected" : ""}${dropTargetId === sf.id ? " finder-row--drop-target" : ""}`}
                       onClick={() => {
                         if (isSelected) {
                           // Deselect: collapse deeper docs columns
@@ -1788,20 +1946,21 @@ const FinderBrowser = ({
                           pushDocsChild(dcolIdx, sfIdx, sf);
                         }
                       }}
+                      onDragOver={(e) => onFolderDragOver(e, sf.id)}
+                      onDragLeave={onFolderDragLeave}
+                      onDrop={(e) => onFolderDrop(e, sf.id)}
                     >
                       <span
                         className="finder-row-icon"
                         style={{ fontSize: 13 }}
                       >
-                        {folderSourceCache[sf.id]
-                          ? getFinderSourceIcon(folderSourceCache[sf.id])
-                          : sf.filterType === "search"
-                            ? "\uD83D\uDD0D"
-                            : sf.filterType === "tag"
-                              ? "\uD83C\uDFF7\uFE0F"
-                              : sf.filterType === "urls"
-                                ? "\uD83D\uDD17"
-                                : "\uD83D\uDCC1"}
+                        {sf.filterType === "search"
+                          ? "\uD83D\uDD0D"
+                          : sf.filterType === "tag"
+                            ? "\uD83C\uDFF7\uFE0F"
+                            : sf.filterType === "urls"
+                              ? "\uD83D\uDD17"
+                              : "\uD83D\uDCC1"}
                       </span>
                       <span className="finder-row-label">{sf.label}</span>
                       {((sf.folderData?.children || []).length > 0 ||
@@ -1842,6 +2001,11 @@ const FinderBrowser = ({
                       href={doc.url}
                       target="_blank"
                       rel="noopener noreferrer"
+                      draggable
+                      onDragStart={(e) =>
+                        onDocDragStart(e, doc, dcol.contextFolder?.id ?? null)
+                      }
+                      onDragEnd={onDocDragEnd}
                     >
                       <span
                         className="finder-row-icon"

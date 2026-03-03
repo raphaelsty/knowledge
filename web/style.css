@@ -1186,9 +1186,45 @@ body {
   background: rgba(239, 68, 68, 0.1);
 }
 
+/* Drag-and-drop */
+.finder-row--dragging {
+  opacity: 0.4;
+}
+
+.finder-row--drop-target {
+  background: var(--accent-bg-hover) !important;
+  outline: 1px solid var(--accent-primary);
+  outline-offset: -1px;
+  border-radius: 4px;
+}
+
+.finder-drag-ghost {
+  position: fixed;
+  top: -200px;
+  left: -200px;
+  background: var(--bg-secondary, #1a1a2e);
+  border: 1px solid var(--accent-primary, #10b981);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 12px;
+  color: var(--text-primary, #f0f0f5);
+  max-width: 220px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+  z-index: 9999;
+}
+
 /* Document rows inside a folder */
 .finder-row--doc {
   border-left: 3px solid transparent;
+  cursor: grab;
+}
+
+.finder-row--doc:active {
+  cursor: grabbing;
 }
 
 .finder-row--doc.finder-row--matched {
