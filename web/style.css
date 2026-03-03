@@ -569,6 +569,11 @@ body {
   filter: invert(var(--logo-invert));
 }
 
+.finder-source-img {
+  display: block;
+  filter: invert(var(--logo-invert));
+}
+
 /* Document title */
 .document a.title {
   font-size: 16px;

@@ -428,11 +428,35 @@ const SOURCE_ICONS = {
 };
 const getFinderSourceIcon = (key) => {
   if (key === "github.com")
-    return <img src="icons/github.png" alt="GitHub" width="13" height="13" />;
+    return (
+      <img
+        className="finder-source-img"
+        src="icons/github.png"
+        alt="GitHub"
+        width="13"
+        height="13"
+      />
+    );
   if (key === "twitter.com")
-    return <img src="icons/twitter.png" alt="X" width="13" height="13" />;
+    return (
+      <img
+        className="finder-source-img"
+        src="icons/twitter.png"
+        alt="X"
+        width="13"
+        height="13"
+      />
+    );
   if (key === "hackernews")
-    return <img src="icons/hackernews.png" alt="HN" width="13" height="13" />;
+    return (
+      <img
+        className="finder-source-img"
+        src="icons/hackernews.png"
+        alt="HN"
+        width="13"
+        height="13"
+      />
+    );
   return SOURCE_ICONS[key] || "\uD83D\uDCC1";
 };
 
@@ -444,11 +468,35 @@ const getFinderDocIcon = (doc) => {
     title.includes("hackernews") ||
     allTags.some((t) => t.toLowerCase().includes("hackernews"));
   if (isHN)
-    return <img src="icons/hackernews.png" alt="HN" width="13" height="13" />;
+    return (
+      <img
+        className="finder-source-img"
+        src="icons/hackernews.png"
+        alt="HN"
+        width="13"
+        height="13"
+      />
+    );
   if (url.includes("github.com"))
-    return <img src="icons/github.png" alt="GitHub" width="13" height="13" />;
+    return (
+      <img
+        className="finder-source-img"
+        src="icons/github.png"
+        alt="GitHub"
+        width="13"
+        height="13"
+      />
+    );
   if (url.includes("twitter.com") || url.includes("x.com"))
-    return <img src="icons/twitter.png" alt="X" width="13" height="13" />;
+    return (
+      <img
+        className="finder-source-img"
+        src="icons/twitter.png"
+        alt="X"
+        width="13"
+        height="13"
+      />
+    );
   const key = sourceKeyFromUrl(url);
   return SOURCE_ICONS[key] || "\uD83D\uDCC4";
 };
@@ -3147,6 +3195,31 @@ const Search = () => {
                 >
                   {highlight(doc.title)}
                 </a>
+                <button
+                  className={`similar-btn${similarMap.has(doc.url) ? " active" : ""}`}
+                  title="Find similar documents"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleSimilar(doc);
+                  }}
+                >
+                  <svg
+                    width="13"
+                    height="13"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <circle cx="11" cy="11" r="8" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                    <line x1="11" y1="8" x2="11" y2="14" />
+                    <line x1="8" y1="11" x2="14" y2="11" />
+                  </svg>
+                  <span>Similar</span>
+                </button>
               </div>
               <div className="date" onClick={handleClickDate}>
                 {highlight(doc.date)}
@@ -3181,31 +3254,6 @@ const Search = () => {
                     {doc.similarity.toFixed(3)}
                   </span>
                 ) : null}
-                <button
-                  className={`similar-btn${similarMap.has(doc.url) ? " active" : ""}`}
-                  title="Find similar documents"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleSimilar(doc);
-                  }}
-                >
-                  <svg
-                    width="13"
-                    height="13"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <circle cx="11" cy="11" r="8" />
-                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
-                    <line x1="11" y1="8" x2="11" y2="14" />
-                    <line x1="8" y1="11" x2="14" y2="11" />
-                  </svg>
-                  <span>Similar</span>
-                </button>
               </div>
             </div>
             {similarMap.has(doc.url) &&
