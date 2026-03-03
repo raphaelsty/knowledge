@@ -410,6 +410,70 @@ const countTagMatches = (doc, tagList) => {
   return tagList.filter((t) => docTags.has(t)).length;
 };
 
+// ── Custom-folder tree helpers ───────────────────────────────────────────────
+
+const folderToItem = (f) => ({
+  kind: "custom",
+  id: f.id,
+  label: f.name,
+  filterType: f.filterType,
+  folderData: f,
+});
+
+const findFolderById = (folders, id) => {
+  for (const f of folders) {
+    if (f.id === id) return f;
+    const found = findFolderById(f.children || [], id);
+    if (found) return found;
+  }
+  return null;
+};
+
+const addFolderToTree = (folders, parentId, newFolder) => {
+  const node = { ...newFolder, children: newFolder.children || [] };
+  if (!parentId) return [...folders, node]; // root level
+  return folders.map((f) => {
+    if (f.id === parentId)
+      return { ...f, children: [...(f.children || []), node] };
+    return {
+      ...f,
+      children: addFolderToTree(f.children || [], parentId, node),
+    };
+  });
+};
+
+const updateFolderInTree = (folders, updated) =>
+  folders.map((f) => {
+    if (f.id === updated.id) return { ...updated, children: f.children || [] }; // preserve children
+    return { ...f, children: updateFolderInTree(f.children || [], updated) };
+  });
+
+const removeFolderFromTree = (folders, id) =>
+  folders
+    .filter((f) => f.id !== id)
+    .map((f) => ({
+      ...f,
+      children: removeFolderFromTree(f.children || [], id),
+    }));
+
+const getSiblingNames = (folders, parentId) => {
+  if (!parentId) return folders.map((f) => f.name);
+  const parent = findFolderById(folders, parentId);
+  return (parent?.children || []).map((f) => f.name);
+};
+
+// Returns the parentId of a folder by id (null = root, undefined = not found)
+const findParentId = (folders, id, currentParent = null) => {
+  for (const f of folders) {
+    if (f.id === id) return currentParent;
+    const result = findParentId(f.children || [], id, f.id);
+    if (result !== undefined) return result;
+  }
+  return undefined;
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
+
 const CreateFolderModal = ({
   onClose,
   onCreate,
@@ -419,7 +483,7 @@ const CreateFolderModal = ({
   const isEditing = initialFolder != null;
   const [name, setName] = useState(initialFolder?.name ?? "");
   const [filterType, setFilterType] = useState(
-    initialFolder?.filterType ?? "search",
+    initialFolder?.filterType ?? "none",
   );
   const [value, setValue] = useState(
     initialFolder?.filterType === "search"
@@ -499,7 +563,8 @@ const CreateFolderModal = ({
   const isValid =
     name.trim() &&
     !isDuplicateName &&
-    (filterType === "tag" ? selectedTags.size > 0 : value.trim());
+    (filterType === "none" ||
+      (filterType === "tag" ? selectedTags.size > 0 : value.trim()));
 
   const handleCreate = () => {
     if (!name.trim()) {
@@ -564,7 +629,8 @@ const CreateFolderModal = ({
             <div className="finder-modal-label">Type</div>
             <div className="finder-modal-tabs">
               {[
-                ["search", "Search Query"],
+                ["none", "Empty"],
+                ["search", "Search"],
                 ["tag", "Tag Filter"],
                 ["urls", "Manual URLs"],
               ].map(([t, l]) => (
@@ -687,7 +753,7 @@ const CreateFolderModal = ({
             </div>
           )}
 
-          {filterType !== "urls" && (
+          {filterType !== "urls" && filterType !== "none" && (
             <div className="finder-modal-toggle-row">
               <div className="finder-modal-toggle-info">
                 <span
@@ -750,7 +816,8 @@ const FinderBrowser = ({ sources, sourceKeys }) => {
   const [docsColumn, setDocsColumn] = useState(null);
   const [filterQuery, setFilterQuery] = useState("");
   const [customFolders, setCustomFolders] = useState(loadCustomFolders);
-  const [showCreateModal, setShowCreateModal] = useState(false);
+  // null = closed; "" = open at root; "uuid" = open under that folder
+  const [showCreateModal, setShowCreateModal] = useState(null);
   const [columnWidths, setColumnWidths] = useState(() => {
     try {
       return JSON.parse(localStorage.getItem("finder-col-widths")) || {};
@@ -803,7 +870,7 @@ const FinderBrowser = ({ sources, sourceKeys }) => {
     document.addEventListener("mouseup", onMouseUp);
   }, []);
 
-  // Rebuild root column when sources / custom folders change
+  // Rebuild all columns when sources / custom folders change
   useEffect(() => {
     const rootItems = [
       ...sources.map((src) => ({
@@ -811,27 +878,33 @@ const FinderBrowser = ({ sources, sourceKeys }) => {
         key: src.key,
         label: src.label,
       })),
-      ...customFolders.map((f) => ({
-        kind: "custom",
-        id: f.id,
-        label: f.name,
-        filterType: f.filterType,
-        folderData: f,
-      })),
+      ...customFolders.map(folderToItem),
     ];
-    setColumnStack((prev) =>
-      prev.length === 0
-        ? [{ items: rootItems, selectedIdx: null }]
-        : [{ ...prev[0], items: rootItems }, ...prev.slice(1)],
-    );
+    setColumnStack((prev) => {
+      if (prev.length === 0)
+        return [{ items: rootItems, selectedIdx: null, parentFolderId: null }];
+      return prev.map((col) => {
+        if (col.parentFolderId === null) return { ...col, items: rootItems };
+        const parent = findFolderById(customFolders, col.parentFolderId);
+        return {
+          ...col,
+          items: parent ? (parent.children || []).map(folderToItem) : [],
+        };
+      });
+    });
   }, [sources, customFolders]);
 
-  const handleCreateFolder = useCallback(async (folder) => {
-    setShowCreateModal(false);
+  const handleCreateFolder = useCallback(async (folder, parentId) => {
+    const targetParentId = parentId ?? null;
+    setShowCreateModal(null);
     let finalFolder = folder;
 
     // Take a snapshot now if the folder is not live
-    if (!folder.live && folder.filterType !== "urls") {
+    if (
+      !folder.live &&
+      folder.filterType !== "urls" &&
+      folder.filterType !== "none"
+    ) {
       try {
         let docs = [];
         if (folder.filterType === "search") {
@@ -877,7 +950,7 @@ const FinderBrowser = ({ sources, sourceKeys }) => {
     }
 
     setCustomFolders((prev) => {
-      const next = [...prev, finalFolder];
+      const next = addFolderToTree(prev, targetParentId, finalFolder);
       saveCustomFolders(next);
       return next;
     });
@@ -887,7 +960,11 @@ const FinderBrowser = ({ sources, sourceKeys }) => {
     setShowEditModal(null);
     let finalFolder = folder;
 
-    if (!folder.live && folder.filterType !== "urls") {
+    if (
+      !folder.live &&
+      folder.filterType !== "urls" &&
+      folder.filterType !== "none"
+    ) {
       try {
         let docs = [];
         if (folder.filterType === "search") {
@@ -932,7 +1009,7 @@ const FinderBrowser = ({ sources, sourceKeys }) => {
     }
 
     setCustomFolders((prev) => {
-      const next = prev.map((f) => (f.id === finalFolder.id ? finalFolder : f));
+      const next = updateFolderInTree(prev, finalFolder);
       saveCustomFolders(next);
       return next;
     });
@@ -955,24 +1032,17 @@ const FinderBrowser = ({ sources, sourceKeys }) => {
 
   const handleDeleteFolder = useCallback((id) => {
     setCustomFolders((prev) => {
-      const next = prev.filter((f) => f.id !== id);
+      const next = removeFolderFromTree(prev, id);
       saveCustomFolders(next);
       return next;
     });
-    setColumnStack((prev) => {
-      if (
-        prev.some(
-          (col) =>
-            col.selectedIdx != null && col.items[col.selectedIdx]?.id === id,
-        )
-      ) {
-        setDocsColumn(null);
-        return prev.length > 0
-          ? [{ items: prev[0].items, selectedIdx: null }]
-          : prev;
-      }
-      return prev;
-    });
+    // Collapse to root column if the deleted folder (or a parent of it) was open
+    setDocsColumn(null);
+    setColumnStack((prev) =>
+      prev.length > 0
+        ? [{ ...prev[0], selectedIdx: null, parentFolderId: null }]
+        : prev,
+    );
   }, []);
 
   // Load documents for a selected item (source or custom folder)
@@ -986,9 +1056,14 @@ const FinderBrowser = ({ sources, sourceKeys }) => {
         setDocsColumn({ items: [], loading: false });
       }
     } else if (item.kind === "custom") {
+      const folder = item.folderData;
+      if (folder.filterType === "none") {
+        // Empty container folder — no docs to load
+        setDocsColumn(null);
+        return;
+      }
       setDocsColumn({ items: [], loading: true });
       try {
-        const folder = item.folderData;
         let docs = [];
         const useStoredUrls =
           folder.live === false || folder.filterType === "urls";
@@ -1071,16 +1146,46 @@ const FinderBrowser = ({ sources, sourceKeys }) => {
       const isDeselecting = columnStack[colIdx]?.selectedIdx === itemIdx;
       setFilterQuery("");
       setDocsColumn(null);
-      setColumnStack((prev) =>
+
+      if (isDeselecting) {
+        setColumnStack((prev) =>
+          prev
+            .slice(0, colIdx + 1)
+            .map((c, i) => (i === colIdx ? { ...c, selectedIdx: null } : c)),
+        );
+        return;
+      }
+
+      const base = (prev) =>
         prev
           .slice(0, colIdx + 1)
-          .map((c, i) =>
-            i === colIdx
-              ? { ...c, selectedIdx: isDeselecting ? null : itemIdx }
-              : c,
-          ),
-      );
-      if (!isDeselecting) loadDocs(item);
+          .map((c, i) => (i === colIdx ? { ...c, selectedIdx: itemIdx } : c));
+
+      if (item.kind === "custom") {
+        const children = item.folderData.children || [];
+        if (children.length > 0) {
+          // Push a sub-column for the folder's children
+          setColumnStack((prev) => [
+            ...base(prev),
+            {
+              items: children.map(folderToItem),
+              selectedIdx: null,
+              parentFolderId: item.id,
+            },
+          ]);
+          // Also load docs if this folder has its own filter
+          if (
+            item.folderData.filterType &&
+            item.folderData.filterType !== "none"
+          ) {
+            loadDocs(item);
+          }
+          return;
+        }
+      }
+
+      setColumnStack(base);
+      loadDocs(item);
     },
     [columnStack, loadDocs],
   );
@@ -1142,6 +1247,9 @@ const FinderBrowser = ({ sources, sourceKeys }) => {
             {filterItems(col.items).map((item) => {
               const origIdx = col.items.indexOf(item);
               const isSelected = col.selectedIdx === origIdx;
+              const hasChildren =
+                item.kind === "custom" &&
+                (item.folderData.children || []).length > 0;
               return (
                 <div
                   key={
@@ -1153,18 +1261,20 @@ const FinderBrowser = ({ sources, sourceKeys }) => {
                   <span className="finder-row-icon" style={{ fontSize: 13 }}>
                     {item.kind === "source"
                       ? getFinderSourceIcon(item.key)
-                      : "\uD83D\uDCC2"}
+                      : item.filterType === "search"
+                        ? "\uD83D\uDD0D"
+                        : item.filterType === "tag"
+                          ? "\uD83C\uDFF7\uFE0F"
+                          : item.filterType === "urls"
+                            ? "\uD83D\uDD17"
+                            : "\uD83D\uDCC1"}
                   </span>
                   <span className="finder-row-label">{item.label}</span>
                   {item.kind === "custom" && (
                     <>
-                      <span className="finder-row-meta">
-                        {item.filterType === "search"
-                          ? "\uD83D\uDD0D"
-                          : item.filterType === "tag"
-                            ? "\uD83C\uDFF7\uFE0F"
-                            : "\uD83D\uDD17"}
-                      </span>
+                      {hasChildren && (
+                        <span className="finder-row-chevron">›</span>
+                      )}
                       <button
                         className="finder-row-edit"
                         title="Edit folder"
@@ -1190,14 +1300,16 @@ const FinderBrowser = ({ sources, sourceKeys }) => {
                 </div>
               );
             })}
-            {/* "New Folder" button only in root column */}
-            {colIdx === 0 && (
+            {/* "New Folder" button — always shown, uses column's parentFolderId */}
+            {col.parentFolderId !== undefined && (
               <button
                 className="finder-add-row"
-                onClick={() => setShowCreateModal(true)}
+                onClick={() => setShowCreateModal(col.parentFolderId ?? "")}
               >
                 <span className="finder-add-row-icon">+</span>
-                <span className="finder-add-row-label">New Folder</span>
+                <span className="finder-add-row-label">
+                  {col.parentFolderId ? "New Subfolder" : "New Folder"}
+                </span>
               </button>
             )}
             <div
@@ -1247,11 +1359,16 @@ const FinderBrowser = ({ sources, sourceKeys }) => {
       </div>
 
       {/* Create folder modal */}
-      {showCreateModal && (
+      {showCreateModal !== null && (
         <CreateFolderModal
-          onClose={() => setShowCreateModal(false)}
-          onCreate={handleCreateFolder}
-          existingNames={customFolders.map((f) => f.name)}
+          onClose={() => setShowCreateModal(null)}
+          onCreate={(folder) =>
+            handleCreateFolder(folder, showCreateModal || null)
+          }
+          existingNames={getSiblingNames(
+            customFolders,
+            showCreateModal || null,
+          )}
         />
       )}
 
@@ -1261,9 +1378,10 @@ const FinderBrowser = ({ sources, sourceKeys }) => {
           onClose={() => setShowEditModal(null)}
           onCreate={handleEditFolder}
           initialFolder={showEditModal}
-          existingNames={customFolders
-            .filter((f) => f.id !== showEditModal.id)
-            .map((f) => f.name)}
+          existingNames={getSiblingNames(
+            removeFolderFromTree(customFolders, showEditModal.id),
+            findParentId(customFolders, showEditModal.id) ?? null,
+          )}
         />
       )}
     </div>
