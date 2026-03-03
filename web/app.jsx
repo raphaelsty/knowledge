@@ -809,7 +809,13 @@ const COL_DEFAULT_WIDTH = 220;
 const COL_MIN_WIDTH = 100;
 const COL_MAX_WIDTH = 480;
 
-const FinderBrowser = ({ sources, sourceKeys }) => {
+const FinderBrowser = ({
+  sources,
+  sourceKeys,
+  favorites,
+  finderFullscreen,
+  onToggleFullscreen,
+}) => {
   // columnStack[i] = { items: [...], selectedIdx: number|null, parentFolderId }
   const [columnStack, setColumnStack] = useState([]);
   // docsColumnStack[i] = { id, contextFolder, subfolders, items, loading, selectedSubfolderIdx }
@@ -874,6 +880,7 @@ const FinderBrowser = ({ sources, sourceKeys }) => {
   // Rebuild all columns when sources / custom folders change
   useEffect(() => {
     const rootItems = [
+      { kind: "favorites", label: "Favorites" },
       ...sources.map((src) => ({
         kind: "source",
         key: src.key,
@@ -911,6 +918,25 @@ const FinderBrowser = ({ sources, sourceKeys }) => {
       }),
     );
   }, [customFolders]);
+
+  // Silently refresh the favorites docs column whenever the favorites Set changes
+  useEffect(() => {
+    const favEntry = docsColumnStack.find((e) => e.kind === "favorites");
+    if (!favEntry) return;
+    const id = favEntry.id;
+    let cancelled = false;
+    fetchDocsData({ kind: "favorites" })
+      .then(({ items }) => {
+        if (cancelled) return;
+        setDocsColumnStack((prev) =>
+          prev.map((e) => (e.id === id ? { ...e, items } : e)),
+        );
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [favorites]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleCreateFolder = useCallback(async (folder, parentId) => {
     const targetParentId = parentId ?? null;
@@ -1082,6 +1108,31 @@ const FinderBrowser = ({ sources, sourceKeys }) => {
 
   // Fetch docs data for an item (pure async, no state mutation)
   const fetchDocsData = useCallback(async (item) => {
+    if (item.kind === "favorites") {
+      const urls = await fetch(`${DATA_API_URL}/api/favorites`).then((r) =>
+        r.json(),
+      );
+      if (!urls.length) return { subfolders: [], items: [] };
+      const placeholders = urls.map(() => "?").join(", ");
+      const data = await fetch(
+        `${API_BASE_URL}/indices/${INDEX_NAME}/metadata/get`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            condition: `url IN (${placeholders})`,
+            parameters: urls,
+          }),
+        },
+      ).then((r) => r.json());
+      // Preserve favorites order (most recent first from API)
+      const metaMap = new Map((data.metadata || []).map((m) => [m.url, m]));
+      const items = urls
+        .map((url) => metaMap.get(url))
+        .filter(Boolean)
+        .map(transformMeta);
+      return { subfolders: [], items };
+    }
     if (item.kind === "source") {
       const docs = await apiLatest(FINDER_DOC_LIMIT, new Set([item.key]));
       return { subfolders: [], items: docs };
@@ -1172,6 +1223,7 @@ const FinderBrowser = ({ sources, sourceKeys }) => {
       setDocsColumnStack([
         {
           id,
+          kind: item.kind,
           contextFolder,
           subfolders: [],
           items: [],
@@ -1303,6 +1355,38 @@ const FinderBrowser = ({ sources, sourceKeys }) => {
             onChange={(e) => setFilterQuery(e.target.value)}
           />
         </div>
+        <button
+          className={`finder-fullscreen-btn${finderFullscreen ? " active" : ""}`}
+          onClick={onToggleFullscreen}
+          title={finderFullscreen ? "Exit full screen" : "Full screen"}
+        >
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            {finderFullscreen ? (
+              <>
+                <polyline points="4,14 10,14 10,20" />
+                <polyline points="20,10 14,10 14,4" />
+                <line x1="10" y1="14" x2="3" y2="21" />
+                <line x1="21" y1="3" x2="14" y2="10" />
+              </>
+            ) : (
+              <>
+                <polyline points="15,3 21,3 21,9" />
+                <polyline points="9,21 3,21 3,15" />
+                <line x1="21" y1="3" x2="14" y2="10" />
+                <line x1="3" y1="21" x2="10" y2="14" />
+              </>
+            )}
+          </svg>
+        </button>
       </div>
 
       {/* Columns container */}
@@ -1323,21 +1407,27 @@ const FinderBrowser = ({ sources, sourceKeys }) => {
               return (
                 <div
                   key={
-                    item.kind === "source" ? `s-${item.key}` : `c-${item.id}`
+                    item.kind === "favorites"
+                      ? "favorites"
+                      : item.kind === "source"
+                        ? `s-${item.key}`
+                        : `c-${item.id}`
                   }
                   className={`finder-row${isSelected ? " finder-row--selected" : ""}`}
                   onClick={() => selectItem(colIdx, origIdx, item)}
                 >
                   <span className="finder-row-icon" style={{ fontSize: 13 }}>
-                    {item.kind === "source"
-                      ? getFinderSourceIcon(item.key)
-                      : item.filterType === "search"
-                        ? "\uD83D\uDD0D"
-                        : item.filterType === "tag"
-                          ? "\uD83C\uDFF7\uFE0F"
-                          : item.filterType === "urls"
-                            ? "\uD83D\uDD17"
-                            : "\uD83D\uDCC1"}
+                    {item.kind === "favorites"
+                      ? "\u2764\uFE0F"
+                      : item.kind === "source"
+                        ? getFinderSourceIcon(item.key)
+                        : item.filterType === "search"
+                          ? "\uD83D\uDD0D"
+                          : item.filterType === "tag"
+                            ? "\uD83C\uDFF7\uFE0F"
+                            : item.filterType === "urls"
+                              ? "\uD83D\uDD17"
+                              : "\uD83D\uDCC1"}
                   </span>
                   <span className="finder-row-label">{item.label}</span>
                   {item.kind === "custom" && (
@@ -1686,6 +1776,9 @@ const Search = () => {
   const [showFinder, setShowFinder] = useState(
     () => localStorage.getItem("finder-visible") !== "false",
   );
+  const [finderFullscreen, setFinderFullscreen] = useState(
+    () => localStorage.getItem("finder-fullscreen") === "true",
+  );
   const [displayedCount, setDisplayedCount] = useState(DISPLAY_COUNT);
 
   useEffect(() => {
@@ -1694,7 +1787,25 @@ const Search = () => {
     if (panel) panel.classList.toggle("finder-panel--hidden", !showFinder);
     if (searchbox) searchbox.classList.toggle("finder-expanded", !showFinder);
     localStorage.setItem("finder-visible", String(showFinder));
+    // Hiding the panel also exits fullscreen
+    if (!showFinder) setFinderFullscreen(false);
   }, [showFinder]);
+
+  useEffect(() => {
+    const panel = document.getElementById("folder-panel");
+    const searchbox = document.getElementById("searchbox");
+    const searchContainer = document.getElementById("search-container");
+    const toggle = document.querySelector(".finder-toggle");
+    panel?.classList.toggle("finder-panel--fullscreen", finderFullscreen);
+    searchbox?.classList.toggle("finder-fullscreen-active", finderFullscreen);
+    searchContainer?.classList.toggle(
+      "finder-fullscreen-active",
+      finderFullscreen,
+    );
+    toggle?.classList.toggle("finder-fullscreen-active", finderFullscreen);
+    if (finderFullscreen) setShowFinder(true);
+    localStorage.setItem("finder-fullscreen", String(finderFullscreen));
+  }, [finderFullscreen]);
 
   // --- Refs ---
   const searchTimerRef = useRef(null);
@@ -2860,6 +2971,9 @@ const Search = () => {
           <FinderBrowser
             sources={sources}
             sourceKeys={sources.map((s) => s.key)}
+            favorites={favorites}
+            finderFullscreen={finderFullscreen}
+            onToggleFullscreen={() => setFinderFullscreen((v) => !v)}
           />,
           folderPanel,
         )}
