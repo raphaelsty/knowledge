@@ -98990,5 +98990,485 @@
     {
         "head": "adamw",
         "tail": "pretrained"
+    },
+    {
+        "head": "pandas-dataframe",
+        "tail": "jupyter-notebook"
+    },
+    {
+        "head": "pandas-dataframe",
+        "tail": "hacktoberfest"
+    },
+    {
+        "head": "pandas-dataframe",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "pandas-dataframe",
+        "tail": "jupyter"
+    },
+    {
+        "head": "pandas-dataframe",
+        "tail": "profiling"
+    },
+    {
+        "head": "pandas-dataframe",
+        "tail": "data"
+    },
+    {
+        "head": "pandas-dataframe",
+        "tail": "code"
+    },
+    {
+        "head": "pandas",
+        "tail": "hacktoberfest"
+    },
+    {
+        "head": "pandas",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "pandas",
+        "tail": "profiling"
+    },
+    {
+        "head": "pandas",
+        "tail": "data"
+    },
+    {
+        "head": "pandas",
+        "tail": "code"
+    },
+    {
+        "head": "jupyter-notebook",
+        "tail": "hacktoberfest"
+    },
+    {
+        "head": "jupyter-notebook",
+        "tail": "big-data-analytics"
+    },
+    {
+        "head": "jupyter-notebook",
+        "tail": "exploratory-data-analysis"
+    },
+    {
+        "head": "jupyter-notebook",
+        "tail": "data-quality"
+    },
+    {
+        "head": "jupyter-notebook",
+        "tail": "pandas-profiling"
+    },
+    {
+        "head": "jupyter-notebook",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "jupyter-notebook",
+        "tail": "html-report"
+    },
+    {
+        "head": "jupyter-notebook",
+        "tail": "jupyter"
+    },
+    {
+        "head": "jupyter-notebook",
+        "tail": "data-profiling"
+    },
+    {
+        "head": "jupyter-notebook",
+        "tail": "data-exploration"
+    },
+    {
+        "head": "jupyter-notebook",
+        "tail": "exploration"
+    },
+    {
+        "head": "jupyter-notebook",
+        "tail": "statistics"
+    },
+    {
+        "head": "jupyter-notebook",
+        "tail": "eda"
+    },
+    {
+        "head": "jupyter-notebook",
+        "tail": "profiling"
+    },
+    {
+        "head": "jupyter-notebook",
+        "tail": "data"
+    },
+    {
+        "head": "jupyter-notebook",
+        "tail": "code"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "big-data-analytics"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "exploratory-data-analysis"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "data-quality"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "pandas-profiling"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "deep-learning"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "data-science"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "html-report"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "jupyter"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "data-profiling"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "data-analysis"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "data-exploration"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "exploration"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "statistics"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "eda"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "python"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "profiling"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "data"
+    },
+    {
+        "head": "hacktoberfest",
+        "tail": "code"
+    },
+    {
+        "head": "big-data-analytics",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "big-data-analytics",
+        "tail": "jupyter"
+    },
+    {
+        "head": "big-data-analytics",
+        "tail": "profiling"
+    },
+    {
+        "head": "big-data-analytics",
+        "tail": "data"
+    },
+    {
+        "head": "big-data-analytics",
+        "tail": "code"
+    },
+    {
+        "head": "exploratory-data-analysis",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "exploratory-data-analysis",
+        "tail": "jupyter"
+    },
+    {
+        "head": "exploratory-data-analysis",
+        "tail": "profiling"
+    },
+    {
+        "head": "exploratory-data-analysis",
+        "tail": "data"
+    },
+    {
+        "head": "exploratory-data-analysis",
+        "tail": "code"
+    },
+    {
+        "head": "data-quality",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "data-quality",
+        "tail": "jupyter"
+    },
+    {
+        "head": "data-quality",
+        "tail": "profiling"
+    },
+    {
+        "head": "data-quality",
+        "tail": "data"
+    },
+    {
+        "head": "data-quality",
+        "tail": "code"
+    },
+    {
+        "head": "pandas-profiling",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "pandas-profiling",
+        "tail": "jupyter"
+    },
+    {
+        "head": "pandas-profiling",
+        "tail": "profiling"
+    },
+    {
+        "head": "pandas-profiling",
+        "tail": "data"
+    },
+    {
+        "head": "pandas-profiling",
+        "tail": "code"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "jupyter"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "data"
+    },
+    {
+        "head": "deep-learning",
+        "tail": "code"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "data-science"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "html-report"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "jupyter"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "data-profiling"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "data-analysis"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "data-exploration"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "exploration"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "statistics"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "eda"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "python"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "profiling"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "data"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "code"
+    },
+    {
+        "head": "data-science",
+        "tail": "profiling"
+    },
+    {
+        "head": "data-science",
+        "tail": "data"
+    },
+    {
+        "head": "data-science",
+        "tail": "code"
+    },
+    {
+        "head": "html-report",
+        "tail": "jupyter"
+    },
+    {
+        "head": "html-report",
+        "tail": "profiling"
+    },
+    {
+        "head": "html-report",
+        "tail": "data"
+    },
+    {
+        "head": "html-report",
+        "tail": "code"
+    },
+    {
+        "head": "jupyter",
+        "tail": "data-profiling"
+    },
+    {
+        "head": "jupyter",
+        "tail": "data-analysis"
+    },
+    {
+        "head": "jupyter",
+        "tail": "data-exploration"
+    },
+    {
+        "head": "jupyter",
+        "tail": "statistics"
+    },
+    {
+        "head": "jupyter",
+        "tail": "eda"
+    },
+    {
+        "head": "jupyter",
+        "tail": "data"
+    },
+    {
+        "head": "jupyter",
+        "tail": "code"
+    },
+    {
+        "head": "data-profiling",
+        "tail": "profiling"
+    },
+    {
+        "head": "data-profiling",
+        "tail": "data"
+    },
+    {
+        "head": "data-profiling",
+        "tail": "code"
+    },
+    {
+        "head": "data-analysis",
+        "tail": "profiling"
+    },
+    {
+        "head": "data-analysis",
+        "tail": "data"
+    },
+    {
+        "head": "data-analysis",
+        "tail": "code"
+    },
+    {
+        "head": "data-exploration",
+        "tail": "profiling"
+    },
+    {
+        "head": "data-exploration",
+        "tail": "data"
+    },
+    {
+        "head": "data-exploration",
+        "tail": "code"
+    },
+    {
+        "head": "exploration",
+        "tail": "profiling"
+    },
+    {
+        "head": "exploration",
+        "tail": "data"
+    },
+    {
+        "head": "exploration",
+        "tail": "code"
+    },
+    {
+        "head": "statistics",
+        "tail": "profiling"
+    },
+    {
+        "head": "statistics",
+        "tail": "data"
+    },
+    {
+        "head": "statistics",
+        "tail": "code"
+    },
+    {
+        "head": "eda",
+        "tail": "profiling"
+    },
+    {
+        "head": "eda",
+        "tail": "data"
+    },
+    {
+        "head": "eda",
+        "tail": "code"
+    },
+    {
+        "head": "python",
+        "tail": "code"
+    },
+    {
+        "head": "profiling",
+        "tail": "data"
+    },
+    {
+        "head": "profiling",
+        "tail": "code"
+    },
+    {
+        "head": "data",
+        "tail": "code"
     }
 ]
