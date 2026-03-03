@@ -959,7 +959,9 @@ const FinderBrowser = ({
   // Rebuild all columns when sources / custom folders change
   useEffect(() => {
     const rootItems = [
-      { kind: "favorites", label: "Favorites" },
+      ...(favorites.size > 0
+        ? [{ kind: "favorites", label: "Favorites" }]
+        : []),
       ...sources.map((src) => ({
         kind: "source",
         key: src.key,
@@ -979,7 +981,7 @@ const FinderBrowser = ({
         };
       });
     });
-  }, [sources, customFolders]);
+  }, [sources, customFolders, favorites]);
 
   // Keep docs column subfolders in sync when customFolders tree changes
   // (e.g. after creating/deleting a subfolder inside a folder that's currently open)
