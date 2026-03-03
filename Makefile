@@ -7,7 +7,7 @@ export
 INDEX_DIR        = multi-vector-database
 MODEL            = models/answerai-colbert-small-v1-onnx
 PORT             = 8080
-WEB_PORT         = 3000
+WEB_PORT         = 3001
 API_PORT         = 3001
 DATABASE_URL    ?= postgresql://knowledge:knowledge@localhost:5433/knowledge
 KNOWLEDGE_API    = api

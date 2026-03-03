@@ -55,7 +55,6 @@ const referrerDomain = (() => {
 
 const eventBuffer = [];
 const clickedUrls = new Set();
-const browsedFolders = new Set();
 
 const flushEvents = (useBeacon = false) => {
   if (eventBuffer.length === 0) return;
@@ -254,573 +253,446 @@ const fetchSimilar = async (doc) => {
     .slice(0, SIMILAR_COUNT);
 };
 
-/**
- * Recursively filters the tree to only include paths that contain matching tags.
- * Annotates each node with _bestRank (min document rank in subtree) for sorting.
- * Returns null if no match found in this subtree.
- */
-const filterTree = (node, matchCounts, extraDocs, matchedUrls) => {
-  let filteredChildren = [];
-  let filteredTags = [];
-  let totalMatch = 0;
-  let bestRank = Infinity;
-
-  if (node.c) {
-    for (const child of node.c) {
-      const fc = filterTree(child, matchCounts, extraDocs, matchedUrls);
-      if (fc) {
-        filteredChildren.push(fc);
-        totalMatch += fc._matchCount || 0;
-        if (fc._bestRank < bestRank) bestRank = fc._bestRank;
-      }
-    }
-  }
-
-  if (node.t) {
-    for (const [tagName, tagCount, tagDocs] of node.t) {
-      if (matchCounts[tagName]) {
-        // Merge search result docs not already in tree tag
-        let mergedDocs = tagDocs;
-        const extra = extraDocs[tagName];
-        if (extra && extra.length > 0) {
-          const existing = new Set((tagDocs || []).map((d) => d.u));
-          const toAdd = extra.filter((d) => !existing.has(d.u));
-          if (toAdd.length > 0) {
-            mergedDocs = [...(tagDocs || []), ...toAdd];
-          }
-        }
-        // Compute best rank for this tag from its docs
-        let tagBestRank = Infinity;
-        for (const d of mergedDocs || []) {
-          const rank = matchedUrls.get(d.u);
-          if (rank !== undefined && rank < tagBestRank) tagBestRank = rank;
-        }
-        filteredTags.push([
-          tagName,
-          matchCounts[tagName],
-          mergedDocs,
-          tagBestRank,
-        ]);
-        totalMatch += matchCounts[tagName];
-        if (tagBestRank < bestRank) bestRank = tagBestRank;
-      }
-    }
-  }
-
-  if (filteredChildren.length === 0 && filteredTags.length === 0) return null;
-
-  return {
-    name: node.name,
-    n: node.n,
-    c: filteredChildren.length > 0 ? filteredChildren : undefined,
-    t: filteredTags.length > 0 ? filteredTags : undefined,
-    _matchCount: totalMatch,
-    _bestRank: bestRank,
-  };
-};
-
-/**
- * Deduplicates docs across the tree: each document appears under only one tag
- * (the highest-ranked one). Walks in sorted render order (sub-folders by _bestRank,
- * then tags by best rank) so docs land in the most relevant tag first.
- */
-const deduplicateTree = (nodes) => {
-  const seen = new Set();
-  const walk = (node) => {
-    // Process sub-folders first (render before tags), sorted by _bestRank
-    let children = node.c
-      ? [...node.c]
-          .sort((a, b) => (a._bestRank ?? Infinity) - (b._bestRank ?? Infinity))
-          .map(walk)
-          .filter(Boolean)
-      : [];
-    // Then tags sorted by best rank, dedup their docs
-    let tags = node.t
-      ? [...node.t]
-          .sort((a, b) => (a[3] ?? Infinity) - (b[3] ?? Infinity))
-          .map(([tagName, tagCount, tagDocs, tagBestRank]) => {
-            const uniqueDocs = (tagDocs || []).filter((d) => {
-              if (seen.has(d.u)) return false;
-              seen.add(d.u);
-              return true;
-            });
-            return [tagName, uniqueDocs.length, uniqueDocs, tagBestRank];
-          })
-          .filter(([, count]) => count > 0)
-      : [];
-    if (children.length === 0 && tags.length === 0) return null;
-    return {
-      ...node,
-      c: children.length > 0 ? children : undefined,
-      t: tags.length > 0 ? tags : undefined,
-    };
-  };
-  return [...nodes]
-    .sort((a, b) => (a._bestRank ?? Infinity) - (b._bestRank ?? Infinity))
-    .map(walk)
-    .filter(Boolean);
-};
-
-/**
- * Returns a small emoji logo based on URL domain.
- */
-const getDocLogo = (url) => {
-  if (!url) return "\uD83D\uDCC4";
-  if (url.includes("github.com")) return "\uD83D\uDCBB";
-  if (url.includes("twitter.com") || url.includes("x.com"))
-    return "\uD835\uDD4F";
-  if (url.includes("arxiv.org")) return "\uD83D\uDCDD";
-  if (url.includes("huggingface.co")) return "\uD83E\uDD17";
-  return "\uD83D\uDD17";
-};
-
-/**
- * Recursive tree node component for folders and tags.
- */
-const TAG_DOC_LIMIT = 10;
-
-/**
- * Infer source type from a document (compact tree format or full format).
- * Checks URL hostname, title, tags, and an optional parentTag (the tree tag
- * name the doc is grouped under) to match against known source keys.
- */
-const getSourceFromDoc = (doc, sourceKeys, parentTag) => {
-  const url = doc.u || doc.url || "";
-  const title = (doc.t || doc.title || "").toLowerCase();
+// --- Custom Folders (localStorage) ---
+const CUSTOM_FOLDERS_KEY = "finder-custom-folders";
+const loadCustomFolders = () => {
   try {
-    const hostname = new URL(url).hostname.replace(/^www\./, "");
-    for (const key of sourceKeys || []) {
-      if (key === hostname || hostname.endsWith("." + key)) return key;
-      if (
-        key === "twitter.com" &&
-        (hostname === "x.com" || hostname.endsWith(".x.com"))
-      )
-        return key;
-    }
-  } catch {}
-  // Check tags if available (full doc format)
-  const allTags = (doc.tags || []).concat(doc["extra-tags"] || []);
-  const tagsLower = allTags.map((t) => (t || "").toLowerCase());
-  for (const key of sourceKeys || []) {
-    const prefix = key.split(".")[0];
-    if (tagsLower.some((t) => t.includes(prefix))) return key;
-    if (title.includes(prefix)) return key;
+    return JSON.parse(localStorage.getItem(CUSTOM_FOLDERS_KEY)) || [];
+  } catch {
+    return [];
   }
-  // Check parent tag name from tree context (compact docs lack tags)
-  if (parentTag) {
-    const ptLower = parentTag.toLowerCase();
-    for (const key of sourceKeys || []) {
-      const prefix = key.split(".")[0];
-      if (ptLower.includes(prefix)) return key;
-    }
-  }
-  return "other";
 };
+const saveCustomFolders = (folders) => {
+  localStorage.setItem(CUSTOM_FOLDERS_KEY, JSON.stringify(folders));
+};
+
+const FINDER_DOC_LIMIT = 50;
+
+const SOURCE_ICONS = {
+  "github.com": "\uD83D\uDCBB",
+  "twitter.com": "\uD835\uDD4F",
+  "arxiv.org": "\uD83D\uDCDD",
+  "huggingface.co": "\uD83E\uDD17",
+  hackernews: "\uD83D\uDCF0",
+  "superuser.com": "\uD83D\uDEE0\uFE0F",
+  "ieeexplore.ieee.org": "\uD83C\uDF93",
+};
+const getFinderSourceIcon = (key) => SOURCE_ICONS[key] || "\uD83D\uDCC1";
 
 /**
- * Sorts docs in tiers, using ColBERT reranked position for matched docs:
- * 1. Matched + same source as filter (by rerank position)
- * 2. Matched + other source (by rerank position)
- * 3. Unmatched + same source (by date desc)
- * 4. Unmatched + other source (by date desc)
- * When no sourceFilter (or "all"), tiers collapse to: matched (by rank) first, then unmatched (by date).
+ * CreateFolderModal — overlay for creating a custom folder.
  */
-const sortTagDocs = (
-  docs,
-  matchedUrls,
-  sourceFilter,
-  sourceKeys,
-  sortByDate,
-  parentTag,
-) => {
-  return [...docs].sort((a, b) => {
-    const aMatched = matchedUrls.has(a.u);
-    const bMatched = matchedUrls.has(b.u);
+const CreateFolderModal = ({ onClose, onCreate }) => {
+  const [name, setName] = useState("");
+  const [filterType, setFilterType] = useState("search");
+  const [value, setValue] = useState("");
 
-    if (sortByDate) {
-      // Matched first, then by date
-      if (aMatched !== bMatched) return aMatched ? -1 : 1;
-      return (b.d || "").localeCompare(a.d || "");
-    }
-
-    const hasFilter = sourceFilter instanceof Set && sourceFilter.size > 0;
-    const aSameSource =
-      hasFilter && sourceFilter.has(getSourceFromDoc(a, sourceKeys, parentTag));
-    const bSameSource =
-      hasFilter && sourceFilter.has(getSourceFromDoc(b, sourceKeys, parentTag));
-
-    // Tier: matched+sameSource=0, matched+other=1, unmatched+sameSource=2, unmatched+other=3
-    const aTier = (aMatched ? 0 : 2) + (aSameSource ? 0 : 1);
-    const bTier = (bMatched ? 0 : 2) + (bSameSource ? 0 : 1);
-    if (aTier !== bTier) return aTier - bTier;
-    // Within matched tiers, sort by ColBERT rerank position
-    if (aMatched && bMatched)
-      return matchedUrls.get(a.u) - matchedUrls.get(b.u);
-    return (b.d || "").localeCompare(a.d || "");
-  });
-};
-
-/**
- * Recursive tree node component for folders and tags.
- */
-const countMatchedDocs = (node, matchedUrls, sourceFilter, sourceKeys) => {
-  let n = 0;
-  for (const [tagName, , docs] of node.t || []) {
-    for (const d of docs || []) {
-      if (!matchedUrls.has(d.u)) continue;
-      if (
-        sourceFilter.size > 0 &&
-        !sourceFilter.has(getSourceFromDoc(d, sourceKeys, tagName))
-      )
-        continue;
-      n++;
-    }
-  }
-  for (const ch of node.c || []) {
-    n += countMatchedDocs(ch, matchedUrls, sourceFilter, sourceKeys);
-  }
-  return n;
-};
-
-const TreeNode = ({
-  node,
-  path,
-  expanded,
-  onToggle,
-  onClickTag,
-  isFiltered,
-  expandedTags,
-  onToggleTag,
-  matchedUrls,
-  showAllTags,
-  onToggleShowAll,
-  sourceFilter,
-  sourceKeys,
-  sortByDate,
-}) => {
-  const hasChildren =
-    (node.c && node.c.length > 0) || (node.t && node.t.length > 0);
-  const isExpanded = expanded.has(path);
-  const displayCount = countMatchedDocs(
-    node,
-    matchedUrls,
-    sourceFilter,
-    sourceKeys,
-  );
-
-  if (displayCount === 0) return null;
+  const handleCreate = () => {
+    if (!name.trim() || !value.trim()) return;
+    const folder = {
+      id: crypto.randomUUID(),
+      name: name.trim(),
+      filterType,
+      searchQuery: filterType === "search" ? value.trim() : "",
+      tagFilter: filterType === "tag" ? value.trim() : "",
+      urls:
+        filterType === "urls"
+          ? value
+              .trim()
+              .split("\n")
+              .map((u) => u.trim())
+              .filter(Boolean)
+          : [],
+      createdAt: new Date().toISOString(),
+    };
+    onCreate(folder);
+  };
 
   return (
-    <div className="tree-node">
-      <div
-        className={`tree-header ${isFiltered && node._matchCount ? "matching" : ""}`}
-        onClick={() => hasChildren && onToggle(path)}
-      >
-        <span className="tree-chevron">
-          {hasChildren ? (isExpanded ? "\u25BE" : "\u25B8") : "\u2003"}
-        </span>
-        <span className="tree-icon">{"\uD83D\uDCC1"}</span>
-        <span
-          className="tree-name"
-          onClick={(e) => {
-            e.stopPropagation();
-            if (!browsedFolders.has(node.name)) {
-              browsedFolders.add(node.name);
-              trackEvent("folder_browse", { folder_name: node.name });
-            }
-            if (hasChildren) onToggle(path);
-          }}
-        >
-          {node.name}
-        </span>
-        <span className="tree-count">{displayCount}</span>
-      </div>
-      {isExpanded && hasChildren && (
-        <div className="tree-children">
-          {(node.c || []).map((child) => (
-            <TreeNode
-              key={child.name}
-              node={child}
-              path={`${path}/${child.name}`}
-              expanded={expanded}
-              onToggle={onToggle}
-              onClickTag={onClickTag}
-              isFiltered={isFiltered}
-              expandedTags={expandedTags}
-              onToggleTag={onToggleTag}
-              matchedUrls={matchedUrls}
-              showAllTags={showAllTags}
-              onToggleShowAll={onToggleShowAll}
-              sourceFilter={sourceFilter}
-              sourceKeys={sourceKeys}
-              sortByDate={sortByDate}
+    <div className="finder-modal-overlay" onClick={onClose}>
+      <div className="finder-modal" onClick={(e) => e.stopPropagation()}>
+        <div className="finder-modal-header">New Folder</div>
+        <div className="finder-modal-body">
+          <div>
+            <div className="finder-modal-label">Name</div>
+            <input
+              className="finder-modal-input"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Folder name"
+              autoFocus
             />
-          ))}
-          {(node.t || []).map(([tagName, tagCount, tagDocs]) => {
-            const tagPath = `${path}/#${tagName}`;
-            const isTagExpanded = expandedTags.has(tagPath);
-            // All docs for this tag, filtered by source if active
-            let allTagDocs = tagDocs || [];
-            if (sourceFilter.size > 0) {
-              allTagDocs = allTagDocs.filter((d) =>
-                sourceFilter.has(getSourceFromDoc(d, sourceKeys, tagName)),
-              );
-            }
-            // Only show tag if at least one doc matches the search
-            const hasMatchedDocs = allTagDocs.some((d) => matchedUrls.has(d.u));
-            if (!hasMatchedDocs) return null;
-            const sorted = sortTagDocs(
-              allTagDocs,
-              matchedUrls,
-              sourceFilter,
-              sourceKeys,
-              sortByDate,
-              tagName,
-            );
-            const showAll = showAllTags.has(tagPath);
-            const visible = showAll ? sorted : sorted.slice(0, TAG_DOC_LIMIT);
-            const hasMore = sorted.length > TAG_DOC_LIMIT;
-            return (
-              <div key={tagName} className="tree-tag-group">
-                <div
-                  className={`tree-leaf ${isFiltered ? "matching" : ""}`}
-                  onClick={() => onToggleTag(tagPath)}
+          </div>
+          <div>
+            <div className="finder-modal-label">Type</div>
+            <div className="finder-modal-tabs">
+              {[
+                ["search", "Search Query"],
+                ["tag", "Tag Filter"],
+                ["urls", "Manual URLs"],
+              ].map(([t, l]) => (
+                <button
+                  key={t}
+                  className={`finder-modal-tab ${filterType === t ? "active" : ""}`}
+                  onClick={() => {
+                    setFilterType(t);
+                    setValue("");
+                  }}
                 >
-                  <span className="tree-chevron">
-                    {isTagExpanded ? "\u25BE" : "\u25B8"}
-                  </span>
-                  <span className="tree-icon">{"\uD83C\uDFF7\uFE0F"}</span>
-                  <span
-                    className="tree-name"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      onToggleTag(tagPath);
-                    }}
-                  >
-                    {tagName}
-                  </span>
-                  <span className="tree-count">{allTagDocs.length}</span>
-                </div>
-                {isTagExpanded && (
-                  <div className="tree-docs">
-                    {visible.map((doc, i) => (
-                      <a
-                        key={doc.u || i}
-                        className={`tree-doc ${matchedUrls.has(doc.u) ? "tree-doc-matched" : ""}`}
-                        href={doc.u}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={() => {
-                          if (doc.u && !clickedUrls.has(doc.u)) {
-                            clickedUrls.add(doc.u);
-                            trackEvent("click", {
-                              doc_url: doc.u,
-                              position: i,
-                              score: null,
-                              query: "",
-                            });
-                          }
-                        }}
-                      >
-                        <span className="tree-doc-logo">
-                          {getDocLogo(doc.u)}
-                        </span>
-                        <span className="tree-doc-title">{doc.t}</span>
-                        <span className="tree-doc-date">{doc.d}</span>
-                      </a>
-                    ))}
-                    {hasMore && (
-                      <button
-                        className="tree-doc-show-more"
-                        onClick={() => onToggleShowAll(tagPath)}
-                      >
-                        {showAll
-                          ? "Show less"
-                          : `Show all ${sorted.length} documents`}
-                      </button>
-                    )}
-                  </div>
-                )}
-              </div>
-            );
-          })}
+                  {l}
+                </button>
+              ))}
+            </div>
+          </div>
+          <div>
+            <div className="finder-modal-label">
+              {filterType === "search"
+                ? "Query"
+                : filterType === "tag"
+                  ? "Tag"
+                  : "URLs (one per line)"}
+            </div>
+            {filterType === "urls" ? (
+              <textarea
+                className="finder-modal-input"
+                style={{ height: 60, resize: "vertical", padding: "8px 12px" }}
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+                placeholder="https://..."
+              />
+            ) : (
+              <input
+                className="finder-modal-input"
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+                placeholder={
+                  filterType === "search"
+                    ? "e.g. machine learning"
+                    : "e.g. deep-learning"
+                }
+              />
+            )}
+          </div>
         </div>
-      )}
+        <div className="finder-modal-footer">
+          <button
+            className="finder-modal-btn finder-modal-btn--cancel"
+            onClick={onClose}
+          >
+            Cancel
+          </button>
+          <button
+            className="finder-modal-btn finder-modal-btn--save"
+            disabled={!name.trim() || !value.trim()}
+            onClick={handleCreate}
+          >
+            Create
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
 
 /**
- * FolderTree component: renders the full or filtered tree.
+ * FinderBrowser — Apple Finder columns-view browser for the right panel.
+ * Column 0: folder tree root + sources + custom folders
+ * Column 1+: sub-categories / tags of the selected item
+ * Docs column: documents in the selected tag / source / custom folder
  */
-const FolderTree = ({
-  tree,
-  documents,
-  rankedDocs,
-  query,
-  onClickTag,
-  sourceFilter,
-  sourceKeys,
-  sortByDate,
-}) => {
-  const [expandedTags, setExpandedTags] = useState(new Set());
-  const [showAllTags, setShowAllTags] = useState(new Set());
-  const [collapsedFolders, setCollapsedFolders] = useState(new Set());
+const FinderBrowser = ({ sources, sourceKeys }) => {
+  // columnStack[i] = { items: [...], selectedIdx: number|null }
+  const [columnStack, setColumnStack] = useState([]);
+  // docsColumn = null | { items: [...], loading: bool }
+  const [docsColumn, setDocsColumn] = useState(null);
+  const [filterQuery, setFilterQuery] = useState("");
+  const [customFolders, setCustomFolders] = useState(loadCustomFolders);
+  const [showCreateModal, setShowCreateModal] = useState(false);
+  const columnsRef = useRef(null);
 
-  const handleToggleTag = useCallback((tagPath) => {
-    setExpandedTags((prev) => {
-      const next = new Set(prev);
-      if (next.has(tagPath)) {
-        next.delete(tagPath);
-      } else {
-        next.add(tagPath);
-      }
+  // Rebuild root column when sources / custom folders change
+  useEffect(() => {
+    const rootItems = [
+      ...sources.map((src) => ({
+        kind: "source",
+        key: src.key,
+        label: src.label,
+      })),
+      ...customFolders.map((f) => ({
+        kind: "custom",
+        id: f.id,
+        label: f.name,
+        filterType: f.filterType,
+        folderData: f,
+      })),
+    ];
+    setColumnStack((prev) =>
+      prev.length === 0
+        ? [{ items: rootItems, selectedIdx: null }]
+        : [{ ...prev[0], items: rootItems }, ...prev.slice(1)],
+    );
+  }, [sources, customFolders]);
+
+  const handleCreateFolder = useCallback((folder) => {
+    setCustomFolders((prev) => {
+      const next = [...prev, folder];
+      saveCustomFolders(next);
       return next;
+    });
+    setShowCreateModal(false);
+  }, []);
+
+  const handleDeleteFolder = useCallback((id) => {
+    setCustomFolders((prev) => {
+      const next = prev.filter((f) => f.id !== id);
+      saveCustomFolders(next);
+      return next;
+    });
+    setColumnStack((prev) => {
+      if (
+        prev.some(
+          (col) =>
+            col.selectedIdx != null && col.items[col.selectedIdx]?.id === id,
+        )
+      ) {
+        setDocsColumn(null);
+        return prev.length > 0
+          ? [{ items: prev[0].items, selectedIdx: null }]
+          : prev;
+      }
+      return prev;
     });
   }, []);
 
-  const handleToggleShowAll = useCallback((tagPath) => {
-    setShowAllTags((prev) => {
-      const next = new Set(prev);
-      if (next.has(tagPath)) {
-        next.delete(tagPath);
-      } else {
-        next.add(tagPath);
+  // Load documents for a selected item (source or custom folder)
+  const loadDocs = useCallback(async (item) => {
+    if (item.kind === "source") {
+      setDocsColumn({ items: [], loading: true });
+      try {
+        const docs = await apiLatest(FINDER_DOC_LIMIT, new Set([item.key]));
+        setDocsColumn({ items: docs, loading: false });
+      } catch {
+        setDocsColumn({ items: [], loading: false });
       }
-      return next;
-    });
-  }, []);
-
-  // Map of matched document URLs → rank position for relevancy sorting.
-  // Built from rankedDocs (the same slice shown in the main view) so that
-  // folder ordering exactly mirrors the main view, including after ColBERT reranking.
-  const matchedUrls = useMemo(() => {
-    const urls = new Map();
-    const source = rankedDocs && rankedDocs.length > 0 ? rankedDocs : documents;
-    for (let i = 0; i < source.length; i++) {
-      if (source[i].url) urls.set(source[i].url, i);
-    }
-    return urls;
-  }, [rankedDocs, documents]);
-
-  // Build match counts from search result tags
-  const matchCounts = useMemo(() => {
-    if (!query.trim() || !documents.length) return {};
-    const counts = {};
-    for (const doc of documents) {
-      const allTags = (doc.tags || []).concat(doc["extra-tags"] || []);
-      for (const tag of allTags) {
-        if (tag) counts[tag] = (counts[tag] || 0) + 1;
-      }
-    }
-    return counts;
-  }, [documents, query]);
-
-  const hasMatches =
-    query.trim().length > 0 && Object.keys(matchCounts).length > 0;
-
-  // Build tag -> compact docs from search results for injection into tree
-  const extraDocs = useMemo(() => {
-    if (!hasMatches) return {};
-    const byTag = {};
-    for (const doc of documents) {
-      const compact = {
-        u: doc.url,
-        t: doc.title || "",
-        d: doc.date || "",
-        tags: (doc.tags || []).concat(doc["extra-tags"] || []),
-      };
-      const allTags = (doc.tags || []).concat(doc["extra-tags"] || []);
-      for (const tag of allTags) {
-        if (tag && matchCounts[tag]) {
-          if (!byTag[tag]) byTag[tag] = [];
-          byTag[tag].push(compact);
+    } else if (item.kind === "custom") {
+      setDocsColumn({ items: [], loading: true });
+      try {
+        const folder = item.folderData;
+        let docs = [];
+        if (folder.filterType === "search") {
+          docs = await apiSearch(folder.searchQuery, false, null);
+        } else if (folder.filterType === "tag") {
+          const resp = await fetch(
+            `${API_BASE_URL}/indices/${INDEX_NAME}/metadata/get`,
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                condition: "tags LIKE ? OR extra_tags LIKE ?",
+                parameters: [`%${folder.tagFilter}%`, `%${folder.tagFilter}%`],
+              }),
+            },
+          );
+          const data = await resp.json();
+          docs = (data.metadata || []).map(transformMeta);
+          docs.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+        } else if (folder.filterType === "urls" && folder.urls.length > 0) {
+          const placeholders = folder.urls.map(() => "?").join(", ");
+          const resp = await fetch(
+            `${API_BASE_URL}/indices/${INDEX_NAME}/metadata/get`,
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                condition: `url IN (${placeholders})`,
+                parameters: folder.urls,
+              }),
+            },
+          );
+          const data = await resp.json();
+          docs = (data.metadata || []).map(transformMeta);
         }
+        setDocsColumn({
+          items: docs.slice(0, FINDER_DOC_LIMIT),
+          loading: false,
+        });
+      } catch {
+        setDocsColumn({ items: [], loading: false });
       }
     }
-    return byTag;
-  }, [documents, matchCounts, hasMatches]);
-
-  // Filter tree, deduplicate docs (one tag per doc), sort by best rank
-  const children = useMemo(() => {
-    if (!tree || !hasMatches) return [];
-    const filtered = filterTree(tree, matchCounts, extraDocs, matchedUrls);
-    if (!filtered || !filtered.c) return [];
-    return deduplicateTree(filtered.c);
-  }, [tree, hasMatches, matchCounts, extraDocs, matchedUrls]);
-
-  const handleToggleFolder = useCallback((path) => {
-    setCollapsedFolders((prev) => {
-      const next = new Set(prev);
-      if (next.has(path)) {
-        next.delete(path);
-      } else {
-        next.add(path);
-      }
-      return next;
-    });
   }, []);
 
-  // Auto-expand all folder paths and tag paths
-  const { allFilteredPaths, autoExpandedTags } = useMemo(() => {
-    const paths = new Set();
-    const tagPaths = new Set();
-    const walk = (node, path) => {
-      paths.add(path);
-      if (node.t) {
-        for (const [tagName] of node.t) {
-          tagPaths.add(`${path}/#${tagName}`);
-        }
-      }
-      if (node.c) {
-        for (const child of node.c) walk(child, `${path}/${child.name}`);
-      }
-    };
-    for (const child of children) walk(child, `root/${child.name}`);
-    return { allFilteredPaths: paths, autoExpandedTags: tagPaths };
-  }, [children]);
+  // Handle item selection: mark selected, truncate deeper columns, load docs.
+  // Clicking an already-selected item deselects it and closes the docs column.
+  const selectItem = useCallback(
+    (colIdx, itemIdx, item) => {
+      const isDeselecting = columnStack[colIdx]?.selectedIdx === itemIdx;
+      setFilterQuery("");
+      setDocsColumn(null);
+      setColumnStack((prev) =>
+        prev
+          .slice(0, colIdx + 1)
+          .map((c, i) =>
+            i === colIdx
+              ? { ...c, selectedIdx: isDeselecting ? null : itemIdx }
+              : c,
+          ),
+      );
+      if (!isDeselecting) loadDocs(item);
+    },
+    [columnStack, loadDocs],
+  );
 
-  // Effective expanded folders: auto-expanded minus manually collapsed
-  const effectiveExpandedFolders = useMemo(() => {
-    const result = new Set(allFilteredPaths);
-    for (const p of collapsedFolders) result.delete(p);
-    return result;
-  }, [allFilteredPaths, collapsedFolders]);
+  // Scroll to reveal the rightmost column when navigation changes
+  useEffect(() => {
+    if (columnsRef.current) {
+      columnsRef.current.scrollLeft = columnsRef.current.scrollWidth;
+    }
+  }, [columnStack.length, docsColumn]);
 
-  // Effective expanded tags: auto-expanded minus manually collapsed
-  const effectiveExpandedTags = useMemo(() => {
-    const result = new Set(autoExpandedTags);
-    for (const p of expandedTags) result.delete(p);
-    return result;
-  }, [autoExpandedTags, expandedTags]);
-
-  if (children.length === 0) return null;
+  const fq = filterQuery.toLowerCase();
+  const filterItems = (items) =>
+    fq
+      ? items.filter((item) => (item.label || "").toLowerCase().includes(fq))
+      : items;
+  const filterDocs = (docs) =>
+    fq ? docs.filter((d) => (d.title || "").toLowerCase().includes(fq)) : docs;
 
   return (
-    <div className="folder-tree">
-      <div className="folder-tree-header">
-        <span className="folder-tree-title">Matching Folders</span>
-        <span className="folder-tree-count">{children.length} folders</span>
+    <div className="finder">
+      {/* Toolbar: filter input */}
+      <div className="finder-toolbar">
+        <div className="finder-search" style={{ flex: 1, width: "auto" }}>
+          <span className="finder-search-icon">
+            <svg
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+          </span>
+          <input
+            className="finder-search-input"
+            type="text"
+            placeholder="Filter..."
+            value={filterQuery}
+            onChange={(e) => setFilterQuery(e.target.value)}
+          />
+        </div>
       </div>
-      {children.map((child) => (
-        <TreeNode
-          key={child.name}
-          node={child}
-          path={`root/${child.name}`}
-          expanded={effectiveExpandedFolders}
-          onToggle={handleToggleFolder}
-          onClickTag={onClickTag}
-          isFiltered={true}
-          expandedTags={effectiveExpandedTags}
-          onToggleTag={handleToggleTag}
-          matchedUrls={matchedUrls}
-          showAllTags={showAllTags}
-          onToggleShowAll={handleToggleShowAll}
-          sourceFilter={sourceFilter}
-          sourceKeys={sourceKeys}
-          sortByDate={sortByDate}
+
+      {/* Columns container */}
+      <div className="finder-columns" ref={columnsRef}>
+        {/* Navigable columns */}
+        {columnStack.map((col, colIdx) => (
+          <div key={colIdx} className="finder-column">
+            {filterItems(col.items).map((item) => {
+              const origIdx = col.items.indexOf(item);
+              const isSelected = col.selectedIdx === origIdx;
+              return (
+                <div
+                  key={
+                    item.kind === "source" ? `s-${item.key}` : `c-${item.id}`
+                  }
+                  className={`finder-row${isSelected ? " finder-row--selected" : ""}`}
+                  onClick={() => selectItem(colIdx, origIdx, item)}
+                >
+                  <span className="finder-row-icon" style={{ fontSize: 13 }}>
+                    {item.kind === "source"
+                      ? getFinderSourceIcon(item.key)
+                      : "\uD83D\uDCC2"}
+                  </span>
+                  <span className="finder-row-label">{item.label}</span>
+                  {item.kind === "custom" && (
+                    <>
+                      <span className="finder-row-meta">
+                        {item.filterType === "search"
+                          ? "\uD83D\uDD0D"
+                          : item.filterType === "tag"
+                            ? "\uD83C\uDFF7\uFE0F"
+                            : "\uD83D\uDD17"}
+                      </span>
+                      <button
+                        className="finder-row-delete"
+                        title="Delete folder"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleDeleteFolder(item.id);
+                        }}
+                      >
+                        {"\u00D7"}
+                      </button>
+                    </>
+                  )}
+                </div>
+              );
+            })}
+            {/* "New Folder" button only in root column */}
+            {colIdx === 0 && (
+              <button
+                className="finder-add-row"
+                onClick={() => setShowCreateModal(true)}
+              >
+                <span className="finder-add-row-icon">+</span>
+                <span className="finder-add-row-label">New Folder</span>
+              </button>
+            )}
+          </div>
+        ))}
+
+        {/* Documents column */}
+        {docsColumn && (
+          <div className="finder-column finder-column--docs">
+            {docsColumn.loading ? (
+              <div className="finder-loading">
+                <span className="finder-loading-dot"></span>
+                Loading...
+              </div>
+            ) : filterDocs(docsColumn.items).length === 0 ? (
+              <div className="finder-empty">No documents</div>
+            ) : (
+              filterDocs(docsColumn.items).map((doc, i) => (
+                <a
+                  key={doc.url || i}
+                  className="finder-row finder-row--doc"
+                  href={doc.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="finder-row-icon" style={{ fontSize: 13 }}>
+                    {doc.url && doc.url.includes("github.com")
+                      ? "\uD83D\uDCBB"
+                      : doc.url &&
+                          (doc.url.includes("twitter.com") ||
+                            doc.url.includes("x.com"))
+                        ? "\uD835\uDD4F"
+                        : doc.url && doc.url.includes("arxiv.org")
+                          ? "\uD83D\uDCDD"
+                          : "\uD83D\uDCC4"}
+                  </span>
+                  <span className="finder-row-label">{doc.title}</span>
+                  <span className="finder-row-meta">{doc.date}</span>
+                </a>
+              ))
+            )}
+          </div>
+        )}
+      </div>
+
+      {/* Create folder modal */}
+      {showCreateModal && (
+        <CreateFolderModal
+          onClose={() => setShowCreateModal(false)}
+          onCreate={handleCreateFolder}
         />
-      ))}
+      )}
     </div>
   );
 };
@@ -960,7 +832,6 @@ const Search = () => {
   const [isSortedByDate, setIsSortedByDate] = useState(false);
   const [resultsReranked, setResultsReranked] = useState(false);
   const [sourceFilter, setSourceFilter] = useState(new Set());
-  const [tree, setTree] = useState(null);
   const [sources, setSources] = useState([]);
   const [favorites, setFavorites] = useState(new Set());
   const [showFavorites, setShowFavorites] = useState(false);
@@ -970,6 +841,17 @@ const Search = () => {
   const [pipelineData, setPipelineData] = useState(null);
   const [pipelineOpen, setPipelineOpen] = useState(false);
   const [similarMap, setSimilarMap] = useState(new Map());
+  const [showFinder, setShowFinder] = useState(
+    () => localStorage.getItem("finder-visible") !== "false",
+  );
+
+  useEffect(() => {
+    const panel = document.getElementById("folder-panel");
+    const searchbox = document.getElementById("searchbox");
+    if (panel) panel.classList.toggle("finder-panel--hidden", !showFinder);
+    if (searchbox) searchbox.classList.toggle("finder-expanded", !showFinder);
+    localStorage.setItem("finder-visible", String(showFinder));
+  }, [showFinder]);
 
   // --- Refs ---
   const searchTimerRef = useRef(null);
@@ -1068,18 +950,6 @@ const Search = () => {
    * Load folder tree on mount.
    */
   useEffect(() => {
-    fetch(`${DATA_API_URL}/api/folder_tree`)
-      .then((res) => res.json())
-      .then((data) => setTree(data))
-      .catch(() => {
-        // Fallback to static JSON files if data API is unavailable
-        fetch("data/folder_tree.json")
-          .then((res) => res.json())
-          .then((data) => setTree(data))
-          .catch((error) =>
-            console.error("[APP] Failed to load folder tree:", error),
-          );
-      });
     fetch(`${DATA_API_URL}/api/sources`)
       .then((res) => res.json())
       .then((data) => setSources(data))
@@ -1541,7 +1411,10 @@ const Search = () => {
 
   return (
     <React.Fragment>
-      <div id="search-container">
+      <div
+        id="search-container"
+        className={!showFinder ? "finder-expanded" : ""}
+      >
         <input
           id="search"
           type="textarea"
@@ -1555,6 +1428,31 @@ const Search = () => {
           title={modelStatus}
         ></span>
       </div>
+
+      {!isMobile && (
+        <button
+          className={`finder-toggle${showFinder ? "" : " finder-toggle--closed"}`}
+          onClick={() => setShowFinder((v) => !v)}
+          title={showFinder ? "Hide sidebar" : "Show sidebar"}
+        >
+          <svg
+            width="8"
+            height="14"
+            viewBox="0 0 8 14"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            {showFinder ? (
+              <polyline points="4,2 8,7 4,12" />
+            ) : (
+              <polyline points="6,2 2,7 6,12" />
+            )}
+          </svg>
+        </button>
+      )}
 
       <div id="controls-row">
         <div id="source-filter">
@@ -1990,18 +1888,10 @@ const Search = () => {
                 onClose={() => setPipelineOpen(false)}
               />
             )}
-            <div className="folder-panel-content">
-              <FolderTree
-                tree={tree}
-                documents={documents}
-                rankedDocs={displayedDocs}
-                query={query}
-                onClickTag={handleClickTag}
-                sourceFilter={sourceFilter}
-                sourceKeys={sources.map((s) => s.key)}
-                sortByDate={isSortedByDate}
-              />
-            </div>
+            <FinderBrowser
+              sources={sources}
+              sourceKeys={sources.map((s) => s.key)}
+            />
           </React.Fragment>,
           folderPanel,
         )}
