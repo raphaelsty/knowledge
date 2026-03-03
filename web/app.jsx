@@ -12,6 +12,7 @@ const FLUSH_INTERVAL_MS = 10000;
 const MAX_BUFFER_SIZE = 50;
 const FETCH_COUNT = 300;
 const DISPLAY_COUNT = 30;
+const MAX_CANDIDATES = 1000;
 const RERANK_INACTIVITY_MS = 1000;
 const SUMMARY_TOKEN_LIMIT = 30;
 const SIMILAR_COUNT = 10;
@@ -265,11 +266,12 @@ const apiSearch = async (
   sortByDate = false,
   source,
   tagFilters = null,
+  topK = FETCH_COUNT,
 ) => {
   const hasTagFilters = tagFilters instanceof Set && tagFilters.size > 0;
 
   const runSearch = async (subset) => {
-    const body = { queries: [query], params: { top_k: FETCH_COUNT } };
+    const body = { queries: [query], params: { top_k: topK } };
     if (subset) body.subset = subset;
     const resp = await fetch(
       `${API_BASE_URL}/indices/${INDEX_NAME}/search_with_encoding`,
@@ -965,6 +967,7 @@ const Search = () => {
   const [showFinder, setShowFinder] = useState(
     () => localStorage.getItem("finder-visible") !== "false",
   );
+  const [displayedCount, setDisplayedCount] = useState(DISPLAY_COUNT);
 
   useEffect(() => {
     const panel = document.getElementById("folder-panel");
@@ -984,6 +987,15 @@ const Search = () => {
   const lastSearchMeta = useRef(null);
   const pipelineIntervalRef = useRef(null);
   const similarMapRef = useRef(new Map());
+  const sentinelRef = useRef(null);
+  const topKRef = useRef(FETCH_COUNT);
+  const isFetchingMoreRef = useRef(false);
+  const documentsRef = useRef([]);
+
+  // Keep documentsRef in sync for use inside async callbacks
+  useEffect(() => {
+    documentsRef.current = documents;
+  }, [documents]);
 
   // --- Function Declarations ---
 
@@ -991,6 +1003,8 @@ const Search = () => {
    * Fetches the latest documents from the backend.
    */
   const fetchLatest = useCallback(() => {
+    setDisplayedCount(DISPLAY_COUNT);
+    topKRef.current = FETCH_COUNT;
     apiLatest(FETCH_COUNT, sourceFilter, tagFilters)
       .then((docs) => setDocuments(docs))
       .catch((error) =>
@@ -1008,6 +1022,8 @@ const Search = () => {
         return;
       }
       const queryId = ++latestQueryIdRef.current;
+      setDisplayedCount(DISPLAY_COUNT);
+      topKRef.current = FETCH_COUNT;
       // Append tag filter to the query string if a node is selected
       const fullQuery = selectedNode
         ? `${searchQuery} ${selectedNode}`
@@ -1234,6 +1250,56 @@ const Search = () => {
     isSortedByDate,
     tagFilters,
   ]);
+
+  // --- Infinite scroll ---
+
+  const fetchMoreCandidates = useCallback(async () => {
+    if (isFetchingMoreRef.current) return;
+    const newTopK = Math.min(topKRef.current + FETCH_COUNT, MAX_CANDIDATES);
+    if (newTopK <= topKRef.current) return;
+    isFetchingMoreRef.current = true;
+    try {
+      const more = query.trim()
+        ? await apiSearch(
+            query,
+            isSortedByDate,
+            sourceFilter,
+            tagFilters,
+            newTopK,
+          )
+        : await apiLatest(newTopK, sourceFilter, tagFilters);
+      topKRef.current = newTopK;
+      setDocuments((prev) => {
+        const seen = new Set(prev.map((d) => d.url));
+        const fresh = more.filter((d) => !seen.has(d.url));
+        return fresh.length > 0 ? [...prev, ...fresh] : prev;
+      });
+    } finally {
+      isFetchingMoreRef.current = false;
+    }
+  }, [query, isSortedByDate, sourceFilter, tagFilters]);
+
+  useEffect(() => {
+    const sentinel = sentinelRef.current;
+    if (!sentinel) return;
+    const canFetchMore =
+      resultsReranked || tagFilters.size > 0 || !query.trim();
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        setDisplayedCount((prev) => {
+          const next = prev + DISPLAY_COUNT;
+          if (next >= documentsRef.current.length && canFetchMore) {
+            fetchMoreCandidates();
+          }
+          return next;
+        });
+      },
+      { rootMargin: "200px" },
+    );
+    observer.observe(sentinel);
+    return () => observer.disconnect();
+  }, [resultsReranked, tagFilters, query, fetchMoreCandidates]);
 
   // --- Pipeline ---
 
@@ -1538,7 +1604,7 @@ const Search = () => {
     [query, selectedNode],
   );
 
-  // --- Computed: filter by source + favorites then cap at DISPLAY_COUNT ---
+  // --- Computed: filter by source + favorites then cap at displayedCount ---
   const displayedDocs = useMemo(() => {
     let filtered = (documents || []).filter(
       (doc) =>
@@ -1547,8 +1613,15 @@ const Search = () => {
     if (showFavorites) {
       filtered = filtered.filter((doc) => favorites.has(doc.url));
     }
-    return filtered.slice(0, DISPLAY_COUNT);
-  }, [documents, sourceFilter, getDocumentSource, showFavorites, favorites]);
+    return filtered.slice(0, displayedCount);
+  }, [
+    documents,
+    sourceFilter,
+    getDocumentSource,
+    showFavorites,
+    favorites,
+    displayedCount,
+  ]);
 
   // --- Render ---
   const folderPanel = document.getElementById("folder-panel");
@@ -2052,6 +2125,7 @@ const Search = () => {
               })()}
           </React.Fragment>
         ))}
+        <div ref={sentinelRef} style={{ height: 1 }} />
       </div>
 
       {pipelineOpen && (
