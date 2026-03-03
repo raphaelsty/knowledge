@@ -1110,6 +1110,7 @@ body {
   opacity: 0.5;
 }
 
+.finder-row-edit,
 .finder-row-delete {
   flex-shrink: 0;
   background: none;
@@ -1124,8 +1125,15 @@ body {
   line-height: 1;
 }
 
+.finder-row:hover .finder-row-edit,
 .finder-row:hover .finder-row-delete {
   opacity: 0.6;
+}
+
+.finder-row-edit:hover {
+  opacity: 1 !important;
+  color: var(--accent-primary);
+  background: color-mix(in srgb, var(--accent-primary) 10%, transparent);
 }
 
 .finder-row-delete:hover {
@@ -1296,6 +1304,23 @@ body {
   box-shadow: 0 0 0 2px var(--accent2-glow);
 }
 
+.finder-modal-required {
+  color: #e05a5a;
+  font-size: 11px;
+  margin-left: 2px;
+}
+
+.finder-modal-input--error {
+  border-color: #e05a5a !important;
+  box-shadow: 0 0 0 2px rgba(224, 90, 90, 0.2) !important;
+}
+
+.finder-modal-error {
+  margin-top: 4px;
+  font-size: 11px;
+  color: #e05a5a;
+}
+
 .finder-modal-tabs {
   display: flex;
   gap: 4px;
@@ -1396,6 +1421,39 @@ body {
   background: color-mix(in srgb, var(--accent-primary) 12%, transparent);
   color: var(--accent-primary);
   font-weight: 500;
+}
+
+/* Intersection toggle button */
+.finder-modal-intersect-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--border-subtle);
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 11px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.finder-modal-intersect-btn:hover {
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+}
+
+.finder-modal-intersect-btn.active {
+  background: color-mix(in srgb, var(--accent-primary) 12%, transparent);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  font-weight: 500;
+}
+
+.finder-modal-intersect-icon {
+  font-size: 14px;
+  line-height: 1;
 }
 
 .finder-modal-toggle-row {

@@ -404,35 +404,72 @@ const getFinderSourceIcon = (key) => SOURCE_ICONS[key] || "\uD83D\uDCC1";
 /**
  * CreateFolderModal — overlay for creating a custom folder.
  */
-// Recursively collect all tag names from folder_tree.json nodes
-const collectTreeTags = (node, out = []) => {
-  for (const t of node.t || []) {
-    if (Array.isArray(t) && t[0]) out.push(t[0]);
-  }
-  for (const c of node.c || []) collectTreeTags(c, out);
-  return out;
+// Count how many of the given tags a doc matches (exact comma-boundary)
+const countTagMatches = (doc, tagList) => {
+  const docTags = new Set([...(doc.tags || []), ...(doc["extra-tags"] || [])]);
+  return tagList.filter((t) => docTags.has(t)).length;
 };
 
-const CreateFolderModal = ({ onClose, onCreate }) => {
-  const [name, setName] = useState("");
-  const [filterType, setFilterType] = useState("search");
-  const [value, setValue] = useState("");
-  const [topK, setTopK] = useState(50);
-  const [live, setLive] = useState(true);
+const CreateFolderModal = ({
+  onClose,
+  onCreate,
+  initialFolder = null,
+  existingNames = [],
+}) => {
+  const isEditing = initialFolder != null;
+  const [name, setName] = useState(initialFolder?.name ?? "");
+  const [filterType, setFilterType] = useState(
+    initialFolder?.filterType ?? "search",
+  );
+  const [value, setValue] = useState(
+    initialFolder?.filterType === "search"
+      ? (initialFolder.searchQuery ?? "")
+      : initialFolder?.filterType === "urls"
+        ? (initialFolder.urls ?? []).join("\n")
+        : "",
+  );
+  const [topK, setTopK] = useState(initialFolder?.topK ?? 50);
+  const [live, setLive] = useState(initialFolder?.live ?? true);
   // tag multi-select
   const [allTags, setAllTags] = useState([]);
-  const [selectedTags, setSelectedTags] = useState(new Set());
+  const [selectedTags, setSelectedTags] = useState(
+    new Set(
+      Array.isArray(initialFolder?.tagFilter)
+        ? initialFolder.tagFilter
+        : initialFolder?.tagFilter
+          ? [initialFolder.tagFilter]
+          : [],
+    ),
+  );
   const [tagSearch, setTagSearch] = useState("");
+  const [tagIntersect, setTagIntersect] = useState(
+    initialFolder?.tagIntersect ?? false,
+  );
 
-  // Load tags once when switching to tag mode
+  // Load tags from metadata API (guarantees every tag has at least one document)
   useEffect(() => {
     if (filterType !== "tag" || allTags.length > 0) return;
-    fetch(`${DATA_API_URL}/api/folder_tree`)
-      .catch(() => fetch("data/folder_tree.json"))
+    fetch(`${API_BASE_URL}/indices/${INDEX_NAME}/metadata/get`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ condition: "1=1", parameters: [] }),
+    })
       .then((r) => r.json())
-      .then((tree) => {
-        const tags = [...new Set(collectTreeTags(tree))].sort();
-        setAllTags(tags);
+      .then((data) => {
+        const tagSet = new Set();
+        for (const meta of data.metadata || []) {
+          if (meta.tags)
+            meta.tags
+              .split(",")
+              .filter(Boolean)
+              .forEach((t) => tagSet.add(t.trim()));
+          if (meta.extra_tags)
+            meta.extra_tags
+              .split(",")
+              .filter(Boolean)
+              .forEach((t) => tagSet.add(t.trim()));
+        }
+        setAllTags([...tagSet].sort());
       })
       .catch(() => {});
   }, [filterType]);
@@ -449,20 +486,37 @@ const CreateFolderModal = ({ onClose, onCreate }) => {
     ? allTags.filter((t) => t.includes(tagSearch.toLowerCase()))
     : allTags;
 
+  const [nameTouched, setNameTouched] = useState(false);
+
+  const isDuplicateName =
+    name.trim() &&
+    existingNames
+      .map((n) => n.toLowerCase())
+      .includes(name.trim().toLowerCase());
+
+  const showNameError = nameTouched && !name.trim();
+
   const isValid =
     name.trim() &&
+    !isDuplicateName &&
     (filterType === "tag" ? selectedTags.size > 0 : value.trim());
 
   const handleCreate = () => {
+    if (!name.trim()) {
+      setNameTouched(true);
+      return;
+    }
     if (!isValid) return;
     const folder = {
-      id: crypto.randomUUID(),
+      id: initialFolder?.id ?? crypto.randomUUID(),
+      createdAt: initialFolder?.createdAt ?? new Date().toISOString(),
       name: name.trim(),
       filterType,
       live: filterType === "urls" ? false : live,
       topK: filterType === "search" ? topK : undefined,
       searchQuery: filterType === "search" ? value.trim() : "",
       tagFilter: filterType === "tag" ? [...selectedTags] : [],
+      tagIntersect: filterType === "tag" ? tagIntersect : false,
       urls:
         filterType === "urls"
           ? value
@@ -471,7 +525,6 @@ const CreateFolderModal = ({ onClose, onCreate }) => {
               .map((u) => u.trim())
               .filter(Boolean)
           : [],
-      createdAt: new Date().toISOString(),
     };
     onCreate(folder);
   };
@@ -479,17 +532,33 @@ const CreateFolderModal = ({ onClose, onCreate }) => {
   return (
     <div className="finder-modal-overlay" onClick={onClose}>
       <div className="finder-modal" onClick={(e) => e.stopPropagation()}>
-        <div className="finder-modal-header">New Folder</div>
+        <div className="finder-modal-header">
+          {isEditing ? "Edit Folder" : "New Folder"}
+        </div>
         <div className="finder-modal-body">
           <div>
-            <div className="finder-modal-label">Name</div>
+            <div className="finder-modal-label">
+              Name <span className="finder-modal-required">*</span>
+            </div>
             <input
-              className="finder-modal-input"
+              className={`finder-modal-input${showNameError ? " finder-modal-input--error" : ""}`}
               value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Folder name"
+              onChange={(e) => {
+                setName(e.target.value);
+                if (nameTouched && e.target.value.trim()) setNameTouched(false);
+              }}
+              onBlur={() => setNameTouched(true)}
+              placeholder="Give this folder a name…"
               autoFocus
             />
+            {showNameError && (
+              <div className="finder-modal-error">Name is required.</div>
+            )}
+            {isDuplicateName && (
+              <div className="finder-modal-error">
+                A folder with this name already exists.
+              </div>
+            )}
           </div>
           <div>
             <div className="finder-modal-label">Type</div>
@@ -594,6 +663,14 @@ const CreateFolderModal = ({ onClose, onCreate }) => {
                   ))
                 )}
               </div>
+              <button
+                type="button"
+                className={`finder-modal-intersect-btn${tagIntersect ? " active" : ""}`}
+                onClick={() => setTagIntersect((v) => !v)}
+              >
+                <span className="finder-modal-intersect-icon">⋂</span>
+                Intersection — all tags must match
+              </button>
             </div>
           )}
 
@@ -648,7 +725,7 @@ const CreateFolderModal = ({ onClose, onCreate }) => {
             disabled={!isValid}
             onClick={handleCreate}
           >
-            Create
+            {isEditing ? "Save" : "Create"}
           </button>
         </div>
       </div>
@@ -681,6 +758,7 @@ const FinderBrowser = ({ sources, sourceKeys }) => {
       return {};
     }
   });
+  const [showEditModal, setShowEditModal] = useState(null); // folder object | null
   const columnsRef = useRef(null);
   const dragRef = useRef(null);
 
@@ -772,8 +850,7 @@ const FinderBrowser = ({ sources, sourceKeys }) => {
               : [];
           if (tagList.length > 0) {
             const clauses = tagList.map(
-              () =>
-                "(',' || tags || ',' LIKE ? OR ',' || extra_tags || ',' LIKE ?)",
+              () => "(tags LIKE ? OR extra_tags LIKE ?)",
             );
             const resp = await fetch(
               `${API_BASE_URL}/indices/${INDEX_NAME}/metadata/get`,
@@ -781,8 +858,10 @@ const FinderBrowser = ({ sources, sourceKeys }) => {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                  condition: clauses.join(" OR "),
-                  parameters: tagList.flatMap((t) => [`%,${t},%`, `%,${t},%`]),
+                  condition: clauses.join(
+                    folder.tagIntersect ? " AND " : " OR ",
+                  ),
+                  parameters: tagList.flatMap((t) => [`%${t}%`, `%${t}%`]),
                 }),
               },
             );
@@ -801,6 +880,76 @@ const FinderBrowser = ({ sources, sourceKeys }) => {
       const next = [...prev, finalFolder];
       saveCustomFolders(next);
       return next;
+    });
+  }, []);
+
+  const handleEditFolder = useCallback(async (folder) => {
+    setShowEditModal(null);
+    let finalFolder = folder;
+
+    if (!folder.live && folder.filterType !== "urls") {
+      try {
+        let docs = [];
+        if (folder.filterType === "search") {
+          docs = await apiSearch(
+            folder.searchQuery,
+            false,
+            null,
+            null,
+            folder.topK || 50,
+          );
+        } else if (folder.filterType === "tag") {
+          const tagList = Array.isArray(folder.tagFilter)
+            ? folder.tagFilter
+            : folder.tagFilter
+              ? [folder.tagFilter]
+              : [];
+          if (tagList.length > 0) {
+            const clauses = tagList.map(
+              () => "(tags LIKE ? OR extra_tags LIKE ?)",
+            );
+            const resp = await fetch(
+              `${API_BASE_URL}/indices/${INDEX_NAME}/metadata/get`,
+              {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  condition: clauses.join(
+                    folder.tagIntersect ? " AND " : " OR ",
+                  ),
+                  parameters: tagList.flatMap((t) => [`%${t}%`, `%${t}%`]),
+                }),
+              },
+            );
+            const data = await resp.json();
+            docs = (data.metadata || []).map(transformMeta);
+          }
+        }
+        finalFolder = { ...folder, urls: docs.map((d) => d.url) };
+      } catch {
+        finalFolder = { ...folder, live: true };
+      }
+    }
+
+    setCustomFolders((prev) => {
+      const next = prev.map((f) => (f.id === finalFolder.id ? finalFolder : f));
+      saveCustomFolders(next);
+      return next;
+    });
+    // Close docs if this folder was selected so it reloads on next click
+    setColumnStack((prev) => {
+      const wasSelected = prev.some(
+        (col) =>
+          col.selectedIdx != null &&
+          col.items[col.selectedIdx]?.id === finalFolder.id,
+      );
+      if (wasSelected) {
+        setDocsColumn(null);
+        return prev.length > 0
+          ? [{ items: prev[0].items, selectedIdx: null }]
+          : prev;
+      }
+      return prev;
     });
   }, []);
 
@@ -874,8 +1023,7 @@ const FinderBrowser = ({ sources, sourceKeys }) => {
               : [];
           if (tagList.length > 0) {
             const clauses = tagList.map(
-              () =>
-                "(',' || tags || ',' LIKE ? OR ',' || extra_tags || ',' LIKE ?)",
+              () => "(tags LIKE ? OR extra_tags LIKE ?)",
             );
             const resp = await fetch(
               `${API_BASE_URL}/indices/${INDEX_NAME}/metadata/get`,
@@ -883,14 +1031,27 @@ const FinderBrowser = ({ sources, sourceKeys }) => {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                  condition: clauses.join(" OR "),
-                  parameters: tagList.flatMap((t) => [`%,${t},%`, `%,${t},%`]),
+                  condition: clauses.join(
+                    folder.tagIntersect ? " AND " : " OR ",
+                  ),
+                  parameters: tagList.flatMap((t) => [`%${t}%`, `%${t}%`]),
                 }),
               },
             );
             const data = await resp.json();
             docs = (data.metadata || []).map(transformMeta);
-            docs.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+            if (folder.tagIntersect) {
+              docs.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+            } else {
+              // OR mode: sort by number of matching tags (most matches first)
+              docs.sort((a, b) => {
+                const diff =
+                  countTagMatches(b, tagList) - countTagMatches(a, tagList);
+                return diff !== 0
+                  ? diff
+                  : (b.date || "").localeCompare(a.date || "");
+              });
+            }
           }
         }
         setDocsColumn({
@@ -1005,6 +1166,16 @@ const FinderBrowser = ({ sources, sourceKeys }) => {
                             : "\uD83D\uDD17"}
                       </span>
                       <button
+                        className="finder-row-edit"
+                        title="Edit folder"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setShowEditModal(item.folderData);
+                        }}
+                      >
+                        ✎
+                      </button>
+                      <button
                         className="finder-row-delete"
                         title="Delete folder"
                         onClick={(e) => {
@@ -1080,6 +1251,19 @@ const FinderBrowser = ({ sources, sourceKeys }) => {
         <CreateFolderModal
           onClose={() => setShowCreateModal(false)}
           onCreate={handleCreateFolder}
+          existingNames={customFolders.map((f) => f.name)}
+        />
+      )}
+
+      {/* Edit folder modal */}
+      {showEditModal && (
+        <CreateFolderModal
+          onClose={() => setShowEditModal(null)}
+          onCreate={handleEditFolder}
+          initialFolder={showEditModal}
+          existingNames={customFolders
+            .filter((f) => f.id !== showEditModal.id)
+            .map((f) => f.name)}
         />
       )}
     </div>
