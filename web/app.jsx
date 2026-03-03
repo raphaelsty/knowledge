@@ -399,6 +399,19 @@ const SOURCE_ICONS = {
 };
 const getFinderSourceIcon = (key) => SOURCE_ICONS[key] || "\uD83D\uDCC1";
 
+const getFinderDocIcon = (doc) => {
+  const url = doc.url || "";
+  const allTags = (doc.tags || []).concat(doc["extra-tags"] || []);
+  const isHN = allTags.some((t) => t.toLowerCase().includes("hackernews"));
+  if (isHN)
+    return <img src="icons/hackernews.png" alt="HN" width="13" height="13" />;
+  if (url.includes("github.com")) return "\uD83D\uDCBB";
+  if (url.includes("twitter.com") || url.includes("x.com"))
+    return "\uD835\uDD4F";
+  if (url.includes("arxiv.org")) return "\uD83D\uDCDD";
+  return "\uD83D\uDCC4";
+};
+
 /**
  * CreateFolderModal — overlay for creating a custom folder.
  */
@@ -1660,15 +1673,7 @@ const FinderBrowser = ({
                         className="finder-row-icon"
                         style={{ fontSize: 13 }}
                       >
-                        {doc.url && doc.url.includes("github.com")
-                          ? "\uD83D\uDCBB"
-                          : doc.url &&
-                              (doc.url.includes("twitter.com") ||
-                                doc.url.includes("x.com"))
-                            ? "\uD835\uDD4F"
-                            : doc.url && doc.url.includes("arxiv.org")
-                              ? "\uD83D\uDCDD"
-                              : "\uD83D\uDCC4"}
+                        {getFinderDocIcon(doc)}
                       </span>
                       <span className="finder-row-label">{doc.title}</span>
                       <span className="finder-row-meta">{doc.date}</span>
