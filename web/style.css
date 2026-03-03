@@ -1414,6 +1414,37 @@ body {
 }
 
 /* Selected tag chips */
+.finder-modal-source-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.finder-modal-source-chip {
+  padding: 4px 10px;
+  border-radius: 12px;
+  border: 1px solid var(--border-subtle);
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 12px;
+  cursor: pointer;
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.finder-modal-source-chip:hover {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.finder-modal-source-chip.active {
+  background: var(--accent2-bg-hover);
+  color: var(--accent2-primary);
+  border-color: var(--accent2-primary);
+}
+
 .finder-modal-tag-chips {
   display: flex;
   flex-wrap: wrap;

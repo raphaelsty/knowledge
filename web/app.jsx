@@ -388,8 +388,6 @@ const saveCustomFolders = (folders) => {
   localStorage.setItem(CUSTOM_FOLDERS_KEY, JSON.stringify(folders));
 };
 
-const FINDER_DOC_LIMIT = 50;
-
 const SOURCE_ICONS = {
   "github.com": "\uD83D\uDCBB",
   "twitter.com": "\uD835\uDD4F",
@@ -479,6 +477,7 @@ const CreateFolderModal = ({
   onCreate,
   initialFolder = null,
   existingNames = [],
+  sources = [],
 }) => {
   const isEditing = initialFolder != null;
   const [name, setName] = useState(initialFolder?.name ?? "");
@@ -494,6 +493,9 @@ const CreateFolderModal = ({
   );
   const [topK, setTopK] = useState(initialFolder?.topK ?? 50);
   const [live, setLive] = useState(initialFolder?.live ?? true);
+  const [selectedSources, setSelectedSources] = useState(
+    new Set(initialFolder?.searchSources ?? []),
+  );
   // tag multi-select
   const [allTags, setAllTags] = useState([]);
   const [selectedTags, setSelectedTags] = useState(
@@ -580,6 +582,10 @@ const CreateFolderModal = ({
       live: filterType === "urls" ? false : live,
       topK: filterType === "search" ? topK : undefined,
       searchQuery: filterType === "search" ? value.trim() : "",
+      searchSources:
+        filterType === "search" || filterType === "tag"
+          ? [...selectedSources]
+          : undefined,
       tagFilter: filterType === "tag" ? [...selectedTags] : [],
       tagIntersect: filterType === "tag" ? tagIntersect : false,
       urls:
@@ -659,6 +665,30 @@ const CreateFolderModal = ({
                   placeholder="e.g. machine learning"
                 />
               </div>
+              {sources.length > 0 && (
+                <div>
+                  <div className="finder-modal-label">Sources</div>
+                  <div className="finder-modal-source-chips">
+                    {sources.map((src) => (
+                      <button
+                        key={src.key}
+                        type="button"
+                        className={`finder-modal-source-chip${selectedSources.has(src.key) ? " active" : ""}`}
+                        onClick={() =>
+                          setSelectedSources((prev) => {
+                            const next = new Set(prev);
+                            if (next.has(src.key)) next.delete(src.key);
+                            else next.add(src.key);
+                            return next;
+                          })
+                        }
+                      >
+                        {src.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
               <div>
                 <div className="finder-modal-label">Max results</div>
                 <input
@@ -737,6 +767,30 @@ const CreateFolderModal = ({
                 <span className="finder-modal-intersect-icon">⋂</span>
                 Intersection — all tags must match
               </button>
+              {sources.length > 0 && (
+                <div style={{ marginTop: 10 }}>
+                  <div className="finder-modal-label">Sources</div>
+                  <div className="finder-modal-source-chips">
+                    {sources.map((src) => (
+                      <button
+                        key={src.key}
+                        type="button"
+                        className={`finder-modal-source-chip${selectedSources.has(src.key) ? " active" : ""}`}
+                        onClick={() =>
+                          setSelectedSources((prev) => {
+                            const next = new Set(prev);
+                            if (next.has(src.key)) next.delete(src.key);
+                            else next.add(src.key);
+                            return next;
+                          })
+                        }
+                      >
+                        {src.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           )}
 
@@ -955,7 +1009,7 @@ const FinderBrowser = ({
           docs = await apiSearch(
             folder.searchQuery,
             false,
-            null,
+            new Set(folder.searchSources || []),
             null,
             folder.topK || 50,
           );
@@ -969,16 +1023,25 @@ const FinderBrowser = ({
             const clauses = tagList.map(
               () => "(tags LIKE ? OR extra_tags LIKE ?)",
             );
+            const srcCond = buildSourceCondition(
+              new Set(folder.searchSources || []),
+            );
+            const tagClause = clauses.join(
+              folder.tagIntersect ? " AND " : " OR ",
+            );
             const resp = await fetch(
               `${API_BASE_URL}/indices/${INDEX_NAME}/metadata/get`,
               {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                  condition: clauses.join(
-                    folder.tagIntersect ? " AND " : " OR ",
-                  ),
-                  parameters: tagList.flatMap((t) => [`%${t}%`, `%${t}%`]),
+                  condition: srcCond
+                    ? `(${srcCond.condition}) AND (${tagClause})`
+                    : tagClause,
+                  parameters: [
+                    ...(srcCond ? srcCond.parameters : []),
+                    ...tagList.flatMap((t) => [`%${t}%`, `%${t}%`]),
+                  ],
                 }),
               },
             );
@@ -1015,7 +1078,7 @@ const FinderBrowser = ({
           docs = await apiSearch(
             folder.searchQuery,
             false,
-            null,
+            new Set(folder.searchSources || []),
             null,
             folder.topK || 50,
           );
@@ -1029,16 +1092,25 @@ const FinderBrowser = ({
             const clauses = tagList.map(
               () => "(tags LIKE ? OR extra_tags LIKE ?)",
             );
+            const srcCond = buildSourceCondition(
+              new Set(folder.searchSources || []),
+            );
+            const tagClause = clauses.join(
+              folder.tagIntersect ? " AND " : " OR ",
+            );
             const resp = await fetch(
               `${API_BASE_URL}/indices/${INDEX_NAME}/metadata/get`,
               {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                  condition: clauses.join(
-                    folder.tagIntersect ? " AND " : " OR ",
-                  ),
-                  parameters: tagList.flatMap((t) => [`%${t}%`, `%${t}%`]),
+                  condition: srcCond
+                    ? `(${srcCond.condition}) AND (${tagClause})`
+                    : tagClause,
+                  parameters: [
+                    ...(srcCond ? srcCond.parameters : []),
+                    ...tagList.flatMap((t) => [`%${t}%`, `%${t}%`]),
+                  ],
                 }),
               },
             );
@@ -1134,7 +1206,7 @@ const FinderBrowser = ({
       return { subfolders: [], items };
     }
     if (item.kind === "source") {
-      const docs = await apiLatest(FINDER_DOC_LIMIT, new Set([item.key]));
+      const docs = await apiLatest(Infinity, new Set([item.key]));
       return { subfolders: [], items: docs };
     }
     if (item.kind === "custom") {
@@ -1167,7 +1239,7 @@ const FinderBrowser = ({
         docs = await apiSearch(
           folder.searchQuery,
           false,
-          null,
+          new Set(folder.searchSources || []),
           null,
           folder.topK || 50,
         );
@@ -1181,14 +1253,25 @@ const FinderBrowser = ({
           const clauses = tagList.map(
             () => "(tags LIKE ? OR extra_tags LIKE ?)",
           );
+          const srcCond = buildSourceCondition(
+            new Set(folder.searchSources || []),
+          );
+          const tagClause = clauses.join(
+            folder.tagIntersect ? " AND " : " OR ",
+          );
           const resp = await fetch(
             `${API_BASE_URL}/indices/${INDEX_NAME}/metadata/get`,
             {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({
-                condition: clauses.join(folder.tagIntersect ? " AND " : " OR "),
-                parameters: tagList.flatMap((t) => [`%${t}%`, `%${t}%`]),
+                condition: srcCond
+                  ? `(${srcCond.condition}) AND (${tagClause})`
+                  : tagClause,
+                parameters: [
+                  ...(srcCond ? srcCond.parameters : []),
+                  ...tagList.flatMap((t) => [`%${t}%`, `%${t}%`]),
+                ],
               }),
             },
           );
@@ -1209,7 +1292,7 @@ const FinderBrowser = ({
       }
       return {
         subfolders: (folder.children || []).map(folderToItem),
-        items: docs.slice(0, FINDER_DOC_LIMIT),
+        items: docs,
       };
     }
     return { subfolders: [], items: [] };
@@ -1609,6 +1692,7 @@ const FinderBrowser = ({
             customFolders,
             showCreateModal || null,
           )}
+          sources={sources}
         />
       )}
 
@@ -1618,6 +1702,7 @@ const FinderBrowser = ({
           onClose={() => setShowEditModal(null)}
           onCreate={handleEditFolder}
           initialFolder={showEditModal}
+          sources={sources}
           existingNames={getSiblingNames(
             removeFolderFromTree(customFolders, showEditModal.id),
             findParentId(customFolders, showEditModal.id) ?? null,
