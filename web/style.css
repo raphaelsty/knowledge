@@ -1319,6 +1319,14 @@ body {
   font-size: 12px;
 }
 
+.finder-load-more {
+  padding: 10px 16px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 11px;
+  opacity: 0.6;
+}
+
 /* Create Folder Modal */
 .finder-modal-overlay {
   position: absolute;

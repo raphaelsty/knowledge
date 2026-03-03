@@ -16,6 +16,7 @@ const MAX_CANDIDATES = 1000;
 const RERANK_INACTIVITY_MS = 1000;
 const SUMMARY_TOKEN_LIMIT = 30;
 const SIMILAR_COUNT = 10;
+const FINDER_PAGE_SIZE = 500;
 
 const syncURL = (params) => {
   const url = new URL(window.location);
@@ -143,32 +144,57 @@ const buildTagConditionLike = (tagFilters) => {
   return { condition: clauses.join(" AND "), parameters };
 };
 
+// All known source URL patterns — used to build the "other" NOT condition.
+// Must stay in sync with sourceKeyFromUrl and sources.json.
+const KNOWN_URL_PATTERNS = [
+  ["github.com"],
+  ["twitter.com", "x.com"],
+  ["arxiv.org"],
+  ["huggingface.co"],
+  ["superuser.com"],
+  ["ieeexplore.ieee.org"],
+];
+const KNOWN_TAG_SOURCES = ["hackernews"];
+
 const buildSourceCondition = (sourceSet) => {
   if (!(sourceSet instanceof Set) || sourceSet.size === 0) return null;
-  // "other" is handled client-side only
-  const keys = [...sourceSet].filter((k) => k !== "other");
-  if (keys.length === 0) return null;
+  const keys = [...sourceSet];
+  const knownKeys = keys.filter((k) => k !== "other");
+  const hasOther = keys.includes("other");
 
   const clauses = [];
   const parameters = [];
-  for (const source of keys) {
+
+  for (const source of knownKeys) {
     if (!source.includes(".")) {
-      // Tag/title based sources (e.g. hackernews)
       clauses.push("(tags LIKE ? OR extra_tags LIKE ? OR title LIKE ?)");
       parameters.push(`%${source}%`, `%${source}%`, `%${source}%`);
     } else {
-      // Domain-based sources — also match common aliases
       const patterns = [source];
       if (source === "twitter.com") patterns.push("x.com");
-      const urlParts = patterns.map(() => "url LIKE ?");
-      clauses.push(`(${urlParts.join(" OR ")})`);
+      clauses.push(`(${patterns.map(() => "url LIKE ?").join(" OR ")})`);
       parameters.push(...patterns.map((p) => `%${p}%`));
     }
   }
-  return {
-    condition: clauses.join(" OR "),
-    parameters,
-  };
+
+  if (hasOther) {
+    // "other" = NOT any known source
+    const notParts = [];
+    const notParams = [];
+    for (const patterns of KNOWN_URL_PATTERNS) {
+      notParts.push(...patterns.map(() => "url LIKE ?"));
+      notParams.push(...patterns.map((p) => `%${p}%`));
+    }
+    for (const tag of KNOWN_TAG_SOURCES) {
+      notParts.push("tags LIKE ?", "extra_tags LIKE ?", "title LIKE ?");
+      notParams.push(`%${tag}%`, `%${tag}%`, `%${tag}%`);
+    }
+    clauses.push(`NOT (${notParts.join(" OR ")})`);
+    parameters.push(...notParams);
+  }
+
+  if (clauses.length === 0) return null;
+  return { condition: clauses.join(" OR "), parameters };
 };
 
 /**
@@ -397,6 +423,8 @@ const SOURCE_ICONS = {
   hackernews: "\uD83D\uDCF0",
   "superuser.com": "\uD83D\uDEE0\uFE0F",
   "ieeexplore.ieee.org": "\uD83C\uDF93",
+  other: "\uD83C\uDF10",
+  all: "\u2605",
 };
 const getFinderSourceIcon = (key) => {
   if (key === "github.com")
@@ -421,8 +449,8 @@ const getFinderDocIcon = (doc) => {
     return <img src="icons/github.png" alt="GitHub" width="13" height="13" />;
   if (url.includes("twitter.com") || url.includes("x.com"))
     return <img src="icons/twitter.png" alt="X" width="13" height="13" />;
-  if (url.includes("arxiv.org")) return "\uD83D\uDCDD";
-  return "\uD83D\uDCC4";
+  const key = sourceKeyFromUrl(url);
+  return SOURCE_ICONS[key] || "\uD83D\uDCC4";
 };
 
 // Determine the known source key for a URL (null if unknown/other)
@@ -432,6 +460,10 @@ const sourceKeyFromUrl = (url) => {
   if (url.includes("twitter.com") || url.includes("x.com"))
     return "twitter.com";
   if (url.includes("ycombinator.com")) return "hackernews";
+  if (url.includes("arxiv.org")) return "arxiv.org";
+  if (url.includes("huggingface.co")) return "huggingface.co";
+  if (url.includes("superuser.com")) return "superuser.com";
+  if (url.includes("ieeexplore.ieee.org")) return "ieeexplore.ieee.org";
   return null;
 };
 
@@ -740,23 +772,25 @@ const CreateFolderModal = ({
                 <div>
                   <div className="finder-modal-label">Sources</div>
                   <div className="finder-modal-source-chips">
-                    {sources.map((src) => (
-                      <button
-                        key={src.key}
-                        type="button"
-                        className={`finder-modal-source-chip${selectedSources.has(src.key) ? " active" : ""}`}
-                        onClick={() =>
-                          setSelectedSources((prev) => {
-                            const next = new Set(prev);
-                            if (next.has(src.key)) next.delete(src.key);
-                            else next.add(src.key);
-                            return next;
-                          })
-                        }
-                      >
-                        {src.label}
-                      </button>
-                    ))}
+                    {[...sources, { key: "other", label: "Other" }].map(
+                      (src) => (
+                        <button
+                          key={src.key}
+                          type="button"
+                          className={`finder-modal-source-chip${selectedSources.has(src.key) ? " active" : ""}`}
+                          onClick={() =>
+                            setSelectedSources((prev) => {
+                              const next = new Set(prev);
+                              if (next.has(src.key)) next.delete(src.key);
+                              else next.add(src.key);
+                              return next;
+                            })
+                          }
+                        >
+                          {src.label}
+                        </button>
+                      ),
+                    )}
                   </div>
                 </div>
               )}
@@ -842,23 +876,25 @@ const CreateFolderModal = ({
                 <div style={{ marginTop: 10 }}>
                   <div className="finder-modal-label">Sources</div>
                   <div className="finder-modal-source-chips">
-                    {sources.map((src) => (
-                      <button
-                        key={src.key}
-                        type="button"
-                        className={`finder-modal-source-chip${selectedSources.has(src.key) ? " active" : ""}`}
-                        onClick={() =>
-                          setSelectedSources((prev) => {
-                            const next = new Set(prev);
-                            if (next.has(src.key)) next.delete(src.key);
-                            else next.add(src.key);
-                            return next;
-                          })
-                        }
-                      >
-                        {src.label}
-                      </button>
-                    ))}
+                    {[...sources, { key: "other", label: "Other" }].map(
+                      (src) => (
+                        <button
+                          key={src.key}
+                          type="button"
+                          className={`finder-modal-source-chip${selectedSources.has(src.key) ? " active" : ""}`}
+                          onClick={() =>
+                            setSelectedSources((prev) => {
+                              const next = new Set(prev);
+                              if (next.has(src.key)) next.delete(src.key);
+                              else next.add(src.key);
+                              return next;
+                            })
+                          }
+                        >
+                          {src.label}
+                        </button>
+                      ),
+                    )}
                   </div>
                 </div>
               )}
@@ -1070,6 +1106,7 @@ const FinderBrowser = ({
   // Rebuild all columns when sources / custom folders change
   useEffect(() => {
     const rootItems = [
+      { kind: "source", key: "all", label: "All" },
       ...(favorites.size > 0
         ? [{ kind: "favorites", label: "Favorites" }]
         : []),
@@ -1078,6 +1115,7 @@ const FinderBrowser = ({
         key: src.key,
         label: src.label,
       })),
+      { kind: "source", key: "other", label: "Other" },
       ...customFolders.map(folderToItem),
     ];
     setColumnStack((prev) => {
@@ -1444,7 +1482,8 @@ const FinderBrowser = ({
       return { subfolders: [], items };
     }
     if (item.kind === "source") {
-      const docs = await apiLatest(Infinity, new Set([item.key]));
+      const sourceSet = item.key === "all" ? new Set() : new Set([item.key]);
+      const docs = await apiLatest(Infinity, sourceSet);
       return { subfolders: [], items: docs };
     }
     if (item.kind === "custom") {
@@ -1590,6 +1629,7 @@ const FinderBrowser = ({
           contextFolder,
           subfolders: [],
           items: [],
+          visibleCount: FINDER_PAGE_SIZE,
           loading: true,
           selectedSubfolderIdx: null,
         },
@@ -1627,6 +1667,7 @@ const FinderBrowser = ({
           contextFolder,
           subfolders: [],
           items: [],
+          visibleCount: FINDER_PAGE_SIZE,
           loading: true,
           selectedSubfolderIdx: null,
         },
@@ -1907,7 +1948,31 @@ const FinderBrowser = ({
 
         {/* Docs columns — one per level of subfolder navigation */}
         {docsColumnStack.map((dcol, dcolIdx) => (
-          <div key={dcol.id} className="finder-column finder-column--docs">
+          <div
+            key={dcol.id}
+            className="finder-column finder-column--docs"
+            onScroll={(e) => {
+              const el = e.currentTarget;
+              if (
+                el.scrollTop + el.clientHeight >= el.scrollHeight - 120 &&
+                (dcol.visibleCount ?? FINDER_PAGE_SIZE) <
+                  filterDocs(dcol.items).length
+              ) {
+                setDocsColumnStack((prev) =>
+                  prev.map((e) =>
+                    e.id === dcol.id
+                      ? {
+                          ...e,
+                          visibleCount:
+                            (e.visibleCount ?? FINDER_PAGE_SIZE) +
+                            FINDER_PAGE_SIZE,
+                        }
+                      : e,
+                  ),
+                );
+              }
+            }}
+          >
             {dcol.contextFolder && (
               <button
                 className="finder-add-row finder-add-row--inline"
@@ -1994,42 +2059,52 @@ const FinderBrowser = ({
                 (dcol.subfolders || []).length === 0 ? (
                   <div className="finder-empty">No documents</div>
                 ) : (
-                  filterDocs(dcol.items).map((doc, i) => (
-                    <a
-                      key={doc.url || i}
-                      className="finder-row finder-row--doc"
-                      href={doc.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      draggable
-                      onDragStart={(e) =>
-                        onDocDragStart(e, doc, dcol.contextFolder?.id ?? null)
-                      }
-                      onDragEnd={onDocDragEnd}
-                    >
-                      <span
-                        className="finder-row-icon"
-                        style={{ fontSize: 13 }}
+                  filterDocs(dcol.items)
+                    .slice(0, dcol.visibleCount ?? FINDER_PAGE_SIZE)
+                    .map((doc, i) => (
+                      <a
+                        key={doc.url || i}
+                        className="finder-row finder-row--doc"
+                        href={doc.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        draggable
+                        onDragStart={(e) =>
+                          onDocDragStart(e, doc, dcol.contextFolder?.id ?? null)
+                        }
+                        onDragEnd={onDocDragEnd}
                       >
-                        {getFinderDocIcon(doc)}
-                      </span>
-                      <span className="finder-row-label">{doc.title}</span>
-                      <span className="finder-row-meta">{doc.date}</span>
-                      {dcol.contextFolder && (
-                        <button
-                          className="finder-row-exclude"
-                          title="Remove from folder"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            handleExcludeDoc(dcol.contextFolder.id, doc);
-                          }}
+                        <span
+                          className="finder-row-icon"
+                          style={{ fontSize: 13 }}
                         >
-                          {"\u00D7"}
-                        </button>
-                      )}
-                    </a>
-                  ))
+                          {getFinderDocIcon(doc)}
+                        </span>
+                        <span className="finder-row-label">{doc.title}</span>
+                        <span className="finder-row-meta">{doc.date}</span>
+                        {dcol.contextFolder && (
+                          <button
+                            className="finder-row-exclude"
+                            title="Remove from folder"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              handleExcludeDoc(dcol.contextFolder.id, doc);
+                            }}
+                          >
+                            {"\u00D7"}
+                          </button>
+                        )}
+                      </a>
+                    ))
+                )}
+                {filterDocs(dcol.items).length >
+                  (dcol.visibleCount ?? FINDER_PAGE_SIZE) && (
+                  <div className="finder-load-more">
+                    {filterDocs(dcol.items).length -
+                      (dcol.visibleCount ?? FINDER_PAGE_SIZE)}{" "}
+                    more — scroll to load
+                  </div>
                 )}
               </>
             )}
