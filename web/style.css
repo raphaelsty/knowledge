@@ -1195,6 +1195,14 @@ body {
   color: var(--accent2-primary);
 }
 
+/* Inline add-row at top of docs column (no top border, bottom border instead) */
+.finder-add-row--inline {
+  margin-top: 0;
+  margin-bottom: 4px;
+  border-top: none;
+  border-bottom: 1px dashed var(--border-subtle);
+}
+
 /* Loading & Empty */
 .finder-loading {
   display: flex;

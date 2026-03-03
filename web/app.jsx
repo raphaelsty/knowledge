@@ -1163,23 +1163,36 @@ const FinderBrowser = ({ sources, sourceKeys }) => {
 
       if (item.kind === "custom") {
         const children = item.folderData.children || [];
-        // Always push a sub-column so "New Subfolder" is always reachable
-        setColumnStack((prev) => [
-          ...base(prev),
-          {
-            items: children.map(folderToItem),
-            selectedIdx: null,
-            parentFolderId: item.id,
-          },
-        ]);
-        // Load docs if this folder has its own filter
-        if (
-          item.folderData.filterType &&
-          item.folderData.filterType !== "none"
-        ) {
-          loadDocs(item);
+        if (children.length > 0) {
+          // Push sub-column; "New Subfolder" lives there
+          setColumnStack((prev) => [
+            ...base(prev),
+            {
+              items: children.map(folderToItem),
+              selectedIdx: null,
+              parentFolderId: item.id,
+            },
+          ]);
+          if (
+            item.folderData.filterType &&
+            item.folderData.filterType !== "none"
+          ) {
+            loadDocs(item);
+          } else {
+            setDocsColumn(null);
+          }
         } else {
-          setDocsColumn(null);
+          // No children: stay in the same column layout, load docs.
+          // "New Subfolder" will appear inside the docs column.
+          setColumnStack(base);
+          if (
+            item.folderData.filterType &&
+            item.folderData.filterType !== "none"
+          ) {
+            loadDocs(item);
+          } else {
+            setDocsColumn({ items: [], loading: false });
+          }
         }
         return;
       }
@@ -1196,6 +1209,23 @@ const FinderBrowser = ({ sources, sourceKeys }) => {
       columnsRef.current.scrollLeft = columnsRef.current.scrollWidth;
     }
   }, [columnStack.length, docsColumn]);
+
+  // The deepest selected custom folder with no children — used to show
+  // "New Subfolder" inside the docs column instead of a separate empty column.
+  const leafCustomFolder = (() => {
+    for (let i = columnStack.length - 1; i >= 0; i--) {
+      const col = columnStack[i];
+      if (col.selectedIdx == null) continue;
+      const item = col.items[col.selectedIdx];
+      if (
+        item?.kind === "custom" &&
+        (item.folderData.children || []).length === 0
+      )
+        return item;
+      break;
+    }
+    return null;
+  })();
 
   const fq = filterQuery.toLowerCase();
   const filterItems = (items) =>
@@ -1322,6 +1352,15 @@ const FinderBrowser = ({ sources, sourceKeys }) => {
         {/* Documents column */}
         {docsColumn && (
           <div className="finder-column finder-column--docs">
+            {leafCustomFolder && (
+              <button
+                className="finder-add-row finder-add-row--inline"
+                onClick={() => setShowCreateModal(leafCustomFolder.id)}
+              >
+                <span className="finder-add-row-icon">+</span>
+                <span className="finder-add-row-label">New Subfolder</span>
+              </button>
+            )}
             {docsColumn.loading ? (
               <div className="finder-loading">
                 <span className="finder-loading-dot"></span>
