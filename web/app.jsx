@@ -401,8 +401,11 @@ const getFinderSourceIcon = (key) => SOURCE_ICONS[key] || "\uD83D\uDCC1";
 
 const getFinderDocIcon = (doc) => {
   const url = doc.url || "";
+  const title = (doc.title || "").toLowerCase();
   const allTags = (doc.tags || []).concat(doc["extra-tags"] || []);
-  const isHN = allTags.some((t) => t.toLowerCase().includes("hackernews"));
+  const isHN =
+    title.includes("hackernews") ||
+    allTags.some((t) => t.toLowerCase().includes("hackernews"));
   if (isHN)
     return <img src="icons/hackernews.png" alt="HN" width="13" height="13" />;
   if (url.includes("github.com")) return "\uD83D\uDCBB";
