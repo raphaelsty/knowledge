@@ -1152,7 +1152,8 @@ body {
 }
 
 .finder-row-edit,
-.finder-row-delete {
+.finder-row-delete,
+.finder-row-exclude {
   flex-shrink: 0;
   background: none;
   border: none;
@@ -1161,14 +1162,15 @@ body {
   cursor: pointer;
   padding: 2px 6px;
   border-radius: 4px;
-  opacity: 0;
+  opacity: 0.25;
   transition: all var(--transition-fast);
   line-height: 1;
 }
 
 .finder-row:hover .finder-row-edit,
-.finder-row:hover .finder-row-delete {
-  opacity: 0.6;
+.finder-row:hover .finder-row-delete,
+.finder-row:hover .finder-row-exclude {
+  opacity: 0.7;
 }
 
 .finder-row-edit:hover {
@@ -1177,7 +1179,8 @@ body {
   background: color-mix(in srgb, var(--accent-primary) 10%, transparent);
 }
 
-.finder-row-delete:hover {
+.finder-row-delete:hover,
+.finder-row-exclude:hover {
   opacity: 1 !important;
   color: #ef4444;
   background: rgba(239, 68, 68, 0.1);
@@ -1443,6 +1446,55 @@ body {
   background: var(--accent2-bg-hover);
   color: var(--accent2-primary);
   border-color: var(--accent2-primary);
+}
+
+.finder-modal-excluded-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-height: 120px;
+  overflow-y: auto;
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  padding: 4px;
+}
+
+.finder-modal-excluded-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 6px;
+  border-radius: 4px;
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.finder-modal-excluded-item:hover {
+  background: var(--bg-secondary);
+}
+
+.finder-modal-excluded-title {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.finder-modal-excluded-restore {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  color: var(--accent-primary);
+  font-size: 11px;
+  cursor: pointer;
+  padding: 1px 4px;
+  border-radius: 3px;
+  opacity: 0.7;
+  transition: opacity var(--transition-fast);
+}
+
+.finder-modal-excluded-restore:hover {
+  opacity: 1;
 }
 
 .finder-modal-tag-chips {

@@ -575,6 +575,9 @@ const CreateFolderModal = ({
   const [tagIntersect, setTagIntersect] = useState(
     initialFolder?.tagIntersect ?? false,
   );
+  const [excludedDocs, setExcludedDocs] = useState(
+    initialFolder?.excludedDocs ?? [],
+  );
 
   // Load tags from metadata API (guarantees every tag has at least one document)
   useEffect(() => {
@@ -660,6 +663,7 @@ const CreateFolderModal = ({
               .map((u) => u.trim())
               .filter(Boolean)
           : [],
+      excludedDocs,
     };
     onCreate(folder);
   };
@@ -868,6 +872,41 @@ const CreateFolderModal = ({
                 onChange={(e) => setValue(e.target.value)}
                 placeholder="https://..."
               />
+            </div>
+          )}
+
+          {excludedDocs.length > 0 && (
+            <div>
+              <div className="finder-modal-label">
+                Excluded documents
+                <span className="finder-modal-tag-count">
+                  {excludedDocs.length}
+                </span>
+              </div>
+              <div className="finder-modal-excluded-list">
+                {excludedDocs.map((d) => (
+                  <div key={d.url} className="finder-modal-excluded-item">
+                    <span
+                      className="finder-modal-excluded-title"
+                      title={d.title}
+                    >
+                      {d.title || d.url}
+                    </span>
+                    <button
+                      type="button"
+                      className="finder-modal-excluded-restore"
+                      title="Re-include"
+                      onClick={() =>
+                        setExcludedDocs((prev) =>
+                          prev.filter((x) => x.url !== d.url),
+                        )
+                      }
+                    >
+                      ↩ restore
+                    </button>
+                  </div>
+                ))}
+              </div>
             </div>
           )}
 
@@ -1294,6 +1333,28 @@ const FinderBrowser = ({
     );
   }, []);
 
+  const handleExcludeDoc = useCallback((folderId, doc) => {
+    setCustomFolders((prev) => {
+      const folder = findFolderById(prev, folderId);
+      if (!folder) return prev;
+      const excludedDocs = [
+        ...(folder.excludedDocs || []).filter((d) => d.url !== doc.url),
+        { url: doc.url, title: doc.title },
+      ];
+      const next = updateFolderInTree(prev, { ...folder, excludedDocs });
+      saveCustomFolders(next);
+      return next;
+    });
+    // Optimistically remove from the active docs column
+    setDocsColumnStack((prev) =>
+      prev.map((e) =>
+        e.contextFolder?.id === folderId
+          ? { ...e, items: e.items.filter((d) => d.url !== doc.url) }
+          : e,
+      ),
+    );
+  }, []);
+
   // Fetch docs data for an item (pure async, no state mutation)
   const fetchDocsData = useCallback(async (item) => {
     if (item.kind === "favorites") {
@@ -1405,6 +1466,12 @@ const FinderBrowser = ({
             });
           }
         }
+      }
+      const excludedUrls = new Set(
+        (folder.excludedDocs || []).map((d) => d.url),
+      );
+      if (excludedUrls.size > 0) {
+        docs = docs.filter((d) => !excludedUrls.has(d.url));
       }
       return {
         subfolders: (folder.children || []).map(folderToItem),
@@ -1784,6 +1851,19 @@ const FinderBrowser = ({
                       </span>
                       <span className="finder-row-label">{doc.title}</span>
                       <span className="finder-row-meta">{doc.date}</span>
+                      {dcol.contextFolder && (
+                        <button
+                          className="finder-row-exclude"
+                          title="Remove from folder"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            handleExcludeDoc(dcol.contextFolder.id, doc);
+                          }}
+                        >
+                          {"\u00D7"}
+                        </button>
+                      )}
                     </a>
                   ))
                 )}
