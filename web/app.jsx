@@ -1163,25 +1163,25 @@ const FinderBrowser = ({ sources, sourceKeys }) => {
 
       if (item.kind === "custom") {
         const children = item.folderData.children || [];
-        if (children.length > 0) {
-          // Push a sub-column for the folder's children
-          setColumnStack((prev) => [
-            ...base(prev),
-            {
-              items: children.map(folderToItem),
-              selectedIdx: null,
-              parentFolderId: item.id,
-            },
-          ]);
-          // Also load docs if this folder has its own filter
-          if (
-            item.folderData.filterType &&
-            item.folderData.filterType !== "none"
-          ) {
-            loadDocs(item);
-          }
-          return;
+        // Always push a sub-column so "New Subfolder" is always reachable
+        setColumnStack((prev) => [
+          ...base(prev),
+          {
+            items: children.map(folderToItem),
+            selectedIdx: null,
+            parentFolderId: item.id,
+          },
+        ]);
+        // Load docs if this folder has its own filter
+        if (
+          item.folderData.filterType &&
+          item.folderData.filterType !== "none"
+        ) {
+          loadDocs(item);
+        } else {
+          setDocsColumn(null);
         }
+        return;
       }
 
       setColumnStack(base);
