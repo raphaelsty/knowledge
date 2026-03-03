@@ -810,10 +810,11 @@ const COL_MIN_WIDTH = 100;
 const COL_MAX_WIDTH = 480;
 
 const FinderBrowser = ({ sources, sourceKeys }) => {
-  // columnStack[i] = { items: [...], selectedIdx: number|null }
+  // columnStack[i] = { items: [...], selectedIdx: number|null, parentFolderId }
   const [columnStack, setColumnStack] = useState([]);
-  // docsColumn = null | { items: [...], loading: bool }
-  const [docsColumn, setDocsColumn] = useState(null);
+  // docsColumnStack[i] = { id, contextFolder, subfolders, items, loading, selectedSubfolderIdx }
+  // Multiple docs columns are shown side-by-side as the user navigates into sub-folders
+  const [docsColumnStack, setDocsColumnStack] = useState([]);
   const [filterQuery, setFilterQuery] = useState("");
   const [customFolders, setCustomFolders] = useState(loadCustomFolders);
   // null = closed; "" = open at root; "uuid" = open under that folder
@@ -893,6 +894,23 @@ const FinderBrowser = ({ sources, sourceKeys }) => {
       });
     });
   }, [sources, customFolders]);
+
+  // Keep docs column subfolders in sync when customFolders tree changes
+  // (e.g. after creating/deleting a subfolder inside a folder that's currently open)
+  useEffect(() => {
+    setDocsColumnStack((prev) =>
+      prev.map((e) => {
+        if (!e.contextFolder || e.contextFolder.kind !== "custom") return e;
+        const folder = findFolderById(customFolders, e.contextFolder.id);
+        if (!folder) return e; // deletion handled separately
+        return {
+          ...e,
+          contextFolder: folderToItem(folder),
+          subfolders: (folder.children || []).map(folderToItem),
+        };
+      }),
+    );
+  }, [customFolders]);
 
   const handleCreateFolder = useCallback(async (folder, parentId) => {
     const targetParentId = parentId ?? null;
@@ -1021,7 +1039,7 @@ const FinderBrowser = ({ sources, sourceKeys }) => {
           col.items[col.selectedIdx]?.id === finalFolder.id,
       );
       if (wasSelected) {
-        setDocsColumn(null);
+        setDocsColumnStack([]);
         return prev.length > 0
           ? [{ items: prev[0].items, selectedIdx: null }]
           : prev;
@@ -1036,108 +1054,183 @@ const FinderBrowser = ({ sources, sourceKeys }) => {
       saveCustomFolders(next);
       return next;
     });
-    // Collapse to root column if the deleted folder (or a parent of it) was open
-    setDocsColumn(null);
+    // Truncate docs stack at the first entry showing the deleted folder's content;
+    // remove it from any subfolders list and adjust selectedSubfolderIdx
+    setDocsColumnStack((prev) => {
+      const cutIdx = prev.findIndex((e) => e.contextFolder?.id === id);
+      const truncated = cutIdx !== -1 ? prev.slice(0, cutIdx) : prev;
+      return truncated.map((e) => {
+        const origIdx = (e.subfolders || []).findIndex((sf) => sf.id === id);
+        if (origIdx === -1) return e;
+        const subfolders = (e.subfolders || []).filter((sf) => sf.id !== id);
+        let selectedSubfolderIdx = e.selectedSubfolderIdx;
+        if (selectedSubfolderIdx === origIdx) selectedSubfolderIdx = null;
+        else if (selectedSubfolderIdx != null && selectedSubfolderIdx > origIdx)
+          selectedSubfolderIdx--;
+        return { ...e, subfolders, selectedSubfolderIdx };
+      });
+    });
+    // Deselect from nav column if needed — items rebuild via the customFolders useEffect
     setColumnStack((prev) =>
-      prev.length > 0
-        ? [{ ...prev[0], selectedIdx: null, parentFolderId: null }]
-        : prev,
+      prev.map((col) =>
+        col.selectedIdx != null && col.items[col.selectedIdx]?.id === id
+          ? { ...col, selectedIdx: null }
+          : col,
+      ),
     );
   }, []);
 
-  // Load documents for a selected item (source or custom folder)
-  const loadDocs = useCallback(async (item) => {
+  // Fetch docs data for an item (pure async, no state mutation)
+  const fetchDocsData = useCallback(async (item) => {
     if (item.kind === "source") {
-      setDocsColumn({ items: [], loading: true });
-      try {
-        const docs = await apiLatest(FINDER_DOC_LIMIT, new Set([item.key]));
-        setDocsColumn({ items: docs, loading: false });
-      } catch {
-        setDocsColumn({ items: [], loading: false });
-      }
-    } else if (item.kind === "custom") {
+      const docs = await apiLatest(FINDER_DOC_LIMIT, new Set([item.key]));
+      return { subfolders: [], items: docs };
+    }
+    if (item.kind === "custom") {
       const folder = item.folderData;
       if (folder.filterType === "none") {
-        // Empty container folder — no docs to load
-        setDocsColumn(null);
-        return;
+        return {
+          subfolders: (folder.children || []).map(folderToItem),
+          items: [],
+        };
       }
-      setDocsColumn({ items: [], loading: true });
-      try {
-        let docs = [];
-        const useStoredUrls =
-          folder.live === false || folder.filterType === "urls";
-        if (useStoredUrls && folder.urls && folder.urls.length > 0) {
-          const placeholders = folder.urls.map(() => "?").join(", ");
+      let docs = [];
+      const useStoredUrls =
+        folder.live === false || folder.filterType === "urls";
+      if (useStoredUrls && folder.urls && folder.urls.length > 0) {
+        const placeholders = folder.urls.map(() => "?").join(", ");
+        const resp = await fetch(
+          `${API_BASE_URL}/indices/${INDEX_NAME}/metadata/get`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              condition: `url IN (${placeholders})`,
+              parameters: folder.urls,
+            }),
+          },
+        );
+        const data = await resp.json();
+        docs = (data.metadata || []).map(transformMeta);
+      } else if (folder.filterType === "search") {
+        docs = await apiSearch(
+          folder.searchQuery,
+          false,
+          null,
+          null,
+          folder.topK || 50,
+        );
+      } else if (folder.filterType === "tag") {
+        const tagList = Array.isArray(folder.tagFilter)
+          ? folder.tagFilter
+          : folder.tagFilter
+            ? [folder.tagFilter]
+            : [];
+        if (tagList.length > 0) {
+          const clauses = tagList.map(
+            () => "(tags LIKE ? OR extra_tags LIKE ?)",
+          );
           const resp = await fetch(
             `${API_BASE_URL}/indices/${INDEX_NAME}/metadata/get`,
             {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({
-                condition: `url IN (${placeholders})`,
-                parameters: folder.urls,
+                condition: clauses.join(folder.tagIntersect ? " AND " : " OR "),
+                parameters: tagList.flatMap((t) => [`%${t}%`, `%${t}%`]),
               }),
             },
           );
           const data = await resp.json();
           docs = (data.metadata || []).map(transformMeta);
-        } else if (folder.filterType === "search") {
-          docs = await apiSearch(
-            folder.searchQuery,
-            false,
-            null,
-            null,
-            folder.topK || 50,
-          );
-        } else if (folder.filterType === "tag") {
-          const tagList = Array.isArray(folder.tagFilter)
-            ? folder.tagFilter
-            : folder.tagFilter
-              ? [folder.tagFilter]
-              : [];
-          if (tagList.length > 0) {
-            const clauses = tagList.map(
-              () => "(tags LIKE ? OR extra_tags LIKE ?)",
-            );
-            const resp = await fetch(
-              `${API_BASE_URL}/indices/${INDEX_NAME}/metadata/get`,
-              {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                  condition: clauses.join(
-                    folder.tagIntersect ? " AND " : " OR ",
-                  ),
-                  parameters: tagList.flatMap((t) => [`%${t}%`, `%${t}%`]),
-                }),
-              },
-            );
-            const data = await resp.json();
-            docs = (data.metadata || []).map(transformMeta);
-            if (folder.tagIntersect) {
-              docs.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
-            } else {
-              // OR mode: sort by number of matching tags (most matches first)
-              docs.sort((a, b) => {
-                const diff =
-                  countTagMatches(b, tagList) - countTagMatches(a, tagList);
-                return diff !== 0
-                  ? diff
-                  : (b.date || "").localeCompare(a.date || "");
-              });
-            }
+          if (folder.tagIntersect) {
+            docs.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+          } else {
+            docs.sort((a, b) => {
+              const diff =
+                countTagMatches(b, tagList) - countTagMatches(a, tagList);
+              return diff !== 0
+                ? diff
+                : (b.date || "").localeCompare(a.date || "");
+            });
           }
         }
-        setDocsColumn({
-          items: docs.slice(0, FINDER_DOC_LIMIT),
-          loading: false,
-        });
-      } catch {
-        setDocsColumn({ items: [], loading: false });
       }
+      return {
+        subfolders: (folder.children || []).map(folderToItem),
+        items: docs.slice(0, FINDER_DOC_LIMIT),
+      };
     }
+    return { subfolders: [], items: [] };
   }, []);
+
+  // Load docs as the first (root) entry — replaces the whole stack
+  const loadDocsRoot = useCallback(
+    async (item) => {
+      const id = crypto.randomUUID();
+      const contextFolder = item.kind === "custom" ? item : null;
+      setDocsColumnStack([
+        {
+          id,
+          contextFolder,
+          subfolders: [],
+          items: [],
+          loading: true,
+          selectedSubfolderIdx: null,
+        },
+      ]);
+      try {
+        const { subfolders, items } = await fetchDocsData(item);
+        setDocsColumnStack((prev) =>
+          prev.map((e) =>
+            e.id === id ? { ...e, subfolders, items, loading: false } : e,
+          ),
+        );
+      } catch {
+        setDocsColumnStack((prev) =>
+          prev.map((e) => (e.id === id ? { ...e, loading: false } : e)),
+        );
+      }
+    },
+    [fetchDocsData],
+  );
+
+  // Push a new docs column when the user clicks a subfolder inside the docs area
+  const pushDocsChild = useCallback(
+    async (parentIdx, sfIdx, sf) => {
+      const id = crypto.randomUUID();
+      const contextFolder = sf;
+      // Mark the parent's selected subfolder and truncate any deeper columns
+      setDocsColumnStack((prev) => [
+        ...prev
+          .slice(0, parentIdx + 1)
+          .map((e, i) =>
+            i === parentIdx ? { ...e, selectedSubfolderIdx: sfIdx } : e,
+          ),
+        {
+          id,
+          contextFolder,
+          subfolders: [],
+          items: [],
+          loading: true,
+          selectedSubfolderIdx: null,
+        },
+      ]);
+      try {
+        const { subfolders, items } = await fetchDocsData(sf);
+        setDocsColumnStack((prev) =>
+          prev.map((e) =>
+            e.id === id ? { ...e, subfolders, items, loading: false } : e,
+          ),
+        );
+      } catch {
+        setDocsColumnStack((prev) =>
+          prev.map((e) => (e.id === id ? { ...e, loading: false } : e)),
+        );
+      }
+    },
+    [fetchDocsData],
+  );
 
   // Handle item selection: mark selected, truncate deeper columns, load docs.
   // Clicking an already-selected item deselects it and closes the docs column.
@@ -1145,7 +1238,7 @@ const FinderBrowser = ({ sources, sourceKeys }) => {
     (colIdx, itemIdx, item) => {
       const isDeselecting = columnStack[colIdx]?.selectedIdx === itemIdx;
       setFilterQuery("");
-      setDocsColumn(null);
+      setDocsColumnStack([]);
 
       if (isDeselecting) {
         setColumnStack((prev) =>
@@ -1161,46 +1254,10 @@ const FinderBrowser = ({ sources, sourceKeys }) => {
           .slice(0, colIdx + 1)
           .map((c, i) => (i === colIdx ? { ...c, selectedIdx: itemIdx } : c));
 
-      if (item.kind === "custom") {
-        const children = item.folderData.children || [];
-        if (children.length > 0) {
-          // Push sub-column; "New Subfolder" lives there
-          setColumnStack((prev) => [
-            ...base(prev),
-            {
-              items: children.map(folderToItem),
-              selectedIdx: null,
-              parentFolderId: item.id,
-            },
-          ]);
-          if (
-            item.folderData.filterType &&
-            item.folderData.filterType !== "none"
-          ) {
-            loadDocs(item);
-          } else {
-            setDocsColumn(null);
-          }
-        } else {
-          // No children: stay in the same column layout, load docs.
-          // "New Subfolder" will appear inside the docs column.
-          setColumnStack(base);
-          if (
-            item.folderData.filterType &&
-            item.folderData.filterType !== "none"
-          ) {
-            loadDocs(item);
-          } else {
-            setDocsColumn({ items: [], loading: false });
-          }
-        }
-        return;
-      }
-
       setColumnStack(base);
-      loadDocs(item);
+      loadDocsRoot(item);
     },
-    [columnStack, loadDocs],
+    [columnStack, loadDocsRoot],
   );
 
   // Scroll to reveal the rightmost column when navigation changes
@@ -1208,24 +1265,7 @@ const FinderBrowser = ({ sources, sourceKeys }) => {
     if (columnsRef.current) {
       columnsRef.current.scrollLeft = columnsRef.current.scrollWidth;
     }
-  }, [columnStack.length, docsColumn]);
-
-  // The deepest selected custom folder with no children — used to show
-  // "New Subfolder" inside the docs column instead of a separate empty column.
-  const leafCustomFolder = (() => {
-    for (let i = columnStack.length - 1; i >= 0; i--) {
-      const col = columnStack[i];
-      if (col.selectedIdx == null) continue;
-      const item = col.items[col.selectedIdx];
-      if (
-        item?.kind === "custom" &&
-        (item.folderData.children || []).length === 0
-      )
-        return item;
-      break;
-    }
-    return null;
-  })();
+  }, [columnStack.length, docsColumnStack.length]);
 
   const fq = filterQuery.toLowerCase();
   const filterItems = (items) =>
@@ -1349,52 +1389,123 @@ const FinderBrowser = ({ sources, sourceKeys }) => {
           </div>
         ))}
 
-        {/* Documents column */}
-        {docsColumn && (
-          <div className="finder-column finder-column--docs">
-            {leafCustomFolder && (
+        {/* Docs columns — one per level of subfolder navigation */}
+        {docsColumnStack.map((dcol, dcolIdx) => (
+          <div key={dcol.id} className="finder-column finder-column--docs">
+            {dcol.contextFolder && (
               <button
                 className="finder-add-row finder-add-row--inline"
-                onClick={() => setShowCreateModal(leafCustomFolder.id)}
+                onClick={() => setShowCreateModal(dcol.contextFolder.id)}
               >
                 <span className="finder-add-row-icon">+</span>
                 <span className="finder-add-row-label">New Subfolder</span>
               </button>
             )}
-            {docsColumn.loading ? (
+            {dcol.loading ? (
               <div className="finder-loading">
                 <span className="finder-loading-dot"></span>
                 Loading...
               </div>
-            ) : filterDocs(docsColumn.items).length === 0 ? (
-              <div className="finder-empty">No documents</div>
             ) : (
-              filterDocs(docsColumn.items).map((doc, i) => (
-                <a
-                  key={doc.url || i}
-                  className="finder-row finder-row--doc"
-                  href={doc.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <span className="finder-row-icon" style={{ fontSize: 13 }}>
-                    {doc.url && doc.url.includes("github.com")
-                      ? "\uD83D\uDCBB"
-                      : doc.url &&
-                          (doc.url.includes("twitter.com") ||
-                            doc.url.includes("x.com"))
-                        ? "\uD835\uDD4F"
-                        : doc.url && doc.url.includes("arxiv.org")
-                          ? "\uD83D\uDCDD"
-                          : "\uD83D\uDCC4"}
-                  </span>
-                  <span className="finder-row-label">{doc.title}</span>
-                  <span className="finder-row-meta">{doc.date}</span>
-                </a>
-              ))
+              <>
+                {filterItems(dcol.subfolders || []).map((sf, sfIdx) => {
+                  const isSelected = dcol.selectedSubfolderIdx === sfIdx;
+                  return (
+                    <div
+                      key={`sf-${sf.id}`}
+                      className={`finder-row${isSelected ? " finder-row--selected" : ""}`}
+                      onClick={() => {
+                        if (isSelected) {
+                          // Deselect: collapse deeper docs columns
+                          setDocsColumnStack((prev) =>
+                            prev
+                              .slice(0, dcolIdx + 1)
+                              .map((e, i) =>
+                                i === dcolIdx
+                                  ? { ...e, selectedSubfolderIdx: null }
+                                  : e,
+                              ),
+                          );
+                        } else {
+                          pushDocsChild(dcolIdx, sfIdx, sf);
+                        }
+                      }}
+                    >
+                      <span
+                        className="finder-row-icon"
+                        style={{ fontSize: 13 }}
+                      >
+                        {sf.filterType === "search"
+                          ? "\uD83D\uDD0D"
+                          : sf.filterType === "tag"
+                            ? "\uD83C\uDFF7\uFE0F"
+                            : sf.filterType === "urls"
+                              ? "\uD83D\uDD17"
+                              : "\uD83D\uDCC1"}
+                      </span>
+                      <span className="finder-row-label">{sf.label}</span>
+                      {((sf.folderData?.children || []).length > 0 ||
+                        isSelected) && (
+                        <span className="finder-row-chevron">›</span>
+                      )}
+                      <button
+                        className="finder-row-edit"
+                        title="Edit folder"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setShowEditModal(sf.folderData);
+                        }}
+                      >
+                        ✎
+                      </button>
+                      <button
+                        className="finder-row-delete"
+                        title="Delete folder"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleDeleteFolder(sf.id);
+                        }}
+                      >
+                        {"\u00D7"}
+                      </button>
+                    </div>
+                  );
+                })}
+                {filterDocs(dcol.items).length === 0 &&
+                (dcol.subfolders || []).length === 0 ? (
+                  <div className="finder-empty">No documents</div>
+                ) : (
+                  filterDocs(dcol.items).map((doc, i) => (
+                    <a
+                      key={doc.url || i}
+                      className="finder-row finder-row--doc"
+                      href={doc.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span
+                        className="finder-row-icon"
+                        style={{ fontSize: 13 }}
+                      >
+                        {doc.url && doc.url.includes("github.com")
+                          ? "\uD83D\uDCBB"
+                          : doc.url &&
+                              (doc.url.includes("twitter.com") ||
+                                doc.url.includes("x.com"))
+                            ? "\uD835\uDD4F"
+                            : doc.url && doc.url.includes("arxiv.org")
+                              ? "\uD83D\uDCDD"
+                              : "\uD83D\uDCC4"}
+                      </span>
+                      <span className="finder-row-label">{doc.title}</span>
+                      <span className="finder-row-meta">{doc.date}</span>
+                    </a>
+                  ))
+                )}
+              </>
             )}
           </div>
-        )}
+        ))}
       </div>
 
       {/* Create folder modal */}
