@@ -1028,7 +1028,6 @@ const COL_MAX_WIDTH = 480;
 const FinderBrowser = ({
   sources,
   sourceKeys,
-  favorites,
   finderFullscreen,
   onToggleFullscreen,
 }) => {
@@ -1107,9 +1106,6 @@ const FinderBrowser = ({
   useEffect(() => {
     const rootItems = [
       { kind: "source", key: "all", label: "All" },
-      ...(favorites.size > 0
-        ? [{ kind: "favorites", label: "Favorites" }]
-        : []),
       ...sources.map((src) => ({
         kind: "source",
         key: src.key,
@@ -1130,7 +1126,7 @@ const FinderBrowser = ({
         };
       });
     });
-  }, [sources, customFolders, favorites]);
+  }, [sources, customFolders]);
 
   // Keep docs column subfolders in sync when customFolders tree changes
   // (e.g. after creating/deleting a subfolder inside a folder that's currently open)
@@ -1190,25 +1186,6 @@ const FinderBrowser = ({
         return next;
       });
   }, [docsColumnStack]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  // Silently refresh the favorites docs column whenever the favorites Set changes
-  useEffect(() => {
-    const favEntry = docsColumnStack.find((e) => e.kind === "favorites");
-    if (!favEntry) return;
-    const id = favEntry.id;
-    let cancelled = false;
-    fetchDocsData({ kind: "favorites" })
-      .then(({ items }) => {
-        if (cancelled) return;
-        setDocsColumnStack((prev) =>
-          prev.map((e) => (e.id === id ? { ...e, items } : e)),
-        );
-      })
-      .catch(() => {});
-    return () => {
-      cancelled = true;
-    };
-  }, [favorites]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleCreateFolder = useCallback(async (folder, parentId) => {
     const targetParentId = parentId ?? null;
@@ -1456,31 +1433,6 @@ const FinderBrowser = ({
 
   // Fetch docs data for an item (pure async, no state mutation)
   const fetchDocsData = useCallback(async (item) => {
-    if (item.kind === "favorites") {
-      const urls = await fetch(`${DATA_API_URL}/api/favorites`).then((r) =>
-        r.json(),
-      );
-      if (!urls.length) return { subfolders: [], items: [] };
-      const placeholders = urls.map(() => "?").join(", ");
-      const data = await fetch(
-        `${API_BASE_URL}/indices/${INDEX_NAME}/metadata/get`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            condition: `url IN (${placeholders})`,
-            parameters: urls,
-          }),
-        },
-      ).then((r) => r.json());
-      // Preserve favorites order (most recent first from API)
-      const metaMap = new Map((data.metadata || []).map((m) => [m.url, m]));
-      const items = urls
-        .map((url) => metaMap.get(url))
-        .filter(Boolean)
-        .map(transformMeta);
-      return { subfolders: [], items };
-    }
     if (item.kind === "source") {
       const sourceSet = item.key === "all" ? new Set() : new Set([item.key]);
       const docs = await apiLatest(Infinity, sourceSet);
@@ -1858,11 +1810,7 @@ const FinderBrowser = ({
               return (
                 <div
                   key={
-                    item.kind === "favorites"
-                      ? "favorites"
-                      : item.kind === "source"
-                        ? `s-${item.key}`
-                        : `c-${item.id}`
+                    item.kind === "source" ? `s-${item.key}` : `c-${item.id}`
                   }
                   className={`finder-row${isSelected ? " finder-row--selected" : ""}${item.kind === "custom" && dropTargetId === item.id ? " finder-row--drop-target" : ""}`}
                   onClick={() => selectItem(colIdx, origIdx, item)}
@@ -1881,20 +1829,18 @@ const FinderBrowser = ({
                   }
                 >
                   <span className="finder-row-icon" style={{ fontSize: 13 }}>
-                    {item.kind === "favorites"
-                      ? "\u2764\uFE0F"
-                      : item.kind === "source"
-                        ? getFinderSourceIcon(item.key)
-                        : col.parentFolderId === null &&
-                            folderSourceCache[item.id]
-                          ? getFinderSourceIcon(folderSourceCache[item.id])
-                          : item.filterType === "search"
-                            ? "\uD83D\uDD0D"
-                            : item.filterType === "tag"
-                              ? "\uD83C\uDFF7\uFE0F"
-                              : item.filterType === "urls"
-                                ? "\uD83D\uDD17"
-                                : "\uD83D\uDCC1"}
+                    {item.kind === "source"
+                      ? getFinderSourceIcon(item.key)
+                      : col.parentFolderId === null &&
+                          folderSourceCache[item.id]
+                        ? getFinderSourceIcon(folderSourceCache[item.id])
+                        : item.filterType === "search"
+                          ? "\uD83D\uDD0D"
+                          : item.filterType === "tag"
+                            ? "\uD83C\uDFF7\uFE0F"
+                            : item.filterType === "urls"
+                              ? "\uD83D\uDD17"
+                              : "\uD83D\uDCC1"}
                   </span>
                   <span className="finder-row-label">{item.label}</span>
                   {item.kind === "custom" && (
@@ -2280,8 +2226,6 @@ const Search = () => {
   const [resultsReranked, setResultsReranked] = useState(false);
   const [sourceFilter, setSourceFilter] = useState(new Set());
   const [sources, setSources] = useState([]);
-  const [favorites, setFavorites] = useState(new Set());
-  const [showFavorites, setShowFavorites] = useState(false);
   const [theme, setTheme] = useState(
     document.documentElement.getAttribute("data-theme") || "dark",
   );
@@ -2444,12 +2388,6 @@ const Search = () => {
             console.error("[APP] Failed to load sources:", error),
           );
       });
-    fetch(`${DATA_API_URL}/api/favorites`)
-      .then((res) => res.json())
-      .then((urls) => setFavorites(new Set(urls)))
-      .catch((error) =>
-        console.error("[APP] Failed to load favorites:", error),
-      );
   }, []);
 
   /**
@@ -2950,24 +2888,14 @@ const Search = () => {
     [query, selectedNode],
   );
 
-  // --- Computed: filter by source + favorites then cap at displayedCount ---
+  // --- Computed: filter by source then cap at displayedCount ---
   const displayedDocs = useMemo(() => {
-    let filtered = (documents || []).filter(
+    const filtered = (documents || []).filter(
       (doc) =>
         sourceFilter.size === 0 || sourceFilter.has(getDocumentSource(doc)),
     );
-    if (showFavorites) {
-      filtered = filtered.filter((doc) => favorites.has(doc.url));
-    }
     return filtered.slice(0, displayedCount);
-  }, [
-    documents,
-    sourceFilter,
-    getDocumentSource,
-    showFavorites,
-    favorites,
-    displayedCount,
-  ]);
+  }, [documents, sourceFilter, getDocumentSource, displayedCount]);
 
   // --- Render ---
   const folderPanel = document.getElementById("folder-panel");
@@ -3159,27 +3087,6 @@ const Search = () => {
             <path d="M21 12a9 9 0 0 1-15 6.7L3 16" />
           </svg>
         </button>
-        <button
-          className={`favorites-toggle ${showFavorites ? "active" : ""}`}
-          onClick={() => setShowFavorites((v) => !v)}
-          title={showFavorites ? "Show all" : "Show favorites"}
-        >
-          <svg
-            width="14"
-            height="14"
-            viewBox="0 0 24 24"
-            fill={showFavorites ? "currentColor" : "none"}
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-          </svg>
-          {favorites.size > 0 && (
-            <span className="favorites-count">{favorites.size}</span>
-          )}
-        </button>
       </div>
 
       {tagFilters.size > 0 && (
@@ -3299,49 +3206,6 @@ const Search = () => {
                   </svg>
                   <span>Similar</span>
                 </button>
-                <button
-                  className={`favorite-btn ${favorites.has(doc.url) ? "active" : ""}`}
-                  title={
-                    favorites.has(doc.url)
-                      ? "Remove from favorites"
-                      : "Add to favorites"
-                  }
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    const url = doc.url;
-                    setFavorites((prev) => {
-                      const next = new Set(prev);
-                      if (next.has(url)) next.delete(url);
-                      else next.add(url);
-                      return next;
-                    });
-                    fetch(`${DATA_API_URL}/api/favorites`, {
-                      method: "POST",
-                      headers: { "Content-Type": "application/json" },
-                      body: JSON.stringify({ url }),
-                    }).catch(() => {
-                      setFavorites((prev) => {
-                        const rollback = new Set(prev);
-                        if (rollback.has(url)) rollback.delete(url);
-                        else rollback.add(url);
-                        return rollback;
-                      });
-                    });
-                  }}
-                >
-                  <svg
-                    width="14"
-                    height="14"
-                    viewBox="0 0 24 24"
-                    fill={favorites.has(doc.url) ? "currentColor" : "none"}
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                  </svg>
-                </button>
               </div>
             </div>
             {similarMap.has(doc.url) &&
@@ -3413,55 +3277,6 @@ const Search = () => {
                                 {sim.similarity.toFixed(3)}
                               </span>
                             )}
-                            <button
-                              className={`favorite-btn ${favorites.has(sim.url) ? "active" : ""}`}
-                              title={
-                                favorites.has(sim.url)
-                                  ? "Remove from favorites"
-                                  : "Add to favorites"
-                              }
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                const url = sim.url;
-                                setFavorites((prev) => {
-                                  const next = new Set(prev);
-                                  if (next.has(url)) next.delete(url);
-                                  else next.add(url);
-                                  return next;
-                                });
-                                fetch(`${DATA_API_URL}/api/favorites`, {
-                                  method: "POST",
-                                  headers: {
-                                    "Content-Type": "application/json",
-                                  },
-                                  body: JSON.stringify({ url }),
-                                }).catch(() => {
-                                  setFavorites((prev) => {
-                                    const rollback = new Set(prev);
-                                    if (rollback.has(url)) rollback.delete(url);
-                                    else rollback.add(url);
-                                    return rollback;
-                                  });
-                                });
-                              }}
-                            >
-                              <svg
-                                width="14"
-                                height="14"
-                                viewBox="0 0 24 24"
-                                fill={
-                                  favorites.has(sim.url)
-                                    ? "currentColor"
-                                    : "none"
-                                }
-                                stroke="currentColor"
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                              >
-                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                              </svg>
-                            </button>
                           </div>
                         </div>
                       ))
@@ -3487,7 +3302,6 @@ const Search = () => {
           <FinderBrowser
             sources={sources}
             sourceKeys={sources.map((s) => s.key)}
-            favorites={favorites}
             finderFullscreen={finderFullscreen}
             onToggleFullscreen={() => setFinderFullscreen((v) => !v)}
           />,

@@ -3,7 +3,7 @@
 use sqlx::PgPool;
 
 /// Run all schema migrations on startup.
-/// Creates tables for documents, generated_data, favorites, and events.
+/// Creates tables for documents, generated_data, and events.
 pub async fn run_migrations(pool: &PgPool) {
     // Documents table
     sqlx::query(
@@ -45,17 +45,6 @@ pub async fn run_migrations(pool: &PgPool) {
     .execute(pool)
     .await
     .expect("Failed to create generated_data table");
-
-    // Favorites table
-    sqlx::query(
-        "CREATE TABLE IF NOT EXISTS favorites (
-            url         TEXT PRIMARY KEY REFERENCES documents(url) ON DELETE CASCADE,
-            created_at  TIMESTAMPTZ NOT NULL DEFAULT now()
-        )",
-    )
-    .execute(pool)
-    .await
-    .expect("Failed to create favorites table");
 
     // Events table
     sqlx::query(

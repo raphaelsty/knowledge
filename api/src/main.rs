@@ -14,8 +14,6 @@
 //! ## Data
 //! - `GET /api/folder_tree` - Folder tree structure
 //! - `GET /api/sources` - Source filter list
-//! - `GET /api/favorites` - Favorited URLs
-//! - `POST /api/favorites` - Toggle favorite
 //! - `GET /api/health` - Simple health check
 //!
 //! ## Events
@@ -488,8 +486,6 @@ fn build_router(state: Arc<AppState>, pg_pool: Option<sqlx::PgPool>) -> Router {
             .route("/api/folder_tree", get(handlers::data::folder_tree))
             .route("/api/sources", get(handlers::data::sources))
             .route("/api/pipeline_run", get(handlers::data::pipeline_run))
-            .route("/api/favorites", get(handlers::data::favorites))
-            .route("/api/favorites", post(handlers::data::toggle_favorite))
             .route("/api/health", get(handlers::data::data_health))
             .layer(cors.clone())
             .with_state(pool.clone());
