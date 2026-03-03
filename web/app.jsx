@@ -404,19 +404,65 @@ const getFinderSourceIcon = (key) => SOURCE_ICONS[key] || "\uD83D\uDCC1";
 /**
  * CreateFolderModal — overlay for creating a custom folder.
  */
+// Recursively collect all tag names from folder_tree.json nodes
+const collectTreeTags = (node, out = []) => {
+  for (const t of node.t || []) {
+    if (Array.isArray(t) && t[0]) out.push(t[0]);
+  }
+  for (const c of node.c || []) collectTreeTags(c, out);
+  return out;
+};
+
 const CreateFolderModal = ({ onClose, onCreate }) => {
   const [name, setName] = useState("");
   const [filterType, setFilterType] = useState("search");
   const [value, setValue] = useState("");
+  const [topK, setTopK] = useState(50);
+  const [live, setLive] = useState(true);
+  // tag multi-select
+  const [allTags, setAllTags] = useState([]);
+  const [selectedTags, setSelectedTags] = useState(new Set());
+  const [tagSearch, setTagSearch] = useState("");
+
+  // Load tags once when switching to tag mode
+  useEffect(() => {
+    if (filterType !== "tag" || allTags.length > 0) return;
+    fetch(`${DATA_API_URL}/api/folder_tree`)
+      .catch(() => fetch("data/folder_tree.json"))
+      .then((r) => r.json())
+      .then((tree) => {
+        const tags = [...new Set(collectTreeTags(tree))].sort();
+        setAllTags(tags);
+      })
+      .catch(() => {});
+  }, [filterType]);
+
+  const toggleTag = (tag) =>
+    setSelectedTags((prev) => {
+      const next = new Set(prev);
+      if (next.has(tag)) next.delete(tag);
+      else next.add(tag);
+      return next;
+    });
+
+  const filteredTags = tagSearch
+    ? allTags.filter((t) => t.includes(tagSearch.toLowerCase()))
+    : allTags;
+
+  const isValid =
+    name.trim() &&
+    (filterType === "tag" ? selectedTags.size > 0 : value.trim());
 
   const handleCreate = () => {
-    if (!name.trim() || !value.trim()) return;
+    if (!isValid) return;
     const folder = {
       id: crypto.randomUUID(),
       name: name.trim(),
       filterType,
+      live: filterType === "urls" ? false : live,
+      topK: filterType === "search" ? topK : undefined,
       searchQuery: filterType === "search" ? value.trim() : "",
-      tagFilter: filterType === "tag" ? value.trim() : "",
+      tagFilter: filterType === "tag" ? [...selectedTags] : [],
       urls:
         filterType === "urls"
           ? value
@@ -466,15 +512,94 @@ const CreateFolderModal = ({ onClose, onCreate }) => {
               ))}
             </div>
           </div>
-          <div>
-            <div className="finder-modal-label">
-              {filterType === "search"
-                ? "Query"
-                : filterType === "tag"
-                  ? "Tag"
-                  : "URLs (one per line)"}
+
+          {filterType === "search" && (
+            <>
+              <div>
+                <div className="finder-modal-label">Query</div>
+                <input
+                  className="finder-modal-input"
+                  value={value}
+                  onChange={(e) => setValue(e.target.value)}
+                  placeholder="e.g. machine learning"
+                />
+              </div>
+              <div>
+                <div className="finder-modal-label">Max results</div>
+                <input
+                  className="finder-modal-input"
+                  type="number"
+                  min={5}
+                  max={500}
+                  step={5}
+                  value={topK}
+                  onChange={(e) =>
+                    setTopK(
+                      Math.max(
+                        5,
+                        Math.min(500, parseInt(e.target.value) || 50),
+                      ),
+                    )
+                  }
+                  style={{ width: 90 }}
+                />
+              </div>
+            </>
+          )}
+
+          {filterType === "tag" && (
+            <div>
+              <div className="finder-modal-label">
+                Tags
+                {selectedTags.size > 0 && (
+                  <span className="finder-modal-tag-count">
+                    {selectedTags.size} selected
+                  </span>
+                )}
+              </div>
+              {selectedTags.size > 0 && (
+                <div className="finder-modal-tag-chips">
+                  {[...selectedTags].map((t) => (
+                    <span
+                      key={t}
+                      className="finder-modal-tag-chip"
+                      onClick={() => toggleTag(t)}
+                    >
+                      {t} ×
+                    </span>
+                  ))}
+                </div>
+              )}
+              <input
+                className="finder-modal-input"
+                value={tagSearch}
+                onChange={(e) => setTagSearch(e.target.value)}
+                placeholder="Search tags…"
+                style={{ marginBottom: 6 }}
+              />
+              <div className="finder-modal-tag-list">
+                {allTags.length === 0 ? (
+                  <div className="finder-modal-tag-loading">Loading…</div>
+                ) : filteredTags.length === 0 ? (
+                  <div className="finder-modal-tag-loading">No matches</div>
+                ) : (
+                  filteredTags.map((t) => (
+                    <div
+                      key={t}
+                      className={`finder-modal-tag-item${selectedTags.has(t) ? " selected" : ""}`}
+                      onClick={() => toggleTag(t)}
+                    >
+                      {t}
+                    </div>
+                  ))
+                )}
+              </div>
             </div>
-            {filterType === "urls" ? (
+          )}
+
+          {filterType === "urls" && (
+            <div>
+              <div className="finder-modal-label">URLs (one per line)</div>
               <textarea
                 className="finder-modal-input"
                 style={{ height: 60, resize: "vertical", padding: "8px 12px" }}
@@ -482,19 +607,34 @@ const CreateFolderModal = ({ onClose, onCreate }) => {
                 onChange={(e) => setValue(e.target.value)}
                 placeholder="https://..."
               />
-            ) : (
-              <input
-                className="finder-modal-input"
-                value={value}
-                onChange={(e) => setValue(e.target.value)}
-                placeholder={
-                  filterType === "search"
-                    ? "e.g. machine learning"
-                    : "e.g. deep-learning"
-                }
-              />
-            )}
-          </div>
+            </div>
+          )}
+
+          {filterType !== "urls" && (
+            <div className="finder-modal-toggle-row">
+              <div className="finder-modal-toggle-info">
+                <span
+                  className="finder-modal-label"
+                  style={{ marginBottom: 0 }}
+                >
+                  Auto-update
+                </span>
+                <span className="finder-modal-toggle-hint">
+                  {live
+                    ? "Re-query every time the folder is opened"
+                    : "Snapshot taken once at creation"}
+                </span>
+              </div>
+              <button
+                className={`finder-modal-toggle${live ? " on" : ""}`}
+                onClick={() => setLive((v) => !v)}
+                type="button"
+                aria-pressed={live}
+              >
+                <span className="finder-modal-toggle-thumb" />
+              </button>
+            </div>
+          )}
         </div>
         <div className="finder-modal-footer">
           <button
@@ -505,7 +645,7 @@ const CreateFolderModal = ({ onClose, onCreate }) => {
           </button>
           <button
             className="finder-modal-btn finder-modal-btn--save"
-            disabled={!name.trim() || !value.trim()}
+            disabled={!isValid}
             onClick={handleCreate}
           >
             Create
@@ -522,6 +662,10 @@ const CreateFolderModal = ({ onClose, onCreate }) => {
  * Column 1+: sub-categories / tags of the selected item
  * Docs column: documents in the selected tag / source / custom folder
  */
+const COL_DEFAULT_WIDTH = 220;
+const COL_MIN_WIDTH = 100;
+const COL_MAX_WIDTH = 480;
+
 const FinderBrowser = ({ sources, sourceKeys }) => {
   // columnStack[i] = { items: [...], selectedIdx: number|null }
   const [columnStack, setColumnStack] = useState([]);
@@ -530,7 +674,56 @@ const FinderBrowser = ({ sources, sourceKeys }) => {
   const [filterQuery, setFilterQuery] = useState("");
   const [customFolders, setCustomFolders] = useState(loadCustomFolders);
   const [showCreateModal, setShowCreateModal] = useState(false);
+  const [columnWidths, setColumnWidths] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem("finder-col-widths")) || {};
+    } catch {
+      return {};
+    }
+  });
   const columnsRef = useRef(null);
+  const dragRef = useRef(null);
+
+  const startResize = useCallback((e, colIdx) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const colEl = e.currentTarget.parentElement;
+    dragRef.current = {
+      colIdx,
+      startX: e.clientX,
+      startWidth: colEl.offsetWidth,
+    };
+    e.currentTarget.classList.add("dragging");
+    const handle = e.currentTarget;
+
+    const onMouseMove = (ev) => {
+      if (!dragRef.current) return;
+      const { colIdx, startX, startWidth } = dragRef.current;
+      const w = Math.max(
+        COL_MIN_WIDTH,
+        Math.min(COL_MAX_WIDTH, startWidth + ev.clientX - startX),
+      );
+      setColumnWidths((prev) => {
+        const next = { ...prev, [colIdx]: w };
+        localStorage.setItem("finder-col-widths", JSON.stringify(next));
+        return next;
+      });
+    };
+
+    const onMouseUp = () => {
+      dragRef.current = null;
+      handle.classList.remove("dragging");
+      document.body.style.cursor = "";
+      document.body.style.userSelect = "";
+      document.removeEventListener("mousemove", onMouseMove);
+      document.removeEventListener("mouseup", onMouseUp);
+    };
+
+    document.body.style.cursor = "col-resize";
+    document.body.style.userSelect = "none";
+    document.addEventListener("mousemove", onMouseMove);
+    document.addEventListener("mouseup", onMouseUp);
+  }, []);
 
   // Rebuild root column when sources / custom folders change
   useEffect(() => {
@@ -555,13 +748,60 @@ const FinderBrowser = ({ sources, sourceKeys }) => {
     );
   }, [sources, customFolders]);
 
-  const handleCreateFolder = useCallback((folder) => {
+  const handleCreateFolder = useCallback(async (folder) => {
+    setShowCreateModal(false);
+    let finalFolder = folder;
+
+    // Take a snapshot now if the folder is not live
+    if (!folder.live && folder.filterType !== "urls") {
+      try {
+        let docs = [];
+        if (folder.filterType === "search") {
+          docs = await apiSearch(
+            folder.searchQuery,
+            false,
+            null,
+            null,
+            folder.topK || 50,
+          );
+        } else if (folder.filterType === "tag") {
+          const tagList = Array.isArray(folder.tagFilter)
+            ? folder.tagFilter
+            : folder.tagFilter
+              ? [folder.tagFilter]
+              : [];
+          if (tagList.length > 0) {
+            const clauses = tagList.map(
+              () =>
+                "(',' || tags || ',' LIKE ? OR ',' || extra_tags || ',' LIKE ?)",
+            );
+            const resp = await fetch(
+              `${API_BASE_URL}/indices/${INDEX_NAME}/metadata/get`,
+              {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  condition: clauses.join(" OR "),
+                  parameters: tagList.flatMap((t) => [`%,${t},%`, `%,${t},%`]),
+                }),
+              },
+            );
+            const data = await resp.json();
+            docs = (data.metadata || []).map(transformMeta);
+          }
+        }
+        finalFolder = { ...folder, urls: docs.map((d) => d.url) };
+      } catch {
+        // snapshot failed — fall back to live
+        finalFolder = { ...folder, live: true };
+      }
+    }
+
     setCustomFolders((prev) => {
-      const next = [...prev, folder];
+      const next = [...prev, finalFolder];
       saveCustomFolders(next);
       return next;
     });
-    setShowCreateModal(false);
   }, []);
 
   const handleDeleteFolder = useCallback((id) => {
@@ -601,24 +841,9 @@ const FinderBrowser = ({ sources, sourceKeys }) => {
       try {
         const folder = item.folderData;
         let docs = [];
-        if (folder.filterType === "search") {
-          docs = await apiSearch(folder.searchQuery, false, null);
-        } else if (folder.filterType === "tag") {
-          const resp = await fetch(
-            `${API_BASE_URL}/indices/${INDEX_NAME}/metadata/get`,
-            {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                condition: "tags LIKE ? OR extra_tags LIKE ?",
-                parameters: [`%${folder.tagFilter}%`, `%${folder.tagFilter}%`],
-              }),
-            },
-          );
-          const data = await resp.json();
-          docs = (data.metadata || []).map(transformMeta);
-          docs.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
-        } else if (folder.filterType === "urls" && folder.urls.length > 0) {
+        const useStoredUrls =
+          folder.live === false || folder.filterType === "urls";
+        if (useStoredUrls && folder.urls && folder.urls.length > 0) {
           const placeholders = folder.urls.map(() => "?").join(", ");
           const resp = await fetch(
             `${API_BASE_URL}/indices/${INDEX_NAME}/metadata/get`,
@@ -633,6 +858,40 @@ const FinderBrowser = ({ sources, sourceKeys }) => {
           );
           const data = await resp.json();
           docs = (data.metadata || []).map(transformMeta);
+        } else if (folder.filterType === "search") {
+          docs = await apiSearch(
+            folder.searchQuery,
+            false,
+            null,
+            null,
+            folder.topK || 50,
+          );
+        } else if (folder.filterType === "tag") {
+          const tagList = Array.isArray(folder.tagFilter)
+            ? folder.tagFilter
+            : folder.tagFilter
+              ? [folder.tagFilter]
+              : [];
+          if (tagList.length > 0) {
+            const clauses = tagList.map(
+              () =>
+                "(',' || tags || ',' LIKE ? OR ',' || extra_tags || ',' LIKE ?)",
+            );
+            const resp = await fetch(
+              `${API_BASE_URL}/indices/${INDEX_NAME}/metadata/get`,
+              {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  condition: clauses.join(" OR "),
+                  parameters: tagList.flatMap((t) => [`%,${t},%`, `%,${t},%`]),
+                }),
+              },
+            );
+            const data = await resp.json();
+            docs = (data.metadata || []).map(transformMeta);
+            docs.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+          }
         }
         setDocsColumn({
           items: docs.slice(0, FINDER_DOC_LIMIT),
@@ -714,7 +973,11 @@ const FinderBrowser = ({ sources, sourceKeys }) => {
       <div className="finder-columns" ref={columnsRef}>
         {/* Navigable columns */}
         {columnStack.map((col, colIdx) => (
-          <div key={colIdx} className="finder-column">
+          <div
+            key={colIdx}
+            className="finder-column"
+            style={{ width: columnWidths[colIdx] ?? COL_DEFAULT_WIDTH }}
+          >
             {filterItems(col.items).map((item) => {
               const origIdx = col.items.indexOf(item);
               const isSelected = col.selectedIdx === origIdx;
@@ -766,6 +1029,10 @@ const FinderBrowser = ({ sources, sourceKeys }) => {
                 <span className="finder-add-row-label">New Folder</span>
               </button>
             )}
+            <div
+              className="finder-col-resize-handle"
+              onMouseDown={(e) => startResize(e, colIdx)}
+            />
           </div>
         ))}
 

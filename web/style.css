@@ -996,15 +996,14 @@ body {
   overflow-y: hidden;
 }
 
-/* Individual column — vertical scroll, fixed width */
+/* Individual column — vertical scroll, width set via inline style */
 .finder-column {
-  min-width: 180px;
-  max-width: 180px;
   border-right: 1px solid var(--border-subtle);
   overflow-y: auto;
   overflow-x: hidden;
   flex-shrink: 0;
   padding: 4px 0;
+  position: relative;
 }
 
 /* Documents column — wider, fills remaining space */
@@ -1012,6 +1011,35 @@ body {
   min-width: 220px;
   max-width: none;
   flex: 1;
+}
+
+/* Resize handle — draggable right edge of each nav column */
+.finder-col-resize-handle {
+  position: absolute;
+  top: 0;
+  right: -3px;
+  width: 6px;
+  height: 100%;
+  cursor: col-resize;
+  z-index: 10;
+}
+
+.finder-col-resize-handle::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 100%;
+  background: transparent;
+  transition: background 0.15s;
+}
+
+.finder-col-resize-handle:hover::after,
+.finder-col-resize-handle.dragging::after {
+  background: var(--accent-primary);
+  opacity: 0.6;
 }
 
 .finder-row {
@@ -1298,6 +1326,129 @@ body {
   color: #fff;
   border-color: transparent;
   font-weight: 600;
+}
+
+/* Tag count badge next to label */
+.finder-modal-tag-count {
+  margin-left: 6px;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--accent-primary);
+  background: color-mix(in srgb, var(--accent-primary) 12%, transparent);
+  padding: 1px 6px;
+  border-radius: 8px;
+}
+
+/* Selected tag chips */
+.finder-modal-tag-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 6px;
+}
+
+.finder-modal-tag-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: var(--accent-gradient);
+  color: #fff;
+  font-size: 11px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.finder-modal-tag-chip:hover {
+  opacity: 0.8;
+}
+
+/* Scrollable tag list */
+.finder-modal-tag-list {
+  max-height: 160px;
+  overflow-y: auto;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  background: var(--bg-secondary);
+}
+
+.finder-modal-tag-loading {
+  padding: 10px 12px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.finder-modal-tag-item {
+  padding: 5px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: background var(--transition-fast);
+}
+
+.finder-modal-tag-item:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.finder-modal-tag-item.selected {
+  background: color-mix(in srgb, var(--accent-primary) 12%, transparent);
+  color: var(--accent-primary);
+  font-weight: 500;
+}
+
+.finder-modal-toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 4px 0 2px;
+}
+
+.finder-modal-toggle-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.finder-modal-toggle-hint {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* iOS-style toggle switch */
+.finder-modal-toggle {
+  flex-shrink: 0;
+  width: 40px;
+  height: 22px;
+  border-radius: 11px;
+  border: none;
+  background: var(--border-subtle);
+  cursor: pointer;
+  position: relative;
+  transition: background 0.2s;
+  padding: 0;
+}
+
+.finder-modal-toggle.on {
+  background: var(--accent-primary);
+}
+
+.finder-modal-toggle-thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s;
+}
+
+.finder-modal-toggle.on .finder-modal-toggle-thumb {
+  transform: translateX(18px);
 }
 
 .finder-modal-footer {
