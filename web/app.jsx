@@ -377,6 +377,7 @@ const fetchSimilar = async (doc) => {
 
 // --- Custom Folders (localStorage) ---
 const CUSTOM_FOLDERS_KEY = "finder-custom-folders";
+const FOLDER_SOURCE_CACHE_KEY = "finder-folder-source-cache";
 const loadCustomFolders = () => {
   try {
     return JSON.parse(localStorage.getItem(CUSTOM_FOLDERS_KEY)) || [];
@@ -942,8 +943,14 @@ const FinderBrowser = ({
   const [customFolders, setCustomFolders] = useState(loadCustomFolders);
   // null = closed; "" = open at root; "uuid" = open under that folder
   const [showCreateModal, setShowCreateModal] = useState(null);
-  // Majority-source icon cache: { [folderId]: sourceKey }
-  const [folderSourceCache, setFolderSourceCache] = useState({});
+  // Majority-source icon cache: { [folderId]: sourceKey } — persisted to localStorage
+  const [folderSourceCache, setFolderSourceCache] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem(FOLDER_SOURCE_CACHE_KEY)) || {};
+    } catch {
+      return {};
+    }
+  });
   const [columnWidths, setColumnWidths] = useState(() => {
     try {
       return JSON.parse(localStorage.getItem("finder-col-widths")) || {};
@@ -1057,7 +1064,11 @@ const FinderBrowser = ({
     };
     customFolders.forEach(visit);
     if (Object.keys(updates).length)
-      setFolderSourceCache((prev) => ({ ...prev, ...updates }));
+      setFolderSourceCache((prev) => {
+        const next = { ...prev, ...updates };
+        localStorage.setItem(FOLDER_SOURCE_CACHE_KEY, JSON.stringify(next));
+        return next;
+      });
   }, [customFolders]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Cache majority-source icon from already-loaded docs column entries
@@ -1071,7 +1082,11 @@ const FinderBrowser = ({
       if (key) updates[id] = key;
     }
     if (Object.keys(updates).length)
-      setFolderSourceCache((prev) => ({ ...prev, ...updates }));
+      setFolderSourceCache((prev) => {
+        const next = { ...prev, ...updates };
+        localStorage.setItem(FOLDER_SOURCE_CACHE_KEY, JSON.stringify(next));
+        return next;
+      });
   }, [docsColumnStack]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Silently refresh the favorites docs column whenever the favorites Set changes
