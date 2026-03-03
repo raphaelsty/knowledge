@@ -408,9 +408,10 @@ const getFinderDocIcon = (doc) => {
     allTags.some((t) => t.toLowerCase().includes("hackernews"));
   if (isHN)
     return <img src="icons/hackernews.png" alt="HN" width="13" height="13" />;
-  if (url.includes("github.com")) return "\uD83D\uDCBB";
+  if (url.includes("github.com"))
+    return <img src="icons/github.png" alt="GitHub" width="13" height="13" />;
   if (url.includes("twitter.com") || url.includes("x.com"))
-    return "\uD835\uDD4F";
+    return <img src="icons/twitter.png" alt="X" width="13" height="13" />;
   if (url.includes("arxiv.org")) return "\uD83D\uDCDD";
   return "\uD83D\uDCC4";
 };
