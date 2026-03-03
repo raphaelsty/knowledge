@@ -397,7 +397,15 @@ const SOURCE_ICONS = {
   "superuser.com": "\uD83D\uDEE0\uFE0F",
   "ieeexplore.ieee.org": "\uD83C\uDF93",
 };
-const getFinderSourceIcon = (key) => SOURCE_ICONS[key] || "\uD83D\uDCC1";
+const getFinderSourceIcon = (key) => {
+  if (key === "github.com")
+    return <img src="icons/github.png" alt="GitHub" width="13" height="13" />;
+  if (key === "twitter.com")
+    return <img src="icons/twitter.png" alt="X" width="13" height="13" />;
+  if (key === "hackernews")
+    return <img src="icons/hackernews.png" alt="HN" width="13" height="13" />;
+  return SOURCE_ICONS[key] || "\uD83D\uDCC1";
+};
 
 const getFinderDocIcon = (doc) => {
   const url = doc.url || "";
