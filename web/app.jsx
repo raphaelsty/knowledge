@@ -3558,7 +3558,11 @@ const Search = () => {
         />
       )}
 
-      {showMcpModal && <McpModal onClose={() => setShowMcpModal(false)} />}
+      {showMcpModal &&
+        createPortal(
+          <McpModal onClose={() => setShowMcpModal(false)} />,
+          document.body,
+        )}
 
       {folderPanel &&
         !isMobile &&
