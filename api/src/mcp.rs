@@ -20,7 +20,12 @@
 
 use std::sync::Arc;
 
-use axum::{extract::State, Json};
+use axum::{
+    extract::State,
+    http::StatusCode,
+    response::{IntoResponse, Response},
+    Json,
+};
 use serde::{Deserialize, Serialize};
 use serde_json::{json, Value};
 use sqlx::PgPool;
@@ -56,8 +61,15 @@ fn err_response(id: Option<Value>, code: i32, message: &str) -> Value {
     })
 }
 
+/// Successful tool result — `isError: false` is required by MCP spec.
 fn tool_result(text: String) -> Value {
-    json!({ "content": [{ "type": "text", "text": text }] })
+    json!({ "content": [{ "type": "text", "text": text }], "isError": false })
+}
+
+/// Tool-level error result — returned as a *successful* JSON-RPC response with `isError: true`.
+/// Per spec, tool execution errors must NOT be JSON-RPC errors; they are content with isError.
+fn tool_error_result(msg: &str) -> Value {
+    json!({ "content": [{ "type": "text", "text": msg }], "isError": true })
 }
 
 // ---------------------------------------------------------------------------
@@ -123,12 +135,17 @@ const SOURCES: &[SourceDef] = &[
 pub async fn mcp_handler(
     State((app_state, pool)): State<(Arc<AppState>, PgPool)>,
     Json(req): Json<JsonRpcRequest>,
-) -> Json<Value> {
+) -> Response {
+    // MCP spec: notifications (no `id`) must receive HTTP 202, no body.
+    if req.id.is_none() && req.method.starts_with("notifications/") {
+        return StatusCode::ACCEPTED.into_response();
+    }
+
     let id = req.id.clone();
     let result = dispatch(app_state, pool, req).await;
     match result {
-        Ok(v) => Json(ok_response(id, v)),
-        Err(e) => Json(err_response(id, -32603, &e)),
+        Ok(v) => Json(ok_response(id, v)).into_response(),
+        Err((code, msg)) => Json(err_response(id, code, &msg)).into_response(),
     }
 }
 
@@ -136,10 +153,9 @@ async fn dispatch(
     state: Arc<AppState>,
     pool: PgPool,
     req: JsonRpcRequest,
-) -> Result<Value, String> {
+) -> Result<Value, (i32, String)> {
     match req.method.as_str() {
         "initialize" => Ok(handle_initialize()),
-        "notifications/initialized" => Ok(json!({})),
         "ping" => Ok(json!({})),
         "tools/list" => Ok(handle_tools_list()),
         "tools/call" => {
@@ -147,11 +163,12 @@ async fn dispatch(
             let name = params
                 .get("name")
                 .and_then(|v| v.as_str())
-                .ok_or("Missing tool name")?;
+                .ok_or((-32602, "Missing tool name".to_string()))?;
             let args = params.get("arguments").cloned().unwrap_or(json!({}));
-            handle_tool_call(state, pool, name, args).await
+            // Tool errors are content-level (isError: true), not JSON-RPC errors.
+            Ok(handle_tool_call(state, pool, name, args).await)
         }
-        _ => Err(format!("Method not found: {}", req.method)),
+        _ => Err((-32601, format!("Method not found: {}", req.method))),
     }
 }
 
@@ -161,7 +178,7 @@ async fn dispatch(
 
 fn handle_initialize() -> Value {
     json!({
-        "protocolVersion": "2024-11-05",
+        "protocolVersion": "2025-03-26",
         "capabilities": {
             "tools": {}
         },
@@ -181,78 +198,85 @@ fn handle_tools_list() -> Value {
         "tools": [
             {
                 "name": "list_folders",
-                "description": "List all custom folders in the knowledge base. Returns a flat list; use parent_id to reconstruct the tree.",
+                "description": "List custom folders in the knowledge base. Returns a flat list of all folders with their id, label, filter_type (search/tag/urls/none), and parent_id. Use parent_id to reconstruct the folder hierarchy. Call read_folder(id) to get the documents inside any folder.",
                 "inputSchema": {
                     "type": "object",
                     "properties": {
                         "parent_id": {
                             "type": "string",
-                            "description": "Filter to only direct children of this folder id. Omit for all folders."
+                            "description": "If provided, return only direct children of this folder id. Omit to get all folders."
                         }
-                    }
+                    },
+                    "additionalProperties": false
                 }
             },
             {
                 "name": "read_folder",
-                "description": "Read documents belonging to a custom folder. Respects the folder's filter (search/tag/urls), pinned docs, excluded docs, and sort order.",
+                "description": "Read documents belonging to a custom folder. Automatically resolves the folder's filter type: 'search' runs a text query, 'tag' filters by tags, 'urls' returns curated URLs. Pinned docs always appear first; excluded docs are removed. Returns url, title, summary, date, and tags for each document.",
                 "inputSchema": {
                     "type": "object",
                     "required": ["id"],
                     "properties": {
-                        "id": { "type": "string", "description": "Folder id" },
-                        "limit": { "type": "integer", "description": "Max documents to return (default 50)" },
+                        "id": { "type": "string", "description": "Folder id (from list_folders)" },
+                        "limit": { "type": "integer", "description": "Max documents to return (default 50, max 200)" },
                         "offset": { "type": "integer", "description": "Pagination offset (default 0)" }
-                    }
+                    },
+                    "additionalProperties": false
                 }
             },
             {
                 "name": "list_sources",
-                "description": "List all known sources (GitHub, HN, arXiv, etc.) with approximate document counts.",
+                "description": "List all indexed sources with document counts. Sources include: GitHub, Hacker News, arXiv, Hugging Face, Twitter/X, Super User, IEEE Xplore. Returns source key (used with read_source), label, and doc_count. Also returns total_docs across all sources.",
                 "inputSchema": {
                     "type": "object",
-                    "properties": {}
+                    "properties": {},
+                    "additionalProperties": false
                 }
             },
             {
                 "name": "read_source",
-                "description": "Fetch recent documents from a specific source.",
+                "description": "Fetch recent documents from a specific source, ordered by date descending. Returns url, title, summary, date, and tags. Use list_sources first to get valid source keys (e.g. 'github.com', 'hackernews', 'arxiv.org').",
                 "inputSchema": {
                     "type": "object",
                     "required": ["source_key"],
                     "properties": {
                         "source_key": {
                             "type": "string",
-                            "description": "Source key from list_sources (e.g. 'github.com', 'hackernews')"
+                            "description": "Source key from list_sources. Valid values: 'github.com', 'hackernews', 'arxiv.org', 'huggingface.co', 'twitter.com', 'superuser.com', 'ieeexplore.ieee.org'"
                         },
-                        "limit": { "type": "integer", "description": "Max documents (default 50)" },
+                        "limit": { "type": "integer", "description": "Max documents to return (default 50, max 200)" },
                         "offset": { "type": "integer", "description": "Pagination offset (default 0)" }
-                    }
+                    },
+                    "additionalProperties": false
                 }
             },
             {
                 "name": "search",
-                "description": "Semantic search over all documents using ColBERT. Returns documents ranked by relevance.",
+                "description": "Semantic search over the entire knowledge base using ColBERT multi-vector retrieval (falls back to keyword search if model unavailable). Returns documents ranked by relevance with title, summary, date, tags, and relevance score. Best for conceptual or natural language queries. For browsing by topic, prefer list_folders or read_source.",
                 "inputSchema": {
                     "type": "object",
                     "required": ["query"],
                     "properties": {
-                        "query": { "type": "string", "description": "Natural language search query" },
-                        "limit": { "type": "integer", "description": "Max results (default 20)" }
-                    }
+                        "query": { "type": "string", "description": "Natural language search query, e.g. 'transformer attention mechanisms' or 'rust async runtime'" },
+                        "limit": { "type": "integer", "description": "Max results to return (default 20, max 100)" }
+                    },
+                    "additionalProperties": false
                 }
             },
             {
                 "name": "get_document",
-                "description": "Fetch full metadata for a single document by URL.",
+                "description": "Fetch full metadata for a single document by its URL. Returns url, title, summary, date, and tags. Useful after search or list operations to retrieve the full summary of a specific document.",
                 "inputSchema": {
                     "type": "object",
                     "required": ["url"],
                     "properties": {
-                        "url": { "type": "string", "description": "Document URL" }
-                    }
+                        "url": { "type": "string", "description": "Document URL (exact match)" }
+                    },
+                    "additionalProperties": false
                 }
             }
-        ]
+        ],
+        "nextCursor": null
     })
 }
 
@@ -260,20 +284,19 @@ fn handle_tools_list() -> Value {
 // tools/call dispatcher
 // ---------------------------------------------------------------------------
 
-async fn handle_tool_call(
-    state: Arc<AppState>,
-    pool: PgPool,
-    name: &str,
-    args: Value,
-) -> Result<Value, String> {
-    match name {
+async fn handle_tool_call(state: Arc<AppState>, pool: PgPool, name: &str, args: Value) -> Value {
+    let result = match name {
         "list_folders" => tool_list_folders(pool, args).await,
         "read_folder" => tool_read_folder(pool, args).await,
         "list_sources" => tool_list_sources(pool).await,
         "read_source" => tool_read_source(pool, args).await,
         "search" => tool_search(state, pool, args).await,
         "get_document" => tool_get_document(pool, args).await,
-        _ => Err(format!("Unknown tool: {name}")),
+        _ => return tool_error_result(&format!("Unknown tool: {name}")),
+    };
+    match result {
+        Ok(v) => v,
+        Err(e) => tool_error_result(&e),
     }
 }
 
