@@ -99470,5 +99470,389 @@
     {
         "head": "data",
         "tail": "code"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "rust"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "computer-vision"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "ocr"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "text"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "cli"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "preprocessing"
+    },
+    {
+        "head": "rust",
+        "tail": "ocr"
+    },
+    {
+        "head": "rust",
+        "tail": "text"
+    },
+    {
+        "head": "rust",
+        "tail": "preprocessing"
+    },
+    {
+        "head": "computer-vision",
+        "tail": "text"
+    },
+    {
+        "head": "computer-vision",
+        "tail": "cli"
+    },
+    {
+        "head": "computer-vision",
+        "tail": "preprocessing"
+    },
+    {
+        "head": "ocr",
+        "tail": "cli"
+    },
+    {
+        "head": "text",
+        "tail": "cli"
+    },
+    {
+        "head": "text",
+        "tail": "preprocessing"
+    },
+    {
+        "head": "cli",
+        "tail": "preprocessing"
+    },
+    {
+        "head": "c",
+        "tail": "latex"
+    },
+    {
+        "head": "c",
+        "tail": "machine"
+    },
+    {
+        "head": "c",
+        "tail": "learning"
+    },
+    {
+        "head": "c",
+        "tail": "interpreter"
+    },
+    {
+        "head": "latex",
+        "tail": "machine"
+    },
+    {
+        "head": "latex",
+        "tail": "learning"
+    },
+    {
+        "head": "latex",
+        "tail": "interpreter"
+    },
+    {
+        "head": "machine",
+        "tail": "interpreter"
+    },
+    {
+        "head": "learning",
+        "tail": "interpreter"
+    },
+    {
+        "head": "python",
+        "tail": "snapshot"
+    },
+    {
+        "head": "python",
+        "tail": "snapshot-plugin"
+    },
+    {
+        "head": "python",
+        "tail": "snapshot-test"
+    },
+    {
+        "head": "python",
+        "tail": "snapshot-tests"
+    },
+    {
+        "head": "python",
+        "tail": "snapshot-testing"
+    },
+    {
+        "head": "python",
+        "tail": "golden-master"
+    },
+    {
+        "head": "python",
+        "tail": "snapshottest"
+    },
+    {
+        "head": "python",
+        "tail": "approval-testing"
+    },
+    {
+        "head": "snapshot",
+        "tail": "snapshot-plugin"
+    },
+    {
+        "head": "snapshot",
+        "tail": "testing"
+    },
+    {
+        "head": "snapshot",
+        "tail": "snapshot-test"
+    },
+    {
+        "head": "snapshot",
+        "tail": "snapshot-tests"
+    },
+    {
+        "head": "snapshot",
+        "tail": "snapshot-testing"
+    },
+    {
+        "head": "snapshot",
+        "tail": "golden-master"
+    },
+    {
+        "head": "snapshot",
+        "tail": "pytest-plugin"
+    },
+    {
+        "head": "snapshot",
+        "tail": "pytest"
+    },
+    {
+        "head": "snapshot",
+        "tail": "snapshottest"
+    },
+    {
+        "head": "snapshot",
+        "tail": "approval-testing"
+    },
+    {
+        "head": "snapshot",
+        "tail": "install"
+    },
+    {
+        "head": "snapshot-plugin",
+        "tail": "testing"
+    },
+    {
+        "head": "snapshot-plugin",
+        "tail": "snapshot-test"
+    },
+    {
+        "head": "snapshot-plugin",
+        "tail": "snapshot-tests"
+    },
+    {
+        "head": "snapshot-plugin",
+        "tail": "snapshot-testing"
+    },
+    {
+        "head": "snapshot-plugin",
+        "tail": "golden-master"
+    },
+    {
+        "head": "snapshot-plugin",
+        "tail": "pytest-plugin"
+    },
+    {
+        "head": "snapshot-plugin",
+        "tail": "pytest"
+    },
+    {
+        "head": "snapshot-plugin",
+        "tail": "snapshottest"
+    },
+    {
+        "head": "snapshot-plugin",
+        "tail": "approval-testing"
+    },
+    {
+        "head": "snapshot-plugin",
+        "tail": "install"
+    },
+    {
+        "head": "testing",
+        "tail": "snapshot-test"
+    },
+    {
+        "head": "testing",
+        "tail": "snapshot-tests"
+    },
+    {
+        "head": "testing",
+        "tail": "snapshot-testing"
+    },
+    {
+        "head": "testing",
+        "tail": "golden-master"
+    },
+    {
+        "head": "testing",
+        "tail": "snapshottest"
+    },
+    {
+        "head": "testing",
+        "tail": "approval-testing"
+    },
+    {
+        "head": "testing",
+        "tail": "install"
+    },
+    {
+        "head": "snapshot-test",
+        "tail": "snapshot-tests"
+    },
+    {
+        "head": "snapshot-test",
+        "tail": "snapshot-testing"
+    },
+    {
+        "head": "snapshot-test",
+        "tail": "golden-master"
+    },
+    {
+        "head": "snapshot-test",
+        "tail": "pytest-plugin"
+    },
+    {
+        "head": "snapshot-test",
+        "tail": "pytest"
+    },
+    {
+        "head": "snapshot-test",
+        "tail": "snapshottest"
+    },
+    {
+        "head": "snapshot-test",
+        "tail": "approval-testing"
+    },
+    {
+        "head": "snapshot-test",
+        "tail": "install"
+    },
+    {
+        "head": "snapshot-tests",
+        "tail": "snapshot-testing"
+    },
+    {
+        "head": "snapshot-tests",
+        "tail": "golden-master"
+    },
+    {
+        "head": "snapshot-tests",
+        "tail": "pytest-plugin"
+    },
+    {
+        "head": "snapshot-tests",
+        "tail": "pytest"
+    },
+    {
+        "head": "snapshot-tests",
+        "tail": "snapshottest"
+    },
+    {
+        "head": "snapshot-tests",
+        "tail": "approval-testing"
+    },
+    {
+        "head": "snapshot-tests",
+        "tail": "install"
+    },
+    {
+        "head": "snapshot-testing",
+        "tail": "golden-master"
+    },
+    {
+        "head": "snapshot-testing",
+        "tail": "pytest-plugin"
+    },
+    {
+        "head": "snapshot-testing",
+        "tail": "pytest"
+    },
+    {
+        "head": "snapshot-testing",
+        "tail": "snapshottest"
+    },
+    {
+        "head": "snapshot-testing",
+        "tail": "approval-testing"
+    },
+    {
+        "head": "snapshot-testing",
+        "tail": "install"
+    },
+    {
+        "head": "golden-master",
+        "tail": "pytest-plugin"
+    },
+    {
+        "head": "golden-master",
+        "tail": "pytest"
+    },
+    {
+        "head": "golden-master",
+        "tail": "snapshottest"
+    },
+    {
+        "head": "golden-master",
+        "tail": "approval-testing"
+    },
+    {
+        "head": "golden-master",
+        "tail": "install"
+    },
+    {
+        "head": "pytest-plugin",
+        "tail": "snapshottest"
+    },
+    {
+        "head": "pytest-plugin",
+        "tail": "approval-testing"
+    },
+    {
+        "head": "pytest-plugin",
+        "tail": "install"
+    },
+    {
+        "head": "pytest",
+        "tail": "snapshottest"
+    },
+    {
+        "head": "pytest",
+        "tail": "approval-testing"
+    },
+    {
+        "head": "pytest",
+        "tail": "install"
+    },
+    {
+        "head": "snapshottest",
+        "tail": "approval-testing"
+    },
+    {
+        "head": "snapshottest",
+        "tail": "install"
+    },
+    {
+        "head": "approval-testing",
+        "tail": "install"
     }
 ]
