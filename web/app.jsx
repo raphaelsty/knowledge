@@ -633,6 +633,89 @@ const findParentId = (folders, id, currentParent = null) => {
 
 // ─────────────────────────────────────────────────────────────────────────────
 
+const McpModal = ({ onClose }) => {
+  const mcpUrl = window.location.origin + "/mcp";
+  const [copied, setCopied] = React.useState(false);
+
+  const config = JSON.stringify(
+    {
+      mcpServers: {
+        knowledge: {
+          command: "npx",
+          args: ["-y", "mcp-remote", mcpUrl],
+        },
+      },
+    },
+    null,
+    2,
+  );
+
+  const copy = () => {
+    navigator.clipboard.writeText(config).catch(() => {});
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  return (
+    <div className="mcp-modal-overlay" onClick={onClose}>
+      <div className="mcp-modal" onClick={(e) => e.stopPropagation()}>
+        <div className="mcp-modal-header">
+          <span>MCP Server</span>
+          <button className="mcp-modal-close" onClick={onClose}>
+            &times;
+          </button>
+        </div>
+        <div className="mcp-modal-body">
+          <p className="mcp-modal-desc">
+            Connect any MCP-compatible client to browse and search this
+            knowledge base.
+          </p>
+
+          <div className="mcp-modal-label">Endpoint</div>
+          <div className="mcp-modal-url">{mcpUrl}</div>
+
+          <div className="mcp-modal-label">
+            Claude Desktop&nbsp;
+            <span className="mcp-modal-sublabel">
+              (claude_desktop_config.json)
+            </span>
+          </div>
+          <pre className="mcp-modal-code">{config}</pre>
+          <button className="mcp-modal-copy" onClick={copy}>
+            {copied ? "Copied!" : "Copy config"}
+          </button>
+
+          <div className="mcp-modal-label" style={{ marginTop: 16 }}>
+            Available tools
+          </div>
+          <ul className="mcp-modal-tools">
+            <li>
+              <b>search</b> — semantic search with ColBERT
+            </li>
+            <li>
+              <b>list_folders</b> — browse custom folders
+            </li>
+            <li>
+              <b>read_folder</b> — read documents in a folder
+            </li>
+            <li>
+              <b>list_sources</b> — list indexed sources with counts
+            </li>
+            <li>
+              <b>read_source</b> — browse a specific source
+            </li>
+            <li>
+              <b>get_document</b> — fetch a document by URL
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
+
 const CreateFolderModal = ({
   onClose,
   onCreate,
@@ -2399,6 +2482,7 @@ const Search = () => {
     () => localStorage.getItem("finder-fullscreen") === "true",
   );
   const [displayedCount, setDisplayedCount] = useState(DISPLAY_COUNT);
+  const [showMcpModal, setShowMcpModal] = useState(false);
 
   useEffect(() => {
     const panel = document.getElementById("folder-panel");
@@ -3212,6 +3296,25 @@ const Search = () => {
           </svg>
         </a>
         <button
+          className="mcp-btn"
+          onClick={() => setShowMcpModal(true)}
+          title="MCP server"
+        >
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+          </svg>
+        </button>
+        <button
           className={
             "pipeline-toggle" +
             (pipelineData && pipelineData.status === "running" ? " active" : "")
@@ -3454,6 +3557,8 @@ const Search = () => {
           onClose={() => setPipelineOpen(false)}
         />
       )}
+
+      {showMcpModal && <McpModal onClose={() => setShowMcpModal(false)} />}
 
       {folderPanel &&
         !isMobile &&

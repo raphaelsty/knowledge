@@ -247,7 +247,8 @@ body {
 .sort-date-toggle,
 .theme-toggle,
 .github-star,
-.pipeline-toggle {
+.pipeline-toggle,
+.mcp-btn {
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -277,7 +278,8 @@ body {
 .sort-date-toggle:hover,
 .theme-toggle:hover,
 .github-star:hover,
-.pipeline-toggle:hover {
+.pipeline-toggle:hover,
+.mcp-btn:hover {
   background: var(--bg-chip-hover);
   border-color: var(--border-hover);
   color: var(--text-primary);
@@ -291,7 +293,8 @@ body {
 .sort-date-toggle svg,
 .theme-toggle svg,
 .github-star svg,
-.pipeline-toggle svg {
+.pipeline-toggle svg,
+.mcp-btn svg {
   display: block;
 }
 
@@ -1632,6 +1635,138 @@ body {
 .finder-modal-btn--save:disabled {
   opacity: 0.4;
   cursor: not-allowed;
+}
+
+/* ============================================
+   MCP Modal
+   ============================================ */
+
+.mcp-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1100;
+}
+
+.mcp-modal {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  width: 420px;
+  max-width: calc(100vw - 32px);
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.mcp-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px 12px;
+  border-bottom: 1px solid var(--border-card);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.mcp-modal-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: var(--text-muted);
+  padding: 0 2px;
+  line-height: 1;
+  transition: color var(--transition-fast);
+}
+
+.mcp-modal-close:hover {
+  color: var(--text-primary);
+}
+
+.mcp-modal-body {
+  padding: 14px 16px 16px;
+}
+
+.mcp-modal-desc {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin: 0 0 14px;
+  line-height: 1.5;
+}
+
+.mcp-modal-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
+
+.mcp-modal-sublabel {
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.mcp-modal-url {
+  font-family: monospace;
+  font-size: 12px;
+  background: var(--bg-chip);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  padding: 7px 10px;
+  color: var(--text-primary);
+  margin-bottom: 14px;
+  word-break: break-all;
+}
+
+.mcp-modal-code {
+  font-family: monospace;
+  font-size: 11px;
+  background: var(--bg-chip);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  padding: 10px 12px;
+  color: var(--text-primary);
+  margin: 0 0 8px;
+  white-space: pre;
+  overflow-x: auto;
+}
+
+.mcp-modal-copy {
+  font-size: 11px;
+  font-weight: 500;
+  background: var(--bg-chip);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  padding: 5px 12px;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.mcp-modal-copy:hover {
+  background: var(--bg-chip-hover);
+  border-color: var(--border-hover);
+  color: var(--text-primary);
+}
+
+.mcp-modal-tools {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin: 6px 0 0;
+  padding-left: 16px;
+  line-height: 1.8;
+}
+
+.mcp-modal-tools b {
+  color: var(--text-primary);
 }
 
 /* ============================================
