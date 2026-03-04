@@ -633,81 +633,211 @@ const findParentId = (folders, id, currentParent = null) => {
 
 // ─────────────────────────────────────────────────────────────────────────────
 
-const McpModal = ({ onClose }) => {
+const McpPage = ({ onClose }) => {
   const mcpUrl = window.location.origin + "/mcp";
-  const [copied, setCopied] = React.useState(false);
+  const [copiedUrl, setCopiedUrl] = useState(false);
+  const [copiedCfg, setCopiedCfg] = useState(false);
 
-  const config = JSON.stringify(
+  const configStr = JSON.stringify(
     {
       mcpServers: {
-        knowledge: {
-          command: "npx",
-          args: ["-y", "mcp-remote", mcpUrl],
-        },
+        knowledge: { command: "npx", args: ["-y", "mcp-remote", mcpUrl] },
       },
     },
     null,
     2,
   );
 
-  const copy = () => {
-    navigator.clipboard.writeText(config).catch(() => {});
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  const copy = (text, setter) => {
+    navigator.clipboard.writeText(text).catch(() => {});
+    setter(true);
+    setTimeout(() => setter(false), 2000);
   };
 
+  const tools = [
+    {
+      fn: "search",
+      title: "Search",
+      desc: "Semantic search across all documents using ColBERT",
+    },
+    {
+      fn: "list_folders",
+      title: "List Folders",
+      desc: "Browse the custom folder hierarchy",
+    },
+    {
+      fn: "read_folder",
+      title: "Read Folder",
+      desc: "Get all documents inside a folder",
+    },
+    {
+      fn: "list_sources",
+      title: "List Sources",
+      desc: "All indexed sources with document counts",
+    },
+    {
+      fn: "read_source",
+      title: "Read Source",
+      desc: "Browse recent docs from a source",
+    },
+    {
+      fn: "get_document",
+      title: "Get Document",
+      desc: "Full metadata for a document URL",
+    },
+  ];
+
+  const CopyIcon = () => (
+    <svg
+      width="11"
+      height="11"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <rect x="9" y="9" width="13" height="13" rx="2" />
+      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+    </svg>
+  );
+  const CheckIcon = () => (
+    <svg
+      width="11"
+      height="11"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <polyline points="20,6 9,17 4,12" />
+    </svg>
+  );
+
   return (
-    <div className="mcp-modal-overlay" onClick={onClose}>
-      <div className="mcp-modal" onClick={(e) => e.stopPropagation()}>
-        <div className="mcp-modal-header">
-          <span>MCP Server</span>
-          <button className="mcp-modal-close" onClick={onClose}>
-            &times;
-          </button>
-        </div>
-        <div className="mcp-modal-body">
-          <p className="mcp-modal-desc">
-            Connect any MCP-compatible client to browse and search this
-            knowledge base.
+    <div className="mcp-page">
+      <div className="mcp-page-header">
+        <button className="mcp-page-back" onClick={onClose}>
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <polyline points="15,18 9,12 15,6" />
+          </svg>
+          Back
+        </button>
+        <span className="mcp-page-header-label">MCP Server</span>
+      </div>
+
+      <div className="mcp-page-body">
+        {/* Hero */}
+        <div className="mcp-hero">
+          <div className="mcp-hero-badge">Model Context Protocol</div>
+          <h1 className="mcp-hero-title">
+            Connect Claude to your
+            <br />
+            knowledge base
+          </h1>
+          <p className="mcp-hero-sub">
+            Give any MCP-compatible client direct access to semantic search,
+            folder browsing, and document discovery — no extra server required.
           </p>
+        </div>
 
-          <div className="mcp-modal-label">Endpoint</div>
-          <div className="mcp-modal-url">{mcpUrl}</div>
-
-          <div className="mcp-modal-label">
-            Claude Desktop&nbsp;
-            <span className="mcp-modal-sublabel">
-              (claude_desktop_config.json)
-            </span>
+        {/* Steps */}
+        <div className="mcp-steps">
+          <div className="mcp-step-card">
+            <div className="mcp-step-num">01</div>
+            <div className="mcp-step-body">
+              <div className="mcp-step-title">Copy the endpoint</div>
+              <div className="mcp-step-hint">
+                Point your MCP client to this URL
+              </div>
+              <div className="mcp-endpoint-row">
+                <code className="mcp-endpoint-url">{mcpUrl}</code>
+                <button
+                  className="mcp-copy-btn"
+                  onClick={() => copy(mcpUrl, setCopiedUrl)}
+                >
+                  {copiedUrl ? (
+                    <>
+                      <CheckIcon /> Copied
+                    </>
+                  ) : (
+                    <>
+                      <CopyIcon /> Copy
+                    </>
+                  )}
+                </button>
+              </div>
+            </div>
           </div>
-          <pre className="mcp-modal-code">{config}</pre>
-          <button className="mcp-modal-copy" onClick={copy}>
-            {copied ? "Copied!" : "Copy config"}
-          </button>
 
-          <div className="mcp-modal-label" style={{ marginTop: 16 }}>
-            Available tools
+          <div className="mcp-step-card">
+            <div className="mcp-step-num">02</div>
+            <div className="mcp-step-body">
+              <div className="mcp-step-title">Add to Claude Desktop</div>
+              <div className="mcp-step-hint">
+                Merge into{" "}
+                <code className="mcp-inline-code">
+                  claude_desktop_config.json
+                </code>
+              </div>
+              <div className="mcp-code-wrap">
+                <pre className="mcp-code">{configStr}</pre>
+                <button
+                  className="mcp-copy-btn mcp-copy-btn--abs"
+                  onClick={() => copy(configStr, setCopiedCfg)}
+                >
+                  {copiedCfg ? (
+                    <>
+                      <CheckIcon /> Copied
+                    </>
+                  ) : (
+                    <>
+                      <CopyIcon /> Copy
+                    </>
+                  )}
+                </button>
+              </div>
+            </div>
           </div>
-          <ul className="mcp-modal-tools">
-            <li>
-              <b>search</b> — semantic search with ColBERT
-            </li>
-            <li>
-              <b>list_folders</b> — browse custom folders
-            </li>
-            <li>
-              <b>read_folder</b> — read documents in a folder
-            </li>
-            <li>
-              <b>list_sources</b> — list indexed sources with counts
-            </li>
-            <li>
-              <b>read_source</b> — browse a specific source
-            </li>
-            <li>
-              <b>get_document</b> — fetch a document by URL
-            </li>
-          </ul>
+
+          <div className="mcp-step-card mcp-step-card--dim">
+            <div className="mcp-step-num">03</div>
+            <div className="mcp-step-body">
+              <div className="mcp-step-title">Restart &amp; explore</div>
+              <div className="mcp-step-hint">
+                Restart Claude Desktop. The{" "}
+                <code className="mcp-inline-code">knowledge</code> server will
+                appear in the tools menu — ask Claude to search or list your
+                folders.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Tools grid */}
+        <div className="mcp-tools-section">
+          <div className="mcp-section-label">6 available tools</div>
+          <div className="mcp-tools-grid">
+            {tools.map((t) => (
+              <div key={t.fn} className="mcp-tool-card">
+                <code className="mcp-tool-fn">{t.fn}</code>
+                <div className="mcp-tool-title">{t.title}</div>
+                <div className="mcp-tool-desc">{t.desc}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
@@ -3560,7 +3690,7 @@ const Search = () => {
 
       {showMcpModal &&
         createPortal(
-          <McpModal onClose={() => setShowMcpModal(false)} />,
+          <McpPage onClose={() => setShowMcpModal(false)} />,
           document.body,
         )}
 
