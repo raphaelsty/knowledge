@@ -58,6 +58,7 @@ use utoipa_swagger_ui::SwaggerUi;
 mod db;
 mod error;
 mod handlers;
+mod mcp;
 mod models;
 mod state;
 mod tracing_middleware;
@@ -459,7 +460,7 @@ fn build_router(state: Arc<AppState>, pg_pool: Option<sqlx::PgPool>) -> Router {
             axum::http::StatusCode::REQUEST_TIMEOUT,
             Duration::from_secs(120),
         ))
-        .with_state(state);
+        .with_state(state.clone());
 
     // --- Pipeline router (trigger run.py) ---
     let pipeline_state = handlers::pipeline::new_state();
@@ -480,7 +481,7 @@ fn build_router(state: Arc<AppState>, pg_pool: Option<sqlx::PgPool>) -> Router {
         .merge(ingest_router)
         .merge(pipeline_router);
 
-    // --- PG-backed routers (data + events) ---
+    // --- PG-backed routers (data + events + folders + MCP) ---
     if let Some(pool) = pg_pool {
         let data_router = Router::new()
             .route("/api/folder_tree", get(handlers::data::folder_tree))
@@ -489,6 +490,24 @@ fn build_router(state: Arc<AppState>, pg_pool: Option<sqlx::PgPool>) -> Router {
             .route("/api/health", get(handlers::data::data_health))
             .layer(cors.clone())
             .with_state(pool.clone());
+
+        let folders_router = Router::new()
+            .without_v07_checks()
+            .route(
+                "/api/folders",
+                get(handlers::folders::list).post(handlers::folders::create),
+            )
+            .route(
+                "/api/folders/{id}",
+                put(handlers::folders::update).delete(handlers::folders::delete_folder),
+            )
+            .layer(cors.clone())
+            .with_state(pool.clone());
+
+        let mcp_router = Router::new()
+            .route("/mcp", post(mcp::mcp_handler))
+            .layer(cors.clone())
+            .with_state((state.clone(), pool.clone()));
 
         let events_router = Router::new()
             .route("/events", post(handlers::events::ingest_events))
@@ -501,7 +520,11 @@ fn build_router(state: Arc<AppState>, pg_pool: Option<sqlx::PgPool>) -> Router {
             .layer(cors)
             .with_state(pool);
 
-        app = app.merge(data_router).merge(events_router);
+        app = app
+            .merge(data_router)
+            .merge(folders_router)
+            .merge(mcp_router)
+            .merge(events_router);
     }
 
     app

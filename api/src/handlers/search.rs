@@ -61,7 +61,7 @@ fn to_ndarray(query: &QueryEmbeddings) -> ApiResult<Array2<f32>> {
 /// # Errors
 /// Returns an error if the metadata database exists but fails to query.
 /// If no metadata database exists, returns Ok with None for all entries (not an error).
-fn fetch_metadata_for_docs(
+pub(crate) fn fetch_metadata_for_docs(
     path_str: &str,
     document_ids: &[i64],
 ) -> ApiResult<Vec<Option<serde_json::Value>>> {

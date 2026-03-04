@@ -5,6 +5,7 @@ pub mod data;
 pub mod documents;
 pub mod encode;
 pub mod events;
+pub mod folders;
 pub mod ingest;
 pub mod metadata;
 pub mod pipeline;

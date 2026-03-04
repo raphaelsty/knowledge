@@ -401,18 +401,62 @@ const fetchSimilar = async (doc) => {
     .slice(0, SIMILAR_COUNT);
 };
 
-// --- Custom Folders (localStorage) ---
-const CUSTOM_FOLDERS_KEY = "finder-custom-folders";
+// --- Custom Folders (API-backed) ---
 const FOLDER_SOURCE_CACHE_KEY = "finder-folder-source-cache";
-const loadCustomFolders = () => {
-  try {
-    return JSON.parse(localStorage.getItem(CUSTOM_FOLDERS_KEY)) || [];
-  } catch {
-    return [];
+// Legacy key used only for one-time migration
+const LEGACY_CUSTOM_FOLDERS_KEY = "finder-custom-folders";
+
+// Map API (snake_case) → frontend (camelCase) folder object
+const apiFolderToFolder = (f) => ({
+  id: f.id,
+  name: f.label,
+  filterType: f.filter_type,
+  searchQuery: f.search_query || "",
+  searchSources: f.search_sources || [],
+  tagFilter: f.tag_filter || [],
+  tagIntersect: f.tag_intersect || false,
+  live: f.live !== false,
+  topK: f.top_k ?? undefined,
+  urls: f.urls || [],
+  pinnedUrls: f.pinned_urls || [],
+  excludedDocs: f.excluded_docs || [],
+  sortBy: f.sort_by || "default",
+  children: [],
+});
+
+// Map frontend folder object → API request body (snake_case)
+const folderToApiBody = (folder, parentId = null) => ({
+  id: folder.id,
+  label: folder.name,
+  filter_type: folder.filterType || "none",
+  search_query: folder.searchQuery || "",
+  search_sources: folder.searchSources || [],
+  tag_filter: Array.isArray(folder.tagFilter)
+    ? folder.tagFilter
+    : folder.tagFilter
+      ? [folder.tagFilter]
+      : [],
+  tag_intersect: folder.tagIntersect || false,
+  live: folder.live !== false,
+  top_k: folder.topK ?? null,
+  urls: folder.urls || [],
+  pinned_urls: folder.pinnedUrls || [],
+  excluded_docs: folder.excludedDocs || [],
+  sort_by: folder.sortBy || "default",
+  parent_id: parentId ?? null,
+});
+
+// Build nested tree from flat API response
+const buildFolderTree = (flatList) => {
+  const map = {};
+  for (const f of flatList) map[f.id] = { ...f, children: [] };
+  const roots = [];
+  for (const f of flatList) {
+    if (f.parent_id && map[f.parent_id])
+      map[f.parent_id].children.push(map[f.id]);
+    else roots.push(map[f.id]);
   }
-};
-const saveCustomFolders = (folders) => {
-  localStorage.setItem(CUSTOM_FOLDERS_KEY, JSON.stringify(folders));
+  return roots;
 };
 
 const SOURCE_ICONS = {
@@ -570,33 +614,6 @@ const findFolderById = (folders, id) => {
   }
   return null;
 };
-
-const addFolderToTree = (folders, parentId, newFolder) => {
-  const node = { ...newFolder, children: newFolder.children || [] };
-  if (!parentId) return [...folders, node]; // root level
-  return folders.map((f) => {
-    if (f.id === parentId)
-      return { ...f, children: [...(f.children || []), node] };
-    return {
-      ...f,
-      children: addFolderToTree(f.children || [], parentId, node),
-    };
-  });
-};
-
-const updateFolderInTree = (folders, updated) =>
-  folders.map((f) => {
-    if (f.id === updated.id) return { ...updated, children: f.children || [] }; // preserve children
-    return { ...f, children: updateFolderInTree(f.children || [], updated) };
-  });
-
-const removeFolderFromTree = (folders, id) =>
-  folders
-    .filter((f) => f.id !== id)
-    .map((f) => ({
-      ...f,
-      children: removeFolderFromTree(f.children || [], id),
-    }));
 
 const getSiblingNames = (folders, parentId) => {
   if (!parentId) return folders.map((f) => f.name);
@@ -1085,7 +1102,7 @@ const FinderBrowser = ({
   // Multiple docs columns are shown side-by-side as the user navigates into sub-folders
   const [docsColumnStack, setDocsColumnStack] = useState([]);
   const [filterQuery, setFilterQuery] = useState("");
-  const [customFolders, setCustomFolders] = useState(loadCustomFolders);
+  const [customFolders, setCustomFolders] = useState([]);
   // null = closed; "" = open at root; "uuid" = open under that folder
   const [showCreateModal, setShowCreateModal] = useState(null);
   // Majority-source icon cache: { [folderId]: sourceKey } — persisted to localStorage
@@ -1149,6 +1166,57 @@ const FinderBrowser = ({
     document.addEventListener("mousemove", onMouseMove);
     document.addEventListener("mouseup", onMouseUp);
   }, []);
+
+  // Fetch all folders from the API and update state (used on mount + after mutations)
+  const fetchFoldersFromApi = useCallback(async () => {
+    try {
+      const resp = await fetch(`${API_BASE_URL}/api/folders`);
+      if (!resp.ok) return;
+      const flat = await resp.json();
+      setCustomFolders(buildFolderTree(flat.map(apiFolderToFolder)));
+    } catch {}
+  }, []);
+
+  // On mount: load folders from API; migrate legacy localStorage data if needed
+  useEffect(() => {
+    (async () => {
+      try {
+        const resp = await fetch(`${API_BASE_URL}/api/folders`);
+        if (!resp.ok) return;
+        const flat = await resp.json();
+        // One-time migration: if API is empty but localStorage has data, POST each folder
+        if (flat.length === 0) {
+          const legacy = (() => {
+            try {
+              return (
+                JSON.parse(localStorage.getItem(LEGACY_CUSTOM_FOLDERS_KEY)) ||
+                []
+              );
+            } catch {
+              return [];
+            }
+          })();
+          if (legacy.length > 0) {
+            const migrateFolder = async (folder, parentId) => {
+              await fetch(`${API_BASE_URL}/api/folders`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(folderToApiBody(folder, parentId)),
+              });
+              for (const child of folder.children || []) {
+                await migrateFolder(child, folder.id);
+              }
+            };
+            for (const f of legacy) await migrateFolder(f, null);
+            localStorage.removeItem(LEGACY_CUSTOM_FOLDERS_KEY);
+            await fetchFoldersFromApi();
+            return;
+          }
+        }
+        setCustomFolders(buildFolderTree(flat.map(apiFolderToFolder)));
+      } catch {}
+    })();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Rebuild all columns when sources / custom folders change
   useEffect(() => {
@@ -1235,249 +1303,292 @@ const FinderBrowser = ({
       });
   }, [docsColumnStack]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const handleCreateFolder = useCallback(async (folder, parentId) => {
-    const targetParentId = parentId ?? null;
-    setShowCreateModal(null);
-    let finalFolder = folder;
+  const handleCreateFolder = useCallback(
+    async (folder, parentId) => {
+      const targetParentId = parentId ?? null;
+      setShowCreateModal(null);
+      let finalFolder = folder;
 
-    // Take a snapshot now if the folder is not live
-    if (
-      !folder.live &&
-      folder.filterType !== "urls" &&
-      folder.filterType !== "none"
-    ) {
-      try {
-        let docs = [];
-        if (folder.filterType === "search") {
-          docs = await apiSearch(
-            folder.searchQuery,
-            false,
-            new Set(folder.searchSources || []),
-            null,
-            folder.topK || 50,
-          );
-        } else if (folder.filterType === "tag") {
-          const tagList = Array.isArray(folder.tagFilter)
-            ? folder.tagFilter
-            : folder.tagFilter
-              ? [folder.tagFilter]
-              : [];
-          if (tagList.length > 0) {
-            const clauses = tagList.map(
-              () => "(tags LIKE ? OR extra_tags LIKE ?)",
-            );
-            const srcCond = buildSourceCondition(
+      // Take a snapshot now if the folder is not live
+      if (
+        !folder.live &&
+        folder.filterType !== "urls" &&
+        folder.filterType !== "none"
+      ) {
+        try {
+          let docs = [];
+          if (folder.filterType === "search") {
+            docs = await apiSearch(
+              folder.searchQuery,
+              false,
               new Set(folder.searchSources || []),
+              null,
+              folder.topK || 50,
             );
-            const tagClause = clauses.join(
-              folder.tagIntersect ? " AND " : " OR ",
-            );
-            const resp = await fetch(
-              `${API_BASE_URL}/indices/${INDEX_NAME}/metadata/get`,
-              {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                  condition: srcCond
-                    ? `(${srcCond.condition}) AND (${tagClause})`
-                    : tagClause,
-                  parameters: [
-                    ...(srcCond ? srcCond.parameters : []),
-                    ...tagList.flatMap((t) => [`%${t}%`, `%${t}%`]),
-                  ],
-                }),
-              },
-            );
-            const data = await resp.json();
-            docs = (data.metadata || []).map(transformMeta);
+          } else if (folder.filterType === "tag") {
+            const tagList = Array.isArray(folder.tagFilter)
+              ? folder.tagFilter
+              : folder.tagFilter
+                ? [folder.tagFilter]
+                : [];
+            if (tagList.length > 0) {
+              const clauses = tagList.map(
+                () => "(tags LIKE ? OR extra_tags LIKE ?)",
+              );
+              const srcCond = buildSourceCondition(
+                new Set(folder.searchSources || []),
+              );
+              const tagClause = clauses.join(
+                folder.tagIntersect ? " AND " : " OR ",
+              );
+              const resp = await fetch(
+                `${API_BASE_URL}/indices/${INDEX_NAME}/metadata/get`,
+                {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({
+                    condition: srcCond
+                      ? `(${srcCond.condition}) AND (${tagClause})`
+                      : tagClause,
+                    parameters: [
+                      ...(srcCond ? srcCond.parameters : []),
+                      ...tagList.flatMap((t) => [`%${t}%`, `%${t}%`]),
+                    ],
+                  }),
+                },
+              );
+              const data = await resp.json();
+              docs = (data.metadata || []).map(transformMeta);
+            }
           }
+          finalFolder = { ...folder, urls: docs.map((d) => d.url) };
+        } catch {
+          // snapshot failed — fall back to live
+          finalFolder = { ...folder, live: true };
         }
-        finalFolder = { ...folder, urls: docs.map((d) => d.url) };
-      } catch {
-        // snapshot failed — fall back to live
-        finalFolder = { ...folder, live: true };
       }
-    }
 
-    setCustomFolders((prev) => {
-      const next = addFolderToTree(prev, targetParentId, finalFolder);
-      saveCustomFolders(next);
-      return next;
-    });
-  }, []);
-
-  const handleEditFolder = useCallback(async (folder) => {
-    setShowEditModal(null);
-    let finalFolder = folder;
-
-    if (
-      !folder.live &&
-      folder.filterType !== "urls" &&
-      folder.filterType !== "none"
-    ) {
       try {
-        let docs = [];
-        if (folder.filterType === "search") {
-          docs = await apiSearch(
-            folder.searchQuery,
-            false,
-            new Set(folder.searchSources || []),
-            null,
-            folder.topK || 50,
-          );
-        } else if (folder.filterType === "tag") {
-          const tagList = Array.isArray(folder.tagFilter)
-            ? folder.tagFilter
-            : folder.tagFilter
-              ? [folder.tagFilter]
-              : [];
-          if (tagList.length > 0) {
-            const clauses = tagList.map(
-              () => "(tags LIKE ? OR extra_tags LIKE ?)",
-            );
-            const srcCond = buildSourceCondition(
+        await fetch(`${API_BASE_URL}/api/folders`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(folderToApiBody(finalFolder, targetParentId)),
+        });
+      } catch {}
+      await fetchFoldersFromApi();
+    },
+    [fetchFoldersFromApi],
+  );
+
+  const handleEditFolder = useCallback(
+    async (folder) => {
+      setShowEditModal(null);
+      let finalFolder = folder;
+
+      if (
+        !folder.live &&
+        folder.filterType !== "urls" &&
+        folder.filterType !== "none"
+      ) {
+        try {
+          let docs = [];
+          if (folder.filterType === "search") {
+            docs = await apiSearch(
+              folder.searchQuery,
+              false,
               new Set(folder.searchSources || []),
+              null,
+              folder.topK || 50,
             );
-            const tagClause = clauses.join(
-              folder.tagIntersect ? " AND " : " OR ",
-            );
-            const resp = await fetch(
-              `${API_BASE_URL}/indices/${INDEX_NAME}/metadata/get`,
-              {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                  condition: srcCond
-                    ? `(${srcCond.condition}) AND (${tagClause})`
-                    : tagClause,
-                  parameters: [
-                    ...(srcCond ? srcCond.parameters : []),
-                    ...tagList.flatMap((t) => [`%${t}%`, `%${t}%`]),
-                  ],
-                }),
-              },
-            );
-            const data = await resp.json();
-            docs = (data.metadata || []).map(transformMeta);
+          } else if (folder.filterType === "tag") {
+            const tagList = Array.isArray(folder.tagFilter)
+              ? folder.tagFilter
+              : folder.tagFilter
+                ? [folder.tagFilter]
+                : [];
+            if (tagList.length > 0) {
+              const clauses = tagList.map(
+                () => "(tags LIKE ? OR extra_tags LIKE ?)",
+              );
+              const srcCond = buildSourceCondition(
+                new Set(folder.searchSources || []),
+              );
+              const tagClause = clauses.join(
+                folder.tagIntersect ? " AND " : " OR ",
+              );
+              const resp = await fetch(
+                `${API_BASE_URL}/indices/${INDEX_NAME}/metadata/get`,
+                {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({
+                    condition: srcCond
+                      ? `(${srcCond.condition}) AND (${tagClause})`
+                      : tagClause,
+                    parameters: [
+                      ...(srcCond ? srcCond.parameters : []),
+                      ...tagList.flatMap((t) => [`%${t}%`, `%${t}%`]),
+                    ],
+                  }),
+                },
+              );
+              const data = await resp.json();
+              docs = (data.metadata || []).map(transformMeta);
+            }
           }
+          finalFolder = { ...folder, urls: docs.map((d) => d.url) };
+        } catch {
+          finalFolder = { ...folder, live: true };
         }
-        finalFolder = { ...folder, urls: docs.map((d) => d.url) };
-      } catch {
-        finalFolder = { ...folder, live: true };
       }
-    }
 
-    setCustomFolders((prev) => {
-      const next = updateFolderInTree(prev, finalFolder);
-      saveCustomFolders(next);
-      return next;
-    });
-    // Close docs if this folder was selected so it reloads on next click
-    setColumnStack((prev) => {
-      const wasSelected = prev.some(
-        (col) =>
-          col.selectedIdx != null &&
-          col.items[col.selectedIdx]?.id === finalFolder.id,
-      );
-      if (wasSelected) {
-        setDocsColumnStack([]);
-        return prev.length > 0
-          ? [{ items: prev[0].items, selectedIdx: null }]
-          : prev;
-      }
-      return prev;
-    });
-  }, []);
-
-  const handleDeleteFolder = useCallback((id) => {
-    setCustomFolders((prev) => {
-      const next = removeFolderFromTree(prev, id);
-      saveCustomFolders(next);
-      return next;
-    });
-    // Truncate docs stack at the first entry showing the deleted folder's content;
-    // remove it from any subfolders list and adjust selectedSubfolderIdx
-    setDocsColumnStack((prev) => {
-      const cutIdx = prev.findIndex((e) => e.contextFolder?.id === id);
-      const truncated = cutIdx !== -1 ? prev.slice(0, cutIdx) : prev;
-      return truncated.map((e) => {
-        const origIdx = (e.subfolders || []).findIndex((sf) => sf.id === id);
-        if (origIdx === -1) return e;
-        const subfolders = (e.subfolders || []).filter((sf) => sf.id !== id);
-        let selectedSubfolderIdx = e.selectedSubfolderIdx;
-        if (selectedSubfolderIdx === origIdx) selectedSubfolderIdx = null;
-        else if (selectedSubfolderIdx != null && selectedSubfolderIdx > origIdx)
-          selectedSubfolderIdx--;
-        return { ...e, subfolders, selectedSubfolderIdx };
+      try {
+        const parentId = findParentId(customFolders, finalFolder.id) ?? null;
+        await fetch(`${API_BASE_URL}/api/folders/${finalFolder.id}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(folderToApiBody(finalFolder, parentId)),
+        });
+      } catch {}
+      await fetchFoldersFromApi();
+      // Close docs if this folder was selected so it reloads on next click
+      setColumnStack((prev) => {
+        const wasSelected = prev.some(
+          (col) =>
+            col.selectedIdx != null &&
+            col.items[col.selectedIdx]?.id === finalFolder.id,
+        );
+        if (wasSelected) {
+          setDocsColumnStack([]);
+          return prev.length > 0
+            ? [{ items: prev[0].items, selectedIdx: null }]
+            : prev;
+        }
+        return prev;
       });
-    });
-    // Deselect from nav column if needed — items rebuild via the customFolders useEffect
-    setColumnStack((prev) =>
-      prev.map((col) =>
-        col.selectedIdx != null && col.items[col.selectedIdx]?.id === id
-          ? { ...col, selectedIdx: null }
-          : col,
-      ),
-    );
-  }, []);
+    },
+    [customFolders, fetchFoldersFromApi],
+  ); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const handleExcludeDoc = useCallback((folderId, doc) => {
-    setCustomFolders((prev) => {
-      const folder = findFolderById(prev, folderId);
-      if (!folder) return prev;
+  const handleDeleteFolder = useCallback(
+    async (id) => {
+      try {
+        await fetch(`${API_BASE_URL}/api/folders/${id}`, { method: "DELETE" });
+      } catch {}
+      await fetchFoldersFromApi();
+      // Truncate docs stack at the first entry showing the deleted folder's content;
+      // remove it from any subfolders list and adjust selectedSubfolderIdx
+      setDocsColumnStack((prev) => {
+        const cutIdx = prev.findIndex((e) => e.contextFolder?.id === id);
+        const truncated = cutIdx !== -1 ? prev.slice(0, cutIdx) : prev;
+        return truncated.map((e) => {
+          const origIdx = (e.subfolders || []).findIndex((sf) => sf.id === id);
+          if (origIdx === -1) return e;
+          const subfolders = (e.subfolders || []).filter((sf) => sf.id !== id);
+          let selectedSubfolderIdx = e.selectedSubfolderIdx;
+          if (selectedSubfolderIdx === origIdx) selectedSubfolderIdx = null;
+          else if (
+            selectedSubfolderIdx != null &&
+            selectedSubfolderIdx > origIdx
+          )
+            selectedSubfolderIdx--;
+          return { ...e, subfolders, selectedSubfolderIdx };
+        });
+      });
+      // Deselect from nav column if needed — items rebuild via the customFolders useEffect
+      setColumnStack((prev) =>
+        prev.map((col) =>
+          col.selectedIdx != null && col.items[col.selectedIdx]?.id === id
+            ? { ...col, selectedIdx: null }
+            : col,
+        ),
+      );
+    },
+    [fetchFoldersFromApi], // eslint-disable-line react-hooks/exhaustive-deps
+  );
+
+  const handleExcludeDoc = useCallback(
+    async (folderId, doc) => {
+      const folder = findFolderById(customFolders, folderId);
+      if (!folder) return;
       const excludedDocs = [
         ...(folder.excludedDocs || []).filter((d) => d.url !== doc.url),
         { url: doc.url, title: doc.title },
       ];
       const pinnedUrls = (folder.pinnedUrls || []).filter((u) => u !== doc.url);
-      const next = updateFolderInTree(prev, {
-        ...folder,
-        excludedDocs,
-        pinnedUrls,
+      const updated = { ...folder, excludedDocs, pinnedUrls };
+      const parentId = findParentId(customFolders, folderId) ?? null;
+      try {
+        await fetch(`${API_BASE_URL}/api/folders/${folderId}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(folderToApiBody(updated, parentId)),
+        });
+      } catch {}
+      setCustomFolders((prev) => {
+        const f = findFolderById(prev, folderId);
+        if (!f) return prev;
+        const update = (list) =>
+          list.map((x) =>
+            x.id === folderId
+              ? { ...x, excludedDocs, pinnedUrls }
+              : { ...x, children: update(x.children || []) },
+          );
+        return update(prev);
       });
-      saveCustomFolders(next);
-      return next;
-    });
-    // Optimistically remove from the active docs column
-    setDocsColumnStack((prev) =>
-      prev.map((e) =>
-        e.contextFolder?.id === folderId
-          ? { ...e, items: e.items.filter((d) => d.url !== doc.url) }
-          : e,
-      ),
-    );
-  }, []);
+      // Optimistically remove from the active docs column
+      setDocsColumnStack((prev) =>
+        prev.map((e) =>
+          e.contextFolder?.id === folderId
+            ? { ...e, items: e.items.filter((d) => d.url !== doc.url) }
+            : e,
+        ),
+      );
+    },
+    [customFolders], // eslint-disable-line react-hooks/exhaustive-deps
+  );
 
-  const handleAddPinnedDoc = useCallback((folderId, doc) => {
-    setCustomFolders((prev) => {
-      const folder = findFolderById(prev, folderId);
-      if (!folder) return prev;
+  const handleAddPinnedDoc = useCallback(
+    async (folderId, doc) => {
+      const folder = findFolderById(customFolders, folderId);
+      if (!folder) return;
       const pinnedUrls = [
         ...(folder.pinnedUrls || []).filter((u) => u !== doc.url),
         doc.url,
       ];
-      // Also un-exclude this doc if it was previously excluded
       const excludedDocs = (folder.excludedDocs || []).filter(
         (d) => d.url !== doc.url,
       );
-      const next = updateFolderInTree(prev, {
-        ...folder,
-        pinnedUrls,
-        excludedDocs,
+      const updated = { ...folder, pinnedUrls, excludedDocs };
+      const parentId = findParentId(customFolders, folderId) ?? null;
+      try {
+        await fetch(`${API_BASE_URL}/api/folders/${folderId}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(folderToApiBody(updated, parentId)),
+        });
+      } catch {}
+      setCustomFolders((prev) => {
+        const update = (list) =>
+          list.map((x) =>
+            x.id === folderId
+              ? { ...x, pinnedUrls, excludedDocs }
+              : { ...x, children: update(x.children || []) },
+          );
+        return update(prev);
       });
-      saveCustomFolders(next);
-      return next;
-    });
-    // Optimistically add to open docs columns for this folder
-    setDocsColumnStack((prev) =>
-      prev.map((e) =>
-        e.contextFolder?.id === folderId &&
-        !e.items.some((d) => d.url === doc.url)
-          ? { ...e, items: [doc, ...e.items] }
-          : e,
-      ),
-    );
-  }, []);
+      // Optimistically add to open docs columns for this folder
+      setDocsColumnStack((prev) =>
+        prev.map((e) =>
+          e.contextFolder?.id === folderId &&
+          !e.items.some((d) => d.url === doc.url)
+            ? { ...e, items: [doc, ...e.items] }
+            : e,
+        ),
+      );
+    },
+    [customFolders], // eslint-disable-line react-hooks/exhaustive-deps
+  );
 
   // Fetch docs data for an item (pure async, no state mutation)
   const fetchDocsData = useCallback(async (item) => {

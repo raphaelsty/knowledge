@@ -70,6 +70,38 @@ pub async fn run_migrations(pool: &PgPool) {
             .await
             .expect("Failed to create events index");
     }
+
+    // Custom folders table (user-defined folder filters, persisted server-side for MCP)
+    sqlx::query(
+        "CREATE TABLE IF NOT EXISTS custom_folders (
+            id             TEXT PRIMARY KEY,
+            label          TEXT NOT NULL,
+            filter_type    TEXT NOT NULL DEFAULT 'search',
+            search_query   TEXT NOT NULL DEFAULT '',
+            search_sources TEXT[] NOT NULL DEFAULT '{}',
+            tag_filter     TEXT[] NOT NULL DEFAULT '{}',
+            tag_intersect  BOOLEAN NOT NULL DEFAULT FALSE,
+            live           BOOLEAN NOT NULL DEFAULT TRUE,
+            top_k          INTEGER,
+            urls           TEXT[] NOT NULL DEFAULT '{}',
+            pinned_urls    TEXT[] NOT NULL DEFAULT '{}',
+            excluded_docs  JSONB NOT NULL DEFAULT '[]',
+            sort_by        TEXT NOT NULL DEFAULT 'default',
+            parent_id      TEXT REFERENCES custom_folders(id) ON DELETE CASCADE,
+            created_at     TIMESTAMPTZ NOT NULL DEFAULT now(),
+            updated_at     TIMESTAMPTZ NOT NULL DEFAULT now()
+        )",
+    )
+    .execute(pool)
+    .await
+    .expect("Failed to create custom_folders table");
+
+    sqlx::query(
+        "CREATE INDEX IF NOT EXISTS idx_custom_folders_parent ON custom_folders (parent_id)",
+    )
+    .execute(pool)
+    .await
+    .expect("Failed to create custom_folders parent index");
 }
 
 /// Purge events older than `retention_days`.

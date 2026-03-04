@@ -14,7 +14,7 @@ tower = { version = "0.5", features = ["util", "limit"] }
 tower-http = { version = "0.6", features = ["cors", "trace", "timeout"] }
 
 # Database
-sqlx = { version = "0.8", default-features = false, features = ["runtime-tokio", "postgres"] }
+sqlx = { version = "0.8", default-features = false, features = ["runtime-tokio", "postgres", "derive"] }
 
 # Serialization
 serde = { version = "1.0", features = ["derive"] }
