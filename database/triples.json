@@ -100310,5 +100310,85 @@
     {
         "head": "install",
         "tail": "claude"
+    },
+    {
+        "head": "python",
+        "tail": "repository"
+    },
+    {
+        "head": "python",
+        "tail": "motion"
+    },
+    {
+        "head": "robotics",
+        "tail": "html"
+    },
+    {
+        "head": "robotics",
+        "tail": "repository"
+    },
+    {
+        "head": "robotics",
+        "tail": "motion"
+    },
+    {
+        "head": "html",
+        "tail": "repository"
+    },
+    {
+        "head": "html",
+        "tail": "mujoco"
+    },
+    {
+        "head": "html",
+        "tail": "motion"
+    },
+    {
+        "head": "repository",
+        "tail": "mujoco"
+    },
+    {
+        "head": "repository",
+        "tail": "motion"
+    },
+    {
+        "head": "mujoco",
+        "tail": "motion"
+    },
+    {
+        "head": "windows",
+        "tail": "mac"
+    },
+    {
+        "head": "mac",
+        "tail": "linux"
+    },
+    {
+        "head": "windows",
+        "tail": "os"
+    },
+    {
+        "head": "bug",
+        "tail": "twitter-api"
+    },
+    {
+        "head": "karpathy",
+        "tail": "minimal"
+    },
+    {
+        "head": "recommendation",
+        "tail": "recommender-system"
+    },
+    {
+        "head": "fast",
+        "tail": "grep"
+    },
+    {
+        "head": "fast",
+        "tail": "workflow"
+    },
+    {
+        "head": "grep",
+        "tail": "workflow"
     }
 ]
