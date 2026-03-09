@@ -100390,5 +100390,585 @@
     {
         "head": "grep",
         "tail": "workflow"
+    },
+    {
+        "head": "gbdt",
+        "tail": "decision-trees"
+    },
+    {
+        "head": "gbdt",
+        "tail": "python"
+    },
+    {
+        "head": "gbdt",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "gbdt",
+        "tail": "r"
+    },
+    {
+        "head": "gbdt",
+        "tail": "gbm"
+    },
+    {
+        "head": "gbdt",
+        "tail": "c++"
+    },
+    {
+        "head": "gbdt",
+        "tail": "parallel"
+    },
+    {
+        "head": "gbdt",
+        "tail": "lightgbm"
+    },
+    {
+        "head": "gbdt",
+        "tail": "kaggle"
+    },
+    {
+        "head": "gbdt",
+        "tail": "gbrt"
+    },
+    {
+        "head": "gbdt",
+        "tail": "data-mining"
+    },
+    {
+        "head": "gbdt",
+        "tail": "gradient-boosting"
+    },
+    {
+        "head": "gbdt",
+        "tail": "distributed"
+    },
+    {
+        "head": "gbdt",
+        "tail": "microsoft"
+    },
+    {
+        "head": "gbdt",
+        "tail": "learning"
+    },
+    {
+        "head": "gbdt",
+        "tail": "machine"
+    },
+    {
+        "head": "decision-trees",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "decision-trees",
+        "tail": "r"
+    },
+    {
+        "head": "decision-trees",
+        "tail": "gbm"
+    },
+    {
+        "head": "decision-trees",
+        "tail": "c++"
+    },
+    {
+        "head": "decision-trees",
+        "tail": "parallel"
+    },
+    {
+        "head": "decision-trees",
+        "tail": "lightgbm"
+    },
+    {
+        "head": "decision-trees",
+        "tail": "kaggle"
+    },
+    {
+        "head": "decision-trees",
+        "tail": "gbrt"
+    },
+    {
+        "head": "decision-trees",
+        "tail": "data-mining"
+    },
+    {
+        "head": "decision-trees",
+        "tail": "gradient-boosting"
+    },
+    {
+        "head": "decision-trees",
+        "tail": "distributed"
+    },
+    {
+        "head": "decision-trees",
+        "tail": "microsoft"
+    },
+    {
+        "head": "decision-trees",
+        "tail": "learning"
+    },
+    {
+        "head": "decision-trees",
+        "tail": "gradient"
+    },
+    {
+        "head": "decision-trees",
+        "tail": "machine"
+    },
+    {
+        "head": "python",
+        "tail": "gbm"
+    },
+    {
+        "head": "python",
+        "tail": "parallel"
+    },
+    {
+        "head": "python",
+        "tail": "gbrt"
+    },
+    {
+        "head": "python",
+        "tail": "gradient"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "r"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "gbm"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "c++"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "parallel"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "lightgbm"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "kaggle"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "gbrt"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "data-mining"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "gradient-boosting"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "distributed"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "microsoft"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "learning"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "gradient"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "machine"
+    },
+    {
+        "head": "r",
+        "tail": "gbm"
+    },
+    {
+        "head": "r",
+        "tail": "c++"
+    },
+    {
+        "head": "r",
+        "tail": "parallel"
+    },
+    {
+        "head": "r",
+        "tail": "lightgbm"
+    },
+    {
+        "head": "r",
+        "tail": "kaggle"
+    },
+    {
+        "head": "r",
+        "tail": "gbrt"
+    },
+    {
+        "head": "r",
+        "tail": "data-mining"
+    },
+    {
+        "head": "r",
+        "tail": "gradient-boosting"
+    },
+    {
+        "head": "r",
+        "tail": "distributed"
+    },
+    {
+        "head": "r",
+        "tail": "microsoft"
+    },
+    {
+        "head": "r",
+        "tail": "learning"
+    },
+    {
+        "head": "r",
+        "tail": "gradient"
+    },
+    {
+        "head": "r",
+        "tail": "machine"
+    },
+    {
+        "head": "gbm",
+        "tail": "c++"
+    },
+    {
+        "head": "gbm",
+        "tail": "parallel"
+    },
+    {
+        "head": "gbm",
+        "tail": "lightgbm"
+    },
+    {
+        "head": "gbm",
+        "tail": "kaggle"
+    },
+    {
+        "head": "gbm",
+        "tail": "gbrt"
+    },
+    {
+        "head": "gbm",
+        "tail": "data-mining"
+    },
+    {
+        "head": "gbm",
+        "tail": "gradient-boosting"
+    },
+    {
+        "head": "gbm",
+        "tail": "distributed"
+    },
+    {
+        "head": "gbm",
+        "tail": "microsoft"
+    },
+    {
+        "head": "gbm",
+        "tail": "learning"
+    },
+    {
+        "head": "gbm",
+        "tail": "gradient"
+    },
+    {
+        "head": "gbm",
+        "tail": "machine"
+    },
+    {
+        "head": "c++",
+        "tail": "parallel"
+    },
+    {
+        "head": "c++",
+        "tail": "lightgbm"
+    },
+    {
+        "head": "c++",
+        "tail": "kaggle"
+    },
+    {
+        "head": "c++",
+        "tail": "gbrt"
+    },
+    {
+        "head": "c++",
+        "tail": "data-mining"
+    },
+    {
+        "head": "c++",
+        "tail": "microsoft"
+    },
+    {
+        "head": "c++",
+        "tail": "gradient"
+    },
+    {
+        "head": "c++",
+        "tail": "machine"
+    },
+    {
+        "head": "parallel",
+        "tail": "lightgbm"
+    },
+    {
+        "head": "parallel",
+        "tail": "kaggle"
+    },
+    {
+        "head": "parallel",
+        "tail": "gbrt"
+    },
+    {
+        "head": "parallel",
+        "tail": "data-mining"
+    },
+    {
+        "head": "parallel",
+        "tail": "gradient-boosting"
+    },
+    {
+        "head": "parallel",
+        "tail": "distributed"
+    },
+    {
+        "head": "parallel",
+        "tail": "microsoft"
+    },
+    {
+        "head": "parallel",
+        "tail": "learning"
+    },
+    {
+        "head": "parallel",
+        "tail": "gradient"
+    },
+    {
+        "head": "parallel",
+        "tail": "machine"
+    },
+    {
+        "head": "lightgbm",
+        "tail": "kaggle"
+    },
+    {
+        "head": "lightgbm",
+        "tail": "gbrt"
+    },
+    {
+        "head": "lightgbm",
+        "tail": "data-mining"
+    },
+    {
+        "head": "lightgbm",
+        "tail": "gradient-boosting"
+    },
+    {
+        "head": "lightgbm",
+        "tail": "distributed"
+    },
+    {
+        "head": "lightgbm",
+        "tail": "microsoft"
+    },
+    {
+        "head": "lightgbm",
+        "tail": "learning"
+    },
+    {
+        "head": "lightgbm",
+        "tail": "gradient"
+    },
+    {
+        "head": "lightgbm",
+        "tail": "machine"
+    },
+    {
+        "head": "kaggle",
+        "tail": "gbrt"
+    },
+    {
+        "head": "kaggle",
+        "tail": "data-mining"
+    },
+    {
+        "head": "kaggle",
+        "tail": "gradient-boosting"
+    },
+    {
+        "head": "kaggle",
+        "tail": "distributed"
+    },
+    {
+        "head": "kaggle",
+        "tail": "microsoft"
+    },
+    {
+        "head": "kaggle",
+        "tail": "gradient"
+    },
+    {
+        "head": "gbrt",
+        "tail": "data-mining"
+    },
+    {
+        "head": "gbrt",
+        "tail": "gradient-boosting"
+    },
+    {
+        "head": "gbrt",
+        "tail": "distributed"
+    },
+    {
+        "head": "gbrt",
+        "tail": "microsoft"
+    },
+    {
+        "head": "gbrt",
+        "tail": "learning"
+    },
+    {
+        "head": "gbrt",
+        "tail": "gradient"
+    },
+    {
+        "head": "gbrt",
+        "tail": "machine"
+    },
+    {
+        "head": "data-mining",
+        "tail": "gradient-boosting"
+    },
+    {
+        "head": "data-mining",
+        "tail": "distributed"
+    },
+    {
+        "head": "data-mining",
+        "tail": "microsoft"
+    },
+    {
+        "head": "data-mining",
+        "tail": "learning"
+    },
+    {
+        "head": "data-mining",
+        "tail": "gradient"
+    },
+    {
+        "head": "data-mining",
+        "tail": "machine"
+    },
+    {
+        "head": "gradient-boosting",
+        "tail": "distributed"
+    },
+    {
+        "head": "gradient-boosting",
+        "tail": "microsoft"
+    },
+    {
+        "head": "gradient-boosting",
+        "tail": "learning"
+    },
+    {
+        "head": "gradient-boosting",
+        "tail": "gradient"
+    },
+    {
+        "head": "gradient-boosting",
+        "tail": "machine"
+    },
+    {
+        "head": "distributed",
+        "tail": "microsoft"
+    },
+    {
+        "head": "distributed",
+        "tail": "learning"
+    },
+    {
+        "head": "distributed",
+        "tail": "gradient"
+    },
+    {
+        "head": "distributed",
+        "tail": "machine"
+    },
+    {
+        "head": "microsoft",
+        "tail": "learning"
+    },
+    {
+        "head": "microsoft",
+        "tail": "gradient"
+    },
+    {
+        "head": "microsoft",
+        "tail": "machine"
+    },
+    {
+        "head": "learning",
+        "tail": "gradient"
+    },
+    {
+        "head": "gradient",
+        "tail": "machine"
+    },
+    {
+        "head": "wasm",
+        "tail": "writing"
+    },
+    {
+        "head": "writing",
+        "tail": "rust"
+    },
+    {
+        "head": "lsp",
+        "tail": "hierarchical"
+    },
+    {
+        "head": "lsp",
+        "tail": "tree"
+    },
+    {
+        "head": "hierarchical",
+        "tail": "tree"
+    },
+    {
+        "head": "tokens",
+        "tail": "workflow"
+    },
+    {
+        "head": "tokens",
+        "tail": "search"
+    },
+    {
+        "head": "tokens",
+        "tail": "agentic"
+    },
+    {
+        "head": "workflow",
+        "tail": "search"
+    },
+    {
+        "head": "workflow",
+        "tail": "agentic"
+    },
+    {
+        "head": "search",
+        "tail": "agentic"
     }
 ]
