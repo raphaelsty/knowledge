@@ -100970,5 +100970,29 @@
     {
         "head": "search",
         "tail": "agentic"
+    },
+    {
+        "head": "font",
+        "tail": "image"
+    },
+    {
+        "head": "font",
+        "tail": "page"
+    },
+    {
+        "head": "font",
+        "tail": "processing"
+    },
+    {
+        "head": "image",
+        "tail": "page"
+    },
+    {
+        "head": "image",
+        "tail": "processing"
+    },
+    {
+        "head": "page",
+        "tail": "processing"
     }
 ]
