@@ -100994,5 +100994,389 @@
     {
         "head": "page",
         "tail": "processing"
+    },
+    {
+        "head": "swift",
+        "tail": "skill"
+    },
+    {
+        "head": "swift",
+        "tail": "manager"
+    },
+    {
+        "head": "codex",
+        "tail": "skill"
+    },
+    {
+        "head": "codex",
+        "tail": "manager"
+    },
+    {
+        "head": "macos",
+        "tail": "skill"
+    },
+    {
+        "head": "macos",
+        "tail": "manager"
+    },
+    {
+        "head": "skill",
+        "tail": "manager"
+    },
+    {
+        "head": "mock",
+        "tail": "local"
+    },
+    {
+        "head": "mock",
+        "tail": "python"
+    },
+    {
+        "head": "mock",
+        "tail": "snowflakedb"
+    },
+    {
+        "head": "mock",
+        "tail": "emulator"
+    },
+    {
+        "head": "mock",
+        "tail": "testing"
+    },
+    {
+        "head": "mock",
+        "tail": "snowflake"
+    },
+    {
+        "head": "mock",
+        "tail": "install"
+    },
+    {
+        "head": "mock",
+        "tail": "server"
+    },
+    {
+        "head": "mock",
+        "tail": "subprocess"
+    },
+    {
+        "head": "local",
+        "tail": "python"
+    },
+    {
+        "head": "local",
+        "tail": "snowflakedb"
+    },
+    {
+        "head": "local",
+        "tail": "emulator"
+    },
+    {
+        "head": "local",
+        "tail": "testing"
+    },
+    {
+        "head": "local",
+        "tail": "snowflake"
+    },
+    {
+        "head": "local",
+        "tail": "install"
+    },
+    {
+        "head": "local",
+        "tail": "server"
+    },
+    {
+        "head": "local",
+        "tail": "subprocess"
+    },
+    {
+        "head": "python",
+        "tail": "snowflakedb"
+    },
+    {
+        "head": "python",
+        "tail": "server"
+    },
+    {
+        "head": "snowflakedb",
+        "tail": "emulator"
+    },
+    {
+        "head": "snowflakedb",
+        "tail": "testing"
+    },
+    {
+        "head": "snowflakedb",
+        "tail": "snowflake"
+    },
+    {
+        "head": "snowflakedb",
+        "tail": "install"
+    },
+    {
+        "head": "snowflakedb",
+        "tail": "server"
+    },
+    {
+        "head": "snowflakedb",
+        "tail": "subprocess"
+    },
+    {
+        "head": "emulator",
+        "tail": "testing"
+    },
+    {
+        "head": "emulator",
+        "tail": "snowflake"
+    },
+    {
+        "head": "emulator",
+        "tail": "install"
+    },
+    {
+        "head": "emulator",
+        "tail": "server"
+    },
+    {
+        "head": "emulator",
+        "tail": "subprocess"
+    },
+    {
+        "head": "testing",
+        "tail": "snowflake"
+    },
+    {
+        "head": "testing",
+        "tail": "server"
+    },
+    {
+        "head": "testing",
+        "tail": "subprocess"
+    },
+    {
+        "head": "snowflake",
+        "tail": "install"
+    },
+    {
+        "head": "snowflake",
+        "tail": "server"
+    },
+    {
+        "head": "snowflake",
+        "tail": "subprocess"
+    },
+    {
+        "head": "install",
+        "tail": "server"
+    },
+    {
+        "head": "install",
+        "tail": "subprocess"
+    },
+    {
+        "head": "server",
+        "tail": "subprocess"
+    },
+    {
+        "head": "llm",
+        "tail": "ai"
+    },
+    {
+        "head": "huggingface",
+        "tail": "ai"
+    },
+    {
+        "head": "data",
+        "tail": "ir"
+    },
+    {
+        "head": "data",
+        "tail": "datasets"
+    },
+    {
+        "head": "data",
+        "tail": "train"
+    },
+    {
+        "head": "ir",
+        "tail": "training"
+    },
+    {
+        "head": "ir",
+        "tail": "datasets"
+    },
+    {
+        "head": "ir",
+        "tail": "train"
+    },
+    {
+        "head": "datasets",
+        "tail": "train"
+    },
+    {
+        "head": "clean",
+        "tail": "data"
+    },
+    {
+        "head": "clean",
+        "tail": "triplets"
+    },
+    {
+        "head": "clean",
+        "tail": "embedding"
+    },
+    {
+        "head": "data",
+        "tail": "triplets"
+    },
+    {
+        "head": "data",
+        "tail": "embedding"
+    },
+    {
+        "head": "training",
+        "tail": "blog"
+    },
+    {
+        "head": "embedding",
+        "tail": "blog"
+    },
+    {
+        "head": "linkedin",
+        "tail": "cv"
+    },
+    {
+        "head": "linkedin",
+        "tail": "prompt"
+    },
+    {
+        "head": "cv",
+        "tail": "prompt"
+    },
+    {
+        "head": "postgres",
+        "tail": "find"
+    },
+    {
+        "head": "search",
+        "tail": "find"
+    },
+    {
+        "head": "workshop",
+        "tail": "retrieval"
+    },
+    {
+        "head": "homebrew",
+        "tail": "interactive"
+    },
+    {
+        "head": "homebrew",
+        "tail": "agent"
+    },
+    {
+        "head": "interactive",
+        "tail": "agent"
+    },
+    {
+        "head": "fair",
+        "tail": "go"
+    },
+    {
+        "head": "fair",
+        "tail": "rust"
+    },
+    {
+        "head": "fair",
+        "tail": "packages"
+    },
+    {
+        "head": "fair",
+        "tail": "homebrew"
+    },
+    {
+        "head": "go",
+        "tail": "rust"
+    },
+    {
+        "head": "go",
+        "tail": "packages"
+    },
+    {
+        "head": "go",
+        "tail": "homebrew"
+    },
+    {
+        "head": "rust",
+        "tail": "packages"
+    },
+    {
+        "head": "rust",
+        "tail": "homebrew"
+    },
+    {
+        "head": "packages",
+        "tail": "homebrew"
+    },
+    {
+        "head": "bm25",
+        "tail": "text"
+    },
+    {
+        "head": "bm25",
+        "tail": "dense"
+    },
+    {
+        "head": "bm25",
+        "tail": "vector"
+    },
+    {
+        "head": "text",
+        "tail": "dense"
+    },
+    {
+        "head": "text",
+        "tail": "vector"
+    },
+    {
+        "head": "text",
+        "tail": "retrieval"
+    },
+    {
+        "head": "dense",
+        "tail": "vector"
+    },
+    {
+        "head": "vector",
+        "tail": "retrieval"
+    },
+    {
+        "head": "codex",
+        "tail": "source"
+    },
+    {
+        "head": "feedback",
+        "tail": "code"
+    },
+    {
+        "head": "feedback",
+        "tail": "codex"
+    },
+    {
+        "head": "code",
+        "tail": "codex"
+    },
+    {
+        "head": "awesome",
+        "tail": "ir"
+    },
+    {
+        "head": "awesome",
+        "tail": "lens"
+    },
+    {
+        "head": "ir",
+        "tail": "lens"
     }
 ]
