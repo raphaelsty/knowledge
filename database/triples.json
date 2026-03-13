@@ -101950,5 +101950,165 @@
     {
         "head": "deepmind",
         "tail": "document"
+    },
+    {
+        "head": "python",
+        "tail": "writing"
+    },
+    {
+        "head": "python",
+        "tail": "yaml"
+    },
+    {
+        "head": "python",
+        "tail": "files"
+    },
+    {
+        "head": "windows",
+        "tail": "writing"
+    },
+    {
+        "head": "windows",
+        "tail": "yaml"
+    },
+    {
+        "head": "windows",
+        "tail": "files"
+    },
+    {
+        "head": "writing",
+        "tail": "yaml"
+    },
+    {
+        "head": "writing",
+        "tail": "files"
+    },
+    {
+        "head": "yaml",
+        "tail": "files"
+    },
+    {
+        "head": "language",
+        "tail": "llms"
+    },
+    {
+        "head": "language",
+        "tail": "dev"
+    },
+    {
+        "head": "llms",
+        "tail": "dev"
+    },
+    {
+        "head": "mixedbread",
+        "tail": "sota"
+    },
+    {
+        "head": "mixedbread",
+        "tail": "performance"
+    },
+    {
+        "head": "sota",
+        "tail": "performance"
+    },
+    {
+        "head": "gemini",
+        "tail": "embedding"
+    },
+    {
+        "head": "gemini",
+        "tail": "scaling"
+    },
+    {
+        "head": "gemini",
+        "tail": "single-vector"
+    },
+    {
+        "head": "scaling",
+        "tail": "single-vector"
+    },
+    {
+        "head": "jobergum",
+        "tail": "context"
+    },
+    {
+        "head": "jobergum",
+        "tail": "graph"
+    },
+    {
+        "head": "context",
+        "tail": "graph"
+    },
+    {
+        "head": "release",
+        "tail": "retrieval"
+    },
+    {
+        "head": "release",
+        "tail": "us"
+    },
+    {
+        "head": "retrieval",
+        "tail": "us"
+    },
+    {
+        "head": "agents",
+        "tail": "jobergum"
+    },
+    {
+        "head": "agents",
+        "tail": "bm25"
+    },
+    {
+        "head": "agents",
+        "tail": "retrieval"
+    },
+    {
+        "head": "jobergum",
+        "tail": "bm25"
+    },
+    {
+        "head": "jobergum",
+        "tail": "retrieval"
+    },
+    {
+        "head": "interesting-idea",
+        "tail": "getting-started"
+    },
+    {
+        "head": "practice",
+        "tail": "multi-vector"
+    },
+    {
+        "head": "practice",
+        "tail": "production"
+    },
+    {
+        "head": "mixedbread",
+        "tail": "multi-vector"
+    },
+    {
+        "head": "build",
+        "tail": "jobergum"
+    },
+    {
+        "head": "build",
+        "tail": "apps"
+    },
+    {
+        "head": "jobergum",
+        "tail": "apps"
+    },
+    {
+        "head": "coding",
+        "tail": "text"
+    },
+    {
+        "head": "coding",
+        "tail": "jobergum"
+    },
+    {
+        "head": "text",
+        "tail": "jobergum"
     }
 ]
