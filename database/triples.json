@@ -102110,5 +102110,145 @@
     {
         "head": "text",
         "tail": "jobergum"
+    },
+    {
+        "head": "course",
+        "tail": "getting-started"
+    },
+    {
+        "head": "release",
+        "tail": "gemini"
+    },
+    {
+        "head": "gemini",
+        "tail": "mixedbread"
+    },
+    {
+        "head": "gemini",
+        "tail": "performance"
+    },
+    {
+        "head": "mixedbread",
+        "tail": "twitter-api"
+    },
+    {
+        "head": "find",
+        "tail": "performance"
+    },
+    {
+        "head": "mixedbread",
+        "tail": "platform"
+    },
+    {
+        "head": "search",
+        "tail": "languages"
+    },
+    {
+        "head": "search",
+        "tail": "modern"
+    },
+    {
+        "head": "search",
+        "tail": "pipelines"
+    },
+    {
+        "head": "languages",
+        "tail": "modern"
+    },
+    {
+        "head": "languages",
+        "tail": "pipelines"
+    },
+    {
+        "head": "languages",
+        "tail": "benchmark"
+    },
+    {
+        "head": "modern",
+        "tail": "pipelines"
+    },
+    {
+        "head": "modern",
+        "tail": "benchmark"
+    },
+    {
+        "head": "pipelines",
+        "tail": "benchmark"
+    },
+    {
+        "head": "agents",
+        "tail": "context"
+    },
+    {
+        "head": "release",
+        "tail": "multimodal"
+    },
+    {
+        "head": "dense",
+        "tail": "paper"
+    },
+    {
+        "head": "paper",
+        "tail": "bm25"
+    },
+    {
+        "head": "release",
+        "tail": "performance"
+    },
+    {
+        "head": "release",
+        "tail": "dataset"
+    },
+    {
+        "head": "release",
+        "tail": "summary"
+    },
+    {
+        "head": "performance",
+        "tail": "dataset"
+    },
+    {
+        "head": "performance",
+        "tail": "summary"
+    },
+    {
+        "head": "task",
+        "tail": "synthetic"
+    },
+    {
+        "head": "task",
+        "tail": "dataset"
+    },
+    {
+        "head": "task",
+        "tail": "pattern-matching"
+    },
+    {
+        "head": "synthetic",
+        "tail": "pattern-matching"
+    },
+    {
+        "head": "dataset",
+        "tail": "pattern-matching"
+    },
+    {
+        "head": "paper",
+        "tail": "limitation"
+    },
+    {
+        "head": "paper",
+        "tail": "vector"
+    },
+    {
+        "head": "paper",
+        "tail": "multi-vector"
+    },
+    {
+        "head": "limitation",
+        "tail": "vector"
+    },
+    {
+        "head": "limitation",
+        "tail": "multi-vector"
     }
 ]
