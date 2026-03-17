@@ -102494,5 +102494,25 @@
     {
         "head": "algorithms",
         "tail": "ai"
+    },
+    {
+        "head": "skill",
+        "tail": "claude"
+    },
+    {
+        "head": "skill",
+        "tail": "code"
+    },
+    {
+        "head": "skill",
+        "tail": "ai"
+    },
+    {
+        "head": "claude",
+        "tail": "ai"
+    },
+    {
+        "head": "code",
+        "tail": "ai"
     }
 ]

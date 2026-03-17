@@ -85843,5 +85843,17 @@
             "gradient-accumulation",
             "pytorch"
         ]
+    },
+    "https://github.com/blader/humanizer": {
+        "extra-tags": [
+            "skill",
+            "claude",
+            "code",
+            "ai"
+        ],
+        "date": "2026-03-17",
+        "title": "humanizer",
+        "summary": "Claude Code skill that removes signs of AI-generated writing from text \n A Claude Code skill that removes signs of AI-generated writing from text, making it sound more natural and human. bash mkdir -p .claudeskills git clone httpsgithub.combladerhumanizer.git .claudeskillshumanizer If you already have this repo cloned or you downloaded SKILL.md, copy the skill file into Claude Codes skills directory bash mkdir -p .claudeskillshumanizer",
+        "tags": []
     }
 }
