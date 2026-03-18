@@ -85855,5 +85855,236 @@
         "title": "humanizer",
         "summary": "Claude Code skill that removes signs of AI-generated writing from text \n A Claude Code skill that removes signs of AI-generated writing from text, making it sound more natural and human. bash mkdir -p .claudeskills git clone httpsgithub.combladerhumanizer.git .claudeskillshumanizer If you already have this repo cloned or you downloaded SKILL.md, copy the skill file into Claude Codes skills directory bash mkdir -p .claudeskillshumanizer",
         "tags": []
+    },
+    "https://github.com/petergpt/bullshit-benchmark": {
+        "extra-tags": [
+            "detection",
+            "benchmark",
+            "ai",
+            "prompts"
+        ],
+        "date": "2026-03-18",
+        "title": "bullshit-benchmark",
+        "summary": "BullshitBench measures whether AI models challenge nonsensical prompts instead of confidently answering them, created by Peter Gostev. \n BullshitBench v2 BullshitBench measures whether models detect nonsense, call it out clearly, and avoid confidently continuing with invalid assumptions. The screenshots below follow the same flow as viewerindex.v2.html, starting with the main chart. Primary leaderboard-style view showing each model's greenamberred split. !BullshitBench v2 - Detection Rate by Modeldocsimagesv2-detection-rate-by-model.png Detection mix by domain to compare overall performance vs each domain at a glance.",
+        "tags": [
+            "python"
+        ]
+    },
+    "https://github.com/hanxiao/flash-kmeans-mlx": {
+        "extra-tags": [
+            "sklearn",
+            "apple",
+            "cluster"
+        ],
+        "date": "2026-03-18",
+        "title": "flash-kmeans-mlx",
+        "summary": "IO-aware batched K-Means for Apple Silicon, ported from Flash-KMeans (Triton/CUDA) to pure MLX. Up to 94x faster than sklearn. \n IO-aware batched K-Means for Apple Silicon, ported from Flash-KMeanshttpsgithub.comsvg-projectflash-kmeans TritonCUDA to pure MLX. 500K points, 128 dimensions, K1000 clustered in 0.76s on M3 Ultra -- 160x faster than sklearn. Uses custom Metal kernels for argmax, fused addmm assignment, and multi-iteration compiled execution. Full Fashion-MNIST 70K samples, 784 dimensions, K10 clustered in 0.12s on M3 Ultra, 6x faster than sklearn 0.74s. Left K-Means cluster assignments. Right ground truth labels. Visualization via mlx-vishttpsgithub.comhanxiaomlx-vis UMAP.",
+        "tags": [
+            "kmeans",
+            "mlx",
+            "python",
+            "batch-kmeans",
+            "machine-learning",
+            "apple-silicon",
+            "metal",
+            "clustering",
+            "gpu"
+        ]
+    },
+    "https://github.com/volcengine/OpenViking": {
+        "extra-tags": [
+            "link",
+            "context",
+            "github",
+            "ai"
+        ],
+        "date": "2026-03-18",
+        "title": "OpenViking",
+        "summary": "OpenViking is an open-source context database designed specifically for AI Agents(such as openclaw). OpenViking unifies the management of context (memory, resources, and skills) that Agents need through a file system paradigm, enabling hierarchical context delivery and self-evolving. \n English READMECN.md Website GitHub Issues Docs !release-shieldrelease-link !github-stars-shieldgithub-stars-link !github-issues-shieldgithub-issues-shield-link !github-contributors-shieldgithub-contributors-link !license-shieldlicense-shield-link !last-commit-shieldlast-commit-shield-link Join our Community Lark Group WeChat Discord X In the AI era, data is abundant, but high-quality context is hard to come by. When building AI Agents, developers often face these challenges",
+        "tags": [
+            "memory",
+            "context-database",
+            "agent",
+            "skill",
+            "context-engineering",
+            "filesystem",
+            "openclaw",
+            "agentic-rag",
+            "opencode",
+            "python",
+            "clawbot",
+            "llm",
+            "rag",
+            "ai-agents"
+        ]
+    },
+    "https://github.com/NVlabs/cutile-rs": {
+        "extra-tags": [
+            "programming",
+            "kernel",
+            "features"
+        ],
+        "date": "2026-03-18",
+        "title": "cutile-rs",
+        "summary": "cuTile Rust provides a safe, tile-based kernel programming DSL for the Rust programming language. It features a safe host-side API for passing tensors to asynchronously executed kernel functions. \n cuTile Rust cutile-rs is a research project providing a safe, tile-based kernel programming DSL for the Rust programming language. It features a safe host-side API for passing tensors to asynchronously executed kernel functions. We are excited to release this research project as a demonstration of how GPU programming can be made available in the Rust ecosystem. The software is in an early stage -alpha and under active development you should expect bugs, incomplete features, and API breakage as we work to improve it. That being said, we hope you'll be interested to try it in your work and help shape its direction by providing feedback on your experience.",
+        "tags": [
+            "rust"
+        ]
+    },
+    "https://github.com/BrianPugh/cyclopts": {
+        "extra-tags": [
+            "install",
+            "svg",
+            "documentation"
+        ],
+        "date": "2026-03-18",
+        "title": "cyclopts",
+        "summary": "Intuitive, easy CLIs based on python type hints. \n !Python compathttpsimg.shields.iobadgepython-3.10-blue.svg Documentation httpscyclopts.readthedocs.io Source Code httpsgithub.comBrianPughcyclopts Cyclopts is a modern, easy-to-use command-line interface CLI framework that aims to provide an intuitive efficient developer experience. Cyclopts requires Python 3.10 to install Cyclopts, run console pip install cyclopts python from cyclopts import run def fooloops int for i in rangeloops",
+        "tags": [
+            "typehints",
+            "python",
+            "shell",
+            "cli",
+            "argument-parser"
+        ]
+    },
+    "https://github.com/ashvardanian/NumKong": {
+        "extra-tags": [
+            "arm",
+            "v",
+            "geospatial",
+            "mixed-precision"
+        ],
+        "date": "2026-03-18",
+        "title": "NumKong",
+        "summary": "SIMD-accelerated distances, dot products, matrix ops, geospatial & geometric kernels for 16 numeric types \u2014 from 6-bit floats to 64-bit complex \u2014 across x86, Arm, RISC-V, and WASM, with bindings for Python, Rust, C, C++, Swift, JS, and Go \ud83d\udcd0 \n NumKong previously SimSIMD delivers mixed-precision numerics that are often faster and more accurate than standard BLAS libraries in a 5 MB binary, across C, C, Rust, Python, Go, JavaScript, and Swift. Over 1500 hand-tuned SIMD kernels for x86, Arm, RISC-V, and WASM power Unumhttpswww.unum.cloud's open-source USearchhttpsgithub.comunum-cloudusearch search engine and the DBMS AI products built on it.",
+        "tags": [
+            "matrix-multiplication",
+            "numpy",
+            "cpp",
+            "c",
+            "information-retrieval",
+            "simd",
+            "golang",
+            "javascript",
+            "scipy",
+            "vector-search",
+            "swift",
+            "blas",
+            "assembly",
+            "rust",
+            "tensor",
+            "metrics",
+            "arm-neon"
+        ]
+    },
+    "https://x.com/santangelx/status/2031888836205137936": {
+        "extra-tags": [
+            "tool",
+            "codex",
+            "rag",
+            "tokens"
+        ],
+        "date": "2026-03-12",
+        "title": "Twitter @santangelx",
+        "summary": "@jxnlco Checkout https://t.co/l81CXK53Gi \n\nfree tool that runs locally and ACTUALLY makes a difference when using codex \n\nsure sure, rag is dead\u2026 but tokens are expensive and colgrep fixes search",
+        "tags": [
+            "twitter"
+        ]
+    },
+    "https://x.com/Starwatcher_vc/status/2032695524134912282": {
+        "extra-tags": [
+            "testing"
+        ],
+        "date": "2026-03-14",
+        "title": "Twitter @Starwatcher_vc",
+        "summary": "@bri4nr33d Always be testing. I'm curious about colgrep from @LightOnIO. Haven't had time to look into it.",
+        "tags": [
+            "twitter"
+        ]
+    },
+    "https://x.com/antoine_chaffin/status/2033966244760604952": {
+        "extra-tags": [
+            "sota",
+            "pylate",
+            "data"
+        ],
+        "date": "2026-03-17",
+        "title": "Twitter @antoine_chaffin",
+        "summary": "You've been warned for a long time, but if you are not using PyLate to plug your data and claim your free SOTA, you are really missing out at this point\nhttps://t.co/D2OTbzi0DM\n\nClaim your free SOTA today: https://t.co/OjQLWzg2mx https://t.co/wZcV21n8pa",
+        "tags": [
+            "twitter"
+        ]
+    },
+    "https://x.com/antoine_chaffin/status/2033965709097586866": {
+        "extra-tags": [
+            "http",
+            "twitter-api"
+        ],
+        "date": "2026-03-17",
+        "title": "Twitter @antoine_chaffin",
+        "summary": "See you on Thursday, it's time to claim the one piece (Pretty shocked by this one ngl) https://t.co/GXHPxjlVZH https://t.co/k4pIvcaldl",
+        "tags": [
+            "twitter"
+        ]
+    },
+    "https://x.com/antoine_chaffin/status/2033845690900631941": {
+        "extra-tags": [
+            "pylate",
+            "cpu"
+        ],
+        "date": "2026-03-17",
+        "title": "Twitter @antoine_chaffin",
+        "summary": "@Robro612 @HaochengXiUCB Omg! Nice!!\nI wonder if we should add it for PyLate because I need to check the perf on CPU (maybe we can select one or the other impl depending on device though), but I will definitely use it in other projects! Thanks for the ping!!\nAlso cc @raphaelsrty and @bclavie \nVery cool",
+        "tags": [
+            "twitter"
+        ]
+    },
+    "https://x.com/Robro612/status/2033750881368264795": {
+        "extra-tags": [
+            "kmeans"
+        ],
+        "date": "2026-03-17",
+        "title": "Twitter @Robro612",
+        "summary": "@HaochengXiUCB @antoine_chaffin wake up new kmeans impl dropped \u26a1\ufe0f",
+        "tags": [
+            "twitter"
+        ]
+    },
+    "https://x.com/HaochengXiUCB/status/2033693755791052804": {
+        "extra-tags": [
+            "kmeans",
+            "algorithm",
+            "modern"
+        ],
+        "date": "2026-03-16",
+        "title": "Twitter @HaochengXiUCB",
+        "summary": "\ud835\uddde-\ud835\uddfa\ud835\uddf2\ud835\uddee\ud835\uddfb\ud835\ude00 \ud835\uddf6\ud835\ude00 \ud835\ude00\ud835\uddf6\ud835\uddfa\ud835\uddfd\ud835\uddf9\ud835\uddf2. \ud835\udde0\ud835\uddee\ud835\uddf8\ud835\uddf6\ud835\uddfb\ud835\uddf4 \ud835\uddf6\ud835\ude01 \ud835\uddf3\ud835\uddee\ud835\ude00\ud835\ude01 \ud835\uddfc\ud835\uddfb \ud835\uddda\ud835\udde3\ud835\udde8\ud835\ude00 \ud835\uddf6\ud835\ude00\ud835\uddfb\u2019\ud835\ude01.\n\nThat\u2019s why we built Flash-KMeans \u2014 an IO-aware implementation of exact k-means that rethinks the algorithm around modern GPU bottlenecks.\n\nBy attacking the memory bottlenecks directly, https://t.co/NSqaTHHyIz",
+        "tags": [
+            "twitter"
+        ]
+    },
+    "https://x.com/antoine_chaffin/status/2033966897197142518": {
+        "extra-tags": [
+            "coding"
+        ],
+        "date": "2026-03-17",
+        "title": "Twitter @antoine_chaffin",
+        "summary": "@Robro612 @HaochengXiUCB @raphaelsrty @bclavie what velocity really means in the vibe coding era https://t.co/BL34c9d7iM",
+        "tags": [
+            "twitter"
+        ]
+    },
+    "https://x.com/matospiso/status/2033819645027746191": {
+        "extra-tags": [
+            "sparse",
+            "retrieval"
+        ],
+        "date": "2026-03-17",
+        "title": "Twitter @matospiso",
+        "summary": "bullish on sparse retrieval \nhttps://t.co/6fwiB04iqj",
+        "tags": [
+            "twitter"
+        ]
     }
 }

@@ -102514,5 +102514,1641 @@
     {
         "head": "code",
         "tail": "ai"
+    },
+    {
+        "head": "python",
+        "tail": "prompts"
+    },
+    {
+        "head": "detection",
+        "tail": "benchmark"
+    },
+    {
+        "head": "detection",
+        "tail": "ai"
+    },
+    {
+        "head": "detection",
+        "tail": "prompts"
+    },
+    {
+        "head": "benchmark",
+        "tail": "ai"
+    },
+    {
+        "head": "benchmark",
+        "tail": "prompts"
+    },
+    {
+        "head": "ai",
+        "tail": "prompts"
+    },
+    {
+        "head": "kmeans",
+        "tail": "mlx"
+    },
+    {
+        "head": "kmeans",
+        "tail": "python"
+    },
+    {
+        "head": "kmeans",
+        "tail": "batch-kmeans"
+    },
+    {
+        "head": "kmeans",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "kmeans",
+        "tail": "apple-silicon"
+    },
+    {
+        "head": "kmeans",
+        "tail": "metal"
+    },
+    {
+        "head": "kmeans",
+        "tail": "sklearn"
+    },
+    {
+        "head": "kmeans",
+        "tail": "apple"
+    },
+    {
+        "head": "kmeans",
+        "tail": "cluster"
+    },
+    {
+        "head": "mlx",
+        "tail": "batch-kmeans"
+    },
+    {
+        "head": "mlx",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "mlx",
+        "tail": "metal"
+    },
+    {
+        "head": "mlx",
+        "tail": "clustering"
+    },
+    {
+        "head": "mlx",
+        "tail": "sklearn"
+    },
+    {
+        "head": "mlx",
+        "tail": "cluster"
+    },
+    {
+        "head": "python",
+        "tail": "batch-kmeans"
+    },
+    {
+        "head": "python",
+        "tail": "metal"
+    },
+    {
+        "head": "python",
+        "tail": "apple"
+    },
+    {
+        "head": "python",
+        "tail": "cluster"
+    },
+    {
+        "head": "batch-kmeans",
+        "tail": "machine-learning"
+    },
+    {
+        "head": "batch-kmeans",
+        "tail": "apple-silicon"
+    },
+    {
+        "head": "batch-kmeans",
+        "tail": "metal"
+    },
+    {
+        "head": "batch-kmeans",
+        "tail": "clustering"
+    },
+    {
+        "head": "batch-kmeans",
+        "tail": "gpu"
+    },
+    {
+        "head": "batch-kmeans",
+        "tail": "sklearn"
+    },
+    {
+        "head": "batch-kmeans",
+        "tail": "apple"
+    },
+    {
+        "head": "batch-kmeans",
+        "tail": "cluster"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "apple-silicon"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "metal"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "clustering"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "gpu"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "sklearn"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "apple"
+    },
+    {
+        "head": "machine-learning",
+        "tail": "cluster"
+    },
+    {
+        "head": "apple-silicon",
+        "tail": "metal"
+    },
+    {
+        "head": "apple-silicon",
+        "tail": "clustering"
+    },
+    {
+        "head": "apple-silicon",
+        "tail": "gpu"
+    },
+    {
+        "head": "apple-silicon",
+        "tail": "sklearn"
+    },
+    {
+        "head": "apple-silicon",
+        "tail": "apple"
+    },
+    {
+        "head": "apple-silicon",
+        "tail": "cluster"
+    },
+    {
+        "head": "metal",
+        "tail": "clustering"
+    },
+    {
+        "head": "metal",
+        "tail": "gpu"
+    },
+    {
+        "head": "metal",
+        "tail": "sklearn"
+    },
+    {
+        "head": "metal",
+        "tail": "apple"
+    },
+    {
+        "head": "metal",
+        "tail": "cluster"
+    },
+    {
+        "head": "clustering",
+        "tail": "sklearn"
+    },
+    {
+        "head": "clustering",
+        "tail": "apple"
+    },
+    {
+        "head": "gpu",
+        "tail": "sklearn"
+    },
+    {
+        "head": "gpu",
+        "tail": "apple"
+    },
+    {
+        "head": "gpu",
+        "tail": "cluster"
+    },
+    {
+        "head": "sklearn",
+        "tail": "apple"
+    },
+    {
+        "head": "sklearn",
+        "tail": "cluster"
+    },
+    {
+        "head": "apple",
+        "tail": "cluster"
+    },
+    {
+        "head": "memory",
+        "tail": "context-database"
+    },
+    {
+        "head": "memory",
+        "tail": "skill"
+    },
+    {
+        "head": "memory",
+        "tail": "context-engineering"
+    },
+    {
+        "head": "memory",
+        "tail": "filesystem"
+    },
+    {
+        "head": "memory",
+        "tail": "openclaw"
+    },
+    {
+        "head": "memory",
+        "tail": "agentic-rag"
+    },
+    {
+        "head": "memory",
+        "tail": "opencode"
+    },
+    {
+        "head": "memory",
+        "tail": "clawbot"
+    },
+    {
+        "head": "memory",
+        "tail": "llm"
+    },
+    {
+        "head": "memory",
+        "tail": "ai-agents"
+    },
+    {
+        "head": "memory",
+        "tail": "link"
+    },
+    {
+        "head": "memory",
+        "tail": "context"
+    },
+    {
+        "head": "memory",
+        "tail": "ai"
+    },
+    {
+        "head": "context-database",
+        "tail": "agent"
+    },
+    {
+        "head": "context-database",
+        "tail": "skill"
+    },
+    {
+        "head": "context-database",
+        "tail": "context-engineering"
+    },
+    {
+        "head": "context-database",
+        "tail": "filesystem"
+    },
+    {
+        "head": "context-database",
+        "tail": "openclaw"
+    },
+    {
+        "head": "context-database",
+        "tail": "agentic-rag"
+    },
+    {
+        "head": "context-database",
+        "tail": "opencode"
+    },
+    {
+        "head": "context-database",
+        "tail": "python"
+    },
+    {
+        "head": "context-database",
+        "tail": "clawbot"
+    },
+    {
+        "head": "context-database",
+        "tail": "llm"
+    },
+    {
+        "head": "context-database",
+        "tail": "rag"
+    },
+    {
+        "head": "context-database",
+        "tail": "ai-agents"
+    },
+    {
+        "head": "context-database",
+        "tail": "link"
+    },
+    {
+        "head": "context-database",
+        "tail": "context"
+    },
+    {
+        "head": "context-database",
+        "tail": "ai"
+    },
+    {
+        "head": "agent",
+        "tail": "skill"
+    },
+    {
+        "head": "agent",
+        "tail": "context-engineering"
+    },
+    {
+        "head": "agent",
+        "tail": "filesystem"
+    },
+    {
+        "head": "agent",
+        "tail": "openclaw"
+    },
+    {
+        "head": "agent",
+        "tail": "agentic-rag"
+    },
+    {
+        "head": "agent",
+        "tail": "opencode"
+    },
+    {
+        "head": "agent",
+        "tail": "clawbot"
+    },
+    {
+        "head": "agent",
+        "tail": "link"
+    },
+    {
+        "head": "agent",
+        "tail": "ai"
+    },
+    {
+        "head": "skill",
+        "tail": "context-engineering"
+    },
+    {
+        "head": "skill",
+        "tail": "filesystem"
+    },
+    {
+        "head": "skill",
+        "tail": "openclaw"
+    },
+    {
+        "head": "skill",
+        "tail": "agentic-rag"
+    },
+    {
+        "head": "skill",
+        "tail": "opencode"
+    },
+    {
+        "head": "skill",
+        "tail": "python"
+    },
+    {
+        "head": "skill",
+        "tail": "clawbot"
+    },
+    {
+        "head": "skill",
+        "tail": "rag"
+    },
+    {
+        "head": "skill",
+        "tail": "ai-agents"
+    },
+    {
+        "head": "skill",
+        "tail": "link"
+    },
+    {
+        "head": "skill",
+        "tail": "context"
+    },
+    {
+        "head": "context-engineering",
+        "tail": "filesystem"
+    },
+    {
+        "head": "context-engineering",
+        "tail": "openclaw"
+    },
+    {
+        "head": "context-engineering",
+        "tail": "agentic-rag"
+    },
+    {
+        "head": "context-engineering",
+        "tail": "opencode"
+    },
+    {
+        "head": "context-engineering",
+        "tail": "python"
+    },
+    {
+        "head": "context-engineering",
+        "tail": "clawbot"
+    },
+    {
+        "head": "context-engineering",
+        "tail": "rag"
+    },
+    {
+        "head": "context-engineering",
+        "tail": "ai-agents"
+    },
+    {
+        "head": "context-engineering",
+        "tail": "link"
+    },
+    {
+        "head": "context-engineering",
+        "tail": "context"
+    },
+    {
+        "head": "context-engineering",
+        "tail": "ai"
+    },
+    {
+        "head": "filesystem",
+        "tail": "openclaw"
+    },
+    {
+        "head": "filesystem",
+        "tail": "agentic-rag"
+    },
+    {
+        "head": "filesystem",
+        "tail": "opencode"
+    },
+    {
+        "head": "filesystem",
+        "tail": "clawbot"
+    },
+    {
+        "head": "filesystem",
+        "tail": "llm"
+    },
+    {
+        "head": "filesystem",
+        "tail": "rag"
+    },
+    {
+        "head": "filesystem",
+        "tail": "ai-agents"
+    },
+    {
+        "head": "filesystem",
+        "tail": "link"
+    },
+    {
+        "head": "filesystem",
+        "tail": "context"
+    },
+    {
+        "head": "filesystem",
+        "tail": "ai"
+    },
+    {
+        "head": "openclaw",
+        "tail": "agentic-rag"
+    },
+    {
+        "head": "openclaw",
+        "tail": "opencode"
+    },
+    {
+        "head": "openclaw",
+        "tail": "python"
+    },
+    {
+        "head": "openclaw",
+        "tail": "clawbot"
+    },
+    {
+        "head": "openclaw",
+        "tail": "llm"
+    },
+    {
+        "head": "openclaw",
+        "tail": "rag"
+    },
+    {
+        "head": "openclaw",
+        "tail": "ai-agents"
+    },
+    {
+        "head": "openclaw",
+        "tail": "link"
+    },
+    {
+        "head": "openclaw",
+        "tail": "context"
+    },
+    {
+        "head": "openclaw",
+        "tail": "ai"
+    },
+    {
+        "head": "agentic-rag",
+        "tail": "opencode"
+    },
+    {
+        "head": "agentic-rag",
+        "tail": "python"
+    },
+    {
+        "head": "agentic-rag",
+        "tail": "clawbot"
+    },
+    {
+        "head": "agentic-rag",
+        "tail": "llm"
+    },
+    {
+        "head": "agentic-rag",
+        "tail": "rag"
+    },
+    {
+        "head": "agentic-rag",
+        "tail": "ai-agents"
+    },
+    {
+        "head": "agentic-rag",
+        "tail": "link"
+    },
+    {
+        "head": "agentic-rag",
+        "tail": "context"
+    },
+    {
+        "head": "agentic-rag",
+        "tail": "ai"
+    },
+    {
+        "head": "opencode",
+        "tail": "python"
+    },
+    {
+        "head": "opencode",
+        "tail": "clawbot"
+    },
+    {
+        "head": "opencode",
+        "tail": "llm"
+    },
+    {
+        "head": "opencode",
+        "tail": "rag"
+    },
+    {
+        "head": "opencode",
+        "tail": "ai-agents"
+    },
+    {
+        "head": "opencode",
+        "tail": "link"
+    },
+    {
+        "head": "opencode",
+        "tail": "context"
+    },
+    {
+        "head": "opencode",
+        "tail": "ai"
+    },
+    {
+        "head": "python",
+        "tail": "clawbot"
+    },
+    {
+        "head": "python",
+        "tail": "ai-agents"
+    },
+    {
+        "head": "python",
+        "tail": "link"
+    },
+    {
+        "head": "python",
+        "tail": "context"
+    },
+    {
+        "head": "clawbot",
+        "tail": "llm"
+    },
+    {
+        "head": "clawbot",
+        "tail": "rag"
+    },
+    {
+        "head": "clawbot",
+        "tail": "ai-agents"
+    },
+    {
+        "head": "clawbot",
+        "tail": "link"
+    },
+    {
+        "head": "clawbot",
+        "tail": "context"
+    },
+    {
+        "head": "clawbot",
+        "tail": "ai"
+    },
+    {
+        "head": "llm",
+        "tail": "ai-agents"
+    },
+    {
+        "head": "llm",
+        "tail": "link"
+    },
+    {
+        "head": "rag",
+        "tail": "ai-agents"
+    },
+    {
+        "head": "rag",
+        "tail": "link"
+    },
+    {
+        "head": "ai-agents",
+        "tail": "link"
+    },
+    {
+        "head": "ai-agents",
+        "tail": "context"
+    },
+    {
+        "head": "ai-agents",
+        "tail": "ai"
+    },
+    {
+        "head": "link",
+        "tail": "context"
+    },
+    {
+        "head": "link",
+        "tail": "ai"
+    },
+    {
+        "head": "context",
+        "tail": "ai"
+    },
+    {
+        "head": "rust",
+        "tail": "features"
+    },
+    {
+        "head": "programming",
+        "tail": "kernel"
+    },
+    {
+        "head": "programming",
+        "tail": "features"
+    },
+    {
+        "head": "kernel",
+        "tail": "features"
+    },
+    {
+        "head": "typehints",
+        "tail": "shell"
+    },
+    {
+        "head": "typehints",
+        "tail": "cli"
+    },
+    {
+        "head": "typehints",
+        "tail": "argument-parser"
+    },
+    {
+        "head": "typehints",
+        "tail": "install"
+    },
+    {
+        "head": "typehints",
+        "tail": "svg"
+    },
+    {
+        "head": "typehints",
+        "tail": "documentation"
+    },
+    {
+        "head": "python",
+        "tail": "argument-parser"
+    },
+    {
+        "head": "shell",
+        "tail": "cli"
+    },
+    {
+        "head": "shell",
+        "tail": "argument-parser"
+    },
+    {
+        "head": "shell",
+        "tail": "install"
+    },
+    {
+        "head": "shell",
+        "tail": "svg"
+    },
+    {
+        "head": "cli",
+        "tail": "argument-parser"
+    },
+    {
+        "head": "cli",
+        "tail": "install"
+    },
+    {
+        "head": "cli",
+        "tail": "svg"
+    },
+    {
+        "head": "cli",
+        "tail": "documentation"
+    },
+    {
+        "head": "argument-parser",
+        "tail": "install"
+    },
+    {
+        "head": "argument-parser",
+        "tail": "svg"
+    },
+    {
+        "head": "argument-parser",
+        "tail": "documentation"
+    },
+    {
+        "head": "install",
+        "tail": "svg"
+    },
+    {
+        "head": "install",
+        "tail": "documentation"
+    },
+    {
+        "head": "svg",
+        "tail": "documentation"
+    },
+    {
+        "head": "matrix-multiplication",
+        "tail": "numpy"
+    },
+    {
+        "head": "matrix-multiplication",
+        "tail": "cpp"
+    },
+    {
+        "head": "matrix-multiplication",
+        "tail": "c"
+    },
+    {
+        "head": "matrix-multiplication",
+        "tail": "information-retrieval"
+    },
+    {
+        "head": "matrix-multiplication",
+        "tail": "simd"
+    },
+    {
+        "head": "matrix-multiplication",
+        "tail": "golang"
+    },
+    {
+        "head": "matrix-multiplication",
+        "tail": "javascript"
+    },
+    {
+        "head": "matrix-multiplication",
+        "tail": "scipy"
+    },
+    {
+        "head": "matrix-multiplication",
+        "tail": "vector-search"
+    },
+    {
+        "head": "matrix-multiplication",
+        "tail": "swift"
+    },
+    {
+        "head": "matrix-multiplication",
+        "tail": "blas"
+    },
+    {
+        "head": "matrix-multiplication",
+        "tail": "assembly"
+    },
+    {
+        "head": "matrix-multiplication",
+        "tail": "rust"
+    },
+    {
+        "head": "matrix-multiplication",
+        "tail": "tensor"
+    },
+    {
+        "head": "matrix-multiplication",
+        "tail": "metrics"
+    },
+    {
+        "head": "matrix-multiplication",
+        "tail": "arm-neon"
+    },
+    {
+        "head": "matrix-multiplication",
+        "tail": "arm"
+    },
+    {
+        "head": "matrix-multiplication",
+        "tail": "v"
+    },
+    {
+        "head": "matrix-multiplication",
+        "tail": "geospatial"
+    },
+    {
+        "head": "matrix-multiplication",
+        "tail": "mixed-precision"
+    },
+    {
+        "head": "numpy",
+        "tail": "cpp"
+    },
+    {
+        "head": "numpy",
+        "tail": "information-retrieval"
+    },
+    {
+        "head": "numpy",
+        "tail": "simd"
+    },
+    {
+        "head": "numpy",
+        "tail": "golang"
+    },
+    {
+        "head": "numpy",
+        "tail": "javascript"
+    },
+    {
+        "head": "numpy",
+        "tail": "scipy"
+    },
+    {
+        "head": "numpy",
+        "tail": "vector-search"
+    },
+    {
+        "head": "numpy",
+        "tail": "swift"
+    },
+    {
+        "head": "numpy",
+        "tail": "blas"
+    },
+    {
+        "head": "numpy",
+        "tail": "assembly"
+    },
+    {
+        "head": "numpy",
+        "tail": "tensor"
+    },
+    {
+        "head": "numpy",
+        "tail": "metrics"
+    },
+    {
+        "head": "numpy",
+        "tail": "arm-neon"
+    },
+    {
+        "head": "numpy",
+        "tail": "arm"
+    },
+    {
+        "head": "numpy",
+        "tail": "v"
+    },
+    {
+        "head": "numpy",
+        "tail": "geospatial"
+    },
+    {
+        "head": "numpy",
+        "tail": "mixed-precision"
+    },
+    {
+        "head": "cpp",
+        "tail": "c"
+    },
+    {
+        "head": "cpp",
+        "tail": "information-retrieval"
+    },
+    {
+        "head": "cpp",
+        "tail": "golang"
+    },
+    {
+        "head": "cpp",
+        "tail": "javascript"
+    },
+    {
+        "head": "cpp",
+        "tail": "scipy"
+    },
+    {
+        "head": "cpp",
+        "tail": "vector-search"
+    },
+    {
+        "head": "cpp",
+        "tail": "swift"
+    },
+    {
+        "head": "cpp",
+        "tail": "blas"
+    },
+    {
+        "head": "cpp",
+        "tail": "assembly"
+    },
+    {
+        "head": "cpp",
+        "tail": "rust"
+    },
+    {
+        "head": "cpp",
+        "tail": "metrics"
+    },
+    {
+        "head": "cpp",
+        "tail": "arm-neon"
+    },
+    {
+        "head": "cpp",
+        "tail": "arm"
+    },
+    {
+        "head": "cpp",
+        "tail": "v"
+    },
+    {
+        "head": "cpp",
+        "tail": "geospatial"
+    },
+    {
+        "head": "cpp",
+        "tail": "mixed-precision"
+    },
+    {
+        "head": "c",
+        "tail": "information-retrieval"
+    },
+    {
+        "head": "c",
+        "tail": "simd"
+    },
+    {
+        "head": "c",
+        "tail": "golang"
+    },
+    {
+        "head": "c",
+        "tail": "javascript"
+    },
+    {
+        "head": "c",
+        "tail": "scipy"
+    },
+    {
+        "head": "c",
+        "tail": "vector-search"
+    },
+    {
+        "head": "c",
+        "tail": "swift"
+    },
+    {
+        "head": "c",
+        "tail": "blas"
+    },
+    {
+        "head": "c",
+        "tail": "assembly"
+    },
+    {
+        "head": "c",
+        "tail": "tensor"
+    },
+    {
+        "head": "c",
+        "tail": "metrics"
+    },
+    {
+        "head": "c",
+        "tail": "arm-neon"
+    },
+    {
+        "head": "c",
+        "tail": "arm"
+    },
+    {
+        "head": "c",
+        "tail": "v"
+    },
+    {
+        "head": "c",
+        "tail": "geospatial"
+    },
+    {
+        "head": "c",
+        "tail": "mixed-precision"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "simd"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "golang"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "javascript"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "scipy"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "swift"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "blas"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "assembly"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "tensor"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "arm-neon"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "arm"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "v"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "geospatial"
+    },
+    {
+        "head": "information-retrieval",
+        "tail": "mixed-precision"
+    },
+    {
+        "head": "simd",
+        "tail": "golang"
+    },
+    {
+        "head": "simd",
+        "tail": "javascript"
+    },
+    {
+        "head": "simd",
+        "tail": "scipy"
+    },
+    {
+        "head": "simd",
+        "tail": "vector-search"
+    },
+    {
+        "head": "simd",
+        "tail": "swift"
+    },
+    {
+        "head": "simd",
+        "tail": "blas"
+    },
+    {
+        "head": "simd",
+        "tail": "assembly"
+    },
+    {
+        "head": "simd",
+        "tail": "tensor"
+    },
+    {
+        "head": "simd",
+        "tail": "metrics"
+    },
+    {
+        "head": "simd",
+        "tail": "arm-neon"
+    },
+    {
+        "head": "simd",
+        "tail": "arm"
+    },
+    {
+        "head": "simd",
+        "tail": "v"
+    },
+    {
+        "head": "simd",
+        "tail": "geospatial"
+    },
+    {
+        "head": "simd",
+        "tail": "mixed-precision"
+    },
+    {
+        "head": "golang",
+        "tail": "javascript"
+    },
+    {
+        "head": "golang",
+        "tail": "scipy"
+    },
+    {
+        "head": "golang",
+        "tail": "vector-search"
+    },
+    {
+        "head": "golang",
+        "tail": "swift"
+    },
+    {
+        "head": "golang",
+        "tail": "blas"
+    },
+    {
+        "head": "golang",
+        "tail": "assembly"
+    },
+    {
+        "head": "golang",
+        "tail": "tensor"
+    },
+    {
+        "head": "golang",
+        "tail": "metrics"
+    },
+    {
+        "head": "golang",
+        "tail": "arm-neon"
+    },
+    {
+        "head": "golang",
+        "tail": "arm"
+    },
+    {
+        "head": "golang",
+        "tail": "v"
+    },
+    {
+        "head": "golang",
+        "tail": "geospatial"
+    },
+    {
+        "head": "golang",
+        "tail": "mixed-precision"
+    },
+    {
+        "head": "javascript",
+        "tail": "scipy"
+    },
+    {
+        "head": "javascript",
+        "tail": "vector-search"
+    },
+    {
+        "head": "javascript",
+        "tail": "swift"
+    },
+    {
+        "head": "javascript",
+        "tail": "blas"
+    },
+    {
+        "head": "javascript",
+        "tail": "assembly"
+    },
+    {
+        "head": "javascript",
+        "tail": "tensor"
+    },
+    {
+        "head": "javascript",
+        "tail": "metrics"
+    },
+    {
+        "head": "javascript",
+        "tail": "arm-neon"
+    },
+    {
+        "head": "javascript",
+        "tail": "arm"
+    },
+    {
+        "head": "javascript",
+        "tail": "v"
+    },
+    {
+        "head": "javascript",
+        "tail": "geospatial"
+    },
+    {
+        "head": "javascript",
+        "tail": "mixed-precision"
+    },
+    {
+        "head": "scipy",
+        "tail": "vector-search"
+    },
+    {
+        "head": "scipy",
+        "tail": "swift"
+    },
+    {
+        "head": "scipy",
+        "tail": "blas"
+    },
+    {
+        "head": "scipy",
+        "tail": "assembly"
+    },
+    {
+        "head": "scipy",
+        "tail": "rust"
+    },
+    {
+        "head": "scipy",
+        "tail": "tensor"
+    },
+    {
+        "head": "scipy",
+        "tail": "metrics"
+    },
+    {
+        "head": "scipy",
+        "tail": "arm-neon"
+    },
+    {
+        "head": "scipy",
+        "tail": "arm"
+    },
+    {
+        "head": "scipy",
+        "tail": "v"
+    },
+    {
+        "head": "scipy",
+        "tail": "geospatial"
+    },
+    {
+        "head": "scipy",
+        "tail": "mixed-precision"
+    },
+    {
+        "head": "vector-search",
+        "tail": "swift"
+    },
+    {
+        "head": "vector-search",
+        "tail": "blas"
+    },
+    {
+        "head": "vector-search",
+        "tail": "assembly"
+    },
+    {
+        "head": "vector-search",
+        "tail": "tensor"
+    },
+    {
+        "head": "vector-search",
+        "tail": "metrics"
+    },
+    {
+        "head": "vector-search",
+        "tail": "arm-neon"
+    },
+    {
+        "head": "vector-search",
+        "tail": "arm"
+    },
+    {
+        "head": "vector-search",
+        "tail": "v"
+    },
+    {
+        "head": "vector-search",
+        "tail": "geospatial"
+    },
+    {
+        "head": "vector-search",
+        "tail": "mixed-precision"
+    },
+    {
+        "head": "swift",
+        "tail": "blas"
+    },
+    {
+        "head": "swift",
+        "tail": "assembly"
+    },
+    {
+        "head": "swift",
+        "tail": "rust"
+    },
+    {
+        "head": "swift",
+        "tail": "tensor"
+    },
+    {
+        "head": "swift",
+        "tail": "metrics"
+    },
+    {
+        "head": "swift",
+        "tail": "arm-neon"
+    },
+    {
+        "head": "swift",
+        "tail": "arm"
+    },
+    {
+        "head": "swift",
+        "tail": "v"
+    },
+    {
+        "head": "swift",
+        "tail": "geospatial"
+    },
+    {
+        "head": "swift",
+        "tail": "mixed-precision"
+    },
+    {
+        "head": "blas",
+        "tail": "assembly"
+    },
+    {
+        "head": "blas",
+        "tail": "rust"
+    },
+    {
+        "head": "blas",
+        "tail": "tensor"
+    },
+    {
+        "head": "blas",
+        "tail": "metrics"
+    },
+    {
+        "head": "blas",
+        "tail": "arm-neon"
+    },
+    {
+        "head": "blas",
+        "tail": "arm"
+    },
+    {
+        "head": "blas",
+        "tail": "v"
+    },
+    {
+        "head": "blas",
+        "tail": "geospatial"
+    },
+    {
+        "head": "blas",
+        "tail": "mixed-precision"
+    },
+    {
+        "head": "assembly",
+        "tail": "rust"
+    },
+    {
+        "head": "assembly",
+        "tail": "tensor"
+    },
+    {
+        "head": "assembly",
+        "tail": "metrics"
+    },
+    {
+        "head": "assembly",
+        "tail": "arm-neon"
+    },
+    {
+        "head": "assembly",
+        "tail": "v"
+    },
+    {
+        "head": "assembly",
+        "tail": "geospatial"
+    },
+    {
+        "head": "assembly",
+        "tail": "mixed-precision"
+    },
+    {
+        "head": "rust",
+        "tail": "metrics"
+    },
+    {
+        "head": "rust",
+        "tail": "arm-neon"
+    },
+    {
+        "head": "rust",
+        "tail": "arm"
+    },
+    {
+        "head": "rust",
+        "tail": "v"
+    },
+    {
+        "head": "rust",
+        "tail": "geospatial"
+    },
+    {
+        "head": "rust",
+        "tail": "mixed-precision"
+    },
+    {
+        "head": "tensor",
+        "tail": "metrics"
+    },
+    {
+        "head": "tensor",
+        "tail": "arm-neon"
+    },
+    {
+        "head": "tensor",
+        "tail": "arm"
+    },
+    {
+        "head": "tensor",
+        "tail": "v"
+    },
+    {
+        "head": "tensor",
+        "tail": "geospatial"
+    },
+    {
+        "head": "tensor",
+        "tail": "mixed-precision"
+    },
+    {
+        "head": "metrics",
+        "tail": "arm-neon"
+    },
+    {
+        "head": "metrics",
+        "tail": "arm"
+    },
+    {
+        "head": "metrics",
+        "tail": "v"
+    },
+    {
+        "head": "metrics",
+        "tail": "geospatial"
+    },
+    {
+        "head": "metrics",
+        "tail": "mixed-precision"
+    },
+    {
+        "head": "arm-neon",
+        "tail": "arm"
+    },
+    {
+        "head": "arm-neon",
+        "tail": "v"
+    },
+    {
+        "head": "arm-neon",
+        "tail": "geospatial"
+    },
+    {
+        "head": "arm-neon",
+        "tail": "mixed-precision"
+    },
+    {
+        "head": "arm",
+        "tail": "v"
+    },
+    {
+        "head": "arm",
+        "tail": "geospatial"
+    },
+    {
+        "head": "arm",
+        "tail": "mixed-precision"
+    },
+    {
+        "head": "v",
+        "tail": "geospatial"
+    },
+    {
+        "head": "v",
+        "tail": "mixed-precision"
+    },
+    {
+        "head": "geospatial",
+        "tail": "mixed-precision"
+    },
+    {
+        "head": "tool",
+        "tail": "codex"
+    },
+    {
+        "head": "tool",
+        "tail": "rag"
+    },
+    {
+        "head": "tool",
+        "tail": "tokens"
+    },
+    {
+        "head": "codex",
+        "tail": "rag"
+    },
+    {
+        "head": "codex",
+        "tail": "tokens"
+    },
+    {
+        "head": "rag",
+        "tail": "tokens"
+    },
+    {
+        "head": "sota",
+        "tail": "data"
+    },
+    {
+        "head": "pylate",
+        "tail": "data"
+    },
+    {
+        "head": "http",
+        "tail": "twitter-api"
+    },
+    {
+        "head": "kmeans",
+        "tail": "algorithm"
+    },
+    {
+        "head": "kmeans",
+        "tail": "modern"
+    },
+    {
+        "head": "algorithm",
+        "tail": "modern"
     }
 ]
