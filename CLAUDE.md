@@ -56,15 +56,26 @@ make ssh             # SSH into the server (handy for ad-hoc shell work)
 - Frontend API URLs auto-detect: `localhost` → hardcoded ports, production → relative paths (same origin via Caddy)
 - All routes go through the single knowledge-api on port 8080: `/indices/*` (search), `/api/*` (data + ingest), `/events` + `/stats/*` (analytics)
 
-## Prod daemons (systemd, host-side)
+## Prod daemons (Dokploy compose services)
 
-Four long-lived services run directly on the Hetzner host (NOT inside the Dokploy Docker stack). They're defined by unit files in `sources/*.service` and installed under `/etc/systemd/system/`. Code lives in the host's `/root/knowledge` git checkout — a `git pull` + `systemctl restart` is how you ship updates to them.
+Four long-running Python daemons live in the same Dokploy stack as the API, defined in `docker-compose.dokploy.yml`. They share `Dockerfile.daemons` (Python 3.11 + uv + project deps) — one image, four entry points, only `command:` and `deploy.resources.limits` differ per service.
 
-| Service | Source | Role |
-|---|---|---|
-| `knowledge-continuous` | `sources/knowledge-continuous.service` (wraps `sources/continuous_pipeline.sh`) | Long-running VIP-first loop: re-runs `run.py` for every personality, oldest-touched first. Pinned to CPU 0 with `CPUAffinity=0` so the runner can never starve the Rust API. This is the daemon that picks up new source fetchers (e.g. the recently added `huggingface.Activity`) — restart it after a code change to `sources/*` or `run.py`. |
-| `knowledge-indexer` | `sources/knowledge-indexer.service` (wraps `sources/indexer_daemon.py`) | Detects broken ColBERT indices, backfills `indexed=FALSE` documents, owns the index lifecycle end-to-end (decoupled from the fetcher so `make run` is quota-bounded). Pinned to CPU 1 with `CPUQuota=50%` so it shares fairly with the Rust API on the second core. |
-| `knowledge-categorize-daemon` | `sources/categorize_daemon.service` | Walks uncategorized `documents` newest-first, runs Potion static embeddings, writes 0–3 category slugs per doc into `document_category_assignments`. Niced to 19, CPU capped at 10%, memory capped at 384 MB. |
-| `knowledge-clean-daemon` | `sources/clean_daemon.service` | Rewrites verbose `title` / `summary` into pedagogical `clean_title` / `clean_summary` via `gpt-4o-mini`. I/O-bound on the OpenAI API; niced to 19, CPU 20%, memory 256 MB. Only touches VIP documents. |
+Updates ship the same way as the API: `git push origin main` → Dokploy webhook redeploys the affected services. **Code changes to `sources/*` or `run.py` are picked up automatically** because every daemon container's image is rebuilt on push (no manual `systemctl restart`).
 
-Operate via the standard Makefile shortcuts (`make ssh` then `systemctl status/start/stop/restart <name>`) or via the dedicated `clean-daemon-*` / `categorize-daemon-*` targets in the Makefile.
+| Service | Command | CPU / memory cap | Role |
+|---|---|---|---|
+| `knowledge-continuous` | `bash sources/continuous_pipeline.sh` | 1.0 vCPU / 2 G | VIP-first per-user pipeline runner: walks personalities oldest-touched first, invokes `run.py <slug>` for each. The daemon that picks up new source fetchers (e.g. `huggingface.Activity`). |
+| `knowledge-indexer` | `python -m sources.indexer_daemon` | 0.5 vCPU / 2 G | Detects broken ColBERT indices, backfills `indexed=FALSE` documents, owns the index lifecycle. Talks to the API on the internal docker network (`http://knowledge-api:8080`). |
+| `knowledge-categorize-daemon` | `python -m sources.utils.categorize_daemon` | 0.10 vCPU / 384 M | Assigns 0–3 category slugs per doc via Potion static embeddings, newest-first. |
+| `knowledge-clean-daemon` | `python -m sources.utils.clean_daemon` | 0.20 vCPU / 256 M | Rewrites verbose `title` / `summary` into pedagogical `clean_title` / `clean_summary` via OpenAI. Default model is `gpt-4o-mini`; override with `OPENAI_CLEAN_MODEL` env (e.g. `gpt-4.1-nano` for cheaper). Requires `OPENAI_API_KEY`. VIP documents only. |
+
+Operate via Docker on the host:
+```
+ssh -i ~/.ssh/hetzner_knowledge root@65.21.111.133
+docker logs -f knowledge-prod-gjqqg2-knowledge-<name>-1
+docker restart knowledge-prod-gjqqg2-knowledge-<name>-1
+```
+
+The continuous-pipeline state files (history, pid, rotation cursor) live in the named volume `knowledge_daemon_logs` so a `docker compose down` doesn't reset the 12 h per-user cooldown.
+
+**Legacy:** the systemd unit files in `sources/*.service` are kept in the repo for rollback reference. They were stopped + disabled on the host during the cutover; do not re-enable them or both copies will compete for the same `pipeline_runs` rows.
