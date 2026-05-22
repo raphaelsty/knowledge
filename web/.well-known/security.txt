@@ -1,0 +1,4 @@
+Contact: mailto:raphael.sourty@lighton.ai
+Expires: 2027-05-22T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://knowledge-web.org/.well-known/security.txt
