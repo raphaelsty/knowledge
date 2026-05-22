@@ -3820,9 +3820,22 @@
           .slice(0, 2)
           .map((w) => (w[0] || "").toUpperCase())
           .join("");
-        const avatarStyle = u.avatar
-          ? `background-image: url('${String(u.avatar).replace(/['"\\]/g, encodeURIComponent)}');`
-          : "";
+        // encodeURI keeps the URL functional while making it
+        // impossible to break out of the CSS `url('…')` literal —
+        // `(`, `)`, `;`, `'`, `"`, newline are all percent-encoded
+        // by encodeURI's stricter cousin encodeURIComponent. Anything
+        // that fails URL parsing falls back to no avatar.
+        let avatarStyle = "";
+        if (u.avatar) {
+          try {
+            const safe = new URL(u.avatar, window.location.origin);
+            if (safe.protocol === "http:" || safe.protocol === "https:") {
+              avatarStyle = `background-image: url("${encodeURI(safe.toString())}");`;
+            }
+          } catch (_) {
+            /* leave avatarStyle empty */
+          }
+        }
         const following = _peopleRail.following.has(u.slug);
         return `
           <div class="people-row" role="listitem" data-slug="${escapeAttr(u.slug)}">
@@ -6009,7 +6022,7 @@
         ...p.videos.map((v) => {
           const poster = v.poster || v.mp4;
           if (!poster) return "";
-          return `<a class="tweet-media-tile tweet-media-video" href="${escapeAttr(statusUrl)}" target="_blank" rel="noopener" title="Watch on twitter.com">
+          return `<a class="tweet-media-tile tweet-media-video" href="${safeHref(statusUrl)}" target="_blank" rel="noopener" title="Watch on twitter.com">
                <img loading="lazy" src="${escapeAttr(poster)}" alt="" onerror="this.parentElement.style.display='none'"/>
                <span class="tweet-media-play" aria-hidden="true">▶</span>
              </a>`;
@@ -6081,7 +6094,7 @@
         ...p.videos.map((v) => {
           const poster = v.poster || v.mp4;
           if (!poster) return "";
-          return `<a class="tweet-media-tile tweet-media-video" href="${escapeAttr(statusUrl)}" target="_blank" rel="noopener" title="Watch on twitter.com">
+          return `<a class="tweet-media-tile tweet-media-video" href="${safeHref(statusUrl)}" target="_blank" rel="noopener" title="Watch on twitter.com">
                <img loading="lazy" src="${escapeAttr(poster)}" alt="" onerror="this.parentElement.style.display='none'"/>
                <span class="tweet-media-play" aria-hidden="true">▶</span>
              </a>`;
@@ -6150,7 +6163,7 @@
             </div>`
           : "";
         return `<a class="link-card ${image ? "link-card--has-image" : "link-card--no-image"}"
-                   href="${escapeAttr(url)}"
+                   href="${safeHref(url)}"
                    target="_blank" rel="noopener"
                    onclick="event.stopPropagation()">
             ${imgBlock}
@@ -6404,7 +6417,7 @@
       ? K.sourceIconUrl("hackernews")
       : K.faviconUrl(host);
     const sourcePill = tweetHandle
-      ? `<a class="tweet-link" href="${escapeAttr(tweetUrl)}" target="_blank" rel="noopener" title="View original tweet" onclick="event.stopPropagation()">${TWEET_ICON_SVG}@${highlightMatches(tweetHandle, state.query)}</a>${banBtn}`
+      ? `<a class="tweet-link" href="${safeHref(tweetUrl)}" target="_blank" rel="noopener" title="View original tweet" onclick="event.stopPropagation()">${TWEET_ICON_SVG}@${highlightMatches(tweetHandle, state.query)}</a>${banBtn}`
       : `<img class="src-fav" src="${srcIconUrl}" alt="" onerror="this.style.display='none'"/><span class="src">${highlightMatches(sourceLabel, state.query)}</span>${banBtn}`;
 
     // "via @handle" attribution: when the doc itself is NOT a tweet but
@@ -6416,7 +6429,7 @@
     const viaTweetUrl = d.source_url && !isTweetDoc(d) ? d.source_url : null;
     const viaHandle = viaTweetUrl ? extractTwitterHandle(viaTweetUrl) : null;
     const viaPill = viaHandle
-      ? `<span class="dot">·</span><a class="via-tweet" href="${escapeAttr(viaTweetUrl)}" target="_blank" rel="noopener" title="View originating tweet" onclick="event.stopPropagation()">${TWEET_ICON_SVG}via @${highlightMatches(viaHandle, state.query)}</a>`
+      ? `<span class="dot">·</span><a class="via-tweet" href="${safeHref(viaTweetUrl)}" target="_blank" rel="noopener" title="View originating tweet" onclick="event.stopPropagation()">${TWEET_ICON_SVG}via @${highlightMatches(viaHandle, state.query)}</a>`
       : "";
 
     // "Shared by" avatar stack: every owner of this doc, including
@@ -6609,7 +6622,7 @@
           ${d.date ? `<span class="dot">·</span><span>${dateLabel(d.date)}</span>` : ""}
           ${viaPill}
         </div>
-        <a href="${d.url}" target="_blank" rel="noopener"><h3>${highlightMatches((d.cleanTitle && d.cleanTitle.trim()) || (isTweetDoc(d) ? tweetTitle(d) : d.title), state.query)}</h3></a>
+        <a href="${safeHref(d.url)}" target="_blank" rel="noopener"><h3>${highlightMatches((d.cleanTitle && d.cleanTitle.trim()) || (isTweetDoc(d) ? tweetTitle(d) : d.title), state.query)}</h3></a>
         ${(() => {
           // Display preference: the pedagogical clean_summary takes
           // precedence over the raw `summary` whenever the daemon
@@ -6648,7 +6661,7 @@
               ? `<div class="result-summary-extra-links">${missingUrls
                   .map(
                     (u) =>
-                      `<a href="${escapeAttr(u)}" target="_blank" rel="noopener">${escapeHtml(u)}</a>`,
+                      `<a href="${safeHref(u)}" target="_blank" rel="noopener">${escapeHtml(u)}</a>`,
                   )
                   .join("")}</div>`
               : "";
@@ -7488,7 +7501,7 @@
      * Falls back to the favicon for everything else. */
     const tweetRow = isTweetDoc(d);
     const iconSrc = tweetRow ? "/icons/twitter.png" : K.faviconUrl(host);
-    return `<a class="similar-row" href="${escapeAttr(d.url)}" target="_blank" rel="noopener">
+    return `<a class="similar-row" href="${safeHref(d.url)}" target="_blank" rel="noopener">
       <span class="ico"><img src="${escapeAttr(iconSrc)}" alt="" onerror="this.style.display='none'"/></span>
       <div class="body">
         <h4>${escapeHtml(tweetRow ? tweetTitle(d) : d.title)}</h4>
@@ -7536,7 +7549,7 @@
             trailing = url.slice(-1) + trailing;
             url = url.slice(0, -1);
           }
-          return `<a href="${escapeAttr(url)}" target="_blank" rel="noopener">${escapeHtml(url)}</a>${escapeHtml(trailing)}`;
+          return `<a href="${safeHref(url)}" target="_blank" rel="noopener">${escapeHtml(url)}</a>${escapeHtml(trailing)}`;
         }
         return highlightMatches(part, query);
       })

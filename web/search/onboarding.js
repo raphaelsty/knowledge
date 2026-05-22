@@ -240,11 +240,36 @@
   // ── Card markup ────────────────────────────────────────────────────
   function previewPersonHtml(p) {
     const initial = (p.name || p.slug || "?").trim()[0]?.toUpperCase() || "?";
+    // The img falls back to a span on `onerror`. We used to inline
+    // the handler with `${initial}` interpolated into a JS string
+    // literal — a hostile first character could break the literal.
+    // Now the fallback is a sibling DOM node with the initial in
+    // `textContent`, swapped in via an event listener wired after
+    // the parent HTML lands; no user data ever lives in JS source.
     const avatar = p.avatar
-      ? `<img class="onb-mini-av" src="${escapeAttr(p.avatar)}" alt="" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'onb-mini-av onb-mini-av-fb',textContent:'${initial}'}))"/>`
+      ? `<span class="onb-person-av-wrap">
+           <img class="onb-mini-av" src="${escapeAttr(p.avatar)}" alt="" data-fallback-initial="${escapeAttr(initial)}"/>
+         </span>`
       : `<span class="onb-mini-av onb-mini-av-fb">${escapeHtml(initial)}</span>`;
     return `<li><span class="onb-person-row">${avatar}<span class="onb-mini-name">${escapeHtml(p.name || p.slug)}</span></span></li>`;
   }
+
+  // Wire the fallback handler once at module level. Delegated from the
+  // root so it works for every preview img re-rendered into the grid.
+  document.addEventListener(
+    "error",
+    (ev) => {
+      const img = ev.target;
+      if (!(img instanceof HTMLImageElement)) return;
+      if (!img.classList.contains("onb-mini-av")) return;
+      const init = img.dataset.fallbackInitial || "?";
+      const span = document.createElement("span");
+      span.className = "onb-mini-av onb-mini-av-fb";
+      span.textContent = init;
+      img.replaceWith(span);
+    },
+    true, // capture — `error` doesn't bubble
+  );
 
   function cardHtml(slug) {
     const members = catIndex.get(slug) || [];

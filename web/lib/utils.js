@@ -26,6 +26,36 @@
   };
   window.escapeAttr = window.escapeHtml;
 
+  // Safe URL for an HTML `href`/`src` attribute.
+  //
+  // Two layered checks against stored-XSS via attacker-controlled
+  // bookmark URLs:
+  //   1. The protocol must be http(s) or mailto — `javascript:` and
+  //      `data:` are dropped to "#" so a click can't run script.
+  //   2. The returned value is HTML-attribute-escaped, so even a URL
+  //      that contains `"` can't break out of the surrounding
+  //      attribute and inject an event handler like `onmouseover=…`.
+  //
+  // Anything that fails URL parsing (e.g. a "URL" the pipeline
+  // stored as raw text) is treated as a literal fragment — escaped
+  // but href'd to "#" so the click is inert.
+  window.safeHref = function safeHref(raw) {
+    if (raw == null) return "#";
+    const s = String(raw).trim();
+    if (!s) return "#";
+    let u;
+    try {
+      // Use a base so protocol-relative `//evil.com/x` and bare
+      // `/path` both parse predictably.
+      u = new URL(s, window.location.origin);
+    } catch (_) {
+      return "#";
+    }
+    const allowed = new Set(["http:", "https:", "mailto:"]);
+    if (!allowed.has(u.protocol)) return "#";
+    return window.escapeAttr(u.toString());
+  };
+
   // Absolute URL prefix for the Rust API. In production the API and
   // the static site sit behind the same Caddy, so paths like
   // `/auth/me` are same-origin and the prefix is empty. In dev the
