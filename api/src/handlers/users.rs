@@ -297,25 +297,30 @@ pub async fn list_documents(
         .as_deref()
         .map(|s| !s.trim().is_empty())
         .unwrap_or(false);
+    // NOTE: every line continuation here uses `\n\` rather than `\`.
+    // A bare `\<newline>` collapses the newline AND all following
+    // whitespace, which previously produced `FROM documents dJOIN
+    // users` (no space) and made `fetch_all` return a syntax error
+    // that the old `.unwrap_or_default()` silently turned into `{}`.
     let mut sql = String::from(
-        "WITH candidates AS (\
-            SELECT d.url,\
-                   d.title,\
-                   d.summary,\
-                   d.date,\
-                   d.tags,\
-                   d.extra_tags,\
-                   d.source,\
-                   d.source_url,\
-                   d.indexed,\
-                   d.linked_urls,\
-                   d.link_hosts,\
-                   d.created_at,\
-                   d.canonical_url,\
-                   d.canonical_referenced_urls\
-              FROM documents d\
-              JOIN users     u ON u.id = d.user_id\
-             WHERE u.username = $1\
+        "WITH candidates AS (\n\
+            SELECT d.url,\n\
+                   d.title,\n\
+                   d.summary,\n\
+                   d.date,\n\
+                   d.tags,\n\
+                   d.extra_tags,\n\
+                   d.source,\n\
+                   d.source_url,\n\
+                   d.indexed,\n\
+                   d.linked_urls,\n\
+                   d.link_hosts,\n\
+                   d.created_at,\n\
+                   d.canonical_url,\n\
+                   d.canonical_referenced_urls\n\
+              FROM documents d\n\
+              JOIN users     u ON u.id = d.user_id\n\
+             WHERE u.username = $1\n\
                AND d.deleted = FALSE",
     );
     let mut next_idx: usize = 2;
