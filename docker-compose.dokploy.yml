@@ -323,27 +323,29 @@ services:
           cpus: "0.10"
 
   # Daily Docker housekeeping. Mirrors the pg-backup loop pattern.
-  # Keeps only what the running prod stack references — every
-  # other image, container, build cache layer, and network is
-  # purged. Dokploy rebuilds the daemons + API image on every
-  # `git push`; without this our 75 G disk filled to 82% within
-  # weeks of unused layers.
+  # Reclaims stale images and old build cache; KEEPS the last 7
+  # days of build cache so an incremental redeploy can reuse
+  # cached Rust crate layers (without this filter we used to
+  # rebuild the entire cargo dep tree from scratch — ~10 min per
+  # deploy and a ~10 min API outage).
   #
   # Once every 24 h:
   #
   #   * `docker image prune -af`
   #     EVERY unused image is removed. By definition this leaves
-  #     images currently used by a container alone, so the live
-  #     prod stack stays untouched. Rollback to a previous build
-  #     means a re-pull / re-build — fine on this project's churn
-  #     rate.
-  #   * `docker container prune -f`
-  #     stopped one-shot containers (e.g. failed redeploys).
-  #   * `docker builder prune -af`
-  #     ALL build cache not currently referenced by a running
-  #     image build. Biggest reclaim in practice (peaked at 29 G).
+  #     images currently used by a container alone.
+  #   * `docker builder prune -af --filter until=168h`
+  #     Build cache older than 7 days. The 168h filter is what
+  #     lets the next deploy reuse most cargo / pip layers —
+  #     incremental builds drop from ~10 min to ~30 s.
   #   * `docker network prune -f`
   #     orphaned networks from removed projects.
+  #
+  # NOTE: container prune is intentionally absent. During a
+  # Dokploy redeploy the OLD container is briefly stopped before
+  # the new one starts; a container prune at that instant nukes
+  # it and tangles compose's recreate logic (lost a few minutes
+  # of uptime to that race in May 2026).
   #
   # Volumes are NEVER pruned automatically — `knowledge_pgdata`,
   # `knowledge_models`, `knowledge_pgbackups`, `knowledge_daemon_logs`
@@ -387,9 +389,9 @@ services:
           # tangles the compose recreate logic. Stopped one-off
           # containers are rare anyway, and image+builder prune
           # reclaims 99 % of the disk regardless.
-          docker image prune -af     2>&1 | tail -3 || true
-          docker builder prune -af   2>&1 | tail -3 || true
-          docker network prune -f    2>&1 | tail -3 || true
+          docker image prune -af                          2>&1 | tail -3 || true
+          docker builder prune -af --filter "until=168h"  2>&1 | tail -3 || true
+          docker network prune -f                         2>&1 | tail -3 || true
           echo "$$TS docker-cleanup: pass done"
           docker system df 2>&1 | tail -5 || true
           sleep 86400

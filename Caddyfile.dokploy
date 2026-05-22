@@ -12,32 +12,30 @@
 }
 
 :80 {
-	handle /indices {
-		reverse_proxy knowledge-api:8080
-	}
-	handle /indices/* {
-		reverse_proxy knowledge-api:8080
-	}
-	handle /api/* {
-		reverse_proxy knowledge-api:8080
-	}
-	handle /auth/* {
-		reverse_proxy knowledge-api:8080
-	}
-	handle /mcp {
-		reverse_proxy knowledge-api:8080
-	}
-	handle /encode {
-		reverse_proxy knowledge-api:8080
-	}
-	handle /health {
-		reverse_proxy knowledge-api:8080
-	}
-	handle /events {
-		reverse_proxy knowledge-api:8080
-	}
-	handle /stats/* {
-		reverse_proxy knowledge-api:8080
+	# All API routes flow through one shared reverse_proxy block so
+	# the retry policy below applies uniformly. The retry policy is
+	# the "zero-downtime poor man's edition": when the upstream API
+	# container is restarting (compose recreate on deploy), Caddy
+	# holds the request and retries every 500 ms for up to 30 s
+	# instead of returning a 502 immediately. From the user's side a
+	# deploy just feels like a brief lag instead of a flash of
+	# broken-page errors.
+	#
+	#   lb_try_duration 30s   — total time we'll keep retrying the
+	#                           single upstream while it's down.
+	#                           Bigger than the ~10–30 s window the
+	#                           knowledge-api takes to come up.
+	#   lb_try_interval 500ms — gap between retries.
+	#
+	# This uses Caddy's load-balancing primitive on a single upstream
+	# (a degenerate "balancer" of size 1); the lb_* directives gate
+	# request-side retry without needing multiple replicas.
+	@api path /indices /indices/* /api/* /auth/* /mcp /encode /health /events /stats/*
+	handle @api {
+		reverse_proxy knowledge-api:8080 {
+			lb_try_duration 30s
+			lb_try_interval 500ms
+		}
 	}
 
 	# Static frontend files with the same cache-control layering as
