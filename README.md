@@ -4,7 +4,7 @@
 
 <p align="center"><em>A biased Feed.</em></p>
 
-<p align="center">An opinionated reading list of <strong>454 people</strong> who shape AI, science, and software today. A place to learn.</p>
+<p align="center">An opinionated reading list of <strong>450+ people</strong> who shape AI, science, and software today. A place to learn.</p>
 
 <p align="center"><em>No ads, no algorithm, no infinite scroll. Just what they read.</em></p>
 
@@ -33,38 +33,84 @@ Tap the heart on any card and the doc lands in your library, indexed and searcha
 <p align="center">A few rooms worth walking into.</p>
 
 <p align="center">
-<a href="https://knowledge-web.org/geoffrey-hinton" title="Geoffrey Hinton"><img src="web/img/people/geoffrey-hinton.png" alt="Geoffrey Hinton" width="140"></a>
-<a href="https://knowledge-web.org/yoshua-bengio" title="Yoshua Bengio"><img src="web/img/people/yoshua-bengio.png" alt="Yoshua Bengio" width="140"></a>
-<a href="https://knowledge-web.org/yann-lecun" title="Yann LeCun"><img src="web/img/people/yann-lecun.png" alt="Yann LeCun" width="140"></a>
-<a href="https://knowledge-web.org/andrej-karpathy" title="Andrej Karpathy"><img src="web/img/people/andrej-karpathy.png" alt="Andrej Karpathy" width="140"></a>
-<a href="https://knowledge-web.org/ian-goodfellow" title="Ian Goodfellow"><img src="web/img/people/ian-goodfellow.png" alt="Ian Goodfellow" width="140"></a>
+<a href="https://knowledge-web.org/geoffrey-hinton" title="Geoffrey Hinton"><img src="web/img/people/geoffrey-hinton.png" alt="Geoffrey Hinton" width="85"></a>
+<a href="https://knowledge-web.org/yoshua-bengio" title="Yoshua Bengio"><img src="web/img/people/yoshua-bengio.png" alt="Yoshua Bengio" width="85"></a>
+<a href="https://knowledge-web.org/yann-lecun" title="Yann LeCun"><img src="web/img/people/yann-lecun.png" alt="Yann LeCun" width="85"></a>
+<a href="https://knowledge-web.org/andrej-karpathy" title="Andrej Karpathy"><img src="web/img/people/andrej-karpathy.png" alt="Andrej Karpathy" width="85"></a>
+<a href="https://knowledge-web.org/ian-goodfellow" title="Ian Goodfellow"><img src="web/img/people/ian-goodfellow.png" alt="Ian Goodfellow" width="85"></a>
+<a href="https://knowledge-web.org/ilya-sutskever" title="Ilya Sutskever"><img src="web/img/people/ilya-sutskever.png" alt="Ilya Sutskever" width="85"></a>
+<a href="https://knowledge-web.org/demis-hassabis" title="Demis Hassabis"><img src="web/img/people/demis-hassabis.png" alt="Demis Hassabis" width="85"></a>
+<a href="https://knowledge-web.org/dario-amodei" title="Dario Amodei"><img src="web/img/people/dario-amodei.png" alt="Dario Amodei" width="85"></a>
+<a href="https://knowledge-web.org/oriol-vinyals" title="Oriol Vinyals"><img src="web/img/people/oriol-vinyals.png" alt="Oriol Vinyals" width="85"></a>
+<a href="https://knowledge-web.org/noam-shazeer" title="Noam Shazeer"><img src="web/img/people/noam-shazeer.png" alt="Noam Shazeer" width="85"></a>
 </p>
 
 <p align="center">
-<a href="https://knowledge-web.org/ilya-sutskever" title="Ilya Sutskever"><img src="web/img/people/ilya-sutskever.png" alt="Ilya Sutskever" width="140"></a>
-<a href="https://knowledge-web.org/demis-hassabis" title="Demis Hassabis"><img src="web/img/people/demis-hassabis.png" alt="Demis Hassabis" width="140"></a>
-<a href="https://knowledge-web.org/dario-amodei" title="Dario Amodei"><img src="web/img/people/dario-amodei.png" alt="Dario Amodei" width="140"></a>
-<a href="https://knowledge-web.org/oriol-vinyals" title="Oriol Vinyals"><img src="web/img/people/oriol-vinyals.png" alt="Oriol Vinyals" width="140"></a>
-<a href="https://knowledge-web.org/noam-shazeer" title="Noam Shazeer"><img src="web/img/people/noam-shazeer.png" alt="Noam Shazeer" width="140"></a>
+<a href="https://knowledge-web.org/omar-khattab" title="Omar Khattab"><img src="web/img/people/omar-khattab.png" alt="Omar Khattab" width="85"></a>
+<a href="https://knowledge-web.org/matei-zaharia" title="Matei Zaharia"><img src="web/img/people/matei-zaharia.png" alt="Matei Zaharia" width="85"></a>
+<a href="https://knowledge-web.org/francois-chollet" title="François Chollet"><img src="web/img/people/francois-chollet.png" alt="François Chollet" width="85"></a>
+<a href="https://knowledge-web.org/clement-delangue" title="Clément Delangue"><img src="web/img/people/clement-delangue.png" alt="Clément Delangue" width="85"></a>
+<a href="https://knowledge-web.org/thomas-wolf" title="Thomas Wolf"><img src="web/img/people/thomas-wolf.png" alt="Thomas Wolf" width="85"></a>
+<a href="https://knowledge-web.org/merve-noyan" title="Merve Noyan"><img src="web/img/people/merve-noyan.png" alt="Merve Noyan" width="85"></a>
+<a href="https://knowledge-web.org/philipp-schmid" title="Philipp Schmid"><img src="web/img/people/philipp-schmid.png" alt="Philipp Schmid" width="85"></a>
+<a href="https://knowledge-web.org/stas-bekman" title="Stas Bekman"><img src="web/img/people/stas-bekman.png" alt="Stas Bekman" width="85"></a>
+<a href="https://knowledge-web.org/jay-alammar" title="Jay Alammar"><img src="web/img/people/jay-alammar.png" alt="Jay Alammar" width="85"></a>
+<a href="https://knowledge-web.org/chris-olah" title="Chris Olah"><img src="web/img/people/chris-olah.png" alt="Chris Olah" width="85"></a>
 </p>
 
 <p align="center">
-<a href="https://knowledge-web.org/omar-khattab" title="Omar Khattab"><img src="web/img/people/omar-khattab.png" alt="Omar Khattab" width="140"></a>
-<a href="https://knowledge-web.org/matei-zaharia" title="Matei Zaharia"><img src="web/img/people/matei-zaharia.png" alt="Matei Zaharia" width="140"></a>
-<a href="https://knowledge-web.org/francois-chollet" title="François Chollet"><img src="web/img/people/francois-chollet.png" alt="François Chollet" width="140"></a>
-<a href="https://knowledge-web.org/clement-delangue" title="Clément Delangue"><img src="web/img/people/clement-delangue.png" alt="Clément Delangue" width="140"></a>
-<a href="https://knowledge-web.org/thomas-wolf" title="Thomas Wolf"><img src="web/img/people/thomas-wolf.png" alt="Thomas Wolf" width="140"></a>
+<a href="https://knowledge-web.org/jason-wei" title="Jason Wei"><img src="web/img/people/jason-wei.png" alt="Jason Wei" width="85"></a>
+<a href="https://knowledge-web.org/jared-kaplan" title="Jared Kaplan"><img src="web/img/people/jared-kaplan.png" alt="Jared Kaplan" width="85"></a>
+<a href="https://knowledge-web.org/sam-bowman" title="Sam Bowman"><img src="web/img/people/sam-bowman.png" alt="Sam Bowman" width="85"></a>
+<a href="https://knowledge-web.org/tri-dao" title="Tri Dao"><img src="web/img/people/tri-dao.png" alt="Tri Dao" width="85"></a>
+<a href="https://knowledge-web.org/albert-gu" title="Albert Gu"><img src="web/img/people/albert-gu.png" alt="Albert Gu" width="85"></a>
+<a href="https://knowledge-web.org/lucas-beyer" title="Lucas Beyer"><img src="web/img/people/lucas-beyer.png" alt="Lucas Beyer" width="85"></a>
+<a href="https://knowledge-web.org/tim-dettmers" title="Tim Dettmers"><img src="web/img/people/tim-dettmers.png" alt="Tim Dettmers" width="85"></a>
+<a href="https://knowledge-web.org/horace-he" title="Horace He"><img src="web/img/people/horace-he.png" alt="Horace He" width="85"></a>
+<a href="https://knowledge-web.org/kyunghyun-cho" title="Kyunghyun Cho"><img src="web/img/people/kyunghyun-cho.png" alt="Kyunghyun Cho" width="85"></a>
+<a href="https://knowledge-web.org/percy-liang" title="Percy Liang"><img src="web/img/people/percy-liang.png" alt="Percy Liang" width="85"></a>
 </p>
 
 <p align="center">
-<a href="https://knowledge-web.org/chris-olah" title="Chris Olah"><img src="web/img/people/chris-olah.png" alt="Chris Olah" width="140"></a>
-<a href="https://knowledge-web.org/sebastian-raschka" title="Sebastian Raschka"><img src="web/img/people/sebastian-raschka.png" alt="Sebastian Raschka" width="140"></a>
-<a href="https://knowledge-web.org/max-halford" title="Max Halford"><img src="web/img/people/max-halford.png" alt="Max Halford" width="140"></a>
-<a href="https://knowledge-web.org/pieter-levels" title="Pieter Levels"><img src="web/img/people/pieter-levels.png" alt="Pieter Levels" width="140"></a>
-<a href="https://knowledge-web.org/lex-fridman" title="Lex Fridman"><img src="web/img/people/lex-fridman.png" alt="Lex Fridman" width="140"></a>
+<a href="https://knowledge-web.org/sara-hooker" title="Sara Hooker"><img src="web/img/people/sara-hooker.png" alt="Sara Hooker" width="85"></a>
+<a href="https://knowledge-web.org/anima-anandkumar" title="Anima Anandkumar"><img src="web/img/people/anima-anandkumar.png" alt="Anima Anandkumar" width="85"></a>
+<a href="https://knowledge-web.org/chelsea-finn" title="Chelsea Finn"><img src="web/img/people/chelsea-finn.png" alt="Chelsea Finn" width="85"></a>
+<a href="https://knowledge-web.org/natasha-jaques" title="Natasha Jaques"><img src="web/img/people/natasha-jaques.png" alt="Natasha Jaques" width="85"></a>
+<a href="https://knowledge-web.org/maithra-raghu" title="Maithra Raghu"><img src="web/img/people/maithra-raghu.png" alt="Maithra Raghu" width="85"></a>
+<a href="https://knowledge-web.org/irina-rish" title="Irina Rish"><img src="web/img/people/irina-rish.png" alt="Irina Rish" width="85"></a>
+<a href="https://knowledge-web.org/danqi-chen" title="Danqi Chen"><img src="web/img/people/danqi-chen.png" alt="Danqi Chen" width="85"></a>
+<a href="https://knowledge-web.org/rachel-thomas" title="Rachel Thomas"><img src="web/img/people/rachel-thomas.png" alt="Rachel Thomas" width="85"></a>
+<a href="https://knowledge-web.org/graham-neubig" title="Graham Neubig"><img src="web/img/people/graham-neubig.png" alt="Graham Neubig" width="85"></a>
+<a href="https://knowledge-web.org/sebastian-raschka" title="Sebastian Raschka"><img src="web/img/people/sebastian-raschka.png" alt="Sebastian Raschka" width="85"></a>
 </p>
 
-<p align="center">…or wander through <a href="https://knowledge-web.org">all 454 libraries</a>.</p>
+<p align="center">
+<a href="https://knowledge-web.org/greg-brockman" title="Greg Brockman"><img src="web/img/people/greg-brockman.png" alt="Greg Brockman" width="85"></a>
+<a href="https://knowledge-web.org/sam-altman" title="Sam Altman"><img src="web/img/people/sam-altman.png" alt="Sam Altman" width="85"></a>
+<a href="https://knowledge-web.org/mark-chen" title="Mark Chen"><img src="web/img/people/mark-chen.png" alt="Mark Chen" width="85"></a>
+<a href="https://knowledge-web.org/wojciech-zaremba" title="Wojciech Zaremba"><img src="web/img/people/wojciech-zaremba.png" alt="Wojciech Zaremba" width="85"></a>
+<a href="https://knowledge-web.org/aravind-srinivas" title="Aravind Srinivas"><img src="web/img/people/aravind-srinivas.png" alt="Aravind Srinivas" width="85"></a>
+<a href="https://knowledge-web.org/pieter-abbeel" title="Pieter Abbeel"><img src="web/img/people/pieter-abbeel.png" alt="Pieter Abbeel" width="85"></a>
+<a href="https://knowledge-web.org/sergey-levine" title="Sergey Levine"><img src="web/img/people/sergey-levine.png" alt="Sergey Levine" width="85"></a>
+<a href="https://knowledge-web.org/edward-grefenstette" title="Edward Grefenstette"><img src="web/img/people/edward-grefenstette.png" alt="Edward Grefenstette" width="85"></a>
+<a href="https://knowledge-web.org/douwe-kiela" title="Douwe Kiela"><img src="web/img/people/douwe-kiela.png" alt="Douwe Kiela" width="85"></a>
+<a href="https://knowledge-web.org/simon-willison" title="Simon Willison"><img src="web/img/people/simon-willison.png" alt="Simon Willison" width="85"></a>
+</p>
+
+<p align="center">
+<a href="https://knowledge-web.org/guillaume-lample" title="Guillaume Lample"><img src="web/img/people/guillaume-lample.png" alt="Guillaume Lample" width="85"></a>
+<a href="https://knowledge-web.org/thomas-scialom" title="Thomas Scialom"><img src="web/img/people/thomas-scialom.png" alt="Thomas Scialom" width="85"></a>
+<a href="https://knowledge-web.org/gilles-louppe" title="Gilles Louppe"><img src="web/img/people/gilles-louppe.png" alt="Gilles Louppe" width="85"></a>
+<a href="https://knowledge-web.org/tim-rocktaschel" title="Tim Rocktäschel"><img src="web/img/people/tim-rocktaschel.png" alt="Tim Rocktäschel" width="85"></a>
+<a href="https://knowledge-web.org/francois-fleuret" title="François Fleuret"><img src="web/img/people/francois-fleuret.png" alt="François Fleuret" width="85"></a>
+<a href="https://knowledge-web.org/arvind-narayanan" title="Arvind Narayanan"><img src="web/img/people/arvind-narayanan.png" alt="Arvind Narayanan" width="85"></a>
+<a href="https://knowledge-web.org/sander-dieleman" title="Sander Dieleman"><img src="web/img/people/sander-dieleman.png" alt="Sander Dieleman" width="85"></a>
+<a href="https://knowledge-web.org/max-halford" title="Max Halford"><img src="web/img/people/max-halford.png" alt="Max Halford" width="85"></a>
+<a href="https://knowledge-web.org/pieter-levels" title="Pieter Levels"><img src="web/img/people/pieter-levels.png" alt="Pieter Levels" width="85"></a>
+<a href="https://knowledge-web.org/lex-fridman" title="Lex Fridman"><img src="web/img/people/lex-fridman.png" alt="Lex Fridman" width="85"></a>
+</p>
+
+<p align="center">…or wander through <a href="https://knowledge-web.org">all 450+ libraries</a>.</p>
 
 <br>
 
@@ -141,7 +187,7 @@ The pipeline runs all day, walking through each personality's sources in a conti
 <h2>Why it helps</h2>
 
 <p align="justify">
-Most platforms compete for your attention with infinite feeds, ads between every post, notifications you didn't ask for, recommendations from an algorithm that learned to manipulate you. Knowledge does the opposite: small, finite libraries you can return to. Use it to research a topic across experts. Search 454 libraries at once for "speculative decoding" and you get curated context instead of random Google noise. Browse Karpathy's GitHub stars, Yann LeCun's papers, Geoffrey Hinton's interviews, all in one place. Stop doomscrolling X. The site compresses someone's year of tweets into a static page you can read once and close. Sign in to save what matters, search your own library, mint a token to wire the MCP server into Claude, Cursor, or any agent that speaks MCP.
+Most platforms compete for your attention with infinite feeds, ads between every post, notifications you didn't ask for, recommendations from an algorithm that learned to manipulate you. Knowledge does the opposite: small, finite libraries you can return to. Use it to research a topic across experts. Search 450+ libraries at once for "speculative decoding" and you get curated context instead of random Google noise. Browse Karpathy's GitHub stars, Yann LeCun's papers, Geoffrey Hinton's interviews, all in one place. Stop doomscrolling X. The site compresses someone's year of tweets into a static page you can read once and close. Sign in to save what matters, search your own library, mint a token to wire the MCP server into Claude, Cursor, or any agent that speaks MCP.
 </p>
 
 <br>
@@ -155,7 +201,7 @@ Knowledge has always been a showcase for the information retrieval tools I'm bui
 <br>
 
 <p align="justify">
-The pipeline parses about a dozen sources: GitHub stars, X posts and likes, Hacker News submissions and comments, arXiv, Google Scholar, DBLP, Hugging Face likes, YouTube channels, Zotero libraries, Reddit, Stack Overflow, Wikipedia references, plus any blog you can point at via RSS or sitemap. As of today that's <strong>454 personal libraries</strong>, around <strong>440,000 documents</strong> indexed.
+The pipeline parses about a dozen sources: GitHub stars, X posts and likes, Hacker News submissions and comments, arXiv, Google Scholar, DBLP, Hugging Face likes, YouTube channels, Zotero libraries, Reddit, Stack Overflow, Wikipedia references, plus any blog you can point at via RSS or sitemap. As of today that's <strong>450+ personal libraries</strong>, around <strong>440,000 documents</strong> indexed.
 </p>
 
 <br>
