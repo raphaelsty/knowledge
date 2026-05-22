@@ -1,4 +1,4 @@
-.PHONY: install install-dev sync run index index-all index-check serve web lint lint-fix check pre-commit pre-commit-install docker-build docker-run launch docker-stop clean install-api api-build db db-browse db-backup db-backup-if-stale up down deploy deploy-build deploy-down deploy-logs ssh remote-status remote-logs remote-restart remote-update remote-web redeploy extension dev dev-stop delete purge hn-frontpage daily repair-indexes all-status all-rebuild load-test prod-db-dump prod-db-restore prod-db-sync
+.PHONY: install install-dev sync run index index-all index-check serve web lint lint-fix check pre-commit pre-commit-install docker-build docker-run launch docker-stop clean install-api api-build db db-browse db-backup db-backup-if-stale up down ssh dev dev-stop delete purge hn-frontpage daily repair-indexes all-status all-rebuild load-test prod-db-dump prod-db-restore prod-db-sync
 
 # Load .env if present
 -include .env
@@ -436,45 +436,19 @@ up:
 down:
 	docker compose down
 
-# ── Production Deploy (Hetzner VPS) ────────────────────────
-
-# Build and start production stack (Caddy + all services)
-deploy:
-	docker compose -f docker-compose.prod.yml up -d
-
-# Rebuild and restart production stack
-deploy-build:
-	docker compose -f docker-compose.prod.yml up -d --build
-
-# Stop production stack
-deploy-down:
-	docker compose -f docker-compose.prod.yml down
-
-# View production logs
-deploy-logs:
-	docker compose -f docker-compose.prod.yml logs -f
-
 # ── Remote Server ──────────────────────────────────────────
+#
+# Deploys are managed by Dokploy on the Hetzner box — push to
+# `origin/main` and Dokploy's GitHub webhook redeploys via the
+# `docker-compose.dokploy.yml` compose file. The Dokploy UI at
+# https://dokploy.knowledge-web.org is where you watch builds, see
+# logs, and roll back. The only target left here is `make ssh`, which
+# is still handy for one-off shell work and the systemd-daemon
+# wrappers below.
 
 # SSH into the server
 ssh:
 	$(SSH_CMD)
-
-# Show container status on server
-remote-status:
-	$(SSH_CMD) "cd knowledge && docker compose -f docker-compose.prod.yml ps"
-
-# Stream server logs
-remote-logs:
-	$(SSH_CMD) "cd knowledge && docker compose -f docker-compose.prod.yml logs -f --tail 100"
-
-# Restart all services on server
-remote-restart:
-	$(SSH_CMD) "cd knowledge && docker compose -f docker-compose.prod.yml restart"
-
-# Pull latest code and rebuild on server
-remote-update:
-	$(SSH_CMD) "cd knowledge && git pull && DOMAIN=$(DOMAIN) POSTGRES_PASSWORD=$(POSTGRES_PASSWORD) docker compose -f docker-compose.prod.yml up -d --build"
 
 # ── Clean daemon (gpt-4o-mini pedagogical rewriter) ──────────────
 #
@@ -505,7 +479,7 @@ clean-daemon-logs:
 # last 90 days so the daemon picks them up on first run. Safe to
 # re-run; idempotent.
 clean-daemon-prime:
-	$(SSH_CMD) "docker compose -f /root/knowledge/docker-compose.prod.yml exec -T postgres psql -U knowledge -d knowledge -c \"UPDATE documents d SET cleaned = FALSE FROM users u WHERE u.id = d.user_id AND u.vip = TRUE AND lower(d.source) IN ('twitter','x','huggingface','hf','arxiv','scholar','dblp','openreview','semanticscholar','semantic_scholar','paperswithcode') AND d.date >= (now() - INTERVAL '90 days')::date AND d.deleted = FALSE;\""
+	$(SSH_CMD) "docker exec -i knowledge-prod-gjqqg2-postgres-1 psql -U knowledge -d knowledge -c \"UPDATE documents d SET cleaned = FALSE FROM users u WHERE u.id = d.user_id AND u.vip = TRUE AND lower(d.source) IN ('twitter','x','huggingface','hf','arxiv','scholar','dblp','openreview','semanticscholar','semantic_scholar','paperswithcode') AND d.date >= (now() - INTERVAL '90 days')::date AND d.deleted = FALSE;\""
 
 # ── Categorize daemon (Potion static-embedding categorizer) ──
 #
@@ -537,20 +511,6 @@ categorize-daemon-logs:
 # (description changes need a fresh anchor sweep to take effect).
 categorize-daemon-refresh:
 	$(SSH_CMD) "rm -f /root/knowledge/.cache/categorize/refined_protos_*.npz && sudo systemctl restart knowledge-categorize-daemon"
-
-# Fast deploy for web-only changes.
-#
-# Caddy bind-mounts ./web:/web:ro (see docker-compose.prod.yml),
-# so anything under web/ is served live from the host filesystem.
-# A web-only ship therefore only needs `git pull` on the server —
-# no API rebuild, no container recreation, ~3s end-to-end vs
-# 60-90s for `remote-update`.
-#
-# Use this whenever the only changes are inside web/. Fall back to
-# `remote-update` if you've touched anything under api/, sources/,
-# Cargo.toml, pyproject.toml, or the compose / Caddy config.
-remote-web:
-	$(SSH_CMD) "cd knowledge && git pull"
 
 # ── Prod → local Postgres clone ────────────────────────────────
 #
@@ -847,11 +807,6 @@ continuous-status:
 continuous-logs:
 	$(SSH_CMD) "tail -f knowledge/logs/continuous_pipeline_runs.log"
 
-# One-shot redeploy: push local changes, pull + rebuild on server, stream logs
-redeploy:
-	git push
-	$(SSH_CMD) "cd knowledge && git pull && DOMAIN=$(DOMAIN) POSTGRES_PASSWORD=$(POSTGRES_PASSWORD) docker compose -f docker-compose.prod.yml up -d --build && docker compose -f docker-compose.prod.yml logs -f --tail 20"
-
 # ── Ops UIs (Portainer + Dozzle) ──────────────────────────────
 # Portainer = Docker management UI, Dozzle = live log viewer.
 # Both run on the server inside the `knowledge_default` network
@@ -914,12 +869,6 @@ launch: docker-build docker-run
 docker-stop:
 	docker stop run_knowledge || true
 	docker rm run_knowledge || true
-
-# ── Extension ─────────────────────────────────────────────────
-
-# Package the browser extension into a zip for download
-extension:
-	cd extension && zip -r ../web/extension.zip . -x ".*" "__MACOSX/*"
 
 # ── Cleanup ───────────────────────────────────────────────────
 

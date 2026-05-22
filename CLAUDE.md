@@ -20,17 +20,10 @@ make lint         # ruff + mypy
 make lint-fix     # auto-fix lint issues
 make clean        # wipe caches and venv
 
-# Production (Hetzner VPS)
-make ssh             # SSH into the server
-make remote-status   # show container status on server
-make remote-logs     # stream server logs
-make remote-restart  # restart all services on server
-make remote-update   # pull latest code + rebuild on server (60-90s)
-make remote-web      # web-only fast deploy: git pull on server, no rebuild (~3s)
-make deploy          # start production stack (run on server)
-make deploy-build    # rebuild + start production stack (run on server)
-make deploy-down     # stop production stack (run on server)
-make deploy-logs     # view production logs (run on server)
+# Production (Hetzner VPS, managed by Dokploy)
+# Deploys are GitHub-driven: `git push origin main` and Dokploy
+# redeploys via its webhook. Dashboard at dokploy.knowledge-web.org.
+make ssh             # SSH into the server (handy for ad-hoc shell work)
 ```
 
 ## Project layout
@@ -44,19 +37,17 @@ make deploy-logs     # view production logs (run on server)
   - `search.html` + `search/page.js` (plain JS)
   - `profile.html` + `profile/page.js` (plain JS)
   - shared: `api.js`, `config.js`, `colbert.worker.js` (WASM worker), CSS
-- `data/` — per-personality JSON data, symlinked from `web/data`
-  - `data/personalities.json` — personality registry (slugs, sources config, links)
-  - `data/{slug}/` — each personality's database.json, sources.json, folder_tree.json, tree.json
 - `indexes/` — generated ColBERT indices (gitignored, rebuilt per-deploy)
 - `run.py` — iterates over personalities and runs the pipeline for each
 
 ## Deployment
 
 - **Server:** Hetzner CX33 VPS (4 vCPU, 8GB RAM) at `65.21.111.133`
-- **Domain:** https://knowledge-web.org
-- **Stack:** Docker Compose with Caddy (reverse proxy + HTTPS), PostgreSQL, knowledge-api
-- **Config:** `docker-compose.prod.yml` (production), `docker-compose.yml` (local dev), `Caddyfile` (routing)
-- **Secrets:** `.env` file (gitignored) — contains SSH key path, server IP, domain, Postgres password
+- **Domain:** https://knowledge-web.org · Dokploy UI at https://dokploy.knowledge-web.org
+- **Stack:** Dokploy-managed Docker Compose (`docker-compose.dokploy.yml`) — Traefik terminates TLS, Caddy does path routing + serves the baked `web/` tree, knowledge-api + PostgreSQL behind it.
+- **Deploy flow:** push to `origin/main` → Dokploy's GitHub webhook redeploys (~1-2 min). Manual redeploys and rollbacks happen in the Dokploy UI.
+- **Local dev:** `docker-compose.yml` (no Caddy, just postgres + the API).
+- **Secrets:** `.env` file (gitignored) — local dev. Production env vars live in Dokploy's project settings.
 
 ## Key details
 
