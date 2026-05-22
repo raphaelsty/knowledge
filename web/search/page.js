@@ -3830,7 +3830,19 @@
           try {
             const safe = new URL(u.avatar, window.location.origin);
             if (safe.protocol === "http:" || safe.protocol === "https:") {
-              avatarStyle = `background-image: url("${encodeURI(safe.toString())}");`;
+              // CSS `url()` argument is wrapped in SINGLE quotes
+              // because the surrounding HTML attribute uses double
+              // quotes (`style="${avatarStyle}"`). With double
+              // quotes inside double quotes the HTML parser closes
+              // the style attribute at the first inner `"` and the
+              // avatar URL disappears — empirically the people
+              // panel showed `style="background-image: url("` and
+              // every avatar was blank. encodeURI doesn't encode
+              // `'`, so we also `.replace(/'/g, '%27')` to keep the
+              // single-quoted literal safe even on the (very rare)
+              // avatar URL that contains one.
+              const encoded = encodeURI(safe.toString()).replace(/'/g, "%27");
+              avatarStyle = `background-image: url('${encoded}');`;
             }
           } catch (_) {
             /* leave avatarStyle empty */
