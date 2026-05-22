@@ -406,7 +406,13 @@ services:
       - API_URL=http://knowledge-api:8080
       - KNOWLEDGE_ADMIN_TOKEN=${KNOWLEDGE_ADMIN_TOKEN}
       - OPENAI_API_KEY=${OPENAI_API_KEY:-}
-      - OPENAI_CLEAN_MODEL=${OPENAI_CLEAN_MODEL:-gpt-4o-mini}
+      # Default to the cheapest model on OpenAI's standard tier. gpt-4o-mini
+      # was the old default — gpt-4.1-nano is roughly 1/3 the price ($0.10 /
+      # $0.40 vs $0.15 / $0.60 per 1M tokens) at very similar quality for
+      # the "rewrite this title + summary pedagogically" task. Override
+      # via Dokploy UI (e.g. set OPENAI_CLEAN_MODEL=gpt-4.1-mini) for
+      # higher-fidelity passes.
+      - OPENAI_CLEAN_MODEL=${OPENAI_CLEAN_MODEL:-gpt-4.1-nano}
       - PYTHONUNBUFFERED=1
     command: ["python", "-m", "sources.utils.clean_daemon"]
     deploy:
