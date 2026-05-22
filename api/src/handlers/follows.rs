@@ -387,6 +387,16 @@ pub async fn timeline(
                    d.tags,
                    d.extra_tags, d.source, d.source_url, d.created_at,
                    d.linked_urls, d.link_hosts,
+                   -- Canonical URL drives the share aggregation below
+                   -- so arxiv.org/abs/X, /pdf/X, /abs/Xv2 collapse to
+                   -- one card. `canonical_referenced_urls` is the
+                   -- doc's own canonical URL PLUS every URL it cites
+                   -- (linked_urls + the cleaned `urls` array) — used
+                   -- by the LATERAL sharer expansion to surface
+                   -- anyone who also references at least one of the
+                   -- same URLs (e.g. a tweet linking the same paper).
+                   d.canonical_url,
+                   d.canonical_referenced_urls,
                    -- Resource-type signal — no keyword / tag matching.
                    -- 3 = direct scientific source OR a tweet that
                    --     links to a scientific host;
@@ -462,35 +472,43 @@ pub async fn timeline(
         url_share AS MATERIALIZED (
             -- Followee share count is bounded by candidates (so the
             -- scan stays small); total share count needs a separate
-            -- lookup but only for URLs that survived the candidate
-            -- pass, which is the same order of magnitude as $2 * 40.
-            SELECT c.url,
+            -- lookup but only for canonical URLs that survived the
+            -- candidate pass, which is the same order of magnitude
+            -- as $2 * 16. Grouping by `canonical_url` collapses
+            -- arxiv.org/abs/X, /pdf/X, /abs/Xv2 etc. so a paper saved
+            -- under three URL variants counts as one shared resource.
+            SELECT c.canonical_url AS canonical_url,
                    COUNT(DISTINCT c.user_id) AS followee_share,
                    (SELECT COUNT(DISTINCT d2.user_id)
                       FROM documents d2
-                     WHERE d2.url = c.url
+                     WHERE d2.canonical_url = c.canonical_url
                        AND d2.deleted = FALSE) AS total_share
               FROM candidates c
-             GROUP BY c.url
+             GROUP BY c.canonical_url
         ),
         dedup AS (
-            -- One row per URL. When several followees share a URL,
-            -- the row is attributed to the most notable sharer so the
-            -- card surfaces under their avatar. `sharers` (built
-            -- below by the LATERAL join) still lists everyone.
-            SELECT DISTINCT ON (c.url)
+            -- One row per canonical URL. When several followees
+            -- share a URL (or URL variants that canonicalize the
+            -- same), the row is attributed to the most notable
+            -- sharer so the card surfaces under their avatar.
+            -- `sharers` (built below by the LATERAL join) still
+            -- lists everyone — and now expands to anyone who
+            -- references the same URL via `linked_urls`.
+            SELECT DISTINCT ON (c.canonical_url)
                    c.user_id AS primary_user_id,
                    c.url, c.title, c.date, c.summary,
                    c.clean_title, c.clean_summary, c.urls,
                    c.tags,
                    c.extra_tags, c.source, c.source_url, c.created_at,
                    c.linked_urls, c.link_hosts, c.sci_score,
+                   c.canonical_url,
+                   c.canonical_referenced_urls,
                    u.twitter_followers AS pri_twitter_followers,
                    u.citations         AS pri_citations,
                    u.vip               AS pri_vip
               FROM candidates c
               JOIN users u ON u.id = c.user_id
-             ORDER BY c.url,
+             ORDER BY c.canonical_url,
                       c.date DESC,
                       u.vip DESC,
                       COALESCE(u.twitter_followers, 0) DESC,
@@ -572,7 +590,7 @@ pub async fn timeline(
                      END
                    AS score
               FROM dedup d
-              LEFT JOIN url_share us ON us.url = d.url
+              LEFT JOIN url_share us ON us.canonical_url = d.canonical_url
         ),
         ordered AS (
             -- Pure score-based ranking — we no longer round-robin
@@ -596,26 +614,29 @@ pub async fn timeline(
             s.sharers, s.sharer_count
           FROM ordered m
           JOIN LATERAL (
-              -- Sharers = EVERY non-deleted owner of this URL, not
-              -- just followees. The URL itself was discovered via the
-              -- follow graph (see candidates above), but the
-              -- presentation layer wants to surface other people who
-              -- also have this in their library so the user can pivot
-              -- or follow them. Twitter follower count rides along so
-              -- the frontend can stable-sort by popularity.
+              -- Sharers = EVERY non-deleted owner of this URL OR of a
+              -- doc that references this URL. Two-pronged lookup:
               --
-              -- Co-retweet expansion: when `m` is a retweet (its
-              -- summary starts with `Retweet @`), our pipeline
-              -- guarantees that every personality who retweeted the
-              -- same source tweet has the same rebuilt summary text
-              -- (it's reconstructed verbatim from the inner tweet's
-              -- payload). So we union retweets-of-the-same-source
-              -- into the sharer list via an equality on
-              -- `md5(summary)` — backed by the partial index
-              -- `idx_documents_retweet_summary_md5`. Each retweet
-              -- doc keeps its own wrapper URL as the primary row;
-              -- the avatar stack just surfaces every retweeter so
-              -- the reader can pivot to any of them.
+              --   1. `d.canonical_url = m.canonical_url`
+              --        Direct owners — anyone whose own `url`
+              --        canonicalizes to the same thing (arxiv abs/pdf
+              --        variants collapse here).
+              --
+              --   2. `d.canonical_referenced_urls && m.canonical_referenced_urls`
+              --        Indirect: anyone whose doc REFERENCES at least
+              --        one URL the current card also references. A
+              --        tweet linking a paper, a blog post linking a
+              --        paper, and the paper's own arxiv page all
+              --        cross-pollinate — so the avatar stack on the
+              --        paper card surfaces every personality who
+              --        tweeted about it, and vice versa.
+              --
+              -- Both prongs are GIN-indexed (canonical_url btree;
+              -- canonical_referenced_urls gin), so this is cheap.
+              -- `canonical_referenced_urls` always includes the
+              -- doc's own canonical_url so prong 2 also matches
+              -- direct owners — but we keep prong 1 explicit so
+              -- the query optimiser can pick the cheaper plan.
               SELECT jsonb_agg(DISTINCT
                          jsonb_build_object(
                              'slug',             u.username,
@@ -629,11 +650,9 @@ pub async fn timeline(
                 JOIN users    u ON u.id = d.user_id
                WHERE d.deleted = FALSE
                  AND (
-                       d.url = m.url
-                    OR (m.summary LIKE 'Retweet @%'
-                        AND d.source = 'twitter'
-                        AND d.summary LIKE 'Retweet @%'
-                        AND md5(d.summary) = md5(m.summary))
+                       d.canonical_url = m.canonical_url
+                    OR (cardinality(m.canonical_referenced_urls) > 0
+                        AND d.canonical_referenced_urls && m.canonical_referenced_urls)
                  )
           ) s ON true
          -- Pure score-based ordering. Over-fetch by 2× so the

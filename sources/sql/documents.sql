@@ -294,11 +294,162 @@ BEGIN
     END IF;
 END$$;
 
+-- ────────────────────────────────────────────────────────────────────
+-- canonicalize_url(text) — normalize a URL so cross-user share
+-- aggregation can JOIN on logical-equivalent URLs without missing
+-- variants. Same rules applied (in order) for every caller:
+--
+--   1. Strip fragment (#anchor)
+--   2. Force https scheme
+--   3. Lowercase host, strip leading "www."
+--   4. Strip trailing slash from path (unless path == "/")
+--   5. Drop tracking params: utm_*, fbclid, gclid, mc_eid, mc_cid,
+--      ref, ref_src, ref_url, igshid, ncid, share_id, taid, bftwnews,
+--      spm. Conservative blocklist — generic short keys ("s", "t") are
+--      excluded because some sites use them as content IDs.
+--   6. arxiv.org: pdf↔abs unification + strip version (vN)(.pdf)?,
+--      drop query string (arxiv ignores it anyway).
+--   7. youtu.be → youtube.com/watch?v=<id>
+--
+-- IMMUTABLE PARALLEL SAFE STRICT — required so it can drive the
+-- STORED generated column below. Non-http schemes (mailto:, data:)
+-- fall through to a lowercased copy of the input so the call sites
+-- can be unconditional.
+-- ────────────────────────────────────────────────────────────────────
+CREATE OR REPLACE FUNCTION canonicalize_url(u TEXT)
+RETURNS TEXT
+LANGUAGE plpgsql IMMUTABLE PARALLEL SAFE STRICT
+AS $$
+DECLARE
+  m       TEXT[];
+  host    TEXT;
+  path    TEXT;
+  qs      TEXT;
+BEGIN
+  IF u IS NULL OR length(u) = 0 THEN
+    RETURN '';
+  END IF;
+  u := regexp_replace(u, '#.*$', '');
+  m := regexp_match(u, '^(https?)://([^/?#]+)([^?]*)(?:\?(.*))?$');
+  IF m IS NULL THEN
+    RETURN lower(u);
+  END IF;
+  host := lower(m[2]);
+  IF host LIKE 'www.%' THEN host := substring(host FROM 5); END IF;
+  path := COALESCE(m[3], '');
+  qs   := COALESCE(m[4], '');
+  IF length(path) > 1 AND right(path, 1) = '/' THEN
+    path := left(path, length(path) - 1);
+  END IF;
+  IF qs <> '' THEN
+    qs := regexp_replace(
+      '&' || qs,
+      '&(utm_[a-z_]+|fbclid|gclid|mc_eid|mc_cid|ref|ref_src|ref_url|igshid|ncid|share_id|taid|bftwnews|spm)=[^&]*',
+      '',
+      'gi'
+    );
+    qs := regexp_replace(qs, '^&+', '', '');
+    qs := regexp_replace(qs, '&+', '&', 'g');
+    qs := rtrim(qs, '&');
+  END IF;
+  IF host = 'arxiv.org' THEN
+    m := regexp_match(path, '^/(?:pdf|abs)/(\d{4}\.\d{4,5})(?:v\d+)?(?:\.pdf)?$');
+    IF m IS NOT NULL THEN
+      path := '/abs/' || m[1];
+      qs := '';
+    END IF;
+  END IF;
+  IF host = 'youtu.be' THEN
+    m := regexp_match(path, '^/([A-Za-z0-9_-]{6,})');
+    IF m IS NOT NULL THEN
+      host := 'youtube.com';
+      path := '/watch';
+      qs := 'v=' || m[1];
+    END IF;
+  END IF;
+  RETURN 'https://' || host || path || CASE WHEN qs <> '' THEN '?' || qs ELSE '' END;
+END;
+$$;
+
+-- compute_canonical_referenced_urls(url, urls, linked_urls)
+--
+-- Union of canonical forms of:
+--   • the doc's own `url`
+--   • every entry in `urls` (the cleaner's flat URL list)
+--   • every `url` in the `linked_urls` JSONB (inline preview cards)
+--
+-- Filtered to entries that carry actual content: at least 13 chars,
+-- not a bare host, and not on a noise blocklist (t.co, bit.ly). This
+-- powers the LATERAL sharer expansion: a tweet linking paper X and a
+-- blog linking paper X both end up in the same group as the arxiv
+-- paper itself, so the avatar stack on any of them surfaces all
+-- three sharers.
+CREATE OR REPLACE FUNCTION compute_canonical_referenced_urls(
+  doc_url   TEXT,
+  doc_urls  TEXT[],
+  doc_links JSONB
+) RETURNS TEXT[]
+LANGUAGE sql IMMUTABLE PARALLEL SAFE
+AS $$
+  SELECT COALESCE(array_agg(DISTINCT canon), '{}'::text[])
+    FROM (
+      SELECT canonicalize_url(doc_url) AS canon
+      UNION ALL
+      SELECT canonicalize_url(u)
+        FROM unnest(COALESCE(doc_urls, '{}'::text[])) u
+      UNION ALL
+      SELECT canonicalize_url(elem->>'url')
+        FROM jsonb_array_elements(COALESCE(doc_links, '[]'::jsonb)) elem
+       WHERE jsonb_typeof(elem) = 'object'
+         AND COALESCE(elem->>'url', '') <> ''
+    ) sub
+   WHERE canon IS NOT NULL
+     AND length(canon) > 12
+     AND canon !~ '^https?://[^/]+/?$'
+     AND canon NOT LIKE 'https://t.co/%'
+     AND canon NOT LIKE 'https://bit.ly/%';
+$$;
+
+-- Canonical URL columns. STORED generated columns: PG computes them
+-- at insert/update time, so app code never has to write canonical_url
+-- — it falls out of `url`, `urls`, `linked_urls`. The first migration
+-- on a populated table triggers a one-time rewrite (~10 min on
+-- ~500k rows under ACCESS EXCLUSIVE lock; subsequent deploys are
+-- a no-op because of IF NOT EXISTS).
+DO $$
+BEGIN
+  IF NOT EXISTS (
+    SELECT 1 FROM information_schema.columns
+     WHERE table_name = 'documents' AND column_name = 'canonical_url'
+  ) THEN
+    ALTER TABLE documents
+      ADD COLUMN canonical_url TEXT
+      GENERATED ALWAYS AS (canonicalize_url(url)) STORED;
+  END IF;
+  IF NOT EXISTS (
+    SELECT 1 FROM information_schema.columns
+     WHERE table_name = 'documents' AND column_name = 'canonical_referenced_urls'
+  ) THEN
+    ALTER TABLE documents
+      ADD COLUMN canonical_referenced_urls TEXT[]
+      GENERATED ALWAYS AS (compute_canonical_referenced_urls(url, urls, linked_urls)) STORED;
+  END IF;
+END$$;
+
 -- GIN index on `link_hosts` — the source-filter SQL does
 -- `link_hosts && ARRAY[...]` so a chip click is a single index probe
 -- regardless of how many rows reference that host.
 CREATE INDEX IF NOT EXISTS idx_documents_link_hosts
     ON documents USING GIN (link_hosts);
+
+-- Canonical URL indexes — drive the timeline's sharer aggregation.
+-- The btree powers `d.canonical_url = m.canonical_url` (the strict
+-- equality join in the LATERAL); the GIN powers the array-overlap
+-- prong that picks up docs which merely *reference* this URL.
+CREATE INDEX IF NOT EXISTS idx_documents_canonical_url
+    ON documents (canonical_url) WHERE deleted = FALSE;
+CREATE INDEX IF NOT EXISTS idx_documents_canonical_referenced_urls
+    ON documents USING GIN (canonical_referenced_urls);
 
 -- Composite index on (user_id, source) — serves both per-user lookups
 -- (leftmost prefix) AND the GROUP BY in the `user_source_counts` view,
