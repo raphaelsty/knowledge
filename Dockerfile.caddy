@@ -1,0 +1,3 @@
+FROM caddy:2-alpine
+COPY Caddyfile.dokploy /etc/caddy/Caddyfile
+COPY web /web

@@ -89,13 +89,19 @@ services:
           memory: 3G
 
   caddy:
-    image: caddy:2-alpine
+    # Build a custom image that bakes the Caddyfile + the static
+    # `web/` tree into the image instead of bind-mounting them at
+    # runtime. This dodges Dokploy's deploy-time inode swap: every
+    # redeploy clones the repo into a fresh directory, which leaves
+    # the previously mounted host path as an orphan inode and makes
+    # Caddy serve an empty /web until --force-recreate'd. Building
+    # makes deploys ~10s slower but eliminates the race entirely.
+    build:
+      context: .
+      dockerfile: Dockerfile.caddy
     restart: unless-stopped
     # No ports published — Traefik handles 80/443 externally and
     # forwards to this container on the dokploy-network.
-    volumes:
-      - ./Caddyfile.dokploy:/etc/caddy/Caddyfile:ro
-      - ./web:/web:ro
     environment:
       DOMAIN: ${DOMAIN:-knowledge-web.org}
     depends_on:
