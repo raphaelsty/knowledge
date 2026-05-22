@@ -533,19 +533,38 @@ categorize-daemon-refresh:
 # either side so we don't need the binaries on the host. The dump
 # uses --no-owner --no-privileges so it replays cleanly into a
 # differently-owned local DB.
+# Discover the postgres container via compose labels rather than a
+# hard-coded name — Dokploy prefixes the project name with a random
+# suffix (e.g. `knowledge-prod-gjqqg2-postgres-1`) that changes
+# whenever the project is re-created in the UI. The compose label is
+# set automatically and is stable across deploys.
+#
+# `set -o pipefail` on the pg_dump pipeline means a failed dump exits
+# non-zero, so we don't silently produce a valid-but-empty .sql.gz
+# (which is what happened before this fix — a hard-coded container
+# name miss produced an empty stdout that gzip wrapped as 20 bytes).
 .PHONY: prod-db-dump prod-db-dump-if-stale prod-db-restore prod-db-sync
 prod-db-dump:
 	@mkdir -p backups
 	@TS=$$(date '+%Y%m%d-%H%M%S'); \
 	OUT="backups/prod-$$TS.sql.gz"; \
 	echo "==> Dumping prod knowledge DB → $$OUT"; \
-	$(SSH_CMD) "docker exec -i knowledge-postgres-1 \
-	    pg_dump -U knowledge -d knowledge \
-	            --no-owner --no-privileges \
-	            --clean --if-exists" \
-	    | gzip > "$$OUT"; \
-	SZ=$$(du -h "$$OUT" | cut -f1); \
-	echo "✓ Saved $$OUT ($$SZ)"
+	CTN=$$($(SSH_CMD) "docker ps --filter label=com.docker.compose.service=postgres --format '{{.Names}}' | grep '^knowledge-' | head -1"); \
+	if [ -z "$$CTN" ]; then \
+	    echo "[!] could not find a postgres container with project=knowledge-* on prod." >&2; \
+	    rm -f "$$OUT"; exit 1; \
+	fi; \
+	echo "    via container: $$CTN"; \
+	set -o pipefail; \
+	if $(SSH_CMD) "docker exec -i $$CTN pg_dump -U knowledge -d knowledge --no-owner --no-privileges --clean --if-exists" \
+	    | gzip > "$$OUT.partial"; then \
+	    mv "$$OUT.partial" "$$OUT"; \
+	    SZ=$$(du -h "$$OUT" | cut -f1); \
+	    echo "✓ Saved $$OUT ($$SZ)"; \
+	else \
+	    echo "[!] pg_dump failed — leaving truncated file at $$OUT.partial for inspection." >&2; \
+	    exit 1; \
+	fi
 
 # Guard target: stream a prod dump only if there isn't already one
 # from today (local date). Used as a `make twitter-feed` prerequisite
