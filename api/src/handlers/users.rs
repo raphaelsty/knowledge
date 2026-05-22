@@ -1157,9 +1157,19 @@ pub async fn intersect_documents(
 /// Body: `{ "urls": ["...", ...], "exclude_slug": "raphael-sourty" }`.
 ///
 /// Returns `{ "<url>": [ { slug, name, avatar, twitterFollowers }, ... ] }`
-/// — the set of VIP personalities (other than `exclude_slug`) who also
-/// have each URL in their (non-deleted) library. Used by the personal-
-/// page renderer to surface "people who also liked this".
+/// — the set of VIP personalities (other than `exclude_slug`) who share
+/// the URL OR reference one of the URLs the page card surfaces. Used by
+/// the personal-page renderer to surface "people who also liked this".
+///
+/// Matching prongs (mirrors the timeline LATERAL in `follows.rs`):
+///   1. Direct: `d2.canonical_url = seed.canonical_url` — covers URL
+///      variants (arxiv abs/pdf/vN, www., utm_*) that previously
+///      fragmented into separate cards.
+///   2. Overlap: `d2.canonical_referenced_urls && seed.canonical_referenced_urls`
+///      — picks up anyone whose tweet / blog post links at least one
+///      of the URLs the seed doc references, so a paper card surfaces
+///      every personality who tweeted about it without us needing a
+///      separate co-retweet sweep.
 #[derive(serde::Deserialize)]
 pub struct CoOwnersRequest {
     pub urls: Vec<String>,
@@ -1184,23 +1194,53 @@ pub async fn list_co_owners(
     // the whole co-owner graph in one request.
     let urls: Vec<String> = urls.into_iter().take(500).collect();
     let exclude = req.exclude_slug.unwrap_or_default();
+    // Two-step:
+    //   1. `seed` resolves each input URL to its canonical_url and
+    //      canonical_referenced_urls. The same URL can appear in
+    //      multiple libraries; we just need ONE row to pick up the
+    //      canonical metadata since those columns are deterministic
+    //      from (url, urls, linked_urls) via the generated-column
+    //      formula.
+    //   2. The LATERAL aggregates everyone who matches either prong,
+    //      same shape (`{slug, name, avatar, twitterFollowers}`) the
+    //      old endpoint returned so the frontend doesn't need to
+    //      change.
     let sql = "
-        SELECT d.url,
+        WITH input AS (SELECT DISTINCT u AS raw_url FROM unnest($1::text[]) u),
+        seed AS (
+            SELECT DISTINCT ON (i.raw_url)
+                   i.raw_url,
+                   COALESCE(d.canonical_url, canonicalize_url(i.raw_url)) AS canonical_url,
+                   COALESCE(d.canonical_referenced_urls, '{}'::text[])    AS canonical_referenced_urls
+              FROM input i
+              LEFT JOIN documents d
+                ON d.url = i.raw_url AND d.deleted = FALSE
+             ORDER BY i.raw_url, d.date DESC NULLS LAST
+        )
+        SELECT seed.raw_url AS url,
                jsonb_agg(
                    jsonb_build_object(
-                       'slug',             u.username,
-                       'name',             u.name,
-                       'avatar',           u.avatar,
-                       'twitterFollowers', u.twitter_followers
-                   ) ORDER BY COALESCE(u.twitter_followers, 0) DESC
-               )
-          FROM documents d
-          JOIN users u ON u.id = d.user_id
-         WHERE d.deleted = FALSE
-           AND u.vip = TRUE
-           AND ($2 = '' OR u.username <> $2)
-           AND d.url = ANY($1::text[])
-         GROUP BY d.url
+                       'slug',             s.username,
+                       'name',             s.name,
+                       'avatar',           s.avatar,
+                       'twitterFollowers', s.twitter_followers
+                   ) ORDER BY COALESCE(s.twitter_followers, 0) DESC
+               ) AS sharers
+          FROM seed
+          JOIN LATERAL (
+              SELECT DISTINCT u.id, u.username, u.name, u.avatar, u.twitter_followers
+                FROM documents d2
+                JOIN users u ON u.id = d2.user_id
+               WHERE d2.deleted = FALSE
+                 AND u.vip = TRUE
+                 AND ($2 = '' OR u.username <> $2)
+                 AND (
+                       d2.canonical_url = seed.canonical_url
+                    OR (cardinality(seed.canonical_referenced_urls) > 0
+                        AND d2.canonical_referenced_urls && seed.canonical_referenced_urls)
+                 )
+          ) s ON true
+         GROUP BY seed.raw_url
     ";
     let rows: Vec<(String, serde_json::Value)> = sqlx::query_as(sql)
         .bind(&urls)
