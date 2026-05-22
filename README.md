@@ -1,5 +1,9 @@
 <p align="center">
-  <a href="https://knowledge-web.org"><img src="web/img/readme.jpg" alt="Knowledge" width="100%"></a>
+  <a href="https://knowledge-web.org"><img src="web/img/logo.svg" alt="Knowledge" width="460"></a>
+</p>
+
+<p align="center">
+  <img src="web/img/readme_3.jpg" alt="Demo" width="100%" style="border-radius:10px">
 </p>
 
 <p align="justify">
