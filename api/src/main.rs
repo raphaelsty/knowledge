@@ -1114,7 +1114,24 @@ Environment Variables:
 
     // --- Connect to PostgreSQL (optional) ---
     let pg_pool = if let Ok(database_url) = std::env::var("DATABASE_URL") {
-        match sqlx::PgPool::connect(&database_url).await {
+        // Disable PG's JIT compiler on every connection in the pool.
+        // Our timeline / co-owners queries have a planner-estimated
+        // cost of ~3.9M which trips the default jit_above_cost
+        // threshold (100k), and the LLVM optimize+emit passes then
+        // burn ~1s per cold request — bigger than the actual query
+        // execution time. Empirically (May 2026), jit=off cuts
+        // /api/timeline TTFB from ~2s to ~700ms with no measurable
+        // regression on the rest of the query mix. Setting it via
+        // `after_connect` here AND via `ALTER DATABASE … SET jit
+        // = off` (already applied to prod) so a fresh container
+        // build pre-deploy also benefits.
+        let opts = sqlx::postgres::PgPoolOptions::new().after_connect(|conn, _| {
+            Box::pin(async move {
+                sqlx::query("SET jit = off").execute(conn).await?;
+                Ok(())
+            })
+        });
+        match opts.connect(&database_url).await {
             Ok(pool) => {
                 tracing::info!("database.connected");
 
