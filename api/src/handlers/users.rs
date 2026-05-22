@@ -541,7 +541,27 @@ pub async fn list_documents(
     if let Some(n) = limit_val {
         q = q.bind(n);
     }
-    let rows = q.fetch_all(&pool).await.unwrap_or_default();
+    let rows = match q.fetch_all(&pool).await {
+        Ok(r) => r,
+        Err(e) => {
+            // Log the full error so it isn't silently swallowed by
+            // the previous `.unwrap_or_default()` which returned `{}`
+            // and made every personal page look empty on prod.
+            tracing::error!(
+                slug = %slug,
+                error = %e,
+                "list_documents.sql.failed"
+            );
+            return (
+                StatusCode::INTERNAL_SERVER_ERROR,
+                Json(serde_json::json!({
+                    "error": "documents query failed",
+                    "detail": e.to_string(),
+                })),
+            )
+                .into_response();
+        }
+    };
 
     let mut out = serde_json::Map::with_capacity(rows.len());
     for (
