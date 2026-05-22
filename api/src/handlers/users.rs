@@ -276,31 +276,47 @@ pub async fn list_documents(
     // Build the SQL incrementally so each $N placeholder lines up
     // with the bind below. $1 = slug; the `indexed`/sources/tags
     // bindings each reserve their own next slot.
+    //
+    // The personal page applies the same anchor-based dedup as the
+    // feed: a candidate's `anchor_url` is selected from its
+    // `canonical_referenced_urls` (priority: arxiv > huggingface >
+    // github > openreview > doi > etc., lexicographic min within a
+    // tier), falling back to its own canonical_url. DISTINCT ON
+    // (anchor_url) then keeps the visually-richest copy first
+    // (most preview images, then most referenced URLs). So a user's
+    // two tweets linking the same paper collapse into the better
+    // one; an arxiv abs/pdf pair collapses; a tweet linking a paper
+    // collapses with the standalone arxiv row.
+    //
+    // Pagination cursor escape hatch: when the caller passes an
+    // explicit `urls=` filter (favorites pre-filter, deep links),
+    // we skip the dedup and return one row per requested URL so the
+    // 1-to-1 caller contract holds.
+    let skip_dedup = params
+        .urls
+        .as_deref()
+        .map(|s| !s.trim().is_empty())
+        .unwrap_or(false);
     let mut sql = String::from(
-        "SELECT d.url,
-              d.title,
-              d.summary,
-              COALESCE(to_char(d.date, 'YYYY-MM-DD'), '') AS date,
-              d.tags,
-              d.extra_tags,
-              d.source,
-              d.source_url,
-              d.indexed,
-              d.linked_urls,
-              d.link_hosts,
-              -- created_at as an ISO-8601 string so the frontend can
-              -- use it as a same-day tiebreaker in `reorderForBrowse`.
-              -- A doc posted via the compose dialog stamps `date` to
-              -- today; without this column two posts on the same day
-              -- would tie on `date` and the most-recently-added one
-              -- could be hidden behind the earlier one. Sorted on too,
-              -- so the SQL fallback path is right even without the JS
-              -- reorder step.
-              to_char(d.created_at AT TIME ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AS created_at
-         FROM documents d
-         JOIN users     u ON u.id = d.user_id
-        WHERE u.username = $1
-          AND d.deleted = FALSE",
+        "WITH candidates AS (\
+            SELECT d.url,\
+                   d.title,\
+                   d.summary,\
+                   d.date,\
+                   d.tags,\
+                   d.extra_tags,\
+                   d.source,\
+                   d.source_url,\
+                   d.indexed,\
+                   d.linked_urls,\
+                   d.link_hosts,\
+                   d.created_at,\
+                   d.canonical_url,\
+                   d.canonical_referenced_urls\
+              FROM documents d\
+              JOIN users     u ON u.id = d.user_id\
+             WHERE u.username = $1\
+               AND d.deleted = FALSE",
     );
     let mut next_idx: usize = 2;
     if params.indexed.is_some() {
@@ -386,31 +402,94 @@ pub async fn list_documents(
         ));
         next_idx += 1;
     }
-    // Sort the personal page by "when did this doc become relevant
-    // to me," not by publication date alone. An upvote on a 2-year-old
-    // arxiv paper stamps `created_at = NOW()` but leaves `date` at the
-    // paper's original publication date, so a pure `date DESC` would
-    // sink the freshly-upvoted row below today's posts. Take whichever
-    // is more recent of (publication date, addition time) and use that
-    // as the primary key, then break ties on `created_at` so two
-    // same-day actions come back newest-first (mirrors the compose-
-    // dialog behaviour the user already expects).
-    // Pure publication-date ordering. Pipeline-sync time leaks into
-    // any `created_at`-based key — a YouTube video published in 2023
-    // but discovered today reads as "today" if we mix the two stamps,
-    // floating it above a tweet posted yesterday. Using `d.date`
-    // alone keeps the personal page chronological by the underlying
-    // content, not by when our crawler happened to see it.
+    // Close the `candidates` CTE and tack on the anchor + dedup +
+    // final-select. The two branches diverge only in whether we
+    // collapse near-duplicates; the column projection is identical
+    // so the tuple decoder below stays the same.
     //
-    // The upvote-mirror path (`handlers::favorite_docs::add`) stamps
-    // `d.date = CURRENT_DATE` so an upvoted old paper still floats to
-    // the top — it inherits "today" as its surfaced date, which also
-    // matches the user's mental model ("I just saved this today").
+    // Branch A — `?urls=` was supplied: callers want 1 row per
+    // requested URL (favorites pre-filter, deep-link expansion).
+    // Just project `candidates` straight through. Dedup would
+    // silently drop URLs from the response and break the contract.
     //
-    // `created_at DESC` is the tiebreaker for two same-day rows so
-    // a compose-dialog post made one minute after another comes back
+    // Branch B — normal browse: insert `candidate_anchors` + `dedup`
+    // CTEs (same algorithm as the feed). DISTINCT ON (anchor_url)
+    // picks the visually-richest representative; the final ORDER
+    // restores chronological order so the page reads
     // newest-first.
-    sql.push_str(" ORDER BY d.date DESC NULLS LAST, d.created_at DESC");
+    //
+    // Sort key: `date DESC NULLS LAST, created_at DESC`. Using
+    // `d.date` alone keeps the personal page chronological by the
+    // underlying content, not by when our crawler happened to see
+    // it — a YouTube video published in 2023 but discovered today
+    // would otherwise read as "today" and float above a tweet
+    // posted yesterday. The upvote-mirror path
+    // (`handlers::favorite_docs::add`) stamps `d.date =
+    // CURRENT_DATE` so an upvoted old paper still floats to the
+    // top, matching the user's mental model. `created_at DESC` is
+    // the tiebreaker for two same-day rows.
+    if skip_dedup {
+        sql.push_str(
+            ")\n\
+             SELECT url, title, summary,\n\
+                    COALESCE(to_char(date, 'YYYY-MM-DD'), '') AS date,\n\
+                    tags, extra_tags, source, source_url, indexed,\n\
+                    linked_urls, link_hosts,\n\
+                    to_char(created_at AT TIME ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AS created_at\n\
+               FROM candidates\n\
+              ORDER BY date DESC NULLS LAST, created_at DESC",
+        );
+    } else {
+        sql.push_str(
+            "),\n\
+             candidate_anchors AS (\n\
+                SELECT c.*,\n\
+                       COALESCE(\n\
+                           (SELECT ref\n\
+                              FROM unnest(c.canonical_referenced_urls) ref\n\
+                             ORDER BY CASE\n\
+                                 WHEN ref LIKE 'https://arxiv.org/abs/%'       THEN 1\n\
+                                 WHEN ref LIKE 'https://huggingface.co/%'      THEN 2\n\
+                                 WHEN ref LIKE 'https://github.com/%'          THEN 3\n\
+                                 WHEN ref LIKE 'https://openreview.net/%'      THEN 4\n\
+                                 WHEN ref LIKE 'https://doi.org/%'             THEN 5\n\
+                                 WHEN ref LIKE 'https://paperswithcode.com/%'  THEN 6\n\
+                                 WHEN ref LIKE 'https://aclanthology.org/%'    THEN 7\n\
+                                 WHEN ref LIKE 'https://semanticscholar.org/%' THEN 8\n\
+                                 WHEN ref LIKE 'https://distill.pub/%'         THEN 9\n\
+                                 WHEN ref LIKE 'https://biorxiv.org/%'         THEN 10\n\
+                                 WHEN ref LIKE 'https://medrxiv.org/%'         THEN 11\n\
+                                 ELSE 99\n\
+                             END, ref\n\
+                             LIMIT 1),\n\
+                           c.canonical_url\n\
+                       ) AS anchor_url,\n\
+                       COALESCE((\n\
+                           SELECT count(*)::int\n\
+                             FROM jsonb_array_elements(c.linked_urls) e\n\
+                            WHERE COALESCE(e->>'image', '') <> ''\n\
+                       ), 0) AS image_count,\n\
+                       cardinality(c.canonical_referenced_urls) AS url_count\n\
+                  FROM candidates c\n\
+             ),\n\
+             dedup AS (\n\
+                SELECT DISTINCT ON (anchor_url)\n\
+                       url, title, summary, date, tags, extra_tags,\n\
+                       source, source_url, indexed, linked_urls, link_hosts,\n\
+                       created_at\n\
+                  FROM candidate_anchors\n\
+                 ORDER BY anchor_url, image_count DESC, url_count DESC,\n\
+                          date DESC NULLS LAST, created_at DESC\n\
+             )\n\
+             SELECT url, title, summary,\n\
+                    COALESCE(to_char(date, 'YYYY-MM-DD'), '') AS date,\n\
+                    tags, extra_tags, source, source_url, indexed,\n\
+                    linked_urls, link_hosts,\n\
+                    to_char(created_at AT TIME ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AS created_at\n\
+               FROM dedup\n\
+              ORDER BY date DESC NULLS LAST, created_at DESC",
+        );
+    }
     // Server-side cap so the personal page doesn't have to ship the
     // user's entire library on every refresh. Clamp to a sane range
     // — too small breaks infinite scroll past the visible window;
