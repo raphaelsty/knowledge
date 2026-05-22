@@ -851,6 +851,10 @@ fn build_router(state: Arc<AppState>, pg_pool: Option<sqlx::PgPool>) -> Router {
                 "/api/admin/twitter-feed/status",
                 get(handlers::admin::twitter_feed_status),
             )
+            .route(
+                "/api/admin/twitter-feed/attempt",
+                post(handlers::admin::admin_twitter_feed_attempt),
+            )
             .layer(auth_cors.clone())
             .with_state(state.clone());
 

@@ -356,6 +356,47 @@ class IngestError(Exception):
     """Catch-all for 4xx responses that aren't 401/429. Non-retryable."""
 
 
+def _record_attempt(user_id: int, status: str) -> None:
+    """Tell the API we just tried this user, with the resolved outcome.
+
+    The admin endpoint UPSERTs `twitter_feed_attempts` (PK on user_id,
+    one row per user). Status is one of:
+      • 'ok'             — at least one new tweet ingested
+      • 'up_to_date'     — handled cleanly but yielded no new content
+      • 'user_fault'     — handle missing / suspended / protected
+      • 'error'          — twikit/parser blew up
+      • 'api_unavailable' — admin API was down (rare; less interesting
+                             since the queue will be re-fetched fresh
+                             on the next loop)
+    Best-effort: a failed attempt-record call must not abort the pass.
+    The queue endpoint's cooldown math then keeps us from hammering
+    broken accounts every loop.
+    """
+    api_base = os.environ.get("API_URL", "https://knowledge-web.org").rstrip("/")
+    token = os.environ.get("KNOWLEDGE_ADMIN_TOKEN", "").strip()
+    if not token:
+        return  # silently noop — the missing-token path is already
+        # surfaced by the ingest call below
+    body = json.dumps({"user_id": int(user_id), "status": status}).encode("utf-8")
+    req = urllib.request.Request(
+        f"{api_base}/api/admin/twitter-feed/attempt",
+        data=body,
+        headers={
+            "Content-Type": "application/json",
+            "X-Admin-Token": token,
+            "Accept": "application/json",
+        },
+        method="POST",
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            resp.read(0)  # discard; 204 has no body anyway
+    except Exception as exc:
+        # Don't tank the pass on a transient network blip — we'd
+        # rather miss a single attempt record than abort the queue.
+        _log_warn(f"   ↳ attempt-record skipped ({type(exc).__name__}: {str(exc)[:80]})")
+
+
 def _ingest_via_api(slug: str, cleaned: dict) -> tuple[int, int]:
     """POST a page of cleaned tweets to the Rust admin ingest endpoint.
 
@@ -697,7 +738,7 @@ def _one_pass(args) -> tuple[int, int]:
     # on the next cycle when the API comes back.
     API_FAIL_THRESHOLD = 3
     consecutive_api_failures = 0
-    for i, (_uid, slug, handle, last_touch, followers) in enumerate(targets, start=1):
+    for i, (uid, slug, handle, last_touch, followers) in enumerate(targets, start=1):
         # Cooperative shutdown check.
         if _stop_requested:
             _log_warn("stop requested, exiting pass early")
@@ -747,6 +788,9 @@ def _one_pass(args) -> tuple[int, int]:
             _log_warn(f"   ↳ skip (@{handle}): {type(e).__name__}: {str(e)[:120]}")
             pass_stats["skipped_user_faults"] += 1
             consecutive_api_failures = 0
+            # Drive the queue's cooldown: each consecutive user_fault
+            # roughly doubles the wait before we retry this handle.
+            _record_attempt(uid, "user_fault")
         except (IngestUnavailable, IngestNetworkError) as e:
             # The admin API is the only remote dependency now (no
             # more SSH tunnel). When it's down EVERY slug will fail
@@ -780,6 +824,10 @@ def _one_pass(args) -> tuple[int, int]:
                 current_handle=handle,
                 last_error=f"{type(e).__name__}: {e}",
             )
+            # Same backoff treatment as user_fault — an unhandled
+            # parser blow-up on the same handle next loop is unlikely
+            # to behave differently.
+            _record_attempt(uid, "error")
         else:
             consecutive_api_failures = 0
             # Per-slug summary line: time + outcome.
@@ -791,9 +839,15 @@ def _one_pass(args) -> tuple[int, int]:
                 pass_stats["with_new"] += 1
                 pass_stats["inserted_total"] += n_new
                 pass_stats["existed_total"] += n_existed
+                _record_attempt(uid, "ok")
             else:
                 _log_info(f"   ↳ {slug}: already up-to-date ({_human_duration(slug_secs)})")
                 pass_stats["early_stops"] += 1
+                # Critical: even when there are no new tweets we
+                # stamp last_attempt_at so the queue endpoint demotes
+                # this slug today. Without it, popular up-to-date
+                # users would keep cycling to the top of the queue.
+                _record_attempt(uid, "up_to_date")
             pass_stats["api_errors"] += slug_counters.get("api_errors", 0)
             pass_stats["slugs_done"] += 1
         processed += 1

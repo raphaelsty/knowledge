@@ -1435,29 +1435,65 @@ pub async fn admin_twitter_queue(
         Ok(p) => p,
         Err(e) => return e,
     };
+    // Order rules (per-row, applied in this priority):
+    //
+    //   1. Cooldown: rows with `consecutive_failures >= 1` are hidden
+    //      until `last_attempt_at + LEAST(30d, 24h × 2^failures)`. So
+    //      a deleted/locked account hit once is held off for 24h,
+    //      twice for 48h, … capped at 30 days. Resets the moment the
+    //      next ok/up_to_date attempt lands.
+    //
+    //   2. Today-attempted demote: a slug whose `last_attempt_at` is
+    //      today (UTC date) goes to the END of the queue. So on a
+    //      mid-day restart the feeder skips past everyone we just
+    //      touched and gets to the people we haven't tried yet.
+    //
+    //   3. Within the remaining tier: popularity DESC (high
+    //      twitter_followers first), then never-attempted, then
+    //      oldest-attempt-first, alphabetical tiebreaker.
+    //
+    // The `min_age_hours` param is kept as a coarse filter — set it
+    // to 0 to get every eligible slug, or to a positive value to
+    // require last_attempt_at to be at least that old (skipping
+    // every slug touched within the window).
     let sql = r#"
         SELECT u.id, u.username,
                COALESCE(u.sources->'twitter'->>'username', '') AS handle,
-               to_char(MAX(d.created_at) AT TIME ZONE 'UTC',
-                       'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS last_touch,
+               to_char(ta.last_attempt_at AT TIME ZONE 'UTC',
+                       'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS last_attempt,
                COALESCE(u.twitter_followers, 0)::bigint AS twitter_followers
           FROM users u
-          LEFT JOIN documents d
-            ON d.user_id = u.id
-           AND d.source  = 'twitter'
-           AND d.deleted = FALSE
+          LEFT JOIN twitter_feed_attempts ta ON ta.user_id = u.id
          WHERE u.vip = TRUE
            AND u.sources ? 'twitter'
-         GROUP BY u.id, u.username, u.sources, u.twitter_followers
-         HAVING MAX(d.created_at) IS NULL
-             OR MAX(d.created_at) < NOW() - ($1::float8 * INTERVAL '1 hour')
-         ORDER BY COALESCE(
-                      DATE(MAX(d.created_at) AT TIME ZONE 'UTC')
+           -- Cooldown for known-broken accounts. `LEAST(...)` caps
+           -- the backoff at 30 days; the inner POWER doubles on each
+           -- consecutive failure (24h, 48h, 96h, 192h, …).
+           AND (
+                 ta.user_id IS NULL
+              OR ta.consecutive_failures = 0
+              OR ta.last_attempt_at < NOW() - LEAST(
+                     INTERVAL '30 days',
+                     POWER(2, LEAST(ta.consecutive_failures, 10))::float
+                       * INTERVAL '24 hours'
+                 )
+           )
+           -- Optional coarse age filter (kept for backward compat
+           -- with the --min-age CLI flag).
+           AND ($1::float8 <= 0
+                OR ta.last_attempt_at IS NULL
+                OR ta.last_attempt_at < NOW() - ($1::float8 * INTERVAL '1 hour'))
+         ORDER BY
+                  -- Today-attempted go LAST.
+                  COALESCE(
+                      DATE(ta.last_attempt_at AT TIME ZONE 'UTC')
                           = (NOW() AT TIME ZONE 'UTC')::date,
                       FALSE
                   ) ASC,
+                  -- Among remaining: popular first.
                   COALESCE(u.twitter_followers, 0) DESC,
-                  MAX(d.created_at) ASC NULLS FIRST,
+                  -- Then never-attempted (NULL) before stalest.
+                  ta.last_attempt_at ASC NULLS FIRST,
                   u.username
     "#;
     #[allow(clippy::type_complexity)]
@@ -1486,6 +1522,70 @@ pub async fn admin_twitter_queue(
         )
         .collect();
     Json(out).into_response()
+}
+
+// ── /api/admin/twitter-feed/attempt ────────────────────────────────
+//
+// Called by the feeder at the end of every slug. UPSERTs the row in
+// `twitter_feed_attempts`. The handler resolves the success vs
+// failure path from the supplied `status` string:
+//
+//   • 'ok' | 'up_to_date' — reset consecutive_failures to 0
+//   • everything else      — increment consecutive_failures
+//
+// `last_attempt_at` is always stamped to now() — that's how the queue
+// endpoint above demotes today-attempted slugs and decides which
+// broken accounts are still in cooldown.
+
+#[derive(Debug, serde::Deserialize)]
+pub struct TwitterAttemptBody {
+    pub user_id: i64,
+    pub status: String,
+}
+
+pub async fn admin_twitter_feed_attempt(
+    State(state): State<Arc<AppState>>,
+    headers: axum::http::HeaderMap,
+    Json(body): Json<TwitterAttemptBody>,
+) -> Response {
+    if let Err(e) = check_admin_token(&headers) {
+        return e;
+    }
+    let pool = match pg(&state) {
+        Ok(p) => p,
+        Err(e) => return e,
+    };
+    // Whitelist the statuses so a typo from the client doesn't bypass
+    // the failure-counting branch. Anything outside this set is
+    // accepted but routed through the increment path (treated as an
+    // error). Keep the list aligned with the feeder's call sites in
+    // `clients/twitter_feeder.py:_one_pass`.
+    let is_success = matches!(body.status.as_str(), "ok" | "up_to_date");
+    let sql = r#"
+        INSERT INTO twitter_feed_attempts
+                    (user_id, last_attempt_at, last_status, consecutive_failures)
+             VALUES ($1, now(), $2, CASE WHEN $3::boolean THEN 0 ELSE 1 END)
+        ON CONFLICT (user_id) DO UPDATE
+              SET last_attempt_at      = now(),
+                  last_status          = EXCLUDED.last_status,
+                  consecutive_failures = CASE
+                      WHEN $3::boolean THEN 0
+                      ELSE twitter_feed_attempts.consecutive_failures + 1
+                  END
+    "#;
+    match sqlx::query(sql)
+        .bind(body.user_id)
+        .bind(&body.status)
+        .bind(is_success)
+        .execute(&pool)
+        .await
+    {
+        Ok(_) => (StatusCode::NO_CONTENT, "").into_response(),
+        Err(e) => {
+            tracing::error!(error = %e, "admin_twitter_feed_attempt.failed");
+            (StatusCode::INTERNAL_SERVER_ERROR, "db error").into_response()
+        }
+    }
 }
 
 // ── /api/admin/users/{slug}/twitter-urls ────────────────────────────

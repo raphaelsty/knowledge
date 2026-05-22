@@ -46,6 +46,7 @@ from sources.sql.pipeline_source_runs import (
 )
 from sources.sql.sessions import create_sessions_table
 from sources.sql.tags import get_shared_tags, get_user_tags, get_vip_tags
+from sources.sql.twitter_feed_attempts import create_twitter_feed_attempts_table
 from sources.sql.twitter_feed_status import create_twitter_feed_status_table
 from sources.sql.users import (
     create_users_table,
@@ -71,6 +72,7 @@ __all__ = [
     "create_pipeline_runs_table",
     "create_pipeline_source_runs_table",
     "create_sessions_table",
+    "create_twitter_feed_attempts_table",
     "create_twitter_feed_status_table",
     "create_users_table",
     "create_views",

@@ -48,6 +48,7 @@ from sources.sql import (
     create_pipeline_runs_table,
     create_pipeline_source_runs_table,
     create_sessions_table,
+    create_twitter_feed_attempts_table,
     create_twitter_feed_status_table,
     create_users_table,
     create_views,
@@ -165,6 +166,7 @@ def main():
     create_dead_urls_table(database_url)
     create_sessions_table(database_url)
     create_twitter_feed_status_table(database_url)
+    create_twitter_feed_attempts_table(database_url)
     create_auth_sessions_table(database_url)
     create_api_tokens_table(database_url)
     create_favorites_table(database_url)
