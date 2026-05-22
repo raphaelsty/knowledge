@@ -122,6 +122,15 @@ Tap the heart on any card and the doc lands in your library, indexed and searcha
 <a href="https://knowledge-web.org/arvind-narayanan" title="Arvind Narayanan"><img src="web/img/people/arvind-narayanan.png" alt="Arvind Narayanan" width="120"></a>
 </p>
 
+<p align="center">
+<a href="https://knowledge-web.org/iacopo-poli" title="Iacopo Poli"><img src="web/img/people/iacopo-poli.png" alt="Iacopo Poli" width="120"></a>
+<a href="https://knowledge-web.org/antoine-chaffin" title="Antoine Chaffin"><img src="web/img/people/antoine-chaffin.png" alt="Antoine Chaffin" width="120"></a>
+<a href="https://knowledge-web.org/manuel-faysse" title="Manuel Faysse"><img src="web/img/people/manuel-faysse.png" alt="Manuel Faysse" width="120"></a>
+<a href="https://knowledge-web.org/tony-wu" title="Tony Wu"><img src="web/img/people/tony-wu.png" alt="Tony Wu" width="120"></a>
+<a href="https://knowledge-web.org/arthur-mensch" title="Arthur Mensch"><img src="web/img/people/arthur-mensch.png" alt="Arthur Mensch" width="120"></a>
+<a href="https://knowledge-web.org/bo-wang" title="Bo Wang"><img src="web/img/people/bo-wang.png" alt="Bo Wang" width="120"></a>
+</p>
+
 <p align="center">…or wander through <a href="https://knowledge-web.org">all 450+ libraries</a>.</p>
 
 <br>
