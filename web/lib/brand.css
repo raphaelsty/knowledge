@@ -1,0 +1,100 @@
+/* Discrete brand mark — sits at the bottom of the viewport on every
+ * page. A small "Knowledge" wordmark with a GitHub icon trailing,
+ * linking to the open-source repository. Marketing affordance kept
+ * deliberately quiet so it never competes with the actual content:
+ * hairline border, muted ink, subtle hover lift.
+ *
+ * Placement:
+ *   * Desktop → fixed bottom-right (24px / 20px from edges).
+ *   * Mobile (<= 768px) → bottom-centre above the bottom nav, sized
+ *     down so the four-tab nav stays the dominant chrome.
+ */
+.brand-mark {
+  position: fixed;
+  right: 24px;
+  bottom: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(var(--paper-rgb, 252, 251, 247), 0.7);
+  border: 1px solid rgba(var(--ink-rgb, 24, 24, 27), 0.08);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  color: rgba(var(--ink-rgb, 24, 24, 27), 0.6);
+  font-family: var(--sans, "Inter Tight", -apple-system, sans-serif);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.005em;
+  text-decoration: none;
+  z-index: 40;
+  transition:
+    background 140ms ease,
+    border-color 140ms ease,
+    color 140ms ease,
+    transform 140ms ease;
+}
+.brand-mark:hover {
+  background: rgba(var(--paper-rgb, 252, 251, 247), 0.95);
+  border-color: rgba(var(--ink-rgb, 24, 24, 27), 0.18);
+  color: rgb(var(--ink-rgb, 24, 24, 27));
+  transform: translateY(-1px);
+}
+.brand-mark-name {
+  white-space: nowrap;
+}
+.brand-mark-dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.35;
+}
+.brand-mark-gh {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+.brand-mark:hover .brand-mark-gh {
+  opacity: 1;
+}
+[data-theme="dark"] .brand-mark {
+  background: rgba(20, 20, 28, 0.7);
+  border-color: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.55);
+}
+[data-theme="dark"] .brand-mark:hover {
+  background: rgba(20, 20, 28, 0.95);
+  border-color: rgba(255, 255, 255, 0.16);
+  color: rgba(255, 255, 255, 0.92);
+}
+
+/* Mobile: hide on the feed / search / personal pages — over the
+ * dense content the chip read as too loud. Settings has plenty of
+ * empty surface and is the natural place to surface "this is open
+ * source", so we keep the chip there (above the bottom nav,
+ * centred and downsized like the original mobile design). */
+@media (max-width: 768px) {
+  .brand-mark {
+    display: none;
+  }
+  body[data-page="settings"] .brand-mark {
+    display: inline-flex;
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: calc(82px + 8px + env(safe-area-inset-bottom));
+    padding: 4px 10px;
+    font-size: 10.5px;
+    z-index: 45;
+  }
+  body[data-page="settings"] .brand-mark:hover {
+    transform: translateX(-50%) translateY(-1px);
+  }
+  body[data-page="settings"] .brand-mark-gh {
+    width: 12px;
+    height: 12px;
+  }
+}

@@ -1,0 +1,1817 @@
+/* ──────────────────────────────────────────────────────────────────
+ * mobile.css — phone-only overrides.
+ *
+ * Loaded after every other stylesheet on the search, welcome,
+ * profile, admin, about and privacy pages. Almost every rule lives
+ * inside `@media (max-width: 768px)` so the desktop layout is
+ * untouched. The single exception is the block below — markup
+ * shipped for mobile (`.mobile-bottom-nav`, `.mobile-sources-trigger`,
+ * `.mobile-sheet-backdrop`) is hidden on desktop *unconditionally*
+ * so the desktop layout never reveals it. The mobile rules later
+ * in the file set `display:flex` to bring them back at phone width.
+ *
+ * The goal is a Twitter-like one-column feed with a Hacker-News
+ * editorial tone: dense, readable, calm.
+ *
+ * Notes for future-me:
+ *   - Inputs use 16px font-size to prevent iOS auto-zoom on focus.
+ *   - All interactive elements opt out of the blue tap flash via
+ *     `-webkit-tap-highlight-color: transparent` and use
+ *     `touch-action: manipulation` to disable double-tap zoom.
+ *   - Safe-area insets (env(safe-area-inset-*)) keep the topbar
+ *     and FABs clear of the iPhone notch / home indicator.
+ *   - No burger menu: the left rail (Sources) is hidden on phone
+ *     by request. Users still get the global feed and can filter
+ *     via URL query params (?sources=...). Mobile keeps the focus
+ *     on the spotlight + feed + compose.
+ * ────────────────────────────────────────────────────────────── */
+
+/* ── Desktop default: hide every mobile-only element ─────────── */
+.mobile-bottom-nav,
+.mobile-sheet-backdrop {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  /* ── Global stability ────────────────────────────────────────── */
+  html,
+  body {
+    overflow-x: hidden;
+    width: 100%;
+    /* Prevent rubber-band exposing white edges on iOS. */
+    overscroll-behavior-x: none;
+    /* Suppress iOS Safari's native pull-to-refresh (the browser's
+     * own page-reload gesture) so our JS pull-to-refresh handler
+     * gets the touchmove events instead. Without this, iOS eats
+     * the downward drag and triggers a full page reload — our
+     * gesture never fires. */
+    overscroll-behavior-y: contain;
+  }
+
+  /* Kill the blue tap flash + double-tap zoom across the board.
+   * Anything clickable opts in explicitly so we don't break
+   * native input selection on the rare textfield. */
+  a,
+  button,
+  [role="button"],
+  .lib-row,
+  .src-row,
+  .people-row,
+  .doc,
+  .tag,
+  .chip,
+  .scope-filter,
+  .since-filter,
+  .auth-btn,
+  .post-fab,
+  .compose-submit,
+  .compose-close,
+  .compose-autofill,
+  .compose-tags-input,
+  .auth-link,
+  .auth-submit,
+  .img-lightbox-close,
+  .feed-link-top,
+  .rail-link,
+  .settings-link,
+  .theme-opt,
+  .back-pill {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  /* iOS won't auto-zoom an <input> if it renders at >= 16px. */
+  input,
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
+
+  /* ── Search page layout ─────────────────────────────────────── */
+  .layout {
+    display: block !important;
+    min-height: 100dvh;
+  }
+
+  /* Left rail: gone on phone. Sources rail is too dense and the
+   * user explicitly asked for no burger menu. We keep the source
+   * filter reachable via URL params; the mobile UX is the feed. */
+  .rail {
+    display: none !important;
+  }
+
+  /* Right rail (people-to-follow) is already hidden under 1200px,
+   * but be defensive in case the breakpoint shifts. */
+  .people-rail {
+    display: none !important;
+  }
+  /* The category rail mirrors the people rail — only shown on
+   * phones via Cupertino Pane (which wraps it inside `.kn-sheet`
+   * and lifts the `!important` here through a more-specific
+   * selector below — see `.kn-sheet .category-rail`). */
+  .category-rail {
+    display: none !important;
+  }
+
+  /* Main pane fills the viewport. Padding mirrors Twitter's
+   * single-column feed margins. */
+  .pane {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    min-width: 0;
+  }
+
+  /* ── Sticky top bar ─────────────────────────────────────────── */
+  /* Search input + filter chips sit on a single flex row. Chips
+   * are icon-only (36×36 discs) on the right of the input so the
+   * whole topbar reads as one piece of UI. Filters hide entirely
+   * when the query is empty (`:placeholder-shown` + JS `hidden`
+   * on `qFollowingOnly`). */
+  .spotlight-row {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    padding: 10px 12px 10px;
+    padding-top: max(10px, env(safe-area-inset-top));
+    margin: 0;
+    background: rgba(var(--paper-rgb), 0.9);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 8px;
+  }
+  /* Feed ↔ Personal Page breadcrumb is redundant on phone — the
+   * bottom nav owns both routes. Hide both entirely. */
+  .feed-link-top,
+  #feedLink,
+  #personalLink {
+    display: none !important;
+  }
+
+  /* Spotlight (search input) takes the flex slack — chips on its
+   * right are sized to their own 36 × 36 footprint. */
+  .spotlight {
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: none !important;
+    width: auto;
+    margin: 0 !important;
+    border-radius: 12px;
+    /* Slightly heavier shadow than desktop so the bar reads as a
+     * lifted control against the feed underneath. */
+    box-shadow:
+      0 1px 0 rgba(var(--paper-rgb), 0.9) inset,
+      0 2px 8px rgba(var(--ink-rgb), 0.06);
+  }
+  /* Phone build: no focus halo on the spotlight bar at all. The
+   * input getting active is implied by the keyboard + caret —
+   * a darker border / outer ring just adds noise. */
+  .spotlight:focus-within {
+    box-shadow:
+      0 1px 0 rgba(var(--paper-rgb), 0.9) inset,
+      0 2px 8px rgba(var(--ink-rgb), 0.06) !important;
+    border-color: rgba(var(--ink-rgb), 0.08) !important;
+  }
+  .spotlight input {
+    height: 44px;
+    font-size: 16px !important;
+    caret-color: rgb(var(--ink-rgb));
+  }
+  /* The compose dialog (Post) ships a hardcoded indigo caret on its
+   * three inputs. Override on phone so the caret reads as ink. */
+  .compose-title-input,
+  .compose-input,
+  .compose-tags-input {
+    caret-color: rgb(var(--ink-rgb)) !important;
+  }
+  /* Text-selection highlight inherits `--accent-primary` which is
+   * emerald on /profile and indigo on /search. Force a neutral ink
+   * wash on phone so neither colour leaks into selections. */
+  ::selection {
+    background: rgba(var(--ink-rgb), 0.18);
+    color: inherit;
+  }
+
+  /* Both filters disappear when the search input is empty — a
+   * date range or follow-graph narrowing only makes sense once
+   * the user is actually searching. The desktop CSS already
+   * hides .since-filter via :placeholder-shown but the phone
+   * styles override with !important, so we re-declare with
+   * higher specificity here. We also re-honour the `hidden`
+   * attribute on `.scope-filter` (set by JS when libs.size !== 0
+   * — i.e. on the personal page where "Following only" has no
+   * meaning) since the same !important hides it from the
+   * attribute selector. */
+  .spotlight-row:has(#q:placeholder-shown) .since-filter,
+  .spotlight-row:has(#q:placeholder-shown) .scope-filter,
+  .scope-filter[hidden] {
+    display: none !important;
+  }
+
+  /* Filter chips become 36×36 icon-only discs on phone. Both
+   * share one pill vocabulary so the cluster on the right of the
+   * search input reads as a single control bar. Filters hide
+   * entirely when the search is empty (date filter via the
+   * `:has(#q:placeholder-shown)` rule above, scope additionally
+   * gated by JS `hidden` attribute toggled by
+   * `syncFollowingOnlyButton`). */
+  .since-filter,
+  .scope-filter {
+    position: relative;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 0 !important;
+    flex: 0 0 36px;
+    width: 36px;
+    height: 36px;
+    padding: 0 !important;
+    border-radius: 999px !important;
+    background: rgba(var(--ink-rgb), 0.06) !important;
+    border: 1px solid transparent !important;
+    color: rgba(var(--ink-rgb), 0.78) !important;
+    cursor: pointer;
+    transition:
+      background 0.14s ease,
+      color 0.14s ease !important;
+  }
+  .since-filter:hover,
+  .scope-filter:hover {
+    background: rgba(var(--ink-rgb), 0.1) !important;
+    color: rgb(var(--ink-rgb)) !important;
+  }
+  .since-filter:active,
+  .scope-filter:active {
+    transform: scale(0.94);
+  }
+
+  /* ── Date filter ────────────────────────────────────────────
+   * The native `<select>` lies invisible across the disc — it
+   * receives the tap and pops the system date picker — while a
+   * calendar icon is painted via a mask-image so the disc reads
+   * as a clear "filter by date" affordance.  */
+  .since-filter::before {
+    content: "";
+    width: 18px;
+    height: 18px;
+    background: currentColor;
+    -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='4' width='18' height='18' rx='2' ry='2'/><line x1='16' y1='2' x2='16' y2='6'/><line x1='8' y1='2' x2='8' y2='6'/><line x1='3' y1='10' x2='21' y2='10'/></svg>")
+      center / contain no-repeat;
+    mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='4' width='18' height='18' rx='2' ry='2'/><line x1='16' y1='2' x2='16' y2='6'/><line x1='8' y1='2' x2='8' y2='6'/><line x1='3' y1='10' x2='21' y2='10'/></svg>")
+      center / contain no-repeat;
+  }
+  .since-filter-select {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+    color: transparent !important;
+    opacity: 0;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .since-filter-caret {
+    display: none !important;
+  }
+  /* Active state — when a date range is picked. The class is set
+   * by `syncSinceFilterActive()` in page.js whenever
+   * `state.dateSince` is non-empty. */
+  .since-filter.has-filter {
+    background: rgb(var(--ink-rgb)) !important;
+    color: rgb(var(--paper-rgb)) !important;
+  }
+
+  /* ── Following-only filter ─────────────────────────────────
+   * Same disc, people icon, ink-fill on `aria-pressed="true"`. */
+  .scope-filter span {
+    /* Hide the "Following only" label — only the icon shows on
+     * phone. */
+    display: none !important;
+  }
+  .scope-filter-icon {
+    width: 18px !important;
+    height: 18px !important;
+    opacity: 1 !important;
+  }
+  .scope-filter[aria-pressed="true"] {
+    background: rgb(var(--ink-rgb)) !important;
+    color: rgb(var(--paper-rgb)) !important;
+  }
+
+  /* ── Shuffle chip on phone ─────────────────────────────────
+   * Inherits the same 36×36 disc as the date / scope filters so
+   * the cluster on the right of the search bar reads as a single
+   * control row. Icon-only, no label, with a 180° spin on the
+   * `is-spinning` class for the click feedback. */
+  .shuffle-filter {
+    position: relative;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 0 !important;
+    flex: 0 0 36px;
+    width: 36px;
+    height: 36px;
+    padding: 0 !important;
+    border-radius: 999px !important;
+    background: rgba(var(--ink-rgb), 0.06) !important;
+    border: 1px solid transparent !important;
+    color: rgba(var(--ink-rgb), 0.78) !important;
+    cursor: pointer;
+    transition:
+      background 0.14s ease,
+      color 0.14s ease !important;
+  }
+  .shuffle-filter[hidden] {
+    display: none !important;
+  }
+  .shuffle-filter:hover {
+    background: rgba(var(--ink-rgb), 0.1) !important;
+    color: rgb(var(--ink-rgb)) !important;
+  }
+  .shuffle-filter:active {
+    transform: scale(0.94);
+  }
+  .shuffle-filter span {
+    display: none !important;
+  }
+  .shuffle-filter-icon {
+    width: 18px !important;
+    height: 18px !important;
+    opacity: 1 !important;
+  }
+
+  /* ── Result list ────────────────────────────────────────────── */
+  /* The desktop filter-strip uses a -18px margin-top to tuck chips
+   * just under the spotlight; on phone that pulls chips behind the
+   * sticky topbar and clips them. Reset to no margin, and collapse
+   * entirely when both children are hidden so the personal-page
+   * profile header sits flush with the search bar. */
+  .filter-strip {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .filter-strip:has(> :not([hidden])) {
+    padding: 8px 12px 4px !important;
+  }
+  /* The `hidden` attribute is overridden by the desktop rule
+   * `display: inline-flex` on these wrappers, so an empty strip
+   * still rendered a baseline ghost line. Force the attribute to
+   * take precedence on phone. */
+  .active-tags[hidden],
+  .result-sources[hidden] {
+    display: none !important;
+  }
+  .active-tags,
+  .result-sources {
+    flex-wrap: wrap;
+    gap: 6px;
+    /* Vertical breathing inside the chip rows so they don't crop
+     * when the row wraps to a second line. */
+    padding: 2px 0;
+  }
+  /* The desktop active-tag pill is now already a neutral ink-tint
+   * capsule (no accent), so mobile doesn't need to override it. */
+
+  .results {
+    padding: 0;
+    margin: 0;
+    /* Bottom nav (60px) floats with a 10px gutter + its own
+     * safe-area, FAB sits above it. Leave plenty of breathing
+     * room so the last card isn't tucked behind either. */
+    padding-bottom: calc(150px + env(safe-area-inset-bottom));
+  }
+  .results > * + * {
+    margin-top: 0;
+  }
+
+  /* Cards: edge-to-edge with a divider, Twitter-style. We strip
+   * the card chrome (radius, shadow, background tint) so the
+   * feed reads as one continuous scroll. Class is `.result`; we
+   * also alias the legacy `.doc`/`.card` selectors for safety. */
+  .results .result,
+  .results > article,
+  .results .doc,
+  .results .card {
+    border-radius: 0 !important;
+    border: 0 !important;
+    border-bottom: 1px solid var(--border) !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    /* Generous vertical padding so the feed reads as a calm,
+     * peaceful column of posts rather than a dense list. 40px on
+     * top, 16px below the tags, plus the 1px divider → ~57px of
+     * breathing room between consecutive cards. iOS/Threads-style
+     * airy rhythm. */
+    padding: 40px 14px 16px !important;
+    margin: 0 !important;
+    /* See padding comment above — collapse the empty similar-
+     * panel row's contribution to the grid row-gap so the
+     * tags-to-divider distance stays under our control. */
+    row-gap: 4px !important;
+  }
+  /* Lighten the divider line itself — at the new airy spacing, a
+   * full-strength border is louder than it needs to be. Reads as
+   * a quiet separator instead of a hard rule. */
+  .results .result + .result,
+  .results > article + article {
+    border-top: 0 !important;
+  }
+  .results .result {
+    border-bottom-color: rgba(var(--ink-rgb), 0.06) !important;
+  }
+  .results > * + * {
+    margin-top: 0;
+  }
+
+  /* Title sizing — bigger than the body, smaller than desktop. */
+  .result h3,
+  .result h2,
+  .result .title {
+    font-size: 16.5px !important;
+    line-height: 1.32;
+  }
+  .result .result-summary,
+  .result p {
+    font-size: 14.5px;
+    line-height: 1.46;
+  }
+
+  /* Card kicker (source favicon · src · meta · date). */
+  .result-kicker {
+    flex-wrap: wrap;
+    gap: 6px !important;
+    font-size: 12.5px;
+  }
+  .result-kicker .src-fav {
+    width: 16px;
+    height: 16px;
+  }
+  .result-body {
+    /* Comfortable vertical rhythm inside each card: kicker (source
+     * pill) → title → summary all separated by 14px. Reads as
+     * a calm, well-spaced post rather than a wall of stacked
+     * text. */
+    gap: 14px;
+  }
+  /* Loosen image / link-preview blocks so they have visible air
+   * between themselves AND between the surrounding text. The base
+   * CSS uses 10px which felt cramped at the new card-padding
+   * scale. */
+  .result .tweet-media {
+    gap: 12px !important;
+    margin-top: 20px !important;
+  }
+  .result .tweet-links {
+    gap: 14px !important;
+    margin-top: 20px !important;
+  }
+  /* Bigger air between the summary and the tags row — the
+   * row-gap on the card grid is now 4px (tight against the
+   * divider), so we recover the summary→tags spacing via an
+   * explicit margin-top here. 16px lines up with the inside-card
+   * rhythm. The foot-right (upvote + sharer avatars) sits in the
+   * same grid row as the tags, so it needs the same shift to
+   * stay aligned. */
+  .result-tags-row,
+  .result-foot-right {
+    margin-top: 16px !important;
+  }
+
+  /* Action row below each card. */
+  .result-tags-row,
+  .result-tags {
+    gap: 6px !important;
+    flex-wrap: wrap;
+  }
+  .result-tag,
+  .result-similar {
+    height: 26px;
+    padding: 0 9px !important;
+    font-size: 12px !important;
+  }
+  .result-foot-right {
+    gap: 8px;
+  }
+
+  /* Tweet media tiles — never bigger than the viewport. */
+  .result img,
+  .result .tweet-media-tile,
+  .result .doc-thumb {
+    max-width: 100%;
+    height: auto;
+  }
+  .tweet-media-grid {
+    gap: 6px !important;
+  }
+
+  /* ── Profile header (twitter-style) ─────────────────────────── */
+  /* Strip the desktop centring padding so the header lines up
+   * flush with the feed cards below. */
+  .profile-header {
+    margin: 0 !important;
+    padding: 14px 14px 16px !important;
+  }
+  .profile-header .ph-body {
+    grid-template-columns: 72px 1fr !important;
+    gap: 14px !important;
+  }
+  .profile-header .ph-avatar {
+    width: 72px !important;
+    height: 72px !important;
+  }
+  .profile-header h1,
+  .profile-header .ph-name {
+    font-size: 19px !important;
+    line-height: 1.2;
+  }
+  .profile-header .ph-handle {
+    font-size: 14px !important;
+  }
+  .profile-header .ph-bio {
+    font-size: 14.5px !important;
+    line-height: 1.45;
+  }
+  /* The "Export" / "Follow" affordance on the right of the name
+   * stays a compact pill on phone so it doesn't bump the name to
+   * a second line on tight viewports. */
+  .profile-header .ph-follow {
+    height: 30px !important;
+    padding: 0 12px !important;
+    font-size: 13px !important;
+  }
+  /* Stats row (X bookmarks · Y following) — tighten gap. */
+  .profile-header .ph-stats {
+    gap: 14px !important;
+    font-size: 14px !important;
+  }
+
+  /* ── Compose FAB ─────────────────────────────────────────────
+   * The Post action now lives inside the bottom nav, so the
+   * standalone floating pill is redundant on phone. The element
+   * still exists in the DOM (page.js relies on it for the
+   * compose dialog wiring) but visually hides. */
+  .post-fab {
+    display: none !important;
+  }
+
+  /* ── Compose dialog → minimal phone sheet ───────────────────
+   * Apple Notes / Threads vibe: no form chrome, no card frames,
+   * no serif headings. The sheet is a writing surface — bold
+   * title line, free-form body, a small chip row for tags, and
+   * a single solid Post pill at the top right.
+   *
+   * Typography is the system SF Pro stack (`--modern`) so the
+   * sheet feels native on iOS / macOS and stays consistent with
+   * the rest of the phone chrome (search bar, nav labels, etc).
+   * No Newsreader serif anywhere on this surface. */
+  .compose-back {
+    background: rgba(15, 17, 22, 0.5);
+  }
+  .compose {
+    top: auto !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    transform: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    border-radius: 22px 22px 0 0 !important;
+    padding: 4px 20px 0 !important;
+    padding-bottom: calc(14px + env(safe-area-inset-bottom)) !important;
+    max-height: 92dvh;
+    overflow-y: auto;
+    background: rgb(var(--paper-rgb)) !important;
+    /* The system stack applies to every input + label inside. */
+    font-family: var(--modern) !important;
+    animation: composeSheetIn 280ms cubic-bezier(0.2, 0.8, 0.2, 1) both !important;
+  }
+  @keyframes composeSheetIn {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  /* ── Header ──────────────────────────────────────────────── */
+  .compose-head {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: rgb(var(--paper-rgb));
+    height: 52px;
+    padding-top: 4px;
+    margin: 0 -20px 10px;
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+  /* Grab handle reads as the affordance to drag the sheet. */
+  .compose-head::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 5px;
+    border-radius: 999px;
+    background: rgba(var(--ink-rgb), 0.18);
+  }
+  /* Drop the "New post" label — modern composers don't title the
+   * sheet. The × close + Post button speak for themselves. */
+  .compose-title {
+    display: none !important;
+  }
+  .compose-close {
+    width: 36px !important;
+    height: 36px !important;
+    background: transparent !important;
+  }
+  .compose-close:hover {
+    background: rgba(var(--ink-rgb), 0.06) !important;
+    transform: none !important;
+  }
+  .compose-close svg {
+    width: 20px !important;
+    height: 20px !important;
+    stroke-width: 2;
+  }
+
+  /* Post button: pill, ink fill when valid. The header puts no
+   * other element to its left so the pill becomes the visual
+   * anchor of the sheet header. */
+  .compose-head .compose-submit {
+    margin-left: auto;
+    height: 36px !important;
+    padding: 0 18px !important;
+    border-radius: 999px !important;
+    font: 600 14px/1 var(--modern) !important;
+    letter-spacing: -0.005em !important;
+    background: rgba(var(--ink-rgb), 0.06) !important;
+    color: rgba(var(--ink-rgb), 0.45) !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+    transition:
+      background 160ms ease,
+      color 160ms ease !important;
+  }
+  .compose-head .compose-submit:not(:disabled) {
+    background: rgb(var(--ink-rgb)) !important;
+    color: rgb(var(--paper-rgb)) !important;
+  }
+  .compose-head .compose-submit:not(:disabled):hover {
+    background: rgb(var(--ink-rgb)) !important;
+    filter: brightness(1.08);
+  }
+  .compose-head .compose-submit svg {
+    width: 13px;
+    height: 13px;
+    opacity: 1;
+  }
+
+  /* ── Author row collapses to a single column on phone ────── */
+  .compose-row {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+    padding: 4px 0 0 !important;
+  }
+  /* Identity is implicit on phone — drop the avatar so the
+   * composer feels like a writing surface, not a profile card. */
+  .compose-avatar {
+    display: none !important;
+  }
+  .compose-body {
+    gap: 6px !important;
+  }
+
+  /* ── Title input — bold, no card, no underline ─────────── */
+  .compose-title-input {
+    font-family: var(--modern) !important;
+    font-size: 22px !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.02em !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-bottom: 0 !important;
+    border-radius: 0 !important;
+    padding: 4px 0 !important;
+    height: auto !important;
+    color: rgb(var(--ink-rgb)) !important;
+    caret-color: rgb(var(--ink-rgb)) !important;
+  }
+  .compose-title-input::placeholder {
+    font-family: var(--modern) !important;
+    font-weight: 700 !important;
+    color: rgba(var(--ink-rgb), 0.28) !important;
+  }
+  .compose-title-input:focus {
+    background: transparent !important;
+    border: 0 !important;
+  }
+
+  /* ── Body textarea — clean, no frame ──────────────────── */
+  .compose-input {
+    font-family: var(--modern) !important;
+    font-size: 16.5px !important;
+    line-height: 1.5 !important;
+    min-height: 130px !important;
+    padding: 6px 0 8px !important;
+    color: rgb(var(--ink-rgb)) !important;
+    caret-color: rgb(var(--ink-rgb)) !important;
+  }
+  .compose-input::placeholder {
+    color: rgba(var(--ink-rgb), 0.36) !important;
+    font-family: var(--modern) !important;
+  }
+
+  /* ── Autofill chip — small inline button on a quiet fill,
+   *    only when a link is detected. ─────────────────────── */
+  .compose-autofill {
+    height: 32px !important;
+    padding: 0 14px 0 12px !important;
+    border-radius: 999px !important;
+    margin-top: 2px !important;
+    background: rgba(var(--ink-rgb), 0.05) !important;
+    border-color: transparent !important;
+    color: rgba(var(--ink-rgb), 0.78) !important;
+    font: 600 13px/1 var(--modern) !important;
+  }
+  .compose-autofill svg {
+    width: 13px !important;
+    height: 13px !important;
+  }
+
+  /* ── Tag row — inline chips, no card frame ──────────────
+   * Sits just under the body with a slim top divider so the
+   * surface still reads as one continuous writing space. */
+  .compose-tags {
+    background: transparent !important;
+    border: 0 !important;
+    border-top: 1px solid rgba(var(--ink-rgb), 0.06) !important;
+    border-radius: 0 !important;
+    padding: 12px 0 4px !important;
+    margin-top: 8px !important;
+    gap: 6px !important;
+  }
+  /* No focus highlight on the tag row — match the rest of the
+   * compose surface (no coloured borders on focus). */
+  .compose-tag-chip {
+    font-family: var(--modern) !important;
+    background: rgba(var(--ink-rgb), 0.06) !important;
+    color: rgb(var(--ink-rgb)) !important;
+    height: 26px !important;
+    padding: 0 8px 0 10px !important;
+    font-size: 12.5px !important;
+    font-weight: 600 !important;
+  }
+  .compose-tag-chip .x {
+    background: transparent !important;
+    color: rgba(var(--ink-rgb), 0.55) !important;
+  }
+  .compose-tag-chip .x:hover {
+    background: rgba(var(--ink-rgb), 0.12) !important;
+    color: rgb(var(--ink-rgb)) !important;
+  }
+  .compose-tags-input {
+    font-family: var(--modern) !important;
+    font-size: 14px !important;
+    padding: 4px 4px !important;
+    color: rgb(var(--ink-rgb)) !important;
+    caret-color: rgb(var(--ink-rgb)) !important;
+  }
+  .compose-tags-input::placeholder {
+    color: rgba(var(--ink-rgb), 0.4) !important;
+    font-family: var(--modern) !important;
+  }
+
+  /* Audience segmented control — tighter, system font. */
+  .compose-audience {
+    padding: 4px !important;
+    border-radius: 10px !important;
+    background: rgba(var(--ink-rgb), 0.04) !important;
+    border: 0 !important;
+  }
+  .compose-aud-opt {
+    font-family: var(--modern) !important;
+    height: 28px !important;
+    padding: 0 12px !important;
+    border-radius: 7px !important;
+    font-size: 12.5px !important;
+  }
+
+  /* Hint line — system font, muted. */
+  .compose-hint {
+    font-family: var(--modern) !important;
+    font-size: 12.5px !important;
+    color: rgba(var(--ink-rgb), 0.45) !important;
+    margin-top: 4px;
+  }
+
+  /* ── Image lightbox → full-screen ───────────────────────────── */
+  .img-lightbox {
+    padding: 0 !important;
+    /* Make sure the close button is reachable below the notch. */
+  }
+  .img-lightbox img {
+    max-width: 100vw !important;
+    max-height: 100dvh !important;
+    width: auto;
+    height: auto;
+  }
+  .img-lightbox-close {
+    top: calc(8px + env(safe-area-inset-top)) !important;
+    right: 10px !important;
+    width: 44px;
+    height: 44px;
+    font-size: 24px;
+  }
+
+  /* ── Auth modal → full-screen sheet ─────────────────────────── */
+  dialog.auth-modal {
+    max-width: 100vw !important;
+    max-height: 100dvh !important;
+    width: 100vw !important;
+    height: 100dvh !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    border: 0 !important;
+    padding: 0 !important;
+  }
+  .auth-modal::backdrop {
+    background: rgba(0, 0, 0, 0.4);
+  }
+  .auth-modal-card {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 0 !important;
+    padding: calc(20px + env(safe-area-inset-top)) 20px
+      calc(20px + env(safe-area-inset-bottom)) !important;
+    overflow-y: auto;
+    /* The native form uses a card-with-shadow look on desktop —
+     * flatten it on phone so the sheet reads as the page. */
+    box-shadow: none !important;
+    border: 0 !important;
+  }
+  .auth-modal-close {
+    top: calc(10px + env(safe-area-inset-top)) !important;
+    right: 12px !important;
+    width: 40px;
+    height: 40px;
+    font-size: 22px;
+  }
+  .auth-field input,
+  .auth-field input[type="email"],
+  .auth-field input[type="password"],
+  .auth-field input[type="text"] {
+    font-size: 16px !important;
+    height: 44px;
+  }
+  .auth-submit {
+    height: 46px;
+    font-size: 15px;
+  }
+
+  /* ── Discover dialog → full-screen sheet ────────────────────────
+   * The onboarding panel takes the whole viewport on phone — there
+   * isn't enough real estate to read both the page underneath and
+   * the picker, and the desktop's card chrome (radius + shadow)
+   * doesn't translate to a fullscreen surface. */
+  dialog.discover-dialog {
+    max-width: 100vw !important;
+    max-height: 100dvh !important;
+    width: 100vw !important;
+    height: 100dvh !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    border: 0 !important;
+    padding: 0 !important;
+    background: rgb(var(--paper-rgb)) !important;
+  }
+  .discover-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.45);
+  }
+  .discover-body {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    padding: calc(20px + env(safe-area-inset-top)) 18px
+      calc(20px + env(safe-area-inset-bottom)) !important;
+    animation: none !important;
+    background: rgb(var(--paper-rgb)) !important;
+  }
+  .discover-content {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* ── Onboarding shell on phone ────────────────────────────────
+   * Tighten the shell gaps so we fit the head + grid + footer in
+   * one screen height. Slides take the remaining viewport so the
+   * grid scrolls inside, not the dialog. */
+  .onb-shell {
+    gap: 16px !important;
+    height: 100%;
+  }
+  .onb-slides {
+    padding-right: 0 !important;
+  }
+  .onb-slide {
+    gap: 14px !important;
+  }
+  .onb-slide-head h2,
+  .onb-aff-head h2 {
+    font-size: 22px !important;
+    line-height: 1.18;
+    /* Same sans stack as the rest of the phone build — no serif. */
+    font-family: var(--sans);
+    font-weight: 700;
+  }
+  .onb-slide-head p,
+  .onb-aff-sub {
+    font-size: 14px !important;
+    line-height: 1.5;
+    /* The desktop justifies text with hyphens; on phone that
+     * creates awkward stretched gaps in a narrow column. */
+    text-align: left !important;
+    hyphens: none !important;
+  }
+
+  /* Category cards — single column, full bleed, bigger tap area. */
+  .onb-grid {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+  .onb-card {
+    padding: 14px 14px 12px !important;
+    border-radius: 14px !important;
+  }
+  .onb-card-head h3 {
+    font-size: 15px !important;
+  }
+  .onb-desc {
+    font-size: 13px !important;
+    text-align: left !important;
+    hyphens: none !important;
+  }
+  /* Move the selected-state checkmark to a more thumb-visible spot. */
+  .onb-check {
+    width: 24px !important;
+    height: 24px !important;
+    top: 12px !important;
+    right: 12px !important;
+  }
+
+  /* Footer — keep visible at the bottom of the sheet, full-width
+   * primary action, neutral skip on the left. */
+  .onb-foot {
+    position: sticky;
+    bottom: 0;
+    background: rgb(var(--paper-rgb));
+    margin: 0 -18px !important;
+    padding: 12px 18px calc(12px + env(safe-area-inset-bottom)) !important;
+    border-top: 1px solid rgba(var(--ink-rgb), 0.08);
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .onb-counter {
+    flex: 0 0 auto;
+    font-size: 13px;
+  }
+  .onb-foot-actions {
+    flex: 0 0 auto;
+    gap: 8px !important;
+  }
+  .onb-back,
+  .onb-skip,
+  .onb-next {
+    padding: 11px 18px !important;
+    font-size: 14px !important;
+    border-radius: 12px !important;
+  }
+  .onb-next {
+    /* Hardcoded ink on phone — desktop uses var(--ink) which on
+     * /profile resolves correctly, but the discover dialog can
+     * also be opened from /search with a different accent set;
+     * keep both routes visually identical. */
+    background: rgb(var(--ink-rgb)) !important;
+    color: rgb(var(--paper-rgb)) !important;
+  }
+
+  /* Affinity step — section heads stack tighter. */
+  .onb-aff-section {
+    gap: 10px !important;
+    margin-top: 8px !important;
+  }
+  .onb-aff-sec-head {
+    gap: 12px;
+  }
+  .onb-aff-sec-num {
+    width: 24px;
+    height: 24px;
+  }
+  .onb-aff-sec-head h3 {
+    font-size: 15px;
+  }
+  .onb-chips {
+    gap: 6px;
+  }
+  .onb-chip {
+    padding: 6px 8px 6px 12px;
+    font-size: 13px;
+  }
+
+  /* ── Find-similar drawer (if open on mobile) ────────────────── */
+  .find-similar-pane,
+  .find-similar {
+    width: 100% !important;
+    max-width: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    border-radius: 18px 18px 0 0;
+  }
+
+  /* ── Library picker overlay ─────────────────────────────────── */
+  .lib-picker-overlay,
+  .libpicker {
+    padding: 12px !important;
+  }
+  .lib-picker,
+  .libpicker-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    border-radius: 16px;
+    max-height: 80dvh;
+  }
+  .lib-picker .lib-row,
+  .libpicker .lib-row {
+    padding: 10px 12px;
+  }
+
+  /* ── Onboarding pill / sheet ────────────────────────────────── */
+  .onboarding-empty,
+  .onboarding-panel,
+  .onboarding {
+    margin: 16px 12px !important;
+    padding: 16px !important;
+  }
+  .onboarding-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px;
+  }
+  .onboarding-cat {
+    padding: 10px;
+  }
+  .onboarding-actions {
+    flex-direction: column-reverse;
+    gap: 8px;
+  }
+  .onboarding-actions > * {
+    width: 100%;
+    height: 44px;
+  }
+
+  /* ── Bookmark modal → bottom sheet ──────────────────────────── */
+  .bookmark-modal,
+  #bookmarkModal .bookmark-card,
+  .bookmark-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    top: auto !important;
+    transform: none !important;
+    border-radius: 18px 18px 0 0 !important;
+    max-height: 92dvh;
+    overflow-y: auto;
+    padding-bottom: calc(14px + env(safe-area-inset-bottom)) !important;
+  }
+
+  /* ── Export modal → bottom sheet ────────────────────────────── */
+  .export-modal,
+  #exportModal .export-card,
+  .export-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    top: auto !important;
+    transform: none !important;
+    border-radius: 18px 18px 0 0 !important;
+    max-height: 92dvh;
+    overflow-y: auto;
+    padding-bottom: calc(14px + env(safe-area-inset-bottom)) !important;
+  }
+
+  /* ── Profile page (/profile) ────────────────────────────────── */
+  .page-chrome {
+    padding: 10px 12px !important;
+    padding-top: max(10px, env(safe-area-inset-top)) !important;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .page-chrome-right {
+    margin-left: auto;
+    gap: 8px;
+  }
+  .save-chip {
+    display: none !important;
+  }
+  /* The "Back" pill at the top of /profile is redundant on phone —
+   * the bottom nav owns navigation. Hide it so the chrome reads as
+   * just the theme picker + the page itself. */
+  .back-pill {
+    display: none !important;
+  }
+  .theme-toggle--segmented .theme-opt {
+    padding: 0 10px;
+    height: 34px;
+  }
+
+  .page {
+    padding: 0 16px 0 !important;
+    /* Floating bottom nav (60px) + 10px gutter + safe-area —
+     * leave a generous buffer so the last section never tucks
+     * behind it. */
+    padding-bottom: calc(100px + env(safe-area-inset-bottom)) !important;
+  }
+  /* Hero — slightly more drama on phone. Larger avatar with a
+   * touch of breathing room above, handle reads as a Twitter-y
+   * subhead. */
+  .hero {
+    padding: 12px 0 16px !important;
+    gap: 14px !important;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 10px !important;
+  }
+  .hero-avatar {
+    width: 80px !important;
+    height: 80px !important;
+  }
+  .hero-handle {
+    font-size: 17px !important;
+    font-weight: 600 !important;
+    color: rgb(var(--ink-rgb)) !important;
+  }
+  /* Section heading hierarchy on phone — bigger title, tighter
+   * description so each section reads as a proper card group. */
+  .section-title {
+    font-size: 17px !important;
+    line-height: 1.25 !important;
+  }
+  .section-kicker {
+    font-size: 13.5px !important;
+    line-height: 1.45 !important;
+  }
+
+  /* Profile sections — single column, edge-aligned. */
+  .section,
+  .pf-section,
+  .pf-card {
+    margin: 12px 0 !important;
+    padding: 14px !important;
+    border-radius: 14px;
+  }
+  .section h2,
+  .pf-section h2 {
+    font-size: 15px;
+  }
+  .field-row,
+  .pf-field {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+  }
+  .field-row label,
+  .pf-field label {
+    min-width: 0;
+    text-align: left;
+  }
+  .field-row input,
+  .field-row textarea,
+  .pf-field input,
+  .pf-field textarea {
+    width: 100% !important;
+    font-size: 16px !important;
+  }
+
+  /* Sources grid in /profile collapses to a single column. */
+  .source-grid,
+  .sources-grid,
+  .src-grid {
+    grid-template-columns: 1fr !important;
+    gap: 10px;
+  }
+  .source-card,
+  .src-card {
+    padding: 12px !important;
+  }
+
+  /* Profile sections — tighten the very generous desktop spacing. */
+  .section {
+    padding: 12px 0 4px !important;
+  }
+  .section + .section {
+    padding-top: 22px !important;
+    margin-top: 14px !important;
+  }
+  .section-head {
+    margin-bottom: 12px !important;
+  }
+  .section-head-with-action {
+    flex-direction: column;
+    align-items: stretch !important;
+    gap: 10px !important;
+  }
+  .subhead {
+    margin: 18px 0 6px !important;
+    padding-top: 14px !important;
+  }
+
+  /* Balance + library hero — collapse to a single column. */
+  .billing-hero {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+    padding: 16px !important;
+  }
+  .billing-add {
+    align-items: stretch !important;
+  }
+  .billing-balance-amount {
+    font-size: 28px !important;
+  }
+  .billing-quota,
+  .billing-library {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Credits dialog → bottom sheet */
+  .credits-dialog {
+    max-width: 100vw !important;
+    width: 100vw !important;
+    max-height: 100dvh !important;
+    height: 100dvh !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+  }
+  .credits-body {
+    width: 100%;
+    height: 100%;
+    padding: calc(14px + env(safe-area-inset-top)) 14px
+      calc(14px + env(safe-area-inset-bottom)) !important;
+    overflow-y: auto;
+  }
+  .credits-tabs {
+    flex-wrap: wrap;
+  }
+
+  /* MCP and storage panes — same single-column treatment. */
+  .mcp-grid,
+  .storage-grid {
+    grid-template-columns: 1fr !important;
+    gap: 10px;
+  }
+
+  /* Add-personality modal */
+  .add-personality,
+  .add-personality-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    top: auto !important;
+    transform: none !important;
+    border-radius: 18px 18px 0 0 !important;
+    max-height: 92dvh;
+    overflow-y: auto;
+    padding-bottom: calc(14px + env(safe-area-inset-bottom)) !important;
+  }
+
+  /* ── Admin pages ────────────────────────────────────────────── */
+  .admin-page,
+  .admin-layout {
+    grid-template-columns: 1fr !important;
+    padding: 12px !important;
+  }
+  .admin-rail,
+  .admin-sidebar {
+    display: none !important;
+  }
+  .kpi-grid,
+  .users-grid,
+  .pipeline-grid {
+    grid-template-columns: 1fr !important;
+    gap: 10px;
+  }
+
+  /* ── About / Privacy / static pages ─────────────────────────── */
+  main.prose,
+  main.legal,
+  article.prose {
+    padding: 18px 16px !important;
+    max-width: 100% !important;
+    font-size: 16px;
+    line-height: 1.55;
+  }
+
+  /* ─────────────────────────────────────────────────────────────
+   * Mobile bottom nav — Feed · People · Personal · Settings.
+   *
+   * Floating frosted-glass capsule. The bar lifts off the edges
+   * (12px gutter + safe-area-bottom), reads as a single piece of
+   * glass with a heavy backdrop blur, and uses a capsule fill on
+   * the active tab instead of a separate indicator line. The
+   * whole component reads like a tab bar from a 2024-era native
+   * app rather than a website footer.
+   * ─────────────────────────────────────────────────────────── */
+  .mobile-bottom-nav {
+    display: flex;
+    position: fixed;
+    left: 12px;
+    right: 12px;
+    bottom: calc(10px + env(safe-area-inset-bottom));
+    height: 60px;
+    padding: 6px;
+    gap: 2px;
+    background: rgba(var(--paper-rgb), 0.7);
+    -webkit-backdrop-filter: blur(28px) saturate(180%);
+    backdrop-filter: blur(28px) saturate(180%);
+    border: 1px solid rgba(var(--ink-rgb), 0.06);
+    border-radius: 22px;
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.5) inset,
+      0 12px 32px rgba(var(--ink-rgb), 0.12),
+      0 4px 12px rgba(var(--ink-rgb), 0.06);
+    /* Sits above the Cupertino-pane backdrop so the bottom-nav (and
+     * its filter-count badges) stay visible the entire time a sheet
+     * is opening, not just after the body gets the
+     * `cupertino-pane-presented` class. Before that bump the topics /
+     * sources count badges flickered out during the open animation
+     * because the backdrop briefly covered the nav. The earlier rule
+     * inside `body.cupertino-pane-presented` (line ~1754) is now a
+     * redundant no-op but kept for documentation. */
+    z-index: 1000;
+  }
+  [data-theme="dark"] .mobile-bottom-nav {
+    background: rgba(20, 20, 28, 0.62);
+    border-color: rgba(255, 255, 255, 0.06);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.04) inset,
+      0 12px 32px rgba(0, 0, 0, 0.5),
+      0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+  .mbn-tab {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    height: 48px;
+    color: rgba(var(--ink-rgb), 0.5);
+    text-decoration: none;
+    background: transparent;
+    border: 0;
+    border-radius: 16px;
+    cursor: pointer;
+    font: 500 10.5px/1 var(--sans);
+    letter-spacing: 0.005em;
+    position: relative;
+    transition:
+      color 220ms cubic-bezier(0.2, 0.8, 0.2, 1),
+      background 220ms cubic-bezier(0.2, 0.8, 0.2, 1),
+      transform 140ms ease;
+  }
+  .mbn-tab svg {
+    width: 22px;
+    height: 22px;
+    stroke-width: 1.8;
+    opacity: 0.85;
+    transition:
+      opacity 220ms ease,
+      transform 280ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .mbn-tab:active {
+    transform: scale(0.92);
+  }
+  .mbn-tab:active svg {
+    transform: scale(0.94);
+  }
+  .mbn-tab:hover {
+    color: rgba(var(--ink-rgb), 0.85);
+  }
+  /* Active tab — capsule fill behind icon+label. The fill grows
+   * out of the surrounding glass instead of slapping a coloured
+   * pill on top so the bar still reads as one continuous surface. */
+  .mbn-tab.is-current {
+    color: rgb(var(--ink-rgb));
+    background: rgba(var(--ink-rgb), 0.08);
+  }
+  [data-theme="dark"] .mbn-tab.is-current {
+    background: rgba(255, 255, 255, 0.08);
+  }
+  .mbn-tab.is-current svg {
+    opacity: 1;
+    /* The active icon picks up a touch of weight via stroke-width
+     * (no separate filled-icon set needed for a clean modern read). */
+    stroke-width: 2.2;
+  }
+
+  /* ─────────────────────────────────────────────────────────────
+   * In-bar action buttons (Filter / Post). Sit at the right of
+   * the bottom nav, after a hairline divider. Icon-only so they
+   * stay compact next to the four labelled nav tabs. The Post
+   * action gets an accent fill so the primary write affordance
+   * reads even at a glance.
+   * ─────────────────────────────────────────────────────────── */
+  .mbn-divider {
+    flex: 0 0 1px;
+    align-self: center;
+    width: 1px;
+    height: 26px;
+    background: rgba(var(--ink-rgb), 0.12);
+    margin: 0 4px;
+  }
+  .mbn-action {
+    flex: 0 0 44px;
+    width: 44px;
+    height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: 16px;
+    background: transparent;
+    color: rgba(var(--ink-rgb), 0.7);
+    cursor: pointer;
+    text-decoration: none;
+    position: relative;
+    transition:
+      background 220ms cubic-bezier(0.2, 0.8, 0.2, 1),
+      color 220ms ease,
+      transform 140ms ease;
+  }
+  .mbn-action svg {
+    width: 20px;
+    height: 20px;
+    transition: transform 280ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .mbn-action:hover {
+    color: rgb(var(--ink-rgb));
+    background: rgba(var(--ink-rgb), 0.06);
+  }
+  .mbn-action:active {
+    transform: scale(0.9);
+  }
+  .mbn-action:active svg {
+    transform: scale(0.92);
+  }
+
+  /* Filter is "on" when the Sources sheet is open OR when the
+   * URL carries source filters. Same ink-fill cue as the nav
+   * tabs' active state so the language is consistent. */
+  .mbn-action.is-open,
+  .mbn-action.has-filter {
+    background: rgba(var(--ink-rgb), 0.1);
+    color: rgb(var(--ink-rgb));
+  }
+  [data-theme="dark"] .mbn-action.is-open,
+  [data-theme="dark"] .mbn-action.has-filter {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  /* Post button — primary write action gets a solid ink fill so
+   * it reads as the dominant CTA on the bar. */
+  .mbn-action-accent {
+    background: rgb(var(--ink-rgb));
+    color: rgb(var(--paper-rgb));
+  }
+  .mbn-action-accent:hover {
+    background: rgb(var(--ink-rgb));
+    color: rgb(var(--paper-rgb));
+    filter: brightness(1.08);
+  }
+
+  /* Filter count badge — small disc in the top-right corner of
+   * the filter button. */
+  .mobile-sources-count {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    min-width: 16px;
+    height: 16px;
+    padding: 0 4px;
+    border-radius: 999px;
+    background: rgb(var(--ink-rgb));
+    color: rgb(var(--paper-rgb));
+    font: 700 9.5px/16px var(--sans);
+    text-align: center;
+    box-shadow:
+      0 0 0 2px rgba(var(--paper-rgb), 0.95),
+      0 1px 3px rgba(var(--ink-rgb), 0.2);
+  }
+  .mobile-sources-count[hidden] {
+    display: none;
+  }
+
+  /* ─────────────────────────────────────────────────────────────
+   * Mobile bottom sheets — Sources & People.
+   *
+   * Cupertino Pane (https://github.com/roman-rr/cupertino-pane)
+   * provides the iOS-style draggable pane: handle bar, snap
+   * breakpoints, swipe-down-to-close, frosted backdrop, automatic
+   * keyboard avoidance via visualViewport. We feed it the existing
+   * `.rail` / `.people-rail` markup so every desktop handler
+   * (search, hover, badges) still works without duplicating DOM.
+   *
+   * The library owns positioning — we only style content here. The
+   * `.kn-sheet` / `.kn-sheet-sources` / `.kn-sheet-people` classes
+   * are passed via the library's `cssClass` option and end up on
+   * the wrapper element, so we can scope content overrides without
+   * leaking back to the desktop rails.
+   * ─────────────────────────────────────────────────────────── */
+
+  /* The legacy in-DOM backdrop is unused (Cupertino Pane creates
+   * its own); make sure it never shows. */
+  .mobile-sheet-backdrop {
+    display: none !important;
+  }
+
+  /* The desktop home of these rails is `display: none` on phone
+   * (see top of file). When Cupertino Pane hosts them, we need
+   * them visible AND laid out as a flex column. The pane wrapper
+   * is identified via `.kn-sheet` so this only fires inside a
+   * presented pane — never on the desktop rail. */
+  .kn-sheet .rail,
+  .kn-sheet .people-rail,
+  .kn-sheet .category-rail {
+    display: flex !important;
+    flex-direction: column;
+    position: static !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-height: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: none !important;
+    overflow: hidden;
+  }
+
+  /* Cupertino Pane chrome — match the app's paper/ink palette. */
+  .cupertino-pane-wrapper.kn-sheet .pane {
+    background: rgb(var(--paper-rgb)) !important;
+    border-radius: 20px 20px 0 0 !important;
+    box-shadow:
+      0 -12px 40px rgba(15, 17, 22, 0.22),
+      0 -2px 8px rgba(15, 17, 22, 0.08) !important;
+    overflow: hidden;
+  }
+  [data-theme="dark"] .cupertino-pane-wrapper.kn-sheet .pane {
+    background: rgb(20, 20, 28) !important;
+    box-shadow:
+      0 -12px 40px rgba(0, 0, 0, 0.55),
+      0 -2px 8px rgba(0, 0, 0, 0.3) !important;
+  }
+  .cupertino-pane-wrapper.kn-sheet .draggable {
+    padding: 8px 0 4px !important;
+  }
+  .cupertino-pane-wrapper.kn-sheet .move {
+    width: 40px !important;
+    height: 5px !important;
+    background: rgba(var(--ink-rgb), 0.2) !important;
+    border-radius: 999px !important;
+  }
+  .cupertino-pane-wrapper.kn-sheet .backdrop {
+    -webkit-backdrop-filter: blur(6px) saturate(140%);
+    backdrop-filter: blur(6px) saturate(140%);
+  }
+  /* The pane-content wrapper Cupertino injects has its own padding
+   * we don't want — kill it so our content runs to the edges. */
+  .cupertino-pane-wrapper.kn-sheet .pane > * {
+    padding: 0 !important;
+  }
+
+  /* Hide the desktop rail bits that don't belong inside the sheet. */
+  .kn-sheet .rail .rail-actions,
+  .kn-sheet .rail .rail-foot,
+  .kn-sheet #grpSrc .group-head,
+  .kn-sheet .people-rail-head,
+  .kn-sheet .category-rail-head {
+    display: none !important;
+  }
+
+  /* ── Search input row — sticky right under the handle ─────── */
+  .kn-sheet #grpSrc .group-search-wrap,
+  .kn-sheet .people-rail-search,
+  .kn-sheet .category-rail-search {
+    flex: 0 0 auto;
+    padding: 4px 16px 12px !important;
+    margin: 0 !important;
+    background: rgb(var(--paper-rgb)) !important;
+    /* `position: relative` is critical: the magnifier is
+     * absolutely positioned and needs the wrap as its containing
+     * block (NOT a stray ancestor like `.people-rail` itself).
+     * Without this, the magnifier lands outside the input pill on
+     * phone — the original 'detached magnifier' bug. */
+    position: relative !important;
+  }
+  [data-theme="dark"] .kn-sheet #grpSrc .group-search-wrap,
+  [data-theme="dark"] .kn-sheet .people-rail-search,
+  [data-theme="dark"] .kn-sheet .category-rail-search {
+    background: rgb(20, 20, 28) !important;
+  }
+  .kn-sheet #srcFilter,
+  .kn-sheet .people-rail-search input,
+  .kn-sheet .category-rail-search input {
+    height: 44px;
+    font-size: 16px !important;
+    border-radius: 12px;
+    background: rgba(var(--ink-rgb), 0.05);
+    /* Same inset on both inputs so the magnifier lines up with the
+     * placeholder text. Calculation: wrap padding-left (16) +
+     * comfortable inside-pill inset (18) = 34 → text starts at 34
+     * + a small gap (8) = 42 from the wrap's left edge. */
+    padding-left: 42px !important;
+  }
+  /* Magnifier inside both inputs — absolute-positioned inside the
+   * search wrap. left = wrap.padding-left (16) + pill inset (14)
+   * = 30. Vertical: the wrap has asymmetric padding (4 top, 12
+   * bottom) so `top: 50%` would drop the icon 4px below the
+   * input's center. Anchor explicitly: input top = wrap padding
+   * top (4) + input half-height (22) - icon half-height = 18 for
+   * the 16px SVG, 17 for the 18px ⌕ glyph (line-height: 1). */
+  .kn-sheet .people-rail-search svg,
+  .kn-sheet .category-rail-search svg {
+    position: absolute !important;
+    left: 30px !important;
+    top: 18px !important;
+    transform: none !important;
+    width: 16px !important;
+    height: 16px !important;
+    color: rgba(var(--ink-rgb), 0.45) !important;
+    opacity: 1 !important;
+    pointer-events: none;
+  }
+  .kn-sheet #grpSrc .group-search-wrap::before {
+    content: "⌕";
+    position: absolute !important;
+    left: 30px !important;
+    top: 17px !important;
+    transform: none !important;
+    font-size: 18px !important;
+    line-height: 1;
+    color: rgba(var(--ink-rgb), 0.45) !important;
+    opacity: 1 !important;
+    pointer-events: none;
+  }
+
+  /* ── Scrolling list — only the list scrolls, not the sheet ─── */
+  .kn-sheet #grpSrc {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex !important;
+    flex-direction: column;
+  }
+  .kn-sheet #grpSrc .group-body,
+  .kn-sheet .people-rail-list,
+  .kn-sheet .category-rail-list {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 0 8px calc(20px + env(safe-area-inset-bottom)) !important;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+
+  /* Comfortable row spacing inside the sheets — desktop's tight
+   * 8px rows feel cramped under a thumb. */
+  .kn-sheet .src-row,
+  .kn-sheet .people-row {
+    padding: 12px 10px;
+    border-radius: 12px;
+  }
+  .kn-sheet .people-row {
+    gap: 12px;
+  }
+  /* Phone-sheet dark-mode legibility bump — the default
+   * --text-primary / --text-muted pair works on the desktop rail but
+   * reads dim against the heavier rgb(20,20,28) sheet background and
+   * the bio's 12.5px size compounds it. Push both colors a couple of
+   * steps brighter so the name + bio actually stand out under a
+   * thumb. Light theme keeps its existing palette. */
+  [data-theme="dark"] .kn-sheet .people-row .pr-name {
+    color: #f2f3f8;
+  }
+  [data-theme="dark"] .kn-sheet .people-row .pr-desc {
+    color: #bcbccc;
+  }
+
+  /* Cupertino Pane bumps the body when a pane is presented; make
+   * sure the page underneath doesn't horizontally scroll. */
+  body.cupertino-pane-presented {
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
+
+  /* The feed's sticky top search bar (`.spotlight-row`) sits at
+   * z-index: 40 so it stays above the feed cards on scroll. That
+   * puts it ABOVE Cupertino Pane's backdrop too — it pokes through
+   * unblurred while the sheet is open. Drop it under the backdrop
+   * whenever a pane is presented so the whole page reads as one
+   * frosted surface behind the sheet. Same treatment for any other
+   * sticky-positioned element that has its own stacking context. */
+  body.cupertino-pane-presented .spotlight-row,
+  body.cupertino-pane-presented .filter-strip,
+  body.cupertino-pane-presented .feed-link-top,
+  body.cupertino-pane-presented .page-chrome {
+    z-index: 0 !important;
+  }
+
+  /* When a pane is open, the floating bottom-nav capsule STAYS in
+   * place — same 12px gutters, same 10px+safe-area lift off the
+   * bottom edge, same rounded radius. The pane rises from above
+   * the capsule and its lower edge tucks behind the frosted bar.
+   * Bump the z-index so the capsule paints on top of the pane and
+   * its icons remain tappable. */
+  body.cupertino-pane-presented .mobile-bottom-nav {
+    z-index: 1000 !important;
+  }
+
+  /* Leave enough room at the bottom of the in-pane list so the last
+   * row never disappears behind the floating capsule. The capsule
+   * total reserve is ~70px (10 gutter + 60 height) + safe-area; add
+   * a comfortable breathing buffer above that. */
+  .kn-sheet #grpSrc .group-body,
+  .kn-sheet .people-rail-list,
+  .kn-sheet .category-rail-list {
+    padding-bottom: calc(96px + env(safe-area-inset-bottom)) !important;
+  }
+
+  /* ── Stability tweaks ───────────────────────────────────────── */
+  /* Avoid the iOS native "tap-to-zoom" effect when clicking buttons. */
+  *:focus {
+    outline: none;
+  }
+  /* Phone build: drop the focus ring on every input. The caret +
+   * software keyboard already signal which control is active;
+   * adding a coloured ring on top reads as noisy. */
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    outline: 0;
+  }
+
+  /* The page should never bounce-zoom on double tap. */
+  button,
+  [role="button"],
+  a {
+    touch-action: manipulation;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────────
+ * Very small phones (≤ 380px wide) — squeeze paddings a touch more
+ * so the feed doesn't feel cramped.
+ * ────────────────────────────────────────────────────────────── */
+@media (max-width: 380px) {
+  .doc,
+  .results .doc-card,
+  .results .result,
+  .results > article,
+  .results > .card {
+    padding: 12px 12px !important;
+  }
+  .doc h2,
+  .doc .doc-title,
+  .doc .title {
+    font-size: 16px !important;
+  }
+  .spotlight input {
+    font-size: 16px !important;
+  }
+}

@@ -1,0 +1,802 @@
+/* ── Find-similar inline panel ──────────────────────────────
+     * Spans the full width of the card (grid-column 1 / -1) and
+     * collapses cleanly via max-height. Header + sparkle accent +
+     * a column of compact rows; loading state has 3 pulsing dots. */
+.similar-panel {
+  grid-column: 1 / -1;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition:
+    max-height 0.35s cubic-bezier(0.32, 0.72, 0, 1),
+    opacity 0.25s ease,
+    margin-top 0.25s ease;
+  margin-top: 0;
+}
+/* Open: animate up to a generous cap, then JS drops the cap on
+ * transitionend so panels with many related docs aren't clipped.
+ * Earlier `max-height: 1200px` was clipping the bottom rows on
+ * phone once we switched to full cards (250–400px each). The
+ * `.is-fully-open` class is added by JS once the open transition
+ * settles; it unbinds the cap entirely.  */
+.similar-panel.open {
+  max-height: 6000px;
+  opacity: 1;
+  margin-top: 28px;
+}
+.similar-panel.open.is-fully-open {
+  max-height: none;
+  overflow: visible;
+}
+.similar-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.1);
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.similar-head .spark {
+  width: 14px;
+  height: 14px;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+.similar-head .target {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--ink);
+  text-transform: none;
+  letter-spacing: 0;
+  opacity: 0.6;
+}
+.similar-head .target b {
+  font-weight: 500;
+  color: var(--ink);
+  opacity: 1;
+}
+.similar-loading {
+  display: inline-flex;
+  gap: 4px;
+  margin-left: auto;
+}
+.similar-loading span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--muted);
+  opacity: 0.4;
+  animation: similar-pulse 1.2s ease-in-out infinite;
+}
+.similar-loading span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.similar-loading span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+@keyframes similar-pulse {
+  0%,
+  80%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.85);
+  }
+  40% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.similar-list {
+  padding-top: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Full-card variant — the related panel now renders the SAME card
+ * markup as the feed / personal page (renderResult), wrapped in a
+ * `.similar-results` container that adds a soft left indent + a
+ * vertical accent line so the cards read as children of the
+ * Related button above. Inherits everything else (typography,
+ * favourite button, tag pills, tweet media, link cards, the
+ * Related button itself on each child — yes, you can drill in
+ * recursively) from the regular .result styles. */
+.similar-list.similar-results {
+  padding: 10px 0 0;
+  margin-left: 18px;
+  border-left: 2px solid rgba(var(--ink-rgb), 0.08);
+  padding-left: 18px;
+  gap: 22px;
+}
+[data-theme="dark"] .similar-list.similar-results {
+  border-left-color: rgba(255, 255, 255, 0.1);
+}
+.similar-list.similar-results > .result {
+  /* The parent card sets its own bottom margin via the feed's row
+   * cadence; inside the related panel we space cards via `gap`
+   * instead, so reset the inherited spacing to avoid double-gaps. */
+  margin: 0 !important;
+}
+@media (max-width: 768px) {
+  /* Indent shrinks on phone so cards keep most of the viewport
+   * width — a 36px indent on a 360px screen would crop tweet
+   * media. */
+  .similar-list.similar-results {
+    margin-left: 10px;
+    padding-left: 12px;
+    gap: 18px;
+  }
+}
+.similar-row {
+  display: grid;
+  grid-template-columns: 28px 1fr auto auto auto;
+  gap: 14px;
+  align-items: center;
+  padding: 10px 8px;
+  border-radius: 10px;
+  color: inherit;
+  text-decoration: none;
+  transition: background 0.12s ease;
+  position: relative;
+}
+.similar-row:hover {
+  background: rgba(var(--ink-rgb), 0.04);
+}
+.similar-row .ico {
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  background: rgba(var(--ink-rgb), 0.05);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+.similar-row .ico img {
+  width: 18px;
+  height: 18px;
+}
+.similar-row .body {
+  min-width: 0;
+}
+.similar-row h4 {
+  font-family: var(--display);
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  margin: 0 0 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--ink);
+}
+.similar-row:hover h4 {
+  color: var(--accent);
+}
+.similar-row .meta {
+  font-family: var(--sans);
+  font-size: 11.5px;
+  color: var(--muted);
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+}
+.similar-row .meta .src {
+  font-weight: 600;
+  color: rgba(var(--ink-rgb), 0.7);
+  letter-spacing: -0.005em;
+}
+.similar-row .meta .dot {
+  opacity: 0.4;
+}
+.similar-row .from-ava {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-right: 4px;
+}
+.similar-row .similar-score {
+  font-family: ui-monospace, "SF Mono", monospace;
+  font-size: 10.5px;
+  font-weight: 500;
+  color: var(--muted);
+  opacity: 0.5;
+  font-variant-numeric: tabular-nums;
+}
+.similar-row .similar-fav {
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  flex-shrink: 0;
+  opacity: 0.55;
+  transition:
+    opacity 0.15s ease,
+    color 0.15s ease,
+    background 0.15s ease;
+}
+.similar-row:hover .similar-fav {
+  opacity: 1;
+}
+.similar-row .similar-fav.on {
+  opacity: 1;
+}
+.similar-row .arrow {
+  color: var(--muted);
+  opacity: 0;
+  transform: translateX(-3px);
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease;
+}
+.similar-row:hover .arrow {
+  opacity: 0.7;
+  transform: translateX(0);
+  color: var(--accent);
+}
+.similar-empty {
+  padding: 18px 8px;
+  font-family: var(--display);
+  font-style: italic;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* Action buttons — pinned to the top-right corner of each result
+     * card. A horizontal pair instead of the old vertical stack:
+     * tighter cluster, doesn't overlap the score / owner-avatars
+     * meta strip in the bottom-right. Hidden until the row is
+     * hovered to keep the page calm; an *active* favorite stays
+     * visible because saved state is more useful than calm. */
+.result-actions {
+  /* Lives inside `.result-foot-right` as a flex sibling of the score
+   * and the avatar stack. No absolute positioning any more — the
+   * cluster sits naturally to the left of the avatars and grows /
+   * shrinks with them, so a wide sharer row never hides the buttons. */
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-right: 4px;
+  /* Visibility still lives on each child .act so the favourite heart
+   * stays pinned at rest while the edit pencil only appears on hover. */
+  opacity: 1;
+}
+
+/* Personal-page "also liked by" strip — small, half-transparent VIP
+ * avatars under each card's foot-right cluster. Reads as social
+ * context, not primary content. */
+.result-foot-right .co-owners {
+  flex-basis: 100%;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 6px;
+  opacity: 0.6;
+  transition: opacity 0.14s ease;
+}
+.result-foot-right .co-owners:hover {
+  opacity: 1;
+}
+.result-foot-right .co-owners-label {
+  font: 500 11px/1.2 var(--sans);
+  color: var(--text-muted);
+  margin-right: 4px;
+  letter-spacing: 0.01em;
+}
+.result-foot-right .co-owners .ava-host {
+  position: relative;
+  display: inline-flex;
+}
+.result-foot-right .co-owners .ava.co-ava {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  margin-left: -4px;
+  background: white;
+  box-shadow:
+    0 0 0 1.5px #ffffff,
+    0 0 0 2.5px var(--border);
+  overflow: visible;
+  display: inline-block;
+  text-decoration: none;
+  transition: transform 0.18s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.result-foot-right .co-owners .ava.co-ava:first-child {
+  margin-left: 0;
+}
+.result-foot-right .co-owners .ava.co-ava img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+.result-foot-right .co-owners .ava.co-ava:hover {
+  transform: translateY(-1px) scale(1.12);
+  z-index: 5;
+}
+/* Children fade in/out per-card-hover. */
+.result-actions .act {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease;
+}
+.result:hover .result-actions .act,
+.result-actions .act:focus-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+/* Upvote (favourite) is a primary action — keep it always
+ * slightly visible at rest so the affordance is discoverable
+ * without hovering the card. Lifts to full opacity on hover or
+ * when the row itself is hovered, like the other .act siblings.
+ * The `.on` rule below pins it at 100% once the user has
+ * upvoted, so an active state stays unmistakable. */
+.result-actions .act-fav {
+  opacity: 0.38;
+  pointer-events: auto;
+}
+.result:hover .result-actions .act-fav,
+.result-actions .act-fav:hover,
+.result-actions .act-fav:focus-visible {
+  opacity: 1;
+}
+.act {
+  width: 28px;
+  height: 28px;
+  display: inline-grid;
+  place-items: center;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    transform 0.18s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.act svg {
+  width: 15px;
+  height: 15px;
+  display: block;
+}
+.act:hover {
+  background: rgba(var(--ink-rgb), 0.07);
+  color: var(--ink);
+  transform: translateY(-1px);
+}
+.act:active {
+  transform: translateY(0);
+}
+.act:focus-visible {
+  outline: 2px solid rgba(var(--accent-rgb), 0.4);
+  outline-offset: 1px;
+}
+/* Favourite, when active: filled heart, accent colour, kept
+     * visible even when the row isn't hovered. */
+.act-fav.on {
+  color: var(--accent);
+}
+.act-fav.on:hover {
+  background: rgba(var(--accent-rgb), 0.1);
+}
+/* Starred heart stays pinned at rest. Siblings (edit, future) keep
+ * the default per-child rules above — invisible until card-hover. */
+.result-actions .act-fav.on {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Manual collapse button — top-right of a feed card that's followed
+ * by 5+ same-source siblings. Tiny upward chevron; click hides the
+ * followers behind a "See N more" pill. Hidden until the card hovers
+ * or focuses so it doesn't compete with the existing fav/edit cluster
+ * for attention. */
+.result {
+  position: relative;
+}
+.result-manual-collapse {
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(var(--ink-rgb), 0.08);
+  border-radius: 6px;
+  background: rgba(var(--ink-rgb), 0.04);
+  color: rgba(var(--ink-rgb), 0.55);
+  cursor: pointer;
+  /* Faint at rest so it doesn't fight for attention with the other
+   * actions, but always visible. */
+  opacity: 0.7;
+  transition:
+    opacity 0.14s ease,
+    background 0.14s ease,
+    color 0.14s ease,
+    border-color 0.14s ease;
+}
+.result:hover .result-manual-collapse,
+.result-manual-collapse:focus-visible {
+  opacity: 1;
+}
+.result-manual-collapse:hover {
+  color: var(--accent-primary);
+  background: rgba(var(--accent-rgb), 0.1);
+  border-color: rgba(var(--accent-rgb), 0.28);
+}
+.result-manual-collapse svg {
+  width: 13px;
+  height: 13px;
+}
+
+.src-rail-sentinel {
+  height: 1px;
+  width: 100%;
+}
+
+/* People-rail infinite-scroll sentinel. Zero visual presence but
+ * a real layout box so the IntersectionObserver can fire when it
+ * enters the rail's viewport. */
+.people-rail-sentinel {
+  height: 1px;
+  width: 100%;
+}
+
+/* People rail loading dot — sits below the list while the VIP +
+ * following data is in flight. Same visual language as the results
+ * and source spinners. */
+.people-loading {
+  display: flex;
+  justify-content: center;
+  padding: 18px 0;
+}
+.people-loading[hidden] {
+  display: none !important;
+}
+.people-loading-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid rgba(var(--ink-rgb), 0.1);
+  border-top-color: rgba(99, 102, 241, 0.7);
+  animation: results-loading-spin 0.7s linear infinite;
+}
+
+/* Sources rail loading dot — sits in the group-body while the rail
+ * is being populated (feed: per-followee /api/sources fetch chain;
+ * personal: cold `getSources` before the cache lands). Visually
+ * matches `.results-loading` but compact for the rail width. */
+.src-loading {
+  display: flex;
+  justify-content: center;
+  padding: 16px 0;
+}
+.src-loading[hidden] {
+  display: none !important;
+}
+.src-loading-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid rgba(var(--ink-rgb), 0.1);
+  border-top-color: rgba(99, 102, 241, 0.7);
+  animation: results-loading-spin 0.7s linear infinite;
+}
+
+/* Centred loading spinner — appears between #results and #empty
+ * while a refresh is in flight and the result list is otherwise
+ * blank. The dot pulse is purposely tiny: the page should feel like
+ * it's *almost* ready, not stuck in a heavyweight loader. */
+.results-loading {
+  display: flex;
+  justify-content: center;
+  padding: 80px 0 60px;
+}
+.results-loading[hidden] {
+  display: none !important;
+}
+.results-loading-dot {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid rgba(var(--ink-rgb), 0.1);
+  border-top-color: rgba(99, 102, 241, 0.7);
+  animation: results-loading-spin 0.7s linear infinite;
+}
+@keyframes results-loading-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Feed run-collapse pill — sits between cards. Tap to expand the
+ * suppressed same-source rows inline. */
+.feed-collapse {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 14px;
+  margin: 6px 0 14px;
+  background: rgba(var(--ink-rgb), 0.04);
+  border: 1px dashed rgba(var(--ink-rgb), 0.18);
+  border-radius: 12px;
+  color: var(--text-muted);
+  font: inherit;
+  font-size: 13.5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+.feed-collapse:hover {
+  background: rgba(99, 102, 241, 0.08);
+  color: var(--accent-primary);
+  border-color: rgba(99, 102, 241, 0.3);
+}
+.feed-collapse .fc-ico {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  object-fit: contain;
+  flex: 0 0 auto;
+}
+.feed-collapse .fc-ico-fallback {
+  display: inline-grid;
+  place-items: center;
+  background: rgba(var(--ink-rgb), 0.1);
+  color: var(--text-muted);
+  font-size: 10px;
+}
+.feed-collapse .fc-label {
+  flex: 1 1 auto;
+  text-align: left;
+}
+.feed-collapse .fc-chev {
+  width: 14px;
+  height: 14px;
+  opacity: 0.7;
+}
+
+/* Hide the floating fav/edit cluster while the row is in edit mode
+ * — the editor's own Save/Cancel pills replace those affordances
+ * and the heart/edit icons otherwise overlap the inputs. */
+.result[data-editing="1"] .result-actions {
+  display: none;
+}
+
+/* Inline title/summary editor — replaces the card's title <h3> and
+ * summary <p> with form controls in place. Visual: tighter spacing,
+ * indigo focus ring, right-aligned action buttons matching the
+ * compose dialog's pill style. */
+.result .edit-title {
+  width: 100%;
+  background: rgba(var(--ink-rgb), 0.04);
+  border: 1px solid rgba(var(--ink-rgb), 0.08);
+  border-radius: 8px;
+  outline: 0;
+  padding: 6px 10px;
+  font: inherit;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.result .edit-title:focus,
+.result .edit-summary:focus {
+  border-color: rgba(var(--ink-rgb), 0.22);
+  box-shadow: 0 0 0 3px rgba(var(--ink-rgb), 0.05);
+}
+.result .edit-summary {
+  width: 100%;
+  background: rgba(var(--ink-rgb), 0.04);
+  border: 1px solid rgba(var(--ink-rgb), 0.08);
+  border-radius: 8px;
+  outline: 0;
+  padding: 8px 10px;
+  font: inherit;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--text-primary);
+  resize: vertical;
+  min-height: 88px;
+}
+.result .edit-tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  padding: 6px 4px;
+  border-top: 1px solid rgba(var(--ink-rgb), 0.08);
+}
+.result .edit-tags-chips {
+  display: contents;
+}
+.result .edit-tags-input {
+  flex: 1 0 120px;
+  min-width: 120px;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  font: inherit;
+  font-size: 13px;
+  color: var(--text-primary);
+  padding: 2px 0;
+  caret-color: rgba(var(--ink-rgb), 0.65);
+}
+.result .edit-tags-input::placeholder {
+  color: var(--text-muted);
+}
+.result .edit-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+/* Save + Cancel share the same neutral chip surface as the Post FAB
+ * and the compose-submit button. No indigo gradients, no coloured
+ * glow — light grey with the soft top highlight, hover brightens. */
+.result .edit-actions button {
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  padding: 0 13px;
+  border-radius: 9px;
+  font: 600 12px/1 var(--sans);
+  letter-spacing: 0;
+  cursor: pointer;
+  color: rgba(var(--ink-rgb), 0.78);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.55),
+      rgba(255, 255, 255, 0) 55%
+    ),
+    rgba(var(--ink-rgb), 0.04);
+  border: 1px solid rgba(var(--ink-rgb), 0.08);
+  box-shadow:
+    0 1px 0 rgba(var(--ink-rgb), 0.02),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  transition:
+    background 0.14s ease,
+    color 0.14s ease,
+    border-color 0.14s ease,
+    box-shadow 0.14s ease,
+    opacity 0.14s ease;
+}
+[data-theme="dark"] .result .edit-actions button {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.04),
+      rgba(255, 255, 255, 0) 55%
+    ),
+    rgba(var(--ink-rgb), 0.045);
+  border-color: rgba(255, 255, 255, 0.07);
+  box-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+.result .edit-actions button:hover {
+  color: rgba(var(--ink-rgb), 0.95);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.65),
+      rgba(255, 255, 255, 0) 55%
+    ),
+    rgba(var(--ink-rgb), 0.07);
+  border-color: rgba(var(--ink-rgb), 0.16);
+  box-shadow:
+    0 1px 2px rgba(var(--ink-rgb), 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+[data-theme="dark"] .result .edit-actions button:hover {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.06),
+      rgba(255, 255, 255, 0) 55%
+    ),
+    rgba(var(--ink-rgb), 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+.result .edit-save:disabled,
+.result .edit-cancel:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.state {
+  text-align: center;
+  padding: 60px 0;
+  color: var(--muted);
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 22px;
+}
+.lib-empty[hidden] {
+  display: none !important;
+}
+.lib-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 14px;
+  padding: 80px 24px;
+  /* Sit in the same horizontal box as the spotlight search bar so
+     the empty state reads as "centered under the search". The
+     calc/margin pair mirrors `.spotlight` exactly. */
+  max-width: 720px;
+  margin-left: max(44px, calc((100% - 1320px) / 2));
+  margin-right: auto;
+  font-style: normal;
+}
+.lib-empty svg {
+  width: 56px;
+  height: 56px;
+  color: rgba(var(--ink-rgb), 0.18);
+}
+.lib-empty h2 {
+  font-family: var(--display);
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: -0.012em;
+  color: var(--ink);
+  margin: 0;
+  font-style: normal;
+}
+.lib-empty p {
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--muted);
+  margin: 0;
+  letter-spacing: -0.005em;
+}
+.lib-empty-add {
+  margin-top: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  padding: 0 18px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #ffffff;
+  border: 1px solid var(--accent);
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  cursor: pointer;
+  box-shadow:
+    0 1px 3px rgba(var(--accent-rgb), 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  transition:
+    background 0.15s ease,
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+.lib-empty-add svg {
+  width: 14px;
+  height: 14px;
+  color: currentColor;
+}
+.lib-empty-add:hover {
+  background: color-mix(in srgb, var(--accent) 86%, #000 14%);
+  transform: translateY(-1px);
+  box-shadow:
+    0 6px 14px rgba(var(--accent-rgb), 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}

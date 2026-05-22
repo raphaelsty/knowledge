@@ -1,0 +1,1223 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Knowledge</title>
+    <meta
+      name="description"
+      content="Semantic search across curated knowledge libraries — papers, bookmarks, blog posts, repos. Powered by ColBERT late-interaction retrieval."
+    />
+    <meta
+      name="robots"
+      content="index, follow, max-image-preview:large, max-snippet:-1"
+    />
+    <link rel="canonical" href="https://knowledge-web.org/" />
+
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicon/apple-touch-icon.png"
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/favicon/site.webmanifest" />
+
+    <meta property="og:site_name" content="Knowledge" />
+    <meta property="og:title" content="Search — Knowledge" />
+    <meta
+      property="og:description"
+      content="Semantic search across curated knowledge libraries."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:url" content="https://knowledge-web.org/" />
+    <meta
+      property="og:image"
+      content="https://knowledge-web.org/img/knowledge.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Knowledge — semantic search engine"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Search — Knowledge" />
+    <meta
+      name="twitter:description"
+      content="Semantic search across curated knowledge libraries."
+    />
+    <meta
+      name="twitter:image"
+      content="https://knowledge-web.org/img/knowledge.png"
+    />
+    <meta
+      name="twitter:image:alt"
+      content="Knowledge — semantic search engine"
+    />
+
+    <!-- Structured data: an Organization + a WebSite with a
+         SearchAction so Google can render the sitelinks search box
+         (the inline form on the SERP that points at /search?q=…). -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://knowledge-web.org/#org",
+            "name": "Knowledge",
+            "url": "https://knowledge-web.org/",
+            "logo": "https://knowledge-web.org/img/knowledge.png",
+            "description": "A semantic search engine for researchers and curious minds — ColBERT late-interaction retrieval over curated personal libraries.",
+            "sameAs": ["https://github.com/raphaelsty/knowledge"]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://knowledge-web.org/#site",
+            "url": "https://knowledge-web.org/",
+            "name": "Knowledge",
+            "publisher": { "@id": "https://knowledge-web.org/#org" },
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://knowledge-web.org/search?q={search_term_string}"
+              },
+              "query-input": "required name=search_term_string"
+            }
+          }
+        ]
+      }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/search/style.css" />
+    <link rel="stylesheet" href="/search/library-picker.css" />
+    <link rel="stylesheet" href="/search/topbar.css" />
+    <link rel="stylesheet" href="/search/compose.css" />
+    <link rel="stylesheet" href="/search/profile.css" />
+    <link rel="stylesheet" href="/search/results.css?v=9" />
+    <link rel="stylesheet" href="/search/cards.css" />
+    <link rel="stylesheet" href="/search/lightbox.css" />
+    <link rel="stylesheet" href="/search/find-similar.css" />
+    <link rel="stylesheet" href="/search/onboarding.css" />
+    <link rel="stylesheet" href="/lib/auth-modal.css" />
+    <link rel="stylesheet" href="/lib/brand.css" />
+    <link rel="stylesheet" href="/bookmark/style.css" />
+    <link rel="stylesheet" href="/export/style.css" />
+    <!-- Phone-only overrides. Loaded last so it can override the
+         desktop stylesheets above. All rules inside @media
+         (max-width: 768px) — desktop is untouched. -->
+    <link rel="stylesheet" href="/mobile.css" />
+    <script>
+      // Apply the saved theme synchronously so we don't get a one-frame
+      // light-mode flash before page.js has had a chance to read
+      // localStorage. Defaults to "light" (the cream palette). Shared
+      // localStorage key with the welcome page so the choice persists
+      // across the two views.
+      (function () {
+        function applyTheme() {
+          try {
+            var t = localStorage.getItem("theme") || "light";
+            document.documentElement.setAttribute(
+              "data-theme",
+              t === "dark" ? "dark" : "light",
+            );
+          } catch {}
+        }
+        // Initial paint: apply synchronously so we don't flash the
+        // wrong theme before page.js loads.
+        applyTheme();
+        // Back-navigation from /profile to /search restores this page
+        // from the bfcache without re-running the boot script. Listen
+        // for pageshow to re-read the theme that the Settings page may
+        // have changed in the meantime.
+        window.addEventListener("pageshow", applyTheme);
+      })();
+    </script>
+    <!-- Cupertino Pane — iOS-style bottom sheet for the Sources &
+         People drawers on mobile. Loaded synchronously so the
+         CupertinoPane global is ready by the time page.js wires
+         up the bottom-nav handlers. ~14kb gzipped, MIT. -->
+    <script src="https://cdn.jsdelivr.net/npm/cupertino-pane@1.5.4/dist/cupertino-pane.min.js"></script>
+  </head>
+  <body>
+    <!-- Discrete brand mark — bottom-right on desktop, above the
+         bottom nav on phone. Marketing affordance kept quiet so it
+         never competes with the feed content. -->
+    <a
+      class="brand-mark"
+      href="https://github.com/raphaelsty/knowledge"
+      target="_blank"
+      rel="noopener noreferrer"
+      title="Knowledge — open source on GitHub"
+    >
+      <span class="brand-mark-name">Knowledge</span>
+      <span class="brand-mark-dot" aria-hidden="true"></span>
+      <svg
+        class="brand-mark-gh"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        aria-hidden="true"
+      >
+        <path
+          d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.24 3.34.95.1-.74.4-1.24.73-1.53-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.18 1.18A11 11 0 0 1 12 6.8c.98 0 1.97.13 2.9.39 2.21-1.49 3.18-1.18 3.18-1.18.62 1.58.23 2.75.11 3.04.74.81 1.18 1.84 1.18 3.1 0 4.42-2.69 5.4-5.25 5.68.41.36.78 1.06.78 2.13v3.16c0 .31.21.68.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"
+        />
+      </svg>
+    </a>
+    <div class="layout">
+      <aside class="rail" id="rail">
+        <!-- User pill — avatar + display name (links to the user's
+             personal library) with a small "Settings" text link
+             tucked underneath. Replaces the prior gear-icon button. -->
+        <div class="rail-actions">
+          <a class="auth-btn anon" id="authBtn" href="#" role="button">
+            <svg
+              class="auth-btn-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+              <polyline points="10 17 15 12 10 7" />
+              <line x1="15" y1="12" x2="3" y2="12" />
+            </svg>
+            <span>Sign in</span>
+          </a>
+          <!-- "Settings" opens the profile editor. The Feed link
+               lives above the search bar in the middle pane. -->
+          <a
+            class="rail-link settings-link"
+            id="authSettings"
+            href="/profile"
+            title="Settings — profile & sources"
+            hidden
+            >Settings</a
+          >
+          <!-- Theme toggle removed from the search page: appearance is
+               now set from the Settings page only (/profile). -->
+        </div>
+        <div class="group" id="grpSrc">
+          <div class="group-head">
+            <h3>Sources</h3>
+            <button class="clear-all" id="clearSrc" style="display: none">
+              Clear
+            </button>
+          </div>
+          <div class="group-search-wrap">
+            <input
+              class="group-search"
+              id="srcFilter"
+              placeholder="Search sources"
+            />
+          </div>
+          <div class="group-body">
+            <div id="srcList"></div>
+            <div class="src-loading" id="srcLoading" hidden aria-hidden="true">
+              <span class="src-loading-dot"></span>
+            </div>
+          </div>
+          <template id="srcFav-fallback"
+            ><span class="fav fav-fallback" aria-hidden="true"
+              >●</span
+            ></template
+          >
+        </div>
+        <div class="rail-foot">
+          <!--
+            Bottom-right rail footer. Compact query metrics: results
+            count + latency + candidate-pool size, on a single line.
+            Hidden until the first refresh fills it. The legacy
+            `#resultCount` element stays as the first segment so
+            existing code paths that write to it keep working.
+          -->
+          <div class="query-metrics" id="queryMetrics" hidden>
+            <span class="qm-segment qm-results count" id="qmResults"></span>
+            <span class="qm-sep" aria-hidden="true">·</span>
+            <span class="qm-segment qm-time" id="qmTime"></span>
+            <span class="qm-sep" aria-hidden="true">·</span>
+            <span class="qm-segment qm-cands" id="qmCands"></span>
+          </div>
+          <span class="count" id="resultCount" hidden></span>
+        </div>
+      </aside>
+      <main class="pane">
+        <!-- Quick nav above the search bar. Routes to the timeline
+             (followees + self). Hidden on the feed itself. -->
+        <a
+          class="rail-link feed-link feed-link-top"
+          id="feedLink"
+          href="/search"
+          title="Your feed — everyone you follow plus your own library"
+          hidden
+        >
+          <span>Back to your feed</span>
+          <svg
+            class="feed-link-arrow"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="13 6 19 12 13 18" />
+          </svg>
+        </a>
+        <!-- Inverse of #feedLink — shown only ON the feed, hidden
+             elsewhere. Routes to the signed-in user's library. -->
+        <a
+          class="rail-link feed-link feed-link-top"
+          id="personalLink"
+          href="#"
+          title="Your personal page"
+          hidden
+        >
+          <span>Visit Personal Page</span>
+          <svg
+            class="feed-link-arrow"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="13 6 19 12 13 18" />
+          </svg>
+        </a>
+        <div class="spotlight-row">
+          <div class="spotlight">
+            <svg
+              class="spotlight-mag"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <circle cx="11" cy="11" r="7" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+            <input
+              id="q"
+              type="search"
+              autocomplete="off"
+              spellcheck="false"
+              placeholder=" "
+            />
+            <button
+              class="spotlight-clear"
+              id="qClear"
+              type="button"
+              aria-label="Clear search"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.6"
+                stroke-linecap="round"
+                aria-hidden="true"
+              >
+                <line x1="6" y1="6" x2="18" y2="18" />
+                <line x1="18" y1="6" x2="6" y2="18" />
+              </svg>
+            </button>
+            <span
+              class="reranker-dot"
+              id="rerankerDot"
+              data-state="off"
+              title="ColBERT re-ranker"
+            ></span>
+          </div>
+          <!-- Minimalist date filter — bare text + chevron, sits outside
+             the spotlight so it doesn't crowd the input. Native
+             <select> with appearance:none keeps the chevron drawn by
+             CSS. -->
+          <label class="since-filter" aria-label="Filter by date">
+            <select id="qSince" class="since-filter-select">
+              <option value="">Any time</option>
+              <option value="7d">Past week</option>
+              <option value="30d">Past month</option>
+              <option value="90d">Past 3 months</option>
+              <option value="365d">Past year</option>
+            </select>
+            <svg
+              class="since-filter-caret"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </label>
+          <!-- Category picker — twin of the one in search.html. The
+               welcome page (index.html) shares the same JS bundle
+               (search/page.js), so the picker has to exist in both
+               documents for the wire-up to find its elements. -->
+          <div class="cat-picker" id="catPickerWrap">
+            <button
+              type="button"
+              class="cat-picker-btn"
+              id="catPickerBtn"
+              aria-haspopup="listbox"
+              aria-expanded="false"
+              aria-controls="catPickerPanel"
+              title="Filter the feed by topic category"
+            >
+              <svg
+                class="cat-picker-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <polygon points="12 2 22 8.5 12 15 2 8.5 12 2" />
+                <polyline points="2 15.5 12 22 22 15.5" />
+                <polyline points="2 12 12 18.5 22 12" />
+              </svg>
+              <span class="cat-picker-label" id="catPickerLabel"
+                >All categories</span
+              >
+              <span
+                class="cat-picker-count"
+                id="catPickerCount"
+                hidden
+                aria-hidden="true"
+              ></span>
+              <svg
+                class="cat-picker-caret"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </button>
+            <div
+              class="cat-picker-panel"
+              id="catPickerPanel"
+              role="listbox"
+              hidden
+            >
+              <div class="cat-picker-search-wrap">
+                <input
+                  type="search"
+                  class="cat-picker-search"
+                  id="catPickerSearch"
+                  placeholder="Search categories…"
+                  autocomplete="off"
+                  spellcheck="false"
+                />
+              </div>
+              <div class="cat-picker-list" id="catPickerList"></div>
+            </div>
+          </div>
+          <!-- See search.html — pull-to-refresh gesture replaces the
+               old qShuffle button. -->
+          <!-- Scope toggle — when on (and signed in), feed search is
+               narrowed to the caller's follow graph (followees + self).
+               Off by default so day-one users see global results. -->
+          <button
+            type="button"
+            class="scope-filter"
+            id="qFollowingOnly"
+            aria-pressed="false"
+            title="Restrict search to people you follow"
+            hidden
+          >
+            <svg
+              class="scope-filter-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+            </svg>
+            <span>Following only</span>
+          </button>
+        </div>
+        <div class="filter-strip">
+          <div class="active-tags" id="activeTags" hidden></div>
+          <div class="result-sources" id="resultSources" hidden></div>
+        </div>
+        <!-- Twitter-style profile header. Rendered only when the
+             current selection is exactly the signed-in user's own
+             library (so the page reads as a personal page rather
+             than a multi-library feed). Populated by page.js. -->
+        <div class="profile-header" id="profileHeader" hidden></div>
+        <div class="results" id="results"></div>
+        <div id="loadMoreSentinel" hidden aria-hidden="true"></div>
+        <div class="state" id="empty" style="display: none">No results.</div>
+        <!-- Centred loading spinner shown when the result list is empty
+             and a refresh is in flight. Hidden as soon as the first
+             card lands (or the empty-state is reached). -->
+        <div
+          class="results-loading"
+          id="resultsLoading"
+          hidden
+          aria-hidden="true"
+        >
+          <span class="results-loading-dot"></span>
+        </div>
+      </main>
+
+      <!-- Compose FAB. Pill on desktop (icon + label), round on
+           tablet/mobile. Bottom-right of the feed column, opens
+           the compose dialog. Visible only when signed in. -->
+      <button
+        type="button"
+        class="post-fab"
+        id="postTriggerBtn"
+        title="Compose a new post"
+        aria-label="New post"
+        hidden
+      >
+        <svg
+          class="post-fab-icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M20 2c-4 0-8 2-11 5L4 12v6h6l5-5c3-3 5-7 5-11z" />
+          <path d="M4 22 14 12" />
+        </svg>
+        <span class="post-fab-label">Post</span>
+      </button>
+
+      <!-- Compose dialog. Saves the typed text and any URL it
+           contains as a doc via /auth/me/documents/bulk + stars it
+           via /auth/me/favorite-docs. -->
+      <!-- Image lightbox — opened by tweet-media-tile clicks via
+           data-zoom. Click anywhere outside the image (or press Esc)
+           to dismiss. -->
+      <div class="img-lightbox" id="imgLightbox" hidden>
+        <button
+          type="button"
+          class="img-lightbox-close"
+          id="imgLightboxClose"
+          aria-label="Close"
+        >
+          ×
+        </button>
+        <img id="imgLightboxImg" alt="" />
+      </div>
+      <div class="compose-back" id="composeBack" hidden></div>
+      <div
+        class="compose"
+        id="compose"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="composeTitle"
+        hidden
+      >
+        <header class="compose-head">
+          <button
+            type="button"
+            class="compose-close"
+            id="composeClose"
+            aria-label="Close"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.4"
+              stroke-linecap="round"
+              aria-hidden="true"
+            >
+              <line x1="6" y1="6" x2="18" y2="18" />
+              <line x1="18" y1="6" x2="6" y2="18" />
+            </svg>
+          </button>
+          <span id="composeTitle" class="compose-title">New post</span>
+          <button
+            type="button"
+            class="compose-submit"
+            id="composeSubmit"
+            disabled
+          >
+            <span>Post</span>
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="13 6 19 12 13 18" />
+            </svg>
+          </button>
+        </header>
+        <div class="compose-row">
+          <div class="compose-avatar" id="composeAvatar"></div>
+          <div class="compose-body">
+            <input
+              id="composeTitleInput"
+              class="compose-title-input"
+              type="text"
+              placeholder="Title"
+              autocomplete="off"
+              spellcheck="true"
+              maxlength="200"
+              required
+              aria-required="true"
+            />
+            <textarea
+              id="composeInput"
+              class="compose-input"
+              placeholder="What's on your mind? Paste a link, jot a note…"
+              rows="3"
+              autocomplete="off"
+              spellcheck="true"
+            ></textarea>
+            <!-- Autofill button — visible only when the body contains
+                 a URL. Default behaviour fills empty fields
+                 automatically; the user can click this to overwrite
+                 anything they typed by hand. -->
+            <button
+              type="button"
+              class="compose-autofill"
+              id="composeAutofill"
+              hidden
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M21 12a9 9 0 1 1-3-6.7" />
+                <polyline points="21 4 21 10 15 10" />
+              </svg>
+              <span>Autofill from link</span>
+            </button>
+            <div class="compose-tags" id="composeTagsField">
+              <div class="compose-tags-chips" id="composeTagsChips"></div>
+              <input
+                id="composeTagsInput"
+                class="compose-tags-input"
+                type="text"
+                placeholder="Add tags (press comma or Enter)"
+                autocomplete="off"
+                spellcheck="false"
+              />
+            </div>
+            <!-- Hint / status line — visible only when JS writes a
+                 status message via setComposeHint (errors, saving…).
+                 Stays empty at rest so the dialog reads cleaner. -->
+            <div class="compose-hint" id="composeHint"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- People-to-follow rail. Sits on the right of the main pane on
+           desktop; hidden on narrower viewports so the search results
+           keep room to breathe. Populated lazily from /api/users (VIPs)
+           and /api/me/following on first paint. -->
+      <aside class="people-rail" id="peopleRail" aria-label="People to follow">
+        <div class="people-rail-head">
+          <h2 id="discoverBtn" title="Discover people to follow by topic">
+            Peoples
+          </h2>
+          <div class="right-rail-toggle" role="tablist" aria-label="Right rail">
+            <button
+              type="button"
+              class="rrt-tab is-current"
+              role="tab"
+              data-rail="people"
+              aria-selected="true"
+            >
+              People
+            </button>
+            <button
+              type="button"
+              class="rrt-tab"
+              role="tab"
+              data-rail="categories"
+              aria-selected="false"
+            >
+              Topics
+              <span
+                class="rrt-tab-count"
+                id="rrtTabCount"
+                hidden
+                aria-hidden="true"
+              ></span>
+            </button>
+          </div>
+        </div>
+        <div class="people-rail-search">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            aria-hidden="true"
+          >
+            <circle cx="11" cy="11" r="7" />
+            <path d="m20 20-4-4" />
+          </svg>
+          <input
+            id="peopleRailFilter"
+            type="search"
+            placeholder="Search people…"
+            autocomplete="off"
+            spellcheck="false"
+          />
+        </div>
+        <div class="people-rail-list" id="peopleRailList" role="list"></div>
+        <div
+          class="people-loading"
+          id="peopleLoading"
+          hidden
+          aria-hidden="true"
+        >
+          <span class="people-loading-dot"></span>
+        </div>
+      </aside>
+      <!-- Mobile twin of the desktop category picker — opened by the
+           bottom-nav "Topics" tab via Cupertino Pane. See search.html
+           for the matching element + comments. -->
+      <aside
+        class="category-rail"
+        id="categoryRail"
+        aria-label="Topic categories"
+      >
+        <div class="category-rail-head">
+          <h2>Topics</h2>
+          <div class="right-rail-toggle" role="tablist" aria-label="Right rail">
+            <button
+              type="button"
+              class="rrt-tab"
+              role="tab"
+              data-rail="people"
+              aria-selected="false"
+            >
+              People
+            </button>
+            <button
+              type="button"
+              class="rrt-tab is-current"
+              role="tab"
+              data-rail="categories"
+              aria-selected="true"
+            >
+              Topics
+            </button>
+          </div>
+        </div>
+        <!-- Same "Clear selection" affordance as search.html. -->
+        <button
+          type="button"
+          class="cat-rail-clear"
+          id="catRailClear"
+          data-action="clear"
+          data-slug=""
+          hidden
+        >
+          Clear selection
+        </button>
+        <div class="category-rail-search">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            aria-hidden="true"
+          >
+            <circle cx="11" cy="11" r="7" />
+            <path d="m20 20-4-4" />
+          </svg>
+          <input
+            id="categoryRailFilter"
+            type="search"
+            placeholder="Search topics…"
+            autocomplete="off"
+            spellcheck="false"
+          />
+        </div>
+        <div class="category-rail-list" id="categoryRailList" role="list"></div>
+      </aside>
+    </div>
+
+    <!-- ── Mobile-only chrome ─────────────────────────────────────
+         The bottom nav hosts both navigation tabs (Feed / People /
+         Personal / Settings) and two contextual action buttons
+         (Filter / Post) that always act on the *current* page.
+         Wired up by page.js → wireMobileChrome(). Desktop: hidden
+         via mobile.css. -->
+    <nav class="mobile-bottom-nav" id="mobileBottomNav" aria-label="Primary">
+      <a class="mbn-tab" data-tab="feed" href="/" id="mbnFeed">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M3 12l9-9 9 9" />
+          <path d="M5 10v10h14V10" />
+        </svg>
+        <span>Feed</span>
+      </a>
+      <button class="mbn-tab" data-tab="people" type="button" id="mbnPeople">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+          <circle cx="9" cy="7" r="4" />
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+          <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+        </svg>
+        <span>People</span>
+      </button>
+      <button
+        class="mbn-tab"
+        data-tab="categories"
+        type="button"
+        id="mbnCategories"
+        title="Filter the feed by topic category"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <polygon points="12 2 22 8.5 12 15 2 8.5 12 2" />
+          <polyline points="2 15.5 12 22 22 15.5" />
+          <polyline points="2 12 12 18.5 22 12" />
+        </svg>
+        <span>Topics</span>
+        <span
+          class="mobile-sources-count"
+          id="mobileCategoriesCount"
+          hidden
+        ></span>
+      </button>
+      <a class="mbn-tab" data-tab="personal" href="#" id="mbnPersonal">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+          <circle cx="12" cy="7" r="4" />
+        </svg>
+        <span>Personal</span>
+      </a>
+      <a class="mbn-tab" data-tab="settings" href="/profile" id="mbnSettings">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <circle cx="12" cy="12" r="3" />
+          <path
+            d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h0a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51h0a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v0a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"
+          />
+        </svg>
+        <span>Settings</span>
+      </a>
+
+      <!-- Action divider — hairline that separates navigation tabs
+           from page-context actions (Filter / Post). -->
+      <span class="mbn-divider" aria-hidden="true"></span>
+
+      <!-- Filter — opens the Sources sheet for the *current* page.
+           On /search this filters the global feed; on a personal
+           library page this filters the owner's docs. -->
+      <button
+        type="button"
+        class="mbn-action"
+        id="mobileSourcesBtn"
+        aria-label="Filter this page"
+        title="Filter this page"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <line x1="4" y1="6" x2="20" y2="6" />
+          <line x1="7" y1="12" x2="17" y2="12" />
+          <line x1="10" y1="18" x2="14" y2="18" />
+        </svg>
+        <span
+          class="mobile-sources-count"
+          id="mobileSourcesCount"
+          hidden
+        ></span>
+      </button>
+
+      <!-- Post — opens the compose dialog. Always posts to *your*
+           library; the button shows on every page so the action
+           reads as "post here" not "go to a post page". -->
+      <button
+        type="button"
+        class="mbn-action mbn-action-accent"
+        id="mbnPostBtn"
+        aria-label="Post to your library"
+        title="Post to your library"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M20 2c-4 0-8 2-11 5L4 12v6h6l5-5c3-3 5-7 5-11z" />
+          <path d="M4 22 14 12" />
+        </svg>
+      </button>
+    </nav>
+
+    <!-- Slide-up sheet backdrop. Mobile-only. Tap to dismiss the
+         active sheet (sources or people). -->
+    <div
+      class="mobile-sheet-backdrop"
+      id="mobileSheetBackdrop"
+      hidden
+      aria-hidden="true"
+    ></div>
+
+    <!-- Search-page scripts. Load order matters:
+       1. api.js    — defines window.KnowledgeAPI (caches + fetch helpers)
+       2. source/   — defines window.KnowledgeSync.runSync (browser sync)
+       3. page.js   — the rail engine; consumes both globals on boot. -->
+    <script src="/lib/utils.js"></script>
+    <script src="/lib/auth-modal.js"></script>
+    <script src="/lib/session-cache.js"></script>
+    <script src="/lib/scroll-restore.js"></script>
+    <script src="/bookmark/index.js"></script>
+    <script src="/lib/money.js"></script>
+    <script src="/export/index.js"></script>
+    <script src="/search/api.js?v=8"></script>
+    <script src="/search/onboarding.js"></script>
+    <script type="module" src="/source/index.js"></script>
+    <script src="/search/page.js?v=30"></script>
+    <!-- ── Auth modal ────────────────────────────────────────────────
+         Native <dialog> with three swappable views (login / signup /
+         forgot). Opened by the top-right "Sign in" pill and by any
+         action that requires auth (Follow, Save, Star) while the user
+         is anonymous. Wired up by web/search/page.js → openAuthModal()
+         and friends. -->
+    <dialog
+      id="authModal"
+      class="auth-modal"
+      data-view="login"
+      aria-labelledby="authTitle"
+    >
+      <form method="dialog" class="auth-modal-card">
+        <button
+          type="button"
+          class="auth-modal-close"
+          id="authClose"
+          aria-label="Close"
+          title="Close"
+        >
+          ×
+        </button>
+        <header class="auth-modal-head">
+          <h2 id="authTitle" class="auth-modal-title"></h2>
+          <p class="auth-modal-sub" id="authSub"></p>
+        </header>
+
+        <!-- Inline error banner. Populated by JS on submit failure. -->
+        <div class="auth-error" id="authError" hidden></div>
+
+        <!-- ── Login view ─────────────────────────────────────────── -->
+        <fieldset class="auth-view" data-view="login">
+          <button
+            type="button"
+            class="auth-oauth auth-oauth--github"
+            data-action="github-oauth"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              fill="currentColor"
+              width="18"
+              height="18"
+            >
+              <path
+                d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.24 3.34.95.1-.74.4-1.24.73-1.53-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.18 1.18A11 11 0 0 1 12 6.8c.98 0 1.97.13 2.9.39 2.21-1.49 3.18-1.18 3.18-1.18.62 1.58.23 2.75.11 3.04.74.81 1.18 1.84 1.18 3.1 0 4.42-2.69 5.4-5.25 5.68.41.36.78 1.06.78 2.13v3.16c0 .31.21.68.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"
+              />
+            </svg>
+            <span>Continue with GitHub</span>
+          </button>
+          <div class="auth-divider" aria-hidden="true">
+            <span>or with email</span>
+          </div>
+          <label class="auth-field">
+            <span>Email</span>
+            <input
+              type="email"
+              name="email"
+              id="loginEmail"
+              autocomplete="email"
+              required
+            />
+          </label>
+          <label class="auth-field">
+            <span>Password</span>
+            <input
+              type="password"
+              name="password"
+              id="loginPassword"
+              autocomplete="current-password"
+              required
+              minlength="8"
+            />
+          </label>
+          <button
+            type="button"
+            class="auth-submit"
+            id="loginSubmit"
+            data-action="login"
+          >
+            Sign in
+          </button>
+          <div class="auth-foot">
+            <button type="button" class="auth-link" data-go="forgot">
+              Forgot password?
+            </button>
+            <span class="auth-sep">·</span>
+            <button type="button" class="auth-link" data-go="signup">
+              Create an account
+            </button>
+          </div>
+        </fieldset>
+
+        <!-- ── Signup view ────────────────────────────────────────── -->
+        <fieldset class="auth-view" data-view="signup">
+          <button
+            type="button"
+            class="auth-oauth auth-oauth--github"
+            data-action="github-oauth"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              fill="currentColor"
+              width="18"
+              height="18"
+            >
+              <path
+                d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.24 3.34.95.1-.74.4-1.24.73-1.53-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.18 1.18A11 11 0 0 1 12 6.8c.98 0 1.97.13 2.9.39 2.21-1.49 3.18-1.18 3.18-1.18.62 1.58.23 2.75.11 3.04.74.81 1.18 1.84 1.18 3.1 0 4.42-2.69 5.4-5.25 5.68.41.36.78 1.06.78 2.13v3.16c0 .31.21.68.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"
+              />
+            </svg>
+            <span>Continue with GitHub</span>
+          </button>
+          <div class="auth-divider" aria-hidden="true">
+            <span>or with email</span>
+          </div>
+          <label class="auth-field">
+            <span>Email</span>
+            <input
+              type="email"
+              name="email"
+              id="signupEmail"
+              autocomplete="email"
+              required
+            />
+          </label>
+          <label class="auth-field">
+            <span>Username <em>(your library URL)</em></span>
+            <input
+              type="text"
+              name="slug"
+              id="signupSlug"
+              autocomplete="username"
+              required
+              pattern="[a-z0-9][a-z0-9-]{1,31}"
+              minlength="2"
+              maxlength="32"
+              placeholder="e.g. ada-lovelace"
+            />
+            <small class="auth-hint" id="signupSlugHint"
+              >2–32 chars · lowercase letters, digits, dashes</small
+            >
+          </label>
+          <label class="auth-field">
+            <span>Display name</span>
+            <input
+              type="text"
+              name="name"
+              id="signupName"
+              autocomplete="name"
+              maxlength="80"
+              placeholder="Optional — defaults to your username"
+            />
+          </label>
+          <label class="auth-field">
+            <span>Password</span>
+            <input
+              type="password"
+              name="password"
+              id="signupPassword"
+              autocomplete="new-password"
+              required
+              minlength="8"
+              maxlength="128"
+            />
+            <small class="auth-hint">At least 8 characters</small>
+          </label>
+          <button
+            type="button"
+            class="auth-submit"
+            id="signupSubmit"
+            data-action="signup"
+          >
+            Create account
+          </button>
+          <div class="auth-foot">
+            <span>Already have an account?</span>
+            <button type="button" class="auth-link" data-go="login">
+              Sign in
+            </button>
+          </div>
+        </fieldset>
+
+        <!-- ── Forgot-password view ───────────────────────────────── -->
+        <fieldset class="auth-view" data-view="forgot">
+          <label class="auth-field">
+            <span>Email</span>
+            <input
+              type="email"
+              name="email"
+              id="forgotEmail"
+              autocomplete="email"
+              required
+            />
+          </label>
+          <button
+            type="button"
+            class="auth-submit"
+            id="forgotSubmit"
+            data-action="forgot"
+          >
+            Send reset link
+          </button>
+          <div class="auth-foot">
+            <button type="button" class="auth-link" data-go="login">
+              Back to sign in
+            </button>
+          </div>
+        </fieldset>
+
+        <!-- Post-action confirmation panel — populated by JS on success
+             (e.g. "Check your inbox for the verification link"). -->
+        <div class="auth-success" id="authSuccess" hidden></div>
+      </form>
+    </dialog>
+
+    <!-- ── Discover overlay ──────────────────────────────────────────
+         Native <dialog> that hosts the onboarding category picker
+         when the user clicks "Discover people" in the rail. Same
+         rendering path as the first-time onboarding — just rendered
+         into this dialog body instead of the empty-state pill.
+         Opened via window.KnowledgeOnboarding.open({ host, …}). -->
+    <dialog
+      id="discoverDialog"
+      class="discover-dialog"
+      aria-label="Discover people to follow"
+    >
+      <div class="discover-body">
+        <!-- Dismissal is owned by the Skip button inside the
+             onboarding panel itself (and Esc / backdrop click on the
+             native <dialog>) — no separate × in the frame. -->
+        <div class="discover-content" id="discoverBody"></div>
+      </div>
+    </dialog>
+  </body>
+</html>

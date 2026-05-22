@@ -1,0 +1,193 @@
+/* ==========================================================================
+   Page chrome — Back pill top-left, theme toggle top-right.
+   ========================================================================== */
+.page-chrome {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  z-index: 50;
+}
+.page-chrome-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Auto-save chip — quietly drifts left of the theme toggle. Default
+ * "Auto-saves as you type" stays muted; "saved" flashes the accent
+ * for a beat; "saving…" / errors are slightly more prominent. */
+.save-chip {
+  display: inline-flex;
+  align-items: center;
+  height: 36px;
+  padding: 0 14px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--muted);
+  background: rgba(var(--paper-rgb), 0.7);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  letter-spacing: -0.005em;
+  font-variant-numeric: tabular-nums;
+  backdrop-filter: blur(14px) saturate(170%);
+  -webkit-backdrop-filter: blur(14px) saturate(170%);
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+.save-chip.ok {
+  color: var(--accent);
+  border-color: rgba(var(--accent-rgb), 0.3);
+}
+.back-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(var(--paper-rgb), 0.7);
+  color: var(--muted);
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  backdrop-filter: blur(14px) saturate(170%);
+  -webkit-backdrop-filter: blur(14px) saturate(170%);
+  transition:
+    color 0.15s ease,
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+.back-pill:hover {
+  color: var(--ink);
+  background: rgba(var(--paper-rgb), 0.94);
+  border-color: rgba(var(--ink-rgb), 0.18);
+}
+.back-pill svg {
+  width: 14px;
+  height: 14px;
+}
+/* Segmented Light/Dark picker — pill track with two labeled options.
+ * Replaces the old single-icon toggle so the user can see, at a
+ * glance, which theme is currently active. */
+.theme-toggle.theme-toggle--segmented {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 3px;
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  border-radius: 10px;
+  background: rgba(var(--ink-rgb), 0.04);
+}
+.theme-toggle .theme-opt {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 28px;
+  padding: 0 12px;
+  border-radius: 7px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: rgba(var(--ink-rgb), 0.65);
+  font: 600 12.5px/1 var(--sans, system-ui);
+  letter-spacing: 0;
+  cursor: pointer;
+  transition:
+    color 0.14s ease,
+    background 0.14s ease,
+    border-color 0.14s ease,
+    box-shadow 0.14s ease;
+}
+.theme-toggle .theme-opt svg {
+  width: 13px;
+  height: 13px;
+  opacity: 0.85;
+}
+.theme-toggle .theme-opt:hover {
+  color: rgba(var(--ink-rgb), 0.95);
+}
+.theme-toggle .theme-opt.is-active {
+  color: rgba(var(--ink-rgb), 0.98);
+  background: rgba(var(--paper-rgb), 0.95);
+  border-color: rgba(var(--ink-rgb), 0.1);
+  box-shadow:
+    0 1px 2px rgba(var(--ink-rgb), 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+[data-theme="dark"] .theme-toggle.theme-toggle--segmented {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+[data-theme="dark"] .theme-toggle .theme-opt.is-active {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* ==========================================================================
+   Page — single reading column, comfortable line length, generous space.
+   ========================================================================== */
+.page {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 96px 28px 60px;
+}
+/* Profile/identity section keeps the original reading column — display
+   name, bio, and the public-library toggle don't benefit from a wider
+   form. The sources section below opts into the full page width. */
+#section-profile .section-body,
+#section-profile .section-head {
+  max-width: 720px;
+}
+
+/* ==========================================================================
+   Hero — compact row: small avatar on the left, handle next to it. The
+   redundant "Profile" h1 (which dupes the section title) was removed so
+   the editable form rises into view sooner.
+   ========================================================================== */
+.hero {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 6px 0 20px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 16px;
+  max-width: 720px;
+}
+.hero-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow:
+    0 0 0 1px var(--border),
+    0 4px 14px rgba(var(--ink-rgb), 0.08);
+}
+/* Initials fallback — same circle shape as `.hero-avatar`. Used
+ * when the user hasn't uploaded an image and no GitHub avatar is
+ * available. Mirrors the personal-page `.ph-avatar-fallback` look. */
+.hero-avatar-fallback {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(var(--ink-rgb), 0.08);
+  color: rgba(var(--ink-rgb), 0.78);
+  font: 600 18px/1 var(--sans);
+  letter-spacing: 0.02em;
+  user-select: none;
+}
+.hero-handle {
+  font-size: 16px;
+  color: var(--muted);
+  margin: 0;
+  letter-spacing: -0.005em;
+}

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  LaunchAgent template for knowledge-twitter-feed.
+
+  Installed by `make twitter-feed-launchd-install` into
+    ~/Library/LaunchAgents/com.knowledge.twitter-feed.plist
+  with the @@REPO@@ / @@HOME@@ tokens substituted to absolute
+  paths so launchd can dispatch the wrapper script without
+  depending on the shell's PATH.
+
+  Posture:
+    - LaunchAgent (not LaunchDaemon) → runs inside the operator's
+      user session, has keychain access, and only fires after the
+      user has logged in. Safari cookie extraction NEEDS keychain
+      unlock, so a system-wide daemon would error every time.
+    - RunAtLoad → fire on login.
+    - KeepAlive → if the script crashes or the SSH tunnel dies,
+      relaunch automatically. launchd will throttle restarts to
+      one per ThrottleInterval.
+    - ProcessType: Background → CPU scheduler treats us as
+      low-priority so foreground apps stay snappy.
+    - StandardOut/StandardError split so the timestamped feed log
+      under logs/ stays untouched and we get a second copy under
+      ~/Library/Logs for `log show`-friendly access.
+-->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.knowledge.twitter-feed</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>@@REPO@@/scripts/twitter_feed_launchd.sh</string>
+  </array>
+
+  <key>WorkingDirectory</key>
+  <string>@@REPO@@</string>
+
+  <!-- launchd strips the inherited environment. Re-export only what
+       twitter_feed.sh needs: PATH (so `ssh`, `curl`, the venv binary
+       all resolve), plus the .env-derived secrets are read by the
+       Makefile / shell wrapper itself. -->
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/usr/local/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+    <key>HOME</key>
+    <string>@@HOME@@</string>
+    <key>LANG</key>
+    <string>en_US.UTF-8</string>
+  </dict>
+
+  <key>RunAtLoad</key>
+  <true/>
+
+  <!-- Auto-restart on crash. ThrottleInterval bounds the relaunch
+       rate so a permanently-failing script doesn't spin forever. -->
+  <key>KeepAlive</key>
+  <true/>
+  <key>ThrottleInterval</key>
+  <integer>120</integer>
+
+  <key>ProcessType</key>
+  <string>Background</string>
+  <key>Nice</key>
+  <integer>10</integer>
+
+  <key>StandardOutPath</key>
+  <string>@@HOME@@/Library/Logs/knowledge-twitter-feed.out.log</string>
+  <key>StandardErrorPath</key>
+  <string>@@HOME@@/Library/Logs/knowledge-twitter-feed.err.log</string>
+</dict>
+</plist>

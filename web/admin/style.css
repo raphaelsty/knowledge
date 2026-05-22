@@ -1,0 +1,513 @@
+/* Knowledge admin — single sheet, dense layout, dark-leaning theme. */
+
+:root {
+  --bg: #0d1117;
+  --bg-elev: #161b22;
+  --bg-elev-2: #1c2129;
+  --border: #2a3038;
+  --text: #e6edf3;
+  --text-dim: #8b949e;
+  --text-dimmer: #6e7681;
+  --accent: #58a6ff;
+  --ok: #3fb950;
+  --warn: #d29922;
+  --bad: #f85149;
+  --skip: #8b949e;
+  --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --sans: "Inter Tight", "Inter", system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.45;
+  min-height: 100vh;
+}
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* ── Header ─────────────────────────────────────────────────────── */
+
+.adm-header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 10px 18px;
+  background: var(--bg-elev);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.adm-brand {
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--text-dim);
+}
+.adm-tabs {
+  display: flex;
+  gap: 2px;
+  flex: 1;
+}
+.adm-tab {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-dim);
+  padding: 6px 14px;
+  border-radius: 6px;
+  font: inherit;
+  cursor: pointer;
+}
+.adm-tab:hover {
+  color: var(--text);
+  background: var(--bg-elev-2);
+}
+.adm-tab[aria-selected="true"] {
+  color: var(--text);
+  background: var(--bg-elev-2);
+  border-color: var(--border);
+}
+.adm-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-dim);
+  font-family: var(--mono);
+  font-size: 12px;
+}
+.adm-meta button {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+.adm-meta button:hover {
+  background: var(--bg-elev-2);
+}
+
+/* ── Main / sections ─────────────────────────────────────────────── */
+
+.adm-main {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 20px 24px 80px;
+}
+.adm-gate {
+  text-align: center;
+  padding: 80px 20px;
+  color: var(--text-dim);
+}
+.adm-gate h1 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0 0 8px;
+}
+.adm-section {
+  display: block;
+}
+.adm-section[hidden] {
+  display: none;
+}
+
+.adm-h {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-dimmer);
+  margin: 24px 0 10px;
+}
+
+/* ── KPI cards ───────────────────────────────────────────────────── */
+
+.adm-kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+  margin-bottom: 24px;
+}
+.kpi {
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 14px;
+}
+.kpi-label {
+  color: var(--text-dim);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.kpi-value {
+  font-size: 24px;
+  font-weight: 600;
+  margin-top: 4px;
+  font-family: var(--mono);
+}
+.kpi-sub {
+  color: var(--text-dimmer);
+  font-size: 12px;
+  margin-top: 4px;
+}
+.kpi.kpi-warn .kpi-value {
+  color: var(--warn);
+}
+.kpi.kpi-bad .kpi-value {
+  color: var(--bad);
+}
+.kpi.kpi-ok .kpi-value {
+  color: var(--ok);
+}
+
+/* ── Tables ──────────────────────────────────────────────────────── */
+
+table.adm-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.adm-table th,
+.adm-table td {
+  padding: 8px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.adm-table th {
+  background: var(--bg-elev-2);
+  font-weight: 600;
+  font-size: 11px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  position: sticky;
+  top: 0;
+}
+.adm-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+.adm-table tbody tr:hover {
+  background: var(--bg-elev-2);
+}
+.adm-table td.num,
+.adm-table th.num {
+  text-align: right;
+  font-family: var(--mono);
+}
+.adm-table td.mono {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--text-dim);
+}
+
+/* ── Status pills ─────────────────────────────────────────────────── */
+
+.pill {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+.pill-ok {
+  background: rgba(63, 185, 80, 0.15);
+  color: var(--ok);
+}
+.pill-failed {
+  background: rgba(248, 81, 73, 0.15);
+  color: var(--bad);
+}
+.pill-running {
+  background: rgba(88, 166, 255, 0.15);
+  color: var(--accent);
+}
+.pill-skipped {
+  background: rgba(139, 148, 158, 0.12);
+  color: var(--skip);
+}
+.pill-warn {
+  background: rgba(210, 153, 34, 0.15);
+  color: var(--warn);
+}
+.pill-healthy {
+  background: rgba(63, 185, 80, 0.15);
+  color: var(--ok);
+}
+.pill-broken {
+  background: rgba(248, 81, 73, 0.15);
+  color: var(--bad);
+}
+.pill-error {
+  background: rgba(248, 81, 73, 0.15);
+  color: var(--bad);
+}
+.pill-missing {
+  background: rgba(210, 153, 34, 0.15);
+  color: var(--warn);
+}
+.pill-empty {
+  background: rgba(139, 148, 158, 0.12);
+  color: var(--skip);
+}
+.pill-pg_drift {
+  background: rgba(210, 153, 34, 0.15);
+  color: var(--warn);
+}
+.pill-backlog {
+  background: rgba(210, 153, 34, 0.1);
+  color: var(--warn);
+}
+.pill-vip {
+  background: rgba(255, 215, 0, 0.12);
+  color: #e3b341;
+}
+
+/* ── Source health detail (failure groups) ───────────────────────── */
+
+.adm-failures-panel {
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 12px;
+}
+.adm-fail-group {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  margin-bottom: 10px;
+  background: var(--bg-elev-2);
+  padding: 10px 12px;
+}
+.adm-fail-msg {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--bad);
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+.adm-fail-meta {
+  color: var(--text-dim);
+  font-size: 11px;
+  margin-top: 4px;
+}
+.adm-fail-users {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 6px;
+  margin-top: 6px;
+}
+.adm-fail-user {
+  font-size: 11px;
+  color: var(--text-dim);
+  border: 1px solid var(--border);
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+/* ── Live feed ────────────────────────────────────────────────────── */
+
+.adm-live-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.adm-live-cols > div {
+  min-width: 0;
+}
+@media (max-width: 1000px) {
+  .adm-live-cols {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Search bar ───────────────────────────────────────────────────── */
+
+.adm-toolbar {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.adm-toolbar input,
+.adm-toolbar select {
+  background: var(--bg-elev);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px 10px;
+  font: inherit;
+}
+.adm-toolbar input:focus,
+.adm-toolbar select:focus {
+  outline: 1px solid var(--accent);
+}
+.adm-toolbar label {
+  color: var(--text-dim);
+  font-size: 12px;
+}
+
+/* ── Indexer activity section ────────────────────────────────────── */
+
+.adm-indexer {
+  display: block;
+  margin-bottom: 16px;
+}
+.adm-indexer-head {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-dim);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: 4px 0 6px;
+}
+.adm-indexer-head--secondary {
+  margin-top: 14px;
+}
+/* Queue-depth strip above "Now processing" — one chip per verdict
+ * with non-zero count. Mirrors the daemon's priority order. */
+.adm-queue-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 2px 0 12px;
+  flex-wrap: wrap;
+}
+.adm-queue-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-dim);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.adm-queue-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.adm-queue-row .adm-empty--quiet {
+  padding: 4px 10px;
+  font-size: 11px;
+}
+.adm-table--compact th,
+.adm-table--compact td {
+  padding: 6px 10px;
+}
+.adm-empty--quiet {
+  padding: 10px 12px;
+  text-align: left;
+  font-size: 12px;
+  color: var(--text-dimmer);
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+/* Indexer "kind" pills — colour-coded so the table reads at a glance.
+ * updated = success with new docs, cleaned = success with 0 new
+ * docs (heal+re-embed), failed = aborted. */
+.pill-updated {
+  background: rgba(63, 185, 80, 0.15);
+  color: var(--ok);
+}
+.pill-cleaned {
+  background: rgba(88, 166, 255, 0.15);
+  color: var(--accent);
+}
+.pill-other {
+  background: rgba(139, 148, 158, 0.12);
+  color: var(--skip);
+}
+
+/* Pipeline-stage pills used in the "Now processing" table. Each
+ * pipeline run walks fetch → clean → link_check → tag → index;
+ * the stage column shows whichever the daemon hit last. */
+.pill-fetch,
+.pill-clean,
+.pill-link_check,
+.pill-tag,
+.pill-index {
+  background: rgba(88, 166, 255, 0.15);
+  color: var(--accent);
+}
+
+/* ── Indices verdict legend ──────────────────────────────────────── */
+
+.adm-legend {
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 14px;
+  margin-bottom: 12px;
+  font-size: 12.5px;
+}
+.adm-legend > summary {
+  cursor: pointer;
+  color: var(--text-dim);
+  user-select: none;
+  padding: 4px 0;
+}
+.adm-legend > summary:hover {
+  color: var(--text);
+}
+.adm-legend-grid {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  row-gap: 10px;
+  column-gap: 14px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+.adm-legend-row {
+  display: contents;
+}
+.adm-legend-text {
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+/* ── Misc ─────────────────────────────────────────────────────────── */
+
+.adm-empty {
+  color: var(--text-dimmer);
+  padding: 18px;
+  text-align: center;
+}
+.adm-error {
+  color: var(--bad);
+  padding: 18px;
+  font-family: var(--mono);
+  font-size: 12px;
+}
+.adm-loading {
+  color: var(--text-dim);
+  padding: 18px;
+}

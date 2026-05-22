@@ -1,0 +1,491 @@
+/* Export dialog + button — paired with web/export.js.
+ *
+ * Visual language matches the credits dialog (paper card on a
+ * blurred backdrop, translucent-ink palette). All colours come from
+ * the global theme tokens (--ink / --paper / --muted / --modern) so
+ * dark mode falls out automatically. No accent purple — the primary
+ * action uses ink-on-paper to stay neutral in both themes.
+ *
+ * If the Follow button styling in search.css changes, mirror it on
+ * `.ph-export` below.
+ */
+
+/* ── Profile-header trigger button ──────────────────────────────── */
+/* Mirrors `.ph-follow` exactly so the two read as peers. */
+.profile-header .ph-export {
+  appearance: none;
+  height: 26px;
+  padding: 0 11px;
+  border-radius: 9px;
+  font: 600 12px/1 var(--sans);
+  letter-spacing: 0;
+  color: rgba(var(--ink-rgb), 0.78);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.55),
+      rgba(255, 255, 255, 0) 55%
+    ),
+    rgba(var(--ink-rgb), 0.04);
+  border: 1px solid rgba(var(--ink-rgb), 0.08);
+  box-shadow:
+    0 1px 0 rgba(var(--ink-rgb), 0.02),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition:
+    background 0.14s ease,
+    color 0.14s ease,
+    border-color 0.14s ease,
+    box-shadow 0.14s ease;
+}
+[data-theme="dark"] .profile-header .ph-export {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.04),
+      rgba(255, 255, 255, 0) 55%
+    ),
+    rgba(var(--ink-rgb), 0.045);
+  border-color: rgba(255, 255, 255, 0.07);
+  box-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+.profile-header .ph-export:hover {
+  color: rgba(var(--ink-rgb), 0.95);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.65),
+      rgba(255, 255, 255, 0) 55%
+    ),
+    rgba(var(--ink-rgb), 0.07);
+  border-color: rgba(var(--ink-rgb), 0.16);
+  box-shadow:
+    0 1px 2px rgba(var(--ink-rgb), 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+[data-theme="dark"] .profile-header .ph-export:hover {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.06),
+      rgba(255, 255, 255, 0) 55%
+    ),
+    rgba(var(--ink-rgb), 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+/* ── Dialog shell (paper card on blurred backdrop) ──────────────── */
+.export-dialog {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  max-width: none;
+  max-height: none;
+  overflow: hidden;
+  color: var(--ink);
+  font-family: var(--modern);
+}
+.export-dialog[open] {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+.export-dialog::backdrop {
+  background: rgba(8, 12, 18, 0.48);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.export-body {
+  position: relative;
+  width: min(460px, calc(100vw - 32px));
+  max-height: calc(100vh - 56px);
+  margin: 12vh auto auto;
+  padding: 22px 24px 18px;
+  background: rgb(var(--paper-rgb));
+  border-radius: 18px;
+  border: 1px solid rgba(var(--ink-rgb), 0.08);
+  box-shadow:
+    0 1px 0 rgba(var(--ink-rgb), 0.02),
+    0 24px 64px rgba(0, 0, 0, 0.22),
+    0 4px 12px rgba(0, 0, 0, 0.08);
+  overflow-y: auto;
+  animation: export-card-in 0.28s cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+@keyframes export-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+[data-theme="dark"] .export-body {
+  border-color: rgba(255, 255, 255, 0.06);
+  box-shadow:
+    0 24px 64px rgba(0, 0, 0, 0.55),
+    0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* ── Typography ─────────────────────────────────────────────────── */
+.export-title {
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  margin: 0 0 14px;
+  color: rgb(var(--ink-rgb));
+}
+.export-docs {
+  font-size: 13px;
+  line-height: 1.55;
+  color: rgba(var(--ink-rgb), 0.62);
+  margin: 0 0 16px;
+}
+.export-docs strong {
+  color: rgb(var(--ink-rgb));
+  font-weight: 600;
+}
+
+/* Price chip — large ink number, no purple, no shouting */
+.export-price {
+  margin: 0 0 4px;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: rgb(var(--ink-rgb));
+  line-height: 1.1;
+}
+.export-price-usd {
+  color: rgba(var(--ink-rgb), 0.55);
+  font-size: 13px;
+  font-weight: 500;
+  margin-left: 8px;
+  letter-spacing: 0;
+}
+.export-rate {
+  font-size: 12px;
+  color: rgba(var(--ink-rgb), 0.5);
+  margin: 4px 0 16px;
+}
+.export-price-free {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: #0a7d33;
+  margin: 6px 0 12px;
+}
+[data-theme="dark"] .export-price-free {
+  color: #4ec97c;
+}
+.export-reason {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 400;
+  color: rgba(var(--ink-rgb), 0.55);
+  margin-top: 4px;
+  letter-spacing: 0;
+}
+
+.export-status {
+  font-size: 13.5px;
+  color: rgba(var(--ink-rgb), 0.55);
+  margin: 4px 0 16px;
+}
+.export-error {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: rgba(var(--ink-rgb), 0.78);
+  margin: 4px 0 16px;
+}
+.export-error strong {
+  color: rgb(var(--ink-rgb));
+  font-weight: 600;
+}
+
+/* ── Slider + presets ───────────────────────────────────────────── */
+.export-pick {
+  margin: 0 0 18px;
+}
+.export-pick-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(var(--ink-rgb), 0.55);
+  letter-spacing: 0;
+}
+.export-pick-value {
+  font-size: 13.5px;
+  font-weight: 400;
+  color: rgb(var(--ink-rgb));
+}
+.export-pick-value strong {
+  font-weight: 600;
+  color: rgb(var(--ink-rgb));
+}
+.export-pick-of {
+  margin-left: 4px;
+  color: rgba(var(--ink-rgb), 0.45);
+}
+
+/* Range styling — thin track, ink thumb. Avoids native blue/purple. */
+.export-pick input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  margin: 12px 0 8px;
+  background: transparent;
+}
+.export-pick input[type="range"]::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(var(--ink-rgb), 0.12);
+}
+.export-pick input[type="range"]::-moz-range-track {
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(var(--ink-rgb), 0.12);
+}
+.export-pick input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  margin-top: -7px;
+  background: rgb(var(--paper-rgb));
+  border: 1.5px solid rgba(var(--ink-rgb), 0.78);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+  transition:
+    border-color 0.12s ease,
+    transform 0.08s ease;
+}
+.export-pick input[type="range"]::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgb(var(--paper-rgb));
+  border: 1.5px solid rgba(var(--ink-rgb), 0.78);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+}
+.export-pick input[type="range"]:hover::-webkit-slider-thumb {
+  border-color: rgb(var(--ink-rgb));
+  transform: scale(1.06);
+}
+.export-pick input[type="range"]:focus {
+  outline: none;
+}
+.export-pick input[type="range"]:focus-visible::-webkit-slider-thumb {
+  box-shadow:
+    0 0 0 3px rgba(var(--ink-rgb), 0.18),
+    0 1px 3px rgba(0, 0, 0, 0.18);
+}
+
+.export-pick-presets {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.export-pick-presets button {
+  appearance: none;
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  background: rgba(var(--ink-rgb), 0.03);
+  color: rgba(var(--ink-rgb), 0.72);
+  padding: 4px 12px;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0;
+  cursor: pointer;
+  line-height: 1.5;
+  transition:
+    background 0.14s ease,
+    color 0.14s ease,
+    border-color 0.14s ease;
+}
+.export-pick-presets button:hover {
+  background: rgba(var(--ink-rgb), 0.07);
+  color: rgb(var(--ink-rgb));
+  border-color: rgba(var(--ink-rgb), 0.18);
+}
+/* Active preset — the one that matches the current state. Reads
+   as "selected" without competing with the primary Download button
+   for attention. */
+.export-pick-presets button[aria-pressed="true"] {
+  background: rgb(var(--ink-rgb));
+  color: rgb(var(--paper-rgb));
+  border-color: rgb(var(--ink-rgb));
+}
+.export-pick-presets button[aria-pressed="true"]:hover {
+  background: rgba(var(--ink-rgb), 0.88);
+  border-color: rgba(var(--ink-rgb), 0.88);
+}
+
+/* ── Picker sections (Date range, Row cap) ─────────────────────── */
+/* Each section pairs a small header row (label + preset chips) with
+   its native input(s) below. Sections sit one under the other with
+   a subtle hairline between them so the dialog reads as two
+   stacked controls rather than a wall of inputs. */
+.export-section {
+  margin: 0 0 14px;
+}
+.export-section + .export-section {
+  border-top: 1px solid rgba(var(--ink-rgb), 0.06);
+  padding-top: 14px;
+}
+.export-section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+.export-section-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(var(--ink-rgb), 0.6);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+/* Date inputs side-by-side. They neutralise the platform's native
+   chrome (which on Chrome / Safari ships a coloured background, a
+   bold border, and a calendar glyph that doesn't pick up our text
+   colour) and re-tone them in the dialog's ink-on-paper palette. */
+.export-date-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.export-input {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.export-input > span {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: rgba(var(--ink-rgb), 0.5);
+}
+.export-input input {
+  appearance: none;
+  -webkit-appearance: none;
+  font: inherit;
+  font-size: 13.5px;
+  color: rgb(var(--ink-rgb));
+  background: rgba(var(--ink-rgb), 0.03);
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  border-radius: 10px;
+  padding: 8px 11px;
+  line-height: 1.3;
+  transition:
+    background 0.14s ease,
+    border-color 0.14s ease,
+    box-shadow 0.14s ease;
+}
+.export-input input::placeholder {
+  color: rgba(var(--ink-rgb), 0.35);
+}
+.export-input input:hover {
+  background: rgba(var(--ink-rgb), 0.05);
+  border-color: rgba(var(--ink-rgb), 0.18);
+}
+.export-input input:focus {
+  outline: none;
+  background: rgb(var(--paper-rgb));
+  border-color: rgba(var(--ink-rgb), 0.45);
+  box-shadow: 0 0 0 3px rgba(var(--ink-rgb), 0.08);
+}
+/* Calendar / spinner glyphs — invert in dark mode so they're
+   actually visible against the dark paper background. */
+[data-theme="dark"] .export-input input::-webkit-calendar-picker-indicator,
+[data-theme="dark"] .export-input input::-webkit-inner-spin-button {
+  filter: invert(0.85);
+}
+
+/* Server-cap hint — appears inline with the count when the filter
+   alone would have selected more than EXPORT_HARD_CAP rows. Keeps
+   the count line single-paragraph so the hint doesn't shove the
+   sections down. */
+.export-cap-hint {
+  display: inline-block;
+  margin-left: 4px;
+  font-size: 12px;
+  color: rgba(var(--ink-rgb), 0.5);
+  font-style: italic;
+}
+
+/* ── Action buttons ─────────────────────────────────────────────── */
+.export-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 6px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(var(--ink-rgb), 0.06);
+}
+.export-actions button {
+  appearance: none;
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  background: rgba(var(--ink-rgb), 0.03);
+  color: rgba(var(--ink-rgb), 0.78);
+  padding: 9px 16px;
+  border-radius: 10px;
+  font: 600 13px/1 var(--modern);
+  letter-spacing: -0.005em;
+  cursor: pointer;
+  transition:
+    background 0.14s ease,
+    color 0.14s ease,
+    border-color 0.14s ease;
+}
+.export-actions button:hover {
+  background: rgba(var(--ink-rgb), 0.07);
+  color: rgb(var(--ink-rgb));
+  border-color: rgba(var(--ink-rgb), 0.18);
+}
+/* Primary action — ink on paper. No accent purple. Stays neutral
+   and reads as the "yes, do it" affordance in both themes. */
+.export-actions button.primary {
+  background: rgb(var(--ink-rgb));
+  color: rgb(var(--paper-rgb));
+  border-color: rgb(var(--ink-rgb));
+  box-shadow:
+    0 1px 0 rgba(var(--ink-rgb), 0.06),
+    0 2px 8px rgba(var(--ink-rgb), 0.18);
+}
+.export-actions button.primary:hover {
+  background: rgba(var(--ink-rgb), 0.88);
+  border-color: rgba(var(--ink-rgb), 0.88);
+  color: rgb(var(--paper-rgb));
+}
+[data-theme="dark"] .export-actions button.primary {
+  background: rgb(var(--ink-rgb));
+  color: rgb(var(--paper-rgb));
+  border-color: rgb(var(--ink-rgb));
+  box-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.4),
+    0 2px 10px rgba(0, 0, 0, 0.35);
+}
+[data-theme="dark"] .export-actions button.primary:hover {
+  background: rgba(var(--ink-rgb), 0.92);
+}
+.export-actions button:disabled {
+  opacity: 0.55;
+  cursor: progress;
+}

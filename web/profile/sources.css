@@ -1,0 +1,731 @@
+/* ==========================================================================
+   Sources grid — a tidy single column. Each card is a labelled block
+   with a small icon and a probe pill. Plain border, no shadow, no
+   backdrop blur — just the warm gradient showing through.
+   ========================================================================== */
+/* Sources grid — auto-fit two columns on wider screens (each column
+   targets ~480px so the form fields and probe-status badges stay
+   readable), gracefully falls back to a single column under ~900px.
+   Cards opt into full-width spans via .source-card-wide (the
+   Websites and Zotero "hero" cards have richer copy and inline
+   how-to blocks that read better at full width). The .subhead
+   divider also spans every column so it always reads as a break. */
+.source-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+  align-items: start;
+  gap: 22px;
+}
+.source-grid > .subhead,
+.source-grid > .source-card-wide {
+  grid-column: 1 / -1;
+}
+.source-card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 28px 30px;
+  background: rgba(var(--paper-rgb), 0.62);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease;
+}
+.source-card:hover,
+.source-card:focus-within {
+  border-color: rgba(var(--ink-rgb), 0.16);
+  background: rgba(var(--paper-rgb), 0.78);
+}
+.source-card-wide,
+.source-card-tall {
+  /* legacy classes — no special grid behaviour now */
+}
+
+/* Locked-card overlay. Used on the Twitter card while the paid
+ * plan is paused. The banner sits on top of the whole card,
+ * blocks pointer events on the content underneath, and shows a
+ * short reason. Applies regardless of VIP status. */
+.source-card--locked {
+  position: relative;
+  overflow: hidden;
+}
+.source-card--locked > .source-card-lock {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 6px;
+  padding: 24px;
+  border-radius: inherit;
+  background: rgba(var(--ink-rgb), 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: var(--paper);
+  pointer-events: auto;
+  cursor: not-allowed;
+}
+.source-card-lock strong {
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--paper);
+}
+.source-card-lock span {
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(var(--paper-rgb), 0.85);
+  max-width: 360px;
+}
+.source-card--locked > :not(.source-card-lock) {
+  pointer-events: none;
+  user-select: none;
+}
+.source-card--locked:hover,
+.source-card--locked:focus-within {
+  border-color: var(--border);
+  background: rgba(var(--paper-rgb), 0.62);
+}
+
+/* Balance + Add money widget embedded inside the Twitter source
+ * card. The storage panel renders its own card chrome
+ * (.billing-hero) — flatten it here so we don't read as a "card
+ * inside a card". Just a horizontal divider above so the balance
+ * is visually grouped under the Twitter content. */
+.source-card-billing {
+  margin-top: 4px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(var(--ink-rgb), 0.08);
+}
+.source-card-billing .billing-hero {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  gap: 18px;
+}
+.source-card-billing .billing-storage {
+  /* The storage / library quota panel was sized for a standalone
+   * section. Hidden inside the Twitter card since the only paid
+   * action is Twitter parsing — storage is free. */
+  display: none;
+}
+
+.source-card-head {
+  display: grid;
+  grid-template-columns: 44px 1fr auto;
+  gap: 16px;
+  align-items: center;
+}
+.source-card-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 11px;
+  background: rgba(var(--ink-rgb), 0.05);
+  display: grid;
+  place-items: center;
+  color: var(--ink);
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.source-card-icon svg {
+  width: 22px;
+  height: 22px;
+}
+.source-card-meta {
+  min-width: 0;
+}
+.source-card-name {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 17px;
+  letter-spacing: -0.01em;
+  margin: 0 0 4px;
+  color: var(--ink);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.source-card-desc {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 0;
+}
+.source-card-desc a {
+  color: var(--accent);
+  border-bottom: 1px solid rgba(var(--accent-rgb), 0.3);
+}
+.source-card-desc a:hover {
+  border-bottom-color: var(--accent);
+}
+.source-card-desc code {
+  font-family:
+    ui-monospace,
+    SF Mono,
+    Menlo,
+    monospace;
+  font-size: 11px;
+  background: rgba(var(--ink-rgb), 0.06);
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+.source-card-note {
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--muted);
+  margin: 10px 0 0;
+  padding: 8px 10px;
+  border-left: 2px solid rgba(var(--accent-rgb), 0.4);
+  background: rgba(var(--accent-rgb), 0.06);
+  border-radius: 0 6px 6px 0;
+}
+.source-card-note strong {
+  color: var(--text-primary, currentColor);
+  font-weight: 600;
+}
+.source-card-note a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(var(--accent-rgb), 0.4);
+}
+.source-card-note a:hover {
+  border-bottom-color: var(--accent);
+}
+html {
+  scroll-behavior: smooth;
+}
+/* "Requires credits" callout on paid source cards (Twitter today;
+   reusable for any paid integration we add later). Stronger left
+   border + bolder lead so the user can't miss that this source
+   debits credits before the pipeline runs. */
+.source-card-note--billing {
+  border-left-width: 3px;
+  border-left-color: rgba(var(--accent-rgb), 0.85);
+  background: rgba(var(--accent-rgb), 0.1);
+  font-size: 12.5px;
+}
+.source-card-note--billing strong {
+  color: var(--accent);
+}
+
+/* Alpha-state callout shown on the Twitter card while Twitter
+   ingestion is gated to VIPs. Neutral grey so it reads as a quiet
+   "not yet" rather than a paid CTA. */
+.source-card-note--alpha {
+  border-left-color: rgba(var(--ink-rgb), 0.18);
+  background: rgba(var(--ink-rgb), 0.04);
+}
+.source-card-note--alpha strong {
+  color: var(--ink);
+}
+
+/* "Alpha" pill in the card title and the muted appearance of the
+   whole card for non-VIPs. The card body still reads (so people
+   can preview the future plan) but the handle input is locked. */
+.source-card-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 999px;
+  border: 1px solid rgba(var(--ink-rgb), 0.18);
+  background: rgba(var(--ink-rgb), 0.05);
+  color: var(--muted);
+}
+html:not([data-vip]) .source-card--alpha .source-card-icon,
+html:not([data-vip]) .source-card--alpha .source-card-meta {
+  opacity: 0.78;
+}
+html:not([data-vip]) .source-card--alpha .profile-input[disabled] {
+  background: rgba(var(--ink-rgb), 0.04);
+  color: var(--muted);
+  cursor: not-allowed;
+}
+html:not([data-vip])
+  .source-card--alpha
+  .profile-input-wrap.with-prefix
+  .prefix {
+  opacity: 0.5;
+}
+
+/* Probe status — minimal dot + count */
+.probe-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  font-family: var(--sans);
+  color: var(--muted);
+}
+.probe-status .glyph {
+  display: inline-grid;
+  place-items: center;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  font-size: 9px;
+  font-weight: 600;
+  background: rgba(var(--ink-rgb), 0.08);
+  color: var(--muted);
+}
+.probe-status.ok .glyph {
+  background: rgba(var(--accent-rgb), 0.16);
+  color: var(--accent);
+}
+.probe-status.bad .glyph {
+  background: rgba(var(--ink-rgb), 0.14);
+  color: var(--ink);
+}
+.probe-status.probing .glyph {
+  animation: probe-pulse 1.2s ease infinite;
+}
+.probe-status .meta {
+  font-variant-numeric: tabular-nums;
+}
+@keyframes probe-pulse {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Connection badge */
+.conn-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 1px 7px;
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-radius: 999px;
+  background: rgba(var(--accent-rgb), 0.12);
+  color: var(--accent);
+}
+.conn-badge:empty {
+  display: none;
+}
+.conn-badge::before {
+  content: "";
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.conn-badge.bad {
+  background: rgba(var(--ink-rgb), 0.1);
+  color: var(--ink);
+}
+.conn-badge.bad::before {
+  background: var(--ink);
+}
+
+/* "How to find the cookies" expandable */
+.how-to {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 12.5px;
+  color: var(--muted);
+}
+.how-to summary {
+  padding: 9px 12px;
+  cursor: pointer;
+  font-weight: 500;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--ink);
+}
+.how-to summary::-webkit-details-marker {
+  display: none;
+}
+.how-to summary::before {
+  content: "▸";
+  font-size: 9px;
+  color: var(--muted);
+  transition: transform 0.2s ease;
+}
+.how-to[open] summary::before {
+  transform: rotate(90deg);
+}
+.how-to ul {
+  margin: 0;
+  padding: 0 12px 12px 28px;
+  font-size: 12px;
+  line-height: 1.55;
+}
+.how-to ul li {
+  margin-bottom: 6px;
+}
+.how-to code {
+  font-family:
+    ui-monospace,
+    SF Mono,
+    Menlo,
+    monospace;
+  font-size: 11px;
+  background: rgba(var(--ink-rgb), 0.06);
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+.experimental-note {
+  font-style: italic;
+  font-size: 11.5px;
+  color: var(--muted);
+  margin: -4px 0 0;
+}
+
+/* Secret input (HN password, Twitter cookies, Zotero key) */
+.secret {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(var(--paper-rgb), 0.6);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0 10px 0 13px;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+.secret:hover {
+  background: rgba(var(--paper-rgb), 0.78);
+  border-color: rgba(var(--ink-rgb), 0.14);
+}
+.secret:focus-within {
+  background: rgba(var(--paper-rgb), 0.96);
+  border-color: rgba(var(--accent-rgb), 0.5);
+  box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.14);
+}
+.secret-icon {
+  display: inline-grid;
+  place-items: center;
+  color: var(--muted);
+  flex-shrink: 0;
+}
+.secret-eye {
+  display: inline-grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  background: transparent;
+  color: var(--muted);
+  border: 0;
+  border-radius: 6px;
+  transition:
+    color 0.15s ease,
+    background 0.15s ease;
+}
+.secret-eye:hover {
+  background: rgba(var(--ink-rgb), 0.06);
+  color: var(--ink);
+}
+.secret-eye svg {
+  width: 13px;
+  height: 13px;
+}
+
+/* `.bare` modifier: input inside a wrapper drops its own background/border */
+.profile-input.bare {
+  background: transparent !important;
+  border: 0;
+  border-radius: 0;
+  padding: 10px 0;
+  flex: 1;
+  box-shadow: none !important;
+}
+.profile-input.bare:focus {
+  box-shadow: none !important;
+}
+.profile-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(var(--paper-rgb), 0.6);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0 13px;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+.profile-input-wrap:hover {
+  background: rgba(var(--paper-rgb), 0.78);
+  border-color: rgba(var(--ink-rgb), 0.14);
+}
+.profile-input-wrap:focus-within {
+  background: rgba(var(--paper-rgb), 0.96);
+  border-color: rgba(var(--accent-rgb), 0.5);
+  box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.14);
+}
+.profile-input-wrap .prefix {
+  font-family: var(--sans);
+  font-weight: 500;
+  color: var(--muted);
+  font-size: 13.5px;
+}
+
+/* Card actions row */
+.card-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.action-btn {
+  font-family: var(--sans);
+  font-size: 12.5px;
+  font-weight: 500;
+  padding: 7px 13px;
+  background: rgba(var(--ink-rgb), 0.06);
+  color: var(--ink);
+  border: 1px solid transparent;
+  border-radius: 8px;
+  letter-spacing: -0.005em;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+.action-btn:hover {
+  background: rgba(var(--ink-rgb), 0.1);
+  border-color: rgba(var(--ink-rgb), 0.12);
+}
+.action-btn.primary {
+  background: var(--ink);
+  color: var(--paper);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.action-btn.primary:hover {
+  background: rgba(var(--ink-rgb), 0.86);
+}
+.action-btn.primary:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+.action-btn.primary svg {
+  width: 14px;
+  height: 14px;
+}
+.action-link {
+  font-family: var(--sans);
+  font-size: 12.5px;
+  font-weight: 500;
+  background: transparent;
+  border: 0;
+  color: var(--muted);
+  padding: 6px 8px;
+  border-radius: 6px;
+  transition:
+    color 0.15s ease,
+    background 0.15s ease;
+}
+.action-link:hover {
+  color: var(--ink);
+  background: rgba(var(--ink-rgb), 0.06);
+}
+.action-link.danger:hover {
+  color: var(--accent);
+}
+
+.verify-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.verify-status .glyph {
+  display: inline-grid;
+  place-items: center;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  font-size: 9px;
+  font-weight: 600;
+  background: rgba(var(--ink-rgb), 0.08);
+}
+.verify-status.ok {
+  color: var(--accent);
+}
+.verify-status.ok .glyph {
+  background: rgba(var(--accent-rgb), 0.16);
+  color: var(--accent);
+}
+.verify-status.bad {
+  color: var(--ink);
+}
+.verify-status.bad .glyph {
+  background: rgba(var(--ink-rgb), 0.14);
+  color: var(--ink);
+}
+.verify-status.probing .glyph {
+  animation: probe-pulse 1.2s ease infinite;
+}
+
+.zot-summary {
+  font-size: 12.5px;
+  color: var(--muted);
+  background: rgba(var(--ink-rgb), 0.04);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+.zot-summary:empty {
+  display: none;
+}
+
+/* Websites status list */
+.websites-status {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.websites-status li {
+  padding: 7px 11px;
+  border-radius: 8px;
+  background: rgba(var(--ink-rgb), 0.04);
+  font-size: 12.5px;
+}
+.websites-status li.ok {
+  background: rgba(var(--accent-rgb), 0.05);
+}
+.websites-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.websites-url {
+  font-family:
+    ui-monospace,
+    SF Mono,
+    Menlo,
+    monospace;
+  font-size: 12px;
+  color: var(--ink);
+  word-break: break-all;
+  flex: 1;
+}
+.websites-msg {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+}
+.websites-msg .kind {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: rgba(var(--ink-rgb), 0.08);
+  color: var(--ink);
+}
+.websites-msg .kind.feed {
+  background: rgba(var(--accent-rgb), 0.14);
+  color: var(--accent);
+}
+.websites-subtrees {
+  margin-top: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  align-items: center;
+}
+.websites-subtrees-label {
+  font-size: 11px;
+  color: var(--muted);
+}
+.websites-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 7px;
+  background: rgba(var(--paper-rgb), 0.7);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 11px;
+  color: var(--ink);
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+.websites-chip:hover {
+  background: var(--paper);
+  border-color: rgba(var(--ink-rgb), 0.16);
+}
+.websites-chip code {
+  font-family:
+    ui-monospace,
+    SF Mono,
+    Menlo,
+    monospace;
+  font-size: 10.5px;
+}
+.websites-chip-count {
+  color: var(--muted);
+}
+
+/* ==========================================================================
+   Sync progress — appears in place of the "Sync now" button while a
+   browser-side sync is running, right inside the Sources section head.
+   ========================================================================== */
+.foot-progress {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  width: 220px;
+  min-width: 0;
+}
+.foot-progress.show {
+  display: flex;
+}
+.foot-progress.show + .sync-btn {
+  display: none;
+}
+.sync-bar {
+  height: 3px;
+  background: rgba(var(--ink-rgb), 0.08);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.sync-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--accent);
+  border-radius: 999px;
+  transition: width 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.sync-step-text {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

@@ -1,0 +1,107 @@
+/* ==========================================================================
+   Profile fields — clean labelled inputs. No card, no shadow, no fuss.
+   ========================================================================== */
+.profile-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.profile-field-label {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+}
+.profile-field-hint {
+  display: block;
+  font-size: 13.5px;
+  color: var(--muted);
+  font-weight: 400;
+  margin-top: 2px;
+}
+
+.profile-input {
+  width: 100%;
+  font-family: var(--sans);
+  font-size: 15.5px;
+  color: var(--ink);
+  background: rgba(var(--paper-rgb), 0.6);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 13px 16px;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+.profile-input:hover {
+  background: rgba(var(--paper-rgb), 0.78);
+  border-color: rgba(var(--ink-rgb), 0.14);
+}
+.profile-input:focus {
+  outline: none;
+  background: rgba(var(--paper-rgb), 0.96);
+  border-color: rgba(var(--accent-rgb), 0.5);
+  box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.14);
+}
+.profile-input::placeholder {
+  color: rgba(var(--ink-rgb), 0.36);
+}
+.profile-textarea {
+  resize: vertical;
+  min-height: 100px;
+  line-height: 1.6;
+}
+
+/* Toggle row */
+.profile-field-toggle {
+  flex-direction: row;
+  gap: 18px;
+  align-items: center;
+  padding: 14px 0 4px;
+}
+.profile-field-toggle-text {
+  flex: 1;
+}
+.profile-field-toggle .profile-field-label {
+  display: block;
+}
+
+/* Switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 38px;
+  height: 22px;
+  flex-shrink: 0;
+}
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.switch .track {
+  position: absolute;
+  inset: 0;
+  background: rgba(var(--ink-rgb), 0.18);
+  border-radius: 999px;
+  transition: background 0.18s ease;
+}
+.switch .knob {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  background: var(--paper);
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(var(--ink-rgb), 0.22);
+  transition: transform 0.18s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.switch input:checked + .track {
+  background: var(--accent);
+}
+.switch input:checked + .track + .knob {
+  transform: translateX(16px);
+}

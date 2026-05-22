@@ -1,0 +1,74 @@
+/* ==========================================================================
+   Profile page — restrained, Apple-grade.
+   --------------------------------------------------------------------------
+   Single reading column, modest typography, generous whitespace, and one
+   accent colour used sparingly. No decorative ornaments — every element
+   has to earn its place. The cream/ink palette is shared with the rest
+   of the product so the page reads as the same family.
+   ========================================================================== */
+
+:root {
+  --bg-a: #eef0f4;
+  --bg-b: #d4d8e0;
+  --ink: #1a1e28;
+  --ink-rgb: 26, 30, 40;
+  --muted: #62687a;
+  --paper-rgb: 255, 255, 255;
+  --paper: rgb(var(--paper-rgb));
+  --accent: #10b981;
+  --accent-rgb: 16, 185, 129;
+  --border: rgba(var(--ink-rgb), 0.09);
+  --display: "Newsreader", "Georgia", serif;
+  --sans: "Inter Tight", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+/* Dark theme — ported from raphaelsty.github.io/knowledge.
+   Deep black field, paper rises to #0c0c14 for cards, emerald
+   accent (#10b981) carries over from light. */
+[data-theme="dark"] {
+  /* Lifted dark surface — sits a notch above pure black so cards
+     blend into the field and ink reads softer. Shared with the
+     search and welcome pages. */
+  --bg-a: #1a1a22;
+  --bg-b: #131319;
+  --ink: #e6e6ee;
+  --ink-rgb: 230, 230, 238;
+  --muted: #9a9aac;
+  --paper-rgb: 26, 26, 34;
+  --accent: #10b981;
+  --accent-rgb: 16, 185, 129;
+  --border: rgba(255, 255, 255, 0.05);
+}
+
+* {
+  box-sizing: border-box;
+}
+html {
+  background: #ffffff;
+}
+
+html[data-theme="dark"] {
+  background: #15151c;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  color: var(--ink);
+}
+body {
+  font-family: var(--sans);
+  font-size: 15.5px;
+  line-height: 1.6;
+  background: transparent;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+button {
+  font-family: inherit;
+  cursor: pointer;
+}

@@ -1,0 +1,29 @@
+[Unit]
+Description=Knowledge continuous pipeline (VIP-first per-user runner)
+After=network-online.target docker.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/knowledge
+# CPUAffinity is the systemd-native equivalent of `taskset -c 0`.
+# The whole process tree (including every spawned `uv run` python)
+# is pinned to CPU 0 so the runner can never starve the Rust API
+# on the other cores.
+CPUAffinity=0
+# Restart on any non-zero exit, including SIGKILL. RestartSec is
+# small enough that a transient failure recovers quickly, large
+# enough that a tight crash-loop won't pin the CPU.
+Restart=on-failure
+RestartSec=10
+# A hard ceiling on memory the runner family can use. The bash loop
+# is tiny but child python processes can spike; cap at 2 GB to keep
+# the host's 8 GB free for postgres + Rust API + caddy.
+MemoryMax=2G
+StandardOutput=append:/root/knowledge/logs/continuous_pipeline.boot
+StandardError=append:/root/knowledge/logs/continuous_pipeline.boot
+ExecStart=/usr/bin/env bash /root/knowledge/sources/continuous_pipeline_start.sh
+
+[Install]
+WantedBy=multi-user.target

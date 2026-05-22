@@ -1,0 +1,164 @@
+/* Shared theme + reset for the simple pages that don't have their
+ * own dedicated stylesheet (admin.html).
+ *
+ * Welcome / search / profile have their own per-page CSS bundles
+ * under web/search/, web/profile/, web/bookmark/, web/export/.
+ *
+ * The previous version of this file (~7000 lines) was a grab-bag
+ * for the welcome-page rebuild and carried styles for finder,
+ * document cards, MCP modals, mockup33, profile modal v2, etc. —
+ * none of which are used by the three pages that actually load
+ * this file. They've been deleted.
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,0..100;1,9..144,300..700,0..100&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap");
+
+/* ── Shared (non-color) variables ──────────────────────────── */
+:root {
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s ease;
+  --transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Modern Apple-flavored sans for body copy. macOS / iOS get real
+     SF Pro; everyone else falls back to Inter (loaded above) and
+     finally system-ui. */
+  --modern:
+    -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter",
+    system-ui, sans-serif;
+}
+
+/* ── Dark theme ─────────────────────────────────────────────── */
+[data-theme="dark"] {
+  --bg-body: transparent;
+  --bg-primary: rgba(26, 26, 34, 0.82);
+  --bg-secondary: rgba(34, 34, 44, 0.88);
+  --bg-glass: rgba(34, 34, 44, 0.72);
+  --bg-input-hover: rgba(255, 255, 255, 0.04);
+  --bg-input-focus: rgba(34, 34, 44, 0.92);
+  --bg-chip: rgba(255, 255, 255, 0.05);
+  --bg-chip-hover: rgba(255, 255, 255, 0.09);
+
+  --text-primary: #e6e6ee;
+  --text-secondary: #9a9aac;
+  --text-muted: #74748a;
+
+  --accent-primary: #6366f1;
+  --accent-secondary: #818cf8;
+  --accent-rgb: 99, 102, 241;
+  --accent-glow: rgba(99, 102, 241, 0.18);
+  --accent-gradient: linear-gradient(135deg, #6366f1 0%, #818cf8 100%);
+  --accent-border: rgba(99, 102, 241, 0.3);
+  --accent-bg-subtle: rgba(99, 102, 241, 0.1);
+  --accent-bg-hover: rgba(99, 102, 241, 0.18);
+
+  --border-subtle: rgba(255, 255, 255, 0.05);
+  --border-hover: rgba(255, 255, 255, 0.1);
+
+  --shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.22);
+  --shadow-md: 0 3px 14px rgba(0, 0, 0, 0.26);
+  --shadow-lg: 0 6px 28px rgba(0, 0, 0, 0.32);
+
+  --scrollbar-thumb: rgba(255, 255, 255, 0.1);
+  --scrollbar-thumb-hover: rgba(255, 255, 255, 0.18);
+}
+
+/* ── Light theme ────────────────────────────────────────────── */
+[data-theme="light"] {
+  --bg-body: transparent;
+  --bg-primary: rgba(255, 255, 255, 0.62);
+  --bg-secondary: rgba(255, 255, 255, 0.7);
+  --bg-glass: rgba(255, 255, 255, 0.42);
+  --bg-input-hover: rgba(26, 30, 40, 0.03);
+  --bg-input-focus: rgba(255, 255, 255, 0.78);
+  --bg-chip: rgba(255, 255, 255, 0.42);
+  --bg-chip-hover: rgba(255, 255, 255, 0.62);
+
+  --text-primary: #1a1e28;
+  --text-secondary: #3a4252;
+  --text-muted: #62687a;
+
+  --accent-primary: #6366f1;
+  --accent-secondary: #818cf8;
+  --accent-rgb: 99, 102, 241;
+  --accent-glow: rgba(99, 102, 241, 0.16);
+  --accent-gradient: linear-gradient(135deg, #6366f1 0%, #818cf8 100%);
+  --accent-border: rgba(99, 102, 241, 0.24);
+  --accent-bg-subtle: rgba(99, 102, 241, 0.08);
+  --accent-bg-hover: rgba(99, 102, 241, 0.14);
+
+  --border-subtle: rgba(26, 30, 40, 0.1);
+  --border-hover: rgba(26, 30, 40, 0.18);
+
+  --shadow-sm: 0 1px 3px rgba(26, 30, 40, 0.05);
+  --shadow-md: 0 2px 10px rgba(26, 30, 40, 0.07);
+  --shadow-lg: 0 4px 20px rgba(26, 30, 40, 0.09);
+
+  --scrollbar-thumb: rgba(26, 30, 40, 0.1);
+  --scrollbar-thumb-hover: rgba(26, 30, 40, 0.2);
+}
+
+/* ── Reset and base ─────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: #ffffff;
+}
+
+html[data-theme="dark"] {
+  background: #15151c;
+}
+
+body {
+  background: var(--bg-body);
+  min-height: 100vh;
+  overflow-x: hidden;
+  isolation: isolate;
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
+}
+
+/* ── Scrollbar + selection ──────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+::selection {
+  background: var(--accent-primary);
+  color: var(--bg-primary);
+}

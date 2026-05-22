@@ -1,0 +1,97 @@
+[package]
+name = "knowledge-api"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# Search engine
+next-plaid = "1.2"
+
+# Web framework
+axum = { version = "0.8", features = ["macros"] }
+axum-extra = { version = "0.10", features = ["cookie"] }
+tokio = { version = "1.0", features = ["full"] }
+tower = { version = "0.5", features = ["util", "limit"] }
+tower-http = { version = "0.6", features = ["cors", "trace", "timeout"] }
+
+# Outbound HTTP (GitHub OAuth + user fetch).
+# `native-tls` is bundled alongside `rustls-tls` purely so the Reddit
+# probe can opt into the OS TLS stack — Reddit's edge fingerprints
+# the rustls ClientHello (JA3) and 403s server-side requests
+# regardless of UA. Everything else stays on rustls.
+reqwest = { version = "0.12", default-features = false, features = ["json", "rustls-tls", "native-tls", "cookies"] }
+
+# Random tokens for session IDs
+rand = "0.8"
+hex = "0.4"
+# SHA-256 for hashing user-scoped API tokens at rest. The plaintext is
+# shown to the user once at creation; only `sha256(token)` lives in PG.
+sha2 = "0.10"
+
+# Argon2id password hashing for /auth/signup + /auth/login.
+argon2 = { version = "0.5", features = ["std", "password-hash"] }
+
+# HMAC-SHA256 + constant-time compare for verifying Polar.sh webhook
+# signatures (Standard Webhooks spec). See api/src/handlers/polar.rs.
+hmac = "0.12"
+subtle = "2"
+
+# Cookie expiry (axum-extra re-exports `time::Duration` in public API)
+time = "0.3"
+
+# Symmetric encryption for third-party credentials (HackerNews password).
+# AES-256-GCM via RustCrypto. Key comes from HN_ENCRYPTION_KEY (hex).
+aes-gcm = "0.10"
+
+# Database
+sqlx = { version = "0.8", default-features = false, features = ["runtime-tokio", "postgres", "derive"] }
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Arrays
+ndarray = { version = "0.16", features = ["serde"] }
+
+# Error handling
+thiserror = "2.0"
+anyhow = "1.0"
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# Utilities
+uuid = { version = "1.0", features = ["v4", "serde"] }
+parking_lot = "0.12"
+base64 = "0.22"
+sysinfo = "0.33"
+arc-swap = "1.7"
+chrono = { version = "0.4", features = ["serde"] }
+
+# Model support (optional)
+next-plaid-onnx = { version = "1.2", optional = true }
+
+# Rate limiting
+tower_governor = "0.8"
+
+# OpenAPI / Swagger
+utoipa = { version = "5", features = ["axum_extras"] }
+utoipa-swagger-ui = { version = "9", features = ["axum"] }
+bytes = "1.11.1"
+# Streaming JSONL responses (exports endpoint).
+futures = "0.3"
+async-stream = "0.3"
+
+[features]
+default = []
+openblas = ["next-plaid/openblas"]
+accelerate = ["next-plaid/accelerate"]
+mkl = ["next-plaid/mkl"]
+metal_gpu = ["next-plaid/metal_gpu"]
+model = ["dep:next-plaid-onnx"]
+cuda = ["model", "next-plaid-onnx/cuda", "next-plaid/cuda"]
+
+[[bin]]
+name = "knowledge-api"
+path = "src/main.rs"

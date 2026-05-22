@@ -28,6 +28,9 @@ jobs:
       - name: Run mypy
         run: uvx mypy . --ignore-missing-imports
 
+      - name: Run Prettier check
+        run: npx prettier@latest --check --ignore-path /dev/null 'web/*.{js,jsx,css,html}'
+
   pre-commit:
     name: Pre-commit hooks
     runs-on: ubuntu-latest

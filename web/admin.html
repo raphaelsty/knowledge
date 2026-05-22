@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Knowledge · admin</title>
+    <link rel="icon" href="/favicon/favicon.ico" />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="stylesheet" href="/admin/style.css?v=7" />
+    <!-- Sets window.KNOWLEDGE_API_BASE: localhost → http://localhost:8080,
+     production → empty string (same-origin via Caddy). -->
+    <script src="/lib/utils.js"></script>
+  </head>
+  <body>
+    <header class="adm-header">
+      <div class="adm-brand">knowledge · admin</div>
+      <nav class="adm-tabs" role="tablist" aria-label="Admin sections">
+        <button data-tab="overview" class="adm-tab" aria-selected="true">
+          Overview
+        </button>
+        <button data-tab="sources" class="adm-tab">Sources</button>
+        <button data-tab="users" class="adm-tab">Users</button>
+        <button data-tab="indices" class="adm-tab">Indices</button>
+        <button data-tab="live" class="adm-tab">Live</button>
+      </nav>
+      <div class="adm-meta">
+        <span id="adm-clock"></span>
+        <button id="adm-refresh" title="Refresh current tab">↻</button>
+      </div>
+    </header>
+
+    <main id="adm-main" class="adm-main">
+      <div id="adm-gate" class="adm-gate" hidden>
+        <h1>Admin access</h1>
+        <p id="adm-gate-msg">Checking session…</p>
+      </div>
+
+      <section id="tab-overview" class="adm-section"></section>
+      <section id="tab-sources" class="adm-section" hidden></section>
+      <section id="tab-users" class="adm-section" hidden></section>
+      <section id="tab-indices" class="adm-section" hidden></section>
+      <section id="tab-live" class="adm-section" hidden></section>
+    </main>
+
+    <script type="module" src="/admin/index.js?v=8"></script>
+  </body>
+</html>

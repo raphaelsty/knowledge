@@ -1,0 +1,1501 @@
+/* ── Query metrics pill ───────────────────────────────────────────
+   Subtle row above the results list. Shows result count, query
+   latency, and the candidate-pool size in three monospace segments
+   separated by middots. Right-aligned within the same content
+   column the result cards use, so it reads like a timing readout
+   from a search engine console rather than a UI control. */
+/* Lives in the rail footer (bottom-right of the left panel,
+   under the Sources list). Compact one-line readout: "{n} results
+   · {t} ms · {N} candidates". Inherits the rail-foot's `.count`
+   color via the legacy class on the first segment, but stays a
+   single line that wraps gracefully on narrow rails. */
+.query-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--sans);
+  font-size: 10.5px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  color: rgba(var(--ink-rgb), 0.5);
+  user-select: none;
+}
+.query-metrics[hidden] {
+  display: none;
+}
+.qm-segment {
+  white-space: nowrap;
+}
+.qm-time {
+  color: rgba(var(--ink-rgb), 0.62);
+  font-weight: 500;
+}
+.qm-results {
+  color: rgba(var(--ink-rgb), 0.72);
+  font-weight: 500;
+}
+.qm-sep {
+  color: rgba(var(--ink-rgb), 0.25);
+}
+/* The .filter-strip wraps both the active-tag chips and the
+ * source-result chips. The strip itself needs the same horizontal
+ * gutter as the `.results` column below (which uses
+ * `padding: 0 max(44px, calc((100% - 1320px) / 2))`); without it
+ * the chips slide 44 px to the left of the result cards and read
+ * as misaligned. Padding both children individually keeps the
+ * inner inline-flex containers shrink-wrapped without forcing the
+ * strip itself to be 100 % wide. */
+.filter-strip {
+  padding: 0 max(44px, calc((100% - 1320px) / 2));
+  /* The `.spotlight-row` above leaves a 30 px bottom margin so the
+   * search bar has air when no filters are active. When the strip
+   * does carry chips we want them to read as a continuation of the
+   * search bar, not a free-floating row halfway down the page — so
+   * pull the strip up to sit ~12 px under the bar instead of 30. */
+  margin-top: -18px;
+  margin-bottom: 10px;
+}
+.filter-strip:has(> [hidden]:only-child),
+.filter-strip:not(:has(> :not([hidden]))) {
+  /* No visible chips → don't reserve the negative top margin or it
+   * would steal space from the profile header / first card below. */
+  margin: 0;
+}
+.active-tags {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+/* Active-tag — the filter chip that appears at the top of the
+ * results. Same neutral capsule as the in-card tag, just a touch
+ * more weight (10% ink fill + a hairline) so the user knows it's
+ * the *applied* filter without it shouting at them. The × icon
+ * sits inside the pill as a discreet "tap to clear" cue. */
+.active-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 28px;
+  padding: 0 8px 0 12px;
+  background: rgba(var(--ink-rgb), 0.08);
+  color: rgb(var(--ink-rgb));
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  border-radius: 999px;
+  font-family: var(--sans);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+.active-tag:hover {
+  background: rgba(var(--ink-rgb), 0.12);
+  border-color: rgba(var(--ink-rgb), 0.18);
+}
+.active-tag svg {
+  width: 12px;
+  height: 12px;
+  padding: 3px;
+  border-radius: 50%;
+  background: rgba(var(--ink-rgb), 0.1);
+  color: rgba(var(--ink-rgb), 0.72);
+  box-sizing: content-box;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+.active-tag:hover svg {
+  background: rgba(var(--ink-rgb), 0.18);
+  color: rgb(var(--ink-rgb));
+}
+[data-theme="dark"] .active-tag {
+  background: rgba(255, 255, 255, 0.08);
+  color: #e6e6ee;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+[data-theme="dark"] .active-tag:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+[data-theme="dark"] .active-tag svg {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.72);
+}
+[data-theme="dark"] .active-tag:hover svg {
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+}
+.active-tag-clear {
+  display: inline-flex;
+  align-items: center;
+  height: 28px;
+  padding: 0 14px;
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  cursor: pointer;
+  transition:
+    color 0.15s ease,
+    border-color 0.15s ease,
+    background 0.15s ease;
+}
+.active-tag-clear:hover {
+  color: var(--ink);
+  border-color: rgba(var(--ink-rgb), 0.22);
+  background: rgba(var(--ink-rgb), 0.04);
+}
+
+/* Result-sources strip — sits under the spotlight and lists up to
+   five sources actually present in the current result set, plus any
+   currently-banned sources so the user can restore them. */
+/* Avatar-pill mode for the auth button — shown when a user is
+ * signed in. Replaces the gear icon with a round avatar that links
+ * to their personal library. Square dimensions match the other
+ * top-right pill buttons (.theme-toggle, .bookmark-btn). */
+.auth-btn.avatar-pill {
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.auth-btn.avatar-pill:hover {
+  border-color: var(--accent-border);
+  background: var(--accent-bg-subtle);
+}
+.auth-btn.avatar-pill .av {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.auth-btn.avatar-pill .av-fallback {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent-primary);
+  display: grid;
+  place-items: center;
+}
+
+/* Companion Settings icon next to the avatar pill — same size, plain
+ * gear glyph, only shown for signed-in users. */
+.settings-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+.settings-btn:hover {
+  background: var(--accent-bg-subtle);
+  color: var(--accent-primary);
+  border-color: var(--accent-border);
+}
+.settings-btn svg {
+  width: 18px;
+  height: 18px;
+}
+.settings-btn[hidden] {
+  display: none;
+}
+
+/* Personal-page header. Only rendered when the current library
+ * selection is exactly the signed-in user's own slug. No banner /
+ * background — the avatar + meta sit directly on the page surface
+ * so they don't introduce a coloured block above the results.
+ *
+ * Side-padding mirrors `.results` exactly so the avatar's left
+ * edge aligns with every doc card below. The vertical margins
+ * give the block a little breathing room above + below. */
+.profile-header {
+  /* Top margin is small on purpose: the `.filter-strip` (active
+   * tags + banned sources) sits between the search bar and this
+   * header and only adds its own 22 px bottom margin when there's
+   * anything to show — so we leave that strip room to expand
+   * without burning vertical space when it's empty. */
+  margin: 6px 0 24px;
+  padding: 0 max(44px, calc((100% - 1320px) / 2)) 22px;
+  /* Slight divider line so the personal-page header reads as its
+   * own container, separate from the document feed below. */
+  border-bottom: 1px solid var(--border);
+}
+.profile-header[hidden] {
+  display: none;
+}
+.profile-header .ph-body {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 18px;
+  /* Anchor the meta column to the TOP of the avatar so the
+   * username/@handle sit at the upper edge of the picture rather
+   * than floating around its middle. */
+  align-items: start;
+  padding: 0;
+}
+.profile-header .ph-avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background-color: var(--bg-input);
+  background-size: cover;
+  background-position: center;
+  box-shadow: var(--shadow-card);
+}
+.profile-header .ph-avatar.ph-avatar-fallback {
+  display: grid;
+  place-items: center;
+  color: var(--accent-primary);
+  font-size: 32px;
+  font-weight: 700;
+  background: var(--accent-bg-subtle);
+}
+.profile-header .ph-meta {
+  min-width: 0;
+  /* Tiny top nudge to optically centre the cap-line of the name
+   * with the avatar's top edge — the avatar has no leading. */
+  padding-top: 2px;
+}
+.profile-header .ph-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-start;
+  gap: 14px;
+}
+.profile-header .ph-follow {
+  height: 26px;
+  padding: 0 11px;
+  border-radius: 9px;
+  font: 600 12px/1 var(--sans);
+  letter-spacing: 0;
+  color: rgba(var(--ink-rgb), 0.78);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.55),
+      rgba(255, 255, 255, 0) 55%
+    ),
+    rgba(var(--ink-rgb), 0.04);
+  border: 1px solid rgba(var(--ink-rgb), 0.08);
+  box-shadow:
+    0 1px 0 rgba(var(--ink-rgb), 0.02),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition:
+    background 0.14s ease,
+    color 0.14s ease,
+    border-color 0.14s ease,
+    box-shadow 0.14s ease;
+}
+[data-theme="dark"] .profile-header .ph-follow {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.04),
+      rgba(255, 255, 255, 0) 55%
+    ),
+    rgba(var(--ink-rgb), 0.045);
+  border-color: rgba(255, 255, 255, 0.07);
+  box-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+.profile-header .ph-follow::before {
+  content: "Follow";
+}
+.profile-header .ph-follow:hover {
+  color: rgba(var(--ink-rgb), 0.95);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.65),
+      rgba(255, 255, 255, 0) 55%
+    ),
+    rgba(var(--ink-rgb), 0.07);
+  border-color: rgba(var(--ink-rgb), 0.16);
+  box-shadow:
+    0 1px 2px rgba(var(--ink-rgb), 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+[data-theme="dark"] .profile-header .ph-follow:hover {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.06),
+      rgba(255, 255, 255, 0) 55%
+    ),
+    rgba(var(--ink-rgb), 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+.profile-header .ph-follow.is-following {
+  color: rgba(var(--ink-rgb), 0.72);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.55),
+      rgba(255, 255, 255, 0) 55%
+    ),
+    rgba(var(--ink-rgb), 0.04);
+  border-color: rgba(var(--ink-rgb), 0.08);
+  box-shadow:
+    0 1px 0 rgba(var(--ink-rgb), 0.02),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+[data-theme="dark"] .profile-header .ph-follow.is-following {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.04),
+      rgba(255, 255, 255, 0) 55%
+    ),
+    rgba(var(--ink-rgb), 0.045);
+  border-color: rgba(255, 255, 255, 0.07);
+  box-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+.profile-header .ph-follow.is-following::before {
+  content: "Following";
+}
+.profile-header .ph-follow.is-following:hover {
+  color: rgba(var(--ink-rgb), 0.92);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.65),
+      rgba(255, 255, 255, 0) 55%
+    ),
+    rgba(var(--ink-rgb), 0.07);
+  border-color: rgba(var(--ink-rgb), 0.16);
+  box-shadow:
+    0 1px 2px rgba(var(--ink-rgb), 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+[data-theme="dark"] .profile-header .ph-follow.is-following:hover {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.06),
+      rgba(255, 255, 255, 0) 55%
+    ),
+    rgba(var(--ink-rgb), 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+.profile-header .ph-follow.is-following:hover::before {
+  content: "Unfollow";
+}
+.profile-header .ph-name {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+.profile-header .ph-handle {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+.profile-header .ph-bio {
+  font-size: 14.5px;
+  color: var(--text-secondary);
+  margin-top: 10px;
+  line-height: 1.45;
+}
+.profile-header .ph-stats {
+  margin-top: 10px;
+  font-size: 13.5px;
+  color: var(--text-muted);
+  display: flex;
+  gap: 16px;
+}
+.profile-header .ph-stats strong {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+/* Follow-graph kicker shown above #results when the search page is
+ * rendering the default-state timeline (activity from people you
+ * follow). Kept low-key on purpose — same vertical rhythm as the
+ * existing result-sources strip, just a single line with a tiny
+ * accent dot. */
+.following-header {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 8px 14px;
+  margin: 0 0 6px;
+  font-size: 13.5px;
+  color: var(--text-secondary);
+}
+.following-header strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+.following-header .following-sub {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+.following-header .following-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-primary);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+  display: inline-block;
+  align-self: center;
+}
+.following-header[hidden] {
+  display: none;
+}
+
+.result-sources {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  align-items: center;
+}
+.result-source {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 26px;
+  padding: 0 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(var(--paper-rgb), 0.6);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  cursor: pointer;
+  transition:
+    color 0.15s ease,
+    border-color 0.15s ease,
+    background 0.15s ease,
+    opacity 0.15s ease;
+}
+.result-source img {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  flex-shrink: 0;
+  opacity: 0.9;
+}
+.result-source-count {
+  color: var(--muted);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 400;
+}
+.result-source svg {
+  width: 12px;
+  height: 12px;
+  opacity: 0.55;
+  transition:
+    opacity 0.15s ease,
+    color 0.15s ease;
+}
+.result-source:hover {
+  border-color: rgba(220, 38, 38, 0.45);
+  color: rgb(220, 38, 38);
+  background: rgba(220, 38, 38, 0.06);
+}
+.result-source:hover svg {
+  opacity: 1;
+}
+/* Banned chip — strike-through label, dim, and a circular-arrow icon
+   instead of the ✕ so the action reads as "restore". */
+.result-source.banned {
+  color: var(--muted);
+  border-color: var(--border);
+  background: transparent;
+  text-decoration: line-through;
+  opacity: 0.75;
+}
+.result-source.banned:hover {
+  color: var(--ink);
+  border-color: rgba(var(--ink-rgb), 0.22);
+  background: rgba(var(--ink-rgb), 0.04);
+  text-decoration: none;
+  opacity: 1;
+}
+.result-source.banned svg {
+  opacity: 0.85;
+}
+
+.spotlight:focus-within {
+  background: rgba(var(--paper-rgb), 0.98);
+  border-color: rgba(var(--ink-rgb), 0.12);
+  box-shadow:
+    0 1px 0 rgba(var(--paper-rgb), 0.9) inset,
+    0 0 0 4px rgba(var(--accent-rgb), 0.14),
+    0 12px 32px rgba(var(--ink-rgb), 0.1),
+    0 2px 6px rgba(var(--ink-rgb), 0.04);
+}
+.spotlight-mag {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  color: var(--muted);
+  opacity: 0.65;
+  pointer-events: none;
+  transition:
+    opacity 0.18s ease,
+    color 0.18s ease;
+}
+.spotlight:focus-within .spotlight-mag {
+  color: var(--ink);
+  opacity: 0.85;
+}
+.spotlight input {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font-family: var(--sans);
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.012em;
+  color: var(--ink);
+  padding: 12px 96px 12px 46px;
+}
+.spotlight input::placeholder {
+  color: var(--muted);
+  opacity: 0.55;
+  font-weight: 400;
+}
+/* Re-ranker status pastille — anchored at the right end of the
+     * search bar, a tiny coloured dot that signals where the
+     * in-browser ColBERT model stands. Hidden until the worker
+     * starts; orange (with a gentle pulse) while the model is
+     * downloading; solid green once the model is ready and
+     * re-ranking is live; dim red on any worker error. The native
+     * title="" tooltip carries the verbose status string from the
+     * worker's `status` events. */
+/* Search-row wrapper — keeps the spotlight + the date filter on the
+ * same baseline, with the date sitting just outside the input. */
+.spotlight-row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 30px;
+}
+/* The spotlight is now inside this row, so let it shed its own
+ * bottom margin. Cap its width and DROP the auto right-margin so the
+ * date filter snaps right next to the bar instead of being pushed to
+ * the column's far right edge. */
+.spotlight-row .spotlight {
+  margin-bottom: 0;
+  margin-right: 0;
+  flex: 0 1 720px;
+  min-width: 0;
+}
+
+/* Minimalist date-range filter. Bare text + a small chevron — no
+ * fill, no border, no chip. Greyed at rest, picks up the ink colour
+ * on hover so it reads as a quiet "settings" affordance.
+ *
+ * The filter is hidden whenever the spotlight input is empty — a
+ * date range only makes sense once the user is actually searching.
+ * `:placeholder-shown` matches both an empty input and one that's
+ * just been cleared, so the chip flips on/off without JS. */
+.spotlight-row:has(#q:placeholder-shown) .since-filter {
+  display: none;
+}
+.since-filter {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 1px;
+  font: 500 13px/1 var(--sans);
+  color: rgba(var(--ink-rgb), 0.55);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.14s ease;
+}
+.since-filter:hover,
+.since-filter:focus-within {
+  color: rgba(var(--ink-rgb), 0.92);
+}
+.since-filter-select {
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  outline: 0;
+  padding: 4px 0;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.since-filter-select option {
+  color: var(--text-primary);
+  background: var(--paper);
+}
+.since-filter-caret {
+  width: 11px;
+  height: 11px;
+  opacity: 0.7;
+  transition: transform 0.18s ease;
+  pointer-events: none;
+}
+.since-filter:hover .since-filter-caret {
+  opacity: 1;
+}
+
+/* Hide the legacy sort-toggle pill cluster if any cached HTML still
+ * carries it — the new date filter replaces it. */
+.sort-toggle {
+  display: none !important;
+}
+
+/* "Following only" toggle — sits next to the date filter, same
+ * minimalist text+icon family. Off = greyed; On = full ink + a
+ * tiny dot indicator so the active state is unmistakable. */
+.scope-filter {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 4px 0;
+  margin-left: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font: 500 13px/1 var(--sans);
+  color: rgba(var(--ink-rgb), 0.55);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.14s ease;
+}
+/* The `display: inline-flex` above overrides the UA-default
+ * `[hidden] { display: none }`, so the JS-set `hidden` attribute
+ * stops working. Force the attribute to win. */
+.scope-filter[hidden] {
+  display: none;
+}
+.scope-filter:hover {
+  color: rgba(var(--ink-rgb), 0.92);
+}
+.scope-filter-icon {
+  width: 13px;
+  height: 13px;
+  opacity: 0.85;
+}
+.scope-filter.is-on {
+  color: rgb(var(--ink-rgb));
+}
+.scope-filter.is-on .scope-filter-icon {
+  opacity: 1;
+}
+/* Dot indicator on the active state — drawn after the label so it
+ * reads as "this filter is engaged" without an outlined chip. */
+.scope-filter.is-on::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  margin-left: 2px;
+  border-radius: 50%;
+  background: #2eb872;
+}
+
+/* ──────────────────────────────────────────────────────────────────
+ *  Category picker — desktop only
+ *
+ *  Topical filter that lives in the spotlight row next to the date
+ *  and scope filters on viewports wider than 768 px. The button
+ *  shows the active slug's display name with an accent dot. The
+ *  popover panel (portaled to <body>, positioned by JS) presents a
+ *  search input at the top, then either a grouped catalogue or
+ *  search-driven "Best matches" + "Other matches" sections when the
+ *  user is filtering.
+ *
+ *  On phones the inline picker is hidden — the bottom-nav "Topics"
+ *  tab opens a Cupertino Pane sheet hosting `.category-rail`
+ *  instead, mirroring the People drawer shape.
+ * ────────────────────────────────────────────────────────────────── */
+/* Desktop AND mobile both hide the inline picker — categories now
+ * live in the right-rail tab toggle (desktop) or the bottom-nav
+ * Topics tab (mobile). The inline markup stays in the DOM so the
+ * existing JS handles (catPickerBtn / catPickerPanel) keep
+ * functioning, but the elements never paint. */
+.cat-picker {
+  display: none !important;
+}
+.cat-picker-internal-only {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  margin-left: 6px;
+}
+.cat-picker-btn {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 4px 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font: 500 13px/1 var(--sans);
+  color: rgba(var(--ink-rgb), 0.55);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.14s ease;
+}
+.cat-picker-btn:hover,
+.cat-picker-btn[aria-expanded="true"] {
+  color: rgba(var(--ink-rgb), 0.92);
+}
+.cat-picker-icon {
+  width: 13px;
+  height: 13px;
+  opacity: 0.85;
+  flex-shrink: 0;
+}
+.cat-picker-caret {
+  width: 11px;
+  height: 11px;
+  opacity: 0.7;
+  transition: transform 0.18s ease;
+  pointer-events: none;
+}
+.cat-picker-btn[aria-expanded="true"] .cat-picker-caret {
+  transform: rotate(180deg);
+}
+.cat-picker-label {
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* Selection-count badge — a small filled disc sitting between the
+ * label and the caret. Hidden via the `hidden` attribute when the
+ * picker has zero selections so the bar reads quiet by default. */
+.cat-picker-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: rgb(var(--ink-rgb));
+  color: rgb(var(--paper-rgb));
+  font: 700 10.5px/1 var(--sans);
+  flex-shrink: 0;
+}
+.cat-picker-count[hidden] {
+  display: none;
+}
+/* Right-rail Topics tab badge — same idiom as the cat-picker count,
+ * sized to sit next to the "Topics" label without bumping line
+ * height. */
+.rrt-tab-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 16px;
+  height: 16px;
+  margin-left: 4px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: rgb(var(--ink-rgb));
+  color: rgb(var(--paper-rgb));
+  font: 700 10px/1 var(--sans);
+  flex-shrink: 0;
+}
+.rrt-tab-count[hidden] {
+  display: none;
+}
+/* "Selected" group block inside the picker — borrow the picker's
+ * group spacing so the section reads as another bucket, but tag
+ * it visually with a subtle accent rule so the user notices their
+ * pinned picks at the top of the list. */
+.cat-picker-group-selected {
+  border-left: 2px solid var(--accent-primary);
+  padding-left: 6px;
+  margin-bottom: 4px;
+}
+.cat-picker-group-selected .cat-picker-group-head {
+  color: var(--accent-primary);
+}
+/* Active state — a category is selected. Full ink, accent dot. */
+.cat-picker.is-on .cat-picker-btn,
+.cat-picker.is-on .cat-picker-icon {
+  color: rgb(var(--ink-rgb));
+  opacity: 1;
+}
+.cat-picker.is-on .cat-picker-btn::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  margin-left: 2px;
+  border-radius: 50%;
+  background: #2eb872;
+  flex-shrink: 0;
+}
+
+/* Popover panel — portaled to <body> by page.js so it lives outside
+ * the `.spotlight-row` blur layer (a `backdrop-filter` ancestor
+ * would otherwise become the containing block for our
+ * `position: fixed` and the panel would anchor to the search-bar
+ * instead of the viewport). All actual positioning is set by JS
+ * via inline `top` / `left` / `right` styles on open; the CSS just
+ * supplies the visual shell. Newspaper-grade card: soft shadow,
+ * hairline border, sharp 12 px radius. Scrolls internally when the
+ * catalogue is long; never grows past viewport. */
+.cat-picker-panel {
+  position: fixed;
+  z-index: 50;
+  width: min(420px, 90vw);
+  max-height: min(560px, 70vh);
+  background: var(--paper);
+  border: 1px solid rgba(var(--ink-rgb), 0.08);
+  border-radius: 12px;
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.06),
+    0 18px 48px rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: cat-picker-pop 0.14s ease;
+}
+.cat-picker-panel[hidden] {
+  display: none !important;
+}
+@keyframes cat-picker-pop {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.cat-picker-search-wrap {
+  padding: 14px 14px 10px;
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.07);
+  position: relative;
+}
+/* Magnifier glyph inside the search input via mask-image so the
+ * input itself can carry left padding without nesting markup. */
+.cat-picker-search-wrap::before {
+  content: "";
+  position: absolute;
+  left: 24px;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  transform: translateY(-50%);
+  background: rgba(var(--ink-rgb), 0.45);
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round'><circle cx='11' cy='11' r='7'/><path d='m20 20-4-4'/></svg>")
+    no-repeat center / contain;
+  mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round'><circle cx='11' cy='11' r='7'/><path d='m20 20-4-4'/></svg>")
+    no-repeat center / contain;
+  pointer-events: none;
+}
+.cat-picker-search {
+  width: 100%;
+  appearance: none;
+  border: 0;
+  background: rgba(var(--ink-rgb), 0.045);
+  padding: 10px 12px 10px 36px;
+  border-radius: 9px;
+  font: 500 14px/1 var(--sans);
+  color: rgb(var(--ink-rgb));
+  outline: 0;
+  transition:
+    background 0.14s ease,
+    box-shadow 0.14s ease;
+}
+.cat-picker-search:hover {
+  background: rgba(var(--ink-rgb), 0.06);
+}
+.cat-picker-search:focus {
+  background: rgba(var(--ink-rgb), 0.075);
+  box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.1);
+}
+.cat-picker-search::placeholder {
+  color: rgba(var(--ink-rgb), 0.45);
+  font-weight: 400;
+}
+
+.cat-picker-list {
+  overflow-y: auto;
+  padding: 6px 0 12px;
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+}
+.cat-picker-list::-webkit-scrollbar {
+  width: 7px;
+}
+.cat-picker-list::-webkit-scrollbar-thumb {
+  background: rgba(var(--ink-rgb), 0.18);
+  border-radius: 999px;
+}
+/* "All categories" reset row — pinned at the top of the list with
+ * a soft underline that separates it from the catalogue below.
+ * Reads as the explicit "show everything" affordance. */
+.cat-picker-clear {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  width: 100%;
+  text-align: left;
+  padding: 11px 18px;
+  font: 600 13px/1.2 var(--sans);
+  letter-spacing: -0.005em;
+  color: rgba(var(--ink-rgb), 0.78);
+  cursor: pointer;
+  transition:
+    background 0.12s ease,
+    color 0.12s ease;
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.05);
+  margin-bottom: 4px;
+}
+.cat-picker-clear:hover,
+.cat-picker-clear:focus-visible {
+  background: rgba(var(--ink-rgb), 0.045);
+  color: rgb(var(--ink-rgb));
+  outline: 0;
+}
+.cat-picker-clear.is-current {
+  color: rgb(var(--ink-rgb));
+}
+.cat-picker-clear.is-current::after {
+  content: "✓";
+  float: right;
+  color: var(--accent, #2eb872);
+  font-weight: 700;
+}
+
+/* Group block — either a catalogue group (Pretraining & Architecture,
+ * Releases, …) when the search input is empty, or one of the
+ * synthetic search-mode buckets ("Best matches" / "Other matches")
+ * when filtering. */
+.cat-picker-group {
+  padding: 2px 0 4px;
+}
+.cat-picker-group + .cat-picker-group {
+  border-top: 1px solid rgba(var(--ink-rgb), 0.04);
+  margin-top: 4px;
+  padding-top: 6px;
+}
+.cat-picker-group-head {
+  padding: 10px 18px 6px;
+  font: 700 10.5px/1.2 var(--sans);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: rgba(var(--ink-rgb), 0.42);
+}
+/* The ColBERT-promoted "Best matches" section gets an accent-tinted
+ * header so the user sees where the search ranking came from. */
+.cat-picker-group-colbert .cat-picker-group-head {
+  color: var(--accent, #2eb872);
+}
+
+.cat-picker-item {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  width: 100%;
+  text-align: left;
+  padding: 10px 18px;
+  font: 500 14px/1.35 var(--sans);
+  letter-spacing: -0.005em;
+  color: rgb(var(--ink-rgb));
+  cursor: pointer;
+  transition:
+    background 0.12s ease,
+    color 0.12s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  position: relative;
+}
+.cat-picker-item:hover,
+.cat-picker-item:focus-visible {
+  background: rgba(var(--ink-rgb), 0.045);
+  outline: 0;
+}
+.cat-picker-item-name {
+  font-weight: 600;
+  font-size: 13.5px;
+  letter-spacing: -0.005em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.cat-picker-item-desc {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.4;
+  color: rgba(var(--ink-rgb), 0.55);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.cat-picker-item.is-current {
+  background: rgba(var(--accent-rgb, 46, 184, 114), 0.08);
+}
+.cat-picker-item.is-current .cat-picker-item-name {
+  color: var(--accent, #2eb872);
+}
+.cat-picker-item.is-current .cat-picker-item-name::after {
+  content: "✓";
+  margin-left: auto;
+  color: var(--accent, #2eb872);
+  font-weight: 700;
+}
+
+.cat-picker-empty {
+  padding: 28px 18px;
+  font: 500 13px/1.4 var(--sans);
+  color: rgba(var(--ink-rgb), 0.48);
+  text-align: center;
+}
+
+/* On phones, sit the popover full-width near the bottom of the
+ * viewport so the catalogue stays comfortable to scroll on a thumb.
+ * Width override only — JS sets the actual top/left/right. */
+@media (max-width: 768px) {
+  .cat-picker-panel {
+    width: auto;
+    max-height: 70vh;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────────
+ *  Category rail — mobile-only sheet body
+ *
+ *  Hosted by a Cupertino Pane on phone, opened by the bottom-nav
+ *  "Topics" tab. Hidden at rest. The rail mirrors `.people-rail`
+ *  (heading + search input + scrollable list) so the two drawers
+ *  read as siblings of one UI primitive. The list rows reuse the
+ *  `.cat-picker-item` / `.cat-picker-group` styles above so the
+ *  lexical + ColBERT renderer stays single-source.
+ * ────────────────────────────────────────────────────────────────── */
+.category-rail {
+  display: none;
+}
+/* Desktop right column toggle — when body's data-rail-mode is
+ * "categories", show the category rail with the same layout
+ * primitives as .people-rail, anchored to the right column.
+ * .people-rail's own `display: flex` is overridden in this mode
+ * by the body[data-rail-mode] selector below. */
+@media (min-width: 1200px) {
+  body[data-rail-mode="categories"] .people-rail {
+    display: none !important;
+  }
+  body[data-rail-mode="categories"] .category-rail {
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    align-self: start;
+    height: 100dvh;
+    max-height: 100dvh;
+    border-left: 1px solid var(--border);
+    padding: 22px 18px 0;
+    gap: 12px;
+    box-sizing: border-box;
+    overflow: hidden;
+    grid-column: 3;
+  }
+}
+.category-rail-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+/* "Clear selection" link — quiet pill underneath the rail head,
+ * paints only when at least one slug is in state.categories. The
+ * style is intentionally subtle so it reads as a "tidy up" link
+ * rather than a primary action, with the accent only on hover. */
+.cat-rail-clear {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 6px 10px;
+  margin: 4px 0 2px;
+  align-self: flex-start;
+  font: 600 12px/1 var(--sans);
+  letter-spacing: -0.005em;
+  color: rgba(var(--ink-rgb), 0.6);
+  cursor: pointer;
+  border-radius: 999px;
+  transition:
+    color 0.14s ease,
+    background 0.14s ease;
+}
+.cat-rail-clear:hover {
+  color: var(--accent, #2eb872);
+  background: rgba(var(--ink-rgb), 0.04);
+}
+.cat-rail-clear[hidden] {
+  display: none !important;
+}
+
+/* People ↔ Topics toggle pill — sits in both rail heads. Two
+ * tabs, the inactive one greys out. Hidden on phone (the rail
+ * heads themselves are hidden inside the Cupertino sheet). */
+.right-rail-toggle {
+  display: inline-flex;
+  gap: 0;
+  padding: 2px;
+  background: rgba(var(--ink-rgb), 0.05);
+  border-radius: 999px;
+}
+.rrt-tab {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font: 600 12px/1 var(--sans);
+  letter-spacing: -0.005em;
+  color: rgba(var(--ink-rgb), 0.55);
+  cursor: pointer;
+  transition:
+    background 0.14s ease,
+    color 0.14s ease;
+}
+.rrt-tab:hover {
+  color: rgb(var(--ink-rgb));
+}
+.rrt-tab.is-current {
+  background: var(--paper, #fff);
+  color: rgb(var(--ink-rgb));
+  box-shadow: 0 1px 3px rgba(15, 17, 22, 0.08);
+}
+[data-theme="dark"] .rrt-tab.is-current {
+  background: rgba(255, 255, 255, 0.12);
+}
+@media (max-width: 768px) {
+  .right-rail-toggle {
+    display: none;
+  }
+}
+.category-rail-head h2 {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  opacity: 0.7;
+}
+.category-rail-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.category-rail-search svg {
+  position: absolute;
+  left: 12px;
+  width: 16px;
+  height: 16px;
+  color: var(--muted);
+  opacity: 0.6;
+  pointer-events: none;
+}
+.category-rail-search input {
+  width: 100%;
+  height: 40px;
+  padding: 0 12px 0 36px;
+  background: rgba(var(--ink-rgb), 0.045);
+  border: 0;
+  border-radius: 8px;
+  color: var(--ink);
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  transition: background 0.15s;
+}
+.category-rail-search input::placeholder {
+  color: var(--muted);
+  opacity: 0.55;
+}
+.category-rail-search input:hover {
+  background: rgba(var(--ink-rgb), 0.06);
+}
+.category-rail-search input:focus {
+  background: rgba(var(--ink-rgb), 0.07);
+  box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.1);
+}
+.category-rail-list {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  padding-bottom: 0;
+  margin: 0 -14px;
+}
+.category-rail-list::-webkit-scrollbar {
+  width: 6px;
+}
+.category-rail-list::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 999px;
+}
+/* The Cupertino Pane wrapper draws its own paper colour + radius;
+ * the rail itself just lays out heading + search + list. Forced
+ * visible only when the sheet is open (page.js sets inline
+ * `display: flex` before present()). */
+@media (max-width: 768px) {
+  .category-rail {
+    flex-direction: column;
+    padding: 18px 14px 0;
+    gap: 12px;
+    box-sizing: border-box;
+    height: 100%;
+  }
+}
+
+/* Shuffle action — same minimalist text+icon family as the date /
+ * scope filters. Sits in the topbar on the feed view only (page.js
+ * toggles `hidden`). Click → JS Fisher-Yates over the visible
+ * cards. A short rotation animation gives the button a "did
+ * something" cue without a heavier toast. */
+.shuffle-filter {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 4px 0;
+  margin-left: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font: 500 13px/1 var(--sans);
+  color: rgba(var(--ink-rgb), 0.55);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.14s ease;
+}
+.shuffle-filter[hidden] {
+  display: none;
+}
+.shuffle-filter:hover {
+  color: rgba(var(--ink-rgb), 0.92);
+}
+.shuffle-filter-icon {
+  width: 13px;
+  height: 13px;
+  opacity: 0.85;
+  transition: transform 0.45s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.shuffle-filter:hover .shuffle-filter-icon {
+  opacity: 1;
+}
+.shuffle-filter.is-spinning .shuffle-filter-icon {
+  transform: rotate(180deg);
+}
+
+/* Pull-to-refresh indicator — sits between the sticky search bar
+ * and the first feed card. Hidden at rest (translateY = 0,
+ * opacity = 0); the touchmove handler in page.js drags it down
+ * with the finger and ramps opacity. Releasing past the trigger
+ * point fires the fetch + adds `.is-spinning` for the continuous
+ * rotation. */
+/* Pinned to the top of the viewport so it reads as a chrome
+ * element rather than feed content. Starts off-screen (-56px) and
+ * is translated down by JS as the user pulls — the chip slides
+ * out from above the search bar instead of getting hidden behind
+ * it. z-index is one notch above the sticky search bar (z=40) so
+ * it always wins the stacking battle. */
+.feed-pull-refresh {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 60;
+  transform: translate3d(-50%, -56px, 0);
+  will-change: transform, opacity;
+}
+.feed-pull-refresh-spinner {
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  background: rgba(var(--paper-rgb), 0.92);
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
+  backdrop-filter: blur(14px) saturate(180%);
+  border: 1px solid rgba(var(--ink-rgb), 0.08);
+  box-shadow:
+    0 6px 18px rgba(var(--ink-rgb), 0.12),
+    0 1px 0 rgba(255, 255, 255, 0.6) inset;
+  display: grid;
+  place-items: center;
+  color: rgba(var(--ink-rgb), 0.7);
+}
+[data-theme="dark"] .feed-pull-refresh-spinner {
+  background: rgba(20, 20, 28, 0.85);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.45),
+    0 1px 0 rgba(255, 255, 255, 0.04) inset;
+}
+.feed-pull-refresh-spinner svg {
+  width: 18px;
+  height: 18px;
+  transition: transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+/* Armed (past the trigger point) — ring darkens + icon picks up
+ * full ink so a release reads as "yes, this will commit". */
+.feed-pull-refresh.is-armed .feed-pull-refresh-spinner {
+  background: rgba(var(--paper-rgb), 1);
+  border-color: rgba(var(--ink-rgb), 0.16);
+  color: rgb(var(--ink-rgb));
+}
+[data-theme="dark"] .feed-pull-refresh.is-armed .feed-pull-refresh-spinner {
+  background: rgba(28, 28, 36, 0.95);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+/* Spinning — runs while the fetch is in flight. */
+.feed-pull-refresh.is-spinning .feed-pull-refresh-spinner svg {
+  animation: feed-pull-spin 0.9s linear infinite;
+}
+@keyframes feed-pull-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.reranker-dot {
+  position: absolute;
+  /* Sits at the right edge of the bar when the input is empty.
+       * When the user types, a CSS sibling rule below shifts it
+       * left (`right: 42px`) so the appearing clear button doesn't
+       * overlap it. */
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: transparent;
+  transition:
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
+  pointer-events: auto;
+  cursor: help;
+  opacity: 0;
+}
+.reranker-dot[data-state="loading"] {
+  opacity: 1;
+  background: #f59e0b;
+  box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.45);
+  animation: reranker-pulse 1.6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+.reranker-dot[data-state="ready"] {
+  opacity: 1;
+  background: #22c55e;
+  box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+}
+.reranker-dot[data-state="error"] {
+  opacity: 0.85;
+  background: #b91c1c;
+}
+@keyframes reranker-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.55);
+  }
+  70% {
+    box-shadow: 0 0 0 7px rgba(245, 158, 11, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0);
+  }
+}
+/* Clear button — Apple's filled-circle xmark, anchored at the
+     * very right of the bar. Hidden until the input has content. */
+.spotlight input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+.spotlight-clear {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 17px;
+  height: 17px;
+  background: rgba(var(--ink-rgb), 0.22);
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 50%;
+  color: rgba(var(--paper-rgb), 0.96);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background 0.12s ease,
+    transform 0.12s ease;
+}
+.spotlight-clear svg {
+  width: 9px;
+  height: 9px;
+  display: block;
+}
+.spotlight-clear:hover {
+  background: rgba(var(--ink-rgb), 0.36);
+}
+.spotlight-clear:active {
+  transform: translateY(-50%) scale(0.92);
+}
+
+/* Toggle: input not empty → show clear button. */
+.spotlight input:not(:placeholder-shown) ~ .spotlight-clear {
+  display: inline-flex;
+}
+/* When the clear button appears, shift the rerank dot leftward
+     * so it doesn't sit on top of the clear button. (Clear is at
+     * right:14 + 17px wide → its left edge is at right:31; the dot
+     * at right:42 leaves an 11px gap.) */
+.spotlight input:not(:placeholder-shown) ~ .reranker-dot {
+  right: 42px;
+}

@@ -1,0 +1,49 @@
+[Unit]
+Description=Knowledge indexer daemon (broken-first index repair + backfill)
+After=network-online.target docker.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/knowledge
+# Pin to CPU 1. The host is 2 vCPUs (CX33), so this leaves CPU 0
+# to the continuous fetch pipeline (pinned via
+# knowledge-continuous.service) and shares CPU 1 with the docker
+# knowledge-api container. To keep the API responsive under
+# concurrent load, the throttles below cap how much of CPU 1 the
+# indexer is allowed to consume.
+CPUAffinity=1
+# Hard cap at half a CPU. The indexer's ONNX work is sequential
+# embedder calls, not latency-critical; clipping it at 50%
+# guarantees the Rust API has the other half of CPU 1 free for
+# request serving. Without this cap a load test at concurrency=10
+# saw 71% errors / 30 s timeouts because the indexer pegged the
+# whole CPU and the API got no scheduler share. Cap proven by
+# `make load-test` — see sources/utils/load_test.py.
+CPUQuota=50%
+# Lower scheduling priority so the kernel preempts the indexer in
+# favour of the API even when the API is bursty and dips below
+# the quota for a brief moment.
+Nice=10
+# I/O priority class 3 (idle) — the indexer reads from PG and
+# writes index files on disk; running it at idle priority means
+# foreground readers (search queries that touch metadata.json)
+# never queue behind a backfill scan.
+IOSchedulingClass=3
+# Restart on any non-zero exit, including SIGKILL. RestartSec is
+# small enough that a transient failure recovers quickly, large
+# enough that a tight crash-loop won't pin the CPU.
+Restart=on-failure
+RestartSec=15
+# A hard ceiling on memory the daemon family can use. The embedder
+# (model2vec + ONNX runtime) is the dominant consumer; 2 GB keeps
+# the host's 8 GB free for postgres + Rust API + caddy + the fetch
+# pipeline running on its own CPU.
+MemoryMax=2G
+StandardOutput=append:/root/knowledge/logs/indexer_daemon.boot
+StandardError=append:/root/knowledge/logs/indexer_daemon.boot
+ExecStart=/usr/bin/env bash /root/knowledge/sources/indexer_daemon_start.sh
+
+[Install]
+WantedBy=multi-user.target

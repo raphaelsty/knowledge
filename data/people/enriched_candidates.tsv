@@ -1,0 +1,320 @@
+handle	name	specialty	github	github_followers	github_company	huggingface	scholar_id	sem_scholar_id	sem_scholar_h_index	sem_scholar_citations	dblp_pid	affiliation	website	avatar	bio	hackernews	arxiv_author
+drjimfan	Jim Fan	robotics / foundation models	DrJimFan	973	NVIDIA	jimfan					423/6880	NVIDIA	jimfan.me	https://avatars.githubusercontent.com/u/3018029?v=4	NVIDIA AI Research Scientist. Stanford Ph.D. Building multimodal generalist agents. NeurIPS Best Paper. Ex-Google, OpenAI, MILA.		Jim Fan
+polynoamial	Noam Brown	RL / reasoning					RLDbLcUAAAAJ				149/1329			https://pbs.twimg.com/profile_images/1872883170292457472/8ywVGO5M.jpg			Noam Brown
+goodfellow_ian	Ian Goodfellow	generative models					iYN86KEAAAAJ				255/7067			https://pbs.twimg.com/profile_images/1112921710339084288/nJ2wKwuv.jpg			Ian Goodfellow
+sebastienbubeck	Sebastien Bubeck	LLM theory					V2Y1L4sAAAAJ				35/4292			https://pbs.twimg.com/profile_images/1709609135321583616/6bXuF85D.jpg			Sebastien Bubeck
+markchen90	Mark Chen	multimodal					Ao4F6UYAAAAJ				220/0384			https://pbs.twimg.com/profile_images/1273327644436656129/uYf1oNS5.jpg			Mark Chen
+awnihannun	Awni Hannun	ML systems / MLX	awni	2429		awni	3-mdTUAAAAAJ	144479015	27	12458	346/0937		https://awnihannun.com/	https://avatars.githubusercontent.com/u/1542805?v=4	Research at Anthropic. Prev: co-created MLX at Apple, trained neural nets at FAIR, Baidu, Stanford PhD	awnihannun	Awni Hannun
+justinlin610	Junyang Lin	LLM training	justinlin610	1223		JustinLin610					215/3823		justinlin610.github.io	https://avatars.githubusercontent.com/u/27664428?v=4	💗 ☕️ 🍷 🥃		Junyang Lin
+_rockt	Tim Rocktäschel	RL / agents					mWBY8aIAAAAJ	2620211	44	25616				https://pbs.twimg.com/profile_images/1918741982425292800/HqFPNL05.jpg			Tim Rocktäschel
+chrszegedy	Christian Szegedy	deep learning					bnQMuzgAAAAJ							https://pbs.twimg.com/profile_images/1728625627207725056/auh7rYVv.jpg			Christian Szegedy
+_arohan_	Rohan Anil	LLM training	rohan-anil	0			m2qHgbwAAAAJ	1508890387	21	16710		Google Brain		https://avatars.githubusercontent.com/u/17482230?v=4			Rohan Anil
+koraykv	Koray Kavukcuoglu	deep learning					sGFyDIUAAAAJ							https://pbs.twimg.com/profile_images/1952910128388423681/lMRfGHmB.jpg			Koray Kavukcuoglu
+remicadene	Remi Cadene	robotics	cadene	1325	@huggingface	cadene	2n5nHU4AAAAJ					huggingface	http://remicadene.com	https://avatars.githubusercontent.com/u/4681518?v=4			Remi Cadene
+dylan522p	Dylan Patel	ML systems / hardware						2071007611	7	528				https://pbs.twimg.com/profile_images/1903585505046093824/PTqeS09L.jpg		dylan522p	Dylan Patel
+random_walker	Arvind Narayanan	AI evaluation	randomwalker	36			0Bi5CMgAAAAJ						https://www.cs.princeton.edu/~arvindn/	https://avatars.githubusercontent.com/u/532629?v=4		random_walker	Arvind Narayanan
+amandaaskell	Amanda Askell	alignment	aaskell	0			NYOJzM4AAAAJ						askell.io	https://avatars.githubusercontent.com/u/42877364?v=4			Amanda Askell
+billpeeb	Bill Peebles	diffusion												https://pbs.twimg.com/profile_images/1973120495043354625/sTrUPHov.jpg
+_sholtodouglas	Sholto Douglas	RL / scaling						1411308679	3	200				https://pbs.twimg.com/profile_images/2003274349906919424/GyoVg0kX.jpg			Sholto Douglas
+tomgoldsteincs	Tom Goldstein	AI security	tomg-group-umd	22		tomg-group-umd	KmSuVtgAAAAJ	2066530886	5	300			cs.umd.edu/~tomg	https://avatars.githubusercontent.com/u/161499284?v=4			Tom Goldstein
+thomasscialom	Thomas Scialom	agents / LLMs	ThomasScialom	24	Sorbonne Université - CNRS		qou4P-kAAAAJ					Sorbonne Université - CNRS		https://avatars.githubusercontent.com/u/26202792?v=4			Thomas Scialom
+stephenroller	Stephen Roller	LLM pre-training	stephenroller	622		stephenroller	22TE5qkAAAAJ						http://stephenroller.com/	https://avatars.githubusercontent.com/u/31896?v=4	NLP researcher working on large language models.	stephenroller	Stephen Roller
+rsalakhu	Russ Salakhutdinov	deep learning					ITZ1e7MAAAAJ	49068489	2	30				https://pbs.twimg.com/profile_images/2006067605652623360/cghMLL82.jpg			Russ Salakhutdinov
+nandodf	Nando de Freitas	RL / deep learning	Nando-Freitas	22	Unisys	nandodf	nzEluBwAAAAJ	1737568	79	50256		Unisys		https://avatars.githubusercontent.com/u/22038853?v=4	"Developer.
+Bachelor of Information Systems at University of São Paulo."		Nando de Freitas
+sirbayes	Kevin Patrick Murphy	Bayesian ML	murphyk	1653	Google		MxxZkEcAAAAJ					Google	http://www.cs.ubc.ca/~murphyk/	https://avatars.githubusercontent.com/u/4632336?v=4	See also https://github.com/probml		Kevin Patrick Murphy
+tdietterich	Thomas G. Dietterich	machine learning					09kJn28AAAAJ	2286610627	4	137				https://pbs.twimg.com/profile_images/704767204437336065/wAAXEdOd.jpg			Thomas G. Dietterich
+ggerganov	Georgi Gerganov	efficiency / inference	ggerganov	19643	@huggingface	ggerganov						huggingface	https://ggerganov.com	https://avatars.githubusercontent.com/u/1991296?v=4	I like big .vimrc and I cannot lie	ggerganov
+woj_zaremba	Wojciech Zaremba	RL / robotics	wojzaremba	698			XCZpOcAAAAAJ	2307452791	9	5248				https://avatars.githubusercontent.com/u/1286529?v=4			Wojciech Zaremba
+goodside	Riley Goodside	prompting	goodside	50		goodside	_J6IRdsAAAAJ						goodside.net	https://avatars.githubusercontent.com/u/131470?v=4		goodside	Riley Goodside
+iscienceluvr	Tanishq Mathew Abraham	medical AI	tmabraham	541		tmabraham	hIyhkfQAAAAJ	115211873	7	469				https://avatars.githubusercontent.com/u/37097934?v=4			Tanishq Mathew Abraham
+francoisfleuret	François Fleuret	ML research / vision				francoisfleuret	Bj1tRlsAAAAJ							/avatars/7f1ac593608a89926f4107b4c3dd91d4.svg		francoisfleuret	François Fleuret
+hendrycks	Dan Hendrycks	AI safety / evals	hendrycks	1169		hendrycks	czyretsAAAAJ						danhendrycks.com	https://avatars.githubusercontent.com/u/11670606?v=4	PhD student at UC Berkeley.		Dan Hendrycks
+prafdhar	Prafulla Dhariwal	generative models					0pOgVVAAAAAJ							https://pbs.twimg.com/profile_images/1905005344784519168/DKCo2jGa.jpg			Prafulla Dhariwal
+sainingxie	Saining Xie	computer vision	s9xie	1425	Courant Institute of Mathematical Sciences, New York University	sainx	Y2GtJkAAAAAJ	2324769373	8	489		Courant Institute of Mathematical Sciences, New York University	sainingxie.com	https://avatars.githubusercontent.com/u/5951054?v=4	Assistant Professor of Computer Science at NYU Courant		Saining Xie
+zoubinghahrama1	Zoubin Ghahramani	Bayesian ML					0uTu7fYAAAAJ							https://pbs.twimg.com/profile_images/1294283059747893248/9K2p5oV_.jpg			Zoubin Ghahramani
+boazbaraktcs	Boaz Barak	theory / alignment	boazbk	317			I0fbJ6cAAAAJ						http://boazbarak.org	https://avatars.githubusercontent.com/u/5474168?v=4			Boaz Barak
+tkipf	Thomas Kipf	graph learning	tkipf	2998		tkipf	83HL5FwAAAAJ						http://tkipf.github.io	https://avatars.githubusercontent.com/u/7347296?v=4			Thomas Kipf
+jsuarez	Joseph Suarez	RL				jsuarez5341								https://cdn-avatars.huggingface.co/v1/production/uploads/noauth/K860p3u1oU44kl5hCIBlO.jpeg
+jasondeanlee	Jason Lee	optimization / theory	Jasonlee	2		Jasondlee	GR_DsT0AAAAJ							https://avatars.githubusercontent.com/u/43939804?v=4			Jason Lee
+agarwl_	Rishabh Agarwal	RL / distillation	rishabh-agarwal	7	FHF	agarwl	aH8AJu4AAAAJ	2105630337	4	103		FHF		https://avatars.githubusercontent.com/u/21324023?v=4	"Sr. Developer
+www.linkedin.com/in/rishaba"		Rishabh Agarwal
+_albertgu	Albert Gu	state-space models	albertfgu	650		albertgu	DVCHv1kAAAAJ							https://avatars.githubusercontent.com/u/8164679?v=4	Assistant Professor @ CMU Machine Learning Department		Albert Gu
+doomie	Dumitru Erhan	generative video					wfGiqXEAAAAJ	1761978	37	129741				https://pbs.twimg.com/profile_images/1964909077533761536/EXkwoXlQ.jpg			Dumitru Erhan
+hochreitersepp	Sepp Hochreiter	deep learning					tvUH3WMAAAAJ	3308557	60	154193				https://pbs.twimg.com/profile_images/1463121437196267522/lT6EWJED.jpg			Sepp Hochreiter
+robrombach	Robin Rombach	diffusion					ygdQhrIAAAAJ	1660819540	22	41658	263/9785			https://pbs.twimg.com/profile_images/1988205471673503744/F1MSW25r.jpg			Robin Rombach
+bodonoghue85	Brendan O'Donoghue	RL / diffusion	bodono	184			0Pzjj-cAAAAJ	1389654226	26	7966	116/3587		http://bodono.github.io	https://avatars.githubusercontent.com/u/555071?v=4			Brendan O'Donoghue
+lvdmaaten	Laurens van der Maaten	representation learning	lvdmaaten	1978			6GDfcqEAAAAJ				53/2650		http://lvdmaaten.github.io	https://avatars.githubusercontent.com/u/1168046?v=4			Laurens van der Maaten
+hugo_larochelle	Hugo Larochelle	deep learning					U89FHq4AAAAJ				86/3862			https://pbs.twimg.com/profile_images/1962856110106288128/2nOBCybB.jpg			Hugo Larochelle
+marksaroufim	Mark Saroufim	ML systems	msaroufim	1030	@coreautom, @PyTorch and @gpu-mode	marksaroufim		2065584985	5	1215	118/5750	coreautom, @PyTorch and @gpu-mode	https://marksaroufim.com	https://avatars.githubusercontent.com/u/3282513?v=4	CUDA uninЇsțållåțîön fāīłüřęđ. Płēȃšę čøñțàçț șūppørt før åššīštåñćē		Mark Saroufim
+shanelegg	Shane Legg	AGI / RL						34313265	32	44865	36/5739			https://pbs.twimg.com/profile_images/1985344651583234049/-wzq2e0u.jpg			Shane Legg
+sarahookr	Sara Hooker	efficiency / multilingual				sarahooker	2xy6h3sAAAAJ				210/2611			https://cdn-avatars.huggingface.co/v1/production/uploads/63434eb76f59b79da07dbddf/BEwmVjqPNYlqmutXG0G6e.jpeg			Sara Hooker
+richardssutton	Richard Sutton	RL					6m4wv6gAAAAJ				48/6070			https://pbs.twimg.com/profile_images/1797759934811254786/XsJes4Sk.jpg			Richard Sutton
+mmbronstein	Michael Bronstein	graph learning					tIvFLl0AAAAJ				419/4721			https://pbs.twimg.com/profile_images/2009293684295258114/oQPVNwpc.jpg			Michael Bronstein
+model_mechanic	Aditya Ramesh	generative models	adityaramesh	227			60K82BkAAAAJ				58/10355		adityaramesh.com	https://avatars.githubusercontent.com/u/1999682?v=4			Aditya Ramesh
+shengjia_zhao	Shengjia Zhao	LLM training	ShengjiaZhao	371			bMoauM4AAAAJ				173/5122			https://avatars.githubusercontent.com/u/13686847?v=4	OpenAI		Shengjia Zhao
+chhillee	Horace He	ML systems	Chillee	1272		chhillee	exzHWOwAAAAJ				230/4428		http://horace.io/	https://avatars.githubusercontent.com/u/6355099?v=4	"PyTorch Intern 2019
+
+Compilers intern 2018 @google
+
+Maintainer of @VSCodeVim
+
+Cornell CS/Math 2020"		Horace He
+matei_zaharia	Matei Zaharia	ML systems	mateiz	2089	Databricks Inc.		I1EvjZsAAAAJ	143834867	76	71246	36/2133	Databricks Inc.	databricks.com	https://avatars.githubusercontent.com/u/228859?v=4			Matei Zaharia
+shakir_za	Shakir Mohamed	generative models					cIlDEugAAAAJ				03/6063			https://pbs.twimg.com/profile_images/1541883339136720903/reQazvhR.jpg			Shakir Mohamed
+tydsh	Yuandong Tian	RL / reasoning	yuandong-tian	1700	Facebook	tydsh	0mgEF28AAAAJ				t/YuandongTian	Facebook	yuandong-tian.com	https://avatars.githubusercontent.com/u/2973937?v=4	Co-founder in a stealth startup		Yuandong Tian
+suchenzang	Susan Zhang	LLM training	suchenzang	465		suchenzang	HbChXx0AAAAJ	150311889	3	25	151/3321		https://suchenzang.github.io/	https://avatars.githubusercontent.com/u/4930580?v=4			Susan Zhang
+charliermarsh	Charlie Marsh	Python tooling	charliermarsh	6482	@openai			117392107	3	47		openai	https://crmarsh.com	https://avatars.githubusercontent.com/u/1309177?v=4	"@OpenAI. Building Ruff, uv, ty, and other high-performance Python tools with the
+@astral-sh team."	charliermarsh	Charlie Marsh
+davidduvenaud	David Duvenaud	generative models	duvenaud	881	University of Toronto			1704657	55	31676	86/9380	University of Toronto	http://www.cs.toronto.edu/~duvenaud/	https://avatars.githubusercontent.com/u/2690917?v=4			David Duvenaud
+danilojrezende	Danilo J. Rezende	generative models	DaniloRezende	20			rvW4j38AAAAJ				31/11107			https://avatars.githubusercontent.com/u/1136203?v=4			Danilo J. Rezende
+zicokolter	Zico Kolter	robustness / safety									67/2526			https://pbs.twimg.com/profile_images/1821507829406007297/IIrL9ky5.jpg			Zico Kolter
+pathak2206	Deepak Pathak	robotics / CV					AEsPCAUAAAAJ				155/9860			https://pbs.twimg.com/profile_images/1852752474328944640/9wREZF9n.jpg			Deepak Pathak
+dimitrispapail	Dimitris Papailiopoulos	LLM theory	anadim	50		anadim	hYi6i9sAAAAJ				77/344		papail.io	https://avatars.githubusercontent.com/u/9118277?v=4	Greek islander in exile. I roast my own coffee. Host too many dinner parties. Wrote 130 poems once and got it out of my system. Part sloth, part dolphin.		Dimitris Papailiopoulos
+jack_w_rae	Jack Rae	LLM training					uevMVaQAAAAJ	34269227	24	14731				https://pbs.twimg.com/profile_images/1876144178809458688/YHobJbCS.jpg			Jack Rae
+johnplattml	John Platt	ML / science					_TAtLSgAAAAJ				162/1869			https://pbs.twimg.com/profile_images/568845930565074944/E3ZEszjS.jpeg			John Platt
+francis_yao_	Yao Fu	LLM reasoning	FranxYao	1235		yaofu	07_GV5oAAAAJ	2145104264	4	131	128/4692		yaofu.notion.site	https://avatars.githubusercontent.com/u/17723677?v=4	Know me through my code		Yao Fu
+maithra_raghu	Maithra Raghu	representation analysis	maithraraghu	127	Samaya AI		xdwK2NsAAAAJ	40297238	19	7880	163/6374	Samaya AI	http://maithraraghu.com/	https://avatars.githubusercontent.com/u/8743653?v=4	Cofounder and CEO at Samaya AI		Maithra Raghu
+tqchenml	Tianqi Chen	ML systems	tqchen	12602	CMU, NVIDIA	tqchen					94/8023	CMU, NVIDIA	https://tqchen.com/	https://avatars.githubusercontent.com/u/2577440?v=4	Machine Learning and Systems		Tianqi Chen
+jhyuxm	Jiahui Yu	multimodal				jiahuiyu	-CLCMk4AAAAJ				185/1060			/avatars/4989bcdda7ba1ae51cab8235c3e39275.svg			Jiahui Yu
+earnmyturns	Fernando Pereira	NLP					qWDmIgIAAAAJ				95/3955			https://pbs.twimg.com/profile_images/1134921206/inChillan.jpg			Fernando Pereira
+blancheminerva	Stella Biderman	open LLMs	stellaathena	570	Booz Allen Hamilton, EleutherAI		bO7H0DAAAAAJ				239/5641	Booz Allen Hamilton, EleutherAI	www.stellabiderman.com	https://avatars.githubusercontent.com/u/15899312?v=4	Democratizing language models and understanding how they work		Stella Biderman
+luke_metz	Luke Metz	meta-learning					k_u5ULgAAAAJ				172/1332			https://pbs.twimg.com/profile_images/662047273178677248/Ged2v_Z5.png			Luke Metz
+syhw	Gabriel Synnaeve	code generation									65/8774			https://pbs.twimg.com/profile_images/559705507355561985/9aR-b1Gq.jpeg			Gabriel Synnaeve
+jekbradbury	James Bradbury	ML systems	jekbradbury	465	Google	jekbradbury	GprA5UsAAAAJ				247/9633	Google		https://avatars.githubusercontent.com/u/11729078?v=4			James Bradbury
+douwekiela	Douwe Kiela	RAG	douwekiela	31		douwekiela	Q0piorUAAAAJ				136/9140			https://avatars.githubusercontent.com/u/6024930?v=4			Douwe Kiela
+jpineau1	Joelle Pineau	RL / dialogue					CEt6_mMAAAAJ				p/JoellePineau			https://pbs.twimg.com/profile_images/1555641981912629249/1ldgbcoj.jpg			Joelle Pineau
+shuchaobi	Shuchao Bi	RL / post-training					6egQH44AAAAJ				347/2281			https://pbs.twimg.com/profile_images/1842686033592565760/MoZKV90L.jpg			Shuchao Bi
+alexrives	Alex Rives	protein language models	alexrives	1			vqb78-gAAAAJ				263/9834			https://avatars.githubusercontent.com/u/1775285?v=4			Alex Rives
+volokuleshov	Volodymyr Kuleshov	diffusion / generative models	kuleshov	969	Cornell Tech		RY_t8XAAAAAJ	2257271109	15	2125	81/8612	Cornell Tech	https://www.cs.cornell.edu/~kuleshov/	https://avatars.githubusercontent.com/u/2359246?v=4			Volodymyr Kuleshov
+mckbrando	Brandon McKinzie	multimodal	mckinziebrandon	86			rgG_wJwAAAAJ	102253939	5	770	331/5353		mckinziebrandon.me	https://avatars.githubusercontent.com/u/11165945?v=4	Passionate about deep learning, AI, and clean code. Profile picture above was made with neural style transfer.		Brandon McKinzie
+ml_angelopoulos	Anastasios Nikolas Angelopoulos	evaluation / statistics	aangelopoulos	477	University of California, Berkeley		nfX25MMAAAAJ				243/5855	University of California, Berkeley	angelopoulos.ai	https://avatars.githubusercontent.com/u/25397074?v=4	Ph.D. student at UC Berkeley AI Research.		Anastasios Nikolas Angelopoulos
+armandjoulin	Armand Joulin	LLM training					kRJkDakAAAAJ				68/8653			https://pbs.twimg.com/profile_images/1555926229114621955/sNF2ka7d.jpg			Armand Joulin
+sharan0909	Sharan Narang	LLM training	sharannarang	37			CWOixywAAAAJ	46617804	29	79619	173/5215			https://avatars.githubusercontent.com/u/7253756?v=4			Sharan Narang
+seb_ruder	Sebastian Ruder	NLP					8ONXPV8AAAAJ	2326992780	4	72	186/7066			https://pbs.twimg.com/profile_images/1100429844830146560/mgKi3vLm.jpg			Sebastian Ruder
+iamtrask	Andrew Trask	privacy-preserving ML	iamtrask	4470			2Ajxf1sAAAAJ				164/5786		http://iamtrask.github.io/	https://avatars.githubusercontent.com/u/4328594?v=4	Leader of @OpenMined, Senior Research Scientist at DeepMind, PhD Student at Oxford, Author of Grokking Deep Learning, Instructor at Udacity		Andrew Trask
+sedielem	Sander Dieleman	generative models					yNNIKJsAAAAJ	48373216	33	39383	86/10569			https://pbs.twimg.com/profile_images/539842407081066497/6JaLwehz.png			Sander Dieleman
+zacharylipton	Zachary Lipton	ML methodology					MN9Kfg8AAAAJ	2126415179	7	275	142/2839			https://pbs.twimg.com/profile_images/2030494172537630720/VpO0tb3Y.jpg			Zachary Lipton
+dustinvtran	Dustin Tran	post-training					wVazIm8AAAAJ				163/2106			https://pbs.twimg.com/profile_images/1760473078960975872/pcr-qicQ.jpg			Dustin Tran
+yitayml	Yi Tay	LLM training				yitayreka	VBclY_cAAAAJ				99/4046			/avatars/4869987ac8ad81e08525119c480ea9bf.svg			Yi Tay
+guillaumelample	Guillaume Lample	LLM training				glample	H7sVDmIAAAAJ	2382997618	7	1169	169/3307			/avatars/c3bc3656e4ff05663b54c6dd4f241891.svg			Guillaume Lample
+hyhieu226	Hieu Pham	LLM training					0RvAVR4AAAAJ				254/2861-1			https://pbs.twimg.com/profile_images/1652532020604698624/IvvmwGPl.jpg			Hieu Pham
+skalskip92	SkalskiP	computer vision												https://pbs.twimg.com/profile_images/1557421659925237763/RzJu2YI3.jpg
+jimmybajimmyba	Jimmy Ba	optimization					ymzxRhAAAAAJ				78/9117			https://pbs.twimg.com/profile_images/1588327287795363841/LCtMroik.jpg			Jimmy Ba
+yaringal	Yarin Gal	Bayesian deep learning					SIayDoQAAAAJ				67/9076			https://pbs.twimg.com/profile_images/612457376357163008/VQDM8ryA.jpg			Yarin Gal
+hwchung27	Hyung Won Chung	LLM training					1CAlXvYAAAAJ				170/4267			https://pbs.twimg.com/profile_images/1920005086291574784/LxryMgPG.jpg			Hyung Won Chung
+lawrennd	Neil Lawrence	probabilistic ML				lawrennd	r3SJcvoAAAAJ				l/NeilDLawrence			/avatars/1f38d3f3cca484e87dd507917d88b7cd.svg			Neil Lawrence
+janexwang	Jane Wang	RL / neuro-AI					YizAq4gAAAAJ	2116439435	3	96	356/7868			https://pbs.twimg.com/profile_images/1324000304652759040/ZCBaTTBe.jpg			Jane Wang
+aleks_madry	Aleksander Madry	robustness					SupjsEUAAAAJ	2297068232	7	313	67/2454			https://pbs.twimg.com/profile_images/882522297621504000/KblVGr8r.jpg			Aleksander Madry
+animesh_garg	Animesh Garg	robotics				animesh-garg	zp8V7ZMAAAAJ				123/5728			https://cdn-avatars.huggingface.co/v1/production/uploads/624a0cdfd9520873d3a11170/DEbChl9ar7C0HQG8Aej9Z.jpeg			Animesh Garg
+smerity	Stephen Merity	NLP / LM				smerity	AolIi4QAAAAJ	3375440	9	6702	177/9285	Salesforce Research	http://smerity.com/	/avatars/312e0f70579e73ebf81cc00a574f00f8.svg			Stephen Merity
+trapitbansal	Trapit Bansal	LLM reasoning					hHPeXmYAAAAJ				142/3237			https://pbs.twimg.com/profile_images/1364394391570325510/PtppRV8Y.jpg			Trapit Bansal
+jaschasd	Jascha Sohl-Dickstein	diffusion				jaschasd	-3zYIjQAAAAJ				51/7117			/avatars/51cc0f6dfab2233bddd73bfcd0c8aee3.svg			Jascha Sohl-Dickstein
+maximelabonne	Maxime Labonne	fine-tuning				mlabonne	r4PsgrcAAAAJ	51117328	5	95	223/8043			https://cdn-avatars.huggingface.co/v1/production/uploads/61b8e2ba285851687028d395/Rq3xWG7mJ3aCRoBsq340h.jpeg			Maxime Labonne
+jachiam0	Joshua Achiam	RL / alignment					Xto7OfgAAAAJ	2318703608	5	10105	176/5424			https://pbs.twimg.com/profile_images/967329395080744960/O-MKd6Nx.jpg			Joshua Achiam
+ctnzr	Bryan Catanzaro	ML systems				ctnzr	UZ6kI2AAAAAJ	27439851	5	110	14/4826			https://cdn-avatars.huggingface.co/v1/production/uploads/6311021788942700629e6247/vDktfPZwSRRhYIxkUKYjP.jpeg			Bryan Catanzaro
+mononofu	Julian Schrittwieser	RL					AiH3_CkAAAAJ	4337102	20	46474	192/1707			https://pbs.twimg.com/profile_images/1256258472963911682/DUN_iOOG.jpg			Julian Schrittwieser
+j_foerst	Jakob Foerster	multi-agent RL					6z4lQzMAAAAJ				176/5095			https://pbs.twimg.com/profile_images/1686340856742076416/FhNhPkiw.jpg			Jakob Foerster
+ren_hongyu	Hongyu Ren	LLM research					cbuy0ocAAAAJ				359/0265			https://pbs.twimg.com/profile_images/1473932924005203968/OxV-Agv9.jpg			Hongyu Ren
+poolio	Ben Poole	diffusion					i5FMLA4AAAAJ				16/10397			https://pbs.twimg.com/profile_images/577742437621235712/GCgLg1rC.png		poolio	Ben Poole
+brandondamos	Brandon Amos	RL / optimization					d8gdZR4AAAAJ	1773498	37	8892	133/4801			https://pbs.twimg.com/profile_images/1829197781908508676/x8AkN4Vs.jpg			Brandon Amos
+ajddavison	Andrew Davison	SLAM / spatial AI					A0ae1agAAAAJ				55/2678			https://pbs.twimg.com/profile_images/1113822545965473794/F83ly3Sa.png			Andrew Davison
+gabeeegoooh	Gabriel Goh	generative models					2O3IZlkAAAAJ	122859283	5	450	57/6187			https://pbs.twimg.com/profile_images/2047331296901541888/h8PLU3Hn.jpg			Gabriel Goh
+maxjaderberg	Max Jaderberg	deep RL					JeZoMicAAAAJ	3093886	26	26127	146/0800			https://pbs.twimg.com/profile_images/1967274840206839808/SJ2M3wB1.jpg		maxjaderberg	Max Jaderberg
+danqi_chen	Danqi Chen	NLP / retrieval				cdq10131	sVR8ktkAAAAJ				434/9493			/avatars/005ba9ead6b95b9ee8a31d050de77cee.svg			Danqi Chen
+songlinyang4	Songlin Yang	efficient LMs					bb184bcAAAAJ	2184282216	6	97	379/2833			https://pbs.twimg.com/profile_images/2006596631156887552/rSqzGOix.jpg			Songlin Yang
+ezyang	Edward Z. Yang	ML systems				ezyang	CXlrXP8AAAAJ	2287624500	4	1200	118/9819			/avatars/434aee9ad675384a9e745c7217ac4abe.svg		ezyang	Edward Z. Yang
+dileeplearning	Dileep George	AGI / neuro-AI					0hmE5AUAAAAJ	2406994842	3	278	58/2137			https://pbs.twimg.com/profile_images/1039010552704450561/eq2xZkut.jpg			Dileep George
+rown	Rowan Zellers	multimodal									182/2175			https://pbs.twimg.com/profile_images/1534178498608177152/YvlnlQCo.jpg			Rowan Zellers
+finbarrtimbers	Finbarr Timbers	LLM training				finbarr	akVuxqsAAAAJ	2196718	11	930	161/1004			/avatars/6280f6ee9d4d98c8ae0be979148be471.svg			Finbarr Timbers
+eliebakouch	Elie Bakouch	LLM training				eliebak	fkysZAkAAAAJ				378/4254			https://cdn-avatars.huggingface.co/v1/production/uploads/651e96991b97c9f33d26bde6/-Bqs6qrmz0yCfwtB2e-6q.jpeg			Elie Bakouch
+ancadianadragan	Anca Dragan	alignment					UgHB5oAAAAAJ	2745001	61	14592	424/5822			https://pbs.twimg.com/profile_images/1026125638149664769/mKpHuJIA.jpg			Anca Dragan
+nsthorat	Nikhil Thorat	evals / tooling				nsthorat-lilac	lNDGlFQAAAAJ				190/7230			/avatars/7dd3f10f9f144b50463f7113bdeab522.svg		nsthorat	Nikhil Thorat
+a_k_nain	Aakash Kumar Nain	ML engineering					g1SgcYcAAAAJ				354/8157			https://pbs.twimg.com/profile_images/1607023691128537089/WPS2yrv-.jpg			Aakash Kumar Nain
+casper_hansen_	Casper Hansen	quantization					lwXO0soAAAAJ				205/2958			https://pbs.twimg.com/profile_images/1463225585799467013/ndVxzFtj.jpg			Casper Hansen
+irinarish	Irina Rish	scaling / continual learning				irinarish	Avse5gIAAAAJ	2109771	44	9127	r/IrinaRish			/avatars/0204e3da8e9ef12d88c98c6e955f8340.svg			Irina Rish
+nikhilaravi	Nikhila Ravi	computer vision					xOrRvKAAAAAJ	2444781	10	1077	248/7650	Arizona State University	https://nikhil-ravi.github.io/	https://pbs.twimg.com/profile_images/1678387619489800193/lqT7gcRk.jpg			Nikhila Ravi
+code_star	Cody Blakeney	LLM data				codestar	Hx6daJ4AAAAJ				246/8727			/avatars/eb466945c3ed75c574515cc73db5b3ee.svg			Cody Blakeney
+danintheory	Dan Roberts	DL theory				danintheory	f6584f8AAAAJ				148/5679			/avatars/aaa21574bb8aacdc58dc412f5292a260.svg			Dan Roberts
+mirowskipiotr	Piotr Mirowski	RL / creative AI					uKXVH54AAAAJ				27/5853			https://pbs.twimg.com/profile_images/1093648552876740609/vyE19-hq.jpg			Piotr Mirowski
+y_m_asano	Yuki Asano	self-supervised					CdpLhlgAAAAJ	47792365	22	3163	239/8823			https://pbs.twimg.com/profile_images/1474019559984316416/Q87xxvuZ.jpg			Yuki Asano
+dzhulgakov	Dmytro Dzhulgakov	ML systems				dzhulgakov					217/0550			/avatars/d6c7d1b51a94e77ebe54aa19fa8c9878.svg			Dmytro Dzhulgakov
+ar_douillard	Arthur Douillard	distributed training					snwgZBIAAAAJ				263/9770			https://pbs.twimg.com/profile_images/2045658443324030976/T7CGJHLM.jpg			Arthur Douillard
+yubai01	Yu Bai	training efficiency				baiyu0325	6UGngREAAAAJ				152/6062-1			/avatars/1e9da58fbe7b823b7111bf15188f1795.svg			Yu Bai
+abursuc	Andrei Bursuc	computer vision				abursuc	HTfERCsAAAAJ	2370933458	5	191	40/8692			/avatars/fe7f8a3244ab78f8b33dbb6346c1b32f.svg			Andrei Bursuc
+timsalimans	Tim Salimans	generative models					w68-7AYAAAAJ				116/2791			https://pbs.twimg.com/profile_images/1653486602906226688/o5M0hCGP.jpg			Tim Salimans
+winglian	Wing Lian	fine-tuning				winglian								https://cdn-avatars.huggingface.co/v1/production/uploads/641dfddf3bae5a77636817c5/2IwNwh9kK98eCHUmOGoWD.png
+lukezettlemoyer	Luke Zettlemoyer	NLP						2256736753	9	437	21/6793			https://pbs.twimg.com/profile_images/907745707922042880/85jXq7o4.jpg			Luke Zettlemoyer
+raiahadsell	Raia Hadsell	RL / robotics					Q0YEc-QAAAAJ				98/5136			https://pbs.twimg.com/profile_images/864431541652307968/GG8YPLzr.jpg			Raia Hadsell
+ikostrikov	Ilya Kostrikov	RL					PTS2AOgAAAAJ	2366174915	2	300	151/8834			https://pbs.twimg.com/profile_images/1207104707522641925/rfOtFCTC.jpg			Ilya Kostrikov
+_kevinlu	Kevin Lu	RL					0NU0lBUAAAAJ	2070274715	5	78	70/1130			https://pbs.twimg.com/profile_images/1982661288376299520/VAkuO5-F.jpg			Kevin Lu
+hazyresearch	Hazy Research	ML systems				hazyresearch								https://pbs.twimg.com/profile_images/2621595727/xyyv7lwnya470lvi2p71.png
+johnowhitaker	Jonathan Whitaker	diffusion				johnowhitaker	11-TH-oAAAAJ	40116675	14	2567	64/1641			https://cdn-avatars.huggingface.co/v1/production/uploads/1636442017289-noauth.jpeg			Jonathan Whitaker
+sergebelongie	Serge Belongie	computer vision					chD5XxkAAAAJ	2257277646	3	64	b/SJBelongie			https://pbs.twimg.com/profile_images/1581310126975324166/KQ89aI9w.jpg			Serge Belongie
+tobyphln	Toby Pohlen	LLM training					1umAK2gAAAAJ	3408089	9	7579	180/6413			https://pbs.twimg.com/profile_images/1848762733732253696/S1aucmiu.jpg			Toby Pohlen
+michael_j_black	Michael Black	computer vision				microsoft	6NjbexEAAAAJ				22/5727			https://pbs.twimg.com/profile_images/1447944791048740864/wLZXbH9b.jpg			Michael Black
+clattner_llvm	Chris Lattner	ML systems						1765246	17	8503	88/5676			https://pbs.twimg.com/profile_images/1484209565788897285/1n6Viahb.jpg			Chris Lattner
+stefanoermon	Stefano Ermon	diffusion					ogXTOZ4AAAAJ	2302797121	14	660	47/8135			https://pbs.twimg.com/profile_images/901161218655756288/46jLcLIc.jpg			Stefano Ermon
+math_rachel	Rachel Thomas	fine-tuning					BDsAYUsAAAAJ	2343708730	4	261	31/7144			https://pbs.twimg.com/profile_images/1606468642375602177/OwMf0hll.jpg		math_rachel	Rachel Thomas
+sleepinyourhat	Sam Bowman	AI safety				sleepinyourhat		2113781050	1	20	116/0502			/avatars/cc0bf2551e4015c78da6f9574004a111.svg			Sam Bowman
+roydanroy	Dan Roy	ML theory					mi55ePgAAAAJ				63/4652			https://pbs.twimg.com/profile_images/647245794249015296/575wCuTG.jpg			Dan Roy
+unslothai	Unsloth AI	fine-tuning				unsloth								https://pbs.twimg.com/profile_images/2036313340616777728/OLALWB2_.jpg
+merettm	Jakub Pachocki	LLM training									140/7314			https://pbs.twimg.com/profile_images/1032407242727809025/AJpM67Ve.jpg			Jakub Pachocki
+yuhu_ai_	Yuhuai (Tony) Wu	LLM reasoning					bOQGfFIAAAAJ							https://pbs.twimg.com/profile_images/1281320278363119617/d9Ngg05T.jpg			Yuhuai (Tony) Wu
+melmitchell1	Melanie Mitchell	AI evaluation					4xK5uaQAAAAJ				69/1053			https://pbs.twimg.com/profile_images/1417524012104785928/HENn1FzD.jpg			Melanie Mitchell
+wesmckinn	Wes McKinney	data systems						2143714703	11	517	264/0055			https://pbs.twimg.com/profile_images/1724212464445730816/64ZDhx9C.jpg			Wes McKinney
+deliprao	Delip Rao	NLP				delip	u-T21zUAAAAJ				65/4776			https://cdn-avatars.huggingface.co/v1/production/uploads/60d3ab1507da9c17c7270917/x5FxIakR-okI5Csd1Sg7Q.png			Delip Rao
+amuellerml	Andreas Mueller	ML libraries / scikit-learn				amuellerml	pluXNywAAAAJ	2107726208	13	1205				/avatars/63b27edefaa396ba88346584366b1b71.svg			Andreas Mueller
+aidan_mclau	Aidan McLaughlin	LLM research					kf0XScMAAAAJ	2347577145	3	1028	251/5809			https://pbs.twimg.com/profile_images/2021802969738735617/ubpldNLZ.jpg			Aidan McLaughlin
+egrefen	Edward Grefenstette	NLP / RL					ezllEwMAAAAJ				89/9058			https://pbs.twimg.com/profile_images/1701720890138882048/8_FxlWxz.jpg			Edward Grefenstette
+reach_vb	Vaibhav Srivastav	open-source LLMs				reach-vb	ocRPKtIAAAAJ				314/6817			https://cdn-avatars.huggingface.co/v1/production/uploads/1655385361868-61b85ce86eb1f2c5e6233736.jpeg			Vaibhav Srivastav
+jure	Jure Leskovec	graph learning					Q_kKkIUAAAAJ				l/JureLeskovec			https://pbs.twimg.com/profile_images/1758953504415334400/QiZeIXbi.jpg			Jure Leskovec
+huybery	Binyuan Hui	LLM training				huybery	RBb3ItMAAAAJ				246/4699			https://cdn-avatars.huggingface.co/v1/production/uploads/61e4c4ca1ab24785ac11ba69/1Q1zhhyGSJ9RJG9MzwxVv.jpeg			Binyuan Hui
+shunyuyao12	Shunyu Yao	agents					qJBXk9cAAAAJ				156/1038			https://pbs.twimg.com/profile_images/1274872664423723008/mMz1d9OF.jpg			Shunyu Yao
+wellingmax	Max Welling	generative models					8200InoAAAAJ				16/2286			https://pbs.twimg.com/profile_images/1259203093042024448/mpChpF8j.jpg			Max Welling
+bneyshabur	Behnam Neyshabur	generalization theory					e1ucbCYAAAAJ	3007442	46	25933	131/9898			https://pbs.twimg.com/profile_images/1136894710293774336/RN2vpcX0.png			Behnam Neyshabur
+denny_zhou	Denny Zhou	LLM reasoning				dennyzhou	UwLsYw8AAAAJ				178/3277			https://cdn-avatars.huggingface.co/v1/production/uploads/noauth/vXMxaoWwFziul8TqIhQw8.jpeg			Denny Zhou
+xiao_ted	Ted Xiao	robotics					LIJQ_ZYAAAAJ				198/0598			https://pbs.twimg.com/profile_images/1604438813149138952/ZFxh6pdd.jpg			Ted Xiao
+cwolferesearch	Cameron R. Wolfe	LLM explainers				cwolferesearch	jXLvrUwAAAAJ	2257490599	2	76	238/0394			https://cdn-avatars.huggingface.co/v1/production/uploads/noauth/bj6lxxX8mHz9kec8D_QZR.png			Cameron R. Wolfe
+animaanandkumar	Anima Anandkumar	AI for science					bEcLezcAAAAJ	2367549145	4	692	25/1529			https://pbs.twimg.com/profile_images/1443692617473015808/1ygwZsWX.jpg			Anima Anandkumar
+ethanhe_42	Ethan He	video / multimodal				ethanhe	2yAMJ1YAAAAJ				336/4443			/avatars/87e1125868616d4f7d6ee1e5ec4499b4.svg			Ethan He
+isafulf	Isa Fulford	LLM research				isafulf					405/4396			/avatars/4b6de2bf311a605cec585c72e10555f7.svg			Isa Fulford
+ryan_p_adams	Ryan Adams	probabilistic ML					grQ_GBgAAAAJ				32/909			https://pbs.twimg.com/profile_images/1758859702434193409/9nD5HZf6.jpg			Ryan Adams
+alex_conneau	Alexis Conneau	speech / audio					45KfCpgAAAAJ				182/2017			https://pbs.twimg.com/profile_images/1831842387401768960/30qhQu9c.jpg			Alexis Conneau
+natashajaques	Natasha Jaques	RL					8iCb2TwAAAAJ				145/7732			https://pbs.twimg.com/profile_images/1702377276376227840/kG1riV9J.jpg			Natasha Jaques
+jon_barron	Jon Barron	computer vision / NeRF					jktWnL8AAAAJ	50329510	59	34852	30/9988			https://pbs.twimg.com/profile_images/2027105545086537728/yiV10DcI.jpg			Jon Barron
+danielhanchen	Daniel Han	fine-tuning						144324077	13	500	39/3980			https://pbs.twimg.com/profile_images/1624054272676532224/UNv4ONME.jpg		danielhanchen	Daniel Han
+chris_j_paxton	Chris Paxton	robotics				cpaxton	I1mOQpAAAAAJ				148/6144			https://cdn-avatars.huggingface.co/v1/production/uploads/62b13b28b7053ab38d2d5f96/V6780Omima7sNW5E4TEeW.png			Chris Paxton
+mark_riedl	Mark Riedl	narrative AI					Yg_QjxcAAAAJ				r/MarkORiedl			https://pbs.twimg.com/profile_images/1458064498376462339/Y0C-wjUL.jpg			Mark Riedl
+jeffclune	Jeff Clune	open-ended RL					5TZ7f5wAAAAJ	2552141	53	29337	49/2799			https://pbs.twimg.com/profile_images/1948765264436494337/wrBA-a0W.jpg		jeffclune	Jeff Clune
+andrewwhite01	Andrew White	AI for science									26/4895			https://pbs.twimg.com/profile_images/1839006516084379649/V6EDbruL.jpg			Andrew White
+sophiamyang	Sophia Yang	open-weight LLMs				sophiamyang	iSdizwYAAAAJ				294/6135			https://cdn-avatars.huggingface.co/v1/production/uploads/6320c05a145cfa4c04cb4359/SC9BuRcmqJjHM-cjjPjg7.jpeg			Sophia Yang
+adampaulcoates	Adam Coates	speech / HPC					bLUllHEAAAAJ	144638694	34	29707	60/5515-1			https://pbs.twimg.com/profile_images/510238871771025408/REjKh4nB.png			Adam Coates
+rivershavewings	Rivers Have Wings	diffusion												https://pbs.twimg.com/profile_images/1567814731754524672/TSIDqDO1.jpg
+tacocohen	Taco Cohen	equivariance / RL					a3q4YxEAAAAJ				142/2903			https://pbs.twimg.com/profile_images/928010548985376768/YaxVDPH_.jpg			Taco Cohen
+yejinchoinka	Yejin Choi	NLP				yejinchoinka	vhP-tlcAAAAJ	2324219768	4	102	89/579			/avatars/52e54bdd6a1fb6c774a40cd70f3d7925.svg			Yejin Choi
+danijarh	Danijar Hafner	world models					VINmGpYAAAAJ				184/8088			https://pbs.twimg.com/profile_images/2027668006046969856/I1sED4yv.jpg			Danijar Hafner
+vikhyatk	vik	vision-language				vikhyatk								https://cdn-avatars.huggingface.co/v1/production/uploads/63117568fa95534e218da163/8h9zN8aKRxPLBnXW7sqY9.jpeg
+rao2z	Subbarao Kambhampati	planning / reasoning						2242974185	2	43	k/SKambhampati			https://pbs.twimg.com/profile_images/1240088892751007745/zFdWaIFe.jpg			Subbarao Kambhampati
+zeyuanallenzhu	Zeyuan Allen-Zhu	LLM theory				zhuzeyuan	MoJFIiQAAAAJ				10/7536			/avatars/b33dcadc0ff8941da6aa850284be3207.svg			Zeyuan Allen-Zhu
+yeewhye	Yee Whye Teh	Bayesian deep learning									88/2483			https://pbs.twimg.com/profile_images/1061029724108005376/vh1O4oP_.jpg			Yee Whye Teh
+jm_alexia	Alexia Jolicoeur-Martineau	generative models				AlexiaJM	0qytQ1oAAAAJ				223/4753			https://cdn-avatars.huggingface.co/v1/production/uploads/1660479589894-noauth.jpeg			Alexia Jolicoeur-Martineau
+alexwei_	Alexander Wei	LLM reasoning					d5wGxRsAAAAJ	48896173	6	536	249/9424			https://pbs.twimg.com/profile_images/1695738958041493504/OkFyoThU.jpg			Alexander Wei
+kalomaze	kalomaze	LLM sampling				kalomaze								https://cdn-avatars.huggingface.co/v1/production/uploads/6491e00e057b0928b3e07b75/j31tFTZuAqfE5gYfZqSdI.jpeg
+haldaume3	Hal Daumé III	NLP				haldaume3	PbEw81gAAAAJ	123790583	3	370	77/2856			/avatars/3068a8af7dc0b2d05625c282ba7a5ffb.svg			Hal Daumé III
+xwang_lk	Xin Eric Wang	multimodal agents						2153687387	10	371				https://pbs.twimg.com/profile_images/2050273540390481921/1NmXXQ8O.jpg			Xin Eric Wang
+jcjohnss	Justin Johnson	computer vision				RyeCatcher	mS5k4CYAAAAJ	153365696	52	21619				https://cdn-avatars.huggingface.co/v1/production/uploads/6623ed6137a551c3e1dd5139/aPuSK1NNbJxw_lmJMtLys.jpeg			Justin Johnson
+mpshanahan	Murray Shanahan	cognitive AI					00bnGpAAAAAJ	1757629	50	11709				https://pbs.twimg.com/profile_images/1189809148348829697/HJPXbo3J.jpg			Murray Shanahan
+nielsrogge	Niels Rogge	transformers				nielsr								https://cdn-avatars.huggingface.co/v1/production/uploads/1608042047613-5f1158120c833276f61f1a84.jpeg
+suryaganguli	Surya Ganguli	theoretical neuroscience / DL					rF2VvOgAAAAJ	25769960	68	36958				https://pbs.twimg.com/profile_images/703358281750687744/6WHgcnPh.jpg			Surya Ganguli
+joon_s_pk	Joon Sung Park	agent simulations					Y4Oc0cMAAAAJ							https://pbs.twimg.com/profile_images/1647958324862676992/PmLeX0Ng.jpg			Joon Sung Park
+vincesitzmann	Vincent Sitzmann	neural fields				vsitzmann	X44QVV4AAAAJ							/avatars/65eb911f1063dc10791359531f842122.svg			Vincent Sitzmann
+ptrblck_de	ptrblck	PyTorch internals												https://pbs.twimg.com/profile_images/732154307173322752/YM1VhUkp.jpg
+wattenberg	Martin Wattenberg	interpretability / viz				wattenberg	pv54dqMAAAAJ							/avatars/0e9bd14e28ead268b2f0cf40f39b53c2.svg			Martin Wattenberg
+xbresson	Xavier Bresson	graph neural networks					9pSK04MAAAAJ							https://pbs.twimg.com/profile_images/772521938711347204/ct7pxx46.jpg			Xavier Bresson
+xenovacom	Xenova	in-browser ML												https://pbs.twimg.com/profile_images/1628854727218798593/sWLzdtJ1.jpg
+catherineols	Catherine Olsson	alignment					TvdMDhwAAAAJ							https://pbs.twimg.com/profile_images/1557826463281295360/7NIHBVko.jpg			Catherine Olsson
+kenneth0stanley	Kenneth Stanley	open-endedness / neuroevolution					6Q6oO1MAAAAJ	118681391	6	394				https://pbs.twimg.com/profile_images/711049920048816128/9_Hrbm1h.jpg			Kenneth Stanley
+nrehiew_	wh	LLM engineering						2101602682	3	223				https://pbs.twimg.com/profile_images/1760005111055777792/NmshY7lw.jpg			wh
+__nmca__	Nat McAleese	LLM research					crw6TeIAAAAJ	147687624	10	4503				https://pbs.twimg.com/profile_images/1436081419638431745/BBObm1dq.jpg			Nat McAleese
+coreylynch	Corey Lynch	robotics / foundation models				coreylynch		32245472	20	7307				/avatars/8c4e5bd6a69a3847593e62596022d4a9.svg			Corey Lynch
+fdellaert	Frank Dellaert	robotics / SLAM					ZxXBaswAAAAJ	2038264	71	29570				https://pbs.twimg.com/profile_images/1283013732218675200/w-sqON6l.jpg			Frank Dellaert
+zdeborova	Lenka Zdeborova	statistical physics of ML					gkCjy_UAAAAJ	2546601	48	9719				https://pbs.twimg.com/profile_images/1426449775319306245/mlTg7OkP.jpg			Lenka Zdeborova
+avdnoord	Aäron van den Oord	generative models					TqUN-LwAAAAJ							https://pbs.twimg.com/profile_images/774282812576894976/IZUQ0T4s.jpg			Aäron van den Oord
+borisdayma	Boris Dayma	generative models				boris								https://cdn-avatars.huggingface.co/v1/production/uploads/1628725777085-5f061f3c5d08220171a0ae35.jpeg
+abidlabs	Abubakar Abid	ML tooling				abidlabs	8slGl3oAAAAJ	144948925	21	7618				https://cdn-avatars.huggingface.co/v1/production/uploads/1621947938344-noauth.png		abidlabs	Abubakar Abid
+trentonbricken	Trenton Bricken	interpretability					CP6aLusAAAAJ							https://pbs.twimg.com/profile_images/1615139644873773056/-Fhg8_TL.jpg			Trenton Bricken
+songshuran	Shuran Song	robotics / manipulation					5031vK4AAAAJ							https://pbs.twimg.com/profile_images/1477840555585454085/EpXIQGg5.jpg			Shuran Song
+singularmattrix	Matthew Johnson	ML systems / JAX					k-0MEIMAAAAJ							https://pbs.twimg.com/profile_images/1248475260845838341/5ysgz0yW.jpg			Matthew Johnson
+carrigmat	Matthew Carrigan	LLM tooling				Rocketknight1								https://cdn-avatars.huggingface.co/v1/production/uploads/1660312628256-60ba519750effef3a58beac3.png
+mattdeitke	Matt Deitke	embodied AI				mattdeitke	k4VxCcYAAAAJ	1632916259	11	5374		Vercept	mattdeitke.com	https://cdn-avatars.huggingface.co/v1/production/uploads/1670871898141-61c388aa727d1257bf3cf58b.jpeg			Matt Deitke
+zipengfu	Zipeng Fu	robotics / locomotion					wMcPTbEAAAAJ							https://pbs.twimg.com/profile_images/1703999045847687168/ROjPxbFI.jpg			Zipeng Fu
+felixhill84	Felix Hill	language / cognition					4HLUnhIAAAAJ				116/0509			https://pbs.twimg.com/profile_images/1847905415264194561/l5r92XJk.jpg			Felix Hill
+sayashk	Sayash Kapoor	AI evaluation				sayashk		39893263	23	2403	215/5563			/avatars/bca882c027d17f7feba837baae71ec2d.svg			Sayash Kapoor
+rbhar90	Bharath Ramsundar	ML for science				rbhar90	LOdVDNYAAAAJ	2378027	19	12771	130/4015			/avatars/de81599e37097e73052e2ad8d1aab524.svg			Bharath Ramsundar
+lysandrejik	Lysandre	open-source ML				lysandre	i9jjNaAAAAAJ				249/9366			https://cdn-avatars.huggingface.co/v1/production/uploads/5e3aec01f55e2b62848a5217/PMKS0NNB4MJQlTSFzh918.jpeg			Lysandre
+andrewlampinen	Andrew Lampinen	cognition / LLMs					_N44XxAAAAAJ				206/6112			https://pbs.twimg.com/profile_images/1869783966284390400/AOroVPyf.jpg			Andrew Lampinen
+rogergrosse	Roger Grosse	optimization / safety									26/7058			https://pbs.twimg.com/profile_images/874585772648615936/wnPuq5nI.jpg			Roger Grosse
+norabelrose	Nora Belrose	interpretability				norabelrose	p_oBc64AAAAJ	2269471977	9	878	332/2248			/avatars/7e361e249d836a9ac01d111c6347e23a.svg			Nora Belrose
+robertarail	Roberta Raileanu	RL / open-endedness						48647153	28	23228	215/5579			https://pbs.twimg.com/profile_images/1929801585216942080/NqtCnQ6j.jpg			Roberta Raileanu
+unixpickle	Alex Nichol	generative models				unixpickle		48406732	8	212	217/1769			https://cdn-avatars.huggingface.co/v1/production/uploads/1671510265189-noauth.png		unixpickle	Alex Nichol
+bfspector	Benjamin F Spector	ML systems / kernels				benjaminfspector	w_toYkkAAAAJ	2259914006	5	244	88/8850			/avatars/f090e02dd7a24337eabe89c1f6a73304.svg			Benjamin F Spector
+eric_wallace_	Eric Wallace	adversarial NLP / safety					SgST3LkAAAAJ				218/6165			https://pbs.twimg.com/profile_images/1705599599761887232/YN3sqrvw.jpg			Eric Wallace
+driainmurray	Iain Murray	probabilistic ML					kbSa3_AAAAAJ	46883287	2	56	82/384			https://pbs.twimg.com/profile_images/838431064116838401/ry0JF6mW.jpg			Iain Murray
+sandersted	Ted Sanders	LLM research						152669017	5	87	131/3643			https://pbs.twimg.com/profile_images/1652122121341124610/cfqF_UjR.jpg			Ted Sanders
+andyzengineer	Andy Zeng	robotics / foundation models				andyzeng	pP6hKfMAAAAJ	47798935	13	994	159/1215			/avatars/120917da2d8587674505163fb960e27d.svg			Andy Zeng
+yuntiandeng	Yuntian Deng	LLMs / world models				yuntian-deng	tzoaIiYAAAAJ				166/1720			https://cdn-avatars.huggingface.co/v1/production/uploads/63081e15a670ed10f9d44229/w1b9uq-9774bMMgJbSPsS.jpeg			Yuntian Deng
+scottgray76	Scott Gray	GPU kernels					sRId4vsAAAAJ				18/9569			https://pbs.twimg.com/profile_images/1726120400135036928/tCqaucu2.jpg			Scott Gray
+chenlin_meng	Chenlin Meng	diffusion models					nEFU7wIAAAAJ				227/2517			https://pbs.twimg.com/profile_images/1872094818387791872/lZtJcGkE.jpg			Chenlin Meng
+mcleavey	Christine McLeavey	audio generation												https://pbs.twimg.com/profile_images/1512187985340510219/IwD5rK7d.jpg
+benmildenhall	Ben Mildenhall	neural rendering					NozIDL8AAAAJ	2577533	37	27385				https://pbs.twimg.com/profile_images/1834493880894681088/KAhcHTvZ.jpg			Ben Mildenhall
+peterjliu	Peter J. Liu	LLM research				peterjliu	1EPxhywAAAAJ							/avatars/1294078b8cd5c1901e4021253d877357.svg		peterjliu	Peter J. Liu
+thomasahle	Thomas Ahle	algorithms / ML				thomasahle	aRiVoYgAAAAJ	3416152	8	242				https://cdn-avatars.huggingface.co/v1/production/uploads/noauth/iMYtEZDI2LKQ9AJTd7bkq.png		thomasahle	Thomas Ahle
+trishume	Tristan Hume	performance / interpretability					w15pa5MAAAAJ							https://pbs.twimg.com/profile_images/1101630670848307200/d-W5Hk5o.png		trishume	Tristan Hume
+loubnabenallal1	Loubna Ben Allal	small LLMs				loubnabnl	reU1i-sAAAAJ	2190281230	11	6962				https://cdn-avatars.huggingface.co/v1/production/uploads/61c141342aac764ce1654e43/81AwoT5IQ_Xdw0OVw7TKu.jpeg			Loubna Ben Allal
+glouppe	Gilles Louppe	ML for science				glouppe	F_77d4QAAAAJ							/avatars/8acbe90178973081ecd1bb386e1646b5.svg			Gilles Louppe
+lakebrenden	Brenden Lake	cognitive ML					vspmOX8AAAAJ	2373318	31	9189				https://pbs.twimg.com/profile_images/1400617163770236932/TX5yUMCN.jpg			Brenden Lake
+anneouyang	Anne Ouyang	GPU kernels				anneouyang								https://cdn-avatars.huggingface.co/v1/production/uploads/636832ce592ab54ed7fcbb70/aI_6QOkWSm8UZvXsgNOsD.jpeg
+kswersk	Kevin Swersky	bayesian / RL				kswersky	IrixA8MAAAAJ							/avatars/1df2bfadb2b6fdf8307189936efc6ef0.svg			Kevin Swersky
+aaron_defazio	Aaron Defazio	optimization				adefazio	KEzJsdkAAAAJ							/avatars/eef9a3e5bfce4d6481a395e86840d1ab.svg			Aaron Defazio
+ml_hardware	Abhi Venigalla	ML systems					wOTxrnUAAAAJ							https://pbs.twimg.com/profile_images/1586953607131279360/5DlscnwH.jpg		ml_hardware	Abhi Venigalla
+samsja19	samsja	distributed training				samsja								https://cdn-avatars.huggingface.co/v1/production/uploads/618287950fdbff9130ba7ae0/voNf-w5GSG0uSIS8xWgoK.png
+woosuk_k	Woosuk Kwon	LLM inference				wskwon	_AT3eUcAAAAJ							/avatars/990d0c21e28f973290ce429f62156031.svg			Woosuk Kwon
+banghuaz	Banghua Zhu	RLHF / alignment				banghua	iyDxq0EAAAAJ	23111704	19	1594				/avatars/61eacc1bdfc5129ead49c61eb2691f4a.svg			Banghua Zhu
+chichengcc	Cheng Chi	robotics / manipulation				chengchi	B3I5BtIAAAAJ	2218351723	10	538				https://cdn-avatars.huggingface.co/v1/production/uploads/630440995c70c21d0eaea552/FxrpcUgnnnGWV_9k-KcBa.jpeg			Cheng Chi
+sschoenholz	Sam Schoenholz	ML theory					mk-zQBsAAAAJ							https://pbs.twimg.com/profile_images/1209205587214577674/UozgbhIo.jpg			Sam Schoenholz
+art_zucker	Arthur Zucker	transformers				ArthurZ	GX4syxIAAAAJ	145252672	5	561				https://cdn-avatars.huggingface.co/v1/production/uploads/1674683851722-62441cb7456803e95009a08f.jpeg			Arthur Zucker
+chijinml	Chi Jin	RL theory					GINhGvwAAAAJ							https://pbs.twimg.com/profile_images/1524919981175078912/rW0OX0mg.jpg			Chi Jin
+ehsanik	Kiana Ehsani	embodied AI					RScZCLEAAAAJ	2883417	26	6629		Allen Institute for Artificial Intelligence	https://ehsanik.github.io/	https://pbs.twimg.com/profile_images/1376425270211567619/WRzb3cV5.jpg			Kiana Ehsani
+tarantulae	Christian S. Perone	ML engineering				tarantulae	EQbv0qkAAAAJ							/avatars/7735d49d1b04ba5e18bbe107ad756b0d.svg			Christian S. Perone
+arimorcos	Ari Morcos	data curation				arimorcos	v-A_7UsAAAAJ							/avatars/8e7036f1bfff06b53f442981e91503ac.svg			Ari Morcos
+irwanbello	Irwan Bello	LLM research					mY6p8gcAAAAJ							https://pbs.twimg.com/profile_images/1362129771216461830/yy1Mnglx.jpg			Irwan Bello
+jyangballin	John Yang	code agents					71G11ksAAAAJ							https://pbs.twimg.com/profile_images/1848865168476016646/j0UtHn11.jpg			John Yang
+imordatch	Igor Mordatch	RL / robotics				imordatch	Vzr1RukAAAAJ							/avatars/a78b2bb266f502690fa22757d7752df6.svg			Igor Mordatch
+pess_r	Patrick Esser	diffusion					k8h6DNQAAAAJ							https://pbs.twimg.com/profile_images/778975583346761728/TpqPCm_B.jpg			Patrick Esser
+ruomingpang	Ruoming Pang	speech / LLMs					1fsmwB8AAAAJ	2238621132	11	857				https://pbs.twimg.com/profile_images/1462972687383474182/zYbL-4FO.jpg			Ruoming Pang
+tanishqkumar07	Tanishq Kumar	LLM training					6wRuU3cAAAAJ							https://pbs.twimg.com/profile_images/1904982101314998272/Wnplx6-n.jpg			Tanishq Kumar
+xuefz	Fuzhao Xue (Frio)	distillation / scaling				fuzhao								/avatars/e97206c653de3446266c80c2943c0a6f.svg
+lcastricato	Louis Castricato	RLHF				LouisCastricato	WrUnrz4AAAAJ							https://cdn-avatars.huggingface.co/v1/production/uploads/1665155571839-60d35a0307da9c17c7270909.jpeg			Louis Castricato
+honualx	Alexandre Défossez	speech / audio				adefossez	DubNUU0AAAAJ							https://cdn-avatars.huggingface.co/v1/production/uploads/1666708948380-noauth.jpeg			Alexandre Défossez
+aran_nayebi	Aran Nayebi	neuro-AI					zGDaMYAAAAAJ	40637388	20	2105				https://pbs.twimg.com/profile_images/1721132808716857344/i3tlqobg.jpg			Aran Nayebi
+birchlabs	Birchlabs	diffusion												https://pbs.twimg.com/profile_images/1576700065099485184/v94oLShy.jpg
+hojonathanho	Jonathan Ho	diffusion				hojonathanho	iVLAQysAAAAJ	2240855188	2	20				/avatars/6a2d26c660f235e8124c5d1a55c89e21.svg			Jonathan Ho
+yzhang_cs	Yu Zhang	efficiency / ML systems					y3JK-1oAAAAJ				169/7291			https://pbs.twimg.com/profile_images/1883207431532253184/YPcMKNaT.jpg			Yu Zhang
+srschmidgall	Samuel Schmidgall	medical AI / agents					bQDooZEAAAAJ	2370716973	7	476	267/2231			https://pbs.twimg.com/profile_images/1704338778301566976/8X-SrykK.jpg			Samuel Schmidgall
+cong_ml	Cong Lu	RL / agents				conglu	yMGBji4AAAAJ				255/6574			https://cdn-avatars.huggingface.co/v1/production/uploads/1670192227454-6311ec6ac7722fdac9a93f92.jpeg			Cong Lu
+gui_penedo	Guilherme Penedo	pretraining data				guipenedo	L-jmoJYAAAAJ				348/8897			https://cdn-avatars.huggingface.co/v1/production/uploads/62596f9e1c0a084224b93e00/X2aLkJ0ofhkXwAg7lXvxD.jpeg			Guilherme Penedo
+_jongwook_kim	Jong Wook Kim	speech / multimodal				jongwook	ovG9zPUAAAAJ				62/3844			/avatars/4b6af7d3a599bd4909f3df15d146e382.svg			Jong Wook Kim
+pavlomolchanov	Pavlo Molchanov	efficiency / pruning				pmolchanov	J9PoyoIAAAAJ				165/8169			https://cdn-avatars.huggingface.co/v1/production/uploads/646d0c1c534e52f8c30500a6/75VH8ClbRaP75BU2ONfXE.png			Pavlo Molchanov
+fiandola	Forrest Iandola	efficiency				forresti	y1lVpBEAAAAJ				395/5642			/avatars/e56d25a40f2c0e4e6696b9738877fce8.svg			Forrest Iandola
+ellev3n11	Federico Cassano	code generation				cassanof	n8tK15oAAAAJ	2197063831	10	4588	326/8944			https://cdn-avatars.huggingface.co/v1/production/uploads/642ca13cc3684e5a4e806661/ELhdKsK429zi4wZkVkx9Y.jpeg			Federico Cassano
+phillip_lippe	Phillip Lippe	RL / multimodal					69hFZp4AAAAJ	2350751902	4	2830	267/9431			https://pbs.twimg.com/profile_images/1865357792070025216/9N-0DOMU.jpg			Phillip Lippe
+brhydon	Brydon Eastman	LLM training					a1AbiGkAAAAJ				336/3485			https://pbs.twimg.com/profile_images/1962651267148443648/R5iujYmK.jpg			Brydon Eastman
+stuart_sul	Stuart Sul	ML systems					F5WuVYwAAAAJ				423/5524			https://pbs.twimg.com/profile_images/1835392777217273856/Tw-5ylX_.jpg			Stuart Sul
+mucai7	Mu Cai	multimodal				mucai	euruCPEAAAAJ				279/6529			https://cdn-avatars.huggingface.co/v1/production/uploads/63b7b2c6bd2d153522821766/aHtga-_OUdOrg_TRrXO08.jpeg			Mu Cai
+xingyousong	Richard Song	AutoML					GnpHmO8AAAAJ				384/0488			https://pbs.twimg.com/profile_images/1747738071171239936/3q0b3SOM.jpg			Richard Song
+robertriachi	Robert Riachi	generative models				robertriachi								/avatars/fce1d5b43438ef0490ab67f8c373f609.svg
+m_finzi	Marc Finzi	generative models					ysMAhlwAAAAJ				222/3062			https://pbs.twimg.com/profile_images/1876456871483080704/o-aAzv_t.jpg			Marc Finzi
+em_dinan	Emily Dinan	dialogue / safety					pfqzHqUAAAAJ	31461304	26	24049	213/7927			https://pbs.twimg.com/profile_images/1167082895036620800/p0FebjWq.jpg			Emily Dinan
+ebetica	Zeming Lin	protein models				ebetica	ZDjmMuwAAAAJ				170/6719			/avatars/b1858ee2c6399f41cc1acbea16a48d7f.svg			Zeming Lin
+b_roziere	Baptiste Rozière	code generation					6vht2iwAAAAJ				178/8263			https://pbs.twimg.com/profile_images/1203983049052098566/5uhRBHps.jpg			Baptiste Rozière
+williambarrheld	Will Held	LLM training				WillHeld	SP9VJNkAAAAJ	46552910	14	1165	245/8601	Georgia Tech	williamheld.com	https://cdn-avatars.huggingface.co/v1/production/uploads/1666207676653-632116accafe12f481a473cb.jpeg			Will Held
+rom1504	Romain Beaumont	multimodal data				rom1504	jhtyYGAAAAAJ	2125377840	4	8948	161/0995			/avatars/cfed2197ec8d538e9ebb0977b21b7aa4.svg		rom1504	Romain Beaumont
+yizhezhangnlp	Yizhe Zhang	text diffusion				yizhezhang	aceABmIAAAAJ				59/2147-1			https://cdn-avatars.huggingface.co/v1/production/uploads/5dd96eb166059660ed1ee413/96-oNO2OLVkAFOojMaV0T.jpeg			Yizhe Zhang
+nathanhabib1011	Nathan Habib	evaluation				SaylorTwift	5bIDobkAAAAJ	117971740	2	39	359/5534			https://cdn-avatars.huggingface.co/v1/production/uploads/1678663263366-63e0eea7af523c37e5a77966.jpeg			Nathan Habib
+lisabdunlap	Lisa Dunlap	evaluation				lisabdunlap	Vy16O5UAAAAJ				245/1549			/avatars/786bc609e6305730f0f2025ae5c27f82.svg			Lisa Dunlap
+jonas_eschmann	Jonas Eschmann	RL / robotics					xrfxLAIAAAAJ	80109565	5	221	260/0776			https://pbs.twimg.com/profile_images/1731527754275778560/fEM_0Sj0.jpg			Jonas Eschmann
+alfcnz	Alfredo Canziani	deep learning education					dU5bJOMAAAAJ				161/4547			https://pbs.twimg.com/profile_images/2021279427330723840/pSxguGfe.jpg			Alfredo Canziani
+pmddomingos	Pedro Domingos	ML theory					KOrhfVMAAAAJ	1740213	84	40977	423/6424			https://pbs.twimg.com/profile_images/1775309922621890560/mgkCUe3q.jpg			Pedro Domingos
+docmilanfar	Peyman Milanfar	computational imaging					iGzDl8IAAAAJ				48/6882			https://pbs.twimg.com/profile_images/2010591845315678208/2MmbZDwx.jpg			Peyman Milanfar
+yimatweets	Yi Ma	representation learning					XqLiBQMAAAAJ	153000305	3	52	22/7938			https://pbs.twimg.com/profile_images/1553978259607412736/Dwv46Fqq.jpg			Yi Ma
+gabrielpeyre	Gabriel Peyré	computational math / optimal transport					KqA1dYcAAAAJ	2075301028	3	56	65/1759			https://pbs.twimg.com/profile_images/769278856670969856/lh39fbWj.jpg			Gabriel Peyré
+srush_nlp	Sasha Rush	NLP / LLMs				srush								https://cdn-avatars.huggingface.co/v1/production/uploads/5dd96eb166059660ed1ee413/J21QWWtFOKqhJTF5qIMlD.jpeg
+csprofkgd	Kosta Derpanis	computer vision				csprofkgd	3Br8x_gAAAAJ							/avatars/aa472df8a92ebd311ce2f480896d26ae.svg			Kosta Derpanis
+thegautamkamath	Gautam Kamath	differential privacy					MK6zHkYAAAAJ	2349829952	3	72	73/11140			https://pbs.twimg.com/profile_images/1702778756195053568/G7kQIlvx.jpg			Gautam Kamath
+_luofuli	Fuli Luo	LLM training				luofuli	1s79Z5cAAAAJ	17866105	18	1175	220/4216			https://cdn-avatars.huggingface.co/v1/production/uploads/6538815d1bdb3c40db94fbfa/id7aSY8JUgKK2agKWLERt.jpeg			Fuli Luo
+zizhpan	Zizheng Pan	efficiency / vision				zizhpan	w_VMopoAAAAJ				271/4555			/avatars/e39f25cd7190d282478cdac20a7700ee.svg			Zizheng Pan
+kordinglab	Konrad Kording	computational neuroscience					MiFqJGcAAAAJ	150174214	12	839	93/2724			https://pbs.twimg.com/profile_images/1167153186898972673/C-5SttwO.png			Konrad Kording
+fhuszar	Ferenc Huszár	generative models				fhuszar	koQCVT4AAAAJ	3108066	20	22214	78/10549			https://cdn-avatars.huggingface.co/v1/production/uploads/1660308001193-noauth.jpeg			Ferenc Huszár
+tengyuma	Tengyu Ma	ML theory				tengyuma	VeTSl0wAAAAJ				397/5154			/avatars/4c2f726b1edd442b4ece97d8644dfd2b.svg			Tengyu Ma
+burkov	Andriy Burkov	ML education					TDB-O3AAAAAJ	145466078	7	544	15/4164			https://pbs.twimg.com/profile_images/1906075596808998913/6xpSGRnv.jpg			Andriy Burkov

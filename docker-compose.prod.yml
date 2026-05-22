@@ -1,0 +1,116 @@
+services:
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./web:/web:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    environment:
+      DOMAIN: ${DOMAIN:-localhost}
+    depends_on:
+      knowledge-api:
+        condition: service_healthy
+
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: knowledge
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-knowledge}
+      POSTGRES_DB: knowledge
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    # Bind on localhost only so the continuous pipeline (running on
+    # the host outside the docker network) can connect via psycopg.
+    # The interface is loopback, so it stays unreachable from the
+    # public internet — Caddy / firewall still gate everything else.
+    ports:
+      - "127.0.0.1:5433:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U knowledge"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  knowledge-api:
+    build:
+      context: api
+    restart: unless-stopped
+    user: root
+    volumes:
+      - ./indexes:/data/indices
+      - models:/models
+      - ./run.py:/app/run.py:ro
+      - ./sources:/app/sources:ro
+      - ./pyproject.toml:/app/pyproject.toml:ro
+      - ./uv.lock:/app/uv.lock:ro
+      - ./sources.yml:/app/sources.yml:ro
+      - ./README.md:/app/README.md:ro
+      - ./.env:/app/.env:ro
+    environment:
+      - DATABASE_URL=postgresql://knowledge:${POSTGRES_PASSWORD:-knowledge}@postgres:5432/knowledge
+      - API_URL=https://${DOMAIN:-knowledge-web.org}
+      - RUST_LOG=info
+      - OPENBLAS_NUM_THREADS=1
+      # GitHub OAuth — picks up the prod app credentials from .env.
+      # The matching callback must be registered on the GitHub OAuth app:
+      # https://${DOMAIN}/auth/github/callback.
+      - GITHUB_CLIENT_ID=${GITHUB_CLIENT_ID}
+      - GITHUB_CLIENT_SECRET=${GITHUB_CLIENT_SECRET}
+      - OAUTH_REDIRECT_URL=https://${DOMAIN:-knowledge-web.org}/auth/github/callback
+      - OAUTH_POST_LOGIN_URL=/
+      # Shared secret consumed by the twitter-feed heartbeat endpoint
+      # (handlers::admin::twitter_feed_heartbeat). Same value must be
+      # set on the operator's local .env so the launchd-managed
+      # feeder can authenticate. Fail-closed inside the handler: if
+      # this is unset every heartbeat returns 503.
+      - KNOWLEDGE_ADMIN_TOKEN=${KNOWLEDGE_ADMIN_TOKEN}
+    command:
+      - --host
+      - "0.0.0.0"
+      - --port
+      - "8080"
+      - --index-dir
+      - /data/indices
+      - --model
+      - lightonai/answerai-colbert-small-v1-onnx
+      - --int8
+      - --parallel
+      - "8"
+      - --batch-size
+      - "2"
+      # Two model workers — each owns an INT8 ONNX session and pulls
+      # from a shared batched queue. With pool_size=1 the encode step
+      # serialised every query under concurrent load; bumping to 2
+      # roughly doubles search throughput at the cost of ~200–300 MB
+      # extra resident memory (well within the 8 GB host budget).
+      # See sources/utils/load_test.py for the baseline that justified
+      # this number.
+      - --model-pool-size
+      - "2"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "--max-time", "5", "http://localhost:8080/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 120s
+    deploy:
+      resources:
+        limits:
+          memory: 6G
+        reservations:
+          memory: 3G
+
+volumes:
+  pgdata:
+  models:
+  caddy_data:
+  caddy_config:

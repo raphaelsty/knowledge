@@ -1,0 +1,142 @@
+/* ── Profile pill ────────────────────────────────────────────
+     * Identical visuals to `.auth-badge-me` on the welcome page, so
+     * users see the same control no matter which view they're on. */
+.auth-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 26px;
+  padding: 0 11px;
+  background: rgba(var(--paper-rgb), 0.7);
+  backdrop-filter: blur(14px) saturate(170%);
+  -webkit-backdrop-filter: blur(14px) saturate(170%);
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  border-radius: 999px;
+  font-family: var(--sans);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+.auth-btn:hover {
+  background: rgba(var(--paper-rgb), 0.94);
+  border-color: rgba(var(--ink-rgb), 0.16);
+}
+.auth-btn img.av {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.auth-btn span {
+  white-space: nowrap;
+  letter-spacing: -0.005em;
+}
+/* Anonymous "Sign in" pill — same ink-tinted soft style as the
+ * compose Post button so the rail reads as one consistent family. */
+.auth-btn.anon {
+  padding: 0 13px 0 11px;
+  gap: 7px;
+  height: 30px;
+  border-radius: 9px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.55),
+      rgba(255, 255, 255, 0) 55%
+    ),
+    rgba(var(--ink-rgb), 0.04);
+  color: rgba(var(--ink-rgb), 0.78);
+  border: 1px solid rgba(var(--ink-rgb), 0.08);
+  font: 600 12px/1 var(--sans);
+  letter-spacing: 0;
+  box-shadow:
+    0 1px 0 rgba(var(--ink-rgb), 0.02),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+.auth-btn.anon:hover {
+  color: rgba(var(--ink-rgb), 0.95);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.65),
+      rgba(255, 255, 255, 0) 55%
+    ),
+    rgba(var(--ink-rgb), 0.07);
+  border-color: rgba(var(--ink-rgb), 0.16);
+  box-shadow:
+    0 1px 2px rgba(var(--ink-rgb), 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+[data-theme="dark"] .auth-btn.anon {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.04),
+      rgba(255, 255, 255, 0) 55%
+    ),
+    rgba(var(--ink-rgb), 0.045);
+  border-color: rgba(255, 255, 255, 0.07);
+}
+.auth-btn.anon .auth-btn-icon {
+  width: 13px;
+  height: 13px;
+  opacity: 0.85;
+}
+.auth-btn .gh {
+  width: 13px;
+  height: 13px;
+  opacity: 0.85;
+}
+.auth-btn .gear-svg {
+  width: 13px;
+  height: 13px;
+  color: var(--muted);
+  opacity: 0.85;
+  transition:
+    transform 0.25s ease,
+    opacity 0.15s ease,
+    color 0.15s ease;
+}
+.auth-btn:hover .gear-svg {
+  color: var(--accent);
+  opacity: 1;
+  transform: rotate(45deg);
+}
+
+/* Theme toggle — small rounded square, matching the welcome
+     * page's `.welcome-theme-toggle`. Lives inside `.page-actions`,
+     * so it just needs its own visuals; positioning is handled by
+     * the flex parent. */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem;
+  border: none;
+  border-radius: 6px;
+  background: rgba(var(--ink-rgb), 0.05);
+  color: var(--muted);
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+.theme-toggle:hover {
+  background: rgba(var(--ink-rgb), 0.09);
+  color: var(--ink);
+}
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.theme-toggle svg {
+  width: 14px;
+  height: 14px;
+  display: block;
+}

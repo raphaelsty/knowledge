@@ -1,0 +1,178 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        width: 350px;
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        background: #0a0a0f;
+        color: #f0f0f5;
+        padding: 16px;
+      }
+
+      .header {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 16px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .header img {
+        width: 20px;
+        height: 20px;
+      }
+
+      .header h1 {
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .field {
+        margin-bottom: 12px;
+      }
+
+      label {
+        display: block;
+        font-size: 11px;
+        color: #a0a0b0;
+        margin-bottom: 4px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 8px 10px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 8px;
+        color: #f0f0f5;
+        font-size: 13px;
+        font-family: inherit;
+        outline: none;
+        transition: border-color 0.2s;
+      }
+
+      input:focus,
+      textarea:focus {
+        border-color: rgba(16, 185, 129, 0.4);
+        background: rgba(255, 255, 255, 0.06);
+      }
+
+      input[readonly] {
+        color: #6b6b7b;
+        cursor: default;
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 60px;
+      }
+
+      #save-btn {
+        width: 100%;
+        padding: 10px;
+        margin-top: 4px;
+        background: linear-gradient(135deg, #10b981 0%, #06d6a0 100%);
+        color: #080808;
+        border: none;
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: 600;
+        font-family: inherit;
+        cursor: pointer;
+        transition: opacity 0.2s;
+      }
+
+      #save-btn:hover {
+        opacity: 0.9;
+      }
+
+      #save-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      .status {
+        margin-top: 10px;
+        font-size: 12px;
+        text-align: center;
+        min-height: 16px;
+      }
+
+      .status.success {
+        color: #10b981;
+      }
+
+      .status.error {
+        color: #ef4444;
+      }
+
+      .footer {
+        margin-top: 12px;
+        text-align: center;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        padding-top: 10px;
+      }
+
+      .footer a {
+        font-size: 11px;
+        color: #6b6b7b;
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      .footer a:hover {
+        color: #10b981;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <img src="icons/icon-32.png" alt="" />
+      <h1>Knowledge Bookmark</h1>
+    </div>
+
+    <div class="field">
+      <label for="title">Title</label>
+      <input type="text" id="title" placeholder="Page title" />
+    </div>
+
+    <div class="field">
+      <label for="url">URL</label>
+      <input type="text" id="url" readonly />
+    </div>
+
+    <div class="field">
+      <label for="summary">Summary</label>
+      <textarea id="summary" placeholder="Page description"></textarea>
+    </div>
+
+    <div class="field">
+      <label for="tags">Tags (comma-separated)</label>
+      <input type="text" id="tags" placeholder="tag1, tag2, tag3" />
+    </div>
+
+    <button id="save-btn">Save Bookmark</button>
+    <div class="status" id="status"></div>
+
+    <div class="footer">
+      <a href="#" id="options-link">Settings</a>
+    </div>
+
+    <script src="compat.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>

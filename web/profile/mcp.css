@@ -1,0 +1,383 @@
+/* ============================================================================
+   #section-mcp — MCP server install + function reference
+   ========================================================================== */
+
+.mcp-block + .mcp-block {
+  margin-top: 32px;
+}
+
+.mcp-block-label {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+.mcp-block-hint {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--muted);
+  margin: 10px 0 14px;
+}
+
+.mcp-block-hint code,
+.mcp-endpoint-url,
+.mcp-inline-code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.9em;
+  background: rgba(var(--ink-rgb), 0.04);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1px 6px;
+  color: var(--ink);
+}
+
+[data-theme="dark"] .mcp-block-hint code,
+[data-theme="dark"] .mcp-endpoint-url,
+[data-theme="dark"] .mcp-inline-code {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Endpoint row */
+.mcp-endpoint-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+[data-theme="dark"] .mcp-endpoint-row {
+  background: rgba(255, 255, 255, 0.03);
+}
+.mcp-endpoint-row .mcp-endpoint-url {
+  flex: 1;
+  min-width: 0;
+  padding: 6px 10px;
+  font-size: 13px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+/* Install tabs */
+.mcp-install-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 4px;
+  background: rgba(var(--ink-rgb), 0.04);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-bottom: 14px;
+}
+[data-theme="dark"] .mcp-install-tabs {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.mcp-install-tab {
+  flex: 1 1 auto;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  padding: 8px 12px;
+  font-family: var(--sans);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+.mcp-install-tab:hover {
+  color: var(--ink);
+}
+.mcp-install-tab--active {
+  background: var(--paper);
+  color: var(--ink);
+  border-color: var(--border);
+  box-shadow: 0 1px 2px rgba(var(--ink-rgb), 0.06);
+}
+[data-theme="dark"] .mcp-install-tab--active {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.mcp-install-panel {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+}
+[data-theme="dark"] .mcp-install-panel {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.mcp-install-sub {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+
+.mcp-install-hint {
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+
+/* Code blocks (shared by install + reference) */
+.mcp-code-wrap {
+  position: relative;
+}
+.mcp-code {
+  margin: 0;
+  padding: 14px 16px;
+  background: rgba(var(--ink-rgb), 0.04);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--ink);
+  white-space: pre;
+  overflow-x: auto;
+}
+[data-theme="dark"] .mcp-code {
+  background: rgba(255, 255, 255, 0.03);
+}
+.mcp-copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.mcp-copy-btn:hover {
+  color: var(--ink);
+  border-color: rgba(var(--ink-rgb), 0.2);
+}
+
+/* Tools quick grid */
+.mcp-tools-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.mcp-tool-card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px;
+  transition: border-color 0.15s ease;
+}
+[data-theme="dark"] .mcp-tool-card {
+  background: rgba(255, 255, 255, 0.03);
+}
+.mcp-tool-card:hover {
+  border-color: rgba(var(--ink-rgb), 0.18);
+}
+.mcp-tool-fn {
+  display: block;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+.mcp-tool-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.mcp-tool-desc {
+  font-size: 11.5px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* Auth pills */
+.mcp-auth-pill {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  line-height: 1.4;
+}
+.mcp-auth-pill--public {
+  color: var(--muted);
+  background: rgba(var(--ink-rgb), 0.05);
+  border-color: var(--border);
+}
+.mcp-auth-pill--bearer {
+  color: var(--accent);
+  background: rgba(var(--accent-rgb), 0.1);
+  border-color: rgba(var(--accent-rgb), 0.3);
+}
+
+/* Function reference accordion */
+.mcp-ref-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mcp-ref-card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: border-color 0.15s ease;
+}
+[data-theme="dark"] .mcp-ref-card {
+  background: rgba(255, 255, 255, 0.03);
+}
+.mcp-ref-card--open,
+.mcp-ref-card:hover {
+  border-color: rgba(var(--ink-rgb), 0.18);
+}
+
+.mcp-ref-head {
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  cursor: pointer;
+  color: inherit;
+  text-align: left;
+  font-family: inherit;
+}
+.mcp-ref-head:hover {
+  background: rgba(var(--ink-rgb), 0.02);
+}
+[data-theme="dark"] .mcp-ref-head:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.mcp-ref-head-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+.mcp-ref-fn {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  white-space: nowrap;
+}
+.mcp-ref-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.mcp-ref-head-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.mcp-ref-chevron {
+  color: var(--muted);
+  transition: transform 0.15s ease;
+}
+.mcp-ref-chevron--open {
+  transform: rotate(180deg);
+}
+
+.mcp-ref-body {
+  padding: 0 16px 18px;
+  border-top: 1px solid var(--border);
+}
+.mcp-ref-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 14px 0 4px;
+}
+.mcp-ref-section-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin: 16px 0 8px;
+}
+.mcp-ref-empty {
+  font-size: 12.5px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.mcp-ref-args {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+}
+.mcp-ref-args th {
+  text-align: left;
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  padding: 6px 12px 6px 0;
+  border-bottom: 1px solid var(--border);
+}
+.mcp-ref-args td {
+  padding: 8px 12px 8px 0;
+  vertical-align: top;
+  color: var(--ink);
+  border-bottom: 1px solid var(--border);
+}
+.mcp-ref-args tr:last-child td {
+  border-bottom: none;
+}
+.mcp-ref-args code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11.5px;
+  background: rgba(var(--ink-rgb), 0.05);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 1px 6px;
+  color: var(--ink);
+}
+[data-theme="dark"] .mcp-ref-args code {
+  background: rgba(255, 255, 255, 0.04);
+}
+.mcp-ref-args td:nth-child(4) {
+  color: var(--muted);
+  font-size: 11.5px;
+  line-height: 1.55;
+}
+
+.mcp-ref-returns {
+  font-size: 12.5px;
+  color: var(--muted);
+  line-height: 1.6;
+}

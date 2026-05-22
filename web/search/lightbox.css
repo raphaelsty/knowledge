@@ -1,0 +1,338 @@
+/* Full-viewport image lightbox triggered by tweet-media-tile clicks. */
+.img-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.84);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  cursor: zoom-out;
+  animation: img-lightbox-in 0.15s ease;
+}
+.img-lightbox[hidden] {
+  display: none !important;
+}
+@keyframes img-lightbox-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.img-lightbox img {
+  max-width: 95vw;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6);
+  /* Pointer cursor — tapping the image paginates (left half ←,
+   * right half →) when the doc has multiple photos, so the image
+   * itself is interactive. */
+  cursor: pointer;
+}
+.img-lightbox-close {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: background 0.14s ease;
+}
+.img-lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+body.img-lightbox-open {
+  overflow: hidden;
+}
+
+/* Prev / next chevron buttons. Injected at runtime by page.js the
+ * first time the lightbox is opened; hidden via the [hidden]
+ * attribute when the doc has only a single image. Sized for thumbs
+ * on phone (44×44) and styled to match the close button. */
+.img-lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition:
+    background 0.14s ease,
+    transform 0.12s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.img-lightbox-nav[hidden] {
+  display: none !important;
+}
+.img-lightbox-nav:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+.img-lightbox-nav:active {
+  transform: translateY(-50%) scale(0.92);
+}
+/* Dim the boundary side once you're at the first / last image —
+ * a soft visual "wall" so the user knows the next swipe will be
+ * a no-op. */
+.img-lightbox-nav.img-lightbox-nav-disabled {
+  opacity: 0.25;
+  pointer-events: none;
+}
+.img-lightbox-nav svg {
+  width: 22px;
+  height: 22px;
+}
+.img-lightbox-nav-prev {
+  left: 14px;
+}
+.img-lightbox-nav-next {
+  right: 14px;
+}
+@media (max-width: 768px) {
+  /* On phone the chevrons sit a little further from the edges so a
+   * mis-aimed tap doesn't accidentally hit the system back gesture
+   * on iOS. */
+  .img-lightbox-nav-prev {
+    left: 10px;
+  }
+  .img-lightbox-nav-next {
+    right: 10px;
+  }
+}
+
+/* Summary — refined sans, justified with hyphenation so both edges
+     * align cleanly without giant word-gaps (newspaper typography). */
+.result-summary {
+  font-family: var(--modern);
+  /* Comfortable reading size — bumped from 14px so non-tweet
+   * bodies match the larger tweet typography. Left-aligned to
+   * match the tweet body rhythm; justification with hyphenation
+   * looked tidy on long articles but reads weird across the mix
+   * of short and long snippets the feed shows. */
+  font-size: 15px;
+  line-height: 1.62;
+  color: rgba(var(--ink-rgb), 0.78);
+  margin: 0;
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  text-align: left;
+}
+/* Real-time enhancer — when a richer description lands from the
+     * page's `<meta>` tags, the swap is silent. We used to fade the
+     * summary in from opacity 0.4, but the enhancer walks every
+     * visible card top-down on every paint, so an entire feed page
+     * "blinked" as each summary dropped to 40 % opacity in turn.
+     * The text swap itself is fast enough to read as a non-event —
+     * no animation needed. */
+.result-summary.enhanced {
+  animation: none;
+}
+
+/* Pedagogical clean_summary from the clean daemon. Three key
+ * guarantees:
+ *   - `white-space: pre-line` preserves the daemon's paragraph
+ *     breaks (\n\n in the JSON becomes a visible blank line
+ *     between paragraphs).
+ *   - No line-clamp / max-height / text-overflow — the full
+ *     cleaned summary always renders. The properties below are
+ *     belt-and-braces resets in case a future rule on
+ *     `.result-summary` ever adds clipping behaviour.
+ *   - No character / word truncation in JS either: the render
+ *     path in page.js uses the cleaned text verbatim (no call
+ *     to cleanDescription which would have collapsed newlines
+ *     and clipped at 320 chars). */
+.result-summary--clean {
+  white-space: pre-line;
+  display: block;
+  -webkit-line-clamp: none;
+  line-clamp: none;
+  max-height: none;
+  overflow: visible;
+  text-overflow: clip;
+}
+
+/* Extra URLs row — surfaces any URL the original post mentioned
+ * but the clean_summary didn't include. Quiet block of anchor
+ * links so the reader can still reach them. Sits between the
+ * cleaned <p> and the OG-preview tiles. */
+.result-summary-extra-links {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 6px 0 8px;
+  font-family: var(--modern);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.result-summary-extra-links a {
+  color: rgba(var(--ink-rgb), 0.55);
+  text-decoration: none;
+  word-break: break-all;
+}
+.result-summary-extra-links a:hover {
+  color: rgb(var(--ink-rgb));
+  text-decoration: underline;
+}
+
+/* The clean_title produced by the daemon is also kept un-clipped.
+ * Card h3 titles already render in full by default, but explicitly
+ * stating it here makes the contract visible and survives any
+ * future stylesheet that adds a one-line cap to `.result h3`. */
+.result h3 {
+  display: block;
+  -webkit-line-clamp: none;
+  line-clamp: none;
+  max-height: none;
+  overflow: visible;
+  text-overflow: clip;
+  white-space: normal;
+}
+/* Highlight wrapper for query matches inside titles + summaries.
+     * Soft accent-tinted background; the negative side-margins offset
+     * the inner padding so highlights don't disturb line height. */
+.result mark.hl {
+  all: unset;
+  /* Token color only — same emerald as the reranker score (var(--accent)). */
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* Tags row — wraps the tag pills *and* the "More like this"
+   * affordance. Tags grow to the left edge; the similar-pill
+   * gets pushed to the right via `margin-left: auto`. Both wrap
+   * gracefully on narrow viewports. */
+.result-tags-row {
+  grid-area: tags;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+.result-body {
+  grid-area: body;
+}
+
+/* Tags — soft pill style, no hashes, very subtle background */
+.result-tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+  /* margin-top is now owned by `.result-tags-row` so it doesn't
+     * stack on top of an outer parent's spacing. */
+}
+
+/* "More like this" pill — primary CTA on the card now. Quiet at
+   * rest (matches the tag pills' weight) but accent-tinted on
+   * hover and stays accent when its panel is expanded. The
+   * chevron flips 180° via `aria-expanded="true"` so the same
+   * pill reads as both "open" and "close". */
+/* Tag + "Related" chips — same capsule vocabulary as the mobile
+   bottom nav (rounded 999px pill, ink-tint at 6%, hairline border,
+   no shadow/glow). Reads as quiet metadata on a card, neither
+   competing with the title nor mimicking a button-y CTA. */
+.result-tag,
+.result-similar {
+  display: inline-flex;
+  align-items: center;
+  height: 26px;
+  padding: 0 12px;
+  border-radius: 999px;
+  font-family: var(--sans);
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  cursor: pointer;
+  color: rgba(var(--ink-rgb), 0.7);
+  background: rgba(var(--ink-rgb), 0.05);
+  border: 1px solid transparent;
+  transition:
+    background 0.14s ease,
+    color 0.14s ease;
+}
+[data-theme="dark"] .result-tag,
+[data-theme="dark"] .result-similar {
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.72);
+}
+.result-tag:hover,
+.result-similar:hover {
+  background: rgba(var(--ink-rgb), 0.09);
+  color: rgb(var(--ink-rgb));
+}
+[data-theme="dark"] .result-tag:hover,
+[data-theme="dark"] .result-similar:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+/* Click feedback only — no persistent "active" highlight on tags
+ * inside a document card. The applied filter is visible via the
+ * chip in the top filter strip; doubling it on the card itself
+ * just adds noise. */
+.result-tag:active {
+  transform: scale(0.96);
+}
+/* "Related" stays its quiet pill at rest and only lights up when
+ * its panel is open — keep that affordance. */
+.result-similar[aria-expanded="true"],
+.result-similar.on {
+  background: rgba(var(--ink-rgb), 0.12);
+  color: rgb(var(--ink-rgb));
+}
+[data-theme="dark"] .result-similar[aria-expanded="true"],
+[data-theme="dark"] .result-similar.on {
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+}
+.result-similar:focus-visible,
+.result-tag:focus-visible {
+  outline: 2px solid rgba(var(--ink-rgb), 0.25);
+  outline-offset: 2px;
+}
+/* Per-variant specifics */
+.result-similar {
+  margin-left: auto;
+  gap: 6px;
+  padding: 0 10px 0 11px;
+}
+/* Inline-with-tags variant — sits as the last chip in the tags row,
+ * so it shouldn't be pushed to the right edge. */
+.result-similar.result-similar-as-tag {
+  margin-left: 0;
+}
+.result-similar-label {
+  white-space: nowrap;
+}
+.result-similar-chev {
+  width: 11px;
+  height: 11px;
+  opacity: 0.75;
+  transition: transform 0.22s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.result-similar[aria-expanded="true"] .result-similar-chev,
+.result-similar.on .result-similar-chev {
+  transform: rotate(180deg);
+}
+.result-tag {
+  font-family: var(--modern);
+}
+/* Tag chip backgrounds are now muted greys, so the highlight inherits
+   the chip text colour without needing an override. */

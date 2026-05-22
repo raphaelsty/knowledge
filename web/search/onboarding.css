@@ -1,0 +1,701 @@
+/* Follow-graph onboarding panel.
+ *
+ * Used in two places:
+ *   - In `#empty` when a signed-in user with zero follows lands on
+ *     their own personal page (rendered inline as a takeover panel).
+ *   - In `<dialog id="discoverDialog">` when the user clicks the
+ *     "Discover people" entry in the people rail (rendered as a
+ *     modal overlay).
+ *
+ * The markup is in `web/search/onboarding.js` (.onb-*). Both hosts
+ * (inline empty-state + dialog) share the same stylesheet so the
+ * panel reads identically wherever it's mounted.
+ *
+ * Visual language matches the search-page card chrome — white
+ * surface, soft ink-alpha borders, Inter Tight typography.
+ */
+
+/* ── Dialog frame for the Discover overlay ────────────────────────── */
+
+dialog.discover-dialog {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--sans, "Inter Tight", -apple-system, sans-serif);
+  overflow: visible;
+  max-width: none;
+  max-height: none;
+}
+dialog.discover-dialog::backdrop {
+  background: rgba(15, 23, 42, 0.36);
+  backdrop-filter: blur(8px) saturate(140%);
+  -webkit-backdrop-filter: blur(8px) saturate(140%);
+}
+[data-theme="dark"] dialog.discover-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.62);
+}
+.discover-body {
+  width: min(960px, calc(100vw - 32px));
+  max-height: min(82vh, 880px);
+  margin: 6vh auto;
+  padding: 28px 32px 22px;
+  background: #ffffff;
+  border: 1px solid rgba(var(--ink-rgb), 0.06);
+  border-radius: 22px;
+  box-shadow:
+    0 32px 80px rgba(15, 23, 42, 0.22),
+    0 8px 24px rgba(15, 23, 42, 0.1);
+  animation: onb-card-in 240ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+[data-theme="dark"] .discover-body {
+  background: #181a21;
+  border-color: rgba(255, 255, 255, 0.06);
+  box-shadow:
+    0 32px 80px rgba(0, 0, 0, 0.66),
+    0 8px 24px rgba(0, 0, 0, 0.4);
+}
+@keyframes onb-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.discover-content {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* When the panel renders inline as the empty-state, the .follow-onboarding
+ * wrapper sits inside `#empty`. Strip the empty-state pill chrome so the
+ * shell can paint its own surface. */
+.follow-onboarding {
+  width: 100%;
+  padding: 0;
+  background: transparent;
+}
+
+/* ── Shell ────────────────────────────────────────────────────────── */
+
+.onb-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  color: var(--ink);
+  font-family: var(--sans);
+  flex: 1 1 auto;
+  min-height: 0;
+}
+.onb-shell:not([hidden]) {
+  display: flex;
+}
+
+/* The inline-empty mount has no surrounding card frame; give it one
+ * so the panel reads as a contained surface rather than bleeding
+ * into the page mesh. */
+#empty.follow-onboarding {
+  display: block;
+  max-width: 960px;
+  margin: 24px auto;
+  padding: 28px 32px 22px;
+  background: #ffffff;
+  border: 1px solid rgba(var(--ink-rgb), 0.06);
+  border-radius: 22px;
+  box-shadow:
+    0 24px 60px rgba(15, 23, 42, 0.12),
+    0 6px 18px rgba(15, 23, 42, 0.06);
+}
+[data-theme="dark"] #empty.follow-onboarding {
+  background: #181a21;
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+/* ── Top progress bar ─────────────────────────────────────────────── */
+
+.onb-top {
+  display: flex;
+  align-items: center;
+}
+.onb-progress {
+  width: 100%;
+  height: 3px;
+  border-radius: 999px;
+  background: rgba(var(--ink-rgb), 0.08);
+  overflow: hidden;
+}
+.onb-progress-fill {
+  display: block;
+  height: 100%;
+  width: 50%;
+  background: var(--ink);
+  border-radius: 999px;
+  transition: width 240ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.onb-shell[data-step="affinity"] .onb-progress-fill {
+  width: 100%;
+}
+
+/* ── Slides ───────────────────────────────────────────────────────── */
+
+.onb-slides {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 6px; /* leave space for the scrollbar */
+}
+.onb-slide {
+  display: none;
+  flex-direction: column;
+  gap: 18px;
+  animation: onb-slide-in 320ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+.onb-shell[data-step="pick"] .onb-slide[data-slide="pick"],
+.onb-shell[data-step="affinity"] .onb-slide[data-slide="affinity"] {
+  display: flex;
+}
+@keyframes onb-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.onb-slide-head h2 {
+  margin: 0 0 6px 0;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+.onb-slide-head p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--muted);
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Category grid ────────────────────────────────────────────────── */
+
+.onb-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 14px;
+}
+
+/* Second-section header — separates the company / lab cards from
+ * the topic ontology above. Quiet typography so the two groups read
+ * as siblings, not as a primary heading. */
+.onb-section-head {
+  margin: 32px 0 12px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(var(--ink-rgb), 0.08);
+}
+.onb-section-head h3 {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.onb-section-head p {
+  margin: 4px 0 0;
+  font-family: var(--sans);
+  font-size: 13.5px;
+  color: rgba(var(--ink-rgb), 0.6);
+}
+
+/* Companies pack into a denser grid — the cards mostly carry a
+ * name + a row of avatars, so they need less horizontal real
+ * estate than the topic cards. */
+.onb-grid--companies {
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+/* Each category is a button-card. Surface stays white, accent border
+ * + check badge mark the selected state. */
+.onb-card {
+  appearance: none;
+  -webkit-appearance: none;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px 16px 14px;
+  background: #ffffff;
+  border: 1px solid rgba(var(--ink-rgb), 0.08);
+  border-radius: 16px;
+  text-align: left;
+  cursor: pointer;
+  color: var(--ink);
+  font-family: var(--sans);
+  transition:
+    background 140ms ease,
+    border-color 140ms ease,
+    box-shadow 140ms ease,
+    transform 140ms ease;
+}
+.onb-card:hover {
+  background: rgba(var(--ink-rgb), 0.02);
+  border-color: rgba(var(--ink-rgb), 0.16);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(var(--ink-rgb), 0.06);
+}
+.onb-card.is-selected {
+  border-color: var(--ink);
+  background: rgba(var(--ink-rgb), 0.04);
+  box-shadow: 0 0 0 3px rgba(var(--ink-rgb), 0.12);
+}
+[data-theme="dark"] .onb-card {
+  background: #1d1f27;
+  border-color: rgba(255, 255, 255, 0.06);
+}
+[data-theme="dark"] .onb-card:hover {
+  background: #20232c;
+  border-color: rgba(255, 255, 255, 0.12);
+}
+[data-theme="dark"] .onb-card.is-selected {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: #ffffff;
+}
+
+.onb-card-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.onb-card-head h3 {
+  margin: 0;
+  font-size: 14.5px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.onb-count {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: rgba(var(--ink-rgb), 0.06);
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-variant-numeric: tabular-nums;
+}
+.onb-desc {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--muted);
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* Mini-people list inside each card. Avatars are 22 px circles in a
+ * tight horizontal row with a soft stack effect via negative margins. */
+.onb-card-people {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 0;
+}
+.onb-card-people li {
+  display: flex;
+  align-items: center;
+  margin-right: 0;
+}
+.onb-person-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px 3px 3px;
+  border-radius: 999px;
+  background: rgba(var(--ink-rgb), 0.04);
+  margin-right: 4px;
+  margin-bottom: 4px;
+}
+.onb-mini-av {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: grid;
+  place-items: center;
+  font-size: 9px;
+  font-weight: 600;
+  color: #ffffff;
+  background: rgba(var(--ink-rgb), 0.3);
+  flex-shrink: 0;
+}
+.onb-mini-av-fb {
+  background: rgba(var(--ink-rgb), 0.4);
+}
+.onb-mini-name {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 110px;
+}
+.onb-more {
+  margin: 4px 0 0 0;
+  font-size: 11.5px;
+  color: var(--muted);
+  letter-spacing: 0.005em;
+}
+
+/* Checkmark badge that appears in the top-right corner of the
+ * selected card. */
+.onb-check {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--ink);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+  opacity: 0;
+  transform: scale(0.6);
+  transition:
+    opacity 160ms ease,
+    transform 200ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  pointer-events: none;
+}
+.onb-card.is-selected .onb-check {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ── Footer with counter + actions ────────────────────────────────── */
+
+.onb-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(var(--ink-rgb), 0.08);
+  flex-wrap: wrap;
+}
+.onb-counter {
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: -0.005em;
+}
+.onb-counter strong {
+  font-weight: 600;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.onb-foot-actions {
+  display: flex;
+  gap: 8px;
+}
+.onb-back,
+.onb-skip,
+.onb-next {
+  appearance: none;
+  -webkit-appearance: none;
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  font-family: var(--sans);
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  cursor: pointer;
+  transition:
+    background 140ms ease,
+    color 140ms ease,
+    border-color 140ms ease,
+    box-shadow 140ms ease,
+    transform 140ms ease,
+    opacity 140ms ease;
+}
+.onb-back,
+.onb-skip {
+  background: transparent;
+  color: var(--muted);
+  border-color: rgba(var(--ink-rgb), 0.12);
+}
+.onb-back:hover,
+.onb-skip:hover {
+  background: rgba(var(--ink-rgb), 0.06);
+  color: var(--ink);
+}
+.onb-next {
+  background: var(--ink);
+  color: #ffffff;
+}
+.onb-next:hover {
+  background: #000;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(var(--ink-rgb), 0.22);
+}
+.onb-next:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+.onb-next:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+[data-theme="dark"] .onb-next {
+  background: #ffffff;
+  color: #0c0d10;
+}
+[data-theme="dark"] .onb-next:hover {
+  background: #f1f3f6;
+}
+
+/* ── Affinity step ────────────────────────────────────────────────── */
+
+.onb-aff-head {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.onb-aff-head h2 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+.onb-aff-sub {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--muted);
+  text-align: justify;
+  hyphens: auto;
+}
+.onb-aff-sub strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+.onb-aff-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 12px;
+}
+.onb-aff-sec-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+.onb-aff-sec-num {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(var(--ink-rgb), 0.08);
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+}
+.onb-aff-sec-head h3 {
+  margin: 0 0 2px 0;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.onb-aff-sec-head p {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--muted);
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Selected-category chips on the affinity slide ────────────────── */
+
+.onb-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+.onb-chip {
+  appearance: none;
+  -webkit-appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 6px 5px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(var(--ink-rgb), 0.12);
+  background: rgba(var(--ink-rgb), 0.04);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  cursor: pointer;
+  transition:
+    background 120ms ease,
+    border-color 120ms ease,
+    color 120ms ease;
+}
+.onb-chip:hover {
+  background: rgba(220, 38, 38, 0.08);
+  border-color: rgba(220, 38, 38, 0.2);
+  color: rgb(170, 30, 30);
+}
+.onb-chip-x {
+  display: inline-grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(var(--ink-rgb), 0.08);
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1;
+  transition:
+    background 120ms ease,
+    color 120ms ease;
+}
+.onb-chip:hover .onb-chip-x {
+  background: rgba(220, 38, 38, 0.16);
+  color: rgb(170, 30, 30);
+}
+
+/* ── "Your library is empty" CTA ──────────────────────────────────────
+ *
+ * Shown when a signed-in user lands on their own personal page with
+ * zero documents. Rendered into `#empty` by
+ * `renderPersonalEmptyOnboarding()` in search/page.js. The markup is
+ * a single `.onboarding-card` wrapping a heading, a paragraph, and a
+ * pill CTA pointing at /profile.
+ */
+#empty.empty-onboarding {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 20px;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  /* The parent `#empty.state` rule sets a serif italic style for
+   * the generic "No results." message. We override here so the
+   * onboarding card inherits a clean sans-serif, upright look. */
+  font-family: var(--sans);
+  font-style: normal;
+  font-size: inherit;
+}
+.onboarding-card {
+  max-width: 460px;
+  width: 100%;
+  padding: 36px 32px 30px;
+  background: rgba(var(--paper-rgb), 0.72);
+  border: 1px solid rgba(var(--ink-rgb), 0.07);
+  border-radius: 20px;
+  text-align: center;
+  font-family: var(--sans);
+  font-style: normal;
+  color: var(--ink);
+}
+[data-theme="dark"] .onboarding-card {
+  background: rgba(255, 255, 255, 0.025);
+  border-color: rgba(255, 255, 255, 0.07);
+}
+.onboarding-card h2 {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 20px;
+  letter-spacing: -0.015em;
+  margin: 0 0 12px;
+  color: var(--ink);
+}
+.onboarding-card p {
+  font-family: var(--sans);
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--muted, rgba(var(--ink-rgb), 0.65));
+  margin: 0 auto 22px;
+  max-width: 360px;
+}
+.onboarding-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 20px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--paper, #fff);
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  text-decoration: none;
+  transition:
+    transform 140ms ease,
+    box-shadow 140ms ease,
+    background 140ms ease;
+}
+.onboarding-cta:hover {
+  transform: translateY(-1px);
+  background: #000;
+  box-shadow: 0 6px 16px rgba(var(--ink-rgb), 0.22);
+}
+.onboarding-cta:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+.onboarding-cta svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  /* The default rendered arrow was 24x24 with no sizing — looked
+   * like a bug, hence the "weird arrow" report. Pinning the size
+   * and lowering opacity makes it read as a quiet trailing chevron. */
+  opacity: 0.85;
+}
+.onboarding-cta:hover svg {
+  transform: translateX(2px);
+  transition: transform 140ms ease;
+}
+[data-theme="dark"] .onboarding-cta {
+  background: #ffffff;
+  color: #0c0d10;
+}
+[data-theme="dark"] .onboarding-cta:hover {
+  background: #f4f4f6;
+}

@@ -1,0 +1,212 @@
+/* ── Apple-style search bar ─────────────────────────────────
+ * Pill-rounded translucent glass with refined inner highlight,
+ * SF-Symbols magnifier on the left, sans-serif input (UI chrome
+ * — never serif), and a soft accent ring on focus.
+ *
+ * The bar is the container `<div class="spotlight">`; the input
+ * inside it strips its native chrome and inherits typography. The
+ * focus state + magnifier-color shift live in results.css alongside
+ * the rest of the spotlight family (clear button, cancel button,
+ * size constraints in the spotlight-row). */
+.spotlight {
+  max-width: 720px;
+  margin-top: 0;
+  margin-bottom: 30px;
+  margin-left: max(44px, calc((100% - 1320px) / 2));
+  margin-right: auto;
+  position: relative;
+  background: rgba(var(--paper-rgb), 0.86);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid rgba(var(--ink-rgb), 0.08);
+  border-radius: 14px;
+  box-shadow:
+    0 1px 0 rgba(var(--paper-rgb), 0.9) inset,
+    0 0 0 1px rgba(var(--ink-rgb), 0.04),
+    0 8px 24px rgba(var(--ink-rgb), 0.06),
+    0 2px 6px rgba(var(--ink-rgb), 0.04);
+  transition:
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+.spotlight:hover {
+  background: rgba(var(--paper-rgb), 0.92);
+}
+/* Dark-mode shadows: the base rule's `rgba(var(--ink-rgb), ...)`
+   shadows resolve to a *white* glow under the dark theme (because
+   --ink is near-white there) which lights the bar up like a halo.
+   Replace with quiet black drops + a faint accent ring on focus
+   so the bar still has depth without ever shining. */
+[data-theme="dark"] .spotlight {
+  border-color: rgba(255, 255, 255, 0.06);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.02) inset,
+    0 8px 24px rgba(0, 0, 0, 0.32),
+    0 2px 6px rgba(0, 0, 0, 0.2);
+}
+[data-theme="dark"] .spotlight:focus-within {
+  background: rgba(var(--paper-rgb), 0.92);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.02) inset,
+    0 0 0 3px rgba(var(--accent-rgb), 0.12),
+    0 12px 32px rgba(0, 0, 0, 0.36),
+    0 2px 6px rgba(0, 0, 0, 0.22);
+}
+
+/* ── Top-right action cluster (auth pill + theme toggle) ──────
+ * Mirrors the welcome page's toolbar grouping: pill on the left,
+ * compact theme button on the right, 0.6rem gap between them. */
+/* Legacy floating cluster — superseded by .rail-actions inside the
+ * left rail. Kept as a defensive style for any code that still
+ * checks the selector. */
+.page-actions {
+  display: none;
+}
+
+/* User block at the top of the left rail. Stacks vertically so the
+ * avatar + name sit on one row and "Settings" reads as a small
+ * grey link beneath it. */
+.rail-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  margin-bottom: 18px;
+}
+.rail-actions [hidden] {
+  display: none !important;
+}
+
+/* Avatar + name pill (signed-in state of #authBtn). */
+.auth-btn.user-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 12px 4px 4px;
+  border-radius: 999px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast);
+}
+.auth-btn.user-pill:hover {
+  background: var(--bg-input-hover);
+  border-color: transparent;
+}
+.auth-btn.user-pill .av {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+.auth-btn.user-pill .av-fallback {
+  display: grid;
+  place-items: center;
+  background: var(--accent-bg-subtle);
+  color: var(--accent-primary);
+  font-weight: 700;
+  font-size: 13px;
+}
+.auth-btn.user-pill .user-pill-name {
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 180px;
+}
+
+/* Quick-link rows under the user pill. "Feed" reads as primary
+ * navigation (bigger, accent-tinted on hover, indigo dot when on
+ * the feed). "Settings" stays a smaller muted link beneath it. */
+.rail-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 999px;
+  letter-spacing: 0.01em;
+  transition:
+    color var(--transition-fast),
+    background var(--transition-fast);
+}
+.rail-link svg {
+  width: 16px;
+  height: 16px;
+  opacity: 0.85;
+}
+.rail-link:hover {
+  color: var(--accent-primary);
+  background: var(--accent-bg-subtle);
+}
+.rail-link[hidden] {
+  display: none !important;
+}
+.feed-link {
+  align-self: flex-start;
+  margin-top: 2px;
+  margin-left: 12px; /* line the icon up with the avatar centre */
+}
+/* Active state — only when we're actually on the feed (bare /search). */
+.feed-link.is-current {
+  color: var(--accent-primary);
+  background: var(--accent-bg-subtle);
+}
+/* Feed link above the search bar — bare text link, no pill, no icon.
+   Sits flush with the search bar's left edge so it reads as a quiet
+   breadcrumb. Greys-out at rest, picks up the accent on hover with
+   the arrow sliding right. */
+.feed-link-top {
+  align-self: flex-start;
+  margin: 0 0 10px max(44px, calc((100% - 1320px) / 2));
+  padding: 2px 4px;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 0;
+  transition: color var(--transition-fast);
+}
+.feed-link-top .feed-link-arrow {
+  width: 13px;
+  height: 13px;
+  opacity: 0.75;
+  transition:
+    transform var(--transition-fast),
+    opacity var(--transition-fast);
+}
+.feed-link-top:hover {
+  background: transparent;
+  color: var(--accent-primary);
+}
+.feed-link-top:hover .feed-link-arrow {
+  transform: translateX(3px);
+  opacity: 1;
+}
+.settings-link {
+  color: var(--text-muted);
+  font-size: 12.5px;
+  font-weight: 500;
+  padding: 2px 4px;
+  /* Align with the username text inside .auth-btn.user-pill:
+     4px left padding + 36px avatar + 10px gap = 50px. */
+  margin-left: 50px;
+  margin-top: -2px;
+  background: transparent;
+}
+.settings-link:hover {
+  color: var(--accent-primary);
+  background: transparent;
+}

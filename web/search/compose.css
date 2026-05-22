@@ -1,0 +1,581 @@
+/* ── Compose FAB ─────────────────────────────────────────────────
+ * Pill on desktop with icon + "Post" label, round on tablet.
+ * Gradient surface, layered halo + inner highlight, soft lift on
+ * hover. Anchored at the bottom-right of the feed column. */
+.post-fab {
+  position: fixed;
+  bottom: 24px;
+  right: 396px;
+  height: 32px;
+  padding: 0 13px 0 11px;
+  border-radius: 9px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.55),
+      rgba(255, 255, 255, 0) 55%
+    ),
+    rgba(var(--ink-rgb), 0.04);
+  color: rgba(var(--ink-rgb), 0.78);
+  border: 1px solid rgba(var(--ink-rgb), 0.08);
+  cursor: pointer;
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font: 600 12px/1 var(--sans);
+  letter-spacing: 0;
+  box-shadow:
+    0 1px 0 rgba(var(--ink-rgb), 0.02),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  transition:
+    background 0.14s ease,
+    color 0.14s ease,
+    border-color 0.14s ease,
+    box-shadow 0.14s ease;
+}
+[data-theme="dark"] .post-fab {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.04),
+      rgba(255, 255, 255, 0) 55%
+    ),
+    rgba(var(--ink-rgb), 0.045);
+  border-color: rgba(255, 255, 255, 0.07);
+  box-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+.post-fab:hover {
+  color: rgba(var(--ink-rgb), 0.95);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.65),
+      rgba(255, 255, 255, 0) 55%
+    ),
+    rgba(var(--ink-rgb), 0.07);
+  border-color: rgba(var(--ink-rgb), 0.16);
+  box-shadow:
+    0 1px 2px rgba(var(--ink-rgb), 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+[data-theme="dark"] .post-fab:hover {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.06),
+      rgba(255, 255, 255, 0) 55%
+    ),
+    rgba(var(--ink-rgb), 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+.post-fab:active {
+  transform: scale(0.97);
+}
+.post-fab .post-fab-icon {
+  width: 14px;
+  height: 14px;
+}
+.post-fab .post-fab-label {
+  display: inline;
+}
+.post-fab[hidden] {
+  display: none;
+}
+
+/* ── Compose dialog ──────────────────────────────────────────────
+ * Anchored near the top of the viewport, centred horizontally.
+ * Soft accent ring on the top edge, surface-tinted body, smooth
+ * entrance animation. */
+.compose-back {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 17, 22, 0.42);
+  backdrop-filter: blur(6px) saturate(140%);
+  -webkit-backdrop-filter: blur(6px) saturate(140%);
+  z-index: 120;
+  animation: composeBackIn 220ms ease both;
+}
+[data-theme="dark"] .compose-back {
+  background: rgba(0, 0, 0, 0.6);
+}
+.compose-back[hidden] {
+  display: none;
+}
+@keyframes composeBackIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.compose {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: min(640px, calc(100vw - 32px));
+  z-index: 121;
+  background: #ffffff;
+  background-image: none;
+  border: 1px solid rgba(26, 30, 40, 0.06);
+  border-radius: 22px;
+  box-shadow:
+    0 32px 80px rgba(15, 23, 42, 0.22),
+    0 8px 24px rgba(15, 23, 42, 0.1);
+  padding: 12px 22px 18px;
+  animation: composeIn 260ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+[data-theme="dark"] .compose {
+  background: #181a21;
+  background-image: none;
+  border-color: rgba(255, 255, 255, 0.06);
+  box-shadow:
+    0 32px 80px rgba(0, 0, 0, 0.66),
+    0 8px 24px rgba(0, 0, 0, 0.4);
+}
+@keyframes composeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -10px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+}
+.compose[hidden] {
+  display: none;
+}
+.compose-head {
+  display: flex;
+  align-items: center;
+  height: 44px;
+  gap: 12px;
+}
+.compose-close {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: transparent;
+  border: 0;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition:
+    background 120ms ease,
+    transform 120ms ease;
+}
+.compose-close:hover {
+  background: rgba(99, 102, 241, 0.1);
+  transform: rotate(90deg);
+}
+.compose-close svg {
+  width: 18px;
+  height: 18px;
+}
+.compose-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.01em;
+}
+/* Submit moved into the header, pinned to the right side. */
+.compose-head .compose-submit {
+  margin-left: auto;
+}
+/* Hint line — kept around for transient status messages (saving / error)
+ * but invisible when empty so it doesn't reserve space. */
+.compose-hint {
+  min-height: 16px;
+  color: var(--text-muted);
+  font-size: 12.5px;
+}
+.compose-hint:empty {
+  display: none;
+}
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+.compose-row {
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  gap: 14px;
+  padding: 4px 0 4px;
+}
+.compose-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background-color: var(--bg-input);
+  background-size: cover;
+  background-position: center;
+  display: grid;
+  place-items: center;
+  color: #6366f1;
+  font-weight: 700;
+  font-size: 17px;
+  box-shadow:
+    inset 0 0 0 1px rgba(99, 102, 241, 0.16),
+    0 4px 14px rgba(99, 102, 241, 0.16);
+}
+.compose-body {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Segmented Public / Only-you control sits on top of the textarea. */
+/* Public / Only-you segmented control — same neutral chip surface as
+ * the rest of the compose dialog. Track is a subtle inset; active
+ * option lifts on a light-grey surface with the soft top highlight.
+ * No indigo tint. */
+.compose-audience {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  padding: 3px;
+  background: rgba(var(--ink-rgb), 0.04);
+  border-radius: 9px;
+  gap: 3px;
+  border: 1px solid rgba(var(--ink-rgb), 0.08);
+}
+[data-theme="dark"] .compose-audience {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.07);
+}
+.compose-aud-opt {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 26px;
+  padding: 0 11px;
+  border-radius: 7px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: rgba(var(--ink-rgb), 0.6);
+  font: 600 12px/1 var(--sans);
+  letter-spacing: 0;
+  cursor: pointer;
+  transition:
+    background 0.14s ease,
+    color 0.14s ease,
+    border-color 0.14s ease,
+    box-shadow 0.14s ease;
+}
+.compose-aud-opt svg {
+  width: 12px;
+  height: 12px;
+  opacity: 0.85;
+}
+.compose-aud-opt:hover {
+  color: rgba(var(--ink-rgb), 0.92);
+}
+.compose-aud-opt.is-active {
+  color: rgba(var(--ink-rgb), 0.95);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.65),
+      rgba(255, 255, 255, 0) 55%
+    ),
+    rgba(var(--ink-rgb), 0.04);
+  border-color: rgba(var(--ink-rgb), 0.1);
+  box-shadow:
+    0 1px 2px rgba(var(--ink-rgb), 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+[data-theme="dark"] .compose-aud-opt.is-active {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.06),
+      rgba(255, 255, 255, 0) 55%
+    ),
+    rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+.compose-input {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  resize: none;
+  font-family: inherit;
+  font-size: 19px;
+  line-height: 1.45;
+  letter-spacing: -0.005em;
+  color: var(--text-primary);
+  padding: 6px 0 8px;
+  min-height: 96px;
+  max-height: 300px;
+  overflow-y: auto;
+  caret-color: #6366f1;
+}
+.compose-input::placeholder {
+  color: var(--text-muted);
+}
+.compose-title-input {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.08);
+  outline: 0;
+  font-family: inherit;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text-primary);
+  padding: 4px 0 6px;
+  caret-color: #6366f1;
+}
+.compose-title-input::placeholder {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+.compose-tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  border-top: 1px solid rgba(var(--ink-rgb), 0.08);
+  padding: 8px 0 4px;
+}
+.compose-tags-chips {
+  display: contents;
+}
+.compose-tag-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 22px;
+  padding: 0 6px 0 8px;
+  border-radius: 999px;
+  background: rgba(99, 102, 241, 0.1);
+  color: #6366f1;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+}
+.compose-tag-chip .x {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: rgba(99, 102, 241, 0.18);
+  color: #6366f1;
+  font-size: 11px;
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  line-height: 1;
+}
+.compose-tag-chip .x:hover {
+  background: rgba(99, 102, 241, 0.32);
+}
+.compose-tags-input {
+  flex: 1 0 120px;
+  min-width: 120px;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--text-primary);
+  padding: 2px 0;
+  caret-color: #6366f1;
+}
+.compose-tags-input::placeholder {
+  color: var(--text-muted);
+}
+
+/* Autofill-from-link button. Sits between the body textarea and the
+ * tags row. Same neutral chip surface as the Post button — light grey
+ * at rest, brightens on hover. Hidden until the body contains a URL. */
+.compose-autofill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  align-self: flex-start;
+  height: 28px;
+  padding: 0 11px 0 10px;
+  margin-top: 6px;
+  border-radius: 9px;
+  font: 600 12px/1 var(--sans);
+  letter-spacing: 0;
+  cursor: pointer;
+  color: rgba(var(--ink-rgb), 0.78);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.55),
+      rgba(255, 255, 255, 0) 55%
+    ),
+    rgba(var(--ink-rgb), 0.04);
+  border: 1px solid rgba(var(--ink-rgb), 0.08);
+  box-shadow:
+    0 1px 0 rgba(var(--ink-rgb), 0.02),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  transition:
+    background 0.14s ease,
+    color 0.14s ease,
+    border-color 0.14s ease,
+    box-shadow 0.14s ease;
+}
+[data-theme="dark"] .compose-autofill {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.04),
+      rgba(255, 255, 255, 0) 55%
+    ),
+    rgba(var(--ink-rgb), 0.045);
+  border-color: rgba(255, 255, 255, 0.07);
+  box-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+.compose-autofill:hover {
+  color: rgba(var(--ink-rgb), 0.95);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.65),
+      rgba(255, 255, 255, 0) 55%
+    ),
+    rgba(var(--ink-rgb), 0.07);
+  border-color: rgba(var(--ink-rgb), 0.16);
+  box-shadow:
+    0 1px 2px rgba(var(--ink-rgb), 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+.compose-autofill svg {
+  width: 13px;
+  height: 13px;
+  opacity: 0.85;
+}
+.compose-autofill[hidden] {
+  display: none !important;
+}
+.compose-hint.error {
+  color: #f4212e;
+}
+.compose-hint.ok {
+  color: #6366f1;
+}
+
+/* Compose submit — same neutral chip-surface as the Post FAB.
+ * Light grey at rest with the soft top highlight, brightens on hover.
+ * No indigo gradient or coloured glow. */
+.compose-submit {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 32px;
+  padding: 0 13px 0 11px;
+  border-radius: 9px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.55),
+      rgba(255, 255, 255, 0) 55%
+    ),
+    rgba(var(--ink-rgb), 0.04);
+  color: rgba(var(--ink-rgb), 0.78);
+  border: 1px solid rgba(var(--ink-rgb), 0.08);
+  font: 600 12px/1 var(--sans);
+  letter-spacing: 0;
+  cursor: pointer;
+  box-shadow:
+    0 1px 0 rgba(var(--ink-rgb), 0.02),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  transition:
+    background 0.14s ease,
+    color 0.14s ease,
+    border-color 0.14s ease,
+    box-shadow 0.14s ease,
+    opacity 0.14s ease;
+}
+[data-theme="dark"] .compose-submit {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.04),
+      rgba(255, 255, 255, 0) 55%
+    ),
+    rgba(var(--ink-rgb), 0.045);
+  border-color: rgba(255, 255, 255, 0.07);
+  box-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+.compose-submit svg {
+  width: 13px;
+  height: 13px;
+  opacity: 0.85;
+  transition: transform 200ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.compose-submit:hover {
+  color: rgba(var(--ink-rgb), 0.95);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.65),
+      rgba(255, 255, 255, 0) 55%
+    ),
+    rgba(var(--ink-rgb), 0.07);
+  border-color: rgba(var(--ink-rgb), 0.16);
+  box-shadow:
+    0 1px 2px rgba(var(--ink-rgb), 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+[data-theme="dark"] .compose-submit:hover {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.06),
+      rgba(255, 255, 255, 0) 55%
+    ),
+    rgba(var(--ink-rgb), 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+.compose-submit:hover svg {
+  transform: translateX(2px);
+  opacity: 1;
+}
+.compose-submit:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Mobile-only drawer chrome — burger trigger, dimming backdrop,
+ * in-drawer close button. Hidden on desktop; the @media block
+ * below 768px overrides the display to surface them. */
+.m-menu-btn,
+.m-menu-backdrop,
+.m-menu-close {
+  display: none;
+}

@@ -1,0 +1,1323 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Knowledge</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/profile/style.css" />
+    <link rel="stylesheet" href="/profile/chrome.css" />
+    <link rel="stylesheet" href="/profile/sections.css" />
+    <link rel="stylesheet" href="/profile/fields.css" />
+    <link rel="stylesheet" href="/profile/sources.css" />
+    <link rel="stylesheet" href="/profile/mcp.css" />
+    <link rel="stylesheet" href="/profile/credits/style.css" />
+    <link rel="stylesheet" href="/profile/storage/style.css" />
+    <link rel="stylesheet" href="/profile/add-personality/style.css" />
+    <link rel="stylesheet" href="/lib/brand.css" />
+    <link rel="stylesheet" href="/mobile.css" />
+    <script>
+      // Apply saved theme synchronously to avoid a one-frame flash.
+      (function () {
+        try {
+          var t = localStorage.getItem("theme") || "light";
+          if (t === "dark")
+            document.documentElement.setAttribute("data-theme", "dark");
+        } catch {}
+      })();
+    </script>
+  </head>
+  <body data-page="settings">
+    <div class="grain" aria-hidden="true"></div>
+
+    <!-- Discrete brand mark — bottom-right on desktop, above the
+         bottom nav on phone. Marketing affordance kept quiet so it
+         never competes with the settings content. -->
+    <a
+      class="brand-mark"
+      href="https://github.com/raphaelsty/knowledge"
+      target="_blank"
+      rel="noopener noreferrer"
+      title="Knowledge — open source on GitHub"
+    >
+      <span class="brand-mark-name">Knowledge</span>
+      <span class="brand-mark-dot" aria-hidden="true"></span>
+      <svg
+        class="brand-mark-gh"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        aria-hidden="true"
+      >
+        <path
+          d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.24 3.34.95.1-.74.4-1.24.73-1.53-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.18 1.18A11 11 0 0 1 12 6.8c.98 0 1.97.13 2.9.39 2.21-1.49 3.18-1.18 3.18-1.18.62 1.58.23 2.75.11 3.04.74.81 1.18 1.84 1.18 3.1 0 4.42-2.69 5.4-5.25 5.68.41.36.78 1.06.78 2.13v3.16c0 .31.21.68.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"
+        />
+      </svg>
+    </a>
+
+    <header class="page-chrome">
+      <a class="back-pill" href="/" id="backLink">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <polyline points="15 18 9 12 15 6" />
+        </svg>
+        <span>Back</span>
+      </a>
+      <div class="page-chrome-right">
+        <span class="save-chip" id="pfStatus" aria-live="polite"
+          >Auto-saves as you type</span
+        >
+        <!-- Segmented light / dark theme picker. Labels are explicit
+             so the toggle stops being "another mystery icon button"
+             — clicking either pill applies that theme and persists
+             it to localStorage. -->
+        <div
+          class="theme-toggle theme-toggle--segmented"
+          id="themeToggle"
+          role="radiogroup"
+          aria-label="Theme"
+        >
+          <button
+            type="button"
+            class="theme-opt"
+            data-theme-value="light"
+            role="radio"
+            aria-checked="false"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="4" />
+              <path d="M12 2v2" />
+              <path d="M12 20v2" />
+              <path d="M4.93 4.93l1.41 1.41" />
+              <path d="M17.66 17.66l1.41 1.41" />
+              <path d="M2 12h2" />
+              <path d="M20 12h2" />
+              <path d="M4.93 19.07l1.41-1.41" />
+              <path d="M17.66 6.34l1.41-1.41" />
+            </svg>
+            Light
+          </button>
+          <button
+            type="button"
+            class="theme-opt"
+            data-theme-value="dark"
+            role="radio"
+            aria-checked="false"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
+            Dark
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="page" id="page">
+      <section class="hero">
+        <img class="hero-avatar" id="pfAvatar" src="" alt="" />
+        <p class="hero-handle" id="pfHandle">@…</p>
+      </section>
+
+      <!-- Discover entry — opens the onboarding category picker
+           via /#discover (handled by web/search/page.js on landing).
+           Lives near the top so phone visitors meet it first; on
+           desktop it sits between the hero and the Profile form. -->
+      <section class="section" id="section-discover">
+        <header class="section-head">
+          <h2 class="section-title">Discover people to follow</h2>
+          <p class="section-kicker">
+            Pick a few topics. We'll suggest people worth following.
+          </p>
+        </header>
+        <div class="section-body">
+          <a class="discover-launch" id="discoverLaunch" href="/#discover">
+            <span>Open the picker</span>
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="13 6 19 12 13 18" />
+            </svg>
+          </a>
+        </div>
+      </section>
+
+      <section class="section" id="section-profile">
+        <header class="section-head">
+          <h2 class="section-title">Profile</h2>
+          <p class="section-kicker">
+            How you appear to anyone visiting your library.
+          </p>
+        </header>
+
+        <div class="section-body">
+          <label class="profile-field">
+            <span class="profile-field-label">Display name</span>
+            <input
+              id="pfName"
+              class="profile-input"
+              type="text"
+              placeholder="Jane Doe"
+            />
+          </label>
+
+          <label class="profile-field">
+            <span class="profile-field-label">Short bio</span>
+            <textarea
+              id="pfDesc"
+              class="profile-input profile-textarea"
+              rows="3"
+              placeholder="A line about what you read or build."
+            ></textarea>
+          </label>
+
+          <div class="profile-field profile-field-toggle">
+            <div class="profile-field-toggle-text">
+              <span class="profile-field-label">Public library</span>
+              <span class="profile-field-hint"
+                >Lets anyone browse your library and search it.</span
+              >
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="pfPublic" />
+              <span class="track"></span>
+              <span class="knob"></span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="section-sources">
+        <header class="section-head">
+          <h2 class="section-title">Sources</h2>
+          <p class="section-kicker">
+            Fields verify as you type. Leave any blank to skip.
+          </p>
+          <p class="section-indexing-note">
+            Indexing runs daily. New documents become searchable the next day.
+          </p>
+        </header>
+
+        <div class="section-body source-grid">
+          <!-- Websites — full-width header card on top of the grid. -->
+          <article class="source-card source-card-wide">
+            <div class="source-card-head">
+              <div
+                class="source-card-icon"
+                data-icon="websites"
+                aria-hidden="true"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="12" r="9" />
+                  <path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18" />
+                </svg>
+              </div>
+              <div class="source-card-meta">
+                <h3 class="source-card-name">Websites</h3>
+                <p class="source-card-desc">
+                  Paste any URL — RSS, sitemap, or a normal blog page. We pick
+                  the right way to follow each one. Add as many as you want.
+                </p>
+              </div>
+            </div>
+            <div class="profile-field profile-field-wide">
+              <span class="profile-field-label">URLs (one per line)</span>
+              <textarea
+                id="pfWebsites"
+                class="profile-input profile-textarea"
+                rows="4"
+                placeholder="https://zeroentropy.dev/articles/&#10;https://simonwillison.net/atom/everything&#10;https://example.com/sitemap.xml"
+              ></textarea>
+            </div>
+            <ul class="websites-status" id="pfWebsitesStatus"></ul>
+          </article>
+
+          <!-- Zotero — first because it's the primary bookmark source -->
+          <article class="source-card source-card-wide source-card-tall">
+            <div class="source-card-head">
+              <div
+                class="source-card-icon"
+                aria-hidden="true"
+                style="background: #cc2936; color: white; font-weight: 700"
+              >
+                Z
+              </div>
+              <div class="source-card-meta">
+                <h3 class="source-card-name">
+                  Zotero <span class="conn-badge" id="zotConnBadge"></span>
+                </h3>
+                <p class="source-card-desc">
+                  Save links from any browser or phone. Items land in your
+                  Zotero library with whatever it picks up — tags, notes, the
+                  PDF — and we sync from there into your search index. Free and
+                  open-source. Create an API key at
+                  <a
+                    href="https://www.zotero.org/settings/keys/new"
+                    target="_blank"
+                    rel="noopener"
+                    >zotero.org/settings/keys/new</a
+                  >
+                  and paste it below. We store it encrypted and never read it
+                  back.
+                </p>
+              </div>
+            </div>
+            <details class="how-to" open>
+              <summary>Setup</summary>
+              <ul>
+                <li>
+                  Desktop: install the
+                  <a
+                    href="https://www.zotero.org/download/"
+                    target="_blank"
+                    rel="noopener"
+                    >Zotero app</a
+                  >
+                  and the
+                  <a
+                    href="https://www.zotero.org/download/connectors"
+                    target="_blank"
+                    rel="noopener"
+                    >browser connector</a
+                  >. Click the toolbar icon on any page to save it.
+                </li>
+                <li>
+                  Mobile: the
+                  <a
+                    href="https://apps.apple.com/app/zotero/id1513554812"
+                    target="_blank"
+                    rel="noopener"
+                    >iOS app</a
+                  >
+                  or
+                  <a
+                    href="https://play.google.com/store/apps/details?id=org.zotero.android"
+                    target="_blank"
+                    rel="noopener"
+                    >Android app</a
+                  >. Share any URL to Zotero.
+                </li>
+                <li>
+                  Mint an API key at
+                  <a
+                    href="https://www.zotero.org/settings/keys/new"
+                    target="_blank"
+                    rel="noopener"
+                    >zotero.org/settings/keys/new</a
+                  >
+                  with <em>Allow library access</em> on, then paste it below.
+                </li>
+                <li>
+                  Your saved items live at
+                  <a
+                    href="https://www.zotero.org/mylibrary"
+                    target="_blank"
+                    rel="noopener"
+                    >zotero.org/mylibrary</a
+                  >.
+                </li>
+              </ul>
+            </details>
+            <div class="zot-summary" id="zotSummary"></div>
+            <label class="profile-field">
+              <span class="profile-field-label">API key</span>
+              <div class="secret">
+                <span class="secret-icon" aria-hidden="true">
+                  <svg
+                    viewBox="0 0 14 14"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <rect x="3" y="6.5" width="8" height="6" rx="1.2" />
+                    <path d="M5 6.5V4.4a2 2 0 014 0v2.1" />
+                  </svg>
+                </span>
+                <input
+                  id="pfZotero"
+                  class="profile-input bare"
+                  type="password"
+                  placeholder="paste personal API key"
+                  autocomplete="new-password"
+                />
+                <button
+                  type="button"
+                  class="secret-eye"
+                  data-secret-toggle="pfZotero"
+                  aria-label="Show key"
+                >
+                  <svg
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M1.5 8C2.9 5.4 5.3 3.7 8 3.7s5.1 1.7 6.5 4.3c-1.4 2.6-3.8 4.3-6.5 4.3S2.9 10.6 1.5 8z"
+                    />
+                    <circle cx="8" cy="8" r="1.9" />
+                  </svg>
+                </button>
+              </div>
+            </label>
+            <div class="card-actions" id="zotActions" style="display: none">
+              <span class="verify-status ok"
+                ><span class="glyph">✓</span><span id="zotConnectedAs"></span
+              ></span>
+              <button class="action-link" id="pfZotDisconnect" type="button">
+                Disconnect
+              </button>
+            </div>
+          </article>
+
+          <p class="subhead">Public handles</p>
+
+          <!-- GitHub -->
+          <article class="source-card">
+            <div class="source-card-head">
+              <div class="source-card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.27-.01-1-.02-1.96-3.2.7-3.88-1.54-3.88-1.54-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.69 1.24 3.34.95.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.27-5.24-5.66 0-1.25.45-2.27 1.18-3.07-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.16 1.17.92-.26 1.9-.39 2.88-.4.98.01 1.96.14 2.88.4 2.2-1.48 3.16-1.17 3.16-1.17.62 1.58.23 2.75.11 3.04.74.8 1.18 1.82 1.18 3.07 0 4.4-2.69 5.37-5.25 5.65.41.36.78 1.06.78 2.13 0 1.54-.01 2.78-.01 3.16 0 .31.21.68.8.56C20.21 21.39 23.5 17.07 23.5 12 23.5 5.65 18.35.5 12 .5z"
+                  />
+                </svg>
+              </div>
+              <div class="source-card-meta">
+                <h3 class="source-card-name">GitHub</h3>
+                <p class="source-card-desc">
+                  Your stars and your public repos.
+                </p>
+              </div>
+              <span
+                class="probe-status"
+                data-probe-for="github"
+                aria-live="polite"
+              ></span>
+            </div>
+            <label class="profile-field">
+              <span class="profile-field-label">Handles</span>
+              <div class="profile-input-wrap with-prefix">
+                <span class="prefix">@</span>
+                <input
+                  id="pfGithub"
+                  class="profile-input bare"
+                  type="text"
+                  placeholder="johndoe, janedoe"
+                  data-probe="github"
+                />
+              </div>
+            </label>
+          </article>
+
+          <!-- Twitter — fully locked while the paid plan is being
+               legally vetted. A frosted grey banner sits on top of
+               the card so no interaction is possible (even for
+               VIPs); the contents stay readable underneath for
+               context. -->
+          <article
+            class="source-card source-card--alpha source-card--locked"
+            data-vip-gate="twitter"
+            aria-disabled="true"
+          >
+            <div class="source-card-lock" aria-hidden="true">
+              <strong
+                >Tweets extraction is paused while the app is in alpha.</strong
+              >
+            </div>
+            <div class="source-card-head">
+              <div class="source-card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.66l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25h6.831l4.713 6.231ZM17.083 19.77h1.833L7.084 4.126H5.117L17.083 19.77Z"
+                  />
+                </svg>
+              </div>
+              <div class="source-card-meta">
+                <h3 class="source-card-name">
+                  X / Twitter
+                  <span class="source-card-badge" data-alpha-badge>Alpha</span>
+                </h3>
+                <p class="source-card-desc">
+                  Your tweets, likes, retweets, replies.
+                </p>
+              </div>
+              <span
+                class="probe-status"
+                data-probe-for="twitter"
+                aria-live="polite"
+              ></span>
+            </div>
+            <label class="profile-field">
+              <span class="profile-field-label">Handle</span>
+              <div class="profile-input-wrap with-prefix">
+                <span class="prefix">@</span>
+                <input
+                  id="pfTwitter"
+                  class="profile-input bare"
+                  type="text"
+                  placeholder="johndoe"
+                  data-probe="twitter"
+                />
+              </div>
+            </label>
+            <p
+              class="source-card-note source-card-note--alpha"
+              data-alpha-notice
+              hidden
+            >
+              <strong
+                >Tweets extraction is paused while the app is in alpha.</strong
+              >
+              You can still save your handle so it's ready once we open it back
+              up.
+            </p>
+            <p
+              class="source-card-note source-card-note--billing"
+              data-vip-only
+              hidden
+            >
+              <strong>Needs a positive balance.</strong>
+              Each Twitter API page (about 1–100 tweets) costs
+              <strong>$0.01–$0.04</strong>. If you run out, ingestion stops
+              cleanly. Twitter is the only paid source.
+            </p>
+            <!-- Balance + Add money widget. Hidden for non-VIP
+                 accounts while Twitter sits in alpha. The storage
+                 module no-ops if `data-vip` is missing on <html>. -->
+            <div
+              id="storagePanel"
+              class="source-card-billing"
+              data-vip-only
+              hidden
+            ></div>
+          </article>
+
+          <!-- Reddit -->
+          <article class="source-card">
+            <div class="source-card-head">
+              <div class="source-card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M22 12.06c0-1.21-.97-2.18-2.18-2.18-.59 0-1.13.24-1.52.62-1.49-1.07-3.55-1.77-5.83-1.85l1-4.7 3.27.7c.04.83.72 1.5 1.55 1.5.86 0 1.55-.69 1.55-1.55s-.69-1.55-1.55-1.55c-.61 0-1.14.36-1.39.88l-3.65-.78c-.1-.02-.2.04-.22.14l-1.12 5.27c-2.32.06-4.41.76-5.92 1.85a2.183 2.183 0 0 0-3.7 1.57c0 .81.45 1.51 1.1 1.88-.03.18-.04.37-.04.56 0 2.85 3.32 5.16 7.4 5.16 4.08 0 7.4-2.31 7.4-5.16 0-.18-.01-.37-.04-.55.66-.37 1.1-1.07 1.1-1.88zM7 13.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5-1.5-.67-1.5-1.5zm8.71 4.4c-1.13 1.13-3.29 1.21-3.92 1.21s-2.79-.09-3.92-1.21a.426.426 0 1 1 .6-.6c.71.71 2.24.97 3.32.97s2.6-.25 3.32-.97a.426.426 0 1 1 .6.6zm-.31-2.9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"
+                  />
+                </svg>
+              </div>
+              <div class="source-card-meta">
+                <h3 class="source-card-name">Reddit</h3>
+                <p class="source-card-desc">Your public posts and comments.</p>
+              </div>
+              <span
+                class="probe-status"
+                data-probe-for="reddit"
+                aria-live="polite"
+              ></span>
+            </div>
+            <label class="profile-field">
+              <span class="profile-field-label">Username</span>
+              <div class="profile-input-wrap with-prefix">
+                <span class="prefix">u/</span>
+                <input
+                  id="pfReddit"
+                  class="profile-input bare"
+                  type="text"
+                  placeholder="johndoe"
+                  data-probe="reddit"
+                />
+              </div>
+            </label>
+          </article>
+
+          <!-- Stack Overflow -->
+          <article class="source-card">
+            <div class="source-card-head">
+              <div class="source-card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M17.36 20.2v-5.38h1.79V22H3v-7.18h1.8v5.38h12.56zM6.77 14.32l8.78 1.84.37-1.76-8.79-1.83-.36 1.75zm1.16-4.21l8.14 3.79.76-1.62-8.14-3.8-.76 1.63zm2.25-3.99l6.9 5.76 1.15-1.36-6.9-5.76-1.15 1.36zM14.61 1l-1.45 1.07 5.36 7.21 1.45-1.07L14.6 1zM5.81 18.79H17v-1.79H5.81v1.79z"
+                  />
+                </svg>
+              </div>
+              <div class="source-card-meta">
+                <h3 class="source-card-name">Stack Overflow</h3>
+                <p class="source-card-desc">Your public answers, by user id.</p>
+              </div>
+              <span
+                class="probe-status"
+                data-probe-for="stackoverflow"
+                aria-live="polite"
+              ></span>
+            </div>
+            <label class="profile-field">
+              <span class="profile-field-label">User id</span>
+              <input
+                id="pfSO"
+                class="profile-input"
+                type="text"
+                placeholder="1234567"
+                data-probe="stackoverflow"
+              />
+            </label>
+          </article>
+
+          <!-- Hugging Face -->
+          <article class="source-card">
+            <div class="source-card-head">
+              <div class="source-card-icon" aria-hidden="true">🤗</div>
+              <div class="source-card-meta">
+                <h3 class="source-card-name">Hugging Face</h3>
+                <p class="source-card-desc">
+                  Your models, datasets, and Spaces.
+                </p>
+              </div>
+              <span
+                class="probe-status"
+                data-probe-for="huggingface"
+                aria-live="polite"
+              ></span>
+            </div>
+            <label class="profile-field">
+              <span class="profile-field-label">Username</span>
+              <div class="profile-input-wrap with-prefix">
+                <span class="prefix">@</span>
+                <input
+                  id="pfHF"
+                  class="profile-input bare"
+                  type="text"
+                  placeholder="johndoe"
+                  data-probe="huggingface"
+                />
+              </div>
+            </label>
+          </article>
+
+          <!-- arXiv -->
+          <article class="source-card">
+            <div class="source-card-head">
+              <div class="source-card-icon" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M4 4l8 16M20 4l-8 16M5 12h14" />
+                </svg>
+              </div>
+              <div class="source-card-meta">
+                <h3 class="source-card-name">arXiv</h3>
+                <p class="source-card-desc">
+                  Papers where you appear as author.
+                </p>
+              </div>
+              <span
+                class="probe-status"
+                data-probe-for="arxiv"
+                aria-live="polite"
+              ></span>
+            </div>
+            <label class="profile-field">
+              <span class="profile-field-label">Author name</span>
+              <input
+                id="pfArxiv"
+                class="profile-input"
+                type="text"
+                placeholder="Yann LeCun"
+                data-probe="arxiv"
+              />
+            </label>
+          </article>
+
+          <!-- Google Scholar -->
+          <article class="source-card">
+            <div class="source-card-head">
+              <div class="source-card-icon" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M12 3l10 6-10 6L2 9l10-6z" />
+                  <path d="M5 11.5V16l7 4 7-4v-4.5" />
+                </svg>
+              </div>
+              <div class="source-card-meta">
+                <h3 class="source-card-name">Google Scholar</h3>
+                <p class="source-card-desc">
+                  Publications from your Scholar profile (the
+                  <code>user=</code> id in the URL).
+                </p>
+              </div>
+              <span
+                class="probe-status"
+                data-probe-for="scholar"
+                aria-live="polite"
+              ></span>
+            </div>
+            <label class="profile-field">
+              <span class="profile-field-label">User id</span>
+              <input
+                id="pfScholar"
+                class="profile-input"
+                type="text"
+                placeholder="XXXXXXXXX"
+                data-probe="scholar"
+              />
+            </label>
+          </article>
+
+          <!-- DBLP -->
+          <article class="source-card">
+            <div class="source-card-head">
+              <div class="source-card-icon" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M4 4h16v16H4z" />
+                  <path d="M8 4v16M4 12h16" />
+                </svg>
+              </div>
+              <div class="source-card-meta">
+                <h3 class="source-card-name">DBLP</h3>
+                <p class="source-card-desc">
+                  CS papers where you appear as author.
+                </p>
+              </div>
+            </div>
+            <label class="profile-field">
+              <span class="profile-field-label">Author name</span>
+              <input
+                id="pfDblp"
+                class="profile-input"
+                type="text"
+                placeholder="Yann LeCun"
+              />
+            </label>
+          </article>
+
+          <p class="subhead">
+            Personal &amp; private
+            <span class="subhead-note"
+              >encrypted, never read back · disconnect any time</span
+            >
+          </p>
+
+          <!-- Hacker News -->
+          <article class="source-card source-card-tall">
+            <div class="source-card-head">
+              <div
+                class="source-card-icon"
+                aria-hidden="true"
+                style="background: #ff6600; color: white; font-weight: 700"
+              >
+                Y
+              </div>
+              <div class="source-card-meta">
+                <h3 class="source-card-name">
+                  Hacker News <span class="conn-badge" id="hnConnBadge"></span>
+                </h3>
+                <p class="source-card-desc">
+                  Username pulls your comments and submissions. Add a password
+                  to also sync /upvoted.
+                </p>
+              </div>
+              <span
+                class="probe-status"
+                data-probe-for="hackernews_user"
+                aria-live="polite"
+              ></span>
+            </div>
+            <label class="profile-field">
+              <span class="profile-field-label">Username</span>
+              <input
+                id="pfHnUser"
+                class="profile-input"
+                type="text"
+                placeholder="johndoe"
+                data-probe="hackernews_user"
+              />
+            </label>
+            <label class="profile-field">
+              <span class="profile-field-label">Password</span>
+              <div class="secret">
+                <span class="secret-icon" aria-hidden="true">
+                  <svg
+                    viewBox="0 0 14 14"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <rect x="3" y="6.5" width="8" height="6" rx="1.2" />
+                    <path d="M5 6.5V4.4a2 2 0 014 0v2.1" />
+                  </svg>
+                </span>
+                <input
+                  id="pfHnPassword"
+                  class="profile-input bare"
+                  type="password"
+                  placeholder="optional — only for /upvoted"
+                  autocomplete="new-password"
+                />
+                <button
+                  type="button"
+                  class="secret-eye"
+                  data-secret-toggle="pfHnPassword"
+                  aria-label="Show password"
+                >
+                  <svg
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M1.5 8C2.9 5.4 5.3 3.7 8 3.7s5.1 1.7 6.5 4.3c-1.4 2.6-3.8 4.3-6.5 4.3S2.9 10.6 1.5 8z"
+                    />
+                    <circle cx="8" cy="8" r="1.9" />
+                  </svg>
+                </button>
+              </div>
+            </label>
+            <div class="card-actions">
+              <button class="action-btn" id="pfHnVerify" type="button">
+                Verify login
+              </button>
+              <span class="verify-status" id="pfHnVerifyStatus"></span>
+              <button
+                class="action-link"
+                id="pfHnDisconnect"
+                type="button"
+                style="display: none"
+              >
+                Disconnect
+              </button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="section-sync">
+        <header class="section-head">
+          <h2 class="section-title">Sync now</h2>
+          <p class="section-kicker">
+            Pull the docs from your wired sources (GitHub stars + repos,
+            HackerNews, HuggingFace likes, blogs, arXiv, Scholar, DBLP, Stack
+            Overflow, Reddit, Wikipedia, Zotero) straight from your browser and
+            post them to your library. New rows show up on your personal page
+            immediately.
+          </p>
+        </header>
+        <div class="section-body">
+          <div class="sync-row">
+            <button class="action-btn primary" type="button" id="syncRun">
+              Sync now
+            </button>
+            <span class="sync-hint" id="syncHint"></span>
+          </div>
+          <ul class="sync-progress" id="syncProgress" hidden></ul>
+        </div>
+      </section>
+
+      <section class="section" id="section-tokens">
+        <header class="section-head section-head-with-action">
+          <div class="section-head-text">
+            <h2 class="section-title">API tokens</h2>
+            <p class="section-kicker">
+              Bearer tokens for uploading documents from the MCP server or the
+              REST API. The plaintext shows <strong>once</strong>. Copy it and
+              store it like a password.
+            </p>
+          </div>
+        </header>
+
+        <div class="section-body">
+          <form class="token-create" id="tokenForm">
+            <input
+              id="tokenName"
+              class="profile-input"
+              type="text"
+              maxlength="80"
+              placeholder="Name it (e.g. 'My laptop' or 'Cursor MCP')"
+              required
+            />
+            <button class="action-btn primary" type="submit" id="tokenCreate">
+              Create token
+            </button>
+          </form>
+
+          <div
+            class="token-fresh"
+            id="tokenFresh"
+            style="display: none"
+            role="status"
+          >
+            <p class="token-fresh-warning">
+              Copy this token now. You won't see it again.
+            </p>
+            <div class="token-fresh-row">
+              <code class="token-fresh-value" id="tokenFreshValue"></code>
+              <button class="action-btn" type="button" id="tokenCopy">
+                Copy
+              </button>
+            </div>
+            <p class="token-fresh-hint">
+              Use it as
+              <code>Authorization: Bearer &lt;token&gt;</code> on
+              <code>POST /api/me/documents</code>.
+            </p>
+          </div>
+
+          <ul class="token-list" id="tokenList"></ul>
+        </div>
+      </section>
+
+      <section class="section" id="section-mcp">
+        <header class="section-head">
+          <h2 class="section-title">MCP server</h2>
+          <p class="section-kicker">
+            Plug your library into Claude Desktop, Claude Code, Cursor, or any
+            <a
+              href="https://modelcontextprotocol.io"
+              target="_blank"
+              rel="noopener noreferrer"
+              >MCP</a
+            >
+            client. Public search works without auth. Tools that read or write
+            your library (<code>save_document</code>,
+            <code>my_library</code>, <code>my_timeline</code>) need a token from
+            above.
+          </p>
+        </header>
+
+        <div class="section-body">
+          <!-- 1. Endpoint URL -->
+          <div class="mcp-block">
+            <div class="mcp-block-label">Endpoint</div>
+            <div class="mcp-endpoint-row">
+              <code class="mcp-endpoint-url" id="mcpEndpointUrl"></code>
+              <button class="action-btn" type="button" id="mcpCopyEndpoint">
+                Copy
+              </button>
+            </div>
+            <p class="mcp-block-hint">
+              Plain JSON-RPC over HTTP. Point your client at this URL.
+            </p>
+          </div>
+
+          <!-- 2. Install per client -->
+          <div class="mcp-block">
+            <div class="mcp-block-label">Install per client</div>
+            <div
+              class="mcp-install-tabs"
+              role="tablist"
+              id="mcpInstallTabs"
+            ></div>
+            <div class="mcp-install-panel" id="mcpInstallPanel"></div>
+          </div>
+
+          <!-- 3. Tools quick grid -->
+          <div class="mcp-block">
+            <div class="mcp-block-label">
+              <span id="mcpToolCount">15</span> tools available
+            </div>
+            <div class="mcp-tools-grid" id="mcpToolsGrid"></div>
+          </div>
+
+          <!-- 4. Function reference (accordion) -->
+          <div class="mcp-block">
+            <div class="mcp-block-label">Function reference</div>
+            <p class="mcp-block-hint">
+              Click a row to expand. Tools tagged
+              <span class="mcp-auth-pill mcp-auth-pill--bearer">bearer</span>
+              need an <code>Authorization: Bearer kn_…</code> header. Mint a
+              token above and pass it to your client.
+            </p>
+            <div class="mcp-ref-list" id="mcpRefList"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Suggest a personality — last section on the settings page.
+           Submissions land in `personality_submissions` for the
+           project owner to review by hand. Nothing is provisioned
+           until the suggestion is manually promoted to a real
+           `users` row. -->
+      <section class="section" id="section-suggest">
+        <header class="section-head">
+          <h2 class="section-title">Suggest a personality</h2>
+          <p class="section-kicker">
+            Know someone whose feed belongs here? Send their public handles. We
+            review submissions by hand, so nothing goes live the moment you
+            submit.
+          </p>
+        </header>
+        <div class="section-body">
+          <a
+            class="discover-launch"
+            data-action="add-personality"
+            href="#section-suggest"
+          >
+            <span>Submit a suggestion</span>
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="13 6 19 12 13 18" />
+            </svg>
+          </a>
+        </div>
+      </section>
+
+      <!-- Legal — French LCEN art. 6-III mandates a public publisher
+           identity + host details for any site available to the
+           public. RGPD requires a privacy notice as soon as we
+           collect anything (we collect anonymous analytics under the
+           CNIL audience-measurement exemption). Both live inline
+           here as <details> blocks so the surface stays quiet. -->
+      <section class="section" id="section-legal">
+        <header class="section-head">
+          <h2 class="section-title">Legal</h2>
+          <p class="section-kicker">
+            The bits French law requires us to publish. Open either panel to
+            read the full notice.
+          </p>
+        </header>
+        <div class="section-body">
+          <details class="legal-block">
+            <summary>Mentions légales</summary>
+            <div class="legal-body">
+              <h3>Éditeur du site</h3>
+              <p>
+                Raphael Sourty — site personnel, édité à titre non
+                professionnel.<br />
+                Contact :
+                <a href="mailto:raphael.sourty@gmail.com"
+                  >raphael.sourty@gmail.com</a
+                ><br />
+                GitHub :
+                <a
+                  href="https://github.com/raphaelsty"
+                  rel="noopener noreferrer"
+                  >github.com/raphaelsty</a
+                >
+              </p>
+              <p>Directeur de la publication : Raphael Sourty.</p>
+              <h3>Hébergement</h3>
+              <p>
+                Hetzner Online GmbH — Industriestr. 25, 91710 Gunzenhausen,
+                Allemagne.<br />
+                Téléphone : +49 (0)9831 505-0 —
+                <a href="https://www.hetzner.com" rel="noopener noreferrer"
+                  >hetzner.com</a
+                >
+              </p>
+              <h3>Propriété intellectuelle</h3>
+              <p>
+                Le code source du moteur est publié sous licence open source sur
+                <a
+                  href="https://github.com/raphaelsty/knowledge"
+                  rel="noopener noreferrer"
+                  >GitHub</a
+                >. Les contenus indexés (tweets, articles, vidéos…) restent la
+                propriété de leurs auteurs respectifs ; le site se contente d'en
+                agréger des extraits et de pointer vers la source d'origine.
+              </p>
+            </div>
+          </details>
+
+          <details class="legal-block">
+            <summary>Politique de confidentialité</summary>
+            <div class="legal-body">
+              <p>
+                Le site applique le RGPD. Nous collectons le strict minimum
+                nécessaire pour faire fonctionner la recherche et améliorer le
+                service.
+              </p>
+              <h3>Ce qui est collecté</h3>
+              <ul>
+                <li>
+                  <strong>Compte</strong> — adresse email, mot de passe haché,
+                  slug public. Sert à l'authentification et à la récupération de
+                  compte.
+                </li>
+                <li>
+                  <strong>Sources liées</strong> — identifiants publics (GitHub,
+                  HuggingFace, X/Twitter, Zotero, Reddit, Stack Overflow) que
+                  vous saisissez vous-même. Les secrets éventuels (mot de passe
+                  HN, clé API Zotero) sont chiffrés au repos.
+                </li>
+                <li>
+                  <strong>Mesure d'audience anonyme</strong> — pages vues,
+                  requêtes de recherche, clics sur les résultats, filtres
+                  utilisés. Pas d'adresse IP stockée, pas de cookie tiers, pas
+                  d'empreinte navigateur. Conforme à l'exemption CNIL de mesure
+                  d'audience (délibération n° 2020-091), donc aucun bandeau de
+                  consentement n'est requis.
+                </li>
+              </ul>
+              <h3>Ce qui n'est pas collecté</h3>
+              <ul>
+                <li>Pas de cookie publicitaire ni de pixel tiers.</li>
+                <li>Pas d'adresse IP conservée.</li>
+                <li>Pas de revente de données.</li>
+                <li>
+                  Pas d'empreinte navigateur (user-agent, OS, taille d'écran,
+                  etc.).
+                </li>
+              </ul>
+              <h3>Vos droits</h3>
+              <p>
+                Vous pouvez à tout moment accéder à vos données, les rectifier,
+                demander leur effacement, ou exporter une copie. Écrivez à
+                <a href="mailto:raphael.sourty@gmail.com"
+                  >raphael.sourty@gmail.com</a
+                >. Vous pouvez aussi saisir directement la
+                <a
+                  href="https://www.cnil.fr/fr/plaintes"
+                  rel="noopener noreferrer"
+                  >CNIL</a
+                >
+                en cas de litige.
+              </p>
+              <h3>Opt-out</h3>
+              <p>
+                Vous pouvez désactiver la mesure d'audience pour ce navigateur —
+                ouvrez la console et exécutez
+                <code>localStorage.setItem('_analytics_optout','1')</code>. Le
+                réglage est local à votre navigateur.
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- Admin link. Hidden by default and only revealed by
+           profile/page.js when the signed-in slug is "raphael-sourty"
+           — the same identity check the /api/admin/* routes use
+           server-side. The visible UI just mirrors what the API will
+           authorize; anyone else who manually visits /admin gets the
+           "Admin access" gate. Sits above the sign-out row but shares
+           the same border/centered layout. -->
+      <div class="signout-row admin-row" id="pfAdminRow" hidden>
+        <a class="action-link" id="pfAdminLink" href="/admin"> Admin panel </a>
+      </div>
+
+      <div class="signout-row">
+        <button class="action-link danger" id="pfSignout" type="button">
+          Sign out
+        </button>
+      </div>
+    </main>
+
+    <!-- Funds dialog markup — rendered by /credits.js when opened
+         from the storage panel's "Add funds" button. The element ids
+         are kept (creditsDialog / creditsBody) for source-stability;
+         only the user-visible label changed. -->
+    <dialog id="creditsDialog" class="credits-dialog" aria-label="Balance">
+      <div class="credits-body" id="creditsBody"></div>
+    </dialog>
+
+    <!-- Mobile bottom nav — same component as /search but with no
+         sources trigger (this is the Settings page, not a feed).
+         Settings tab is the active one. Wired in /profile/page.js. -->
+    <nav class="mobile-bottom-nav" id="mobileBottomNav" aria-label="Primary">
+      <a class="mbn-tab" data-tab="feed" href="/" id="mbnFeed">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M3 12l9-9 9 9" />
+          <path d="M5 10v10h14V10" />
+        </svg>
+        <span>Feed</span>
+      </a>
+      <a class="mbn-tab" data-tab="people" href="/#people" id="mbnPeople">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+          <circle cx="9" cy="7" r="4" />
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+          <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+        </svg>
+        <span>People</span>
+      </a>
+      <a class="mbn-tab" data-tab="personal" href="#" id="mbnPersonal">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+          <circle cx="12" cy="7" r="4" />
+        </svg>
+        <span>Personal</span>
+      </a>
+      <a
+        class="mbn-tab is-current"
+        data-tab="settings"
+        href="/profile"
+        id="mbnSettings"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <circle cx="12" cy="12" r="3" />
+          <path
+            d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h0a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51h0a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v0a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"
+          />
+        </svg>
+        <span>Settings</span>
+      </a>
+
+      <!-- Page-context actions — Filter routes back to / and opens
+           the Sources sheet there (settings page has no filterable
+           feed). Post opens the compose dialog inline. -->
+      <span class="mbn-divider" aria-hidden="true"></span>
+
+      <a
+        class="mbn-action"
+        href="/#sources"
+        id="mobileSourcesBtn"
+        aria-label="Filter on the feed"
+        title="Filter on the feed"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <line x1="4" y1="6" x2="20" y2="6" />
+          <line x1="7" y1="12" x2="17" y2="12" />
+          <line x1="10" y1="18" x2="14" y2="18" />
+        </svg>
+      </a>
+
+      <a
+        class="mbn-action mbn-action-accent"
+        href="/#post"
+        id="mbnPostBtn"
+        aria-label="Post to your library"
+        title="Post to your library"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M20 2c-4 0-8 2-11 5L4 12v6h6l5-5c3-3 5-7 5-11z" />
+          <path d="M4 22 14 12" />
+        </svg>
+      </a>
+    </nav>
+
+    <script src="/lib/utils.js"></script>
+    <script src="/lib/session-cache.js"></script>
+    <script src="/lib/scroll-restore.js"></script>
+    <script src="/search/api.js"></script>
+    <script type="module" src="/source/index.js"></script>
+    <script src="/profile/page.js"></script>
+    <script src="/lib/money.js"></script>
+    <script src="/profile/credits/index.js"></script>
+    <script src="/profile/storage/index.js"></script>
+    <script src="/profile/add-personality/index.js"></script>
+    <script src="/profile/my-personalities.js"></script>
+  </body>
+</html>

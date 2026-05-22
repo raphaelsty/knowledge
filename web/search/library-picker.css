@@ -1,0 +1,862 @@
+/* ── Library picker modal ───────────────────────────────────
+   Centred dialog over a soft dim. Multi-select rows; active
+   libs pin to the top inside the list. Header / footer stay
+   sticky so a long list stays scannable. */
+.lib-picker[hidden],
+.lib-picker-back[hidden] {
+  display: none !important;
+}
+.lib-picker-back {
+  position: fixed;
+  inset: 0;
+  background: rgba(var(--ink-rgb), 0.36);
+  backdrop-filter: blur(6px) saturate(140%);
+  -webkit-backdrop-filter: blur(6px) saturate(140%);
+  z-index: 200;
+  animation: lib-picker-fade 0.18s ease;
+}
+.lib-picker {
+  position: fixed;
+  z-index: 201;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* Scales with viewport on big screens (clamped to 980px so the
+     content column doesn't sprawl into magazine-spread territory),
+     never narrower than 520px on tiny ones, and always 32px from
+     the edges on phones. */
+  width: clamp(520px, 70vw, 980px);
+  max-width: calc(100vw - 32px);
+  max-height: min(820px, calc(100vh - 64px));
+  display: flex;
+  flex-direction: column;
+  background: rgba(var(--paper-rgb), 0.98);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid rgba(var(--ink-rgb), 0.08);
+  border-radius: 18px;
+  box-shadow:
+    0 24px 60px rgba(var(--ink-rgb), 0.18),
+    0 1px 0 rgba(255, 255, 255, 0.5) inset;
+  overflow: hidden;
+  animation: lib-picker-pop 0.22s cubic-bezier(0.32, 0.72, 0, 1);
+}
+@keyframes lib-picker-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes lib-picker-pop {
+  from {
+    opacity: 0;
+    transform: translate(-50%, calc(-50% + 8px)) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+.lib-picker-head {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px 12px;
+}
+.lib-picker-head h2 {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 22px;
+  letter-spacing: -0.01em;
+  margin: 0;
+  color: var(--ink);
+}
+.lib-picker-close {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  border-radius: 999px;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+.lib-picker-close svg {
+  width: 14px;
+  height: 14px;
+}
+.lib-picker-close:hover {
+  background: rgba(var(--ink-rgb), 0.06);
+  color: var(--ink);
+}
+.lib-picker-search {
+  flex: 0 0 auto;
+  padding: 0 20px 12px;
+}
+/* Foot-action cluster — Select all + Clear all sit inline with
+   the Close apply button at the bottom of the picker, so every
+   modal-level action lives in one row above the count label. */
+.lib-picker-foot-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+/* Modal-level action pills used in the picker footer next to the
+   Close button. Same 32px height as `.lib-picker-apply` so all
+   three sit on a shared baseline. Variants:
+     - .lib-picker-act--accent  → Select all (emerald hover)
+     - .lib-picker-act--danger  → Clear all (red hover)
+   The base style stays neutral so a plain `.lib-picker-act` still
+   reads as a quiet secondary control. */
+.lib-picker-act {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 14px;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  border-radius: 999px;
+  border: 1px solid rgba(var(--ink-rgb), 0.12);
+  background: rgba(var(--paper-rgb), 0.6);
+  color: rgba(var(--ink-rgb), 0.78);
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
+}
+.lib-picker-act svg {
+  width: 13px;
+  height: 13px;
+  opacity: 0.7;
+  transition: opacity 0.15s ease;
+}
+.lib-picker-act:hover {
+  background: rgba(var(--ink-rgb), 0.04);
+  color: var(--ink);
+  border-color: rgba(var(--ink-rgb), 0.22);
+}
+.lib-picker-act:hover svg {
+  opacity: 1;
+}
+.lib-picker-act:active {
+  transform: translateY(1px);
+}
+/* Accent variant — Select all */
+.lib-picker-act--accent:hover {
+  background: rgba(var(--accent-rgb), 0.08);
+  color: var(--accent);
+  border-color: rgba(var(--accent-rgb), 0.4);
+  box-shadow: 0 2px 8px rgba(var(--accent-rgb), 0.12);
+}
+/* Danger variant — Clear all */
+.lib-picker-act--danger:hover {
+  background: rgba(220, 38, 38, 0.08);
+  color: rgb(220, 38, 38);
+  border-color: rgba(220, 38, 38, 0.36);
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.12);
+}
+.lib-picker-search input {
+  width: 100%;
+  height: 36px;
+  padding: 0 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  background: rgba(var(--paper-rgb), 0.6);
+  font-family: var(--sans);
+  font-size: 13.5px;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+  outline: none;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease,
+    box-shadow 0.15s ease;
+}
+.lib-picker-search input::placeholder {
+  color: var(--muted);
+  opacity: 0.7;
+}
+.lib-picker-search input:focus {
+  border-color: rgba(var(--accent-rgb), 0.45);
+  background: rgba(var(--paper-rgb), 0.95);
+  box-shadow: 0 0 0 4px rgba(var(--accent-rgb), 0.1);
+}
+/* ── Category sections inside the list ───────────────────────
+   Mirrors the welcome page's grouped grid: a small uppercase
+   eyebrow heading per category, the rows underneath. The
+   "Already added" synthetic section is pinned at the top with
+   an accent-tinted heading. */
+.lib-picker-section {
+  margin: 0;
+  padding: 0 0 8px;
+}
+.lib-picker-section + .lib-picker-section {
+  margin-top: 0;
+  /* Divider lives on the heading instead of the section so it
+     visually belongs to the header band — no empty strip between
+     the rule and the title. */
+  border-top: 0;
+}
+.lib-picker-section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 10px 8px;
+  position: sticky;
+  top: 0;
+  background: rgba(var(--paper-rgb), 0.98);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 1;
+}
+.lib-picker-section + .lib-picker-section .lib-picker-section-head {
+  border-top: 1px solid rgba(var(--ink-rgb), 0.05);
+}
+.lib-picker-section-title {
+  font-family: var(--sans);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.lib-picker-section.is-active .lib-picker-section-title {
+  color: var(--accent);
+}
+.lib-picker-section-title {
+  line-height: 1;
+}
+.lib-picker-section-count {
+  font-size: 10.5px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+  opacity: 0.7;
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: rgba(var(--ink-rgb), 0.05);
+}
+.lib-picker-section-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.lib-picker-empty {
+  padding: 32px 16px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+}
+.lib-picker-section-empty {
+  padding: 10px 14px;
+  font-size: 12.5px;
+  color: var(--muted);
+  font-style: italic;
+  letter-spacing: -0.005em;
+}
+
+.lib-picker-list {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  /* No top padding: a sticky-positioned heading sticks to the
+     scroll container's content edge, so any padding here would
+     show through as a gap above the stuck heading. */
+  padding: 0 12px 12px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(var(--ink-rgb), 0.18) transparent;
+}
+.lib-picker-row {
+  display: grid;
+  grid-template-columns: auto 32px 1fr auto;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.12s ease;
+}
+.lib-picker-row:not(:has(.lib-picker-bookmark)) {
+  grid-template-columns: auto 32px 1fr;
+}
+.lib-picker-row:hover {
+  background: rgba(var(--ink-rgb), 0.04);
+}
+.lib-picker-row.on {
+  background: rgba(var(--accent-rgb), 0.08);
+}
+.lib-picker-row.disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+.lib-picker-row.disabled:hover {
+  background: transparent;
+}
+.lib-picker-row.disabled input[type="checkbox"] {
+  cursor: not-allowed;
+}
+.lib-picker-row input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid rgba(var(--ink-rgb), 0.22);
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(var(--paper-rgb), 0.8);
+  transition:
+    background 0.12s ease,
+    border-color 0.12s ease;
+}
+.lib-picker-row input[type="checkbox"]:checked {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.lib-picker-row input[type="checkbox"]:checked::after {
+  content: "";
+  width: 10px;
+  height: 6px;
+  border-left: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+  transform: rotate(-45deg) translate(1px, -1px);
+}
+.lib-picker-row .ava {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: rgba(var(--ink-rgb), 0.06);
+  display: grid;
+  place-items: center;
+}
+.lib-picker-row .ava img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.lib-picker-row .info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.lib-picker-row .info .name {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.lib-picker-row .info .desc {
+  font-size: 12px;
+  color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Bookmark toggle — small flag icon to the right of each row,
+   between the meta and the ✓. Outline at rest, filled emerald
+   when bookmarked. Visible on hover (and always on bookmarked
+   rows) so the row stays uncluttered until the user reaches for
+   it. */
+.lib-picker-bookmark {
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  background: transparent;
+  border: 0;
+  border-radius: 8px;
+  color: var(--muted);
+  opacity: 0;
+  cursor: pointer;
+  transition:
+    opacity 0.15s ease,
+    background 0.15s ease,
+    color 0.15s ease,
+    transform 0.15s ease;
+}
+.lib-picker-bookmark svg {
+  width: 14px;
+  height: 14px;
+}
+.lib-picker-row:hover .lib-picker-bookmark,
+.lib-picker-row:focus-within .lib-picker-bookmark,
+.lib-picker-bookmark.on {
+  opacity: 1;
+}
+.lib-picker-bookmark:hover {
+  background: rgba(var(--accent-rgb), 0.1);
+  color: var(--accent);
+  transform: translateY(-1px);
+}
+.lib-picker-bookmark.on {
+  color: var(--accent);
+}
+.lib-picker-bookmark.on:hover {
+  background: rgba(var(--accent-rgb), 0.18);
+}
+.lib-picker-foot {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 14px 20px;
+  border-top: 1px solid rgba(var(--ink-rgb), 0.08);
+  background: rgba(var(--paper-rgb), 0.5);
+}
+.lib-picker-count {
+  margin-right: auto;
+  font-size: 12.5px;
+  color: var(--muted);
+  letter-spacing: -0.005em;
+}
+.lib-picker-cancel,
+.lib-picker-apply {
+  height: 32px;
+  padding: 0 16px;
+  border-radius: 999px;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+.lib-picker-cancel {
+  background: transparent;
+  border: 1px solid rgba(var(--ink-rgb), 0.12);
+  color: var(--ink);
+}
+.lib-picker-cancel:hover {
+  border-color: rgba(var(--ink-rgb), 0.22);
+  background: rgba(var(--ink-rgb), 0.04);
+}
+.lib-picker-apply {
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  color: #ffffff;
+  box-shadow:
+    0 1px 3px rgba(var(--accent-rgb), 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+.lib-picker-apply:hover {
+  background: color-mix(in srgb, var(--accent) 86%, #000 14%);
+  box-shadow:
+    0 4px 12px rgba(var(--accent-rgb), 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+#grpSrc {
+  flex: 1;
+}
+#grpLibs .group-body {
+  max-height: 200px;
+}
+#grpSrc .group-body {
+  flex: 1;
+}
+.group-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  user-select: none;
+  margin: 4px 4px 10px;
+}
+.group-head h3 {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0;
+  font-weight: 500;
+  opacity: 0.7;
+}
+.clear-all {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted);
+  opacity: 0.75;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition:
+    color 0.12s,
+    opacity 0.12s;
+}
+.clear-all:hover {
+  color: var(--accent);
+  opacity: 1;
+}
+.group-search-wrap {
+  position: relative;
+  margin: 0 0 8px;
+}
+.group-search-wrap::before {
+  content: "⌕";
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 13px;
+  color: var(--muted);
+  opacity: 0.55;
+  pointer-events: none;
+}
+.group-search {
+  width: 100%;
+  padding: 7px 28px 7px 28px;
+  border: 0;
+  border-radius: 7px;
+  background: rgba(var(--ink-rgb), 0.045);
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink);
+  outline: none;
+  transition: background 0.15s;
+}
+.group-search::placeholder {
+  color: var(--muted);
+  opacity: 0.55;
+}
+.group-search:hover {
+  background: rgba(var(--ink-rgb), 0.06);
+}
+.group-search:focus {
+  background: rgba(var(--ink-rgb), 0.07);
+  box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.1);
+}
+.opt {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 13px;
+  border-radius: 6px;
+  position: relative;
+  transition: background 0.08s;
+}
+.opt:hover {
+  background: rgba(var(--ink-rgb), 0.04);
+}
+.opt.on {
+  background: transparent;
+}
+.opt.on:hover {
+  background: rgba(var(--ink-rgb), 0.03);
+}
+.opt.on.last-selected {
+  margin-bottom: 6px;
+}
+.opt.on.last-selected::after {
+  content: "";
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: -3px;
+  height: 1px;
+  background: rgba(var(--ink-rgb), 0.08);
+}
+.opt input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.opt img.fav {
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  flex-shrink: 0;
+  opacity: 0.9;
+}
+.opt .fav-fallback {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  background: rgba(var(--ink-rgb), 0.08);
+  color: var(--muted);
+  display: inline-grid;
+  place-items: center;
+  font-size: 7px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+/* Filled star for the synthetic Favorites pseudo-source.
+     * Same 16px footprint as the real-source favicons so the column
+     * stays aligned, but warm-orange ink and a soft tint background
+     * so the chip reads as "your starred set" at a glance. */
+.opt .fav-star {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  background: rgba(var(--accent-rgb), 0.12);
+  color: var(--accent);
+  display: inline-grid;
+  place-items: center;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.opt .fav-star svg {
+  width: 11px;
+  height: 11px;
+  display: block;
+}
+.opt.on .fav-star {
+  background: rgba(var(--accent-rgb), 0.22);
+}
+.opt .label {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 400;
+  letter-spacing: -0.005em;
+}
+.opt.on .label {
+  font-weight: 500;
+}
+.opt .count {
+  color: var(--muted);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.55;
+  font-weight: 400;
+}
+.opt .check {
+  width: 14px;
+  flex-shrink: 0;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 600;
+  display: inline-block;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.1s;
+}
+.opt.on .check {
+  opacity: 1;
+}
+.opt.on .count {
+  opacity: 0;
+}
+.lib-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 10px;
+  cursor: pointer;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  border-radius: 6px;
+  position: relative;
+  transition: background 0.08s;
+}
+.lib-row:hover {
+  background: rgba(var(--ink-rgb), 0.04);
+}
+.lib-row.on {
+  background: transparent;
+}
+.lib-row.on:hover {
+  background: rgba(var(--ink-rgb), 0.03);
+}
+.lib-row.on.last-selected {
+  margin-bottom: 6px;
+}
+.lib-row.on.last-selected::after {
+  content: "";
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: -3px;
+  height: 1px;
+  background: rgba(var(--ink-rgb), 0.08);
+}
+.lib-row input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+/* The personality row IS the picker affordance now (no more "+"
+ * button below the list). Make every part of the button — avatar,
+ * name, description, even the ✓ glyph — read as a clickable link:
+ * pointer cursor on every descendant, accent-tinted name on hover,
+ * subtle avatar lift so the tap target is unambiguous. */
+.lib-row,
+.lib-row * {
+  cursor: pointer;
+}
+.lib-row:hover .ava,
+.lib-row:focus-visible .ava {
+  box-shadow: 0 0 0 2px rgba(var(--accent-rgb), 0.45);
+  transform: scale(1.05);
+}
+.lib-row:hover .name,
+.lib-row:focus-visible .name {
+  color: var(--accent);
+}
+.lib-row .ava {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: white;
+  transition:
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
+  box-shadow: 0 1px 2px rgba(var(--ink-rgb), 0.06);
+}
+.lib-row .ava img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.lib-row .info {
+  flex: 1;
+  min-width: 0;
+  line-height: 1.2;
+}
+.lib-row .name {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: -0.005em;
+}
+.lib-row.on .name {
+  font-weight: 500;
+}
+.lib-row .desc {
+  font-size: 11px;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 0.75;
+  margin-top: 1px;
+}
+.lib-row .check {
+  width: 14px;
+  flex-shrink: 0;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.1s;
+}
+.lib-row.on .check {
+  opacity: 1;
+}
+.lib-row.host {
+  cursor: default;
+}
+.lib-row.host:hover {
+  background: transparent;
+}
+.lib-row.host .check {
+  opacity: 1;
+}
+.lib-row.host .desc::after {
+  content: " · current";
+  color: var(--accent);
+  font-style: italic;
+}
+.group-body {
+  overflow-y: auto;
+  padding-right: 2px;
+}
+.group-body::-webkit-scrollbar {
+  width: 5px;
+}
+.group-body::-webkit-scrollbar-thumb {
+  background: rgba(var(--ink-rgb), 0.15);
+  border-radius: 3px;
+}
+.group-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+.rail-foot {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(var(--ink-rgb), 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.rail-foot .count {
+  font-size: 11px;
+  color: var(--muted);
+  opacity: 0.75;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.01em;
+}
+.rail-sort {
+  display: inline-flex;
+  gap: 2px;
+}
+.sort-mini {
+  background: transparent;
+  border: 0;
+  padding: 4px 9px;
+  font-family: var(--sans);
+  font-size: 11px;
+  color: var(--muted);
+  cursor: pointer;
+  border-radius: 6px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: all 0.12s;
+}
+.sort-mini:hover {
+  color: var(--ink);
+  background: rgba(var(--ink-rgb), 0.04);
+}
+.sort-mini.on {
+  color: var(--ink);
+  background: rgba(var(--ink-rgb), 0.07);
+}
+/* Pane is transparent — the body's gradient flows continuously
+     * from rail to results, so the whole page reads as one surface. */
+.pane {
+  padding: 26px 0 60px;
+}

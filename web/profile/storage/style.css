@@ -1,0 +1,318 @@
+/* Billing & storage section — rendered by web/storage.js.
+   Uses theme tokens (--ink / --paper / --muted / --modern) so dark
+   mode falls out of the same paper/ink palette as the rest of the
+   app. No accent purple here — the design speaks through hierarchy
+   and weight, not colour. */
+
+.billing-loading,
+.billing-error {
+  padding: 18px 20px;
+  color: var(--muted);
+  font-size: 14px;
+  background: rgba(var(--ink-rgb), 0.03);
+  border: 1px solid rgba(var(--ink-rgb), 0.06);
+  border-radius: 14px;
+}
+
+/* ── Hero: balance + add-money chips, side by side ──────────────── */
+.billing-hero {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  padding: 22px 24px;
+  background: rgba(var(--ink-rgb), 0.025);
+  border: 1px solid rgba(var(--ink-rgb), 0.06);
+  border-radius: 14px;
+  align-items: center;
+}
+[data-theme="dark"] .billing-hero {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+.billing-balance {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.billing-balance-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(var(--ink-rgb), 0.5);
+}
+.billing-balance-amount {
+  font: 700 36px/1.05 var(--modern);
+  letter-spacing: -0.025em;
+  color: rgb(var(--ink-rgb));
+  margin: 2px 0 4px;
+}
+.billing-balance-sub {
+  font-size: 12.5px;
+  color: rgba(var(--ink-rgb), 0.5);
+}
+
+.billing-add {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+.billing-add-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(var(--ink-rgb), 0.5);
+}
+.billing-chips {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.billing-chip {
+  appearance: none;
+  border: 1px solid rgba(var(--ink-rgb), 0.12);
+  background: rgb(var(--paper-rgb));
+  color: rgb(var(--ink-rgb));
+  padding: 7px 14px;
+  border-radius: 10px;
+  font: 600 13.5px/1 var(--modern);
+  letter-spacing: -0.005em;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition:
+    background 0.14s ease,
+    border-color 0.14s ease,
+    transform 0.06s ease;
+  box-shadow: 0 1px 0 rgba(var(--ink-rgb), 0.02);
+}
+.billing-chip:hover {
+  background: rgba(var(--ink-rgb), 0.05);
+  border-color: rgba(var(--ink-rgb), 0.22);
+}
+.billing-chip:active {
+  transform: translateY(1px);
+}
+[data-theme="dark"] .billing-chip {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+[data-theme="dark"] .billing-chip:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+.billing-chip-bonus {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: #0a7d33;
+  background: rgba(10, 125, 51, 0.12);
+  padding: 1px 6px;
+  border-radius: 999px;
+  letter-spacing: 0;
+}
+[data-theme="dark"] .billing-chip-bonus {
+  color: #4ec97c;
+  background: rgba(78, 201, 124, 0.16);
+}
+
+/* ── Storage card ───────────────────────────────────────────────── */
+.billing-storage {
+  margin-top: 14px;
+  padding: 20px 24px;
+  background: rgb(var(--paper-rgb));
+  border: 1px solid rgba(var(--ink-rgb), 0.06);
+  border-radius: 14px;
+}
+[data-theme="dark"] .billing-storage {
+  background: rgba(255, 255, 255, 0.02);
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+.billing-storage-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+.billing-storage-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(var(--ink-rgb), 0.5);
+}
+.billing-storage-docs {
+  font: 600 22px/1.1 var(--modern);
+  letter-spacing: -0.015em;
+  color: rgb(var(--ink-rgb));
+  margin-top: 2px;
+  display: block;
+}
+.billing-storage-position {
+  display: block;
+  margin-top: 4px;
+  font-size: 12.5px;
+  color: rgba(var(--ink-rgb), 0.55);
+}
+.billing-storage-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  white-space: nowrap;
+}
+.billing-storage-cost {
+  font-size: 13px;
+  color: rgba(var(--ink-rgb), 0.62);
+}
+.billing-storage-cost strong {
+  font-size: 16px;
+  color: rgb(var(--ink-rgb));
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-right: 2px;
+}
+.billing-storage-cost-free {
+  font-size: 13px;
+  color: #0a7d33;
+  font-weight: 500;
+}
+[data-theme="dark"] .billing-storage-cost-free {
+  color: #4ec97c;
+}
+
+.storage-tier {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+.storage-tier.free {
+  background: rgba(10, 125, 51, 0.1);
+  color: #0a7d33;
+}
+.storage-tier.paid {
+  background: rgba(185, 131, 26, 0.13);
+  color: #b9831a;
+}
+[data-theme="dark"] .storage-tier.free {
+  color: #4ec97c;
+  background: rgba(78, 201, 124, 0.14);
+}
+[data-theme="dark"] .storage-tier.paid {
+  color: #e4b658;
+  background: rgba(228, 182, 88, 0.13);
+}
+
+.billing-storage-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 14px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed rgba(var(--ink-rgb), 0.08);
+  font-size: 12.5px;
+  color: rgba(var(--ink-rgb), 0.62);
+}
+.billing-storage-breakdown {
+  color: rgba(var(--ink-rgb), 0.42);
+}
+.billing-refresh-link {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: rgba(var(--ink-rgb), 0.45);
+  font: inherit;
+  font-size: 12px;
+  margin-left: 10px;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.billing-refresh-link:hover {
+  color: rgb(var(--ink-rgb));
+}
+
+/* ── Static price table (rendered in profile.html) ──────────────── */
+.credit-uses {
+  width: 100%;
+  margin: 18px 0 0;
+  border-collapse: collapse;
+  font-size: 13px;
+  border: 1px solid rgba(var(--ink-rgb), 0.06);
+  border-radius: 14px;
+  overflow: hidden;
+  background: rgb(var(--paper-rgb));
+}
+[data-theme="dark"] .credit-uses {
+  border-color: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.02);
+}
+.credit-uses caption {
+  caption-side: top;
+  text-align: left;
+  padding: 0 0 10px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(var(--ink-rgb), 0.5);
+}
+.credit-uses thead {
+  display: none;
+} /* compact: row-headers carry the meaning */
+.credit-uses tbody th,
+.credit-uses tbody td {
+  padding: 14px 18px;
+  vertical-align: top;
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.05);
+  text-align: left;
+  line-height: 1.5;
+}
+[data-theme="dark"] .credit-uses tbody th,
+[data-theme="dark"] .credit-uses tbody td {
+  border-bottom-color: rgba(255, 255, 255, 0.05);
+}
+.credit-uses tbody tr:last-child th,
+.credit-uses tbody tr:last-child td {
+  border-bottom: 0;
+}
+.credit-uses tbody th {
+  font: 600 13.5px/1.4 var(--modern);
+  letter-spacing: -0.005em;
+  color: rgb(var(--ink-rgb));
+  width: 28%;
+}
+.credit-uses tbody td {
+  color: rgba(var(--ink-rgb), 0.7);
+}
+.credit-uses tbody td:nth-child(2) {
+  width: 26%;
+  color: rgb(var(--ink-rgb));
+}
+.credit-uses tbody td:nth-child(2) strong {
+  font-weight: 600;
+}
+.credit-uses-sub {
+  display: block;
+  font-weight: 400;
+  font-size: 12px;
+  color: rgba(var(--ink-rgb), 0.5);
+  margin-top: 2px;
+  letter-spacing: 0;
+}
+
+/* Mobile collapse — stack header & chips, simplify the table. */

@@ -1,0 +1,42 @@
+[Unit]
+# Pedagogical title / summary cleaner for VIP documents.
+# Runs sources.utils.clean_daemon in a long-lived loop, calling
+# gpt-4o-mini on small batches of unprocessed docs and writing
+# clean_title / clean_summary back into Postgres.
+#
+# Resource posture: I/O-bound on the OpenAI API. niced to 19,
+# CPU quota capped at 20%, memory capped at 256MB — plenty for
+# the small batches the daemon processes (BATCH_SIZE=10 docs at
+# a time, each round-trip is one OpenAI request).
+Description=Knowledge clean daemon (gpt-4o-mini)
+After=docker.service network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/root/knowledge
+EnvironmentFile=/root/knowledge/.env
+# The .env file ships POSTGRES_PASSWORD and OPENAI_API_KEY.
+# We compose DATABASE_URL here so the daemon connects to the
+# prod Postgres on the host loopback port that docker-compose
+# exposes (127.0.0.1:5433 — see docker-compose.prod.yml).
+ExecStart=/bin/bash -c 'DATABASE_URL="postgresql://knowledge:$${POSTGRES_PASSWORD}@127.0.0.1:5433/knowledge" /root/.local/bin/uv run --no-sync python -m sources.utils.clean_daemon'
+Restart=on-failure
+RestartSec=30
+
+# ── Resource limits ───────────────────────────────────────────
+# Niced to 19 (lowest priority) so the API + pipeline always win
+# the scheduler. CPUQuota=20% caps total CPU at 0.2 cores even
+# if the daemon ever spikes. MemoryHigh / MemoryMax keep the
+# process small.
+Nice=19
+CPUQuota=20%
+MemoryHigh=192M
+MemoryMax=256M
+
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=knowledge-clean-daemon
+
+[Install]
+WantedBy=multi-user.target

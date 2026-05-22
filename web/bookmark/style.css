@@ -1,0 +1,519 @@
+/* Add-bookmark dialog (KnowledgeBookmark.open).
+ *
+ * Theme-aware: borrows the page's --ink/--paper/--accent/--border CSS
+ * variables when present, falls back to neutrals. Layered above
+ * everything else (z-index 9999) so it wins against in-page modals. */
+.kb-back {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  background: rgba(8, 10, 14, 0.42);
+  backdrop-filter: blur(6px) saturate(120%);
+  -webkit-backdrop-filter: blur(6px) saturate(120%);
+  animation: kb-fade 0.18s ease-out;
+}
+.kb-back[hidden] {
+  display: none;
+}
+
+@keyframes kb-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes kb-rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.kb-card {
+  width: min(460px, calc(100vw - 32px));
+  background: var(--paper, #ffffff);
+  color: var(--ink, #14141a);
+  border: 1px solid var(--border, rgba(0, 0, 0, 0.08));
+  border-radius: 16px;
+  padding: 22px 24px 20px;
+  box-shadow:
+    0 24px 60px rgba(8, 10, 14, 0.28),
+    0 4px 14px rgba(8, 10, 14, 0.08);
+  animation: kb-rise 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+[data-theme="dark"] .kb-card {
+  background: #1f1f28;
+  border-color: rgba(255, 255, 255, 0.05);
+  box-shadow:
+    0 28px 70px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+}
+
+.kb-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+.kb-head h2 {
+  font-family: var(--display, "Newsreader", Georgia, serif);
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.018em;
+  margin: 0;
+}
+.kb-close {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  opacity: 0.55;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition:
+    opacity 0.15s ease,
+    background 0.15s ease;
+}
+.kb-close:hover {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.06);
+}
+[data-theme="dark"] .kb-close:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+.kb-close svg {
+  width: 16px;
+  height: 16px;
+}
+
+.kb-hint {
+  font-family: var(--sans, "Inter", system-ui, sans-serif);
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: rgba(20, 20, 26, 0.62);
+  margin: 0 0 16px;
+}
+[data-theme="dark"] .kb-hint {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Daily-indexing notice — set apart from the editorial hint with a
+   thin accent border so users notice the eventual-consistency
+   caveat (search results don't include new bookmarks until the
+   next pipeline run). */
+.kb-indexing-note {
+  font-family: var(--sans, "Inter", system-ui, sans-serif);
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: rgba(20, 20, 26, 0.7);
+  margin: 0 0 18px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: rgba(16, 185, 129, 0.08);
+  border-left: 2px solid rgba(16, 185, 129, 0.55);
+}
+[data-theme="dark"] .kb-indexing-note {
+  color: rgba(255, 255, 255, 0.78);
+  background: rgba(16, 185, 129, 0.1);
+  border-left-color: rgba(6, 214, 160, 0.6);
+}
+
+.kb-zotero-tip {
+  font-family: var(--sans, "Inter", system-ui, sans-serif);
+  font-size: 12px;
+  line-height: 1.5;
+  color: rgba(20, 20, 26, 0.48);
+  margin: 16px 0 0;
+}
+[data-theme="dark"] .kb-zotero-tip {
+  color: rgba(255, 255, 255, 0.42);
+}
+.kb-zotero-tip a {
+  color: var(--accent, #10b981);
+  text-decoration: none;
+}
+.kb-zotero-tip a:hover {
+  text-decoration: underline;
+}
+
+.kb-form {
+  display: contents;
+}
+
+/* ── Live preview card ───────────────────────────────────────────── */
+.kb-preview {
+  margin: 14px 0 0;
+  padding: 14px 16px;
+  border: 1px solid var(--border, rgba(0, 0, 0, 0.1));
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.02);
+  animation: kb-rise 0.18s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+[data-theme="dark"] .kb-preview {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.kb-preview-kicker {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 8px;
+  font-family: var(--sans, "Inter", system-ui, sans-serif);
+  font-size: 11.5px;
+  color: rgba(20, 20, 26, 0.5);
+}
+[data-theme="dark"] .kb-preview-kicker {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.kb-preview-fav {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.kb-preview-title {
+  font-family: var(--sans, "Inter", system-ui, sans-serif);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--ink, #14141a);
+  margin-bottom: 6px;
+  outline: none;
+  border-radius: 4px;
+  padding: 1px 3px;
+  margin-left: -3px;
+  cursor: text;
+  transition: background 0.12s;
+}
+.kb-preview-title:hover,
+.kb-preview-title:focus {
+  background: rgba(0, 0, 0, 0.04);
+}
+[data-theme="dark"] .kb-preview-title {
+  color: #e8e8f0;
+}
+[data-theme="dark"] .kb-preview-title:hover,
+[data-theme="dark"] .kb-preview-title:focus {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.kb-preview-desc {
+  font-family: var(--sans, "Inter", system-ui, sans-serif);
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(20, 20, 26, 0.62);
+  min-height: 1.5em;
+  outline: none;
+  border-radius: 4px;
+  padding: 1px 3px;
+  margin-left: -3px;
+  cursor: text;
+  transition: background 0.12s;
+}
+.kb-preview-desc:empty::before {
+  content: attr(data-placeholder);
+  color: rgba(20, 20, 26, 0.3);
+  pointer-events: none;
+}
+.kb-preview-desc:hover,
+.kb-preview-desc:focus {
+  background: rgba(0, 0, 0, 0.04);
+}
+[data-theme="dark"] .kb-preview-desc {
+  color: rgba(255, 255, 255, 0.55);
+}
+[data-theme="dark"] .kb-preview-desc:empty::before {
+  color: rgba(255, 255, 255, 0.25);
+}
+[data-theme="dark"] .kb-preview-desc:hover,
+[data-theme="dark"] .kb-preview-desc:focus {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.kb-tags-section {
+  margin-top: 14px;
+}
+.kb-tags-label {
+  display: block;
+  font-family: var(--sans, "Inter", system-ui, sans-serif);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(20, 20, 26, 0.4);
+  margin-bottom: 7px;
+}
+[data-theme="dark"] .kb-tags-label {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.kb-tags-field {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+  min-height: 36px;
+  padding: 6px 10px;
+  border: 1px solid var(--border, rgba(0, 0, 0, 0.12));
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.02);
+  cursor: text;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+.kb-tags-field:focus-within {
+  border-color: var(--accent, #10b981);
+  box-shadow: 0 0 0 3px rgba(var(--accent-rgb, 16, 185, 129), 0.16);
+}
+[data-theme="dark"] .kb-tags-field {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+[data-theme="dark"] .kb-tags-field:focus-within {
+  box-shadow: 0 0 0 3px rgba(var(--accent-rgb, 16, 185, 129), 0.28);
+}
+
+.kb-tags-chips {
+  display: contents;
+}
+.kb-tag-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--sans, "Inter", system-ui, sans-serif);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 3px 6px 3px 10px;
+  border-radius: 999px;
+  background: rgba(var(--accent-rgb, 16, 185, 129), 0.1);
+  color: var(--accent, #10b981);
+  border: 1px solid rgba(var(--accent-rgb, 16, 185, 129), 0.22);
+  white-space: nowrap;
+}
+[data-theme="dark"] .kb-tag-chip {
+  background: rgba(var(--accent-rgb, 16, 185, 129), 0.18);
+  border-color: rgba(var(--accent-rgb, 16, 185, 129), 0.32);
+}
+.kb-tag-del {
+  display: grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  background: rgba(var(--accent-rgb, 16, 185, 129), 0.15);
+  border: none;
+  border-radius: 50%;
+  padding: 0;
+  cursor: pointer;
+  color: var(--accent, #10b981);
+  flex-shrink: 0;
+  transition: background 0.12s;
+}
+.kb-tag-del:hover {
+  background: rgba(var(--accent-rgb, 16, 185, 129), 0.3);
+}
+.kb-tag-del svg {
+  width: 8px;
+  height: 8px;
+}
+
+.kb-tags-input {
+  flex: 1;
+  min-width: 140px;
+  font-family: var(--sans, "Inter", system-ui, sans-serif);
+  font-size: 12.5px;
+  border: none;
+  background: transparent;
+  outline: none;
+  color: inherit;
+  padding: 2px 0;
+}
+.kb-tags-input::placeholder {
+  color: rgba(20, 20, 26, 0.35);
+}
+[data-theme="dark"] .kb-tags-input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.kb-tags-hint {
+  font-family: var(--sans, "Inter", system-ui, sans-serif);
+  font-size: 11px;
+  color: rgba(20, 20, 26, 0.38);
+  margin: 5px 0 0;
+}
+[data-theme="dark"] .kb-tags-hint {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.kb-input {
+  width: 100%;
+  box-sizing: border-box;
+  font-family: var(--sans, "Inter", system-ui, sans-serif);
+  font-size: 15px;
+  padding: 11px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border, rgba(0, 0, 0, 0.12));
+  background: rgba(0, 0, 0, 0.025);
+  color: inherit;
+  outline: 0;
+  transition:
+    border-color 0.15s,
+    background 0.15s,
+    box-shadow 0.15s;
+}
+.kb-input:focus {
+  border-color: var(--accent, #10b981);
+  background: var(--paper, #ffffff);
+  box-shadow: 0 0 0 3px rgba(var(--accent-rgb, 16, 185, 129), 0.16);
+}
+[data-theme="dark"] .kb-input {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+[data-theme="dark"] .kb-input:focus {
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 0 3px rgba(var(--accent-rgb, 16, 185, 129), 0.28);
+}
+
+.kb-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+}
+.kb-cancel,
+.kb-submit {
+  font-family: var(--sans, "Inter", system-ui, sans-serif);
+  font-size: 13.5px;
+  font-weight: 500;
+  padding: 9px 16px;
+  border-radius: 9px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    color 0.15s,
+    border-color 0.15s,
+    opacity 0.15s;
+}
+.kb-cancel {
+  background: transparent;
+  color: inherit;
+  opacity: 0.7;
+}
+.kb-cancel:hover {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.05);
+}
+[data-theme="dark"] .kb-cancel:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+.kb-submit {
+  background: var(--ink, #14141a);
+  color: var(--paper, #ffffff);
+}
+.kb-submit:hover {
+  transform: translateY(-1px);
+}
+.kb-submit:disabled {
+  opacity: 0.7;
+  cursor: progress;
+  transform: none;
+}
+[data-theme="dark"] .kb-submit {
+  background: #ffffff;
+  color: #14141a;
+}
+
+.kb-status {
+  margin-top: 12px;
+  font-size: 12.5px;
+  font-family: var(--sans, "Inter", system-ui, sans-serif);
+  min-height: 1em;
+  color: rgba(20, 20, 26, 0.55);
+}
+[data-theme="dark"] .kb-status {
+  color: rgba(255, 255, 255, 0.55);
+}
+.kb-status.ok {
+  color: #2a8c5d;
+}
+.kb-status.err {
+  color: #c43d52;
+}
+[data-theme="dark"] .kb-status.ok {
+  color: #6fdc9b;
+}
+[data-theme="dark"] .kb-status.err {
+  color: #ff8f9f;
+}
+
+/* The trigger button — styled to sit next to AuthBadge / theme toggles
+ * on either page. Two variants: `.kb-trigger` (welcome) inherits the
+ * pill metrics; `.kb-trigger-search` matches the search-page actions. */
+.kb-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--sans, "Inter", system-ui, sans-serif);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  height: 26px;
+  padding: 0 11px;
+  border-radius: 999px;
+  border: 1px solid rgba(var(--ink-rgb, 20, 20, 26), 0.1);
+  background: rgba(var(--paper-rgb, 255, 255, 255), 0.7);
+  backdrop-filter: blur(14px) saturate(170%);
+  -webkit-backdrop-filter: blur(14px) saturate(170%);
+  color: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+.kb-trigger[hidden] {
+  display: none;
+}
+.kb-trigger:hover {
+  background: rgba(var(--paper-rgb, 255, 255, 255), 0.94);
+  border-color: rgba(var(--ink-rgb, 20, 20, 26), 0.16);
+}
+.kb-trigger svg {
+  width: 13px;
+  height: 13px;
+  opacity: 0.85;
+}
+/* Dark mode: the saturate(170%) backdrop-filter boosts chroma on
+   whatever sits behind the pill, which in the welcome page header
+   reads as a faint white halo on top of the Bookmark / MCP
+   buttons. Drop the saturate (keep a light blur for legibility)
+   and use a solid lifted bg so the pill sits flat against the
+   field. */
+[data-theme="dark"] .kb-trigger {
+  background: rgba(34, 34, 44, 0.85);
+  border-color: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+[data-theme="dark"] .kb-trigger:hover {
+  background: rgba(44, 44, 56, 0.92);
+  border-color: rgba(255, 255, 255, 0.1);
+}

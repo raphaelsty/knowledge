@@ -1,0 +1,447 @@
+/* Auth modal — sign in / create account / forgot password.
+ *
+ * Visual language matches the search-page card chrome:
+ *   - white card on a translucent ink scrim,
+ *   - 22 px radius + multi-layer shadow (mirrors `.compose`),
+ *   - Inter Tight typography with tight tracking,
+ *   - greys via `var(--ink-rgb)` alpha so we get a consistent fade
+ *     across light/dark themes.
+ *
+ * Markup contract is in `web/search.html` (`<dialog id="authModal">`)
+ * and `web/lib/auth-modal.js` flips the modal's `data-view`
+ * attribute between login / signup / forgot.
+ */
+
+/* ── Dialog frame ─────────────────────────────────────────────────── */
+
+dialog.auth-modal {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--sans, "Inter Tight", -apple-system, sans-serif);
+  overflow: visible;
+  max-width: none;
+  max-height: none;
+}
+dialog.auth-modal::backdrop {
+  background: rgba(15, 23, 42, 0.36);
+  backdrop-filter: blur(8px) saturate(140%);
+  -webkit-backdrop-filter: blur(8px) saturate(140%);
+}
+[data-theme="dark"] dialog.auth-modal::backdrop {
+  background: rgba(0, 0, 0, 0.62);
+}
+
+/* The card itself sits in a centred fixed-width column. We size it
+ * with min() so it adapts to small viewports without breaking the
+ * apple-y inner spacing. */
+.auth-modal-card {
+  position: relative;
+  width: min(420px, calc(100vw - 32px));
+  margin: 6vh auto;
+  padding: 28px 32px 24px;
+  background: #ffffff;
+  border: 1px solid rgba(var(--ink-rgb), 0.06);
+  border-radius: 22px;
+  box-shadow:
+    0 32px 80px rgba(15, 23, 42, 0.22),
+    0 8px 24px rgba(15, 23, 42, 0.1);
+  animation: auth-card-in 220ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+[data-theme="dark"] .auth-modal-card {
+  background: #181a21;
+  border-color: rgba(255, 255, 255, 0.06);
+  box-shadow:
+    0 32px 80px rgba(0, 0, 0, 0.66),
+    0 8px 24px rgba(0, 0, 0, 0.4);
+}
+@keyframes auth-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ── Close button ─────────────────────────────────────────────────── */
+.auth-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: transparent;
+  border: 0;
+  color: rgba(var(--ink-rgb), 0.55);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background 120ms ease,
+    color 120ms ease,
+    transform 120ms ease;
+}
+.auth-modal-close:hover {
+  background: rgba(var(--ink-rgb), 0.06);
+  color: var(--ink);
+  transform: rotate(90deg);
+}
+
+/* ── Heading ──────────────────────────────────────────────────────── */
+.auth-modal-head {
+  margin-right: 32px; /* leave room for the × */
+}
+.auth-modal-title {
+  margin: 0 0 6px 0;
+  font-family: var(--sans);
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+.auth-modal-sub {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--muted);
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Inline banners ───────────────────────────────────────────────── */
+.auth-error,
+.auth-success {
+  font-size: 13px;
+  line-height: 1.5;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+}
+.auth-error {
+  background: rgba(220, 38, 38, 0.08);
+  border-color: rgba(220, 38, 38, 0.16);
+  color: rgb(170, 30, 30);
+}
+.auth-success {
+  background: rgba(34, 197, 94, 0.08);
+  border-color: rgba(34, 197, 94, 0.16);
+  color: rgb(22, 130, 65);
+}
+[data-theme="dark"] .auth-error {
+  color: #ff8a8a;
+}
+[data-theme="dark"] .auth-success {
+  color: #65d398;
+}
+
+/* ── View switcher (only one fieldset visible at a time) ─────────── */
+.auth-view {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+  display: none;
+  flex-direction: column;
+  gap: 14px;
+}
+.auth-modal[data-view="login"] .auth-view[data-view="login"],
+.auth-modal[data-view="signup"] .auth-view[data-view="signup"],
+.auth-modal[data-view="forgot"] .auth-view[data-view="forgot"] {
+  display: flex;
+}
+
+/* ── Field — label above input ────────────────────────────────────── */
+.auth-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12.5px;
+  letter-spacing: 0.005em;
+  color: rgba(var(--ink-rgb), 0.7);
+}
+.auth-field > span {
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+}
+.auth-field > span em {
+  font-style: normal;
+  font-weight: 400;
+  color: var(--muted);
+  margin-left: 4px;
+}
+.auth-field input {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  padding: 11px 13px;
+  border-radius: 12px;
+  border: 1px solid rgba(var(--ink-rgb), 0.12);
+  background: rgba(var(--ink-rgb), 0.03);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 14px;
+  letter-spacing: -0.005em;
+  transition:
+    background 120ms ease,
+    border-color 120ms ease,
+    box-shadow 120ms ease;
+}
+.auth-field input::placeholder {
+  color: rgba(var(--ink-rgb), 0.35);
+}
+.auth-field input:hover {
+  background: rgba(var(--ink-rgb), 0.05);
+  border-color: rgba(var(--ink-rgb), 0.18);
+}
+.auth-field input:focus {
+  outline: none;
+  background: #ffffff;
+  border-color: rgba(var(--accent-rgb), 0.6);
+  box-shadow: 0 0 0 4px rgba(var(--accent-rgb), 0.12);
+}
+[data-theme="dark"] .auth-field input:focus {
+  background: rgba(255, 255, 255, 0.04);
+}
+.auth-hint {
+  display: block;
+  margin-top: 2px;
+  font-size: 11.5px;
+  font-weight: 400;
+  color: rgba(var(--ink-rgb), 0.5);
+  letter-spacing: 0;
+}
+
+/* ── OAuth provider button + divider ──────────────────────────────── */
+.auth-oauth {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 4px;
+  padding: 11px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(var(--ink-rgb), 0.14);
+  background: rgba(var(--ink-rgb), 0.03);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  cursor: pointer;
+  transition:
+    background 140ms ease,
+    border-color 140ms ease,
+    transform 140ms ease;
+}
+.auth-oauth:hover {
+  background: rgba(var(--ink-rgb), 0.07);
+  border-color: rgba(var(--ink-rgb), 0.22);
+  transform: translateY(-1px);
+}
+.auth-oauth:active {
+  transform: translateY(0);
+}
+.auth-oauth svg {
+  flex-shrink: 0;
+}
+
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 6px 0 4px;
+  font-family: var(--sans);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted, rgba(var(--ink-rgb), 0.5));
+}
+.auth-divider::before,
+.auth-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(var(--ink-rgb), 0.1);
+}
+
+/* ── Primary submit button ────────────────────────────────────────── */
+.auth-submit {
+  margin-top: 4px;
+  padding: 12px 18px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  background: var(--ink);
+  color: #ffffff;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  cursor: pointer;
+  transition:
+    background 140ms ease,
+    transform 140ms ease,
+    box-shadow 140ms ease,
+    opacity 140ms ease;
+}
+.auth-submit:hover {
+  background: #000;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(var(--ink-rgb), 0.22);
+}
+.auth-submit:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+.auth-submit:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+[data-theme="dark"] .auth-submit {
+  background: #ffffff;
+  color: #0c0d10;
+}
+[data-theme="dark"] .auth-submit:hover {
+  background: #f1f3f6;
+}
+
+/* ── Footer with switcher links ───────────────────────────────────── */
+.auth-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 2px;
+  font-size: 12.5px;
+  color: var(--muted);
+}
+.auth-link {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  padding: 4px 6px;
+  border-radius: 6px;
+  font-family: var(--sans);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+  cursor: pointer;
+  transition:
+    color 120ms ease,
+    background 120ms ease;
+}
+.auth-link:hover {
+  color: var(--accent);
+  background: rgba(var(--accent-rgb), 0.08);
+}
+.auth-sep {
+  opacity: 0.5;
+}
+
+/* ── /auth/verify and /auth/reset full-page status takeovers ─────── */
+.auth-status {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 32px;
+  background:
+    radial-gradient(
+      1200px 600px at 50% -100px,
+      rgba(var(--accent-rgb), 0.06),
+      transparent
+    ),
+    linear-gradient(180deg, var(--bg-a) 0%, var(--bg-b) 100%);
+  font-family: var(--sans);
+  color: var(--ink);
+}
+.auth-status-card {
+  width: min(440px, calc(100vw - 32px));
+  padding: 32px 36px;
+  background: #ffffff;
+  border: 1px solid rgba(var(--ink-rgb), 0.06);
+  border-radius: 22px;
+  box-shadow:
+    0 32px 80px rgba(15, 23, 42, 0.18),
+    0 8px 24px rgba(15, 23, 42, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  text-align: justify;
+  hyphens: auto;
+}
+[data-theme="dark"] .auth-status-card {
+  background: #181a21;
+  border-color: rgba(255, 255, 255, 0.06);
+}
+.auth-status-card h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-align: left;
+}
+.auth-status-card p {
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.auth-status-link {
+  margin-top: 4px;
+  align-self: flex-start;
+  font-size: 13.5px;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--ink);
+  padding: 6px 10px;
+  border-radius: 8px;
+  transition:
+    background 120ms ease,
+    color 120ms ease;
+}
+.auth-status-link:hover {
+  background: rgba(var(--accent-rgb), 0.1);
+  color: var(--accent);
+}
+.auth-status-pending h1 {
+  color: rgba(var(--ink-rgb), 0.75);
+}
+.auth-status-bad h1 {
+  color: rgb(170, 30, 30);
+}
+[data-theme="dark"] .auth-status-bad h1 {
+  color: #ff8a8a;
+}
+.auth-status-ok h1 {
+  color: rgb(22, 130, 65);
+}
+[data-theme="dark"] .auth-status-ok h1 {
+  color: #65d398;
+}
+
+/* Reset-password form on /auth/reset?token=... — same chrome as the
+ * status card but with the field stack. Reuses the modal's input +
+ * submit styling by class. */
+.auth-reset-form {
+  gap: 16px;
+}
+.auth-reset-form .auth-field {
+  gap: 6px;
+}
+.auth-reset-form .auth-submit {
+  margin-top: 8px;
+}

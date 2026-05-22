@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Ask to be removed
+    url: mailto:raphael.sourty@gmail.com
+    about: If you'd rather not have a library on Knowledge, email me and I'll take it down the same day.
+  - name: Live site
+    url: https://knowledge-web.org
+    about: Browse what's already indexed.

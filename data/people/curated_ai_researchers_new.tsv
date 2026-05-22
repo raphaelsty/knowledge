@@ -1,0 +1,310 @@
+drjimfan	Jim Fan	robotics / foundation models	NVIDIA robotics research lead working on embodied AI and physical AGI, posts substantive technical threads.
+polynoamial	Noam Brown	RL / reasoning	OpenAI researcher who co-created Libratus, CICERO, and the o-series reasoning models.
+goodfellow_ian	Ian Goodfellow	generative models	Inventor of GANs and co-author of the Deep Learning textbook.
+sebastienbubeck	Sebastien Bubeck	LLM theory	OpenAI researcher known for Sparks of AGI and theoretical ML work.
+markchen90	Mark Chen	multimodal	OpenAI Chief Research Officer with deep work on DALL-E and Codex.
+awnihannun	Awni Hannun	ML systems / MLX	Anthropic researcher and lead of Apple's MLX framework for efficient on-device ML.
+justinlin610	Junyang Lin	LLM training	Lead researcher on Alibaba's Qwen series of open models.
+_rockt	Tim Rocktäschel	RL / agents	UCL professor and DeepMind alum focused on open-ended RL and agents.
+chrszegedy	Christian Szegedy	deep learning	Co-inventor of Inception, BatchNorm-era CV, and adversarial examples research.
+_arohan_	Rohan Anil	LLM training	Co-author of Shampoo optimizer and key contributor to Gemini/PaLM training.
+koraykv	Koray Kavukcuoglu	deep learning	DeepMind CTO with foundational work on DQN, WaveNet, and convnet research.
+remicadene	Remi Cadene	robotics	Created HuggingFace LeRobot, now building robotics startup.
+dylan522p	Dylan Patel	ML systems / hardware	SemiAnalysis founder writing deep technical analysis of AI hardware and infra.
+random_walker	Arvind Narayanan	AI evaluation	Princeton professor and co-author of AI Snake Oil, substantive critical research.
+amandaaskell	Amanda Askell	alignment	Anthropic philosopher working on Claude's character and alignment.
+billpeeb	Bill Peebles	diffusion	Co-creator of DiT (Diffusion Transformers) and Sora lead at OpenAI.
+_sholtodouglas	Sholto Douglas	RL / scaling	Anthropic researcher scaling RL, known for substantive technical podcasts.
+tomgoldsteincs	Tom Goldstein	AI security	UMD professor working on adversarial ML, watermarking, and ML foundations.
+thomasscialom	Thomas Scialom	agents / LLMs	Led Llama 2/3 post-training and pioneered Toolformer and GAIA agent benchmarks.
+stephenroller	Stephen Roller	LLM pre-training	Thinking Machines MTS, previously pre-training at DeepMind, Character, and Meta.
+rsalakhu	Russ Salakhutdinov	deep learning	CMU professor with foundational work on deep generative models and multimodal LLMs.
+nandodf	Nando de Freitas	RL / deep learning	Long-time DeepMind researcher on RL, Bayesian ML, and meta-learning.
+sirbayes	Kevin Patrick Murphy	Bayesian ML	DeepMind researcher and author of the canonical Probabilistic ML textbooks.
+tdietterich	Thomas G. Dietterich	machine learning	Former AAAI president with decades of foundational ML research.
+ggerganov	Georgi Gerganov	efficiency / inference	Creator of llama.cpp and ggml, the dominant local LLM inference stack.
+woj_zaremba	Wojciech Zaremba	RL / robotics	OpenAI co-founder with foundational work on RL and robotics.
+goodside	Riley Goodside	prompting	Well-known prompt engineering researcher with substantive technical threads.
+iscienceluvr	Tanishq Mathew Abraham	medical AI	Former Stability research director, posts substantive paper threads daily.
+francoisfleuret	François Fleuret	ML research / vision	FAIR research scientist and Geneva professor known for ML textbooks and vision/deep learning research.
+hendrycks	Dan Hendrycks	AI safety / evals	Director of CAIS, co-author of MMLU/MATH/GELU benchmarks, posts substantive safety and evaluation work.
+prafdhar	Prafulla Dhariwal	generative models	OpenAI technical fellow co-creator of GPT-4o, DALL-E 2, and Glow; deep generative modeling.
+sainingxie	Saining Xie	computer vision	NYU faculty, co-creator of ResNeXt and ConvNeXt, leading vision representation learning.
+zoubinghahrama1	Zoubin Ghahramani	Bayesian ML	Cambridge professor and Google DeepMind VP, foundational work in probabilistic ML.
+boazbaraktcs	Boaz Barak	theory / alignment	Harvard theory CS professor at OpenAI working on learning theory and alignment.
+tkipf	Thomas Kipf	graph learning	Inventor of Graph Convolutional Networks, DeepMind senior staff researcher on GNNs and world models.
+jsuarez	Joseph Suarez	RL	Creator of Neural MMO and PufferLib, open-source RL infrastructure.
+jasondeanlee	Jason Lee	optimization / theory	Berkeley professor researching optimization and theory of deep learning.
+agarwl_	Rishabh Agarwal	RL / distillation	RL researcher known for on-policy distillation and rigorous deep RL evaluation.
+_albertgu	Albert Gu	state-space models	CMU professor and Cartesia chief scientist, creator of Mamba/S4 state-space models.
+doomie	Dumitru Erhan	generative video	DeepMind co-lead of Veo, generative video modeling.
+hochreitersepp	Sepp Hochreiter	deep learning	LSTM co-inventor and deep learning pioneer.
+robrombach	Robin Rombach	diffusion	Co-creator of Stable Diffusion / latent diffusion models.
+bodonoghue85	Brendan O'Donoghue	RL / diffusion	DeepMind director leading Gemini Diffusion, RL and generative modeling.
+lvdmaaten	Laurens van der Maaten	representation learning	Inventor of t-SNE, DenseNet co-author, now at Anthropic.
+hugo_larochelle	Hugo Larochelle	deep learning	Mila scientific director, longtime deep learning researcher and educator.
+marksaroufim	Mark Saroufim	ML systems	PyTorch engineer and GPU MODE co-founder, low-level ML systems content.
+shanelegg	Shane Legg	AGI / RL	DeepMind co-founder and chief AGI scientist, foundational AGI research.
+sarahookr	Sara Hooker	efficiency / multilingual	Founded Cohere for AI, research on ML efficiency, sparsity, and multilingual models.
+richardssutton	Richard Sutton	RL	Turing Award laureate and foundational RL researcher; author of the RL textbook.
+mmbronstein	Michael Bronstein	graph learning	Oxford professor leading geometric deep learning and GNN research.
+model_mechanic	Aditya Ramesh	generative models	Creator of DALL-E, now VP Robotics at OpenAI; generative image modeling.
+shengjia_zhao	Shengjia Zhao	LLM training	Meta MSL chief scientist, ex-OpenAI, posts on LLM training and reasoning.
+chhillee	Horace He	ML systems	PyTorch core developer focused on compilers, kernels and efficiency.
+matei_zaharia	Matei Zaharia	ML systems	Berkeley professor, Spark/MLflow/DSPy creator, Databricks CTO; ML systems and RAG.
+shakir_za	Shakir Mohamed	generative models	DeepMind researcher on variational inference and generative models.
+tydsh	Yuandong Tian	RL / reasoning	Ex-FAIR director researching reasoning, RL, and LLM optimization.
+suchenzang	Susan Zhang	LLM training	Led OPT at Meta, hands-on LLM pretraining and scaling.
+charliermarsh	Charlie Marsh	Python tooling	Creator of Ruff and uv, high-performance Python tooling for ML.
+davidduvenaud	David Duvenaud	generative models	Toronto ML professor, ex-Anthropic, generative models and inference.
+danilojrezende	Danilo J. Rezende	generative models	Ex-DeepMind principal scientist, normalizing flows and variational inference pioneer.
+zicokolter	Zico Kolter	robustness / safety	CMU ML department head, adversarial robustness and certified defenses.
+pathak2206	Deepak Pathak	robotics / CV	CMU faculty and Skild CEO, curiosity-driven learning and robotics research.
+dimitrispapail	Dimitris Papailiopoulos	LLM theory	Wisconsin professor, MSR researcher on LLM reasoning and theory.
+jack_w_rae	Jack Rae	LLM training	Led Gopher/Chinchilla, distinguished scientist working on LLM scaling and compression.
+johnplattml	John Platt	ML / science	Inventor of SMO and Platt scaling, Google director for AI4Science.
+francis_yao_	Yao Fu	LLM reasoning	Researcher on LLM reasoning, long-context, and complex reasoning evaluation.
+maithra_raghu	Maithra Raghu	representation analysis	Ex-Google Brain researcher known for SVCCA and representation analysis.
+tqchenml	Tianqi Chen	ML systems	Creator of XGBoost and TVM, CMU professor on ML systems and compilers.
+jhyuxm	Jiahui Yu	multimodal	Led perception at OpenAI and Gemini multimodal at DeepMind.
+earnmyturns	Fernando Pereira	NLP	Google VP and Engineering Fellow, foundational NLP researcher.
+blancheminerva	Stella Biderman	open LLMs	EleutherAI research lead, open-source LLM training and evaluation.
+luke_metz	Luke Metz	meta-learning	Ex-Google Brain researcher on learned optimizers and meta-learning.
+syhw	Gabriel Synnaeve	code generation	Meta FAIR lead on Code Llama and code generation research.
+jekbradbury	James Bradbury	ML systems	JAX/TPU veteran now at Anthropic, ML compute and systems.
+douwekiela	Douwe Kiela	RAG	Contextual AI CEO and Stanford adjunct, co-author of original RAG paper.
+jpineau1	Joelle Pineau	RL / dialogue	Longtime RL researcher, former head of FAIR Montreal, now Chief AI Officer at Cohere.
+shuchaobi	Shuchao Bi	RL / post-training	Meta Superintelligence Labs researcher on RL and post-training, formerly OpenAI multimodal/RL.
+alexrives	Alex Rives	protein language models	Led the ESM protein language model project, foundation models for biology.
+volokuleshov	Volodymyr Kuleshov	diffusion / generative models	Cornell professor and Inception cofounder working on diffusion language models.
+mckbrando	Brandon McKinzie	multimodal	OpenAI researcher, previously led multimodal work at Apple (MM1).
+ml_angelopoulos	Anastasios Nikolas Angelopoulos	evaluation / statistics	Stats and model evaluation researcher behind LMArena / Chatbot Arena.
+armandjoulin	Armand Joulin	LLM training	DeepMind distinguished scientist, led LLaMA/FastText/DINO and Gemma open work.
+sharan0909	Sharan Narang	LLM training	Foundation models lead at Waymo, formerly LLaMA pretraining lead, T5/PaLM at Google.
+seb_ruder	Sebastian Ruder	NLP	Well-known NLP researcher writing transfer learning surveys, now at Meta MSL.
+iamtrask	Andrew Trask	privacy-preserving ML	OpenMined founder, federated/differential privacy in ML, DeepMind/Oxford.
+sedielem	Sander Dieleman	generative models	DeepMind research scientist on generative models (WaveNet, Imagen, Veo), diffusion writing.
+zacharylipton	Zachary Lipton	ML methodology	CMU professor (ACMI Lab), D2L coauthor, ML rigor and causal inference.
+dustinvtran	Dustin Tran	post-training	xAI post-training lead, ex-Google Brain, Bayesian deep learning and Edward author.
+yitayml	Yi Tay	LLM training	DeepMind research scientist, Gemini Deep Think co-lead, efficient transformers.
+guillaumelample	Guillaume Lample	LLM training	Mistral cofounder/chief scientist, LLaMA first-author, ex-FAIR.
+hyhieu226	Hieu Pham	LLM training	Researcher on NAS, EfficientNet, and LLMs across OpenAI/xAI/Google Brain.
+skalskip92	SkalskiP	computer vision	Roboflow open-source lead on VLMs and computer vision tutorials.
+jimmybajimmyba	Jimmy Ba	optimization	UofT professor, Adam optimizer co-author, now xAI cofounder.
+yaringal	Yarin Gal	Bayesian deep learning	Oxford professor known for Bayesian deep learning, uncertainty estimation, and MC dropout.
+hwchung27	Hyung Won Chung	LLM training	Research scientist (ex-OpenAI, now Meta MSL) known for work on instruction tuning, FLAN, and scaling.
+lawrennd	Neil Lawrence	probabilistic ML	Cambridge professor known for Gaussian processes and probabilistic machine learning.
+janexwang	Jane Wang	RL / neuro-AI	DeepMind senior research scientist working on meta-RL and neuroscience-inspired AI.
+aleks_madry	Aleksander Madry	robustness	MIT professor and OpenAI researcher known for adversarial robustness and ML reliability.
+animesh_garg	Animesh Garg	robotics	Georgia Tech faculty working on foundation models for robotics and reinforcement learning.
+smerity	Stephen Merity	NLP / LM	NLP researcher known for AWD-LSTM and language modeling work.
+trapitbansal	Trapit Bansal	LLM reasoning	Co-creator of OpenAI o1, now Meta MSL, working on reasoning in LLMs.
+jaschasd	Jascha Sohl-Dickstein	diffusion	Inventor of diffusion models, now at Anthropic.
+maximelabonne	Maxime Labonne	fine-tuning	Head of post-training at Liquid AI, well-known for LLM fine-tuning tutorials and tooling.
+jachiam0	Joshua Achiam	RL / alignment	OpenAI researcher, author of Spinning Up in Deep RL and safety/alignment work.
+ctnzr	Bryan Catanzaro	ML systems	NVIDIA VP of applied deep learning, working on efficient large-scale training.
+mononofu	Julian Schrittwieser	RL	Anthropic, formerly DeepMind; co-author of AlphaGo/AlphaZero/MuZero.
+j_foerst	Jakob Foerster	multi-agent RL	Oxford professor known for multi-agent reinforcement learning.
+ren_hongyu	Hongyu Ren	LLM research	Research scientist at Meta superintelligence, prev OpenAI, known for KG and LLM research.
+poolio	Ben Poole	diffusion	Google Brain research scientist known for DreamFusion and diffusion models.
+brandondamos	Brandon Amos	RL / optimization	Researcher at Reflection AI (ex-Meta/DeepMind) known for differentiable optimization and RL.
+ajddavison	Andrew Davison	SLAM / spatial AI	Imperial College professor pioneering SLAM and spatial AI for robotics.
+gabeeegoooh	Gabriel Goh	generative models	OpenAI researcher leading DALL-E image generation work.
+maxjaderberg	Max Jaderberg	deep RL	President of Isomorphic Labs, ex-DeepMind known for spatial transformers and RL.
+danqi_chen	Danqi Chen	NLP / retrieval	Princeton professor known for question answering, retrieval, and efficient LMs.
+songlinyang4	Songlin Yang	efficient LMs	MIT/Thinking Machines researcher known for linear attention and efficient sequence models.
+ezyang	Edward Z. Yang	ML systems	PyTorch core developer at Meta working on framework internals.
+dileeplearning	Dileep George	AGI / neuro-AI	Co-founder Vicarious and Numenta, working on brain-inspired AI.
+rown	Rowan Zellers	multimodal	Thinking Machines multimodal researcher, known for HellaSwag and grounded language work.
+finbarrtimbers	Finbarr Timbers	LLM training	Allen AI researcher and writer on language model training internals.
+eliebakouch	Elie Bakouch	LLM training	Prime Intellect / ex-HuggingFace engineer working on open LLM pretraining.
+ancadianadragan	Anca Dragan	alignment	UC Berkeley professor and DeepMind safety/alignment lead.
+nsthorat	Nikhil Thorat	evals / tooling	Anthropic researcher, co-creator of TensorFlow.js and Lilac evals.
+a_k_nain	Aakash Kumar Nain	ML engineering	Keras/JAX collaborator publishing technical ML content.
+casper_hansen_	Casper Hansen	quantization	Creator of AutoAWQ, known for LLM quantization.
+irinarish	Irina Rish	scaling / continual learning	UdeM/Mila professor working on scaling laws and continual learning.
+nikhilaravi	Nikhila Ravi	computer vision	Meta researcher leading SAM/SAM2 and PyTorch3D.
+code_star	Cody Blakeney	LLM data	Arcee research lead, prev Mosaic; works on data curation for LLM training.
+danintheory	Dan Roberts	DL theory	OpenAI scientist, co-author of Principles of Deep Learning Theory.
+mirowskipiotr	Piotr Mirowski	RL / creative AI	DeepMind research scientist on RL, navigation, and AI for creativity.
+y_m_asano	Yuki Asano	self-supervised	Professor leading FunAI Lab, known for self-supervised representation learning.
+dzhulgakov	Dmytro Dzhulgakov	ML systems	Fireworks CTO and PyTorch core maintainer; ML infra.
+ar_douillard	Arthur Douillard	distributed training	DeepMind researcher leading DiLoCo/DiPaCo distributed learning work.
+yubai01	Yu Bai	training efficiency	OpenAI researcher working on training accelerations, prev SF Research / Stanford.
+abursuc	Andrei Bursuc	computer vision	Valeo AI research scientist working on perception and autonomous driving CV.
+timsalimans	Tim Salimans	generative models	Google research scientist known for progressive distillation and Improved GANs.
+winglian	Wing Lian	fine-tuning	Maintainer of Axolotl, popular open-source LLM fine-tuning framework.
+lukezettlemoyer	Luke Zettlemoyer	NLP	University of Washington/Meta professor, prominent NLP researcher (LLaMA, ELMo, etc.).
+raiahadsell	Raia Hadsell	RL / robotics	DeepMind VP of Research, known for continual learning and robotics RL.
+ikostrikov	Ilya Kostrikov	RL	OpenAI pretraining researcher known for RL algorithms (IQL, DrQ).
+_kevinlu	Kevin Lu	RL	Thinking Machines researcher, known for decision transformers and RL.
+hazyresearch	Hazy Research	ML systems	Stanford lab (Chris Re) producing influential work on efficient ML and state-space models.
+johnowhitaker	Jonathan Whitaker	diffusion	Fast.ai-affiliated researcher known for diffusion model tutorials and experiments.
+sergebelongie	Serge Belongie	computer vision	Copenhagen professor and longtime computer vision researcher (shape contexts, fine-grained recognition).
+tobyphln	Toby Pohlen	LLM training	Founding team at xAI, previously engineer at Google DeepMind working on large language models.
+michael_j_black	Michael Black	computer vision	Leading researcher in 3D human pose/shape estimation and digital humans, former MPI director.
+clattner_llvm	Chris Lattner	ML systems	Creator of LLVM, Swift, and now Mojo/MAX at Modular for high-performance AI compilers.
+stefanoermon	Stefano Ermon	diffusion	Stanford prof, co-inventor of DDIM and score-based diffusion models, also DPO and FlashAttention contributor.
+math_rachel	Rachel Thomas	fine-tuning	Co-founder of fast.ai, posts substantive content on practical deep learning and ethics.
+sleepinyourhat	Sam Bowman	AI safety	Anthropic alignment researcher, formerly NYU NLP professor working on LLM evaluation.
+roydanroy	Dan Roy	ML theory	UofT statistics/CS professor and DeepMind researcher in theoretical machine learning.
+unslothai	Unsloth AI	fine-tuning	Open-source library for efficient LLM fine-tuning, posts technical content on training optimizations.
+merettm	Jakub Pachocki	LLM training	OpenAI Chief Scientist working on frontier large language model training.
+yuhu_ai_	Yuhuai (Tony) Wu	LLM reasoning	Co-founder of xAI, prior research on mathematical reasoning and theorem proving with LLMs.
+melmitchell1	Melanie Mitchell	AI evaluation	Santa Fe Institute professor researching analogy, abstraction, and LLM reasoning evaluation.
+wesmckinn	Wes McKinney	data systems	Creator of pandas and Apache Arrow, foundational tools for ML data pipelines.
+deliprao	Delip Rao	NLP	Penn researcher in NLP, vision, and speech, author of NLP with PyTorch book.
+amuellerml	Andreas Mueller	ML libraries / scikit-learn	Core scikit-learn developer and educator on classical ML.
+aidan_mclau	Aidan McLaughlin	LLM research	Research scientist at OpenAI posting on frontier model work.
+egrefen	Edward Grefenstette	NLP / RL	Director of Research at Google DeepMind working on NLP and RL agents.
+reach_vb	Vaibhav Srivastav	open-source LLMs	Hugging Face / OpenAI engineer posting hands-on open-source LLM content.
+jure	Jure Leskovec	graph learning	Stanford professor and leading authority on graph neural networks.
+huybery	Binyuan Hui	LLM training	Qwen team researcher posting on LLM training and code models.
+shunyuyao12	Shunyu Yao	agents	Researcher behind ReAct and Tree of Thoughts, focused on language agents.
+wellingmax	Max Welling	generative models	Pioneer of variational autoencoders and equivariant deep learning.
+bneyshabur	Behnam Neyshabur	generalization theory	Researcher on deep learning generalization and reasoning.
+denny_zhou	Denny Zhou	LLM reasoning	Google DeepMind researcher leading work on chain-of-thought reasoning.
+xiao_ted	Ted Xiao	robotics	Robotics researcher (ex-DeepMind) on embodied / foundation-model robotics.
+cwolferesearch	Cameron R. Wolfe	LLM explainers	Writes Deep Learning Focus, substantive technical LLM writeups.
+animaanandkumar	Anima Anandkumar	AI for science	Caltech professor working on tensor methods and AI for science.
+ethanhe_42	Ethan He	video / multimodal	xAI / ex-NVIDIA engineer on multimodal and video generation.
+isafulf	Isa Fulford	LLM research	OpenAI researcher (Deep Research) posting on agentic LLMs.
+ryan_p_adams	Ryan Adams	probabilistic ML	Princeton ML professor on probabilistic methods and Bayesian deep learning.
+alex_conneau	Alexis Conneau	speech / audio	Audio research lead behind GPT-4o voice, ex-FAIR multilingual NLP.
+natashajaques	Natasha Jaques	RL	UW professor and Google researcher on social and multi-agent RL.
+jon_barron	Jon Barron	computer vision / NeRF	DeepMind researcher behind NeRF, mip-NeRF, and neural rendering.
+danielhanchen	Daniel Han	fine-tuning	Unsloth co-founder posting on efficient LLM fine-tuning and bug hunts.
+chris_j_paxton	Chris Paxton	robotics	Robotics researcher (ex-FAIR / NVIDIA) on embodied AI.
+mark_riedl	Mark Riedl	narrative AI	Georgia Tech professor on AI for storytelling and explainability.
+jeffclune	Jeff Clune	open-ended RL	UBC professor on deep RL, AI-generating algorithms, open-endedness.
+andrewwhite01	Andrew White	AI for science	Chemistry professor and FutureHouse co-founder automating science.
+sophiamyang	Sophia Yang	open-weight LLMs	Mistral DevRel posting on open-weight LLMs and tooling.
+adampaulcoates	Adam Coates	speech / HPC	Ex-Baidu SVAIL director, deep learning and HPC for speech.
+rivershavewings	Rivers Have Wings	diffusion	Diffusion model researcher (k-diffusion) and prolific generative coder.
+tacocohen	Taco Cohen	equivariance / RL	Meta FAIR researcher on equivariant networks, RL, codegen.
+yejinchoinka	Yejin Choi	NLP	Stanford / NVIDIA NLP professor on commonsense reasoning.
+danijarh	Danijar Hafner	world models	Researcher behind Dreamer world-model RL agents.
+vikhyatk	vik	vision-language	Moondream founder building small vision-language models.
+rao2z	Subbarao Kambhampati	planning / reasoning	ASU professor on planning, reasoning, and LLM limitations.
+zeyuanallenzhu	Zeyuan Allen-Zhu	LLM theory	Meta FAIR researcher on physics of language models.
+yeewhye	Yee Whye Teh	Bayesian deep learning	Oxford / DeepMind professor on probabilistic ML.
+jm_alexia	Alexia Jolicoeur-Martineau	generative models	Researcher on GANs, diffusion, and tabular generative modeling.
+alexwei_	Alexander Wei	LLM reasoning	OpenAI reasoning researcher, ex-CICERO at Meta.
+kalomaze	kalomaze	LLM sampling	ML researcher known for sampling techniques and post-training experiments.
+haldaume3	Hal Daumé III	NLP	UMD NLP professor on human-centered NLP and fairness.
+xwang_lk	Xin Eric Wang	multimodal agents	UCSB professor on multimodal and agentic AI.
+jcjohnss	Justin Johnson	computer vision	World Labs co-founder, vision researcher on neural style and spatial intelligence.
+mpshanahan	Murray Shanahan	cognitive AI	Imperial / DeepMind on embodied cognition and LLM reasoning.
+nielsrogge	Niels Rogge	transformers	HF engineer porting and explaining transformer model implementations.
+suryaganguli	Surya Ganguli	theoretical neuroscience / DL	Stanford professor on theory of deep learning and neuroscience.
+joon_s_pk	Joon Sung Park	agent simulations	Researcher behind Generative Agents simulations.
+vincesitzmann	Vincent Sitzmann	neural fields	MIT professor on neural scene representations.
+ptrblck_de	ptrblck	PyTorch internals	NVIDIA PyTorch engineer answering deep PyTorch questions.
+wattenberg	Martin Wattenberg	interpretability / viz	Harvard / Google researcher on model interpretability and visualization.
+xbresson	Xavier Bresson	graph neural networks	NUS professor on graph neural networks and theory.
+xenovacom	Xenova	in-browser ML	Maintainer of Transformers.js bringing ML to the web.
+catherineols	Catherine Olsson	alignment	Anthropic researcher on model behavior and alignment tooling.
+kenneth0stanley	Kenneth Stanley	open-endedness / neuroevolution	Creator of NEAT/HyperNEAT and novelty search, leading open-ended ML research.
+nrehiew_	wh	LLM engineering	Well-known ML engineer posting substantive technical threads on LLM internals and training.
+__nmca__	Nat McAleese	LLM research	Anthropic researcher, previously OpenAI/DeepMind, posts on RLHF and evals.
+coreylynch	Corey Lynch	robotics / foundation models	Director of AI at Figure, working on Helix humanoid robot foundation model.
+fdellaert	Frank Dellaert	robotics / SLAM	Georgia Tech professor known for GTSAM and factor graph SLAM research.
+zdeborova	Lenka Zdeborova	statistical physics of ML	EPFL professor known for statistical physics approaches to deep learning theory.
+avdnoord	Aäron van den Oord	generative models	Creator of WaveNet, VQ-VAE, PixelCNN; leads GenMedia (Veo/Imagen) at DeepMind.
+borisdayma	Boris Dayma	generative models	Creator of DALL-E mini / Craiyon, posts on diffusion and text-to-image.
+abidlabs	Abubakar Abid	ML tooling	Creator of Gradio, the standard ML demo framework, at Hugging Face.
+trentonbricken	Trenton Bricken	interpretability	Anthropic interpretability researcher (sparse autoencoders, superposition).
+songshuran	Shuran Song	robotics / manipulation	Stanford professor working on robot learning and manipulation (Diffusion Policy).
+singularmattrix	Matthew Johnson	ML systems / JAX	Google Brain researcher and core JAX developer.
+carrigmat	Matthew Carrigan	LLM tooling	Hugging Face engineer working on transformers internals and chat templates.
+mattdeitke	Matt Deitke	embodied AI	Researcher known for AI2-THOR, Objaverse, embodied vision datasets.
+zipengfu	Zipeng Fu	robotics / locomotion	Stanford robotics PhD known for Mobile ALOHA and humanoid locomotion.
+felixhill84	Felix Hill	language / cognition	DeepMind research scientist on grounded language understanding.
+sayashk	Sayash Kapoor	AI evaluation	Princeton researcher on AI evaluation, agents, and AI as Normal Technology.
+rbhar90	Bharath Ramsundar	ML for science	Creator of DeepChem, works on AI for drug discovery and chemistry.
+lysandrejik	Lysandre	open-source ML	Core maintainer of Hugging Face transformers library.
+andrewlampinen	Andrew Lampinen	cognition / LLMs	DeepMind/Anthropic researcher on in-context learning and cognition in LLMs.
+rogergrosse	Roger Grosse	optimization / safety	Toronto professor and Anthropic researcher on second-order optimization and alignment.
+norabelrose	Nora Belrose	interpretability	Head of interpretability at EleutherAI, works on probing and tuned lens.
+robertarail	Roberta Raileanu	RL / open-endedness	DeepMind senior researcher leading open-ended RL team.
+unixpickle	Alex Nichol	generative models	OpenAI co-creator of DALL-E 2 and GLIDE diffusion models.
+bfspector	Benjamin F Spector	ML systems / kernels	Stanford PhD known for ThunderKittens GPU kernel work.
+eric_wallace_	Eric Wallace	adversarial NLP / safety	OpenAI researcher on adversarial attacks, memorization, and LLM safety.
+driainmurray	Iain Murray	probabilistic ML	Edinburgh ML professor on probabilistic inference and normalizing flows.
+sandersted	Ted Sanders	LLM research	OpenAI researcher and author of the OpenAI cookbook.
+andyzengineer	Andy Zeng	robotics / foundation models	Co-founder Generalist AI, ex-DeepMind on robot foundation models (RT-2, SayCan).
+yuntiandeng	Yuntian Deng	LLMs / world models	Waterloo professor on language models and chain-of-thought reasoning.
+scottgray76	Scott Gray	GPU kernels	OpenAI researcher known for GPU kernel optimization (block-sparse, Triton work).
+chenlin_meng	Chenlin Meng	diffusion models	Co-founder of Pika, known for diffusion model research (DDIM consistency).
+mcleavey	Christine McLeavey	audio generation	OpenAI audio lead on Jukebox, MuseNet, GPT-4o audio.
+benmildenhall	Ben Mildenhall	neural rendering	Co-creator of NeRF and DreamFusion, now at World Labs.
+peterjliu	Peter J. Liu	LLM research	Ex-Google Brain language model researcher (Pegasus, summarization).
+thomasahle	Thomas Ahle	algorithms / ML	Researcher on sketching, hashing, and tensor algorithms.
+trishume	Tristan Hume	performance / interpretability	Anthropic performance and interpretability engineer.
+loubnabenallal1	Loubna Ben Allal	small LLMs	Leads SmolLM at Hugging Face, posts on small LM training/data.
+glouppe	Gilles Louppe	ML for science	Liège professor on simulation-based inference and ML for physics.
+lakebrenden	Brenden Lake	cognitive ML	Princeton professor known for Omniglot and compositional learning.
+anneouyang	Anne Ouyang	GPU kernels	Stanford researcher behind KernelBench, ex-cuDNN.
+kswersk	Kevin Swersky	bayesian / RL	DeepMind research scientist on Bayesian optimization and ML.
+aaron_defazio	Aaron Defazio	optimization	Meta FAIR researcher on optimization algorithms (SAGA, schedule-free).
+ml_hardware	Abhi Venigalla	ML systems	Databricks/MosaicML researcher on LLM training systems.
+samsja19	samsja	distributed training	Leads research at Prime Intellect on decentralized training.
+woosuk_k	Woosuk Kwon	LLM inference	Creator of vLLM, the leading LLM inference engine.
+banghuaz	Banghua Zhu	RLHF / alignment	UW assistant professor on RLHF theory and alignment.
+chichengcc	Cheng Chi	robotics / manipulation	Co-creator of Diffusion Policy for robot manipulation.
+sschoenholz	Sam Schoenholz	ML theory	OpenAI researcher on neural network theory and JAX MD.
+art_zucker	Arthur Zucker	transformers	Head of transformers library at Hugging Face.
+chijinml	Chi Jin	RL theory	Princeton professor on RL theory and game theory foundations.
+ehsanik	Kiana Ehsani	embodied AI	Anthropic researcher on embodied/visual agents.
+tarantulae	Christian S. Perone	ML engineering	ML researcher posting substantively on deep learning and self-driving.
+arimorcos	Ari Morcos	data curation	DatologyAI CEO, ex-FAIR/DeepMind researcher on representation learning and data.
+irwanbello	Irwan Bello	LLM research	Reflection AI research lead, ex-Google Brain on attention and LambdaNetworks.
+jyangballin	John Yang	code agents	Stanford PhD, creator of SWE-bench and SWE-agent.
+imordatch	Igor Mordatch	RL / robotics	DeepMind researcher on multi-agent RL and robotics.
+pess_r	Patrick Esser	diffusion	Black Forest Labs researcher, co-creator of Stable Diffusion and FLUX.
+ruomingpang	Ruoming Pang	speech / LLMs	Apple/Meta researcher known for speech recognition and foundation models.
+tanishqkumar07	Tanishq Kumar	LLM training	Stanford AI Lab PhD student posting substantive threads on LLM training and scaling.
+xuefz	Fuzhao Xue (Frio)	distillation / scaling	Google DeepMind research scientist working on Gemini scaling and distillation.
+lcastricato	Louis Castricato	RLHF	RLHF researcher, ex-EleutherAI / CarperAI, known for technical work on preference learning.
+honualx	Alexandre Défossez	speech / audio	Kyutai research lead known for audio/speech generation work (Encodec, Moshi).
+aran_nayebi	Aran Nayebi	neuro-AI	CMU ML professor working on computational neuroscience and intelligence.
+birchlabs	Birchlabs	diffusion	Co-author of Hourglass Diffusion Transformers, posts substantive diffusion model work.
+hojonathanho	Jonathan Ho	diffusion	Author of DDPM, foundational diffusion models researcher.
+yzhang_cs	Yu Zhang	efficiency / ML systems	Moonshot researcher working on efficient LLM methods and parallel programming.
+srschmidgall	Samuel Schmidgall	medical AI / agents	Google DeepMind research scientist working on medical AI and agents.
+cong_ml	Cong Lu	RL / agents	Researcher behind The AI Scientist, Genie 3, prior DeepMind/Sakana work on agents.
+gui_penedo	Guilherme Penedo	pretraining data	HuggingFace pretraining data researcher (RefinedWeb, FineWeb).
+_jongwook_kim	Jong Wook Kim	speech / multimodal	OpenAI MTS, author of Whisper and CLIP work.
+pavlomolchanov	Pavlo Molchanov	efficiency / pruning	NVIDIA Director of Research, known for model pruning and efficient deep learning.
+fiandola	Forrest Iandola	efficiency	Author of SqueezeNet, AI research scientist at Meta working on efficient models.
+ellev3n11	Federico Cassano	code generation	Cursor trainer, prior work on code LLMs (MultiPL-E, OpenCodeInterpreter).
+phillip_lippe	Phillip Lippe	RL / multimodal	Google DeepMind research scientist on Gemini RL/multimodal, known for UvA DL tutorials.
+brhydon	Brydon Eastman	LLM training	Thinking Machines researcher, ex-OpenAI MTS working on LLM training.
+stuart_sul	Stuart Sul	ML systems	Cursor ML research, prior HazyResearch work on ML systems.
+mucai7	Mu Cai	multimodal	Thinking Machines researcher, prior DeepMind multimodal/agents work (LLaVA).
+xingyousong	Richard Song	AutoML	Google DeepMind researcher on Gemini thinking and AutoML / black-box optimization.
+robertriachi	Robert Riachi	generative models	Google DeepMind researcher on Veo, Imagen, world simulation.
+m_finzi	Marc Finzi	generative models	OpenAI research scientist, known for equivariant networks and Bayesian deep learning.
+em_dinan	Emily Dinan	dialogue / safety	FAIR engineer with substantive work on dialogue systems and safety.
+ebetica	Zeming Lin	protein models	Co-founder EvolutionaryScale, core ESM3/ESMFold author, PyTorch contributor.
+b_roziere	Baptiste Rozière	code generation	Mistral CodeGen lead, author of Code Llama and Codestral.
+williambarrheld	Will Held	LLM training	Open LLM training researcher with PhD work under Diyi Yang on multilingual NLP.
+rom1504	Romain Beaumont	multimodal data	DeepMind Gemini Video researcher, known for LAION / OpenCLIP / img2dataset.
+yizhezhangnlp	Yizhe Zhang	text diffusion	Apple MLR manager working on text diffusion, latent reasoning, code generation.
+nathanhabib1011	Nathan Habib	evaluation	HuggingFace evaluation engineer (Open LLM Leaderboard, lighteval).
+lisabdunlap	Lisa Dunlap	evaluation	Berkeley AI researcher on model evals, prev LMArena.
+jonas_eschmann	Jonas Eschmann	RL / robotics	Berkeley PhD student working on RL for continuous control (rl_tools).
+alfcnz	Alfredo Canziani	deep learning education	NYU CS professor known for teaching deep learning (LeCun's course co-instructor) with substantive technical content.
+pmddomingos	Pedro Domingos	ML theory	UW professor and author of "The Master Algorithm", known for foundational ML research.
+docmilanfar	Peyman Milanfar	computational imaging	Google Distinguished Scientist working on computational imaging and AI, posts substantive technical threads.
+yimatweets	Yi Ma	representation learning	HKU Chair Professor known for work on low-dimensional structures and unified theory of intelligence.
+gabrielpeyre	Gabriel Peyré	computational math / optimal transport	CNRS researcher posting daily on computational mathematics, optimal transport, and ML.
+srush_nlp	Sasha Rush	NLP / LLMs	Cornell/Cursor researcher known for substantive NLP and LLM technical content, tutorials, and open-source work.
+csprofkgd	Kosta Derpanis	computer vision	York University CS professor and computer vision researcher active in CVPR/ECCV community.
+thegautamkamath	Gautam Kamath	differential privacy	Waterloo CS professor working on private and trustworthy ML, posts substantive research content.
+_luofuli	Fuli Luo	LLM training	Former DeepSeek researcher now at Xiaomi MiMo, posts on large language model training.
+zizhpan	Zizheng Pan	efficiency / vision	DeepSeek researcher (prev NVIDIA) known for efficient vision transformers and model efficiency work.
+kordinglab	Konrad Kording	computational neuroscience	Penn professor working on deep learning, causality, and neuroscience-ML intersection.
+fhuszar	Ferenc Huszár	generative models	Cambridge professor with substantive ML theory and generative modeling threads.
+tengyuma	Tengyu Ma	ML theory	Stanford assistant professor working on ML/DL/RL theory and LLMs, formerly Voyage AI on embeddings.
+burkov	Andriy Burkov	ML education	PhD in AI, author of Hundred-Page ML/LM books, posts substantive ML educational content.

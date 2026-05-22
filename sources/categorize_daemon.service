@@ -1,0 +1,46 @@
+[Unit]
+# Document categorization daemon.
+# Runs sources.utils.categorize_daemon in a long-lived loop, pulling
+# uncategorized rows from `documents` in newest-first order and
+# writing 0-3 category slugs per doc into
+# `document_category_assignments`.
+#
+# Resource posture: CPU-bound on a small static embedding model
+# (Potion). Niced to 19 and CPU quota capped at 10 % of one core,
+# memory capped at 384 MB. The daemon never holds more than
+# BATCH_SIZE documents in memory at once; the periodic prototype
+# refresh streams the whole corpus through bounded top-K heaps
+# (peak ~11 MB) so RSS stays flat regardless of corpus size.
+Description=Knowledge categorize daemon (Potion static embeddings)
+After=docker.service network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/root/knowledge
+EnvironmentFile=/root/knowledge/.env
+# The .env file ships POSTGRES_PASSWORD. We compose DATABASE_URL
+# here so the daemon connects to the prod Postgres on the host
+# loopback port exposed by docker-compose (127.0.0.1:5433 — see
+# docker-compose.prod.yml).
+ExecStart=/bin/bash -c 'DATABASE_URL="postgresql://knowledge:$${POSTGRES_PASSWORD}@127.0.0.1:5433/knowledge" /root/.local/bin/uv run --no-sync python -m sources.utils.categorize_daemon'
+Restart=on-failure
+RestartSec=30
+
+# ── Resource limits ───────────────────────────────────────────
+# Niced to 19 (lowest priority) so the API + pipeline + clean
+# daemon always win the scheduler. CPUQuota=10% caps total CPU at
+# 0.10 cores even if the daemon ever spikes. Memory caps keep the
+# process small — the Potion model (~150 MB) plus anchor heaps
+# (~11 MB) plus working memory comfortably fits.
+Nice=19
+CPUQuota=10%
+MemoryHigh=320M
+MemoryMax=384M
+
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=knowledge-categorize-daemon
+
+[Install]
+WantedBy=multi-user.target

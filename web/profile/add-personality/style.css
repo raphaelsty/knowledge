@@ -1,0 +1,531 @@
+/* Add-personality dialog — paper card on blurred backdrop, ink
+   primary action. Same visual language as the export dialog. */
+
+.addp-dialog {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  max-width: none;
+  max-height: none;
+  overflow: hidden;
+  color: var(--ink);
+  font-family: var(--modern);
+}
+.addp-dialog[open] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  box-sizing: border-box;
+}
+.addp-dialog::backdrop {
+  background: rgba(8, 12, 18, 0.48);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.addp-body {
+  position: relative;
+  width: min(880px, 100%);
+  max-height: calc(100vh - 96px);
+  margin: 0;
+  padding: 24px 26px 20px;
+  background: rgb(var(--paper-rgb));
+  border-radius: 18px;
+  border: 1px solid rgba(var(--ink-rgb), 0.08);
+  box-shadow:
+    0 1px 0 rgba(var(--ink-rgb), 0.02),
+    0 24px 64px rgba(0, 0, 0, 0.22),
+    0 4px 12px rgba(0, 0, 0, 0.08);
+  overflow-y: auto;
+  animation: addp-in 0.28s cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+@keyframes addp-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+[data-theme="dark"] .addp-body {
+  border-color: rgba(255, 255, 255, 0.06);
+  box-shadow:
+    0 24px 64px rgba(0, 0, 0, 0.55),
+    0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.addp-title {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  margin: 0 0 6px;
+  color: rgb(var(--ink-rgb));
+}
+.addp-blurb {
+  font-size: 13px;
+  line-height: 1.55;
+  color: rgba(var(--ink-rgb), 0.62);
+  margin: 0 0 18px;
+}
+.addp-blurb code {
+  font-family: var(--mono, ui-monospace, monospace);
+  font-size: 12px;
+  background: rgba(var(--ink-rgb), 0.05);
+  padding: 1px 6px;
+  border-radius: 5px;
+  color: rgb(var(--ink-rgb));
+}
+.addp-slug-preview {
+  color: rgb(var(--ink-rgb));
+  font-weight: 500;
+}
+
+.addp-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.addp-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.addp-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.addp-field-wide {
+  grid-column: 1 / -1;
+}
+
+.addp-label {
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: rgba(var(--ink-rgb), 0.62);
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.addp-label-hint {
+  font-weight: 400;
+  font-size: 10.5px;
+  color: rgba(var(--ink-rgb), 0.42);
+  letter-spacing: 0;
+}
+
+.addp-field input[type="text"],
+.addp-field input[type="url"],
+.addp-field textarea {
+  appearance: none;
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  background: rgba(var(--ink-rgb), 0.025);
+  color: rgb(var(--ink-rgb));
+  padding: 9px 12px;
+  border-radius: 9px;
+  font: 14px var(--modern);
+  letter-spacing: -0.005em;
+  width: 100%;
+  box-sizing: border-box;
+  transition:
+    border-color 0.14s ease,
+    background 0.14s ease;
+}
+[data-theme="dark"] .addp-field input[type="text"],
+[data-theme="dark"] .addp-field input[type="url"],
+[data-theme="dark"] .addp-field textarea {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+.addp-field input:focus,
+.addp-field textarea:focus {
+  outline: none;
+  border-color: rgba(var(--ink-rgb), 0.42);
+  background: rgb(var(--paper-rgb));
+}
+.addp-field textarea {
+  resize: vertical;
+  min-height: 56px;
+  line-height: 1.5;
+}
+
+.addp-input-prefix {
+  display: flex;
+  align-items: stretch;
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  background: rgba(var(--ink-rgb), 0.025);
+  border-radius: 9px;
+  overflow: hidden;
+  transition:
+    border-color 0.14s ease,
+    background 0.14s ease;
+}
+.addp-input-prefix:focus-within {
+  border-color: rgba(var(--ink-rgb), 0.42);
+  background: rgb(var(--paper-rgb));
+}
+[data-theme="dark"] .addp-input-prefix {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+.addp-input-prefix span {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 10px;
+  font: 600 14px var(--modern);
+  color: rgba(var(--ink-rgb), 0.45);
+  background: rgba(var(--ink-rgb), 0.03);
+  border-right: 1px solid rgba(var(--ink-rgb), 0.08);
+}
+[data-theme="dark"] .addp-input-prefix span {
+  background: rgba(255, 255, 255, 0.04);
+  border-right-color: rgba(255, 255, 255, 0.08);
+}
+.addp-input-prefix input {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  flex: 1;
+  padding: 9px 12px;
+  font: 14px var(--modern);
+  color: rgb(var(--ink-rgb));
+  outline: none;
+  width: 100%;
+  min-width: 0;
+}
+
+/* Source handles grouped into a fieldset so the cluster of inputs
+   reads as one block. The legend acts as a quiet section header. */
+.addp-sources {
+  border: 0;
+  padding: 0;
+  margin: 4px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.addp-sources-legend {
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: rgba(var(--ink-rgb), 0.62);
+  padding: 0;
+  margin: 0 0 6px;
+}
+.addp-sources-legend .addp-label-hint {
+  margin-left: 6px;
+}
+
+/* Websites status list sits right under the textarea, so push it
+   off the form-field gap. Inherits the look from profile.css. */
+.addp-body .websites-status {
+  margin-top: 8px;
+}
+.addp-body .websites-status li {
+  font-family: var(--modern);
+}
+.addp-body .websites-status .websites-url {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+/* Probe badges next to handle labels — tighten the alignment so a
+   long label doesn't push the badge onto a new line. */
+.addp-label .probe-status {
+  margin-left: auto;
+}
+.addp-label {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.addp-label > .addp-label-hint + .probe-status,
+.addp-label > .probe-status:last-child {
+  margin-left: auto;
+}
+
+.addp-fineprint {
+  font-size: 11.5px;
+  color: rgba(var(--ink-rgb), 0.48);
+  margin: 4px 0 0;
+  line-height: 1.5;
+}
+
+.addp-msg {
+  font-size: 13px;
+  padding: 9px 12px;
+  border-radius: 9px;
+  line-height: 1.4;
+}
+.addp-msg.ok {
+  background: rgba(10, 125, 51, 0.1);
+  color: #0a7d33;
+  border: 1px solid rgba(10, 125, 51, 0.2);
+}
+.addp-msg.error {
+  background: rgba(192, 57, 43, 0.08);
+  color: #c0392b;
+  border: 1px solid rgba(192, 57, 43, 0.18);
+}
+[data-theme="dark"] .addp-msg.ok {
+  background: rgba(78, 201, 124, 0.12);
+  color: #4ec97c;
+  border-color: rgba(78, 201, 124, 0.22);
+}
+[data-theme="dark"] .addp-msg.error {
+  background: rgba(232, 112, 96, 0.12);
+  color: #e87060;
+  border-color: rgba(232, 112, 96, 0.22);
+}
+
+.addp-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 4px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(var(--ink-rgb), 0.06);
+}
+.addp-actions button {
+  appearance: none;
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  background: rgba(var(--ink-rgb), 0.03);
+  color: rgba(var(--ink-rgb), 0.78);
+  padding: 9px 16px;
+  border-radius: 10px;
+  font: 600 13px/1 var(--modern);
+  letter-spacing: -0.005em;
+  cursor: pointer;
+  transition:
+    background 0.14s ease,
+    color 0.14s ease,
+    border-color 0.14s ease;
+}
+.addp-actions button:hover {
+  background: rgba(var(--ink-rgb), 0.07);
+  color: rgb(var(--ink-rgb));
+  border-color: rgba(var(--ink-rgb), 0.18);
+}
+.addp-actions button.primary {
+  background: rgb(var(--ink-rgb));
+  color: rgb(var(--paper-rgb));
+  border-color: rgb(var(--ink-rgb));
+  box-shadow:
+    0 1px 0 rgba(var(--ink-rgb), 0.06),
+    0 2px 8px rgba(var(--ink-rgb), 0.18);
+}
+.addp-actions button.primary:hover {
+  background: rgba(var(--ink-rgb), 0.88);
+  border-color: rgba(var(--ink-rgb), 0.88);
+  color: rgb(var(--paper-rgb));
+}
+[data-theme="dark"] .addp-actions button.primary {
+  background: rgb(var(--ink-rgb));
+  color: rgb(var(--paper-rgb));
+  border-color: rgb(var(--ink-rgb));
+}
+.addp-actions button:disabled {
+  opacity: 0.55;
+  cursor: progress;
+}
+
+/* Call-to-action row below the price table on the profile page. */
+.addp-cta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  margin-top: 18px;
+  padding: 16px 20px;
+  background: rgba(var(--ink-rgb), 0.025);
+  border: 1px solid rgba(var(--ink-rgb), 0.06);
+  border-radius: 14px;
+}
+[data-theme="dark"] .addp-cta {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.06);
+}
+.addp-cta-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 13.5px;
+}
+.addp-cta-text strong {
+  font-weight: 600;
+  color: rgb(var(--ink-rgb));
+}
+.addp-cta-text span {
+  color: rgba(var(--ink-rgb), 0.6);
+  font-size: 12.5px;
+}
+
+/* Trigger button on the settings page itself — same shape as the
+   primary ink action so it reads as a clear call-to-action below
+   the price table. */
+.addp-trigger {
+  appearance: none;
+  border: 1px solid rgb(var(--ink-rgb));
+  background: rgb(var(--ink-rgb));
+  color: rgb(var(--paper-rgb));
+  padding: 10px 18px;
+  border-radius: 10px;
+  font: 600 13.5px/1 var(--modern);
+  letter-spacing: -0.005em;
+  cursor: pointer;
+  box-shadow:
+    0 1px 0 rgba(var(--ink-rgb), 0.06),
+    0 2px 8px rgba(var(--ink-rgb), 0.18);
+  transition:
+    background 0.14s ease,
+    box-shadow 0.14s ease;
+}
+.addp-trigger:hover {
+  background: rgba(var(--ink-rgb), 0.88);
+  border-color: rgba(var(--ink-rgb), 0.88);
+}
+
+/* ── "Personalities you've added" table on the settings page ────── */
+.myp-table {
+  width: 100%;
+  margin: 16px 0 0;
+  border-collapse: collapse;
+  font-size: 13px;
+  border: 1px solid rgba(var(--ink-rgb), 0.06);
+  border-radius: 14px;
+  overflow: hidden;
+  background: rgb(var(--paper-rgb));
+}
+[data-theme="dark"] .myp-table {
+  border-color: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.02);
+}
+.myp-table thead th {
+  text-align: left;
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(var(--ink-rgb), 0.5);
+  padding: 12px 18px;
+  background: rgba(var(--ink-rgb), 0.025);
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.05);
+}
+[data-theme="dark"] .myp-table thead th {
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom-color: rgba(255, 255, 255, 0.05);
+}
+.myp-table tbody td {
+  padding: 14px 18px;
+  vertical-align: top;
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.05);
+  text-align: left;
+  line-height: 1.45;
+}
+[data-theme="dark"] .myp-table tbody td {
+  border-bottom-color: rgba(255, 255, 255, 0.05);
+}
+.myp-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+.myp-name {
+  display: block;
+  font: 600 14px/1.2 var(--modern);
+  letter-spacing: -0.005em;
+  color: rgb(var(--ink-rgb));
+  text-decoration: none;
+}
+.myp-name:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.myp-slug {
+  display: inline-block;
+  margin-top: 2px;
+  font-size: 11.5px;
+  color: rgba(var(--ink-rgb), 0.45);
+  letter-spacing: 0;
+}
+.myp-bio {
+  display: block;
+  margin-top: 4px;
+  font-size: 12.5px;
+  color: rgba(var(--ink-rgb), 0.55);
+  line-height: 1.45;
+}
+.myp-docs {
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+  color: rgb(var(--ink-rgb));
+  white-space: nowrap;
+  width: 1%;
+  text-align: right;
+}
+.myp-date {
+  font-variant-numeric: tabular-nums;
+  color: rgba(var(--ink-rgb), 0.6);
+  white-space: nowrap;
+  width: 1%;
+  text-align: right;
+}
+.myp-cost {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  color: rgb(var(--ink-rgb));
+  white-space: nowrap;
+  width: 1%;
+  text-align: right;
+  cursor: help;
+}
+.myp-actions {
+  white-space: nowrap;
+  width: 1%;
+  text-align: right;
+}
+.myp-edit {
+  appearance: none;
+  border: 1px solid rgba(var(--ink-rgb), 0.12);
+  background: rgba(var(--ink-rgb), 0.025);
+  color: rgba(var(--ink-rgb), 0.78);
+  padding: 6px 12px;
+  border-radius: 8px;
+  font: 600 12px/1 var(--modern);
+  letter-spacing: -0.005em;
+  cursor: pointer;
+  transition:
+    background 0.14s ease,
+    color 0.14s ease,
+    border-color 0.14s ease;
+}
+.myp-edit:hover {
+  background: rgba(var(--ink-rgb), 0.06);
+  color: rgb(var(--ink-rgb));
+  border-color: rgba(var(--ink-rgb), 0.22);
+}
+[data-theme="dark"] .myp-edit {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+[data-theme="dark"] .myp-edit:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+.myp-empty,
+.myp-loading,
+.myp-error {
+  margin: 12px 0 0;
+  font-size: 13px;
+  color: rgba(var(--ink-rgb), 0.55);
+}
+.myp-error {
+  color: #c0392b;
+}
+[data-theme="dark"] .myp-error {
+  color: #e87060;
+}

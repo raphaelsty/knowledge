@@ -1,0 +1,109 @@
+name: Suggest a personality
+description: Suggest someone whose reading you'd love to see indexed on Knowledge.
+title: "[Add] <Name of the person>"
+labels: ["personality-suggestion"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the suggestion! The more handles you can paste in below, the better the resulting library will be — every connector you leave blank just means a smaller corpus for that person.
+
+        If you'd rather email me directly: raphael.sourty@gmail.com.
+  - type: input
+    id: name
+    attributes:
+      label: Name
+      description: Display name as you'd like it to appear on the library card.
+      placeholder: "Jane Doe"
+    validations:
+      required: true
+  - type: input
+    id: slug
+    attributes:
+      label: Slug (optional)
+      description: URL-safe identifier. Defaults to a kebab-case of the name.
+      placeholder: "jane-doe"
+  - type: textarea
+    id: why
+    attributes:
+      label: Why them?
+      description: A sentence or two on why this person's reading is worth indexing. Helps me prioritise.
+      placeholder: "Active in retrieval research, regularly shares papers and code on X."
+    validations:
+      required: true
+  - type: input
+    id: github
+    attributes:
+      label: GitHub handle
+      placeholder: "janedoe"
+  - type: input
+    id: twitter
+    attributes:
+      label: X / Twitter handle
+      placeholder: "janedoe"
+  - type: input
+    id: huggingface
+    attributes:
+      label: Hugging Face handle
+      placeholder: "janedoe"
+  - type: input
+    id: arxiv
+    attributes:
+      label: arXiv author name
+      description: Exact spelling used on arXiv (e.g. "Jane Doe", "J. Doe").
+      placeholder: "Jane Doe"
+  - type: input
+    id: scholar
+    attributes:
+      label: Google Scholar user id
+      description: The `user=…` value from their Scholar profile URL.
+      placeholder: "XXXXXXXXX"
+  - type: input
+    id: dblp
+    attributes:
+      label: DBLP author name
+      placeholder: "Jane Doe"
+  - type: input
+    id: hackernews
+    attributes:
+      label: Hacker News username
+      placeholder: "janedoe"
+  - type: input
+    id: reddit
+    attributes:
+      label: Reddit username
+      placeholder: "janedoe"
+  - type: input
+    id: stackoverflow
+    attributes:
+      label: Stack Overflow user id
+      placeholder: "1234567"
+  - type: textarea
+    id: websites
+    attributes:
+      label: Personal sites / blogs
+      description: One URL per line. RSS / Atom feeds and `sitemap.xml` paths both work.
+      placeholder: |
+        https://janedoe.com/atom.xml
+        https://janedoe.github.io/
+  - type: input
+    id: avatar
+    attributes:
+      label: Avatar URL (optional)
+      description: Square image URL. Defaults to the GitHub avatar if a handle is provided.
+      placeholder: "https://avatars.githubusercontent.com/u/…"
+  - type: input
+    id: category
+    attributes:
+      label: Category (optional)
+      description: A short topical bucket. Existing buckets include "NLP & Retrieval", "Educators & Bloggers", "RL & Robotics", etc.
+      placeholder: "NLP & Retrieval"
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: One last check
+      options:
+        - label: I'm suggesting public, professional handles only.
+          required: true
+        - label: I understand the person can ask to be removed at any time by emailing raphael.sourty@gmail.com.
+          required: true

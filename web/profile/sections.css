@@ -1,0 +1,451 @@
+/* ==========================================================================
+   Section — a quiet head, then a stack of fields. No numerals, no rules,
+   no decoration. Hierarchy is built from spacing and weight.
+   ========================================================================== */
+.section {
+  padding: 14px 0 4px;
+}
+.section + .section {
+  padding-top: 80px;
+  margin-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.section-head {
+  margin-bottom: 28px;
+}
+
+/* Sub-section divider inside the Sources grid — separates "Public handles"
+ * from "Personal & private". Quiet uppercase letter-spaced label with a
+ * trailing italic note for the credentials group. Matches the rest of the
+ * page: no decoration, hierarchy from spacing and weight. */
+.subhead {
+  margin: 36px 0 10px;
+  padding-top: 22px;
+  border-top: 1px solid var(--border);
+  font-family: var(--sans);
+  font-size: 12.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.source-grid > .subhead:first-child {
+  margin-top: 8px;
+  padding-top: 0;
+  border-top: 0;
+}
+.subhead-note {
+  /* Same sans-serif as the rest of the settings page (was serif). */
+  font-family: var(--sans);
+  font-style: normal;
+  font-size: 13.5px;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: -0.005em;
+  color: var(--muted);
+  opacity: 0.85;
+}
+.section-head-with-action {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+}
+.section-head-text {
+  min-width: 0;
+}
+.section-head-action {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-title {
+  /* Single font across the whole app — drop the serif so Settings
+   * reads in the same Inter Tight / system stack as the search
+   * bar, cards, and bottom nav. */
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 26px;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: var(--ink);
+  margin: 0 0 8px;
+}
+.section-kicker {
+  font-size: 15.5px;
+  color: var(--muted);
+  margin: 0;
+  letter-spacing: -0.005em;
+  line-height: 1.55;
+}
+/* Indexing-cadence notice. Sits below the section kicker on the
+   Sources section so users know newly-fetched docs aren't
+   instantly searchable — same accent treatment as the bookmark
+   dialog so the message reads as a single product convention. */
+.section-indexing-note {
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(var(--ink-rgb), 0.78);
+  margin: 14px 0 0;
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: rgba(var(--accent-rgb), 0.08);
+  border-left: 3px solid rgba(var(--accent-rgb), 0.55);
+  max-width: 640px;
+}
+.section-body {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ==========================================================================
+   Discover launcher — routes to /#discover, which page.js intercepts to
+   pop the onboarding overlay. Visually a quiet card with an arrow on the
+   right so it reads as a "go" action without competing with the rest of
+   the settings form.
+   ========================================================================== */
+.discover-launch {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 18px;
+  border-radius: 14px;
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  background: rgba(var(--ink-rgb), 0.025);
+  color: rgb(var(--ink-rgb));
+  font: 600 14.5px/1.2 var(--sans);
+  letter-spacing: -0.005em;
+  text-decoration: none;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    transform 0.15s ease;
+  align-self: flex-start;
+  min-width: 280px;
+}
+.discover-launch:hover {
+  background: rgba(var(--ink-rgb), 0.055);
+  border-color: rgba(var(--ink-rgb), 0.18);
+  transform: translateY(-1px);
+}
+.discover-launch:active {
+  transform: translateY(0);
+}
+.discover-launch svg {
+  width: 16px;
+  height: 16px;
+  opacity: 0.7;
+  flex-shrink: 0;
+  transition:
+    transform 0.15s ease,
+    opacity 0.15s ease;
+}
+.discover-launch:hover svg {
+  transform: translateX(3px);
+  opacity: 1;
+}
+[data-theme="dark"] .discover-launch {
+  background: rgba(255, 255, 255, 0.035);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+[data-theme="dark"] .discover-launch:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+/* ==========================================================================
+   API tokens section — list + create form + one-shot plaintext display.
+   ========================================================================== */
+.token-create {
+  display: flex;
+  gap: 12px;
+  align-items: stretch;
+  margin-bottom: 16px;
+}
+.token-create .profile-input {
+  flex: 1;
+}
+
+.token-fresh {
+  margin: 8px 0 20px;
+  padding: 16px;
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  background: var(--card-bg, rgba(255, 200, 80, 0.06));
+}
+.token-fresh-warning {
+  margin: 0 0 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+}
+.token-fresh-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.token-fresh-value {
+  flex: 1;
+  padding: 8px 10px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12.5px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  word-break: break-all;
+  user-select: all;
+}
+.token-fresh-hint {
+  margin: 10px 0 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+.token-fresh-hint code {
+  font-size: 11.5px;
+  padding: 1px 5px;
+  background: var(--bg);
+  border-radius: 3px;
+}
+
+.token-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.token-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "main revoke"
+    "meta revoke";
+  align-items: center;
+  gap: 4px 16px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.token-row-main {
+  grid-area: main;
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+}
+.token-row-name {
+  font-weight: 600;
+  font-size: 14px;
+}
+.token-row-prefix {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  color: var(--muted);
+}
+.token-row-meta {
+  grid-area: meta;
+  font-size: 12px;
+  color: var(--muted);
+  display: flex;
+  gap: 6px;
+}
+.token-revoke {
+  grid-area: revoke;
+  font-size: 12.5px;
+}
+.token-empty {
+  color: var(--muted);
+  font-size: 13px;
+  padding: 8px 0;
+}
+
+/* Sign-out lives at the very bottom — a quiet text link so it's
+ * findable when needed, but never competing with the form above. */
+.signout-row {
+  margin-top: 80px;
+  padding: 28px 0 8px;
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid var(--border);
+}
+.signout-row .action-link {
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  color: var(--muted);
+}
+.signout-row .action-link:hover {
+  color: var(--accent);
+  background: transparent;
+}
+
+/* Admin entry point. Only rendered for the raphael-sourty session;
+ * inherits .signout-row's layout (centered, border-top, big margin)
+ * so it reads as the visual divider for account-level links. When
+ * it's visible, collapse the sibling sign-out row's own margin/
+ * border so the two links stack as one tight group instead of
+ * getting two separate dividers. */
+.admin-row:not([hidden]) + .signout-row {
+  margin-top: 0;
+  padding: 12px 0 8px;
+  border-top: 0;
+}
+
+/* Sync section — single button + a vertical log of per-fetcher
+ * status lines. The log mirrors `KnowledgeSync` progress events:
+ * pending (queued) / running (fetching) / ok (count) / error.
+ * Color cues match the rest of the chrome (var(--ink), var(--err),
+ * a muted tint for queued). */
+#section-sync .section-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+#section-sync .sync-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+#section-sync .sync-hint {
+  color: rgba(var(--ink-rgb), 0.7);
+  font-size: 0.92em;
+}
+#section-sync .sync-progress {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: rgba(var(--ink-rgb), 0.02);
+  max-height: 320px;
+  overflow-y: auto;
+}
+#section-sync .sync-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 12px;
+  border-top: 1px solid rgba(var(--ink-rgb), 0.06);
+  font-size: 0.95em;
+}
+#section-sync .sync-item:first-child {
+  border-top: 0;
+}
+#section-sync .sync-item-label {
+  flex: 1;
+}
+#section-sync .sync-item-state {
+  color: rgba(var(--ink-rgb), 0.6);
+  font-variant-numeric: tabular-nums;
+}
+#section-sync .sync-item--pending {
+  opacity: 0.6;
+}
+#section-sync .sync-item--running .sync-item-state {
+  color: var(--ink);
+}
+#section-sync .sync-item--ok .sync-item-state {
+  color: var(--ok, #2e7d32);
+}
+#section-sync .sync-item--error .sync-item-state {
+  color: var(--err, #c62828);
+}
+
+/* Legal disclosures — quiet stack of <details> blocks. Closed
+ * by default; the summary reads as a discreet link, the body
+ * expands inline. Kept narrow so the long French paragraphs
+ * stay readable. */
+#section-legal .section-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.legal-block {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: rgba(var(--ink-rgb), 0.02);
+}
+.legal-block > summary {
+  cursor: pointer;
+  padding: 12px 14px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--ink);
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.legal-block > summary::-webkit-details-marker {
+  display: none;
+}
+.legal-block > summary::after {
+  content: "+";
+  font-family: var(--sans);
+  font-size: 16px;
+  color: var(--muted);
+  font-weight: 400;
+}
+.legal-block[open] > summary::after {
+  content: "−";
+}
+.legal-block > summary:hover {
+  color: var(--accent);
+}
+.legal-body {
+  padding: 4px 16px 16px;
+  font-size: 13px;
+  line-height: 1.62;
+  color: var(--muted);
+}
+.legal-body h3 {
+  font-size: 12.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  margin: 14px 0 6px;
+}
+.legal-body h3:first-child {
+  margin-top: 4px;
+}
+.legal-body p,
+.legal-body ul {
+  margin: 0 0 10px;
+}
+.legal-body ul {
+  padding-left: 18px;
+}
+.legal-body li {
+  margin-bottom: 4px;
+}
+.legal-body a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(var(--accent-rgb), 0.3);
+}
+.legal-body a:hover {
+  border-bottom-color: var(--accent);
+}
+.legal-body code {
+  font-family:
+    ui-monospace,
+    SF Mono,
+    Menlo,
+    monospace;
+  font-size: 11.5px;
+  background: rgba(var(--ink-rgb), 0.06);
+  padding: 1px 5px;
+  border-radius: 4px;
+  color: var(--ink);
+}

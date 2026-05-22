@@ -1,0 +1,889 @@
+/* ── Glass cards (mirrors the welcome page .document) ──────
+     * Each result is its own translucent paper with the same
+     * blur/border/radius/shadow as the welcome cards, so the body
+     * mesh no longer flows through the result rows. The 1320 px
+     * max-width + min-44 px gutter is now hosted on the container. */
+.results {
+  max-width: none;
+  margin: 0;
+  padding: 0 max(44px, calc((100% - 1320px) / 2));
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.result {
+  padding: 32px 0 12px;
+}
+.result:first-child {
+  padding-top: 0;
+}
+.result {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "body body"
+    "tags pics";
+  gap: 24px 40px;
+  align-items: start;
+  position: relative;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  transition: background 0.25s ease;
+}
+.result + .result {
+  border-top: 1px solid rgba(var(--ink-rgb), 0.08);
+}
+.result:hover {
+  background: transparent;
+  border-color: rgba(var(--ink-rgb), 0.08);
+  transform: none;
+  box-shadow: none;
+}
+
+/* ── Dark theme: same geometry as light, just a softer hover tint.
+   The doc reads as text on the page field — no card, no shift in
+   alignment between themes. The horizontal divider rule is
+   inherited from the base `.result + .result` and uses
+   `--border`, which already adapts. */
+[data-theme="dark"] .result:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+/* No character cap on the body — the summary uses all the room
+     * the 1fr column gives it. */
+.result-body {
+  min-width: 0;
+}
+/* Kicker — Apple News style: small, tight tracking, sentence-cased
+     * source name, separators are extra whitespace not glyphs. */
+.result-kicker {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 400;
+  font-feature-settings:
+    "tnum" 1,
+    "ss01" 1;
+}
+.result-kicker .src-fav {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  opacity: 0.95;
+}
+.result-kicker .src {
+  color: var(--ink);
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+/* Per-card ✕ — sits flush against the source label, hidden until
+   the card is hovered so the kicker stays clean by default. Red on
+   hover so the destructive intent reads. The kicker uses gap: 12px
+   between sibling spans, which would push the ✕ too far from the
+   source label — collapse the gap with a negative margin. */
+.result-kicker .src-ban {
+  margin-left: -8px;
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: 4px;
+  display: inline-grid;
+  place-items: center;
+  opacity: 0;
+  transition:
+    opacity 0.12s,
+    color 0.12s,
+    background 0.12s;
+}
+.result:hover .src-ban,
+.result:focus-within .src-ban {
+  opacity: 0.55;
+}
+.result-kicker .src-ban:hover {
+  opacity: 1;
+  color: rgb(220, 38, 38);
+  background: rgba(220, 38, 38, 0.1);
+}
+.result-kicker .dot {
+  color: var(--muted);
+  opacity: 0.4;
+}
+.result-kicker .date {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.005em;
+}
+.result-kicker .from {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.result-kicker .from img {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+}
+/* Light-grey "not indexed yet" pill for docs that exist in PG but
+     * haven't been embedded into the ColBERT index (just-synced
+     * backlog awaiting `make run`). */
+.result-kicker .pending {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: rgba(var(--ink-rgb), 0.06);
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+.result-kicker .pending::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--muted);
+  opacity: 0.6;
+}
+/* Upvote arrow on HN-pick cards stays visible at rest (unlike the
+   * other action icons that wait for row-hover) so the affordance
+   * is immediate — the user can recognise these as recommendations
+   * worth a one-click upvote without having to mouse over first. */
+.result-actions .act-fav[data-pick="1"] {
+  opacity: 1;
+  pointer-events: auto;
+}
+/* Tweet pill — replaces the source label on twitter docs.
+     * Soft light fill at rest, snaps to solid ink on hover with a
+     * tiny lift, very Apple action-button. */
+.result-kicker .tweet-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 3px 11px 3px 9px;
+  border-radius: 999px;
+  background: rgba(var(--ink-rgb), 0.06);
+  text-decoration: none;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  transition:
+    background 0.18s ease,
+    color 0.18s ease,
+    transform 0.18s cubic-bezier(0.32, 0.72, 0, 1),
+    box-shadow 0.18s ease;
+}
+.result-kicker .tweet-link:hover {
+  background: var(--ink);
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(var(--ink-rgb), 0.18);
+}
+.result-kicker .tweet-icon {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+}
+
+/* "via @handle" attribution — surfaces the originating tweet for
+     * docs whose `source_url` is a tweet permalink (Twitter thread or
+     * bookmark drove us to the resource). Quieter than `.tweet-link`
+     * because it's secondary metadata, not the primary source label. */
+.result-kicker .via-tweet {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 9px 2px 7px;
+  border-radius: 999px;
+  background: rgba(var(--ink-rgb), 0.04);
+  color: var(--muted);
+  text-decoration: none;
+  font-family: var(--sans);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  transition:
+    background 0.18s ease,
+    color 0.18s ease;
+}
+.result-kicker .via-tweet:hover {
+  background: rgba(var(--ink-rgb), 0.1);
+  color: var(--ink);
+}
+.result-kicker .via-tweet .tweet-icon {
+  width: 11px;
+  height: 11px;
+  opacity: 0.7;
+}
+.result-kicker .via-tweet:hover .tweet-icon {
+  opacity: 1;
+}
+/* Bottom-right meta strip — when a document appears in multiple
+     * library results, an avatar stack of the *other* people whose
+     * libraries also have it sits to the LEFT of the score, with a
+     * comfortable gap between them. */
+.result-foot-right {
+  grid-area: pics;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  pointer-events: auto;
+  justify-self: end;
+  /* The grid sets `align-items: start`, so the score badge (small
+     content) anchors to the top of its row while the Related pill
+     in the tags row sits taller. Centering this cell within its
+     grid row puts the score badge on the same horizontal centerline
+     as the Related pill on the right. */
+  align-self: center;
+}
+
+/* Shared-by stack — sits inline at the right end of the kicker
+     * row, near the title. Bigger than the old bottom-right pile so
+     * it reads as "this is in these people's libraries too" at a
+     * glance, without dominating the card. Single-library mode
+     * renders nothing (no other owners exist), so this whole
+     * affordance is opt-in to multi-library views by construction. */
+.result .shared-by {
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+  gap: 0;
+}
+/* Wrapper for one avatar + its hover popover. The popover surfaces
+ * "View profile" and an Unfollow action when the caller is signed in
+ * and follows the user. Stays hidden until the user mouses over the
+ * avatar (or focuses anything inside the host). */
+.result .shared-by .ava-host {
+  position: relative;
+  display: inline-flex;
+  /* Padding-bottom extends the host's hoverable rectangle into the
+   * visual gap below the avatar — without it, the cursor falls out
+   * of `:hover` the moment it leaves the 18px circle and the popover
+   * disappears before the user can reach it. Bumped to 20px so the
+   * cursor reaches the popover's body without ever leaving :hover.
+   * Negative margin keeps the visual layout identical. */
+  padding-bottom: 20px;
+  margin-bottom: -20px;
+}
+.result .shared-by .ava-host:first-child .ava {
+  margin-left: 0;
+}
+/* Original-author bubble (set by `page.js` for retweet/quote cards
+ * whose source author is itself an indexed personality). Accent
+ * border + faint dot badge in the corner so the reader can tell at
+ * a glance that this avatar means "the tweet's author", not
+ * "someone who shared it". */
+.result .shared-by .ava-host.is-original .ava {
+  box-shadow: 0 0 0 2px var(--accent, #2f80ed);
+}
+.result .shared-by .ava-host.is-original::after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent, #2f80ed);
+  border: 1px solid var(--card-bg, #fff);
+  pointer-events: none;
+}
+.result .shared-by .ava-pop {
+  position: absolute;
+  /* Anchor the popover so its INVISIBLE top-padding starts a touch
+   * ABOVE the host's padding-bottom (overlap by 2px). Combined with
+   * the 12px transparent padding-top below, the cursor moves from
+   * avatar → host pad → popover pad → visible card without ever
+   * leaving an element that's part of the :hover chain. */
+  top: calc(100% - 22px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 132px;
+  /* 12px top is a transparent bridge — the visible card chrome
+   * (background / border / shadow) is applied to .ava-pop-inner
+   * below so the bridge stays click-through but :hover-active. */
+  padding: 18px 0 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  opacity: 0;
+  pointer-events: none;
+  /* Slight close delay so a fast mouse-out doesn't kill the popover
+   * before the cursor has a chance to come back over the avatar. */
+  transition:
+    opacity 0.14s ease 0.05s,
+    transform 0.14s ease 0.05s;
+}
+.result .shared-by .ava-host:hover .ava-pop,
+.result .shared-by .ava-host:focus-within .ava-pop {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+  /* Open is snappy; the delay only applies to closing. */
+  transition:
+    opacity 0.14s ease 0s,
+    transform 0.14s ease 0s;
+}
+/* Visible card chrome — separated from .ava-pop so the latter can
+ * keep its transparent bridge while only the inner block shows the
+ * border + shadow. */
+.result .shared-by .ava-pop > .ava-pop-name,
+.result .shared-by .ava-pop > .ava-pop-link,
+.result .shared-by .ava-pop > .ava-pop-action {
+  background-clip: padding-box;
+}
+.result .shared-by .ava-pop::before {
+  content: "";
+  position: absolute;
+  top: 12px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 9px;
+  background: rgb(var(--paper-rgb));
+  border: 1px solid rgba(var(--ink-rgb), 0.08);
+  box-shadow:
+    0 8px 24px rgba(var(--ink-rgb), 0.1),
+    0 2px 6px rgba(var(--ink-rgb), 0.06);
+  z-index: -1;
+}
+.result .shared-by .ava-pop > .ava-pop-name,
+.result .shared-by .ava-pop > .ava-pop-link,
+.result .shared-by .ava-pop > .ava-pop-action {
+  position: relative;
+  z-index: 1;
+  margin: 0 6px;
+}
+.result .shared-by .ava-pop > .ava-pop-name {
+  margin-top: 6px;
+}
+.result .shared-by .ava-pop > .ava-pop-action:last-child,
+.result .shared-by .ava-pop > .ava-pop-link:last-child {
+  margin-bottom: 6px;
+}
+[data-theme="dark"] .result .shared-by .ava-pop::before {
+  background: rgba(24, 26, 33, 0.97);
+  border-color: rgba(255, 255, 255, 0.06);
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.55),
+    0 2px 6px rgba(0, 0, 0, 0.35);
+}
+.result .shared-by .ava-pop-name {
+  display: block;
+  padding: 0 6px 2px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.06);
+}
+.result .shared-by .ava-pop-link,
+.result .shared-by .ava-pop-action {
+  display: block;
+  padding: 5px 8px;
+  font: 600 12px/1.2 var(--sans);
+  text-align: left;
+  color: var(--text-primary);
+  background: transparent;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.result .shared-by .ava-pop-link:hover,
+.result .shared-by .ava-pop-action:hover {
+  background: rgba(var(--ink-rgb), 0.06);
+}
+.result .shared-by .ava-pop-action {
+  color: rgba(var(--ink-rgb), 0.72);
+}
+.result .shared-by .ava-pop-action:hover {
+  color: var(--text-primary);
+}
+/* Each avatar: a real <a> linking to the personality, so a
+     * cmd-click opens their library. White ring against the warm
+     * page background gives a magazine-credit feel; soft shadow
+     * separates overlapping discs. */
+.result .shared-by .ava {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  margin-left: -5px;
+  /* Background + inner ring use the theme's paper colour rather than
+   * a literal #fff so dark mode shows a dark-surface ring (blends
+   * into the card) instead of a stark white halo. */
+  background: rgb(var(--paper-rgb));
+  box-shadow:
+    0 0 0 1.5px rgb(var(--paper-rgb)),
+    0 0 0 2.5px var(--border),
+    0 1px 3px rgba(var(--ink-rgb), 0.08);
+  overflow: visible;
+  transition:
+    transform 0.22s cubic-bezier(0.32, 0.72, 0, 1),
+    box-shadow 0.22s cubic-bezier(0.32, 0.72, 0, 1),
+    z-index 0s 0.22s;
+  cursor: pointer;
+  text-decoration: none;
+  z-index: 1;
+}
+.result .shared-by .ava:first-child {
+  margin-left: 0;
+}
+.result .shared-by .ava img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+.result .shared-by .ava:hover {
+  transform: translateY(-2px) scale(1.08);
+  z-index: 10;
+  box-shadow:
+    0 0 0 1.5px rgb(var(--paper-rgb)),
+    0 0 0 2.5px var(--border),
+    0 8px 18px rgba(var(--ink-rgb), 0.18);
+  transition:
+    transform 0.22s cubic-bezier(0.32, 0.72, 0, 1),
+    box-shadow 0.22s cubic-bezier(0.32, 0.72, 0, 1);
+}
+/* Apple-style dark-glass name tooltip with a caret. Pops above
+     * the avatar on hover; sized for the slightly bigger discs. */
+.result .shared-by .ava::after {
+  content: attr(data-name);
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: rgba(var(--ink-rgb), 0.94);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  color: white;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 8px;
+  white-space: nowrap;
+  letter-spacing: -0.005em;
+  pointer-events: none;
+  opacity: 0;
+  transition:
+    opacity 0.2s cubic-bezier(0.32, 0.72, 0, 1),
+    transform 0.2s cubic-bezier(0.32, 0.72, 0, 1);
+  box-shadow: 0 6px 18px rgba(var(--ink-rgb), 0.22);
+  z-index: 11;
+}
+.result .shared-by .ava::before {
+  content: "";
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  border: 5px solid transparent;
+  border-top-color: rgba(var(--ink-rgb), 0.94);
+  pointer-events: none;
+  opacity: 0;
+  transition:
+    opacity 0.2s cubic-bezier(0.32, 0.72, 0, 1),
+    transform 0.2s cubic-bezier(0.32, 0.72, 0, 1);
+  z-index: 11;
+}
+.result .shared-by .ava:hover::after,
+.result .shared-by .ava:hover::before {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+/* Overflow chip — same size & treatment as the avatars but a
+     * subtle muted fill with a "+N" label. */
+.result .shared-by .more {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  margin-left: -5px;
+  background: rgba(var(--ink-rgb), 0.06);
+  color: var(--muted);
+  display: grid;
+  place-items: center;
+  font-size: 8.5px;
+  font-weight: 600;
+  font-family: var(--sans);
+  letter-spacing: -0.01em;
+  box-shadow:
+    0 0 0 2px var(--bg-a),
+    0 2px 5px rgba(var(--ink-rgb), 0.08);
+}
+
+/* Retrieval score — quiet light-grey mono digits, sits at the
+     * right end of the foot strip. */
+.result-foot-right .score {
+  font-family: ui-monospace, "SF Mono", "Menlo", monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted);
+  opacity: 0.5;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0;
+  transition:
+    color 0.25s ease,
+    opacity 0.25s ease;
+}
+/* Re-ranker score — bolder ink, full opacity, accent-tinted.
+     * Marks rows the in-browser ColBERT pass has scored, so during
+     * the streaming rerank the user can watch the bolder values
+     * climb the list as they're computed. */
+.result-foot-right .score.reranked {
+  color: var(--accent);
+  opacity: 0.85;
+}
+/* Title — Newsreader, slightly larger, very tight tracking & lh */
+.result h3 {
+  font-family: var(--modern);
+  /* Google-style result title: 20px, regular-to-medium weight,
+     ~26px line-height. Tighter tracking matches the SF Pro
+     fallback at this size. */
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0 0 12px;
+  letter-spacing: -0.018em;
+  line-height: 1.3;
+  color: var(--ink);
+}
+.result h3 a {
+  transition: color 0.15s;
+}
+.result h3 a:hover {
+  color: var(--accent);
+}
+/* Tweet summary renderer — each tweet (or thread part) gets its own
+ * subtle card-within-card so the eye can follow the structure.
+ * Threads stack their parts vertically with a numbered chip; single
+ * tweets render the same shape without the chip. Media (photos /
+ * videos) below the text in a horizontally-scrolling strip. */
+.tweet-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+}
+/* Threads stack their parts with extra vertical breathing room —
+ * the spacing alone (no chrome, no rail, no badges) carries the
+ * "these are distinct pieces of one thought" cue. */
+.tweet-summary--thread {
+  gap: 22px;
+}
+/* Header — soft, no chrome. Sits above the part stack and tells
+ * the reader "this is N pieces of one thought" without shouting. */
+.tweet-thread-header {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  align-self: flex-start;
+  margin: 2px 0 6px;
+  padding: 0;
+  background: transparent;
+  color: rgba(var(--ink-rgb), 0.55);
+  font-family: var(--modern);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.tweet-thread-icon {
+  font-size: 13px;
+  line-height: 1;
+}
+.tweet-thread-label {
+  line-height: 1.2;
+}
+[data-theme="dark"] .tweet-thread-header {
+  color: rgba(255, 255, 255, 0.6);
+}
+.tweet-part {
+  position: relative;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+}
+/* Thread parts: same flat look as single tweets — no card chrome,
+ * no badge. The 22px gap on `.tweet-summary--thread` separates them. */
+.tweet-part--threaded {
+  background: transparent;
+  border: 0;
+  padding: 0;
+}
+/* Thread parts share the same readable left-aligned rhythm as
+ * single tweets — justification with hyphenation looked tidy on a
+ * full-page article but reads weird inside the short paragraphs
+ * tweets typically have. `break-word` keeps long URLs / handles
+ * from blowing out the column. */
+.tweet-part--threaded .tweet-part-text {
+  text-align: left;
+  word-break: break-word;
+}
+.tweet-part-text {
+  margin: 0;
+  font-family: var(--modern);
+  font-size: 15.5px;
+  line-height: 1.65;
+  letter-spacing: -0.005em;
+  color: rgba(var(--ink-rgb), 0.84);
+  /* `pre-wrap` keeps any single newlines inside a paragraph as
+   * visual line breaks — the JS renderer splits on `\n\n+` into
+   * separate <p> elements, so paragraph spacing is handled by the
+   * margin rule below and not by blank text lines. */
+  white-space: pre-wrap;
+  word-break: break-word;
+  text-align: left;
+}
+/* Real paragraph spacing — the JS emits one <p> per logical block
+ * (split on blank lines in the source). 0.85em sits between flat
+ * paragraph break and a section break, which is the rhythm a reader
+ * scanning a feed of mixed-length posts wants. */
+.tweet-part-text + .tweet-part-text {
+  margin-top: 0.85em;
+}
+.tweet-media {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+.tweet-media-tile {
+  position: relative;
+  flex: 0 0 auto;
+  display: block;
+  max-width: 240px;
+  max-height: 200px;
+  padding: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(var(--ink-rgb), 0.08);
+  background: rgba(var(--ink-rgb), 0.05);
+  text-decoration: none;
+  cursor: zoom-in;
+  transition: transform 0.15s ease;
+}
+.tweet-media-tile:hover {
+  transform: translateY(-1px);
+}
+.tweet-media-tile img,
+.tweet-media-tile video {
+  display: block;
+  max-width: 240px;
+  max-height: 200px;
+  width: auto;
+  height: auto;
+  object-fit: cover;
+}
+/* Videos need room for the native controls strip — let them grow
+ * wider than the photo tiles and skip the zoom-in cursor. */
+.tweet-media-video {
+  cursor: default;
+  max-width: 360px;
+  max-height: 260px;
+}
+.tweet-media-video video {
+  max-width: 360px;
+  max-height: 260px;
+  object-fit: contain;
+  background: #000;
+}
+/* Play-overlay for the video poster — inline playback isn't possible
+ * (Twitter's video CDN gates on Referer), so we render the poster and
+ * pop the play badge to signal "click to watch on twitter.com". */
+.tweet-media-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.62);
+  color: #fff;
+  font-size: 17px;
+  pointer-events: none;
+}
+
+/* ── Inline link previews under a tweet ────────────────────────
+ * The pipeline pre-fetches each linked URL's OG title / summary /
+ * image at ingest time and stores them in `documents.linked_urls`
+ * (capped at 5 entries per doc). The frontend renders one card
+ * per entry below the tweet text — no client-side OG fetch, no
+ * placeholder state.
+ *
+ * Layout: image-left, meta-right (a la Slack / Twitter cards).
+ * Visuals mirror the result-card family — ink-on-paper, faint
+ * border, hover lift. The `.tweet-links` wrapper stacks multiple
+ * cards vertically so a thread linking 3 papers reads as a tidy
+ * column rather than a wide row. */
+.tweet-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+/* ── Modern OG link card ──────────────────────────────────────────
+ * Two shapes, one render path:
+ *   .link-card--has-image  → 96×96 left thumbnail + meta column.
+ *   .link-card--no-image   → no thumbnail tile; favicon sits inline
+ *                            next to the host so the row stays
+ *                            compact (no big empty box for sites
+ *                            that don't supply an OG image).
+ * Used on both the feed and the personal-page card renderers,
+ * since both go through renderDocLinkCards().
+ */
+.link-card {
+  display: flex;
+  align-items: stretch;
+  gap: 14px;
+  padding: 10px;
+  border-radius: 14px;
+  background: rgba(var(--paper-rgb), 0.55);
+  border: 1px solid rgba(var(--ink-rgb), 0.08);
+  color: inherit;
+  text-decoration: none;
+  transition:
+    background 140ms ease,
+    border-color 140ms ease,
+    transform 140ms ease,
+    box-shadow 140ms ease;
+}
+.link-card:hover {
+  background: rgba(var(--paper-rgb), 0.85);
+  border-color: rgba(var(--ink-rgb), 0.16);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(var(--ink-rgb), 0.06);
+}
+[data-theme="dark"] .link-card {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+[data-theme="dark"] .link-card:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Thumbnail tile — only rendered when the OG image is present. */
+.link-card-img {
+  flex: 0 0 96px;
+  width: 96px;
+  height: 96px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: rgba(var(--ink-rgb), 0.05);
+  position: relative;
+}
+.link-card-og {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Meta column. With an image the row is constrained to the tile's
+ * 96px height; without an image the card collapses to its natural
+ * height (favicon row + title [+ summary]). */
+.link-card-meta {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  overflow: hidden;
+}
+.link-card--has-image .link-card-meta {
+  /* Match the thumbnail height so the visual baseline is shared. */
+  height: 96px;
+}
+
+/* Host row with inline favicon. The favicon is small (14px) so it
+ * reads as an icon next to the host name, not a thumbnail. */
+.link-card-host {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--sans);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: lowercase;
+  color: rgba(var(--ink-rgb), 0.55);
+  min-width: 0;
+}
+.link-card-host span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.link-card-fav {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  border-radius: 3px;
+  opacity: 0.9;
+  /* `contain` keeps the favicon's intrinsic aspect ratio — some
+   * favicons (arxiv, openreview) are returned non-square by the
+   * Google favicon service, and the default `fill` would otherwise
+   * stretch them and make them read as zoomed/off-centre. */
+  object-fit: contain;
+}
+
+.link-card-title {
+  font-family: var(--sans);
+  font-size: 14.5px;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.005em;
+  color: rgb(var(--ink-rgb));
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-word;
+}
+.link-card-summary {
+  font-family: var(--sans);
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: rgba(var(--ink-rgb), 0.6);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+/* When there's no image, lift the summary cap so it can breathe a
+ * little more — the card is already shorter without the thumbnail. */
+.link-card--no-image .link-card-summary {
+  -webkit-line-clamp: 3;
+}

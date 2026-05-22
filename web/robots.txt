@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /indices/
+Disallow: /events
+Disallow: /stats/
+Disallow: /admin
+Disallow: /admin.html
+Disallow: /profile
+Disallow: /profile.html
+Disallow: /*?profile=1
+
+Sitemap: https://knowledge-web.org/sitemap.xml
