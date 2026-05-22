@@ -71,6 +71,31 @@ services:
     image: postgres:16-alpine
     restart: unless-stopped
     logging: *default-logging
+    # Memory tuning. PG's out-of-the-box defaults (work_mem=4MB,
+    # shared_buffers=128MB) are sized for a Raspberry Pi; on this
+    # 8 GB host the feed query alone wanted 27 MB of sort space
+    # and was spilling to disk for ~6 seconds per cold call. The
+    # values below match what `ALTER SYSTEM` was set to on prod
+    # (see `postgresql.auto.conf` in the pgdata volume); we also
+    # pass them on the command line so a fresh database gets the
+    # same posture from boot 1.
+    #
+    # `shm_size: 1g` raises the container's /dev/shm from the 64 MB
+    # Docker default. VACUUM ANALYZE and parallel seq scans fail
+    # with "No space left on device" on the small default.
+    shm_size: 1g
+    command:
+      - "postgres"
+      - "-c"
+      - "work_mem=32MB"
+      - "-c"
+      - "shared_buffers=1GB"
+      - "-c"
+      - "effective_cache_size=4GB"
+      - "-c"
+      - "maintenance_work_mem=256MB"
+      - "-c"
+      - "jit=off"
     environment:
       POSTGRES_USER: knowledge
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-knowledge}

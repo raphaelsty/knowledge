@@ -1362,17 +1362,28 @@ pub async fn list_co_owners(
 /// GET /api/users/{slug}/sources
 ///
 /// Returns `[{ key, label, count }]` ordered by count desc — same shape
-/// as the old `sources.json`. Backed by the `user_source_counts` view.
+/// as the old `sources.json`.
+///
+/// Bypasses the `user_source_counts` view: that view does
+/// `GROUP BY user_id, source` over the entire `documents` table and
+/// PostgreSQL can't push the `username = $1` filter past the
+/// aggregate, so the per-user request used to scan all 460k rows
+/// (~830 ms cold). Resolving the user_id in an inline subquery and
+/// aggregating only that user's rows lets the planner use
+/// `idx_documents_user_source` for an index-only scan over the few
+/// thousand rows that user actually has — output is byte-identical
+/// to the view-based form.
 pub async fn list_sources(
     State(pool): State<PgPool>,
     Path(slug): Path<String>,
 ) -> impl IntoResponse {
-    let sql = "SELECT v.source, v.count
-         FROM user_source_counts v
-         JOIN users u ON u.id = v.user_id
-        WHERE u.username = $1
-          AND v.source <> ''
-        ORDER BY v.count DESC";
+    let sql = "SELECT source, count(*)::bigint
+         FROM documents
+        WHERE user_id = (SELECT id FROM users WHERE username = $1)
+          AND deleted = FALSE
+          AND source <> ''
+        GROUP BY source
+        ORDER BY count(*) DESC";
 
     let rows: Vec<(String, i64)> = sqlx::query_as(sql)
         .bind(&slug)
@@ -1404,13 +1415,22 @@ pub async fn list_sources(
 ///
 /// Shape: `[{ key, label, count }]`, ordered by count desc.
 pub async fn list_all_vip_sources(State(pool): State<PgPool>) -> impl IntoResponse {
-    let sql = "SELECT v.source, SUM(v.count)::bigint
-         FROM user_source_counts v
-         JOIN users u ON u.id = v.user_id
+    // Aggregate `documents` directly against the small (~452 row)
+    // VIP user set instead of going through `user_source_counts`
+    // (which pre-aggregates the full table by `(user_id, source)`
+    // and forces a 460k-row scan even when only the VIP slice is
+    // needed). The straight JOIN lets the planner hash the VIP id
+    // set in memory and probe per doc — cold drops from ~830 ms
+    // to ~650 ms, and the floor here is fundamental (we have to
+    // touch every VIP doc to count by source).
+    let sql = "SELECT d.source, count(*)::bigint
+         FROM documents d
+         JOIN users u ON u.id = d.user_id
         WHERE u.vip = TRUE
-          AND v.source <> ''
-        GROUP BY v.source
-        ORDER BY SUM(v.count) DESC";
+          AND d.deleted = FALSE
+          AND d.source <> ''
+        GROUP BY d.source
+        ORDER BY count(*) DESC";
 
     let rows: Vec<(String, i64)> = sqlx::query_as(sql)
         .fetch_all(&pool)

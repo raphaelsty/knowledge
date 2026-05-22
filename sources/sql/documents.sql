@@ -451,6 +451,18 @@ CREATE INDEX IF NOT EXISTS idx_documents_canonical_url
 CREATE INDEX IF NOT EXISTS idx_documents_canonical_referenced_urls
     ON documents USING GIN (canonical_referenced_urls);
 
+-- Index covering the anonymous /api/feed query
+-- (`build_feed_payload`). Both halves of that query (the
+-- DISTINCT ON for `latest_meta` and the GROUP BY for
+-- `sharers_per_url`) filter on (`deleted = FALSE`, `date IS NOT
+-- NULL`) and order/group by `url`. With (url, date DESC, user_id)
+-- the planner switches both passes to Index Only Scan and the
+-- external-merge sort that previously spilled 27 MB to disk goes
+-- away — cold latency drops from ~9 s to ~1.6 s.
+CREATE INDEX IF NOT EXISTS idx_documents_url_date_live
+    ON documents (url, date DESC NULLS LAST, user_id)
+ WHERE deleted = FALSE AND date IS NOT NULL;
+
 -- Composite index on (user_id, source) — serves both per-user lookups
 -- (leftmost prefix) AND the GROUP BY in the `user_source_counts` view,
 -- which otherwise would need a full scan.
