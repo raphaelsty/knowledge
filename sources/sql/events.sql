@@ -28,9 +28,38 @@ CREATE TABLE IF NOT EXISTS events (
     position       SMALLINT,
     score          REAL,
 
+    -- Recommendation-training signals (added later; idempotent migrations
+    -- below add the same columns to existing tables).
+    personality_slug TEXT,
+    viewer_user_id   BIGINT,
+    client_ts        TIMESTAMPTZ,
+
     -- Guardrail: event_type must be a known enum value (see comment below).
     CONSTRAINT chk_event_type CHECK (event_type BETWEEN 1 AND 6)
 );
+
+-- Idempotent migrations: bring an already-deployed events table up to
+-- the latest column set. ALTER TABLE IF NOT EXISTS is no-op when the
+-- column is already present, so this is safe to re-run on every boot.
+ALTER TABLE events ADD COLUMN IF NOT EXISTS personality_slug TEXT;
+ALTER TABLE events ADD COLUMN IF NOT EXISTS viewer_user_id   BIGINT;
+ALTER TABLE events ADD COLUMN IF NOT EXISTS client_ts        TIMESTAMPTZ;
+
+-- viewer_user_id is FK to users(id) but we keep it nullable + ON DELETE
+-- SET NULL so anonymous events and deleted users don't break the table.
+-- Apply the constraint defensively in case the column was added in a
+-- previous schema bump without the FK.
+DO $$ BEGIN
+    IF NOT EXISTS (
+        SELECT 1 FROM pg_constraint
+        WHERE conname = 'events_viewer_user_id_fkey'
+    ) THEN
+        ALTER TABLE events
+            ADD CONSTRAINT events_viewer_user_id_fkey
+            FOREIGN KEY (viewer_user_id)
+            REFERENCES users(id) ON DELETE SET NULL;
+    END IF;
+END $$;
 
 -- Composite index: primary access path is "events for library X filtered
 -- by type, most recent first". Leftmost prefix (user_id) alone also
@@ -40,6 +69,17 @@ CREATE INDEX IF NOT EXISTS idx_events_user_type_created
 
 -- Session reconstruction (rare but useful for debugging).
 CREATE INDEX IF NOT EXISTS idx_events_session ON events (session_id);
+
+-- Recommendation-training access paths.
+-- "What did this viewer do?" — feeds the per-user training set.
+CREATE INDEX IF NOT EXISTS idx_events_viewer_created
+    ON events (viewer_user_id, created_at DESC)
+    WHERE viewer_user_id IS NOT NULL;
+
+-- "Which queries led to clicks on doc X?" — feeds learning-to-rank.
+CREATE INDEX IF NOT EXISTS idx_events_doc_query
+    ON events (doc_url, event_type, created_at DESC)
+    WHERE doc_url IS NOT NULL;
 
 -- ── DB-level documentation ──────────────────────────────────────────────
 COMMENT ON TABLE events IS
@@ -58,3 +98,6 @@ COMMENT ON COLUMN events.sort_mode     IS 'Sort mode enum: 0=relevance, 1=date.'
 COMMENT ON COLUMN events.doc_url       IS 'Clicked/similar document URL.';
 COMMENT ON COLUMN events.position      IS 'Click rank on the result list (0-based).';
 COMMENT ON COLUMN events.score         IS 'Model/rerank score of the clicked document.';
+COMMENT ON COLUMN events.personality_slug IS 'Slug of the personality being browsed (denormalised from users.username for easy joins on training-set extracts).';
+COMMENT ON COLUMN events.viewer_user_id   IS 'Logged-in user actually triggering the event. NULL for anonymous browsing. Distinct from events.user_id, which identifies the library being browsed.';
+COMMENT ON COLUMN events.client_ts        IS 'Client-side timestamp at event-fire time. Lets us reconstruct true order even when sendBeacon batches delay delivery.';

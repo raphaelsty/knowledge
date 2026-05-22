@@ -1195,6 +1195,14 @@
     if (hostMeta && hostMeta.name)
       $("q").placeholder = `Search ${hostMeta.name} knowledge`;
   }
+  // Behavioural tracker — fire-and-forget. Identifies the viewer (for
+  // personalised recs) and the library being browsed (for per-library
+  // stats), then logs the page view.
+  if (window.kn) {
+    window.kn.setViewer({ id: me?.id });
+    window.kn.setPersonality({ id: hostMeta?.id, slug });
+    window.kn.track("view", { user_id: hostMeta?.id, personality_slug: slug });
+  }
   state.favorites = favs;
   // Soft-deleted URLs — the index can still hold these until a
   // re-index lands. We filter them out of every search / similar /
@@ -1915,6 +1923,13 @@
     renderSrc();
     writeUrl();
     refresh();
+    // Telemetry: record the new active source-filter string so the
+    // recommender can learn per-user preference distributions.
+    if (window.kn) {
+      const sf = [...state.sources].sort().join(",") || null;
+      window.kn.setLastFilter({ source: sf || "" });
+      window.kn.track("filter_apply", { source_filter: sf });
+    }
   });
   $("clearSrc").addEventListener("click", () => {
     state.sources.clear();
@@ -2611,6 +2626,13 @@
     // navigation across feed / personal / search routes.
     saveCatSelected(state.categories);
     syncCatPickerLabel();
+    // Telemetry: each topic toggle is a "folder_browse" — feeds the
+    // recommender a per-user topic-preference signal.
+    if (window.kn) {
+      window.kn.track("folder_browse", {
+        source_filter: [...state.categories].sort().join(",") || null,
+      });
+    }
     // Re-render the list in-place so check marks update without
     // the user closing the picker. Reuses the current search box
     // contents so the visible filter stays the same.
@@ -4120,6 +4142,19 @@
     $("qmCands").textContent =
       total == null ? "" : `${fmt(total)} candidate${total === 1 ? "" : "s"}`;
     host.hidden = false;
+
+    // Behavioural tracking — log every completed search. Latency clamps
+    // to int32 since the column is `latency_ms INTEGER`. Result count
+    // clamps to smallint range so freak overflows don't blow up the
+    // server validator.
+    if (window.kn && state.query) {
+      window.kn.setLastQuery(state.query);
+      window.kn.track("search", {
+        query: state.query,
+        result_count: Math.min(32767, nResults ?? 0),
+        latency_ms: tMs == null ? null : Math.min(2147483647, Math.round(tMs)),
+      });
+    }
   }
 
   /* Sum of `documentCount` across the personalities currently in
@@ -6801,6 +6836,33 @@
     // purpose, tear it down.
     hideResultsSpinner();
     wireFavButtons(scope);
+
+    // Behavioural click tracking via delegation on the results
+    // container. One handler per refresh — flag the container so the
+    // listener doesn't stack on re-renders. Captures clicks on the
+    // title link, the inline media tiles, and the link card embeds.
+    if (window.kn && !scope.dataset.trackWired) {
+      scope.dataset.trackWired = "1";
+      scope.addEventListener("click", (e) => {
+        const link = e.target.closest("a[href]");
+        if (!link) return;
+        const article = link.closest("article.result");
+        if (!article) return;
+        const docUrl = article.dataset.url;
+        if (!docUrl) return;
+        const docs = state.lastDocs || [];
+        const idx = docs.findIndex((x) => x.url === docUrl);
+        const doc = idx >= 0 ? docs[idx] : null;
+        window.kn.track("click", {
+          doc_url: docUrl,
+          // 0-based rank on the result list; recommenders use this to
+          // distinguish "clicked the top hit" from "scrolled past 20".
+          position: idx >= 0 ? Math.min(32767, idx) : null,
+          score:
+            doc && typeof doc.similarity === "number" ? doc.similarity : null,
+        });
+      });
+    }
     scope.querySelectorAll("[data-tag]").forEach((b) =>
       b.addEventListener("click", () => {
         // Lowercase so the toggle matches `state.tags` even when
@@ -7281,6 +7343,10 @@
     }
     btn.classList.add("on");
     btn.setAttribute("aria-expanded", "true");
+    // Behavioural signal: "related" expansion = the user wanted more
+    // like this doc. Stronger relevance signal than a click for the
+    // recommender to learn from.
+    if (window.kn) window.kn.track("find_similar", { doc_url: url });
     openSimilarUrls.add(url);
     // After the max-height open transition settles, unbind the cap
     // so panels with many related cards (full feed-style rows can

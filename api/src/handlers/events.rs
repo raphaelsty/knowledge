@@ -92,6 +92,15 @@ struct EventPayload {
     doc_url: Option<String>,
     position: Option<i16>,
     score: Option<f32>,
+
+    // Recommendation-training signals.
+    personality_slug: Option<String>,
+    viewer_user_id: Option<i64>,
+    // Client wall-clock at event-fire time, ISO-8601 (e.g.
+    // "2026-05-22T18:12:03.412Z"). Bound as text; PG parses on insert
+    // into the TIMESTAMPTZ column. Keeping the chrono dep out of sqlx
+    // avoids a libsqlite3-sys conflict with next-plaid.
+    client_ts: Option<String>,
 }
 
 #[derive(Debug, Serialize)]
@@ -184,8 +193,10 @@ pub async fn ingest_events(
             "INSERT INTO events
                 (session_id, user_id, event_type,
                  query, result_count, latency_ms, source_filter, sort_mode,
-                 doc_url, position, score)
-             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)",
+                 doc_url, position, score,
+                 personality_slug, viewer_user_id, client_ts)
+             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11,
+                     $12, $13, $14::timestamptz)",
         )
         .bind(ev.session_id.to_string())
         .bind(user_id)
@@ -198,6 +209,9 @@ pub async fn ingest_events(
         .bind(ev.payload.doc_url.as_deref())
         .bind(ev.payload.position)
         .bind(ev.payload.score)
+        .bind(ev.payload.personality_slug.as_deref())
+        .bind(ev.payload.viewer_user_id)
+        .bind(ev.payload.client_ts.as_deref())
         .execute(&mut *tx)
         .await
         .map_err(|e| {

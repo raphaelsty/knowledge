@@ -96,6 +96,18 @@
   window.K_meVip = me.vip;
   document.documentElement.toggleAttribute("data-vip", me.vip);
 
+  // Behavioural tracker — on /profile the viewer is also the personality
+  // being browsed (it's the settings page for your own library), so
+  // both ids resolve to `me`.
+  if (window.kn && me.id) {
+    window.kn.setViewer({ id: me.id });
+    window.kn.setPersonality({ id: me.id, slug: me.slug });
+    window.kn.track("view", {
+      user_id: me.id,
+      personality_slug: me.slug,
+    });
+  }
+
   // Admin-only entry point. Reveal the Settings → Admin link iff the
   // signed-in slug matches the single operator account. Mirrors the
   // server-side `require_raphael` guard in api/src/handlers/admin.rs
