@@ -2,11 +2,9 @@
   <a href="https://knowledge-web.org"><img src="web/img/logo.svg" alt="Knowledge" width="340"></a>
 </p>
 
-<p align="center"><em>A biased Feed.</em></p>
-
 <p align="center">An opinionated reading list of <strong>450+ people</strong> who shape AI, science, and software today. A place to learn.</p>
 
-<p align="center"><em>No ads, no algorithm, no infinite scroll. Just what they read.</em></p>
+<p align="center"><em>No ads, no algorithm, just what they read.</em></p>
 
 <br>
 
@@ -127,8 +125,8 @@ Tap the heart on any card and the doc lands in your library, indexed and searcha
 <a href="https://knowledge-web.org/antoine-chaffin" title="Antoine Chaffin"><img src="web/img/people/antoine-chaffin.png" alt="Antoine Chaffin" width="120"></a>
 <a href="https://knowledge-web.org/manuel-faysse" title="Manuel Faysse"><img src="web/img/people/manuel-faysse.png" alt="Manuel Faysse" width="120"></a>
 <a href="https://knowledge-web.org/tony-wu" title="Tony Wu"><img src="web/img/people/tony-wu.png" alt="Tony Wu" width="120"></a>
+<a href="https://knowledge-web.org/amelie-chatelain" title="Amélie Chatelain"><img src="web/img/people/amelie-chatelain.png" alt="Amélie Chatelain" width="120"></a>
 <a href="https://knowledge-web.org/arthur-mensch" title="Arthur Mensch"><img src="web/img/people/arthur-mensch.png" alt="Arthur Mensch" width="120"></a>
-<a href="https://knowledge-web.org/bo-wang" title="Bo Wang"><img src="web/img/people/bo-wang.png" alt="Bo Wang" width="120"></a>
 </p>
 
 <p align="center">…or wander through <a href="https://knowledge-web.org">all 450+ libraries</a>.</p>
