@@ -17,22 +17,15 @@ classifiers = [
 
 dependencies = [
     "beautifulsoup4==4.9.3",
-    "pandas==1.5.3",
     "requests>=2.33.0,<3",
-    "cherche==2.2.1",
-    "pyyaml_env_tag==0.1",
     "pyyaml>=6",
     "pyzotero==1.5.5",
-    "scikit-learn==1.5.0",
-    "lenlp==1.1.0",
     "trafilatura==2.0.0",
     "huggingface-hub==0.36.0",
     "twikit>=2.3.0",
     "numpy==2.0.0",
     "model2vec>=0.7.0",
     "psycopg[binary]>=3.1",
-    "fastapi>=0.115",
-    "uvicorn>=0.32",
     "cryptography>=43.0",
     "openai>=1.0",
 ]
