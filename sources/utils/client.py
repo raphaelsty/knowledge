@@ -652,6 +652,32 @@ def run_pipeline(
 
         fetch_tasks.append(_t6)
 
+        # HuggingFace activity feed: papers + articles the user has
+        # upvoted, submitted, or authored. Scrapes the
+        # `/<u>/activity/<kind>` JSON island (no API equivalent).
+        # Public-username-only — the token-only path has no concept
+        # of a public profile to query, so we skip it there.
+        hf_activity_user = (
+            hf_cfg if isinstance(hf_cfg, str) else (hf_cfg.get("username") if isinstance(hf_cfg, dict) else None)
+        )
+        if hf_activity_user:
+
+            def _t6b(user=hf_activity_user):
+                with _ts("huggingface", f"activity({user})", "Fetch HuggingFace activity") as ts:
+                    step(src_start, "Fetching HuggingFace", f"Papers + articles activity for {user}")
+                    fetcher = huggingface.Activity(username=user)
+                    # The fetcher emits per-doc `source` (`arxiv` for
+                    # papers, `huggingface` for articles); the merge
+                    # helper preserves it. Pass `huggingface` as the
+                    # default source-key for any doc the fetcher
+                    # didn't tag (shouldn't happen with the current
+                    # implementation but keeps the contract explicit).
+                    added = _merge_and_track(fetcher(existing_urls=_existing()), source_key="huggingface")
+                    ts.add(len(added))
+                    step(src_start, "HuggingFace activity", f"+{len(added)} new" if added else "Up to date")
+
+            fetch_tasks.append(_t6b)
+
     # Twitter/X (via TwitterAPI.io OR — if `--twikit` was passed —
     # via cookie-authenticated twikit using Safari cookies)
     if has_twitter:
