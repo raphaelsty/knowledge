@@ -168,9 +168,12 @@ pub async fn ingest_events(
         let user_id = ev.payload.user_id.expect("validated above");
 
         // Upsert session (ignore device/referrer on subsequent events).
+        // The id column is UUID; bind as text and cast on insert. We
+        // avoid adding sqlx's `uuid` feature because it conflicts with
+        // next-plaid's bundled rusqlite.
         sqlx::query(
             "INSERT INTO sessions (id, user_id, device, referrer_domain)
-             VALUES ($1, $2, $3, $4)
+             VALUES ($1::uuid, $2, $3, $4)
              ON CONFLICT (id) DO UPDATE SET last_seen_at = now()",
         )
         .bind(ev.session_id.to_string())
@@ -195,7 +198,7 @@ pub async fn ingest_events(
                  query, result_count, latency_ms, source_filter, sort_mode,
                  doc_url, position, score,
                  personality_slug, viewer_user_id, client_ts)
-             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11,
+             VALUES ($1::uuid, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11,
                      $12, $13, $14::timestamptz)",
         )
         .bind(ev.session_id.to_string())
