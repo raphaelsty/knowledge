@@ -26,11 +26,25 @@
 # OPENAI_API_KEY is consumed by the knowledge-clean-daemon service
 # (gpt-4o-mini calls). The clean daemon refuses to start without it.
 
+# Default log driver config — merged into every service via the
+# `logging: *default-logging` line. Without this, docker's
+# `json-file` driver has NO size cap and a single chatty container
+# (the indexer logs ~10 lines/sec at peak) can fill the host disk
+# inside weeks. 10 MB × 3 files = 30 MB hard cap per container,
+# ~270 MB across the whole stack — plenty for postmortem, bounded
+# enough that the host can never run out of room.
+x-logging: &default-logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "3"
+
 # YAML anchor shared by all four Python daemon services (formerly
 # systemd units on the host). Same image, same network, same
 # database — only the `command:` and the resource limits change
 # per service.
 x-daemon-base: &daemon-base
+  logging: *default-logging
   build:
     context: .
     dockerfile: Dockerfile.daemons
@@ -56,6 +70,7 @@ services:
   postgres:
     image: postgres:16-alpine
     restart: unless-stopped
+    logging: *default-logging
     environment:
       POSTGRES_USER: knowledge
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-knowledge}
@@ -74,6 +89,7 @@ services:
     build:
       context: api
     restart: unless-stopped
+    logging: *default-logging
     # The container starts as root, the entrypoint chowns the bind-
     # mounted /data/indices + named volume /models + /app workdir,
     # then drops privileges to uid 1000 (the `knowledge` user from
@@ -150,6 +166,7 @@ services:
       context: .
       dockerfile: Dockerfile.caddy
     restart: unless-stopped
+    logging: *default-logging
     # No ports published — Traefik handles 80/443 externally and
     # forwards to this container on the dokploy-network.
     environment:
@@ -189,6 +206,7 @@ services:
   pg-backup:
     image: postgres:16-alpine
     restart: unless-stopped
+    logging: *default-logging
     depends_on:
       postgres:
         condition: service_healthy
@@ -310,6 +328,7 @@ services:
   docker-cleanup:
     image: docker:25-cli
     restart: unless-stopped
+    logging: *default-logging
     volumes:
       # The cleanup container drives the host's docker daemon via
       # the unix socket. No other privilege is needed — the socket
