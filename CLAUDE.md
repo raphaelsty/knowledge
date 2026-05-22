@@ -55,3 +55,16 @@ make ssh             # SSH into the server (handy for ad-hoc shell work)
 - The API is `knowledge-api` (Rust binary in `api/`, built in Docker or via `make serve`)
 - Frontend API URLs auto-detect: `localhost` → hardcoded ports, production → relative paths (same origin via Caddy)
 - All routes go through the single knowledge-api on port 8080: `/indices/*` (search), `/api/*` (data + ingest), `/events` + `/stats/*` (analytics)
+
+## Prod daemons (systemd, host-side)
+
+Four long-lived services run directly on the Hetzner host (NOT inside the Dokploy Docker stack). They're defined by unit files in `sources/*.service` and installed under `/etc/systemd/system/`. Code lives in the host's `/root/knowledge` git checkout — a `git pull` + `systemctl restart` is how you ship updates to them.
+
+| Service | Source | Role |
+|---|---|---|
+| `knowledge-continuous` | `sources/knowledge-continuous.service` (wraps `sources/continuous_pipeline.sh`) | Long-running VIP-first loop: re-runs `run.py` for every personality, oldest-touched first. Pinned to CPU 0 with `CPUAffinity=0` so the runner can never starve the Rust API. This is the daemon that picks up new source fetchers (e.g. the recently added `huggingface.Activity`) — restart it after a code change to `sources/*` or `run.py`. |
+| `knowledge-indexer` | `sources/knowledge-indexer.service` (wraps `sources/indexer_daemon.py`) | Detects broken ColBERT indices, backfills `indexed=FALSE` documents, owns the index lifecycle end-to-end (decoupled from the fetcher so `make run` is quota-bounded). Pinned to CPU 1 with `CPUQuota=50%` so it shares fairly with the Rust API on the second core. |
+| `knowledge-categorize-daemon` | `sources/categorize_daemon.service` | Walks uncategorized `documents` newest-first, runs Potion static embeddings, writes 0–3 category slugs per doc into `document_category_assignments`. Niced to 19, CPU capped at 10%, memory capped at 384 MB. |
+| `knowledge-clean-daemon` | `sources/clean_daemon.service` | Rewrites verbose `title` / `summary` into pedagogical `clean_title` / `clean_summary` via `gpt-4o-mini`. I/O-bound on the OpenAI API; niced to 19, CPU 20%, memory 256 MB. Only touches VIP documents. |
+
+Operate via the standard Makefile shortcuts (`make ssh` then `systemctl status/start/stop/restart <name>`) or via the dedicated `clean-daemon-*` / `categorize-daemon-*` targets in the Makefile.
