@@ -16,12 +16,41 @@
 #
 # Env vars (set in Dokploy's project UI):
 #   DOMAIN, POSTGRES_PASSWORD, GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET,
-#   KNOWLEDGE_ADMIN_TOKEN, ADMIN_API_KEY
+#   KNOWLEDGE_ADMIN_TOKEN, ADMIN_API_KEY, OPENAI_API_KEY
 #
 # ADMIN_API_KEY MUST be set to a long random string before deploy — the
 # API fails closed when this env is missing and every admin endpoint
 # (POST /api/pipeline, DELETE /indices/*, ingest, promote, …) will
 # return 401. Generate with: `openssl rand -hex 32`.
+#
+# OPENAI_API_KEY is consumed by the knowledge-clean-daemon service
+# (gpt-4o-mini calls). The clean daemon refuses to start without it.
+
+# YAML anchor shared by all four Python daemon services (formerly
+# systemd units on the host). Same image, same network, same
+# database — only the `command:` and the resource limits change
+# per service.
+x-daemon-base: &daemon-base
+  build:
+    context: .
+    dockerfile: Dockerfile.daemons
+  image: knowledge-daemons:latest
+  restart: unless-stopped
+  environment:
+    - DATABASE_URL=postgresql://knowledge:${POSTGRES_PASSWORD:-knowledge}@postgres:5432/knowledge
+    # Internal HTTP rather than https://knowledge-web.org — skips the
+    # Traefik+Caddy+TLS round trip for daemon → API calls (only the
+    # indexer hits the API regularly today, but the route is here for
+    # any future daemon that needs it).
+    - API_URL=http://knowledge-api:8080
+    - KNOWLEDGE_ADMIN_TOKEN=${KNOWLEDGE_ADMIN_TOKEN}
+    - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+    - PYTHONUNBUFFERED=1
+  depends_on:
+    postgres:
+      condition: service_healthy
+  networks:
+    - default
 
 services:
   postgres:
@@ -191,12 +220,95 @@ services:
           sleep 3600
         done
 
+  # ────────────────────────────────────────────────────────────────
+  # Python daemons (formerly systemd units on the host). All four
+  # share `x-daemon-base` above — only the `command:` and resource
+  # limits change per service. Logs go to docker (visible via
+  # `dokploy logs <service>` or `docker logs <container>`); the
+  # continuous-pipeline state files (history, pid, stop flag) live
+  # in the `knowledge_daemon_logs` volume so restarts don't lose
+  # the rotation cursor.
+  # ────────────────────────────────────────────────────────────────
+
+  # VIP-first per-user pipeline runner. Loops over personalities,
+  # invokes `run.py <slug> --source <non-twitter,...>`, sleeps,
+  # repeats. Picks up every new source fetcher (including the
+  # recently added `huggingface.Activity`) on container restart.
+  knowledge-continuous:
+    <<: *daemon-base
+    command: ["bash", "sources/continuous_pipeline.sh"]
+    volumes:
+      - knowledge_daemon_logs:/app/logs
+    deploy:
+      resources:
+        limits:
+          # Match the old systemd MemoryMax=2G. CPUAffinity=0 on the
+          # host translates to a soft CPU cap here — we cap at one
+          # full core; Docker can schedule it anywhere but it can't
+          # use more than 1 vCPU of work.
+          memory: 2G
+          cpus: "1.0"
+
+  # ColBERT index repair + backfill. Hits the local knowledge-api on
+  # the docker network rather than the public URL so the round trip
+  # avoids Traefik+Caddy+TLS. CPU 0.5 mirrors the old CPUQuota=50%.
+  knowledge-indexer:
+    <<: *daemon-base
+    command: ["python", "-m", "sources.indexer_daemon"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+      knowledge-api:
+        condition: service_started
+    volumes:
+      - knowledge_daemon_logs:/app/logs
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: "0.5"
+
+  # Category-assignment daemon. CPU-bound on small Potion embeddings
+  # (~10 % of one core on the old systemd unit).
+  knowledge-categorize-daemon:
+    <<: *daemon-base
+    command: ["python", "-m", "sources.utils.categorize_daemon"]
+    deploy:
+      resources:
+        limits:
+          memory: 384M
+          cpus: "0.10"
+
+  # Pedagogical title / summary rewriter via OpenAI (default model
+  # gpt-4o-mini; override `OPENAI_CLEAN_MODEL` in Dokploy env to swap
+  # in a cheaper one, e.g. `gpt-4.1-nano`). I/O-bound on the API;
+  # 20 % CPU is generous.
+  knowledge-clean-daemon:
+    <<: *daemon-base
+    environment:
+      - DATABASE_URL=postgresql://knowledge:${POSTGRES_PASSWORD:-knowledge}@postgres:5432/knowledge
+      - API_URL=http://knowledge-api:8080
+      - KNOWLEDGE_ADMIN_TOKEN=${KNOWLEDGE_ADMIN_TOKEN}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - OPENAI_CLEAN_MODEL=${OPENAI_CLEAN_MODEL:-gpt-4o-mini}
+      - PYTHONUNBUFFERED=1
+    command: ["python", "-m", "sources.utils.clean_daemon"]
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: "0.20"
+
 volumes:
   knowledge_pgdata:
     external: true
   knowledge_models:
     external: true
   knowledge_pgbackups:
+  # Logs + state files (continuous pipeline history / pid / rotation
+  # cursor) for the daemons. Survives `docker compose down` so the
+  # 12 h per-user cooldown isn't reset by a restart.
+  knowledge_daemon_logs:
 
 networks:
   default:

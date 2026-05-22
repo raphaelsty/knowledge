@@ -1,0 +1,59 @@
+# =============================================================================
+# Knowledge daemons image — one image, four entry points.
+# =============================================================================
+# Used by docker-compose.dokploy.yml for:
+#
+#   * knowledge-continuous       — VIP-first per-user pipeline runner
+#   * knowledge-indexer          — ColBERT index repair + backfill
+#   * knowledge-categorize-daemon — Potion-based category assignment
+#   * knowledge-clean-daemon     — gpt-4o-mini pedagogical rewriter
+#
+# Each service in the compose file uses the same `image:` and just
+# overrides `command:`. Layer caching is preserved across builds as
+# long as `pyproject.toml` + `uv.lock` don't change — the (heavy)
+# `uv sync` runs once, then a code-only change re-runs just the
+# final `COPY` step.
+
+FROM python:3.11-slim AS runtime
+
+# System packages: uv needs ca-certificates + curl to bootstrap;
+# psycopg's binary wheel ships libpq so no Postgres dev headers
+# are needed. Trafilatura pulls in lxml which has a manylinux wheel.
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ca-certificates \
+    curl \
+    bash \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install uv (matches what the host runs — `/root/.local/bin/uv`).
+ENV UV_INSTALL_DIR=/usr/local/bin
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh
+
+WORKDIR /app
+
+# Dep layer — re-runs only when the lockfile changes. `--no-install-project`
+# stops uv from trying to install the knowledge package itself; we copy
+# the source tree separately so a code change doesn't bust the dep layer.
+COPY pyproject.toml uv.lock README.md /app/
+RUN uv sync --frozen --no-install-project
+
+# Source tree — bind-mounted read-only by the compose file too, so the
+# baked copy is just a fallback for the build cache. Both paths must
+# exist because the entrypoints `python -m sources.<...>` import from
+# the working dir.
+COPY sources /app/sources
+COPY run.py sources.yml /app/
+
+# Persist logs to a named volume so a `docker compose down` doesn't
+# nuke the continuous-pipeline history; mounted by the compose file.
+RUN mkdir -p /app/logs
+
+# Defaults for the daemons. Individual services override via compose.
+ENV UV_PYTHON=3.11 \
+    PYTHONUNBUFFERED=1 \
+    PATH="/app/.venv/bin:${PATH}"
+
+# No ENTRYPOINT — each compose service supplies its own `command`.
+# Sanity: import-check the source so a broken build fails the image
+# rather than the runtime.
+RUN python -c "import sources, sources.utils, sources.indexer_daemon"
