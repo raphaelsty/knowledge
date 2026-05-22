@@ -1,4 +1,4 @@
-.PHONY: install install-dev sync run index index-all index-check serve web lint lint-fix check pre-commit pre-commit-install docker-build docker-run launch docker-stop clean install-api api-build db db-browse db-backup db-backup-if-stale up down deploy deploy-build deploy-down deploy-logs ssh remote-status remote-logs remote-restart remote-update remote-web redeploy extension dev dev-stop delete purge hn-frontpage daily repair-indexes all-status all-rebuild load-test
+.PHONY: install install-dev sync run index index-all index-check serve web lint lint-fix check pre-commit pre-commit-install docker-build docker-run launch docker-stop clean install-api api-build db db-browse db-backup db-backup-if-stale up down deploy deploy-build deploy-down deploy-logs ssh remote-status remote-logs remote-restart remote-update remote-web redeploy extension dev dev-stop delete purge hn-frontpage daily repair-indexes all-status all-rebuild load-test prod-db-dump prod-db-restore prod-db-sync
 
 # Load .env if present
 -include .env
@@ -551,6 +551,70 @@ categorize-daemon-refresh:
 # Cargo.toml, pyproject.toml, or the compose / Caddy config.
 remote-web:
 	$(SSH_CMD) "cd knowledge && git pull"
+
+# ── Prod → local Postgres clone ────────────────────────────────
+#
+# Three targets that together replace the local dev DB with a copy
+# of prod. Useful when you want to debug against real data, or as a
+# pre-migration safety net before touching the prod stack.
+#
+# Files land in ./backups/ — gitignored, gzipped, timestamped:
+#   backups/prod-YYYYMMDD-HHMMSS.sql.gz
+#
+#   make prod-db-dump      Stream a pg_dump from prod over SSH into
+#                          backups/. Doesn't touch local PG. ~5 GB
+#                          on a typical day → gzipped to ~800 MB.
+#   make prod-db-restore   Drop + recreate the local `knowledge`
+#                          database and replay the freshest dump in
+#                          backups/. Local PG container must be up.
+#   make prod-db-sync      Convenience: dump then restore in one go.
+#
+# Both commands run pg_dump / psql inside the postgres container on
+# either side so we don't need the binaries on the host. The dump
+# uses --no-owner --no-privileges so it replays cleanly into a
+# differently-owned local DB.
+.PHONY: prod-db-dump prod-db-restore prod-db-sync
+prod-db-dump:
+	@mkdir -p backups
+	@TS=$$(date '+%Y%m%d-%H%M%S'); \
+	OUT="backups/prod-$$TS.sql.gz"; \
+	echo "==> Dumping prod knowledge DB → $$OUT"; \
+	$(SSH_CMD) "docker exec -i knowledge-postgres-1 \
+	    pg_dump -U knowledge -d knowledge \
+	            --no-owner --no-privileges \
+	            --clean --if-exists" \
+	    | gzip > "$$OUT"; \
+	SZ=$$(du -h "$$OUT" | cut -f1); \
+	echo "✓ Saved $$OUT ($$SZ)"
+
+prod-db-restore:
+	@LATEST=$$(ls -t backups/prod-*.sql.gz 2>/dev/null | head -1); \
+	if [ -z "$$LATEST" ]; then \
+	    echo "[!] no dump found in backups/. Run \`make prod-db-dump\` first." >&2; \
+	    exit 1; \
+	fi; \
+	echo "==> Restoring $$LATEST into local PG (knowledge-postgres-1)"; \
+	if ! docker ps --format '{{.Names}}' | grep -q '^knowledge-postgres-1$$'; then \
+	    echo "[!] local PG container 'knowledge-postgres-1' is not running."; \
+	    echo "    Start it with \`make up\` first."; \
+	    exit 1; \
+	fi; \
+	echo "    Dropping + recreating local 'knowledge' database…"; \
+	docker exec -i knowledge-postgres-1 psql -U knowledge -d postgres \
+	    -c "DROP DATABASE IF EXISTS knowledge_old;" >/dev/null; \
+	docker exec -i knowledge-postgres-1 psql -U knowledge -d postgres \
+	    -c "ALTER DATABASE knowledge RENAME TO knowledge_old;" 2>/dev/null || true; \
+	docker exec -i knowledge-postgres-1 psql -U knowledge -d postgres \
+	    -c "CREATE DATABASE knowledge OWNER knowledge;" >/dev/null; \
+	echo "    Replaying dump (gunzip | psql)…"; \
+	gunzip -c "$$LATEST" | docker exec -i knowledge-postgres-1 \
+	    psql -U knowledge -d knowledge >/dev/null; \
+	echo "    Dropping the renamed-aside knowledge_old…"; \
+	docker exec -i knowledge-postgres-1 psql -U knowledge -d postgres \
+	    -c "DROP DATABASE IF EXISTS knowledge_old;" >/dev/null; \
+	echo "✓ Local PG is now a copy of prod (from $$LATEST)"
+
+prod-db-sync: prod-db-dump prod-db-restore
 
 # ── Local Twitter feeder → prod PG ────────────────────────────
 #

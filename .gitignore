@@ -41,3 +41,6 @@ node_modules/
 tag_tree.txt
 tree/
 web/img/bg-light.jpg
+
+# pg_dump archives from `make prod-db-dump`
+backups/

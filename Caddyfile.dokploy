@@ -1,0 +1,58 @@
+# Caddyfile.dokploy
+#
+# Same routing as the original Caddyfile but with TLS stripped —
+# Dokploy's Traefik terminates HTTPS on the edge and forwards plain
+# HTTP to this Caddy on the internal dokploy-network. Caddy keeps
+# doing what it's good at here: path-based routing, static file
+# serving with Cache-Control headers, and the SPA try_files
+# fallback. No `auto_https` because we're listening on :80 only.
+
+{
+	auto_https off
+}
+
+:80 {
+	handle /indices {
+		reverse_proxy knowledge-api:8080
+	}
+	handle /indices/* {
+		reverse_proxy knowledge-api:8080
+	}
+	handle /api/* {
+		reverse_proxy knowledge-api:8080
+	}
+	handle /auth/* {
+		reverse_proxy knowledge-api:8080
+	}
+	handle /mcp {
+		reverse_proxy knowledge-api:8080
+	}
+	handle /encode {
+		reverse_proxy knowledge-api:8080
+	}
+	handle /health {
+		reverse_proxy knowledge-api:8080
+	}
+	handle /events {
+		reverse_proxy knowledge-api:8080
+	}
+	handle /stats/* {
+		reverse_proxy knowledge-api:8080
+	}
+
+	# Static frontend files with the same cache-control layering as
+	# the production Caddyfile — versioned assets get a long
+	# stale-while-revalidate cache, images get a long browser
+	# cache, HTML stays no-cache so deploys propagate.
+	handle {
+		root * /web
+		@static_assets path *.css *.js *.woff *.woff2 *.ttf *.otf
+		header @static_assets Cache-Control "public, max-age=3600, stale-while-revalidate=86400"
+		@static_images path *.png *.jpg *.jpeg *.gif *.webp *.svg *.ico
+		header @static_images Cache-Control "public, max-age=86400, stale-while-revalidate=604800"
+		@static_html path_regexp ^/?$|^/[A-Za-z0-9_-]+/?$|^/.+\.html$
+		header @static_html Cache-Control "no-cache"
+		try_files {path} {path}.html /index.html
+		file_server
+	}
+}

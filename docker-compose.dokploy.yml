@@ -1,0 +1,130 @@
+# docker-compose.dokploy.yml
+#
+# Dokploy-managed variant of docker-compose.prod.yml. Differences:
+#
+#   * No own reverse proxy on 80/443 — Dokploy's Traefik does that.
+#     Caddy stays, but only on the internal network (no published
+#     ports) and serves as the path-based router + static file
+#     server + cache-header layer. Traefik routes
+#     `Host(knowledge-web.org)` → caddy:80.
+#   * Joins the shared `dokploy-network` so Traefik can discover us.
+#   * Postgres uses the EXISTING `knowledge_pgdata` external volume
+#     so data survives the cutover. Same for the models volume.
+#   * The on-disk ColBERT indexes still bind-mount from the host
+#     `/root/knowledge/indexes` directory — that path stays the
+#     source of truth across the migration.
+#
+# Env vars (set in Dokploy's project UI):
+#   DOMAIN, POSTGRES_PASSWORD, GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET,
+#   KNOWLEDGE_ADMIN_TOKEN
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: knowledge
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-knowledge}
+      POSTGRES_DB: knowledge
+    volumes:
+      - knowledge_pgdata:/var/lib/postgresql/data
+    networks:
+      - default
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U knowledge"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  knowledge-api:
+    build:
+      context: api
+    restart: unless-stopped
+    user: root
+    volumes:
+      - /root/knowledge/indexes:/data/indices
+      - knowledge_models:/models
+      - ./run.py:/app/run.py:ro
+      - ./sources:/app/sources:ro
+      - ./pyproject.toml:/app/pyproject.toml:ro
+      - ./uv.lock:/app/uv.lock:ro
+      - ./sources.yml:/app/sources.yml:ro
+      - ./README.md:/app/README.md:ro
+    environment:
+      - DATABASE_URL=postgresql://knowledge:${POSTGRES_PASSWORD:-knowledge}@postgres:5432/knowledge
+      - API_URL=https://${DOMAIN:-knowledge-web.org}
+      - RUST_LOG=info
+      - OPENBLAS_NUM_THREADS=1
+      - GITHUB_CLIENT_ID=${GITHUB_CLIENT_ID}
+      - GITHUB_CLIENT_SECRET=${GITHUB_CLIENT_SECRET}
+      - OAUTH_REDIRECT_URL=https://${DOMAIN:-knowledge-web.org}/auth/github/callback
+      - OAUTH_POST_LOGIN_URL=/
+      - KNOWLEDGE_ADMIN_TOKEN=${KNOWLEDGE_ADMIN_TOKEN}
+    command:
+      - --host
+      - "0.0.0.0"
+      - --port
+      - "8080"
+      - --index-dir
+      - /data/indices
+      - --model
+      - lightonai/answerai-colbert-small-v1-onnx
+      - --int8
+      - --parallel
+      - "8"
+      - --batch-size
+      - "2"
+      - --model-pool-size
+      - "2"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - default
+    deploy:
+      resources:
+        limits:
+          memory: 6G
+        reservations:
+          memory: 3G
+
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    # No ports published — Traefik handles 80/443 externally and
+    # forwards to this container on the dokploy-network.
+    volumes:
+      - ./Caddyfile.dokploy:/etc/caddy/Caddyfile:ro
+      - ./web:/web:ro
+    environment:
+      DOMAIN: ${DOMAIN:-knowledge-web.org}
+    depends_on:
+      knowledge-api:
+        condition: service_healthy
+    networks:
+      - default
+      - dokploy-network
+    labels:
+      - "traefik.enable=true"
+      # HTTPS — Traefik terminates TLS and forwards plain HTTP to caddy:80.
+      - "traefik.http.routers.knowledge.rule=Host(`${DOMAIN:-knowledge-web.org}`)"
+      - "traefik.http.routers.knowledge.entrypoints=websecure"
+      - "traefik.http.routers.knowledge.tls.certresolver=letsencrypt"
+      - "traefik.http.services.knowledge.loadbalancer.server.port=80"
+      # Plain HTTP → permanent redirect to HTTPS.
+      - "traefik.http.routers.knowledge-http.rule=Host(`${DOMAIN:-knowledge-web.org}`)"
+      - "traefik.http.routers.knowledge-http.entrypoints=web"
+      - "traefik.http.routers.knowledge-http.middlewares=knowledge-redirect"
+      - "traefik.http.middlewares.knowledge-redirect.redirectscheme.scheme=https"
+      - "traefik.http.middlewares.knowledge-redirect.redirectscheme.permanent=true"
+
+volumes:
+  knowledge_pgdata:
+    external: true
+  knowledge_models:
+    external: true
+
+networks:
+  default:
+  dokploy-network:
+    external: true
