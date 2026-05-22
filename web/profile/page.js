@@ -106,6 +106,8 @@
   if (me.slug === "raphael-sourty") {
     const row = document.getElementById("pfAdminRow");
     if (row) row.hidden = false;
+    const dokploy = document.getElementById("pfDokployRow");
+    if (dokploy) dokploy.hidden = false;
   }
 
   // Toggle the Twitter card's alpha gate. VIPs see the regular paid
