@@ -149,11 +149,7 @@ Type a query. ColBERT searches the actual contents of every doc, not just titles
 The API exposes an MCP server at <code>/mcp</code> with fifteen tools. Twelve are public, three require a bearer token you mint at <a href="https://knowledge-web.org/profile"><code>/profile</code></a>.
 </p>
 
-<table>
-<tr>
-<td valign="top">
-
-<strong>Search & discover</strong>
+<p><strong>Search & discover</strong></p>
 
 <ul>
 <li><code>search</code>: query a single library</li>
@@ -165,10 +161,7 @@ The API exposes an MCP server at <code>/mcp</code> with fifteen tools. Twelve ar
 <li><code>intersect_documents</code>: docs shared between libraries</li>
 </ul>
 
-</td>
-<td valign="top">
-
-<strong>Catalog</strong>
+<p><strong>Catalog</strong></p>
 
 <ul>
 <li><code>list_personalities</code>: every library</li>
@@ -178,17 +171,13 @@ The API exposes an MCP server at <code>/mcp</code> with fifteen tools. Twelve ar
 <li><code>get_document</code>: one doc by URL</li>
 </ul>
 
-<strong>Authenticated</strong>
+<p><strong>Authenticated</strong></p>
 
 <ul>
 <li><code>my_library</code>: your saved docs</li>
 <li><code>my_timeline</code>: your activity feed</li>
 <li><code>save_document</code>: save a doc to your library</li>
 </ul>
-
-</td>
-</tr>
-</table>
 
 ```bash
 claude mcp add knowledge --transport http https://knowledge-web.org/mcp \
