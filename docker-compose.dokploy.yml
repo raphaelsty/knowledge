@@ -280,20 +280,25 @@ services:
           cpus: "0.10"
 
   # Daily Docker housekeeping. Mirrors the pg-backup loop pattern.
-  # Background: Dokploy rebuilds the daemons + API image on every
-  # `git push`, leaving behind dangling layers and build cache. On
-  # our 75 G disk, this used to balloon to 60+ G reclaimable
-  # within weeks. The pass below runs once every 24 h:
+  # Keeps only what the running prod stack references — every
+  # other image, container, build cache layer, and network is
+  # purged. Dokploy rebuilds the daemons + API image on every
+  # `git push`; without this our 75 G disk filled to 82% within
+  # weeks of unused layers.
   #
-  #   * `docker image prune -af --filter until=168h`
-  #     unused images older than 7 days. NOT a blanket `-af` —
-  #     keep last-week's images around so a rollback doesn't have
-  #     to re-pull / re-build from scratch.
+  # Once every 24 h:
+  #
+  #   * `docker image prune -af`
+  #     EVERY unused image is removed. By definition this leaves
+  #     images currently used by a container alone, so the live
+  #     prod stack stays untouched. Rollback to a previous build
+  #     means a re-pull / re-build — fine on this project's churn
+  #     rate.
   #   * `docker container prune -f`
   #     stopped one-shot containers (e.g. failed redeploys).
-  #   * `docker builder prune -af --filter until=168h`
-  #     build-cache older than 7 days. By far the biggest reclaim
-  #     in practice (29 G of stale cache at the peak).
+  #   * `docker builder prune -af`
+  #     ALL build cache not currently referenced by a running
+  #     image build. Biggest reclaim in practice (peaked at 29 G).
   #   * `docker network prune -f`
   #     orphaned networks from removed projects.
   #
@@ -321,10 +326,10 @@ services:
         while true; do
           TS=$$(date -u +%Y-%m-%dT%H:%M:%SZ)
           echo "$$TS docker-cleanup: pass starting"
-          docker image prune -af --filter "until=168h"  2>&1 | tail -3 || true
-          docker container prune -f                     2>&1 | tail -3 || true
-          docker builder prune -af --filter "until=168h" 2>&1 | tail -3 || true
-          docker network prune -f                       2>&1 | tail -3 || true
+          docker image prune -af     2>&1 | tail -3 || true
+          docker container prune -f  2>&1 | tail -3 || true
+          docker builder prune -af   2>&1 | tail -3 || true
+          docker network prune -f    2>&1 | tail -3 || true
           echo "$$TS docker-cleanup: pass done"
           docker system df 2>&1 | tail -5 || true
           sleep 86400
