@@ -486,30 +486,83 @@ pub async fn timeline(
               FROM candidates c
              GROUP BY c.canonical_url
         ),
+        candidate_anchors AS MATERIALIZED (
+            -- Per-candidate anchor URL used by the dedup step below.
+            -- The anchor identifies WHICH RESOURCE this doc is about,
+            -- so different docs that discuss the same paper / repo /
+            -- model collapse into one feed card.
+            --
+            -- Priority: known scientific / code hosts first (arxiv,
+            -- huggingface, github, openreview, doi, …). Among URLs of
+            -- the same priority, lexicographic min is the stable
+            -- tiebreaker. Falls back to the doc's own canonical_url
+            -- when no priority URL is present — so a plain bookmark
+            -- with no external references just anchors on itself
+            -- (and stays distinct from other plain bookmarks).
+            --
+            -- Pre-computes `image_count` and `url_count` here so the
+            -- dedup step can pick the visually-richest representative
+            -- (most preview images, then most referenced URLs).
+            SELECT c.*,
+                   COALESCE(
+                       (SELECT ref
+                          FROM unnest(c.canonical_referenced_urls) ref
+                         ORDER BY CASE
+                             WHEN ref LIKE 'https://arxiv.org/abs/%'       THEN 1
+                             WHEN ref LIKE 'https://huggingface.co/%'      THEN 2
+                             WHEN ref LIKE 'https://github.com/%'          THEN 3
+                             WHEN ref LIKE 'https://openreview.net/%'      THEN 4
+                             WHEN ref LIKE 'https://doi.org/%'             THEN 5
+                             WHEN ref LIKE 'https://paperswithcode.com/%'  THEN 6
+                             WHEN ref LIKE 'https://aclanthology.org/%'    THEN 7
+                             WHEN ref LIKE 'https://semanticscholar.org/%' THEN 8
+                             WHEN ref LIKE 'https://distill.pub/%'         THEN 9
+                             WHEN ref LIKE 'https://biorxiv.org/%'         THEN 10
+                             WHEN ref LIKE 'https://medrxiv.org/%'         THEN 11
+                             ELSE 99
+                         END, ref
+                         LIMIT 1),
+                       c.canonical_url
+                   ) AS anchor_url,
+                   COALESCE((
+                       SELECT count(*)::int
+                         FROM jsonb_array_elements(c.linked_urls) e
+                        WHERE COALESCE(e->>'image', '') <> ''
+                   ), 0) AS image_count,
+                   cardinality(c.canonical_referenced_urls) AS url_count
+              FROM candidates c
+        ),
         dedup AS (
-            -- One row per canonical URL. When several followees
-            -- share a URL (or URL variants that canonicalize the
-            -- same), the row is attributed to the most notable
-            -- sharer so the card surfaces under their avatar.
-            -- `sharers` (built below by the LATERAL join) still
-            -- lists everyone — and now expands to anyone who
-            -- references the same URL via `linked_urls`.
-            SELECT DISTINCT ON (c.canonical_url)
-                   c.user_id AS primary_user_id,
-                   c.url, c.title, c.date, c.summary,
-                   c.clean_title, c.clean_summary, c.urls,
-                   c.tags,
-                   c.extra_tags, c.source, c.source_url, c.created_at,
-                   c.linked_urls, c.link_hosts, c.sci_score,
-                   c.canonical_url,
-                   c.canonical_referenced_urls,
+            -- One row per ANCHOR — avoid showing the same resource
+            -- twice in the feed. Two distinct tweets that link the
+            -- same paper now collapse to one card; the arxiv doc
+            -- itself and tweets about it also collapse.
+            --
+            -- Representative selection: pick the visually richest
+            -- copy first (most preview images, then most referenced
+            -- URLs), then the existing tiebreakers (recency,
+            -- VIP-ness, follower count, citations). The avatar stack
+            -- still shows every sharer in the cluster because the
+            -- LATERAL `s.sharers` query expands via
+            -- `canonical_referenced_urls && m.canonical_referenced_urls`.
+            SELECT DISTINCT ON (ca.anchor_url)
+                   ca.user_id AS primary_user_id,
+                   ca.url, ca.title, ca.date, ca.summary,
+                   ca.clean_title, ca.clean_summary, ca.urls,
+                   ca.tags,
+                   ca.extra_tags, ca.source, ca.source_url, ca.created_at,
+                   ca.linked_urls, ca.link_hosts, ca.sci_score,
+                   ca.canonical_url,
+                   ca.canonical_referenced_urls,
                    u.twitter_followers AS pri_twitter_followers,
                    u.citations         AS pri_citations,
                    u.vip               AS pri_vip
-              FROM candidates c
-              JOIN users u ON u.id = c.user_id
-             ORDER BY c.canonical_url,
-                      c.date DESC,
+              FROM candidate_anchors ca
+              JOIN users u ON u.id = ca.user_id
+             ORDER BY ca.anchor_url,
+                      ca.image_count DESC,
+                      ca.url_count DESC,
+                      ca.date DESC,
                       u.vip DESC,
                       COALESCE(u.twitter_followers, 0) DESC,
                       COALESCE(u.citations, 0) DESC
