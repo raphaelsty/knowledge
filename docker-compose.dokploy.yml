@@ -45,7 +45,12 @@ services:
     build:
       context: api
     restart: unless-stopped
-    user: root
+    # The container starts as root, the entrypoint chowns the bind-
+    # mounted /data/indices + named volume /models + /app workdir,
+    # then drops privileges to uid 1000 (the `knowledge` user from
+    # the Dockerfile) via gosu before exec'ing the API binary. So
+    # the running process is non-root — an RCE no longer pwns the
+    # host directly.
     volumes:
       - /root/knowledge/indexes:/data/indices
       - knowledge_models:/models
@@ -69,6 +74,13 @@ services:
       # Without it, admin endpoints (pipeline, index delete/promote, ingest)
       # return 401 — fail-closed.
       - ADMIN_API_KEY=${ADMIN_API_KEY}
+      # Rate limiting. The search router gets the larger bucket; the
+      # auth abuse-prone endpoints (signup/login/forgot/resend/reset)
+      # are throttled separately at 1 req/s burst 10 per source IP
+      # via SmartIpKeyExtractor (X-Forwarded-For aware).
+      - RATE_LIMIT_ENABLED=${RATE_LIMIT_ENABLED:-true}
+      - RATE_LIMIT_PER_SECOND=${RATE_LIMIT_PER_SECOND:-50}
+      - RATE_LIMIT_BURST_SIZE=${RATE_LIMIT_BURST_SIZE:-100}
     command:
       - --host
       - "0.0.0.0"
@@ -133,11 +145,58 @@ services:
       - "traefik.http.middlewares.knowledge-redirect.redirectscheme.scheme=https"
       - "traefik.http.middlewares.knowledge-redirect.redirectscheme.permanent=true"
 
+  # Hourly logical Postgres backup with retention. Writes
+  # /backups/knowledge-YYYYMMDD-HHMMSS.sql.gz inside the named volume
+  # `knowledge_pgbackups` and prunes anything older than 7 days.
+  #
+  # No external dependencies — uses the same postgres:16-alpine image
+  # so pg_dump matches the server version exactly.
+  #
+  # Recovery:
+  #   docker compose exec -T postgres dropdb -U knowledge knowledge
+  #   docker compose exec -T postgres createdb -U knowledge knowledge
+  #   gunzip -c knowledge-<ts>.sql.gz | docker compose exec -T postgres \
+  #       psql -U knowledge knowledge
+  pg-backup:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      PGPASSWORD: ${POSTGRES_PASSWORD:-knowledge}
+    volumes:
+      - knowledge_pgbackups:/backups
+    networks:
+      - default
+    entrypoint:
+      - /bin/sh
+      - -c
+      - |
+        set -eu
+        echo "pg-backup: hourly job started"
+        while true; do
+          TS=$$(date -u +%Y%m%d-%H%M%S)
+          OUT="/backups/knowledge-$$TS.sql.gz"
+          if pg_dump -h postgres -U knowledge -d knowledge --no-owner --no-privileges \
+             | gzip -9 > "$$OUT.partial"; then
+            mv "$$OUT.partial" "$$OUT"
+            echo "pg-backup: wrote $$OUT ($$(du -h "$$OUT" | cut -f1))"
+            # Prune anything older than 7 days
+            find /backups -name 'knowledge-*.sql.gz' -mtime +7 -delete
+          else
+            rm -f "$$OUT.partial"
+            echo "pg-backup: FAILED — keeping previous backups" >&2
+          fi
+          sleep 3600
+        done
+
 volumes:
   knowledge_pgdata:
     external: true
   knowledge_models:
     external: true
+  knowledge_pgbackups:
 
 networks:
   default:

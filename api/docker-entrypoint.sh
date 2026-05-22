@@ -87,6 +87,28 @@ model_exists() {
 main() {
     log_info "Starting Knowledge API..."
 
+    # If we're running as root, fix ownership of mounted volumes and
+    # re-exec as the unprivileged `knowledge` user via gosu. chown is
+    # a no-op when ownership is already correct, so this is safe on
+    # every container start.
+    if [ "$(id -u)" = "0" ]; then
+        local target_uid="${KNOWLEDGE_UID:-1000}"
+        local target_gid="${KNOWLEDGE_GID:-1000}"
+        log_info "Running as root — fixing volume ownership to ${target_uid}:${target_gid} then dropping privileges..."
+        # /data/indices: bind-mounted index dir. /models: ONNX cache
+        # (named volume). /app holds source + .venv that uv writes.
+        for dir in /data/indices /models /app; do
+            if [ -d "$dir" ]; then
+                # Failures (e.g. read-only :ro mounts) are non-fatal
+                # — those files don't need to be writable.
+                chown -hR "${target_uid}:${target_gid}" "$dir" 2>/dev/null || \
+                    log_warn "could not chown $dir (likely contains :ro mounts — non-fatal)"
+            fi
+        done
+        log_info "Re-executing as ${target_uid}:${target_gid} via gosu..."
+        exec gosu "${target_uid}:${target_gid}" "$0" "$@"
+    fi
+
     local args=("$@")
     local final_args=()
     local models_dir="${MODELS_DIR:-/models}"

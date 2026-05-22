@@ -40,7 +40,9 @@ use axum::{
     Router,
 };
 use tower::limit::ConcurrencyLimitLayer;
-use tower_governor::{governor::GovernorConfigBuilder, GovernorLayer};
+use tower_governor::{
+    governor::GovernorConfigBuilder, key_extractor::SmartIpKeyExtractor, GovernorLayer,
+};
 use tower_http::{
     cors::{Any, CorsLayer},
     timeout::TimeoutLayer,
@@ -464,9 +466,16 @@ fn build_router(state: Arc<AppState>, pg_pool: Option<sqlx::PgPool>) -> Router {
         .layer(cors.clone());
 
     let search_api_router = if rate_limit_enabled {
+        // SmartIpKeyExtractor reads X-Forwarded-For / X-Real-IP /
+        // Forwarded before falling back to the peer IP. Required
+        // because the API is fronted by Traefik + Caddy — without
+        // it, every request looks like it came from caddy's
+        // container IP and the limiter degenerates into a global
+        // shared bucket.
         let governor_conf = GovernorConfigBuilder::default()
             .per_second(rate_limit_per_second)
             .burst_size(rate_limit_burst_size)
+            .key_extractor(SmartIpKeyExtractor)
             .finish()
             .expect("Failed to build rate limiter config");
         let governor_layer = GovernorLayer::new(governor_conf).error_handler(rate_limit_error);
@@ -593,17 +602,44 @@ fn build_router(state: Arc<AppState>, pg_pool: Option<sqlx::PgPool>) -> Router {
             ])
             .allow_headers([axum::http::header::CONTENT_TYPE, axum::http::header::COOKIE]);
 
-        let auth_router = Router::new()
-            // Email + password auth. Replaces the prior GitHub OAuth
-            // flow. `signup` mints a session immediately (the new
-            // account is read-only until they click the verification
-            // email).
+        // Abuse-prone credential / email endpoints get a dedicated
+        // tight rate limit (when RATE_LIMIT_ENABLED). Without this,
+        // /auth/forgot can exhaust the Resend.com mailer quota and
+        // /auth/login is open to password-stuffing. Keyed per IP
+        // via SmartIpKeyExtractor (X-Forwarded-For aware).
+        const AUTH_PER_SECOND: u64 = 1;
+        const AUTH_BURST: u32 = 10;
+        let auth_throttle_layer = if rate_limit_enabled {
+            let conf = GovernorConfigBuilder::default()
+                .per_second(AUTH_PER_SECOND)
+                .burst_size(AUTH_BURST)
+                .key_extractor(SmartIpKeyExtractor)
+                .finish()
+                .expect("Failed to build auth rate limiter");
+            Some(GovernorLayer::new(conf).error_handler(rate_limit_error))
+        } else {
+            None
+        };
+
+        let mut auth_throttled = Router::new()
             .route("/auth/signup", post(handlers::auth::signup))
             .route("/auth/login", post(handlers::auth::login))
-            .route("/auth/verify", get(handlers::auth::verify_email))
             .route("/auth/resend", post(handlers::auth::resend_verification))
             .route("/auth/forgot", post(handlers::auth::forgot_password))
-            .route("/auth/reset", post(handlers::auth::reset_password))
+            .route("/auth/reset", post(handlers::auth::reset_password));
+        if let Some(layer) = auth_throttle_layer {
+            auth_throttled = auth_throttled.layer(layer);
+        }
+        let auth_throttled = auth_throttled
+            .layer(auth_cors.clone())
+            .with_state(pool.clone());
+
+        let auth_router = Router::new()
+            // Email-verification, session, and logout aren't abuse-prone
+            // in the same way as signup/login/forgot — kept on the
+            // un-throttled router so a tab full of /auth/me calls
+            // doesn't trip the limit.
+            .route("/auth/verify", get(handlers::auth::verify_email))
             .route("/auth/me", get(handlers::auth::me))
             .route("/auth/logout", post(handlers::auth::logout))
             // Profile editor needs the same credentials-aware CORS as the
@@ -879,6 +915,11 @@ fn build_router(state: Arc<AppState>, pg_pool: Option<sqlx::PgPool>) -> Router {
 
         app = app
             .merge(users_router)
+            // Order matters: the throttled router carries the same
+            // path-prefix as auth_router for a subset of routes, but
+            // axum's merge takes the first match. Throttled goes first
+            // so /auth/login etc. hit the rate-limited handler.
+            .merge(auth_throttled)
             .merge(auth_router)
             .merge(events_router)
             .merge(storage_router)

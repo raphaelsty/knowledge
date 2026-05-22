@@ -92,6 +92,7 @@ RUN apt-get update && apt-get install -y \
     curl \
     python3 \
     python3-venv \
+    gosu \
     && rm -rf /var/lib/apt/lists/*
 
 # Install uv (Python package manager) for pipeline execution
@@ -119,7 +120,11 @@ ARG ORT_VERSION=1.23.0
 ENV ORT_DYLIB_PATH=/opt/ort_cpu/libonnxruntime.so.${ORT_VERSION}
 ENV LD_LIBRARY_PATH=/opt/ort_cpu:${LD_LIBRARY_PATH}
 
-USER knowledge
+# Stay root in the image — the entrypoint chowns the mounted volumes
+# (which arrive owned by whatever the host bind-mount uses) and then
+# drops privileges to the `knowledge` user via gosu before exec'ing
+# the API binary. This keeps the running process non-root without
+# requiring host-side `chown` coordination at deploy time.
 
 EXPOSE 8080
 
