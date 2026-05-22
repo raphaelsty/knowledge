@@ -7,10 +7,14 @@ short.
 
 ```bash
 git clone https://github.com/raphaelsty/knowledge && cd knowledge
-make install-dev           # creates .venv, installs ruff/mypy/pre-commit
-uvx pre-commit install     # arms the git hook (only needed once)
-make up                    # starts postgres locally via docker compose
+make install-dev   # creates .venv, installs ruff/mypy, arms git hooks
+make up            # starts postgres locally via docker compose
 ```
+
+`make install-dev` arms both `pre-commit` (per-file on commit) and
+`pre-push` (changed-since-upstream on push) hooks, so a broken commit
+can't leave your machine. If a hook ever fails, fix what it reports
+and try again — do not bypass with `--no-verify`.
 
 You're good to go. `make serve` runs the Rust API on `:8080`,
 `make web` serves the static frontend on `:3000`, and `make run` walks the
@@ -20,8 +24,10 @@ pipeline (fetch → clean → tag → write) for whatever's in your local PG.
 
 There is exactly one source of truth: `.pre-commit-config.yaml`.
 
-- **Locally**: the pre-commit hook runs on every `git commit`. If it fails,
-  fix what it tells you and commit again. Don't bypass with `--no-verify`.
+- **On commit**: hooks run against the staged files. Fast.
+- **On push**: hooks run again against everything you're about to send to
+  the remote (changed-since-upstream). This is the safety net for anything
+  that slipped past a per-file commit check.
 - **In CI**: GitHub Actions runs the *same* hooks across the whole tree
   (`uvx pre-commit run --all-files`). What passes locally passes in CI.
 

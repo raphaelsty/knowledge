@@ -28,7 +28,7 @@ install:
 	uv sync --no-dev
 
 # Install Python dev dependencies (ruff, mypy, pre-commit)
-install-dev:
+install-dev: pre-commit-install
 	uv sync --all-extras
 
 sync: install-dev
@@ -853,8 +853,12 @@ check: lint
 pre-commit:
 	uv run pre-commit run --all-files
 
+# Arm both git hook types — pre-commit (per-file on commit) and
+# pre-push (changed-since-upstream on push) — so CI can't see anything
+# the local hook didn't already. `make install-dev` calls this, so a
+# fresh clone is set up after one command.
 pre-commit-install:
-	uv run pre-commit install
+	uv run pre-commit install --hook-type pre-commit --hook-type pre-push
 
 # ── Docker (legacy single-container) ─────────────────────────
 
