@@ -366,12 +366,28 @@ services:
       - -c
       - |
         set -eu
-        echo "docker-cleanup: daily job started"
+        # Sleep before the FIRST pass: a Dokploy redeploy starts
+        # every service at roughly the same time, including this
+        # one. If the prune loop fires immediately we race against
+        # docker recreating the other containers and end up nuking
+        # half-started ones (the "No such container" / "name
+        # already in use" failures we hit in May 2026 — every
+        # redeploy left the site at HTTP 404 until the operator
+        # intervened). 30 min cooldown gives the rest of the stack
+        # plenty of time to settle.
+        echo "docker-cleanup: daily job started; first pass in 30 min"
+        sleep 1800
         while true; do
           TS=$$(date -u +%Y-%m-%dT%H:%M:%SZ)
           echo "$$TS docker-cleanup: pass starting"
+          # NOTE: we deliberately do NOT run `docker container
+          # prune -f`. During a Dokploy redeploy the OLD container
+          # is briefly stopped before the new one starts; a
+          # container prune at that instant removes it, which
+          # tangles the compose recreate logic. Stopped one-off
+          # containers are rare anyway, and image+builder prune
+          # reclaims 99 % of the disk regardless.
           docker image prune -af     2>&1 | tail -3 || true
-          docker container prune -f  2>&1 | tail -3 || true
           docker builder prune -af   2>&1 | tail -3 || true
           docker network prune -f    2>&1 | tail -3 || true
           echo "$$TS docker-cleanup: pass done"

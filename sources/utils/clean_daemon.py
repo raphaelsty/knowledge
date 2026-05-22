@@ -767,32 +767,41 @@ def fetch_batch(conn: psycopg.Connection, limit: int) -> list[dict]:
       - `d.cleaned = FALSE`   — idempotence guard. Resets only on
                                 operator intervention.
     """
+    # Dedupe by URL the same way `build_feed_payload` does:
+    # `DISTINCT ON (d.url) ORDER BY d.url, d.date DESC` — keeps one
+    # row per URL, choosing the most-recent copy across users. That
+    # means a single arxiv paper saved by ten VIPs is rewritten ONCE
+    # (one OpenAI call), and `write_back` propagates the result to
+    # every row sharing that URL. Matches the feed: the feed shows
+    # one card per URL, so cleaning the chosen card is enough to
+    # cover the surface where this content is seen.
+    #
+    # Outer ORDER BY then re-sorts the surviving deduped rows by
+    # date DESC so we process the most-recent docs first.
     sql = """
-        SELECT d.user_id, d.url, d.title, d.summary, d.source,
-               d.linked_urls, d.urls
-          FROM documents d
-          JOIN users     u ON u.id = d.user_id
-         WHERE u.vip = TRUE
-           AND d.deleted = FALSE
-           AND d.date IS NOT NULL
-           AND d.date >= (now() - make_interval(days => %s))::date
-           AND lower(d.source) = ANY(%s)
-           AND d.cleaned = FALSE
-         -- Newest first, unambiguously. Three levels of ordering,
-         -- each one settling docs that tied on the previous:
-         --   1. d.date DESC — the publication date carried by the
-         --      doc (tweet date, paper publish date).
-         --   2. d.created_at DESC — when we ingested the row, used
-         --      to break ties within the same date.
-         --   3. d.url DESC — within a single ingestion second
-         --      (common during a sync), tweet URLs contain
-         --      monotonically-increasing snowflake status ids, so
-         --      url DESC orders newest-status-first. Works as a
-         --      sensible final tiebreaker for arxiv too (higher
-         --      arXiv numbers are newer papers).
-         ORDER BY d.date DESC NULLS LAST,
-                  d.created_at DESC NULLS LAST,
-                  d.url DESC
+        WITH candidates AS (
+            SELECT DISTINCT ON (d.url)
+                   d.user_id, d.url, d.title, d.summary, d.source,
+                   d.linked_urls, d.urls, d.date, d.created_at
+              FROM documents d
+              JOIN users     u ON u.id = d.user_id
+             WHERE u.vip = TRUE
+               AND d.deleted = FALSE
+               AND d.date IS NOT NULL
+               AND d.date >= (now() - make_interval(days => %s))::date
+               AND lower(d.source) = ANY(%s)
+               AND d.cleaned = FALSE
+             ORDER BY d.url, d.date DESC NULLS LAST,
+                      d.created_at DESC NULLS LAST
+        )
+        SELECT user_id, url, title, summary, source, linked_urls, urls
+          FROM candidates
+         -- Newest first across the deduped set. d.date is the
+         -- publication date; created_at breaks same-day ties;
+         -- url DESC orders snowflake/arxiv IDs newest-first.
+         ORDER BY date DESC NULLS LAST,
+                  created_at DESC NULLS LAST,
+                  url DESC
          LIMIT %s
     """
     with conn.cursor() as cur:
@@ -819,6 +828,24 @@ def write_back(
     clean_summary: str,
     urls: list[str],
 ) -> None:
+    """Propagate the cleaned title/summary to every row sharing this URL.
+
+    The selection step deduped by URL (matching the feed), so one
+    OpenAI call covers a single logical document. The same URL can
+    live in N personal libraries — write the cleaned values into
+    every one of them so that:
+
+      * the feed and the per-user personal pages stay in sync (the
+        feed picks one row per URL, the personal pages pick the
+        owner's row; they should display the same cleaned text),
+      * the daemon's `cleaned = TRUE` guard fires for every copy,
+        so the next loop's `fetch_batch` skips them.
+
+    No `user_id` clause in the UPDATE — `WHERE url = %s` matches
+    every owner. PG's (user_id, url) primary key still scopes each
+    update to one row per user; we're just hitting all of them at
+    once.
+    """
     sql = """
         UPDATE documents
            SET clean_title   = %s,
@@ -831,12 +858,13 @@ def write_back(
                urls          = %s,
                cleaned       = TRUE,
                updated_at    = now()
-         WHERE user_id = %s AND url = %s
+         WHERE url = %s
+           AND deleted = FALSE
     """
     with conn.cursor() as cur:
         cur.execute(
             sql,
-            (clean_title, clean_summary, urls, doc["user_id"], doc["url"]),
+            (clean_title, clean_summary, urls, doc["url"]),
         )
     conn.commit()
 
