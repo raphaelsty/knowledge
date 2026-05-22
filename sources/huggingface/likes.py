@@ -127,7 +127,7 @@ def _request_with_retry(method, url, *, label, **kwargs):
         # with full jitter so concurrent runs don't synchronise their next
         # attempt and re-trigger the limiter.
         wait = _retry_after_seconds(resp) or (_BACKOFF_BASE_SEC * (2**attempt) + (0.25 * attempt))
-        print(f"    HF {label} 429 (attempt {attempt + 1}/{_BACKOFF_MAX_RETRIES}); " f"sleeping {wait:.1f}s")
+        print(f"    HF {label} 429 (attempt {attempt + 1}/{_BACKOFF_MAX_RETRIES}); sleeping {wait:.1f}s")
         time.sleep(wait)
     return last_resp
 

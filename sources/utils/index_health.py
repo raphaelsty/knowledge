@@ -201,7 +201,7 @@ def force_heal_index(api_url: str, index_name: str, user_id: int, database_url: 
         with psycopg.connect(database_url) as conn:
             with conn.cursor() as cur:
                 cur.execute(
-                    "UPDATE documents SET indexed=false, updated_at=now() " "WHERE user_id = %s AND indexed = true",
+                    "UPDATE documents SET indexed=false, updated_at=now() WHERE user_id = %s AND indexed = true",
                     (user_id,),
                 )
     except Exception as e:
@@ -379,7 +379,7 @@ def vip_document_total(database_url: str) -> int:
     target for `__all__`'s document count."""
     with psycopg.connect(database_url) as conn:
         with conn.cursor() as cur:
-            cur.execute("SELECT COUNT(*) FROM documents d " "JOIN users u ON u.id = d.user_id " "WHERE u.vip = TRUE")
+            cur.execute("SELECT COUNT(*) FROM documents d JOIN users u ON u.id = d.user_id WHERE u.vip = TRUE")
             (n,) = cur.fetchone()
     return int(n)
 

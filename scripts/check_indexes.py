@@ -103,7 +103,7 @@ def _pg_doc_counts(database_url: str, user_id: int) -> tuple[int, int]:
     """Return (total_docs, indexed_docs) for `user_id` from PG."""
     with psycopg.connect(database_url) as conn, conn.cursor() as cur:
         cur.execute(
-            "SELECT COUNT(*), COUNT(*) FILTER (WHERE indexed = TRUE) " "  FROM documents WHERE user_id = %s",
+            "SELECT COUNT(*), COUNT(*) FILTER (WHERE indexed = TRUE)   FROM documents WHERE user_id = %s",
             (user_id,),
         )
         row = cur.fetchone()

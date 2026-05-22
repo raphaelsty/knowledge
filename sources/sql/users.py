@@ -97,7 +97,7 @@ def get_social_counts(database_url: str, user_id: int) -> dict:
 
     Returns all-None with empty dicts when the user row doesn't exist.
     """
-    sql = "SELECT twitter_followers, github_followers, citations, avatar, links, sources " "  FROM users WHERE id = %s"
+    sql = "SELECT twitter_followers, github_followers, citations, avatar, links, sources   FROM users WHERE id = %s"
     with psycopg.connect(database_url) as conn:
         with conn.cursor() as cur:
             cur.execute(sql, (user_id,))

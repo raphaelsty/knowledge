@@ -137,8 +137,7 @@ def main() -> None:
             new_summary = f"Video by {author}" if author else "YouTube video"
             with conn.cursor() as cur:
                 cur.execute(
-                    "UPDATE documents SET title = %s, summary = %s, updated_at = now()"
-                    " WHERE user_id = %s AND url = %s",
+                    "UPDATE documents SET title = %s, summary = %s, updated_at = now() WHERE user_id = %s AND url = %s",
                     (new_title[:500], new_summary[:1000], uid, url),
                 )
             conn.commit()

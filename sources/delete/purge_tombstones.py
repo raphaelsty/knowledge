@@ -41,7 +41,7 @@ from sources.utils.delete_documents import (
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(
         prog="purge_tombstones.py",
-        description="Hard-delete documents flagged to_delete=TRUE and " "remove their entries from the ColBERT index.",
+        description="Hard-delete documents flagged to_delete=TRUE and remove their entries from the ColBERT index.",
     )
     p.add_argument(
         "--slug",
@@ -135,13 +135,13 @@ def main() -> None:
             ok, bad = _delete_index_urls(api_base, api_key, index_name, urls)
             with conn.cursor() as cur:
                 cur.execute(
-                    "DELETE FROM documents " " WHERE user_id = %s AND to_delete = TRUE AND url = ANY(%s)",
+                    "DELETE FROM documents  WHERE user_id = %s AND to_delete = TRUE AND url = ANY(%s)",
                     (uid, urls),
                 )
                 deleted = cur.rowcount
             conn.commit()
             purged += deleted
-            print(f"  ✓ {username:<28} index batches ok={ok} bad={bad}  " f"PG deleted={deleted}")
+            print(f"  ✓ {username:<28} index batches ok={ok} bad={bad}  PG deleted={deleted}")
 
     print(f"\nDone — {purged} row(s) purged.")
 

@@ -30,7 +30,7 @@ import requests
 
 DEFAULT_DATABASE_URL = "postgresql://knowledge:knowledge@localhost:5433/knowledge"
 LITE_URL = "https://lite.duckduckgo.com/lite/"
-UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) " "AppleWebKit/537.36 (KHTML, like Gecko) Knowledge/1.0"
+UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Knowledge/1.0"
 
 # Handles that aren't real personality accounts — Twitter UI paths,
 # generic brand accounts, etc. Anything in this set is filtered out
@@ -107,7 +107,7 @@ def search_handles(query: str, *, max_results: int = 10) -> list[str]:
 
 def list_missing(database_url: str, *, slug: str | None = None) -> list[dict]:
     """Return users with no ``sources.twitter`` (optionally a single slug)."""
-    sql = "SELECT id, username, name, vip " "  FROM users " " WHERE NOT (sources ? 'twitter')"
+    sql = "SELECT id, username, name, vip   FROM users  WHERE NOT (sources ? 'twitter')"
     params: tuple = ()
     if slug:
         sql += " AND username = %s"

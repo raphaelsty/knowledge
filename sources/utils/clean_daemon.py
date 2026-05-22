@@ -116,7 +116,7 @@ def _extract_urls(text: str, linked: list | None) -> list[str]:
 # whatever escaped the prompt's filter, since they go through the
 # light-edit path which the model is more careful about.
 _EMOJI_RE = re.compile(
-    "[" "\U0001f000-\U0001ffff" "\U00002600-\U000027bf" "\U0001f1e6-\U0001f1ff" "]",
+    "[\U0001f000-\U0001ffff\U00002600-\U000027bf\U0001f1e6-\U0001f1ff]",
     flags=re.UNICODE,
 )
 

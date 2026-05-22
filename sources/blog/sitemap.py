@@ -346,9 +346,7 @@ def _parse_sitemap_xml(
         children_visited = 0
         for sm_el in root.findall("sm:sitemap", _NS) or root.findall("sitemap"):
             if children_visited >= _SITEMAP_INDEX_MAX_CHILDREN:
-                print(
-                    f"    Skipping rest of sitemap-index at {base_url} " f"(> {_SITEMAP_INDEX_MAX_CHILDREN} children)"
-                )
+                print(f"    Skipping rest of sitemap-index at {base_url} (> {_SITEMAP_INDEX_MAX_CHILDREN} children)")
                 break
             loc = sm_el.find("sm:loc", _NS)
             if loc is None:
@@ -476,7 +474,7 @@ class Sitemap:
         # listing fetch — that's how we *discovered* the no-change state.
         # Re-runs on a stable site collapse to a single HTTP roundtrip.
         if existing_urls and candidates and not new_candidates:
-            print(f"    Sitemap up-to-date: {len(candidates)} URLs all known " f"({self.sitemap_url})")
+            print(f"    Sitemap up-to-date: {len(candidates)} URLs all known ({self.sitemap_url})")
             return {}
         if 0 < len(new_candidates) <= _SAMPLE_PAGES_THRESHOLD:
             print(

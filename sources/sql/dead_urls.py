@@ -32,6 +32,6 @@ def mark_urls_dead(database_url: str, urls: Iterable[str]) -> None:
     rows = [(u,) for u in urls]
     if not rows:
         return
-    sql = "INSERT INTO dead_urls (url) VALUES (%s) " "ON CONFLICT (url) DO UPDATE SET checked_at = now()"
+    sql = "INSERT INTO dead_urls (url) VALUES (%s) ON CONFLICT (url) DO UPDATE SET checked_at = now()"
     with psycopg.connect(database_url) as conn, conn.cursor() as cur:
         cur.executemany(sql, rows)

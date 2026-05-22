@@ -226,7 +226,7 @@ def main() -> int:
     ap.add_argument(
         "--levels",
         default=os.environ.get("LOAD_TEST_LEVELS"),
-        help=f"Comma-separated concurrency ladder. Default: " f"{','.join(str(x) for x in DEFAULT_LADDER)}",
+        help=f"Comma-separated concurrency ladder. Default: {','.join(str(x) for x in DEFAULT_LADDER)}",
     )
     ap.add_argument(
         "--duration",
@@ -238,7 +238,7 @@ def main() -> int:
         "--max",
         type=int,
         default=int(os.environ.get("LOAD_TEST_MAX", "200")),
-        help="Hard cap on concurrency — saturates the ladder above this " "(default: 200).",
+        help="Hard cap on concurrency — saturates the ladder above this (default: 200).",
     )
     ap.add_argument(
         "--p99-budget-ms",
@@ -251,7 +251,7 @@ def main() -> int:
         "--err-budget",
         type=float,
         default=SLO_ERROR_RATE,
-        help=f"Stop ramp when error rate exceeds this fraction " f"(default: {SLO_ERROR_RATE:.2f}).",
+        help=f"Stop ramp when error rate exceeds this fraction (default: {SLO_ERROR_RATE:.2f}).",
     )
     ap.add_argument(
         "--responsive-p95-ms",
@@ -265,7 +265,7 @@ def main() -> int:
         "--yes",
         action="store_true",
         default=os.environ.get("YES") == "1",
-        help="Acknowledge that you are about to hammer the target. " "Required when URL is not localhost.",
+        help="Acknowledge that you are about to hammer the target. Required when URL is not localhost.",
     )
     args = ap.parse_args()
 
@@ -290,8 +290,8 @@ def main() -> int:
     print(f"\nLoad test against {args.url}")
     print(f"Endpoint mix: {ENDPOINT_PATHS}")
     print(f"Per-level duration: {args.duration:.0f}s")
-    print(f"Hard stop: errors > {args.err_budget:.0%} or p99 > " f"{args.p99_budget_ms:.0f}ms (timeout territory)")
-    print(f"'Responsive' label : p95 ≤ {args.responsive_p95_ms:.0f}ms " "(reporting threshold, not a stop signal)")
+    print(f"Hard stop: errors > {args.err_budget:.0%} or p99 > {args.p99_budget_ms:.0f}ms (timeout territory)")
+    print(f"'Responsive' label : p95 ≤ {args.responsive_p95_ms:.0f}ms (reporting threshold, not a stop signal)")
     print(f"Concurrency ladder: {levels}\n")
 
     results: list[LevelStats] = []

@@ -410,7 +410,7 @@ def main(argv: list[str] | None = None) -> int:
         # by then the verdict will be `missing` and run_pipeline
         # takes the fresh-build path naturally.
         if fails >= HARD_HEAL_THRESHOLD:
-            _log(f"   [hard-heal] {slug} failed {fails}× in a row — " "dropping index + resetting indexed flags")
+            _log(f"   [hard-heal] {slug} failed {fails}× in a row — dropping index + resetting indexed flags")
             try:
                 from sources.utils.index_health import force_heal_index
 

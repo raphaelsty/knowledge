@@ -241,7 +241,7 @@ def main():
     if not args.slug:
         n_vip = sum(1 for p in to_process if p.get("vip"))
         n_never = sum(1 for p in to_process if p.get("last_success_at") is None)
-        print(f"Queue: {len(to_process)} personalities — {n_vip} VIP, " f"{n_never} never-run-yet (front of queue)")
+        print(f"Queue: {len(to_process)} personalities — {n_vip} VIP, {n_never} never-run-yet (front of queue)")
         head = to_process[:5]
         for p in head:
             ts = p.get("last_success_at")

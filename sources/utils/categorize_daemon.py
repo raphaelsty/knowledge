@@ -149,7 +149,7 @@ def _doc_text_or_skip(doc: dict) -> str | None:
 # ── Streaming SQL ───────────────────────────────────────────────────
 
 
-_DOC_COLS = "user_id, url, source, title, summary, " "clean_title, clean_summary, date"
+_DOC_COLS = "user_id, url, source, title, summary, clean_title, clean_summary, date"
 
 
 def _fetch_uncategorized_batch(conn: psycopg.Connection, batch_size: int) -> list[dict]:

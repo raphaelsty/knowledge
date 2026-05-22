@@ -545,7 +545,7 @@ def _flush_factory(slug: str, counters: dict):
         counters["last_inserted"] = n_inserted
         counters["last_existed"] = n_existed
         # Two-line summary: page count then a compact verdict.
-        _log_info(f"   ↳ flushed {len(cleaned):>3d} doc(s) → " f"API +{n_inserted} new, {n_existed} already there")
+        _log_info(f"   ↳ flushed {len(cleaned):>3d} doc(s) → API +{n_inserted} new, {n_existed} already there")
 
     return _flush
 
@@ -563,7 +563,7 @@ def _load_existing_twitter_urls(slug: str) -> set[str]:
     token = os.environ.get("KNOWLEDGE_ADMIN_TOKEN", "").strip()
     if not token:
         raise IngestAuthError(
-            "KNOWLEDGE_ADMIN_TOKEN is not set in the environment; the " "admin endpoints refuse unauthenticated calls."
+            "KNOWLEDGE_ADMIN_TOKEN is not set in the environment; the admin endpoints refuse unauthenticated calls."
         )
     req = urllib.request.Request(
         f"{api_base}/api/admin/users/{urllib.parse.quote(slug)}/twitter-urls",
@@ -663,7 +663,7 @@ def _one_pass(args) -> tuple[int, int]:
             pass_completed=True,
         )
         return 0, 0
-    queue_desc = f"queue: {total} VIP(s), popularity-desc" f"{f', stale > {args.min_age}h' if args.min_age > 0 else ''}"
+    queue_desc = f"queue: {total} VIP(s), popularity-desc{f', stale > {args.min_age}h' if args.min_age > 0 else ''}"
     _log_banner(queue_desc)
 
     # Pass-level aggregates so the rollup at the end has real numbers.
@@ -776,12 +776,12 @@ def _one_pass(args) -> tuple[int, int]:
             n_existed = slug_counters.get("existed_total", 0)
             slug_secs = time.perf_counter() - slug_t0
             if n_new > 0:
-                _log_ok(f"   ↳ {slug}: +{n_new} new, {n_existed} already known " f"({_human_duration(slug_secs)})")
+                _log_ok(f"   ↳ {slug}: +{n_new} new, {n_existed} already known ({_human_duration(slug_secs)})")
                 pass_stats["with_new"] += 1
                 pass_stats["inserted_total"] += n_new
                 pass_stats["existed_total"] += n_existed
             else:
-                _log_info(f"   ↳ {slug}: already up-to-date " f"({_human_duration(slug_secs)})")
+                _log_info(f"   ↳ {slug}: already up-to-date ({_human_duration(slug_secs)})")
                 pass_stats["early_stops"] += 1
             pass_stats["api_errors"] += slug_counters.get("api_errors", 0)
             pass_stats["slugs_done"] += 1
@@ -919,7 +919,7 @@ def main(argv: Iterable[str] | None = None) -> int:
         _log(f"  initial cookies OK (auth_token …{tok[-6:]}, ct0 …{ct0[-6:]})")
     except Exception as e:
         _log(f"[!] {e}")
-        _log("    Open Safari, navigate to https://x.com, and confirm " "you're signed in. Then re-run.")
+        _log("    Open Safari, navigate to https://x.com, and confirm you're signed in. Then re-run.")
         return 2
 
     pass_n = 0
@@ -929,7 +929,7 @@ def main(argv: Iterable[str] | None = None) -> int:
         t0 = time.perf_counter()
         processed, total = _one_pass(args)
         dur = time.perf_counter() - t0
-        _log(f"pass {pass_n} done: processed {processed}/{total} in " f"{int(dur)}s")
+        _log(f"pass {pass_n} done: processed {processed}/{total} in {int(dur)}s")
         if args.one_shot or _stop_requested:
             break
         if total == 0:

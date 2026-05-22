@@ -98,7 +98,7 @@ def users_by_check_priority(
     )
     if vip_only:
         sql += " WHERE u.vip = TRUE "
-    sql += " ORDER BY u.vip DESC, " "          latest.checked_at ASC NULLS FIRST, " "          u.name "
+    sql += " ORDER BY u.vip DESC,           latest.checked_at ASC NULLS FIRST,           u.name "
     if limit is not None:
         sql += f" LIMIT {int(limit)} "
 

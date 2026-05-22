@@ -1,17 +1,15 @@
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.5.0
+    rev: v6.0.0
     hooks:
       - id: trailing-whitespace
-        exclude: ^web/data/
       - id: end-of-file-fixer
-        exclude: ^web/data/
       - id: check-yaml
       - id: check-added-large-files
-        exclude: ^(web/data/|indexes/)
+        exclude: ^indexes/
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.8.0
+    rev: v0.15.14
     hooks:
       - id: ruff
         args: [--fix]

@@ -103,11 +103,11 @@ async def _rate_limit_aware(coro_factory, *, label: str):
             wait = (reset - now) if reset else 60.0
             wait = max(15.0, min(_RATE_LIMIT_MAX_WAIT_SEC, wait + 5.0))
             if attempt == 0:
-                print(f"    twikit {label}: rate-limited; sleeping " f"{int(wait)}s until reset…")
+                print(f"    twikit {label}: rate-limited; sleeping {int(wait)}s until reset…")
                 await asyncio.sleep(wait)
                 continue
             # Second 429 — give up so the run keeps moving.
-            print(f"    twikit {label}: rate-limited again after wait — " f"giving up on this call")
+            print(f"    twikit {label}: rate-limited again after wait — giving up on this call")
             return None
 
 
@@ -138,7 +138,7 @@ def _patch_twikit_key_byte_indices() -> None:
             hash_match = hash_regex.search(response_str)
             if hash_match:
                 filename = hash_match.group(1)
-                on_demand_file_url = f"https://abs.twimg.com/responsive-web/client-web/" f"ondemand.s.{filename}a.js"
+                on_demand_file_url = f"https://abs.twimg.com/responsive-web/client-web/ondemand.s.{filename}a.js"
                 on_demand_file_response = await session.request(method="GET", url=on_demand_file_url, headers=headers)
                 for item in indices_regex.finditer(str(on_demand_file_response.text)):
                     key_byte_indices.append(item.group(1))
@@ -576,7 +576,7 @@ class Bookmarks:
                     label=f"get_tweets_by_ids({len(batch)})",
                 )
             except Exception as e:
-                print(f"    lookup chunk {i}-{i+len(batch)}: {e!r}")
+                print(f"    lookup chunk {i}-{i + len(batch)}: {e!r}")
                 tweets = []
             for tw in tweets or []:
                 if tw is None:
@@ -629,7 +629,7 @@ class Bookmarks:
             me_id = None
 
         if not me_id:
-            print(f"    twikit cookies (auth_token …{token_tail}) stale — " "trying Safari refresh…")
+            print(f"    twikit cookies (auth_token …{token_tail}) stale — trying Safari refresh…")
             fresh = _refresh_safari_cookies()
             if fresh:
                 self.auth_token, self.ct0 = fresh
@@ -638,16 +638,15 @@ class Bookmarks:
                 try:
                     me_id = await _probe()
                 except Exception as e:
-                    print(f"    twikit cookies (auth_token …{token_tail}): " f"refresh probe failed: {e!r}")
+                    print(f"    twikit cookies (auth_token …{token_tail}): refresh probe failed: {e!r}")
                     me_id = None
             else:
                 print(
-                    "    twikit cookie refresh: Safari jar unavailable "
-                    "(headless host? Safari closed?) — cannot recover"
+                    "    twikit cookie refresh: Safari jar unavailable (headless host? Safari closed?) — cannot recover"
                 )
 
         if me_id:
-            print(f"    twikit cookies (auth_token …{token_tail}) OK — " f"authenticated user id={me_id}")
+            print(f"    twikit cookies (auth_token …{token_tail}) OK — authenticated user id={me_id}")
         else:
             print(
                 f"    twikit cookies (auth_token …{token_tail}): could not "
@@ -812,7 +811,7 @@ class Bookmarks:
             # count the page handed us.
             page_new = len(data) - before_page
             print(
-                f"    Twitter {kind}s: page {page_index} " f"+{page_new} new (seen={n_tweets_in_page})",
+                f"    Twitter {kind}s: page {page_index} +{page_new} new (seen={n_tweets_in_page})",
                 flush=True,
             )
             # Early stop when a whole page produced zero new docs and
@@ -846,7 +845,7 @@ class Bookmarks:
                         self.on_page_flush(page_docs)
                     except Exception as e:
                         print(
-                            f"    Twitter {kind}s: page {page_index} " f"flush callback failed ({e!r}); continuing",
+                            f"    Twitter {kind}s: page {page_index} flush callback failed ({e!r}); continuing",
                             flush=True,
                         )
             keys_before_page = set(data.keys())
@@ -858,7 +857,7 @@ class Bookmarks:
                 break
             time.sleep(_POLITE_DELAY)
         print(
-            f"    Twitter {kind}s: total +{len(data) - before} new URLs over " f"{page_index} page(s)",
+            f"    Twitter {kind}s: total +{len(data) - before} new URLs over {page_index} page(s)",
             flush=True,
         )
 

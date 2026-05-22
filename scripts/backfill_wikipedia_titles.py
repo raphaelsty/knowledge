@@ -161,7 +161,7 @@ def main() -> int:
                 if not args.dry:
                     with conn.cursor() as cur:
                         cur.execute(
-                            "UPDATE documents SET title = %s, updated_at = now() " "WHERE user_id = %s AND url = %s",
+                            "UPDATE documents SET title = %s, updated_at = now() WHERE user_id = %s AND url = %s",
                             (new, user_id, url),
                         )
                 total_updates += 1

@@ -172,7 +172,7 @@ def _load_model() -> _ModelAdapter:
 
 def fetch_categories(conn: psycopg.Connection) -> list[dict]:
     with conn.cursor() as cur:
-        cur.execute("SELECT id, slug, name, group_name, description " "FROM document_categories ORDER BY sort_order")
+        cur.execute("SELECT id, slug, name, group_name, description FROM document_categories ORDER BY sort_order")
         cols = [c.name for c in cur.description]
         return [dict(zip(cols, row, strict=False)) for row in cur.fetchall()]
 
@@ -245,7 +245,7 @@ def iter_uncategorized_batches(
         "FROM documents d",
     ]
     if not recompute:
-        sql_parts.append("LEFT JOIN document_category_assignments a" " ON a.user_id = d.user_id AND a.url = d.url")
+        sql_parts.append("LEFT JOIN document_category_assignments a ON a.user_id = d.user_id AND a.url = d.url")
     where = ["COALESCE(NULLIF(d.clean_summary, ''), NULLIF(d.summary, '')) IS NOT NULL"]
     if not recompute:
         where.append("a.user_id IS NULL")

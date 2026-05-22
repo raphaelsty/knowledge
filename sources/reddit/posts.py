@@ -188,7 +188,7 @@ class Posts:
             if existing_urls and url_of is not None:
                 page_urls = [u for u in (url_of(it) for it in page_data) if u and not _is_reddit_url(u)]
                 if page_urls and all(u in existing_urls for u in page_urls):
-                    print(f"    Reddit: page {page_idx + 1} all-known " f"({len(page_urls)} URLs), stopping early")
+                    print(f"    Reddit: page {page_idx + 1} all-known ({len(page_urls)} URLs), stopping early")
                     break
 
             after = result.get("data", {}).get("after")

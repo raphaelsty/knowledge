@@ -105,7 +105,7 @@ def fetch_tweets(tweet_ids: list[str], api_key: str) -> dict[str, dict]:
         url = f"{TWITTERAPIIO_BASE}/twitter/tweets?" + urllib.parse.urlencode(params)
         r = requests.get(url, headers=headers, timeout=30)
         if r.status_code != 200:
-            print(f"  [warn] twitterapi.io {r.status_code} on chunk " f"({len(batch)} ids): {r.text[:200]}")
+            print(f"  [warn] twitterapi.io {r.status_code} on chunk ({len(batch)} ids): {r.text[:200]}")
             continue
         data = r.json()
         items = []
@@ -192,7 +192,7 @@ def update_sqlite_metadata(
         timeout=30,
     )
     if r.status_code != 200:
-        print(f"  [warn] metadata.update {r.status_code} for {url}: " f"{r.text[:200]}")
+        print(f"  [warn] metadata.update {r.status_code} for {url}: {r.text[:200]}")
         return False
     return True
 
@@ -331,7 +331,7 @@ def main() -> int:
     if not args.dry and not args.skip_companion_cleanup and enriched_urls:
         flagged = mark_companions_to_delete(database_url, uid, enriched_urls)
 
-    print(f"done: pg={pg_writes} sqlite={sqlite_writes} " f"no-links={no_links} companions_flagged={flagged}")
+    print(f"done: pg={pg_writes} sqlite={sqlite_writes} no-links={no_links} companions_flagged={flagged}")
     return 0
 
 

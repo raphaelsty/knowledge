@@ -304,7 +304,7 @@ def run_pipeline(
             )
         elif _r["reason"] == "insufficient_credits":
             who = "sponsor" if sponsored else "user"
-            print(f"  Storage: NOT BILLED — {who} short {_r['credits']} credit(s) " f"for {_r['docs']} docs.")
+            print(f"  Storage: NOT BILLED — {who} short {_r['credits']} credit(s) for {_r['docs']} docs.")
         elif _r["reason"] not in ("vip", "under_free_quota") and not _r["reason"].startswith("too_early"):
             print(f"  Storage: skipped ({_r['reason']})")
     except Exception as _exc:
@@ -377,7 +377,7 @@ def run_pipeline(
         try:
             with psycopg.connect(database_url) as conn, conn.cursor() as cur:
                 cur.execute(
-                    "SELECT MAX(updated_at) FROM documents " " WHERE user_id = %s AND source = %s",
+                    "SELECT MAX(updated_at) FROM documents  WHERE user_id = %s AND source = %s",
                     (user_id, source_key),
                 )
                 row = cur.fetchone()
@@ -1583,7 +1583,7 @@ def run_pipeline(
             with _heal_psycopg.connect(database_url) as _heal_conn:
                 with _heal_conn.cursor() as _heal_cur:
                     _heal_cur.execute(
-                        "UPDATE documents SET indexed=false, updated_at=now() " "WHERE user_id = %s AND indexed = true",
+                        "UPDATE documents SET indexed=false, updated_at=now() WHERE user_id = %s AND indexed = true",
                         (user_id,),
                     )
         except Exception as e:

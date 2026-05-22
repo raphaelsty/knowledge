@@ -72,8 +72,7 @@ def _api_request(
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(
         prog="delete_documents.py",
-        description="Delete documents (and matching index entries) for a user, "
-        "a source, or the intersection of both.",
+        description="Delete documents (and matching index entries) for a user, a source, or the intersection of both.",
     )
     p.add_argument("--slug", default=None, help="Personality username (e.g. 'simon-willison').")
     p.add_argument(
@@ -246,12 +245,12 @@ def main() -> None:
                 ok, bad = _delete_index_urls(api_base, api_key, index_name, urls)
                 with conn.cursor() as cur:
                     cur.execute(
-                        "DELETE FROM documents " " WHERE user_id = %s AND source = ANY(%s) AND url = ANY(%s)",
+                        "DELETE FROM documents  WHERE user_id = %s AND source = ANY(%s) AND url = ANY(%s)",
                         (uid, sources, urls),
                     )
                     deleted = cur.rowcount
                 conn.commit()
-                print(f"  ✓ {username:<28} index batches ok={ok} bad={bad}  " f"PG deleted={deleted}")
+                print(f"  ✓ {username:<28} index batches ok={ok} bad={bad}  PG deleted={deleted}")
             else:
                 # Whole-user wipe.
                 status, text = _api_request(api_base, api_key, "DELETE", f"/indices/{index_name}")

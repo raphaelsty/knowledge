@@ -141,7 +141,7 @@ def main() -> None:
         with psycopg.connect(db_url) as conn:
             with conn.cursor() as cur:
                 cur.execute(
-                    "UPDATE documents SET indexed = TRUE, updated_at = now()" "  WHERE user_id = %s AND url = ANY(%s)",
+                    "UPDATE documents SET indexed = TRUE, updated_at = now()  WHERE user_id = %s AND url = ANY(%s)",
                     (uid, posted),
                 )
             conn.commit()

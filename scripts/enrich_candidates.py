@@ -404,7 +404,7 @@ def find_semantic_scholar(candidate_name: str) -> dict | None:
 def find_dblp(candidate_name: str) -> dict | None:
     """Top DBLP author hit by name search. We accept only when the
     name tokens overlap so we don't grab a homonym."""
-    url = "https://dblp.org/search/author/api" f"?q={urllib.parse.quote(candidate_name)}&format=json&h=3"
+    url = f"https://dblp.org/search/author/api?q={urllib.parse.quote(candidate_name)}&format=json&h=3"
     data = _http_json(url, headers={"Accept": "application/json"})
     if not data:
         return None
@@ -479,7 +479,7 @@ def read_done(path: Path) -> set[str]:
 
 
 def enrich_one(c: dict, api_key: str) -> dict:
-    out = {k: "" for k in _OUT_COLS}
+    out = dict.fromkeys(_OUT_COLS, "")
     out["handle"] = c["handle"]
     out["name"] = c["name"]
     out["specialty"] = c["specialty"]
@@ -587,7 +587,7 @@ def main() -> int:
                 raise
             except Exception as e:
                 print(f"    ! enrich failed: {e}")
-                row = {k: "" for k in _OUT_COLS}
+                row = dict.fromkeys(_OUT_COLS, "")
                 row["handle"] = c["handle"]
                 row["name"] = c["name"]
                 row["specialty"] = c["specialty"]

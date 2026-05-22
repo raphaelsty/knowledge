@@ -153,13 +153,13 @@ def backfill_wikipedia(conn, dry: bool) -> None:
         pg_updates.append((slug, url, new_date))
         per_slug.setdefault(slug, []).append((url, new_date))
 
-    print(f"  extracted_year={extracted} fellback={fellback} " f"no_change={skipped} to_update={len(pg_updates)}")
+    print(f"  extracted_year={extracted} fellback={fellback} no_change={skipped} to_update={len(pg_updates)}")
 
     if dry or not pg_updates:
         return
 
     cur.executemany(
-        "UPDATE documents SET date = %s::date, updated_at = now() " "WHERE url = %s",
+        "UPDATE documents SET date = %s::date, updated_at = now() WHERE url = %s",
         [(d, u) for (_, u, d) in pg_updates],
     )
     conn.commit()
@@ -168,7 +168,7 @@ def backfill_wikipedia(conn, dry: bool) -> None:
     sqlite_touched = 0
     for slug, batch in per_slug.items():
         sqlite_touched += _update_sqlite_dates(slug, batch)
-    print(f"  sqlite: updated {sqlite_touched} row(s) across " f"{len(per_slug)} index(es)")
+    print(f"  sqlite: updated {sqlite_touched} row(s) across {len(per_slug)} index(es)")
 
 
 # ────────────────────────────────────────────────────────────────────
@@ -243,7 +243,7 @@ def backfill_huggingface(conn, dry: bool) -> None:
             continue
 
         items = _fetch_hf_likes(hf_user)
-        print(f"  @{slug} (hf={hf_user}): {len(items)} like(s) returned, " f"{len(current)} stored doc(s)")
+        print(f"  @{slug} (hf={hf_user}): {len(items)} like(s) returned, {len(current)} stored doc(s)")
 
         url_to_date: dict[str, str] = {}
         for it in items:
@@ -272,7 +272,7 @@ def backfill_huggingface(conn, dry: bool) -> None:
             continue
 
         cur.executemany(
-            "UPDATE documents SET date = %s::date, updated_at = now() " "WHERE url = %s",
+            "UPDATE documents SET date = %s::date, updated_at = now() WHERE url = %s",
             [(d, u_) for (u_, d) in pg_updates],
         )
         conn.commit()

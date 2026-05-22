@@ -96,7 +96,7 @@ def fetch_tasks(max_tasks: int) -> list[dict]:
 
 def fetch_papers_for_task(task_id: str, papers_per_task: int) -> list[dict]:
     """Top papers for a task, ranked by GitHub stars desc."""
-    url = f"{_API_BASE}/tasks/{urllib.parse.quote(task_id, safe='')}/papers/" f"?ordering=-stars"
+    url = f"{_API_BASE}/tasks/{urllib.parse.quote(task_id, safe='')}/papers/?ordering=-stars"
     pages_cap = max(1, (papers_per_task + 49) // 50)
     return _paginate(url, max_pages=pages_cap)[:papers_per_task]
 

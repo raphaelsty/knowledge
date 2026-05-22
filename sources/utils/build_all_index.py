@@ -262,8 +262,7 @@ def main() -> int:
                 attempt += 1
                 if attempt == 1 or attempt % 5 == 0:
                     print(
-                        f"    batch {i // BATCH + 1}/{n_batches} ⏸ queue full "
-                        f"(attempt {attempt}, sleeping {wait}s)...",
+                        f"    batch {i // BATCH + 1}/{n_batches} ⏸ queue full (attempt {attempt}, sleeping {wait}s)...",
                         flush=True,
                     )
                 time.sleep(wait)
@@ -286,7 +285,7 @@ def main() -> int:
     # index must not replace the live `__all__` — better to keep the
     # old one and let the next run try again.
     if pushed != n:
-        print(f"\n[!] Skipping promote — only {pushed:,}/{n:,} pushed. " f"'{INDEX_NAME}' left untouched.")
+        print(f"\n[!] Skipping promote — only {pushed:,}/{n:,} pushed. '{INDEX_NAME}' left untouched.")
         return 1
 
     _promote_staging(api_base, headers)

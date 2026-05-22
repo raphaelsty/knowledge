@@ -33,7 +33,7 @@ def start_pipeline_run(database_url: str, user_id: int, trigger: str = "python")
     `finish_pipeline_run(..., success=False, error=...)` so the row
     doesn't hang in `running` forever.
     """
-    sql = "INSERT INTO pipeline_runs (user_id, trigger, status) " "VALUES (%s, %s, 'running') RETURNING id"
+    sql = "INSERT INTO pipeline_runs (user_id, trigger, status) VALUES (%s, %s, 'running') RETURNING id"
     with psycopg.connect(database_url) as conn:
         with conn.cursor() as cur:
             cur.execute(sql, (user_id, trigger))

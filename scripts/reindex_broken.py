@@ -179,7 +179,7 @@ def force_heal(api_url: str, slug: str, user_id: int, database_url: str) -> None
         with psycopg.connect(database_url) as conn:
             with conn.cursor() as cur:
                 cur.execute(
-                    "UPDATE documents SET indexed=false, updated_at=now() " "WHERE user_id = %s AND indexed = true",
+                    "UPDATE documents SET indexed=false, updated_at=now() WHERE user_id = %s AND indexed = true",
                     (user_id,),
                 )
     except Exception as e:

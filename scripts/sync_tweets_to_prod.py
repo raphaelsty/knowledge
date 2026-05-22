@@ -108,7 +108,7 @@ def _twitter_doc_count(conn, user_id: int) -> int:
     """How many live twitter docs does ``user_id`` have right now?"""
     with conn.cursor() as cur:
         cur.execute(
-            "SELECT COUNT(*) FROM documents " "WHERE user_id = %s AND source = 'twitter' AND deleted = FALSE",
+            "SELECT COUNT(*) FROM documents WHERE user_id = %s AND source = 'twitter' AND deleted = FALSE",
             (user_id,),
         )
         return int(cur.fetchone()[0])
@@ -208,7 +208,7 @@ def main(argv: list[str] | None = None) -> int:
         "--limit",
         type=int,
         default=0,
-        help="Stop after syncing this many users (0 = all). Useful " "for a smoke test before the long run.",
+        help="Stop after syncing this many users (0 = all). Useful for a smoke test before the long run.",
     )
     p.add_argument(
         "--dry-run",
@@ -259,17 +259,14 @@ def main(argv: list[str] | None = None) -> int:
             # COUNT on the partial index used by `_twitter_doc_count`),
             # and the dominant case for the second pass of the script.
             if prod_n >= local_n:
-                _log(f"[{i:>3}/{len(local_users)}] {slug}  " f"covered (prod={prod_n} ≥ local={local_n})")
+                _log(f"[{i:>3}/{len(local_users)}] {slug}  covered (prod={prod_n} ≥ local={local_n})")
                 covered.append(slug)
                 continue
 
-            _log(f"[{i:>3}/{len(local_users)}] {slug}  " f"local={local_n} prod={prod_n} → syncing")
+            _log(f"[{i:>3}/{len(local_users)}] {slug}  local={local_n} prod={prod_n} → syncing")
             inserted, scanned = _stream_user(local_conn, prod_conn, local_uid, prod_uid, args.batch, args.dry_run)
             verdict = "would insert" if args.dry_run else "inserted"
-            _log(
-                f"        {verdict} {inserted:>5d} of {scanned:>5d} local rows "
-                f"({scanned - inserted} already in prod)"
-            )
+            _log(f"        {verdict} {inserted:>5d} of {scanned:>5d} local rows ({scanned - inserted} already in prod)")
             synced.append((slug, inserted, scanned))
             total_inserted += inserted
             total_scanned += scanned

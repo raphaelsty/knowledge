@@ -220,7 +220,7 @@ def fetch_og_image(url: str) -> str | None:
         req = urllib.request.Request(
             url,
             headers={
-                "User-Agent": ("Mozilla/5.0 (compatible; KnowledgeBackfill/1.0; " "+https://knowledge-web.org)"),
+                "User-Agent": ("Mozilla/5.0 (compatible; KnowledgeBackfill/1.0; +https://knowledge-web.org)"),
                 "Accept": "text/html,*/*;q=0.5",
             },
         )
@@ -392,7 +392,7 @@ def update_sqlite(slug: str, payloads: dict[str, list[dict]]) -> int:
                 (json.dumps(entries), ",".join(hosts), url),
             )
         cur.executemany(
-            "UPDATE METADATA " "   SET linked_urls = ?, link_hosts = ? " " WHERE url = ?",
+            "UPDATE METADATA    SET linked_urls = ?, link_hosts = ?  WHERE url = ?",
             rows,
         )
         n = cur.rowcount
@@ -548,7 +548,7 @@ def main() -> int:
             n_imgs = maybe_fetch_images(payloads, image_cache)
             total_imgs += n_imgs
             if args.dry:
-                print(f"  @{slug}: would update {len(payloads)} doc(s); " f"fetched_images={n_imgs}")
+                print(f"  @{slug}: would update {len(payloads)} doc(s); fetched_images={n_imgs}")
                 continue
             # Schema is guaranteed present here — every doc in the
             # work set already has linked_urls populated, so the
@@ -558,11 +558,7 @@ def main() -> int:
             sqlite_meta_writes = update_sqlite(slug, payloads)
             total_tweets += sqlite_writes
             total_sqlite += sqlite_meta_writes
-            print(
-                f"  @{slug}: pg_tweets={sqlite_writes} "
-                f"sqlite_tweets={sqlite_meta_writes} "
-                f"og_images_fetched={n_imgs}"
-            )
+            print(f"  @{slug}: pg_tweets={sqlite_writes} sqlite_tweets={sqlite_meta_writes} og_images_fetched={n_imgs}")
             continue
 
         payloads = gather_links_for_user(database_url, user_id)
