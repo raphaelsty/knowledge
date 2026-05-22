@@ -32,38 +32,37 @@ Tap the heart on any card and the doc lands in your library, indexed and searcha
 
 <p align="center">A few rooms worth walking into.</p>
 
-<div align="center">
-<table align="center" border="0" cellspacing="6" cellpadding="6">
-<tr>
-<td align="center"><a href="https://knowledge-web.org/geoffrey-hinton"><img src="web/img/people/geoffrey-hinton.png" width="100" height="100" style="border-radius:50%"></a><br><sub><a href="https://knowledge-web.org/geoffrey-hinton"><b>Geoffrey Hinton</b></a><br>Turing · Nobel</sub></td>
-<td align="center"><a href="https://knowledge-web.org/yoshua-bengio"><img src="web/img/people/yoshua-bengio.png" width="100" height="100" style="border-radius:50%"></a><br><sub><a href="https://knowledge-web.org/yoshua-bengio"><b>Yoshua Bengio</b></a><br>Mila · Turing</sub></td>
-<td align="center"><a href="https://knowledge-web.org/yann-lecun"><img src="web/img/people/yann-lecun.png" width="100" height="100" style="border-radius:50%"></a><br><sub><a href="https://knowledge-web.org/yann-lecun"><b>Yann LeCun</b></a><br>Meta · Turing</sub></td>
-<td align="center"><a href="https://knowledge-web.org/andrej-karpathy"><img src="web/img/people/andrej-karpathy.png" width="100" height="100" style="border-radius:50%"></a><br><sub><a href="https://knowledge-web.org/andrej-karpathy"><b>Andrej Karpathy</b></a><br>Tesla · OpenAI</sub></td>
-<td align="center"><a href="https://knowledge-web.org/ian-goodfellow"><img src="web/img/people/ian-goodfellow.png" width="100" height="100" style="border-radius:50%"></a><br><sub><a href="https://knowledge-web.org/ian-goodfellow"><b>Ian Goodfellow</b></a><br>GANs · DeepMind</sub></td>
-</tr>
-<tr>
-<td align="center"><a href="https://knowledge-web.org/ilya-sutskever"><img src="web/img/people/ilya-sutskever.png" width="100" height="100" style="border-radius:50%"></a><br><sub><a href="https://knowledge-web.org/ilya-sutskever"><b>Ilya Sutskever</b></a><br>OpenAI · SSI</sub></td>
-<td align="center"><a href="https://knowledge-web.org/demis-hassabis"><img src="web/img/people/demis-hassabis.png" width="100" height="100" style="border-radius:50%"></a><br><sub><a href="https://knowledge-web.org/demis-hassabis"><b>Demis Hassabis</b></a><br>DeepMind · Nobel</sub></td>
-<td align="center"><a href="https://knowledge-web.org/dario-amodei"><img src="web/img/people/dario-amodei.png" width="100" height="100" style="border-radius:50%"></a><br><sub><a href="https://knowledge-web.org/dario-amodei"><b>Dario Amodei</b></a><br>Anthropic · CEO</sub></td>
-<td align="center"><a href="https://knowledge-web.org/oriol-vinyals"><img src="web/img/people/oriol-vinyals.png" width="100" height="100" style="border-radius:50%"></a><br><sub><a href="https://knowledge-web.org/oriol-vinyals"><b>Oriol Vinyals</b></a><br>DeepMind · Gemini</sub></td>
-<td align="center"><a href="https://knowledge-web.org/noam-shazeer"><img src="web/img/people/noam-shazeer.png" width="100" height="100" style="border-radius:50%"></a><br><sub><a href="https://knowledge-web.org/noam-shazeer"><b>Noam Shazeer</b></a><br>Transformer · Google</sub></td>
-</tr>
-<tr>
-<td align="center"><a href="https://knowledge-web.org/omar-khattab"><img src="web/img/people/omar-khattab.png" width="100" height="100" style="border-radius:50%"></a><br><sub><a href="https://knowledge-web.org/omar-khattab"><b>Omar Khattab</b></a><br>ColBERT · DSPy</sub></td>
-<td align="center"><a href="https://knowledge-web.org/matei-zaharia"><img src="web/img/people/matei-zaharia.png" width="100" height="100" style="border-radius:50%"></a><br><sub><a href="https://knowledge-web.org/matei-zaharia"><b>Matei Zaharia</b></a><br>Databricks · Spark</sub></td>
-<td align="center"><a href="https://knowledge-web.org/francois-chollet"><img src="web/img/people/francois-chollet.png" width="100" height="100" style="border-radius:50%"></a><br><sub><a href="https://knowledge-web.org/francois-chollet"><b>François Chollet</b></a><br>Keras · ARC</sub></td>
-<td align="center"><a href="https://knowledge-web.org/clement-delangue"><img src="web/img/people/clement-delangue.png" width="100" height="100" style="border-radius:50%"></a><br><sub><a href="https://knowledge-web.org/clement-delangue"><b>Clément Delangue</b></a><br>Hugging Face · CEO</sub></td>
-<td align="center"><a href="https://knowledge-web.org/thomas-wolf"><img src="web/img/people/thomas-wolf.png" width="100" height="100" style="border-radius:50%"></a><br><sub><a href="https://knowledge-web.org/thomas-wolf"><b>Thomas Wolf</b></a><br>Hugging Face · CSO</sub></td>
-</tr>
-<tr>
-<td align="center"><a href="https://knowledge-web.org/chris-olah"><img src="web/img/people/chris-olah.png" width="100" height="100" style="border-radius:50%"></a><br><sub><a href="https://knowledge-web.org/chris-olah"><b>Chris Olah</b></a><br>Anthropic · Distill</sub></td>
-<td align="center"><a href="https://knowledge-web.org/sebastian-raschka"><img src="web/img/people/sebastian-raschka.png" width="100" height="100" style="border-radius:50%"></a><br><sub><a href="https://knowledge-web.org/sebastian-raschka"><b>Sebastian Raschka</b></a><br>LLMs from scratch</sub></td>
-<td align="center"><a href="https://knowledge-web.org/max-halford"><img src="web/img/people/max-halford.png" width="100" height="100" style="border-radius:50%"></a><br><sub><a href="https://knowledge-web.org/max-halford"><b>Max Halford</b></a><br>Carbonfact · River ML</sub></td>
-<td align="center"><a href="https://knowledge-web.org/pieter-levels"><img src="web/img/people/pieter-levels.png" width="100" height="100" style="border-radius:50%"></a><br><sub><a href="https://knowledge-web.org/pieter-levels"><b>Pieter Levels</b></a><br>indie · Nomad List</sub></td>
-<td align="center"><a href="https://knowledge-web.org/lex-fridman"><img src="web/img/people/lex-fridman.png" width="100" height="100" style="border-radius:50%"></a><br><sub><a href="https://knowledge-web.org/lex-fridman"><b>Lex Fridman</b></a><br>podcast · MIT</sub></td>
-</tr>
-</table>
-</div>
+<p align="center">
+<a href="https://knowledge-web.org/geoffrey-hinton" title="Geoffrey Hinton"><img src="web/img/people/geoffrey-hinton.png" alt="Geoffrey Hinton" width="140"></a>
+<a href="https://knowledge-web.org/yoshua-bengio" title="Yoshua Bengio"><img src="web/img/people/yoshua-bengio.png" alt="Yoshua Bengio" width="140"></a>
+<a href="https://knowledge-web.org/yann-lecun" title="Yann LeCun"><img src="web/img/people/yann-lecun.png" alt="Yann LeCun" width="140"></a>
+<a href="https://knowledge-web.org/andrej-karpathy" title="Andrej Karpathy"><img src="web/img/people/andrej-karpathy.png" alt="Andrej Karpathy" width="140"></a>
+<a href="https://knowledge-web.org/ian-goodfellow" title="Ian Goodfellow"><img src="web/img/people/ian-goodfellow.png" alt="Ian Goodfellow" width="140"></a>
+</p>
+
+<p align="center">
+<a href="https://knowledge-web.org/ilya-sutskever" title="Ilya Sutskever"><img src="web/img/people/ilya-sutskever.png" alt="Ilya Sutskever" width="140"></a>
+<a href="https://knowledge-web.org/demis-hassabis" title="Demis Hassabis"><img src="web/img/people/demis-hassabis.png" alt="Demis Hassabis" width="140"></a>
+<a href="https://knowledge-web.org/dario-amodei" title="Dario Amodei"><img src="web/img/people/dario-amodei.png" alt="Dario Amodei" width="140"></a>
+<a href="https://knowledge-web.org/oriol-vinyals" title="Oriol Vinyals"><img src="web/img/people/oriol-vinyals.png" alt="Oriol Vinyals" width="140"></a>
+<a href="https://knowledge-web.org/noam-shazeer" title="Noam Shazeer"><img src="web/img/people/noam-shazeer.png" alt="Noam Shazeer" width="140"></a>
+</p>
+
+<p align="center">
+<a href="https://knowledge-web.org/omar-khattab" title="Omar Khattab"><img src="web/img/people/omar-khattab.png" alt="Omar Khattab" width="140"></a>
+<a href="https://knowledge-web.org/matei-zaharia" title="Matei Zaharia"><img src="web/img/people/matei-zaharia.png" alt="Matei Zaharia" width="140"></a>
+<a href="https://knowledge-web.org/francois-chollet" title="François Chollet"><img src="web/img/people/francois-chollet.png" alt="François Chollet" width="140"></a>
+<a href="https://knowledge-web.org/clement-delangue" title="Clément Delangue"><img src="web/img/people/clement-delangue.png" alt="Clément Delangue" width="140"></a>
+<a href="https://knowledge-web.org/thomas-wolf" title="Thomas Wolf"><img src="web/img/people/thomas-wolf.png" alt="Thomas Wolf" width="140"></a>
+</p>
+
+<p align="center">
+<a href="https://knowledge-web.org/chris-olah" title="Chris Olah"><img src="web/img/people/chris-olah.png" alt="Chris Olah" width="140"></a>
+<a href="https://knowledge-web.org/sebastian-raschka" title="Sebastian Raschka"><img src="web/img/people/sebastian-raschka.png" alt="Sebastian Raschka" width="140"></a>
+<a href="https://knowledge-web.org/max-halford" title="Max Halford"><img src="web/img/people/max-halford.png" alt="Max Halford" width="140"></a>
+<a href="https://knowledge-web.org/pieter-levels" title="Pieter Levels"><img src="web/img/people/pieter-levels.png" alt="Pieter Levels" width="140"></a>
+<a href="https://knowledge-web.org/lex-fridman" title="Lex Fridman"><img src="web/img/people/lex-fridman.png" alt="Lex Fridman" width="140"></a>
+</p>
 
 <p align="center">…or wander through <a href="https://knowledge-web.org">all 454 libraries</a>.</p>
 
