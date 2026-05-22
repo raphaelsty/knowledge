@@ -44,3 +44,6 @@ web/img/bg-light.jpg
 
 # pg_dump archives from `make prod-db-dump`
 backups/
+
+# Raw screen-recording exports (compressed copies live in web/img/)
+gif/
