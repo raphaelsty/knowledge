@@ -623,6 +623,15 @@
       const updated = await r.json().catch(() => ({ ...me, ...body }));
       me = updated;
       K.invalidateCaches(me.slug);
+      // /api/users/{slug} ships with a 60s browser cache, so opening
+      // /<slug> right after saving still shows the old bio. Replay the
+      // GET with `cache: 'reload'` to evict the stale entry from the
+      // browser's HTTP cache. Fire-and-forget — we don't use the body,
+      // just the side effect on the cache.
+      fetch(`${API_BASE}/api/users/${encodeURIComponent(me.slug)}`, {
+        cache: "reload",
+        credentials: "include",
+      }).catch(() => {});
       setStatus("saved", true);
     } catch (err) {
       autoSaveLastBody = null;
