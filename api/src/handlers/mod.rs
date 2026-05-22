@@ -26,6 +26,7 @@ pub mod rerank;
 pub mod search;
 pub mod secrets;
 pub mod sponsorships;
+pub mod sql_like;
 pub mod storage;
 pub mod tokens;
 pub mod url_safety;

@@ -366,7 +366,9 @@ pub async fn users_list(
          LIMIT 300
         "#,
     )
-    .bind(&q)
+    // Escape % / _ in the user-supplied filter so they match literally
+    // (a search of `%` would otherwise return every row).
+    .bind(crate::handlers::sql_like::escape_like_pattern(&q))
     .fetch_all(&pool)
     .await;
 

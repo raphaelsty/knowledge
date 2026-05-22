@@ -305,10 +305,29 @@ fn build_router(state: Arc<AppState>, pg_pool: Option<sqlx::PgPool>) -> Router {
         tracing::info!("rate_limiting.disabled");
     }
 
+    // Permissive CORS for the public read API (search, metadata, MCP,
+    // index_info). Allows any origin + standard methods, but restricts
+    // `allow_headers` to an explicit list — notably *excluding*
+    // `X-API-Key`. That stops cross-origin browser scripts from
+    // pre-flighting admin endpoints even if they hold the key, while
+    // still letting normal read calls work from any origin.
+    //
+    // Server-to-server callers (the Python pipeline, CLI scripts) do
+    // not preflight, so they remain unaffected.
     let cors = CorsLayer::new()
         .allow_origin(Any)
-        .allow_methods(Any)
-        .allow_headers(Any);
+        .allow_methods([
+            axum::http::Method::GET,
+            axum::http::Method::POST,
+            axum::http::Method::PUT,
+            axum::http::Method::DELETE,
+            axum::http::Method::OPTIONS,
+        ])
+        .allow_headers([
+            axum::http::header::CONTENT_TYPE,
+            axum::http::header::ACCEPT,
+            axum::http::header::AUTHORIZATION,
+        ]);
 
     // --- Search API routers ---
 

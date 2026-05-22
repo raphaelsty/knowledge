@@ -583,7 +583,9 @@ pub async fn fallback_search(
     }
     sql.push_str(&format!(" ORDER BY d.date DESC NULLS LAST LIMIT ${}", next));
 
-    let pattern = format!("%{}%", q);
+    // Escape user-supplied % and _ so they match literally instead of
+    // acting as wildcards (a query of `%` would otherwise match all rows).
+    let pattern = format!("%{}%", crate::handlers::sql_like::escape_like_pattern(&q));
     let mut query = sqlx::query_as::<
         _,
         (

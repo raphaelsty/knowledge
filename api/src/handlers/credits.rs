@@ -343,6 +343,28 @@ pub async fn webhook(State(pool): State<PgPool>, headers: HeaderMap, body: Bytes
     ) else {
         return (StatusCode::BAD_REQUEST, "missing standard-webhooks headers").into_response();
     };
+
+    // Reject stale/replayed webhooks. The Standard Webhooks spec
+    // mandates a freshness check; without it, captured payloads could
+    // be re-submitted if the dedupe table is ever truncated.
+    const MAX_SKEW_SECS: i64 = 300; // ±5 min
+    let ts: i64 = match timestamp.parse() {
+        Ok(t) => t,
+        Err(_) => {
+            tracing::warn!(webhook_id = %webhook_id, ts = %timestamp, "polar.webhook.bad_timestamp");
+            return (StatusCode::BAD_REQUEST, "invalid timestamp").into_response();
+        }
+    };
+    let now = chrono::Utc::now().timestamp();
+    if (now - ts).abs() > MAX_SKEW_SECS {
+        tracing::warn!(
+            webhook_id = %webhook_id,
+            skew_secs = now - ts,
+            "polar.webhook.stale"
+        );
+        return (StatusCode::UNAUTHORIZED, "stale webhook").into_response();
+    }
+
     if !polar::verify_webhook(&secret, webhook_id, timestamp, &body, signature) {
         tracing::warn!(webhook_id = %webhook_id, "polar.webhook.bad_signature");
         return (StatusCode::UNAUTHORIZED, "invalid signature").into_response();

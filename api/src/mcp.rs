@@ -745,7 +745,12 @@ async fn personality_substring_rows(
     query: &str,
     vip_filter: Option<bool>,
 ) -> Result<Vec<Value>, String> {
-    let pat = format!("%{query}%");
+    // Escape user-supplied % and _ so the input matches literally
+    // rather than acting as a wildcard.
+    let pat = format!(
+        "%{}%",
+        crate::handlers::sql_like::escape_like_pattern(query)
+    );
     let mut sql = String::from(
         "SELECT u.username, u.name, u.description,
                 COALESCE(
@@ -1141,7 +1146,10 @@ async fn tool_search(state: Arc<AppState>, pool: &PgPool, args: Value) -> Result
     #[cfg(not(feature = "model"))]
     let _ = (&state, sort_by_date);
 
-    let pat = format!("%{query}%");
+    let pat = format!(
+        "%{}%",
+        crate::handlers::sql_like::escape_like_pattern(&query)
+    );
     let mut sql = String::from(
         "SELECT d.url, d.title, d.summary,
                 COALESCE(to_char(d.date, 'YYYY-MM-DD'), '') AS date,
@@ -2282,7 +2290,10 @@ async fn tool_my_library(
     let _ = (&state, sort_by_date);
 
     // SQL keyword fallback — date-sorted regardless of `sort_by_date`.
-    let pat = format!("%{query}%");
+    let pat = format!(
+        "%{}%",
+        crate::handlers::sql_like::escape_like_pattern(&query)
+    );
     let mut sql = String::from(
         "SELECT d.url, d.title, d.summary,
                 COALESCE(to_char(d.date, 'YYYY-MM-DD'), '') AS date,
