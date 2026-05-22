@@ -1,4 +1,4 @@
-.PHONY: install install-dev sync run index index-all index-check serve web lint lint-fix check pre-commit pre-commit-install docker-build docker-run launch docker-stop clean install-api api-build db db-browse db-backup db-backup-if-stale up down ssh dev dev-stop delete purge hn-frontpage daily repair-indexes all-status all-rebuild load-test prod-db-dump prod-db-restore prod-db-sync
+.PHONY: install install-dev sync run index index-all index-check serve web lint lint-fix check pre-commit pre-commit-install docker-build docker-run launch docker-stop clean install-api api-build db db-browse db-backup db-backup-if-stale up down ssh dev dev-stop delete purge hn-frontpage daily repair-indexes all-status all-rebuild load-test prod-db-dump prod-db-dump-if-stale prod-db-restore prod-db-sync
 
 # Load .env if present
 -include .env
@@ -533,7 +533,7 @@ categorize-daemon-refresh:
 # either side so we don't need the binaries on the host. The dump
 # uses --no-owner --no-privileges so it replays cleanly into a
 # differently-owned local DB.
-.PHONY: prod-db-dump prod-db-restore prod-db-sync
+.PHONY: prod-db-dump prod-db-dump-if-stale prod-db-restore prod-db-sync
 prod-db-dump:
 	@mkdir -p backups
 	@TS=$$(date '+%Y%m%d-%H%M%S'); \
@@ -546,6 +546,31 @@ prod-db-dump:
 	    | gzip > "$$OUT"; \
 	SZ=$$(du -h "$$OUT" | cut -f1); \
 	echo "✓ Saved $$OUT ($$SZ)"
+
+# Guard target: stream a prod dump only if there isn't already one
+# from today (local date). Used as a `make twitter-feed` prerequisite
+# so the first invocation each day always leaves a fresh on-disk
+# snapshot of prod in ./backups/ before the long-running feeder
+# starts. Subsequent runs the same day are no-ops.
+#
+# Failures (SSH down, dump errored mid-stream) are non-fatal: we
+# remove the truncated file and proceed with the feeder anyway —
+# losing the feeder over a snapshot hiccup would be worse than
+# missing one day's backup.
+prod-db-dump-if-stale:
+	@mkdir -p backups
+	@today=$$(date '+%Y%m%d'); \
+	if ls -1 backups/prod-$${today}-*.sql.gz >/dev/null 2>&1; then \
+	    echo "==> prod-db snapshot from today already exists in backups/ — skipping."; \
+	else \
+	    echo "==> No prod-db snapshot from today found — taking one before the feeder starts."; \
+	    if $(MAKE) --no-print-directory prod-db-dump; then \
+	        echo "==> Snapshot complete; starting feeder."; \
+	    else \
+	        echo "[!] prod-db-dump failed — continuing to the feeder anyway." >&2; \
+	        rm -f backups/prod-$${today}-*.sql.gz.partial 2>/dev/null || true; \
+	    fi; \
+	fi
 
 prod-db-restore:
 	@LATEST=$$(ls -t backups/prod-*.sql.gz 2>/dev/null | head -1); \
@@ -578,17 +603,23 @@ prod-db-sync: prod-db-dump prod-db-restore
 
 # ── Local Twitter feeder → prod PG ────────────────────────────
 #
-# Opens an SSH tunnel to Hetzner (prod PG is loopback-only) and
-# runs the long-running `knowledge-twitter-feed` client against it.
-# Logs go to `logs/twitter-feed-<ts>.log` and the terminal.
+# Talks to the Rust admin API over plain HTTPS for queue / existing-URL
+# / ingest calls (no SSH tunnel needed). Logs go to
+# `logs/twitter-feed-<ts>.log` and the terminal.
 #
 #   make twitter-feed                    # default: rest 1h between sweeps
 #   make twitter-feed ARGS="--one-shot"  # single pass, exit
 #   make twitter-feed ARGS="--rest 1800 --personality-delay 6"
 #
-# Ctrl+C exits cleanly: in-flight personality finishes, tunnel closes.
+# The first invocation each day depends on `prod-db-dump-if-stale`
+# which streams a fresh prod pg_dump into ./backups/ before the
+# feeder starts — that way at least one on-disk snapshot exists on
+# this laptop per calendar day, regardless of whether the prod
+# pg-backup sidecar volume survives a host event.
+#
+# Ctrl+C exits cleanly: in-flight personality finishes.
 .PHONY: twitter-feed twitter-feed-logs
-twitter-feed:
+twitter-feed: prod-db-dump-if-stale
 	KNOWLEDGE_ADMIN_TOKEN=$(KNOWLEDGE_ADMIN_TOKEN) \
 	API_URL=https://$(DOMAIN) \
 		scripts/twitter_feed.sh $(ARGS)
