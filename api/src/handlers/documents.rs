@@ -932,12 +932,8 @@ pub async fn create_index(
 ) -> ApiResult<Json<CreateIndexResponse>> {
     let trace_id = trace_id.map(|t| t.0).unwrap_or_default();
 
-    // Validate name
-    if req.name.is_empty() {
-        return Err(ApiError::BadRequest(
-            "Index name cannot be empty".to_string(),
-        ));
-    }
+    // Validate name (rejects path traversal, separators, reserved sentinels).
+    crate::state::validate_index_name(&req.name)?;
 
     // Lock mainly to prevent race condition on file existence check
     let lock = get_index_lock(&req.name);
@@ -1370,6 +1366,9 @@ pub async fn delete_index(
 ) -> ApiResult<Json<DeleteIndexResponse>> {
     let trace_id = trace_id.map(|t| t.0).unwrap_or_default();
 
+    // Reject any name that could escape index_dir (e.g. "..", "../etc").
+    crate::state::validate_index_name(&name)?;
+
     let lock = get_index_lock(&name);
     let _guard = lock.lock().await;
 
@@ -1476,11 +1475,9 @@ pub async fn promote_index(
     let trace_id = trace_id.map(|t| t.0).unwrap_or_default();
     let source = req.from;
 
-    if source.is_empty() || target.is_empty() {
-        return Err(ApiError::BadRequest(
-            "Both `from` and target index name must be non-empty".to_string(),
-        ));
-    }
+    // Reject path-traversal attempts in either name before any FS op.
+    crate::state::validate_index_name(&source)?;
+    crate::state::validate_index_name(&target)?;
     if source == target {
         return Err(ApiError::BadRequest(
             "`from` must differ from the target".to_string(),

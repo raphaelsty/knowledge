@@ -16,7 +16,12 @@
 #
 # Env vars (set in Dokploy's project UI):
 #   DOMAIN, POSTGRES_PASSWORD, GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET,
-#   KNOWLEDGE_ADMIN_TOKEN
+#   KNOWLEDGE_ADMIN_TOKEN, ADMIN_API_KEY
+#
+# ADMIN_API_KEY MUST be set to a long random string before deploy — the
+# API fails closed when this env is missing and every admin endpoint
+# (POST /api/pipeline, DELETE /indices/*, ingest, promote, …) will
+# return 401. Generate with: `openssl rand -hex 32`.
 
 services:
   postgres:
@@ -60,6 +65,10 @@ services:
       - OAUTH_REDIRECT_URL=https://${DOMAIN:-knowledge-web.org}/auth/github/callback
       - OAUTH_POST_LOGIN_URL=/
       - KNOWLEDGE_ADMIN_TOKEN=${KNOWLEDGE_ADMIN_TOKEN}
+      # Required: the admin API key consumed by RequireApiKey middleware.
+      # Without it, admin endpoints (pipeline, index delete/promote, ingest)
+      # return 401 — fail-closed.
+      - ADMIN_API_KEY=${ADMIN_API_KEY}
     command:
       - --host
       - "0.0.0.0"

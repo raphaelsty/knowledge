@@ -28,6 +28,7 @@ pub mod secrets;
 pub mod sponsorships;
 pub mod storage;
 pub mod tokens;
+pub mod url_safety;
 pub mod users;
 
 pub use documents::*;

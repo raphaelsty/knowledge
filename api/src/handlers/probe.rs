@@ -172,7 +172,14 @@ async fn probe_twitter(handle: &str) -> ProbeResponse {
 }
 
 async fn probe_blog(url: &str) -> ProbeResponse {
-    let Ok(resp) = http().get(url).send().await else {
+    // User-supplied URL → must go through the SSRF-safe fetcher.
+    let Ok(resp) = crate::handlers::url_safety::safe_get(
+        url,
+        std::time::Duration::from_secs(10),
+        "knowledge-api/0.1 profile-probe",
+    )
+    .await
+    else {
         return fail("unreachable");
     };
     if !resp.status().is_success() {
@@ -202,7 +209,14 @@ async fn probe_blog(url: &str) -> ProbeResponse {
 }
 
 async fn probe_sitemap(url: &str) -> ProbeResponse {
-    let Ok(resp) = http().get(url).send().await else {
+    // User-supplied URL → must go through the SSRF-safe fetcher.
+    let Ok(resp) = crate::handlers::url_safety::safe_get(
+        url,
+        std::time::Duration::from_secs(10),
+        "knowledge-api/0.1 profile-probe",
+    )
+    .await
+    else {
         return fail("unreachable");
     };
     if !resp.status().is_success() {
@@ -874,8 +888,18 @@ fn resolve_url(href: &str, base_url: &str) -> Option<String> {
 
 /// GET helper that returns `None` for any non-2xx or network error.
 /// Keeps the probe flow readable without nested match arms.
+///
+/// Uses the SSRF-safe fetcher — every URL reaching this function is
+/// derived (directly or via robots.txt / sitemap chain) from user
+/// input.
 async fn http_get_ok(url: &str) -> Option<reqwest::Response> {
-    let resp = http().get(url).send().await.ok()?;
+    let resp = crate::handlers::url_safety::safe_get(
+        url,
+        std::time::Duration::from_secs(10),
+        "knowledge-api/0.1 profile-probe",
+    )
+    .await
+    .ok()?;
     resp.status().is_success().then_some(resp)
 }
 
@@ -962,7 +986,14 @@ fn split_base_and_filter(url: &str) -> Option<(String, Option<String>)> {
 }
 
 async fn sitemaps_from_robots(base: &str) -> Vec<String> {
-    let Ok(resp) = http().get(format!("{}/robots.txt", base)).send().await else {
+    // `base` is derived from user input → SSRF-safe fetcher.
+    let Ok(resp) = crate::handlers::url_safety::safe_get(
+        &format!("{}/robots.txt", base),
+        std::time::Duration::from_secs(10),
+        "knowledge-api/0.1 profile-probe",
+    )
+    .await
+    else {
         return Vec::new();
     };
     if !resp.status().is_success() {
@@ -1004,7 +1035,16 @@ fn gather_sitemap_urls_inner(
     depth: u8,
 ) -> std::pin::Pin<Box<dyn std::future::Future<Output = Option<Vec<String>>> + Send + '_>> {
     Box::pin(async move {
-        let resp = http().get(url).send().await.ok()?;
+        // Sitemap chain walker — every URL here originated from user
+        // input (initial sitemap URL or `<loc>` children of one), so
+        // SSRF-safe fetcher.
+        let resp = crate::handlers::url_safety::safe_get(
+            url,
+            std::time::Duration::from_secs(10),
+            "knowledge-api/0.1 profile-probe",
+        )
+        .await
+        .ok()?;
         if !resp.status().is_success() {
             return None;
         }

@@ -34,6 +34,7 @@ use std::sync::{Mutex, OnceLock};
 use std::time::{Duration, Instant};
 
 use crate::handlers::auth::current_user;
+use crate::handlers::url_safety::{is_blocked_host_literal, safe_get};
 
 const MAX_BODY: usize = 10 * 1024 * 1024; // 10 MB
 const TIMEOUT_SECS: u64 = 20;
@@ -118,9 +119,11 @@ pub async fn proxy_fetch(
         return StatusCode::UNAUTHORIZED.into_response();
     }
 
-    // URL validation — scheme + non-private host. `reqwest::Url` is
-    // a re-export of `url::Url`, so we parse via reqwest to avoid
-    // pulling `url` in as a separate crate dep.
+    // URL validation — scheme + literal-host check. The deep SSRF
+    // guard (server-side DNS resolution + per-IP block list + redirect
+    // re-validation) lives inside `safe_get`. The literal-host short
+    // circuit here keeps the cache key clean for the `localhost` /
+    // raw-IP cases that we never want to even reach DNS for.
     let parsed = match reqwest::Url::parse(&p.url) {
         Ok(u) => u,
         Err(_) => return (StatusCode::BAD_REQUEST, "invalid url").into_response(),
@@ -128,12 +131,12 @@ pub async fn proxy_fetch(
     if parsed.scheme() != "http" && parsed.scheme() != "https" {
         return (StatusCode::BAD_REQUEST, "scheme not allowed").into_response();
     }
-    if let Some(host) = parsed.host_str() {
-        if is_blocked_host(host) {
+    match parsed.host_str() {
+        Some(host) if is_blocked_host_literal(host) => {
             return (StatusCode::FORBIDDEN, "private network not allowed").into_response();
         }
-    } else {
-        return (StatusCode::BAD_REQUEST, "missing host").into_response();
+        Some(_) => {}
+        None => return (StatusCode::BAD_REQUEST, "missing host").into_response(),
     }
 
     // Cache hit shortcut. Returns the same shape as a live fetch so
@@ -154,28 +157,34 @@ pub async fn proxy_fetch(
         return (status, headers, body).into_response();
     }
 
-    // Build the client per-request — small enough overhead, and lets
-    // us enforce the timeout cleanly. We use native-tls (OS crypto)
-    // rather than rustls because hosts like reddit.com fingerprint
-    // the rustls ClientHello (JA3) and blanket-403 it server-side,
-    // regardless of UA. The OS stack has curl's fingerprint family
-    // and passes through.
-    let client = match reqwest::Client::builder()
-        .use_native_tls()
-        .user_agent("Knowledge/1.0 (research project; https://github.com/raphaelsty/knowledge)")
-        .timeout(std::time::Duration::from_secs(TIMEOUT_SECS))
-        .redirect(reqwest::redirect::Policy::limited(8))
-        .build()
+    // SSRF-safe fetch: resolves DNS server-side, blocks private IPs,
+    // and re-validates every redirect hop. native-tls is used inside
+    // `safe_get` so the fingerprint behaviour stays the same as the
+    // previous reqwest builder (reddit.com etc.).
+    let resp = match safe_get(
+        parsed.as_str(),
+        std::time::Duration::from_secs(TIMEOUT_SECS),
+        "Knowledge/1.0 (research project; https://github.com/raphaelsty/knowledge)",
+    )
+    .await
     {
-        Ok(c) => c,
-        Err(_) => {
-            return (StatusCode::INTERNAL_SERVER_ERROR, "client init").into_response();
-        }
-    };
-
-    let resp = match client.get(parsed.as_str()).send().await {
         Ok(r) => r,
-        Err(e) => return (StatusCode::BAD_GATEWAY, format!("upstream: {e}")).into_response(),
+        Err(e) => {
+            // Map structured fetch errors to the right HTTP status.
+            use crate::handlers::url_safety::FetchError;
+            let (status, msg) = match &e {
+                FetchError::InvalidUrl
+                | FetchError::SchemeNotAllowed
+                | FetchError::HostMissing
+                | FetchError::RedirectLocationMissing => (StatusCode::BAD_REQUEST, e.to_string()),
+                FetchError::BlockedHost => (StatusCode::FORBIDDEN, e.to_string()),
+                FetchError::DnsFailed
+                | FetchError::Request(_)
+                | FetchError::TooManyRedirects
+                | FetchError::BuildClient => (StatusCode::BAD_GATEWAY, e.to_string()),
+            };
+            return (status, msg).into_response();
+        }
     };
     let upstream_status = resp.status();
     let ct = resp
@@ -215,29 +224,5 @@ pub async fn proxy_fetch(
     (status, headers, body).into_response()
 }
 
-/// Reject loopback, private, link-local and unspecified addresses so
-/// the proxy can't be turned into an SSRF tool against the host's
-/// internal network. Pure-DNS hosts (anything that doesn't parse as
-/// an IP) get through; reqwest's resolver will reject AAAA-only
-/// loopback names anyway.
-fn is_blocked_host(host: &str) -> bool {
-    let h = host.to_ascii_lowercase();
-    if h == "localhost" || h.ends_with(".localhost") {
-        return true;
-    }
-    if let Ok(ip) = h.parse::<std::net::IpAddr>() {
-        match ip {
-            std::net::IpAddr::V4(v4) => {
-                v4.is_loopback()
-                    || v4.is_private()
-                    || v4.is_link_local()
-                    || v4.is_broadcast()
-                    || v4.is_unspecified()
-                    || v4.is_documentation()
-            }
-            std::net::IpAddr::V6(v6) => v6.is_loopback() || v6.is_unspecified(),
-        }
-    } else {
-        false
-    }
-}
+// Loopback/private/link-local/ULA/CGNAT IP filtering plus DNS-resolve
+// hardening live in `crate::handlers::url_safety` (see `safe_get`).

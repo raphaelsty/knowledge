@@ -294,7 +294,18 @@ impl AppState {
     }
 
     /// Get the path for an index by name.
+    ///
+    /// If `name` is not a valid index identifier (see [`validate_index_name`]),
+    /// returns a sentinel path inside `index_dir` that is guaranteed not to
+    /// match any real index — so any filesystem op below will be a no-op /
+    /// "not found" without ever escaping the configured index directory.
+    ///
+    /// Handlers that **create** or **delete** on this path MUST still call
+    /// [`validate_index_name`] directly so they can return 400 to the caller.
     pub fn index_path(&self, name: &str) -> PathBuf {
+        if validate_index_name(name).is_err() {
+            return self.config.index_dir.join("__invalid_index_name__");
+        }
         self.config.index_dir.join(name)
     }
 
@@ -549,4 +560,31 @@ impl AppState {
             max_documents,
         })
     }
+}
+
+/// Validate that `name` is a safe index identifier — strictly
+/// `[A-Za-z0-9._-]{1,128}` and not equal to `.` / `..`.
+///
+/// This is the single source of truth for what is allowed to be joined onto
+/// `index_dir`. Reject path separators, parent-directory components, NUL,
+/// leading-`.` traversal, and the sentinel placeholder returned by
+/// [`AppState::index_path`] on invalid input.
+pub fn validate_index_name(name: &str) -> ApiResult<()> {
+    if name.is_empty() || name.len() > 128 {
+        return Err(ApiError::BadRequest(
+            "index name must be 1..=128 characters".to_string(),
+        ));
+    }
+    if name == "." || name == ".." || name == "__invalid_index_name__" {
+        return Err(ApiError::BadRequest("index name is reserved".to_string()));
+    }
+    if !name
+        .chars()
+        .all(|c| c.is_ascii_alphanumeric() || c == '_' || c == '-' || c == '.')
+    {
+        return Err(ApiError::BadRequest(
+            "index name may only contain ASCII letters, digits, '_', '-', '.'".to_string(),
+        ));
+    }
+    Ok(())
 }

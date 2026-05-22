@@ -208,7 +208,9 @@ pub async fn refresh_storage(State(state): State<Arc<AppState>>, jar: CookieJar)
             .ok();
     let index_bytes = match index_name.as_deref() {
         Some(name) if !name.is_empty() => {
-            let path = state.config.index_dir.join(name);
+            // Route through index_path so an invalid stored name resolves to
+            // a contained sentinel rather than escaping index_dir.
+            let path = state.index_path(name);
             dir_size_bytes(&path) as i64
         }
         _ => 0,
