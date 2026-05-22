@@ -1,0 +1,103 @@
+name: Deploy to prod
+
+# Replaces Dokploy's built-in GitHub App auto-deploy hook. Why:
+#   * The App webhook is opaque — failures hide inside Dokploy's UI
+#     instead of showing as a red ✖ on the commit.
+#   * Stuck deploys silently lock subsequent pushes (we lived this:
+#     a manually-killed deploy left Dokploy refusing to process any
+#     new commit for hours).
+#   * No re-run button from outside the Dokploy UI.
+#
+# This workflow simulates the GitHub push event Dokploy expects and
+# POSTs it to the project's deploy URL. The deploy URL itself is the
+# project's `compose.refreshToken` — that token IS the auth, and it's
+# stored as a GitHub Actions secret (`DOKPLOY_DEPLOY_URL`) so it never
+# lands in the repo.
+#
+# On a deploy failure the workflow fails and the commit gets a red ✖
+# next to it in GitHub. Use the "Re-run jobs" button to retry.
+
+on:
+  push:
+    branches: [main]
+  # Manual trigger so a botched deploy can be re-fired without
+  # pushing an empty commit. Available from the Actions tab.
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Dokploy redeploy
+    runs-on: ubuntu-latest
+    # The job only matters for lining up with the push event itself —
+    # there's no checkout needed because Dokploy clones the repo
+    # server-side. Limiting the runtime saves CI minutes if something
+    # in Dokploy's response stream hangs.
+    timeout-minutes: 5
+    steps:
+      - name: POST simulated push payload to Dokploy
+        env:
+          DOKPLOY_DEPLOY_URL: ${{ secrets.DOKPLOY_DEPLOY_URL }}
+        run: |
+          set -euo pipefail
+
+          if [ -z "${DOKPLOY_DEPLOY_URL:-}" ]; then
+            echo "::error::DOKPLOY_DEPLOY_URL secret is not set." \
+                 "Add it under repo Settings → Secrets and variables → Actions" \
+                 "with value https://dokploy.knowledge-web.org/api/deploy/compose/<refreshToken>."
+            exit 1
+          fi
+
+          # Dokploy's compose deploy webhook validates four things:
+          #   * `X-GitHub-Event: push` header — tells it which provider's
+          #     payload format to parse.
+          #   * `ref` field — must extract to `main` (the project's
+          #     configured branch).
+          #   * `commits[].modified` array — must intersect the
+          #     project's `watchPaths` if any are set. We don't use
+          #     watchPaths, so this is just a placeholder.
+          # The shape mirrors a real GitHub push event but trimmed to
+          # the fields Dokploy actually reads.
+          PAYLOAD=$(cat <<EOF
+          {
+            "ref": "refs/heads/${GITHUB_REF_NAME}",
+            "after": "${GITHUB_SHA}",
+            "head_commit": {
+              "id": "${GITHUB_SHA}",
+              "message": "${GITHUB_EVENT_NAME} ${GITHUB_SHA}"
+            },
+            "commits": [
+              {
+                "id": "${GITHUB_SHA}",
+                "modified": ["."]
+              }
+            ],
+            "repository": {
+              "full_name": "${GITHUB_REPOSITORY}",
+              "default_branch": "main"
+            }
+          }
+          EOF
+          )
+
+          echo "Triggering Dokploy deploy for ${GITHUB_SHA:0:7} on ${GITHUB_REF_NAME}…"
+
+          # `-f` makes curl fail with a non-zero exit on 4xx/5xx so the
+          # job goes red automatically. `-L` follows the HTTPS redirect
+          # that Dokploy's proxy emits for plain HTTP. The connect
+          # timeout caps how long we wait for the box to answer.
+          HTTP_STATUS=$(curl -sS -L -X POST \
+            --connect-timeout 10 \
+            --max-time 60 \
+            -H 'Content-Type: application/json' \
+            -H 'X-GitHub-Event: push' \
+            -d "$PAYLOAD" \
+            -w "\nHTTP_STATUS:%{http_code}" \
+            "$DOKPLOY_DEPLOY_URL")
+
+          echo "$HTTP_STATUS"
+          CODE=$(echo "$HTTP_STATUS" | grep -oE 'HTTP_STATUS:[0-9]+' | cut -d: -f2)
+          if [ "$CODE" != "200" ]; then
+            echo "::error::Dokploy returned HTTP $CODE; deploy did not start."
+            exit 1
+          fi
+          echo "::notice::Dokploy accepted the deploy request."
