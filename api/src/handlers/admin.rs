@@ -1134,6 +1134,23 @@ pub struct IngestDoc {
     pub linked_urls: Option<serde_json::Value>,
     #[serde(default)]
     pub link_hosts: Vec<String>,
+    // Behavioural / engagement metrics. `None` = the feeder didn't
+    // measure this signal for this doc; the upsert below COALESCEs
+    // onto the prior value so a re-sync that happens to ship without
+    // engagement (e.g. a malformed twikit payload) never resets a
+    // tweet's like count back to zero.
+    #[serde(default)]
+    pub twitter_likes: Option<i64>,
+    #[serde(default)]
+    pub twitter_retweets: Option<i64>,
+    #[serde(default)]
+    pub twitter_replies: Option<i64>,
+    #[serde(default)]
+    pub twitter_quotes: Option<i64>,
+    #[serde(default)]
+    pub twitter_views: Option<i64>,
+    #[serde(default)]
+    pub twitter_bookmarks: Option<i64>,
 }
 
 #[derive(Debug, serde::Deserialize)]
@@ -1225,21 +1242,30 @@ pub async fn admin_ingest_tweets(
         WITH input AS (
             SELECT *
               FROM jsonb_to_recordset($2::jsonb) AS x(
-                  url          text,
-                  title        text,
-                  summary      text,
-                  date         text,
-                  source       text,
-                  source_url   text,
-                  tags         text[],
-                  extra_tags   text[],
-                  linked_urls  jsonb,
-                  link_hosts   text[]
+                  url               text,
+                  title             text,
+                  summary           text,
+                  date              text,
+                  source            text,
+                  source_url        text,
+                  tags              text[],
+                  extra_tags        text[],
+                  linked_urls       jsonb,
+                  link_hosts        text[],
+                  twitter_likes     bigint,
+                  twitter_retweets  bigint,
+                  twitter_replies   bigint,
+                  twitter_quotes    bigint,
+                  twitter_views     bigint,
+                  twitter_bookmarks bigint
               )
         )
         INSERT INTO documents (
             user_id, url, title, summary, date, tags, extra_tags,
-            source, source_url, linked_urls, link_hosts
+            source, source_url, linked_urls, link_hosts,
+            twitter_likes, twitter_retweets, twitter_replies,
+            twitter_quotes, twitter_views, twitter_bookmarks,
+            engagement_updated_at
         )
         SELECT $1, i.url, COALESCE(i.title, ''), COALESCE(i.summary, ''),
                NULLIF(i.date, '')::date,
@@ -1248,7 +1274,24 @@ pub async fn admin_ingest_tweets(
                COALESCE(i.source, ''),
                i.source_url,
                COALESCE(i.linked_urls, '[]'::jsonb),
-               COALESCE(i.link_hosts, '{}'::text[])
+               COALESCE(i.link_hosts, '{}'::text[]),
+               -- BIGINT on the wire → INT4 on disk for the non-view
+               -- columns. PG will narrow the cast; values above 2.1B
+               -- here would mean a tweet hit 2 billion likes, which
+               -- isn't a real concern.
+               i.twitter_likes::int,
+               i.twitter_retweets::int,
+               i.twitter_replies::int,
+               i.twitter_quotes::int,
+               i.twitter_views,
+               i.twitter_bookmarks::int,
+               CASE WHEN i.twitter_likes IS NOT NULL
+                      OR i.twitter_retweets IS NOT NULL
+                      OR i.twitter_replies IS NOT NULL
+                      OR i.twitter_quotes IS NOT NULL
+                      OR i.twitter_views IS NOT NULL
+                      OR i.twitter_bookmarks IS NOT NULL
+                    THEN now() ELSE NULL END
           FROM input i
         ON CONFLICT (user_id, url) DO UPDATE
             SET date = GREATEST(documents.date, EXCLUDED.date),
@@ -1278,6 +1321,17 @@ pub async fn admin_ingest_tweets(
                         THEN EXCLUDED.link_hosts
                     ELSE documents.link_hosts
                 END,
+                -- Engagement: COALESCE so a payload that ships NULLs
+                -- (e.g. a non-engagement re-sync) keeps the prior
+                -- measurement intact. A real measurement always wins
+                -- because EXCLUDED is non-NULL only when it was set.
+                twitter_likes     = COALESCE(EXCLUDED.twitter_likes,     documents.twitter_likes),
+                twitter_retweets  = COALESCE(EXCLUDED.twitter_retweets,  documents.twitter_retweets),
+                twitter_replies   = COALESCE(EXCLUDED.twitter_replies,   documents.twitter_replies),
+                twitter_quotes    = COALESCE(EXCLUDED.twitter_quotes,    documents.twitter_quotes),
+                twitter_views     = COALESCE(EXCLUDED.twitter_views,     documents.twitter_views),
+                twitter_bookmarks = COALESCE(EXCLUDED.twitter_bookmarks, documents.twitter_bookmarks),
+                engagement_updated_at = COALESCE(EXCLUDED.engagement_updated_at, documents.engagement_updated_at),
                 created_via_favorite = FALSE,
                 deleted = FALSE,
                 updated_at = now()

@@ -29,11 +29,16 @@ def load_documents(database_url: str, user_id: int) -> dict[str, dict]:
 
     Same shape as the legacy `database.json` dict — keys are URLs, values
     have ``title``, ``summary``, ``date``, ``tags``, ``extra-tags``,
-    ``source``, ``source_url``, ``linked_urls``, ``link_hosts``.
+    ``source``, ``source_url``, ``linked_urls``, ``link_hosts``, plus the
+    engagement signals (``citation_count`` / ``twitter_*``). NULL columns
+    are returned as ``None`` so the caller can tell "never fetched" from
+    "fetched and zero".
     """
     sql = (
         "SELECT url, title, summary, date, tags, extra_tags, source, "
-        "source_url, linked_urls, link_hosts "
+        "source_url, linked_urls, link_hosts, "
+        "citation_count, twitter_likes, twitter_retweets, twitter_replies, "
+        "twitter_quotes, twitter_views, twitter_bookmarks "
         "FROM documents WHERE user_id = %s"
     )
     out: dict[str, dict] = {}
@@ -51,6 +56,13 @@ def load_documents(database_url: str, user_id: int) -> dict[str, dict]:
                 source_url,
                 linked_urls,
                 link_hosts,
+                citation_count,
+                tw_likes,
+                tw_retweets,
+                tw_replies,
+                tw_quotes,
+                tw_views,
+                tw_bookmarks,
             ) in cur.fetchall():
                 out[url] = {
                     "title": title,
@@ -62,6 +74,13 @@ def load_documents(database_url: str, user_id: int) -> dict[str, dict]:
                     "source_url": source_url,
                     "linked_urls": linked_urls or [],
                     "link_hosts": list(link_hosts or []),
+                    "citation_count": citation_count,
+                    "twitter_likes": tw_likes,
+                    "twitter_retweets": tw_retweets,
+                    "twitter_replies": tw_replies,
+                    "twitter_quotes": tw_quotes,
+                    "twitter_views": tw_views,
+                    "twitter_bookmarks": tw_bookmarks,
                 }
     return out
 
@@ -90,6 +109,40 @@ def upsert_documents(database_url: str, user_id: int, docs: dict[str, dict]) -> 
             return json.dumps(v)
         return "[]"
 
+    def _engagement_int(doc: dict, key: str) -> int | None:
+        """Coerce a doc-side engagement field to a non-negative int or None.
+
+        Sources hand us ints, strings, or absent keys depending on what
+        the upstream API ships. We treat ``None`` / missing / negative as
+        "not measured" so the column stays NULL (and merges below preserve
+        the prior value) instead of clobbering a real count with 0.
+        """
+        v = doc.get(key)
+        if v is None:
+            return None
+        try:
+            n = int(v)
+        except (TypeError, ValueError):
+            return None
+        return n if n >= 0 else None
+
+    def _any_engagement(doc: dict) -> bool:
+        """True iff the doc carries at least one engagement signal — so we
+        only stamp engagement_updated_at on rows where the sync actually
+        fetched a count, not on every plain upsert."""
+        return any(
+            _engagement_int(doc, k) is not None
+            for k in (
+                "citation_count",
+                "twitter_likes",
+                "twitter_retweets",
+                "twitter_replies",
+                "twitter_quotes",
+                "twitter_views",
+                "twitter_bookmarks",
+            )
+        )
+
     rows = [
         (
             user_id,
@@ -103,14 +156,26 @@ def upsert_documents(database_url: str, user_id: int, docs: dict[str, dict]) -> 
             doc.get("source_url"),
             _linked_urls_for(doc),
             list(doc.get("link_hosts") or []),
+            _engagement_int(doc, "citation_count"),
+            _engagement_int(doc, "twitter_likes"),
+            _engagement_int(doc, "twitter_retweets"),
+            _engagement_int(doc, "twitter_replies"),
+            _engagement_int(doc, "twitter_quotes"),
+            _engagement_int(doc, "twitter_views"),
+            _engagement_int(doc, "twitter_bookmarks"),
+            _any_engagement(doc),
         )
         for url, doc in docs.items()
     ]
     sql = (
         "INSERT INTO documents "
         "  (user_id, url, title, summary, date, tags, extra_tags, "
-        "   source, source_url, linked_urls, link_hosts) "
-        "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s::jsonb, %s) "
+        "   source, source_url, linked_urls, link_hosts, "
+        "   citation_count, twitter_likes, twitter_retweets, twitter_replies, "
+        "   twitter_quotes, twitter_views, twitter_bookmarks, engagement_updated_at) "
+        "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s::jsonb, %s, "
+        "        %s, %s, %s, %s, %s, %s, %s, "
+        "        CASE WHEN %s THEN now() ELSE NULL END) "
         "ON CONFLICT (user_id, url) DO UPDATE SET "
         "   title       = EXCLUDED.title, "
         "   summary     = EXCLUDED.summary, "
@@ -133,6 +198,18 @@ def upsert_documents(database_url: str, user_id: int, docs: dict[str, dict]) -> 
         "           THEN EXCLUDED.link_hosts "
         "       ELSE documents.link_hosts "
         "   END, "
+        # Engagement merges: only overwrite when the incoming row
+        # actually measured the signal. A non-twitter sync (e.g. a
+        # zotero re-fetch of a tweeted URL) ships NULLs and must
+        # not clobber the like count we cached last twikit run.
+        "   citation_count   = COALESCE(EXCLUDED.citation_count,   documents.citation_count), "
+        "   twitter_likes    = COALESCE(EXCLUDED.twitter_likes,    documents.twitter_likes), "
+        "   twitter_retweets = COALESCE(EXCLUDED.twitter_retweets, documents.twitter_retweets), "
+        "   twitter_replies  = COALESCE(EXCLUDED.twitter_replies,  documents.twitter_replies), "
+        "   twitter_quotes   = COALESCE(EXCLUDED.twitter_quotes,   documents.twitter_quotes), "
+        "   twitter_views    = COALESCE(EXCLUDED.twitter_views,    documents.twitter_views), "
+        "   twitter_bookmarks = COALESCE(EXCLUDED.twitter_bookmarks, documents.twitter_bookmarks), "
+        "   engagement_updated_at = COALESCE(EXCLUDED.engagement_updated_at, documents.engagement_updated_at), "
         "   indexed     = CASE "
         "       WHEN documents.title   IS DISTINCT FROM EXCLUDED.title "
         "         OR documents.summary IS DISTINCT FROM EXCLUDED.summary "

@@ -438,6 +438,35 @@ def _twikit_to_dict(tweet, depth: int = 0) -> dict | None:
         "in_reply_to_user_id": str(reply_to_user) if reply_to_user else "",
     }
 
+    # Engagement metrics. twikit exposes them as Tweet attributes
+    # (`favorite_count`, `retweet_count`, …); some live only on the raw
+    # `_legacy` v1.1 payload (notably `bookmark_count` and `view_count`
+    # on older Tweet objects). We accept either spelling and let
+    # `tweets._tweet_engagement` walk the resulting dict — copying these
+    # onto the dict keeps the twikit and twitterapi.io paths converging
+    # on the same downstream code.
+    def _eng_attr(name: str, *legacy_keys: str):
+        v = getattr(tweet, name, None)
+        if v is None:
+            for k in legacy_keys or (name,):
+                v = legacy.get(k)
+                if v is not None:
+                    break
+        return v
+
+    eng_pairs = (
+        ("favorite_count", "favorite_count"),
+        ("retweet_count", "retweet_count"),
+        ("reply_count", "reply_count"),
+        ("quote_count", "quote_count"),
+        ("view_count", "view_count"),
+        ("bookmark_count", "bookmark_count"),
+    )
+    for attr, legacy_key in eng_pairs:
+        val = _eng_attr(attr, legacy_key)
+        if val is not None:
+            d[attr] = val
+
     # X long-form Article attached to this tweet (only present when
     # the tweet's t.co link expands to `x.com/i/article/<id>`).
     # Surfaced so `_build_linked_urls` can fill the linked-url
@@ -894,6 +923,7 @@ class Bookmarks:
             _parse_date,
             _retweet_extra_tags,
             _tweet_display_title,
+            _tweet_engagement,
             _tweet_self_sufficient_summary,
             _tweet_url,
         )
@@ -954,11 +984,18 @@ class Bookmarks:
         # tweet id" rejects the merge for retweets-of-a-thread-root).
         thread_tweet_id = str(inner.get("id") or tw_dict.get("id") or "")
 
+        # Engagement: `_tweet_engagement` recurses into the retweet
+        # wrapper so a retweet's counts come from the SOURCE tweet,
+        # which is the right thing for ranking — the wrapper itself
+        # never accumulates likes.
+        engagement = _tweet_engagement(tw_dict)
+
         data[url] = {
             "title": _tweet_display_title(tw_dict, fallback_handle),
             "summary": _tweet_self_sufficient_summary(tw_dict),
             "date": _parse_date(tw_dict),
             "tags": tags,
+            **engagement,
             # `extra_tags` carries `retweet @<inner-handle>` so the
             # card chip strip can show the attribution that used to
             # live as a "Retweet @x" prefix in the summary text.

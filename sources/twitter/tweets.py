@@ -455,7 +455,7 @@ def compose_thread_doc(parts: list[dict], *, username: str) -> tuple[str, dict]:
         link_source.extend(_link_source_for(p))
     linked_urls, link_hosts = _build_linked_urls(link_source)
     url = _tweet_url(root, username)
-    return url, {
+    doc = {
         "title": title,
         "summary": summary,
         "date": _parse_date(root),
@@ -463,6 +463,12 @@ def compose_thread_doc(parts: list[dict], *, username: str) -> tuple[str, dict]:
         "linked_urls": linked_urls,
         "link_hosts": link_hosts,
     }
+    # Engagement = sum across thread parts. A 10-tweet thread where
+    # every part got 100 likes shows as 1000 likes on the card; that's
+    # the cumulative attention the thread captured, which is what feed
+    # ranking should sort on.
+    doc.update(_sum_engagement(parts))
+    return url, doc
 
 
 def _build_linked_urls(
@@ -599,6 +605,95 @@ def _author(tweet: dict) -> str:
     """Return the screen name of the tweet's author."""
     user = tweet.get("user") or tweet.get("author") or {}
     return user.get("screen_name") or user.get("userName") or user.get("username") or ""
+
+
+def _engagement_int(tweet: dict, *keys: str) -> int | None:
+    """Pull the first non-None int from the tweet under any of ``keys``.
+
+    Twitter's API has shipped a handful of casings across the years:
+    ``favorite_count`` (v1.1), ``favoriteCount`` (twitterapi.io camelCase),
+    ``like_count`` / ``likeCount`` (v2). We accept all spellings so the
+    same helper works for both fetch paths.
+
+    Returns ``None`` (not ``0``) when the field is absent so we don't
+    overwrite a real prior count with a zero from a payload that simply
+    didn't include the metric.
+    """
+    for k in keys:
+        v = tweet.get(k)
+        if v is None:
+            continue
+        try:
+            n = int(v)
+        except (TypeError, ValueError):
+            continue
+        if n >= 0:
+            return n
+    return None
+
+
+# Engagement-field name candidates, ordered most→least likely. Twitter
+# / TwitterAPI.io / twikit (which uses `_legacy`) collectively use all
+# of these spellings; `_engagement_int` walks them in order and returns
+# the first int it finds.
+_LIKES_KEYS = ("likeCount", "favorite_count", "favoriteCount", "like_count", "favourite_count")
+_RETWEETS_KEYS = ("retweetCount", "retweet_count")
+_REPLIES_KEYS = ("replyCount", "reply_count")
+_QUOTES_KEYS = ("quoteCount", "quote_count")
+_VIEWS_KEYS = ("viewCount", "view_count", "views", "impression_count", "impressionCount")
+_BOOKMARKS_KEYS = ("bookmarkCount", "bookmark_count")
+
+
+def _tweet_engagement(tweet: dict) -> dict[str, int | None]:
+    """Return the engagement dict for one tweet, ``None``-valued for
+    metrics the payload didn't include.
+
+    Retweets carry no engagement of their own on the wrapper — every
+    like / view counts on the source tweet — so we recurse into
+    ``retweeted_tweet`` when the wrapper has all-None counts. The
+    counts on the *inner* tweet are then what the card should show
+    (and what gets indexed for popularity ranking).
+    """
+    out = {
+        "twitter_likes": _engagement_int(tweet, *_LIKES_KEYS),
+        "twitter_retweets": _engagement_int(tweet, *_RETWEETS_KEYS),
+        "twitter_replies": _engagement_int(tweet, *_REPLIES_KEYS),
+        "twitter_quotes": _engagement_int(tweet, *_QUOTES_KEYS),
+        "twitter_views": _engagement_int(tweet, *_VIEWS_KEYS),
+        "twitter_bookmarks": _engagement_int(tweet, *_BOOKMARKS_KEYS),
+    }
+    if all(v is None for v in out.values()):
+        rt = tweet.get("retweeted_tweet")
+        if isinstance(rt, dict):
+            return _tweet_engagement(rt)
+    return out
+
+
+def _sum_engagement(parts: list[dict]) -> dict[str, int | None]:
+    """Aggregate engagement across a thread's tweets.
+
+    Per-part metrics are added; if every part is missing a given metric
+    we leave it ``None`` rather than reporting a misleading 0. A single
+    measured part is enough — the rest are treated as 0 for the sum
+    (so a thread with one viral tweet still surfaces).
+    """
+    keys = (
+        "twitter_likes",
+        "twitter_retweets",
+        "twitter_replies",
+        "twitter_quotes",
+        "twitter_views",
+        "twitter_bookmarks",
+    )
+    totals: dict[str, int | None] = dict.fromkeys(keys)
+    for p in parts:
+        eng = _tweet_engagement(p)
+        for k in keys:
+            v = eng.get(k)
+            if v is None:
+                continue
+            totals[k] = (totals[k] or 0) + v
+    return totals
 
 
 def _retweet_extra_tags(tweet: dict) -> list[str]:
@@ -1344,6 +1439,12 @@ class Tweets:
                 "extra-tags": _retweet_extra_tags(tw),
                 "linked_urls": linked_urls,
                 "link_hosts": link_hosts,
+                # The retweet wrapper carries no engagement of its own;
+                # `_tweet_engagement` already recurses into
+                # `retweeted_tweet` so this lands the SOURCE tweet's
+                # like/retweet/view counts on the retweet doc — which is
+                # what the feed ranking should care about.
+                **_tweet_engagement(tw),
             }
 
         for _cid, group in by_conv.items():
@@ -1493,6 +1594,11 @@ class Tweets:
             "date": _parse_date(root_tweet),
             "tags": ["twitter-thread", src],
             "source": src,
+            # Engagement is the *root tweet's* — i.e. how viral the
+            # post that surfaced this resource was. A paper linked
+            # from a 10k-like tweet ranks higher than one buried in a
+            # 3-like reply, which is what feed customization wants.
+            **_tweet_engagement(root_tweet),
         }
         if root_url:
             doc["source_url"] = root_url

@@ -220,6 +220,78 @@ BEGIN
         ALTER TABLE documents
             ADD COLUMN categorized BOOLEAN NOT NULL DEFAULT FALSE;
     END IF;
+
+    -- Behavioural / engagement columns (added 2026-05-22). One column
+    -- per signal so the feed-ranking SQL stays index-friendly and the
+    -- column meaning is unambiguous per source. NULL means "we never
+    -- looked this up for this doc" (so a future backfill can target
+    -- NULLs); zero is a real "we looked and the count is 0".
+    --   • citation_count   — arXiv (via Semantic Scholar sidecar) and
+    --                        scholar / semantic_scholar fetchers.
+    --   • twitter_likes    — TwitterAPI.io `likeCount`, twikit
+    --                        `favorite_count`. Summed across thread
+    --                        parts so a 10-tweet thread carries the
+    --                        thread-wide engagement.
+    --   • twitter_retweets — `retweetCount` / `retweet_count`.
+    --   • twitter_replies  — `replyCount` / `reply_count`.
+    --   • twitter_quotes   — `quoteCount` / `quote_count`.
+    --   • twitter_views    — `viewCount` / `view_count`. BIGINT
+    --                        because popular tweets routinely cross
+    --                        the 2.1B INT4 ceiling.
+    --   • twitter_bookmarks — `bookmarkCount` / `bookmark_count`.
+    --   • engagement_updated_at — when we last refreshed any of the
+    --                        above. Drives the eventual "refresh
+    --                        engagement" daemon that re-fetches stale
+    --                        counts so a new tweet's likes climb in
+    --                        the index as it goes viral.
+    IF NOT EXISTS (
+        SELECT 1 FROM information_schema.columns
+         WHERE table_name = 'documents' AND column_name = 'citation_count'
+    ) THEN
+        ALTER TABLE documents ADD COLUMN citation_count INTEGER;
+    END IF;
+    IF NOT EXISTS (
+        SELECT 1 FROM information_schema.columns
+         WHERE table_name = 'documents' AND column_name = 'twitter_likes'
+    ) THEN
+        ALTER TABLE documents ADD COLUMN twitter_likes INTEGER;
+    END IF;
+    IF NOT EXISTS (
+        SELECT 1 FROM information_schema.columns
+         WHERE table_name = 'documents' AND column_name = 'twitter_retweets'
+    ) THEN
+        ALTER TABLE documents ADD COLUMN twitter_retweets INTEGER;
+    END IF;
+    IF NOT EXISTS (
+        SELECT 1 FROM information_schema.columns
+         WHERE table_name = 'documents' AND column_name = 'twitter_replies'
+    ) THEN
+        ALTER TABLE documents ADD COLUMN twitter_replies INTEGER;
+    END IF;
+    IF NOT EXISTS (
+        SELECT 1 FROM information_schema.columns
+         WHERE table_name = 'documents' AND column_name = 'twitter_quotes'
+    ) THEN
+        ALTER TABLE documents ADD COLUMN twitter_quotes INTEGER;
+    END IF;
+    IF NOT EXISTS (
+        SELECT 1 FROM information_schema.columns
+         WHERE table_name = 'documents' AND column_name = 'twitter_views'
+    ) THEN
+        ALTER TABLE documents ADD COLUMN twitter_views BIGINT;
+    END IF;
+    IF NOT EXISTS (
+        SELECT 1 FROM information_schema.columns
+         WHERE table_name = 'documents' AND column_name = 'twitter_bookmarks'
+    ) THEN
+        ALTER TABLE documents ADD COLUMN twitter_bookmarks INTEGER;
+    END IF;
+    IF NOT EXISTS (
+        SELECT 1 FROM information_schema.columns
+         WHERE table_name = 'documents' AND column_name = 'engagement_updated_at'
+    ) THEN
+        ALTER TABLE documents ADD COLUMN engagement_updated_at TIMESTAMPTZ;
+    END IF;
 END$$;
 
 -- GIN index on `link_hosts` — the source-filter SQL does
@@ -274,6 +346,22 @@ CREATE INDEX IF NOT EXISTS idx_documents_url_live
     ON documents (url) WHERE deleted = FALSE;
 CREATE INDEX IF NOT EXISTS idx_documents_tags        ON documents USING GIN (tags);
 
+-- Per-user engagement-ranked indices. Partial on `deleted = FALSE`
+-- because the timeline / popular-feed queries always filter live rows;
+-- DESC NULLS LAST so docs we haven't fetched engagement for yet
+-- naturally sink past the ones we have. `idx_documents_user_citations`
+-- powers an "academic feed" ordering (citation_count DESC), the
+-- twitter pair powers a "viral tweets" ordering.
+CREATE INDEX IF NOT EXISTS idx_documents_user_citations
+    ON documents (user_id, citation_count DESC NULLS LAST)
+    WHERE deleted = FALSE AND citation_count IS NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_documents_user_tw_likes
+    ON documents (user_id, twitter_likes DESC NULLS LAST)
+    WHERE deleted = FALSE AND twitter_likes IS NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_documents_user_tw_views
+    ON documents (user_id, twitter_views DESC NULLS LAST)
+    WHERE deleted = FALSE AND twitter_views IS NOT NULL;
+
 -- ── DB-level documentation (visible via \d+ and pg_description) ─────────
 COMMENT ON TABLE documents IS
     'Bookmarks collected for each user. One row per (user_id, url). FK to users cascades on delete.';
@@ -296,3 +384,12 @@ COMMENT ON COLUMN documents.indexed      IS 'TRUE once the row is in the ColBERT
 COMMENT ON COLUMN documents.to_delete    IS 'Soft-delete tombstone. Flipped TRUE when the user removes the originating source; an offline job purges the row + its index entry. Re-adding the source flips it back FALSE so the doc rejoins without re-fetch.';
 COMMENT ON COLUMN documents.created_at   IS 'Row creation (ingestion) timestamp.';
 COMMENT ON COLUMN documents.updated_at   IS 'Last mutation timestamp. Updated by the application, not by a trigger.';
+
+COMMENT ON COLUMN documents.citation_count        IS 'Citation count for academic papers. arXiv docs filled via Semantic Scholar sidecar; scholar/semantic_scholar fetchers fill directly. NULL = never looked up.';
+COMMENT ON COLUMN documents.twitter_likes         IS 'Twitter like count (sum over thread parts). NULL = never fetched.';
+COMMENT ON COLUMN documents.twitter_retweets      IS 'Twitter retweet count (sum over thread parts). NULL = never fetched.';
+COMMENT ON COLUMN documents.twitter_replies       IS 'Twitter reply count (sum over thread parts). NULL = never fetched.';
+COMMENT ON COLUMN documents.twitter_quotes        IS 'Twitter quote-tweet count (sum over thread parts). NULL = never fetched.';
+COMMENT ON COLUMN documents.twitter_views         IS 'Twitter impression / view count (sum over thread parts). BIGINT — popular tweets cross 2.1B.';
+COMMENT ON COLUMN documents.twitter_bookmarks     IS 'Twitter bookmark count (sum over thread parts). NULL = never fetched.';
+COMMENT ON COLUMN documents.engagement_updated_at IS 'When any of the engagement columns above was last refreshed. Drives the eventual stale-engagement re-fetch daemon.';

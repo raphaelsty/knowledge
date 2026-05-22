@@ -395,6 +395,17 @@ def _ingest_via_api(slug: str, cleaned: dict) -> tuple[int, int]:
                 "extra_tags": list(d.get("extra_tags") or d.get("extra-tags") or []),
                 "linked_urls": d.get("linked_urls") or [],
                 "link_hosts": list(d.get("link_hosts") or []),
+                # Engagement metrics — twikit-only fields, summed across
+                # thread parts upstream. None means "not measured"; the
+                # Rust handler COALESCEs onto the prior value so a
+                # tweet's likes never silently reset to zero when a
+                # later run hits a payload that omits the metric.
+                "twitter_likes": d.get("twitter_likes"),
+                "twitter_retweets": d.get("twitter_retweets"),
+                "twitter_replies": d.get("twitter_replies"),
+                "twitter_quotes": d.get("twitter_quotes"),
+                "twitter_views": d.get("twitter_views"),
+                "twitter_bookmarks": d.get("twitter_bookmarks"),
             }
             for url, d in cleaned.items()
         ],
