@@ -45,7 +45,9 @@ make ssh             # SSH into the server (handy for ad-hoc shell work)
 - **Server:** Hetzner CX33 VPS (4 vCPU, 8GB RAM) at `65.21.111.133`
 - **Domain:** https://knowledge-web.org · Dokploy UI at https://dokploy.knowledge-web.org
 - **Stack:** Dokploy-managed Docker Compose (`docker-compose.dokploy.yml`) — Traefik terminates TLS, Caddy does path routing + serves the baked `web/` tree, knowledge-api + PostgreSQL behind it.
-- **Deploy flow:** push to `origin/main` → Dokploy's GitHub webhook redeploys (~1-2 min). Manual redeploys and rollbacks happen in the Dokploy UI.
+- **Deploy flow:** push to `origin/main` → GitHub Action (`.github/workflows/deploy.yml`) POSTs to Dokploy's compose deploy URL → Dokploy redeploys (~1-2 min). Deploy status surfaces as a native commit check; re-run from the Actions tab. Rollbacks still happen in the Dokploy UI.
+  - The deploy URL is stored as the `DOKPLOY_DEPLOY_URL` GitHub Actions secret. Format: `https://dokploy.knowledge-web.org/api/deploy/compose/<refreshToken>` — the token is the project's `compose.refreshToken` row in Dokploy's DB.
+  - Dokploy's own GitHub-App webhook is also still wired (`autoDeploy=true` in the compose row) — it fires on the same push but lands on a different endpoint (`/api/deploy/github`). Both end up queueing the same deploy; the second arrives to a working tree already at HEAD and finishes near-instantly.
 - **Local dev:** `docker-compose.yml` (no Caddy, just postgres + the API).
 - **Secrets:** `.env` file (gitignored) — local dev. Production env vars live in Dokploy's project settings.
 
