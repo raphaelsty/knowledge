@@ -1,31 +1,55 @@
 """Pedagogical title / summary cleaner for VIP documents.
 
-A long-lived daemon (run via systemd on prod) that produces a
-pedagogical rewrite of each VIP user's recent documents and writes
-the result back into the `clean_title` and `clean_summary` columns
-on the `documents` table. The raw `title` and `summary` columns are
+A long-lived daemon (Docker compose service on prod) that produces
+a pedagogical rewrite of selected VIP documents and writes the
+result back into the `clean_title` and `clean_summary` columns on
+the `documents` table. The raw `title` and `summary` columns are
 left untouched so search (which indexes the raw values) is not
 affected.
 
-Routing by source:
+Scope alignment with the global feed
+------------------------------------
+The OpenAI bill is the dominant operating cost of this daemon, so
+the selection mirrors *exactly* the documents that can appear in
+the anonymous `/api/feed` (`handlers::users::build_feed_payload`).
+Same WHERE clauses, plus a couple of extras:
 
-  - Academic papers (arxiv, scholar, dblp, openreview,
-    semanticscholar, paperswithcode) keep their title verbatim and
-    only get the summary rewritten. The paper's own title is the
-    canonical reference; rewriting it would defeat the citation
-    surface.
+  * `d.date IS NOT NULL AND d.deleted = FALSE`
+    Identical to the feed query — the universe of cleanable docs.
 
-  - Tweets and HuggingFace pages (twitter, x, huggingface, hf) get
-    both title and summary rewritten. Tweets in particular ship a
-    lot of promotional framing the rewrite peels away.
+  * `u.vip = TRUE`
+    Only VIP-owned documents. Non-VIP users' libraries don't get
+    boosted in the feed score, so cleaning them spends model
+    tokens that few people will ever read.
 
-  - Everything else is skipped at the SQL level — the user
-    explicitly scoped this to those two surfaces.
+  * `d.date >= now() - INTERVAL '21 days'`
+    The feed's recency bonus tops out at ~5 weeks and decays to
+    zero past that — anything older than 3 weeks is unlikely to
+    surface in the top-N regardless. 3 weeks is the budget the
+    operator chose.
 
-CPU footprint: the work is I/O-bound on the OpenAI API. We nice the
-process to 19 and sleep `CLEAN_SLEEP_S` (default 1.5 s) between
-docs so wall-clock CPU stays well under the 20 % budget on the
-production box.
+  * `lower(d.source) IN (tweets ∪ papers)`
+    The two surfaces with worthwhile rewrites:
+       - tweets (twitter, x): peel marketing framing
+       - papers (arxiv, scholar, dblp, openreview, semantic
+         scholar, paperswithcode): distil abstract into
+         pedagogical summary
+    HuggingFace cards used to be in scope; dropped to keep cost
+    down — they're mostly skeletal anyway.
+
+  * `d.cleaned = FALSE`
+    Idempotence; resets only when an operator explicitly flips the
+    flag (e.g. after a prompt change).
+
+Routing by source (post-selection):
+  * Academic papers → keep title verbatim, rewrite summary only.
+    The paper's own title is the canonical reference; rewriting it
+    would defeat the citation surface.
+  * Tweets → rewrite both title and summary.
+
+CPU footprint: the work is I/O-bound on the OpenAI API. We sleep
+`CLEAN_SLEEP_S` (default 1.5 s) between docs so wall-clock CPU
+stays well under the 20 % budget on the production box.
 
 Usage:
 
@@ -42,8 +66,9 @@ Environment variables:
   OPENAI_CLEAN_MODEL    default "gpt-4o-mini"
   CLEAN_SLEEP_S         default 1.5  (inter-doc pause)
   CLEAN_IDLE_SLEEP_S    default 600  (sleep when no docs left)
-  CLEAN_WINDOW_DAYS     default 21   (how far back we clean)
-  CLEAN_BATCH_SIZE      default 20   (rows pulled per loop)
+  CLEAN_WINDOW_DAYS     default 21   (matches the feed's effective
+                                      recency horizon — 3 weeks)
+  CLEAN_BATCH_SIZE      default 10   (rows pulled per loop)
 """
 
 from __future__ import annotations
@@ -133,23 +158,28 @@ OPENAI_MODEL = os.environ.get("OPENAI_CLEAN_MODEL", "gpt-4o-mini")
 
 INTER_DOC_SLEEP_S = float(os.environ.get("CLEAN_SLEEP_S", "1.5"))
 IDLE_SLEEP_S = float(os.environ.get("CLEAN_IDLE_SLEEP_S", "600"))
-WINDOW_DAYS = int(os.environ.get("CLEAN_WINDOW_DAYS", "90"))
+# 21 days = the feed's effective recency horizon. The feed scores
+# bottom out at 5 weeks but the docs that actually surface to most
+# viewers cluster in the last 2-3 weeks, so cleaning more than that
+# burns tokens on docs no one will see.
+WINDOW_DAYS = int(os.environ.get("CLEAN_WINDOW_DAYS", "21"))
 # Small batch so memory stays low and the loop iterates quickly
 # enough to see fresh inserts.
 BATCH_SIZE = int(os.environ.get("CLEAN_BATCH_SIZE", "10"))
 
-# Source whitelist (lowercased). Three modes handled by the prompt:
+# Source whitelist (lowercased). Two modes handled by the prompt:
 #   - Tweets (twitter, x): light-edit. Preserve the author's words,
 #     fix typos, expand casual abbreviations, reformat any Quoting
 #     block, drop emojis/media URLs, append a one-sentence context
 #     paragraph for technical posts.
-#   - HuggingFace cards (huggingface, hf): same light-edit rules.
-#     Most cards are skeletal; the prompt returns an empty summary
-#     in that case.
 #   - Academic papers (arxiv, scholar, dblp, openreview,
 #     semanticscholar, paperswithcode): KEEP the title verbatim and
 #     distil the abstract into a clear pedagogical summary
 #     organised around problem / method / result / takeaway.
+#
+# HuggingFace cards (huggingface, hf) used to be rewritten too —
+# dropped to cut OpenAI cost. Most HF cards are skeletal and the
+# rewrite barely changed them.
 ACADEMIC_SOURCES = {
     "arxiv",
     "scholar",
@@ -162,8 +192,6 @@ ACADEMIC_SOURCES = {
 REWRITE_SOURCES = {
     "twitter",
     "x",
-    "huggingface",
-    "hf",
 }
 ALL_SOURCES = sorted(ACADEMIC_SOURCES | REWRITE_SOURCES)
 
@@ -716,13 +744,28 @@ def _format_linked_urls(linked_urls) -> str:
 def fetch_batch(conn: psycopg.Connection, limit: int) -> list[dict]:
     """Pull the next batch of unprocessed VIP docs.
 
-    Filters:
-      - user is VIP
-      - doc is not soft-deleted
-      - date within the trailing CLEAN_WINDOW_DAYS
-      - source is one we rewrite
-      - both clean_* fields are empty (so re-running is idempotent
-        until the user explicitly resets)
+    Scope = (feed-candidate set) ∩ (VIP) ∩ (tweet|paper) ∩ (last
+    CLEAN_WINDOW_DAYS) ∩ (not yet cleaned). Mirrors the WHERE
+    clause in `handlers::users::build_feed_payload`:
+
+      - `d.deleted = FALSE`   — same as the feed
+      - `d.date IS NOT NULL`  — same as the feed (also implied by
+                                the `>=` cutoff below, but kept
+                                explicit so the alignment with the
+                                feed is obvious in the SQL)
+      - `u.vip = TRUE`        — only personalities that get
+                                surfaced in the feed; cleaning
+                                non-VIP docs would burn tokens on
+                                content the recency+sharer score
+                                buries anyway.
+      - `d.date >= now() - CLEAN_WINDOW_DAYS`
+                              — the feed's recency bonus decays to
+                                zero past ~5 weeks, so 3 weeks is
+                                where the cost/benefit tips.
+      - `lower(d.source) = ANY(ALL_SOURCES)`
+                              — tweets + papers only. HF dropped.
+      - `d.cleaned = FALSE`   — idempotence guard. Resets only on
+                                operator intervention.
     """
     sql = """
         SELECT d.user_id, d.url, d.title, d.summary, d.source,
@@ -731,6 +774,7 @@ def fetch_batch(conn: psycopg.Connection, limit: int) -> list[dict]:
           JOIN users     u ON u.id = d.user_id
          WHERE u.vip = TRUE
            AND d.deleted = FALSE
+           AND d.date IS NOT NULL
            AND d.date >= (now() - make_interval(days => %s))::date
            AND lower(d.source) = ANY(%s)
            AND d.cleaned = FALSE
@@ -854,6 +898,7 @@ def fetch_preview_mix(conn: psycopg.Connection, n: int) -> list[dict]:
           JOIN users     u ON u.id = d.user_id
          WHERE u.vip = TRUE
            AND d.deleted = FALSE
+           AND d.date IS NOT NULL
            AND d.date >= (now() - make_interval(days => %s))::date
            AND lower(d.source) = ANY(%s)
            AND d.cleaned = FALSE
