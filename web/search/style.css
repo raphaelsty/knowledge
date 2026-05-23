@@ -431,16 +431,10 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
   min-height: 56px;
   padding: 18px 12px 36px;
   opacity: 0;
   transition: opacity 0.18s ease-out;
-  /* Lets the spinner inherit the ink colour so light/dark themes
-   * both look right without another rule. */
-  color: rgba(var(--ink-rgb), 0.55);
-  font-size: 13px;
-  font-weight: 500;
   pointer-events: none;
 }
 
@@ -448,17 +442,18 @@ a {
   opacity: 1;
 }
 
+/* Light-grey spinning ring. The static ring is a very faint tint of
+ * the theme's ink colour (10 %); the rotating arc is a softer-grey
+ * (40 %). Both adapt automatically across light / dark themes via
+ * the --ink-rgb token. No label — the spinner alone is the loading
+ * affordance. */
 #loadMoreSentinel .load-more-spinner {
-  width: 18px;
-  height: 18px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
-  border: 2px solid rgba(var(--ink-rgb), 0.15);
-  border-top-color: currentColor;
-  animation: load-more-spin 0.7s linear infinite;
-}
-
-#loadMoreSentinel .load-more-label {
-  letter-spacing: 0.01em;
+  border: 2.5px solid rgba(var(--ink-rgb), 0.1);
+  border-top-color: rgba(var(--ink-rgb), 0.4);
+  animation: load-more-spin 0.8s linear infinite;
 }
 
 @keyframes load-more-spin {
@@ -474,5 +469,17 @@ a {
 @media (prefers-reduced-motion: reduce) {
   #loadMoreSentinel .load-more-spinner {
     animation: none;
+  }
+}
+
+/* On phone, lift the sentinel above the floating .mobile-bottom-nav.
+ * That nav is `position: fixed` at `bottom: calc(10px + safe-area)`
+ * and is 60 px tall, so its TOP edge sits ≈ 70 px + safe-area from
+ * the viewport bottom. We add a generous bottom padding so once the
+ * feed reaches the end the spinner stays clear of the nav with a
+ * visible gap above it. */
+@media (max-width: 768px) {
+  #loadMoreSentinel {
+    padding-bottom: calc(92px + env(safe-area-inset-bottom));
   }
 }

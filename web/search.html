@@ -516,9 +516,13 @@
              page fetch is in flight the JS sets `aria-busy="true"`
              which the CSS uses to fade in the spinner so the user
              sees "loading more" instead of a silent pause. -->
-        <div id="loadMoreSentinel" hidden>
+        <div
+          id="loadMoreSentinel"
+          hidden
+          aria-live="polite"
+          aria-label="Loading more"
+        >
           <div class="load-more-spinner" aria-hidden="true"></div>
-          <span class="load-more-label" aria-live="polite">Loading more…</span>
         </div>
         <div class="state" id="empty" style="display: none">No results.</div>
         <!-- Centred loading spinner shown when the result list is empty
