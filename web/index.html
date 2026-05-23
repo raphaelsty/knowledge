@@ -970,6 +970,29 @@
       </button>
     </nav>
 
+    <!-- Back-to-top — phone-only. Fades in after the user scrolls
+         past ~600 px; smooth-scrolls to the top on tap. Wired by
+         page.js. Hidden on desktop via mobile.css. -->
+    <button
+      id="backToTop"
+      class="back-to-top"
+      type="button"
+      aria-label="Back to top"
+      hidden
+    >
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M6 14l6-6 6 6" />
+      </svg>
+    </button>
+
     <!-- Slide-up sheet backdrop. Mobile-only. Tap to dismiss the
          active sheet (sources or people). -->
     <div

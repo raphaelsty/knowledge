@@ -28,7 +28,8 @@
 
 /* ── Desktop default: hide every mobile-only element ─────────── */
 .mobile-bottom-nav,
-.mobile-sheet-backdrop {
+.mobile-sheet-backdrop,
+.back-to-top {
   display: none;
 }
 
@@ -1381,6 +1382,86 @@
       0 12px 32px rgba(0, 0, 0, 0.5),
       0 4px 12px rgba(0, 0, 0, 0.3);
   }
+
+  /* ── Back-to-top — small frosted-glass circular floater ────────
+   *
+   * Sits in the bottom-right corner, just above the bottom-nav.
+   * Mirrors the nav's glass vocabulary (same blur, same hairline
+   * border, same shadow weight) but downsized so it reads as a
+   * peripheral affordance rather than a primary control. Hidden
+   * by default via the `[hidden]` attribute (which we toggle in
+   * JS rather than the `display: none` desktop default — the
+   * attribute keeps the fade transition visible).
+   * ────────────────────────────────────────────────────────────── */
+  .back-to-top {
+    display: grid;
+    place-items: center;
+    position: fixed;
+    right: 14px;
+    /* Sits comfortably above the bottom-nav's top edge: nav.bottom
+     * is 10 + safe-area, nav height 60 (top of nav ≈ 70 + safe-area
+     * from viewport bottom). Pushing the button to 92 + safe-area
+     * leaves a visible ~14 px gap above the nav. */
+    bottom: calc(92px + env(safe-area-inset-bottom));
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 1px solid rgba(var(--ink-rgb), 0.06);
+    background: rgba(var(--paper-rgb), 0.7);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    backdrop-filter: blur(20px) saturate(180%);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.5) inset,
+      0 8px 22px rgba(var(--ink-rgb), 0.1),
+      0 2px 8px rgba(var(--ink-rgb), 0.05);
+    color: rgba(var(--ink-rgb), 0.62);
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    opacity: 1;
+    transform: translateY(0);
+    transition:
+      opacity 0.22s ease,
+      transform 0.22s cubic-bezier(0.32, 0.72, 0, 1),
+      background 0.14s ease,
+      color 0.14s ease;
+  }
+  .back-to-top svg {
+    width: 18px;
+    height: 18px;
+  }
+  .back-to-top:active {
+    transform: translateY(0) scale(0.94);
+  }
+  /* Hidden state: keep `display:grid` so the fade-out animation
+   * runs; just drop opacity, lift slightly, and stop accepting
+   * pointer events. */
+  .back-to-top[hidden] {
+    display: grid;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(8px);
+  }
+  /* Dark theme — re-tint the glass and shadows to match
+   * .mobile-bottom-nav's dark variant. */
+  [data-theme="dark"] .back-to-top {
+    background: rgba(20, 20, 28, 0.62);
+    border-color: rgba(255, 255, 255, 0.06);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.04) inset,
+      0 8px 22px rgba(0, 0, 0, 0.5),
+      0 2px 8px rgba(0, 0, 0, 0.3);
+    color: rgba(255, 255, 255, 0.62);
+  }
+  /* Hide the floater while a Cupertino sheet is presented so it
+   * doesn't sit on top of the frosted backdrop. */
+  body.cupertino-pane-presented .back-to-top {
+    opacity: 0;
+    pointer-events: none;
+  }
+
   .mbn-tab {
     flex: 1 1 0;
     display: flex;
