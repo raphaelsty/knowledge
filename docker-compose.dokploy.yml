@@ -285,12 +285,15 @@ services:
     deploy:
       resources:
         limits:
-          # Match the old systemd MemoryMax=2G. CPUAffinity=0 on the
-          # host translates to a soft CPU cap here — we cap at one
-          # full core; Docker can schedule it anywhere but it can't
-          # use more than 1 vCPU of work.
+          # CPU cap dropped from 1.0 → 0.6 to improve site availability
+          # under load. The continuous pipeline's typical steady-state
+          # usage is ~2-5 % of one core (HTTP-bound on external fetchers
+          # — twitter, scholar, huggingface), but bursts during the tag
+          # / clean / index stages used to peg a full core and starve
+          # the Rust API on the 2-vCPU box. 0.6 leaves headroom for
+          # those bursts while reserving the other 0.4 vCPU for traffic.
           memory: 2G
-          cpus: "1.0"
+          cpus: "0.6"
 
   # ColBERT index repair + backfill. Hits the local knowledge-api on
   # the docker network rather than the public URL so the round trip
@@ -308,8 +311,13 @@ services:
     deploy:
       resources:
         limits:
+          # CPU cap dropped from 0.5 → 0.35 — the embedder work is
+          # latency-tolerant (backfill, not user-facing) so giving
+          # the API a bit more headroom is the right trade. The
+          # indexer's steady-state actual usage hovers ~7% of one
+          # core; this still leaves it 5× more than that for bursts.
           memory: 2G
-          cpus: "0.5"
+          cpus: "0.35"
 
   # Category-assignment daemon. CPU-bound on small Potion embeddings
   # (~10 % of one core on the old systemd unit).
