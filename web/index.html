@@ -497,7 +497,12 @@
              than a multi-library feed). Populated by page.js. -->
         <div class="profile-header" id="profileHeader" hidden></div>
         <div class="results" id="results"></div>
-        <div id="loadMoreSentinel" hidden aria-hidden="true"></div>
+        <!-- Infinite-scroll sentinel. See search.html for the same
+             markup; both pages reuse the search bundle. -->
+        <div id="loadMoreSentinel" hidden>
+          <div class="load-more-spinner" aria-hidden="true"></div>
+          <span class="load-more-label" aria-live="polite">Loading more…</span>
+        </div>
         <div class="state" id="empty" style="display: none">No results.</div>
         <!-- Centred loading spinner shown when the result list is empty
              and a refresh is in flight. Hidden as soon as the first

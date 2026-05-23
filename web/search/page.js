@@ -3402,7 +3402,14 @@
     const srcs = [...state.sources].filter((s) => s !== FAV_SOURCE_KEY);
     const excl = [...state.excludedSources];
     const tags = [...state.tags];
-    const qs = new URLSearchParams({ limit: String(overrides.limit || 50) });
+    // Bigger default page size on the initial timeline pull (was 50).
+    // The timeline SQL hits the same Postgres plan whether we ask for
+    // 50 or 75 rows — the dominant cost is the candidate scan + JSONB
+    // aggregation, which sizes by `$2 * 16` and is the same either
+    // way. Net effect: ~50% more cards land on first paint, so the
+    // user has more content to read before the next pagination
+    // trigger fires.
+    const qs = new URLSearchParams({ limit: String(overrides.limit || 75) });
     if (srcs.length) qs.set("sources", srcs.join(","));
     if (excl.length) qs.set("exclude_sources", excl.join(","));
     if (tags.length) qs.set("tags", tags.join(","));
@@ -4245,6 +4252,10 @@
       if (_scrollPagingBusy) return;
       if (sentinel.hidden) return;
       _scrollPagingBusy = true;
+      // Flip the spinner on. The CSS keys on the attribute presence
+      // (`#loadMoreSentinel[aria-busy="true"]`) and fades in the
+      // spinner + "Loading more…" label.
+      sentinel.setAttribute("aria-busy", "true");
       try {
         await loadMoreDocs();
         // The list grew — if the user is still near the bottom
@@ -4263,6 +4274,11 @@
         }
       } finally {
         _scrollPagingBusy = false;
+        // Fade the spinner out. If the sentinel got hidden because
+        // we ran out of rows the attribute removal is moot (the
+        // element is `display:none`) but we still clear it for
+        // cleanliness so the next load comes back to a clean state.
+        sentinel.removeAttribute("aria-busy");
       }
     }
     if (!_scrollObserver && "IntersectionObserver" in window) {
@@ -4270,7 +4286,12 @@
         (entries) => {
           if (entries.some((e) => e.isIntersecting)) tryLoadMore();
         },
-        { rootMargin: "1200px 0px" },
+        // Pre-fetch ~2 full mobile viewports before the user reaches
+        // the bottom (was 1200px). On a slow cold timeline (~1 s
+        // TTFB) this gives the new batch enough head start that the
+        // user's continued scroll lands on already-rendered cards
+        // instead of an empty space.
+        { rootMargin: "2400px 0px" },
       );
       _scrollObserver.observe(sentinel);
     }
@@ -4282,7 +4303,11 @@
         const viewport = window.innerHeight || scroller.clientHeight;
         const scrollTop = window.scrollY || scroller.scrollTop || 0;
         const slack = scroller.scrollHeight - (scrollTop + viewport);
-        if (slack < viewport * 1.5) {
+        // Fire when we're within ~2.5 screens of the bottom (was 1.5).
+        // Earlier trigger = the next batch is in flight by the time
+        // the user actually approaches the bottom, so they see a
+        // continuous scroll instead of a pause + render.
+        if (slack < viewport * 2.5) {
           tryLoadMore();
         }
       };
@@ -4464,7 +4489,9 @@
       const srcs = [...state.sources].filter((s) => s !== FAV_SOURCE_KEY);
       const excl = [...state.excludedSources];
       const tags = [...state.tags];
-      const qs = new URLSearchParams({ limit: "50", before });
+      // Match the initial timeline limit (75) so a paginated batch
+      // feels as substantial as the first paint.
+      const qs = new URLSearchParams({ limit: "75", before });
       if (srcs.length) qs.set("sources", srcs.join(","));
       if (excl.length) qs.set("exclude_sources", excl.join(","));
       if (tags.length) qs.set("tags", tags.join(","));
@@ -4545,9 +4572,13 @@
           categories: catsArr,
         });
         const shown = new Set(state.lastDocs.map((d) => d.url));
+        // 75 to match the feed-pagination batch size (was 50). The
+        // backing list is already in memory (single GET earlier in
+        // the page lifecycle), so this is just a slice — no extra
+        // network cost.
         extra = all
           .filter((d) => !shown.has(d.url))
-          .slice(0, 50)
+          .slice(0, 75)
           .map((d) => ({ ...d, _from: slug, _owners: [slug] }));
       } catch {
         return;

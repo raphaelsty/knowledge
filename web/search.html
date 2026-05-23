@@ -511,7 +511,15 @@
              than a multi-library feed). Populated by page.js. -->
         <div class="profile-header" id="profileHeader" hidden></div>
         <div class="results" id="results"></div>
-        <div id="loadMoreSentinel" hidden aria-hidden="true"></div>
+        <!-- Infinite-scroll sentinel. Hidden by default; revealed by
+             `armInfiniteScroll` once the page is paginable. While a
+             page fetch is in flight the JS sets `aria-busy="true"`
+             which the CSS uses to fade in the spinner so the user
+             sees "loading more" instead of a silent pause. -->
+        <div id="loadMoreSentinel" hidden>
+          <div class="load-more-spinner" aria-hidden="true"></div>
+          <span class="load-more-label" aria-live="polite">Loading more…</span>
+        </div>
         <div class="state" id="empty" style="display: none">No results.</div>
         <!-- Centred loading spinner shown when the result list is empty
              and a refresh is in flight. Hidden as soon as the first

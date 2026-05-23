@@ -406,3 +406,73 @@ a {
 .lib-add-btn {
   display: none;
 }
+
+/* ── Infinite-scroll loading spinner ────────────────────────────
+ *
+ * Sentinel becomes visible when paginable + reveals a small spin
+ * animation while a fetch is in flight (aria-busy=true). The
+ * spinner uses currentColor so it works in both light and dark
+ * themes without an extra rule. Sized for mobile-first; desktop
+ * inherits the same height which sits comfortably below the last
+ * card.
+ *
+ * State machine:
+ *   #loadMoreSentinel[hidden]         — no more pages, fully hidden
+ *   #loadMoreSentinel:not([aria-busy]) — armed but idle: still
+ *                                        rendered (so the IO can see
+ *                                        it) but transparent so the
+ *                                        user doesn't see a blank
+ *                                        "loading" while just resting
+ *                                        at the bottom.
+ *   #loadMoreSentinel[aria-busy="true"] — actively fetching: spinner
+ *                                        + label fade in.
+ */
+#loadMoreSentinel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 56px;
+  padding: 18px 12px 36px;
+  opacity: 0;
+  transition: opacity 0.18s ease-out;
+  /* Lets the spinner inherit the ink colour so light/dark themes
+   * both look right without another rule. */
+  color: rgba(var(--ink-rgb), 0.55);
+  font-size: 13px;
+  font-weight: 500;
+  pointer-events: none;
+}
+
+#loadMoreSentinel[aria-busy="true"] {
+  opacity: 1;
+}
+
+#loadMoreSentinel .load-more-spinner {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid rgba(var(--ink-rgb), 0.15);
+  border-top-color: currentColor;
+  animation: load-more-spin 0.7s linear infinite;
+}
+
+#loadMoreSentinel .load-more-label {
+  letter-spacing: 0.01em;
+}
+
+@keyframes load-more-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Respect users with reduced-motion settings: keep the spinner
+ * visible (it's an affordance, not decoration) but stop the rotation
+ * so it doesn't grate. Used by iOS Safari's setting + macOS
+ * accessibility pref. */
+@media (prefers-reduced-motion: reduce) {
+  #loadMoreSentinel .load-more-spinner {
+    animation: none;
+  }
+}
