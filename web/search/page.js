@@ -6405,8 +6405,12 @@
         ...owners.filter((o) => followingSet.has(o.slug)),
         ...owners.filter((o) => !followingSet.has(o.slug)),
       ];
+      // The "also liked by" label used to live here as a small
+      // muted span before the avatar stack. Dropped on the user's
+      // request — the avatars themselves carry the meaning, and the
+      // aria-label below keeps the social context discoverable for
+      // assistive tech.
       const html = `<div class="co-owners" aria-label="${owners.length} other ${owners.length === 1 ? "person has" : "people have"} this">
-        <span class="co-owners-label">also liked by</span>
         ${sorted
           .map(
             (o) =>

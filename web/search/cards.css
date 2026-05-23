@@ -586,6 +586,14 @@
   flex-direction: column;
   gap: 8px;
   margin: 0;
+  /* Match the justified body type the user asked for on cards —
+   * the tweet-summary blocks render alongside `.result-summary`
+   * blocks on the feed so both should agree on edge alignment.
+   * Hyphenation softens the inter-word gaps. */
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  overflow-wrap: anywhere;
 }
 /* Threads stack their parts with extra vertical breathing room —
  * the spacing alone (no chrome, no rail, no badges) carries the

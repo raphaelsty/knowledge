@@ -118,22 +118,33 @@ body.img-lightbox-open {
   }
 }
 
-/* Summary — refined sans, justified with hyphenation so both edges
-     * align cleanly without giant word-gaps (newspaper typography). */
+/* Summary — refined sans, justified with hyphenation so both
+ * edges of the column align cleanly without giant word-gaps
+ * (newspaper typography). User explicitly asked for this on the
+ * feed + personal pages — the older "looks weird on short
+ * snippets" concern is moot now that the clean daemon rewrites
+ * most card bodies into substantial paragraphs. */
 .result-summary {
   font-family: var(--modern);
   /* Comfortable reading size — bumped from 14px so non-tweet
-   * bodies match the larger tweet typography. Left-aligned to
-   * match the tweet body rhythm; justification with hyphenation
-   * looked tidy on long articles but reads weird across the mix
-   * of short and long snippets the feed shows. */
+   * bodies match the larger tweet typography. */
   font-size: 15px;
   line-height: 1.62;
   color: rgba(var(--ink-rgb), 0.78);
   margin: 0;
   font-weight: 400;
   letter-spacing: -0.005em;
-  text-align: left;
+  text-align: justify;
+  /* Hyphenation softens the otherwise huge inter-word gaps that
+   * justification can introduce on narrow mobile columns. `auto`
+   * lets the browser pick break points using its language
+   * dictionary; `manual` would only honour explicit `&shy;`. */
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  /* Don't let a single long URL / word stretch the line. The
+   * combination below keeps very long tokens from blowing out
+   * the column without forcing mid-word breaks on normal text. */
+  overflow-wrap: anywhere;
 }
 /* Real-time enhancer — when a richer description lands from the
      * page's `<meta>` tags, the swap is silent. We used to fade the
