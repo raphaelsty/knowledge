@@ -8789,12 +8789,31 @@
     if (sheetSources.dataset.wired !== "1") {
       sheetSources.dataset.wired = "1";
       sheetSources.addEventListener("click", () => toggleSheet("sources"));
-      document
-        .getElementById("mbnPeople")
-        ?.addEventListener("click", () => toggleSheet("people"));
+      // People sheet — tapping the tab while the sheet is already
+      // open scrolls the candidate list back to the top (the same
+      // affordance native iOS apps offer for their tab bars). Close
+      // is still available via backdrop tap, swipe-down, or by
+      // selecting a candidate.
+      document.getElementById("mbnPeople")?.addEventListener("click", () => {
+        if (isOpen("people")) {
+          document
+            .querySelector(".kn-sheet .people-rail-list")
+            ?.scrollTo({ top: 0, behavior: "smooth" });
+          return;
+        }
+        toggleSheet("people");
+      });
       document
         .getElementById("mbnCategories")
         ?.addEventListener("click", () => {
+          // Same scroll-to-top affordance as People when the sheet
+          // is already open.
+          if (isOpen("categories")) {
+            document
+              .querySelector(".kn-sheet .category-rail-list")
+              ?.scrollTo({ top: 0, behavior: "smooth" });
+            return;
+          }
           // First open: warm the catalogue + render. Subsequent opens
           // re-use the same render — selection state is already in
           // sync with the URL.
@@ -8805,6 +8824,18 @@
           }
           toggleSheet("categories");
         });
+      // Feed tab — when already on the feed and no sheet is open,
+      // suppress the link's navigation and scroll the page to the
+      // top instead. Same affordance as the floating back-to-top
+      // button, routed through the tab the user already expects to
+      // mean "where I am right now."
+      document.getElementById("mbnFeed")?.addEventListener("click", (e) => {
+        const onFeed = state.libs?.size === 0;
+        if (onFeed && !anyOpen()) {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+      });
       backdrop.addEventListener("click", closeSheets);
       document.addEventListener("keydown", (e) => {
         if (e.key === "Escape" && anyOpen()) {
@@ -8816,13 +8847,22 @@
       // transition is reflected without a rebind). Anonymous taps
       // open the auth modal instead.
       document.getElementById("mbnPersonal")?.addEventListener("click", (e) => {
-        if (me?.slug) {
-          // Allow native navigation; URL was synced in
-          // _syncMobileChrome below.
+        if (!me?.slug) {
+          e.preventDefault();
+          window.KnowledgeAuth?.open("login");
           return;
         }
-        e.preventDefault();
-        window.KnowledgeAuth?.open("login");
+        // Already on the personal page → scroll to top instead of
+        // re-navigating to the same URL (the browser would
+        // otherwise either reload or no-op depending on the
+        // navigation type).
+        const onPersonal = state.libs?.size === 1 && state.libs.has(me.slug);
+        if (onPersonal && !anyOpen()) {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+        // else fall through to native navigation. URL was synced in
+        // _syncMobileChrome below.
       });
       // The in-bar Post button mirrors the legacy floating FAB:
       // anonymous → auth modal; signed-in → compose dialog.

@@ -153,6 +153,13 @@
     if (personal && me?.slug) {
       personal.href = `/search?libs=${encodeURIComponent(me.slug)}`;
     }
+    // Tapping the Settings tab while already on /profile should
+    // scroll the page to the top instead of re-navigating to the
+    // same URL (the browser would otherwise either reload or no-op).
+    document.getElementById("mbnSettings")?.addEventListener("click", (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
   })();
 
   /* Resolve the avatar shown in the settings hero. We removed the
