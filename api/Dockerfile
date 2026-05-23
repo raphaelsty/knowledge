@@ -3,8 +3,15 @@
 # =============================================================================
 # Unified API: search + data + events + ingest in a single binary.
 #
+# Build context: repo ROOT (not api/). The Rust crate uses
+# `include_str!("../../sources/sql/*.sql")` to bake schema migrations
+# into the binary, so the build needs visibility into sibling
+# `sources/` files. Compose files (docker-compose.yml +
+# docker-compose.dokploy.yml) pass `context: .` + `dockerfile:
+# api/Dockerfile` accordingly.
+#
 # Build:
-#   docker build -t knowledge-api api/
+#   docker build -f api/Dockerfile -t knowledge-api .
 #
 # Run:
 #   docker run -p 8080:8080 \
@@ -57,8 +64,13 @@ WORKDIR /app
 # =============================================================================
 FROM chef AS planner
 
-COPY Cargo.toml Cargo.lock ./
-COPY src ./src
+COPY api/Cargo.toml api/Cargo.lock ./
+COPY api/src ./src
+# Schema SQL files are pulled in via include_str! from the crate
+# source, so the planner stage doesn't need them — but copy them
+# under the build root so paths line up with the workspace layout
+# (`../../sources/sql/…`) the macros expect.
+COPY sources/sql /sources/sql
 
 RUN cargo chef prepare --recipe-path recipe.json
 
@@ -72,8 +84,13 @@ COPY --from=planner /app/recipe.json recipe.json
 RUN cargo chef cook --release --recipe-path recipe.json --features "openblas,model"
 
 # Build the application
-COPY Cargo.toml Cargo.lock ./
-COPY src ./src
+COPY api/Cargo.toml api/Cargo.lock ./
+COPY api/src ./src
+# Mirror the workspace layout so `include_str!("../../sources/sql/…")`
+# resolves at compile time. The schema files travel with the crate
+# source rather than being mounted at runtime — boot-time migrations
+# stay self-contained.
+COPY sources/sql /sources/sql
 
 RUN cargo build --release --features "openblas,model"
 
@@ -113,7 +130,7 @@ COPY --from=builder /opt/ort_cpu /opt/ort_cpu
 COPY --from=builder /app/target/release/knowledge-api /usr/local/bin/knowledge-api
 
 # Copy entrypoint script
-COPY --chmod=755 docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+COPY --chmod=755 api/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 
 # Set library paths
 ARG ORT_VERSION=1.23.0

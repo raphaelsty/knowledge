@@ -112,7 +112,12 @@ services:
 
   knowledge-api:
     build:
-      context: api
+      # Build context is the repo root so the API Dockerfile can COPY
+      # both `api/` (Rust crate) and `sources/sql/` (schema files baked
+      # into the binary via `include_str!`). The api/Dockerfile path is
+      # passed explicitly because the context shifted up one level.
+      context: .
+      dockerfile: api/Dockerfile
     restart: unless-stopped
     logging: *default-logging
     # The container starts as root, the entrypoint chowns the bind-

@@ -23,7 +23,11 @@ services:
 
   knowledge-api:
     build:
-      context: api
+      # See docker-compose.dokploy.yml — context is the repo root so
+      # `include_str!("../../sources/sql/…")` can resolve at compile
+      # time and the binary ships with all schema migrations baked in.
+      context: .
+      dockerfile: api/Dockerfile
     user: root
     ports:
       - "8080:8080"

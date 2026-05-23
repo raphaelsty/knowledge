@@ -278,6 +278,121 @@ async fn shutdown_signal() {
     }
 }
 
+/// Apply every schema file in `sources/sql/` against the live
+/// database, in the same dependency order `run.py` uses.
+///
+/// Why this lives in the API process (not just in `run.py`): the
+/// API binary deploys whenever code or schema changes, but the
+/// pipeline daemon runs on its own cadence. Without this hook a
+/// deploy that adds a new column ships the binary first and the
+/// schema only minutes-to-hours later when the next pipeline pass
+/// fires — every endpoint that references the new column would
+/// 500 in the meantime (May 2026: `column e.dwell_ms does not
+/// exist` outage). Running migrations on API boot collapses that
+/// window to ~0.
+///
+/// All .sql files are baked in via `include_str!`, so the API
+/// container doesn't need the sources/ tree at runtime — only the
+/// binary. Each file is an idempotent batch (`CREATE TABLE IF NOT
+/// EXISTS` / `ADD COLUMN IF NOT EXISTS` / `CREATE OR REPLACE
+/// VIEW`), so re-applying on every boot is safe.
+///
+/// Order matters: tables with foreign keys must be applied after
+/// their referent. The list below mirrors `run.py`'s
+/// `create_*_table()` sequence one-for-one — keep them in sync.
+async fn run_sql_migrations(pool: &sqlx::PgPool) -> Result<(), sqlx::Error> {
+    // (filename-for-logs, baked SQL text). The ordering matches
+    // run.py — DO NOT reorder without checking the FK graph.
+    let migrations: &[(&str, &str)] = &[
+        ("users.sql", include_str!("../../sources/sql/users.sql")),
+        (
+            "documents.sql",
+            include_str!("../../sources/sql/documents.sql"),
+        ),
+        (
+            "dead_urls.sql",
+            include_str!("../../sources/sql/dead_urls.sql"),
+        ),
+        (
+            "sessions.sql",
+            include_str!("../../sources/sql/sessions.sql"),
+        ),
+        (
+            "twitter_feed_status.sql",
+            include_str!("../../sources/sql/twitter_feed_status.sql"),
+        ),
+        (
+            "twitter_feed_attempts.sql",
+            include_str!("../../sources/sql/twitter_feed_attempts.sql"),
+        ),
+        (
+            "auth_sessions.sql",
+            include_str!("../../sources/sql/auth_sessions.sql"),
+        ),
+        (
+            "api_tokens.sql",
+            include_str!("../../sources/sql/api_tokens.sql"),
+        ),
+        (
+            "favorites.sql",
+            include_str!("../../sources/sql/favorites.sql"),
+        ),
+        ("follows.sql", include_str!("../../sources/sql/follows.sql")),
+        ("events.sql", include_str!("../../sources/sql/events.sql")),
+        (
+            "export_downloads.sql",
+            include_str!("../../sources/sql/export_downloads.sql"),
+        ),
+        (
+            "pipeline_runs.sql",
+            include_str!("../../sources/sql/pipeline_runs.sql"),
+        ),
+        (
+            "pipeline_source_runs.sql",
+            include_str!("../../sources/sql/pipeline_source_runs.sql"),
+        ),
+        (
+            "index_health_checks.sql",
+            include_str!("../../sources/sql/index_health_checks.sql"),
+        ),
+        (
+            "oauth_identities.sql",
+            include_str!("../../sources/sql/oauth_identities.sql"),
+        ),
+        (
+            "personality_submissions.sql",
+            include_str!("../../sources/sql/personality_submissions.sql"),
+        ),
+        (
+            "hn_frontpage.sql",
+            include_str!("../../sources/sql/hn_frontpage.sql"),
+        ),
+        ("credits.sql", include_str!("../../sources/sql/credits.sql")),
+        (
+            "user_storage.sql",
+            include_str!("../../sources/sql/user_storage.sql"),
+        ),
+        (
+            "vip_sponsorships.sql",
+            include_str!("../../sources/sql/vip_sponsorships.sql"),
+        ),
+        // Views depend on the documents + users tables — must run last.
+        ("views.sql", include_str!("../../sources/sql/views.sql")),
+    ];
+    for (name, sql) in migrations {
+        // Each file is executed in one round-trip; sqlx's `execute`
+        // handles multi-statement batches against Postgres. Errors
+        // surface with the filename so the operator knows which one
+        // tripped without diffing the log against the migrations list.
+        if let Err(e) = sqlx::raw_sql(sql).execute(pool).await {
+            tracing::error!(file = %name, error = %e, "schema.migrate.statement_failed");
+            return Err(e);
+        }
+        tracing::debug!(file = %name, "schema.migrate.applied");
+    }
+    Ok(())
+}
+
 /// Build the API router.
 fn build_router(state: Arc<AppState>, pg_pool: Option<sqlx::PgPool>) -> Router {
     let rate_limit_enabled: bool = std::env::var("RATE_LIMIT_ENABLED")
@@ -1177,7 +1292,25 @@ Environment Variables:
             Ok(pool) => {
                 tracing::info!("database.connected");
 
-                // Schema lives in `sources/sql/` and is applied by `run.py`.
+                // Apply schema migrations before serving traffic.
+                // The .sql files are baked into the binary at compile
+                // time (include_str!) so the API container doesn't
+                // need to ship the sources/ tree just to migrate.
+                // Each statement is wrapped in IF NOT EXISTS / CREATE
+                // OR REPLACE inside the file itself, so re-running on
+                // every boot is a no-op once the schema is in place.
+                //
+                // On failure we LOG AND CONTINUE rather than crash
+                // the API — the previous binary's schema is still
+                // valid for read traffic, and a wedged migration
+                // surfacing as 5xx on every endpoint would be worse
+                // than serving stale-schema reads. The error stays
+                // visible in the logs so it can be addressed.
+                if let Err(e) = run_sql_migrations(&pool).await {
+                    tracing::error!(error = %e, "schema.migrate.failed — continuing with existing schema");
+                } else {
+                    tracing::info!("schema.migrate.complete");
+                }
 
                 // Purge old events
                 match db::purge_old_events(&pool, RETENTION_DAYS).await {

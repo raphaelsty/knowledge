@@ -158,8 +158,12 @@ jobs:
         #      only), where the served shas already match the local
         #      ones from the previous deploy.
         #   3. Poll for a "green" condition: served shas match local
-        #      AND /health = 200. Need 3 consecutive greens (~90s) to
-        #      call it done.
+        #      AND /health = 200 AND the data endpoints actually
+        #      return rows (not 5xx, not an empty array from a broken
+        #      schema migration — the May 2026 "column e.dwell_ms
+        #      does not exist" outage looked healthy on /health
+        #      alone). Need 3 consecutive greens (~90s) to call it
+        #      done.
         #   4. Hard timeout at 25 min total — cold Rust build is ~15
         #      min, so 25 min covers all realistic scenarios.
         #
@@ -189,34 +193,77 @@ jobs:
 
           DEADLINE=$(( $(date +%s) + MAX_WAIT - MIN_WAIT ))
           streak=0
+          # Track the last-seen value of each probe so the final
+          # error message in the timeout branch points at the
+          # actual failing component (not just the last loop iter).
+          last_health=""; last_feed=""; last_timeline=""; last_admin=""
+          last_page="n"; last_style="n"
 
+          # Endpoints probed:
+          #   /health                       — 200 means the binary is up
+          #   /api/feed?limit=1             — 200 + non-empty JSON array;
+          #                                   exercises the cross-library
+          #                                   aggregate path
+          #   /api/timeline?limit=1         — 200 (array, possibly empty
+          #                                   for cold anon viewers).
+          #                                   This is the endpoint that
+          #                                   500'd during the May 2026
+          #                                   dwell_ms outage; we want
+          #                                   the deploy to fail loudly
+          #                                   if it ever does again.
+          #   /api/admin/behaviour?days=1   — 401 expected (no session);
+          #                                   any other code means the
+          #                                   route is missing or the
+          #                                   handler is panicking.
           while [ "$(date +%s)" -lt "$DEADLINE" ]; do
-            # `--max-time` on each call so a hanging socket can't
-            # eat the whole window. `|| true` keeps the loop alive
-            # on a transient curl failure.
             HEALTH=$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 "$SITE/health" || echo "000")
             REMOTE_PAGE=$(curl -s --max-time 20 "$SITE/search/page.js" 2>/dev/null | sha256sum | cut -d' ' -f1)
             REMOTE_STYLE=$(curl -s --max-time 20 "$SITE/search/style.css" 2>/dev/null | sha256sum | cut -d' ' -f1)
 
+            # Data endpoints — capture both status code and body so we
+            # can distinguish "200 with []" (still bootstrapping or
+            # broken filter) from "200 with rows" (genuinely healthy).
+            FEED_BODY=$(curl -s --max-time 25 -w '\n%{http_code}' "$SITE/api/feed?limit=1" 2>/dev/null || printf '\n000')
+            FEED_CODE=$(printf '%s' "$FEED_BODY" | tail -n1)
+            FEED_HEAD=$(printf '%s' "$FEED_BODY" | head -c 2)
+
+            TL_CODE=$(curl -s -o /dev/null -w '%{http_code}' --max-time 25 "$SITE/api/timeline?limit=1" || echo "000")
+            ADMIN_CODE=$(curl -s -o /dev/null -w '%{http_code}' --max-time 15 "$SITE/api/admin/behaviour?days=1" || echo "000")
+
             page_ok="n"; [ "$REMOTE_PAGE" = "$LOCAL_PAGE" ] && page_ok="y"
             style_ok="n"; [ "$REMOTE_STYLE" = "$LOCAL_STYLE" ] && style_ok="y"
+            # Feed is "really up" when 200 AND the body looks like a
+            # non-empty JSON array (starts with `[{`). An empty `[]`
+            # would mean the cache is cold or the query crashed
+            # mid-way — neither is success.
+            feed_ok="n"
+            if [ "$FEED_CODE" = "200" ] && [ "$FEED_HEAD" = "[{" ]; then feed_ok="y"; fi
+            tl_ok="n"; [ "$TL_CODE" = "200" ] && tl_ok="y"
+            # 401 is the *desired* response — the route exists and the
+            # admin gate is enforced. 404 = route missing, 500 =
+            # handler panic, 200 = gate broken (anon got through).
+            admin_ok="n"; [ "$ADMIN_CODE" = "401" ] && admin_ok="y"
 
-            if [ "$HEALTH" = "200" ] && [ "$page_ok" = "y" ] && [ "$style_ok" = "y" ]; then
+            last_health=$HEALTH; last_feed=$FEED_CODE; last_timeline=$TL_CODE; last_admin=$ADMIN_CODE
+            last_page=$page_ok; last_style=$style_ok
+
+            if [ "$HEALTH" = "200" ] && [ "$page_ok" = "y" ] && [ "$style_ok" = "y" ] \
+               && [ "$feed_ok" = "y" ] && [ "$tl_ok" = "y" ] && [ "$admin_ok" = "y" ]; then
               streak=$((streak + 1))
-              echo "✅ green  streak=$streak/$STREAK_NEEDED  health=200  page=match  style=match"
+              echo "✅ green  streak=$streak/$STREAK_NEEDED  health=200  page=match  style=match  feed=200  tl=200  admin=401"
               if [ "$streak" -ge "$STREAK_NEEDED" ]; then
                 echo "::notice::Deploy verified — ${GITHUB_SHA:0:7} is live."
                 exit 0
               fi
             else
               streak=0
-              echo "⏳ waiting  health=$HEALTH  page=$page_ok ($REMOTE_PAGE… vs $LOCAL_PAGE…)  style=$style_ok"
+              echo "⏳ waiting  health=$HEALTH  page=$page_ok  style=$style_ok  feed=$FEED_CODE($feed_ok)  tl=$TL_CODE($tl_ok)  admin=$ADMIN_CODE(want401,$admin_ok)"
             fi
 
             sleep $POLL
           done
 
           echo "::error::Deploy verification timed out after $((MAX_WAIT/60)) min."
-          echo "Last seen — health=$HEALTH page_match=$page_ok style_match=$style_ok"
+          echo "Last probe — health=$last_health  page=$last_page  style=$last_style  feed=$last_feed  timeline=$last_timeline  admin=$last_admin (wanted 401)"
           echo "Inspect the Dokploy build log at https://dokploy.knowledge-web.org/dashboard"
           exit 1
