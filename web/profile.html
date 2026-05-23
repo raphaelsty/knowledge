@@ -1170,6 +1170,11 @@
         <a class="action-link" id="pfAdminLink" href="/admin"> Admin panel </a>
       </div>
 
+      <!-- Dokploy dashboard shortcut. Same admin-only visibility as
+           the Admin panel row above — revealed by profile/page.js
+           only when the signed-in slug matches the operator account.
+           No server-side gate (Dokploy enforces its own login), so
+           this is just an operator convenience. -->
       <div class="signout-row admin-row" id="pfDokployRow" hidden>
         <a
           class="action-link"
@@ -1178,7 +1183,7 @@
           target="_blank"
           rel="noopener noreferrer"
         >
-          knowledge-web.org
+          Dokploy
         </a>
       </div>
 

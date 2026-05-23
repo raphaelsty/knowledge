@@ -34,8 +34,16 @@ CREATE TABLE IF NOT EXISTS events (
     viewer_user_id   BIGINT,
     client_ts        TIMESTAMPTZ,
 
+    -- Card dwell time. Populated on `card_seen` (event_type=7) only.
+    -- Cumulative milliseconds the card was ≥60% in the viewport,
+    -- capped client-side at 120 000 ms so a tab left open for hours
+    -- doesn't drown out the signal. Used both to tune the hide-seen
+    -- filter (long dwell == strong "seen" signal) and to feed ML
+    -- training sets that need per-impression engagement.
+    dwell_ms INTEGER,
+
     -- Guardrail: event_type must be a known enum value (see comment below).
-    CONSTRAINT chk_event_type CHECK (event_type BETWEEN 1 AND 6)
+    CONSTRAINT chk_event_type CHECK (event_type BETWEEN 1 AND 7)
 );
 
 -- Idempotent migrations: bring an already-deployed events table up to
@@ -44,6 +52,14 @@ CREATE TABLE IF NOT EXISTS events (
 ALTER TABLE events ADD COLUMN IF NOT EXISTS personality_slug TEXT;
 ALTER TABLE events ADD COLUMN IF NOT EXISTS viewer_user_id   BIGINT;
 ALTER TABLE events ADD COLUMN IF NOT EXISTS client_ts        TIMESTAMPTZ;
+ALTER TABLE events ADD COLUMN IF NOT EXISTS dwell_ms         INTEGER;
+
+-- Bump the event_type CHECK from 1..=6 → 1..=7 on already-deployed
+-- tables. PG won't change an existing constraint in-place; drop +
+-- recreate. Idempotent: the DROP is a no-op when the constraint is
+-- missing, and the ADD re-asserts the latest range.
+ALTER TABLE events DROP CONSTRAINT IF EXISTS chk_event_type;
+ALTER TABLE events ADD  CONSTRAINT chk_event_type CHECK (event_type BETWEEN 1 AND 7);
 
 -- viewer_user_id is FK to users(id) but we keep it nullable + ON DELETE
 -- SET NULL so anonymous events and deleted users don't break the table.
@@ -81,6 +97,17 @@ CREATE INDEX IF NOT EXISTS idx_events_doc_query
     ON events (doc_url, event_type, created_at DESC)
     WHERE doc_url IS NOT NULL;
 
+-- Hide-seen filter on the logged-in timeline (`/api/timeline`).
+-- The query is `NOT EXISTS (SELECT 1 FROM events WHERE
+-- viewer_user_id = $me AND doc_url = d.url AND event_type = 7
+-- AND created_at > horizon)`. Partial index keeps the structure
+-- small — only the (viewer, doc) rows the filter actually probes.
+CREATE INDEX IF NOT EXISTS idx_events_viewer_doc_seen
+    ON events (viewer_user_id, doc_url, created_at DESC)
+    WHERE event_type = 7
+      AND viewer_user_id IS NOT NULL
+      AND doc_url        IS NOT NULL;
+
 -- ── DB-level documentation ──────────────────────────────────────────────
 COMMENT ON TABLE events IS
     'User interactions on library pages. One row per click / search / view. Typed columns for compact storage.';
@@ -88,7 +115,7 @@ COMMENT ON TABLE events IS
 COMMENT ON COLUMN events.id            IS 'Surrogate primary key.';
 COMMENT ON COLUMN events.session_id    IS 'FK → sessions(id). Chain of events from the same browser tab.';
 COMMENT ON COLUMN events.user_id       IS 'Library being browsed. Denormalized from sessions for index-only scans.';
-COMMENT ON COLUMN events.event_type    IS 'Event enum: 1=view, 2=search, 3=click, 4=find_similar, 5=filter_apply, 6=folder_browse.';
+COMMENT ON COLUMN events.event_type    IS 'Event enum: 1=view, 2=search, 3=click, 4=find_similar, 5=filter_apply, 6=folder_browse, 7=card_seen.';
 COMMENT ON COLUMN events.created_at    IS 'Event timestamp (server-assigned).';
 COMMENT ON COLUMN events.query         IS 'Search query text. Set for event_type=2 (search) and optionally on click (source query).';
 COMMENT ON COLUMN events.result_count  IS 'Number of results returned for a search.';
@@ -101,3 +128,4 @@ COMMENT ON COLUMN events.score         IS 'Model/rerank score of the clicked doc
 COMMENT ON COLUMN events.personality_slug IS 'Slug of the personality being browsed (denormalised from users.username for easy joins on training-set extracts).';
 COMMENT ON COLUMN events.viewer_user_id   IS 'Logged-in user actually triggering the event. NULL for anonymous browsing. Distinct from events.user_id, which identifies the library being browsed.';
 COMMENT ON COLUMN events.client_ts        IS 'Client-side timestamp at event-fire time. Lets us reconstruct true order even when sendBeacon batches delay delivery.';
+COMMENT ON COLUMN events.dwell_ms         IS 'Cumulative milliseconds the card was ≥60% in the viewport. Only set on event_type=7 (card_seen). Capped client-side at 120 000 ms.';

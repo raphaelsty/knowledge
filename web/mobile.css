@@ -212,6 +212,14 @@
   .scope-filter[hidden] {
     display: none !important;
   }
+  /* The desktop top-right chip is replaced on mobile by a
+   * bottom-nav action (#mbnShowSeen). Force-hide the chip here so
+   * it doesn't double-render alongside the bottom-nav button.
+   * The JS still toggles #qShowSeen's state — both surfaces stay
+   * in sync — but the chip never paints on phones. */
+  #qShowSeen {
+    display: none !important;
+  }
 
   /* Filter chips become 36×36 icon-only discs on phone. Both
    * share one pill vocabulary so the cluster on the right of the
@@ -1573,12 +1581,14 @@
    * URL carries source filters. Same ink-fill cue as the nav
    * tabs' active state so the language is consistent. */
   .mbn-action.is-open,
-  .mbn-action.has-filter {
+  .mbn-action.has-filter,
+  .mbn-action.is-on {
     background: rgba(var(--ink-rgb), 0.1);
     color: rgb(var(--ink-rgb));
   }
   [data-theme="dark"] .mbn-action.is-open,
-  [data-theme="dark"] .mbn-action.has-filter {
+  [data-theme="dark"] .mbn-action.has-filter,
+  [data-theme="dark"] .mbn-action.is-on {
     background: rgba(255, 255, 255, 0.1);
   }
 

@@ -31,6 +31,10 @@ const EVT_CLICK: i16 = 3;
 const EVT_FIND_SIMILAR: i16 = 4;
 const EVT_FILTER_APPLY: i16 = 5;
 const EVT_FOLDER_BROWSE: i16 = 6;
+// `card_seen` is fired by the timeline's IntersectionObserver after a
+// 1.5 s viewport dwell. Used by `/api/timeline` to filter out cards the
+// signed-in viewer has already absorbed (see follows.rs).
+const EVT_CARD_SEEN: i16 = 7;
 
 fn event_type_code(name: &str) -> Option<i16> {
     match name {
@@ -42,6 +46,7 @@ fn event_type_code(name: &str) -> Option<i16> {
         "find_similar" | "click_similar" => Some(EVT_FIND_SIMILAR),
         "filter_apply" => Some(EVT_FILTER_APPLY),
         "folder_browse" => Some(EVT_FOLDER_BROWSE),
+        "card_seen" => Some(EVT_CARD_SEEN),
         _ => None,
     }
 }
@@ -96,6 +101,11 @@ struct EventPayload {
     // Recommendation-training signals.
     personality_slug: Option<String>,
     viewer_user_id: Option<i64>,
+    // Cumulative viewport-dwell milliseconds for `card_seen`. Capped
+    // client-side at 120 000 ms; the server does not re-clamp so a
+    // larger value would just survive as-is, but the column is
+    // INTEGER so wildly oversized payloads still fit.
+    dwell_ms: Option<i32>,
     // Client wall-clock at event-fire time, ISO-8601 (e.g.
     // "2026-05-22T18:12:03.412Z"). Bound as text; PG parses on insert
     // into the TIMESTAMPTZ column. Keeping the chrono dep out of sqlx
@@ -197,9 +207,9 @@ pub async fn ingest_events(
                 (session_id, user_id, event_type,
                  query, result_count, latency_ms, source_filter, sort_mode,
                  doc_url, position, score,
-                 personality_slug, viewer_user_id, client_ts)
+                 personality_slug, viewer_user_id, client_ts, dwell_ms)
              VALUES ($1::uuid, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11,
-                     $12, $13, $14::timestamptz)",
+                     $12, $13, $14::timestamptz, $15)",
         )
         .bind(ev.session_id.to_string())
         .bind(user_id)
@@ -215,6 +225,7 @@ pub async fn ingest_events(
         .bind(ev.payload.personality_slug.as_deref())
         .bind(ev.payload.viewer_user_id)
         .bind(ev.payload.client_ts.as_deref())
+        .bind(ev.payload.dwell_ms)
         .execute(&mut *tx)
         .await
         .map_err(|e| {

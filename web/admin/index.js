@@ -90,7 +90,7 @@ class GateError extends Error {
 
 // ── Tabs ─────────────────────────────────────────────────────────────
 
-const TABS = ["overview", "sources", "users", "indices", "live"];
+const TABS = ["overview", "sources", "users", "indices", "behaviour", "live"];
 let currentTab = "overview";
 
 function setTab(name) {
@@ -1149,6 +1149,301 @@ function renderLiveSourceRuns(rows) {
   return tbl;
 }
 
+// ── Section: Behaviour ───────────────────────────────────────────────
+//
+// Daily aggregates of /events activity. One chart per behavioural
+// signal so the operator can eyeball trends without drilling into
+// the raw `events` table.
+//
+// SVG line charts, no library — keeps the bundle tiny and the
+// charts inherit the admin theme via CSS variables.
+
+let behaviourRange = 30; // days; user-tunable, persisted in URL hash
+
+const BEHAVIOUR_METRICS = [
+  // [seriesKey, label, helpText]
+  [
+    "sessions",
+    "Sessions",
+    "Distinct browser tabs that produced at least one event.",
+  ],
+  ["viewers", "Distinct viewers", "Logged-in users with ≥1 event that day."],
+  [
+    "views",
+    "Page views",
+    "`view` events — landing on a page (library, profile, etc.).",
+  ],
+  ["searches", "Searches", "`search` events from the search bar."],
+  ["clicks", "Clicks", "Outbound clicks on result cards."],
+  ["card_seen", "Cards seen", "Viewport-dwell impressions (≥1.5 s on screen)."],
+  [
+    "find_similar",
+    "Find-similar",
+    "`Related` button taps surfacing semantically-near docs.",
+  ],
+  ["filter_apply", "Filter changes", "Source / tag / category chip toggles."],
+  [
+    "folder_browse",
+    "Folder browsing",
+    "Folder-tree navigation on a personal page.",
+  ],
+];
+
+async function renderBehaviour(root) {
+  root.innerHTML = "";
+  root.appendChild(el("div", { class: "adm-loading" }, "Loading…"));
+  let data;
+  try {
+    data = await api(`/behaviour?days=${behaviourRange}`);
+  } catch (e) {
+    return rerror(root, e);
+  }
+  root.innerHTML = "";
+
+  // Range selector — 7 / 30 / 90 / 180 days. Re-renders this section
+  // only when the user flips it; cheap because the endpoint is a
+  // single SQL query.
+  const ranges = [7, 30, 90, 180];
+  const rangeBar = el(
+    "div",
+    { class: "beh-range" },
+    el("span", { class: "beh-range-label" }, "Window:"),
+    ...ranges.map((d) =>
+      el(
+        "button",
+        {
+          class: `beh-range-btn${behaviourRange === d ? " is-active" : ""}`,
+          onClick: () => {
+            behaviourRange = d;
+            renderBehaviour(root);
+          },
+        },
+        `${d}d`,
+      ),
+    ),
+    el(
+      "span",
+      { class: "beh-range-window" },
+      `${data.since || "—"} → ${data.until || "—"}`,
+    ),
+  );
+  root.appendChild(rangeBar);
+
+  // Window-total tiles (sums or peaks).
+  const totals = data.totals || {};
+  const tilesData = [
+    ["Sessions", totals.sessions],
+    ["Peak viewers / day", totals.viewers_peak_day],
+    ["Page views", totals.views],
+    ["Searches", totals.searches],
+    ["Clicks", totals.clicks],
+    ["Cards seen", totals.card_seen],
+  ];
+  root.appendChild(
+    el(
+      "div",
+      { class: "beh-tiles" },
+      ...tilesData.map(([label, n]) =>
+        el(
+          "div",
+          { class: "beh-tile" },
+          el("div", { class: "beh-tile-label" }, label),
+          el("div", { class: "beh-tile-value" }, fmtInt(n)),
+        ),
+      ),
+    ),
+  );
+
+  // One chart per metric.
+  const grid = el("div", { class: "beh-grid" });
+  for (const [key, label, help] of BEHAVIOUR_METRICS) {
+    const series = (data.series || {})[key] || [];
+    grid.appendChild(behaviourChartCard(label, series, "count", help));
+  }
+  // Dwell distribution: two lines on one panel (median + p90) since
+  // they share the y-axis (milliseconds).
+  grid.appendChild(
+    behaviourChartCard(
+      "Card dwell (ms)",
+      (data.series && data.series.dwell_median_ms) || [],
+      "value",
+      "Per-day median and p90 viewport dwell on `card_seen` events. Higher = users engaging more deeply.",
+      {
+        overlay: (data.series && data.series.dwell_p90_ms) || [],
+        overlayLabel: "p90",
+        primaryLabel: "median",
+      },
+    ),
+  );
+  root.appendChild(grid);
+}
+
+/**
+ * One chart card: title, sparkline-style line chart, axis labels.
+ *
+ * `series` is an array of `{date, count|value}`. The function
+ * tolerates either field name — count for integer event-count
+ * series, value for the dwell distribution series.
+ *
+ * `opts.overlay` is an optional second series rendered as a
+ * lighter line on the same axes (used for median + p90 on one panel).
+ */
+function behaviourChartCard(label, series, valueKey, help, opts = {}) {
+  const card = el(
+    "section",
+    { class: "beh-card" },
+    el(
+      "header",
+      { class: "beh-card-head" },
+      el("span", { class: "beh-card-title" }, label),
+      help ? el("span", { class: "beh-card-help", title: help }, "ⓘ") : null,
+    ),
+  );
+  const values = series.map((p) =>
+    p[valueKey] == null ? null : Number(p[valueKey]),
+  );
+  const overlay = opts.overlay
+    ? opts.overlay.map((p) =>
+        p[valueKey] == null ? null : Number(p[valueKey]),
+      )
+    : null;
+  const max = Math.max(
+    1,
+    ...values.filter((v) => v != null),
+    ...(overlay || []).filter((v) => v != null),
+  );
+  const total = values.reduce((s, v) => s + (v || 0), 0);
+
+  // Number summary lines.
+  card.appendChild(
+    el(
+      "div",
+      { class: "beh-card-sub" },
+      `total ${fmtInt(Math.round(total))} · max ${fmtInt(Math.round(max))}`,
+    ),
+  );
+
+  // SVG chart.
+  const W = 360;
+  const H = 90;
+  const PAD = 6;
+  const innerW = W - PAD * 2;
+  const innerH = H - PAD * 2;
+  const xAt = (i) => PAD + (i * innerW) / Math.max(1, values.length - 1);
+  const yAt = (v) => PAD + (v == null ? innerH : innerH - (v / max) * innerH);
+  const pathFor = (arr) => {
+    let d = "";
+    let started = false;
+    for (let i = 0; i < arr.length; i++) {
+      const v = arr[i];
+      if (v == null) {
+        started = false;
+        continue;
+      }
+      d += `${started ? "L" : "M"}${xAt(i).toFixed(1)},${yAt(v).toFixed(1)} `;
+      started = true;
+    }
+    return d.trim();
+  };
+
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+  svg.setAttribute("class", "beh-spark");
+  svg.setAttribute("role", "img");
+  svg.setAttribute("aria-label", `${label} per day`);
+
+  // Filled area under the primary line (light tint).
+  const areaPath = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "path",
+  );
+  let area = pathFor(values);
+  if (area) {
+    const last = values.findLastIndex((v) => v != null);
+    const first = values.findIndex((v) => v != null);
+    if (first >= 0 && last >= 0) {
+      area = `${area} L${xAt(last).toFixed(1)},${(H - PAD).toFixed(1)} L${xAt(first).toFixed(1)},${(H - PAD).toFixed(1)} Z`;
+    }
+    areaPath.setAttribute("d", area);
+    areaPath.setAttribute("class", "beh-spark-area");
+    svg.appendChild(areaPath);
+  }
+
+  // Overlay (e.g. p90) — lighter line, no fill.
+  if (overlay) {
+    const overlayPath = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "path",
+    );
+    overlayPath.setAttribute("d", pathFor(overlay));
+    overlayPath.setAttribute("class", "beh-spark-line beh-spark-line--overlay");
+    svg.appendChild(overlayPath);
+  }
+
+  // Primary line.
+  const line = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  line.setAttribute("d", pathFor(values));
+  line.setAttribute("class", "beh-spark-line");
+  svg.appendChild(line);
+
+  // Hover dots — emit at every defined point, transparent until the
+  // operator hovers. Each dot carries a <title> so the browser
+  // shows native tooltips on hover (no JS overlay needed).
+  for (let i = 0; i < values.length; i++) {
+    const v = values[i];
+    if (v == null) continue;
+    const dot = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "circle",
+    );
+    dot.setAttribute("cx", xAt(i).toFixed(1));
+    dot.setAttribute("cy", yAt(v).toFixed(1));
+    dot.setAttribute("r", "2.4");
+    dot.setAttribute("class", "beh-spark-dot");
+    const title = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "title",
+    );
+    const dateStr = series[i] && series[i].date;
+    title.textContent = `${dateStr || ""}: ${fmtInt(Math.round(v))}`;
+    dot.appendChild(title);
+    svg.appendChild(dot);
+  }
+  card.appendChild(svg);
+
+  // Axis legend — first / mid / last day labels.
+  if (series.length > 0) {
+    const first = series[0].date || "";
+    const mid = series[Math.floor(series.length / 2)].date || "";
+    const last = series[series.length - 1].date || "";
+    card.appendChild(
+      el(
+        "div",
+        { class: "beh-spark-axis" },
+        el("span", {}, first.slice(5)),
+        el("span", {}, mid.slice(5)),
+        el("span", {}, last.slice(5)),
+      ),
+    );
+  }
+
+  // Legend for overlay charts.
+  if (opts.overlayLabel) {
+    card.appendChild(
+      el(
+        "div",
+        { class: "beh-spark-legend" },
+        el("span", { class: "beh-legend-swatch beh-legend-swatch--primary" }),
+        opts.primaryLabel || "primary",
+        el("span", { class: "beh-legend-swatch beh-legend-swatch--overlay" }),
+        opts.overlayLabel,
+      ),
+    );
+  }
+
+  return card;
+}
+
 // ── Dispatch ─────────────────────────────────────────────────────────
 
 async function renderTab(name, { force = false } = {}) {
@@ -1165,6 +1460,7 @@ async function renderTab(name, { force = false } = {}) {
     if (name === "sources") return await renderSources(root);
     if (name === "users") return await renderUsers(root);
     if (name === "indices") return await renderIndices(root);
+    if (name === "behaviour") return await renderBehaviour(root);
   } catch (e) {
     if (e instanceof GateError) showGate(e.message);
     else rerror(root, e);

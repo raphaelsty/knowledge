@@ -500,6 +500,34 @@
             </svg>
             <span>Following only</span>
           </button>
+          <!-- Hide-seen toggle — logged-in only. Default state hides
+               cards the viewer has already absorbed (≥1.5 s viewport
+               dwell tracked via the card_seen event). Toggling ON
+               re-includes them; seen cards then render dimmed with
+               a tiny "Seen" tag. Persists in localStorage. -->
+          <button
+            type="button"
+            class="scope-filter"
+            id="qShowSeen"
+            aria-pressed="false"
+            title="Include cards you've already seen"
+            hidden
+          >
+            <svg
+              class="scope-filter-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z" />
+              <circle cx="12" cy="12" r="3" />
+            </svg>
+            <span>Show seen</span>
+          </button>
         </div>
         <div class="filter-strip">
           <div class="active-tags" id="activeTags" hidden></div>
@@ -978,6 +1006,33 @@
           id="mobileSourcesCount"
           hidden
         ></span>
+      </button>
+
+      <!-- Hide-seen toggle — mobile-only mirror of the desktop chip.
+           Visible only when logged in and on the empty feed (no
+           search, no library selection). Wired in page.js: clicking
+           proxies to the same state.showSeen logic as #qShowSeen. -->
+      <button
+        type="button"
+        class="mbn-action"
+        id="mbnShowSeen"
+        aria-pressed="false"
+        aria-label="Include cards you've already seen"
+        title="Include cards you've already seen"
+        hidden
+      >
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z" />
+          <circle cx="12" cy="12" r="3" />
+        </svg>
       </button>
 
       <!-- Post — opens the compose dialog. Always posts to *your*

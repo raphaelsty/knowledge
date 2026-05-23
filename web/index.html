@@ -486,6 +486,30 @@
             </svg>
             <span>Following only</span>
           </button>
+          <!-- Hide-seen toggle — see search.html for the rationale. -->
+          <button
+            type="button"
+            class="scope-filter"
+            id="qShowSeen"
+            aria-pressed="false"
+            title="Include cards you've already seen"
+            hidden
+          >
+            <svg
+              class="scope-filter-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z" />
+              <circle cx="12" cy="12" r="3" />
+            </svg>
+            <span>Show seen</span>
+          </button>
         </div>
         <div class="filter-strip">
           <div class="active-tags" id="activeTags" hidden></div>
@@ -943,6 +967,30 @@
           id="mobileSourcesCount"
           hidden
         ></span>
+      </button>
+
+      <!-- Hide-seen toggle — see search.html for the rationale. -->
+      <button
+        type="button"
+        class="mbn-action"
+        id="mbnShowSeen"
+        aria-pressed="false"
+        aria-label="Include cards you've already seen"
+        title="Include cards you've already seen"
+        hidden
+      >
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z" />
+          <circle cx="12" cy="12" r="3" />
+        </svg>
       </button>
 
       <!-- Post — opens the compose dialog. Always posts to *your*

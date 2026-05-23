@@ -169,6 +169,18 @@
      * across libraries — the toggle next to the date filter lets them
      * opt back into the focused view. */
     followingOnly: false,
+    /* When true, the timeline includes cards the viewer has already
+     * seen (≥1.5 s viewport dwell tracked via the card_seen event).
+     * Default false → seen cards are filtered out server-side.
+     * Logged-in only — the button is hidden for anonymous visitors.
+     * Persisted in localStorage as `feed.showSeen`. */
+    showSeen: (() => {
+      try {
+        return localStorage.getItem("feed.showSeen") === "1";
+      } catch {
+        return false;
+      }
+    })(),
     lastDocs: [],
     /* URLs the user has been shown this session — drives the "More"
      * button's "fetch posts I haven't seen this week" filter.
@@ -1989,6 +2001,55 @@
     btn.classList.toggle("is-on", !!state.followingOnly);
     btn.setAttribute("aria-pressed", state.followingOnly ? "true" : "false");
   }
+  /* "Show seen" chip — only meaningful on the logged-in timeline
+   * (libs empty, no query). Visibility / enabled state split into
+   * two attributes so desktop and mobile can style them differently:
+   *
+   *   • `hidden` — never set for logged-in users. Anonymous viewers
+   *     get the chip hidden entirely so it doesn't tease a feature
+   *     that requires an account.
+   *   • `disabled` — set whenever the active state isn't the empty
+   *     feed (a search is running, or a personal/library page is
+   *     active). Desktop CSS collapses the disabled state to
+   *     `display:none` so the chip vanishes; mobile CSS keeps it in
+   *     place but grey + non-interactive, so the bottom row layout
+   *     stays consistent as the user moves between surfaces. */
+  function syncShowSeenButton() {
+    // Two surfaces, one source of truth:
+    //   • Desktop chip (#qShowSeen) — sits in the spotlight row.
+    //   • Mobile bottom-nav action (#mbnShowSeen) — sits next to
+    //     Filter/Post on the floating capsule.
+    // Both follow the same visibility rules:
+    //   • logged-out                         → hidden
+    //   • on a personal/library page        → hidden (no eye at all)
+    //   • on the feed with a search running → desktop disabled,
+    //     mobile bottom-nav stays hidden (the eye lives next to the
+    //     feed surface, not the search results)
+    //   • on the empty feed                  → enabled
+    const onPersonalPage = state.libs.size > 0;
+    const searching = !!state.query;
+    const onEmptyFeed = !onPersonalPage && !searching;
+
+    const chip = $("qShowSeen");
+    if (chip) {
+      chip.hidden = !me || onPersonalPage;
+      if (searching) chip.setAttribute("disabled", "");
+      else chip.removeAttribute("disabled");
+      chip.classList.toggle("is-on", !!state.showSeen);
+      chip.setAttribute("aria-pressed", state.showSeen ? "true" : "false");
+      const lbl = chip.querySelector("span");
+      if (lbl) lbl.textContent = state.showSeen ? "Showing seen" : "Show seen";
+    }
+
+    const mobile = $("mbnShowSeen");
+    if (mobile) {
+      // The mobile button only ever shows on the empty feed for
+      // logged-in users; off-feed there is no slot to dim into.
+      mobile.hidden = !me || !onEmptyFeed;
+      mobile.classList.toggle("is-on", !!state.showSeen);
+      mobile.setAttribute("aria-pressed", state.showSeen ? "true" : "false");
+    }
+  }
   /* No-op kept as a stub so legacy call sites (refresh, append,
    * timeline render) don't blow up. The shuffle button was
    * removed — pull-to-refresh handles the same job now. */
@@ -2002,6 +2063,7 @@
     wrap.classList.toggle("has-filter", !!state.dateSince);
   }
   syncFollowingOnlyButton();
+  syncShowSeenButton();
   syncSinceFilterActive();
   $("qFollowingOnly")?.addEventListener("click", () => {
     // Anonymous → invite them to sign in. Otherwise toggle the
@@ -2015,6 +2077,28 @@
     writeUrl();
     refresh();
   });
+  function toggleShowSeen() {
+    if (!me) {
+      window.KnowledgeAuth?.open("login");
+      return;
+    }
+    state.showSeen = !state.showSeen;
+    try {
+      localStorage.setItem("feed.showSeen", state.showSeen ? "1" : "0");
+    } catch {}
+    // Clear the in-tab dedup so flipping ON immediately re-fires
+    // observers for cards that were previously suppressed.
+    if (window.kn && typeof window.kn.resetSeenSuppression === "function") {
+      window.kn.resetSeenSuppression();
+    }
+    syncShowSeenButton();
+    // The timeline URL embeds `include_seen`, so flipping the chip
+    // changes the cache key — next refresh() naturally re-fetches.
+    writeUrl();
+    refresh();
+  }
+  $("qShowSeen")?.addEventListener("click", toggleShowSeen);
+  $("mbnShowSeen")?.addEventListener("click", toggleShowSeen);
   // Run a single sync after qSince changes — declared below.
   $("qSince")?.addEventListener("change", (e) => {
     state.dateSince = e.target.value || "";
@@ -3431,6 +3515,10 @@
     if (state.categories && state.categories.size) {
       qs.set("category", [...state.categories].join(","));
     }
+    // Hide-seen is the default for signed-in viewers; only opt-in
+    // when the user has clicked "Show seen". Anonymous viewers never
+    // get filtered server-side (the SQL gates on $1 IS NOT NULL).
+    if (state.showSeen) qs.set("include_seen", "true");
     const url = `${API_BASE}/api/timeline?${qs.toString()}`;
     // Bypass the cache when the caller wants a fresh fetch — the
     // pull-to-refresh handler and the "More" button set fresh:true
@@ -3529,6 +3617,10 @@
           // (no row in `documents`), so the card renders a "Save" button
           // instead of the favorite heart. See renderResult below.
           picked: !!d.picked,
+          // Carry through the server-side already-seen flag so the
+          // card renderer can dim cards the viewer has already
+          // absorbed (only meaningful when include_seen=1).
+          alreadySeen: !!d.alreadySeen,
           // The renderResult template renders avatars off `_owners`
           // (a list of slugs); map the timeline's `sharers` array to
           // that field so the existing stack-renderer works unchanged.
@@ -4505,6 +4597,10 @@
       if (state.categories && state.categories.size) {
         qs.set("category", [...state.categories].join(","));
       }
+      // Same hide-seen contract as the initial loader — pagination
+      // must respect the chip state, otherwise scrolling resurrects
+      // every card the user has already seen.
+      if (state.showSeen) qs.set("include_seen", "true");
       try {
         const r = await fetch(`${API_BASE}/api/timeline?${qs.toString()}`, {
           credentials: "include",
@@ -4856,6 +4952,7 @@
     // Keep the "Following only" toggle's visibility in lockstep with
     // (query active × on the feed). Cheap and idempotent.
     syncFollowingOnlyButton();
+    syncShowSeenButton();
     syncShuffleButton();
     // Same idea for the mobile chrome — keep the active tab + the
     // source-count badge tracking state.libs / state.sources.
@@ -6662,7 +6759,12 @@
       ? `<div class="result-foot-right">${footRightInner}</div>`
       : "";
 
-    return `<article class="result" data-url="${escapeAttr(d.url)}">
+    // `is-seen` dims the card so the user can tell at a glance which
+    // ones are recycled, no textual label. Only set when the server
+    // flagged this row as already seen (include_seen=1 path) — the
+    // default hide-seen state never emits flagged rows.
+    const isSeen = !!d.alreadySeen;
+    return `<article class="result${isSeen ? " is-seen" : ""}" data-url="${escapeAttr(d.url)}"${isSeen ? ' data-seen="1"' : ""}>
       <div class="result-body">
         <div class="result-kicker">
           ${sourcePill}
@@ -6921,6 +7023,16 @@
           score:
             doc && typeof doc.similarity === "number" ? doc.similarity : null,
         });
+      });
+    }
+    // card_seen: per-card viewport observer. Active on every list
+    // surface — feed, personal pages, search — so the dwell signal
+    // covers the full engagement footprint (used both to tune the
+    // hide-seen filter and as ML training input). The observer
+    // itself no-ops for anonymous viewers.
+    if (window.kn && typeof window.kn.observeCard === "function") {
+      scope.querySelectorAll("article.result[data-url]").forEach((el) => {
+        window.kn.observeCard(el, el.dataset.url);
       });
     }
     scope.querySelectorAll("[data-tag]").forEach((b) =>

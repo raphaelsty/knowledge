@@ -289,6 +289,23 @@ pub struct TimelineParams {
     /// singular `category` name is preserved for backward compatibility
     /// with saved deep-links from earlier versions of the picker.
     pub category: Option<String>,
+    /// When `true`, the hide-already-seen filter is bypassed. Default
+    /// `false`: signed-in viewers don't get re-shown cards whose URL
+    /// already has a `card_seen` event from them within the horizon.
+    /// Anonymous callers (`me_id IS NULL`) are never filtered — there
+    /// is no per-viewer identity to scope against.
+    pub include_seen: Option<bool>,
+    /// Lookback horizon for the seen filter, in days. Default 30. Older
+    /// `card_seen` rows stop hiding the doc so a paper that's been
+    /// dormant in your library for a month can resurface naturally.
+    pub seen_horizon_days: Option<i32>,
+    /// Minimum aggregated dwell (ms) before a card counts as "really
+    /// seen". Below this the impression is treated as a scroll-past
+    /// and the doc stays in the feed. Default 3000 (3 s). The sum is
+    /// taken over every `card_seen` event for the same URL within
+    /// the horizon, so multiple short glances can add up to a
+    /// genuine read.
+    pub min_seen_dwell_ms: Option<i32>,
 }
 
 /// GET /api/timeline — same payload shape as `/api/feed` (per-URL rows
@@ -461,6 +478,34 @@ pub async fn timeline(
                            AND a.url     = d.url
                            AND dc.slug   = ANY($8::text[])
                     ))
+               -- Hide-already-seen filter. Logged-in only ($1 IS NOT
+               -- NULL); bypassed when the caller passes
+               -- include_seen=true ($9 = TRUE).
+               --
+               -- A row only counts as really seen if the viewer
+               -- aggregated dwell on the URL meets $11 ms inside
+               -- the horizon. Scroll-pasts (sub-second card_seen
+               -- events) do not add up to a hide. Multiple short
+               -- glances do — the SUM lets a card the user came
+               -- back to three times for ~1.2 s each cross a 3 s
+               -- threshold the way a single deliberate read would.
+               --
+               -- Also: a 10-minute grace window — only events older
+               -- than that contribute to the sum, so a card the
+               -- viewer just engaged with stays visible for the
+               -- current scroll and only disappears on the next
+               -- visit. Indexed by idx_events_viewer_doc_seen.
+               AND ($1 IS NULL
+                    OR $9::bool = TRUE
+                    OR COALESCE((
+                        SELECT SUM(COALESCE(e.dwell_ms, 0))::bigint
+                          FROM events e
+                         WHERE e.viewer_user_id = $1
+                           AND e.event_type    = 7
+                           AND e.doc_url       = d.url
+                           AND e.created_at    < now() - interval '10 minutes'
+                           AND e.created_at    > now() - ($10::int || ' days')::interval
+                    ), 0) < $11::int)
              ORDER BY d.date DESC
              -- Over-fetch by 16x the requested limit — gives the
              -- diversity pass headroom to reorder past consecutive
@@ -664,7 +709,23 @@ pub async fn timeline(
             m.tags, m.source, m.source_url,
             m.linked_urls, m.link_hosts,
             m.primary_user_id, m.score,
-            s.sharers, s.sharer_count
+            s.sharers, s.sharer_count,
+            -- Per-row already-seen flag. Mirrors the hide-filter
+            -- semantics: a row is flagged seen only when the
+            -- viewer aggregated dwell on this URL meets the
+            -- threshold within the horizon (and outside the 10-min
+            -- grace). Short scroll-pasts do not trip the dim.
+            -- Short-circuited by `$9::bool AND ...` so the common
+            -- hide-seen path skips the SUM entirely.
+            ($9::bool AND $1 IS NOT NULL AND COALESCE((
+                SELECT SUM(COALESCE(e.dwell_ms, 0))::bigint
+                  FROM events e
+                 WHERE e.viewer_user_id = $1
+                   AND e.event_type    = 7
+                   AND e.doc_url       = m.url
+                   AND e.created_at    < now() - interval '10 minutes'
+                   AND e.created_at    > now() - ($10::int || ' days')::interval
+            ), 0) >= $11::int) AS already_seen
           FROM ordered m
           JOIN LATERAL (
               -- Sharers = EVERY non-deleted owner of this URL OR of a
@@ -719,25 +780,38 @@ pub async fn timeline(
     ";
 
     let since: Option<String> = params.since.clone();
-    #[allow(clippy::type_complexity)]
-    let rows: Vec<(
-        String,            // url
-        String,            // title
-        String,            // date_str
-        String,            // summary
-        String,            // clean_title
-        String,            // clean_summary
-        Vec<String>,       // urls
-        Vec<String>,       // tags
-        String,            // source
-        Option<String>,    // source_url
-        serde_json::Value, // linked_urls
-        Vec<String>,       // link_hosts
-        i64,               // primary_user_id (for the diversity pass)
-        f64,               // score (for the diversity pass)
-        serde_json::Value, // sharers
-        i64,               // sharer_count
-    )> = match sqlx::query_as(sql)
+    let include_seen: bool = params.include_seen.unwrap_or(false);
+    let seen_horizon_days: i32 = params.seen_horizon_days.unwrap_or(30).clamp(1, 365);
+    // Aggregated-dwell threshold to count as "really seen". Default
+    // 3 s — chosen so a brief 1–2 s glance still leaves the card in
+    // the feed but a deliberate read removes it. Clamped to [0,
+    // MAX_DWELL_MS=120 000] since values outside that bound would
+    // never match the data the client actually emits.
+    let min_seen_dwell_ms: i32 = params.min_seen_dwell_ms.unwrap_or(3000).clamp(0, 120_000);
+    // Named-field row struct — sqlx's tuple FromRow impls cap at 16,
+    // and we need 17 (the trailing `already_seen` flag). Field order
+    // must match the final SELECT projection 1:1.
+    #[derive(Clone, sqlx::FromRow)]
+    struct TimelineRow {
+        url: String,
+        title: String,
+        date_str: String,
+        summary: String,
+        clean_title: String,
+        clean_summary: String,
+        urls: Vec<String>,
+        tags: Vec<String>,
+        source: String,
+        source_url: Option<String>,
+        linked_urls: serde_json::Value,
+        link_hosts: Vec<String>,
+        primary_user_id: i64,
+        score: f64,
+        sharers: serde_json::Value,
+        sharer_count: i64,
+        already_seen: bool,
+    }
+    let rows: Vec<TimelineRow> = match sqlx::query_as(sql)
         .bind(me_id)
         .bind(limit)
         .bind(before)
@@ -746,6 +820,9 @@ pub async fn timeline(
         .bind(&tags_inc)
         .bind(since)
         .bind(&categories)
+        .bind(include_seen)
+        .bind(seen_horizon_days)
+        .bind(min_seen_dwell_ms)
         .fetch_all(&pool)
         .await
     {
@@ -781,23 +858,20 @@ pub async fn timeline(
             .iter()
             .enumerate()
             .map(|(pos, &row_idx)| {
-                // Tuple indices: after clean_title (.4),
-                // clean_summary (.5), urls (.6) were added,
-                // primary_user_id sits at .12 and score at .13.
-                let user = rows[row_idx].12;
+                let user = rows[row_idx].primary_user_id;
                 let prior = *emit_count.get(&user).unwrap_or(&0) as f64;
                 let adjacent_pen = if last_user == Some(user) {
                     ADJACENT
                 } else {
                     0.0
                 };
-                let eff = rows[row_idx].13 - DECAY * prior.powf(EXP) - adjacent_pen;
+                let eff = rows[row_idx].score - DECAY * prior.powf(EXP) - adjacent_pen;
                 (pos, eff)
             })
             .max_by(|a, b| a.1.partial_cmp(&b.1).unwrap_or(std::cmp::Ordering::Equal))
             .expect("non-empty remaining");
         let chosen = remaining.remove(best_pos);
-        let user = rows[chosen].12;
+        let user = rows[chosen].primary_user_id;
         *emit_count.entry(user).or_insert(0) += 1;
         last_user = Some(user);
         emit_order.push(chosen);
@@ -806,50 +880,38 @@ pub async fn timeline(
     let mut out: Vec<serde_json::Value> = emit_order
         .into_iter()
         .map(|i| {
-            let (
-                url,
-                title,
-                date,
-                summary,
-                clean_title,
-                clean_summary,
-                urls,
-                tags,
-                source,
-                source_url,
-                linked_urls,
-                link_hosts,
-                _primary_user_id,
-                _score,
-                sharers,
-                count,
-            ) = rows[i].clone();
+            let r = rows[i].clone();
             serde_json::json!({
-                "url": url,
-                "title": title,
-                "date": date,
-                "summary": summary,
+                "url": r.url,
+                "title": r.title,
+                "date": r.date_str,
+                "summary": r.summary,
                 // Pedagogical-rewriter outputs. Empty string when the
                 // clean daemon hasn't processed this row yet, or when
                 // it processed it but found no useful summary to add
                 // (skeletal HF cards, mood tweets). The frontend
                 // falls back to `summary` when these are empty.
-                "cleanTitle": clean_title,
-                "cleanSummary": clean_summary,
+                "cleanTitle": r.clean_title,
+                "cleanSummary": r.clean_summary,
                 // Flat URL list extracted from the raw `summary` +
                 // OG-cluster — the frontend uses this to surface
                 // every URL the original post referenced even when
                 // the cleaned summary dropped the label that wrapped
                 // it (e.g. a trailing 'Paper:' line).
-                "urls": urls,
-                "tags": tags,
-                "source": source,
-                "source_url": source_url,
-                "linked_urls": linked_urls,
-                "link_hosts": link_hosts,
-                "sharers": sharers,
-                "sharerCount": count,
+                "urls": r.urls,
+                "tags": r.tags,
+                "source": r.source,
+                "source_url": r.source_url,
+                "linked_urls": r.linked_urls,
+                "link_hosts": r.link_hosts,
+                "sharers": r.sharers,
+                "sharerCount": r.sharer_count,
                 "picked": false,
+                // True when the viewer has a `card_seen` event for
+                // this URL within the horizon. Only flips on when the
+                // client passed include_seen=1 (otherwise the row was
+                // filtered out upstream).
+                "alreadySeen": r.already_seen,
             })
         })
         .collect();

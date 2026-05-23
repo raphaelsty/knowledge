@@ -734,6 +734,39 @@
   background: #2eb872;
 }
 
+/* "Show seen" chip — lighter than the other scope-filter buttons by
+ * default so it reads as the quieter of the cluster. Inherits the
+ * size + layout from `.scope-filter`. The `disabled` attribute is
+ * set by the JS whenever the active surface isn't the empty feed
+ * (search running, personal page open); on desktop we collapse it
+ * out of the layout entirely so the cluster stays tight. */
+#qShowSeen {
+  color: rgba(var(--ink-rgb), 0.4);
+}
+#qShowSeen:hover {
+  color: rgba(var(--ink-rgb), 0.7);
+}
+#qShowSeen.is-on {
+  color: rgba(var(--ink-rgb), 0.85);
+}
+#qShowSeen[disabled] {
+  display: none !important;
+}
+
+/* ──────────────────────────────────────────────────────────────────
+ *  Already-seen cards. Quiet dim only — the textual "Seen" pill
+ *  was removed so the marker is purely visual. Only renders when
+ *  the viewer has opted into "Show seen" (the default state filters
+ *  these rows out server-side).
+ * ─────────────────────────────────────────────────────────────────*/
+.result.is-seen {
+  opacity: 0.55;
+  transition: opacity 0.18s ease;
+}
+.result.is-seen:hover {
+  opacity: 0.92;
+}
+
 /* ──────────────────────────────────────────────────────────────────
  *  Category picker — desktop only
  *

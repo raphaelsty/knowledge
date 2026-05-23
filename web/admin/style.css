@@ -511,3 +511,166 @@ table.adm-table {
   color: var(--text-dim);
   padding: 18px;
 }
+
+/* ── Behaviour tab ─────────────────────────────────────────────────── */
+
+.beh-range {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 18px;
+  font-size: 12px;
+}
+.beh-range-label {
+  color: var(--text-dim);
+}
+.beh-range-btn {
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font: inherit;
+  transition:
+    color 0.12s ease,
+    background 0.12s ease;
+}
+.beh-range-btn:hover {
+  color: var(--text);
+}
+.beh-range-btn.is-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg);
+}
+.beh-range-window {
+  margin-left: 8px;
+  color: var(--text-dimmer);
+  font-family: var(--mono);
+  font-size: 11px;
+}
+
+.beh-tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.beh-tile {
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 12px 14px;
+}
+.beh-tile-label {
+  font-size: 11px;
+  color: var(--text-dim);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+.beh-tile-value {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text);
+  margin-top: 4px;
+}
+
+.beh-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 14px;
+}
+.beh-card {
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 14px 16px 12px;
+}
+.beh-card-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 2px;
+}
+.beh-card-title {
+  font-size: 13px;
+  color: var(--text);
+  font-weight: 600;
+}
+.beh-card-help {
+  color: var(--text-dimmer);
+  cursor: help;
+  font-size: 11px;
+}
+.beh-card-sub {
+  font-size: 11px;
+  color: var(--text-dimmer);
+  margin-bottom: 8px;
+  font-family: var(--mono);
+}
+.beh-spark {
+  display: block;
+  width: 100%;
+  height: 90px;
+}
+.beh-spark-line {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.6;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+.beh-spark-line--overlay {
+  stroke: var(--text-dim);
+  stroke-width: 1.2;
+  stroke-dasharray: 3 3;
+}
+.beh-spark-area {
+  fill: var(--accent);
+  fill-opacity: 0.12;
+  stroke: none;
+}
+.beh-spark-dot {
+  fill: var(--accent);
+  fill-opacity: 0;
+  transition: fill-opacity 0.12s ease;
+}
+.beh-spark:hover .beh-spark-dot {
+  fill-opacity: 0.9;
+}
+.beh-spark-axis {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+  font-size: 10px;
+  color: var(--text-dimmer);
+  font-family: var(--mono);
+}
+.beh-spark-legend {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  font-size: 11px;
+  color: var(--text-dim);
+  font-family: var(--mono);
+}
+.beh-legend-swatch {
+  display: inline-block;
+  width: 14px;
+  height: 2px;
+}
+.beh-legend-swatch--primary {
+  background: var(--accent);
+}
+.beh-legend-swatch--overlay {
+  background: var(--text-dim);
+  height: 2px;
+  background-image: linear-gradient(
+    to right,
+    var(--text-dim) 50%,
+    transparent 50%
+  );
+  background-size: 6px 100%;
+}

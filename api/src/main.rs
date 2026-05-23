@@ -883,6 +883,7 @@ fn build_router(state: Arc<AppState>, pg_pool: Option<sqlx::PgPool>) -> Router {
             .route("/api/admin/live", get(handlers::admin::live))
             .route("/api/admin/system", get(handlers::admin::system_stats))
             .route("/api/admin/indexer", get(handlers::admin::indexer_activity))
+            .route("/api/admin/behaviour", get(handlers::admin::behaviour))
             // Twitter-feed health surface. POST is the heartbeat
             // receiver (shared-token auth, no session needed);
             // GET is the admin-panel read (session cookie).

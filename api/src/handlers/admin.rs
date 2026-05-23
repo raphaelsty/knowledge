@@ -1732,3 +1732,231 @@ pub async fn twitter_feed_status(State(state): State<Arc<AppState>>, jar: Cookie
         .into_response(),
     }
 }
+
+// ── /api/admin/behaviour ─────────────────────────────────────────────
+//
+// Per-day behavioural rollups for the analytics tab. One row per
+// (UTC day, event_type), plus the global metrics that ride on top
+// (distinct viewers, sessions, card-seen dwell summary).
+//
+// The frontend renders one chart per metric — counts on the left,
+// dwell distribution on its own panel. Keeping this in a single
+// payload keeps the admin tab to one round-trip.
+
+/// Returns:
+///   {
+///     "days":  i32,                       // requested window
+///     "since": "YYYY-MM-DD",              // first bucket
+///     "until": "YYYY-MM-DD",              // last bucket (today UTC)
+///     "series": {                         // per-metric daily series
+///        "<metric>": [{date, count}, ...] // one entry per UTC day
+///     },
+///     "totals": { "<metric>": <int>, ... } // sums over the window
+///   }
+///
+/// Metric keys mirror the event-type enum + a few derived series:
+///   - sessions:          distinct sessions started per day
+///     (proxy for "distinct visits"; one session id per tab)
+///   - signins:           auth events captured indirectly via the
+///     first event per (user, day) where viewer_user_id is set
+///   - views, searches, clicks, find_similar, filter_apply,
+///     folder_browse, card_seen: raw counts of events.event_type
+///   - viewers:           distinct viewer_user_id per day
+///     (logged-in unique users)
+pub async fn behaviour(
+    State(state): State<Arc<AppState>>,
+    jar: CookieJar,
+    Query(q): Query<DaysQuery>,
+) -> Response {
+    let pool = match require_raphael(&state, &jar).await {
+        Ok(p) => p,
+        Err(e) => return e,
+    };
+    let days = q.days.clamp(1, 180);
+
+    // One SQL round-trip. The generate_series → LEFT JOIN pattern
+    // gives a row for every (day, metric) pair, including zeros,
+    // so the chart doesn't have to fill gaps client-side.
+    //
+    // event_type codes (kept in sync with events.rs):
+    //   1 view · 2 search · 3 click · 4 find_similar
+    //   5 filter_apply · 6 folder_browse · 7 card_seen
+    let sql = r#"
+        WITH days AS (
+            SELECT generate_series(
+                       (current_date - ($1::int - 1))::timestamp,
+                       current_date::timestamp,
+                       interval '1 day'
+                   )::date AS d
+        ),
+        ev AS (
+            SELECT
+                (created_at AT TIME ZONE 'UTC')::date AS d,
+                event_type,
+                session_id,
+                viewer_user_id,
+                dwell_ms
+            FROM events
+            WHERE created_at > now() - make_interval(days => $1)
+        ),
+        agg AS (
+            SELECT
+                d.d                                                            AS day,
+                COUNT(*) FILTER (WHERE ev.event_type = 1)::bigint              AS views,
+                COUNT(*) FILTER (WHERE ev.event_type = 2)::bigint              AS searches,
+                COUNT(*) FILTER (WHERE ev.event_type = 3)::bigint              AS clicks,
+                COUNT(*) FILTER (WHERE ev.event_type = 4)::bigint              AS find_similar,
+                COUNT(*) FILTER (WHERE ev.event_type = 5)::bigint              AS filter_apply,
+                COUNT(*) FILTER (WHERE ev.event_type = 6)::bigint              AS folder_browse,
+                COUNT(*) FILTER (WHERE ev.event_type = 7)::bigint              AS card_seen,
+                COUNT(DISTINCT ev.session_id)::bigint                          AS sessions,
+                COUNT(DISTINCT ev.viewer_user_id)
+                    FILTER (WHERE ev.viewer_user_id IS NOT NULL)::bigint        AS viewers,
+                -- Median + p90 dwell on card_seen impressions for the day.
+                -- Quiet null when the day has no card_seen rows; the
+                -- frontend renders those slots as gaps.
+                percentile_cont(0.5) WITHIN GROUP (
+                    ORDER BY ev.dwell_ms
+                ) FILTER (WHERE ev.event_type = 7 AND ev.dwell_ms IS NOT NULL) AS dwell_median_ms,
+                percentile_cont(0.9) WITHIN GROUP (
+                    ORDER BY ev.dwell_ms
+                ) FILTER (WHERE ev.event_type = 7 AND ev.dwell_ms IS NOT NULL) AS dwell_p90_ms
+            FROM days d
+            LEFT JOIN ev ON ev.d = d.d
+            GROUP BY d.d
+            ORDER BY d.d
+        )
+        SELECT
+            to_char(day, 'YYYY-MM-DD')          AS day,
+            views, searches, clicks, find_similar,
+            filter_apply, folder_browse, card_seen,
+            sessions, viewers,
+            dwell_median_ms, dwell_p90_ms
+          FROM agg
+    "#;
+
+    let rows: Vec<BehaviourRow> = match sqlx::query_as(sql).bind(days).fetch_all(&pool).await {
+        Ok(r) => r,
+        Err(e) => {
+            return (
+                StatusCode::INTERNAL_SERVER_ERROR,
+                format!("behaviour query failed: {}", e),
+            )
+                .into_response();
+        }
+    };
+
+    // Frontend wants one series array per metric so each chart can
+    // bind to it directly. Build them in a single pass over the rows.
+    let mut series_views: Vec<Value> = Vec::with_capacity(rows.len());
+    let mut series_searches: Vec<Value> = Vec::with_capacity(rows.len());
+    let mut series_clicks: Vec<Value> = Vec::with_capacity(rows.len());
+    let mut series_find_similar: Vec<Value> = Vec::with_capacity(rows.len());
+    let mut series_filter_apply: Vec<Value> = Vec::with_capacity(rows.len());
+    let mut series_folder_browse: Vec<Value> = Vec::with_capacity(rows.len());
+    let mut series_card_seen: Vec<Value> = Vec::with_capacity(rows.len());
+    let mut series_sessions: Vec<Value> = Vec::with_capacity(rows.len());
+    let mut series_viewers: Vec<Value> = Vec::with_capacity(rows.len());
+    let mut series_dwell_median: Vec<Value> = Vec::with_capacity(rows.len());
+    let mut series_dwell_p90: Vec<Value> = Vec::with_capacity(rows.len());
+
+    let mut tot_views = 0i64;
+    let mut tot_searches = 0i64;
+    let mut tot_clicks = 0i64;
+    let mut tot_find_similar = 0i64;
+    let mut tot_filter_apply = 0i64;
+    let mut tot_folder_browse = 0i64;
+    let mut tot_card_seen = 0i64;
+    let mut tot_sessions = 0i64;
+    let mut tot_viewers = 0i64;
+
+    for r in &rows {
+        let push = |s: &mut Vec<Value>, v: i64| {
+            s.push(json!({ "date": r.day, "count": v }));
+        };
+        push(&mut series_views, r.views);
+        push(&mut series_searches, r.searches);
+        push(&mut series_clicks, r.clicks);
+        push(&mut series_find_similar, r.find_similar);
+        push(&mut series_filter_apply, r.filter_apply);
+        push(&mut series_folder_browse, r.folder_browse);
+        push(&mut series_card_seen, r.card_seen);
+        push(&mut series_sessions, r.sessions);
+        push(&mut series_viewers, r.viewers);
+        // Dwell is float-valued (median / p90) and may be null when
+        // the bucket has no card_seen — emit as JSON number or null.
+        series_dwell_median.push(json!({
+            "date": r.day,
+            "value": r.dwell_median_ms,
+        }));
+        series_dwell_p90.push(json!({
+            "date": r.day,
+            "value": r.dwell_p90_ms,
+        }));
+        tot_views += r.views;
+        tot_searches += r.searches;
+        tot_clicks += r.clicks;
+        tot_find_similar += r.find_similar;
+        tot_filter_apply += r.filter_apply;
+        tot_folder_browse += r.folder_browse;
+        tot_card_seen += r.card_seen;
+        tot_sessions += r.sessions;
+        // viewers is distinct per day, sum is misleading — leave it
+        // as a separate query if we need a window-wide unique. For
+        // now expose it as the "best-day" peak instead.
+        if r.viewers > tot_viewers {
+            tot_viewers = r.viewers;
+        }
+    }
+
+    let since = rows.first().map(|r| r.day.clone()).unwrap_or_default();
+    let until = rows.last().map(|r| r.day.clone()).unwrap_or_default();
+
+    Json(json!({
+        "days": days,
+        "since": since,
+        "until": until,
+        "series": {
+            "views":         series_views,
+            "searches":      series_searches,
+            "clicks":        series_clicks,
+            "find_similar":  series_find_similar,
+            "filter_apply":  series_filter_apply,
+            "folder_browse": series_folder_browse,
+            "card_seen":     series_card_seen,
+            "sessions":      series_sessions,
+            "viewers":       series_viewers,
+            "dwell_median_ms": series_dwell_median,
+            "dwell_p90_ms":    series_dwell_p90,
+        },
+        "totals": {
+            "views":         tot_views,
+            "searches":      tot_searches,
+            "clicks":        tot_clicks,
+            "find_similar":  tot_find_similar,
+            "filter_apply":  tot_filter_apply,
+            "folder_browse": tot_folder_browse,
+            "card_seen":     tot_card_seen,
+            "sessions":      tot_sessions,
+            // viewers exposed as peak-day, see comment above.
+            "viewers_peak_day": tot_viewers,
+        },
+    }))
+    .into_response()
+}
+
+#[derive(sqlx::FromRow)]
+struct BehaviourRow {
+    day: String,
+    views: i64,
+    searches: i64,
+    clicks: i64,
+    find_similar: i64,
+    filter_apply: i64,
+    folder_browse: i64,
+    card_seen: i64,
+    sessions: i64,
+    viewers: i64,
+    dwell_median_ms: Option<f64>,
+    dwell_p90_ms: Option<f64>,
+}
