@@ -5,11 +5,13 @@ name: Lint and Test
 # whole tree on every push / PR, so what passes locally passes here.
 # Don't add per-tool jobs — keeping them out of CI is the whole point.
 
+# PR-only: the same pre-commit hooks run inside deploy.yml on `push:
+# main` as a gate before redeploy, so duplicating them on push here
+# would just burn CI minutes.
 on:
-  push:
-    branches: [main]
   pull_request:
     branches: [main]
+  workflow_dispatch:
 
 jobs:
   pre-commit:

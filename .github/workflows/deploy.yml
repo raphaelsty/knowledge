@@ -1,40 +1,81 @@
 name: Deploy to prod
 
+# Two-stage pipeline gating production:
+#
+#   1. lint     — runs the project's pre-commit hooks against the
+#                 whole tree. Failing this stops the deploy before
+#                 we even ping Dokploy.
+#   2. deploy   — POSTs a simulated GitHub push event to Dokploy's
+#                 compose-deploy webhook, then polls the live site
+#                 to verify the new commit actually landed.
+#
 # Replaces Dokploy's built-in GitHub App auto-deploy hook. Why:
-#   * The App webhook is opaque — failures hide inside Dokploy's UI
-#     instead of showing as a red ✖ on the commit.
-#   * Stuck deploys silently lock subsequent pushes (we lived this:
-#     a manually-killed deploy left Dokploy refusing to process any
-#     new commit for hours).
-#   * No re-run button from outside the Dokploy UI.
+#   * Failures previously hid inside Dokploy's UI; now they surface
+#     as a red ✖ on the commit and a labelled GitHub Deployment
+#     record (via `environment: production`).
+#   * Stuck deploys silently locked subsequent pushes; explicit
+#     concurrency below guarantees one deploy at a time and the
+#     re-run button is always available from the Actions tab.
 #
-# This workflow simulates the GitHub push event Dokploy expects and
-# POSTs it to the project's deploy URL. The deploy URL itself is the
-# project's `compose.refreshToken` — that token IS the auth, and it's
-# stored as a GitHub Actions secret (`DOKPLOY_DEPLOY_URL`) so it never
-# lands in the repo.
-#
-# On a deploy failure the workflow fails and the commit gets a red ✖
-# next to it in GitHub. Use the "Re-run jobs" button to retry.
+# Secrets footprint:
+#   DOKPLOY_DEPLOY_URL    — the project's compose.refreshToken URL.
+#                            That token IS the auth. Never logged
+#                            (passed only via curl -d).
+#   No SSH keys or DB creds — the verify step is HTTP-only against
+#   the public site, so the workflow can stay safe on a public repo.
 
 on:
   push:
     branches: [main]
-  # Manual trigger so a botched deploy can be re-fired without
-  # pushing an empty commit. Available from the Actions tab.
   workflow_dispatch:
 
+# One deploy at a time. A newer push waits for the current deploy
+# to finish rather than racing it (Dokploy serialises anyway, but
+# this keeps the Actions UI tidy too). `cancel-in-progress: false`
+# is critical — we never want to abort a deploy that's already
+# rebuilding the Rust image.
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
 jobs:
+  lint:
+    name: Pre-commit
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+
+      - name: Set up Python
+        run: uv python install 3.11
+
+      - name: Run pre-commit
+        run: uvx pre-commit run --all-files --show-diff-on-failure
+
   deploy:
     name: Dokploy redeploy
+    needs: lint
     runs-on: ubuntu-latest
-    # The job only matters for lining up with the push event itself —
-    # there's no checkout needed because Dokploy clones the repo
-    # server-side. Limiting the runtime saves CI minutes if something
-    # in Dokploy's response stream hangs.
-    timeout-minutes: 5
+    # Records the deploy under repo Insights → Deployments and
+    # tags the commit with a "production" label. The url shows up
+    # as a button next to the deploy record.
+    environment:
+      name: production
+      url: https://knowledge-web.org
+    # Cold-rebuild ceiling is ~15 min of Rust compile + a couple
+    # minutes for the container swap; 30 min leaves comfortable
+    # slack and still bails on a stuck deploy.
+    timeout-minutes: 30
     steps:
-      - name: POST simulated push payload to Dokploy
+      - name: Checkout
+        # Needed so the verify step can sha256 the local web assets
+        # and compare them to what Caddy is actually serving.
+        uses: actions/checkout@v4
+
+      - name: Trigger Dokploy deploy
         env:
           DOKPLOY_DEPLOY_URL: ${{ secrets.DOKPLOY_DEPLOY_URL }}
         run: |
@@ -81,23 +122,101 @@ jobs:
 
           echo "Triggering Dokploy deploy for ${GITHUB_SHA:0:7} on ${GITHUB_REF_NAME}…"
 
-          # `-f` makes curl fail with a non-zero exit on 4xx/5xx so the
-          # job goes red automatically. `-L` follows the HTTPS redirect
-          # that Dokploy's proxy emits for plain HTTP. The connect
-          # timeout caps how long we wait for the box to answer.
-          HTTP_STATUS=$(curl -sS -L -X POST \
+          # The URL contains the auth token; never echo it. `-w` only
+          # extracts the HTTP code, body content is consumed but not
+          # re-emitted to logs.
+          CODE=$(curl -sS -L -X POST \
             --connect-timeout 10 \
             --max-time 60 \
+            -o /tmp/dokploy_response.txt \
+            -w '%{http_code}' \
             -H 'Content-Type: application/json' \
             -H 'X-GitHub-Event: push' \
             -d "$PAYLOAD" \
-            -w "\nHTTP_STATUS:%{http_code}" \
-            "$DOKPLOY_DEPLOY_URL")
+            "$DOKPLOY_DEPLOY_URL") || CODE=000
 
-          echo "$HTTP_STATUS"
-          CODE=$(echo "$HTTP_STATUS" | grep -oE 'HTTP_STATUS:[0-9]+' | cut -d: -f2)
+          # Print the response body — it never echoes the URL/token
+          # since curl writes only the server's reply there.
+          echo "Dokploy response (HTTP $CODE):"
+          cat /tmp/dokploy_response.txt || true
+          echo
+
           if [ "$CODE" != "200" ]; then
             echo "::error::Dokploy returned HTTP $CODE; deploy did not start."
             exit 1
           fi
-          echo "::notice::Dokploy accepted the deploy request."
+          echo "::notice::Dokploy accepted the deploy request — beginning verification."
+
+      - name: Verify the deploy landed
+        # Strategy:
+        #   1. Compute sha256 for the static assets Caddy serves
+        #      (web/search/page.js, web/search/style.css). These are
+        #      the two files touched on most user-facing commits.
+        #   2. Sleep a min-wait (4 min) so we never declare success
+        #      before Dokploy has even started the container swap —
+        #      important for commits that don't touch web/ (api/sources
+        #      only), where the served shas already match the local
+        #      ones from the previous deploy.
+        #   3. Poll for a "green" condition: served shas match local
+        #      AND /health = 200. Need 3 consecutive greens (~90s) to
+        #      call it done.
+        #   4. Hard timeout at 25 min total — cold Rust build is ~15
+        #      min, so 25 min covers all realistic scenarios.
+        #
+        # No new secrets used: this all runs against the public site.
+        run: |
+          set -euo pipefail
+
+          SITE="https://knowledge-web.org"
+          LOCAL_PAGE=$(sha256sum web/search/page.js | cut -d' ' -f1)
+          LOCAL_STYLE=$(sha256sum web/search/style.css | cut -d' ' -f1)
+
+          echo "::group::Verification baseline"
+          echo "Local sha256:"
+          echo "  web/search/page.js  ${LOCAL_PAGE:0:16}…"
+          echo "  web/search/style.css ${LOCAL_STYLE:0:16}…"
+          echo "::endgroup::"
+
+          # The min-wait floor — Dokploy is just starting the build
+          # right now, no point hammering /health for the next 4 min.
+          MIN_WAIT=240          # 4 min
+          MAX_WAIT=1500         # 25 min total ceiling
+          STREAK_NEEDED=3       # ~90 s of sustained green
+          POLL=30               # seconds between probes
+
+          echo "Sleeping ${MIN_WAIT}s for Dokploy to begin the build…"
+          sleep $MIN_WAIT
+
+          DEADLINE=$(( $(date +%s) + MAX_WAIT - MIN_WAIT ))
+          streak=0
+
+          while [ "$(date +%s)" -lt "$DEADLINE" ]; do
+            # `--max-time` on each call so a hanging socket can't
+            # eat the whole window. `|| true` keeps the loop alive
+            # on a transient curl failure.
+            HEALTH=$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 "$SITE/health" || echo "000")
+            REMOTE_PAGE=$(curl -s --max-time 20 "$SITE/search/page.js" 2>/dev/null | sha256sum | cut -d' ' -f1)
+            REMOTE_STYLE=$(curl -s --max-time 20 "$SITE/search/style.css" 2>/dev/null | sha256sum | cut -d' ' -f1)
+
+            page_ok="n"; [ "$REMOTE_PAGE" = "$LOCAL_PAGE" ] && page_ok="y"
+            style_ok="n"; [ "$REMOTE_STYLE" = "$LOCAL_STYLE" ] && style_ok="y"
+
+            if [ "$HEALTH" = "200" ] && [ "$page_ok" = "y" ] && [ "$style_ok" = "y" ]; then
+              streak=$((streak + 1))
+              echo "✅ green  streak=$streak/$STREAK_NEEDED  health=200  page=match  style=match"
+              if [ "$streak" -ge "$STREAK_NEEDED" ]; then
+                echo "::notice::Deploy verified — ${GITHUB_SHA:0:7} is live."
+                exit 0
+              fi
+            else
+              streak=0
+              echo "⏳ waiting  health=$HEALTH  page=$page_ok ($REMOTE_PAGE… vs $LOCAL_PAGE…)  style=$style_ok"
+            fi
+
+            sleep $POLL
+          done
+
+          echo "::error::Deploy verification timed out after $((MAX_WAIT/60)) min."
+          echo "Last seen — health=$HEALTH page_match=$page_ok style_match=$style_ok"
+          echo "Inspect the Dokploy build log at https://dokploy.knowledge-web.org/dashboard"
+          exit 1
