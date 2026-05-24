@@ -217,8 +217,14 @@ jobs:
           #                                   handler is panicking.
           while [ "$(date +%s)" -lt "$DEADLINE" ]; do
             HEALTH=$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 "$SITE/health" || echo "000")
-            REMOTE_PAGE=$(curl -s --max-time 20 "$SITE/search/page.js" 2>/dev/null | sha256sum | cut -d' ' -f1)
-            REMOTE_STYLE=$(curl -s --max-time 20 "$SITE/search/style.css" 2>/dev/null | sha256sum | cut -d' ' -f1)
+            # `set -e` + `pipefail` would kill the script when curl
+            # times out inside a pipeline (exit 28 propagates through
+            # sha256sum + cut). Subshell + `|| true` keeps the loop
+            # alive on transient failures; the diff-against-LOCAL
+            # check below will mark `page_ok=n` and the streak resets
+            # naturally — that's the desired behaviour.
+            REMOTE_PAGE=$( (curl -s --max-time 20 "$SITE/search/page.js" 2>/dev/null || true) | sha256sum | cut -d' ' -f1)
+            REMOTE_STYLE=$( (curl -s --max-time 20 "$SITE/search/style.css" 2>/dev/null || true) | sha256sum | cut -d' ' -f1)
 
             # Data endpoints — capture both status code and body so we
             # can distinguish "200 with []" (still bootstrapping or
