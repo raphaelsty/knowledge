@@ -304,6 +304,108 @@ pub async fn add(
         // mirror the doc into the user's library. Log + continue.
         tracing::error!(error = %e, "favorite_docs.add.mirror_failed");
     }
+
+    // Stub-insert into personal_snapshot so VIP upvoters see the
+    // upvoted doc on their personal page IMMEDIATELY rather than
+    // waiting up to an hour for the next snapshot refresh. The
+    // hourly daemon later recomputes the row with proper score +
+    // anchor aggregation; in the meantime the upvote pin (ORDER BY
+    // fav.created_at DESC) floats it to the very top of the page.
+    //
+    // For non-VIP upvoters this no-ops because the personal page
+    // handler reads from `documents` directly (legacy path) and
+    // the mirror INSERT above already populates it. We still emit
+    // the statement to keep the code simple; the JOIN to `users
+    // u WHERE u.vip` filters non-VIPs out.
+    //
+    // ON CONFLICT DO NOTHING: the daemon may already have a row
+    // (e.g. user upvoted, daemon refreshed, user removed + re-
+    // upvoted within the same hour). Letting the daemon's version
+    // win is fine — both contain the same metadata; the daemon
+    // version has a real `score`.
+    if let Err(e) = sqlx::query(
+        "INSERT INTO personal_snapshot (
+             user_id, url, canonical_url, anchor_url,
+             title, date, summary, clean_title, clean_summary,
+             urls, tags, extra_tags, source, source_url,
+             linked_urls, link_hosts, categories,
+             anchor_doc_count, indexed,
+             sharer_user_ids, sharers, sharer_count, vip_sharer_count,
+             score, refreshed_at
+         )
+         WITH src AS (
+             SELECT d.user_id, d.url, d.canonical_url,
+                    d.title, d.date, d.summary, d.clean_title, d.clean_summary,
+                    d.urls, d.tags, d.extra_tags, d.source, d.source_url,
+                    d.linked_urls, d.link_hosts, d.indexed,
+                    u.username AS owner_slug, u.name AS owner_name,
+                    u.avatar AS owner_avatar, u.vip AS owner_vip,
+                    COALESCE(
+                        (SELECT ref FROM unnest(d.canonical_referenced_urls) ref
+                          ORDER BY CASE
+                              WHEN ref LIKE 'https://arxiv.org/abs/%'       THEN 1
+                              WHEN ref LIKE 'https://huggingface.co/%'      THEN 2
+                              WHEN ref LIKE 'https://github.com/%'          THEN 3
+                              WHEN ref LIKE 'https://openreview.net/%'      THEN 4
+                              WHEN ref LIKE 'https://doi.org/%'             THEN 5
+                              WHEN ref LIKE 'https://paperswithcode.com/%'  THEN 6
+                              WHEN ref LIKE 'https://aclanthology.org/%'    THEN 7
+                              WHEN ref LIKE 'https://semanticscholar.org/%' THEN 8
+                              WHEN ref LIKE 'https://distill.pub/%'         THEN 9
+                              WHEN ref LIKE 'https://biorxiv.org/%'         THEN 10
+                              WHEN ref LIKE 'https://medrxiv.org/%'         THEN 11
+                              ELSE 99
+                          END, ref LIMIT 1),
+                        d.canonical_url
+                    ) AS anchor_url
+               FROM documents d
+               JOIN users u ON u.id = d.user_id
+              WHERE d.user_id = $1 AND d.url = $2 AND d.deleted = FALSE
+         )
+         SELECT src.user_id, src.url, src.canonical_url, src.anchor_url,
+                COALESCE(src.title, ''),
+                src.date,
+                COALESCE(src.summary, ''),
+                COALESCE(src.clean_title, ''),
+                COALESCE(src.clean_summary, ''),
+                src.urls,
+                src.tags,
+                src.extra_tags,
+                COALESCE(src.source, ''),
+                src.source_url,
+                COALESCE(fs.linked_urls, src.linked_urls, '[]'::jsonb),
+                COALESCE(NULLIF(fs.link_hosts, '{}'::text[]), src.link_hosts),
+                COALESCE(fs.categories, '{}'::text[]),
+                1,
+                src.indexed,
+                COALESCE(fs.sharer_user_ids, ARRAY[src.user_id]::bigint[]),
+                COALESCE(fs.sharers, jsonb_build_array(
+                    jsonb_build_object(
+                        'slug',   src.owner_slug,
+                        'name',   src.owner_name,
+                        'avatar', src.owner_avatar
+                    )
+                )),
+                COALESCE(fs.sharer_count, 1),
+                COALESCE(fs.vip_sharer_count, CASE WHEN src.owner_vip THEN 1 ELSE 0 END),
+                -- Stub score: high enough to keep the row above non-
+                -- favourited siblings until the daemon recomputes a
+                -- real score on the next refresh.
+                9999.0::double precision,
+                now()
+           FROM src
+           LEFT JOIN feed_snapshot fs ON fs.anchor_url = src.anchor_url
+         ON CONFLICT (user_id, url) DO NOTHING",
+    )
+    .bind(me.id)
+    .bind(url)
+    .execute(&pool)
+    .await
+    {
+        // Non-fatal: the favorite + mirror still succeeded.
+        tracing::error!(error = %e, "favorite_docs.add.snapshot_stub_failed");
+    }
+
     StatusCode::NO_CONTENT.into_response()
 }
 
