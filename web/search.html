@@ -911,36 +911,6 @@
         </svg>
         <span>People</span>
       </button>
-      <button
-        class="mbn-tab"
-        data-tab="categories"
-        type="button"
-        id="mbnCategories"
-        title="Filter the feed by topic category"
-      >
-        <!-- Layered-stack icon — the same glyph used on the desktop
-             category picker so the two surfaces read as twins of
-             one feature. -->
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          aria-hidden="true"
-        >
-          <polygon points="12 2 22 8.5 12 15 2 8.5 12 2" />
-          <polyline points="2 15.5 12 22 22 15.5" />
-          <polyline points="2 12 12 18.5 22 12" />
-        </svg>
-        <span>Topics</span>
-        <span
-          class="mobile-sources-count"
-          id="mobileCategoriesCount"
-          hidden
-        ></span>
-      </button>
       <a class="mbn-tab" data-tab="personal" href="#" id="mbnPersonal">
         <svg
           viewBox="0 0 24 24"
@@ -973,6 +943,37 @@
         </svg>
         <span>Settings</span>
       </a>
+
+      <!-- Topics — opens the categories sheet. Sits right before the
+           divider so the two filter affordances (Topics + Filter) land
+           next to each other on the bar. -->
+      <button
+        class="mbn-tab"
+        data-tab="categories"
+        type="button"
+        id="mbnCategories"
+        title="Filter the feed by topic category"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <polygon points="12 2 22 8.5 12 15 2 8.5 12 2" />
+          <polyline points="2 15.5 12 22 22 15.5" />
+          <polyline points="2 12 12 18.5 22 12" />
+        </svg>
+        <span>Topics</span>
+        <span
+          class="mobile-sources-count"
+          id="mobileCategoriesCount"
+          hidden
+        ></span>
+      </button>
 
       <!-- Action divider — hairline that separates navigation tabs
            from page-context actions (Filter / Post). -->

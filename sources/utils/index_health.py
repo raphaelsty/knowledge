@@ -560,10 +560,20 @@ def update_all_index_for_slugs(
         return 0
     n_batches = (n + _BATCH - 1) // _BATCH
     print(f"__all__ update: pushing {n:,} doc(s) for {len(slugs)} slug(s) in {n_batches} batch(es)...", flush=True)
+    # Be nice to the API — see the matching block in build_all_index.py
+    # for the rationale. We sleep `last_batch_seconds × NICE_RATIO`
+    # after each batch so the per-VIP incremental update doesn't
+    # monopolise the single-session ONNX encoder. The incremental path
+    # typically pushes a handful of batches per VIP, so total added
+    # latency is small (a few seconds per VIP).
+    nice_ratio = float(os.environ.get("BUILD_ALL_NICE_RATIO", "1.0"))
+    min_pause_s = 0.2
+    max_pause_s = 30.0
     for i in range(0, n, _BATCH):
         batch_texts = texts[i : i + _BATCH]
         batch_meta = metas[i : i + _BATCH]
         attempt = 0
+        batch_t0 = _time.perf_counter()
         while True:
             status, body = _post(
                 "/indices/__all__/update_with_encoding",
@@ -576,12 +586,16 @@ def update_all_index_for_slugs(
                 _time.sleep(wait)
                 continue
             break
+        batch_elapsed = _time.perf_counter() - batch_t0
         if status >= 400:
             print(f"  batch {i // _BATCH + 1}/{n_batches} HTTP {status}: {body[:200]}")
             return 1
         total_pushed += len(batch_texts)
         if (i // _BATCH) % 5 == 0 or (i + _BATCH) >= n:
             print(f"  batch {i // _BATCH + 1}/{n_batches} ✓ ({total_pushed:,}/{n:,})", flush=True)
+        if nice_ratio > 0 and i + _BATCH < n:
+            pause = max(min_pause_s, min(max_pause_s, batch_elapsed * nice_ratio))
+            _time.sleep(pause)
     print(f"__all__ update: {total_pushed:,} doc(s) pushed", flush=True)
     return 0
 

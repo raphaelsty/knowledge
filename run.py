@@ -45,12 +45,14 @@ from sources.sql import (
     create_hn_frontpage_tables,
     create_index_health_checks_table,
     create_oauth_identities_table,
+    create_personal_snapshot_table,
     create_personality_submissions_table,
     create_pipeline_runs_table,
     create_pipeline_source_runs_table,
     create_sessions_table,
     create_twitter_feed_attempts_table,
     create_twitter_feed_status_table,
+    create_user_preferences_tables,
     create_users_table,
     create_views,
     get_user_tags,
@@ -175,6 +177,7 @@ def main():
     create_events_table(database_url)
     create_export_downloads_table(database_url)
     create_feed_snapshot_table(database_url)
+    create_personal_snapshot_table(database_url)
     create_pipeline_runs_table(database_url)
     create_pipeline_source_runs_table(database_url)
     create_index_health_checks_table(database_url)
@@ -184,6 +187,7 @@ def main():
     create_credits_tables(database_url)
     create_user_storage_table(database_url)
     create_vip_sponsorships_table(database_url)
+    create_user_preferences_tables(database_url)
     create_views(database_url)
 
     # Twitter auto-enable: derive `sources.twitter.username` from

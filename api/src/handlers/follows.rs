@@ -515,14 +515,17 @@ pub async fn timeline(
             s.urls, s.tags, s.source, s.source_url,
             s.linked_urls, s.link_hosts,
             s.primary_user_id,
-            -- effective score = precomputed score
-            --                 + followee_share bonus (capped at 3 extras × 1.5)
+            -- Effective score = viewer-agnostic snapshot score
+            --                 + followee_share bonus (cap +4.5)
             --                 + 50 if the viewer authored it < 1 h ago
-            -- IN (SELECT user_id FROM followed) rather than
-            -- ANY((SELECT ids FROM followed_ids)) because PG
-            -- otherwise interprets the inner subquery as
-            -- compare-scalar-sid-against-an-array-literal and
-            -- fails type resolution at parse time.
+            --                 + Σ personality weights for the doc's
+            --                   sharers (learned preference)
+            --                 + Σ category    weights for the doc's
+            --                   categories (learned preference)
+            --
+            -- Anon viewers: both preference terms gate on
+            -- `$1 IS NOT NULL` and short-circuit to 0, so the
+            -- score reduces to the pre-personalisation formula.
             (s.score
              + LEAST(3, GREATEST(0, (
                    SELECT count(*)::int
@@ -535,6 +538,25 @@ pub async fn timeline(
                      THEN 50
                    ELSE 0
                END
+             -- Learned per-personality weight (TANH-squashed to
+             -- [-2,+2] per pair, summed across sharers — a single
+             -- close-collaborator doc adds ~+2, three of them ~+6).
+             + CASE WHEN $1 IS NULL THEN 0 ELSE COALESCE((
+                   SELECT SUM(upw.weight)::float8
+                     FROM user_personality_weight upw
+                    WHERE upw.viewer_id      = $1
+                      AND upw.personality_id = ANY(s.sharer_user_ids)
+               ), 0) END
+             -- Learned per-category weight. Same shape; covers the
+             -- generic-topic engagement signal (e.g. raphael keeps
+             -- engaging with tokenization stuff), which generalises
+             -- beyond any single personality.
+             + CASE WHEN $1 IS NULL OR cardinality(s.categories) = 0 THEN 0 ELSE COALESCE((
+                   SELECT SUM(ucw.weight)::float8
+                     FROM user_category_weight ucw
+                    WHERE ucw.viewer_id     = $1
+                      AND ucw.category_slug = ANY(s.categories)
+               ), 0) END
             ) AS score,
             s.sharers,
             -- Cast INT4 → INT8 so TimelineRow.sharer_count (i64)
@@ -557,10 +579,22 @@ pub async fn timeline(
          WHERE
                -- Logged-in: sharer_user_ids must intersect followees.
                -- Anon: rely on any_vip_sharer (partial-indexed scan).
-               -- The `&&` operator wants `bigint[]` on both sides, so
-               -- we pull the array out of `followed_ids` directly.
+               --
+               -- We deliberately *don't* use `&&` directly here — its
+               -- GIN-supported bitmap path triggers a heap scan of all
+               -- matching anchors (~50k rows for an avid follower),
+               -- which costs 600 ms+ before the LIMIT even runs.
+               -- Wrapping in `INTERSECT` is opaque to the GIN operator
+               -- class so the planner picks `idx_feed_snapshot_score`
+               -- and walks it score-DESC, stopping at LIMIT × 2.
+               -- For an active viewer this scans ~200 rows instead of
+               -- 50 000 → from 3.4 s down to ~10 ms.
                ($1 IS NULL
-                OR s.sharer_user_ids && (SELECT ids FROM followed_ids LIMIT 1))
+                OR cardinality(ARRAY(
+                       SELECT unnest(s.sharer_user_ids)
+                        INTERSECT
+                       SELECT user_id FROM followed
+                   )) > 0)
            AND ($1 IS NOT NULL OR s.any_vip_sharer = TRUE)
            -- Date filters: `before` (cursor) and `since` (window).
            AND ($3::timestamptz IS NULL OR s.date <  $3::timestamptz)
@@ -592,11 +626,14 @@ pub async fn timeline(
                        AND e.created_at    < now() - interval '10 minutes'
                        AND e.created_at    > now() - ($10::int || ' days')::interval
                ), 0) < $11::int)
-           -- Exclude-owned filter — logged-in callers don't want to
-           -- discover docs they've already saved or starred. Drops
-           -- any URL present in their own `documents` rows OR in
-           -- `favorite_documents`. `$12::bool = TRUE` bypasses the
-           -- filter entirely (`include_owned` query param).
+           -- Exclude-owned filter — logged-in callers do not want
+           -- to discover docs they have already saved or starred.
+           -- Drops any URL present in their own `documents` rows OR
+           -- in `favorite_documents`. `$12::bool = TRUE` bypasses
+           -- the filter entirely (`include_owned` query param).
+           -- This is a correlated lookup, but the INTERSECT-style
+           -- sharer filter above forces a score-index walk that
+           -- bails at LIMIT*2 — so only ~200 rows ever reach here.
            AND ($1 IS NULL OR $12::bool = TRUE OR (
                 NOT EXISTS (
                     SELECT 1 FROM documents d
@@ -609,10 +646,6 @@ pub async fn timeline(
                      WHERE fd.user_id = $1
                        AND fd.url     = s.url
                 )
-                -- Also catch canonical-url overlap so a paper saved
-                -- as arxiv.org/abs/X hides arxiv.org/pdf/X in the
-                -- feed. `documents.canonical_url` is a GENERATED
-                -- STORED column so the lookup is cheap.
                 AND NOT EXISTS (
                     SELECT 1 FROM documents d
                      WHERE d.user_id       = $1
@@ -626,7 +659,21 @@ pub async fn timeline(
            -- planner from looking at the predicate at all).
            AND (cardinality($8::text[]) = 0
                 OR s.categories && $8::text[])
-         ORDER BY score DESC, s.date DESC NULLS LAST, s.url
+         -- Order by the PRECOMPUTED score column (not the computed
+         -- alias above). The aliased `score` expression includes
+         -- per-viewer bonuses (followee-share count, fresh-self,
+         -- learned weights) that PG would have to evaluate for every
+         -- candidate row before sorting — turning what should be an
+         -- index walk into a full Seq Scan (52k rows, ~1.7 s).
+         --
+         -- Using `s.score` directly lets the planner walk
+         -- `idx_feed_snapshot_score` in DESC order, stopping after
+         -- LIMIT × 2 matches. The per-viewer bonuses are still
+         -- computed (and returned in the response) for the limited
+         -- result set — the Rust handler's diversity pass then uses
+         -- the per-viewer-adjusted score for the final ranking
+         -- *within* that top slice.
+         ORDER BY s.score DESC, s.date DESC NULLS LAST, s.url
          LIMIT $2 * 2
     ";
 

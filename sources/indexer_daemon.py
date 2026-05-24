@@ -28,8 +28,18 @@ Priority (highest first)
 4. (Anything else is healthy → skipped.)
 
 Within each tier we tie-break on VIP first, then alphabetical slug
-for determinism. The ``__all__`` cross-personality index is *never*
-in scope — it has its own rebuild path (``make all-rebuild``).
+for determinism.
+
+``__all__`` upkeep
+~~~~~~~~~~~~~~~~~~
+After a VIP user's per-user index is rebuilt we incrementally mirror
+their docs into ``__all__`` via
+``index_health.update_all_index_for_slugs`` — delete the user's
+existing chunks, then re-push. Without this hook ``__all__`` only
+gets refreshed via ``make all-rebuild`` (manual / nightly), so newly
+promoted VIPs would silently fall out of feed search until someone
+ran the full rebuild. The hook is best-effort: a failure logs and
+moves on, and the next ``make all-rebuild`` reconciles.
 
 Coordination
 ~~~~~~~~~~~~
@@ -289,13 +299,37 @@ def _process_one(row: dict, database_url: str, api_url: str) -> bool:
                 vip=bool(row["vip"]),
                 do_index=True,
             )
-        return True
     except IndexBusy:
         _log(f"  skip {slug}: another writer holds the index lock")
         return False
     except Exception as exc:
         _log(f"  [!] {slug}: {exc!r}")
         return False
+
+    # Per-user index is now fresh. If the user is a VIP, mirror their
+    # docs into `__all__` so the cross-personality search stays in sync.
+    # Without this hook `__all__` only gets refreshed via the manual
+    # `make all-rebuild` target — which is why omar-khattab / reachsumit
+    # / etc. dropped out of feed search after becoming VIP. Failures
+    # here are logged but never fail the per-user indexing — they're
+    # repaired by the next full rebuild.
+    #
+    # `personal_snapshot` upkeep is NOT triggered here — it's owned by
+    # the same daemon that refreshes the global feed_snapshot so the
+    # two snapshots advance in lock-step on one schedule.
+    if row["vip"]:
+        try:
+            from sources.utils.index_health import update_all_index_for_slugs
+
+            update_all_index_for_slugs(
+                database_url=database_url,
+                api_url=api_url,
+                slugs=[slug],
+                admin_key=os.environ.get("ADMIN_API_KEY") or None,
+            )
+        except Exception as exc:
+            _log(f"  [!] {slug}: __all__ incremental push failed: {exc!r}")
+    return True
 
 
 def main(argv: list[str] | None = None) -> int:

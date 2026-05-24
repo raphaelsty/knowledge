@@ -258,6 +258,12 @@ pub struct SearchRequest {
     #[serde(default)]
     #[schema(example = json!(["science", 90]))]
     pub filter_parameters: Option<Vec<serde_json::Value>>,
+    /// When true, restrict results to URLs present in the `feed_snapshot`
+    /// table. The handler widens `top_k` internally, looks up URLs in PG,
+    /// then trims back to the requested `top_k`. Used by the feed-page
+    /// search bar to keep results scoped to the curated feed set.
+    #[serde(default)]
+    pub feed_scope: Option<bool>,
 }
 
 /// Search parameters.
@@ -787,6 +793,9 @@ pub struct SearchWithEncodingRequest {
     /// Fusion strategy: "rrf" (default) or "relative_score"
     #[serde(default)]
     pub fusion: Option<String>,
+    /// Restrict results to URLs in `feed_snapshot` (feed-page search).
+    #[serde(default)]
+    pub feed_scope: Option<bool>,
 }
 
 /// Request for filtered search using text queries.
@@ -814,6 +823,9 @@ pub struct FilteredSearchWithEncodingRequest {
     /// Fusion strategy: "rrf" (default) or "relative_score"
     #[serde(default)]
     pub fusion: Option<String>,
+    /// Restrict results to URLs in `feed_snapshot` (feed-page search).
+    #[serde(default)]
+    pub feed_scope: Option<bool>,
 }
 
 /// Request to update index with document texts (requires model to be loaded).

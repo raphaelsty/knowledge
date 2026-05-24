@@ -73,12 +73,35 @@ def refresh_feed_snapshot(
 
     with psycopg.connect(database_url) as conn:
         with conn.cursor() as cur:
-            # psycopg opens a transaction implicitly on first
-            # statement; `commit` happens at context exit.
-            cur.execute("TRUNCATE feed_snapshot")
+            # DELETE + INSERT inside one transaction — atomic swap for
+            # readers (MVCC: SELECTs see the prior snapshot until we
+            # COMMIT) without taking an ACCESS EXCLUSIVE lock the way
+            # TRUNCATE does. Previously a long refresh (e.g. when a
+            # query plan got pessimised) blocked every `/api/timeline`
+            # request for the whole duration of the rewrite — the
+            # whole feed page just spun. DELETE keeps row-level locks
+            # only, so reads stay live.
+            cur.execute("DELETE FROM feed_snapshot")
             cur.execute(insert_sql)
             written = cur.rowcount or 0
         conn.commit()
+    # VACUUM outside the transaction (can't run inside one). Reclaims
+    # dead tuples from this refresh's DELETE so the table doesn't
+    # bloat 3-5× between autovac runs, and refreshes planner stats
+    # so the new row set is queried efficiently. ANALYZE-only is
+    # cheap; full VACUUM is fine here too since the table is small.
+    try:
+        with psycopg.connect(database_url, autocommit=True) as conn:
+            # PARALLEL 0 — avoid parallel workers that each need their
+            # own /dev/shm slot; on tight-shm configs the default
+            # parallel VACUUM fails with "No space left on device".
+            # Single-threaded VACUUM on a 50 k-row table is still
+            # sub-second so the loss is negligible.
+            conn.execute("VACUUM (ANALYZE, PARALLEL 0) feed_snapshot")
+    except Exception:
+        # Vacuum is opportunistic — autovac will catch up on its own
+        # if this fails (e.g. another VACUUM already running).
+        pass
     return written
 
 
@@ -174,8 +197,14 @@ def _build_refresh_sql(window_days: int, max_rows: int) -> str:
                            'neurips.cc', 'icml.cc'
                          ]::text[]
                       THEN 3
+                    -- Bare github gets a smaller bump than papers /
+                    -- HF / tweets-linking-papers (0.5 vs 3). Keeps a
+                    -- third-party runbook from out-ranking original
+                    -- long-form tweets on a personal page; for the
+                    -- global feed the cross-user VIP-share term
+                    -- still surfaces broadly-shared repos.
                     WHEN d.source IN ('github', 'github_repos')
-                      THEN 1
+                      THEN 0.5
                     ELSE 0
                 END AS sci_score
               FROM documents d
@@ -226,28 +255,75 @@ def _build_refresh_sql(window_days: int, max_rows: int) -> str:
                 ON dc.id     = a.category_id
              GROUP BY w.anchor_url
         ),
+        -- All-time sharer pool: every non-deleted doc with its anchor
+        -- precomputed, ignoring the 180-day refresh window. We need
+        -- this so the sharer roll-up reflects EVERY VIP who has ever
+        -- saved the resource — limiting to window_docs missed e.g.
+        -- bclavie/lateinteraction's 2025 tweets about a paper now
+        -- being discussed again, which read as `sharer_count=1` even
+        -- though many VIPs had it. Scoped by JOIN to the in-window
+        -- anchor set below so we only aggregate for anchors that
+        -- actually have recent activity (the only ones that end up
+        -- in feed_snapshot).
+        all_anchor_owners AS (
+            SELECT
+                d.user_id,
+                d.date,
+                COALESCE(
+                    (SELECT ref
+                       FROM unnest(d.canonical_referenced_urls) ref
+                      ORDER BY CASE
+                          WHEN ref LIKE 'https://arxiv.org/abs/%'       THEN 1
+                          WHEN ref LIKE 'https://huggingface.co/%'      THEN 2
+                          WHEN ref LIKE 'https://github.com/%'          THEN 3
+                          WHEN ref LIKE 'https://openreview.net/%'      THEN 4
+                          WHEN ref LIKE 'https://doi.org/%'             THEN 5
+                          WHEN ref LIKE 'https://paperswithcode.com/%'  THEN 6
+                          WHEN ref LIKE 'https://aclanthology.org/%'    THEN 7
+                          WHEN ref LIKE 'https://semanticscholar.org/%' THEN 8
+                          WHEN ref LIKE 'https://distill.pub/%'         THEN 9
+                          WHEN ref LIKE 'https://biorxiv.org/%'         THEN 10
+                          WHEN ref LIKE 'https://medrxiv.org/%'         THEN 11
+                          ELSE 99
+                      END, ref
+                      LIMIT 1),
+                    d.canonical_url
+                ) AS anchor_url
+              FROM documents d
+             WHERE d.deleted = FALSE
+        ),
         anchor_sharers AS (
-            SELECT w.anchor_url,
-                   array_agg(DISTINCT w.user_id)                  AS sharer_user_ids,
+            SELECT a.anchor_url,
+                   array_agg(DISTINCT a.user_id)                  AS sharer_user_ids,
                    bool_or(u.vip)                                 AS any_vip_sharer,
-                   -- Count of DISTINCT VIP sharers. Feeds the new
-                   -- `LN(vip_sharer_count + 1) * 1.0` term in score
-                   -- so docs co-signed by many VIPs outrank docs
-                   -- with just one VIP signal.
-                   count(DISTINCT w.user_id) FILTER (WHERE u.vip)::int
+                   -- All-time VIP sharer count — feeds the score's
+                   -- `LN(vip_sharer_count+1) * 2.0` boost so docs
+                   -- co-signed by many VIPs outrank single-VIP ones,
+                   -- and now correctly counts VIPs who saved this
+                   -- resource years ago.
+                   count(DISTINCT a.user_id) FILTER (WHERE u.vip)::int
                                                                   AS vip_sharer_count,
-                   count(DISTINCT w.user_id)::int                 AS sharer_count,
+                   count(DISTINCT a.user_id)::int                 AS sharer_count,
                    jsonb_agg(DISTINCT jsonb_build_object(
                        'slug',             u.username,
                        'name',             u.name,
                        'avatar',           u.avatar,
                        'twitterFollowers', u.twitter_followers
                    ))                                             AS sharers,
-                   -- Most notable sharer drives the followers bonus.
-                   MAX(COALESCE(u.twitter_followers, 0))::bigint  AS top_followers
-              FROM window_docs w
-              JOIN users        u ON u.id = w.user_id
-             GROUP BY w.anchor_url
+                   MAX(COALESCE(u.twitter_followers, 0))::bigint  AS top_followers,
+                   -- Freshest "anyone touched this anchor" date —
+                   -- used to age-score anchors whose representative
+                   -- doc is older than the most recent re-share. A
+                   -- 2021 paper that a VIP reshares in 2026 should
+                   -- read as 2026-fresh, not 2021-stale.
+                   MAX(a.date)                                    AS max_anchor_date
+              FROM all_anchor_owners a
+              JOIN users             u ON u.id = a.user_id
+             -- Limit aggregation to anchors that actually have
+             -- in-window activity — the only anchors feed_snapshot
+             -- will store rows for.
+             WHERE a.anchor_url IN (SELECT DISTINCT anchor_url FROM window_docs)
+             GROUP BY a.anchor_url
         ),
         -- Final scoring. Mirrors the live-query formula minus the
         -- per-viewer terms (followee_share, fresh-self).
@@ -255,28 +331,104 @@ def _build_refresh_sql(window_days: int, max_rows: int) -> str:
             SELECT r.url, r.canonical_url, r.anchor_url,
                    r.title, r.date, r.summary, r.clean_title,
                    r.clean_summary, r.urls, r.tags, r.source,
-                   r.source_url, r.linked_urls, r.link_hosts,
+                   r.source_url,
+                   -- Cap linked_urls to at most 3 entries, deduplicated
+                   -- by host. Without this a tweet with 5 cross-linked
+                   -- arxiv/github URLs renders as 5 preview cards, which
+                   -- visually inflates a doc beyond its actual value
+                   -- ("3 githubs + 2 arxiv is no better than 1 + 1").
+                   -- We keep the FIRST entry per host (preferring ones
+                   -- with an image, since those make better thumbnails)
+                   -- and cap the resulting list at 3 distinct hosts so
+                   -- the card stays compact. Image-less hosts can still
+                   -- appear if no image-bearing entry exists for that
+                   -- host.
+                   COALESCE((
+                       SELECT jsonb_agg(e ORDER BY rn)
+                         FROM (
+                             SELECT e, rn
+                               FROM (
+                                   SELECT e, rn,
+                                          row_number() OVER (
+                                              PARTITION BY COALESCE(
+                                                  NULLIF(e->>'host',''),
+                                                  e->>'url'
+                                              )
+                                              ORDER BY (
+                                                  CASE WHEN COALESCE(e->>'image','') <> ''
+                                                       THEN 0 ELSE 1 END
+                                              ), rn
+                                          ) AS host_rank
+                                     FROM (
+                                         SELECT e,
+                                                row_number() OVER () AS rn
+                                           FROM jsonb_array_elements(r.linked_urls) e
+                                     ) numbered
+                               ) ranked
+                              WHERE host_rank = 1
+                              ORDER BY rn
+                              LIMIT 3
+                         ) capped
+                   ), '[]'::jsonb)                                  AS linked_urls,
+                   r.link_hosts,
                    r.user_id                                       AS primary_user_id,
                    s.sharer_user_ids, s.sharers, s.sharer_count,
                    s.any_vip_sharer, s.vip_sharer_count,
                    COALESCE(ac.categories, '{{}}'::text[])         AS categories,
                    (
-                       r.sci_score::float * 6
-                     -- Flatter recency. Previous curve (7.5 → 0
-                     -- over 5 weeks, step 1.5) buried older
-                     -- multi-VIP content under any fresh single-
-                     -- share tweet. The new curve spans 90 days
-                     -- with a gentle decline: this-week is still
-                     -- the prize but a month-old doc keeps 3.5
-                     -- (was 1.5) — closes the gap to ~1.5 points
-                     -- which the VIP-share boost can now overcome.
+                       -- sci_score×6 scaled by TWO factors when the
+                       -- doc is a "bare" source (arxiv/scholar/HF/
+                       -- github), neither of which apply to tweets:
+                       --
+                       --   age_factor   — bare papers decay after 30
+                       --                  days so a fresh substantive
+                       --                  tweet doesn't get buried
+                       --                  under an old paper.
+                       --   substance    — bare entries with little
+                       --                  text (a github profile
+                       --                  landing, a scholar row
+                       --                  carrying just the title)
+                       --                  don't earn the full bonus.
+                       --                  Caps at 1.0 around 120 chars
+                       --                  of summary, floored at 0.2
+                       --                  so a fresh paper without an
+                       --                  abstract isn't zeroed out.
+                       r.sci_score::float * 6 *
+                       -- Age damping applies to ALL sources. A
+                       -- 7-year-old tweet linking arxiv was keeping
+                       -- the full ×18 sci bonus on personal pages
+                       -- and the feed alike; now it decays the
+                       -- same way an old bare paper does.
+                       CASE
+                           WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 30  THEN 1.0
+                           WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 90  THEN 0.6
+                           WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 180 THEN 0.3
+                           WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 365 THEN 0.15
+                           ELSE                                   0.05
+                       END *
+                       CASE
+                           WHEN r.source NOT IN ('arxiv','scholar','huggingface','github','github_repos')
+                               THEN 1.0
+                           ELSE LEAST(
+                               1.0,
+                               GREATEST(
+                                   0.2,
+                                   length(COALESCE(r.summary, ''))::float / 120.0
+                               )
+                           )
+                       END
+                     -- Recency tier — peak bumped 8 → 12 so the
+                     -- "this week" premium is on the same order as
+                     -- a full sci-bonus (sci × 6 = 18). Combined
+                     -- with the steeper total-age multiplier below
+                     -- this makes the feed lean strongly fresh.
                      + CASE
-                           WHEN r.date >= current_date - 7   THEN 5.0
-                           WHEN r.date >= current_date - 14  THEN 4.5
-                           WHEN r.date >= current_date - 21  THEN 4.0
-                           WHEN r.date >= current_date - 35  THEN 3.5
-                           WHEN r.date >= current_date - 60  THEN 2.5
-                           WHEN r.date >= current_date - 90  THEN 1.5
+                           WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 7   THEN 12.0
+                           WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 14  THEN 9.5
+                           WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 21  THEN 7.0
+                           WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 35  THEN 5.0
+                           WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 60  THEN 2.5
+                           WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 90  THEN 1.0
                            ELSE 0
                        END
                      -- Popularity signal — ONLY VIP sharers count.
@@ -331,7 +483,40 @@ def _build_refresh_sql(window_days: int, max_rows: int) -> str:
                            THEN 0.5
                          ELSE 0
                        END
-                   ) AS score
+                     -- Content-quality bonus. Caps at +2 around 660
+                     -- chars of summary (~Karpathy-thread length).
+                     -- Short titles / empty scholar entries earn 0;
+                     -- a 200-char tweet earns ~0.5; a long thread
+                     -- with substance earns the full cap. Symmetric
+                     -- across sources so a paper WITH a real abstract
+                     -- still benefits, while a "blank paper from
+                     -- google scholar" gets nothing on this axis.
+                     + LEAST(
+                         2.0,
+                         GREATEST(0.0,
+                             length(COALESCE(r.summary, ''))::float - 60.0
+                         ) / 300.0
+                       )
+                   )
+                   -- Hard total-score age multiplier. Steeper than
+                   -- before: ≤14d full, ≤30d 80%, ≤60d 55%, ≤90d 35%,
+                   -- ≤180d 18%, ≤1y 8%, ≤2y 3%, else 1.5%. Combined
+                   -- with the (now stronger) recency tier the result
+                   -- is that anything older than ~3 months is pushed
+                   -- well below the freshest layer, and >1y content
+                   -- is effectively never surfaceable without a huge
+                   -- sci+share signal.
+                   * CASE
+                         WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 14   THEN 1.0
+                         WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 30   THEN 0.80
+                         WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 60   THEN 0.55
+                         WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 90   THEN 0.35
+                         WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 180  THEN 0.18
+                         WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 365  THEN 0.08
+                         WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 730  THEN 0.03
+                         ELSE                                                              0.015
+                     END
+                                                                  AS score
               FROM representative r
               JOIN anchor_sharers     s  ON s.anchor_url  = r.anchor_url
               LEFT JOIN anchor_categories ac ON ac.anchor_url = r.anchor_url

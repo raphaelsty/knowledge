@@ -1,6 +1,10 @@
 services:
   postgres:
     image: postgres:16-alpine
+    # Match prod (`docker-compose.dokploy.yml`) — the default 64 MB
+    # /dev/shm is too small for VACUUM with parallel workers, which
+    # the feed_snapshot daemon runs after every refresh.
+    shm_size: 1g
     environment:
       POSTGRES_USER: knowledge
       POSTGRES_PASSWORD: knowledge

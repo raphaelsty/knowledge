@@ -244,10 +244,25 @@ def main() -> int:
     # Exponential backoff avoids hammering: 2s → 4s → 8s → 16s → 30s
     # (cap), with unlimited retries for queue-full.
     QUEUE_FULL_BACKOFF = (2, 4, 8, 16, 30)
+    # ── Be nice to the API ────────────────────────────────────────────
+    # Each batch encodes ~300 docs and ties up the single-session ONNX
+    # encoder for ~3–5 s on prod. Pushing batches back-to-back saturates
+    # the encoder and starves anything else that needs /encode (the
+    # `/search_with_encoding` endpoint that powers the feed search bar,
+    # find-similar, etc.). After every batch we sleep for
+    # `last_batch_seconds * NICE_RATIO` — yielding the encoder for
+    # roughly that fraction of the time the rebuild itself used. With
+    # the default ratio of 1.0 the rebuild caps at ~50% encoder share,
+    # leaving the other half for live search traffic. Tunable via
+    # `BUILD_ALL_NICE_RATIO=0` to disable, or `>1.0` to be even gentler.
+    NICE_RATIO = float(os.environ.get("BUILD_ALL_NICE_RATIO", "1.0"))
+    MIN_PAUSE_S = 0.2
+    MAX_PAUSE_S = 30.0
     for i in range(0, n, BATCH):
         batch_texts = texts[i : i + BATCH]
         batch_meta = metas[i : i + BATCH]
         attempt = 0
+        batch_t0 = time.perf_counter()
         while True:
             status, body = _post(
                 api_base,
@@ -268,6 +283,7 @@ def main() -> int:
                 time.sleep(wait)
                 continue
             break
+        batch_elapsed = time.perf_counter() - batch_t0
 
         if status >= 400:
             print(
@@ -280,6 +296,11 @@ def main() -> int:
             f"    batch {i // BATCH + 1}/{n_batches} ✓ ({pushed:,}/{n:,} pushed)",
             flush=True,
         )
+        # Be nice — yield the encoder. Skip the pause after the last
+        # batch (no work behind us would benefit).
+        if NICE_RATIO > 0 and i + BATCH < n:
+            pause = max(MIN_PAUSE_S, min(MAX_PAUSE_S, batch_elapsed * NICE_RATIO))
+            time.sleep(pause)
 
     # Only promote when the entire push succeeded. A partial staging
     # index must not replace the live `__all__` — better to keep the

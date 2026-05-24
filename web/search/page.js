@@ -4481,6 +4481,7 @@
           query: state.query,
           topK: requestK,
           filter: buildIndexFilter(),
+          feedScope: true,
         });
       } catch {
         return;
@@ -4727,10 +4728,18 @@
   function showResultsSpinner() {
     const el = $("resultsLoading");
     if (el) el.hidden = false;
+    // Mutual exclusion — only one wheel on the page at a time.
+    // Set a body-level flag the CSS keys on to suppress every other
+    // potentially-visible loader (infinite-scroll sentinel, sources
+    // rail, people rail) WITHOUT clobbering their own `hidden` state.
+    // Once results-loading drops, the suppression flips off and any
+    // rail still genuinely loading shows its own spinner normally.
+    document.body.dataset.resultsLoading = "1";
   }
   function hideResultsSpinner() {
     const el = $("resultsLoading");
     if (el) el.hidden = true;
+    delete document.body.dataset.resultsLoading;
   }
   function showSrcSpinner() {
     const el = $("srcLoading");
@@ -5059,6 +5068,10 @@
             query: state.query,
             topK: 200,
             filter: buildIndexFilter(),
+            // Restrict to URLs in feed_snapshot — the API widens top_k
+            // internally and joins against the curated feed set so a
+            // long-tail ColBERT match can't surface an anecdotal doc.
+            feedScope: true,
           });
         } catch (e) {
           console.warn("[feed-search]", e);
@@ -5582,24 +5595,14 @@
         if (state.sortByDate)
           docs.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
       } else if (libs.length === 1) {
-        // Personal-page browse: pure publication-date order. Mixing
-        // `created_at` into the sort key let pipeline-sync time leak
-        // into the visible order — a YouTube video published in 2023
-        // but discovered today would float above a tweet posted
-        // yesterday because its `created_at` was newer. Upvotes still
-        // land at the top because the favorite-mirror SQL stamps
-        // `date = CURRENT_DATE` on the inserted row (see
-        // api/src/handlers/favorite_docs.rs::add).
-        docs = docs
-          .slice()
-          .sort((a, b) => {
-            const byDate = (b.date || "").localeCompare(a.date || "");
-            if (byDate !== 0) return byDate;
-            // Same-day tiebreak: insertion time descending so two
-            // compose-dialog saves come back newest-first.
-            return (b.createdAt || "").localeCompare(a.createdAt || "");
-          })
-          .slice(0, 60);
+        // Personal-page browse: trust the server's order. For VIPs the
+        // API serves `personal_snapshot` ordered by feed-style score
+        // (sci × 6 + recency tier + tweet-with-resource bonus); for
+        // non-VIPs it serves the legacy DISTINCT-ON-anchor scan ordered
+        // by `(date DESC, created_at DESC)`. Re-sorting client-side
+        // would clobber the VIP score order, so we just trim to the
+        // initial paint slab and let infinite-scroll handle the rest.
+        docs = docs.slice(0, 60);
       } else {
         // Browse mode: owners desc → date desc → source-diversity
         // interleave. Adding a library naturally floats shared URLs
@@ -6611,14 +6614,21 @@
       ..._followedBucket,
       ...weightedShuffleByPopularity(_restBucket),
     ];
-    // Show the avatar stack whenever we're NOT on a single
-    // personality's page — i.e. multi-library mode AND feed mode
-    // (libs.size === 0). On a single library, the owner is implicit
-    // from the page header so the stack would be redundant — *except*
-    // when this card surfaces an indexed personality as the original
-    // author of a retweet/quote, which the page header doesn't say.
+    // Show the avatar stack whenever it carries new information:
+    //   * feed / multi-library mode — every face is an owner the
+    //     page header doesn't name.
+    //   * single-library mode AND there's at least one sharer who
+    //     ISN'T the page owner — `personal_snapshot` rolls up the
+    //     cross-personality crowd, so an aggregated card on raphael's
+    //     page can carry 20 other VIPs who also saved it.
+    //   * the retweet/quote original-author bubble (always useful).
+    const _hostSlug = state.libs.size === 1 ? [...state.libs][0] : null;
+    const _hasOtherSharer =
+      _hostSlug != null &&
+      ownersMeta.some((p) => p.slug && p.slug !== _hostSlug);
     const showStack =
-      (state.libs.size !== 1 || !!_origMeta) && ownersMeta.length;
+      (state.libs.size !== 1 || !!_origMeta || _hasOtherSharer) &&
+      ownersMeta.length;
     const ownersHtml = showStack
       ? `<div class="shared-by" aria-label="Shared by ${ownersMeta.length} ${ownersMeta.length === 1 ? "person" : "people"}">${ownersMeta
           .map((p) => {
@@ -8842,6 +8852,41 @@
         });
       }, 60);
     }
+
+    /* ── Twitter-style auto-hide on scroll ───────────────────────
+     * Bar slides out on scroll-down and back in on scroll-up. We
+     * cap the reaction with a small px threshold so jitter from a
+     * single-finger drag doesn't bounce it, force-show whenever the
+     * user is near the top, and skip the whole thing while a sheet
+     * is open (the nav is behind the backdrop anyway). */
+    function setNavAutoHidden(hidden) {
+      nav.classList.toggle("is-hidden", hidden);
+    }
+    {
+      let lastY = window.scrollY;
+      let ticking = false;
+      const HIDE_DELTA = 6; // px of cumulative scroll before reacting
+      const TOP_GUARD = 80; // px from page top where we always show
+      const onScroll = () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          ticking = false;
+          const y = window.scrollY;
+          const dy = y - lastY;
+          lastY = y;
+          if (anyOpen()) return;
+          if (y < TOP_GUARD) {
+            setNavAutoHidden(false);
+            return;
+          }
+          if (dy > HIDE_DELTA) setNavAutoHidden(true);
+          else if (dy < -HIDE_DELTA) setNavAutoHidden(false);
+        });
+      };
+      window.addEventListener("scroll", onScroll, { passive: true });
+    }
+
     function closeSheets() {
       ["sources", "people", "categories"].forEach((k) => {
         if (panes[k]?.isPanePresented?.()) {
@@ -8853,6 +8898,9 @@
         }
       });
       document.body.classList.remove("cupertino-pane-presented");
+      // Closing a sheet always brings the nav back so the user is
+      // never stranded with the bar off-screen at mid-page scroll.
+      setNavAutoHidden(false);
     }
     function toggleSheet(kind) {
       if (isOpen(kind)) closeSheets();

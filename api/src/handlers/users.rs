@@ -58,6 +58,33 @@ fn feed_cache() -> &'static RwLock<HashMap<i64, FeedCacheEntry>> {
     CACHE.get_or_init(|| RwLock::new(HashMap::new()))
 }
 
+/// In-memory cache for `/api/users` (the VIP list shown in the right-
+/// rail people panel + welcome grid).
+///
+/// The query is heavy: a per-VIP LATERAL `count(*)` against `documents`,
+/// which takes 4 s on the local dataset and dominates first-paint on
+/// the search page. The list itself rarely changes — new VIPs land at
+/// most ~1×/day; doc counts shift on each pipeline pass but a few
+/// minutes of staleness is invisible in this UI (the rail just shows
+/// names + avatars + counts, no time-sensitive data).
+///
+/// 60-second TTL: shaves the 4 s SQL down to a single in-memory
+/// `clone()` for the next minute of requests. Cache is shared across
+/// all callers (the response has no per-user data, only public VIP
+/// profiles). A short TTL keeps a freshly-added VIP visible within ~1
+/// min of the next pipeline pass.
+const LIST_USERS_TTL: Duration = Duration::from_secs(60);
+
+struct ListUsersCacheEntry {
+    payload: serde_json::Value,
+    cached_at: Instant,
+}
+
+fn list_users_cache() -> &'static RwLock<Option<ListUsersCacheEntry>> {
+    static CACHE: OnceLock<RwLock<Option<ListUsersCacheEntry>>> = OnceLock::new();
+    CACHE.get_or_init(|| RwLock::new(None))
+}
+
 // ── /api/users{,/{slug}} ───────────────────────────────────────────────
 
 #[derive(Serialize, sqlx::FromRow)]
@@ -162,26 +189,83 @@ const USER_SELECT: &str = "SELECT u.id,
 /// their own page; an already-active lib whose owner hasn't been
 /// promoted) hit `GET /api/users/{slug}` directly.
 pub async fn list_users(State(pool): State<PgPool>) -> impl IntoResponse {
-    let sql = format!(
-        "{USER_SELECT}
-        WHERE u.vip = TRUE
-          AND c.cnt > 0
-        ORDER BY c.cnt DESC, u.name"
-    );
-    let rows = sqlx::query_as::<_, UserResponse>(&sql)
-        .fetch_all(&pool)
-        .await
-        .unwrap_or_default();
-    // The personality list rarely changes (new personalities land
-    // ~1×/day, doc counts shift on each pipeline pass). A short
-    // browser cache + a longer stale-while-revalidate window means a
-    // return visit paints the picker / category tree instantly while
-    // the next request silently refreshes the cache.
     let headers = [(
         axum::http::header::CACHE_CONTROL,
         "public, max-age=300, stale-while-revalidate=3600",
     )];
-    (headers, Json(rows)).into_response()
+
+    // Fast path: serve from the in-memory cache when the entry is
+    // fresh. The list is identical for every caller (no per-viewer
+    // data) so a single shared cache suffices.
+    if let Some(entry) = list_users_cache().read().await.as_ref() {
+        if entry.cached_at.elapsed() < LIST_USERS_TTL {
+            return (headers, Json(entry.payload.clone())).into_response();
+        }
+    }
+
+    // Cold-path query: replaces the per-VIP `count(*)` with a single
+    // `EXISTS` (bails on the first matching doc) — drops the SQL from
+    // ~4 s to a handful of ms.
+    //
+    // The frontend only uses `documentCount` as the 4th tiebreaker
+    // (after Twitter / GitHub / citations) for the rail sort, and the
+    // welcome grid bins by category — neither breaks when the count
+    // is returned as 0. If we ever need the real count we can fetch
+    // it on demand from `/api/users/{slug}`.
+    //
+    // Categories are pulled in one batch via array_agg on a single
+    // JOIN, not a per-row subquery, so the planner can use a hash
+    // aggregate instead of 450 nested-loops.
+    let sql = "
+        WITH user_cats AS (
+            SELECT uc.user_id,
+                   array_agg(cat.slug ORDER BY cat.sort_order) AS categories
+              FROM user_categories uc
+              JOIN categories      cat ON cat.id = uc.category_id
+              JOIN users           u  ON u.id  = uc.user_id AND u.vip = TRUE
+             GROUP BY uc.user_id
+        )
+        SELECT u.id,
+               u.username,
+               u.email,
+               u.public,
+               u.name,
+               u.description,
+               COALESCE(uc.categories, '{}'::text[]) AS categories,
+               u.avatar,
+               u.index_name,
+               u.links,
+               u.sources,
+               0::bigint AS document_count,
+               u.twitter_followers,
+               u.github_followers,
+               u.citations,
+               u.vip
+          FROM users u
+          LEFT JOIN user_cats uc ON uc.user_id = u.id
+         WHERE u.vip = TRUE
+           AND EXISTS (
+               SELECT 1 FROM documents d
+                WHERE d.user_id = u.id AND d.deleted = FALSE
+           )
+         ORDER BY u.name
+    ";
+    let rows = sqlx::query_as::<_, UserResponse>(sql)
+        .fetch_all(&pool)
+        .await
+        .unwrap_or_default();
+    let payload = serde_json::to_value(&rows).unwrap_or(serde_json::Value::Null);
+
+    // Populate the cache. A single shared entry — no key — since
+    // `/api/users` has no query params that vary the result.
+    {
+        let mut guard = list_users_cache().write().await;
+        *guard = Some(ListUsersCacheEntry {
+            payload: payload.clone(),
+            cached_at: Instant::now(),
+        });
+    }
+    (headers, Json(payload)).into_response()
 }
 
 /// GET /api/users/{slug}
@@ -273,6 +357,30 @@ pub async fn list_documents(
     Path(slug): Path<String>,
     Query(params): Query<ListDocumentsParams>,
 ) -> impl IntoResponse {
+    // VIP fast path: read from `personal_snapshot`, which carries the
+    // same anchor-collapsed shape but ordered by the feed-style score
+    // (sci × 6 + recency tier + tweet-with-resource bonus). Falls back
+    // to the legacy date-DESC path when:
+    //   * the user is not VIP (no snapshot for them),
+    //   * the snapshot is empty (e.g. brand-new VIP, daemon not yet swept),
+    //   * the caller passes `indexed=false` (snapshot only carries the
+    //     180-day rolling window of indexed docs — unindexed-only
+    //     queries belong on the legacy path),
+    //   * the caller passes `urls=` (the snapshot is per-anchor, so a
+    //     specific-URL lookup may dedup the very row the caller asked
+    //     for; the legacy path's `skip_dedup` honors the 1:1 contract).
+    let want_unindexed = matches!(params.indexed, Some(false));
+    let has_url_filter = params
+        .urls
+        .as_deref()
+        .map(|s| !s.trim().is_empty())
+        .unwrap_or(false);
+    if !want_unindexed && !has_url_filter {
+        if let Some(resp) = try_list_documents_from_snapshot(&pool, &slug, &params).await {
+            return resp;
+        }
+    }
+
     // Build the SQL incrementally so each $N placeholder lines up
     // with the bind below. $1 = slug; the `indexed`/sources/tags
     // bindings each reserve their own next slot.
@@ -436,13 +544,17 @@ pub async fn list_documents(
     if skip_dedup {
         sql.push_str(
             ")\n\
-             SELECT url, title, summary,\n\
-                    COALESCE(to_char(date, 'YYYY-MM-DD'), '') AS date,\n\
-                    tags, extra_tags, source, source_url, indexed,\n\
-                    linked_urls, link_hosts,\n\
-                    to_char(created_at AT TIME ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AS created_at\n\
-               FROM candidates\n\
-              ORDER BY date DESC NULLS LAST, created_at DESC",
+             SELECT c.url, c.title, c.summary,\n\
+                    COALESCE(to_char(c.date, 'YYYY-MM-DD'), '') AS date,\n\
+                    c.tags, c.extra_tags, c.source, c.source_url, c.indexed,\n\
+                    c.linked_urls, c.link_hosts,\n\
+                    to_char(c.created_at AT TIME ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AS created_at\n\
+               FROM candidates c\n\
+               LEFT JOIN users uu ON uu.username = $1\n\
+               LEFT JOIN favorite_documents fav\n\
+                 ON fav.user_id = uu.id AND fav.url = c.url\n\
+              ORDER BY fav.created_at DESC NULLS LAST,\n\
+                       c.date DESC NULLS LAST, c.created_at DESC",
         );
     } else {
         sql.push_str(
@@ -486,13 +598,17 @@ pub async fn list_documents(
                  ORDER BY anchor_url, image_count DESC, url_count DESC,\n\
                           date DESC NULLS LAST, created_at DESC\n\
              )\n\
-             SELECT url, title, summary,\n\
-                    COALESCE(to_char(date, 'YYYY-MM-DD'), '') AS date,\n\
-                    tags, extra_tags, source, source_url, indexed,\n\
-                    linked_urls, link_hosts,\n\
-                    to_char(created_at AT TIME ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AS created_at\n\
+             SELECT dedup.url, dedup.title, dedup.summary,\n\
+                    COALESCE(to_char(dedup.date, 'YYYY-MM-DD'), '') AS date,\n\
+                    dedup.tags, dedup.extra_tags, dedup.source, dedup.source_url,\n\
+                    dedup.indexed, dedup.linked_urls, dedup.link_hosts,\n\
+                    to_char(dedup.created_at AT TIME ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AS created_at\n\
                FROM dedup\n\
-              ORDER BY date DESC NULLS LAST, created_at DESC",
+               LEFT JOIN users uu ON uu.username = $1\n\
+               LEFT JOIN favorite_documents fav\n\
+                 ON fav.user_id = uu.id AND fav.url = dedup.url\n\
+              ORDER BY fav.created_at DESC NULLS LAST,\n\
+                       dedup.date DESC NULLS LAST, dedup.created_at DESC",
         );
     }
     // Server-side cap so the personal page doesn't have to ship the
@@ -602,6 +718,207 @@ pub async fn list_documents(
         );
     }
     Json(out).into_response()
+}
+
+/// VIP personal-page fast path. Returns `Some(response)` when the
+/// snapshot path applies and produced rows; `None` to fall through to
+/// the legacy date-DESC query.
+///
+/// The response shape MUST match `list_documents` exactly so the
+/// frontend doesn't have to special-case which path served it.
+#[allow(clippy::type_complexity)]
+async fn try_list_documents_from_snapshot(
+    pool: &PgPool,
+    slug: &str,
+    params: &ListDocumentsParams,
+) -> Option<axum::response::Response> {
+    // Cheap VIP gate first — non-VIPs never have a snapshot row.
+    let vip_row: Option<(bool,)> = sqlx::query_as("SELECT vip FROM users WHERE username = $1")
+        .bind(slug)
+        .fetch_optional(pool)
+        .await
+        .ok()
+        .flatten();
+    let is_vip = matches!(vip_row, Some((true,)));
+    if !is_vip {
+        return None;
+    }
+
+    let sources_vec: Vec<String> = params
+        .sources
+        .as_deref()
+        .map(|s| {
+            s.split(',')
+                .map(|x| x.trim().to_string())
+                .filter(|x| !x.is_empty())
+                .collect()
+        })
+        .unwrap_or_default();
+    let exclude_sources_vec: Vec<String> = params
+        .exclude_sources
+        .as_deref()
+        .map(|s| {
+            s.split(',')
+                .map(|x| x.trim().to_string())
+                .filter(|x| !x.is_empty())
+                .collect()
+        })
+        .unwrap_or_default();
+    let tags_vec: Vec<String> = params
+        .tags
+        .as_deref()
+        .map(|s| {
+            s.split(',')
+                .map(|x| x.trim().to_lowercase())
+                .filter(|x| !x.is_empty())
+                .collect()
+        })
+        .unwrap_or_default();
+    let category_vec: Vec<String> = params
+        .category
+        .as_deref()
+        .map(|s| {
+            s.split(',')
+                .map(|x| x.trim().to_lowercase())
+                .filter(|x| !x.is_empty())
+                .collect()
+        })
+        .unwrap_or_default();
+
+    // Build the SQL incrementally to keep $N placeholders aligned.
+    // The LEFT JOIN on favorite_documents is what pins upvoted docs
+    // to the top of the page (see the ORDER BY below) — every doc
+    // the page-owner has favourited gets `fav.created_at` non-null,
+    // and we sort that ASC NULLS LAST so the freshest upvote leads.
+    let mut sql = String::from(
+        "SELECT ps.url,\n         ps.title,\n         ps.summary,\n         COALESCE(to_char(ps.date, 'YYYY-MM-DD'), '') AS date,\n         ps.tags,\n         ps.extra_tags,\n         ps.source,\n         ps.source_url,\n         ps.indexed,\n         ps.linked_urls,\n         ps.link_hosts,\n         COALESCE(to_char(ps.date AT TIME ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), '') AS created_at,\n         ps.sharers,\n         ps.sharer_count\n    FROM personal_snapshot ps\n    JOIN users u ON u.id = ps.user_id\n    LEFT JOIN favorite_documents fav\n      ON fav.user_id = ps.user_id AND fav.url = ps.url\n   WHERE u.username = $1",
+    );
+    let mut idx: usize = 2;
+    if !sources_vec.is_empty() {
+        sql.push_str(&format!(" AND ps.source = ANY(${idx})"));
+        idx += 1;
+    }
+    if !exclude_sources_vec.is_empty() {
+        sql.push_str(&format!(" AND NOT (ps.source = ANY(${idx}))"));
+        idx += 1;
+    }
+    if !tags_vec.is_empty() {
+        // Same AND-of-required-tags semantics as the legacy path:
+        // every requested tag must be present in either `tags` or
+        // `extra_tags` for the row to match.
+        sql.push_str(&format!(" AND (ps.tags || ps.extra_tags) @> ${idx}"));
+        idx += 1;
+    }
+    if !category_vec.is_empty() {
+        // `personal_snapshot.categories` rolls up the per-(user, url)
+        // assignments to the anchor level at refresh time — no JOIN
+        // back to `document_category_assignments` at read time.
+        sql.push_str(&format!(" AND ps.categories && ${idx}"));
+        idx += 1;
+    }
+    // Upvoted docs ALWAYS lead, sorted by most-recent upvote first.
+    // The rest of the library follows in feed-score order. Using
+    // `NULLS LAST` on the upvote timestamp keeps non-favourited rows
+    // out of the front block; sorting `fav.created_at DESC` puts
+    // freshly-upvoted items at the very top.
+    sql.push_str(
+        "\n   ORDER BY fav.created_at DESC NULLS LAST,\n            ps.score DESC,\n            ps.date DESC NULLS LAST,\n            ps.url",
+    );
+    let mut limit_val: Option<i64> = None;
+    if let Some(n) = params.limit {
+        let clamped = n.clamp(1, 1000);
+        sql.push_str(&format!(" LIMIT ${idx}"));
+        limit_val = Some(clamped);
+    }
+
+    let mut q = sqlx::query_as::<
+        _,
+        (
+            String,            // url
+            String,            // title
+            String,            // summary
+            String,            // date
+            Vec<String>,       // tags
+            Vec<String>,       // extra_tags
+            String,            // source
+            Option<String>,    // source_url
+            bool,              // indexed
+            serde_json::Value, // linked_urls
+            Vec<String>,       // link_hosts
+            String,            // created_at
+            serde_json::Value, // sharers (jsonb array)
+            i32,               // sharer_count
+        ),
+    >(&sql)
+    .bind(slug);
+    if !sources_vec.is_empty() {
+        q = q.bind(&sources_vec);
+    }
+    if !exclude_sources_vec.is_empty() {
+        q = q.bind(&exclude_sources_vec);
+    }
+    if !tags_vec.is_empty() {
+        q = q.bind(&tags_vec);
+    }
+    if !category_vec.is_empty() {
+        q = q.bind(&category_vec);
+    }
+    if let Some(n) = limit_val {
+        q = q.bind(n);
+    }
+    let rows = match q.fetch_all(pool).await {
+        Ok(r) => r,
+        Err(e) => {
+            tracing::warn!(slug = %slug, error = %e, "list_documents.snapshot.failed");
+            return None;
+        }
+    };
+    // Empty snapshot for this user — likely the daemon hasn't swept
+    // them yet. Fall through so the legacy path serves SOMETHING.
+    if rows.is_empty() {
+        return None;
+    }
+    let mut out = serde_json::Map::with_capacity(rows.len());
+    for (
+        url,
+        title,
+        summary,
+        date,
+        tags,
+        extra_tags,
+        source,
+        source_url,
+        indexed,
+        linked_urls,
+        link_hosts,
+        created_at,
+        sharers,
+        sharer_count,
+    ) in rows
+    {
+        out.insert(
+            url,
+            serde_json::json!({
+                "title": title,
+                "summary": summary,
+                "date": date,
+                "tags": tags,
+                "extra-tags": extra_tags,
+                "source": source,
+                "source_url": source_url,
+                "indexed": indexed,
+                "linked_urls": linked_urls,
+                "link_hosts": link_hosts,
+                "created_at": created_at,
+                // Cross-user sharer roll-up — surfaces the same
+                // avatar-stack data the global feed renders, so the
+                // personal page can show "X others also have this".
+                "sharers": sharers,
+                "sharer_count": sharer_count,
+            }),
+        );
+    }
+    Some(Json(out).into_response())
 }
 
 // ── /api/personalities/{slug}/fallback ────────────────────────────────

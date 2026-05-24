@@ -339,6 +339,13 @@
             }
           }
           const linkHosts = Array.isArray(m.link_hosts) ? m.link_hosts : [];
+          // Cross-user sharer roll-up (VIP personal pages — comes from
+          // personal_snapshot.sharers, which mirrors feed_snapshot).
+          // For non-VIP pages the field is absent; default to the
+          // page owner alone so the avatar-stack renderer still has
+          // a non-empty list.
+          const sharersArr = Array.isArray(m.sharers) ? m.sharers : [];
+          const ownerSlugs = sharersArr.map((s) => s && s.slug).filter(Boolean);
           return {
             url,
             title: m.title || "",
@@ -355,6 +362,12 @@
                 : [],
             linkedUrls,
             linkHosts,
+            sharers: sharersArr,
+            sharerCount:
+              typeof m.sharer_count === "number"
+                ? m.sharer_count
+                : sharersArr.length,
+            _owners: ownerSlugs.length ? ownerSlugs : [slug],
             // `_unindexed` only set for the rows where it's true,
             // so the not-indexed-yet badge still appears on those
             // (the renderer checks `d._unindexed`). The default
@@ -466,9 +479,11 @@
     topK = 60,
     subset = null,
     filter = null,
+    feedScope = false,
   }) {
     const body = { queries: [query], params: { top_k: topK } };
     if (subset) body.subset = subset;
+    if (feedScope) body.feed_scope = true;
     let path = "search_with_encoding";
     if (filter && filter.condition) {
       body.filter_condition = filter.condition;
@@ -714,18 +729,43 @@
   async function getFavoriteDocs() {
     try {
       const list = await fetchJson(`${API}/auth/me/favorite-docs/full`);
-      return Array.isArray(list)
-        ? list.map((d) => ({
-            url: d.url,
-            title: d.title,
-            summary: d.summary,
-            date: d.date,
-            tags: d.tags || [],
-            extraTags: d["extra-tags"] || [],
-            source: d.source,
-            source_url: d.source_url || null,
-          }))
-        : [];
+      if (!Array.isArray(list)) return [];
+      return list.map((d) => {
+        const sharersArr = Array.isArray(d.sharers) ? d.sharers : [];
+        const ownerSlugs = sharersArr.map((s) => s && s.slug).filter(Boolean);
+        let linkedUrls = [];
+        if (Array.isArray(d.linked_urls)) linkedUrls = d.linked_urls;
+        else if (typeof d.linked_urls === "string" && d.linked_urls) {
+          try {
+            const parsed = JSON.parse(d.linked_urls);
+            if (Array.isArray(parsed)) linkedUrls = parsed;
+          } catch {
+            /* ignore */
+          }
+        }
+        return {
+          url: d.url,
+          title: d.title,
+          summary: d.summary,
+          date: d.date,
+          tags: d.tags || [],
+          extraTags: d["extra-tags"] || [],
+          source: d.source,
+          source_url: d.source_url || null,
+          linkedUrls,
+          linkHosts: Array.isArray(d.link_hosts) ? d.link_hosts : [],
+          sharers: sharersArr,
+          sharerCount:
+            typeof d.sharer_count === "number"
+              ? d.sharer_count
+              : sharersArr.length,
+          // `_owners` drives the avatar-stack render in `renderResult`.
+          // Hydrate from the cross-personality sharer roll-up so the
+          // favourites view shows every VIP who also has the doc, not
+          // just the page owner.
+          _owners: ownerSlugs,
+        };
+      });
     } catch {
       return [];
     }

@@ -348,6 +348,10 @@ async fn run_sql_migrations(pool: &sqlx::PgPool) -> Result<(), sqlx::Error> {
             include_str!("../../sources/sql/feed_snapshot.sql"),
         ),
         (
+            "personal_snapshot.sql",
+            include_str!("../../sources/sql/personal_snapshot.sql"),
+        ),
+        (
             "pipeline_runs.sql",
             include_str!("../../sources/sql/pipeline_runs.sql"),
         ),
@@ -379,6 +383,10 @@ async fn run_sql_migrations(pool: &sqlx::PgPool) -> Result<(), sqlx::Error> {
         (
             "vip_sponsorships.sql",
             include_str!("../../sources/sql/vip_sponsorships.sql"),
+        ),
+        (
+            "user_preferences.sql",
+            include_str!("../../sources/sql/user_preferences.sql"),
         ),
         // Views depend on the documents + users tables — must run last.
         ("views.sql", include_str!("../../sources/sql/views.sql")),
@@ -1346,7 +1354,22 @@ Environment Variables:
             .acquire_timeout(Duration::from_secs(5))
             .after_connect(|conn, _| {
                 Box::pin(async move {
-                    sqlx::query("SET jit = off").execute(conn).await?;
+                    // Two separate execute calls (reborrowing `conn`)
+                    // because sqlx's extended protocol forbids
+                    // multi-statement prepared queries.
+                    //
+                    // plan_cache_mode = force_custom_plan: re-plan each
+                    // call with actual bind values. Our /api/timeline
+                    // SQL has parameter-conditional branches
+                    // (`$1 IS NULL` short-circuits) and the generic
+                    // plan PG picks after 5 executions ignores them —
+                    // landing on a Seq Scan that takes 1.7 s. Custom
+                    // plans run in 10 ms; the 5 ms re-plan cost is
+                    // cheap insurance.
+                    sqlx::query("SET jit = off").execute(&mut *conn).await?;
+                    sqlx::query("SET plan_cache_mode = force_custom_plan")
+                        .execute(&mut *conn)
+                        .await?;
                     Ok(())
                 })
             });

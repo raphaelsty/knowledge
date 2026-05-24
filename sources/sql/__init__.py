@@ -30,6 +30,10 @@ from sources.sql.index_health_checks import (
     users_by_check_priority,
 )
 from sources.sql.oauth_identities import create_oauth_identities_table
+from sources.sql.personal_snapshot import (
+    create_personal_snapshot_table,
+    refresh_personal_snapshot,
+)
 from sources.sql.personality_submissions import (
     create_personality_submissions_table,
 )
@@ -49,6 +53,7 @@ from sources.sql.sessions import create_sessions_table
 from sources.sql.tags import get_shared_tags, get_user_tags, get_vip_tags
 from sources.sql.twitter_feed_attempts import create_twitter_feed_attempts_table
 from sources.sql.twitter_feed_status import create_twitter_feed_status_table
+from sources.sql.user_preferences import create_user_preferences_tables
 from sources.sql.users import (
     create_users_table,
     get_twitter_cursor,
@@ -70,12 +75,15 @@ __all__ = [
     "create_hn_frontpage_tables",
     "create_index_health_checks_table",
     "create_oauth_identities_table",
+    "create_personal_snapshot_table",
     "create_personality_submissions_table",
+    "refresh_personal_snapshot",
     "create_pipeline_runs_table",
     "create_pipeline_source_runs_table",
     "create_sessions_table",
     "create_twitter_feed_attempts_table",
     "create_twitter_feed_status_table",
+    "create_user_preferences_tables",
     "create_users_table",
     "create_views",
     "cleanup_stale_runs",

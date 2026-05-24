@@ -464,7 +464,11 @@
   height: 16px;
   border-radius: 50%;
   border: 2px solid rgba(var(--ink-rgb), 0.1);
-  border-top-color: rgba(99, 102, 241, 0.7);
+  /* Subtle grey top-arc — matches the load-more spinner so the
+   * various loaders on the page (people rail, sources rail, main
+   * results, infinite scroll) read as one visual family instead of
+   * two competing colors. */
+  border-top-color: rgba(var(--ink-rgb), 0.4);
   animation: results-loading-spin 0.7s linear infinite;
 }
 
@@ -485,7 +489,7 @@
   height: 16px;
   border-radius: 50%;
   border: 2px solid rgba(var(--ink-rgb), 0.1);
-  border-top-color: rgba(99, 102, 241, 0.7);
+  border-top-color: rgba(var(--ink-rgb), 0.4);
   animation: results-loading-spin 0.7s linear infinite;
 }
 
@@ -506,8 +510,21 @@
   height: 22px;
   border-radius: 50%;
   border: 2px solid rgba(var(--ink-rgb), 0.1);
-  border-top-color: rgba(99, 102, 241, 0.7);
+  border-top-color: rgba(var(--ink-rgb), 0.4);
   animation: results-loading-spin 0.7s linear infinite;
+}
+
+/* Mutual exclusion: while the centered results loader is up, every
+ * other potentially-visible spinner on the page (infinite-scroll
+ * sentinel, sources rail, people rail) is suppressed visually. The
+ * elements stay in the DOM with their own `hidden` state — we just
+ * hide them here so the page only ever shows ONE wheel at a time.
+ * `showResultsSpinner` sets `body[data-results-loading="1"]` and
+ * `hideResultsSpinner` clears it. */
+body[data-results-loading="1"] .src-loading,
+body[data-results-loading="1"] .people-loading,
+body[data-results-loading="1"] #loadMoreSentinel {
+  visibility: hidden !important;
 }
 @keyframes results-loading-spin {
   to {

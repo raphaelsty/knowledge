@@ -35,18 +35,26 @@
 
 @media (max-width: 768px) {
   /* ── Global stability ────────────────────────────────────────── */
-  html,
+  /* Keep horizontal-overflow clipping on `body` *only* — never on
+   * `html`. Setting `overflow-x: hidden` on an element implicitly
+   * promotes `overflow-y` from `visible` to `auto` (CSS spec). When
+   * both html AND body get that promotion they each become a scroll
+   * container and Brave's wheel-event routing breaks: the visible
+   * scrollbar still works (it targets one container directly) but
+   * mouse-wheel / trackpad scroll over content silently dies because
+   * the browser can't decide which scroller owns the gesture. Chrome
+   * tolerates this; Brave doesn't. Keeping the clipping on body
+   * leaves `html` as the natural single scroll container. */
+  html {
+    width: 100%;
+    overscroll-behavior-x: none;
+    /* Suppress the browser's native pull-to-refresh so our JS
+     * pull-to-refresh handler gets the touchmove events instead. */
+    overscroll-behavior-y: contain;
+  }
   body {
     overflow-x: hidden;
     width: 100%;
-    /* Prevent rubber-band exposing white edges on iOS. */
-    overscroll-behavior-x: none;
-    /* Suppress iOS Safari's native pull-to-refresh (the browser's
-     * own page-reload gesture) so our JS pull-to-refresh handler
-     * gets the touchmove events instead. Without this, iOS eats
-     * the downward drag and triggers a full page reload — our
-     * gesture never fires. */
-    overscroll-behavior-y: contain;
   }
 
   /* Kill the blue tap flash + double-tap zoom across the board.
@@ -1381,6 +1389,19 @@
      * inside `body.cupertino-pane-presented` (line ~1754) is now a
      * redundant no-op but kept for documentation. */
     z-index: 1000;
+    /* Slide animation for the Twitter-style auto-hide on scroll. The
+     * `is-hidden` toggle is wired in wireMobileChrome → onScroll. */
+    transition:
+      transform 280ms cubic-bezier(0.2, 0.8, 0.2, 1),
+      opacity 200ms ease;
+    will-change: transform;
+  }
+  /* `translateY` covers the bar's own height plus its bottom inset
+   * (10px + safe-area) so it tucks fully off-screen. */
+  .mobile-bottom-nav.is-hidden {
+    transform: translateY(calc(100% + 20px + env(safe-area-inset-bottom)));
+    opacity: 0;
+    pointer-events: none;
   }
   [data-theme="dark"] .mobile-bottom-nav {
     background: rgba(20, 20, 28, 0.62);
@@ -1590,6 +1611,14 @@
   [data-theme="dark"] .mbn-action.has-filter,
   [data-theme="dark"] .mbn-action.is-on {
     background: rgba(255, 255, 255, 0.1);
+  }
+
+  /* Show-seen toggle — secondary affordance, so it reads quieter
+   * than Filter or Post. Shrink the icon (the button hit area stays
+   * 44 × 48 for tap accessibility) to signal "less prominent". */
+  #mbnShowSeen svg {
+    width: 14px;
+    height: 14px;
   }
 
   /* Post button — primary write action gets a solid ink fill so

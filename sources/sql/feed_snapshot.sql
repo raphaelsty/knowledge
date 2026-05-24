@@ -123,6 +123,16 @@ CREATE INDEX IF NOT EXISTS idx_feed_snapshot_score
 CREATE INDEX IF NOT EXISTS idx_feed_snapshot_refreshed
     ON feed_snapshot (refreshed_at DESC);
 
+-- JOIN key for the search-time anchor lookup in
+-- `api/src/handlers/search.rs::apply_feed_scope_filter` — every
+-- search request resolves ~300 result URLs to their anchor, then
+-- joins to feed_snapshot on anchor_url to pull the cross-personality
+-- score + sharer roll-up. Without this index the planner falls back
+-- to a full seq scan on feed_snapshot (52k rows) per request, adding
+-- ~300 ms to each query.
+CREATE INDEX IF NOT EXISTS idx_feed_snapshot_anchor_url
+    ON feed_snapshot (anchor_url);
+
 COMMENT ON TABLE feed_snapshot IS
     'Hourly snapshot of the scored feed over a 180-day window. One row per anchor URL with a viewer-agnostic score; the timeline handler adds per-viewer bonuses on read. Refreshed atomically by the knowledge-feed-snapshot daemon.';
 
