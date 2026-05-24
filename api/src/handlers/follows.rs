@@ -864,11 +864,14 @@ pub async fn timeline(
     let include_seen: bool = params.include_seen.unwrap_or(false);
     let seen_horizon_days: i32 = params.seen_horizon_days.unwrap_or(30).clamp(1, 365);
     // Aggregated-dwell threshold to count as "really seen". Default
-    // 3 s — chosen so a brief 1–2 s glance still leaves the card in
-    // the feed but a deliberate read removes it. Clamped to [0,
-    // MAX_DWELL_MS=120 000] since values outside that bound would
-    // never match the data the client actually emits.
-    let min_seen_dwell_ms: i32 = params.min_seen_dwell_ms.unwrap_or(3000).clamp(0, 120_000);
+    // 1.5 s — matches the client's MIN_DWELL_MS floor, so any
+    // card_seen event the tracker bothered to fire counts as a real
+    // impression. Earlier 3 s was leaving too many "I saw this for
+    // ~2 s" URLs in the feed (May 2026: 19 / 80 hides instead of
+    // 48 / 80). Clamped to [0, MAX_DWELL_MS=120 000] since values
+    // outside that bound would never match the data the client
+    // actually emits.
+    let min_seen_dwell_ms: i32 = params.min_seen_dwell_ms.unwrap_or(1500).clamp(0, 120_000);
     // Named-field row struct — sqlx's tuple FromRow impls cap at 16,
     // and we need 17 (the trailing `already_seen` flag). Field order
     // must match the final SELECT projection 1:1.
