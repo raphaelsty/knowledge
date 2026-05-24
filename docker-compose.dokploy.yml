@@ -415,6 +415,31 @@ services:
           sleep 86400
         done
 
+  # Hourly precomputed-feed snapshotter. Runs the scoring CTE over
+  # a 180-day window once an hour and writes the result back to
+  # `feed_snapshot`. The /api/timeline handler reads from this
+  # table when it's fresh (<3 h), giving every logged-in feed
+  # request a sub-100 ms indexed scan instead of a per-call rebuild.
+  # Falls back to the live query when the snapshot is stale or
+  # empty, so a daemon outage degrades to "previous behaviour"
+  # rather than "broken feed".
+  #
+  # CPU need is tiny — the daemon spends ~5 s an hour running the
+  # refresh CTE and sleeps the rest. 0.05 vCPU covers it (counted
+  # against the daemons-total-1.0-vCPU budget elsewhere); memory
+  # is just enough to hold psycopg connection state.
+  knowledge-feed-snapshot:
+    <<: *daemon-base
+    command: ["python", "-m", "sources.utils.feed_snapshot_daemon"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: "0.05"
+
   # Pedagogical title / summary rewriter via OpenAI (default model
   # gpt-4o-mini; override `OPENAI_CLEAN_MODEL` in Dokploy env to swap
   # in a cheaper one, e.g. `gpt-4.1-nano`). I/O-bound on the OpenAI

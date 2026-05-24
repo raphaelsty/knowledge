@@ -430,6 +430,176 @@ pub async fn timeline(
         }
     }
 
+    let since: Option<String> = params.since.clone();
+    let include_seen: bool = params.include_seen.unwrap_or(false);
+    let seen_horizon_days: i32 = params.seen_horizon_days.unwrap_or(30).clamp(1, 365);
+    // Aggregated-dwell threshold to count as "really seen". Default
+    // 1.5 s — matches the client's MIN_DWELL_MS floor, so any
+    // card_seen event the tracker bothered to fire counts as a real
+    // impression. Earlier 3 s was leaving too many "I saw this for
+    // ~2 s" URLs in the feed (May 2026: 19 / 80 hides instead of
+    // 48 / 80). Clamped to [0, MAX_DWELL_MS=120 000] since values
+    // outside that bound would never match the data the client
+    // actually emits.
+    let min_seen_dwell_ms: i32 = params.min_seen_dwell_ms.unwrap_or(1500).clamp(0, 120_000);
+
+    // Row struct used by both the snapshot fast-path and the live
+    // CTE fallback. Field order matches the final SELECT projection
+    // of both queries 1:1.
+    #[derive(Clone, sqlx::FromRow)]
+    struct TimelineRow {
+        url: String,
+        title: String,
+        date_str: String,
+        summary: String,
+        clean_title: String,
+        clean_summary: String,
+        urls: Vec<String>,
+        tags: Vec<String>,
+        source: String,
+        source_url: Option<String>,
+        linked_urls: serde_json::Value,
+        link_hosts: Vec<String>,
+        primary_user_id: i64,
+        score: f64,
+        sharers: serde_json::Value,
+        sharer_count: i64,
+        already_seen: bool,
+    }
+
+    // ── Snapshot fast-path ────────────────────────────────────────
+    //
+    // `feed_snapshot` is rebuilt hourly by knowledge-feed-snapshot.
+    // When fresh (<3 h old), every timeline request becomes a
+    // single indexed scan against ~20 k pre-scored rows instead of
+    // replaying the 400 k-doc CTE — empirically ~50 ms instead of
+    // ~700 ms for a logged-in feed.
+    //
+    // Bypass conditions:
+    //   * Category filter active — the snapshot doesn't carry per-
+    //     doc category assignments. Live query handles the
+    //     document_category_assignments join.
+    //   * Snapshot empty or stale (>3 h). The freshness probe below
+    //     is a single-row index lookup.
+    //
+    // Either bypass cleanly drops to the live query lower down.
+    let snapshot_fresh: bool = if !categories.is_empty() {
+        false
+    } else {
+        sqlx::query_scalar::<_, Option<bool>>(
+            "SELECT (MAX(refreshed_at) > now() - interval '3 hours') FROM feed_snapshot",
+        )
+        .fetch_one(&pool)
+        .await
+        .ok()
+        .flatten()
+        .unwrap_or(false)
+    };
+
+    // Snapshot query. Same final projection as the live CTE so both
+    // share the TimelineRow struct + the diversity-pass code below.
+    // Per-viewer score additions (followee_share, fresh-self) ride
+    // on top of the precomputed score column.
+    let snapshot_sql = "
+        WITH followed AS (
+            SELECT followed_id AS user_id FROM follows WHERE follower_id = $1
+            UNION
+            SELECT $1::bigint AS user_id WHERE $1 IS NOT NULL
+            UNION
+            SELECT id AS user_id FROM users WHERE vip = TRUE AND $1 IS NULL
+        ),
+        followed_ids AS (
+            SELECT COALESCE(array_agg(user_id), '{}'::bigint[]) AS ids FROM followed
+        )
+        SELECT
+            s.url,
+            s.title,
+            COALESCE(to_char(s.date, 'YYYY-MM-DD'), '') AS date_str,
+            s.summary, s.clean_title, s.clean_summary,
+            s.urls, s.tags, s.source, s.source_url,
+            s.linked_urls, s.link_hosts,
+            s.primary_user_id,
+            -- effective score = precomputed score
+            --                 + followee_share bonus (capped at 3 extras × 1.5)
+            --                 + 50 if the viewer authored it < 1 h ago
+            -- IN (SELECT user_id FROM followed) rather than
+            -- ANY((SELECT ids FROM followed_ids)) because PG
+            -- otherwise interprets the inner subquery as
+            -- compare-scalar-sid-against-an-array-literal and
+            -- fails type resolution at parse time.
+            (s.score
+             + LEAST(3, GREATEST(0, (
+                   SELECT count(*)::int
+                     FROM unnest(s.sharer_user_ids) sid
+                    WHERE sid IN (SELECT user_id FROM followed)
+               ) - 1)) * 1.5
+             + CASE
+                   WHEN s.primary_user_id = $1
+                        AND s.refreshed_at > now() - interval '1 hour'
+                     THEN 50
+                   ELSE 0
+               END
+            ) AS score,
+            s.sharers,
+            -- Cast INT4 → INT8 so TimelineRow.sharer_count (i64)
+            -- matches both code paths. The snapshot stores it as
+            -- INT to save 4 bytes per row; the live CTE's
+            -- count(*) is bigint by default.
+            s.sharer_count::bigint AS sharer_count,
+            -- Dwell-aware already_seen flag — same semantics as the
+            -- live query so the dim-and-pill UI looks identical.
+            ($9::bool AND $1 IS NOT NULL AND COALESCE((
+                 SELECT SUM(COALESCE(e.dwell_ms, 0))::bigint
+                   FROM events e
+                  WHERE e.viewer_user_id = $1
+                    AND e.event_type    = 7
+                    AND e.doc_url       = s.url
+                    AND e.created_at    < now() - interval '10 minutes'
+                    AND e.created_at    > now() - ($10::int || ' days')::interval
+             ), 0) >= $11::int) AS already_seen
+          FROM feed_snapshot s
+         WHERE
+               -- Logged-in: sharer_user_ids must intersect followees.
+               -- Anon: rely on any_vip_sharer (partial-indexed scan).
+               -- The `&&` operator wants `bigint[]` on both sides, so
+               -- we pull the array out of `followed_ids` directly.
+               ($1 IS NULL
+                OR s.sharer_user_ids && (SELECT ids FROM followed_ids LIMIT 1))
+           AND ($1 IS NOT NULL OR s.any_vip_sharer = TRUE)
+           -- Date filters: `before` (cursor) and `since` (window).
+           AND ($3::timestamptz IS NULL OR s.date <  $3::timestamptz)
+           AND ($7::timestamptz IS NULL OR s.date >= $7::timestamptz)
+           -- Source filters (same two-pronged source / link_hosts).
+           AND (cardinality($4::text[]) = 0
+                OR s.source = ANY($4::text[])
+                OR s.link_hosts && $4::text[])
+           AND (cardinality($5::text[]) = 0 OR NOT s.source = ANY($5::text[]))
+           -- Tag AND-semantics (matched on s.tags only — the snapshot
+           -- folds extra_tags into the source `tags` column at
+           -- refresh time).
+           AND (cardinality($6::text[]) = 0
+                OR (SELECT bool_and(
+                        EXISTS (
+                            SELECT 1 FROM unnest(s.tags) t WHERE lower(t) = q
+                        )
+                    )
+                    FROM unnest($6::text[]) AS q))
+           -- Hide-seen filter (logged-in, include_seen=false).
+           AND ($1 IS NULL
+                OR $9::bool = TRUE
+                OR COALESCE((
+                    SELECT SUM(COALESCE(e.dwell_ms, 0))::bigint
+                      FROM events e
+                     WHERE e.viewer_user_id = $1
+                       AND e.event_type    = 7
+                       AND e.doc_url       = s.url
+                       AND e.created_at    < now() - interval '10 minutes'
+                       AND e.created_at    > now() - ($10::int || ' days')::interval
+               ), 0) < $11::int)
+         ORDER BY score DESC, s.date DESC NULLS LAST, s.url
+         LIMIT $2 * 2
+    ";
+
     // The feed is built in four layers (followed → candidates →
     // dedup → diversified) and scored along the way:
     //
@@ -860,60 +1030,61 @@ pub async fn timeline(
          LIMIT $2 * 2
     ";
 
-    let since: Option<String> = params.since.clone();
-    let include_seen: bool = params.include_seen.unwrap_or(false);
-    let seen_horizon_days: i32 = params.seen_horizon_days.unwrap_or(30).clamp(1, 365);
-    // Aggregated-dwell threshold to count as "really seen". Default
-    // 1.5 s — matches the client's MIN_DWELL_MS floor, so any
-    // card_seen event the tracker bothered to fire counts as a real
-    // impression. Earlier 3 s was leaving too many "I saw this for
-    // ~2 s" URLs in the feed (May 2026: 19 / 80 hides instead of
-    // 48 / 80). Clamped to [0, MAX_DWELL_MS=120 000] since values
-    // outside that bound would never match the data the client
-    // actually emits.
-    let min_seen_dwell_ms: i32 = params.min_seen_dwell_ms.unwrap_or(1500).clamp(0, 120_000);
-    // Named-field row struct — sqlx's tuple FromRow impls cap at 16,
-    // and we need 17 (the trailing `already_seen` flag). Field order
-    // must match the final SELECT projection 1:1.
-    #[derive(Clone, sqlx::FromRow)]
-    struct TimelineRow {
-        url: String,
-        title: String,
-        date_str: String,
-        summary: String,
-        clean_title: String,
-        clean_summary: String,
-        urls: Vec<String>,
-        tags: Vec<String>,
-        source: String,
-        source_url: Option<String>,
-        linked_urls: serde_json::Value,
-        link_hosts: Vec<String>,
-        primary_user_id: i64,
-        score: f64,
-        sharers: serde_json::Value,
-        sharer_count: i64,
-        already_seen: bool,
-    }
-    let rows: Vec<TimelineRow> = match sqlx::query_as(sql)
-        .bind(me_id)
-        .bind(limit)
-        .bind(before)
-        .bind(&sources_inc)
-        .bind(&sources_exc)
-        .bind(&tags_inc)
-        .bind(since)
-        .bind(&categories)
-        .bind(include_seen)
-        .bind(seen_horizon_days)
-        .bind(min_seen_dwell_ms)
-        .fetch_all(&pool)
-        .await
-    {
-        Ok(rs) => rs,
-        Err(e) => {
-            tracing::error!(error = %e, "timeline.query.failed");
-            Vec::new()
+    // Helper closure that runs the live CTE query. Used both as the
+    // primary path (snapshot bypassed / stale / empty) and as the
+    // fallback when the snapshot path returns zero rows.
+    let bind_live = || {
+        sqlx::query_as::<_, TimelineRow>(sql)
+            .bind(me_id)
+            .bind(limit)
+            .bind(before.clone())
+            .bind(&sources_inc)
+            .bind(&sources_exc)
+            .bind(&tags_inc)
+            .bind(since.clone())
+            .bind(&categories)
+            .bind(include_seen)
+            .bind(seen_horizon_days)
+            .bind(min_seen_dwell_ms)
+    };
+
+    let rows: Vec<TimelineRow> = if snapshot_fresh {
+        // Try the snapshot fast path. Fall back to the live query
+        // when it returns no rows (cold filter combo, daemon outage
+        // mid-rebuild) or errors out — better to serve a slow page
+        // than an empty one.
+        let snapshot_result = sqlx::query_as::<_, TimelineRow>(snapshot_sql)
+            .bind(me_id)
+            .bind(limit)
+            .bind(before.clone())
+            .bind(&sources_inc)
+            .bind(&sources_exc)
+            .bind(&tags_inc)
+            .bind(since.clone())
+            .bind(&categories)
+            .bind(include_seen)
+            .bind(seen_horizon_days)
+            .bind(min_seen_dwell_ms)
+            .fetch_all(&pool)
+            .await;
+        match snapshot_result {
+            Ok(rs) if !rs.is_empty() => rs,
+            Ok(_) => {
+                tracing::debug!("timeline.snapshot.empty — falling back to live");
+                bind_live().fetch_all(&pool).await.unwrap_or_default()
+            }
+            Err(e) => {
+                tracing::warn!(error = %e, "timeline.snapshot.failed — falling back to live");
+                bind_live().fetch_all(&pool).await.unwrap_or_default()
+            }
+        }
+    } else {
+        match bind_live().fetch_all(&pool).await {
+            Ok(rs) => rs,
+            Err(e) => {
+                tracing::error!(error = %e, "timeline.query.failed");
+                Vec::new()
+            }
         }
     };
 

@@ -15,6 +15,7 @@ from sources.sql.documents import (
 from sources.sql.events import create_events_table
 from sources.sql.export_downloads import create_export_downloads_table
 from sources.sql.favorites import create_favorites_table
+from sources.sql.feed_snapshot import create_feed_snapshot_table
 from sources.sql.follows import create_follows_table
 from sources.sql.hn_frontpage import (
     create_hn_frontpage_tables,
@@ -65,6 +66,7 @@ __all__ = [
     "create_follows_table",
     "create_events_table",
     "create_export_downloads_table",
+    "create_feed_snapshot_table",
     "create_hn_frontpage_tables",
     "create_index_health_checks_table",
     "create_oauth_identities_table",

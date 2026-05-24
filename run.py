@@ -40,6 +40,7 @@ from sources.sql import (
     create_events_table,
     create_export_downloads_table,
     create_favorites_table,
+    create_feed_snapshot_table,
     create_follows_table,
     create_hn_frontpage_tables,
     create_index_health_checks_table,
@@ -173,6 +174,7 @@ def main():
     create_follows_table(database_url)
     create_events_table(database_url)
     create_export_downloads_table(database_url)
+    create_feed_snapshot_table(database_url)
     create_pipeline_runs_table(database_url)
     create_pipeline_source_runs_table(database_url)
     create_index_health_checks_table(database_url)

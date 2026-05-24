@@ -344,6 +344,10 @@ async fn run_sql_migrations(pool: &sqlx::PgPool) -> Result<(), sqlx::Error> {
             include_str!("../../sources/sql/export_downloads.sql"),
         ),
         (
+            "feed_snapshot.sql",
+            include_str!("../../sources/sql/feed_snapshot.sql"),
+        ),
+        (
             "pipeline_runs.sql",
             include_str!("../../sources/sql/pipeline_runs.sql"),
         ),
