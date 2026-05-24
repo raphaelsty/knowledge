@@ -163,6 +163,13 @@ IDLE_SLEEP_S = float(os.environ.get("CLEAN_IDLE_SLEEP_S", "600"))
 # viewers cluster in the last 2-3 weeks, so cleaning more than that
 # burns tokens on docs no one will see.
 WINDOW_DAYS = int(os.environ.get("CLEAN_WINDOW_DAYS", "21"))
+# Hard ceiling on the docs the daemon will ever rewrite per refresh
+# cycle. We only clean docs that are in the top-N of
+# `feed_snapshot.score` — the only docs the feed actually shows.
+# Cleaning a rank-50 000 long-tail tweet burns OpenAI tokens on
+# content that nobody will scroll to. 3000 covers the visible page
+# (≤ 200 cards) + a generous pagination tail.
+CLEAN_FEED_TOP_N = int(os.environ.get("CLEAN_FEED_TOP_N", "3000"))
 # Small batch so memory stays low and the loop iterates quickly
 # enough to see fresh inserts.
 BATCH_SIZE = int(os.environ.get("CLEAN_BATCH_SIZE", "10"))
@@ -742,49 +749,52 @@ def _format_linked_urls(linked_urls) -> str:
 
 
 def fetch_batch(conn: psycopg.Connection, limit: int) -> list[dict]:
-    """Pull the next batch of unprocessed VIP docs.
+    """Pull the next batch of unprocessed VIP docs, prioritised by
+    where they actually rank in the feed.
 
-    Scope = (feed-candidate set) ∩ (VIP) ∩ (tweet|paper) ∩ (last
-    CLEAN_WINDOW_DAYS) ∩ (not yet cleaned). Mirrors the WHERE
-    clause in `handlers::users::build_feed_payload`:
+    Scope = (top-N `feed_snapshot` rows by score)
+            ∩ (VIP) ∩ (tweet|paper) ∩ (last CLEAN_WINDOW_DAYS)
+            ∩ (not yet cleaned).
 
-      - `d.deleted = FALSE`   — same as the feed
-      - `d.date IS NOT NULL`  — same as the feed (also implied by
-                                the `>=` cutoff below, but kept
-                                explicit so the alignment with the
-                                feed is obvious in the SQL)
-      - `u.vip = TRUE`        — only personalities that get
-                                surfaced in the feed; cleaning
-                                non-VIP docs would burn tokens on
-                                content the recency+sharer score
-                                buries anyway.
-      - `d.date >= now() - CLEAN_WINDOW_DAYS`
-                              — the feed's recency bonus decays to
-                                zero past ~5 weeks, so 3 weeks is
-                                where the cost/benefit tips.
-      - `lower(d.source) = ANY(ALL_SOURCES)`
-                              — tweets + papers only. HF dropped.
-      - `d.cleaned = FALSE`   — idempotence guard. Resets only on
-                                operator intervention.
+    Why join `feed_snapshot`:
+      The feed is the only surface where `clean_title`/`clean_summary`
+      gets read. Cleaning a rank-50 000 doc that no one will ever
+      scroll to wastes OpenAI tokens. So we read the same ranking
+      the timeline reads from — `feed_snapshot.score DESC` — and
+      cap the candidate set to the top `CLEAN_FEED_TOP_N` rows.
+      Below that score band the daemon does nothing.
+
+    Why VIP + source + window filters stay:
+      `feed_snapshot` already only contains VIP-anchored rows
+      from the 180-day window, so those filters are redundant
+      strictly speaking. We keep them for belt-and-braces (if
+      the snapshot is mid-refresh and missing rows, the daemon
+      still won't pick up non-VIP / old / unsupported-source docs)
+      and so the SQL still works on a fresh deploy before the
+      snapshot has been built for the first time.
+
+    URL-level dedup: same as before. A single arxiv paper saved
+    by 10 VIPs is rewritten once; `write_back` propagates the
+    result to every row sharing that URL.
     """
-    # Dedupe by URL the same way `build_feed_payload` does:
-    # `DISTINCT ON (d.url) ORDER BY d.url, d.date DESC` — keeps one
-    # row per URL, choosing the most-recent copy across users. That
-    # means a single arxiv paper saved by ten VIPs is rewritten ONCE
-    # (one OpenAI call), and `write_back` propagates the result to
-    # every row sharing that URL. Matches the feed: the feed shows
-    # one card per URL, so cleaning the chosen card is enough to
-    # cover the surface where this content is seen.
-    #
-    # Outer ORDER BY then re-sorts the surviving deduped rows by
-    # date DESC so we process the most-recent docs first.
     sql = """
-        WITH candidates AS (
+        WITH top_feed AS (
+            -- The N highest-scored anchors in the snapshot —
+            -- exactly the rows the timeline can surface for the
+            -- visible page + a generous pagination tail.
+            SELECT url, score
+              FROM feed_snapshot
+             ORDER BY score DESC
+             LIMIT %s
+        ),
+        candidates AS (
             SELECT DISTINCT ON (d.url)
                    d.user_id, d.url, d.title, d.summary, d.source,
-                   d.linked_urls, d.urls, d.date, d.created_at
+                   d.linked_urls, d.urls, d.date, d.created_at,
+                   tf.score AS feed_score
               FROM documents d
-              JOIN users     u ON u.id = d.user_id
+              JOIN users     u  ON u.id  = d.user_id
+              JOIN top_feed  tf ON tf.url = d.url
              WHERE u.vip = TRUE
                AND d.deleted = FALSE
                AND d.date IS NOT NULL
@@ -796,16 +806,18 @@ def fetch_batch(conn: psycopg.Connection, limit: int) -> list[dict]:
         )
         SELECT user_id, url, title, summary, source, linked_urls, urls
           FROM candidates
-         -- Newest first across the deduped set. d.date is the
-         -- publication date; created_at breaks same-day ties;
-         -- url DESC orders snowflake/arxiv IDs newest-first.
-         ORDER BY date DESC NULLS LAST,
+         -- Process highest-priority docs first — exactly mirrors
+         -- the order the feed will render them in. Date breaks
+         -- score ties so two same-score docs come out
+         -- newest-first.
+         ORDER BY feed_score DESC,
+                  date DESC NULLS LAST,
                   created_at DESC NULLS LAST,
                   url DESC
          LIMIT %s
     """
     with conn.cursor() as cur:
-        cur.execute(sql, (WINDOW_DAYS, ALL_SOURCES, limit))
+        cur.execute(sql, (CLEAN_FEED_TOP_N, WINDOW_DAYS, ALL_SOURCES, limit))
         rows = cur.fetchall()
     return [
         {

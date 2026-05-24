@@ -479,39 +479,23 @@ pub async fn timeline(
         already_seen: bool,
     }
 
-    // ── Snapshot fast-path ────────────────────────────────────────
+    // ── Single source of truth: feed_snapshot ─────────────────────
     //
     // `feed_snapshot` is rebuilt hourly by knowledge-feed-snapshot.
-    // When fresh (<3 h old), every timeline request becomes a
-    // single indexed scan against ~20 k pre-scored rows instead of
-    // replaying the 400 k-doc CTE — empirically ~50 ms instead of
-    // ~700 ms for a logged-in feed.
+    // It is the *only* source the timeline reads from — the live
+    // CTE that used to live below it was removed in favour of this
+    // simpler model: one query (the refresh) precomputes the feed
+    // from VIP activity, one query (the SELECT below) adapts it to
+    // the current viewer's follow graph + filters. If the snapshot
+    // is empty (cold boot, daemon outage) the timeline returns an
+    // empty array — better than serving stale-CTE content with
+    // different ranking semantics.
     //
-    // Bypass conditions:
-    //   * Category filter active — the snapshot doesn't carry per-
-    //     doc category assignments. Live query handles the
-    //     document_category_assignments join.
-    //   * Snapshot empty or stale (>3 h). The freshness probe below
-    //     is a single-row index lookup.
-    //
-    // Either bypass cleanly drops to the live query lower down.
-    let snapshot_fresh: bool = if !categories.is_empty() {
-        false
-    } else {
-        sqlx::query_scalar::<_, Option<bool>>(
-            "SELECT (MAX(refreshed_at) > now() - interval '3 hours') FROM feed_snapshot",
-        )
-        .fetch_one(&pool)
-        .await
-        .ok()
-        .flatten()
-        .unwrap_or(false)
-    };
-
-    // Snapshot query. Same final projection as the live CTE so both
-    // share the TimelineRow struct + the diversity-pass code below.
     // Per-viewer score additions (followee_share, fresh-self) ride
-    // on top of the precomputed score column.
+    // on top of the precomputed `score` column at read time.
+    // The category filter hits the GIN index on
+    // `feed_snapshot.categories`, populated by the refresh from
+    // `document_category_assignments`.
     let snapshot_sql = "
         WITH followed AS (
             SELECT followed_id AS user_id FROM follows WHERE follower_id = $1
@@ -636,537 +620,57 @@ pub async fn timeline(
                        AND d.deleted       = FALSE
                 )
            ))
+           -- Category filter — OR semantics, served by the GIN
+           -- index on feed_snapshot.categories. Empty array = no
+           -- filter (the cardinality short-circuit keeps the
+           -- planner from looking at the predicate at all).
+           AND (cardinality($8::text[]) = 0
+                OR s.categories && $8::text[])
          ORDER BY score DESC, s.date DESC NULLS LAST, s.url
          LIMIT $2 * 2
     ";
 
-    // The feed is built in four layers (followed → candidates →
-    // dedup → diversified) and scored along the way:
-    //
-    //   1. `candidates`  — pull the most-recent `$2 * 40` rows
-    //                      (capped at 8000) across (followees ∪ self).
-    //                      Each row carries a precomputed `sci_score`
-    //                      based purely on the resource type (no
-    //                      keyword matching): direct scientific
-    //                      sources (arxiv/scholar/huggingface) score
-    //                      3, tweets linking to a scientific host
-    //                      (arxiv.org / huggingface.co / openreview…)
-    //                      also score 3, github code releases score
-    //                      1, everything else 0.
-    //   2. `url_share`   — for every URL among the candidates, how
-    //                      many followees share it (`followee_share`)
-    //                      and how many users overall share it
-    //                      (`total_share`). Both feed the score.
-    //   3. `dedup`       — collapse to one row per URL. When several
-    //                      followees share the same URL the row is
-    //                      attributed to the most notable sharer
-    //                      (vip → twitter_followers → citations).
-    //   4. `scored`      — composite score: scientific bonus + a
-    //                      recency bucket (last 1 / 3 / 7 / 14 / 30
-    //                      days) + a multi-sharer term (sublinear in
-    //                      the followee count, sublinear in the total
-    //                      sharer count) + a notability bonus driven
-    //                      by the primary sharer's follower count.
-    //   5. `diversified` — ROW_NUMBER() OVER (PARTITION BY
-    //                      primary_user_id ORDER BY score DESC). The
-    //                      final ORDER BY is `user_rank, score DESC`,
-    //                      which gives a round-robin: everyone's best
-    //                      post first, then everyone's second-best,
-    //                      etc. Guarantees no user appears twice
-    //                      consecutively as long as there are enough
-    //                      sharers to fill `$2` slots.
-    //
-    // The 40× over-fetch is sized for the rerank + diversity pass —
-    // dropping the cap below ~20× starves the round-robin for users
-    // who don't post often.
-    let sql = "
-        WITH followed AS (
-            -- Logged-in: followees ∪ self.
-            SELECT followed_id AS user_id FROM follows WHERE follower_id = $1
-            UNION
-            SELECT $1::bigint AS user_id WHERE $1 IS NOT NULL
-            -- Logged-out: act as if following every VIP.
-            UNION
-            SELECT id AS user_id FROM users WHERE vip = TRUE AND $1 IS NULL
-        ),
-        candidates AS MATERIALIZED (
-            SELECT d.user_id, d.url, d.title, d.date, d.summary,
-                   d.clean_title, d.clean_summary, d.urls,
-                   d.tags,
-                   d.extra_tags, d.source, d.source_url, d.created_at,
-                   d.linked_urls, d.link_hosts,
-                   -- Canonical URL drives the share aggregation below
-                   -- so arxiv.org/abs/X, /pdf/X, /abs/Xv2 collapse to
-                   -- one card. `canonical_referenced_urls` is the
-                   -- doc's own canonical URL PLUS every URL it cites
-                   -- (linked_urls + the cleaned `urls` array) — used
-                   -- by the LATERAL sharer expansion to surface
-                   -- anyone who also references at least one of the
-                   -- same URLs (e.g. a tweet linking the same paper).
-                   d.canonical_url,
-                   d.canonical_referenced_urls,
-                   -- Resource-type signal — no keyword / tag matching.
-                   -- 3 = direct scientific source OR a tweet that
-                   --     links to a scientific host;
-                   -- 1 = code release (github);
-                   -- 0 = everything else.
-                   CASE
-                     WHEN d.source IN ('arxiv', 'scholar', 'huggingface')
-                       THEN 3
-                     WHEN d.source = 'twitter'
-                          AND d.link_hosts && ARRAY[
-                            'arxiv', 'arxiv.org',
-                            'huggingface', 'huggingface.co', 'hf.co',
-                            'paperswithcode.com', 'openreview.net',
-                            'aclanthology.org', 'distill.pub',
-                            'jmlr.org', 'biorxiv.org', 'medrxiv.org',
-                            'semanticscholar.org', 'scholar.google.com',
-                            'neurips.cc', 'icml.cc'
-                          ]::text[]
-                       THEN 3
-                     WHEN d.source IN ('github', 'github_repos')
-                       THEN 1
-                     ELSE 0
-                   END AS sci_score
-              FROM documents d
-              JOIN followed f ON f.user_id = d.user_id
-             WHERE d.deleted = FALSE
-               AND d.date IS NOT NULL
-               AND ($3::timestamptz IS NULL OR d.date < $3::timestamptz)
-               AND ($7::timestamptz IS NULL OR d.date >= $7::timestamptz)
-               -- Source filter is two-pronged: the canonical `source`
-               -- column OR any host inside `link_hosts`. A tweet
-               -- linking hornet.dev therefore surfaces under both
-               -- the `twitter` chip and the `hornet.dev` chip
-               -- without us minting a second row.
-               AND (cardinality($4::text[]) = 0
-                    OR d.source = ANY($4::text[])
-                    OR d.link_hosts && $4::text[])
-               AND (cardinality($5::text[]) = 0 OR NOT d.source = ANY($5::text[]))
-               AND (cardinality($6::text[]) = 0
-                    OR (SELECT bool_and(
-                            EXISTS (
-                                SELECT 1 FROM unnest(d.tags) t WHERE lower(t) = q
-                            ) OR EXISTS (
-                                SELECT 1 FROM unnest(d.extra_tags) t WHERE lower(t) = q
-                            )
-                        )
-                        FROM unnest($6::text[]) AS q))
-               -- Fine-grained category filter (multi-select, OR
-               -- semantics). The categorize daemon writes 0-3 rows
-               -- per doc into document_category_assignments keyed on
-               -- (user_id, url, category_id) with a slug FK through
-               -- document_categories. With multiple selected slugs
-               -- we accept a doc if it has ANY of them assigned
-               -- (primary OR secondary) — matches the source-chip
-               -- convention on the left rail.
-               AND (cardinality($8::text[]) = 0
-                    OR EXISTS (
-                        SELECT 1
-                          FROM document_category_assignments a
-                          JOIN document_categories dc ON dc.id = a.category_id
-                         WHERE a.user_id = d.user_id
-                           AND a.url     = d.url
-                           AND dc.slug   = ANY($8::text[])
-                    ))
-               -- Hide-already-seen filter. Logged-in only ($1 IS NOT
-               -- NULL); bypassed when the caller passes
-               -- include_seen=true ($9 = TRUE).
-               --
-               -- A row only counts as really seen if the viewer
-               -- aggregated dwell on the URL meets $11 ms inside
-               -- the horizon. Scroll-pasts (sub-second card_seen
-               -- events) do not add up to a hide. Multiple short
-               -- glances do — the SUM lets a card the user came
-               -- back to three times for ~1.2 s each cross a 3 s
-               -- threshold the way a single deliberate read would.
-               --
-               -- Also: a 10-minute grace window — only events older
-               -- than that contribute to the sum, so a card the
-               -- viewer just engaged with stays visible for the
-               -- current scroll and only disappears on the next
-               -- visit. Indexed by idx_events_viewer_doc_seen.
-               AND ($1 IS NULL
-                    OR $9::bool = TRUE
-                    OR COALESCE((
-                        SELECT SUM(COALESCE(e.dwell_ms, 0))::bigint
-                          FROM events e
-                         WHERE e.viewer_user_id = $1
-                           AND e.event_type    = 7
-                           AND e.doc_url       = d.url
-                           AND e.created_at    < now() - interval '10 minutes'
-                           AND e.created_at    > now() - ($10::int || ' days')::interval
-                    ), 0) < $11::int)
-               -- Exclude-owned filter — drop docs the viewer already
-               -- has in their own library or has starred. Bypassed
-               -- by include_owned=true ($12). Mirrors the snapshot
-               -- path's equivalent clause; uses the same indexes
-               -- (documents PK on (user_id, url) and
-               -- favorite_documents PK on (user_id, url)).
-               AND ($1 IS NULL OR $12::bool = TRUE OR (
-                    NOT EXISTS (
-                        SELECT 1 FROM documents od
-                         WHERE od.user_id = $1
-                           AND od.url     = d.url
-                           AND od.deleted = FALSE
-                    )
-                    AND NOT EXISTS (
-                        SELECT 1 FROM favorite_documents fd
-                         WHERE fd.user_id = $1
-                           AND fd.url     = d.url
-                    )
-                    AND NOT EXISTS (
-                        SELECT 1 FROM documents od2
-                         WHERE od2.user_id       = $1
-                           AND od2.canonical_url = d.canonical_url
-                           AND od2.deleted       = FALSE
-                    )
-               ))
-             ORDER BY d.date DESC
-             -- Over-fetch by 16x the requested limit — gives the
-             -- diversity pass headroom to reorder past consecutive
-             -- duplicates without re-paginating, while keeping the
-             -- candidate scan small enough to return fast (~600ms
-             -- when scanning every VIP, ~50ms for a 30-follow user).
-             LIMIT LEAST(2000, $2 * 16)
-        ),
-        url_share AS MATERIALIZED (
-            -- Followee share count is bounded by candidates (so the
-            -- scan stays small); total share count needs a separate
-            -- lookup but only for canonical URLs that survived the
-            -- candidate pass, which is the same order of magnitude
-            -- as $2 * 16. Grouping by `canonical_url` collapses
-            -- arxiv.org/abs/X, /pdf/X, /abs/Xv2 etc. so a paper saved
-            -- under three URL variants counts as one shared resource.
-            SELECT c.canonical_url AS canonical_url,
-                   COUNT(DISTINCT c.user_id) AS followee_share,
-                   (SELECT COUNT(DISTINCT d2.user_id)
-                      FROM documents d2
-                     WHERE d2.canonical_url = c.canonical_url
-                       AND d2.deleted = FALSE) AS total_share
-              FROM candidates c
-             GROUP BY c.canonical_url
-        ),
-        candidate_anchors AS MATERIALIZED (
-            -- Per-candidate anchor URL used by the dedup step below.
-            -- The anchor identifies WHICH RESOURCE this doc is about,
-            -- so different docs that discuss the same paper / repo /
-            -- model collapse into one feed card.
-            --
-            -- Priority: known scientific / code hosts first (arxiv,
-            -- huggingface, github, openreview, doi, …). Among URLs of
-            -- the same priority, lexicographic min is the stable
-            -- tiebreaker. Falls back to the doc's own canonical_url
-            -- when no priority URL is present — so a plain bookmark
-            -- with no external references just anchors on itself
-            -- (and stays distinct from other plain bookmarks).
-            --
-            -- Pre-computes `image_count` and `url_count` here so the
-            -- dedup step can pick the visually-richest representative
-            -- (most preview images, then most referenced URLs).
-            SELECT c.*,
-                   COALESCE(
-                       (SELECT ref
-                          FROM unnest(c.canonical_referenced_urls) ref
-                         ORDER BY CASE
-                             WHEN ref LIKE 'https://arxiv.org/abs/%'       THEN 1
-                             WHEN ref LIKE 'https://huggingface.co/%'      THEN 2
-                             WHEN ref LIKE 'https://github.com/%'          THEN 3
-                             WHEN ref LIKE 'https://openreview.net/%'      THEN 4
-                             WHEN ref LIKE 'https://doi.org/%'             THEN 5
-                             WHEN ref LIKE 'https://paperswithcode.com/%'  THEN 6
-                             WHEN ref LIKE 'https://aclanthology.org/%'    THEN 7
-                             WHEN ref LIKE 'https://semanticscholar.org/%' THEN 8
-                             WHEN ref LIKE 'https://distill.pub/%'         THEN 9
-                             WHEN ref LIKE 'https://biorxiv.org/%'         THEN 10
-                             WHEN ref LIKE 'https://medrxiv.org/%'         THEN 11
-                             ELSE 99
-                         END, ref
-                         LIMIT 1),
-                       c.canonical_url
-                   ) AS anchor_url,
-                   COALESCE((
-                       SELECT count(*)::int
-                         FROM jsonb_array_elements(c.linked_urls) e
-                        WHERE COALESCE(e->>'image', '') <> ''
-                   ), 0) AS image_count,
-                   cardinality(c.canonical_referenced_urls) AS url_count
-              FROM candidates c
-        ),
-        dedup AS (
-            -- One row per ANCHOR — avoid showing the same resource
-            -- twice in the feed. Two distinct tweets that link the
-            -- same paper now collapse to one card; the arxiv doc
-            -- itself and tweets about it also collapse.
-            --
-            -- Representative selection: pick the visually richest
-            -- copy first (most preview images, then most referenced
-            -- URLs), then the existing tiebreakers (recency,
-            -- VIP-ness, follower count, citations). The avatar stack
-            -- still shows every sharer in the cluster because the
-            -- LATERAL `s.sharers` query expands via
-            -- `canonical_referenced_urls && m.canonical_referenced_urls`.
-            SELECT DISTINCT ON (ca.anchor_url)
-                   ca.user_id AS primary_user_id,
-                   ca.url, ca.title, ca.date, ca.summary,
-                   ca.clean_title, ca.clean_summary, ca.urls,
-                   ca.tags,
-                   ca.extra_tags, ca.source, ca.source_url, ca.created_at,
-                   ca.linked_urls, ca.link_hosts, ca.sci_score,
-                   ca.canonical_url,
-                   ca.canonical_referenced_urls,
-                   u.twitter_followers AS pri_twitter_followers,
-                   u.citations         AS pri_citations,
-                   u.vip               AS pri_vip
-              FROM candidate_anchors ca
-              JOIN users u ON u.id = ca.user_id
-             ORDER BY ca.anchor_url,
-                      ca.image_count DESC,
-                      ca.url_count DESC,
-                      ca.date DESC,
-                      u.vip DESC,
-                      COALESCE(u.twitter_followers, 0) DESC,
-                      COALESCE(u.citations, 0) DESC
-        ),
-        scored AS (
-            SELECT d.*,
-                   COALESCE(us.followee_share, 1) AS followee_share,
-                   COALESCE(us.total_share, 1)    AS total_share,
-                   -- Composite score. Tunables:
-                   --   sci  ×6       — pushes scientific resources
-                   --                   to the top of the feed.
-                   --   recency      — weekly buckets so the whole
-                   --                   current-week cohort competes
-                   --                   on signal, not on hour-of-day.
-                   --                   Docs inside the same rolling
-                   --                   7-day window all get the same
-                   --                   recency bonus; the bonus steps
-                   --                   down at each week boundary.
-                   --   followee_share × 1.5 (capped at 3 extras) —
-                   --                   reward URLs surfaced by
-                   --                   multiple followees.
-                   --   total_share   — sublinear (log) so popular
-                   --                   resources outside the follow
-                   --                   graph also bubble up, without
-                   --                   drowning the followee signal.
-                   --   primary VIP   — +0.8 nudge.
-                   --   followers     — sublinear bump on the most
-                   --                   notable sharer (10k twitter
-                   --                   followers ≈ +1.0).
-                   d.sci_score::float * 6
-                   + CASE
-                       WHEN d.date >= now() - INTERVAL '7 days'  THEN 5
-                       WHEN d.date >= now() - INTERVAL '14 days' THEN 4
-                       WHEN d.date >= now() - INTERVAL '21 days' THEN 3
-                       WHEN d.date >= now() - INTERVAL '28 days' THEN 2
-                       WHEN d.date >= now() - INTERVAL '35 days' THEN 1
-                       ELSE 0
-                     END
-                   + LEAST(3, GREATEST(0, COALESCE(us.followee_share, 1) - 1)) * 1.5
-                   + LEAST(2, LN(GREATEST(1, COALESCE(us.total_share, 1)::float))) * 0.7
-                   + CASE WHEN d.pri_vip THEN 0.8 ELSE 0 END
-                   + LEAST(
-                       1.5,
-                       LN(GREATEST(1, COALESCE(d.pri_twitter_followers, 0) / 10000.0))
-                     )
-                   -- Rich-tweet bonus: tweets whose `linked_urls`
-                   -- payload contains at least one entry with a
-                   -- non-empty `image` field have a preview card
-                   -- (paper card / image / video thumbnail) and tend
-                   -- to be more interesting visually. Detected by
-                   -- structure, never by inspecting tweet text.
-                   + CASE
-                       WHEN d.source = 'twitter'
-                            AND EXISTS (
-                              SELECT 1
-                                FROM jsonb_array_elements(d.linked_urls) e
-                               WHERE COALESCE(e->>'image', '') <> ''
-                            )
-                         THEN 1.5
-                       ELSE 0
-                     END
-                   -- Fresh-self-post boost: docs the signed-in user
-                   -- authored in the last hour get a huge score
-                   -- bump so they surface at the very top of their
-                   -- own feed immediately after a compose submit
-                   -- (or any other client-side bulk-insert). The
-                   -- boost decays - at 1h the doc settles back
-                   -- into its natural score order, so it does not
-                   -- permanently camp at the top of the feed.
-                   -- Without this a source=bookmark post
-                   -- (sci_score=0) was being scored below ~200
-                   -- followee posts.
-                   + CASE
-                       WHEN d.primary_user_id = $1
-                            AND d.created_at > NOW() - INTERVAL '1 hour'
-                         THEN 50
-                       ELSE 0
-                     END
-                   AS score
-              FROM dedup d
-              LEFT JOIN url_share us ON us.canonical_url = d.canonical_url
-        ),
-        ordered AS (
-            -- Pure score-based ranking — we no longer round-robin
-            -- the users in SQL. The Rust handler does a light
-            -- post-pass that *only* prevents two consecutive posts
-            -- from the same primary user, so most of someone's
-            -- output remains visible in the feed; a follower's
-            -- recent posts can sit two slots apart instead of being
-            -- buried at the end.
-            SELECT s.*
-              FROM scored s
-        )
-        SELECT
-            m.url, m.title,
-            COALESCE(to_char(m.date, 'YYYY-MM-DD'), '') AS date_str,
-            m.summary,
-            m.clean_title, m.clean_summary, m.urls,
-            m.tags, m.source, m.source_url,
-            m.linked_urls, m.link_hosts,
-            m.primary_user_id, m.score,
-            s.sharers, s.sharer_count,
-            -- Per-row already-seen flag. Mirrors the hide-filter
-            -- semantics: a row is flagged seen only when the
-            -- viewer aggregated dwell on this URL meets the
-            -- threshold within the horizon (and outside the 10-min
-            -- grace). Short scroll-pasts do not trip the dim.
-            -- Short-circuited by `$9::bool AND ...` so the common
-            -- hide-seen path skips the SUM entirely.
-            ($9::bool AND $1 IS NOT NULL AND COALESCE((
-                SELECT SUM(COALESCE(e.dwell_ms, 0))::bigint
-                  FROM events e
-                 WHERE e.viewer_user_id = $1
-                   AND e.event_type    = 7
-                   AND e.doc_url       = m.url
-                   AND e.created_at    < now() - interval '10 minutes'
-                   AND e.created_at    > now() - ($10::int || ' days')::interval
-            ), 0) >= $11::int) AS already_seen
-          FROM ordered m
-          JOIN LATERAL (
-              -- Sharers = EVERY non-deleted owner of this URL OR of a
-              -- doc that references this URL. Two-pronged lookup:
-              --
-              --   1. `d.canonical_url = m.canonical_url`
-              --        Direct owners — anyone whose own `url`
-              --        canonicalizes to the same thing (arxiv abs/pdf
-              --        variants collapse here).
-              --
-              --   2. `d.canonical_referenced_urls && m.canonical_referenced_urls`
-              --        Indirect: anyone whose doc REFERENCES at least
-              --        one URL the current card also references. A
-              --        tweet linking a paper, a blog post linking a
-              --        paper, and the paper's own arxiv page all
-              --        cross-pollinate — so the avatar stack on the
-              --        paper card surfaces every personality who
-              --        tweeted about it, and vice versa.
-              --
-              -- Both prongs are GIN-indexed (canonical_url btree;
-              -- canonical_referenced_urls gin), so this is cheap.
-              -- `canonical_referenced_urls` always includes the
-              -- doc's own canonical_url so prong 2 also matches
-              -- direct owners — but we keep prong 1 explicit so
-              -- the query optimiser can pick the cheaper plan.
-              SELECT jsonb_agg(DISTINCT
-                         jsonb_build_object(
-                             'slug',             u.username,
-                             'name',             u.name,
-                             'avatar',           u.avatar,
-                             'twitterFollowers', u.twitter_followers
-                         )
-                     )       AS sharers,
-                     count(DISTINCT u.id) AS sharer_count
-                FROM documents d
-                JOIN users    u ON u.id = d.user_id
-               WHERE d.deleted = FALSE
-                 AND (
-                       d.canonical_url = m.canonical_url
-                    OR (cardinality(m.canonical_referenced_urls) > 0
-                        AND d.canonical_referenced_urls && m.canonical_referenced_urls)
-                 )
-          ) s ON true
-         -- Pure score-based ordering. Over-fetch by 2× so the
-         -- Rust post-pass can defer immediate same-user duplicates
-         -- without running out of rows to backfill.
-         ORDER BY m.score DESC,
-                  m.date DESC,
-                  m.created_at DESC,
-                  m.url
-         LIMIT $2 * 2
-    ";
+    // Snapshot is the single source of truth — the live CTE that
+    // used to live here is gone. If the snapshot is empty (cold
+    // boot, daemon outage) the timeline returns an empty array and
+    // the frontend renders its "no posts yet" state; better than
+    // serving stale-CTE content that doesn't match the snapshot's
+    // ranking semantics.
+    let rows: Vec<TimelineRow> = sqlx::query_as::<_, TimelineRow>(snapshot_sql)
+        .bind(me_id)
+        .bind(limit)
+        .bind(before.clone())
+        .bind(&sources_inc)
+        .bind(&sources_exc)
+        .bind(&tags_inc)
+        .bind(since.clone())
+        .bind(&categories)
+        .bind(include_seen)
+        .bind(seen_horizon_days)
+        .bind(min_seen_dwell_ms)
+        .bind(include_owned)
+        .fetch_all(&pool)
+        .await
+        .unwrap_or_else(|e| {
+            tracing::error!(error = %e, "timeline.snapshot.failed");
+            Vec::new()
+        });
 
-    // Helper closure that runs the live CTE query. Used both as the
-    // primary path (snapshot bypassed / stale / empty) and as the
-    // fallback when the snapshot path returns zero rows.
-    let bind_live = || {
-        sqlx::query_as::<_, TimelineRow>(sql)
-            .bind(me_id)
-            .bind(limit)
-            .bind(before.clone())
-            .bind(&sources_inc)
-            .bind(&sources_exc)
-            .bind(&tags_inc)
-            .bind(since.clone())
-            .bind(&categories)
-            .bind(include_seen)
-            .bind(seen_horizon_days)
-            .bind(min_seen_dwell_ms)
-            .bind(include_owned)
-    };
-
-    let rows: Vec<TimelineRow> = if snapshot_fresh {
-        // Try the snapshot fast path. Fall back to the live query
-        // when it returns no rows (cold filter combo, daemon outage
-        // mid-rebuild) or errors out — better to serve a slow page
-        // than an empty one.
-        let snapshot_result = sqlx::query_as::<_, TimelineRow>(snapshot_sql)
-            .bind(me_id)
-            .bind(limit)
-            .bind(before.clone())
-            .bind(&sources_inc)
-            .bind(&sources_exc)
-            .bind(&tags_inc)
-            .bind(since.clone())
-            .bind(&categories)
-            .bind(include_seen)
-            .bind(seen_horizon_days)
-            .bind(min_seen_dwell_ms)
-            .bind(include_owned)
-            .fetch_all(&pool)
-            .await;
-        match snapshot_result {
-            Ok(rs) if !rs.is_empty() => rs,
-            Ok(_) => {
-                tracing::debug!("timeline.snapshot.empty — falling back to live");
-                bind_live().fetch_all(&pool).await.unwrap_or_default()
-            }
-            Err(e) => {
-                tracing::warn!(error = %e, "timeline.snapshot.failed — falling back to live");
-                bind_live().fetch_all(&pool).await.unwrap_or_default()
-            }
-        }
-    } else {
-        match bind_live().fetch_all(&pool).await {
-            Ok(rs) => rs,
-            Err(e) => {
-                tracing::error!(error = %e, "timeline.query.failed");
-                Vec::new()
-            }
-        }
-    };
-
-    // Diversity pass — soft, super-linear decay so prolific sharers
-    // get spread out without us hiding any of their posts.
+    // Diversity pass — soft, super-linear decay so prolific
+    // primary authors get spread out without us hiding any of
+    // their posts.
     //
     //   effective_score = base_score
-    //                     - DECAY * prior_appearances ^ EXP
+    //                     - DECAY × prior_appearances ^ EXP
     //                     - (ADJACENT if same user as the last emit)
     //
-    // Tuned for "see most of someone's posts, spread out". With
-    // DECAY=2.0 and EXP=1.3 a prolific sharer's 2nd post lands ~10
-    // slots after their 1st, their 3rd ~30 slots later, etc. No
-    // posts get hidden — they just shift down so first-time sharers
-    // get a fair chance at the top of the feed.
+    // The cluster-diversity throttle (sharer-set overlap penalty)
+    // is baked into the snapshot's `score` column at refresh time
+    // — see sources/sql/feed_snapshot.py — so by the time rows
+    // arrive here, their score already reflects how much their
+    // sharer set overlaps with higher-scored rows. The pass below
+    // only handles the per-primary-author anti-bunching.
+    //
     // O(N²) over a queue capped at limit × 2 (≤ 400) — negligible.
     const DECAY: f64 = 2.0;
     const EXP: f64 = 1.3;

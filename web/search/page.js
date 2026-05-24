@@ -804,44 +804,27 @@
 
   function reorderFeed(docs) {
     if (docs.length === 0) return [];
-    // Collapse retweet + URL near-duplicates BEFORE the date/source
-    // sort. Otherwise the diversity reorder treats each duplicate as
-    // a fresh same-source row and produces awkward runs.
+    // Collapse retweet + URL near-duplicates BEFORE anything else.
+    // Otherwise the picks-merge below treats each duplicate as a
+    // fresh same-source row and produces awkward visual runs.
     docs = dedupFeedDocs(docs);
-    // User-shuffled order short-circuits this entire sort pass —
-    // the click handler did its own Fisher-Yates and any re-sort
-    // here would undo it on the next infinite-scroll append.
+    // User-shuffled order short-circuits — the click handler did
+    // its own Fisher-Yates and any re-sort here would undo it on
+    // the next infinite-scroll append.
     if (state.feedShuffled) return docs;
-    // HN front-page picks come pre-interleaved by the API at fixed
-    // positions (every ~10 docs, never breaking a same-source run).
-    // We pin them at their original index and only sort the rest, so
-    // the client-side source-clustering pass still does its job for
-    // followee docs without yanking picks back into a hackernews
-    // bucket at the top of the feed.
-    const picks = [];
-    const rest = [];
-    docs.forEach((d, i) => {
-      if (d && d.picked) picks.push({ origIdx: i, doc: d });
-      else rest.push(d);
-    });
-    const sorted = rest.sort((a, b) => {
-      const da = a.date || "";
-      const db = b.date || "";
-      if (da !== db) return db.localeCompare(da);
-      const srcCmp = (a.source || "").localeCompare(b.source || "");
-      if (srcCmp !== 0) return srcCmp;
-      const sa = a.sharerCount || (a.sharers ? a.sharers.length : 0) || 0;
-      const sb = b.sharerCount || (b.sharers ? b.sharers.length : 0) || 0;
-      return sb - sa;
-    });
-    // Picks are sorted by origIdx asc (already, since we pushed in
-    // iteration order) so splicing them back oldest-first gives each
-    // pick the position the API picked.
-    for (const { origIdx, doc } of picks) {
-      const at = Math.min(origIdx, sorted.length);
-      sorted.splice(at, 0, doc);
-    }
-    return sorted;
+    // Honour the server's score-based order. The API now ranks via
+    // the precomputed `feed_snapshot.score` (sci × 6 + flat
+    // recency + LN-of-VIP-share + rich-tweet …), plus per-viewer
+    // bonuses applied at read time, plus a Rust-side diversity
+    // pass that anti-bunches the same primary user. Re-sorting by
+    // date DESC here used to override all of that — a 1-week-old
+    // single-VIP card outranked a 1-month-old 15-VIP consensus
+    // doc on the page even though the server scored them the
+    // other way. We now pass the array through untouched.
+    //
+    // HN front-page picks still ride along at the position the
+    // server interleaved them at; nothing to do for them either.
+    return docs;
   }
 
   /* Build a render plan for feed docs. Walk the (already-sorted) list
@@ -2878,62 +2861,48 @@
   // Expose to other closures (the feed-search merge step calls them).
   window._fetchUrlsForSelectedCategories = fetchUrlsForSelectedCategories;
   window._filterDocsByUrlSet = filterDocsByUrlSet;
-  /* Fetch posts from the trailing 7-day window and replace the
-   * visible feed with them. Invoked by the pull-to-refresh gesture
-   * on the feed view (`wirePullRefresh()` below).
+  /* Pull-to-refresh handler — feed AND personal pages.
    *
-   * `state.shownUrls` accumulates URLs as cards render so each pull
-   * surfaces content the user hasn't seen yet. When the pool of
-   * unseen URLs is empty (the user has scrolled through everything
-   * this session), we wipe `shownUrls` and re-render from the top
-   * of the same payload — pulling never lands on an empty screen,
-   * the feed just loops back to the most-recent week.
+   * Behaviour: invalidate every cache the current view reads from,
+   * then re-run the normal load path with the current state. NO
+   * special "trailing 7-day window" or unseen-URL filtering — the
+   * user's pull simply means "give me whatever's actually fresh on
+   * the server right now, with my current filters". The server's
+   * snapshot path (refreshed hourly) plus the anon cache (60 s)
+   * make this near-free; on a personal page the per-slug cache
+   * (`K.invalidateUnindexed`) is the one that matters.
+   *
+   * Caches busted:
+   *   * `_timelineCache` (in-memory Map, keyed by URL+params).
+   *   * `KnowledgeSessionCache "timeline:"` (sessionStorage mirror —
+   *     survives page navigations).
+   *   * `K.invalidateUnindexed(slug)` for every slug in scope —
+   *     covers freshly-saved docs that haven't hit the ColBERT
+   *     index yet on a personal page.
    *
    * Idempotent against concurrent calls via `_pullRefreshBusy`.
-   * Sets `feedShuffled` so the new docs render in API order
-   * (score-desc) rather than the local date-desc sort. */
+   * `refresh()` itself wipes `state.shownUrls` so the next render
+   * doesn't filter out cards we've shown this session. */
   let _pullRefreshBusy = false;
   async function pullRefreshFeed() {
     if (_pullRefreshBusy) return;
     _pullRefreshBusy = true;
     try {
-      // Force a trailing 7-day window regardless of whatever the
-      // date-filter chip is set to. Pull a generous 200 so there's
-      // room to filter out everything the user has already seen
-      // this session and still have ~50 fresh cards left to render.
-      // The API caps limit at 200, plenty for any realistic week of
-      // activity.
-      const all = await loadFollowingTimeline({
-        since: _sinceDateString("7d"),
-        limit: 200,
-        fresh: true,
-      });
-      const results = $("results");
-      if (!results) return;
-      const pool = Array.isArray(all) ? all : [];
-      // Filter out anything already in front of the user this
-      // session. If that leaves nothing, treat the pull as a "loop
-      // back": clear shownUrls and render from the head of the
-      // full pool again. Better than an empty-state — the user
-      // asked to refresh and they get fresh content either way.
-      let fresh = pool.filter((d) => d && d.url && !state.shownUrls.has(d.url));
-      if (!fresh.length && pool.length) {
-        state.shownUrls = new Set();
-        fresh = pool;
+      _timelineCache.clear();
+      window.KnowledgeSessionCache?.invalidatePrefix?.(_TIMELINE_SS_PREFIX);
+      // Personal-page caches. Two layers: the per-slug unindexed-doc
+      // memo (recent saves not yet in ColBERT) and the per-slug
+      // browse cache (full PG library) — both keyed on slug, both
+      // shadow the freshest data for ~30 s if we don't clear them.
+      if (typeof K.invalidateUnindexed === "function") {
+        for (const slug of state.libs) K.invalidateUnindexed(slug);
+        if (me?.slug) K.invalidateUnindexed(me.slug);
       }
-      if (!fresh.length) return;
-      // Cap at 50 — same magnitude as a normal page.
-      const slice = fresh.slice(0, 50);
-      state.lastDocs = slice;
-      state.feedShuffled = true;
-      markShownUrls(slice);
-      $("empty").style.display = "none";
-      results.innerHTML = renderFeedDocsHtml(slice);
-      wireResults();
-      wireFeedCollapse();
-      armManualCollapseButtons();
-      mergeAdjacentCollapsePills();
-      armInfiniteScroll();
+      if (typeof K.invalidatePersonalDocs === "function") {
+        for (const slug of state.libs) K.invalidatePersonalDocs(slug);
+        if (me?.slug) K.invalidatePersonalDocs(me.slug);
+      }
+      await refresh();
       window.scrollTo({ top: 0, behavior: "smooth" });
     } finally {
       _pullRefreshBusy = false;
@@ -2999,10 +2968,15 @@
     let lastPull = 0;
 
     function shouldArm() {
-      // Only on the feed view, no active query, and the page is
-      // already scrolled to the very top. Otherwise the gesture
-      // would fight the normal scroll.
-      if (state.libs.size !== 0) return false;
+      // Eligible surfaces: the feed (libs empty) and a single
+      // personal page (libs.size === 1). Multi-library
+      // intersections + active searches are out — those views
+      // benefit less from a refresh (the user can re-run the
+      // search by hitting return) and the gesture would just
+      // fight the normal scroll. Also requires the page to be
+      // already scrolled to the very top so a mid-list pull
+      // doesn't accidentally fire.
+      if (state.libs.size > 1) return false;
       if (state.query) return false;
       // Skip when a Cupertino sheet is open (People / Sources) —
       // the user's downward drag there is meant to dismiss the

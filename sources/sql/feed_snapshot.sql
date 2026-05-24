@@ -57,6 +57,19 @@ CREATE TABLE IF NOT EXISTS feed_snapshot (
     -- logged-out callers want the global-VIP-feed and this turns it
     -- into a single indexed scan instead of an array intersect.
     any_vip_sharer    BOOLEAN     NOT NULL DEFAULT FALSE,
+    -- Count of distinct VIP sharers. The score formula now uses
+    -- `LN(vip_sharer_count + 1) × 1.0` (capped at 2) so resources
+    -- co-signed by multiple VIPs get progressively more boost than
+    -- a single-VIP doc — the old flat 0.8 bonus didn't distinguish
+    -- "one VIP saved it" from "ten VIPs saved it".
+    vip_sharer_count  INTEGER     NOT NULL DEFAULT 0,
+    -- Union of category slugs across every doc that maps to this
+    -- anchor. The categorize daemon writes per-(user, url) rows
+    -- into document_category_assignments; here we roll those up so
+    -- the timeline handler can satisfy the `category=` filter from
+    -- the snapshot alone (no extra JOIN at read time). GIN-indexed
+    -- below for the `&&` overlap check.
+    categories        TEXT[]      NOT NULL DEFAULT '{}',
 
     -- Viewer-agnostic score. Computed at refresh time. The handler
     -- adds a follow-share and fresh-self bonus on read.
@@ -70,8 +83,10 @@ CREATE TABLE IF NOT EXISTS feed_snapshot (
 
 -- Idempotent migrations — any column added later goes here so a
 -- redeploy lifts the schema in place.
-ALTER TABLE feed_snapshot ADD COLUMN IF NOT EXISTS any_vip_sharer BOOLEAN NOT NULL DEFAULT FALSE;
-ALTER TABLE feed_snapshot ADD COLUMN IF NOT EXISTS anchor_url     TEXT;
+ALTER TABLE feed_snapshot ADD COLUMN IF NOT EXISTS any_vip_sharer    BOOLEAN NOT NULL DEFAULT FALSE;
+ALTER TABLE feed_snapshot ADD COLUMN IF NOT EXISTS vip_sharer_count  INTEGER NOT NULL DEFAULT 0;
+ALTER TABLE feed_snapshot ADD COLUMN IF NOT EXISTS categories        TEXT[]  NOT NULL DEFAULT '{}';
+ALTER TABLE feed_snapshot ADD COLUMN IF NOT EXISTS anchor_url        TEXT;
 -- Backfill the new anchor_url column for pre-existing rows by
 -- defaulting it to the canonical URL — the anchor degenerates to
 -- the canonical when no priority host (arxiv/huggingface/…) appears
@@ -90,6 +105,13 @@ CREATE INDEX IF NOT EXISTS idx_feed_snapshot_vip_score
 -- typically scan <500 rows to fill a 50-row page.
 CREATE INDEX IF NOT EXISTS idx_feed_snapshot_sharers
     ON feed_snapshot USING gin (sharer_user_ids);
+
+-- Category filter: `categories && $cats[]` — same GIN overlap pattern.
+-- Most timeline requests pass no categories so the planner just skips
+-- the predicate, but when a category chip is active this index keeps
+-- the per-anchor membership check sub-millisecond.
+CREATE INDEX IF NOT EXISTS idx_feed_snapshot_categories
+    ON feed_snapshot USING gin (categories);
 
 -- Score-only index for the general top-N case (no follow filter,
 -- e.g. operator probes). Date desc as tiebreaker.

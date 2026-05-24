@@ -459,6 +459,12 @@ services:
       # via Dokploy UI (e.g. set OPENAI_CLEAN_MODEL=gpt-4.1-mini) for
       # higher-fidelity passes.
       - OPENAI_CLEAN_MODEL=${OPENAI_CLEAN_MODEL:-gpt-4.1-nano}
+      # Daemon only rewrites docs in the top-N of feed_snapshot.score.
+      # Default 3000 covers a generous pagination tail beyond what
+      # any user could realistically scroll to (cards page 1 = 50;
+      # 60 pages ≫ what we see in analytics). Bump up if the
+      # snapshot ranking changes and we want more headroom.
+      - CLEAN_FEED_TOP_N=${CLEAN_FEED_TOP_N:-3000}
       - PYTHONUNBUFFERED=1
     command: ["python", "-m", "sources.utils.clean_daemon"]
     deploy:
