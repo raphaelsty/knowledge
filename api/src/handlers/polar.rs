@@ -58,7 +58,14 @@ pub fn webhook_secret() -> Option<String> {
 pub async fn fetch_product_metadata(product_id: &str) -> Option<serde_json::Value> {
     let token = access_token()?;
     let url = format!("{}/v1/products/{}", polar_base(), product_id);
-    let client = reqwest::Client::new();
+    // Bounded timeout — a hung Polar response would otherwise pin
+    // the calling task indefinitely and ripple back into the
+    // checkout-webhook handler. 10 s is generous for the product
+    // metadata endpoint (typical ~150 ms).
+    let client = reqwest::Client::builder()
+        .timeout(std::time::Duration::from_secs(10))
+        .build()
+        .ok()?;
     let resp = client.get(&url).bearer_auth(token).send().await.ok()?;
     if !resp.status().is_success() {
         tracing::warn!(

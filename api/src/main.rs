@@ -1282,12 +1282,51 @@ Environment Variables:
         // `after_connect` here AND via `ALTER DATABASE … SET jit
         // = off` (already applied to prod) so a fresh container
         // build pre-deploy also benefits.
-        let opts = sqlx::postgres::PgPoolOptions::new().after_connect(|conn, _| {
-            Box::pin(async move {
-                sqlx::query("SET jit = off").execute(conn).await?;
-                Ok(())
-            })
-        });
+        // Self-healing pool. Without `test_before_acquire` + a
+        // bounded `max_lifetime` / `idle_timeout`, a PG container
+        // restart or NAT timeout silently leaves sqlx with dead TCP
+        // sockets — every subsequent request hangs for the 30 s
+        // acquire timeout, returns 200 with an empty body, and the
+        // operator finds out via "prod is down" (May 2026).
+        //   * test_before_acquire: ~0.3 ms ping per checkout, drops
+        //     dead connections before they reach a handler.
+        //   * max_lifetime 30 min: forces full reconnect once per
+        //     window so any half-state (server restart, role
+        //     reload, NAT) gets renegotiated.
+        //   * idle_timeout 10 min: shrinks the pool when traffic
+        //     dips, so we don't carry 20 stale sockets through a
+        //     quiet night.
+        //   * max_connections 20: doubles the default 10. The API
+        //     hosts ~5 concurrent handlers under typical traffic;
+        //     20 leaves room for the admin + ingest tail without
+        //     starving the timeline.
+        //   * acquire_timeout 5s: fail fast on a wedged pool —
+        //     better to surface "we're overloaded" than hang for
+        //     30 s with a 200-empty response.
+        //
+        // Note on statement_timeout: deliberately NOT set via
+        // after_connect. The schema-migration step at boot replays
+        // sources/sql/*.sql, and one of those (documents.sql adds a
+        // GENERATED STORED column whose backfill scans every row)
+        // can run for minutes on a large prod table. A per-connection
+        // statement timeout would abort that mid-flight, leaving the
+        // schema in a broken state. The same partial-write hazard
+        // applies to any future big migration — we keep PG's own
+        // unbounded default and rely on `acquire_timeout` instead to
+        // protect against pool exhaustion.
+        let opts = sqlx::postgres::PgPoolOptions::new()
+            .max_connections(20)
+            .min_connections(2)
+            .test_before_acquire(true)
+            .max_lifetime(Duration::from_secs(30 * 60))
+            .idle_timeout(Duration::from_secs(10 * 60))
+            .acquire_timeout(Duration::from_secs(5))
+            .after_connect(|conn, _| {
+                Box::pin(async move {
+                    sqlx::query("SET jit = off").execute(conn).await?;
+                    Ok(())
+                })
+            });
         match opts.connect(&database_url).await {
             Ok(pool) => {
                 tracing::info!("database.connected");
