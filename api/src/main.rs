@@ -407,10 +407,19 @@ fn build_router(state: Arc<AppState>, pg_pool: Option<sqlx::PgPool>) -> Router {
         .ok()
         .and_then(|v| v.parse().ok())
         .unwrap_or(100);
+    // Per-router inflight cap. There are 4 routers (search, encode,
+    // delete, admin) so the effective total ceiling is 4× this.
+    // Default 256 means up to ~1k concurrent requests across the
+    // process before any router starts shedding load. Tuned for an
+    // I/O-bound mix where most handlers spend their time awaiting
+    // PG — the PgPool (max_connections=40) is the actual back-pressure
+    // here, not the inflight count. Override with the
+    // `CONCURRENCY_LIMIT` env var if you need to throttle (e.g. to
+    // smoke-test rate limits) or raise (multi-replica deployments).
     let concurrency_limit: usize = std::env::var("CONCURRENCY_LIMIT")
         .ok()
         .and_then(|v| v.parse().ok())
-        .unwrap_or(100);
+        .unwrap_or(256);
 
     if rate_limit_enabled {
         tracing::info!(
@@ -1304,6 +1313,16 @@ Environment Variables:
         //     better to surface "we're overloaded" than hang for
         //     30 s with a 200-empty response.
         //
+        // Sized for the public box (CX22, 2 vCPU, 7.6 GB RAM, PG
+        // shared_buffers=1GB, PG max_connections=100). 40 inflight
+        // queries gives the API plenty of headroom while leaving
+        // ~50 connections for daemons + ad-hoc psql sessions. With
+        // 2 vCPUs the planner can really only run a few queries
+        // truly-parallel anyway, but the I/O wait on disk reads is
+        // where the parallelism actually pays off (4 concurrent
+        // seq-scans on the same disk still complete faster than
+        // one-at-a-time because of read-ahead).
+        //
         // Note on statement_timeout: deliberately NOT set via
         // after_connect. The schema-migration step at boot replays
         // sources/sql/*.sql, and one of those (documents.sql adds a
@@ -1315,8 +1334,8 @@ Environment Variables:
         // unbounded default and rely on `acquire_timeout` instead to
         // protect against pool exhaustion.
         let opts = sqlx::postgres::PgPoolOptions::new()
-            .max_connections(20)
-            .min_connections(2)
+            .max_connections(40)
+            .min_connections(5)
             .test_before_acquire(true)
             .max_lifetime(Duration::from_secs(30 * 60))
             .idle_timeout(Duration::from_secs(10 * 60))
