@@ -290,15 +290,17 @@ services:
     deploy:
       resources:
         limits:
-          # CPU cap dropped from 1.0 → 0.6 to improve site availability
-          # under load. The continuous pipeline's typical steady-state
-          # usage is ~2-5 % of one core (HTTP-bound on external fetchers
-          # — twitter, scholar, huggingface), but bursts during the tag
-          # / clean / index stages used to peg a full core and starve
-          # the Rust API on the 2-vCPU box. 0.6 leaves headroom for
-          # those bursts while reserving the other 0.4 vCPU for traffic.
+          # CPU cap stepped down again: 1.0 → 0.6 → 0.5 as part of
+          # a global rebalance where every daemon's quota shrinks
+          # so the four-daemon total lands at 1.0 vCPU exactly,
+          # leaving the API a guaranteed ~1 vCPU on the 2-vCPU box
+          # (up from the previous ~0.75). The continuous pipeline
+          # is HTTP-bound on external fetchers (twitter, scholar,
+          # huggingface) at steady state — typical use is ~2-5 %
+          # of one core. The 0.5 cap still absorbs the periodic
+          # tag/clean/index bursts without spilling into API time.
           memory: 2G
-          cpus: "0.6"
+          cpus: "0.5"
 
   # ColBERT index repair + backfill. Hits the local knowledge-api on
   # the docker network rather than the public URL so the round trip
@@ -316,13 +318,16 @@ services:
     deploy:
       resources:
         limits:
-          # CPU cap dropped from 0.5 → 0.35 — the embedder work is
-          # latency-tolerant (backfill, not user-facing) so giving
-          # the API a bit more headroom is the right trade. The
-          # indexer's steady-state actual usage hovers ~7% of one
-          # core; this still leaves it 5× more than that for bursts.
+          # CPU cap stepped down: 0.5 → 0.35 → 0.25 as part of the
+          # daemons-total-1.0-vCPU rebalance. Indexer work is
+          # latency-tolerant (backfill, not user-facing); the
+          # steady-state actual usage hovers ~7 % of one core, so
+          # 0.25 still leaves 3-4× burst headroom. Index rebuilds
+          # that did peg the cap will just take a little longer —
+          # users won't notice because the previous index keeps
+          # serving until the rebuild finishes.
           memory: 2G
-          cpus: "0.35"
+          cpus: "0.25"
 
   # Category-assignment daemon. CPU-bound on small Potion embeddings
   # (~10 % of one core on the old systemd unit).
@@ -412,8 +417,9 @@ services:
 
   # Pedagogical title / summary rewriter via OpenAI (default model
   # gpt-4o-mini; override `OPENAI_CLEAN_MODEL` in Dokploy env to swap
-  # in a cheaper one, e.g. `gpt-4.1-nano`). I/O-bound on the API;
-  # 20 % CPU is generous.
+  # in a cheaper one, e.g. `gpt-4.1-nano`). I/O-bound on the OpenAI
+  # API; the local CPU just streams the response back into PG, so
+  # 0.15 covers it.
   knowledge-clean-daemon:
     <<: *daemon-base
     environment:
@@ -434,7 +440,10 @@ services:
       resources:
         limits:
           memory: 256M
-          cpus: "0.20"
+          # Stepped 0.20 → 0.15 in the daemons-total-1.0-vCPU
+          # rebalance; clean is OpenAI-I/O-bound so it spends most
+          # of its time idle waiting for the API response anyway.
+          cpus: "0.15"
 
 volumes:
   knowledge_pgdata:
