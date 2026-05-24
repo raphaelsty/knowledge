@@ -344,6 +344,13 @@ pub struct TimelineParams {
     /// the horizon, so multiple short glances can add up to a
     /// genuine read.
     pub min_seen_dwell_ms: Option<i32>,
+    /// When `true`, the user's own library + favorites stay in the
+    /// feed. Default `false` — for logged-in viewers we hide every
+    /// URL they already have in `documents` (own personality) or
+    /// `favorite_documents` (starred). Anon callers are never
+    /// filtered. Useful for debugging or for an explicit
+    /// "show me everything" mode.
+    pub include_owned: Option<bool>,
 }
 
 /// GET /api/timeline — same payload shape as `/api/feed` (per-URL rows
@@ -442,6 +449,11 @@ pub async fn timeline(
     // outside that bound would never match the data the client
     // actually emits.
     let min_seen_dwell_ms: i32 = params.min_seen_dwell_ms.unwrap_or(1500).clamp(0, 120_000);
+    // `include_owned` defaults to false — logged-in viewers don't
+    // want to discover docs they've already saved. Toggling it on
+    // bypasses the documents + favorite_documents NOT EXISTS
+    // filters in both query paths.
+    let include_owned: bool = params.include_owned.unwrap_or(false);
 
     // Row struct used by both the snapshot fast-path and the live
     // CTE fallback. Field order matches the final SELECT projection
@@ -596,6 +608,34 @@ pub async fn timeline(
                        AND e.created_at    < now() - interval '10 minutes'
                        AND e.created_at    > now() - ($10::int || ' days')::interval
                ), 0) < $11::int)
+           -- Exclude-owned filter — logged-in callers don't want to
+           -- discover docs they've already saved or starred. Drops
+           -- any URL present in their own `documents` rows OR in
+           -- `favorite_documents`. `$12::bool = TRUE` bypasses the
+           -- filter entirely (`include_owned` query param).
+           AND ($1 IS NULL OR $12::bool = TRUE OR (
+                NOT EXISTS (
+                    SELECT 1 FROM documents d
+                     WHERE d.user_id = $1
+                       AND d.url     = s.url
+                       AND d.deleted = FALSE
+                )
+                AND NOT EXISTS (
+                    SELECT 1 FROM favorite_documents fd
+                     WHERE fd.user_id = $1
+                       AND fd.url     = s.url
+                )
+                -- Also catch canonical-url overlap so a paper saved
+                -- as arxiv.org/abs/X hides arxiv.org/pdf/X in the
+                -- feed. `documents.canonical_url` is a GENERATED
+                -- STORED column so the lookup is cheap.
+                AND NOT EXISTS (
+                    SELECT 1 FROM documents d
+                     WHERE d.user_id       = $1
+                       AND d.canonical_url = s.canonical_url
+                       AND d.deleted       = FALSE
+                )
+           ))
          ORDER BY score DESC, s.date DESC NULLS LAST, s.url
          LIMIT $2 * 2
     ";
@@ -757,6 +797,31 @@ pub async fn timeline(
                            AND e.created_at    < now() - interval '10 minutes'
                            AND e.created_at    > now() - ($10::int || ' days')::interval
                     ), 0) < $11::int)
+               -- Exclude-owned filter — drop docs the viewer already
+               -- has in their own library or has starred. Bypassed
+               -- by include_owned=true ($12). Mirrors the snapshot
+               -- path's equivalent clause; uses the same indexes
+               -- (documents PK on (user_id, url) and
+               -- favorite_documents PK on (user_id, url)).
+               AND ($1 IS NULL OR $12::bool = TRUE OR (
+                    NOT EXISTS (
+                        SELECT 1 FROM documents od
+                         WHERE od.user_id = $1
+                           AND od.url     = d.url
+                           AND od.deleted = FALSE
+                    )
+                    AND NOT EXISTS (
+                        SELECT 1 FROM favorite_documents fd
+                         WHERE fd.user_id = $1
+                           AND fd.url     = d.url
+                    )
+                    AND NOT EXISTS (
+                        SELECT 1 FROM documents od2
+                         WHERE od2.user_id       = $1
+                           AND od2.canonical_url = d.canonical_url
+                           AND od2.deleted       = FALSE
+                    )
+               ))
              ORDER BY d.date DESC
              -- Over-fetch by 16x the requested limit — gives the
              -- diversity pass headroom to reorder past consecutive
@@ -1046,6 +1111,7 @@ pub async fn timeline(
             .bind(include_seen)
             .bind(seen_horizon_days)
             .bind(min_seen_dwell_ms)
+            .bind(include_owned)
     };
 
     let rows: Vec<TimelineRow> = if snapshot_fresh {
@@ -1065,6 +1131,7 @@ pub async fn timeline(
             .bind(include_seen)
             .bind(seen_horizon_days)
             .bind(min_seen_dwell_ms)
+            .bind(include_owned)
             .fetch_all(&pool)
             .await;
         match snapshot_result {
