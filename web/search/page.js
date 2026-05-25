@@ -8978,9 +8978,8 @@
         });
       // Feed tab — when already on the feed and no sheet is open,
       // suppress the link's navigation and scroll the page to the
-      // top instead. Same affordance as the floating back-to-top
-      // button, routed through the tab the user already expects to
-      // mean "where I am right now."
+      // top instead. Routed through the tab the user already expects
+      // to mean "where I am right now."
       document.getElementById("mbnFeed")?.addEventListener("click", (e) => {
         const onFeed = state.libs?.size === 0;
         if (onFeed && !anyOpen()) {
@@ -9118,31 +9117,6 @@
     }
     window._syncMobileChrome = _sync;
     _sync();
-
-    // ── Back-to-top button ──────────────────────────────────────
-    // A small frosted-glass floater that fades in once the user has
-    // scrolled past SHOW_AT pixels and smooth-scrolls them to the
-    // top on tap. The element lives in the HTML hidden by default;
-    // we toggle the `hidden` attribute on a passive scroll listener.
-    // CSS handles the fade — we don't use display:none so the
-    // transition stays visible.
-    const backTop = document.getElementById("backToTop");
-    if (backTop) {
-      const SHOW_AT = 600;
-      let lastVisible = null;
-      const apply = () => {
-        const visible = window.scrollY > SHOW_AT;
-        if (visible === lastVisible) return;
-        lastVisible = visible;
-        if (visible) backTop.removeAttribute("hidden");
-        else backTop.setAttribute("hidden", "");
-      };
-      window.addEventListener("scroll", apply, { passive: true });
-      backTop.addEventListener("click", () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      });
-      apply();
-    }
   }
 
   /* Post-paint auth setup. `me` was resolved earlier in the boot

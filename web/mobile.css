@@ -28,32 +28,37 @@
 
 /* ── Desktop default: hide every mobile-only element ─────────── */
 .mobile-bottom-nav,
-.mobile-sheet-backdrop,
-.back-to-top {
+.mobile-sheet-backdrop {
   display: none;
 }
 
 @media (max-width: 768px) {
   /* ── Global stability ────────────────────────────────────────── */
-  /* Keep horizontal-overflow clipping on `body` *only* — never on
-   * `html`. Setting `overflow-x: hidden` on an element implicitly
-   * promotes `overflow-y` from `visible` to `auto` (CSS spec). When
-   * both html AND body get that promotion they each become a scroll
-   * container and Brave's wheel-event routing breaks: the visible
-   * scrollbar still works (it targets one container directly) but
-   * mouse-wheel / trackpad scroll over content silently dies because
-   * the browser can't decide which scroller owns the gesture. Chrome
-   * tolerates this; Brave doesn't. Keeping the clipping on body
-   * leaves `html` as the natural single scroll container. */
+  /* `overflow-x: clip` (not `hidden`) on both `html` and `body`:
+   *
+   *   * `clip` cuts off horizontal overflow WITHOUT promoting
+   *     overflow-y to `auto` — so neither element becomes a
+   *     scroll container. The old `overflow-x: hidden` on body
+   *     alone left `html` as the natural scroller, and any child
+   *     wider than the viewport (a long URL, a wide image, a
+   *     code block) made the page scroll left-right on phone.
+   *   * `clip` was the bug fix the spec authors shipped exactly
+   *     for this case (Chrome 90+, Safari 16+, Firefox 81+ — all
+   *     phones we ship to are well past those floors).
+   *   * No scroll-container promotion means Brave's wheel-event
+   *     routing stays happy (`html` remains the single scroller
+   *     for vertical content, identical to the original layout).
+   */
   html {
     width: 100%;
+    overflow-x: clip;
     overscroll-behavior-x: none;
     /* Suppress the browser's native pull-to-refresh so our JS
      * pull-to-refresh handler gets the touchmove events instead. */
     overscroll-behavior-y: contain;
   }
   body {
-    overflow-x: hidden;
+    overflow-x: clip;
     width: 100%;
   }
 
@@ -1425,87 +1430,13 @@
       0 4px 12px rgba(0, 0, 0, 0.3);
   }
 
-  /* ── Back-to-top — small frosted-glass circular floater ────────
-   *
-   * Sits in the bottom-right corner, just above the bottom-nav.
-   * Mirrors the nav's glass vocabulary (same blur, same hairline
-   * border, same shadow weight) but downsized so it reads as a
-   * peripheral affordance rather than a primary control. Hidden
-   * by default via the `[hidden]` attribute (which we toggle in
-   * JS rather than the `display: none` desktop default — the
-   * attribute keeps the fade transition visible).
-   * ────────────────────────────────────────────────────────────── */
-  .back-to-top {
-    display: grid;
-    place-items: center;
-    position: fixed;
-    right: 14px;
-    /* Sits comfortably above the bottom-nav's top edge: nav.bottom
-     * is 10 + safe-area, nav height 60 (top of nav ≈ 70 + safe-area
-     * from viewport bottom). Pushing the button to 92 + safe-area
-     * leaves a visible ~14 px gap above the nav. */
-    bottom: calc(92px + env(safe-area-inset-bottom));
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    border: 1px solid rgba(var(--ink-rgb), 0.06);
-    background: rgba(var(--paper-rgb), 0.7);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    backdrop-filter: blur(20px) saturate(180%);
-    box-shadow:
-      0 1px 0 rgba(255, 255, 255, 0.5) inset,
-      0 8px 22px rgba(var(--ink-rgb), 0.1),
-      0 2px 8px rgba(var(--ink-rgb), 0.05);
-    color: rgba(var(--ink-rgb), 0.62);
-    cursor: pointer;
-    padding: 0;
-    z-index: 1001;
-    -webkit-tap-highlight-color: transparent;
-    touch-action: manipulation;
-    opacity: 1;
-    transform: translateY(0);
-    transition:
-      opacity 0.22s ease,
-      transform 0.22s cubic-bezier(0.32, 0.72, 0, 1),
-      background 0.14s ease,
-      color 0.14s ease;
-  }
-  .back-to-top svg {
-    width: 18px;
-    height: 18px;
-  }
-  .back-to-top:active {
-    transform: translateY(0) scale(0.94);
-  }
-  /* Hidden state: keep `display:grid` so the fade-out animation
-   * runs; just drop opacity, lift slightly, and stop accepting
-   * pointer events. */
-  .back-to-top[hidden] {
-    display: grid;
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(8px);
-  }
-  /* Dark theme — re-tint the glass and shadows to match
-   * .mobile-bottom-nav's dark variant. */
-  [data-theme="dark"] .back-to-top {
-    background: rgba(20, 20, 28, 0.62);
-    border-color: rgba(255, 255, 255, 0.06);
-    box-shadow:
-      0 1px 0 rgba(255, 255, 255, 0.04) inset,
-      0 8px 22px rgba(0, 0, 0, 0.5),
-      0 2px 8px rgba(0, 0, 0, 0.3);
-    color: rgba(255, 255, 255, 0.62);
-  }
-  /* Hide the floater while a Cupertino sheet is presented so it
-   * doesn't sit on top of the frosted backdrop. */
-  body.cupertino-pane-presented .back-to-top {
-    opacity: 0;
-    pointer-events: none;
-  }
-
   .mbn-tab {
     flex: 1 1 0;
+    /* Defeat the default `min-width: auto` on flex items so a long
+     * label (e.g. "Personal") can't push a slot wider than its
+     * fair share on a 360 px viewport. The label still renders —
+     * it just hugs the slot. */
+    min-width: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1577,8 +1508,12 @@
     margin: 0 4px;
   }
   .mbn-action {
-    flex: 0 0 44px;
-    width: 44px;
+    /* Same `flex: 1 1 0` share as `.mbn-tab` so every button on the
+     * bar — labelled tabs and icon-only actions alike — occupies the
+     * exact same slot width. The previous `0 0 44px` made the actions
+     * read as a cramped right-hand cluster next to the wide tabs. */
+    flex: 1 1 0;
+    min-width: 0;
     height: 48px;
     display: inline-flex;
     align-items: center;
