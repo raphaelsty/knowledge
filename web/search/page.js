@@ -8509,6 +8509,10 @@
               public: true,
             },
           ],
+          // Provenance — backend stamps `created_via_post = TRUE`
+          // so the personal page pins this row to the top by
+          // `created_at`. Background-sync calls omit this field.
+          via: "post",
         }),
       });
       if (!r.ok) throw new Error(`HTTP ${r.status}`);

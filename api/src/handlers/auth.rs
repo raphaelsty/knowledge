@@ -2747,6 +2747,14 @@ pub struct BulkSaveRequest {
     /// some bookmarked URLs unstarred when the second call failed.
     #[serde(default)]
     pub favorite: bool,
+    /// Provenance flag. Set by the /search "Post" compose dialog
+    /// (`via = "post"`) to mark the row as a manual user action;
+    /// the personal-page sort pins these to the top by
+    /// `created_at`. Omitted by bulk sync calls and the MCP
+    /// upsert path so pipeline-style imports don't dominate the
+    /// page on every refresh.
+    #[serde(default)]
+    pub via: Option<String>,
 }
 
 #[derive(Serialize)]
@@ -2892,10 +2900,15 @@ pub async fn bulk_save_documents(
     //              so pipeline syncs don't blow away user-curated tags.
     //   * deleted: clear — re-posting a soft-deleted URL resurrects it,
     //              same way the merge branch of update_document does.
+    // $12 = TRUE when this came from the /search compose dialog
+    // (`via = "post"` in the request). Pipeline-style imports leave it
+    // FALSE so they don't pin to the top of the personal page.
+    let via_post: bool = req.via.as_deref() == Some("post");
     let sql = "
         INSERT INTO documents (
             user_id, url, title, summary, date, tags, extra_tags,
-            source, source_url, public, linked_urls, link_hosts
+            source, source_url, public, linked_urls, link_hosts,
+            created_via_post
         )
         SELECT $1, u.url, u.title, u.summary,
                NULLIF(u.date, '')::date,
@@ -2905,7 +2918,8 @@ pub async fn bulk_save_documents(
                u.source, u.source_url, u.public,
                COALESCE(u.linked_urls::jsonb, '[]'::jsonb),
                CASE WHEN u.link_hosts = '' THEN '{}'::text[]
-                    ELSE string_to_array(u.link_hosts, ',') END
+                    ELSE string_to_array(u.link_hosts, ',') END,
+               $12::bool
           FROM UNNEST($2::text[], $3::text[], $4::text[], $5::text[],
                       $6::text[], $7::text[], $8::bool[], $9::text[],
                       $10::text[], $11::text[])
@@ -2941,6 +2955,13 @@ pub async fn bulk_save_documents(
                 -- away from the favorite-only lifecycle so a later
                 -- un-upvote no longer deletes the row.
                 created_via_favorite = FALSE,
+                -- Once a row has been authored by the user via
+                -- Post, keep that flag set on subsequent syncs of
+                -- the same URL (a later background sync of the same
+                -- URL shouldn't strip the manual-action provenance).
+                -- A direct re-post (`via=post` again) refreshes the
+                -- flag to TRUE just like the first time.
+                created_via_post = documents.created_via_post OR EXCLUDED.created_via_post,
                 deleted = FALSE,
                 updated_at = now()
     ";
@@ -2967,6 +2988,7 @@ pub async fn bulk_save_documents(
         .bind(&tag_csvs)
         .bind(&linked_urls_json)
         .bind(&link_hosts_csv)
+        .bind(via_post)
         .execute(&mut *tx)
         .await;
 

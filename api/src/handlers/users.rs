@@ -424,6 +424,7 @@ pub async fn list_documents(
                    d.linked_urls,\n\
                    d.link_hosts,\n\
                    d.created_at,\n\
+                   d.created_via_post,\n\
                    d.canonical_url,\n\
                    d.canonical_referenced_urls\n\
               FROM documents d\n\
@@ -553,8 +554,33 @@ pub async fn list_documents(
                LEFT JOIN users uu ON uu.username = $1\n\
                LEFT JOIN favorite_documents fav\n\
                  ON fav.user_id = uu.id AND fav.url = c.url\n\
-              ORDER BY fav.created_at DESC NULLS LAST,\n\
-                       c.date DESC NULLS LAST, c.created_at DESC",
+              ORDER BY CASE\n\
+                           WHEN GREATEST(\n\
+                                    fav.created_at,\n\
+                                    CASE WHEN c.created_via_post THEN c.created_at END\n\
+                                ) > now() - interval '14 days'\n\
+                           THEN GREATEST(\n\
+                                    fav.created_at,\n\
+                                    CASE WHEN c.created_via_post THEN c.created_at END\n\
+                                )\n\
+                       END DESC NULLS LAST,\n\
+                       -- After the 14-d hard pin expires, user-action\n\
+                       -- rows keep a +12 bump on their date-based sort\n\
+                       -- so they stay elevated; a strong recent parsed\n\
+                       -- doc still surpasses them when its score wins.\n\
+                       -- The legacy path doesn't carry a per-doc score\n\
+                       -- column, so we approximate \"score\" via\n\
+                       -- `c.date` and add a virtual day-bump on the\n\
+                       -- date axis only for user-action rows.\n\
+                       (c.date + CASE\n\
+                           WHEN GREATEST(\n\
+                                    fav.created_at,\n\
+                                    CASE WHEN c.created_via_post THEN c.created_at END\n\
+                                ) IS NOT NULL\n\
+                           THEN INTERVAL '30 days'\n\
+                           ELSE INTERVAL '0'\n\
+                       END) DESC NULLS LAST,\n\
+                       c.created_at DESC",
         );
     } else {
         sql.push_str(
@@ -593,7 +619,7 @@ pub async fn list_documents(
                 SELECT DISTINCT ON (anchor_url)\n\
                        url, title, summary, date, tags, extra_tags,\n\
                        source, source_url, indexed, linked_urls, link_hosts,\n\
-                       created_at\n\
+                       created_at, created_via_post\n\
                   FROM candidate_anchors\n\
                  ORDER BY anchor_url, image_count DESC, url_count DESC,\n\
                           date DESC NULLS LAST, created_at DESC\n\
@@ -607,8 +633,29 @@ pub async fn list_documents(
                LEFT JOIN users uu ON uu.username = $1\n\
                LEFT JOIN favorite_documents fav\n\
                  ON fav.user_id = uu.id AND fav.url = dedup.url\n\
-              ORDER BY fav.created_at DESC NULLS LAST,\n\
-                       dedup.date DESC NULLS LAST, dedup.created_at DESC",
+              ORDER BY CASE\n\
+                           WHEN GREATEST(\n\
+                                    fav.created_at,\n\
+                                    CASE WHEN dedup.created_via_post THEN dedup.created_at END\n\
+                                ) > now() - interval '14 days'\n\
+                           THEN GREATEST(\n\
+                                    fav.created_at,\n\
+                                    CASE WHEN dedup.created_via_post THEN dedup.created_at END\n\
+                                )\n\
+                       END DESC NULLS LAST,\n\
+                       -- Same date-shift as the skip_dedup branch:\n\
+                       -- after the 14-d pin expires, user-action rows\n\
+                       -- ride 30 days ahead of their actual date so\n\
+                       -- they stay elevated. Pipeline rows shift 0d.\n\
+                       (dedup.date + CASE\n\
+                           WHEN GREATEST(\n\
+                                    fav.created_at,\n\
+                                    CASE WHEN dedup.created_via_post THEN dedup.created_at END\n\
+                                ) IS NOT NULL\n\
+                           THEN INTERVAL '30 days'\n\
+                           ELSE INTERVAL '0'\n\
+                       END) DESC NULLS LAST,\n\
+                       dedup.created_at DESC",
         );
     }
     // Server-side cap so the personal page doesn't have to ship the
@@ -786,12 +833,15 @@ async fn try_list_documents_from_snapshot(
         .unwrap_or_default();
 
     // Build the SQL incrementally to keep $N placeholders aligned.
-    // The LEFT JOIN on favorite_documents is what pins upvoted docs
-    // to the top of the page (see the ORDER BY below) — every doc
-    // the page-owner has favourited gets `fav.created_at` non-null,
-    // and we sort that ASC NULLS LAST so the freshest upvote leads.
+    // Two LEFT JOINs feed the ORDER BY's "user activity" sort key:
+    //   * favorite_documents → upvotes (fav.created_at)
+    //   * documents.created_via_post → manual Post-button rows
+    //                                  (d_post.created_at)
+    // Whichever timestamp is more recent wins, so an upvote made
+    // after a post still rises above it. Pipeline-imported rows
+    // leave both slots NULL and fall back to feed-score order.
     let mut sql = String::from(
-        "SELECT ps.url,\n         ps.title,\n         ps.summary,\n         COALESCE(to_char(ps.date, 'YYYY-MM-DD'), '') AS date,\n         ps.tags,\n         ps.extra_tags,\n         ps.source,\n         ps.source_url,\n         ps.indexed,\n         ps.linked_urls,\n         ps.link_hosts,\n         COALESCE(to_char(ps.date AT TIME ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), '') AS created_at,\n         ps.sharers,\n         ps.sharer_count\n    FROM personal_snapshot ps\n    JOIN users u ON u.id = ps.user_id\n    LEFT JOIN favorite_documents fav\n      ON fav.user_id = ps.user_id AND fav.url = ps.url\n   WHERE u.username = $1",
+        "SELECT ps.url,\n         ps.title,\n         ps.summary,\n         COALESCE(to_char(ps.date, 'YYYY-MM-DD'), '') AS date,\n         ps.tags,\n         ps.extra_tags,\n         ps.source,\n         ps.source_url,\n         ps.indexed,\n         ps.linked_urls,\n         ps.link_hosts,\n         COALESCE(to_char(ps.date AT TIME ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), '') AS created_at,\n         ps.sharers,\n         ps.sharer_count\n    FROM personal_snapshot ps\n    JOIN users u ON u.id = ps.user_id\n    LEFT JOIN favorite_documents fav\n      ON fav.user_id = ps.user_id AND fav.url = ps.url\n    LEFT JOIN documents d_post\n      ON d_post.user_id = ps.user_id AND d_post.url = ps.url\n     AND d_post.deleted = FALSE\n   WHERE u.username = $1",
     );
     let mut idx: usize = 2;
     if !sources_vec.is_empty() {
@@ -816,13 +866,26 @@ async fn try_list_documents_from_snapshot(
         sql.push_str(&format!(" AND ps.categories && ${idx}"));
         idx += 1;
     }
-    // Upvoted docs ALWAYS lead, sorted by most-recent upvote first.
-    // The rest of the library follows in feed-score order. Using
-    // `NULLS LAST` on the upvote timestamp keeps non-favourited rows
-    // out of the front block; sorting `fav.created_at DESC` puts
-    // freshly-upvoted items at the very top.
+    // User-activity boost (manual Post + upvote) on the personal
+    // page — two-tier so fresh actions hard-pin and older ones still
+    // stay elevated but yield to a strong recent parsed doc.
+    //
+    //   * Tier 1 — hard pin (≤ 14 d): the sort uses
+    //     `GREATEST(fav.created_at, post.created_at)` as the first
+    //     key. Today's upvote beats yesterday's post; a Post lands
+    //     instantly at the top.
+    //   * Tier 2 — score boost (any age): every user-action row gets
+    //     a +12 bump on `ps.score` for the secondary sort key. After
+    //     the 14-d pin expires the row still ranks like a top-tier
+    //     doc, so it stays "quite high" — but a parsed doc that
+    //     genuinely scores higher (recent, broadly shared, sci-
+    //     anchored) can now surpass it.
+    //   * Pipeline-imported docs leave both inputs NULL (the
+    //     `created_via_post` guard masks them on the post side, no
+    //     favorite_documents row on the upvote side) so they sort
+    //     by raw `ps.score` without the bump.
     sql.push_str(
-        "\n   ORDER BY fav.created_at DESC NULLS LAST,\n            ps.score DESC,\n            ps.date DESC NULLS LAST,\n            ps.url",
+        "\n   ORDER BY CASE\n                WHEN GREATEST(\n                         fav.created_at,\n                         CASE WHEN d_post.created_via_post THEN d_post.created_at END\n                     ) > now() - interval '14 days'\n                THEN GREATEST(\n                         fav.created_at,\n                         CASE WHEN d_post.created_via_post THEN d_post.created_at END\n                     )\n            END DESC NULLS LAST,\n            (ps.score + CASE\n                WHEN GREATEST(\n                         fav.created_at,\n                         CASE WHEN d_post.created_via_post THEN d_post.created_at END\n                     ) IS NOT NULL\n                THEN 12.0\n                ELSE 0\n            END) DESC,\n            ps.date DESC NULLS LAST,\n            ps.url",
     );
     let mut limit_val: Option<i64> = None;
     if let Some(n) = params.limit {

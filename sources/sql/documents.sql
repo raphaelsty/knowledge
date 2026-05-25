@@ -140,6 +140,23 @@ BEGIN
         ALTER TABLE documents
             ADD COLUMN created_via_favorite BOOLEAN NOT NULL DEFAULT FALSE;
     END IF;
+    -- created_via_post: TRUE iff the row was inserted by the user
+    -- clicking the "Post" button in /search compose (NOT by a
+    -- background sync, an upvote-mirror, or the Python pipeline).
+    -- The personal page uses this flag to pin manual posts to the
+    -- top of the page by their `created_at`, sharing the same slot
+    -- as upvotes (`favorite_documents.created_at`) — the most
+    -- recent of the two wins, so an upvote made AFTER a post still
+    -- rises above it. Pipeline-imported docs leave the flag FALSE
+    -- so they slot into the natural feed-score order instead of
+    -- consistently topping the page on every refresh cycle.
+    IF NOT EXISTS (
+        SELECT 1 FROM information_schema.columns
+         WHERE table_name = 'documents' AND column_name = 'created_via_post'
+    ) THEN
+        ALTER TABLE documents
+            ADD COLUMN created_via_post BOOLEAN NOT NULL DEFAULT FALSE;
+    END IF;
     -- Inline link previews. Replaces the old "create a companion
     -- document per URL embedded in a tweet" pattern: a tweet with N
     -- external links now stays a single row whose `linked_urls`

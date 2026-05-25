@@ -367,6 +367,16 @@ async fn run_sql_migrations(pool: &sqlx::PgPool) -> Result<(), sqlx::Error> {
             "favorites.sql",
             include_str!("../../sources/sql/favorites.sql"),
         ),
+        // Per-URL upvotes (the heart icon on every doc card). Distinct
+        // from `favorites.sql` which tracks "I follow this person".
+        // Was previously created out-of-band on prod and missing from
+        // this list — a fresh local install (or any DR restore) would
+        // boot without the table and every /api/users/<slug>/documents
+        // request 500s.
+        (
+            "favorite_documents.sql",
+            include_str!("../../sources/sql/favorite_documents.sql"),
+        ),
         ("follows.sql", include_str!("../../sources/sql/follows.sql")),
         ("events.sql", include_str!("../../sources/sql/events.sql")),
         (
