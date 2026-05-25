@@ -139,6 +139,14 @@ pub struct UserResponse {
 // count is a fast index lookup on the `(user_id, url)` PK of
 // `documents`. This is the PG source of truth; the ColBERT index
 // at indexes/{name}/ can drift and is not used here.
+//
+// `document_count` reads from the denormalised `users.document_count`
+// column (refreshed hourly by the feed-snapshot daemon). The previous
+// shape ran a LATERAL `count(*)` per row — fine for one user but the
+// /api/users list version dragged 4 s on the 100 k-doc corpus. Single
+// user lookups also benefit from the index scan even though the
+// LATERAL was cheap; staleness ≤ 1 h is invisible for a "N bookmarks"
+// label.
 const USER_SELECT: &str = "SELECT u.id,
         u.username,
         u.email,
@@ -156,16 +164,12 @@ const USER_SELECT: &str = "SELECT u.id,
         u.index_name,
         u.links,
         u.sources,
-        COALESCE(c.cnt, 0)::bigint AS document_count,
+        u.document_count,
         u.twitter_followers,
         u.github_followers,
         u.citations,
         u.vip
-   FROM users u
-   LEFT JOIN LATERAL (
-        SELECT count(*) AS cnt FROM documents d
-          WHERE d.user_id = u.id AND d.deleted = FALSE
-   ) c ON true";
+   FROM users u";
 
 /// GET /api/users
 ///
@@ -177,13 +181,12 @@ const USER_SELECT: &str = "SELECT u.id,
 ///     partial index `idx_users_vip` (created in users.sql), so the
 ///     scan touches only the ~133 vip rows even when the table is
 ///     huge.
-///   * `c.cnt > 0` — empty libraries are noise. The LEFT JOIN
-///     materialises only the docs of the vip subset, so the join
-///     stays cheap.
-///   * ORDER BY documentCount DESC, then name — the welcome page
-///     already re-bins by category, but the API's natural order is
-///     "most-populated first" which is the right default for any
-///     consumer that doesn't re-sort.
+///   * `u.document_count > 0` — empty libraries are noise. Uses the
+///     denormalised column refreshed hourly by the feed-snapshot
+///     daemon; no JOIN to `documents` at read time.
+///   * ORDER BY name — the welcome grid re-bins by category and the
+///     rail's primary sort is twitter/github/citations followers, so
+///     a simple alphabetical default is the cleanest stable order.
 ///
 /// Callers that need a non-vip user (the signed-in user looking at
 /// their own page; an already-active lib whose owner hasn't been
@@ -203,19 +206,20 @@ pub async fn list_users(State(pool): State<PgPool>) -> impl IntoResponse {
         }
     }
 
-    // Cold-path query: replaces the per-VIP `count(*)` with a single
-    // `EXISTS` (bails on the first matching doc) — drops the SQL from
-    // ~4 s to a handful of ms.
-    //
-    // The frontend only uses `documentCount` as the 4th tiebreaker
-    // (after Twitter / GitHub / citations) for the rail sort, and the
-    // welcome grid bins by category — neither breaks when the count
-    // is returned as 0. If we ever need the real count we can fetch
-    // it on demand from `/api/users/{slug}`.
+    // Cold-path query reads `users.document_count` directly. That
+    // column is denormalised and refreshed hourly by the
+    // `knowledge-feed-snapshot` daemon's `_refresh_user_document_counts`
+    // step — see sources/utils/feed_snapshot_daemon.py. Previously
+    // we ran a per-VIP LATERAL `count(*)` against documents (~4 s on
+    // a 100 k-doc corpus); now the read is a plain index scan.
     //
     // Categories are pulled in one batch via array_agg on a single
     // JOIN, not a per-row subquery, so the planner can use a hash
     // aggregate instead of 450 nested-loops.
+    //
+    // VIPs with zero docs are filtered out via `document_count > 0`,
+    // mirroring the previous `EXISTS` gate but without the extra
+    // index lookup.
     let sql = "
         WITH user_cats AS (
             SELECT uc.user_id,
@@ -236,7 +240,7 @@ pub async fn list_users(State(pool): State<PgPool>) -> impl IntoResponse {
                u.index_name,
                u.links,
                u.sources,
-               0::bigint AS document_count,
+               u.document_count,
                u.twitter_followers,
                u.github_followers,
                u.citations,
@@ -244,10 +248,7 @@ pub async fn list_users(State(pool): State<PgPool>) -> impl IntoResponse {
           FROM users u
           LEFT JOIN user_cats uc ON uc.user_id = u.id
          WHERE u.vip = TRUE
-           AND EXISTS (
-               SELECT 1 FROM documents d
-                WHERE d.user_id = u.id AND d.deleted = FALSE
-           )
+           AND u.document_count > 0
          ORDER BY u.name
     ";
     let rows = sqlx::query_as::<_, UserResponse>(sql)

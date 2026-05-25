@@ -93,6 +93,17 @@ ALTER TABLE users ADD COLUMN IF NOT EXISTS twitter_followers INTEGER;
 ALTER TABLE users ADD COLUMN IF NOT EXISTS github_followers  INTEGER;
 ALTER TABLE users ADD COLUMN IF NOT EXISTS citations         INTEGER;
 
+-- Denormalised count of non-deleted documents owned by this user.
+-- Refreshed hourly by the `knowledge-feed-snapshot` daemon (same one
+-- that builds feed_snapshot + personal_snapshot). The /api/users
+-- handler reads this directly so the response stays under 200 ms;
+-- previously it ran a 450-way LATERAL `count(*)` against documents
+-- (~4 s on the prod corpus) and was the right-rail bottleneck.
+-- A few-minute staleness on the count is invisible to the UI — the
+-- rail sorts on Twitter/GitHub followers + citations anyway, and
+-- the count is just a label under the avatar.
+ALTER TABLE users ADD COLUMN IF NOT EXISTS document_count BIGINT NOT NULL DEFAULT 0;
+
 -- ── Migration: email/password authentication (replaces GitHub OAuth) ───
 -- Add the new auth columns first…
 ALTER TABLE users ADD COLUMN IF NOT EXISTS password_hash                 TEXT;

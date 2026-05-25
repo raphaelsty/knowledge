@@ -122,6 +122,53 @@ def _refresh_all_personal_snapshots(database_url: str, log: logging.Logger) -> N
         log.warning("personal_snapshot.vacuum.failed err=%s", exc)
 
 
+def _refresh_user_document_counts(database_url: str, log: logging.Logger) -> None:
+    """Refresh the denormalised `users.document_count` column.
+
+    Read by `/api/users` and the right-rail "N bookmarks" badge on
+    every personality page. Was previously computed inline via a
+    per-VIP LATERAL `count(*)` that took ~4 s on a 100 k-doc corpus;
+    now a single GROUP-BY sweep precomputes it for everybody.
+
+    Runs in one statement — joins the user-grouped count of live
+    documents with the `users` table and writes back. Cheap because
+    `documents (user_id)` is indexed; a full pass takes a few seconds
+    on prod and the writes only touch rows whose count actually
+    changed.
+    """
+    t0 = time.monotonic()
+    try:
+        with psycopg.connect(database_url, autocommit=True) as conn:
+            cur = conn.execute(
+                """
+                WITH counts AS (
+                    SELECT u.id AS user_id,
+                           COALESCE(c.cnt, 0)::bigint AS cnt
+                      FROM users u
+                      LEFT JOIN (
+                          SELECT user_id, count(*) AS cnt
+                            FROM documents
+                           WHERE deleted = FALSE
+                           GROUP BY user_id
+                      ) c ON c.user_id = u.id
+                )
+                UPDATE users u
+                   SET document_count = counts.cnt
+                  FROM counts
+                 WHERE u.id              = counts.user_id
+                   AND u.document_count <> counts.cnt
+                """
+            )
+            updated = cur.rowcount or 0
+        log.info(
+            "user_document_count.refresh.complete updated=%d elapsed=%.2fs",
+            updated,
+            time.monotonic() - t0,
+        )
+    except Exception as exc:  # noqa: BLE001
+        log.warning("user_document_count.refresh.failed err=%s", exc)
+
+
 def main() -> None:
     log = _log()
     database_url = os.environ["DATABASE_URL"]
@@ -162,6 +209,10 @@ def main() -> None:
                 _refresh_all_personal_snapshots(database_url, log)
             except Exception as exc:  # noqa: BLE001
                 log.warning("personal_snapshot.sweep.aborted err=%s", exc)
+            # Refresh denormalised `users.document_count` (read by the
+            # /api/users endpoint + the right-rail "N bookmarks"
+            # badge). Cheap — single GROUP BY across documents.
+            _refresh_user_document_counts(database_url, log)
             consecutive_failures = 0
             sleep_secs = REFRESH_INTERVAL_SECS
         except Exception as exc:  # noqa: BLE001 — daemon stays alive
