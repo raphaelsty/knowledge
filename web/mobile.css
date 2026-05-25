@@ -1431,11 +1431,16 @@
   }
 
   .mbn-tab {
-    flex: 1 1 0;
+    /* Tabs grow at 1.5× the rate of the icon-only actions
+     * (`.mbn-action`, flex-grow:2 below). That gives the labelled
+     * tabs (Feed, People, Personal, Settings, Topics) the breathing
+     * room they need — labels like "Personal" don't get cramped —
+     * while the action buttons (Filter, Show-seen, Post) shrink to
+     * an icon-sized slot since they carry no label. */
+    flex: 3 1 0;
     /* Defeat the default `min-width: auto` on flex items so a long
-     * label (e.g. "Personal") can't push a slot wider than its
-     * fair share on a 360 px viewport. The label still renders —
-     * it just hugs the slot. */
+     * label can't push a slot wider than its fair share on a 360 px
+     * viewport. The label still renders — it just hugs the slot. */
     min-width: 0;
     display: flex;
     flex-direction: column;
@@ -1508,11 +1513,12 @@
     margin: 0 4px;
   }
   .mbn-action {
-    /* Same `flex: 1 1 0` share as `.mbn-tab` so every button on the
-     * bar — labelled tabs and icon-only actions alike — occupies the
-     * exact same slot width. The previous `0 0 44px` made the actions
-     * read as a cramped right-hand cluster next to the wide tabs. */
-    flex: 1 1 0;
+    /* Icon-only buttons get a narrower share than tabs (2 vs 3):
+     * they don't need room for a label, so giving them the full
+     * tab width compressed the labelled tabs into a cramped block.
+     * Ratio 2:3 → on a ~336 px usable bar with 5 tabs + 3 actions,
+     * tabs land at ~52 px each and actions at ~35 px each. */
+    flex: 2 1 0;
     min-width: 0;
     height: 48px;
     display: inline-flex;
