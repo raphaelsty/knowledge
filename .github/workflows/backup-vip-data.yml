@@ -1,0 +1,96 @@
+name: Backup VIP data
+
+# Once a day at 03:00 UTC. Picked so it runs after the hourly
+# feed-snapshot daemon's quiet window and before any UK morning
+# traffic. Manual trigger kept for the first-run + ad-hoc backfills.
+on:
+  schedule:
+    - cron: "0 3 * * *"
+  workflow_dispatch:
+
+# We rewrite the `data` branch on every run — needs write to repo
+# contents. No other scope.
+permissions:
+  contents: write
+
+# Skip overlapping runs (e.g. manual trigger while the cron is mid-
+# flight); a missed daily window will be picked up by the next cron.
+concurrency:
+  group: backup-vip-data
+  cancel-in-progress: false
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      # Checkout MAIN so `scripts/export-vip-data.sh` is available.
+      # We'll bring up the `data` branch separately via worktree.
+      - name: Checkout main (for the export script)
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      # Bring the `data` branch into a sibling worktree so we can
+      # `git add` the new files against it without mixing tree state.
+      - name: Add `data` branch worktree
+        run: |
+          git fetch origin data --depth=1
+          git worktree add ../data-tree origin/data
+          # Detach: we'll create the new commit on top of origin/data
+          # and push it back as the new tip of `data`.
+          cd ../data-tree
+          git checkout -B data origin/data
+
+      - name: Configure SSH (Hetzner read-only key)
+        env:
+          SSH_KEY: ${{ secrets.HETZNER_BACKUP_SSH_KEY }}
+        run: |
+          if [ -z "$SSH_KEY" ]; then
+            echo "::error::HETZNER_BACKUP_SSH_KEY secret is not set."
+            exit 1
+          fi
+          mkdir -p ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          # TOFU: accept the host key on first contact then pin it.
+          ssh-keyscan -t ed25519,rsa -H 65.21.111.133 >> ~/.ssh/known_hosts 2>/dev/null
+
+      - name: Export VIP data
+        env:
+          SSH_HOST: root@65.21.111.133
+          SSH_KEY: ~/.ssh/id_ed25519
+          OUT_DIR: ../data-tree/data
+        run: bash scripts/export-vip-data.sh
+
+      - name: Sanity check — no sensitive substrings
+        run: |
+          set -e
+          cd ../data-tree
+          for needle in password_hash email_verification_token password_reset_token api_key cookies_enc password_enc; do
+            if grep -rqF "$needle" data/ 2>/dev/null; then
+              echo "::error::Leaked substring detected: $needle"
+              exit 1
+            fi
+          done
+          echo "OK — no sensitive substrings in exported data"
+
+      - name: Commit snapshot
+        run: |
+          set -e
+          cd ../data-tree
+          git config user.name  "knowledge-bot"
+          git config user.email "knowledge-bot@users.noreply.github.com"
+          git add data/
+          if git diff --cached --quiet; then
+            echo "No changes vs previous snapshot — skipping commit"
+            exit 0
+          fi
+          DATE=$(date -u +%Y-%m-%d)
+          # Conventional short summary; the actual changeset is the
+          # diff between yesterday and today.
+          PRE_COMMIT_ALLOW_NO_CONFIG=1 git commit \
+              -m "data: snapshot $DATE" \
+              -m "Automated daily VIP-data export."
+          git push origin data
