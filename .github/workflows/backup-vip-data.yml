@@ -68,9 +68,22 @@ jobs:
         run: |
           set -e
           cd ../data-tree
-          for needle in password_hash email_verification_token password_reset_token api_key cookies_enc password_enc; do
+          # These are DB-internal column / JSONB-key names. They only
+          # appear as keys in private rows (`users.password_hash`,
+          # `users.sources->'twitter'->'cookies_enc'`, etc.) — never
+          # as natural text in a public tweet / paper / blog. If any
+          # shows up in our export, the column allow-list slipped.
+          #
+          # Deliberately NOT in this list: `api_key`, `password`,
+          # `token`, `secret` — they're real English / code words
+          # that show up legitimately in public doc text (e.g. a
+          # tweet titled "API key best practices"). False positives
+          # would shut backups off entirely.
+          for needle in password_hash cookies_enc password_enc access_token_enc; do
             if grep -rqF "$needle" data/ 2>/dev/null; then
               echo "::error::Leaked substring detected: $needle"
+              echo "Sample matches:"
+              grep -rnF "$needle" data/ | head -3
               exit 1
             fi
           done
