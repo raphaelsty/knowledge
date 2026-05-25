@@ -152,6 +152,19 @@
     flex-wrap: nowrap;
     align-items: center;
     gap: 8px;
+    /* Twitter-style auto-hide on scroll — same `is-hidden` toggle as
+     * `.mobile-bottom-nav`, wired in wireMobileChrome → onScroll. */
+    transition:
+      transform 280ms cubic-bezier(0.2, 0.8, 0.2, 1),
+      opacity 200ms ease;
+    will-change: transform;
+  }
+  /* Slide UP off-screen by the bar's full height + the safe-area
+   * inset so it tucks completely under the notch. */
+  .spotlight-row.is-hidden {
+    transform: translateY(calc(-100% - env(safe-area-inset-top)));
+    opacity: 0;
+    pointer-events: none;
   }
   /* Feed ↔ Personal Page breadcrumb is redundant on phone — the
    * bottom nav owns both routes. Hide both entirely. */

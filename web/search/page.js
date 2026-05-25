@@ -8854,13 +8854,31 @@
     }
 
     /* ── Twitter-style auto-hide on scroll ───────────────────────
-     * Bar slides out on scroll-down and back in on scroll-up. We
-     * cap the reaction with a small px threshold so jitter from a
-     * single-finger drag doesn't bounce it, force-show whenever the
-     * user is near the top, and skip the whole thing while a sheet
-     * is open (the nav is behind the backdrop anyway). */
+     * Both the bottom nav AND the top search bar (`.spotlight-row`)
+     * slide out on scroll-down and back in on scroll-up. We cap the
+     * reaction with a small px threshold so jitter from a single-
+     * finger drag doesn't bounce them, force-show whenever the user
+     * is near the top, and skip the whole thing while a sheet is
+     * open (both bars are behind the backdrop anyway).
+     *
+     * The top bar also force-shows whenever the search input is
+     * focused — typing on a hidden bar is a non-starter. */
+    const topBar = document.querySelector(".spotlight-row");
+    const qInput = document.getElementById("q");
     function setNavAutoHidden(hidden) {
       nav.classList.toggle("is-hidden", hidden);
+      if (topBar) {
+        // Never hide the top bar while the user is typing in it.
+        const inputFocused = qInput && document.activeElement === qInput;
+        topBar.classList.toggle("is-hidden", hidden && !inputFocused);
+      }
+    }
+    if (qInput && topBar) {
+      // On focus: snap the top bar back in immediately, regardless
+      // of scroll direction. The bottom nav stays whatever it is.
+      qInput.addEventListener("focus", () => {
+        topBar.classList.remove("is-hidden");
+      });
     }
     {
       let lastY = window.scrollY;
