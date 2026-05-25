@@ -301,9 +301,39 @@ async fn shutdown_signal() {
 /// their referent. The list below mirrors `run.py`'s
 /// `create_*_table()` sequence one-for-one — keep them in sync.
 async fn run_sql_migrations(pool: &sqlx::PgPool) -> Result<(), sqlx::Error> {
+    // Pin a single connection so `SET lock_timeout` below applies to
+    // every migration that follows. With a pool, each `execute` can
+    // pick a different connection; SET only affects the one it ran
+    // on, which would defeat the safety net.
+    let mut conn = pool.acquire().await?;
+
+    // Bail-fast guard: if a migration can't acquire its lock within
+    // 30 s, fail the whole boot instead of hanging forever. Concrete
+    // outage this prevents: a daemon held a `documents` lock for 44
+    // min because its client TCP died and PG hadn't detected it yet;
+    // the API migration tried to ALTER `documents`, blocked
+    // indefinitely, and Dokploy never finished the network swap →
+    // site 404'd everywhere for 50 min (May 2026).
+    //
+    // 30 s is generous: the only legitimate blocker is autovac
+    // (which holds row-locks, not table-locks) or another migration
+    // (which we don't run concurrently). Anything longer is an
+    // orphan transaction — fail loud, let Dokploy retry.
+    sqlx::query("SET lock_timeout = '30s'")
+        .execute(&mut *conn)
+        .await?;
     // (filename-for-logs, baked SQL text). The ordering matches
     // run.py — DO NOT reorder without checking the FK graph.
     let migrations: &[(&str, &str)] = &[
+        // FIRST: database-wide safety nets (idle-tx timeout, TCP
+        // keepalives). Applied on every connection that opens
+        // *after* this statement, so the rest of this migration
+        // run still uses the old session settings — that's fine
+        // since `lock_timeout` already covers this session.
+        (
+            "db_hardening.sql",
+            include_str!("../../sources/sql/db_hardening.sql"),
+        ),
         ("users.sql", include_str!("../../sources/sql/users.sql")),
         (
             "documents.sql",
@@ -396,7 +426,7 @@ async fn run_sql_migrations(pool: &sqlx::PgPool) -> Result<(), sqlx::Error> {
         // handles multi-statement batches against Postgres. Errors
         // surface with the filename so the operator knows which one
         // tripped without diffing the log against the migrations list.
-        if let Err(e) = sqlx::raw_sql(sql).execute(pool).await {
+        if let Err(e) = sqlx::raw_sql(sql).execute(&mut *conn).await {
             tracing::error!(file = %name, error = %e, "schema.migrate.statement_failed");
             return Err(e);
         }
