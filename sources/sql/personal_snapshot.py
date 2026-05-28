@@ -385,6 +385,20 @@ def _build_refresh_sql(window_days: int, user_id: int) -> str:
                            THEN 0.5
                          ELSE 0
                        END
+                     -- Resource-consensus bonus (mirrors feed_snapshot).
+                     -- A non-paper resource (sci_score 0) that many
+                     -- VIPs co-signed earns a consensus-scaled lift so
+                     -- launches / products / blogs aren't buried under
+                     -- the academic sci cliff. Reads cross-personality
+                     -- vip_sharer_count from feed_snapshot.
+                     + CASE
+                         WHEN r.source = 'twitter'
+                              AND r.sci_score = 0
+                              AND jsonb_array_length(r.linked_urls) > 0
+                           THEN LEAST(9.0, LN(GREATEST(1,
+                                    COALESCE(fs.vip_sharer_count, 0) + 1)) * 3.0)
+                         ELSE 0
+                       END
                      -- Content-quality bonus. Long substantive tweets
                      -- (Karpathy threads, multi-paragraph writeups)
                      -- earn up to +2; title-only scholar entries earn
@@ -435,24 +449,38 @@ def _build_refresh_sql(window_days: int, user_id: int) -> str:
                          ))
                        )
                    )
-                   -- Hard total-score age multiplier (same shape as
-                   -- the feed_snapshot one). Pulls old docs out of
-                   -- the top regardless of share signal: a 5-year-
-                   -- old paper with 50 VIP sharers gets ×0.05 →
-                   -- can't beat a 2-week-old paper with 3 sharers.
-                   -- Upvoted favourites are still pinned by the
-                   -- handler-side ORDER BY, so this purely affects
-                   -- the natural ranking of non-favourite rows.
-                   * CASE
-                         WHEN GREATEST(r.date, fs.date) >= current_date - 14   THEN 1.0
-                         WHEN GREATEST(r.date, fs.date) >= current_date - 30   THEN 0.80
-                         WHEN GREATEST(r.date, fs.date) >= current_date - 60   THEN 0.55
-                         WHEN GREATEST(r.date, fs.date) >= current_date - 90   THEN 0.35
-                         WHEN GREATEST(r.date, fs.date) >= current_date - 180  THEN 0.18
-                         WHEN GREATEST(r.date, fs.date) >= current_date - 365  THEN 0.08
-                         WHEN GREATEST(r.date, fs.date) >= current_date - 730  THEN 0.03
-                         ELSE                                                    0.015
-                     END
+                   -- Hard total-score age multiplier, SOFTENED by
+                   -- consensus (mirrors feed_snapshot #5). The raw
+                   -- curve is steep (≤14d full … >2y 1.5%) so the page
+                   -- leans fresh, but a resource dozens of VIPs saved
+                   -- is canonical, not stale — blend toward 1.0 by
+                   -- LEAST(0.5, vip_sharer_count/40): a 1-VIP doc is
+                   -- unchanged, a 20-VIP resource keeps halfway to full
+                   -- credit regardless of age. Cap 0.5 → consensus can
+                   -- slow age decay but never switch it off.
+                   * (
+                       CASE
+                           WHEN GREATEST(r.date, fs.date) >= current_date - 14   THEN 1.0
+                           WHEN GREATEST(r.date, fs.date) >= current_date - 30   THEN 0.80
+                           WHEN GREATEST(r.date, fs.date) >= current_date - 60   THEN 0.55
+                           WHEN GREATEST(r.date, fs.date) >= current_date - 90   THEN 0.35
+                           WHEN GREATEST(r.date, fs.date) >= current_date - 180  THEN 0.18
+                           WHEN GREATEST(r.date, fs.date) >= current_date - 365  THEN 0.08
+                           WHEN GREATEST(r.date, fs.date) >= current_date - 730  THEN 0.03
+                           ELSE                                                    0.015
+                       END
+                       + (1.0 - CASE
+                           WHEN GREATEST(r.date, fs.date) >= current_date - 14   THEN 1.0
+                           WHEN GREATEST(r.date, fs.date) >= current_date - 30   THEN 0.80
+                           WHEN GREATEST(r.date, fs.date) >= current_date - 60   THEN 0.55
+                           WHEN GREATEST(r.date, fs.date) >= current_date - 90   THEN 0.35
+                           WHEN GREATEST(r.date, fs.date) >= current_date - 180  THEN 0.18
+                           WHEN GREATEST(r.date, fs.date) >= current_date - 365  THEN 0.08
+                           WHEN GREATEST(r.date, fs.date) >= current_date - 730  THEN 0.03
+                           ELSE                                                    0.015
+                         END)
+                         * LEAST(0.5, COALESCE(fs.vip_sharer_count, 0) / 40.0)
+                     )
                                                                 AS score
               FROM representative r
               JOIN users         u  ON u.id = r.user_id

@@ -152,6 +152,12 @@ def _build_refresh_sql(window_days: int, max_rows: int) -> str:
                 -- measured yet.
                 d.twitter_likes, d.twitter_retweets,
                 d.twitter_replies, d.twitter_quotes,
+                -- Referenced @handle (retweet / quote / reply target),
+                -- lower-cased. Feeds the event-consensus "buzz" term:
+                -- when many VIPs reference the same handle in a short
+                -- window, those docs get a small lift even though each
+                -- is a distinct anchor that wouldn't collapse together.
+                NULLIF(lower(COALESCE(d.referenced_author, '')), '') AS referenced_author,
                 COALESCE(
                     (SELECT ref
                        FROM unnest(d.canonical_referenced_urls) ref
@@ -235,7 +241,7 @@ def _build_refresh_sql(window_days: int, max_rows: int) -> str:
                    user_id, url, title, date, summary,
                    clean_title, clean_summary, urls, tags, source,
                    source_url, linked_urls, link_hosts, canonical_url,
-                   sci_score
+                   sci_score, referenced_author
               FROM window_docs
              ORDER BY anchor_url,
                       has_link  DESC,
@@ -310,6 +316,19 @@ def _build_refresh_sql(window_days: int, max_rows: int) -> str:
                    -- resource years ago.
                    count(DISTINCT a.user_id) FILTER (WHERE u.vip)::int
                                                                   AS vip_sharer_count,
+                   -- Consensus *velocity*: distinct VIPs who saved
+                   -- this resource in the last 7 / 14 days. A burst of
+                   -- VIPs converging on something this week is the
+                   -- "trending now" signal — distinct from the
+                   -- all-time count (5 VIPs over a year vs 5 VIPs in
+                   -- one week rank identically under vip_sharer_count
+                   -- alone). Drives the rising bonus in `scored`.
+                   count(DISTINCT a.user_id)
+                       FILTER (WHERE u.vip AND a.date >= current_date - 7)::int
+                                                                  AS vip_sharers_7d,
+                   count(DISTINCT a.user_id)
+                       FILTER (WHERE u.vip AND a.date >= current_date - 14)::int
+                                                                  AS vip_sharers_14d,
                    count(DISTINCT a.user_id)::int                 AS sharer_count,
                    jsonb_agg(DISTINCT jsonb_build_object(
                        'slug',             u.username,
@@ -351,6 +370,30 @@ def _build_refresh_sql(window_days: int, max_rows: int) -> str:
                    MAX(COALESCE(twitter_quotes,   0)) AS max_quotes
               FROM window_docs
              GROUP BY anchor_url
+        ),
+        -- Event-consensus "buzz": how many distinct VIPs referenced a
+        -- given @handle (retweet / quote / reply target) in the last
+        -- 14 days. Anchor-collapse groups by the LINKED resource, so a
+        -- community moment where ten VIPs each quote-tweet the same
+        -- announcement scatters across ten different anchors and reads
+        -- as ten lonely 1-VIP docs. Grouping by the referenced handle
+        -- instead catches that distributed event. Computed over ALL
+        -- twitter docs (not just in-window) but filtered to recent
+        -- references so it measures "who is the community talking
+        -- about right now". referenced_author is ~40% backfilled, so
+        -- this undercounts today and strengthens as the sweep finishes
+        -- — it only ever adds.
+        ref_author_buzz AS (
+            SELECT lower(d.referenced_author) AS handle,
+                   count(DISTINCT d.user_id) FILTER (WHERE u.vip)::int AS vip_refs_14d
+              FROM documents d
+              JOIN users u ON u.id = d.user_id
+             WHERE d.deleted = FALSE
+               AND d.source  = 'twitter'
+               AND d.referenced_author IS NOT NULL
+               AND d.referenced_author <> ''
+               AND d.date >= current_date - 14
+             GROUP BY lower(d.referenced_author)
         ),
         -- Final scoring. Mirrors the live-query formula minus the
         -- per-viewer terms (followee_share, fresh-self).
@@ -481,6 +524,19 @@ def _build_refresh_sql(window_days: int, max_rows: int) -> str:
                      -- from a single-VIP one even when both carry the
                      -- same flat sci bonus.
                      + LEAST(12.0, LN(GREATEST(1, s.vip_sharer_count + 1)) * 3.2)
+                     -- ★ TRENDING ★ — consensus *velocity*. On top of
+                     -- the all-time count above, reward a recent BURST
+                     -- of VIPs converging on the resource: distinct
+                     -- VIPs who saved it in the last 7 days. This is
+                     -- what makes the feed feel live — a paper five
+                     -- VIPs picked up THIS WEEK outranks one five VIPs
+                     -- saved gradually over a year (identical under the
+                     -- all-time term alone). Separate from the recency
+                     -- tier, which keys on the doc/share *date*; this
+                     -- keys on how many distinct VIPs converged, and
+                     -- how fast.
+                     --   1 in 7d ≈ +1.94   3 ≈ +3.89   5 ≈ +5.0(cap)
+                     + LEAST(5.0, LN(GREATEST(1, s.vip_sharers_7d + 1)) * 2.8)
                      -- Behavioural engagement — the "heavily upvoted
                      -- by plenty of people" signal, kept deliberately
                      -- SECONDARY to VIP consensus above. MAX engagement
@@ -507,6 +563,18 @@ def _build_refresh_sql(window_days: int, max_rows: int) -> str:
                          + COALESCE(eng.max_replies,  0) * 1.5
                          + COALESCE(eng.max_quotes,   0) * 1.0
                        ) / 150.0) * 1.3)
+                     -- Event-consensus buzz (#4). When many VIPs are
+                     -- referencing this doc's @handle this fortnight
+                     -- (a launch, a result, a person everyone's
+                     -- discussing), lift it even if its own anchor is
+                     -- only 1-VIP — the conversation is the signal.
+                     -- Brand/org handles (@anthropicai, @openaidevs)
+                     -- naturally score high here; the +3.5 cap keeps
+                     -- that from dominating the resource + consensus
+                     -- terms. NULL handle (no reference / not
+                     -- backfilled) contributes 0.
+                     --   3 VIP refs ≈ +1.66   8 ≈ +2.93   20+ caps +3.5
+                     + LEAST(3.5, LN(GREATEST(1, COALESCE(rb.vip_refs_14d, 0) + 1)) * 1.5)
                      + LEAST(
                          1.5,
                          LN(GREATEST(1, s.top_followers / 10000.0))
@@ -541,6 +609,28 @@ def _build_refresh_sql(window_days: int, max_rows: int) -> str:
                            THEN 0.5
                          ELSE 0
                        END
+                     -- Resource-consensus bonus. The sci bonus above
+                     -- (×6) only fires for *academic* hosts (arxiv /
+                     -- HF / etc.), so a non-paper resource — a model
+                     -- launch, a product, a company blog — earns ZERO
+                     -- resource credit no matter how many VIPs share
+                     -- it. That buried a 28-VIP launch at rank 145
+                     -- under 4-VIP papers, violating "consensus is
+                     -- primary". Here a tweet that links *any* resource
+                     -- but earns no sci bonus gets a consensus-SCALED
+                     -- lift instead: lonely non-papers stay low, but a
+                     -- resource dozens of VIPs co-signed rises toward
+                     -- paper tier. Gated on sci_score = 0 so papers
+                     -- (which already have ×6 + the consensus term)
+                     -- don't double-dip.
+                     --   1 VIP ≈ +2.1   5 ≈ +5.4   12 ≈ +7.7   28+ caps +9
+                     + CASE
+                         WHEN r.source = 'twitter'
+                              AND r.sci_score = 0
+                              AND jsonb_array_length(r.linked_urls) > 0
+                           THEN LEAST(9.0, LN(GREATEST(1, s.vip_sharer_count + 1)) * 3.0)
+                         ELSE 0
+                       END
                      -- Content-quality bonus. Caps at +2 around 660
                      -- chars of summary (~Karpathy-thread length).
                      -- Short titles / empty scholar entries earn 0;
@@ -556,29 +646,49 @@ def _build_refresh_sql(window_days: int, max_rows: int) -> str:
                          ) / 300.0
                        )
                    )
-                   -- Hard total-score age multiplier. Steeper than
-                   -- before: ≤14d full, ≤30d 80%, ≤60d 55%, ≤90d 35%,
-                   -- ≤180d 18%, ≤1y 8%, ≤2y 3%, else 1.5%. Combined
-                   -- with the (now stronger) recency tier the result
-                   -- is that anything older than ~3 months is pushed
-                   -- well below the freshest layer, and >1y content
-                   -- is effectively never surfaceable without a huge
-                   -- sci+share signal.
-                   * CASE
-                         WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 14   THEN 1.0
-                         WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 30   THEN 0.80
-                         WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 60   THEN 0.55
-                         WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 90   THEN 0.35
-                         WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 180  THEN 0.18
-                         WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 365  THEN 0.08
-                         WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 730  THEN 0.03
-                         ELSE                                                              0.015
-                     END
+                   -- Hard total-score age multiplier, now SOFTENED by
+                   -- consensus (#5). The base curve is steep (≤14d
+                   -- full, ≤30d 80%, … >2y 1.5%) so the feed leans
+                   -- fresh. But a resource dozens of VIPs independently
+                   -- saved is canonical, not stale — burying ModernBERT
+                   -- (10 VIPs) at 1.5% once it's a year old is wrong.
+                   -- So we blend the raw multiplier toward 1.0 by a
+                   -- consensus factor = LEAST(0.5, vip_sharer_count/40):
+                   --   effective = raw + (1 - raw) * factor.
+                   -- A 1-VIP doc (factor ~0.025) is essentially
+                   -- unchanged; a 20-VIP resource (factor 0.5) keeps
+                   -- halfway to full credit regardless of age. The 0.5
+                   -- cap means consensus can SLOW age decay but never
+                   -- switch it off — recency still always matters.
+                   * (
+                       CASE
+                           WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 14   THEN 1.0
+                           WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 30   THEN 0.80
+                           WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 60   THEN 0.55
+                           WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 90   THEN 0.35
+                           WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 180  THEN 0.18
+                           WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 365  THEN 0.08
+                           WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 730  THEN 0.03
+                           ELSE                                                              0.015
+                       END
+                       + (1.0 - CASE
+                           WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 14   THEN 1.0
+                           WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 30   THEN 0.80
+                           WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 60   THEN 0.55
+                           WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 90   THEN 0.35
+                           WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 180  THEN 0.18
+                           WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 365  THEN 0.08
+                           WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 730  THEN 0.03
+                           ELSE                                                              0.015
+                         END)
+                         * LEAST(0.5, s.vip_sharer_count / 40.0)
+                     )
                                                                   AS score
               FROM representative r
               JOIN anchor_sharers     s   ON s.anchor_url  = r.anchor_url
               LEFT JOIN anchor_categories ac  ON ac.anchor_url  = r.anchor_url
               LEFT JOIN anchor_engagement eng ON eng.anchor_url = r.anchor_url
+              LEFT JOIN ref_author_buzz   rb  ON rb.handle      = r.referenced_author
         )
         ,
         -- Belt-and-braces dedup by URL. The DISTINCT ON in
@@ -629,6 +739,36 @@ def _build_refresh_sql(window_days: int, max_rows: int) -> str:
               FROM prior_pairs
              GROUP BY url
         ),
+        -- ── Author-flood cap (#2) ─────────────────────────────────
+        -- One prolific poster shouldn't own the feed. In the live
+        -- data a single account held 25 of the top 200 anchors and
+        -- three accounts held ~29%. For each doc, count how many
+        -- HIGHER-scored docs share its primary_user_id (the
+        -- representative author); the Nth doc from one author is
+        -- progressively penalised.
+        --
+        -- Crucially the penalty is DAMPED by consensus: it divides by
+        -- (1 + 0.5·(vip_sharer_count−1)), so a resource many VIPs
+        -- co-signed is barely touched even if its representative tweet
+        -- happens to come from a prolific author — we only thin an
+        -- author's *solo* (low-consensus) flood, never demote a
+        -- genuinely-broadly-shared resource just for who tweeted it.
+        --   solo (1 VIP):  2nd doc −1.6, 9th −4.8, 25th −8.0(cap)
+        --   3-VIP doc:     same raw penalty ÷2
+        --   10-VIP doc:    ÷5.5 → negligible
+        author_rank AS (
+            SELECT url,
+                   ROW_NUMBER() OVER (PARTITION BY primary_user_id
+                                      ORDER BY score DESC, url) - 1 AS prior_author_count,
+                   vip_sharer_count
+              FROM deduped
+        ),
+        author_penalty AS (
+            SELECT url,
+                   LEAST(8.0, 1.6 * SQRT(GREATEST(0, prior_author_count)::float8))
+                     / (1.0 + 0.5 * GREATEST(0, vip_sharer_count - 1)) AS flood_penalty
+              FROM author_rank
+        ),
         adjusted AS (
             SELECT d.url, d.canonical_url, d.anchor_url,
                    d.title, d.date, d.summary, d.clean_title, d.clean_summary,
@@ -656,12 +796,15 @@ def _build_refresh_sql(window_days: int, max_rows: int) -> str:
                    --
                    -- Tiny knob; reshuffles ties + adjacent ranks
                    -- without ever collapsing a deeply-shared doc.
+                   -- minus the author-flood penalty (consensus-damped,
+                   -- see author_penalty above).
                    (d.score - LEAST(
                        0.7,
                        0.15 * SQRT(GREATEST(0, COALESCE(cp.repeat_signal, 0))::float8)
-                   ))::float8 AS score
+                   ) - COALESCE(ap.flood_penalty, 0))::float8 AS score
               FROM deduped d
               LEFT JOIN cluster_penalty cp ON cp.url = d.url
+              LEFT JOIN author_penalty  ap ON ap.url = d.url
         )
         SELECT url, canonical_url, anchor_url,
                title, date, summary, clean_title, clean_summary, urls, tags,
