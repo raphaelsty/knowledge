@@ -4468,27 +4468,53 @@
     // already ride inside `buildIndexFilter`, so the same SQL
     // pre-filter applied to the initial query is reapplied here —
     // no JS post-filter.
-    if (state.query && state.libs.size === 0) {
+    //
+    // Fires whenever a query is set — bare /search OR with libraries
+    // selected. In the lib-selected case we restrict to those owners
+    // via an `owner IN (…)` clause composed onto the existing filter,
+    // so paginating a personality-scoped search keeps returning rows
+    // from those personalities (the cursor branch below only worked
+    // for date-ordered browse, not relevance-ordered search).
+    if (state.query) {
       const currentCount = state.lastDocs.length;
       const requestK = Math.min(
         2000,
         Math.max(200, Math.ceil(currentCount * 2 + 80)),
       );
+      const base = buildIndexFilter();
+      let composedFilter = base;
+      if (state.libs.size > 0) {
+        const libsList = [...state.libs];
+        const ownerPlaceholders = libsList.map(() => "?").join(",");
+        const ownerClause = `owner IN (${ownerPlaceholders})`;
+        composedFilter =
+          base && base.condition
+            ? {
+                condition: `(${base.condition}) AND ${ownerClause}`,
+                parameters: [...(base.parameters || []), ...libsList],
+              }
+            : { condition: ownerClause, parameters: [...libsList] };
+      }
+      const isBareSearch = state.libs.size === 0;
       let raw = [];
       try {
         raw = await K.search({
           indexName: ALL_INDEX_NAME,
           query: state.query,
           topK: requestK,
-          filter: buildIndexFilter(),
-          feedScope: true,
+          filter: composedFilter,
+          // feedScope is the bare-/search ranking knob; off when
+          // the user has narrowed to specific libraries.
+          feedScope: isBareSearch,
         });
       } catch {
         return;
       }
-      // Same scope filter the initial search applies.
+      // Same scope filter the initial search applies — only relevant
+      // on the bare /search path where followingOnly filters by
+      // followed users.
       const scope =
-        me && state.followingOnly
+        isBareSearch && me && state.followingOnly
           ? new Set([...(_peopleRail?.following || []), me.slug])
           : null;
       if (scope) raw = raw.filter((d) => scope.has(d.owner));
@@ -4531,7 +4557,11 @@
       state.lastDocs = state.lastDocs.concat(extra);
       markShownUrls(extra);
       const results = $("results");
-      results.insertAdjacentHTML("beforeend", extra.map(renderResult).join(""));
+      // Re-render the whole list so dedupe groups a freshly-loaded
+      // row with any earlier row that already represents the same
+      // canonical content (avoids the visual case where scrolling
+      // appends a "duplicate" of something we already showed).
+      results.innerHTML = renderFeedDocsHtml(state.lastDocs);
       wireResults();
       armInfiniteScroll();
       return;
@@ -5268,7 +5298,10 @@
           hideResultsSpinner();
           return;
         }
-        $("results").innerHTML = docs.map(renderResult).join("");
+        // Same dedupe pass the feed uses — collapses near-duplicate
+        // retweets/quote-tweet wrappers + same canonical URL across
+        // libraries into one card with a merged sharer stack.
+        $("results").innerHTML = renderFeedDocsHtml(docs);
         wireResults();
         return;
       }
@@ -5677,7 +5710,11 @@
       return;
     }
     $("empty").style.display = "none";
-    $("results").innerHTML = docs.map(renderResult).join("");
+    // Run the feed's dedupFeedDocs pass before render so search
+    // mirrors the feed: near-identical retweets and same-canonical-URL
+    // rows from different libraries collapse into one card with a
+    // merged sharer stack instead of repeating the same content.
+    $("results").innerHTML = renderFeedDocsHtml(docs);
     wireResults();
     armInfiniteScroll();
     // Personal page (single library) → ask the backend which OTHER

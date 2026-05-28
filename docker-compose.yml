@@ -49,6 +49,12 @@ services:
       - DATABASE_URL=postgresql://knowledge:knowledge@postgres:5432/knowledge
       - API_URL=http://localhost:8080
       - RUST_LOG=info
+      # ADMIN_API_KEY: read from .env in repo root; the binary checks
+      # process env (not the mounted /app/.env file) so it must be
+      # injected here. ${VAR} interpolates from the host's .env via
+      # docker-compose's automatic .env loader.
+      - ADMIN_API_KEY=${ADMIN_API_KEY}
+      - KNOWLEDGE_ADMIN_TOKEN=${KNOWLEDGE_ADMIN_TOKEN}
       - OPENBLAS_NUM_THREADS=1
       # GitHub OAuth — uses the *_DEV pair from .env so the dev OAuth
       # app (with localhost callback) is picked up. Compose interpolates
