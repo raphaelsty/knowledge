@@ -468,6 +468,14 @@ def compose_thread_doc(parts: list[dict], *, username: str) -> tuple[str, dict]:
     # the cumulative attention the thread captured, which is what feed
     # ranking should sort on.
     doc.update(_sum_engagement(parts))
+    # Referenced author — taken from the thread root. Self-replies
+    # (chain continuations) get filtered out so the column reflects
+    # the thread's *external* reference, not the user's own
+    # in-thread plumbing.
+    ref = _referenced_author(root)
+    if ref and username and ref == username.lower():
+        ref = ""
+    doc["referenced_author"] = ref
     return url, doc
 
 
@@ -694,6 +702,43 @@ def _sum_engagement(parts: list[dict]) -> dict[str, int | None]:
                 continue
             totals[k] = (totals[k] or 0) + v
     return totals
+
+
+def _referenced_author(tweet: dict) -> str:
+    """Return the lower-cased @handle this tweet refers to, or ``""``.
+
+    Used to populate ``documents.referenced_author`` — the raw signal
+    for spotting accounts that show up often in our users' libraries
+    (heavily retweeted, frequently quoted, regularly replied to) and
+    are worth pulling into the personality roster.
+
+    Precedence — first match wins, so a retweet of a quote counts as
+    the retweet target:
+
+      1. ``retweeted_tweet.user.screen_name``
+      2. ``quoted_tweet.user.screen_name``
+      3. ``in_reply_to_screen_name`` (carried over from the v1.1
+         legacy payload by ``bookmarks._twikit_to_dict``;
+         twitterapi.io ships it as ``inReplyToUsername``)
+
+    Returns ``""`` when none apply. The DB layer uses ``NULL`` for
+    "not yet inspected" and ``''`` for "inspected, no reference",
+    so callers can pass the return value straight through.
+    """
+    rt = tweet.get("retweeted_tweet")
+    if isinstance(rt, dict):
+        handle = _author(rt)
+        if handle:
+            return handle.lower()
+    q = tweet.get("quoted_tweet")
+    if isinstance(q, dict):
+        handle = _author(q)
+        if handle:
+            return handle.lower()
+    reply = (tweet.get("in_reply_to_screen_name") or tweet.get("inReplyToUsername") or "").strip()
+    if reply:
+        return reply.lower()
+    return ""
 
 
 def _retweet_extra_tags(tweet: dict) -> list[str]:

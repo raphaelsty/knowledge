@@ -38,7 +38,7 @@ def load_documents(database_url: str, user_id: int) -> dict[str, dict]:
         "SELECT url, title, summary, date, tags, extra_tags, source, "
         "source_url, linked_urls, link_hosts, "
         "citation_count, twitter_likes, twitter_retweets, twitter_replies, "
-        "twitter_quotes, twitter_views, twitter_bookmarks "
+        "twitter_quotes, twitter_views, twitter_bookmarks, referenced_author "
         "FROM documents WHERE user_id = %s"
     )
     out: dict[str, dict] = {}
@@ -63,6 +63,7 @@ def load_documents(database_url: str, user_id: int) -> dict[str, dict]:
                 tw_quotes,
                 tw_views,
                 tw_bookmarks,
+                referenced_author,
             ) in cur.fetchall():
                 out[url] = {
                     "title": title,
@@ -81,6 +82,7 @@ def load_documents(database_url: str, user_id: int) -> dict[str, dict]:
                     "twitter_quotes": tw_quotes,
                     "twitter_views": tw_views,
                     "twitter_bookmarks": tw_bookmarks,
+                    "referenced_author": referenced_author,
                 }
     return out
 
@@ -164,6 +166,12 @@ def upsert_documents(database_url: str, user_id: int, docs: dict[str, dict]) -> 
             _engagement_int(doc, "twitter_views"),
             _engagement_int(doc, "twitter_bookmarks"),
             _any_engagement(doc),
+            # referenced_author: keep None for "field absent on this
+            # doc" so the COALESCE merge below preserves the prior
+            # value. The compose_thread_doc path always stamps a
+            # value (handle, or '' for "checked, none"), so a real
+            # twitter sync never sends None.
+            doc.get("referenced_author"),
         )
         for url, doc in docs.items()
     ]
@@ -172,10 +180,12 @@ def upsert_documents(database_url: str, user_id: int, docs: dict[str, dict]) -> 
         "  (user_id, url, title, summary, date, tags, extra_tags, "
         "   source, source_url, linked_urls, link_hosts, "
         "   citation_count, twitter_likes, twitter_retweets, twitter_replies, "
-        "   twitter_quotes, twitter_views, twitter_bookmarks, engagement_updated_at) "
+        "   twitter_quotes, twitter_views, twitter_bookmarks, engagement_updated_at, "
+        "   referenced_author) "
         "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s::jsonb, %s, "
         "        %s, %s, %s, %s, %s, %s, %s, "
-        "        CASE WHEN %s THEN now() ELSE NULL END) "
+        "        CASE WHEN %s THEN now() ELSE NULL END, "
+        "        %s) "
         "ON CONFLICT (user_id, url) DO UPDATE SET "
         "   title       = EXCLUDED.title, "
         "   summary     = EXCLUDED.summary, "
@@ -210,6 +220,7 @@ def upsert_documents(database_url: str, user_id: int, docs: dict[str, dict]) -> 
         "   twitter_views    = COALESCE(EXCLUDED.twitter_views,    documents.twitter_views), "
         "   twitter_bookmarks = COALESCE(EXCLUDED.twitter_bookmarks, documents.twitter_bookmarks), "
         "   engagement_updated_at = COALESCE(EXCLUDED.engagement_updated_at, documents.engagement_updated_at), "
+        "   referenced_author = COALESCE(EXCLUDED.referenced_author, documents.referenced_author), "
         "   indexed     = CASE "
         "       WHEN documents.title   IS DISTINCT FROM EXCLUDED.title "
         "         OR documents.summary IS DISTINCT FROM EXCLUDED.summary "

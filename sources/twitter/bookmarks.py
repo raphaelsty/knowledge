@@ -424,6 +424,11 @@ def _twikit_to_dict(tweet, depth: int = 0) -> dict | None:
         or getattr(tweet, "in_reply_to_user_id", None)
         or getattr(tweet, "in_reply_to_user_id_str", None)
     )
+    # The reply target's *@handle* — only available on the v1.1 legacy
+    # payload, not as a public twikit attribute. Needed by the
+    # referenced-author backfill which records who the user is replying
+    # to (and therefore worth looking at as a potential new VIP).
+    reply_to_screen = legacy.get("in_reply_to_screen_name") or ""
 
     d: dict = {
         "id": str(getattr(tweet, "id", "") or ""),
@@ -436,6 +441,7 @@ def _twikit_to_dict(tweet, depth: int = 0) -> dict | None:
         "conversationId": str(conv_id) if conv_id else "",
         "in_reply_to_status_id": str(reply_to) if reply_to else "",
         "in_reply_to_user_id": str(reply_to_user) if reply_to_user else "",
+        "in_reply_to_screen_name": reply_to_screen,
     }
 
     # Engagement metrics. twikit exposes them as Tweet attributes

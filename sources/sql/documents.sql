@@ -309,6 +309,24 @@ BEGIN
     ) THEN
         ALTER TABLE documents ADD COLUMN engagement_updated_at TIMESTAMPTZ;
     END IF;
+    -- referenced_author (added 2026-05-28): the @handle (no leading @,
+    -- lower-cased) of the person this tweet refers to. Filled by the
+    -- twitter backfill script and used to surface candidate accounts
+    -- worth adding to the personality roster. Precedence inside the
+    -- tweet payload is retweet > quote > reply, so a single value is
+    -- enough to capture "who is this user amplifying". Sentinel
+    -- semantics:
+    --   • NULL           — never checked.
+    --   • '' (empty)     — checked, the tweet had no retweet/quote/reply.
+    --   • '<handle>'     — checked, this is the referenced @handle.
+    -- The NULL/'' split lets the backfill script skip rows it has
+    -- already inspected without re-hitting twikit on every re-run.
+    IF NOT EXISTS (
+        SELECT 1 FROM information_schema.columns
+         WHERE table_name = 'documents' AND column_name = 'referenced_author'
+    ) THEN
+        ALTER TABLE documents ADD COLUMN referenced_author TEXT;
+    END IF;
 END$$;
 
 -- ────────────────────────────────────────────────────────────────────
@@ -573,3 +591,4 @@ COMMENT ON COLUMN documents.twitter_quotes        IS 'Twitter quote-tweet count 
 COMMENT ON COLUMN documents.twitter_views         IS 'Twitter impression / view count (sum over thread parts). BIGINT — popular tweets cross 2.1B.';
 COMMENT ON COLUMN documents.twitter_bookmarks     IS 'Twitter bookmark count (sum over thread parts). NULL = never fetched.';
 COMMENT ON COLUMN documents.engagement_updated_at IS 'When any of the engagement columns above was last refreshed. Drives the eventual stale-engagement re-fetch daemon.';
+COMMENT ON COLUMN documents.referenced_author     IS 'Twitter @handle (lower-case, no @) of the retweet/quote/reply target on this tweet. NULL = never checked; empty string = checked, no referenced author. Used to surface candidate accounts.';

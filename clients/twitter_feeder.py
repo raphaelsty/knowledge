@@ -447,6 +447,13 @@ def _ingest_via_api(slug: str, cleaned: dict) -> tuple[int, int]:
                 "twitter_quotes": d.get("twitter_quotes"),
                 "twitter_views": d.get("twitter_views"),
                 "twitter_bookmarks": d.get("twitter_bookmarks"),
+                # Referenced @handle (retweet / quote / reply
+                # target). Stamped by `compose_thread_doc` on the
+                # ingest path. None = field absent (older docs
+                # not re-parsed yet); '' = checked, no reference;
+                # '<handle>' = the reference. The Rust upsert
+                # COALESCEs onto the prior value when None.
+                "referenced_author": d.get("referenced_author"),
             }
             for url, d in cleaned.items()
         ],

@@ -1153,6 +1153,14 @@ pub struct IngestDoc {
     pub twitter_views: Option<i64>,
     #[serde(default)]
     pub twitter_bookmarks: Option<i64>,
+    // Referenced @handle (lower-cased, no leading @) — retweet /
+    // quote / reply target. `None` from the feeder means "the
+    // payload didn't carry this field" (older client); empty
+    // string means "we checked, the tweet has no reference".
+    // Both shapes round-trip through `Option<String>` and the
+    // INSERT below differentiates via NULLIF on the empty case.
+    #[serde(default)]
+    pub referenced_author: Option<String>,
 }
 
 #[derive(Debug, serde::Deserialize)]
@@ -1259,7 +1267,8 @@ pub async fn admin_ingest_tweets(
                   twitter_replies   bigint,
                   twitter_quotes    bigint,
                   twitter_views     bigint,
-                  twitter_bookmarks bigint
+                  twitter_bookmarks bigint,
+                  referenced_author text
               )
         )
         INSERT INTO documents (
@@ -1267,7 +1276,7 @@ pub async fn admin_ingest_tweets(
             source, source_url, linked_urls, link_hosts,
             twitter_likes, twitter_retweets, twitter_replies,
             twitter_quotes, twitter_views, twitter_bookmarks,
-            engagement_updated_at
+            engagement_updated_at, referenced_author
         )
         SELECT $1, i.url, COALESCE(i.title, ''), COALESCE(i.summary, ''),
                NULLIF(i.date, '')::date,
@@ -1293,7 +1302,8 @@ pub async fn admin_ingest_tweets(
                       OR i.twitter_quotes IS NOT NULL
                       OR i.twitter_views IS NOT NULL
                       OR i.twitter_bookmarks IS NOT NULL
-                    THEN now() ELSE NULL END
+                    THEN now() ELSE NULL END,
+               i.referenced_author
           FROM input i
         ON CONFLICT (user_id, url) DO UPDATE
             SET date = GREATEST(documents.date, EXCLUDED.date),
@@ -1334,6 +1344,12 @@ pub async fn admin_ingest_tweets(
                 twitter_views     = COALESCE(EXCLUDED.twitter_views,     documents.twitter_views),
                 twitter_bookmarks = COALESCE(EXCLUDED.twitter_bookmarks, documents.twitter_bookmarks),
                 engagement_updated_at = COALESCE(EXCLUDED.engagement_updated_at, documents.engagement_updated_at),
+                -- referenced_author: keep the prior value when the
+                -- new payload didn't carry the field. A real value
+                -- (including the empty-string "checked, no
+                -- reference" sentinel) overwrites because the
+                -- feeder just re-measured it.
+                referenced_author = COALESCE(EXCLUDED.referenced_author, documents.referenced_author),
                 created_via_favorite = FALSE,
                 deleted = FALSE,
                 updated_at = now()

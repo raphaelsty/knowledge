@@ -368,6 +368,26 @@ backfill-tweet-media:
 	  --slug $(SLUG) \
 	  $(if $(DRY),--dry,)
 
+# Backfill `documents.referenced_author` — the @handle a tweet
+# refers to via retweet / quote / reply. Walks every twitter doc
+# newest-first, batch-hydrates via cookie-authenticated twikit,
+# writes the handle (or empty sentinel) and refreshes the engagement
+# columns at the same time. Cookies come from Safari by default;
+# override with `TWITTER_AUTH_TOKEN=...` `TWITTER_CT0=...` env vars.
+#
+#   make backfill-twitter-referenced-author                  # all users, newest-first
+#   make backfill-twitter-referenced-author SLUG=tony-wu     # one personality
+#   make backfill-twitter-referenced-author LIMIT=500 DRY=1  # plan-only sample
+#   make backfill-twitter-referenced-author MARK_MISSING=1   # also stamp deleted/protected
+.PHONY: backfill-twitter-referenced-author
+backfill-twitter-referenced-author:
+	@DATABASE_URL=$(DATABASE_URL) \
+	uv run python scripts/backfill_twitter_referenced_author.py \
+	  $(if $(SLUG),--slug $(SLUG),) \
+	  $(if $(LIMIT),--limit $(LIMIT),) \
+	  $(if $(MARK_MISSING),--mark-missing,) \
+	  $(if $(DRY),--dry,)
+
 # Backfill title + summary on YouTube docs whose metadata is missing
 # (e.g. tweets that landed with a slug-style title like "K4i C5YYvr Qk").
 # Uses YouTube's oEmbed endpoint — no API key needed — and writes
@@ -636,12 +656,19 @@ prod-db-sync: prod-db-dump prod-db-restore
 # this laptop per calendar day, regardless of whether the prod
 # pg-backup sidecar volume survives a host event.
 #
+# `--min-age 24` is prepended so the server-side queue endpoint
+# excludes any VIP whose `last_attempt_at` is within the last 24h.
+# That gives "at most one parsing per personality per day" even
+# across restarts (state lives in `twitter_feed_attempts`). Pass a
+# different value via `ARGS="--min-age 0"` to override — argparse
+# uses the last occurrence.
+#
 # Ctrl+C exits cleanly: in-flight personality finishes.
 .PHONY: twitter-feed twitter-feed-logs
 twitter-feed: prod-db-dump-if-stale
 	KNOWLEDGE_ADMIN_TOKEN=$(KNOWLEDGE_ADMIN_TOKEN) \
 	API_URL=https://$(DOMAIN) \
-		scripts/twitter_feed.sh $(ARGS)
+		scripts/twitter_feed.sh --min-age 24 $(ARGS)
 
 # Tail the most recent twitter-feed log (handy if the client is
 # running in another tmux pane / screen session).
