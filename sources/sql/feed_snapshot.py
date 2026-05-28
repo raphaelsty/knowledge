@@ -145,6 +145,13 @@ def _build_refresh_sql(window_days: int, max_rows: int) -> str:
                 d.linked_urls, d.link_hosts,
                 d.canonical_url,
                 d.canonical_referenced_urls,
+                -- Behavioural counts, threaded through so the
+                -- per-anchor engagement roll-up below can MAX them.
+                -- NULL (not-yet-backfilled) reads as 0 — the term
+                -- only ever adds, never penalises a doc we haven't
+                -- measured yet.
+                d.twitter_likes, d.twitter_retweets,
+                d.twitter_replies, d.twitter_quotes,
                 COALESCE(
                     (SELECT ref
                        FROM unnest(d.canonical_referenced_urls) ref
@@ -325,6 +332,26 @@ def _build_refresh_sql(window_days: int, max_rows: int) -> str:
              WHERE a.anchor_url IN (SELECT DISTINCT anchor_url FROM window_docs)
              GROUP BY a.anchor_url
         ),
+        -- Per-anchor behavioural roll-up. We take the MAX of each
+        -- metric across the in-window docs that map to the anchor,
+        -- NOT the SUM: a popular tweet is reshared by N VIPs and each
+        -- retweet-wrapper mirrors the original's like/RT counts, so
+        -- summing would multiply one viral tweet's engagement by its
+        -- resharer count. MAX captures "the most-engaged single tweet
+        -- about this resource" — the honest attention signal — while
+        -- the breadth of interest is already measured separately by
+        -- `vip_sharer_count`. The two are orthogonal: vip_sharer_count
+        -- = how many VIPs co-signed it, engagement = how loud the
+        -- single loudest post about it was.
+        anchor_engagement AS (
+            SELECT anchor_url,
+                   MAX(COALESCE(twitter_likes,    0)) AS max_likes,
+                   MAX(COALESCE(twitter_retweets, 0)) AS max_retweets,
+                   MAX(COALESCE(twitter_replies,  0)) AS max_replies,
+                   MAX(COALESCE(twitter_quotes,   0)) AS max_quotes
+              FROM window_docs
+             GROUP BY anchor_url
+        ),
         -- Final scoring. Mirrors the live-query formula minus the
         -- per-viewer terms (followee_share, fresh-self).
         scored AS (
@@ -431,24 +458,55 @@ def _build_refresh_sql(window_days: int, max_rows: int) -> str:
                            WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 90  THEN 1.0
                            ELSE 0
                        END
-                     -- Popularity signal — ONLY VIP sharers count.
-                     -- The previous total-share term was dropped:
-                     -- counting non-VIPs let bot accounts / mass
-                     -- followers inflate a doc's score without any
-                     -- editorial weight behind it. Aggregation is
-                     -- by anchor_url, so all the tweets / direct
-                     -- saves of a single resource collapse to one
-                     -- count first, then we measure how many
-                     -- distinct VIPs are in that bucket.
+                     -- ★ PRIMARY SIGNAL ★ — VIP consensus. How many
+                     -- distinct VIPs co-signed this resource. ONLY
+                     -- VIPs count (non-VIP / bot saves carry no
+                     -- editorial weight). Aggregation is by anchor_url
+                     -- so every tweet + direct save of one resource
+                     -- collapses to a single count first.
                      --
-                     -- Cap raised 4 → 8 so the upper tail
-                     -- (10–20 VIP sharers — the genuinely
-                     -- consensus-worthy resources) actually
-                     -- benefits from extra signal instead of
-                     -- being clamped at 7. Coefficient unchanged
-                     -- (×2.0). 1 VIP ≈ +1.39, 4 VIPs ≈ +3.22,
-                     -- 15 VIPs ≈ +5.55, 50+ caps at +8.0.
-                     + LEAST(8, LN(GREATEST(1, s.vip_sharer_count + 1))) * 2.0
+                     -- This is the term the feed should lean on
+                     -- hardest: a paper twelve VIPs independently
+                     -- saved is the strongest "this matters" signal we
+                     -- have. Coefficient raised 2.0 → 3.2 and cap
+                     -- 8 → 12 so consensus rivals the recency tier
+                     -- (peak +12) and the sci bonus (+18) instead of
+                     -- being a rounding error beside them.
+                     --   1 VIP  ≈ +2.22    2 VIPs ≈ +3.52
+                     --   5 VIPs ≈ +5.73    7 VIPs ≈ +6.65
+                     --  14 VIPs ≈ +8.67   20 VIPs ≈ +9.74
+                     --  42+ VIPs caps at +12.0
+                     -- The 1→14 gap widened from ~4 to ~6.5, so a
+                     -- broadly-shared resource now clearly separates
+                     -- from a single-VIP one even when both carry the
+                     -- same flat sci bonus.
+                     + LEAST(12.0, LN(GREATEST(1, s.vip_sharer_count + 1)) * 3.2)
+                     -- Behavioural engagement — the "heavily upvoted
+                     -- by plenty of people" signal, kept deliberately
+                     -- SECONDARY to VIP consensus above. MAX engagement
+                     -- across the anchor's tweets, led by likes (the
+                     -- cleanest upvote proxy):
+                     --   likes + retweets + 1.5·replies + quotes.
+                     -- Retweets are weighted 1× not 2× because in this
+                     -- corpus a "retweet" is one VIP resharing — that
+                     -- breadth is already counted by vip_sharer_count,
+                     -- and raw retweet_count on reshare wrappers is
+                     -- noisy (often present while likes read 0). Replies
+                     -- get a small 1.5× as a genuine-discussion signal.
+                     -- Log-scaled /150, coefficient 1.3, capped +6.0 so
+                     -- a viral post lifts a few points and breaks ties
+                     -- between similar-consensus docs without ever
+                     -- out-shouting the consensus + resource terms.
+                     -- NULL counts read as 0 (not yet backfilled) so
+                     -- the term only ever adds.
+                     --   ~350 eng ≈ +1.5    ~1k eng ≈ +2.5
+                     --   ~3k eng  ≈ +3.9    50k+   caps at +6.0
+                     + LEAST(6.0, LN(1 + (
+                           COALESCE(eng.max_likes,    0)
+                         + COALESCE(eng.max_retweets, 0) * 1.0
+                         + COALESCE(eng.max_replies,  0) * 1.5
+                         + COALESCE(eng.max_quotes,   0) * 1.0
+                       ) / 150.0) * 1.3)
                      + LEAST(
                          1.5,
                          LN(GREATEST(1, s.top_followers / 10000.0))
@@ -518,8 +576,9 @@ def _build_refresh_sql(window_days: int, max_rows: int) -> str:
                      END
                                                                   AS score
               FROM representative r
-              JOIN anchor_sharers     s  ON s.anchor_url  = r.anchor_url
-              LEFT JOIN anchor_categories ac ON ac.anchor_url = r.anchor_url
+              JOIN anchor_sharers     s   ON s.anchor_url  = r.anchor_url
+              LEFT JOIN anchor_categories ac  ON ac.anchor_url  = r.anchor_url
+              LEFT JOIN anchor_engagement eng ON eng.anchor_url = r.anchor_url
         )
         ,
         -- Belt-and-braces dedup by URL. The DISTINCT ON in

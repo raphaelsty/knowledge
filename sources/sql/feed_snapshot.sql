@@ -139,7 +139,7 @@ COMMENT ON TABLE feed_snapshot IS
 COMMENT ON COLUMN feed_snapshot.url             IS 'Representative URL (visually richest among the docs sharing the anchor).';
 COMMENT ON COLUMN feed_snapshot.canonical_url   IS 'Canonical form of the representative URL — used for client-side dedup hints.';
 COMMENT ON COLUMN feed_snapshot.anchor_url      IS 'Resource-identity key. Multiple URLs (paper + tweets-about-paper) collapse to one anchor and one row in this table.';
-COMMENT ON COLUMN feed_snapshot.score           IS 'Viewer-agnostic score: sci×6 + weekly recency bucket + LN(total_share)·0.7 + VIP×0.8 + LN(followers/10k) + rich-tweet 1.5.';
+COMMENT ON COLUMN feed_snapshot.score           IS 'Viewer-agnostic score: sci×6 (age+substance damped) + weekly recency tier (≤+12) + VIP-consensus LN(vip+1)·3.2 (≤+12, PRIMARY signal) + engagement LN(1+(likes+2·rt+1.5·(reply+quote))/150)·1.6 (≤+6.5) + LN(followers/10k) (≤1.5) + rich-tweet 2.5/0.5 + content (≤+2), all × total-age multiplier, minus cluster-repeat penalty (≤0.7).';
 COMMENT ON COLUMN feed_snapshot.sharer_user_ids IS 'All user_ids whose docs map to this anchor. Followee-overlap filter joins on this.';
 COMMENT ON COLUMN feed_snapshot.any_vip_sharer  IS 'TRUE iff at least one sharer is a VIP. Powers the anon-timeline indexed scan.';
 COMMENT ON COLUMN feed_snapshot.refreshed_at    IS 'Wall-clock of the refresh that wrote this row. Handler bypasses snapshot when MAX(refreshed_at) is too stale.';

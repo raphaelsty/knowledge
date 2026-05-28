@@ -110,6 +110,10 @@ def _build_refresh_sql(window_days: int, user_id: int) -> str:
                 d.extra_tags, d.source, d.source_url, d.created_at,
                 d.linked_urls, d.link_hosts, d.canonical_url,
                 d.canonical_referenced_urls, d.indexed,
+                -- Behavioural counts for the engagement term below,
+                -- mirroring feed_snapshot. NULL (un-backfilled) → 0.
+                d.twitter_likes, d.twitter_retweets,
+                d.twitter_replies, d.twitter_quotes,
                 COALESCE(
                     (SELECT ref
                        FROM unnest(d.canonical_referenced_urls) ref
@@ -211,6 +215,20 @@ def _build_refresh_sql(window_days: int, user_id: int) -> str:
               JOIN document_categories               dc
                 ON dc.id     = a.category_id
              GROUP BY w.anchor_url
+        ),
+        -- Per-anchor behavioural roll-up over THIS user's own docs.
+        -- MAX (not SUM) for the same reason as feed_snapshot: a
+        -- resource the owner tweeted + retweeted shouldn't double
+        -- count. On a personal page the owner's own tweet engagement
+        -- is the honest "how much did this land" signal.
+        anchor_engagement AS (
+            SELECT anchor_url,
+                   MAX(COALESCE(twitter_likes,    0)) AS max_likes,
+                   MAX(COALESCE(twitter_retweets, 0)) AS max_retweets,
+                   MAX(COALESCE(twitter_replies,  0)) AS max_replies,
+                   MAX(COALESCE(twitter_quotes,   0)) AS max_quotes
+              FROM window_docs
+             GROUP BY anchor_url
         ),
         scored AS (
             SELECT r.user_id,
@@ -378,6 +396,17 @@ def _build_refresh_sql(window_days: int, user_id: int) -> str:
                              length(COALESCE(r.summary, ''))::float - 60.0
                          ) / 300.0
                        )
+                     -- Behavioural engagement — identical shape to
+                     -- feed_snapshot ("heavily upvoted by plenty of
+                     -- people"), kept secondary to the VIP-share boost
+                     -- below. likes + retweets + 1.5·replies + quotes,
+                     -- log-scaled /150, ×1.3, capped +6.0. NULL→0.
+                     + LEAST(6.0, LN(1 + (
+                           COALESCE(eng.max_likes,    0)
+                         + COALESCE(eng.max_retweets, 0) * 1.0
+                         + COALESCE(eng.max_replies,  0) * 1.5
+                         + COALESCE(eng.max_quotes,   0) * 1.0
+                       ) / 150.0) * 1.3)
                      -- Cross-personality VIP-share boost. Weighted
                      -- ×4 (vs the global feed's ×2) so the share
                      -- signal does the heavy lifting on personal
@@ -428,8 +457,9 @@ def _build_refresh_sql(window_days: int, user_id: int) -> str:
               FROM representative r
               JOIN users         u  ON u.id = r.user_id
               JOIN anchor_rollup ar ON ar.anchor_url = r.anchor_url
-              LEFT JOIN anchor_categories ac ON ac.anchor_url = r.anchor_url
-              LEFT JOIN feed_snapshot fs       ON fs.anchor_url = r.anchor_url
+              LEFT JOIN anchor_categories ac  ON ac.anchor_url  = r.anchor_url
+              LEFT JOIN anchor_engagement eng ON eng.anchor_url = r.anchor_url
+              LEFT JOIN feed_snapshot fs      ON fs.anchor_url  = r.anchor_url
         ),
         -- Belt-and-braces dedup on (user_id, url). Mirrors the
         -- feed_snapshot's dedup step for the same reason: two
