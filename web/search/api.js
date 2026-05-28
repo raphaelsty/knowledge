@@ -350,6 +350,15 @@
             url,
             title: m.title || "",
             summary: m.summary || "",
+            // Pedagogical title/summary from the clean daemon. The
+            // renderer (`page.js` line ~6758) prefers `cleanTitle ||
+            // title` and `cleanSummary || summary`, so populating
+            // these here makes the personal page match the feed —
+            // cleaned cards everywhere the daemon has been, raw text
+            // for the rest. Always strings (possibly empty); never
+            // missing.
+            cleanTitle: m.clean_title || "",
+            cleanSummary: m.clean_summary || "",
             date: m.date || "",
             createdAt: m.created_at || "",
             source: m.source || "",

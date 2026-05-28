@@ -416,6 +416,8 @@ pub async fn list_documents(
             SELECT d.url,\n\
                    d.title,\n\
                    d.summary,\n\
+                   d.clean_title,\n\
+                   d.clean_summary,\n\
                    d.date,\n\
                    d.tags,\n\
                    d.extra_tags,\n\
@@ -547,6 +549,7 @@ pub async fn list_documents(
         sql.push_str(
             ")\n\
              SELECT c.url, c.title, c.summary,\n\
+                    c.clean_title, c.clean_summary,\n\
                     COALESCE(to_char(c.date, 'YYYY-MM-DD'), '') AS date,\n\
                     c.tags, c.extra_tags, c.source, c.source_url, c.indexed,\n\
                     c.linked_urls, c.link_hosts,\n\
@@ -618,7 +621,8 @@ pub async fn list_documents(
              ),\n\
              dedup AS (\n\
                 SELECT DISTINCT ON (anchor_url)\n\
-                       url, title, summary, date, tags, extra_tags,\n\
+                       url, title, summary, clean_title, clean_summary,\n\
+                       date, tags, extra_tags,\n\
                        source, source_url, indexed, linked_urls, link_hosts,\n\
                        created_at, created_via_post\n\
                   FROM candidate_anchors\n\
@@ -626,6 +630,7 @@ pub async fn list_documents(
                           date DESC NULLS LAST, created_at DESC\n\
              )\n\
              SELECT dedup.url, dedup.title, dedup.summary,\n\
+                    dedup.clean_title, dedup.clean_summary,\n\
                     COALESCE(to_char(dedup.date, 'YYYY-MM-DD'), '') AS date,\n\
                     dedup.tags, dedup.extra_tags, dedup.source, dedup.source_url,\n\
                     dedup.indexed, dedup.linked_urls, dedup.link_hosts,\n\
@@ -677,6 +682,8 @@ pub async fn list_documents(
             String,            // url
             String,            // title
             String,            // summary
+            String,            // clean_title
+            String,            // clean_summary
             String,            // date
             Vec<String>,       // tags
             Vec<String>,       // extra_tags
@@ -737,6 +744,8 @@ pub async fn list_documents(
         url,
         title,
         summary,
+        clean_title,
+        clean_summary,
         date,
         tags,
         extra_tags,
@@ -753,6 +762,12 @@ pub async fn list_documents(
             serde_json::json!({
                 "title": title,
                 "summary": summary,
+                // Pedagogical title/summary produced by the clean
+                // daemon. Empty until the row has been cleaned;
+                // the frontend's `cleanTitle || title` fallback keeps
+                // the raw text on uncleaned rows.
+                "clean_title": clean_title,
+                "clean_summary": clean_summary,
                 "date": date,
                 "tags": tags,
                 "extra-tags": extra_tags,
@@ -842,7 +857,7 @@ async fn try_list_documents_from_snapshot(
     // after a post still rises above it. Pipeline-imported rows
     // leave both slots NULL and fall back to feed-score order.
     let mut sql = String::from(
-        "SELECT ps.url,\n         ps.title,\n         ps.summary,\n         COALESCE(to_char(ps.date, 'YYYY-MM-DD'), '') AS date,\n         ps.tags,\n         ps.extra_tags,\n         ps.source,\n         ps.source_url,\n         ps.indexed,\n         ps.linked_urls,\n         ps.link_hosts,\n         COALESCE(to_char(ps.date AT TIME ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), '') AS created_at,\n         ps.sharers,\n         ps.sharer_count\n    FROM personal_snapshot ps\n    JOIN users u ON u.id = ps.user_id\n    LEFT JOIN favorite_documents fav\n      ON fav.user_id = ps.user_id AND fav.url = ps.url\n    LEFT JOIN documents d_post\n      ON d_post.user_id = ps.user_id AND d_post.url = ps.url\n     AND d_post.deleted = FALSE\n   WHERE u.username = $1",
+        "SELECT ps.url,\n         ps.title,\n         ps.summary,\n         ps.clean_title,\n         ps.clean_summary,\n         COALESCE(to_char(ps.date, 'YYYY-MM-DD'), '') AS date,\n         ps.tags,\n         ps.extra_tags,\n         ps.source,\n         ps.source_url,\n         ps.indexed,\n         ps.linked_urls,\n         ps.link_hosts,\n         COALESCE(to_char(ps.date AT TIME ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), '') AS created_at,\n         ps.sharers,\n         ps.sharer_count\n    FROM personal_snapshot ps\n    JOIN users u ON u.id = ps.user_id\n    LEFT JOIN favorite_documents fav\n      ON fav.user_id = ps.user_id AND fav.url = ps.url\n    LEFT JOIN documents d_post\n      ON d_post.user_id = ps.user_id AND d_post.url = ps.url\n     AND d_post.deleted = FALSE\n   WHERE u.username = $1",
     );
     let mut idx: usize = 2;
     if !sources_vec.is_empty() {
@@ -901,6 +916,8 @@ async fn try_list_documents_from_snapshot(
             String,            // url
             String,            // title
             String,            // summary
+            String,            // clean_title
+            String,            // clean_summary
             String,            // date
             Vec<String>,       // tags
             Vec<String>,       // extra_tags
@@ -947,6 +964,8 @@ async fn try_list_documents_from_snapshot(
         url,
         title,
         summary,
+        clean_title,
+        clean_summary,
         date,
         tags,
         extra_tags,
@@ -965,6 +984,14 @@ async fn try_list_documents_from_snapshot(
             serde_json::json!({
                 "title": title,
                 "summary": summary,
+                // Pedagogical title/summary produced by the clean
+                // daemon. Empty until the row has been cleaned; the
+                // frontend's `cleanTitle || title` fallback keeps the
+                // raw text on uncleaned rows. Wire format is
+                // snake_case; the api.js mapper translates to the
+                // camelCase keys the renderer reads.
+                "clean_title": clean_title,
+                "clean_summary": clean_summary,
                 "date": date,
                 "tags": tags,
                 "extra-tags": extra_tags,
