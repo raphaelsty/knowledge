@@ -115,12 +115,27 @@ pub(crate) fn fetch_metadata_for_docs(
 ///   2. Blend the ColBERT score with the feed_snapshot score so VIP-shared
 ///      tweets that anchor an arxiv / hf / github resource rise above text-
 ///      matchier but lower-signal candidates. Formula:
-///      `final = colbert + FEED_SCORE_WEIGHT × ln(1 + feed_score)`
+///      `final = colbert + weight × ln(1 + feed_score)`
 ///      then sort desc and trim to `top_k`. The blended score replaces the
 ///      ColBERT one in the response; the raw `feed_score` is attached to
 ///      each metadata entry so the client can apply the same blend after
 ///      its own re-rank pass.
-const FEED_SCORE_WEIGHT: f64 = 0.5;
+///
+/// Historically `FEED_SCORE_WEIGHT` was 0.5 — a relevance *proxy* picked
+/// when the only ranking signal was raw ColBERT, whose magnitude (~0.015)
+/// couldn't carry semantic intent on its own and let popular-but-unrelated
+/// docs dominate. Now that the hybrid pipeline produces a real relevance
+/// score (ColBERT + BM25 fused via per-query min-max normalization, range
+/// ~[0, 1]), popularity should only break ties between equally-relevant
+/// candidates — not override the user's expressed intent.
+///
+/// `_BROWSE`: feed view, no `text_query`. Some popularity nudge is still
+///   useful as a weak relevance proxy for items the semantic side ranked
+///   similarly, but kept modest so date/recency stays visible.
+/// `_SEARCH`: `text_query` present. The user typed something specific;
+///   popularity becomes a tiebreaker, not a primary ranker.
+const FEED_SCORE_WEIGHT_BROWSE: f64 = 0.10;
+const FEED_SCORE_WEIGHT_SEARCH: f64 = 0.02;
 
 /// Anchor-dedup + feed-score blend.
 ///
@@ -140,7 +155,13 @@ async fn apply_feed_scope_filter(
     results: &mut Vec<QueryResultResponse>,
     top_k: usize,
     strict_feed_filter: bool,
+    search_intent: bool,
 ) -> ApiResult<()> {
+    let feed_weight = if search_intent {
+        FEED_SCORE_WEIGHT_SEARCH
+    } else {
+        FEED_SCORE_WEIGHT_BROWSE
+    };
     let filter_t0 = std::time::Instant::now();
     let mut url_set: HashSet<String> = HashSet::new();
     for r in results.iter() {
@@ -246,7 +267,7 @@ async fn apply_feed_scope_filter(
             }
             let colbert = r.scores[i];
             let blended =
-                (colbert as f64 + FEED_SCORE_WEIGHT * (1.0 + fs_for_blend.max(0.0)).ln()) as f32;
+                (colbert as f64 + feed_weight * (1.0 + fs_for_blend.max(0.0)).ln()) as f32;
 
             // Linked URLs on this candidate (deduped on the way in).
             let linked_from_this: Vec<serde_json::Value> = r
@@ -539,9 +560,12 @@ pub async fn search(
         // Always run anchor-dedup + feed-score blend. `feed_scope`
         // controls whether long-tail results (anchor not in
         // feed_snapshot) get dropped (strict) or kept as their own
-        // anchors with no feed-score boost.
+        // anchors with no feed-score boost. The semantic-only branch
+        // never has a text_query, so search_intent=false (browse mode
+        // weight applies — popularity is a meaningful signal when the
+        // user gave no relevance cue).
         if let Some(pool) = state.pg_pool.as_ref() {
-            apply_feed_scope_filter(pool, &mut results, requested_top_k, feed_scope).await?;
+            apply_feed_scope_filter(pool, &mut results, requested_top_k, feed_scope, false).await?;
         } else if feed_scope {
             return Err(ApiError::Internal(
                 "feed_scope requested but PgPool unavailable".to_string(),
@@ -629,19 +653,32 @@ pub async fn search(
             None
         };
 
-        // Keyword component for this query
+        // Keyword component for this query.
+        //
+        // text_search::search passes the string straight into the FTS5
+        // MATCH clause, which has its own mini-grammar (AND/OR/NOT,
+        // quotes, parens, colons). Anything resembling an operator or
+        // a stray quote raises a parse error and the keyword half
+        // drops out — which silently degrades hybrid search to
+        // semantic-only. sanitize_fts5_query strips operators and
+        // wraps every word in literal quotes, joined by implicit AND.
         let keyword: Option<(Vec<i64>, Vec<f32>)> = if has_text_query {
-            let tq = &text_queries[i];
-            let result = if let Some(ref sub) = subset {
-                text_search::search_filtered(&path_str, tq, fetch_k, sub)
+            let tq_raw = &text_queries[i];
+            let tq = text_search::sanitize_fts5_query(tq_raw);
+            if tq.is_empty() {
+                None
             } else {
-                text_search::search(&path_str, tq, fetch_k)
-            };
-            match result {
-                Ok(r) => Some((r.passage_ids, r.scores)),
-                Err(e) => {
-                    tracing::warn!(trace_id = %trace_id, index = %name, error = %e, "search.keyword.failed");
-                    None
+                let result = if let Some(ref sub) = subset {
+                    text_search::search_filtered(&path_str, &tq, fetch_k, sub)
+                } else {
+                    text_search::search(&path_str, &tq, fetch_k)
+                };
+                match result {
+                    Ok(r) => Some((r.passage_ids, r.scores)),
+                    Err(e) => {
+                        tracing::warn!(trace_id = %trace_id, index = %name, error = %e, "search.keyword.failed");
+                        None
+                    }
                 }
             }
         } else {
@@ -691,9 +728,18 @@ pub async fn search(
 
     // Always run anchor-dedup + feed-score blend (see semantic branch
     // above). `feed_scope` only controls whether non-snapshot
-    // candidates are dropped.
+    // candidates are dropped. `has_text_query` tells the blend the
+    // user has expressed a specific relevance intent, so popularity
+    // gets a lighter weight (a tiebreaker, not a primary ranker).
     if let Some(pool) = state.pg_pool.as_ref() {
-        apply_feed_scope_filter(pool, &mut all_results, requested_top_k, feed_scope).await?;
+        apply_feed_scope_filter(
+            pool,
+            &mut all_results,
+            requested_top_k,
+            feed_scope,
+            has_text_query,
+        )
+        .await?;
     } else if feed_scope {
         return Err(ApiError::Internal(
             "feed_scope requested but PgPool unavailable".to_string(),

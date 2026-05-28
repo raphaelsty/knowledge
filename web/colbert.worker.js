@@ -25,6 +25,86 @@ const MODEL_FILES = [
 const COLBERT_LATENCY_BUCKET = 32; // A ColBERT model parameter.
 const MAX_DOCS_TO_RANK = 29; // We only re-rank the top N documents for performance.
 
+// --- Hybrid scoring (ColBERT + BM25) ---
+//
+// The worker re-ranks the API's top-29 candidates locally. ColBERT alone
+// loses rare-proper-noun queries — a doc with the exact token in its
+// title can score below a semantically-broader doc that doesn't. Adding
+// a per-query min-max normalized BM25 signal on top keeps lexical
+// precision. Weights mirror paradigm-mission-control's offline-tuned
+// linear-fusion recipe (w_dense = w_lex = 0.90, picked via grid search
+// over 1,339 labeled queries). Equal weighting after normalization.
+const W_COLBERT = 0.9;
+const W_BM25 = 0.9;
+// BM25 hyperparameters — Robertson-Spärck-Jones defaults; the corpus is
+// only ~29 docs so tuning these further isn't worth it.
+const BM25_K1 = 1.5;
+const BM25_B = 0.75;
+
+/** Tokenize for BM25: lowercase, split on non-alphanumeric, drop empties. */
+const tokenize = (text) =>
+  (text || "")
+    .toLowerCase()
+    .split(/[^a-z0-9]+/)
+    .filter(Boolean);
+
+/** Min-max normalize a numeric array to [0, 1]. Returns zeros if all equal. */
+const minmaxNormalize = (values) => {
+  if (!values.length) return [];
+  let lo = Infinity;
+  let hi = -Infinity;
+  for (const v of values) {
+    if (v < lo) lo = v;
+    if (v > hi) hi = v;
+  }
+  const span = hi - lo;
+  if (span < 1e-9) return values.map(() => 0);
+  return values.map((v) => (v - lo) / span);
+};
+
+/** BM25 score of a query (as token list) against a single doc's token list,
+ *  given pre-computed corpus stats (avgDocLen, IDF map). */
+const bm25Score = (queryTokens, docTokens, avgDocLen, idfByTerm) => {
+  if (!queryTokens.length || !docTokens.length) return 0;
+  const docLen = docTokens.length;
+  const tf = new Map();
+  for (const t of docTokens) tf.set(t, (tf.get(t) || 0) + 1);
+  let score = 0;
+  for (const qt of queryTokens) {
+    const f = tf.get(qt) || 0;
+    if (!f) continue;
+    const idf = idfByTerm.get(qt) || 0;
+    const numerator = f * (BM25_K1 + 1);
+    const denominator =
+      f + BM25_K1 * (1 - BM25_B + BM25_B * (docLen / avgDocLen));
+    score += idf * (numerator / denominator);
+  }
+  return score;
+};
+
+/** Build per-query corpus stats (avgDocLen, IDF) over a list of doc-token
+ *  arrays. IDF uses the Robertson-Spärck-Jones formula with a smoothing
+ *  guard so a token present in 0 docs gets idf=0 (not negative infinity). */
+const buildBm25Stats = (queryTokens, docTokensList) => {
+  const N = docTokensList.length;
+  const avgDocLen =
+    docTokensList.reduce((s, d) => s + d.length, 0) / Math.max(N, 1);
+  const df = new Map();
+  for (const qt of queryTokens) {
+    let count = 0;
+    for (const tokens of docTokensList) if (tokens.includes(qt)) count++;
+    df.set(qt, count);
+  }
+  const idfByTerm = new Map();
+  for (const [term, dfi] of df) {
+    // RSJ idf with the +1 smoothing inside the log keeps the value
+    // non-negative for terms that appear in >half the corpus.
+    const idf = Math.log(1 + (N - dfi + 0.5) / (dfi + 0.5));
+    idfByTerm.set(term, Math.max(0, idf));
+  }
+  return { avgDocLen, idfByTerm };
+};
+
 // --- State ---
 
 let colbertModel = null;
@@ -135,10 +215,46 @@ const rankDocuments = async (payload) => {
 
   const docsToRank = documents.slice(0, MAX_DOCS_TO_RANK);
   const docsToPassThrough = documents.slice(MAX_DOCS_TO_RANK);
+
+  // Pre-tokenize the query + every candidate doc once. BM25 corpus stats
+  // (avgDocLen, IDF) are computed against this 29-doc local corpus so the
+  // signal is sensitive to how distinctive a query term is *within the
+  // candidate set the API surfaced* — which is what matters for the
+  // re-rank decision.
+  const queryTokens = tokenize(query);
+  const docTexts = docsToRank.map((d) => {
+    const title = d.title || "";
+    const summary = d.summary || "";
+    const allTags = (d.tags || []).concat(d["extra-tags"] || []).join(" ");
+    return `${title} ${summary} ${allTags}`.trim();
+  });
+  const docTokensList = docTexts.map(tokenize);
+  const { avgDocLen, idfByTerm } = buildBm25Stats(queryTokens, docTokensList);
+  const bm25Scores = docTokensList.map((toks) =>
+    bm25Score(queryTokens, toks, avgDocLen, idfByTerm),
+  );
+
+  /** Re-sort `rankedDocs` by the fused score (ColBERT min-max + BM25
+   *  min-max, weighted). Recomputes normalization on every call so the
+   *  partial-update stream stays consistent: as ColBERT scores arrive,
+   *  the min/max shift and the fused order rebalances. */
+  const fuseAndSort = () => {
+    const colbertRaw = rankedDocs.map((d) => d.colbertScore);
+    const bm25Raw = rankedDocs.map((d) => d._bm25Score);
+    const colbertNorm = minmaxNormalize(colbertRaw);
+    const bm25Norm = minmaxNormalize(bm25Raw);
+    for (let i = 0; i < rankedDocs.length; i++) {
+      rankedDocs[i].fusedScore =
+        W_COLBERT * colbertNorm[i] + W_BM25 * bm25Norm[i];
+    }
+    rankedDocs.sort((a, b) => b.fusedScore - a.fusedScore);
+  };
+
   const rankedDocs = [];
   const remainingForRanking = [...docsToRank];
 
-  for (const document of docsToRank) {
+  for (let i = 0; i < docsToRank.length; i++) {
+    const document = docsToRank[i];
     // This line pauses the loop and allows the worker to process new messages.
     await new Promise((resolve) => setTimeout(resolve, 0));
 
@@ -153,22 +269,19 @@ const rankDocuments = async (payload) => {
     try {
       remainingForRanking.shift();
 
-      const title = document.title || "";
-      const summary = document.summary || "";
-      const allTags = (document.tags || [])
-        .concat(document["extra-tags"] || [])
-        .join(" ");
-      const combinedText = `${title} ${summary} ${allTags}`.trim();
-
       const { data: scores } = colbertModel.similarity({
         queries: [query],
-        documents: [combinedText],
+        documents: [docTexts[i]],
       });
       const score = scores[0][0];
 
-      const scoredDocument = { ...document, colbertScore: score };
+      const scoredDocument = {
+        ...document,
+        colbertScore: score,
+        _bm25Score: bm25Scores[i],
+      };
       rankedDocs.push(scoredDocument);
-      rankedDocs.sort((a, b) => b.colbertScore - a.colbertScore);
+      fuseAndSort();
 
       const partialResult = [
         ...rankedDocs,

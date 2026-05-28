@@ -481,7 +481,33 @@
     filter = null,
     feedScope = false,
   }) {
-    const body = { queries: [query], params: { top_k: topK } };
+    // Hybrid retrieval: send the same string as both the semantic query
+    // (ColBERT embeddings) and the keyword query (FTS5 BM25), fused on
+    // the backend via per-query min-max normalization + weighted sum
+    // (`fusion: "relative_score"`). This is the same recipe Paradigm
+    // Mission Control uses for its dense+lexical retrieval pipeline,
+    // tuned via offline grid search on 1,339 labeled queries — it
+    // preserves score magnitude across signals (RRF discards it) and
+    // makes exact-token matches reliably rise to the top.
+    //
+    // Why not RRF (the previous default): RRF only uses ranks, so a
+    // ColBERT-rank-1 doc and a keyword-rank-1 doc tie regardless of
+    // their actual score gap. For a rare proper noun like "potion",
+    // the BM25 score gap between literal matches and noise is huge,
+    // but RRF flattens it — so pure semantic noise outranked Potion
+    // model cards. Normalized linear fusion preserves the gap.
+    //
+    // alpha=0.5 weights both signals equally after normalization. The
+    // FTS branch contributes nothing when keyword has zero hits (long
+    // natural-language queries), so pure semantic behaviour is
+    // preserved automatically.
+    const body = {
+      queries: [query],
+      text_query: [query],
+      fusion: "relative_score",
+      alpha: 0.5,
+      params: { top_k: topK },
+    };
     if (subset) body.subset = subset;
     if (feedScope) body.feed_scope = true;
     let path = "search_with_encoding";
