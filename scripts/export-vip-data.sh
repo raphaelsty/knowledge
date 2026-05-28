@@ -105,6 +105,7 @@ SELECT u.username || E'\\t' || json_build_object(
   'twitter_quotes',     d.twitter_quotes,
   'twitter_views',      d.twitter_views,
   'twitter_bookmarks',  d.twitter_bookmarks,
+  'referenced_author',  d.referenced_author,
   'created_at',         to_char(d.created_at AT TIME ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SSZ')
 )::text
   FROM documents d
