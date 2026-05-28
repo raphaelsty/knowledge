@@ -32,14 +32,29 @@ for determinism.
 
 ``__all__`` upkeep
 ~~~~~~~~~~~~~~~~~~
-After a VIP user's per-user index is rebuilt we incrementally mirror
-their docs into ``__all__`` via
-``index_health.update_all_index_for_slugs`` — delete the user's
-existing chunks, then re-push. Without this hook ``__all__`` only
-gets refreshed via ``make all-rebuild`` (manual / nightly), so newly
-promoted VIPs would silently fall out of feed search until someone
-ran the full rebuild. The hook is best-effort: a failure logs and
-moves on, and the next ``make all-rebuild`` reconciles.
+Two mechanisms, both owned here so the cross-personality index never
+needs a human:
+
+1. **Self-heal (prioritised).** At the top of every sweep the daemon
+   classifies ``__all__`` (``maybe_rebuild_all_index``). If it's
+   genuinely unusable — ``broken`` / ``error`` / ``missing`` (e.g. a
+   deploy SIGTERMed a rebuild and left 0-byte centroids, so every read
+   500s) — it rebuilds from PG via the staging+promote path *before*
+   any per-user work. Probed at most once a minute; a failed rebuild
+   backs off for ``ALL_REBUILD_COOLDOWN_SECS``, but a fresh process
+   start retries immediately (timers are in-memory), so the very
+   restart that killed a rebuild also triggers its recovery.
+
+2. **Incremental mirror.** After a VIP user's per-user index is rebuilt
+   we mirror their docs into ``__all__`` via
+   ``index_health.update_all_index_for_slugs`` — delete the user's
+   existing chunks, then re-push — so newly promoted VIPs don't fall
+   out of feed search between full rebuilds. Best-effort: a failure
+   logs and moves on.
+
+``stale`` / ``pg_drift`` verdicts do NOT trigger the full rebuild —
+they're minor and reconciled by the incremental mirror + the hourly
+job; only the unusable verdicts above are worth the multi-minute cost.
 
 Coordination
 ~~~~~~~~~~~~
@@ -112,6 +127,31 @@ HARD_HEAL_THRESHOLD = 3
 # governs the success path) so a stuck user doesn't get hammered
 # at the same cadence as healthy users.
 FAILURE_SLEEP_SECS = 10.0
+
+# ── __all__ self-heal ────────────────────────────────────────────────
+# The cross-personality `__all__` index powers logged-out / bare-search
+# and the search-time cross-personality score join. It's a derivative
+# (rebuildable entirely from `documents`), and historically only a
+# manual `make all-rebuild` recreated it — so a mid-build interruption
+# (e.g. a deploy SIGTERMing the rebuild) left it 0-byte and every
+# read 500'd until someone noticed. The daemon now owns its recovery:
+# at the top of each sweep it classifies `__all__`, and if the index
+# is genuinely unusable it rebuilds it FIRST, before any per-user work.
+#
+# Only the unloadable/empty verdicts trigger the (expensive, ~minutes)
+# full rebuild — `stale` / `pg_drift` are minor and already reconciled
+# by the per-user incremental push hook + the hourly daemon, so we
+# don't full-rebuild for those.
+ALL_BROKEN_VERDICTS = frozenset({"broken", "error", "missing"})
+# Don't re-probe `__all__` on every per-user tick (the loop can spin
+# every ~2s when busy); one health GET per minute is plenty.
+ALL_CHECK_INTERVAL_SECS = 60.0
+# If a rebuild attempt fails (API down, transient), wait this long
+# before trying again so a persistent failure doesn't tight-loop a
+# multi-minute rebuild. A fresh process start resets the timer (the
+# state is in-memory), so a deploy-killed rebuild retries immediately
+# on the next boot — which is exactly the self-heal we want.
+ALL_REBUILD_COOLDOWN_SECS = 1800.0
 
 _VERDICT_TO_PRIORITY = {
     "broken": PRI_BROKEN,
@@ -332,6 +372,65 @@ def _process_one(row: dict, database_url: str, api_url: str) -> bool:
     return True
 
 
+def maybe_rebuild_all_index(database_url: str, api_url: str, state: dict) -> None:
+    """Prioritised self-heal for the `__all__` index.
+
+    Called at the top of each sweep. Probes `__all__` at most once per
+    ``ALL_CHECK_INTERVAL_SECS``; if the verdict is unusable
+    (``broken`` / ``error`` / ``missing``) it rebuilds the index from
+    PG *before* the daemon touches any per-user work — the whole point
+    is that the cross-personality index gets first claim on the daemon
+    when it's down. ``state`` carries the two monotonic timestamps
+    (``checked_at`` / ``rebuilt_at``) across calls; a fresh process
+    starts with both at 0 so a deploy-killed rebuild retries on boot.
+
+    Best-effort: any failure logs and returns — the daemon then falls
+    through to its normal per-user sweep rather than wedging.
+    """
+    now = time.monotonic()
+    if state["checked_at"] and (now - state["checked_at"]) < ALL_CHECK_INTERVAL_SECS:
+        return
+    state["checked_at"] = now
+
+    try:
+        from sources.utils.index_health import (
+            ALL_INDEX_NAME,
+            classify_index,
+            rebuild_all_index,
+            vip_document_total,
+        )
+    except Exception as exc:  # noqa: BLE001
+        _log(f"  __all__ self-heal: import failed: {exc!r}")
+        return
+
+    try:
+        # `__all__` has no per-doc `indexed` flag, so use the VIP doc
+        # total as both the target and the baseline — classify_index
+        # only needs them to spot the empty / drift cases.
+        vip_total = vip_document_total(database_url)
+        verdict, reason = classify_index(api_url, ALL_INDEX_NAME, vip_total, vip_total)
+    except Exception as exc:  # noqa: BLE001
+        _log(f"  __all__ health check failed: {exc!r}")
+        return
+
+    if verdict not in ALL_BROKEN_VERDICTS:
+        return
+
+    if state["rebuilt_at"] and (now - state["rebuilt_at"]) < ALL_REBUILD_COOLDOWN_SECS:
+        wait = int(ALL_REBUILD_COOLDOWN_SECS - (now - state["rebuilt_at"]))
+        _log(f"  __all__ is {verdict} ({reason}) but within rebuild cooldown (~{wait}s left) — skipping")
+        return
+
+    state["rebuilt_at"] = time.monotonic()
+    _log(f"  [PRIORITY] __all__ is {verdict} ({reason}) — rebuilding from PG before per-user work")
+    t0 = time.perf_counter()
+    try:
+        n = rebuild_all_index(database_url, api_url, os.environ.get("ADMIN_API_KEY"))
+        _log(f"  [PRIORITY] __all__ rebuild complete — {n} docs in {int(time.perf_counter() - t0)}s")
+    except Exception as exc:  # noqa: BLE001
+        _log(f"  [!] __all__ rebuild failed after {int(time.perf_counter() - t0)}s: {exc!r}")
+
+
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(
         prog="indexer_daemon",
@@ -404,6 +503,10 @@ def main(argv: list[str] | None = None) -> int:
     # forever and the daemon retries-then-fails in a tight loop —
     # eating CPU, spamming logs, and never making progress.
     consecutive_failures: dict[int, int] = {}
+    # In-memory timers for the __all__ self-heal (see
+    # maybe_rebuild_all_index). Reset on every process start so a
+    # deploy-interrupted rebuild retries immediately on boot.
+    all_index_state = {"checked_at": 0.0, "rebuilt_at": 0.0}
     _log(f"  api_url     ={args.api_url}")
     _log(
         f"  vip_only={args.vip_only}  include_drift={args.include_drift}  "
@@ -411,6 +514,13 @@ def main(argv: list[str] | None = None) -> int:
     )
 
     while not _stop_requested:
+        # Prioritised: heal a broken/missing `__all__` before any
+        # per-user indexing. Skipped in --dry (audit-only) mode.
+        if not args.dry:
+            maybe_rebuild_all_index(args.database_url, args.api_url, all_index_state)
+            if _stop_requested:
+                break
+
         queue = build_priority_queue(
             args.database_url,
             args.api_url,
