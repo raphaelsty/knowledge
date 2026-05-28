@@ -126,7 +126,7 @@ Tap the heart on any card and the doc lands in your library, indexed and searcha
 <a href="https://knowledge-web.org/manuel-faysse" title="Manuel Faysse"><img src="web/img/people/manuel-faysse.png" alt="Manuel Faysse" width="120"></a>
 <a href="https://knowledge-web.org/tony-wu" title="Tony Wu"><img src="web/img/people/tony-wu.png" alt="Tony Wu" width="120"></a>
 <a href="https://knowledge-web.org/amelie-chatelain" title="Amélie Chatelain"><img src="web/img/people/amelie-chatelain.png" alt="Amélie Chatelain" width="120"></a>
-<a href="https://knowledge-web.org/arthur-mensch" title="Arthur Mensch"><img src="web/img/people/arthur-mensch.png" alt="Arthur Mensch" width="120"></a>
+<a href="https://knowledge-web.org/igor-carron" title="Igor Carron"><img src="web/img/people/igor-carron.png" alt="Igor Carron" width="120"></a>
 </p>
 
 <p align="center">…or wander through <a href="https://knowledge-web.org">all 450+ libraries</a>.</p>
