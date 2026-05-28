@@ -58,6 +58,15 @@ x-daemon-base: &daemon-base
     # any future daemon that needs it).
     - API_URL=http://knowledge-api:8080
     - KNOWLEDGE_ADMIN_TOKEN=${KNOWLEDGE_ADMIN_TOKEN}
+    # ADMIN_API_KEY is required by the indexer daemon for every write
+    # path on the API: DELETE /indices/__all__/documents (used by the
+    # per-VIP incremental refresh), create_index, and the batched
+    # update_with_encoding push. Without it, every daemon iteration
+    # 401s, so the per-user index never rebuilds and __all__ stops
+    # tracking new VIP docs (newly-bookmarked HF model cards never
+    # surface on cross-library search). Shared via x-daemon-base so
+    # any future write-path daemon inherits it.
+    - ADMIN_API_KEY=${ADMIN_API_KEY}
     - OPENAI_API_KEY=${OPENAI_API_KEY:-}
     - PYTHONUNBUFFERED=1
   depends_on:
