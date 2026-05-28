@@ -463,7 +463,15 @@ def _build_refresh_sql(window_days: int, max_rows: int) -> str:
                        --                  of summary, floored at 0.2
                        --                  so a fresh paper without an
                        --                  abstract isn't zeroed out.
-                       r.sci_score::float * 6 *
+                       --
+                       -- Multiplier trimmed 6 → 5: a fresh paper still
+                       -- earns a strong +15 (sci 3 × 5), but the flat
+                       -- academic bonus no longer so dominates that a
+                       -- resource dozens of VIPs co-signed can't climb
+                       -- past it. Lets broad consensus ("everyone
+                       -- agrees this matters") outrank a lone fresh
+                       -- arxiv link, which is the intent.
+                       r.sci_score::float * 5 *
                        -- Age damping applies to ALL sources. A
                        -- 7-year-old tweet linking arxiv was keeping
                        -- the full ×18 sci bonus on personal pages
@@ -517,13 +525,15 @@ def _build_refresh_sql(window_days: int, max_rows: int) -> str:
                      -- being a rounding error beside them.
                      --   1 VIP  ≈ +2.22    2 VIPs ≈ +3.52
                      --   5 VIPs ≈ +5.73    7 VIPs ≈ +6.65
-                     --  14 VIPs ≈ +8.67   20 VIPs ≈ +9.74
-                     --  42+ VIPs caps at +12.0
+                     --  14 VIPs ≈ +8.67   28 VIPs ≈ +10.78
+                     --  78+ VIPs caps at +14.0
                      -- The 1→14 gap widened from ~4 to ~6.5, so a
                      -- broadly-shared resource now clearly separates
                      -- from a single-VIP one even when both carry the
-                     -- same flat sci bonus.
-                     + LEAST(12.0, LN(GREATEST(1, s.vip_sharer_count + 1)) * 3.2)
+                     -- same flat sci bonus. Cap raised 12 → 14 so a
+                     -- near-universally-agreed resource (50-75 VIPs)
+                     -- keeps climbing instead of clamping early.
+                     + LEAST(14.0, LN(GREATEST(1, s.vip_sharer_count + 1)) * 3.2)
                      -- ★ TRENDING ★ — consensus *velocity*. On top of
                      -- the all-time count above, reward a recent BURST
                      -- of VIPs converging on the resource: distinct

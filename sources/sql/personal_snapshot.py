@@ -324,7 +324,11 @@ def _build_refresh_sql(window_days: int, user_id: int) -> str:
                        --                  page, matching the user's
                        --                  intent that broad sharing
                        --                  beats lonely posts.
-                       r.sci_score::float * 6 *
+                       -- Multiplier trimmed 6 → 5 to match
+                       -- feed_snapshot: less flat academic weight so
+                       -- broadly-shared resources can outrank a lone
+                       -- fresh arxiv link.
+                       r.sci_score::float * 5 *
                        -- Age damping applies to ALL sources, not just
                        -- bare papers. Without this, a 7-year-old
                        -- Jan Leike tweet linking arxiv kept the full
