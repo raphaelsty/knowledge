@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>La Frise — A Chronological Atlas of AI</title>
+<style>
+  :root{
+    --paper:#56d4ff; --tool:#ffb454; --model:#c77dff;
+    --blog:#7CFFB2; --talk:#ff7a59; --post:#ff8fd0; --ink:#e9eefc;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%;overflow:hidden;background:#04060f;
+    font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    color:var(--ink);-webkit-font-smoothing:antialiased}
+  #scene{position:fixed;inset:0;display:block}
+  canvas{display:block}
+
+  /* ---------- Header ---------- */
+  #topbar{position:fixed;top:0;left:0;right:0;padding:22px 26px;z-index:20;
+    pointer-events:none;display:flex;justify-content:space-between;align-items:flex-start;
+    background:linear-gradient(to bottom,rgba(4,6,15,.85),rgba(4,6,15,0))}
+  #title{font-size:13px;letter-spacing:.34em;text-transform:uppercase;opacity:.92;font-weight:600}
+  #title b{color:#fff}
+  #subtitle{font-size:11px;letter-spacing:.18em;opacity:.5;margin-top:6px;text-transform:uppercase}
+  #counter{text-align:right;font-size:11px;letter-spacing:.18em;opacity:.55;text-transform:uppercase;line-height:1.7}
+  #counter b{color:#fff;font-size:12px}
+
+  /* ---------- Big year readout ---------- */
+  #yearHud{position:fixed;left:50%;bottom:64px;transform:translateX(-50%);z-index:18;
+    pointer-events:none;text-align:center}
+  #year{font-size:96px;font-weight:800;letter-spacing:.02em;line-height:.9;
+    color:#fff;text-shadow:0 0 40px rgba(120,170,255,.55);font-variant-numeric:tabular-nums}
+  #yearsub{font-size:11px;letter-spacing:.4em;text-transform:uppercase;opacity:.5;margin-top:10px}
+
+  /* ---------- Timeline scrubber ---------- */
+  #scrub{position:fixed;left:7%;right:7%;bottom:34px;height:2px;background:rgba(255,255,255,.12);
+    z-index:18;border-radius:2px}
+  #scrubFill{position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(90deg,#56d4ff,#c77dff);
+    border-radius:2px;box-shadow:0 0 12px rgba(120,170,255,.7)}
+  .tick{position:absolute;top:-5px;width:1px;height:12px;background:rgba(255,255,255,.25);
+    transform:translateX(-.5px)}
+  .tick span{position:absolute;top:14px;left:50%;transform:translateX(-50%);
+    font-size:9px;letter-spacing:.1em;opacity:.45}
+
+  /* ---------- Legend ---------- */
+  #legend{position:fixed;left:26px;bottom:90px;z-index:20;display:flex;flex-direction:column;gap:9px}
+  .lg{display:flex;align-items:center;gap:9px;cursor:pointer;font-size:11px;letter-spacing:.06em;
+    opacity:.85;user-select:none;transition:opacity .2s}
+  .lg.off{opacity:.28}
+  .dot{width:9px;height:9px;border-radius:50%;box-shadow:0 0 8px currentColor}
+  .lg .cnt{opacity:.45;font-variant-numeric:tabular-nums}
+
+  /* ---------- Hover tooltip ---------- */
+  #tip{position:fixed;z-index:30;pointer-events:none;padding:8px 12px;max-width:300px;
+    background:rgba(10,14,28,.92);border:1px solid rgba(255,255,255,.14);border-radius:9px;
+    font-size:12px;line-height:1.45;opacity:0;transform:translateY(4px);transition:opacity .12s;
+    backdrop-filter:blur(6px);box-shadow:0 8px 30px rgba(0,0,0,.5)}
+  #tip .tt{font-weight:600;color:#fff}
+  #tip .tm{opacity:.6;font-size:10.5px;letter-spacing:.06em;margin-top:3px;text-transform:uppercase}
+
+  /* ---------- Detail panel ---------- */
+  #panel{position:fixed;top:0;right:0;height:100%;width:min(420px,90vw);z-index:40;
+    background:rgba(8,11,24,.94);backdrop-filter:blur(14px);border-left:1px solid rgba(255,255,255,.1);
+    transform:translateX(105%);transition:transform .42s cubic-bezier(.22,1,.36,1);
+    padding:30px 30px 40px;overflow-y:auto;box-shadow:-20px 0 60px rgba(0,0,0,.5)}
+  #panel.open{transform:translateX(0)}
+  #panel .badge{display:inline-block;font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+    padding:4px 10px;border-radius:20px;font-weight:600}
+  #panel h2{font-size:22px;line-height:1.25;margin:16px 0 6px;color:#fff;font-weight:700}
+  #pmeta{font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.55;margin-bottom:18px}
+  #pbar{height:5px;border-radius:5px;background:rgba(255,255,255,.1);overflow:hidden;margin:6px 0 20px}
+  #pbarFill{height:100%;border-radius:5px;background:linear-gradient(90deg,#56d4ff,#c77dff)}
+  #psum{font-size:13.5px;line-height:1.6;opacity:.82;margin-bottom:22px}
+  .sect{font-size:10px;letter-spacing:.22em;text-transform:uppercase;opacity:.45;margin:0 0 10px}
+  #pnames{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:22px}
+  .chip{font-size:11px;padding:4px 9px;border-radius:14px;background:rgba(255,255,255,.07);
+    border:1px solid rgba(255,255,255,.08);opacity:.85}
+  #ptags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:26px}
+  #plink{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;color:#04060f;
+    background:#fff;padding:11px 18px;border-radius:10px;text-decoration:none;letter-spacing:.02em;
+    transition:transform .15s} #plink:hover{transform:translateY(-2px)}
+  #pclose{position:absolute;top:22px;right:22px;width:30px;height:30px;border-radius:50%;cursor:pointer;
+    border:1px solid rgba(255,255,255,.18);background:transparent;color:var(--ink);font-size:16px;
+    display:flex;align-items:center;justify-content:center;transition:background .2s}
+  #pclose:hover{background:rgba(255,255,255,.1)}
+
+  /* ---------- Intro overlay ---------- */
+  #intro{position:fixed;inset:0;z-index:60;display:flex;flex-direction:column;align-items:center;
+    justify-content:center;text-align:center;background:radial-gradient(circle at 50% 40%,rgba(20,30,60,.6),rgba(4,6,15,.97));
+    transition:opacity .8s} #intro.gone{opacity:0;pointer-events:none}
+  #intro h1{font-size:clamp(34px,7vw,76px);font-weight:800;letter-spacing:.01em;line-height:1.02;
+    color:#fff;text-shadow:0 0 60px rgba(120,170,255,.4)}
+  #intro h1 span{background:linear-gradient(90deg,#56d4ff,#c77dff,#ffb454);-webkit-background-clip:text;
+    background-clip:text;-webkit-text-fill-color:transparent}
+  #intro p{max-width:560px;margin:22px auto 0;font-size:15px;line-height:1.65;opacity:.7}
+  #enter{margin-top:38px;padding:14px 34px;font-size:13px;letter-spacing:.18em;text-transform:uppercase;
+    font-weight:600;color:#04060f;background:#fff;border:none;border-radius:30px;cursor:pointer;
+    transition:transform .2s,box-shadow .2s;box-shadow:0 0 0 rgba(120,170,255,0)}
+  #enter:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(120,170,255,.4)}
+  #hint{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);z-index:18;font-size:10px;
+    letter-spacing:.22em;text-transform:uppercase;opacity:.35;pointer-events:none}
+  #loading{font-size:12px;letter-spacing:.2em;text-transform:uppercase;opacity:.6;margin-top:30px}
+
+  @media(max-width:640px){
+    #year{font-size:60px} #legend{bottom:120px;gap:6px} #title{font-size:11px}
+    #counter{display:none}
+  }
+</style>
+</head>
+<body>
+<canvas id="scene"></canvas>
+
+<div id="topbar">
+  <div>
+    <div id="title"><b>LA&nbsp;FRISE</b> &nbsp;·&nbsp; The Memory of a Field</div>
+    <div id="subtitle">Works the AI community agrees on</div>
+  </div>
+  <div id="counter"><b id="cWorks">—</b> works<br><span id="cSpan">—</span></div>
+</div>
+
+<div id="yearHud"><div id="year">—</div><div id="yearsub">travelling through time</div></div>
+<div id="scrub"><div id="scrubFill"></div></div>
+<div id="legend"></div>
+<div id="tip"></div>
+<div id="hint">scroll · drag · click a light</div>
+
+<div id="panel">
+  <button id="pclose">✕</button>
+  <span id="pbadge" class="badge">—</span>
+  <h2 id="ptitle">—</h2>
+  <div id="pmeta">—</div>
+  <div class="sect">Consensus — referenced by</div>
+  <div id="pbar"><div id="pbarFill"></div></div>
+  <p id="psum"></p>
+  <div class="sect" id="pnamesHead">Cited by</div>
+  <div id="pnames"></div>
+  <div id="ptags"></div>
+  <a id="plink" href="#" target="_blank" rel="noopener">Open source ↗</a>
+</div>
+
+<div id="intro">
+  <h1>La Frise<br><span>Chronologique</span></h1>
+  <p>A journey down the river of artificial intelligence — every light is a work
+     that many of the field's people independently chose to remember. The brighter
+     and the closer to the current, the wider the agreement.</p>
+  <button id="enter">Enter the timeline</button>
+  <div id="loading"></div>
+</div>
+
+<script type="importmap">
+{ "imports":{
+  "three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+}}
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+
+const TYPES = {
+  paper:{c:0x56d4ff,label:'Papers'}, tool:{c:0xffb454,label:'Tools & libraries'},
+  model:{c:0xc77dff,label:'Model reports'}, blog:{c:0x7cffb2,label:'Writing'},
+  talk:{c:0xff7a59,label:'Talks'}, post:{c:0xff8fd0,label:'Posts'}
+};
+const DEPTH = 1900;                 // total length of the river (z)
+const $ = s => document.querySelector(s);
+
+/* ---------------- Renderer / scene ---------------- */
+const canvas = $('#scene');
+const renderer = new THREE.WebGLRenderer({canvas,antialias:true,powerPreference:'high-performance'});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+renderer.setSize(innerWidth,innerHeight);
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.05;
+
+const scene = new THREE.Scene();
+scene.fog = new THREE.FogExp2(0x05070f, 0.00085);
+
+const camera = new THREE.PerspectiveCamera(62, innerWidth/innerHeight, 0.5, 6000);
+
+const composer = new EffectComposer(renderer);
+composer.addPass(new RenderPass(scene,camera));
+const bloom = new UnrealBloomPass(new THREE.Vector2(innerWidth,innerHeight), 0.95, 0.75, 0.18);
+composer.addPass(bloom);
+
+/* ---------------- River path ---------------- */
+function pathAt(t){              // t in [0,1] → meandering curve
+  const z = -t*DEPTH;
+  const x = Math.sin(t*Math.PI*2.6)*150 + Math.sin(t*9.0+1.0)*22;
+  const y = Math.sin(t*Math.PI*1.7+0.6)*46 + Math.cos(t*5.0)*10;
+  return new THREE.Vector3(x,y,z);
+}
+const SAMPLES = 400;
+const pts = []; for(let i=0;i<=SAMPLES;i++) pts.push(pathAt(i/SAMPLES));
+const curve = new THREE.CatmullRomCurve3(pts);
+const frames = curve.computeFrenetFrames(SAMPLES,false);
+function frameAt(t){
+  const f = Math.min(SAMPLES-1, Math.max(0, t*SAMPLES));
+  const i = Math.floor(f);
+  return { n:frames.normals[i], b:frames.binormals[i] };
+}
+
+/* ---------------- Starfield ---------------- */
+(function stars(){
+  const N=4200, g=new THREE.BufferGeometry(), p=new Float32Array(N*3), s=new Float32Array(N);
+  for(let i=0;i<N;i++){
+    p[i*3]  =(Math.random()-.5)*2600;
+    p[i*3+1]=(Math.random()-.5)*1600;
+    p[i*3+2]=-Math.random()*DEPTH-200;
+    s[i]=Math.random();
+  }
+  g.setAttribute('position',new THREE.BufferAttribute(p,3));
+  g.setAttribute('seed',new THREE.BufferAttribute(s,1));
+  const m=new THREE.ShaderMaterial({transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,
+    uniforms:{uTime:{value:0}},
+    vertexShader:`attribute float seed;varying float vS;uniform float uTime;
+      void main(){vS=seed;vec4 mv=modelViewMatrix*vec4(position,1.);
+      gl_PointSize=(0.6+seed*1.8)*(300./-mv.z);gl_Position=projectionMatrix*mv;}`,
+    fragmentShader:`varying float vS;uniform float uTime;
+      void main(){vec2 d=gl_PointCoord-.5;float a=smoothstep(.5,0.,length(d));
+      float tw=.5+.5*sin(uTime*1.5+vS*30.);
+      gl_FragColor=vec4(vec3(.7,.8,1.)* (0.5+0.5*vS),a*(.35+.5*tw));}`});
+  scene.add(new THREE.Points(g,m));
+})();
+
+/* ---------------- The time-river ribbon ---------------- */
+let riverMat;
+(function river(){
+  const geo = new THREE.TubeGeometry(curve, 600, 4.2, 12, false);
+  riverMat = new THREE.ShaderMaterial({transparent:true,depthWrite:false,
+    blending:THREE.AdditiveBlending,side:THREE.DoubleSide,
+    uniforms:{uTime:{value:0}},
+    vertexShader:`varying vec2 vUv;void main(){vUv=uv;
+      gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}`,
+    fragmentShader:`varying vec2 vUv;uniform float uTime;
+      void main(){
+        float along=vUv.x;
+        // colour drifts from deep blue (past) to violet/gold (present)
+        vec3 col=mix(vec3(.18,.45,1.),vec3(.78,.45,1.),along);
+        col=mix(col,vec3(1.,.72,.33),smoothstep(.8,1.,along)*.6);
+        float flow=fract(along*40.- uTime*0.6);
+        float band=smoothstep(.0,.08,flow)*smoothstep(.5,.42,flow);
+        float edge=smoothstep(.5,.0,abs(vUv.y-.5));
+        float a=(0.05+band*0.5)*edge;
+        gl_FragColor=vec4(col, a);
+      }`});
+  scene.add(new THREE.Mesh(geo,riverMat));
+})();
+
+/* ---------------- Works (luminous nodes) ---------------- */
+let works=[], nodeMat, nodePoints, minT=1, maxT=0, minYear, maxYear;
+const typeKeys = Object.keys(TYPES);
+const typeIndex = {}; typeKeys.forEach((k,i)=>typeIndex[k]=i);
+const typeMask = new Float32Array(typeKeys.length).fill(1);
+
+function dateT(w){                // continuous year fraction
+  const d=new Date(w.date+'T00:00:00Z');
+  const y=d.getUTCFullYear();
+  const start=Date.UTC(y,0,1), end=Date.UTC(y+1,0,1);
+  return y + (d.getTime()-start)/(end-start);
+}
+
+function buildNodes(data){
+  works = data.works.filter(w=>TYPES[w.type]);
+  works.forEach(w=> w.tval = dateT(w));
+  minT = Math.min(...works.map(w=>w.tval));
+  maxT = Math.max(...works.map(w=>w.tval));
+  minYear = Math.floor(minT); maxYear = Math.ceil(maxT);
+  const maxPeople = Math.max(...works.map(w=>w.people));
+
+  const N=works.length;
+  const pos=new Float32Array(N*3), col=new Float32Array(N*3),
+        siz=new Float32Array(N), pha=new Float32Array(N),
+        typ=new Float32Array(N), imp=new Float32Array(N);
+  const GOLD=2.39996323;
+
+  works.forEach((w,i)=>{
+    const t=(w.tval-minT)/(maxT-minT);
+    const base=curve.getPointAt(Math.min(.9999,Math.max(0,t)));
+    const fr=frameAt(t);
+    const norm=(w.people-5)/(maxPeople-5);          // 0..1 consensus
+    const radius=14 + (1-norm)*120 + (i%7)*3;        // agreed-upon → near core
+    const ang=i*GOLD;
+    const off=fr.n.clone().multiplyScalar(Math.cos(ang)*radius)
+             .add(fr.b.clone().multiplyScalar(Math.sin(ang)*radius));
+    const P=base.clone().add(off);
+    pos[i*3]=P.x; pos[i*3+1]=P.y; pos[i*3+2]=P.z;
+    w.pos=P;
+
+    const c=new THREE.Color(TYPES[w.type].c);
+    col[i*3]=c.r; col[i*3+1]=c.g; col[i*3+2]=c.b;
+    siz[i]=12 + Math.sqrt(w.people)*7.5;
+    pha[i]=Math.random()*Math.PI*2;
+    typ[i]=typeIndex[w.type];
+    imp[i]=norm;
+  });
+
+  const g=new THREE.BufferGeometry();
+  g.setAttribute('position',new THREE.BufferAttribute(pos,3));
+  g.setAttribute('aColor',new THREE.BufferAttribute(col,3));
+  g.setAttribute('aSize',new THREE.BufferAttribute(siz,1));
+  g.setAttribute('aPhase',new THREE.BufferAttribute(pha,1));
+  g.setAttribute('aType',new THREE.BufferAttribute(typ,1));
+  g.setAttribute('aImp',new THREE.BufferAttribute(imp,1));
+
+  nodeMat=new THREE.ShaderMaterial({transparent:true,depthWrite:false,
+    blending:THREE.AdditiveBlending,
+    uniforms:{uTime:{value:0},uHover:{value:-1},uSel:{value:-1},
+      uMask:{value:typeMask}},
+    vertexShader:`
+      attribute vec3 aColor;attribute float aSize,aPhase,aType,aImp;
+      varying vec3 vC;varying float vA,vR;
+      uniform float uTime,uHover,uSel;uniform float uMask[${typeKeys.length}];
+      void main(){
+        vC=aColor;
+        float m=uMask[int(aType)];
+        float pulse=0.78+0.22*sin(uTime*1.6+aPhase);
+        vec4 mv=modelViewMatrix*vec4(position,1.);
+        float hl=(float(gl_VertexID)==uHover||float(gl_VertexID)==uSel)?1.0:0.0;
+        float sz=aSize*(0.7+aImp*0.6)*(1.0+hl*0.9);
+        gl_PointSize=sz*pulse*(360./-mv.z)*m;
+        vA=m*(0.55+aImp*0.45)+hl*0.6;
+        vR=0.5+hl*0.5;
+        gl_Position=projectionMatrix*mv;
+      }`,
+    fragmentShader:`
+      varying vec3 vC;varying float vA,vR;
+      void main(){
+        vec2 d=gl_PointCoord-0.5;float r=length(d);
+        if(r>0.5) discard;
+        float core=smoothstep(0.5,0.0,r);
+        float halo=smoothstep(0.5,0.18,r);
+        vec3 col=mix(vC,vec3(1.0),core*core*vR*0.7);
+        float a=halo*vA;
+        gl_FragColor=vec4(col, a);
+      }`});
+  nodePoints=new THREE.Points(g,nodeMat);
+  scene.add(nodePoints);
+}
+
+/* ---------------- Year monuments ---------------- */
+function makeYearSprite(year){
+  const cv=document.createElement('canvas');cv.width=512;cv.height=256;
+  const cx=cv.getContext('2d');
+  cx.font='800 180px Inter,Arial';cx.textAlign='center';cx.textBaseline='middle';
+  cx.fillStyle='rgba(255,255,255,0.92)';
+  cx.shadowColor='rgba(120,170,255,0.9)';cx.shadowBlur=40;
+  cx.fillText(year,256,140);
+  const tex=new THREE.CanvasTexture(cv);tex.anisotropy=4;
+  const m=new THREE.SpriteMaterial({map:tex,transparent:true,depthWrite:false,
+    blending:THREE.AdditiveBlending,opacity:.5});
+  const sp=new THREE.Sprite(m);sp.scale.set(170,85,1);
+  return sp;
+}
+function buildYears(){
+  for(let y=minYear;y<=maxYear;y++){
+    const t=(y-minT)/(maxT-minT);
+    if(t<-0.02||t>1.02) continue;
+    const base=curve.getPointAt(Math.min(.9999,Math.max(0,t)));
+    const fr=frameAt(Math.min(.999,Math.max(0,t)));
+    const sp=makeYearSprite(y);
+    sp.position.copy(base.clone().add(fr.b.clone().multiplyScalar(150)).add(new THREE.Vector3(0,40,0)));
+    scene.add(sp);
+  }
+}
+
+/* ---------------- Travel control ---------------- */
+let progress=0, target=0, pointer=new THREE.Vector2(0,0), look=new THREE.Vector2(0,0);
+const clock=new THREE.Clock();
+
+addEventListener('wheel',e=>{ target=clamp01(target+e.deltaY*0.00035); },{passive:true});
+let dragY=null;
+addEventListener('pointerdown',e=>{ dragY=e.clientY; });
+addEventListener('pointerup',()=>{ dragY=null; });
+addEventListener('pointermove',e=>{
+  pointer.x=(e.clientX/innerWidth)*2-1;
+  pointer.y=-(e.clientY/innerHeight)*2+1;
+  if(dragY!==null){ target=clamp01(target+(dragY-e.clientY)*0.0011); dragY=e.clientY; }
+});
+addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key==='ArrowDown') target=clamp01(target+0.03);
+  if(e.key==='ArrowLeft' ||e.key==='ArrowUp')   target=clamp01(target-0.03);
+});
+// touch
+let touchY=null;
+addEventListener('touchstart',e=>{touchY=e.touches[0].clientY;},{passive:true});
+addEventListener('touchmove',e=>{
+  if(touchY!==null){target=clamp01(target+(touchY-e.touches[0].clientY)*0.0016);touchY=e.touches[0].clientY;}
+},{passive:true});
+const clamp01=v=>Math.max(0,Math.min(1,v));
+
+/* ---------------- Raycasting ---------------- */
+const ray=new THREE.Raycaster(); ray.params.Points.threshold=10;
+let hovered=-1;
+function pick(){
+  if(!nodePoints) return -1;
+  ray.setFromCamera(pointer,camera);
+  const hits=ray.intersectObject(nodePoints);
+  for(const h of hits){
+    const w=works[h.index];
+    if(typeMask[typeIndex[w.type]]>0.5) return h.index;
+  }
+  return -1;
+}
+
+/* ---------------- UI ---------------- */
+function buildLegend(){
+  const el=$('#legend'); const counts={};
+  works.forEach(w=>counts[w.type]=(counts[w.type]||0)+1);
+  typeKeys.forEach(k=>{
+    if(!counts[k]) return;
+    const c='#'+TYPES[k].c.toString(16).padStart(6,'0');
+    const row=document.createElement('div');row.className='lg';row.dataset.k=k;
+    row.innerHTML=`<span class="dot" style="color:${c};background:${c}"></span>
+      <span>${TYPES[k].label}</span><span class="cnt">${counts[k]}</span>`;
+    row.onclick=()=>{
+      const i=typeIndex[k]; typeMask[i]=typeMask[i]>0.5?0:1;
+      row.classList.toggle('off',typeMask[i]<0.5);
+    };
+    el.appendChild(row);
+  });
+}
+const tip=$('#tip');
+function showTip(i){
+  const w=works[i];
+  tip.innerHTML=`<div class="tt">${esc(w.title)}</div>
+    <div class="tm">${w.year} · ${TYPES[w.type].label} · ${w.people} people</div>`;
+  tip.style.opacity=1;
+}
+function moveTip(){
+  tip.style.left=Math.min(innerWidth-310,(pointer.x*0.5+0.5)*innerWidth+14)+'px';
+  tip.style.top=((-pointer.y*0.5+0.5)*innerHeight+14)+'px';
+}
+const panel=$('#panel');
+function openPanel(i){
+  const w=works[i];const c='#'+TYPES[w.type].c.toString(16).padStart(6,'0');
+  const b=$('#pbadge');b.textContent=TYPES[w.type].label;
+  b.style.background=c+'22';b.style.color=c;b.style.border='1px solid '+c+'55';
+  $('#ptitle').textContent=w.title;
+  $('#pmeta').textContent=`${w.date} · ${w.source||w.type}`;
+  $('#pbarFill').style.width=Math.min(100,w.people*2.7)+'%';
+  $('#pnamesHead').textContent=`Cited by ${w.people} people`;
+  $('#psum').textContent=w.summary||'';
+  const nm=$('#pnames');nm.innerHTML='';
+  (w.names||[]).forEach(n=>{const s=document.createElement('span');s.className='chip';s.textContent=n;nm.appendChild(s);});
+  if(w.people>(w.names||[]).length){const s=document.createElement('span');s.className='chip';
+    s.textContent='+'+(w.people-w.names.length)+' more';nm.appendChild(s);}
+  const tg=$('#ptags');tg.innerHTML='';
+  (w.tags||[]).forEach(t=>{const s=document.createElement('span');s.className='chip';s.textContent='#'+t;tg.appendChild(s);});
+  const lk=$('#plink');lk.href=w.url||'#';lk.style.display=w.url?'inline-flex':'none';
+  panel.classList.add('open');
+  nodeMat.uniforms.uSel.value=i;
+}
+$('#pclose').onclick=()=>{panel.classList.remove('open');nodeMat.uniforms.uSel.value=-1;};
+const esc=s=>(s||'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+
+/* scrubber ticks */
+function buildScrub(){
+  const el=$('#scrub');
+  for(let y=Math.ceil(minYear/2)*2;y<=maxYear;y+=2){
+    const t=(y-minT)/(maxT-minT);if(t<0||t>1)continue;
+    const d=document.createElement('div');d.className='tick';d.style.left=(t*100)+'%';
+    d.innerHTML=`<span>${y}</span>`;el.appendChild(d);
+  }
+}
+
+/* ---------------- Animate ---------------- */
+const upTmp=new THREE.Vector3(), camTmp=new THREE.Vector3(), aheadTmp=new THREE.Vector3();
+function animate(){
+  requestAnimationFrame(animate);
+  const t=clock.getElapsedTime();
+  progress += (target-progress)*0.06;
+
+  // camera rides slightly above & behind the river, looking forward
+  const p=clamp01(progress);
+  curve.getPointAt(Math.min(.9999,p), camTmp);
+  curve.getPointAt(Math.min(.9999,p+0.012), aheadTmp);
+  const fr=frameAt(p);
+  look.x += (pointer.x-look.x)*0.04; look.y += (pointer.y-look.y)*0.04;
+  const camPos=camTmp.clone()
+    .add(fr.b.clone().multiplyScalar(38))           // lift above river
+    .add(fr.n.clone().multiplyScalar(look.x*60))     // parallax
+    .addScaledVector(aheadTmp.clone().sub(camTmp).normalize(),-50); // pull back
+  camera.position.copy(camPos);
+  upTmp.copy(fr.b);
+  camera.up.copy(upTmp);
+  camera.lookAt(aheadTmp.x, aheadTmp.y+look.y*30, aheadTmp.z);
+
+  if(riverMat) riverMat.uniforms.uTime.value=t;
+  if(nodeMat){ nodeMat.uniforms.uTime.value=t;
+    const h=pick();
+    if(h!==hovered){
+      hovered=h; nodeMat.uniforms.uHover.value=h;
+      if(h>=0){showTip(h);canvas.style.cursor='pointer';}
+      else{tip.style.opacity=0;canvas.style.cursor='grab';}
+    }
+    if(h>=0) moveTip();
+  }
+
+  // HUD year
+  const yr=Math.round(minT+(maxT-minT)*p);
+  $('#year').textContent=yr;
+  $('#scrubFill').style.width=(p*100)+'%';
+
+  composer.render();
+}
+
+// click → open
+canvas.addEventListener('click',()=>{ if(hovered>=0) openPanel(hovered); });
+
+addEventListener('resize',()=>{
+  camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth,innerHeight);composer.setSize(innerWidth,innerHeight);
+});
+
+/* ---------------- Boot ---------------- */
+$('#loading').textContent='loading the archive…';
+fetch('data.json').then(r=>r.json()).then(data=>{
+  buildNodes(data); buildYears(); buildLegend(); buildScrub();
+  $('#cWorks').textContent=works.length;
+  $('#cSpan').textContent=minYear+' – '+maxYear;
+  $('#loading').textContent='';
+  $('#enter').onclick=()=>$('#intro').classList.add('gone');
+  animate();
+}).catch(e=>{
+  $('#loading').textContent='Could not load data.json — run web/build_timeline_data.py first.';
+  console.error(e);
+});
+</script>
+</body>
+</html>
