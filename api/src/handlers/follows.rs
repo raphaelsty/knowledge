@@ -577,7 +577,19 @@ pub async fn timeline(
              ), 0) >= $11::int) AS already_seen
           FROM feed_snapshot s
          WHERE
-               -- Logged-in: sharer_user_ids must intersect followees.
+               -- Logged-in: sharer_user_ids must intersect followees,
+               -- OR the resource is globally-loved — co-signed by at
+               -- least 10 distinct VIPs. Without
+               -- the second clause the personalised feed is strictly
+               -- follow-graph-gated, so a resource validated by dozens
+               -- of VIPs you happen not to follow would NEVER reach you
+               -- (the gap we found: a 28-VIP launch invisible to a
+               -- viewer who follows none of those 28). The threshold is
+               -- high (≥10 VIPs is rare — most anchors have 1-3) so this
+               -- adds only the standout consensus items, not a flood of
+               -- non-followed content. The already-seen / already-owned
+               -- filters below still apply, so it's discovery, not a
+               -- re-run of your own library.
                -- Anon: rely on any_vip_sharer (partial-indexed scan).
                --
                -- We deliberately *don't* use `&&` directly here — its
@@ -586,10 +598,13 @@ pub async fn timeline(
                -- which costs 600 ms+ before the LIMIT even runs.
                -- Wrapping in `INTERSECT` is opaque to the GIN operator
                -- class so the planner picks `idx_feed_snapshot_score`
-               -- and walks it score-DESC, stopping at LIMIT × 2.
-               -- For an active viewer this scans ~200 rows instead of
-               -- 50 000 → from 3.4 s down to ~10 ms.
+               -- and walks it score-DESC, stopping at LIMIT × 2. The
+               -- added `vip_sharer_count >= 10` disjunct keeps that walk
+               -- (it's a cheap per-row check on the score-ordered scan),
+               -- it just admits the broad-consensus rows early — and
+               -- those already sit high by score, so they're hit fast.
                ($1 IS NULL
+                OR s.vip_sharer_count >= 10
                 OR cardinality(ARRAY(
                        SELECT unnest(s.sharer_user_ids)
                         INTERSECT
