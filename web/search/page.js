@@ -48,7 +48,12 @@
   // routing helpers further down crashes Safari with "Cannot
   // access uninitialized variable".
   const MAX_NONVIPS = 10;
-  const ALL_INDEX_THRESHOLD = 5;
+  // Single-index architecture: there is ONE ColBERT index, `__all__`.
+  // Per-personality indices no longer exist, so ANY VIP selection is
+  // served by one `__all__` query pre-filtered with `owner IN (…)`.
+  // Threshold of 1 means "as soon as a library is selected, use
+  // `__all__`+owner" — there is no per-slug fanout to fall back to.
+  const ALL_INDEX_THRESHOLD = 1;
 
   /* Ontology slug → display label. Mirrors the seed in
    * sources/sql/categories.sql so the library picker and onboarding
@@ -1433,11 +1438,13 @@
     if (slug in state.perSlugTwitterFreshness) return; // already computed
     state.perSlugTwitterFreshness[slug] = null; // mark in-flight to dedup races
     try {
+      // Single `__all__` index, scoped to this owner — per-personality
+      // indices no longer exist.
       const rs = await K.latest({
-        indexName: slug,
+        indexName: ALL_INDEX_NAME,
         count: 1,
-        condition: "source = ?",
-        parameters: ["twitter"],
+        condition: "source = ? AND owner = ?",
+        parameters: ["twitter", slug],
       });
       const top = Array.isArray(rs) && rs[0] && rs[0].date ? rs[0] : null;
       if (!top) {
@@ -1633,14 +1640,20 @@
         if (scope) docs = docs.filter((d) => scope.has(d.owner));
         results = [docs];
       } else {
-        // Personal-page / multi-lib path. Per-lib fan-out — bumped to
-        // top-150 so small / focused sources whose top hits sit
-        // deeper in the relevance list still surface as candidates.
-        results = await Promise.all(
-          libs.map((s) =>
-            K.search({ indexName: s, query, topK: 150 }).catch(() => []),
-          ),
-        );
+        // Personal-page / multi-lib path. Single `__all__` index scoped
+        // to the selected owners via `owner IN (…)` — no per-slug fanout
+        // (per-personality indices no longer exist).
+        const ownerPlaceholders = libs.map(() => "?").join(",");
+        const docs = await K.search({
+          indexName: ALL_INDEX_NAME,
+          query,
+          topK: 800,
+          filter: {
+            condition: `owner IN (${ownerPlaceholders})`,
+            parameters: [...libs],
+          },
+        }).catch(() => []);
+        results = [docs];
       }
       if (myId !== srcRelevanceQueryId) return; // a newer query supersedes
       // Record the rank of each source's FIRST appearance across the
@@ -7616,15 +7629,23 @@
             .sort((a, b) => (b.similarity || 0) - (a.similarity || 0))
             .slice(0, 6);
         } else {
-          // Library-scoped path. Fan out across every active library —
-          // same logic as main refresh.
-          const all = await Promise.all(
-            libs.map((s) =>
-              K.findSimilar({ indexName: s, doc, topK: 7 })
-                .then((rs) => rs.map((d) => ({ ...d, _from: s })))
-                .catch(() => []),
-            ),
-          );
+          // Library-scoped path. Single `__all__` index scoped to the
+          // selected owners via `owner IN (…)` — no per-slug fanout
+          // (per-personality indices no longer exist).
+          const ownerPlaceholders = libs.map(() => "?").join(",");
+          const all = [
+            await K.findSimilar({
+              indexName: ALL_INDEX_NAME,
+              doc,
+              topK: 50,
+              filter: {
+                condition: `owner IN (${ownerPlaceholders})`,
+                parameters: [...libs],
+              },
+            })
+              .then((rs) => rs.map((d) => ({ ...d, _from: d.owner || "" })))
+              .catch(() => []),
+          ];
           const map = new Map();
           for (const arr of all)
             for (const d of arr) {

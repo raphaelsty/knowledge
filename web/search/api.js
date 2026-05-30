@@ -881,13 +881,16 @@
   }
 
   /* ── Similar docs via re-search ─────────────────────────────────────── */
-  async function findSimilar({ indexName, doc, topK = 8 }) {
+  async function findSimilar({ indexName, doc, topK = 8, filter = null }) {
     const parts = [doc.title];
     if (doc.tags.length) parts.push(doc.tags.join(" "));
     if (doc.summary)
       parts.push(doc.summary.split(/\s+/).slice(0, 20).join(" "));
     const q = parts.join(" ");
-    const docs = await search({ indexName, query: q, topK: topK + 1 });
+    // `filter` (e.g. `owner IN (…)`) scopes find-similar to the selected
+    // personalities now that everything is served from the single
+    // `__all__` index.
+    const docs = await search({ indexName, query: q, topK: topK + 1, filter });
     return docs.filter((d) => d.url !== doc.url).slice(0, topK);
   }
 
