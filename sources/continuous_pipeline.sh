@@ -197,26 +197,12 @@ while [ -f "$STOP_FLAG" ]; do
 
   task=$(next_task || true)
   if [ -z "$task" ]; then
-    # Queue empty = every user is still inside its 12 h fetch cool-
-    # down. Rather than blocking on EMPTY_QUEUE_WAIT, spend that
-    # idle time draining the broken-index backlog. `repair --one`:
-    #   * exit 0 — rebuilt one broken VIP index (took some time)
-    #   * exit 3 — nothing was broken (back off and sleep)
-    #   * exit ≥2 — attempt failed
-    # Repair bypasses the per-user fetch cool-down because it's NOT
-    # source-fetch work — no external rate limits, just embedder
-    # work that draws from `documents` already in PG.
-    log "queue empty — attempting one broken-index repair"
-    timeout "$PER_RUN_TIMEOUT" $PY_RUN -m sources.utils.index_health repair \
-      --vip-only --one >>"$RUNNER_LOG" 2>&1
-    repair_rc=$?
-    case "$repair_rc" in
-      0) log "  ✓ repaired one index" ;;
-      3) log "  no broken index — sleeping ${EMPTY_QUEUE_WAIT}s before re-polling"
-         sleep "$EMPTY_QUEUE_WAIT" ;;
-      *) log "  ✗ repair failed (exit=$repair_rc) — sleeping ${SLEEP_BETWEEN}s"
-         sleep "$SLEEP_BETWEEN" ;;
-    esac
+    # Queue empty = every user is still inside its 12 h fetch cool-down.
+    # Index upkeep is no longer this runner's concern — the indexer
+    # daemon keeps the single `__all__` index current incrementally — so
+    # there's nothing to drain here; just wait for a cool-down to expire.
+    log "queue empty — sleeping ${EMPTY_QUEUE_WAIT}s before re-polling"
+    sleep "$EMPTY_QUEUE_WAIT"
     continue
   fi
   slug=$(printf '%s' "$task" | cut -f1)

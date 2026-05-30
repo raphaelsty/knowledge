@@ -1,4 +1,4 @@
-.PHONY: install install-dev sync run index index-all index-check serve web lint lint-fix check pre-commit pre-commit-install docker-build docker-run launch docker-stop clean install-api api-build db db-browse db-backup db-backup-if-stale up down ssh dev dev-stop delete purge hn-frontpage daily repair-indexes all-status all-rebuild load-test prod-db-dump prod-db-dump-if-stale prod-db-restore prod-db-sync
+.PHONY: install install-dev sync run index index-all serve web lint lint-fix check pre-commit pre-commit-install docker-build docker-run launch docker-stop clean install-api api-build db db-browse db-backup db-backup-if-stale up down ssh dev dev-stop delete purge hn-frontpage daily all-status all-rebuild load-test prod-db-dump prod-db-dump-if-stale prod-db-restore prod-db-sync
 
 # Load .env if present
 -include .env
@@ -200,51 +200,6 @@ api-build:
 web:
 	DATABASE_URL=$(DATABASE_URL) uv run python3 web/serve.py $(WEB_PORT)
 
-# Scan per-user search indices and record health verdicts to PG.
-# Reads sources/sql/index_health_checks (history table) and writes one
-# new row per user per call. Default sweep: oldest-checked first, VIPs
-# prioritized. Runs against the live API on $(PORT).
-#
-#   make index-check                     # all users, oldest-checked first
-#   make index-check SLUG=max-halford    # one user
-#   make index-check VIP=1                # VIPs only
-#   make index-check VIP=1 LIMIT=20       # next 20 stale VIPs
-#   make index-check LIMIT=10             # next 10 across everyone (cron-friendly)
-#
-# Exit code is non-zero when any verdict is unhealthy, so this can be
-# scheduled and surface failures to monitoring.
-index-check:
-	@DATABASE_URL=$(DATABASE_URL) API_URL=http://localhost:$(PORT) \
-	  uv run python scripts/check_indexes.py \
-	    $(if $(SLUG),--slug $(SLUG),) \
-	    $(if $(VIP),--vip-only,) \
-	    $(if $(LIMIT),--limit $(LIMIT),)
-
-# Spot broken / errored / missing per-user indices and rebuild each
-# from scratch using the documents already in PG. No source fetchers
-# run — only the embedder — so this is dramatically cheaper than
-# `make run SLUG=…` per offender.
-#
-#   make reindex-broken                 # detect + rebuild
-#   make reindex-broken DRY=1           # report only, no work
-#   make reindex-broken INCLUDE_DRIFT=1 # also rebuild pg_drift verdicts
-#   make reindex-broken VIP=1           # restrict to VIP users
-#   make reindex-broken SLUG=phil-wang  # one user
-#
-# Verdicts targeted by default: broken (num_documents>0 but
-# num_embeddings==0), error (API 5xx / "No data to merge"), missing
-# (404 with PG docs). pg_drift is opt-in because it usually heals
-# on its own.
-.PHONY: reindex-broken
-reindex-broken:
-	@DATABASE_URL=$(DATABASE_URL) API_URL=http://localhost:$(PORT) \
-	  uv run python scripts/reindex_broken.py \
-	    $(if $(SLUG),--slug $(SLUG),) \
-	    $(if $(VIP),--vip-only,) \
-	    $(if $(INCLUDE_DRIFT),--include-drift,) \
-	    $(if $(ALL),--all,) \
-	    $(if $(DRY),--dry,)
-
 # Build the cross-personality `__all__` index. Loads every doc owned by
 # a VIP user from PG, formats it the same way per-user indexing does,
 # and pushes it to the unified API. Idempotent — pre-purges existing
@@ -255,27 +210,6 @@ index-all:
 	@DATABASE_URL=$(DATABASE_URL) ADMIN_API_KEY=$(ADMIN_API_KEY) \
 	  API_URL=http://localhost:$(PORT) \
 	  uv run python -m sources.utils.build_all_index
-
-# Health check + on-demand repair for the *per-user* indices. The
-# `__all__` index is intentionally excluded from this path — its
-# update path is `make index-all` (or `make all-rebuild`), and the
-# per-user repair module hard-refuses to touch it. Use this when an
-# operator wants to fix every broken / errored / missing user index
-# in one pass without running the full pipeline per offender.
-#
-#   make repair-indexes               # detect + repair broken/error/missing
-#   make repair-indexes DRY=1         # report only
-#   make repair-indexes INCLUDE_DRIFT=1
-#   make repair-indexes VIP=1
-#   make repair-indexes SLUG=phil-wang
-.PHONY: repair-indexes
-repair-indexes:
-	@DATABASE_URL=$(DATABASE_URL) API_URL=http://localhost:$(PORT) \
-	  uv run python -m sources.utils.index_health repair \
-	    $(if $(SLUG),--slug $(SLUG),) \
-	    $(if $(VIP),--vip-only,) \
-	    $(if $(INCLUDE_DRIFT),--include-drift,) \
-	    $(if $(DRY),--dry,)
 
 # Read-only audit: print the `__all__` index status (doc count vs sum
 # of VIP documents in PG). The underlying CLI exits non-zero when the
