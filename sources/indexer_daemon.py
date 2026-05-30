@@ -460,15 +460,6 @@ def main(argv: list[str] | None = None) -> int:
     _log("indexer-daemon starting")
     _log(f"  database_url={args.database_url}")
 
-    # Per-user consecutive-failure counter (keyed by user_id). When a
-    # user's count reaches HARD_HEAL_THRESHOLD we drop their on-disk
-    # index + reset indexed=FALSE in PG, then let the next iteration
-    # rebuild from scratch. Without this, a permanently-broken index
-    # file like nicolas-carion's ("Index load failed: No data to
-    # merge" on every batch) keeps a user at the top of the queue
-    # forever and the daemon retries-then-fails in a tight loop —
-    # eating CPU, spamming logs, and never making progress.
-    consecutive_failures: dict[int, int] = {}
     # In-memory timer for the __all__ incremental sync (see
     # maybe_sync_all_index). Reset on every process start so a
     # deploy-interrupted sync resumes immediately on boot.
@@ -488,89 +479,24 @@ def main(argv: list[str] | None = None) -> int:
             if _stop_requested:
                 break
 
-        queue = build_priority_queue(
-            args.database_url,
-            args.api_url,
-            vip_only=args.vip_only,
-            include_drift=args.include_drift,
-        )
-        _print_queue(queue, limit=15)
+        # Single-index world: there is no per-user indexing any more.
+        # The daemon's only job is to keep `__all__` current (done above
+        # by maybe_sync_all_index). Per-personality indices were retired,
+        # so the priority-queue / per-user reindex path is gone — which
+        # also frees the encoder entirely for the `__all__` sync.
         if args.dry:
+            _log("--dry: __all__ sync only; nothing else to do")
             return 0
-        if not queue:
-            if args.once:
-                _log("nothing to do, exiting (--once)")
-                return 0
-            # Sleep in 30s chunks so SIGINT exits quickly.
-            slept = 0.0
-            while slept < args.idle_sleep and not _stop_requested:
-                time.sleep(min(30.0, args.idle_sleep - slept))
-                slept += 30.0
-            continue
-
-        target = queue[0]
-        user_id = int(target["id"])
-        slug = target["username"]
-        fails = consecutive_failures.get(user_id, 0)
-
-        # If we've failed three times in a row on this user, the
-        # in-process healer never engaged (it only fires on a load-
-        # time error, not on per-batch "No data to merge"). Drop
-        # the on-disk index + reset every doc to indexed=FALSE in
-        # PG, then let the NEXT iteration rebuild from scratch —
-        # by then the verdict will be `missing` and run_pipeline
-        # takes the fresh-build path naturally.
-        if fails >= HARD_HEAL_THRESHOLD:
-            _log(f"   [hard-heal] {slug} failed {fails}× in a row — dropping index + resetting indexed flags")
-            try:
-                from sources.utils.index_health import force_heal_index
-
-                force_heal_index(
-                    args.api_url,
-                    target["index_name"],
-                    user_id,
-                    args.database_url,
-                )
-                # Counter resets so the very next pass (which is now
-                # a clean rebuild) doesn't immediately re-trip the
-                # threshold if it also stumbles on something else.
-                consecutive_failures[user_id] = 0
-                _log(f"   [hard-heal] {slug} healed — next iteration will rebuild")
-            except Exception as exc:
-                _log(f"   [!] hard-heal for {slug} failed: {exc!r}")
-                # Bump the counter so we don't tight-loop the heal
-                # itself; the user effectively gets deprioritised
-                # because the queue scan re-runs from PG each pass.
-                consecutive_failures[user_id] = fails + 1
-            if not _stop_requested:
-                time.sleep(FAILURE_SLEEP_SECS)
-            if args.once:
-                return 1
-            continue
-
-        _log(
-            f"→ {slug}  ({target['verdict']}: "
-            f"pg={target['pg_indexed']}/{target['pg_total']}, "
-            f"backlog={target['backlog']})"
-        )
-        t0 = time.perf_counter()
-        ok = _process_one(target, args.database_url, args.api_url)
-        dur = time.perf_counter() - t0
-        _log(f"   {'✓' if ok else '✗'} {slug} done in {int(dur)}s")
-
-        if ok:
-            consecutive_failures.pop(user_id, None)
-        else:
-            consecutive_failures[user_id] = fails + 1
-            _log(f"   {slug} consecutive failures: {fails + 1}/{HARD_HEAL_THRESHOLD}")
-
         if args.once:
-            return 0 if ok else 1
-        if not _stop_requested:
-            # Longer cool-down after a failure so the next attempt
-            # (which may also fail until the threshold trips) doesn't
-            # hammer the API at the success-path cadence.
-            time.sleep(FAILURE_SLEEP_SECS if not ok else args.sleep)
+            _log("synced once, exiting (--once)")
+            return 0
+        # Wake often so SIGINT stays responsive and a freed backlog drains
+        # promptly; the sync self-gates on ALL_CHECK_INTERVAL_SECS, so
+        # these wake-ups are cheap no-ops when there's nothing to do.
+        slept = 0.0
+        while slept < args.sleep and not _stop_requested:
+            time.sleep(min(5.0, args.sleep - slept))
+            slept += 5.0
 
     _log("bye")
     return 0
