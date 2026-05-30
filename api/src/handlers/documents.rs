@@ -1531,32 +1531,28 @@ pub async fn promote_index(
     state.unload_index(&source);
     state.invalidate_config_cache(&source);
 
-    // Move the OLD target out of the way. We use a timestamped name
-    // so two near-simultaneous promotes don't collide on the trash
-    // directory.
-    let ts = std::time::SystemTime::now()
-        .duration_since(std::time::UNIX_EPOCH)
-        .map(|d| d.as_millis())
-        .unwrap_or(0);
-    let trash_name = format!(".trash_{}_{}", target, ts);
-    let trash_path = state.index_path(&trash_name);
-
+    // Remove the OLD target outright — NO `.trash` copy. This keeps the
+    // on-disk peak at a single index (never old+new simultaneously) and
+    // leaves nothing dormant behind to leak disk. Readers are unaffected:
+    // the live mmap is held open by inode, so unlinking the on-disk files
+    // leaves the in-memory index serving until `register_index` swaps it
+    // below. The new corpus lives in `source` (the staging dir) until the
+    // rename, so deleting the old target first does not risk the data.
     let target_existed = target_path.join("metadata.json").exists();
     if target_existed {
-        std::fs::rename(&target_path, &trash_path).map_err(|e| {
+        std::fs::remove_dir_all(&target_path).map_err(|e| {
             ApiError::Internal(format!(
-                "Failed to move old target '{}' aside: {}",
+                "Failed to remove old target '{}' before promote: {}",
                 target, e
             ))
         })?;
     }
 
-    // Move source into target's slot.
+    // Move source (staging) into target's slot. A rename within the same
+    // filesystem is atomic and allocates nothing, so it won't fail on a
+    // full disk; if it somehow does, the daemon's health check rebuilds
+    // the (now-empty) target on its next cycle.
     if let Err(e) = std::fs::rename(&source_path, &target_path) {
-        // Try to restore the old target so we don't leave a hole.
-        if target_existed {
-            let _ = std::fs::rename(&trash_path, &target_path);
-        }
         return Err(ApiError::Internal(format!(
             "Failed to promote '{}' → '{}': {}",
             source, target, e
@@ -1573,22 +1569,6 @@ pub async fn promote_index(
     let num_documents = new_idx.metadata.num_documents as u64;
     state.invalidate_config_cache(&target);
     state.register_index(&target, new_idx);
-
-    // Best-effort cleanup of the trash dir. A failure here is not
-    // fatal — disk is in a consistent state, the only cost is a
-    // dormant directory until the next deploy. We still log it so
-    // an operator can clean up by hand.
-    if target_existed {
-        if let Err(e) = std::fs::remove_dir_all(&trash_path) {
-            tracing::warn!(
-                trace_id = %trace_id,
-                index = %target,
-                trash = %trash_path.display(),
-                error = %e,
-                "promote.trash_cleanup_failed"
-            );
-        }
-    }
 
     tracing::info!(
         trace_id = %trace_id,
