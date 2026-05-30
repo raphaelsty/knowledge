@@ -73,40 +73,89 @@ DEFAULT_DATABASE_URL = "postgresql://knowledge:knowledge@localhost:5433/knowledg
 # ── DB ────────────────────────────────────────────────────────────────
 
 
-def _vip_documents(database_url: str) -> list[tuple[str, dict]]:
-    """Return every (url, doc) for users where vip = TRUE.
+# Columns + join shared by the count / recent / streaming queries.
+_VIP_COLS = "d.url, d.title, d.summary, d.date, d.tags, d.extra_tags, d.source, d.source_url, u.username"
+_VIP_JOIN = "FROM documents d JOIN users u ON u.id = d.user_id WHERE u.vip = TRUE"
 
-    `doc` is shaped to match `client._merge_and_track`'s output:
-    title, summary, date, tags (list), extra-tags (list),
-    source (str), source_url (str).
-    """
-    sql = (
-        "SELECT d.url, d.title, d.summary, d.date, d.tags, d.extra_tags, "
-        "       d.source, d.source_url, u.username "
-        "  FROM documents d "
-        "  JOIN users u ON u.id = d.user_id "
-        " WHERE u.vip = TRUE "
-        " ORDER BY u.username, d.url"
-    )
+
+def _row_to_text_meta(row: tuple) -> tuple[str, dict] | None:
+    """Shape one DB row into the (text, metadata) pair the index ingests
+    — identical to what `run_pipeline` produces per user. Returns None
+    when the row has no indexable text."""
+    url, title, summary, date, tags, extra_tags, source, source_url, slug = row
+    doc_tags = list(tags) if tags else []
+    extra = list(extra_tags) if extra_tags else []
+    summary = summary or ""
+    title = title or ""
+    source = source or ""
+    website = website_name(url)
+    text = f"{title} {' '.join(doc_tags)} {' '.join(extra)} {summary[:200]} {source} {website}".strip()
+    if not text:
+        return None
+    meta = {
+        "url": url,
+        "title": title,
+        "summary": summary,
+        "date": str(date or ""),
+        "tags": ",".join(doc_tags),
+        "extra_tags": ",".join(extra),
+        "source": source,
+        "source_url": source_url or "",
+        # carry the owner so the frontend can attribute / pre-filter results
+        "owner": slug or "",
+    }
+    return text, meta
+
+
+def _count_vip_documents(database_url: str) -> int:
+    with psycopg.connect(database_url) as conn, conn.cursor() as cur:
+        cur.execute(f"SELECT COUNT(*) {_VIP_JOIN}")
+        return int(cur.fetchone()[0])
+
+
+def _recent_vip_text_meta(database_url: str, limit: int) -> list[tuple[str, dict]]:
+    """The newest `limit` VIP docs as (text, meta) pairs — used for the
+    urgent seed. Bounded by `limit`, so memory stays trivial."""
+    sql = f"SELECT {_VIP_COLS} {_VIP_JOIN} ORDER BY d.date DESC NULLS LAST LIMIT %s"
     out: list[tuple[str, dict]] = []
     with psycopg.connect(database_url) as conn, conn.cursor() as cur:
-        cur.execute(sql)
-        for url, title, summary, date, tags, extra_tags, source, source_url, slug in cur.fetchall():
-            doc = {
-                "title": title or "",
-                "summary": summary or "",
-                "date": date or "",
-                "tags": list(tags) if tags else [],
-                "extra-tags": list(extra_tags) if extra_tags else [],
-                "source": source or "",
-                "source_url": source_url or "",
-                # `_owner` is just informational — the API doesn't read
-                # it. Useful when grepping the index payload to figure
-                # out which personality contributed a given URL.
-                "_owner": slug,
-            }
-            out.append((url, doc))
+        cur.execute(sql, (limit,))
+        for row in cur.fetchall():
+            tm = _row_to_text_meta(row)
+            if tm:
+                out.append(tm)
     return out
+
+
+def _iter_vip_text_meta(database_url: str, chunk: int = 2000):
+    """Stream EVERY VIP doc as (text, meta) pairs, KEYSET-paginated on the
+    `(user_id, url)` primary key. Each chunk is a short, index-backed
+    query on its own connection — so peak memory is one `chunk` and we
+    never hold a long-running read transaction open (which would block
+    WAL cleanup and risk the disk filling again). Replaces the old
+    load-the-whole-corpus-into-RAM path that OOM-killed the 2 GB indexer
+    container at 528k+ docs."""
+    # Select d.user_id as a trailing column so we can advance the keyset
+    # on (user_id, url); _row_to_text_meta only consumes the first 9.
+    sql = (
+        f"SELECT {_VIP_COLS}, d.user_id {_VIP_JOIN} "
+        "AND (d.user_id, d.url) > (%s, %s) "
+        "ORDER BY d.user_id, d.url LIMIT %s"
+    )
+    last_uid, last_url = -1, ""
+    while True:
+        with psycopg.connect(database_url) as conn, conn.cursor() as cur:
+            cur.execute(sql, (last_uid, last_url, chunk))
+            rows = cur.fetchall()
+        if not rows:
+            return
+        for row in rows:
+            tm = _row_to_text_meta(row[:9])
+            if tm:
+                yield tm
+        # advance the keyset cursor to just past the last row of this page
+        last_url = rows[-1][0]
+        last_uid = rows[-1][9]
 
 
 # ── HTTP helpers ─────────────────────────────────────────────────────
@@ -184,16 +233,6 @@ def _promote_staging(api_base: str, headers: dict) -> None:
     if status != 200:
         raise RuntimeError(f"promote failed: HTTP {status} {body[:200]}")
     print(f"  ✓ Promote complete — {INDEX_NAME} now serves the new corpus.")
-
-
-def _date_sort_key(meta: dict) -> str:
-    """Sort key for recency. DB `date` values are ISO strings
-    (``YYYY-MM-DD``) which compare correctly as plain strings; anything
-    empty or non-ISO (no leading digit) collapses to ``""`` so it sorts
-    LAST under a descending sort and never crowds out real dates in the
-    seed."""
-    d = meta.get("date") or ""
-    return d if d[:1].isdigit() else ""
 
 
 def _wait_for_index(api_base: str, headers: dict, name: str, expected_docs: int, timeout: float = 180.0) -> bool:
@@ -286,79 +325,91 @@ def _guarded_promote(api_base: str, headers: dict, expected_docs: int, label: st
     return True
 
 
-def _push_batches(
+def _push_one_batch(
+    api_base: str, headers: dict, target: str, batch_texts: list, batch_meta: list, *, tag: str, label_idx: str
+) -> tuple[bool, float]:
+    """Push a single batch with queue-full backpressure handling.
+    Returns (ok, elapsed_seconds)."""
+    # The API's per-index update queue is capped at 100 pending items
+    # server-side. Push too fast and we get 503 SERVICE_UNAVAILABLE
+    # ("Update queue full"). Back off and RETRY the same batch — never
+    # advance on a 503, since the data wasn't accepted.
+    QUEUE_FULL_BACKOFF = (2, 4, 8, 16, 30)
+    attempt = 0
+    t0 = time.perf_counter()
+    while True:
+        status, body = _post(
+            api_base,
+            f"/indices/{target}/update_with_encoding",
+            {"documents": batch_texts, "metadata": batch_meta, "pool_factor": 2},
+            headers,
+            timeout=600,
+        )
+        if status == 503 and "queue full" in body.lower():
+            wait = QUEUE_FULL_BACKOFF[min(attempt, len(QUEUE_FULL_BACKOFF) - 1)]
+            attempt += 1
+            if attempt == 1 or attempt % 5 == 0:
+                print(f"    {tag}batch {label_idx} ⏸ queue full (attempt {attempt}, sleeping {wait}s)...", flush=True)
+            time.sleep(wait)
+            continue
+        break
+    elapsed = time.perf_counter() - t0
+    if status >= 400:
+        print(f"    ⚠ {tag}batch {label_idx} failed: {status} {body[:200]}", flush=True)
+        return False, elapsed
+    return True, elapsed
+
+
+def _push_pairs(
     api_base: str,
     headers: dict,
     target: str,
-    texts: list[str],
-    metas: list[dict],
+    pairs,
     *,
     nice_ratio: float,
     label: str = "",
-) -> int:
-    """Encode + push `texts`/`metas` into `target` in batches of `BATCH`.
-
-    Returns the number of documents successfully pushed. `nice_ratio`
-    controls the post-batch encoder-yield pause (the rebuild sleeps for
-    ``last_batch_seconds × nice_ratio`` so live `/encode` traffic isn't
-    starved); pass ``0.0`` to push back-to-back (used for the urgent
-    seed, where restoring search fast matters more than politeness).
+    total: int | None = None,
+) -> tuple[int, int]:
+    """Consume an ITERABLE of (text, meta) pairs and push them to `target`
+    in batches of `BATCH`. Streams — never materialises more than one
+    batch — so memory is bounded no matter how large the corpus is.
+    Returns (pushed, failed_batches). `nice_ratio` sets the post-batch
+    encoder-yield pause (0.0 = back-to-back, used for the urgent seed).
     """
-    n = len(texts)
-    n_batches = (n + BATCH - 1) // BATCH
     tag = f"[{label}] " if label else ""
-    print(f"  {tag}Indexing {n:,} documents in {n_batches} batch(es) of {BATCH}...", flush=True)
-    pushed = 0
-    # The API's per-index update queue is capped at 100 pending items
-    # server-side. Push too fast and we get 503 SERVICE_UNAVAILABLE
-    # ("Update queue full"). The fix is to back off and RETRY the same
-    # batch — never advance on a 503, since the data wasn't accepted.
-    QUEUE_FULL_BACKOFF = (2, 4, 8, 16, 30)
-    MIN_PAUSE_S = 0.2
-    MAX_PAUSE_S = 30.0
-    for i in range(0, n, BATCH):
-        batch_texts = texts[i : i + BATCH]
-        batch_meta = metas[i : i + BATCH]
-        attempt = 0
-        batch_t0 = time.perf_counter()
-        while True:
-            status, body = _post(
-                api_base,
-                f"/indices/{target}/update_with_encoding",
-                {"documents": batch_texts, "metadata": batch_meta, "pool_factor": 2},
-                headers,
-                timeout=600,
-            )
-            # Treat "queue full" as backpressure, not a hard failure.
-            if status == 503 and "queue full" in body.lower():
-                wait = QUEUE_FULL_BACKOFF[min(attempt, len(QUEUE_FULL_BACKOFF) - 1)]
-                attempt += 1
-                if attempt == 1 or attempt % 5 == 0:
-                    print(
-                        f"    {tag}batch {i // BATCH + 1}/{n_batches} ⏸ queue full (attempt {attempt}, sleeping {wait}s)...",
-                        flush=True,
-                    )
-                time.sleep(wait)
-                continue
-            break
-        batch_elapsed = time.perf_counter() - batch_t0
+    n_batches = ((total + BATCH - 1) // BATCH) if total else None
+    MIN_PAUSE_S, MAX_PAUSE_S = 0.2, 30.0
+    pushed = failed = idx = 0
+    bt: list[str] = []
+    bm: list[dict] = []
 
-        if status >= 400:
-            print(
-                f"    ⚠ {tag}batch {i // BATCH + 1}/{n_batches} failed: {status} {body[:200]}",
-                flush=True,
-            )
-            continue
-        pushed += len(batch_texts)
-        print(
-            f"    {tag}batch {i // BATCH + 1}/{n_batches} ✓ ({pushed:,}/{n:,} pushed)",
-            flush=True,
-        )
-        # Be nice — yield the encoder. Skip the pause after the last batch.
-        if nice_ratio > 0 and i + BATCH < n:
-            pause = max(MIN_PAUSE_S, min(MAX_PAUSE_S, batch_elapsed * nice_ratio))
-            time.sleep(pause)
-    return pushed
+    def flush() -> None:
+        nonlocal pushed, failed, idx
+        if not bt:
+            return
+        idx += 1
+        label_idx = f"{idx}/{n_batches}" if n_batches else str(idx)
+        ok, elapsed = _push_one_batch(api_base, headers, target, bt, bm, tag=tag, label_idx=label_idx)
+        if ok:
+            pushed += len(bt)
+            tot = f"/{total:,}" if total else ""
+            print(f"    {tag}batch {label_idx} ✓ ({pushed:,}{tot} pushed)", flush=True)
+            if nice_ratio > 0:
+                time.sleep(max(MIN_PAUSE_S, min(MAX_PAUSE_S, elapsed * nice_ratio)))
+        else:
+            failed += 1
+        bt.clear()
+        bm.clear()
+
+    approx = f" ~{total:,} docs" if total else ""
+    print(f"  {tag}Indexing{approx} in batches of {BATCH}...", flush=True)
+    for text, meta in pairs:
+        bt.append(text)
+        bm.append(meta)
+        if len(bt) >= BATCH:
+            flush()
+    flush()
+    return pushed, failed
 
 
 # ── Main ─────────────────────────────────────────────────────────────
@@ -374,51 +425,16 @@ def main() -> int:
         headers["X-API-Key"] = api_key
 
     t0 = time.perf_counter()
-    print(f"Loading VIP documents from {database_url}")
-    docs = _vip_documents(database_url)
-    print(f"  → {len(docs):,} VIP documents found")
-
-    if not docs:
+    print(f"Counting VIP documents in {database_url}")
+    total = _count_vip_documents(database_url)
+    print(f"  → {total:,} VIP documents")
+    if total == 0:
         print("Nothing to index.")
         return 0
 
-    # Build text + metadata exactly like run_pipeline does — same
-    # ColBERT input shape so search behaves identically.
-    texts: list[str] = []
-    metas: list[dict] = []
-    urls_aligned: list[str] = []
-    for url, doc in docs:
-        title = doc.get("title", "")
-        doc_tags = doc.get("tags") or []
-        extra = doc.get("extra-tags") or []
-        summary = doc.get("summary", "") or ""
-        source = doc.get("source", "") or ""
-        website = website_name(url)
-
-        text = f"{title} {' '.join(doc_tags)} {' '.join(extra)} {summary[:200]} {source} {website}".strip()
-        if not text:
-            continue
-        texts.append(text)
-        urls_aligned.append(url)
-        metas.append(
-            {
-                "url": url,
-                "title": title,
-                "summary": summary,
-                "date": str(doc.get("date") or ""),
-                "tags": ",".join(doc_tags),
-                "extra_tags": ",".join(extra),
-                "source": source,
-                "source_url": doc.get("source_url") or "",
-                # carry the owner so the frontend can attribute results
-                "owner": doc.get("_owner") or "",
-            }
-        )
-
-    n = len(texts)
-    if n == 0:
-        print("No indexable text after filtering.")
-        return 0
+    SEED_DOCS = int(os.environ.get("BUILD_ALL_SEED_DOCS", "1000"))
+    NICE_RATIO = float(os.environ.get("BUILD_ALL_NICE_RATIO", "1.0"))
+    ITERSIZE = int(os.environ.get("BUILD_ALL_ITERSIZE", "2000"))
 
     # ── Decide: zero-downtime refresh, or urgent broken-index heal? ──
     # HEALTHY live index → classic contract: build the full staging
@@ -436,14 +452,11 @@ def main() -> int:
     # `BUILD_ALL_SEED_DOCS` is intentionally small (recent-first) so the
     # broken→working swap happens almost immediately, per the "replace
     # the broken index as soon as documents are available" requirement.
-    SEED_DOCS = int(os.environ.get("BUILD_ALL_SEED_DOCS", "1000"))
-    NICE_RATIO = float(os.environ.get("BUILD_ALL_NICE_RATIO", "1.0"))
-
     urgent = False
     try:
         from sources.utils.index_health import classify_index
 
-        verdict, reason = classify_index(api_base, INDEX_NAME, n, n)
+        verdict, reason = classify_index(api_base, INDEX_NAME, total, total)
         urgent = verdict in {"broken", "error", "missing", "empty"}
         print(
             f"  live '{INDEX_NAME}' verdict: {verdict} ({reason}) → "
@@ -453,55 +466,55 @@ def main() -> int:
         print(f"  (could not classify live '{INDEX_NAME}': {exc!r}; standard rebuild)")
 
     # ── Phase 0: urgent seed (broken live index only) ───────────────
-    # Recent-first so the partial index is maximally useful; pushed
+    # The newest SEED_DOCS docs (bounded query → trivial memory), pushed
     # back-to-back (nice_ratio=0) since there's no live traffic to spare
     # when search is already dead. Promote is guarded — we only swap the
     # seed in once it provably loads + searches.
     if urgent:
-        order = sorted(range(n), key=lambda k: _date_sort_key(metas[k]), reverse=True)
-        seed = order[: min(SEED_DOCS, n)]
-        seed_texts = [texts[k] for k in seed]
-        seed_metas = [metas[k] for k in seed]
-        print(
-            f"\n  [SEED] live index unusable — building a {len(seed):,}-doc recent-first seed to restore search ASAP..."
-        )
-        _reset_staging(api_base, headers)
-        seed_pushed = _push_batches(
-            api_base,
-            headers,
-            STAGING_NAME,
-            seed_texts,
-            seed_metas,
-            nice_ratio=0.0,
-            label="seed",
-        )
-        if seed_pushed == len(seed) and _guarded_promote(api_base, headers, seed_pushed, "seed"):
-            print(f"  [SEED] ✓ search restored with {seed_pushed:,} recent docs; full rebuild continues below.")
-        else:
+        seed_pairs = _recent_vip_text_meta(database_url, SEED_DOCS)
+        if seed_pairs:
             print(
-                f"  [SEED] ⚠ seed not promoted ({seed_pushed:,}/{len(seed):,} pushed) — proceeding to the full rebuild."
+                f"\n  [SEED] live index unusable — building a {len(seed_pairs):,}-doc "
+                f"recent-first seed to restore search ASAP..."
             )
+            _reset_staging(api_base, headers)
+            seed_pushed, seed_failed = _push_pairs(
+                api_base, headers, STAGING_NAME, seed_pairs, nice_ratio=0.0, label="seed", total=len(seed_pairs)
+            )
+            if seed_failed == 0 and seed_pushed > 0 and _guarded_promote(api_base, headers, seed_pushed, "seed"):
+                print(f"  [SEED] ✓ search restored with {seed_pushed:,} recent docs; full rebuild continues below.")
+            else:
+                print(
+                    f"  [SEED] ⚠ seed not promoted ({seed_pushed:,}/{len(seed_pairs):,} pushed, "
+                    f"{seed_failed} failed) — proceeding to the full rebuild."
+                )
 
-    # ── Phase 1: full rebuild ───────────────────────────────────────
+    # ── Phase 1: full rebuild (streaming, memory-bounded) ───────────
     # Fresh staging (a seed promote, if any, consumed the previous one).
-    # Throttled push so live search keeps a fair share of the encoder
-    # while the full corpus is rebuilt.
+    # Keyset-streamed from PG so the indexer never holds more than one
+    # batch in RAM — this is what stopped the 2 GB container OOM-looping
+    # on the 528k-doc corpus. Throttled push so live search keeps a fair
+    # share of the encoder while the full corpus is rebuilt.
     _reset_staging(api_base, headers)
-    pushed = _push_batches(
+    pushed, failed = _push_pairs(
         api_base,
         headers,
         STAGING_NAME,
-        texts,
-        metas,
+        _iter_vip_text_meta(database_url, ITERSIZE),
         nice_ratio=NICE_RATIO,
         label="full",
+        total=total,
     )
 
-    # Never promote a partial staging — the live slot keeps whatever it
-    # has (the seed when urgent, else the previous corpus).
-    if pushed != n:
+    # Never promote a partial/failed staging — the live slot keeps
+    # whatever it has (the seed when urgent, else the previous corpus).
+    # A batch failure mid-stream means the staging is incomplete.
+    if pushed == 0 or failed > 0:
         kept = "seed" if urgent else "previous corpus"
-        print(f"\n[!] Skipping final promote — only {pushed:,}/{n:,} pushed. '{INDEX_NAME}' keeps the {kept}.")
+        print(
+            f"\n[!] Full rebuild incomplete ({pushed:,} pushed, {failed} batch failure(s)) — "
+            f"NOT promoting. '{INDEX_NAME}' keeps the {kept}."
+        )
         return 1
 
     # Guarded promote: drain + verify load/search before swapping. If
