@@ -143,15 +143,14 @@ FAILURE_SLEEP_SECS = 10.0
 # by the per-user incremental push hook + the hourly daemon, so we
 # don't full-rebuild for those.
 ALL_BROKEN_VERDICTS = frozenset({"broken", "error", "missing"})
-# Don't re-probe `__all__` on every per-user tick (the loop can spin
-# every ~2s when busy); one health GET per minute is plenty.
-ALL_CHECK_INTERVAL_SECS = 60.0
-# If a rebuild attempt fails (API down, transient), wait this long
-# before trying again so a persistent failure doesn't tight-loop a
-# multi-minute rebuild. A fresh process start resets the timer (the
-# state is in-memory), so a deploy-killed rebuild retries immediately
-# on the next boot — which is exactly the self-heal we want.
-ALL_REBUILD_COOLDOWN_SECS = 1800.0
+# How often to run the incremental `__all__` sync (which also does the
+# cheap health GET that detects a break). Short, so a broken index is
+# spotted within seconds and new docs flow in promptly.
+ALL_CHECK_INTERVAL_SECS = 20.0
+# Cap docs synced per sweep so one pass stays bounded and the loop keeps
+# re-checking health frequently. The `indexed_all` flag makes the sync
+# resumable, so a large backlog just takes several sweeps to drain.
+ALL_SYNC_MAX_DOCS = 6000
 
 _VERDICT_TO_PRIORITY = {
     "broken": PRI_BROKEN,
@@ -346,46 +345,32 @@ def _process_one(row: dict, database_url: str, api_url: str) -> bool:
         _log(f"  [!] {slug}: {exc!r}")
         return False
 
-    # Per-user index is now fresh. If the user is a VIP, mirror their
-    # docs into `__all__` so the cross-personality search stays in sync.
-    # Without this hook `__all__` only gets refreshed via the manual
-    # `make all-rebuild` target — which is why omar-khattab / reachsumit
-    # / etc. dropped out of feed search after becoming VIP. Failures
-    # here are logged but never fail the per-user indexing — they're
-    # repaired by the next full rebuild.
-    #
-    # `personal_snapshot` upkeep is NOT triggered here — it's owned by
-    # the same daemon that refreshes the global feed_snapshot so the
-    # two snapshots advance in lock-step on one schedule.
-    if row["vip"]:
-        try:
-            from sources.utils.index_health import update_all_index_for_slugs
-
-            update_all_index_for_slugs(
-                database_url=database_url,
-                api_url=api_url,
-                slugs=[slug],
-                admin_key=os.environ.get("ADMIN_API_KEY") or None,
-            )
-        except Exception as exc:
-            _log(f"  [!] {slug}: __all__ incremental push failed: {exc!r}")
+    # `__all__` is no longer mirrored per-slug here. It's a single index
+    # maintained by `maybe_sync_all_index`, which streams every VIP doc
+    # in via the `indexed_all` flag — new docs land in `__all__` on the
+    # next sync sweep regardless of the per-user index. Pushing per-slug
+    # here too would double-add (the sync doesn't know this path ran), so
+    # the hook is removed.
     return True
 
 
-def maybe_rebuild_all_index(database_url: str, api_url: str, state: dict) -> None:
-    """Prioritised self-heal for the `__all__` index.
+def maybe_sync_all_index(database_url: str, api_url: str, state: dict) -> None:
+    """Keep the single `__all__` index current — incrementally.
 
-    Called at the top of each sweep. Probes `__all__` at most once per
-    ``ALL_CHECK_INTERVAL_SECS``; if the verdict is unusable
-    (``broken`` / ``error`` / ``missing``) it rebuilds the index from
-    PG *before* the daemon touches any per-user work — the whole point
-    is that the cross-personality index gets first claim on the daemon
-    when it's down. ``state`` carries the two monotonic timestamps
-    (``checked_at`` / ``rebuilt_at``) across calls; a fresh process
-    starts with both at 0 so a deploy-killed rebuild retries on boot.
+    Runs at the top of each sweep, at most once per
+    ``ALL_CHECK_INTERVAL_SECS``. One pass:
 
-    Best-effort: any failure logs and returns — the daemon then falls
-    through to its normal per-user sweep rather than wedging.
+      1. ensures `__all__` LOADS — recreating it empty + resetting the
+         `indexed_all` flags ONLY when it's structurally broken (404/5xx);
+      2. removes soft-deleted docs still in it;
+      3. streams up to ``ALL_SYNC_MAX_DOCS`` not-yet-synced docs (newest
+         first) into the live index, flipping `indexed_all = TRUE`.
+
+    The flag is the resumable cursor, so a backlog drains over several
+    sweeps and a sync killed mid-way resumes where it stopped. A full
+    from-scratch rebuild happens only via step 1's recreate-on-break.
+
+    Best-effort: any failure logs and returns so the daemon keeps going.
     """
     now = time.monotonic()
     if state["checked_at"] and (now - state["checked_at"]) < ALL_CHECK_INTERVAL_SECS:
@@ -393,42 +378,23 @@ def maybe_rebuild_all_index(database_url: str, api_url: str, state: dict) -> Non
     state["checked_at"] = now
 
     try:
-        from sources.utils.index_health import (
-            ALL_INDEX_NAME,
-            classify_index,
-            rebuild_all_index,
-            vip_document_total,
-        )
+        from sources.utils.build_all_index import sync_all_index
     except Exception as exc:  # noqa: BLE001
-        _log(f"  __all__ self-heal: import failed: {exc!r}")
+        _log(f"  __all__ sync: import failed: {exc!r}")
         return
 
-    try:
-        # `__all__` has no per-doc `indexed` flag, so use the VIP doc
-        # total as both the target and the baseline — classify_index
-        # only needs them to spot the empty / drift cases.
-        vip_total = vip_document_total(database_url)
-        verdict, reason = classify_index(api_url, ALL_INDEX_NAME, vip_total, vip_total)
-    except Exception as exc:  # noqa: BLE001
-        _log(f"  __all__ health check failed: {exc!r}")
-        return
-
-    if verdict not in ALL_BROKEN_VERDICTS:
-        return
-
-    if state["rebuilt_at"] and (now - state["rebuilt_at"]) < ALL_REBUILD_COOLDOWN_SECS:
-        wait = int(ALL_REBUILD_COOLDOWN_SECS - (now - state["rebuilt_at"]))
-        _log(f"  __all__ is {verdict} ({reason}) but within rebuild cooldown (~{wait}s left) — skipping")
-        return
-
-    state["rebuilt_at"] = time.monotonic()
-    _log(f"  [PRIORITY] __all__ is {verdict} ({reason}) — rebuilding from PG before per-user work")
     t0 = time.perf_counter()
     try:
-        n = rebuild_all_index(database_url, api_url, os.environ.get("ADMIN_API_KEY"))
-        _log(f"  [PRIORITY] __all__ rebuild complete — {n} docs in {int(time.perf_counter() - t0)}s")
+        summary = sync_all_index(database_url, api_url, os.environ.get("ADMIN_API_KEY"), max_docs=ALL_SYNC_MAX_DOCS)
     except Exception as exc:  # noqa: BLE001
-        _log(f"  [!] __all__ rebuild failed after {int(time.perf_counter() - t0)}s: {exc!r}")
+        _log(f"  [!] __all__ sync failed after {int(time.perf_counter() - t0)}s: {exc!r}")
+        return
+
+    if summary["rebuilt"] or summary["added"] or summary["removed"]:
+        _log(
+            f"  __all__ sync: rebuilt={summary['rebuilt']} +{summary['added']:,} "
+            f"-{summary['removed']:,} in {int(time.perf_counter() - t0)}s"
+        )
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -503,10 +469,10 @@ def main(argv: list[str] | None = None) -> int:
     # forever and the daemon retries-then-fails in a tight loop —
     # eating CPU, spamming logs, and never making progress.
     consecutive_failures: dict[int, int] = {}
-    # In-memory timers for the __all__ self-heal (see
-    # maybe_rebuild_all_index). Reset on every process start so a
-    # deploy-interrupted rebuild retries immediately on boot.
-    all_index_state = {"checked_at": 0.0, "rebuilt_at": 0.0}
+    # In-memory timer for the __all__ incremental sync (see
+    # maybe_sync_all_index). Reset on every process start so a
+    # deploy-interrupted sync resumes immediately on boot.
+    all_index_state = {"checked_at": 0.0}
     _log(f"  api_url     ={args.api_url}")
     _log(
         f"  vip_only={args.vip_only}  include_drift={args.include_drift}  "
@@ -514,10 +480,11 @@ def main(argv: list[str] | None = None) -> int:
     )
 
     while not _stop_requested:
-        # Prioritised: heal a broken/missing `__all__` before any
-        # per-user indexing. Skipped in --dry (audit-only) mode.
+        # Prioritised: keep the single `__all__` index current
+        # (incremental sync + recreate-on-break) before any per-user
+        # indexing. Skipped in --dry (audit-only) mode.
         if not args.dry:
-            maybe_rebuild_all_index(args.database_url, args.api_url, all_index_state)
+            maybe_sync_all_index(args.database_url, args.api_url, all_index_state)
             if _stop_requested:
                 break
 

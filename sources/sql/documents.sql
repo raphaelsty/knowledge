@@ -37,7 +37,8 @@ CREATE TABLE IF NOT EXISTS documents (
     cleaned       BOOLEAN     NOT NULL DEFAULT FALSE,  -- clean_title / clean_summary normalized the fields
     link_checked  BOOLEAN     NOT NULL DEFAULT FALSE,  -- dead-link probe saw a live URL
     tagged        BOOLEAN     NOT NULL DEFAULT FALSE,  -- extra_tags populated by the tagger
-    indexed       BOOLEAN     NOT NULL DEFAULT FALSE,  -- ColBERT embeddings in the search index
+    indexed       BOOLEAN     NOT NULL DEFAULT FALSE,  -- ColBERT embeddings in the per-user index (legacy)
+    indexed_all   BOOLEAN     NOT NULL DEFAULT FALSE,  -- mirrored into the single cross-personality `__all__` index
     -- Soft-delete tombstone. Flipped to TRUE when the user removes the
     -- originating source from their profile (e.g. drops a website feed)
     -- so an offline job can later purge the row from PG and the ColBERT
@@ -62,6 +63,19 @@ BEGIN
         ALTER TABLE documents
             ADD COLUMN indexed BOOLEAN NOT NULL DEFAULT FALSE;
         UPDATE documents SET indexed = TRUE;
+    END IF;
+    -- `indexed_all`: is this doc currently mirrored into the single
+    -- `__all__` index? Default FALSE so the incremental sync streams
+    -- every existing doc in once (no back-fill to TRUE — we want them
+    -- synced). The flag doubles as the sync cursor: the daemon pushes
+    -- `NOT indexed_all` docs into `__all__` and flips them TRUE, so a
+    -- killed sync resumes exactly where it stopped.
+    IF NOT EXISTS (
+        SELECT 1 FROM information_schema.columns
+         WHERE table_name = 'documents' AND column_name = 'indexed_all'
+    ) THEN
+        ALTER TABLE documents
+            ADD COLUMN indexed_all BOOLEAN NOT NULL DEFAULT FALSE;
     END IF;
     IF NOT EXISTS (
         SELECT 1 FROM information_schema.columns
@@ -514,6 +528,11 @@ CREATE INDEX IF NOT EXISTS idx_documents_user_untagged
     ON documents (user_id) WHERE tagged = FALSE;
 CREATE INDEX IF NOT EXISTS idx_documents_user_unindexed
     ON documents (user_id) WHERE indexed = FALSE;
+-- Docs not yet mirrored into `__all__`, newest first — the cursor the
+-- incremental `__all__` sync streams through. Shrinks to empty as the
+-- sync catches up, so the "what's left to sync?" query stays instant.
+CREATE INDEX IF NOT EXISTS idx_documents_unsynced_all
+    ON documents (date DESC) WHERE indexed_all = FALSE AND deleted = FALSE;
 -- Partial index on uncategorized rows, ordered by date DESC so the
 -- categorize daemon's "newest-first" fetch stays index-only across
 -- the full 400k+ doc corpus.
