@@ -475,10 +475,22 @@
     font-size: 16.5px !important;
     line-height: 1.32;
   }
+  /* Summary sizing — ONE size for every card body, regardless of
+   * renderer. Article/clean bodies use `.result-summary`; X/tweet
+   * posts use `.tweet-part-text` (which otherwise keeps its 15.5px
+   * desktop size and reads visibly bigger than article cards). Pin
+   * both — plus the bare `<p>` fallback — to the same size + rhythm
+   * so the feed is typographically uniform. */
   .result .result-summary,
+  .result .tweet-part-text,
   .result p {
-    font-size: 14.5px;
-    line-height: 1.46;
+    font-size: 14.5px !important;
+    line-height: 1.5 !important;
+    /* Never let a long word / URL push the card past the viewport. */
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    min-width: 0;
+    max-width: 100%;
   }
 
   /* Card kicker (source favicon · src · meta · date). */
