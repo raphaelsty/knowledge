@@ -40,7 +40,7 @@
 
 #![allow(clippy::doc_overindented_list_items, clippy::type_complexity)]
 
-use std::collections::HashMap;
+use std::collections::{HashMap, HashSet};
 use std::sync::Arc;
 
 use axum::{
@@ -706,6 +706,12 @@ async fn aggregate_docs_with_feed(
         doc: Value,
         best_blend: f64,
         aggregated_urls: Vec<String>,
+        // Union of every candidate's `linked_urls` at this anchor,
+        // deduped by each linked-URL object's `url` field — the same
+        // merge the web path performs, so the surviving row carries
+        // every distinct resource any collapsed duplicate linked.
+        merged_linked: Vec<Value>,
+        seen_linked: HashSet<String>,
     }
     let mut order: Vec<String> = Vec::new();
     let mut by_anchor: HashMap<String, Agg> = HashMap::new();
@@ -736,10 +742,29 @@ async fn aggregate_docs_with_feed(
                 doc: Value::Null,
                 best_blend: f64::NEG_INFINITY,
                 aggregated_urls: Vec::new(),
+                merged_linked: Vec::new(),
+                seen_linked: HashSet::new(),
             }
         });
         if !entry.aggregated_urls.contains(&url) {
             entry.aggregated_urls.push(url.clone());
+        }
+        // Union this candidate's linked resources into the anchor's
+        // bundle regardless of whether it wins the title slot.
+        if let Some(linked) = fi
+            .and_then(|f| f.linked_urls.as_ref())
+            .and_then(|v| v.as_array())
+        {
+            for lu in linked {
+                let key = lu
+                    .get("url")
+                    .and_then(|v| v.as_str())
+                    .map(|s| s.to_string())
+                    .unwrap_or_else(|| lu.to_string());
+                if entry.seen_linked.insert(key) {
+                    entry.merged_linked.push(lu.clone());
+                }
+            }
         }
         if blend > entry.best_blend {
             entry.best_blend = blend;
@@ -760,10 +785,6 @@ async fn aggregate_docs_with_feed(
                         .map(|v| json!(v))
                         .unwrap_or(Value::Null),
                 );
-                obj.insert(
-                    "linked_urls".to_string(),
-                    fi.and_then(|f| f.linked_urls.clone()).unwrap_or(json!([])),
-                );
                 if boost && raw_score.is_some() {
                     obj.insert("score".to_string(), json!(blend));
                     obj.insert("colbert_score".to_string(), json!(raw_score));
@@ -779,6 +800,9 @@ async fn aggregate_docs_with_feed(
         .map(|mut agg| {
             if let Some(obj) = agg.doc.as_object_mut() {
                 obj.insert("aggregated_urls".to_string(), json!(agg.aggregated_urls));
+                // The merged bundle replaces the winner's own list —
+                // it's a superset by construction.
+                obj.insert("linked_urls".to_string(), json!(agg.merged_linked));
             }
             (agg.best_blend, agg.doc)
         })
