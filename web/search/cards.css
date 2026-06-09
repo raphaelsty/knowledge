@@ -245,6 +245,16 @@
   gap: 10px;
   pointer-events: auto;
   justify-self: end;
+  /* Never let this cell widen the card past the viewport: a doc
+   * with many sharers used to push the `auto` grid column out,
+   * overflow the page horizontally, and trigger iOS Safari's text
+   * autosizing (fonts on the whole card ballooned). The avatar
+   * stack is capped in page.js, but keep the wrap as a guard so
+   * no future content in this cell can recreate the overflow. */
+  max-width: 100%;
+  min-width: 0;
+  flex-wrap: wrap;
+  justify-content: flex-end;
   /* The grid sets `align-items: start`, so the score badge (small
      content) anchors to the top of its row while the Related pill
      in the tags row sits taller. Centering this cell within its
@@ -264,6 +274,36 @@
   align-items: center;
   padding: 0;
   gap: 0;
+  /* Wrap instead of widening the card when the stack is long —
+   * see the overflow note on .result-foot-right above. */
+  max-width: 100%;
+  min-width: 0;
+  flex-wrap: wrap;
+}
+/* "+N" overflow chip — closes a capped stack (page.js renders at
+ * most 8 bubbles). Same disc geometry as a real avatar so the
+ * stack reads as one continuous strip; muted fill + tiny count
+ * instead of a face. Non-interactive: the full membership is in
+ * the title / aria-label. */
+.result .shared-by .ava-more {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font: 600 8px/1 var(--sans);
+  letter-spacing: -0.02em;
+  color: var(--muted);
+  background: rgba(var(--ink-rgb), 0.06);
+  cursor: default;
+}
+/* The chip borrows .ava for geometry but isn't a link — suppress
+ * the avatar hover lift. */
+.result .shared-by .ava-more:hover {
+  transform: none;
+  z-index: 1;
+  box-shadow:
+    0 0 0 1.5px rgb(var(--paper-rgb)),
+    0 0 0 2.5px var(--border),
+    0 1px 3px rgba(var(--ink-rgb), 0.08);
 }
 /* Wrapper for one avatar + its hover popover. The popover surfaces
  * "View profile" and an Unfollow action when the caller is signed in

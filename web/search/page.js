@@ -6679,8 +6679,22 @@
     const showStack =
       (state.libs.size !== 1 || !!_origMeta || _hasOtherSharer) &&
       ownersMeta.length;
+    // Cap the rendered bubbles. A resource saved by 30+ VIPs would
+    // otherwise emit a stack wider than a phone viewport — the card
+    // grid overflows and iOS Safari's text autosizing then inflates
+    // the card's fonts. The ordering above already puts the most
+    // relevant faces (me → followed → popular) inside the cap; the
+    // long tail collapses into a "+N" chip and the full count stays
+    // in the aria-label.
+    const MAX_STACK_AVATARS = 8;
+    const visibleOwners = ownersMeta.slice(0, MAX_STACK_AVATARS);
+    const overflowOwners = ownersMeta.length - visibleOwners.length;
+    const overflowChip =
+      overflowOwners > 0
+        ? `<span class="ava ava-more" title="Shared by ${ownersMeta.length} people">+${overflowOwners > 99 ? "99" : overflowOwners}</span>`
+        : "";
     const ownersHtml = showStack
-      ? `<div class="shared-by" aria-label="Shared by ${ownersMeta.length} ${ownersMeta.length === 1 ? "person" : "people"}">${ownersMeta
+      ? `<div class="shared-by" aria-label="Shared by ${ownersMeta.length} ${ownersMeta.length === 1 ? "person" : "people"}">${visibleOwners
           .map((p) => {
             // Each avatar is its own hover-popover host. The avatar
             // itself links to the user's library; the popover
@@ -6719,7 +6733,7 @@
                 </span>
               </span>`;
           })
-          .join("")}</div>`
+          .join("")}${overflowChip}</div>`
       : "";
     // Score badge: prefer the in-browser ColBERT re-ranker score
     // (per-doc, late-interaction) once the worker has scored this

@@ -63,6 +63,13 @@
 }
 html {
   background: #ffffff;
+  /* Kill mobile-browser text autosizing ("font boosting"). When a
+   * card overflowed the viewport (e.g. a long shared-by avatar
+   * stack), iOS Safari inflated the fonts of the whole card. The
+   * overflow itself is fixed at the source, but autosizing has no
+   * business second-guessing this layout anywhere. */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 html[data-theme="dark"] {
