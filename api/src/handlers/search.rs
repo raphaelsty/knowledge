@@ -133,9 +133,77 @@ pub(crate) fn fetch_metadata_for_docs(
 ///   useful as a weak relevance proxy for items the semantic side ranked
 ///   similarly, but kept modest so date/recency stays visible.
 /// `_SEARCH`: `text_query` present. The user typed something specific;
-///   popularity becomes a tiebreaker, not a primary ranker.
+///   popularity matters less than relevance, but broadly-shared
+///   resources should still rise above equally-matched long-tail docs.
+///   At 0.05 the boost tops out around +0.19 (ln(1+40) ≈ 3.7) on a
+///   ~[0, 1] fused relevance score — enough to reorder near-ties and
+///   lift VIP-consensus docs, not enough to override a clear match.
+///   (Was 0.02, which made popularity invisible in practice.)
 const FEED_SCORE_WEIGHT_BROWSE: f64 = 0.10;
-const FEED_SCORE_WEIGHT_SEARCH: f64 = 0.02;
+pub(crate) const FEED_SCORE_WEIGHT_SEARCH: f64 = 0.05;
+
+/// Cross-personality info for one result URL: the anchor it collapses
+/// to, the feed_snapshot popularity roll-up, and the doc's linked
+/// resources from Postgres. Shared between the web search path
+/// (`apply_feed_scope_filter`) and the MCP tools so both render the
+/// same "shared by N people" aggregation.
+pub(crate) struct FeedInfo {
+    pub anchor_url: String,
+    /// `None` when the anchor has no feed_snapshot row (no breadth signal).
+    pub feed_score: Option<f64>,
+    pub sharers: Option<serde_json::Value>,
+    pub sharer_count: i32,
+    /// `documents.linked_urls` JSONB — inline resource cards (arxiv,
+    /// github, hf, …) the post links to. Used by MCP; the web path
+    /// reads linked_urls from the index metadata instead.
+    // Only read from mcp.rs, which is compiled into the binary target
+    // but not the lib — dead_code fires on the lib pass otherwise.
+    #[allow(dead_code)]
+    pub linked_urls: Option<serde_json::Value>,
+}
+
+/// Resolve each URL's anchor (priority-picked canonical referenced URL,
+/// falling back to canonical_url) and join the feed_snapshot row for
+/// that anchor. URLs absent from `documents` are absent from the map.
+#[allow(clippy::type_complexity)]
+pub(crate) async fn fetch_feed_info(
+    pool: &sqlx::PgPool,
+    urls: &[String],
+) -> ApiResult<HashMap<String, FeedInfo>> {
+    if urls.is_empty() {
+        return Ok(HashMap::new());
+    }
+    let rows: Vec<(
+        String,
+        Option<String>,
+        Option<f64>,
+        Option<serde_json::Value>,
+        Option<i32>,
+        Option<serde_json::Value>,
+    )> = sqlx::query_as(
+        "WITH input AS (\n            SELECT d.url, d.canonical_url, d.canonical_referenced_urls, d.linked_urls\n              FROM documents d\n             WHERE d.url = ANY($1::text[])\n               -- `AND d.deleted = FALSE` forces the planner to use\n               -- `idx_documents_url_live` (partial, on url WHERE\n               -- deleted=false) instead of `documents_pkey`\n               -- (composite on `user_id, url`). The PK can't seek by\n               -- url alone — it scans the full key range and pays\n               -- ~1.5 M buffer hits per call.\n               AND d.deleted = FALSE\n         ),\n         resolved AS (\n            SELECT i.url, i.linked_urls,\n                   COALESCE(\n                       (SELECT ref FROM unnest(i.canonical_referenced_urls) ref\n                         ORDER BY CASE\n                           WHEN ref LIKE 'https://arxiv.org/abs/%'       THEN 1\n                           WHEN ref LIKE 'https://huggingface.co/%'      THEN 2\n                           WHEN ref LIKE 'https://github.com/%'          THEN 3\n                           WHEN ref LIKE 'https://openreview.net/%'      THEN 4\n                           WHEN ref LIKE 'https://doi.org/%'             THEN 5\n                           WHEN ref LIKE 'https://paperswithcode.com/%'  THEN 6\n                           WHEN ref LIKE 'https://aclanthology.org/%'    THEN 7\n                           WHEN ref LIKE 'https://semanticscholar.org/%' THEN 8\n                           WHEN ref LIKE 'https://distill.pub/%'         THEN 9\n                           WHEN ref LIKE 'https://biorxiv.org/%'         THEN 10\n                           WHEN ref LIKE 'https://medrxiv.org/%'         THEN 11\n                           ELSE 99\n                         END, ref LIMIT 1),\n                       i.canonical_url\n                   ) AS anchor_url\n              FROM input i\n         )\n         SELECT r.url, r.anchor_url, fs.score, fs.sharers, fs.sharer_count, r.linked_urls\n           FROM resolved r\n           LEFT JOIN feed_snapshot fs ON fs.anchor_url = r.anchor_url",
+    )
+    .bind(urls)
+    .fetch_all(pool)
+    .await
+    .map_err(|e| ApiError::Internal(format!("feed_snapshot anchor lookup failed: {}", e)))?;
+
+    let mut out: HashMap<String, FeedInfo> = HashMap::new();
+    for (url, anchor, score, sharers, sharer_count, linked_urls) in rows {
+        let anchor = anchor.unwrap_or_else(|| url.clone());
+        out.insert(
+            url,
+            FeedInfo {
+                anchor_url: anchor,
+                feed_score: score,
+                sharers,
+                sharer_count: sharer_count.unwrap_or(0),
+                linked_urls,
+            },
+        );
+    }
+    Ok(out)
+}
 
 /// Anchor-dedup + feed-score blend.
 ///
@@ -186,35 +254,11 @@ async fn apply_feed_scope_filter(
     // it) share an anchor_url, so the dedup below collapses them into
     // a single result row, keeping the highest-blended candidate.
     let urls: Vec<String> = url_set.into_iter().collect();
-    // Pull anchor + cross-personality stats per result URL. The
-    // anchor expression is duplicated here (priority list of canonical
-    // hosts) so a single query yields both the dedup key AND the
-    // matching feed_snapshot row's sharers + score.
-    let rows: Vec<(
-        String,
-        Option<String>,
-        Option<f64>,
-        Option<serde_json::Value>,
-        Option<i32>,
-    )> = sqlx::query_as(
-        "WITH input AS (\n            SELECT d.url, d.canonical_url, d.canonical_referenced_urls\n              FROM documents d\n             WHERE d.url = ANY($1::text[])\n               -- `AND d.deleted = FALSE` forces the planner to use\n               -- `idx_documents_url_live` (partial, on url WHERE\n               -- deleted=false) instead of `documents_pkey`\n               -- (composite on `user_id, url`). The PK can't seek by\n               -- url alone — it scans the full key range and pays\n               -- ~1.5 M buffer hits per call.\n               AND d.deleted = FALSE\n         ),\n         resolved AS (\n            SELECT i.url,\n                   COALESCE(\n                       (SELECT ref FROM unnest(i.canonical_referenced_urls) ref\n                         ORDER BY CASE\n                           WHEN ref LIKE 'https://arxiv.org/abs/%'       THEN 1\n                           WHEN ref LIKE 'https://huggingface.co/%'      THEN 2\n                           WHEN ref LIKE 'https://github.com/%'          THEN 3\n                           WHEN ref LIKE 'https://openreview.net/%'      THEN 4\n                           WHEN ref LIKE 'https://doi.org/%'             THEN 5\n                           WHEN ref LIKE 'https://paperswithcode.com/%'  THEN 6\n                           WHEN ref LIKE 'https://aclanthology.org/%'    THEN 7\n                           WHEN ref LIKE 'https://semanticscholar.org/%' THEN 8\n                           WHEN ref LIKE 'https://distill.pub/%'         THEN 9\n                           WHEN ref LIKE 'https://biorxiv.org/%'         THEN 10\n                           WHEN ref LIKE 'https://medrxiv.org/%'         THEN 11\n                           ELSE 99\n                         END, ref LIMIT 1),\n                       i.canonical_url\n                   ) AS anchor_url\n              FROM input i\n         )\n         SELECT r.url, r.anchor_url, fs.score, fs.sharers, fs.sharer_count\n           FROM resolved r\n           LEFT JOIN feed_snapshot fs ON fs.anchor_url = r.anchor_url"
-    )
-    .bind(&urls)
-    .fetch_all(pool)
-    .await
-    .map_err(|e| ApiError::Internal(format!("feed_snapshot anchor lookup failed: {}", e)))?;
-    // url → (anchor_url, feed_score, sharers JSON, sharer_count). The
-    // sharers / sharer_count come from feed_snapshot (the cross-user
+    // url → FeedInfo (anchor_url, feed_score, sharers, sharer_count).
+    // The sharers / sharer_count come from feed_snapshot (the cross-user
     // roll-up) so a merged result can render the same avatar stack
     // the global feed shows.
-    let mut url_info: HashMap<String, (String, f64, Option<serde_json::Value>, i32)> =
-        HashMap::new();
-    for (url, anchor, score, sharers, sharer_count) in rows {
-        let anchor = anchor.unwrap_or_else(|| url.clone());
-        let fs = score.unwrap_or(f64::NAN);
-        let sc = sharer_count.unwrap_or(0);
-        url_info.insert(url, (anchor, fs, sharers, sc));
-    }
+    let url_info = fetch_feed_info(pool, &urls).await?;
     for r in results.iter_mut() {
         // Per-anchor aggregator: track the winning candidate's
         // metadata + every candidate's linked_urls so we can union
@@ -225,7 +269,7 @@ async fn apply_feed_scope_filter(
             best_doc_id: i64,
             best_blended: f32,
             best_colbert: f32,
-            feed_score: f64,
+            feed_score: Option<f64>,
             best_meta: Option<serde_json::Value>,
             // Union of every candidate's `url` field at this anchor —
             // surfaces in the response as `aggregated_urls` so the
@@ -253,16 +297,21 @@ async fn apply_feed_scope_filter(
             let Some(url) = url_opt else { continue };
             let info = url_info.get(&url);
             let (anchor, fs, sharers_json, sharer_count) = match info {
-                Some((a, s, sj, sc)) => (a.clone(), *s, sj.clone(), *sc),
+                Some(fi) => (
+                    fi.anchor_url.clone(),
+                    fi.feed_score,
+                    fi.sharers.clone(),
+                    fi.sharer_count,
+                ),
                 None => {
                     if strict_feed_filter {
                         continue;
                     }
-                    (url.clone(), f64::NAN, None, 0)
+                    (url.clone(), None, None, 0)
                 }
             };
-            let fs_for_blend = if fs.is_nan() { 0.0 } else { fs };
-            if strict_feed_filter && fs.is_nan() {
+            let fs_for_blend = fs.unwrap_or(0.0);
+            if strict_feed_filter && fs.is_none() {
                 continue;
             }
             let colbert = r.scores[i];

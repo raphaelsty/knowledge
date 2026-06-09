@@ -276,7 +276,7 @@ fn handle_tools_list() -> Value {
             },
             {
                 "name": "search",
-                "description": "Semantic search inside a single personality's library using ColBERT multi-vector retrieval. Falls back to a SQL keyword search (title/summary/tags ILIKE) if the model or index isn't available. Supports source + tag filters and optional date sort. Returns ranked docs with title, summary, date, tags, source, source_url, score.",
+                "description": "Semantic search inside a single personality's library using ColBERT multi-vector retrieval, with popularity blended in: broadly-shared resources rank above equally-relevant long-tail docs. Falls back to a SQL keyword search (title/summary/tags ILIKE) if the model or index isn't available. Supports source + tag filters and optional date sort. Near-duplicates pointing at the same resource (a paper + the tweets linking it) collapse into one row. Each doc carries title, summary, date, tags, source, score, plus the cross-personality roll-up: `sharers` (every personality that saved the resource, with name/avatar/follower counts), `sharer_count`, `anchor_url` (canonical resource), `aggregated_urls` (companion docs that collapsed into it), `linked_urls` (resources the post links to) and `feed_score` (popularity).",
                 "inputSchema": {
                     "type": "object",
                     "required": ["personality", "query"],
@@ -303,7 +303,7 @@ fn handle_tools_list() -> Value {
             },
             {
                 "name": "search_across",
-                "description": "Run `search` across multiple personalities in parallel and fuse the per-library rankings with Reciprocal Rank Fusion (RRF). Order-independent: a doc that several libraries rank highly bubbles to the top regardless of which slug appeared first. Each merged hit carries a `libraries` array listing every slug whose own ranking surfaced it.",
+                "description": "Run `search` across multiple personalities in parallel and fuse the per-library rankings with Reciprocal Rank Fusion (RRF), merging by canonical resource (anchor) so different posts of the same paper collapse into one row. Order-independent: a doc that several libraries rank highly bubbles to the top regardless of which slug appeared first. Each merged hit carries a `libraries` array listing every slug whose own ranking surfaced it, plus the same `sharers` / `sharer_count` / `anchor_url` / `aggregated_urls` / `linked_urls` roll-up as `search`.",
                 "inputSchema": {
                     "type": "object",
                     "required": ["personalities", "query"],
@@ -656,6 +656,137 @@ async fn fetch_docs_by_urls(
             (d.url.clone(), d)
         })
         .collect())
+}
+
+/// Collapse docs by anchor URL and attach the cross-personality roll-up
+/// — the same aggregation the web feed renders for each card:
+///   • `sharers` / `sharer_count` — every personality that saved this
+///     resource (slug, name, avatar, follower counts), from feed_snapshot
+///   • `anchor_url` / `aggregated_urls` — the canonical resource and the
+///     companion docs (tweets, abs/pdf pages) that collapsed into it
+///   • `linked_urls` — inline resource cards the post links to
+///   • `feed_score` — the precomputed popularity score
+///
+/// When `boost` is true and docs carry a ColBERT `score`, scores are
+/// min-max normalized per result set (raw MaxSim magnitudes aren't
+/// comparable across queries) and blended with popularity:
+/// `score = norm + W × ln(1 + feed_score)`, then re-sorted. The raw
+/// relevance score is preserved as `colbert_score`. With `boost` false
+/// (keyword fallback, date-sorted paths) the input order is kept.
+async fn aggregate_docs_with_feed(
+    pool: &PgPool,
+    docs: Vec<Value>,
+    boost: bool,
+) -> Result<Vec<Value>, String> {
+    use crate::handlers::search::{fetch_feed_info, FEED_SCORE_WEIGHT_SEARCH};
+
+    if docs.is_empty() {
+        return Ok(docs);
+    }
+    let urls: Vec<String> = docs
+        .iter()
+        .filter_map(|d| d.get("url").and_then(|u| u.as_str()).map(String::from))
+        .collect();
+    let info = fetch_feed_info(pool, &urls)
+        .await
+        .map_err(|e| e.to_string())?;
+
+    // Min-max bounds for relevance normalization (boost path only).
+    let mut lo = f64::INFINITY;
+    let mut hi = f64::NEG_INFINITY;
+    for d in &docs {
+        if let Some(s) = d.get("score").and_then(|v| v.as_f64()) {
+            lo = lo.min(s);
+            hi = hi.max(s);
+        }
+    }
+    let span = (hi - lo).max(1e-9);
+
+    struct Agg {
+        doc: Value,
+        best_blend: f64,
+        aggregated_urls: Vec<String>,
+    }
+    let mut order: Vec<String> = Vec::new();
+    let mut by_anchor: HashMap<String, Agg> = HashMap::new();
+
+    for doc in docs {
+        let Some(url) = doc
+            .get("url")
+            .and_then(|u| u.as_str())
+            .map(|s| s.to_string())
+        else {
+            continue;
+        };
+        let fi = info.get(&url);
+        let anchor = fi
+            .map(|f| f.anchor_url.clone())
+            .unwrap_or_else(|| url.clone());
+        let fs = fi.and_then(|f| f.feed_score).unwrap_or(0.0).max(0.0);
+        let raw_score = doc.get("score").and_then(|v| v.as_f64());
+        let blend = match raw_score {
+            Some(s) if boost => (s - lo) / span + FEED_SCORE_WEIGHT_SEARCH * (1.0 + fs).ln(),
+            Some(s) => s,
+            None => 0.0,
+        };
+
+        let entry = by_anchor.entry(anchor.clone()).or_insert_with(|| {
+            order.push(anchor.clone());
+            Agg {
+                doc: Value::Null,
+                best_blend: f64::NEG_INFINITY,
+                aggregated_urls: Vec::new(),
+            }
+        });
+        if !entry.aggregated_urls.contains(&url) {
+            entry.aggregated_urls.push(url.clone());
+        }
+        if blend > entry.best_blend {
+            entry.best_blend = blend;
+            let mut doc = doc;
+            if let Some(obj) = doc.as_object_mut() {
+                obj.insert("anchor_url".to_string(), json!(anchor));
+                obj.insert(
+                    "sharers".to_string(),
+                    fi.and_then(|f| f.sharers.clone()).unwrap_or(Value::Null),
+                );
+                obj.insert(
+                    "sharer_count".to_string(),
+                    json!(fi.map(|f| f.sharer_count).unwrap_or(0)),
+                );
+                obj.insert(
+                    "feed_score".to_string(),
+                    fi.and_then(|f| f.feed_score)
+                        .map(|v| json!(v))
+                        .unwrap_or(Value::Null),
+                );
+                obj.insert(
+                    "linked_urls".to_string(),
+                    fi.and_then(|f| f.linked_urls.clone()).unwrap_or(json!([])),
+                );
+                if boost && raw_score.is_some() {
+                    obj.insert("score".to_string(), json!(blend));
+                    obj.insert("colbert_score".to_string(), json!(raw_score));
+                }
+            }
+            entry.doc = doc;
+        }
+    }
+
+    let mut out: Vec<(f64, Value)> = order
+        .into_iter()
+        .filter_map(|a| by_anchor.remove(&a))
+        .map(|mut agg| {
+            if let Some(obj) = agg.doc.as_object_mut() {
+                obj.insert("aggregated_urls".to_string(), json!(agg.aggregated_urls));
+            }
+            (agg.best_blend, agg.doc)
+        })
+        .collect();
+    if boost {
+        out.sort_by(|a, b| b.0.total_cmp(&a.0));
+    }
+    Ok(out.into_iter().map(|(_, d)| d).collect())
 }
 
 // ---------------------------------------------------------------------------
@@ -1079,9 +1210,7 @@ async fn tool_search(state: Arc<AppState>, pool: &PgPool, args: Value) -> Result
     let sources = parse_string_set(args.get("sources"));
     let tags = parse_string_set(args.get("tags"));
 
-    let (user_id, _index_name) = resolve_personality(pool, &slug).await?;
-    #[cfg(feature = "model")]
-    let index_name = _index_name;
+    let (user_id, _) = resolve_personality(pool, &slug).await?;
 
     // ColBERT path — fetch top-K from the index, hydrate metadata from PG,
     // then post-filter by source/tag.
@@ -1096,9 +1225,7 @@ async fn tool_search(state: Arc<AppState>, pool: &PgPool, args: Value) -> Result
             base_k
         };
 
-        if let Ok(scored_urls) =
-            colbert_search_urls(&state, &index_name, &query, fetch_k as i64).await
-        {
+        if let Ok(scored_urls) = colbert_search_urls(&state, &slug, &query, fetch_k as i64).await {
             let urls: Vec<String> = scored_urls.iter().map(|(u, _)| u.clone()).collect();
             let meta = fetch_docs_by_urls(pool, user_id, &urls).await?;
 
@@ -1116,6 +1243,10 @@ async fn tool_search(state: Arc<AppState>, pool: &PgPool, args: Value) -> Result
                 .collect();
 
             docs = filter_doc_values(docs, &sources, &tags);
+            // Collapse near-duplicates by anchor, attach sharers /
+            // linked resources, and blend popularity into the ranking —
+            // the same aggregation the web feed search renders.
+            docs = aggregate_docs_with_feed(pool, docs, !sort_by_date).await?;
             if sort_by_date {
                 docs.sort_by(|a, b| {
                     let da = a["date"].as_str().unwrap_or("");
@@ -1203,6 +1334,8 @@ async fn tool_search(state: Arc<AppState>, pool: &PgPool, args: Value) -> Result
         .map_err(|e| format!("DB error: {e}"))?;
 
     let docs: Vec<Value> = rows.into_iter().map(|r| row_to_doc(r).to_json()).collect();
+    // Attach sharers / resources (no re-rank: results stay date-sorted).
+    let docs = aggregate_docs_with_feed(pool, docs, false).await?;
     let (page_docs, meta_pg) = paginate(&docs, pg);
     Ok(tool_result(
         serde_json::to_string(&json!({
@@ -1221,15 +1354,27 @@ async fn tool_search(state: Arc<AppState>, pool: &PgPool, args: Value) -> Result
 #[cfg(feature = "model")]
 async fn colbert_search_urls(
     state: &Arc<AppState>,
-    index_name: &str,
+    owner: &str,
     query: &str,
     limit: i64,
 ) -> Result<Vec<(String, f32)>, String> {
-    use next_plaid::SearchParameters;
+    use next_plaid::{filtering, SearchParameters};
 
     use crate::handlers::encode::encode_texts_internal;
     use crate::handlers::search::fetch_metadata_for_docs;
     use crate::models::InputType;
+
+    // Per-user indices are gone — every library lives in the single
+    // `__all__` index, scoped by the `owner` metadata column. This is
+    // the same routing the web frontend uses; searching the (now
+    // nonexistent) per-user index here used to fail and silently
+    // demote every MCP search to the SQL keyword fallback.
+    let path_str = state.index_path("__all__").to_string_lossy().to_string();
+    let subset = filtering::where_condition(&path_str, "owner = ?", &[serde_json::json!(owner)])
+        .map_err(|e| e.to_string())?;
+    if subset.is_empty() {
+        return Ok(Vec::new());
+    }
 
     let embeddings =
         encode_texts_internal(state.clone(), &[query.to_string()], InputType::Query, None)
@@ -1237,7 +1382,7 @@ async fn colbert_search_urls(
             .map_err(|e| e.to_string())?;
 
     let idx = state
-        .get_index_for_read(index_name)
+        .get_index_for_read("__all__")
         .map_err(|e| e.to_string())?;
 
     let params = SearchParameters {
@@ -1249,10 +1394,9 @@ async fn colbert_search_urls(
     };
 
     let result = idx
-        .search(&embeddings[0], &params, None)
+        .search(&embeddings[0], &params, Some(&subset))
         .map_err(|e| e.to_string())?;
 
-    let path_str = state.index_path(index_name).to_string_lossy().to_string();
     let metadata =
         fetch_metadata_for_docs(&path_str, &result.passage_ids).map_err(|e| e.to_string())?;
 
@@ -1424,8 +1568,12 @@ async fn tool_search_across(
         let empty: Vec<Value> = Vec::new();
         let docs = parsed["docs"].as_array().unwrap_or(&empty);
         for (rank, doc) in docs.iter().enumerate() {
+            // Fuse by anchor (canonical resource) when available so two
+            // libraries surfacing different tweets of the same paper
+            // merge into one row; fall back to the raw URL.
             let url = doc
-                .get("url")
+                .get("anchor_url")
+                .or_else(|| doc.get("url"))
                 .and_then(|u| u.as_str())
                 .unwrap_or("")
                 .to_string();
@@ -1566,9 +1714,7 @@ async fn tool_find_similar(
         .to_string();
     let pg = parse_pagination(&args, 10, 50);
 
-    let (user_id, _index_name) = resolve_personality(pool, &slug).await?;
-    #[cfg(feature = "model")]
-    let index_name = _index_name;
+    let (user_id, _) = resolve_personality(pool, &slug).await?;
     let urls = vec![url.clone()];
     let mut docs_meta = fetch_docs_by_urls(pool, user_id, &urls).await?;
     let entry = docs_meta
@@ -1594,7 +1740,7 @@ async fn tool_find_similar(
     #[cfg(feature = "model")]
     if state.has_model() {
         let fetch_k = (pg.end() as i64).max(50) + 5;
-        let scored = colbert_search_urls(&state, &index_name, &query, fetch_k)
+        let scored = colbert_search_urls(&state, &slug, &query, fetch_k)
             .await
             .map_err(|e| format!("colbert_search failed: {e}"))?;
 
@@ -2151,8 +2297,6 @@ async fn tool_my_library(
     args: Value,
 ) -> Result<Value, String> {
     let (user_id, username, _index_name) = resolve_self_full(pool, headers).await?;
-    #[cfg(feature = "model")]
-    let index_name = _index_name;
 
     let query = args
         .get("query")
@@ -2243,7 +2387,7 @@ async fn tool_my_library(
         };
 
         if let Ok(scored_urls) =
-            colbert_search_urls(&state, &index_name, &query, fetch_k as i64).await
+            colbert_search_urls(&state, &username, &query, fetch_k as i64).await
         {
             let urls: Vec<String> = scored_urls.iter().map(|(u, _)| u.clone()).collect();
             let meta = fetch_docs_by_urls(pool, user_id, &urls).await?;
