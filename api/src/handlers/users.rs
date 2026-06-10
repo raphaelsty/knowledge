@@ -1254,9 +1254,12 @@ pub async fn build_feed_payload(pool: &PgPool, limit: i64) -> serde_json::Value 
         WITH latest_meta AS (
             SELECT DISTINCT ON (d.url)
                 d.url,
-                d.title,
+                -- Prefer the clean daemon's pedagogical title/summary
+                -- when present; this payload feeds the MCP `feed`
+                -- tool (LLM channel), not the web UI.
+                COALESCE(NULLIF(d.clean_title, ''), d.title) AS title,
                 d.date,
-                d.summary,
+                COALESCE(NULLIF(d.clean_summary, ''), d.summary) AS summary,
                 d.tags,
                 d.source,
                 d.source_url

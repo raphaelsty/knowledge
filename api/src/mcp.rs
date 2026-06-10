@@ -637,7 +637,9 @@ async fn fetch_docs_by_urls(
         Option<String>,
         bool,
     )> = sqlx::query_as(
-        "SELECT d.url, d.title, d.summary,
+        "SELECT d.url,
+                COALESCE(NULLIF(d.clean_title, ''), d.title) AS title,
+                COALESCE(NULLIF(d.clean_summary, ''), d.summary) AS summary,
                 COALESCE(to_char(d.date, 'YYYY-MM-DD'), '') AS date,
                 d.tags, d.extra_tags, d.source, d.source_url, d.indexed
            FROM documents d
@@ -1306,7 +1308,11 @@ async fn tool_search(state: Arc<AppState>, pool: &PgPool, args: Value) -> Result
         crate::handlers::sql_like::escape_like_pattern(&query)
     );
     let mut sql = String::from(
-        "SELECT d.url, d.title, d.summary,
+        // Match against the raw title/summary (richer keyword
+        // surface) but return the clean variants when available.
+        "SELECT d.url,
+                COALESCE(NULLIF(d.clean_title, ''), d.title) AS title,
+                COALESCE(NULLIF(d.clean_summary, ''), d.summary) AS summary,
                 COALESCE(to_char(d.date, 'YYYY-MM-DD'), '') AS date,
                 d.tags, d.extra_tags, d.source, d.source_url, d.indexed
            FROM documents d
@@ -1661,7 +1667,9 @@ async fn tool_latest(pool: &PgPool, args: Value) -> Result<Value, String> {
     let (user_id, _) = resolve_personality(pool, &slug).await?;
 
     let mut sql = String::from(
-        "SELECT d.url, d.title, d.summary,
+        "SELECT d.url,
+                COALESCE(NULLIF(d.clean_title, ''), d.title) AS title,
+                COALESCE(NULLIF(d.clean_summary, ''), d.summary) AS summary,
                 COALESCE(to_char(d.date, 'YYYY-MM-DD'), '') AS date,
                 d.tags, d.extra_tags, d.source, d.source_url, d.indexed
            FROM documents d
@@ -1833,7 +1841,9 @@ async fn tool_find_similar(
         Option<String>,
         bool,
     )> = sqlx::query_as(
-        "SELECT d.url, d.title, d.summary,
+        "SELECT d.url,
+                COALESCE(NULLIF(d.clean_title, ''), d.title) AS title,
+                COALESCE(NULLIF(d.clean_summary, ''), d.summary) AS summary,
                 COALESCE(to_char(d.date, 'YYYY-MM-DD'), '') AS date,
                 d.tags, d.extra_tags, d.source, d.source_url, d.indexed
            FROM documents d
@@ -2133,7 +2143,10 @@ async fn tool_intersect_documents(pool: &PgPool, args: Value) -> Result<Value, S
          ),
          canonical AS (
              SELECT DISTINCT ON (d.url)
-                    d.url, d.title, d.summary, d.date,
+                    d.url,
+                    COALESCE(NULLIF(d.clean_title, ''), d.title) AS title,
+                    COALESCE(NULLIF(d.clean_summary, ''), d.summary) AS summary,
+                    d.date,
                     d.tags, d.extra_tags, d.source, d.source_url, d.indexed,
                     s.owners, s.owner_count
                FROM documents d
@@ -2340,7 +2353,9 @@ async fn tool_my_library(
     let Some(query) = query else {
         let pg = parse_pagination(&args, 30, 200);
         let mut sql = String::from(
-            "SELECT d.url, d.title, d.summary,
+            "SELECT d.url,
+                    COALESCE(NULLIF(d.clean_title, ''), d.title) AS title,
+                    COALESCE(NULLIF(d.clean_summary, ''), d.summary) AS summary,
                     COALESCE(to_char(d.date, 'YYYY-MM-DD'), '') AS date,
                     d.tags, d.extra_tags, d.source, d.source_url, d.indexed
                FROM documents d
@@ -2463,7 +2478,11 @@ async fn tool_my_library(
         crate::handlers::sql_like::escape_like_pattern(&query)
     );
     let mut sql = String::from(
-        "SELECT d.url, d.title, d.summary,
+        // Match against the raw title/summary (richer keyword
+        // surface) but return the clean variants when available.
+        "SELECT d.url,
+                COALESCE(NULLIF(d.clean_title, ''), d.title) AS title,
+                COALESCE(NULLIF(d.clean_summary, ''), d.summary) AS summary,
                 COALESCE(to_char(d.date, 'YYYY-MM-DD'), '') AS date,
                 d.tags, d.extra_tags, d.source, d.source_url, d.indexed
            FROM documents d
@@ -2569,7 +2588,11 @@ async fn tool_my_timeline(
             SELECT $1::bigint AS user_id
         ),
         candidates AS (
-            SELECT d.user_id, d.url, d.title, d.date, d.summary, d.tags,
+            SELECT d.user_id, d.url,
+                   COALESCE(NULLIF(d.clean_title, ''), d.title) AS title,
+                   d.date,
+                   COALESCE(NULLIF(d.clean_summary, ''), d.summary) AS summary,
+                   d.tags,
                    d.extra_tags, d.source, d.source_url, d.created_at
               FROM documents d
               JOIN followed f ON f.user_id = d.user_id
