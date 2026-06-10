@@ -205,6 +205,43 @@ pub(crate) async fn fetch_feed_info(
     Ok(out)
 }
 
+/// Normalized content fingerprint for content-level dedup. Catches
+/// the "same post under two URLs" cases the anchor collapse can't
+/// see — an author re-posting the identical tweet (each copy is its
+/// own anchor), or several accounts posting the same body verbatim.
+///
+/// Key choice:
+///   * Substantial summary (≥ 80 normalized chars) → summary alone.
+///     The body IS the content; including the title (which for
+///     tweets is just the author name) would keep cross-author
+///     copies of the same text apart.
+///   * Shorter text → title + summary, requiring ≥ 40 chars total.
+///     Title alone is never enough — every tweet by one author
+///     shares its title ("Rohan Paul (@rohanpaul_ai)").
+///   * Below that → None (too little text to be an identity).
+pub(crate) fn content_signature(meta: Option<&serde_json::Value>) -> Option<String> {
+    let m = meta?;
+    let norm = |s: &str| {
+        s.split_whitespace()
+            .collect::<Vec<_>>()
+            .join(" ")
+            .to_lowercase()
+    };
+    let title = norm(m.get("title").and_then(|v| v.as_str()).unwrap_or(""));
+    let summary = norm(m.get("summary").and_then(|v| v.as_str()).unwrap_or(""));
+    // Cap the summary contribution so truncation differences between
+    // copies (e.g. one channel trims at 200 chars) don't defeat the
+    // match.
+    let head: String = summary.chars().take(180).collect();
+    if summary.chars().count() >= 80 {
+        return Some(head);
+    }
+    if title.chars().count() + summary.chars().count() < 40 {
+        return None;
+    }
+    Some(format!("{title}\u{1}{head}"))
+}
+
 /// Anchor-dedup + feed-score blend.
 ///
 /// `strict_feed_filter=true`: drop any result whose anchor isn't in
@@ -377,6 +414,58 @@ async fn apply_feed_scope_filter(
                 }
             }
         }
+        // Second-level dedup: same visible content under different
+        // anchors. The anchor collapse can't merge an author's
+        // re-post of the identical tweet (each copy self-anchors),
+        // so fold anchor groups whose winning title+summary
+        // normalize to the same signature into the first group.
+        let mut sig_owner: HashMap<String, String> = HashMap::new();
+        let mut deduped_order: Vec<String> = Vec::new();
+        for anchor in anchor_order {
+            let Some(agg) = by_anchor.get(&anchor) else {
+                continue;
+            };
+            let Some(sig) = content_signature(agg.best_meta.as_ref()) else {
+                deduped_order.push(anchor);
+                continue;
+            };
+            let Some(owner_anchor) = sig_owner.get(&sig).cloned() else {
+                sig_owner.insert(sig, anchor.clone());
+                deduped_order.push(anchor);
+                continue;
+            };
+            let Some(dup) = by_anchor.remove(&anchor) else {
+                continue;
+            };
+            let Some(owner) = by_anchor.get_mut(&owner_anchor) else {
+                continue;
+            };
+            for u in dup.aggregated_urls {
+                if owner.seen_urls.insert(u.clone()) {
+                    owner.aggregated_urls.push(u);
+                }
+            }
+            for lu in dup.merged_linked {
+                let key = lu
+                    .get("url")
+                    .and_then(|v| v.as_str())
+                    .map(|s| s.to_string())
+                    .unwrap_or_else(|| lu.to_string());
+                if owner.seen_linked.insert(key) {
+                    owner.merged_linked.push(lu);
+                }
+            }
+            if dup.best_blended > owner.best_blended {
+                owner.best_doc_id = dup.best_doc_id;
+                owner.best_blended = dup.best_blended;
+                owner.best_colbert = dup.best_colbert;
+                owner.feed_score = dup.feed_score;
+                owner.best_meta = dup.best_meta;
+                owner.sharers = dup.sharers;
+                owner.sharer_count = dup.sharer_count;
+            }
+        }
+        let mut anchor_order = deduped_order;
         anchor_order.sort_by(|a, b| {
             let sa = by_anchor.get(a).map(|t| t.best_blended).unwrap_or(0.0);
             let sb = by_anchor.get(b).map(|t| t.best_blended).unwrap_or(0.0);

@@ -796,6 +796,56 @@ async fn aggregate_docs_with_feed(
         }
     }
 
+    // Second-level dedup: same visible content under different
+    // anchors (an author re-posting the identical tweet self-anchors
+    // each copy). Fold groups whose title+summary signature matches
+    // into the first one — same pass the web search path runs.
+    {
+        use crate::handlers::search::content_signature;
+        let mut sig_owner: HashMap<String, String> = HashMap::new();
+        let mut deduped: Vec<String> = Vec::new();
+        for anchor in std::mem::take(&mut order) {
+            let Some(agg) = by_anchor.get(&anchor) else {
+                continue;
+            };
+            let Some(sig) = content_signature(Some(&agg.doc)) else {
+                deduped.push(anchor);
+                continue;
+            };
+            let Some(owner_anchor) = sig_owner.get(&sig).cloned() else {
+                sig_owner.insert(sig, anchor.clone());
+                deduped.push(anchor);
+                continue;
+            };
+            let Some(dup) = by_anchor.remove(&anchor) else {
+                continue;
+            };
+            let Some(owner) = by_anchor.get_mut(&owner_anchor) else {
+                continue;
+            };
+            for u in dup.aggregated_urls {
+                if !owner.aggregated_urls.contains(&u) {
+                    owner.aggregated_urls.push(u);
+                }
+            }
+            for lu in dup.merged_linked {
+                let key = lu
+                    .get("url")
+                    .and_then(|v| v.as_str())
+                    .map(|s| s.to_string())
+                    .unwrap_or_else(|| lu.to_string());
+                if owner.seen_linked.insert(key) {
+                    owner.merged_linked.push(lu);
+                }
+            }
+            if dup.best_blend > owner.best_blend {
+                owner.best_blend = dup.best_blend;
+                owner.doc = dup.doc;
+            }
+        }
+        order = deduped;
+    }
+
     let mut out: Vec<(f64, Value)> = order
         .into_iter()
         .filter_map(|a| by_anchor.remove(&a))
