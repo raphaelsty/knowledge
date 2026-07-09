@@ -630,15 +630,25 @@ pub async fn search(
     };
     let path_str = state.index_path(&name).to_string_lossy().to_string();
 
-    // Resolve filter condition to subset
+    // Resolve filter condition to subset. SQLite can block on the
+    // database lock while an update batch writes to the same file, so
+    // this must run on the blocking pool: a runtime worker thread that
+    // blocks in sync code can take the whole server down with it (all
+    // four workers parked = no I/O driver = frozen accept loop).
     let mut subset = req.subset.clone();
-    if let Some(ref condition) = req.filter_condition {
-        if !filtering::exists(&path_str) {
-            return Err(ApiError::MetadataNotFound(name.clone()));
-        }
-        let filter_params = req.filter_parameters.as_deref().unwrap_or(&[]);
-        let filtered_ids = filtering::where_condition(&path_str, condition, filter_params)
-            .map_err(|e| ApiError::BadRequest(format!("Invalid filter condition: {}", e)))?;
+    if let Some(condition) = req.filter_condition.clone() {
+        let filter_params = req.filter_parameters.clone().unwrap_or_default();
+        let path_bg = path_str.clone();
+        let name_bg = name.clone();
+        let filtered_ids = tokio::task::spawn_blocking(move || {
+            if !filtering::exists(&path_bg) {
+                return Err(ApiError::MetadataNotFound(name_bg));
+            }
+            filtering::where_condition(&path_bg, &condition, &filter_params)
+                .map_err(|e| ApiError::BadRequest(format!("Invalid filter condition: {}", e)))
+        })
+        .await
+        .map_err(|e| ApiError::Internal(format!("Filter task panicked: {}", e)))??;
         subset = Some(filtered_ids);
     }
 
@@ -649,17 +659,7 @@ pub async fn search(
             .iter()
             .map(to_ndarray)
             .collect::<ApiResult<Vec<_>>>()?;
-
-        let idx = state.get_index_for_read(&name)?;
-        let expected_dim = idx.embedding_dim();
-        for query in queries.iter() {
-            if query.ncols() != expected_dim {
-                return Err(ApiError::DimensionMismatch {
-                    expected: expected_dim,
-                    actual: query.ncols(),
-                });
-            }
-        }
+        let num_queries = queries.len();
 
         let params = SearchParameters {
             top_k,
@@ -670,30 +670,54 @@ pub async fn search(
             ..Default::default()
         };
 
-        let index = &**idx;
-        let raw_results: Vec<(usize, Vec<i64>, Vec<f32>)> = if queries.len() == 1 {
-            let r = index.search(&queries[0], &params, subset.as_deref())?;
-            vec![(r.query_id, r.passage_ids, r.scores)]
-        } else {
-            let batch = index.search_batch(&queries, &params, true, subset.as_deref())?;
-            batch
-                .into_iter()
-                .map(|r| (r.query_id, r.passage_ids, r.scores))
-                .collect()
-        };
+        // PLAID scan + SQLite metadata fetch are synchronous CPU-bound
+        // calls — keep them off the async runtime (see comment on the
+        // filter block above).
+        let state_bg = state.clone();
+        let name_bg = name.clone();
+        let path_bg = path_str.clone();
+        let subset_bg = subset.clone();
+        let mut results: Vec<QueryResultResponse> =
+            tokio::task::spawn_blocking(move || -> ApiResult<Vec<QueryResultResponse>> {
+                let idx = state_bg.get_index_for_read(&name_bg)?;
+                let expected_dim = idx.embedding_dim();
+                for query in queries.iter() {
+                    if query.ncols() != expected_dim {
+                        return Err(ApiError::DimensionMismatch {
+                            expected: expected_dim,
+                            actual: query.ncols(),
+                        });
+                    }
+                }
 
-        let mut results: Vec<QueryResultResponse> = raw_results
-            .into_iter()
-            .map(|(query_id, document_ids, scores)| {
-                let metadata = fetch_metadata_for_docs(&path_str, &document_ids)?;
-                Ok(QueryResultResponse {
-                    query_id,
-                    document_ids,
-                    scores,
-                    metadata,
-                })
+                let index = &**idx;
+                let raw_results: Vec<(usize, Vec<i64>, Vec<f32>)> = if queries.len() == 1 {
+                    let r = index.search(&queries[0], &params, subset_bg.as_deref())?;
+                    vec![(r.query_id, r.passage_ids, r.scores)]
+                } else {
+                    let batch =
+                        index.search_batch(&queries, &params, true, subset_bg.as_deref())?;
+                    batch
+                        .into_iter()
+                        .map(|r| (r.query_id, r.passage_ids, r.scores))
+                        .collect()
+                };
+
+                raw_results
+                    .into_iter()
+                    .map(|(query_id, document_ids, scores)| {
+                        let metadata = fetch_metadata_for_docs(&path_bg, &document_ids)?;
+                        Ok(QueryResultResponse {
+                            query_id,
+                            document_ids,
+                            scores,
+                            metadata,
+                        })
+                    })
+                    .collect::<ApiResult<Vec<_>>>()
             })
-            .collect::<ApiResult<Vec<_>>>()?;
+            .await
+            .map_err(|e| ApiError::Internal(format!("Search task panicked: {}", e)))??;
 
         // Always run anchor-dedup + feed-score blend. `feed_scope`
         // controls whether long-tail results (anchor not in
@@ -716,7 +740,7 @@ pub async fn search(
             trace_id = %trace_id,
             index = %name,
             mode = "semantic",
-            num_queries = queries.len(),
+            num_queries = num_queries,
             top_k = requested_top_k,
             total_results = total_results,
             total_ms = total_ms,
@@ -727,20 +751,16 @@ pub async fn search(
         }
 
         return Ok(PrettyJson(SearchResponse {
-            num_queries: queries.len(),
+            num_queries,
             results,
         }));
     }
 
     // --- Keyword or hybrid search (supports batch) ---
-    let empty_text: Vec<String> = vec![];
-    let text_queries = req.text_query.as_ref().unwrap_or(&empty_text);
-    let embedding_queries = req.queries.as_ref();
-
     // Validate: in hybrid mode, queries and text_query must have the same length
     if has_queries && has_text_query {
-        let n_emb = embedding_queries.unwrap().len();
-        let n_txt = text_queries.len();
+        let n_emb = req.queries.as_ref().unwrap().len();
+        let n_txt = req.text_query.as_ref().unwrap().len();
         if n_emb != n_txt {
             return Err(ApiError::BadRequest(format!(
                 "queries length ({}) must match text_query length ({}) in hybrid mode",
@@ -750,9 +770,9 @@ pub async fn search(
     }
 
     let num_queries = if has_text_query {
-        text_queries.len()
+        req.text_query.as_ref().unwrap().len()
     } else {
-        embedding_queries.map(|q| q.len()).unwrap_or(0)
+        req.queries.as_ref().map(|q| q.len()).unwrap_or(0)
     };
 
     let fetch_k = if has_queries && has_text_query {
@@ -761,108 +781,130 @@ pub async fn search(
         top_k
     };
 
-    // Process each query
-    let mut all_results: Vec<QueryResultResponse> = Vec::with_capacity(num_queries);
+    // Process each query. The whole loop is synchronous PLAID/SQLite
+    // work — keep it off the async runtime (see comment on the filter
+    // block above).
+    let state_bg = state.clone();
+    let name_bg = name.clone();
+    let path_bg = path_str.clone();
+    let trace_id_bg = trace_id.to_string();
+    let mut all_results: Vec<QueryResultResponse> = tokio::task::spawn_blocking(
+        move || -> ApiResult<Vec<QueryResultResponse>> {
+            let empty_text: Vec<String> = vec![];
+            let text_queries = req.text_query.as_ref().unwrap_or(&empty_text);
+            let embedding_queries = req.queries.as_ref();
+            let fusion_mode = req.fusion.as_deref().unwrap_or("rrf");
 
-    #[allow(clippy::needless_range_loop)]
-    for i in 0..num_queries {
-        // Semantic component for this query
-        let semantic: Option<(Vec<i64>, Vec<f32>)> = if has_queries {
-            let query = to_ndarray(&embedding_queries.unwrap()[i])?;
-            let idx = state.get_index_for_read(&name)?;
-            let expected_dim = idx.embedding_dim();
-            if query.ncols() != expected_dim {
-                return Err(ApiError::DimensionMismatch {
-                    expected: expected_dim,
-                    actual: query.ncols(),
+            let mut all_results: Vec<QueryResultResponse> = Vec::with_capacity(num_queries);
+
+            #[allow(clippy::needless_range_loop)]
+            for i in 0..num_queries {
+                // Semantic component for this query
+                let semantic: Option<(Vec<i64>, Vec<f32>)> = if has_queries {
+                    let query = to_ndarray(&embedding_queries.unwrap()[i])?;
+                    let idx = state_bg.get_index_for_read(&name_bg)?;
+                    let expected_dim = idx.embedding_dim();
+                    if query.ncols() != expected_dim {
+                        return Err(ApiError::DimensionMismatch {
+                            expected: expected_dim,
+                            actual: query.ncols(),
+                        });
+                    }
+                    let params = SearchParameters {
+                        top_k: fetch_k,
+                        n_ivf_probe: req.params.n_ivf_probe.unwrap_or(8),
+                        n_full_scores: req.params.n_full_scores.unwrap_or(4096),
+                        batch_size: 2000,
+                        centroid_score_threshold: req
+                            .params
+                            .centroid_score_threshold
+                            .unwrap_or_default(),
+                        ..Default::default()
+                    };
+                    let r = idx.search(&query, &params, subset.as_deref())?;
+                    Some((r.passage_ids, r.scores))
+                } else {
+                    None
+                };
+
+                // Keyword component for this query.
+                //
+                // text_search::search passes the string straight into the FTS5
+                // MATCH clause, which has its own mini-grammar (AND/OR/NOT,
+                // quotes, parens, colons). Anything resembling an operator or
+                // a stray quote raises a parse error and the keyword half
+                // drops out — which silently degrades hybrid search to
+                // semantic-only. sanitize_fts5_query strips operators and
+                // wraps every word in literal quotes, joined by implicit AND.
+                let keyword: Option<(Vec<i64>, Vec<f32>)> = if has_text_query {
+                    let tq_raw = &text_queries[i];
+                    let tq = text_search::sanitize_fts5_query(tq_raw);
+                    if tq.is_empty() {
+                        None
+                    } else {
+                        let result = if let Some(ref sub) = subset {
+                            text_search::search_filtered(&path_bg, &tq, fetch_k, sub)
+                        } else {
+                            text_search::search(&path_bg, &tq, fetch_k)
+                        };
+                        match result {
+                            Ok(r) => Some((r.passage_ids, r.scores)),
+                            Err(e) => {
+                                tracing::warn!(trace_id = %trace_id_bg, index = %name_bg, error = %e, "search.keyword.failed");
+                                None
+                            }
+                        }
+                    }
+                } else {
+                    None
+                };
+
+                // Fuse
+                let (document_ids, scores) = match (semantic, keyword) {
+                    (Some((sem_ids, sem_scores)), Some((kw_ids, kw_scores))) => match fusion_mode {
+                        "relative_score" => text_search::fuse_relative_score(
+                            &sem_ids,
+                            &sem_scores,
+                            &kw_ids,
+                            &kw_scores,
+                            alpha,
+                            top_k,
+                        ),
+                        _ => text_search::fuse_rrf(&sem_ids, &kw_ids, alpha, top_k),
+                    },
+                    (Some((ids, scores)), None) => {
+                        let mut r: Vec<(i64, f32)> = ids.into_iter().zip(scores).collect();
+                        r.truncate(top_k);
+                        (
+                            r.iter().map(|x| x.0).collect(),
+                            r.iter().map(|x| x.1).collect(),
+                        )
+                    }
+                    (None, Some((ids, scores))) => {
+                        let mut r: Vec<(i64, f32)> = ids.into_iter().zip(scores).collect();
+                        r.truncate(top_k);
+                        (
+                            r.iter().map(|x| x.0).collect(),
+                            r.iter().map(|x| x.1).collect(),
+                        )
+                    }
+                    (None, None) => (vec![], vec![]),
+                };
+
+                let metadata = fetch_metadata_for_docs(&path_bg, &document_ids)?;
+                all_results.push(QueryResultResponse {
+                    query_id: i,
+                    document_ids,
+                    scores,
+                    metadata,
                 });
             }
-            let params = SearchParameters {
-                top_k: fetch_k,
-                n_ivf_probe: req.params.n_ivf_probe.unwrap_or(8),
-                n_full_scores: req.params.n_full_scores.unwrap_or(4096),
-                batch_size: 2000,
-                centroid_score_threshold: req.params.centroid_score_threshold.unwrap_or_default(),
-                ..Default::default()
-            };
-            let r = idx.search(&query, &params, subset.as_deref())?;
-            Some((r.passage_ids, r.scores))
-        } else {
-            None
-        };
 
-        // Keyword component for this query.
-        //
-        // text_search::search passes the string straight into the FTS5
-        // MATCH clause, which has its own mini-grammar (AND/OR/NOT,
-        // quotes, parens, colons). Anything resembling an operator or
-        // a stray quote raises a parse error and the keyword half
-        // drops out — which silently degrades hybrid search to
-        // semantic-only. sanitize_fts5_query strips operators and
-        // wraps every word in literal quotes, joined by implicit AND.
-        let keyword: Option<(Vec<i64>, Vec<f32>)> = if has_text_query {
-            let tq_raw = &text_queries[i];
-            let tq = text_search::sanitize_fts5_query(tq_raw);
-            if tq.is_empty() {
-                None
-            } else {
-                let result = if let Some(ref sub) = subset {
-                    text_search::search_filtered(&path_str, &tq, fetch_k, sub)
-                } else {
-                    text_search::search(&path_str, &tq, fetch_k)
-                };
-                match result {
-                    Ok(r) => Some((r.passage_ids, r.scores)),
-                    Err(e) => {
-                        tracing::warn!(trace_id = %trace_id, index = %name, error = %e, "search.keyword.failed");
-                        None
-                    }
-                }
-            }
-        } else {
-            None
-        };
-
-        // Fuse
-        let (document_ids, scores) = match (semantic, keyword) {
-            (Some((sem_ids, sem_scores)), Some((kw_ids, kw_scores))) => match fusion_mode {
-                "relative_score" => text_search::fuse_relative_score(
-                    &sem_ids,
-                    &sem_scores,
-                    &kw_ids,
-                    &kw_scores,
-                    alpha,
-                    top_k,
-                ),
-                _ => text_search::fuse_rrf(&sem_ids, &kw_ids, alpha, top_k),
-            },
-            (Some((ids, scores)), None) => {
-                let mut r: Vec<(i64, f32)> = ids.into_iter().zip(scores).collect();
-                r.truncate(top_k);
-                (
-                    r.iter().map(|x| x.0).collect(),
-                    r.iter().map(|x| x.1).collect(),
-                )
-            }
-            (None, Some((ids, scores))) => {
-                let mut r: Vec<(i64, f32)> = ids.into_iter().zip(scores).collect();
-                r.truncate(top_k);
-                (
-                    r.iter().map(|x| x.0).collect(),
-                    r.iter().map(|x| x.1).collect(),
-                )
-            }
-            (None, None) => (vec![], vec![]),
-        };
-
-        let metadata = fetch_metadata_for_docs(&path_str, &document_ids)?;
-        all_results.push(QueryResultResponse {
-            query_id: i,
-            document_ids,
-            scores,
-            metadata,
-        });
-    }
+            Ok(all_results)
+        },
+    )
+    .await
+    .map_err(|e| ApiError::Internal(format!("Search task panicked: {}", e)))??;
 
     // Always run anchor-dedup + feed-score blend (see semantic branch
     // above). `feed_scope` only controls whether non-snapshot

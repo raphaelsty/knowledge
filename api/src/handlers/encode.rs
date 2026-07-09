@@ -114,34 +114,49 @@ fn get_or_create_encode_pool(state: Arc<AppState>) -> ApiResult<mpsc::Sender<Enc
     // Wrap receiver in Arc<Mutex> for sharing among workers
     let shared_receiver = Arc::new(tokio::sync::Mutex::new(receiver));
 
-    // Spawn N workers, each building and owning its own model
+    // Spawn N workers, each building and owning its own model.
+    //
+    // Each worker gets its OWN OS thread: model building and ONNX
+    // inference are synchronous CPU-bound calls, and running them on
+    // tokio runtime workers can park every runtime thread at once —
+    // if the thread holding the I/O driver is among them, the whole
+    // server stops accepting connections (root cause of the 2026-07-07
+    // two-day outage). `Handle::block_on` drives the async recv loop
+    // from the dedicated thread; the sync encode calls inside then only
+    // ever block that thread.
     tracing::info!(pool_size = pool_size, "encode.worker.pool.starting");
 
+    let runtime = tokio::runtime::Handle::current();
     for worker_id in 0..pool_size {
         let receiver_clone = Arc::clone(&shared_receiver);
         let config_clone = model_config.clone();
+        let runtime = runtime.clone();
 
-        // Spawn worker in a blocking task since model building is CPU-intensive
-        tokio::spawn(async move {
-            // Build model for this worker
-            let model = match build_model_from_config(&config_clone) {
-                Ok(m) => {
-                    tracing::info!(worker_id = worker_id, "encode.worker.started");
-                    m
-                }
-                Err(e) => {
-                    tracing::error!(
-                        worker_id = worker_id,
-                        error = %e,
-                        "encode.worker.start.failed"
-                    );
-                    return;
-                }
-            };
+        std::thread::Builder::new()
+            .name(format!("encode-worker-{}", worker_id))
+            .spawn(move || {
+                // Build model for this worker (CPU-intensive, seconds)
+                let model = match build_model_from_config(&config_clone) {
+                    Ok(m) => {
+                        tracing::info!(worker_id = worker_id, "encode.worker.started");
+                        m
+                    }
+                    Err(e) => {
+                        tracing::error!(
+                            worker_id = worker_id,
+                            error = %e,
+                            "encode.worker.start.failed"
+                        );
+                        return;
+                    }
+                };
 
-            // Run the worker loop with owned model
-            encode_worker_loop(worker_id, model, receiver_clone).await;
-        });
+                // Run the worker loop with owned model
+                runtime.block_on(encode_worker_loop(worker_id, model, receiver_clone));
+            })
+            .map_err(|e| {
+                ApiError::Internal(format!("Failed to spawn encode worker thread: {}", e))
+            })?;
     }
 
     let pool = EncodeWorkerPool {

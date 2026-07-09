@@ -1450,8 +1450,20 @@ async fn colbert_search_urls(
     // nonexistent) per-user index here used to fail and silently
     // demote every MCP search to the SQL keyword fallback.
     let path_str = state.index_path("__all__").to_string_lossy().to_string();
-    let subset = filtering::where_condition(&path_str, "owner = ?", &[serde_json::json!(owner)])
-        .map_err(|e| e.to_string())?;
+
+    // SQLite filter + PLAID scan are synchronous blocking calls — keep
+    // them off the async runtime (they can otherwise park every runtime
+    // worker at once and freeze the server).
+    let subset = {
+        let path_bg = path_str.clone();
+        let owner_bg = owner.to_string();
+        tokio::task::spawn_blocking(move || {
+            filtering::where_condition(&path_bg, "owner = ?", &[serde_json::json!(owner_bg)])
+                .map_err(|e| e.to_string())
+        })
+        .await
+        .map_err(|e| format!("Filter task panicked: {}", e))??
+    };
     if subset.is_empty() {
         return Ok(Vec::new());
     }
@@ -1461,24 +1473,33 @@ async fn colbert_search_urls(
             .await
             .map_err(|e| e.to_string())?;
 
-    let idx = state
-        .get_index_for_read("__all__")
-        .map_err(|e| e.to_string())?;
+    let (result, metadata) = {
+        let state_bg = state.clone();
+        let path_bg = path_str.clone();
+        tokio::task::spawn_blocking(move || {
+            let idx = state_bg
+                .get_index_for_read("__all__")
+                .map_err(|e| e.to_string())?;
 
-    let params = SearchParameters {
-        top_k: limit as usize,
-        n_ivf_probe: 8,
-        n_full_scores: 4096,
-        batch_size: 2000,
-        ..Default::default()
+            let params = SearchParameters {
+                top_k: limit as usize,
+                n_ivf_probe: 8,
+                n_full_scores: 4096,
+                batch_size: 2000,
+                ..Default::default()
+            };
+
+            let result = idx
+                .search(&embeddings[0], &params, Some(&subset))
+                .map_err(|e| e.to_string())?;
+
+            let metadata = fetch_metadata_for_docs(&path_bg, &result.passage_ids)
+                .map_err(|e| e.to_string())?;
+            Ok::<_, String>((result, metadata))
+        })
+        .await
+        .map_err(|e| format!("Search task panicked: {}", e))??
     };
-
-    let result = idx
-        .search(&embeddings[0], &params, Some(&subset))
-        .map_err(|e| e.to_string())?;
-
-    let metadata =
-        fetch_metadata_for_docs(&path_str, &result.passage_ids).map_err(|e| e.to_string())?;
 
     Ok(metadata
         .into_iter()
@@ -1517,25 +1538,35 @@ async fn colbert_search_owners(
             .await
             .map_err(|e| e.to_string())?;
 
-    let idx = state
-        .get_index_for_read("__all__")
-        .map_err(|e| e.to_string())?;
+    // PLAID scan + SQLite metadata fetch are synchronous blocking calls
+    // — keep them off the async runtime (see colbert_search_urls).
+    let (result, metadata) = {
+        let state_bg = state.clone();
+        let path_bg = state.index_path("__all__").to_string_lossy().to_string();
+        tokio::task::spawn_blocking(move || {
+            let idx = state_bg
+                .get_index_for_read("__all__")
+                .map_err(|e| e.to_string())?;
 
-    let params = SearchParameters {
-        top_k: limit as usize,
-        n_ivf_probe: 8,
-        n_full_scores: 4096,
-        batch_size: 2000,
-        ..Default::default()
+            let params = SearchParameters {
+                top_k: limit as usize,
+                n_ivf_probe: 8,
+                n_full_scores: 4096,
+                batch_size: 2000,
+                ..Default::default()
+            };
+
+            let result = idx
+                .search(&embeddings[0], &params, None)
+                .map_err(|e| e.to_string())?;
+
+            let metadata = fetch_metadata_for_docs(&path_bg, &result.passage_ids)
+                .map_err(|e| e.to_string())?;
+            Ok::<_, String>((result, metadata))
+        })
+        .await
+        .map_err(|e| format!("Search task panicked: {}", e))??
     };
-
-    let result = idx
-        .search(&embeddings[0], &params, None)
-        .map_err(|e| e.to_string())?;
-
-    let path_str = state.index_path("__all__").to_string_lossy().to_string();
-    let metadata =
-        fetch_metadata_for_docs(&path_str, &result.passage_ids).map_err(|e| e.to_string())?;
 
     Ok(metadata
         .into_iter()

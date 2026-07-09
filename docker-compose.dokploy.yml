@@ -186,12 +186,52 @@ services:
         condition: service_healthy
     networks:
       - default
+    labels:
+      # Opt in to the autoheal watchdog below: restart this container
+      # if its healthcheck goes (and stays) unhealthy.
+      - "autoheal=true"
     deploy:
       resources:
         limits:
           memory: 6G
         reservations:
           memory: 3G
+
+  # Watchdog: Docker restart policies only cover CRASHED processes — a
+  # container whose healthcheck flips to "unhealthy" is left running
+  # forever. That's how the 2026-07-07 API deadlock stayed "Up
+  # (unhealthy)" for two days while every /api request hung. This
+  # sidecar restarts any container labeled autoheal=true whose health
+  # is "unhealthy" on two consecutive passes (~2 min) — the double
+  # check rides out one-off blips; real hangs never recover on their
+  # own. Same docker-socket pattern as docker-cleanup below.
+  autoheal:
+    image: docker:25-cli
+    restart: unless-stopped
+    logging: *default-logging
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    entrypoint:
+      - /bin/sh
+      - -c
+      - |
+        set -eu
+        echo "autoheal: watching containers labeled autoheal=true"
+        PREV=""
+        while true; do
+          sleep 60
+          UNHEALTHY=$$(docker ps --filter label=autoheal=true --filter health=unhealthy --format '{{.Names}}' || true)
+          for NAME in $$UNHEALTHY; do
+            case " $$PREV " in
+              *" $$NAME "*)
+                TS=$$(date -u +%Y-%m-%dT%H:%M:%SZ)
+                echo "$$TS autoheal: restarting $$NAME (unhealthy on two consecutive checks)"
+                docker restart "$$NAME" || true
+                ;;
+            esac
+          done
+          PREV="$$UNHEALTHY"
+        done
 
   caddy:
     # Build a custom image that bakes the Caddyfile + the static
