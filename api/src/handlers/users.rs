@@ -1202,9 +1202,14 @@ pub struct FeedParams {
 /// same recency bonus:
 ///
 /// ```text
-/// weeks_old = FLOOR(days_old / 7)
+/// weeks_old = FLOOR(days_since_active_date / 7)
 /// score = sharer_count + GREATEST(0, 5 - weeks_old) * 0.56
 /// ```
+///
+/// `active_date` is the SECOND-newest per-sharer date for the URL
+/// (the newest when there's a single sharer) — a lone like can't
+/// re-date an old doc to today, but two-plus users converging on it
+/// recently still count as a revival.
 ///
 /// So a 5-sharer doc from 2 weeks ago (≈ 5 + 3·0.56 = 6.68) still
 /// outranks a single-sharer doc from this week (≈ 1 + 5·0.56 = 3.8),
@@ -1266,7 +1271,30 @@ pub async fn build_feed_payload(pool: &PgPool, limit: i64) -> serde_json::Value 
               FROM documents d
              WHERE d.date IS NOT NULL
                AND d.deleted = FALSE
-             ORDER BY d.url, d.date DESC
+             -- Prefer a row the user actually authored/synced over an
+             -- upvote mirror (created_via_favorite): mirrors are
+             -- stamped date=CURRENT_DATE at favorite time, so letting
+             -- one win the DISTINCT ON re-dated an old doc to today
+             -- whenever anyone liked it.
+             ORDER BY d.url, d.created_via_favorite ASC, d.date DESC
+        ),
+        activity AS (
+            -- Robust per-URL activity date. `documents` is one row
+            -- per (user, url), so each row here is one sharer's
+            -- date. Take the SECOND-newest sharer date (falling back
+            -- to the newest when there's a single sharer): one
+            -- person liking / re-saving an old doc can't re-date it
+            -- to today, while two-plus distinct users touching it
+            -- recently still read as a genuine revival.
+            SELECT d.url,
+                   COALESCE(
+                       (array_agg(d.date ORDER BY d.date DESC))[2],
+                       MAX(d.date)
+                   ) AS active_date
+              FROM documents d
+             WHERE d.date IS NOT NULL
+               AND d.deleted = FALSE
+             GROUP BY d.url
         ),
         sharers_per_url AS (
             SELECT
@@ -1299,15 +1327,19 @@ pub async fn build_feed_payload(pool: &PgPool, limit: i64) -> serde_json::Value 
                 -- of last-24h activity. 5 weekly steps span the
                 -- same ~5-week horizon as the old 14-day linear
                 -- decay; top bonus matches the old peak (2.8).
+                -- Keyed on the robust `active_date` (see the CTE
+                -- above), not the max row date, so a single like
+                -- can't reactivate an old doc.
                 (
                     s.sharer_count::double precision
                     + GREATEST(
                           0.0,
-                          5.0 - FLOOR(EXTRACT(EPOCH FROM (now() - m.date)) / (7.0 * 86400.0))
+                          5.0 - FLOOR(EXTRACT(EPOCH FROM (now() - act.active_date)) / (7.0 * 86400.0))
                       ) * 0.56
                 ) AS score
               FROM latest_meta m
               JOIN sharers_per_url s ON s.url = m.url
+              JOIN activity act ON act.url = m.url
         )
         SELECT
             url,

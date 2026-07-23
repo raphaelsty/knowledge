@@ -224,6 +224,17 @@ def _build_refresh_sql(window_days: int, max_rows: int) -> str:
              WHERE d.deleted = FALSE
                AND d.date IS NOT NULL
                AND d.date >= now() - interval '{int(window_days)} days'
+               -- Upvote-mirror rows are pure "like" bookkeeping,
+               -- stamped date=CURRENT_DATE at favorite time. Letting
+               -- them into the candidate set both (a) pulls an
+               -- otherwise-out-of-window anchor back in and (b) wins
+               -- the representative pick (the mirror copies its
+               -- source's richness and ties break on date DESC), so a
+               -- single like re-dated an old resource to today. Likers
+               -- still count as sharers / consensus velocity via
+               -- all_anchor_owners below — they just can't re-date the
+               -- content on their own.
+               AND d.created_via_favorite = FALSE
         ),
         -- One row per anchor: pick the most-informative
         -- representative. Priority order:
@@ -305,16 +316,32 @@ def _build_refresh_sql(window_days: int, max_rows: int) -> str:
               FROM documents d
              WHERE d.deleted = FALSE
         ),
-        anchor_sharers AS (
+        -- Per-(anchor, user) roll-up: one row per sharer with their
+        -- most recent touch of the anchor (newest of their docs that
+        -- map to it — likes included). All the per-user aggregates in
+        -- anchor_sharers below read from this, and it's what lets us
+        -- compute an activity date a single user can't drag around.
+        -- Limited to anchors with in-window activity — the only
+        -- anchors feed_snapshot will store rows for.
+        anchor_user_dates AS (
             SELECT a.anchor_url,
-                   array_agg(DISTINCT a.user_id)                  AS sharer_user_ids,
+                   a.user_id,
+                   MAX(a.date) AS last_date
+              FROM all_anchor_owners a
+             WHERE a.anchor_url IN (SELECT DISTINCT anchor_url FROM window_docs)
+             GROUP BY a.anchor_url, a.user_id
+        ),
+        anchor_sharers AS (
+            SELECT d.anchor_url,
+                   array_agg(d.user_id)                           AS sharer_user_ids,
                    bool_or(u.vip)                                 AS any_vip_sharer,
                    -- All-time VIP sharer count — feeds the score's
                    -- `LN(vip_sharer_count+1) * 2.0` boost so docs
                    -- co-signed by many VIPs outrank single-VIP ones,
                    -- and now correctly counts VIPs who saved this
-                   -- resource years ago.
-                   count(DISTINCT a.user_id) FILTER (WHERE u.vip)::int
+                   -- resource years ago. Rows here are already one
+                   -- per distinct user (see anchor_user_dates).
+                   count(*) FILTER (WHERE u.vip)::int
                                                                   AS vip_sharer_count,
                    -- Consensus *velocity*: distinct VIPs who saved
                    -- this resource in the last 7 / 14 days. A burst of
@@ -323,13 +350,13 @@ def _build_refresh_sql(window_days: int, max_rows: int) -> str:
                    -- all-time count (5 VIPs over a year vs 5 VIPs in
                    -- one week rank identically under vip_sharer_count
                    -- alone). Drives the rising bonus in `scored`.
-                   count(DISTINCT a.user_id)
-                       FILTER (WHERE u.vip AND a.date >= current_date - 7)::int
+                   count(*)
+                       FILTER (WHERE u.vip AND d.last_date >= current_date - 7)::int
                                                                   AS vip_sharers_7d,
-                   count(DISTINCT a.user_id)
-                       FILTER (WHERE u.vip AND a.date >= current_date - 14)::int
+                   count(*)
+                       FILTER (WHERE u.vip AND d.last_date >= current_date - 14)::int
                                                                   AS vip_sharers_14d,
-                   count(DISTINCT a.user_id)::int                 AS sharer_count,
+                   count(*)::int                                  AS sharer_count,
                    jsonb_agg(DISTINCT jsonb_build_object(
                        'slug',             u.username,
                        'name',             u.name,
@@ -337,19 +364,28 @@ def _build_refresh_sql(window_days: int, max_rows: int) -> str:
                        'twitterFollowers', u.twitter_followers
                    ))                                             AS sharers,
                    MAX(COALESCE(u.twitter_followers, 0))::bigint  AS top_followers,
-                   -- Freshest "anyone touched this anchor" date —
-                   -- used to age-score anchors whose representative
-                   -- doc is older than the most recent re-share. A
-                   -- 2021 paper that a VIP reshares in 2026 should
-                   -- read as 2026-fresh, not 2021-stale.
-                   MAX(a.date)                                    AS max_anchor_date
-              FROM all_anchor_owners a
-              JOIN users             u ON u.id = a.user_id
-             -- Limit aggregation to anchors that actually have
-             -- in-window activity — the only anchors feed_snapshot
-             -- will store rows for.
-             WHERE a.anchor_url IN (SELECT DISTINCT anchor_url FROM window_docs)
-             GROUP BY a.anchor_url
+                   -- Robust "this anchor is being touched" date,
+                   -- replacing the old MAX(date). MAX let ONE user
+                   -- liking / re-saving an old resource re-date the
+                   -- whole anchor to today, resurrecting it at the
+                   -- top of the feed. Instead take the SECOND-newest
+                   -- per-user date (falling back to the newest when
+                   -- the anchor has a single sharer): a lone stray
+                   -- like leaves the anchor at its original age,
+                   -- while a genuine revival — two or more distinct
+                   -- users converging on it recently — still reads
+                   -- as fresh. Preferred over mean(date), which
+                   -- would also bury real revivals of anchors with
+                   -- many old sharers. NULLS LAST so undated rows
+                   -- never occupy the top slots.
+                   COALESCE(
+                       (array_agg(d.last_date
+                                  ORDER BY d.last_date DESC NULLS LAST))[2],
+                       MAX(d.last_date)
+                   )                                              AS active_date
+              FROM anchor_user_dates d
+              JOIN users             u ON u.id = d.user_id
+             GROUP BY d.anchor_url
         ),
         -- Per-anchor behavioural roll-up. We take the MAX of each
         -- metric across the in-window docs that map to the anchor,
@@ -478,10 +514,10 @@ def _build_refresh_sql(window_days: int, max_rows: int) -> str:
                        -- and the feed alike; now it decays the
                        -- same way an old bare paper does.
                        CASE
-                           WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 30  THEN 1.0
-                           WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 90  THEN 0.6
-                           WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 180 THEN 0.3
-                           WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 365 THEN 0.15
+                           WHEN GREATEST(r.date, s.active_date) >= current_date - 30  THEN 1.0
+                           WHEN GREATEST(r.date, s.active_date) >= current_date - 90  THEN 0.6
+                           WHEN GREATEST(r.date, s.active_date) >= current_date - 180 THEN 0.3
+                           WHEN GREATEST(r.date, s.active_date) >= current_date - 365 THEN 0.15
                            ELSE                                   0.05
                        END *
                        CASE
@@ -501,12 +537,12 @@ def _build_refresh_sql(window_days: int, max_rows: int) -> str:
                      -- with the steeper total-age multiplier below
                      -- this makes the feed lean strongly fresh.
                      + CASE
-                           WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 7   THEN 12.0
-                           WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 14  THEN 9.5
-                           WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 21  THEN 7.0
-                           WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 35  THEN 5.0
-                           WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 60  THEN 2.5
-                           WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 90  THEN 1.0
+                           WHEN GREATEST(r.date, s.active_date) >= current_date - 7   THEN 12.0
+                           WHEN GREATEST(r.date, s.active_date) >= current_date - 14  THEN 9.5
+                           WHEN GREATEST(r.date, s.active_date) >= current_date - 21  THEN 7.0
+                           WHEN GREATEST(r.date, s.active_date) >= current_date - 35  THEN 5.0
+                           WHEN GREATEST(r.date, s.active_date) >= current_date - 60  THEN 2.5
+                           WHEN GREATEST(r.date, s.active_date) >= current_date - 90  THEN 1.0
                            ELSE 0
                        END
                      -- ★ PRIMARY SIGNAL ★ — VIP consensus. How many
@@ -672,23 +708,23 @@ def _build_refresh_sql(window_days: int, max_rows: int) -> str:
                    -- switch it off — recency still always matters.
                    * (
                        CASE
-                           WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 14   THEN 1.0
-                           WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 30   THEN 0.80
-                           WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 60   THEN 0.55
-                           WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 90   THEN 0.35
-                           WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 180  THEN 0.18
-                           WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 365  THEN 0.08
-                           WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 730  THEN 0.03
+                           WHEN GREATEST(r.date, s.active_date) >= current_date - 14   THEN 1.0
+                           WHEN GREATEST(r.date, s.active_date) >= current_date - 30   THEN 0.80
+                           WHEN GREATEST(r.date, s.active_date) >= current_date - 60   THEN 0.55
+                           WHEN GREATEST(r.date, s.active_date) >= current_date - 90   THEN 0.35
+                           WHEN GREATEST(r.date, s.active_date) >= current_date - 180  THEN 0.18
+                           WHEN GREATEST(r.date, s.active_date) >= current_date - 365  THEN 0.08
+                           WHEN GREATEST(r.date, s.active_date) >= current_date - 730  THEN 0.03
                            ELSE                                                              0.015
                        END
                        + (1.0 - CASE
-                           WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 14   THEN 1.0
-                           WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 30   THEN 0.80
-                           WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 60   THEN 0.55
-                           WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 90   THEN 0.35
-                           WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 180  THEN 0.18
-                           WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 365  THEN 0.08
-                           WHEN GREATEST(r.date, s.max_anchor_date) >= current_date - 730  THEN 0.03
+                           WHEN GREATEST(r.date, s.active_date) >= current_date - 14   THEN 1.0
+                           WHEN GREATEST(r.date, s.active_date) >= current_date - 30   THEN 0.80
+                           WHEN GREATEST(r.date, s.active_date) >= current_date - 60   THEN 0.55
+                           WHEN GREATEST(r.date, s.active_date) >= current_date - 90   THEN 0.35
+                           WHEN GREATEST(r.date, s.active_date) >= current_date - 180  THEN 0.18
+                           WHEN GREATEST(r.date, s.active_date) >= current_date - 365  THEN 0.08
+                           WHEN GREATEST(r.date, s.active_date) >= current_date - 730  THEN 0.03
                            ELSE                                                              0.015
                          END)
                          * LEAST(0.5, s.vip_sharer_count / 40.0)
