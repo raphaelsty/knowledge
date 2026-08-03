@@ -1389,12 +1389,22 @@ pub async fn admin_ingest_tweets(
 
 // ── /api/admin/twitter-queue ────────────────────────────────────────
 //
-// Returns the same VIP-with-twitter ordering the local feeder used
+// Returns the same with-twitter ordering the local feeder used
 // to compute via direct PG (`_vips_by_staleness`). Moving this read
 // behind the API kills the last reason the feeder needed the SSH
 // tunnel to prod — every page write was already going through the
 // ingest endpoint, but the queue + existing-URL reads were still
 // touching PG via the tunnel.
+//
+// Coverage: EVERY user carrying a non-empty `sources.twitter.username`
+// is eligible, VIP or not (it used to be `vip = TRUE` only, which
+// silently skipped a signed-up user who connected their Twitter
+// account). VIPs still come first in the ordering, so relaxing the
+// filter can only append work at the tail of the queue.
+//
+// The response also carries `X-Queue-*` headers describing what got
+// filtered out, so the feeder can log "162 of 635" instead of a bare
+// "162" that reads like a cap.
 
 #[derive(Debug, serde::Deserialize)]
 pub struct TwitterQueueParams {
@@ -1466,41 +1476,45 @@ pub async fn admin_twitter_queue(
     //      mid-day restart the feeder skips past everyone we just
     //      touched and gets to the people we haven't tried yet.
     //
-    //   3. Within the remaining tier: popularity DESC (high
-    //      twitter_followers first), then never-attempted, then
+    //   3. Within the remaining tier: VIPs first, then popularity DESC
+    //      (high twitter_followers first), then never-attempted, then
     //      oldest-attempt-first, alphabetical tiebreaker.
     //
     // The `min_age_hours` param is kept as a coarse filter — set it
     // to 0 to get every eligible slug, or to a positive value to
     // require last_attempt_at to be at least that old (skipping
     // every slug touched within the window).
+    //
+    // Both filters are evaluated as SELECT flags rather than WHERE
+    // clauses so the handler can report how many accounts each one
+    // held back (see the `X-Queue-*` headers below).
     let sql = r#"
         SELECT u.id, u.username,
                COALESCE(u.sources->'twitter'->>'username', '') AS handle,
                to_char(ta.last_attempt_at AT TIME ZONE 'UTC',
                        'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS last_attempt,
-               COALESCE(u.twitter_followers, 0)::bigint AS twitter_followers
+               COALESCE(u.twitter_followers, 0)::bigint AS twitter_followers,
+               -- Cooldown for known-broken accounts. `LEAST(...)` caps
+               -- the backoff at 30 days; the inner POWER doubles on each
+               -- consecutive failure (24h, 48h, 96h, 192h, …).
+               (
+                     ta.user_id IS NULL
+                  OR ta.consecutive_failures = 0
+                  OR ta.last_attempt_at < NOW() - LEAST(
+                         INTERVAL '30 days',
+                         POWER(2, LEAST(ta.consecutive_failures, 10))::float
+                           * INTERVAL '24 hours'
+                     )
+               ) AS cooldown_ok,
+               -- Optional coarse age filter (kept for backward compat
+               -- with the --min-age CLI flag).
+               ($1::float8 <= 0
+                OR ta.last_attempt_at IS NULL
+                OR ta.last_attempt_at < NOW() - ($1::float8 * INTERVAL '1 hour')
+               ) AS age_ok
           FROM users u
           LEFT JOIN twitter_feed_attempts ta ON ta.user_id = u.id
-         WHERE u.vip = TRUE
-           AND u.sources ? 'twitter'
-           -- Cooldown for known-broken accounts. `LEAST(...)` caps
-           -- the backoff at 30 days; the inner POWER doubles on each
-           -- consecutive failure (24h, 48h, 96h, 192h, …).
-           AND (
-                 ta.user_id IS NULL
-              OR ta.consecutive_failures = 0
-              OR ta.last_attempt_at < NOW() - LEAST(
-                     INTERVAL '30 days',
-                     POWER(2, LEAST(ta.consecutive_failures, 10))::float
-                       * INTERVAL '24 hours'
-                 )
-           )
-           -- Optional coarse age filter (kept for backward compat
-           -- with the --min-age CLI flag).
-           AND ($1::float8 <= 0
-                OR ta.last_attempt_at IS NULL
-                OR ta.last_attempt_at < NOW() - ($1::float8 * INTERVAL '1 hour'))
+         WHERE COALESCE(u.sources->'twitter'->>'username', '') <> ''
          ORDER BY
                   -- Today-attempted go LAST.
                   COALESCE(
@@ -1508,38 +1522,61 @@ pub async fn admin_twitter_queue(
                           = (NOW() AT TIME ZONE 'UTC')::date,
                       FALSE
                   ) ASC,
-                  -- Among remaining: popular first.
+                  -- Among remaining: VIPs first, then popular first.
+                  COALESCE(u.vip, FALSE) DESC,
                   COALESCE(u.twitter_followers, 0) DESC,
                   -- Then never-attempted (NULL) before stalest.
                   ta.last_attempt_at ASC NULLS FIRST,
                   u.username
     "#;
     #[allow(clippy::type_complexity)]
-    let rows: Vec<(i64, String, String, Option<String>, i64)> = match sqlx::query_as(sql)
-        .bind(params.min_age_hours)
-        .fetch_all(&pool)
-        .await
-    {
-        Ok(rs) => rs,
-        Err(e) => {
-            tracing::error!(error = %e, "admin_twitter_queue.failed");
-            return (StatusCode::INTERNAL_SERVER_ERROR, "db error").into_response();
+    let rows: Vec<(i64, String, String, Option<String>, i64, bool, bool)> =
+        match sqlx::query_as(sql)
+            .bind(params.min_age_hours)
+            .fetch_all(&pool)
+            .await
+        {
+            Ok(rs) => rs,
+            Err(e) => {
+                tracing::error!(error = %e, "admin_twitter_queue.failed");
+                return (StatusCode::INTERNAL_SERVER_ERROR, "db error").into_response();
+            }
+        };
+    let total = rows.len();
+    let mut held_cooldown = 0usize;
+    let mut held_recent = 0usize;
+    let mut out: Vec<TwitterQueueEntry> = Vec::with_capacity(total);
+    for (user_id, slug, handle, last_touch, twitter_followers, cooldown_ok, age_ok) in rows {
+        if !cooldown_ok {
+            held_cooldown += 1;
+            continue;
         }
-    };
-    let out: Vec<TwitterQueueEntry> = rows
-        .into_iter()
-        .filter(|(_, _, handle, _, _)| !handle.is_empty())
-        .map(
-            |(user_id, slug, handle, last_touch, twitter_followers)| TwitterQueueEntry {
-                user_id,
-                slug,
-                handle,
-                last_touch,
-                twitter_followers,
-            },
-        )
-        .collect();
-    Json(out).into_response()
+        if !age_ok {
+            held_recent += 1;
+            continue;
+        }
+        out.push(TwitterQueueEntry {
+            user_id,
+            slug,
+            handle,
+            last_touch,
+            twitter_followers,
+        });
+    }
+    // Backwards-compatible: the body stays a bare JSON array, the
+    // filter accounting rides along as headers.
+    let mut resp = Json(out).into_response();
+    let h = resp.headers_mut();
+    for (name, value) in [
+        ("x-queue-total", total),
+        ("x-queue-held-cooldown", held_cooldown),
+        ("x-queue-held-recent", held_recent),
+    ] {
+        if let Ok(v) = axum::http::HeaderValue::from_str(&value.to_string()) {
+            h.insert(name, v);
+        }
+    }
+    resp
 }
 
 // ── /api/admin/twitter-feed/attempt ────────────────────────────────

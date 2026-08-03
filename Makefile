@@ -576,12 +576,21 @@ prod-db-sync: prod-db-dump prod-db-restore
 
 # ── Local Twitter feeder → prod PG ────────────────────────────
 #
-# Talks to the Rust admin API over plain HTTPS for queue / existing-URL
-# / ingest calls (no SSH tunnel needed). Logs go to
-# `logs/twitter-feed-<ts>.log` and the terminal.
+# Everything is prod: the queue is `GET /api/admin/twitter-queue` on
+# https://$(DOMAIN) (prod PG), the already-known URLs come from prod,
+# and every scraped tweet is POSTed to prod's
+# `/api/admin/tweets/ingest`. Only the twikit fetches and the Safari
+# cookies are local. Nothing touches the local dev DB.
 #
-#   make twitter-feed                    # default: rest 1h between sweeps
-#   make twitter-feed ARGS="--one-shot"  # single pass, exit
+# Coverage is every prod account with a non-empty
+# `sources.twitter.username` — VIP or not, VIPs first. Today that's
+# ~635 accounts.
+#
+# Logs go to `logs/twitter-feed-<ts>.log` and the terminal.
+#
+#   make twitter-feed                     # default: rest 1h between sweeps
+#   make twitter-feed ARGS="--one-shot"   # single pass, exit
+#   make twitter-feed ARGS="--min-age 0"  # ignore the 24h guard: walk ALL accounts
 #   make twitter-feed ARGS="--rest 1800 --personality-delay 6"
 #
 # The first invocation each day depends on `prod-db-dump-if-stale`
@@ -591,11 +600,17 @@ prod-db-sync: prod-db-dump prod-db-restore
 # pg-backup sidecar volume survives a host event.
 #
 # `--min-age 24` is prepended so the server-side queue endpoint
-# excludes any VIP whose `last_attempt_at` is within the last 24h.
+# excludes any account whose `last_attempt_at` is within the last 24h.
 # That gives "at most one parsing per personality per day" even
 # across restarts (state lives in `twitter_feed_attempts`). Pass a
 # different value via `ARGS="--min-age 0"` to override — argparse
 # uses the last occurrence.
+#
+# So a SHORT queue is not a cap: restart at noon after the morning
+# pass already covered 470 accounts and the queue is the ~165
+# remainder. The banner now prints "queue: 165 of 635 … held back:
+# 470 attempted < 24h ago" so that's unambiguous. `--min-age 0`
+# forces the full roster (the today-attempted rows just sort last).
 #
 # Ctrl+C exits cleanly: in-flight personality finishes.
 .PHONY: twitter-feed twitter-feed-logs

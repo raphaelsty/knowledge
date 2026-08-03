@@ -17,11 +17,14 @@ on their Mac for days at a time:
     a laptop sleep, crash, or kill -9 mid-stream costs at most the
     handful of tweets in the page currently in flight;
   * loops indefinitely, prioritising **stalest first**: each pass
-    queues every VIP with a twitter handle, ordered by how long ago
-    their library was last touched (never-touched users at the very
-    top). A successful fetch sets `updated_at = now()` on the new
-    rows, so the next pass naturally demotes them to the back. Use
-    `--min-age N` to skip users touched in the last N hours.
+    queues every prod account carrying a `sources.twitter.username`
+    (VIP or not, VIPs first), ordered by how long ago their library
+    was last touched (never-touched users at the very top). A
+    successful fetch sets `updated_at = now()` on the new rows, so
+    the next pass naturally demotes them to the back. Use
+    `--min-age N` to skip users touched in the last N hours — that
+    is why a mid-day restart shows a queue shorter than the full
+    roster; the banner spells out how many were held back and why.
 
 Usage
 -----
@@ -239,12 +242,19 @@ def _human_duration(secs: float) -> str:
 
 def _vips_by_staleness(
     min_age_hours: float = 0.0,
-) -> list[tuple[int, str, str, object, int]]:
-    """Return ``[(user_id, slug, handle, last_touch, followers), …]``
-    for every VIP that has a `sources.twitter.username` configured,
-    in the canonical "touched-today demoted, popularity-desc" order.
+) -> tuple[list[tuple[int, str, str, object, int]], dict[str, int]]:
+    """Return ``([(user_id, slug, handle, last_touch, followers), …], stats)``
+    for every prod account that has a `sources.twitter.username`
+    configured, in the canonical "touched-today demoted, VIP-first,
+    popularity-desc" order.
 
-    The work now happens server-side behind
+    `stats` reports what the server filtered out — `total` (all prod
+    accounts with a twitter handle), `held_recent` (skipped by
+    `--min-age`) and `held_cooldown` (in failure backoff). It's there
+    so the queue banner can say "162 of 635" rather than a bare
+    "162" that reads like a hard cap.
+
+    The work happens server-side behind
     `GET /api/admin/twitter-queue` so the feeder no longer needs PG
     access. The Rust handler runs the same SQL the Python version
     used to run inline — see ``handlers::admin::admin_twitter_queue``.
@@ -261,9 +271,23 @@ def _vips_by_staleness(
         method="GET",
         headers={"X-Admin-Token": token, "Accept": "application/json"},
     )
+    stats: dict[str, int] = {}
     try:
         with urllib.request.urlopen(req, timeout=30) as resp:
             payload = json.loads(resp.read().decode("utf-8"))
+            # Filter accounting (absent on an older server — the
+            # banner then just degrades to the returned count).
+            for key, header in (
+                ("total", "X-Queue-Total"),
+                ("held_recent", "X-Queue-Held-Recent"),
+                ("held_cooldown", "X-Queue-Held-Cooldown"),
+            ):
+                raw = resp.headers.get(header)
+                if raw is not None:
+                    try:
+                        stats[key] = int(raw)
+                    except ValueError:
+                        pass
     except urllib.error.HTTPError as e:
         body = ""
         try:
@@ -280,7 +304,7 @@ def _vips_by_staleness(
 
     out: list[tuple[int, str, str, object, int]] = []
     if not isinstance(payload, list):
-        return out
+        return out, stats
     for row in payload:
         if not isinstance(row, dict):
             continue
@@ -304,7 +328,7 @@ def _vips_by_staleness(
                 int(row.get("twitter_followers") or 0),
             )
         )
-    return out
+    return out, stats
 
 
 def _format_age(last_touch) -> str:
@@ -701,7 +725,7 @@ def _one_pass(args) -> tuple[int, int]:
     _log_ok(f"twikit cookies OK — auth_token …{auth_token[-6:]}, ct0 …{ct0[-6:]}")
 
     try:
-        targets = _vips_by_staleness(min_age_hours=args.min_age)
+        targets, queue_stats = _vips_by_staleness(min_age_hours=args.min_age)
     except IngestAuthError as e:
         _log_err(f"queue endpoint refused: {e}")
         _heartbeat(state="error", last_error=str(e))
@@ -711,8 +735,21 @@ def _one_pass(args) -> tuple[int, int]:
         _heartbeat(state="error", last_error=str(e))
         return 0, 0
     total = len(targets)
+    # Spell out *why* the queue is shorter than the full roster —
+    # a bare count on a mid-day restart looks like a hard cap.
+    held_recent = queue_stats.get("held_recent", 0)
+    held_cooldown = queue_stats.get("held_cooldown", 0)
+    eligible = queue_stats.get("total", total)
+    held_desc = ""
+    if held_recent or held_cooldown:
+        parts = []
+        if held_recent:
+            parts.append(f"{held_recent} attempted < {args.min_age:g}h ago")
+        if held_cooldown:
+            parts.append(f"{held_cooldown} in failure cooldown")
+        held_desc = f" · held back: {', '.join(parts)}"
     if not total:
-        _log_info("queue empty — nothing to do this pass")
+        _log_info(f"queue empty — nothing to do this pass (0 of {eligible} twitter account(s){held_desc})")
         _heartbeat(
             state="idle",
             pass_started_at=pass_started_at,
@@ -722,7 +759,11 @@ def _one_pass(args) -> tuple[int, int]:
             pass_completed=True,
         )
         return 0, 0
-    queue_desc = f"queue: {total} VIP(s), popularity-desc{f', stale > {args.min_age}h' if args.min_age > 0 else ''}"
+    queue_desc = (
+        f"queue: {total} of {eligible} prod twitter account(s), "
+        f"popularity-desc{f', stale > {args.min_age:g}h' if args.min_age > 0 else ''}"
+        f"{held_desc}"
+    )
     _log_banner(queue_desc)
 
     # Pass-level aggregates so the rollup at the end has real numbers.
@@ -964,10 +1005,12 @@ def main(argv: Iterable[str] | None = None) -> int:
         type=float,
         default=0.0,
         help=(
-            "Only process users whose latest twitter doc is older "
+            "Only process users whose last feed attempt is older "
             "than this many hours (or who have never been touched). "
-            "Default 0 — every VIP is fair game on every pass, "
-            "ordered oldest-touched first."
+            "Default 0 — every prod account with a twitter handle is "
+            "fair game on every pass, ordered oldest-touched first. "
+            "`make twitter-feed` prepends 24 for one attempt per "
+            "account per day; pass 0 to force the full roster."
         ),
     )
     args = p.parse_args(list(argv) if argv is not None else None)
