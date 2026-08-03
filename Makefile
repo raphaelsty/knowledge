@@ -588,10 +588,9 @@ prod-db-sync: prod-db-dump prod-db-restore
 #
 # Logs go to `logs/twitter-feed-<ts>.log` and the terminal.
 #
-#   make twitter-feed                     # default: rest 1h between sweeps
-#   make twitter-feed-all                 # no 24h guard: ALL accounts every pass
-#   make twitter-feed ARGS="--one-shot"   # single pass, exit
-#   make twitter-feed ARGS="--min-age 0"  # same as twitter-feed-all
+#   make twitter-feed                      # every account, rest 1h, repeat
+#   make twitter-feed ARGS="--one-shot"    # single full pass, exit
+#   make twitter-feed ARGS="--min-age 24"  # opt into one attempt/account/day
 #   make twitter-feed ARGS="--rest 1800 --personality-delay 6"
 #
 # The first invocation each day depends on `prod-db-dump-if-stale`
@@ -600,32 +599,26 @@ prod-db-sync: prod-db-dump prod-db-restore
 # this laptop per calendar day, regardless of whether the prod
 # pg-backup sidecar volume survives a host event.
 #
-# `--min-age 24` is prepended so the server-side queue endpoint
-# excludes any account whose `last_attempt_at` is within the last 24h.
-# That gives "at most one parsing per personality per day" even
-# across restarts (state lives in `twitter_feed_attempts`). Pass a
-# different value via `ARGS="--min-age 0"` to override — argparse
-# uses the last occurrence.
+# `--min-age 0` is prepended, i.e. NO staleness guard: every pass
+# walks the whole roster, sleeps `--rest` (3600s default), then walks
+# it again. That's the behaviour we want — a restart must never land
+# on a 3-account queue and then idle for an hour. The queue endpoint
+# still sorts already-attempted-today accounts to the END of the
+# pass, so a restart works through the untouched ones first.
 #
-# So a SHORT queue is not a cap: restart at noon after the morning
-# pass already covered 470 accounts and the queue is the ~165
-# remainder. The banner now prints "queue: 165 of 635 … held back:
-# 470 attempted < 24h ago" so that's unambiguous. `--min-age 0`
-# forces the full roster (the today-attempted rows just sort last).
+# Opt into the old "at most one parsing per personality per day" mode
+# with `ARGS="--min-age 24"` (state lives in `twitter_feed_attempts`,
+# so it survives restarts) — argparse uses the last occurrence.
+#
+# Only exception to full coverage: accounts in exponential failure
+# cooldown (deleted / suspended / locked handles) stay hidden for
+# 24h × 2^failures, capped at 30 days, resetting on the first
+# successful fetch. That's 1 account today, and the banner prints it
+# — "queue: 634 of 635 … held back: 1 in failure cooldown".
 #
 # Ctrl+C exits cleanly: in-flight personality finishes.
-.PHONY: twitter-feed twitter-feed-all twitter-feed-logs
+.PHONY: twitter-feed twitter-feed-logs
 twitter-feed: prod-db-dump-if-stale
-	KNOWLEDGE_ADMIN_TOKEN=$(KNOWLEDGE_ADMIN_TOKEN) \
-	API_URL=https://$(DOMAIN) \
-		scripts/twitter_feed.sh --min-age 24 $(ARGS)
-
-# Same feeder, no 24h guard: EVERY prod twitter account on EVERY pass
-# (today-attempted ones simply sort to the end of the queue). Use when
-# you want a guaranteed full sweep rather than one-per-day coverage.
-# Costs ~635 twikit fetches per pass instead of the day's remainder,
-# so expect more 429 sleeps — `twitter-feed` remains the daily driver.
-twitter-feed-all: prod-db-dump-if-stale
 	KNOWLEDGE_ADMIN_TOKEN=$(KNOWLEDGE_ADMIN_TOKEN) \
 	API_URL=https://$(DOMAIN) \
 		scripts/twitter_feed.sh --min-age 0 $(ARGS)

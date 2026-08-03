@@ -21,10 +21,12 @@ on their Mac for days at a time:
     (VIP or not, VIPs first), ordered by how long ago their library
     was last touched (never-touched users at the very top). A
     successful fetch sets `updated_at = now()` on the new rows, so
-    the next pass naturally demotes them to the back. Use
-    `--min-age N` to skip users touched in the last N hours — that
-    is why a mid-day restart shows a queue shorter than the full
-    roster; the banner spells out how many were held back and why.
+    the next pass naturally demotes them to the back. Every pass
+    covers the whole roster, then sleeps `--rest` (3600s) and does
+    it again. Pass `--min-age N` to skip users touched in the last
+    N hours instead — the banner then spells out how many accounts
+    were held back and why, so a short queue is never mistaken for
+    a cap.
 
 Usage
 -----
@@ -1007,10 +1009,10 @@ def main(argv: Iterable[str] | None = None) -> int:
         help=(
             "Only process users whose last feed attempt is older "
             "than this many hours (or who have never been touched). "
-            "Default 0 — every prod account with a twitter handle is "
-            "fair game on every pass, ordered oldest-touched first. "
-            "`make twitter-feed` prepends 24 for one attempt per "
-            "account per day; pass 0 to force the full roster."
+            "Default 0 (what `make twitter-feed` passes) — every prod "
+            "account with a twitter handle is fair game on every "
+            "pass, ordered oldest-touched first. Set 24 for at most "
+            "one attempt per account per day."
         ),
     )
     args = p.parse_args(list(argv) if argv is not None else None)
