@@ -589,8 +589,9 @@ prod-db-sync: prod-db-dump prod-db-restore
 # Logs go to `logs/twitter-feed-<ts>.log` and the terminal.
 #
 #   make twitter-feed                     # default: rest 1h between sweeps
+#   make twitter-feed-all                 # no 24h guard: ALL accounts every pass
 #   make twitter-feed ARGS="--one-shot"   # single pass, exit
-#   make twitter-feed ARGS="--min-age 0"  # ignore the 24h guard: walk ALL accounts
+#   make twitter-feed ARGS="--min-age 0"  # same as twitter-feed-all
 #   make twitter-feed ARGS="--rest 1800 --personality-delay 6"
 #
 # The first invocation each day depends on `prod-db-dump-if-stale`
@@ -613,11 +614,21 @@ prod-db-sync: prod-db-dump prod-db-restore
 # forces the full roster (the today-attempted rows just sort last).
 #
 # Ctrl+C exits cleanly: in-flight personality finishes.
-.PHONY: twitter-feed twitter-feed-logs
+.PHONY: twitter-feed twitter-feed-all twitter-feed-logs
 twitter-feed: prod-db-dump-if-stale
 	KNOWLEDGE_ADMIN_TOKEN=$(KNOWLEDGE_ADMIN_TOKEN) \
 	API_URL=https://$(DOMAIN) \
 		scripts/twitter_feed.sh --min-age 24 $(ARGS)
+
+# Same feeder, no 24h guard: EVERY prod twitter account on EVERY pass
+# (today-attempted ones simply sort to the end of the queue). Use when
+# you want a guaranteed full sweep rather than one-per-day coverage.
+# Costs ~635 twikit fetches per pass instead of the day's remainder,
+# so expect more 429 sleeps — `twitter-feed` remains the daily driver.
+twitter-feed-all: prod-db-dump-if-stale
+	KNOWLEDGE_ADMIN_TOKEN=$(KNOWLEDGE_ADMIN_TOKEN) \
+	API_URL=https://$(DOMAIN) \
+		scripts/twitter_feed.sh --min-age 0 $(ARGS)
 
 # Tail the most recent twitter-feed log (handy if the client is
 # running in another tmux pane / screen session).
