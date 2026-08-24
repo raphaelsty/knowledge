@@ -580,13 +580,24 @@ pub async fn timeline(
                     AND e.created_at    < now() - interval '10 minutes'
                     AND e.created_at    > now() - ($10::int || ' days')::interval
              ), 0) >= $11::int) AS already_seen,
-            -- arxiv-paper-from-twitter flag for the paper quota. The
-            -- anchor logic in feed_snapshot prefers the arxiv abs URL
-            -- when a tweet links one, so this catches tweets whose
-            -- primary resource is a paper. The emission loop reserves
-            -- a slot fraction for these, ordered by the existing score
-            -- (VIP-endorsement + recency + twitter engagement).
-            (s.source = 'twitter' AND s.anchor_url LIKE 'https://arxiv.org/abs/%') AS is_paper
+            -- arxiv-paper flag for the paper quota. Keyed on the
+            -- ANCHOR (the resource), not on the representative doc's
+            -- source: feed_snapshot holds one row per anchor and picks
+            -- the visually-richest doc as representative, so a paper
+            -- that happens to have been tweeted shows up as
+            -- source='twitter' while a paper nobody tweeted shows up
+            -- as source='arxiv'. The old predicate required
+            -- source='twitter', which silently excluded every paper
+            -- that came straight from the arxiv fetcher — the quota
+            -- below could only ever be filled by papers someone had
+            -- tweeted. Anchoring on the URL (plus the native source as
+            -- a backstop for rows whose anchor degenerated to the
+            -- canonical) makes both kinds eligible.
+            (
+                   s.anchor_url LIKE 'https://arxiv.org/abs/%'
+                OR s.anchor_url LIKE 'https://arxiv.org/pdf/%'
+                OR s.source = 'arxiv'
+            ) AS is_paper
           FROM feed_snapshot s
          WHERE
                -- Logged-in: sharer_user_ids must intersect followees,
@@ -701,11 +712,13 @@ pub async fn timeline(
          -- the per-viewer-adjusted score for the final ranking
          -- *within* that top slice.
          ORDER BY s.score DESC, s.date DESC NULLS LAST, s.url
-         -- ×3 (was ×2): the emission loop reserves every 3rd slot for
-         -- an arxiv paper, so the candidate set needs enough papers to
-         -- fill that quota even when papers sit lower by score. Still a
-         -- bounded score-index walk (~225 rows for a 75-row page).
-         LIMIT $2 * 3
+         -- ×4 (was ×3, ×2 before that): the emission loop now reserves
+         -- every 2nd slot for an arxiv paper, so the candidate set needs
+         -- proportionally more papers to fill that quota even when papers
+         -- sit lower by score — a bare paper earns no twitter-engagement
+         -- term, so it routinely ranks below a tweet about it. Still a
+         -- bounded score-index walk (~300 rows for a 75-row page).
+         LIMIT $2 * 4
     ";
 
     // Snapshot is the single source of truth — the live CTE that
@@ -756,14 +769,21 @@ pub async fn timeline(
     // Paper quota — guarantee a steady stream of fresh research in the
     // feed instead of letting launches / news / discussion crowd papers
     // out. Every PAPER_SLOT_EVERY-th emitted slot is reserved for the
-    // best-scored remaining arxiv-paper-from-twitter (is_paper). Because
-    // the snapshot `score` already blends VIP-endorsement count +
-    // recency + twitter engagement, "best paper" = exactly the ordering
-    // asked for. =3 → ≥1/3 of the feed is papers (more if papers also
-    // win non-paper slots on raw score). When no paper remains, the slot
-    // falls back to the best general doc, so a paper-sparse page is never
-    // padded with stale filler.
-    const PAPER_SLOT_EVERY: usize = 3;
+    // best-scored remaining arxiv paper (is_paper). Because the snapshot
+    // `score` already blends VIP-endorsement count + recency + twitter
+    // engagement, "best paper" = exactly the ordering asked for. =2 →
+    // ≥1/2 of the feed is papers (more if papers also win non-paper
+    // slots on raw score). When no paper remains, the slot falls back to
+    // the best general doc, so a paper-sparse page is never padded with
+    // stale filler.
+    //
+    // Tuning note: this is a floor, not a cap, and it is the one knob to
+    // reach for when the feed needs more or less research — 3 gives
+    // ≥1/3, 4 gives ≥1/4. It works in tandem with the `is_paper`
+    // predicate above and the `LIMIT $2 * 4` candidate multiplier; a
+    // tighter quota here without a matching multiplier just makes the
+    // fallback fire more often.
+    const PAPER_SLOT_EVERY: usize = 2;
     let mut emit_order: Vec<usize> = Vec::with_capacity(rows.len());
     let mut remaining: Vec<usize> = (0..rows.len()).collect();
     let mut emit_count: std::collections::HashMap<i64, usize> = std::collections::HashMap::new();
