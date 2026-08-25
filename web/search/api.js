@@ -252,9 +252,6 @@
       window.KnowledgeSessionCache.invalidatePrefix(
         `${_PERSONAL_SS_PREFIX}${slug}|`,
       );
-      window.KnowledgeSessionCache.invalidatePrefix(
-        `${_PERSONAL_SS_PREFIX}${slug} `,
-      );
     }
   }
   // Server-side cap on the personal-page payload. 300 fits the
