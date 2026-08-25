@@ -119,21 +119,28 @@ DEFAULT_REFERENCE_COHORT = 48
 # see the note in `refresh_picks`.
 MIN_COHORT = 8
 
-# The search router is rate-limited per client IP (RATE_LIMIT_ENABLED
-# in prod: burst 100, then one slot back every RATE_LIMIT_PER_SECOND
-# seconds — tower_governor's `per_second` is a replenish interval, not
-# a rate). A full bucket covers a whole run, but a drained one turns
-# every search into a 429, and without these retries the run would
-# quietly score a handful of libraries and centre against noise.
-# The API's `retry_after_seconds` is hardcoded to 2 and doesn't
-# reflect the real wait, so we back off on our own schedule.
-RATE_LIMIT_ATTEMPTS = 3
-RATE_LIMIT_BACKOFF_SECS = (5, 20, 60)
+# Two transient conditions cost us the cohort if we don't retry, and a
+# thin cohort means centering against noise:
+#
+#   * 429. The search router is rate-limited per client IP
+#     (RATE_LIMIT_ENABLED in prod: burst 100, then one slot back every
+#     RATE_LIMIT_PER_SECOND seconds — tower_governor's `per_second` is
+#     a replenish interval, not a rate). A full bucket covers a whole
+#     run; a drained one throttles everything. The API's
+#     `retry_after_seconds` is hardcoded to 2 and doesn't reflect the
+#     real wait, so we back off on our own schedule.
+#   * Connection refused / 5xx. The daemon refreshes on startup and
+#     every deploy restarts knowledge-api at the same time, so the
+#     first run reliably raced the API coming back up: 37 of 60
+#     libraries failed that way on the deploy of this file.
+RETRY_ATTEMPTS = 3
+RETRY_BACKOFF_SECS = (5, 20, 60)
 # Once this many libraries in a row have exhausted their retries, the
-# bucket is empty rather than briefly contended — every remaining
-# search would fail the same way. Abort and let the daemon retry on
-# its back-off, instead of grinding through the cohort for an hour.
-RATE_LIMIT_GIVE_UP = 5
+# API is down or the bucket is empty rather than briefly contended —
+# every remaining search would fail the same way. Abort and let the
+# daemon retry on its back-off, instead of grinding through the whole
+# cohort waiting on something systemic.
+GIVE_UP_AFTER = 5
 # Small gap between libraries so a run sips from the burst bucket
 # instead of draining it in one go.
 PACE_SECS = 0.2
@@ -237,8 +244,13 @@ def _post_json(url: str, payload: dict, timeout: int = 180) -> tuple[int, dict |
         return 0, None, str(exc)
 
 
-class RateLimited(RuntimeError):
-    """The search router's bucket is empty, not merely contended."""
+class SearchUnavailable(RuntimeError):
+    """Every attempt for one library hit a transient failure."""
+
+
+def _is_transient(status: int) -> bool:
+    """429 (throttled), 0 (connection refused / timeout), or any 5xx."""
+    return status == 429 or status == 0 or status >= 500
 
 
 def score_owner(
@@ -254,9 +266,9 @@ def score_owner(
     An owner with nothing in `__all__` gets all zeros, not None —
     that's a real answer ("no signal"), not an error.
 
-    Raises RateLimited if every attempt was throttled, so the caller
-    can tell "this library has nothing" from "the API won't talk to
-    us right now".
+    Raises SearchUnavailable if every attempt hit a transient failure,
+    so the caller can tell "this library has nothing" from "the API
+    won't talk to us right now".
     """
     payload = {
         "queries": queries,
@@ -267,18 +279,18 @@ def score_owner(
     url = f"{api_url}/indices/{ALL_INDEX}/search/filtered_with_encoding"
 
     status, body, err = 0, None, None
-    for attempt in range(RATE_LIMIT_ATTEMPTS):
+    for attempt in range(RETRY_ATTEMPTS):
         status, body, err = _post_json(url, payload)
-        if status != 429:
+        if not _is_transient(status):
             break
-        if attempt == RATE_LIMIT_ATTEMPTS - 1:
+        if attempt == RETRY_ATTEMPTS - 1:
             break
-        wait = RATE_LIMIT_BACKOFF_SECS[attempt]
-        log(f"hn.picks.score.rate_limited owner={owner} attempt={attempt + 1} waiting={wait}s")
+        wait = RETRY_BACKOFF_SECS[attempt]
+        log(f"hn.picks.score.retrying owner={owner} status={status} attempt={attempt + 1} waiting={wait}s")
         time.sleep(wait)
 
-    if status == 429:
-        raise RateLimited(f"owner={owner} throttled after {RATE_LIMIT_ATTEMPTS} attempts")
+    if _is_transient(status):
+        raise SearchUnavailable(f"owner={owner} status={status} after {RETRY_ATTEMPTS} attempts ({err})")
 
     if status != 200 or not body:
         log(f"hn.picks.score.failed owner={owner} status={status} err={err}")
@@ -403,19 +415,19 @@ def refresh_picks(
     # ── Score ───────────────────────────────────────────────────────
     raw: dict[int, list[float]] = {}
     name_by_id: dict[int, str] = {}
-    throttled_in_a_row = 0
+    failed_in_a_row = 0
     for i, (uid, username) in enumerate(cohort, start=1):
         try:
             scores = score_owner(api_url, username, queries, log)
-        except RateLimited as exc:
-            throttled_in_a_row += 1
-            if throttled_in_a_row >= RATE_LIMIT_GIVE_UP:
-                raise RateLimited(
-                    f"{throttled_in_a_row} libraries throttled in a row at {i}/{len(cohort)} "
-                    f"— search bucket is empty, retrying later ({exc})"
+        except SearchUnavailable as exc:
+            failed_in_a_row += 1
+            if failed_in_a_row >= GIVE_UP_AFTER:
+                raise SearchUnavailable(
+                    f"{failed_in_a_row} libraries failed in a row at {i}/{len(cohort)} "
+                    f"— search is unavailable, retrying later ({exc})"
                 ) from exc
             continue
-        throttled_in_a_row = 0
+        failed_in_a_row = 0
         if scores is None:
             continue
         if not any(scores):

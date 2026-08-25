@@ -516,6 +516,12 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+      # Every search goes through the API, and the daemon refreshes on
+      # startup — without this it races the API's own restart on each
+      # deploy. `service_started` isn't "listening", so the scorer
+      # retries transient failures too.
+      knowledge-api:
+        condition: service_started
     deploy:
       resources:
         limits:
