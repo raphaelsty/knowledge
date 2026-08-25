@@ -1829,21 +1829,24 @@
         // In relevance mode, show the per-source hit count from
         // ColBERT (helps the user see which chips are most relevant).
         // Otherwise show the static total — unchanged behaviour.
-        // EXCEPTION: in big-selection mode the rail is built from
-        // the result set without counts, so we omit the column
-        // entirely. The chip still shows the icon + label and stays
-        // searchable.
-        const _allOnly = useAllOnly([...state.libs]);
+        // EXCEPTION: chips derived from the result set
+        // (`rebuildAllSourcesFromDocs`) carry no `count`, so there is
+        // nothing to render — ask the chip rather than inferring it
+        // from the selection size. This used to read
+        // `useAllOnly([...state.libs])`, which is true for a single
+        // library, so the personal page lost its counts even though
+        // the comment below says it keeps them.
         // Feed (libs.size === 0): hide the count column entirely. The
         // aggregated count is still used to rank the chips (see the
         // sort comparator above), it's just visual clutter at that
         // scale. Personal page (libs.size === 1) keeps the count so
         // the user can see how many docs each source contributes.
         const _onFeed = state.libs.size === 0;
-        const displayCount =
-          q && rel && rel[s.key] != null ? rel[s.key] : s.count || 0;
+        const inRelevanceMode = !!(q && rel && rel[s.key] != null);
+        const displayCount = inRelevanceMode ? rel[s.key] : s.count || 0;
+        const hasCount = inRelevanceMode || typeof s.count === "number";
         const countHtml =
-          _allOnly || _onFeed
+          !hasCount || _onFeed
             ? ""
             : `<span class="count">${displayCount}</span>`;
         return `<label class="${cls.join(" ")}">
@@ -5669,13 +5672,25 @@
     }
     if (my !== reqId) return;
     state.lastDocs = docs;
-    // Source rail: when the selection is large enough that we
-    // skipped per-slug `getSources()` calls, derive the rail from
-    // the result set itself — only sources that appear in the
-    // visible docs, no counts. Search-by-text on the rail still
-    // works against this list. Below the threshold the rail stays
-    // driven by per-slug data (canonical counts).
-    if (useAllOnly([...state.libs])) {
+    // Source rail: derive it from the result set — only sources
+    // present in the visible docs, no counts — but ONLY when we
+    // actually lack canonical per-slug counts, i.e. a selection large
+    // enough that its `getSources()` hydration was skipped.
+    //
+    // Gate on the data itself, not on `useAllOnly()`. That predicate
+    // answers a different question — whether to query the merged
+    // `__all__` index instead of per-user ones — and once
+    // ALL_INDEX_THRESHOLD dropped to 1 it became true for a single
+    // library too. Every personal page then rebuilt its rail from the
+    // loaded page, and because that fetch is capped at
+    // PERSONAL_DOCS_LIMIT (300) rows ordered by score, a 135-source
+    // library offered about four chips: the sources that happened to
+    // appear near the top. The canonical list was already in
+    // `state.perSlugSources[slug]` from boot, and this threw it away.
+    const haveCanonicalSources = [...state.libs].every(
+      (s) => (state.perSlugSources[s] || []).length > 0,
+    );
+    if (!haveCanonicalSources) {
       rebuildAllSourcesFromDocs(docs);
       renderSrc();
     }
