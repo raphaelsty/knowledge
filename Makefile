@@ -134,30 +134,38 @@ backfill-sources:
 #
 #   1. make run             — full pipeline for every personality
 #                             (fetch all sources, clean, tag, index).
-#                             Long-running. Independent of (2).
-#   2. make hn-frontpage    — snapshot the HN front page and refresh
-#                             every user's per-feed HN picks.
-#                             Fast (~seconds × #users). Only needs the
-#                             API up — does NOT need (1) to have run.
+#                             Long-running.
 #
-# Run order doesn't matter; they share no state. In cron, schedule
-# them at separate times so the API isn't competing with the pipeline
-# embedder. `make daily` runs both sequentially for convenience.
+# The HN front-page picks used to be item (2) here, as
+# `make hn-frontpage`. They are NOT any more: nothing ever ran that
+# target in prod (and `Dockerfile.daemons` doesn't copy `scripts/`, so
+# nothing could have), which left the feed with one hand-made run from
+# May 2026. It is now the `knowledge-hn-frontpage` compose service,
+# refreshing itself daily like every other daemon. `make hn-frontpage`
+# below is a debug tool, not part of the production contract.
 
-daily: run hn-frontpage
+daily: run
 
-# Snapshot the current HackerNews front page and refresh every user's
-# personalised picks. The picks are surfaced in the feed (NOT the
-# personal page) until the next run replaces them. Bookmarking a pick
-# copies it into the user's `documents` with indexed=FALSE so the
-# next `make run` indexes it; from there it behaves like any other
-# bookmark.
+# Debug the HackerNews picks job by hand. PROD RUNS THE DAEMON
+# (`knowledge-hn-frontpage` → sources.utils.hn_frontpage_daemon); this
+# target shares its logic via `sources.hackernews.picks`, so what you
+# see here is what prod does.
 #
-#   make hn-frontpage                              # everyone
-#   make hn-frontpage SLUG=raphael-sourty          # one user (debug)
-#   make hn-frontpage DRY=1                        # fetch + score, no writes
-#   make hn-frontpage TOP_PER_USER=12 THRESHOLD=7  # tune relevance
-#   make hn-frontpage NO_SNAPSHOT=1                # re-score against latest run
+# Picks surface in the feed (NOT the personal page) until the next run
+# replaces them. Bookmarking a pick copies it into the user's
+# `documents` with indexed=FALSE so the next `make run` indexes it;
+# from there it behaves like any other bookmark.
+#
+# THRESHOLD is a z-score floor (default 0.5), not a raw score — picks
+# are ranked by how much a user's library agrees with an article
+# *relative to everyone else's*, because the raw ColBERT mean just
+# ranks by title length. See sources/hackernews/picks.py.
+#
+#   make hn-frontpage                                # everyone
+#   make hn-frontpage SLUG=raphael-sourty DEBUG=1    # one user, show picks
+#   make hn-frontpage DRY=1                          # score, write nothing
+#   make hn-frontpage TOP_PER_USER=12 THRESHOLD=0.8  # tune relevance
+#   make hn-frontpage NO_SNAPSHOT=1                  # re-score latest run
 hn-frontpage:
 	@DATABASE_URL=$(DATABASE_URL) API_URL=http://localhost:$(PORT) \
 	  uv run python scripts/hn_frontpage.py \

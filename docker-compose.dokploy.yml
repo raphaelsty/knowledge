@@ -489,6 +489,37 @@ services:
           memory: 256M
           cpus: "0.05"
 
+  # Daily HackerNews front page → per-user picks, injected into the
+  # feed by the `hn_user_picks` join in handlers/follows.rs.
+  #
+  # This service is the whole reason HN cards appear at all: the job
+  # used to live in `scripts/` behind `make hn-frontpage`, which
+  # nothing scheduled and which `Dockerfile.daemons` doesn't even
+  # copy into the image — so it ran exactly once, by hand, in May.
+  #
+  # Sleeps ~24 h out of every 24 h. The working minute is spent
+  # waiting on ~57 HTTP round trips to knowledge-api (one batched
+  # search per user with a live index), so the CPU ask is nominal;
+  # memory holds a 57 × 30 float matrix plus psycopg state.
+  #
+  # Tunables (override in the Dokploy UI):
+  #   HN_REFRESH_INTERVAL_SECS  cadence, default 86400
+  #   HN_TOP                    front-page stories fetched, default 30
+  #   HN_TOP_PER_USER           max picks per user, default 10
+  #   HN_THRESHOLD              z floor for a pick, default 0.5
+  #                             (raise for fewer/more relevant picks)
+  knowledge-hn-frontpage:
+    <<: *daemon-base
+    command: ["python", "-m", "sources.utils.hn_frontpage_daemon"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: "0.05"
+
   # Pedagogical title / summary rewriter via OpenAI (default model
   # gpt-4o-mini; override `OPENAI_CLEAN_MODEL` in Dokploy env to swap
   # in a cheaper one, e.g. `gpt-4.1-nano`). I/O-bound on the OpenAI
