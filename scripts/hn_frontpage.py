@@ -13,27 +13,34 @@ picks — it shares every line of logic with the daemon via
 
 Flow, in `sources.hackernews.picks.refresh_picks`:
     1. Snapshot the current HN front page (Firebase API).
-    2. Score every article against each user's library through
-       ``/indices/{name}/search_with_encoding``.
-    3. Convert to per-article z-scores across the cohort, so ranking
+    2. Score every article against each user's library by querying
+       ``__all__`` scoped with ``owner = ?`` (the per-personality
+       indices this job used to hit no longer exist).
+    3. Double-center the (user × article) score matrix, so ranking
        reflects *this* user's affinity instead of title length. (Read
        the module docstring — the raw ColBERT mean correlates +0.79
        with title token count and gives every user the same picks.)
     4. Keep the top-N above the z threshold, re-order by HN upvotes.
     5. Insert the run + REPLACE each user's picks atomically.
 
+Picks are written only for accounts that can log in, since that's all
+the feed renders them for; a larger reference cohort of VIPs is scored
+to give the centering a baseline.
+
 Usage:
     DATABASE_URL=postgresql://... API_URL=http://localhost:8080 \\
       uv run python scripts/hn_frontpage.py [flags]
 
 Flags:
-    --slug NAME      score for one user only (still scores a small
-                     reference cohort, since z-scores need a baseline)
+    --slug NAME      write picks for this account only (it still
+                     scores the reference cohort, which centering needs)
     --top-per-user N keep at most N picks per user (default 10)
     --top N          fetch only the top-N front-page items
                      (default 30 — matches HN's own front page)
     --threshold Z    z floor a pick must clear (default 0.5)
-    --limit N        stop after N users
+    --reference N    reference libraries scored for the baseline
+                     (default 48)
+    --limit N        stop after N audience users
     --dry            fetch + score, write nothing at all (no run row
                      either, so the live feed is untouched)
     --no-snapshot    skip the fetch and score against the most recent
@@ -53,6 +60,7 @@ _PROJECT_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(_PROJECT_ROOT))
 
 from sources.hackernews.picks import (  # noqa: E402
+    DEFAULT_REFERENCE_COHORT,
     DEFAULT_THRESHOLD,
     DEFAULT_TOP,
     DEFAULT_TOP_PER_USER,
@@ -74,7 +82,13 @@ def parse_args() -> argparse.Namespace:
         default=DEFAULT_THRESHOLD,
         help="Minimum z-score for a pick (default %(default)s).",
     )
-    p.add_argument("--limit", type=int, default=0, help="Stop after N users.")
+    p.add_argument(
+        "--reference",
+        type=int,
+        default=DEFAULT_REFERENCE_COHORT,
+        help="Reference libraries scored for the baseline (default %(default)s).",
+    )
+    p.add_argument("--limit", type=int, default=0, help="Stop after N audience users.")
     p.add_argument("--dry", action="store_true")
     p.add_argument("--no-snapshot", action="store_true")
     p.add_argument(
@@ -94,6 +108,7 @@ def main() -> int:
             top=args.top,
             top_per_user=args.top_per_user,
             threshold=args.threshold,
+            reference=args.reference,
             slug=args.slug,
             limit=args.limit,
             dry=args.dry,

@@ -498,9 +498,9 @@ services:
   # copy into the image — so it ran exactly once, by hand, in May.
   #
   # Sleeps ~24 h out of every 24 h. The working minute is spent
-  # waiting on ~57 HTTP round trips to knowledge-api (one batched
-  # search per user with a live index), so the CPU ask is nominal;
-  # memory holds a 57 × 30 float matrix plus psycopg state.
+  # waiting on ~50 HTTP round trips to knowledge-api (one batched
+  # `__all__` search per library, scoped by owner), so the CPU ask is
+  # nominal; memory holds a ~50 × 30 float matrix plus psycopg state.
   #
   # Tunables (override in the Dokploy UI):
   #   HN_REFRESH_INTERVAL_SECS  cadence, default 86400
@@ -508,6 +508,8 @@ services:
   #   HN_TOP_PER_USER           max picks per user, default 10
   #   HN_THRESHOLD              z floor for a pick, default 0.5
   #                             (raise for fewer/more relevant picks)
+  #   HN_REFERENCE_COHORT       extra libraries scored purely to give
+  #                             the centering a baseline, default 48
   knowledge-hn-frontpage:
     <<: *daemon-base
     command: ["python", "-m", "sources.utils.hn_frontpage_daemon"]

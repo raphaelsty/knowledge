@@ -16,8 +16,9 @@ entry nobody remembers to add.
 
 The scoring lives in `sources.hackernews.picks`, shared with the debug
 CLI so the thing running in prod is the thing you can reproduce
-locally. See that module for why picks are z-scored per article rather
-than ranked by the raw ColBERT mean.
+locally. See that module for why it queries `__all__` with an owner
+filter rather than the per-personality indices that no longer exist,
+and why the score matrix is double-centered rather than used raw.
 
 Cadence
 -------
@@ -39,6 +40,7 @@ import os
 import time
 
 from sources.hackernews.picks import (
+    DEFAULT_REFERENCE_COHORT,
     DEFAULT_THRESHOLD,
     DEFAULT_TOP,
     DEFAULT_TOP_PER_USER,
@@ -66,13 +68,15 @@ def main() -> None:
     top = int(os.environ.get("HN_TOP", DEFAULT_TOP))
     top_per_user = int(os.environ.get("HN_TOP_PER_USER", DEFAULT_TOP_PER_USER))
     threshold = float(os.environ.get("HN_THRESHOLD", DEFAULT_THRESHOLD))
+    reference = int(os.environ.get("HN_REFERENCE_COHORT", DEFAULT_REFERENCE_COHORT))
 
     log.info(
-        "hn_frontpage.daemon.start interval=%ds top=%d top_per_user=%d threshold=%.2f api=%s",
+        "hn_frontpage.daemon.start interval=%ds top=%d top_per_user=%d threshold=%.2f reference=%d api=%s",
         REFRESH_INTERVAL_SECS,
         top,
         top_per_user,
         threshold,
+        reference,
         api_url,
     )
 
@@ -86,11 +90,13 @@ def main() -> None:
                 top=top,
                 top_per_user=top_per_user,
                 threshold=threshold,
+                reference=reference,
                 log=log.info,
             )
             log.info(
-                "hn_frontpage.refresh.complete run=%s users=%d picks=%d elapsed=%.1fs",
+                "hn_frontpage.refresh.complete run=%s audience=%d users=%d picks=%d elapsed=%.1fs",
                 stats.run_id,
+                stats.audience,
                 stats.users_with_picks,
                 stats.total_picks,
                 time.monotonic() - start,
