@@ -1443,7 +1443,11 @@
   async function ensureLibLoaded(s) {
     if (!state.perSlugSources[s]) {
       try {
-        state.perSlugSources[s] = await K.getSources(s);
+        const list = await K.getSources(s);
+        // Always land on an array. `rebuildAllSources()` retries any
+        // slug whose entry is falsy, so a `null`/`undefined` here
+        // would turn that retry into an endless refetch loop.
+        state.perSlugSources[s] = Array.isArray(list) ? list : [];
       } catch {
         state.perSlugSources[s] = [];
       }
