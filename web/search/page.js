@@ -54,6 +54,17 @@
   // Threshold of 1 means "as soon as a library is selected, use
   // `__all__`+owner" — there is no per-slug fanout to fall back to.
   const ALL_INDEX_THRESHOLD = 1;
+  // Largest selection we'll hydrate per-slug source lists for (one
+  // `/api/users/<slug>/sources` call each, TTL-cached). Above this the
+  // rail is derived from the result set instead — the only case where
+  // that fallback is acceptable, since it can only ever show sources
+  // present in the rows we happened to load.
+  //
+  // Deliberately NOT `ALL_INDEX_THRESHOLD`. That constant answers
+  // "which index do we query?" and is 1; reusing it here meant every
+  // personal page took the degraded path and offered a handful of
+  // chips out of the user's real total.
+  const SRC_HYDRATE_MAX_LIBS = 10;
 
   /* Ontology slug → display label. Mirrors the seed in
    * sources/sql/categories.sql so the library picker and onboarding
@@ -1355,6 +1366,28 @@
   }
 
   function rebuildAllSources() {
+    // Self-heal missing hydration. A lib with no entry in
+    // `perSlugSources` contributes nothing, so the rail silently
+    // empties — and boot only hydrates the *host* slug. Every later
+    // caller (fav toggle, query edit, navigating to another slug,
+    // any refresh that lands here) could therefore wipe a rail that
+    // had been correct a moment earlier. Fetch what's missing and
+    // rebuild when it lands.
+    //
+    // Terminates: `ensureLibLoaded` always assigns — `[]` on failure —
+    // so the retry sees no missing slugs and doesn't recurse.
+    // `K.getSources` is TTL-cached and in-flight-coalesced, so the
+    // extra calls are near-free and can't stampede.
+    const unhydrated =
+      state.libs.size <= SRC_HYDRATE_MAX_LIBS
+        ? [...state.libs].filter((s) => !state.perSlugSources[s])
+        : [];
+    if (unhydrated.length) {
+      Promise.all(unhydrated.map((s) => ensureLibLoaded(s))).then(() => {
+        rebuildAllSources();
+        renderSrc();
+      });
+    }
     const map = new Map();
     for (const s of state.libs) {
       for (const src of state.perSlugSources[s] || []) {
@@ -1962,8 +1995,16 @@
         for (const s of p.sites) state.sources.add(s);
         writeQ();
       }
-      rebuildAllSources();
-      renderSrc();
+      // Pick the rebuilder that matches the surface, same rule as the
+      // fav-toggle handlers: `rebuildAllSources()` reads
+      // `state.perSlugSources` per active lib, so on the feed (no libs)
+      // it would blank the rail on every keystroke.
+      if (state.libs.size === 0) {
+        rebuildAllSourcesForFeed().then(renderSrc);
+      } else {
+        rebuildAllSources();
+        renderSrc();
+      }
       writeUrl();
       // The "Following only" toggle's visibility depends on whether
       // there's an active query — sync after each keystroke.
@@ -5672,25 +5713,20 @@
     }
     if (my !== reqId) return;
     state.lastDocs = docs;
-    // Source rail: derive it from the result set — only sources
-    // present in the visible docs, no counts — but ONLY when we
-    // actually lack canonical per-slug counts, i.e. a selection large
-    // enough that its `getSources()` hydration was skipped.
+    // Source rail. A personal page always offers the owner's FULL
+    // source list, never just the sources present in the rows we
+    // loaded: that fetch is capped at PERSONAL_DOCS_LIMIT (300) rows
+    // ordered by score, so deriving the rail from it offered ~9 chips
+    // out of 135 — and arbitrary ones, with one-doc blogs listed while
+    // `hackernews` (137 docs) was missing. `rebuildAllSources()`
+    // hydrates whatever it needs, so there's nothing to fall back to.
     //
-    // Gate on the data itself, not on `useAllOnly()`. That predicate
-    // answers a different question — whether to query the merged
-    // `__all__` index instead of per-user ones — and once
-    // ALL_INDEX_THRESHOLD dropped to 1 it became true for a single
-    // library too. Every personal page then rebuilt its rail from the
-    // loaded page, and because that fetch is capped at
-    // PERSONAL_DOCS_LIMIT (300) rows ordered by score, a 135-source
-    // library offered about four chips: the sources that happened to
-    // appear near the top. The canonical list was already in
-    // `state.perSlugSources[slug]` from boot, and this threw it away.
-    const haveCanonicalSources = [...state.libs].every(
-      (s) => (state.perSlugSources[s] || []).length > 0,
-    );
-    if (!haveCanonicalSources) {
+    // Only a selection too large to hydrate falls back to the result
+    // set. This used to be gated on `useAllOnly()`, which answers a
+    // different question — merged `__all__` index vs per-user ones —
+    // and became true for a single library once ALL_INDEX_THRESHOLD
+    // dropped to 1, which is how the personal page ended up degraded.
+    if (state.libs.size > SRC_HYDRATE_MAX_LIBS) {
       rebuildAllSourcesFromDocs(docs);
       renderSrc();
     }
@@ -9310,13 +9346,15 @@
   // personality page so Google indexes that view, not the root.
   syncCanonical();
   if (extraLibsFromUrl.length) {
-    if (useAllOnly([...state.libs])) {
+    if (state.libs.size > SRC_HYDRATE_MAX_LIBS) {
       // Large selection — skip per-slug source hydration entirely.
       // Search/browse routes through `__all__`; the source chips
       // populate from the result set itself via renderResultSources().
     } else {
       // Small selection — wait for source-list hydration so the rail
-      // is accurate on the first paint.
+      // is accurate on the first paint. (Gated on `useAllOnly()`
+      // before, which is true for a single library, so this branch
+      // never ran and the rail started out degraded.)
       await Promise.all(extraLibsFromUrl.map((s) => ensureLibLoaded(s)));
       rebuildAllSources();
     }
