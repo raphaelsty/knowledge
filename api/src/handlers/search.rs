@@ -106,6 +106,99 @@ pub(crate) fn fetch_metadata_for_docs(
         .collect())
 }
 
+/// How deep into the unfiltered BM25 ranking `keyword_search_subset` reads on
+/// its first pass. Deep enough that any filter admitting ~2 % of a query's
+/// matches fills a 1 000-document `fetch_k` outright; shallow enough that a
+/// stopword query (`the` matches 399 k rows in the `__all__` index) doesn't
+/// drag the whole corpus through SQLite's sorter — bounded costs 0.5 s there
+/// against 1.6 s unbounded.
+const KEYWORD_SCAN_DEPTH: usize = 50_000;
+
+/// Second-pass depth: past any real index, so the pass is effectively
+/// unbounded. Not `usize::MAX`, which next-plaid casts to `LIMIT -1`.
+const KEYWORD_SCAN_ALL: usize = i32::MAX as usize;
+
+/// BM25 over a metadata-filtered subset of an index.
+///
+/// This replaces `text_search::search_filtered`, which narrows the FTS5 query
+/// with `… MATCH ? AND rowid IN (<subset>)`. That reads like a pre-filter and
+/// behaves like the opposite: SQLite hands the rowid list to FTS5's
+/// `xBestIndex` as an *equality* constraint — the plan reads `SCAN
+/// METADATA_FTS VIRTUAL TABLE INDEX 0:=M1` — then drives the loop from the
+/// ids, re-running the whole full-text query once per id at ~100 µs a go.
+///
+/// So the keyword half of a filtered hybrid search cost O(subset), and got
+/// *slower* the more documents the filter let through. Against the
+/// 685 k-document `__all__` index: 16 ms unfiltered, 3.7 s behind the
+/// `github` source chip (41 k ids), 6.5 s behind `github`+`arxiv`, 37 s
+/// behind `twitter` (499 k) — which is what made picking a source in the left
+/// rail feel like the search had hung.
+///
+/// Rank unfiltered and intersect here instead. FTS5 has to score every match
+/// before it can honour `ORDER BY`, so a deeper `LIMIT` costs barely more
+/// than a shallow one (94 k matches: 271 ms unbounded vs 322 ms at `LIMIT
+/// 600`) and one wide pass beats anything that re-runs the MATCH.
+///
+/// The answer is exact — the unfiltered ranking restricted to the subset,
+/// the same rows `search_filtered` returned. A first pass reading
+/// `KEYWORD_SCAN_DEPTH` deep settles it whenever it either fills `fetch_k`
+/// (everything below is lower-scoring by construction) or runs out of
+/// matches. Only the combination that satisfies neither — a query matching
+/// more than 50 k documents behind a filter narrow enough to contribute few
+/// of them, e.g. `the` behind the `huggingface` chip — pays a second,
+/// unbounded pass.
+///
+/// Fixed upstream in lightonai/next-plaid#183; this can go back to
+/// `search_filtered` once the API builds against a release carrying it.
+fn keyword_search_subset(
+    path: &str,
+    query: &str,
+    fetch_k: usize,
+    subset: &[i64],
+) -> next_plaid::Result<next_plaid::search::QueryResult> {
+    if subset.is_empty() || fetch_k == 0 {
+        return Ok(next_plaid::search::QueryResult {
+            query_id: 0,
+            passage_ids: vec![],
+            scores: vec![],
+        });
+    }
+
+    let allowed: HashSet<i64> = subset.iter().copied().collect();
+    let mut depth = fetch_k.max(KEYWORD_SCAN_DEPTH);
+
+    loop {
+        let ranked = text_search::search(path, query, depth)?;
+        let saturated = ranked.passage_ids.len() >= depth;
+
+        let mut passage_ids: Vec<i64> = Vec::new();
+        let mut scores: Vec<f32> = Vec::new();
+        for (id, score) in ranked.passage_ids.into_iter().zip(ranked.scores) {
+            if !allowed.contains(&id) {
+                continue;
+            }
+            passage_ids.push(id);
+            scores.push(score);
+            if passage_ids.len() == fetch_k {
+                break;
+            }
+        }
+
+        // Short of `fetch_k` while the pass was still saturated means more
+        // subset rows may sit below the window — widen once and settle it.
+        if passage_ids.len() < fetch_k && saturated && depth < KEYWORD_SCAN_ALL {
+            depth = KEYWORD_SCAN_ALL;
+            continue;
+        }
+
+        return Ok(next_plaid::search::QueryResult {
+            query_id: 0,
+            passage_ids,
+            scores,
+        });
+    }
+}
+
 /// Filter + re-rank search results using `feed_snapshot`.
 ///
 /// Two passes:
@@ -843,7 +936,7 @@ pub async fn search(
                         None
                     } else {
                         let result = if let Some(ref sub) = subset {
-                            text_search::search_filtered(&path_bg, &tq, fetch_k, sub)
+                            keyword_search_subset(&path_bg, &tq, fetch_k, sub)
                         } else {
                             text_search::search(&path_bg, &tq, fetch_k)
                         };
