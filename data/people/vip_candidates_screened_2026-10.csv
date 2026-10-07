@@ -1,0 +1,109 @@
+handle,name,affiliation,area,rating,why,graph_rank_90d,graph_score_90d,sharers_90d,sharers_30d,refs_30d,paper_ratio,last_seen
+wen_kaiyue,Kaiyue Wen,Stanford University,"LLM optimization, RL for LLMs, pretraining science",3,"Steady stream of own papers (optimizers, actor-critic RL for LLMs, research-idea novelty)",46,27.17,16,12.0,23.0,0.28,2026-10-07
+yifanzhang_,Yifan Zhang,Princeton University,"Transformer architectures, positional encodings, test-time learning",3,"High paper-link rate (pap 0.67); GRAPE, DeepLoop, fast-weight attention papers",71,22.5,14,6.0,7.0,0.7,2026-09-14
+a1zhang,Alex Zhang,MIT CSAIL (PhD student),"recursive LMs, agents, tool calling",3,"Pushes own RLM research, papers and technical blogs",103,18.45,18,3.0,4.0,0.09,2026-09-29
+michaelyli_,Michael Y. Li,Stanford University,"LM pretraining, inference-time compute",3,"Shares original research threads (self-play pretraining, parallel sampling efficiency)",142,15.19,14,14.0,15.0,0.07,2026-09-27
+kellerjordan0,Keller Jordan,OpenAI,"optimization (Muon), speedruns, pretraining",3,Muon / NanoGPT speedrun author; substantive research takes,167,14.23,18,4.0,7.0,0.09,2026-09-14
+zhijianliu_,Zhijian Liu,UC San Diego,"efficient inference, speculative decoding (DFlash)",3,Faculty pushing own efficient-LLM research,171,14.09,12,1.0,1.0,0.0,2026-10-03
+maksym_andr,Maksym Andriushchenko,ELLIS / Max Planck Tuebingen,"AI safety, robustness, agent evals",3,Steady stream of new safety/alignment papers and benchmarks,188,13.48,13,8.0,10.0,0.1,2026-10-03
+jianlin_s,Jianlin Su,Moonshot AI (Kimi),"optimization, attention, positional encoding (RoPE), scaling laws",3,"Prolific technical blogger (Muon/Shampoo, convex optimization series, linear attention); deep original research posts",202,12.78,9,2.0,2.0,0.06,2026-09-28
+krzakalaf,Florent Krzakala,EPFL,"Statistical physics of ML, learning theory",3,"Senior academic pushing theory papers (pap 0.54), with substantive commentary",220,12.23,8,6.0,7.0,0.55,2026-10-05
+jitendramalikcv,Jitendra Malik,UC Berkeley / Amazon,"computer vision, robotics",3,Top CV researcher with substantive technical commentary,241,11.73,8,7.0,13.0,0.1,2026-09-21
+ssokota,Samuel Sokota,CMU / Meta FAIR,"Game theory, multi-agent RL",3,Lead author of a Nature paper on superhuman Stratego AI,246,11.69,11,11.0,12.0,0.0,2026-10-02
+sadhikamalladi,Sadhika Malladi,Princeton / Microsoft Research,"deep learning theory, fine-tuning, RL prep",3,High paper ratio; theory blog and new papers,283,10.88,7,6.0,6.0,1.0,2026-09-14
+sh_reya,Shreya Shankar,CMU (incoming asst prof) / UC Berkeley,"data systems, LLM pipelines, evals",3,Shares own DB+LLM research projects and eval writing,324,9.91,5,3.0,20.0,0.03,2026-10-03
+neelnanda5,Neel Nanda,Google DeepMind,"mechanistic interpretability, AGI safety",3,"Leading interp researcher; shares GDM safety papers (debate, CoT monitorability) and mentors MATS",376,9.31,9,6.0,8.0,0.0,2026-10-06
+rulinshao,Rulin Shao,Univ. of Washington / AI2,"retrieval, deep research agents, RL rewards",3,"DR Tulu, Spurious Rewards, context-management research",396,9.13,9,9.0,9.0,0.0,2026-10-01
+aaroth,Aaron Roth,University of Pennsylvania,"learning theory, algorithmic fairness, AI alignment foundations",3,Theory professor posting substantive threads on AI-for-math and the mathematical foundations of alignment,419,8.79,7,6.0,9.0,0.07,2026-09-25
+alec_helbling,Alec Helbling,Georgia Tech,"diffusion/flow models, ML visual explainers",3,Clear technical threads on diffusion and flow-based reasoning models; strong explainer of papers,435,8.65,8,6.0,7.0,0.0,2026-09-22
+gordic_aleksa,Aleksa Gordic,Independent (LLM pretraining),"LLM pretraining, GPU/TPU systems, architectures",3,In-depth technical blog posts (collective communication) and substantive pretraining/synthetic-data threads,443,8.51,12,3.0,3.0,0.17,2026-09-19
+anirudhg9119,Anirudh Goyal,"Meta (ex-Google DeepMind, Mila)","reasoning, agents, test-time compute",3,"Research threads on agentic meta-reasoning, parallel draft-distill-refine reasoning, compute-optimal recurrence (pap 0.50)",445,8.48,7,5.0,5.0,0.38,2026-10-02
+randall_balestr,Randall Balestriero,Brown University / Meta (ex-postdoc with LeCun),"self-supervised learning, JEPA, world models",3,Pushes his own JEPA/SIGReg/world-model papers and workshops (pap 0.40),642,6.8,4,3.0,9.0,0.23,2026-10-06
+valentindebort1,Valentin De Bortoli,Google DeepMind,"diffusion models, generative modelling theory",3,Core diffusion researcher; shares new papers such as Simplex Diffusion Models,659,6.64,6,6.0,6.0,0.17,2026-09-29
+__alpoge__,Levent Alpöge,Mathematician (Harvard),"Number theory, AI-assisted mathematics",2,Research mathematician sharing new results and AI-math work,11,59.18,78,11.0,13.0,0.02,2026-10-07
+xeophon,Florian Brand,Prime Intellect / Interconnects,"LLM evals, open models",2,Eval-focused analysis of open models; Interconnects contributor,14,47.38,42,23.0,28.0,0.0,2026-10-03
+kotekjedi_ml,Alexander Panfilov,ELLIS Tübingen / MPI-IS,"LLM security, jailbreaks, reasoning extraction",2,Own adversarial-ML papers (hidden reasoning extraction attacks),27,35.25,42,4.0,4.0,0.0,2026-09-30
+ryangreenblatt,Ryan Greenblatt,Redwood Research,"AI control, alignment",2,Substantive alignment research and incident analysis,38,29.49,29,8.0,11.0,0.02,2026-09-28
+classiclarryd,Larry Dial,Open Athena / Marin,"Open pretraining, scaling laws, NanoGPT speedrun",2,Technical threads on Marin MoE runs and scaling-law simulation,42,27.62,18,13.0,22.0,0.11,2026-10-03
+willccbb,Will Brown,Prime Intellect,"RL for LLMs, agent environments",2,"Well-known RL/verifiers researcher; technical posts (RLMs, reward hacking)",53,25.95,31,0.0,0.0,0.06,2026-08-19
+industriaalist,Samip Dahal,Independent research lab,"Scaling laws, zeroth-order optimization, looped models",2,"Original research threads (backprop-free pretraining, looping with model growth)",62,23.92,19,18.0,28.0,0.06,2026-10-06
+micahcarroll,Micah Carroll,OpenAI / UC Berkeley,"Alignment, CoT monitorability",2,Alignment researcher sharing monitoring/control work,68,23.19,18,11.0,11.0,0.0,2026-09-29
+acerfur,"(AcerFur, real name unknown)",Math student (ex-OpenAI intern),"AI for mathematics, analytic number theory",2,Detailed technical threads on AI-produced math results,87,20.56,18,13.0,17.0,0.03,2026-10-07
+anton_lozhkov,Anton Lozhkov,Hugging Face,"code LLMs, open datasets (The Stack, StarCoder)",2,Researcher behind open code datasets; technical posts,88,20.43,18,0.0,0.0,0.0,2026-07-24
+evanhub,Evan Hubinger,Anthropic,"Alignment, deceptive alignment",2,"Leading alignment researcher (sleeper agents, alignment stress-testing)",102,18.52,21,20.0,20.0,0.0,2026-09-09
+vanstriendaniel,Daniel van Strien,Hugging Face,"Datasets, OCR data, open ML tooling",2,Shares datasets and practical data/training resources,116,17.3,14,5.0,8.0,0.0,2026-10-02
+tomekkorbak,Tomek Korbak,OpenAI (ex-UK AISI),"AI safety, CoT monitorability",2,Safety researcher pushing monitorability research and reports,118,17.18,18,10.0,10.0,0.0,2026-09-26
+ajeya_cotra,Ajeya Cotra,METR (ex-Open Phil),"AI forecasting, safety evaluation",2,Serious research-minded writing on AI risk and evals,158,14.49,13,4.0,4.0,0.0,2026-09-29
+pi010101,Paata Ivanisvili,UC Irvine,"analysis, AI for math",2,Math professor testing AI on open problems; paper-heavy,170,14.12,11,6.0,7.0,0.43,2026-10-07
+alexkontorovich,Alex Kontorovich,Rutgers,"number theory, Lean formalization",2,Mathematician tracking AI-for-math and formalization,176,13.92,13,7.0,9.0,0.11,2026-10-07
+thomasfbloom,Thomas Bloom,Univ. of Manchester,"number theory, Erdos problems",2,Curates AI-math results and new math papers,182,13.66,11,2.0,7.0,0.2,2026-09-24
+paulfchristiano,Paul Christiano,US CAISI (ex-ARC),AI alignment theory,2,Foundational alignment researcher; posts rarely but substantive,184,13.62,12,12.0,12.0,0.08,2026-09-09
+xidulu,Xi Wang,JHU (ex-MSR),"Bayesian ML, transformer architecture",2,Paper threads on own architecture/decoding research,187,13.54,8,2.0,2.0,0.91,2026-10-05
+jackyk02,Jacky Kwok,Stanford University,"Verification scaling, LLM-as-verifier, agents",2,"Original research threads (LLM-as-a-Verifier, contrastive LM)",191,13.43,11,8.0,8.0,0.0,2026-09-25
+jdlichtman,Jared Duker Lichtman,Stanford,"analytic number theory, formalization",2,Mathematician on AI proofs and Lean formalization,197,13.13,16,3.0,6.0,0.0,2026-10-05
+beenwrekt,Ben Recht,UC Berkeley,"optimization, ML methodology",2,Thoughtful research blog (arg min) on ML science,213,12.52,11,6.0,6.0,0.0,2026-09-18
+quanquangu,Quanquan Gu,UCLA,"LLM theory, RL, math reasoning",2,Prolific ML professor; high paper ratio (now also founder),215,12.37,8,8.0,9.0,0.78,2026-09-15
+dr_atoosa,Atoosa Kasirzadeh,Google DeepMind / CMU,"AI ethics, AI and society",2,Shares own papers on AI agents and impact on science,221,12.22,10,6.0,8.0,0.22,2026-10-07
+chrisgpotts,Christopher Potts,Stanford NLP,"NLP, LLM evaluation, CoT monitoring",2,Senior NLP professor sharing thoughtful research discussions and posts,222,12.2,9,1.0,7.0,0.03,2026-10-01
+jfpuget,Jean-Francois Puget,NVIDIA,"applied ML, Kaggle, ARC",2,"Kaggle GM, technical ML commentary and reproductions",230,12.06,13,7.0,8.0,0.0,2026-10-07
+lu__jasper,Jasper Lu,ML researcher,"RL environments, data, CoT",2,"Research blog posts, close reading of tech reports",245,11.71,10,8.0,9.0,0.0,2026-09-29
+sheriyuo,unknown,unknown (Chinese LLM research community),"LLM post-training, sampling, optimizers",2,"Regular paper digests on power sampling, on-policy distillation, Muon/SOAP (pap 0.38)",251,11.48,8,3.0,6.0,0.46,2026-10-07
+taliaringer,Talia Ringer,UIUC,"proof automation, formal methods",2,PL/proof-automation professor; Lean and AI-for-math takes,263,11.26,13,8.0,9.0,0.05,2026-09-29
+elliotglazer,Elliot Glazer,Epoch AI,"AI for mathematics, FrontierMath",2,Mathematician leading FrontierMath; informed commentary on AI math results,276,10.98,12,6.0,7.0,0.05,2026-09-23
+scottnarmstrong,Scott Armstrong,NYU Courant / CNRS,"PDE, probability, autoformalization",2,Mathematician reporting firsthand on Lean autoformalization,285,10.86,10,7.0,10.0,0.06,2026-10-07
+zheanxu,Zhean Xu,DeepSeek,"GPU kernels, GEMM / MoE systems",2,DeepGEMM author; low-level systems releases,299,10.46,8,8.0,9.0,0.0,2026-10-02
+ye_combinator,Zihao Ye,NVIDIA (FlashInfer creator),"GPU kernels, LLM inference systems, ML compilers",2,Pushes CAKE paper and Blackwell kernel work; strong systems research content,313,10.14,5,0.0,0.0,0.43,2026-08-24
+thibault_formal,Thibault Formal,Linkup (ex-Naver Labs),sparse/learned retrieval (SPLADE),2,SPLADE author; IR model releases very relevant to search,317,10.08,8,8.0,9.0,0.0,2026-09-18
+stochasticchasm,stochasm,Arcee AI (pretraining lead),LLM pretraining,2,"Technical reactions to tech reports (attention designs, RL steps, data recipes)",323,9.93,10,6.0,8.0,0.0,2026-09-22
+geoffreyirving,Geoffrey Irving,UK AI Security Institute,"AI safety, debate, formal methods",2,Chief scientist at UK AISI; substantive safety research threads and reports,327,9.87,9,4.0,5.0,0.0,2026-09-30
+tonylfeng,Tony Feng,UC Berkeley,"mathematics, AI for math",2,Mathematician writing substantive threads on AI-generated proofs and the future of math research,332,9.8,8,3.0,11.0,0.09,2026-10-06
+varunneal,Varun Neal Srivastava,independent researcher,"optimizers, text diffusion",2,"Technical research blog posts (Muon for MoE, diffusion)",333,9.79,9,6.0,6.0,0.0,2026-10-04
+profbuehlermit,Markus J. Buehler,MIT,"AI for materials science, scientific agents",2,MIT professor sharing own research on AI agents for physics/engineering,349,9.63,11,4.0,5.0,0.05,2026-09-22
+joelniklaus,Joel Niklaus,Hugging Face,"agent harnesses, LLM evaluation, legal NLP",2,Substantive research threads on harness optimization and pointers to strong technical blog posts,353,9.6,11,4.0,4.0,0.08,2026-09-11
+edgardobriban,Edgar Dobriban,University of Pennsylvania,"statistics, ML theory, multiple testing",2,High paper ratio (0.86); academic statistician sharing research and ICML workshop work,356,9.55,7,0.0,0.0,0.86,2026-07-16
+nabla_theta,Leo Gao,OpenAI,"alignment, interpretability, scaling",2,"Alignment researcher (GPT-Neo, Pile); research blog posts",358,9.52,9,7.0,12.0,0.0,2026-09-26
+j_dekoninck,Jasper Dekoninck,ETH Zurich (SRI Lab),LLM math evaluation (MathArena),2,Research datasets and benchmarks for math reasoning,367,9.38,9,8.0,11.0,0.0,2026-09-30
+congwei1230,Cong Wei,Univ. of Waterloo / NVIDIA,multimodal and video generation,2,Shares own multimodal papers with code (high paper ratio),372,9.32,6,4.0,5.0,0.86,2026-10-05
+mc_mozer,Michael Mozer,Google DeepMind / Univ. of Colorado Boulder,"cognitive science, neural architectures, reasoning",2,"Paper-only amplified tweets (pap=1.0), veteran ML researcher",389,9.19,6,0.0,0.0,1.0,2026-08-21
+huskydogewoof,unknown,unknown (LLM pretraining researcher),"looped transformers, pretraining architectures",2,Writes technical blogs/papers on looped models and reproduces results (pap 0.21),407,8.96,8,4.0,6.0,0.25,2026-10-03
+richardcsuwandi,Richard Cornelius Suwandi,CUHK-Shenzhen,Bayesian optimization,2,Posts own BO preprints and curated research resources (pap 0.57),427,8.75,7,3.0,4.0,0.62,2026-10-05
+oneill_c,Charles O'Neill,Parsed,"interpretability, continual learning, post-training",2,Research threads (knowledge injection into weights) plus technical analysis of model scale,428,8.72,9,5.0,7.0,0.08,2026-09-17
+gleech,Gavin Leech,Arb Research,"AI forecasting, AI governance research, metascience",2,"Writes papers and careful research threads (AI math progress, pacing frontier AI)",460,8.36,6,5.0,10.0,0.05,2026-10-02
+softwaredoug,Doug Turnbull,independent,"search relevance, embeddings, IR",2,Serious technical blogger on retrieval and late interaction,469,8.25,6,6.0,12.0,0.0,2026-10-01
+gurtej__gill_,Gurtej Gill,unknown,"LLM RL, sparse attention",2,"Reads and explains new papers (RL batch scaling, block-sparse attention) (pap 0.75)",483,8.12,5,4.0,4.0,1.0,2026-10-06
+melissapan,Melissa Z. Pan,UC Berkeley (Sky Lab),"agent systems, harness cost analysis",2,Research on agent failure/HarnessTax with ICML oral,494,8.02,7,7.0,9.0,0.0,2026-09-29
+evijit,Avijit Ghosh,Hugging Face,"AI evaluation, reproducibility, AI ethics",2,Shares position papers and EvalEval reproducibility work (pap 0.20),517,7.8,6,6.0,6.0,0.25,2026-10-06
+chongzzzhang,Chong Zhang,ETH Zurich (RSL / AI Center),"humanoid locomotion, robot learning",2,Robotics researcher sharing own papers and must-read robot-learning work (pap 0.33),540,7.61,5,3.0,4.0,0.4,2026-10-06
+mangqiuyang,Qiuyang Mang,UC Berkeley,"coding agents, agent evaluation (FrontierCS)",2,Posts own research blogs and papers on agent scaling vs. human coders (pap 0.33),548,7.54,6,6.0,7.0,0.29,2026-10-01
+kylecranmer,Kyle Cranmer,UW-Madison Data Science Institute,"ML for physics, simulation-based inference",2,Senior ML-for-science researcher; substantive commentary on AI in physics,588,7.16,7,5.0,7.0,0.0,2026-10-06
+mkirchhof_,Michael Kirchhof,Apple ML Research,"uncertainty, self-improving agents",2,Research scientist; samples are paper announcements (pap 0.80),697,6.43,4,4.0,4.0,1.0,2026-10-04
+souradipchakr18,Souradip Chakraborty,University of Maryland,"RL for LLMs, alignment, inference-aware fine-tuning",2,Shares his own NeurIPS papers and RL/distillation research threads,720,6.32,4,4.0,7.0,0.29,2026-10-06
+dkokotajlo,Daniel Kokotajlo,AI Futures Project,"AI forecasting, alignment",1,Forecasting/alignment writer (AI 2027); more takes than papers,25,35.53,31,22.0,29.0,0.0,2026-10-06
+joshua_saxe,Joshua Saxe,Meta (security ML),"ML for cybersecurity, AI security risk",1,Blog posts on AI-cyber risk; security research angle,48,27.0,20,9.0,24.0,0.05,2026-10-01
+dmitryrybin1,Dmitry Rybin,independent researcher,"AI for math, combinatorics",1,"Posts AI math results (counterexamples, IMO) firsthand",59,24.25,20,1.0,1.0,0.04,2026-09-21
+jackclarksf,Jack Clark,"Anthropic (co-founder), Import AI","AI research digest, policy",1,"Import AI newsletter covers papers weekly, but he is a co-founder/policy figure",67,23.2,21,16.0,19.0,0.0,2026-10-05
+helloiamleonie,Leonie Monigatti,Elastic,"Retrieval, agents, RAG",1,"Technical explainers on retrieval/agents, but in a dev-advocate role",91,20.14,17,5.0,7.0,0.0,2026-10-02
+thlarsen,Thomas Larsen,AI Futures Project,"AI forecasting, agent incident analysis",1,Investigative technical threads on autonomous-agent behavior,120,16.99,17,14.0,16.0,0.0,2026-09-12
+sergiopaniego,Sergio Paniego,Hugging Face,"post-training, RL environments (TRL)",1,Technical write-ups on TRL/RL envs; engineering-leaning,132,15.95,11,3.0,5.0,0.0,2026-10-05
+1a3orn,1a3orn (pseudonymous),Independent,"AI safety commentary, ML essays",1,Thoughtful long-form technical/safety essays,149,14.74,15,10.0,11.0,0.0,2026-10-07
+zainhas,Zain Hasan,Together AI,"inference, agents",1,Technical talks/summaries of papers; devrel-leaning,152,14.69,14,7.0,10.0,0.02,2026-09-24
+anilkseth,Anil Seth,University of Sussex,"Consciousness neuroscience, AI consciousness",1,Respected scientist; AI consciousness research and talks,165,14.3,11,6.0,6.0,0.15,2026-10-03
+mahdi_tcs_,Mahdi (TCS researcher),Academia (theoretical CS),"Theoretical CS, AI and math",1,"pap 0.43, though samples are mostly commentary",194,13.21,11,8.0,8.0,0.43,2026-10-06
+ahall_research,Andrew Hall,Stanford GSB / Hoover,political economy of AI,1,Research on AI and politics; more policy-leaning,205,12.72,12,5.0,9.0,0.03,2026-10-02
+aaron_lou,Aaron Lou,OpenAI,"discrete diffusion models, generative modeling, AI for math",1,Strong researcher with high paper ratio (0.82) but recent samples are mostly AI-math proof commentary,216,12.37,9,1.0,1.0,0.82,2026-09-08
+nasqret,Bartosz Naskręcki,Adam Mickiewicz University Poznań,"Mathematics, AI for math",1,Mathematician writing in detail about doing math with LLMs,231,12.05,11,7.0,8.0,0.06,2026-10-07
+dioscuri,Henry Shevlin,Cambridge (CFI) / Google DeepMind,"philosophy of AI, consciousness",1,Philosopher of AI; research-minded but less technical,250,11.53,12,7.0,9.0,0.0,2026-10-05
+blaiseaguera,Blaise Aguera y Arcas,Google,"AI foundations, artificial life, consciousness",1,Research essays and artificial-life work; senior exec role,258,11.4,9,7.0,10.0,0.07,2026-10-03
+voooooogel,thebes,independent,"LLM behavior, alignment analysis",1,Close technical reading of model cards and papers,259,11.35,9,5.0,9.0,0.03,2026-10-05
+yafahedelman,Yafah Edelman,Epoch AI,"AI forecasting, benchmark auditing",1,Benchmark audits and AI-impact research,260,11.33,11,6.0,8.0,0.0,2026-09-21
+valeriocapraro,Valerio Capraro,Univ. of Milan-Bicocca,"behavioral science, LLM bias",1,Shares preprints on LLM social bias; some drama posting,270,11.03,12,10.0,11.0,0.0,2026-10-01
+jcrwhittington,James Whittington,Stanford / Oxford,"computational neuroscience, AI evaluation (DiG-bench)",1,Academic researcher; samples are about a discovery benchmark he co-built,284,10.88,15,0.0,0.0,0.0,2026-08-18
+vboykis,Vicki Boykis,independent ML engineer and writer,"ML engineering, recommender systems, embeddings",1,Serious technical blogger; recent samples are more general commentary,379,9.28,9,2.0,2.0,0.0,2026-09-26
+aminkarbasi,Amin Karbasi,Cisco Foundation AI / Yale,"ML theory, optimization, efficient LLMs",1,Academic researcher sharing course and lab work; samples mix research with opinion,388,9.2,9,3.0,4.0,0.0,2026-09-21
+dlouapre,David Louapre,Hugging Face,"ML science, science communication",1,ML scientist and science explainer; samples lean on AI-for-math commentary and educational content,398,9.09,9,6.0,8.0,0.0,2026-09-16
+nathancgy4,Nathan Chen,unknown (model architecture research),"model architecture, linear attention, optimizers",1,"Substantive critiques of architecture research and DeltaNet work, but affiliation unclear",418,8.8,9,3.0,3.0,0.05,2026-09-10
+marcus_j_w,Marcus Williams,OpenAI,"alignment, misalignment monitoring",1,Shares OpenAI misalignment disclosure research,436,8.65,6,6.0,12.0,0.0,2026-10-03
+ohmyksh,unknown,unknown,"AI for scientific discovery, research taste benchmark",1,"Samples are research/benchmark announcements, identity unclear",486,8.08,6,5.0,6.0,0.11,2026-10-04
+soumitrashukla9,Soumitra Shukla,unknown (economics / computational social science),LLMs for social science measurement,1,Research threads using LLMs to quantify social phenomena; peripheral to ML,526,7.75,7,6.0,9.0,0.08,2026-10-07
+denis_bykov,Denis Bykov,Perplexity,"search, embeddings, retrieval",1,Promotes Perplexity search/embedding models; relevant to retrieval but mostly product posts,626,6.87,4,4.0,11.0,0.0,2026-10-06
+shamilch,unknown,Google DeepMind (collaboration),AI consciousness assessment,1,"Only paper threads (pap 1.0), narrow topic",696,6.43,4,4.0,4.0,1.0,2026-09-29
