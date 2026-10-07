@@ -1,25 +1,21 @@
-//! Follow graph endpoints.
+//! Feed endpoints.
 //!
 //! Routes:
-//!   POST   /api/follow/{slug}   — caller follows the user at {slug}
-//!   DELETE /api/follow/{slug}   — caller unfollows
-//!   GET    /api/me/following    — caller's followees (slug, name, avatar)
-//!   GET    /api/timeline        — recent docs from followees + self
+//!   GET    /api/me/feed/sources — source rail for the feed
+//!   GET    /api/timeline        — the feed: every VIP library + self
 //!
-//! All endpoints require a session cookie. The unauthenticated cases
-//! return 401 / empty arrays as appropriate so callers can render the
-//! signed-out state without special-casing.
+//! There is no follow graph any more: every library on the site is a
+//! curated VIP, so every viewer's feed is built from all of them (plus
+//! their own library when signed in). The `follows` table and its rows
+//! are left in place but nothing reads or writes them.
 
 use axum::{
-    extract::{Path, Query, State},
-    http::{
-        header::{CACHE_CONTROL, VARY},
-        StatusCode,
-    },
+    extract::{Query, State},
+    http::header::{CACHE_CONTROL, VARY},
     response::{IntoResponse, Json, Response},
 };
 use axum_extra::extract::cookie::CookieJar;
-use serde::{Deserialize, Serialize};
+use serde::Deserialize;
 use sqlx::PgPool;
 use std::collections::HashMap;
 use std::sync::OnceLock;
@@ -42,8 +38,8 @@ use crate::handlers::auth::current_user;
 // path from ~700 ms (SQL) to <1 ms in dev.
 //
 // Logged-in viewers never read or write this cache — their
-// timeline is filtered by their personal follow graph + their own
-// `card_seen` events, which is unique per user. A shared cache
+// timeline adds their own library, hides their own `card_seen`
+// events and applies learned preference weights, all unique per user. A shared cache
 // there would either leak data across users or thrash on every
 // request.
 const ANON_TIMELINE_TTL: Duration = Duration::from_secs(60);
@@ -62,213 +58,44 @@ fn anon_timeline_cache() -> &'static RwLock<HashMap<String, AnonTimelineEntry>> 
     CACHE.get_or_init(|| RwLock::new(HashMap::new()))
 }
 
-// ── Follow / unfollow ───────────────────────────────────────────────────
-
-/// POST /api/follow/{slug}
-pub async fn follow(
-    State(pool): State<PgPool>,
-    jar: CookieJar,
-    Path(slug): Path<String>,
-) -> Response {
-    let Some(me) = current_user(&pool, &jar).await else {
-        return StatusCode::UNAUTHORIZED.into_response();
-    };
-    let target: Option<i64> = sqlx::query_scalar("SELECT id FROM users WHERE username = $1")
-        .bind(&slug)
-        .fetch_optional(&pool)
-        .await
-        .unwrap_or(None);
-    let Some(target) = target else {
-        return StatusCode::NOT_FOUND.into_response();
-    };
-    if target == me.id {
-        return (StatusCode::BAD_REQUEST, "cannot follow yourself").into_response();
-    }
-    if let Err(e) = sqlx::query(
-        "INSERT INTO follows (follower_id, followed_id)
-         VALUES ($1, $2)
-         ON CONFLICT DO NOTHING",
-    )
-    .bind(me.id)
-    .bind(target)
-    .execute(&pool)
-    .await
-    {
-        tracing::error!(error = %e, "follows.add.failed");
-        return (StatusCode::INTERNAL_SERVER_ERROR, format!("follow: {e}")).into_response();
-    }
-    Json(serde_json::json!({ "ok": true, "following": true })).into_response()
-}
-
-#[derive(Deserialize)]
-pub struct BulkFollowRequest {
-    pub slugs: Vec<String>,
-}
-
-/// POST /api/me/follow/bulk { slugs: [...] }
-///
-/// Follow many users in a single round-trip. Used by the onboarding
-/// flow so picking a category and committing 8–10 follows doesn't
-/// fan out to that many individual POSTs. Idempotent — pre-existing
-/// follow rows are left alone.
-///
-/// Returns `{added: N}` with the count of newly-inserted rows.
-pub async fn follow_bulk(
-    State(pool): State<PgPool>,
-    jar: CookieJar,
-    Json(req): Json<BulkFollowRequest>,
-) -> Response {
-    let Some(me) = current_user(&pool, &jar).await else {
-        return StatusCode::UNAUTHORIZED.into_response();
-    };
-    let slugs: Vec<String> = req
-        .slugs
-        .into_iter()
-        .map(|s| s.trim().to_string())
-        .filter(|s| !s.is_empty())
-        .collect();
-    if slugs.is_empty() {
-        return Json(serde_json::json!({ "added": 0 })).into_response();
-    }
-    // ON CONFLICT DO NOTHING on the (follower_id, followed_id) PK gives
-    // us idempotency for free. Self-follow is filtered out in SQL via
-    // `u.id <> $1` so a slug that happens to be the caller's own
-    // doesn't error the whole batch.
-    let res = sqlx::query(
-        "INSERT INTO follows (follower_id, followed_id)
-         SELECT $1, u.id
-           FROM users u
-          WHERE u.username = ANY($2::text[])
-            AND u.id      <> $1
-         ON CONFLICT DO NOTHING",
-    )
-    .bind(me.id)
-    .bind(&slugs)
-    .execute(&pool)
-    .await;
-    match res {
-        Ok(r) => Json(serde_json::json!({ "added": r.rows_affected() })).into_response(),
-        Err(e) => {
-            tracing::error!(error = %e, "follows.bulk.failed");
-            (
-                StatusCode::INTERNAL_SERVER_ERROR,
-                format!("bulk follow: {e}"),
-            )
-                .into_response()
-        }
-    }
-}
-
-/// DELETE /api/follow/{slug}
-pub async fn unfollow(
-    State(pool): State<PgPool>,
-    jar: CookieJar,
-    Path(slug): Path<String>,
-) -> Response {
-    let Some(me) = current_user(&pool, &jar).await else {
-        return StatusCode::UNAUTHORIZED.into_response();
-    };
-    let _ = sqlx::query(
-        "DELETE FROM follows
-           WHERE follower_id = $1
-             AND followed_id = (SELECT id FROM users WHERE username = $2)",
-    )
-    .bind(me.id)
-    .bind(&slug)
-    .execute(&pool)
-    .await;
-    Json(serde_json::json!({ "ok": true, "following": false })).into_response()
-}
-
-// ── List followees ──────────────────────────────────────────────────────
-
-#[derive(Serialize, sqlx::FromRow)]
-pub struct FollowedUser {
-    pub id: i64,
-    #[sqlx(rename = "username")]
-    pub slug: String,
-    pub name: String,
-    pub avatar: Option<String>,
-    pub description: String,
-    #[sqlx(rename = "document_count")]
-    #[serde(rename = "documentCount")]
-    pub document_count: i64,
-}
-
-/// GET /api/me/following — followees with display metadata. Used by
-/// the frontend to render Follow/Following button state alongside any
-/// personality card without a second roundtrip.
-pub async fn list_following(State(pool): State<PgPool>, jar: CookieJar) -> Response {
-    let Some(me) = current_user(&pool, &jar).await else {
-        return Json(Vec::<FollowedUser>::new()).into_response();
-    };
-    let rows = sqlx::query_as::<_, FollowedUser>(
-        "SELECT u.id, u.username, u.name, u.avatar, u.description,
-                COALESCE(c.cnt, 0)::bigint AS document_count
-           FROM follows f
-           JOIN users   u ON u.id = f.followed_id
-           LEFT JOIN LATERAL (
-                SELECT count(*) AS cnt FROM documents d
-                  WHERE d.user_id = u.id AND d.deleted = FALSE
-           ) c ON true
-          WHERE f.follower_id = $1
-          ORDER BY f.created_at DESC",
-    )
-    .bind(me.id)
-    .fetch_all(&pool)
-    .await
-    .unwrap_or_default();
-    Json(rows).into_response()
-}
-
-// ── Aggregated sources across (followees ∪ self) ────────────────────────
+// ── Aggregated sources across (every VIP ∪ self) ────────────────────────
 
 /// GET /api/me/feed/sources — returns one row per distinct source key
-/// across the caller's follow graph (plus their own library), with the
-/// summed document count. Replaces the per-followee fan-out the feed
-/// rail used to do client-side (N round-trips → 1).
+/// across the feed's libraries (every VIP, plus the caller's own
+/// library when signed in), with the summed document count.
 ///
 /// Shape: `[{ key, label, count, user_count }]`, ordered by
-/// `user_count DESC, count DESC` — surfaces sources lots of people in
-/// the follow graph read, with raw doc volume as the tiebreaker.
+/// `user_count DESC, count DESC` — surfaces sources lots of people
+/// read, with raw doc volume as the tiebreaker.
 pub async fn feed_sources(State(pool): State<PgPool>, jar: CookieJar) -> Response {
-    // Anonymous callers see the global VIP feed (same scope as the
-    // anonymous timeline), so the source rail must mirror that scope.
-    // The `followed` CTE below switches on whether $1 is NULL.
+    // Same scope as the timeline: every VIP library, plus the
+    // caller's own when signed in.
     let me_id: Option<i64> = current_user(&pool, &jar).await.map(|u| u.id);
-    // Rank by total document volume across (VIP followees ∪ me).
+    // Rank by total document volume across (every VIP ∪ me).
     // `SUM(v.count)` aggregates the per-user doc counts from the
     // `user_source_counts` view, so a source with 1000 GitHub stars
-    // outranks one with 5 niche-blog hits even if more followees
-    // happen to use the niche one. The VIP gate skips noise from
-    // newly-signed-up followees who haven't been promoted yet —
-    // matching the user's mental model of "people I follow on the
-    // platform". The caller's own row is included unconditionally
-    // (signed-in user = always counted).
-    // Top-50 keeps every meaningful chip and trims the long tail.
+    // outranks one with 5 niche-blog hits even if more people happen
+    // to use the niche one. The VIP gate skips noise from newly-
+    // signed-up accounts that haven't been promoted yet. The caller's
+    // own row is included unconditionally (signed-in user = always
+    // counted). Top-50 keeps every meaningful chip and trims the long
+    // tail.
     let sql = "
-        WITH followed AS (
-            -- Logged-in: VIP followees ∪ self.
-            SELECT u.id AS user_id
-              FROM follows f JOIN users u ON u.id = f.followed_id
-             WHERE f.follower_id = $1 AND u.vip = TRUE
+        WITH feed_users AS (
+            SELECT id AS user_id FROM users WHERE vip = TRUE
             UNION
             SELECT $1::bigint AS user_id WHERE $1 IS NOT NULL
-            -- Logged-out: every VIP, so the source rail mirrors the
-            -- anonymous timeline scope.
-            UNION
-            SELECT id AS user_id FROM users WHERE vip = TRUE AND $1 IS NULL
         )
         SELECT
             v.source,
             COUNT(DISTINCT v.user_id)::bigint AS user_count,
             SUM(v.count)::bigint            AS doc_count
           FROM user_source_counts v
-          JOIN followed f ON f.user_id = v.user_id
+          JOIN feed_users f ON f.user_id = v.user_id
          WHERE v.source <> ''
          GROUP BY v.source
          -- Primary key = number of *people* that have this source.
-         -- A source that 12 followees use beats one with twice the
+         -- A source that 12 people use beats one with twice the
          -- raw doc count owned by just 1 person. `doc_count` is the
          -- tiebreaker so equally-popular-among-people sources rank
          -- by reading volume.
@@ -299,7 +126,7 @@ pub async fn feed_sources(State(pool): State<PgPool>, jar: CookieJar) -> Respons
     Json(out).into_response()
 }
 
-// ── Timeline (recent docs from followees + self) ────────────────────────
+// ── Timeline (every VIP library + self) ──────────────────────────────────
 
 #[derive(Deserialize)]
 pub struct TimelineParams {
@@ -355,17 +182,16 @@ pub struct TimelineParams {
 
 /// GET /api/timeline — same payload shape as `/api/feed` (per-URL rows
 /// with `sharers` + `sharerCount`) so the existing card renderer works
-/// unchanged. Scoped to the caller's follow graph (including their
-/// own library, so a user with zero follows still sees their saves).
+/// unchanged. Built from every VIP library, plus the caller's own
+/// library when signed in.
 #[allow(clippy::type_complexity)]
 pub async fn timeline(
     State(pool): State<PgPool>,
     jar: CookieJar,
     Query(params): Query<TimelineParams>,
 ) -> Response {
-    // Logged-out callers get a VIP-wide timeline (as if they followed
-    // every VIP). Logged-in callers get the classic followees+self
-    // timeline. The `followed` CTE below switches on whether $1 is NULL.
+    // Every viewer gets the VIP-wide timeline; a signed-in viewer's
+    // own saves join it and their learned preferences re-rank it.
     let me_id: Option<i64> = current_user(&pool, &jar).await.map(|u| u.id);
     let limit = params.limit.unwrap_or(50).clamp(1, 200);
     let before: Option<String> = params.before.clone();
@@ -491,27 +317,17 @@ pub async fn timeline(
     // CTE that used to live below it was removed in favour of this
     // simpler model: one query (the refresh) precomputes the feed
     // from VIP activity, one query (the SELECT below) adapts it to
-    // the current viewer's follow graph + filters. If the snapshot
+    // the current viewer + filters. If the snapshot
     // is empty (cold boot, daemon outage) the timeline returns an
     // empty array — better than serving stale-CTE content with
     // different ranking semantics.
     //
-    // Per-viewer score additions (followee_share, fresh-self) ride
+    // Per-viewer score additions (fresh-self, learned weights) ride
     // on top of the precomputed `score` column at read time.
     // The category filter hits the GIN index on
     // `feed_snapshot.categories`, populated by the refresh from
     // `document_category_assignments`.
     let snapshot_sql = "
-        WITH followed AS (
-            SELECT followed_id AS user_id FROM follows WHERE follower_id = $1
-            UNION
-            SELECT $1::bigint AS user_id WHERE $1 IS NOT NULL
-            UNION
-            SELECT id AS user_id FROM users WHERE vip = TRUE AND $1 IS NULL
-        ),
-        followed_ids AS (
-            SELECT COALESCE(array_agg(user_id), '{}'::bigint[]) AS ids FROM followed
-        )
         SELECT
             s.url,
             s.title,
@@ -521,7 +337,6 @@ pub async fn timeline(
             s.linked_urls, s.link_hosts,
             s.primary_user_id,
             -- Effective score = viewer-agnostic snapshot score
-            --                 + followee_share bonus (cap +4.5)
             --                 + 50 if the viewer authored it < 1 h ago
             --                 + Σ personality weights for the doc's
             --                   sharers (learned preference)
@@ -532,11 +347,6 @@ pub async fn timeline(
             -- `$1 IS NOT NULL` and short-circuit to 0, so the
             -- score reduces to the pre-personalisation formula.
             (s.score
-             + LEAST(3, GREATEST(0, (
-                   SELECT count(*)::int
-                     FROM unnest(s.sharer_user_ids) sid
-                    WHERE sid IN (SELECT user_id FROM followed)
-               ) - 1)) * 1.5
              + CASE
                    WHEN s.primary_user_id = $1
                         AND s.refreshed_at > now() - interval '1 hour'
@@ -600,40 +410,11 @@ pub async fn timeline(
             ) AS is_paper
           FROM feed_snapshot s
          WHERE
-               -- Logged-in: sharer_user_ids must intersect followees,
-               -- OR the resource is globally-loved — co-signed by at
-               -- least 10 distinct VIPs. Without
-               -- the second clause the personalised feed is strictly
-               -- follow-graph-gated, so a resource validated by dozens
-               -- of VIPs you happen not to follow would NEVER reach you
-               -- (the gap we found: a 28-VIP launch invisible to a
-               -- viewer who follows none of those 28). The threshold is
-               -- high (≥10 VIPs is rare — most anchors have 1-3) so this
-               -- adds only the standout consensus items, not a flood of
-               -- non-followed content. The already-seen / already-owned
-               -- filters below still apply, so it's discovery, not a
-               -- re-run of your own library.
-               -- Anon: rely on any_vip_sharer (partial-indexed scan).
-               --
-               -- We deliberately *don't* use `&&` directly here — its
-               -- GIN-supported bitmap path triggers a heap scan of all
-               -- matching anchors (~50k rows for an avid follower),
-               -- which costs 600 ms+ before the LIMIT even runs.
-               -- Wrapping in `INTERSECT` is opaque to the GIN operator
-               -- class so the planner picks `idx_feed_snapshot_score`
-               -- and walks it score-DESC, stopping at LIMIT × 2. The
-               -- added `vip_sharer_count >= 10` disjunct keeps that walk
-               -- (it's a cheap per-row check on the score-ordered scan),
-               -- it just admits the broad-consensus rows early — and
-               -- those already sit high by score, so they're hit fast.
-               ($1 IS NULL
-                OR s.vip_sharer_count >= 10
-                OR cardinality(ARRAY(
-                       SELECT unnest(s.sharer_user_ids)
-                        INTERSECT
-                       SELECT user_id FROM followed
-                   )) > 0)
-           AND ($1 IS NOT NULL OR s.any_vip_sharer = TRUE)
+               -- Scope: every resource a VIP shared (partial-indexed
+               -- `any_vip_sharer` flag, cheap on the score-ordered
+               -- walk below), plus the signed-in viewer's own saves.
+               (s.any_vip_sharer = TRUE
+                OR ($1 IS NOT NULL AND $1 = ANY(s.sharer_user_ids)))
            -- Date filters: `before` (cursor) and `since` (window).
            AND ($3::timestamptz IS NULL OR s.date <  $3::timestamptz)
            AND ($7::timestamptz IS NULL OR s.date >= $7::timestamptz)
@@ -699,8 +480,7 @@ pub async fn timeline(
                 OR s.categories && $8::text[])
          -- Order by the PRECOMPUTED score column (not the computed
          -- alias above). The aliased `score` expression includes
-         -- per-viewer bonuses (followee-share count, fresh-self,
-         -- learned weights) that PG would have to evaluate for every
+         -- per-viewer bonuses (fresh-self, learned weights) that PG would have to evaluate for every
          -- candidate row before sorting — turning what should be an
          -- index walk into a full Seq Scan (52k rows, ~1.7 s).
          --
@@ -864,7 +644,7 @@ pub async fn timeline(
 
     // ── HackerNews front-page picks (latest run only) ────────────
     //
-    // Surfaced in the feed alongside followees' bookmarks, never in
+    // Surfaced in the feed alongside the libraries' bookmarks, never in
     // anyone's personal page. We:
     //   • emit source = "hackernews" so the existing HN logo / source
     //     pill renders unchanged on the card;
@@ -947,12 +727,12 @@ pub async fn timeline(
         // Two placement modes:
         //
         //  • Mixed feed (user hasn't filtered to hackernews) — drop
-        //    a pick into the followees timeline after every ~10
+        //    a pick into the timeline after every ~10
         //    documents. Two guardrails: never break a same-source
         //    run; force-insert after 20 docs without a boundary so
         //    long single-source stretches don't swallow the picks.
         //
-        //  • Hackernews filter active — every followee doc shares
+        //  • Hackernews filter active — every timeline doc shares
         //    the source with the picks, so the boundary rule never
         //    fires and the picks would never appear in the place
         //    the user explicitly asked for them. Prepend all picks

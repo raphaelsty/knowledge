@@ -114,7 +114,7 @@
     display: none !important;
   }
 
-  /* Right rail (people-to-follow) is already hidden under 1200px,
+  /* Right rail (people) is already hidden under 1200px,
    * but be defensive in case the breakpoint shifts. */
   .people-rail {
     display: none !important;
@@ -140,8 +140,7 @@
   /* Search input + filter chips sit on a single flex row. Chips
    * are icon-only (36×36 discs) on the right of the input so the
    * whole topbar reads as one piece of UI. Filters hide entirely
-   * when the query is empty (`:placeholder-shown` + JS `hidden`
-   * on `qFollowingOnly`). */
+   * when the query is empty (`:placeholder-shown`). */
   .spotlight-row {
     position: sticky;
     top: 0;
@@ -223,16 +222,13 @@
     color: inherit;
   }
 
-  /* Both filters disappear when the search input is empty — a
-   * date range or follow-graph narrowing only makes sense once
-   * the user is actually searching. The desktop CSS already
-   * hides .since-filter via :placeholder-shown but the phone
-   * styles override with !important, so we re-declare with
-   * higher specificity here. We also re-honour the `hidden`
-   * attribute on `.scope-filter` (set by JS when libs.size !== 0
-   * — i.e. on the personal page where "Following only" has no
-   * meaning) since the same !important hides it from the
-   * attribute selector. */
+  /* Filters disappear when the search input is empty — a date
+   * range only makes sense once the user is actually searching.
+   * The desktop CSS already hides .since-filter via
+   * :placeholder-shown but the phone styles override with
+   * !important, so we re-declare with higher specificity here. We
+   * also re-honour the `hidden` attribute on `.scope-filter` since
+   * the same !important hides it from the attribute selector. */
   .spotlight-row:has(#q:placeholder-shown) .since-filter,
   .spotlight-row:has(#q:placeholder-shown) .scope-filter,
   .scope-filter[hidden] {
@@ -251,9 +247,7 @@
    * share one pill vocabulary so the cluster on the right of the
    * search input reads as a single control bar. Filters hide
    * entirely when the search is empty (date filter via the
-   * `:has(#q:placeholder-shown)` rule above, scope additionally
-   * gated by JS `hidden` attribute toggled by
-   * `syncFollowingOnlyButton`). */
+   * `:has(#q:placeholder-shown)` rule above). */
   .since-filter,
   .scope-filter {
     position: relative;
@@ -321,23 +315,6 @@
    * by `syncSinceFilterActive()` in page.js whenever
    * `state.dateSince` is non-empty. */
   .since-filter.has-filter {
-    background: rgb(var(--ink-rgb)) !important;
-    color: rgb(var(--paper-rgb)) !important;
-  }
-
-  /* ── Following-only filter ─────────────────────────────────
-   * Same disc, people icon, ink-fill on `aria-pressed="true"`. */
-  .scope-filter span {
-    /* Hide the "Following only" label — only the icon shows on
-     * phone. */
-    display: none !important;
-  }
-  .scope-filter-icon {
-    width: 18px !important;
-    height: 18px !important;
-    opacity: 1 !important;
-  }
-  .scope-filter[aria-pressed="true"] {
     background: rgb(var(--ink-rgb)) !important;
     color: rgb(var(--paper-rgb)) !important;
   }
@@ -588,15 +565,7 @@
     font-size: 14.5px !important;
     line-height: 1.45;
   }
-  /* The "Export" / "Follow" affordance on the right of the name
-   * stays a compact pill on phone so it doesn't bump the name to
-   * a second line on tight viewports. */
-  .profile-header .ph-follow {
-    height: 30px !important;
-    padding: 0 12px !important;
-    font-size: 13px !important;
-  }
-  /* Stats row (X bookmarks · Y following) — tighten gap. */
+  /* Stats row (X bookmarks) — tighten gap. */
   .profile-header .ph-stats {
     gap: 14px !important;
     font-size: 14px !important;
@@ -928,161 +897,6 @@
   .auth-submit {
     height: 46px;
     font-size: 15px;
-  }
-
-  /* ── Discover dialog → full-screen sheet ────────────────────────
-   * The onboarding panel takes the whole viewport on phone — there
-   * isn't enough real estate to read both the page underneath and
-   * the picker, and the desktop's card chrome (radius + shadow)
-   * doesn't translate to a fullscreen surface. */
-  dialog.discover-dialog {
-    max-width: 100vw !important;
-    max-height: 100dvh !important;
-    width: 100vw !important;
-    height: 100dvh !important;
-    margin: 0 !important;
-    border-radius: 0 !important;
-    border: 0 !important;
-    padding: 0 !important;
-    background: rgb(var(--paper-rgb)) !important;
-  }
-  .discover-dialog::backdrop {
-    background: rgba(0, 0, 0, 0.45);
-  }
-  .discover-body {
-    width: 100% !important;
-    max-width: 100% !important;
-    height: 100% !important;
-    max-height: 100% !important;
-    margin: 0 !important;
-    border-radius: 0 !important;
-    border: 0 !important;
-    box-shadow: none !important;
-    padding: calc(20px + env(safe-area-inset-top)) 18px
-      calc(20px + env(safe-area-inset-bottom)) !important;
-    animation: none !important;
-    background: rgb(var(--paper-rgb)) !important;
-  }
-  .discover-content {
-    width: 100%;
-    max-width: 100%;
-  }
-
-  /* ── Onboarding shell on phone ────────────────────────────────
-   * Tighten the shell gaps so we fit the head + grid + footer in
-   * one screen height. Slides take the remaining viewport so the
-   * grid scrolls inside, not the dialog. */
-  .onb-shell {
-    gap: 16px !important;
-    height: 100%;
-  }
-  .onb-slides {
-    padding-right: 0 !important;
-  }
-  .onb-slide {
-    gap: 14px !important;
-  }
-  .onb-slide-head h2,
-  .onb-aff-head h2 {
-    font-size: 22px !important;
-    line-height: 1.18;
-    /* Same sans stack as the rest of the phone build — no serif. */
-    font-family: var(--sans);
-    font-weight: 700;
-  }
-  .onb-slide-head p,
-  .onb-aff-sub {
-    font-size: 14px !important;
-    line-height: 1.5;
-    /* The desktop justifies text with hyphens; on phone that
-     * creates awkward stretched gaps in a narrow column. */
-    text-align: left !important;
-    hyphens: none !important;
-  }
-
-  /* Category cards — single column, full bleed, bigger tap area. */
-  .onb-grid {
-    grid-template-columns: 1fr !important;
-    gap: 10px !important;
-  }
-  .onb-card {
-    padding: 14px 14px 12px !important;
-    border-radius: 14px !important;
-  }
-  .onb-card-head h3 {
-    font-size: 15px !important;
-  }
-  .onb-desc {
-    font-size: 13px !important;
-    text-align: left !important;
-    hyphens: none !important;
-  }
-  /* Move the selected-state checkmark to a more thumb-visible spot. */
-  .onb-check {
-    width: 24px !important;
-    height: 24px !important;
-    top: 12px !important;
-    right: 12px !important;
-  }
-
-  /* Footer — keep visible at the bottom of the sheet, full-width
-   * primary action, neutral skip on the left. */
-  .onb-foot {
-    position: sticky;
-    bottom: 0;
-    background: rgb(var(--paper-rgb));
-    margin: 0 -18px !important;
-    padding: 12px 18px calc(12px + env(safe-area-inset-bottom)) !important;
-    border-top: 1px solid rgba(var(--ink-rgb), 0.08);
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .onb-counter {
-    flex: 0 0 auto;
-    font-size: 13px;
-  }
-  .onb-foot-actions {
-    flex: 0 0 auto;
-    gap: 8px !important;
-  }
-  .onb-back,
-  .onb-skip,
-  .onb-next {
-    padding: 11px 18px !important;
-    font-size: 14px !important;
-    border-radius: 12px !important;
-  }
-  .onb-next {
-    /* Hardcoded ink on phone — desktop uses var(--ink) which on
-     * /profile resolves correctly, but the discover dialog can
-     * also be opened from /search with a different accent set;
-     * keep both routes visually identical. */
-    background: rgb(var(--ink-rgb)) !important;
-    color: rgb(var(--paper-rgb)) !important;
-  }
-
-  /* Affinity step — section heads stack tighter. */
-  .onb-aff-section {
-    gap: 10px !important;
-    margin-top: 8px !important;
-  }
-  .onb-aff-sec-head {
-    gap: 12px;
-  }
-  .onb-aff-sec-num {
-    width: 24px;
-    height: 24px;
-  }
-  .onb-aff-sec-head h3 {
-    font-size: 15px;
-  }
-  .onb-chips {
-    gap: 6px;
-  }
-  .onb-chip {
-    padding: 6px 8px 6px 12px;
-    font-size: 13px;
   }
 
   /* ── Find-similar drawer (if open on mobile) ────────────────── */

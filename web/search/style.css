@@ -100,7 +100,7 @@ a {
   grid-template-columns: 320px 1fr;
   min-height: 100vh;
 }
-/* People-to-follow rail appears as a third column on wide screens.
+/* People rail appears as a third column on wide screens.
  * Below 1200px the rail is hidden and the main pane fills the space.
  * Above the breakpoint the grid expands to 3 columns and the rail
  * sticks to the right edge. */
@@ -148,20 +148,6 @@ a {
    * legend treatment so both rails read as the same UI primitive. */
   color: var(--muted);
   opacity: 0.7;
-}
-/* The "Peoples" heading is now the discover trigger — clicking it
- * opens the category-picker overlay. Cursor + hover affordance only;
- * still typographically identical to the SOURCES heading on the
- * left rail so both surfaces still read as the same UI primitive. */
-.people-rail-head h2.is-discover {
-  cursor: pointer;
-  transition:
-    opacity 0.15s ease,
-    color 0.15s ease;
-}
-.people-rail-head h2.is-discover:hover {
-  opacity: 1;
-  color: rgb(var(--ink-rgb));
 }
 /* People-search input — keeps the SVG magnifier icon from the
  * earlier design, but matches the Sources input's colour palette
@@ -227,7 +213,7 @@ a {
 }
 .people-row {
   display: grid;
-  grid-template-columns: 36px 1fr auto;
+  grid-template-columns: 36px 1fr;
   gap: 10px;
   align-items: center;
   padding: 8px 6px;
@@ -296,46 +282,6 @@ a {
   text-decoration-color: rgba(99, 102, 241, 0.55);
   text-decoration-thickness: 1.5px;
   text-underline-offset: 3px;
-}
-.people-row .pr-follow {
-  height: 30px;
-  padding: 0 14px;
-  border-radius: 999px;
-  border: 1px solid var(--accent-border);
-  background: var(--accent-bg-subtle);
-  color: var(--accent-primary);
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  white-space: nowrap;
-  transition:
-    background var(--transition-fast),
-    color var(--transition-fast),
-    border-color var(--transition-fast);
-}
-.people-row .pr-follow:hover {
-  background: var(--accent-bg-hover);
-}
-.people-row .pr-follow.is-following {
-  background: transparent;
-  color: var(--text-secondary);
-  border-color: var(--border-hover);
-}
-.people-row .pr-follow.is-following::before {
-  content: "Following";
-}
-.people-row .pr-follow:not(.is-following)::before {
-  content: "Follow";
-}
-/* Discreet Unfollow hover — neutral grey wash, mid-tone text,
- * no shouting red. */
-.people-row .pr-follow.is-following:hover {
-  background: rgba(var(--ink-rgb), 0.05);
-  color: var(--text-primary);
-  border-color: var(--border-hover);
-}
-.people-row .pr-follow.is-following:hover::before {
-  content: "Unfollow";
 }
 .people-rail-empty {
   padding: 24px 8px;

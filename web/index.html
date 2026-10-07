@@ -121,7 +121,6 @@
     <link rel="stylesheet" href="/search/cards.css" />
     <link rel="stylesheet" href="/search/lightbox.css" />
     <link rel="stylesheet" href="/search/find-similar.css" />
-    <link rel="stylesheet" href="/search/onboarding.css" />
     <link rel="stylesheet" href="/lib/auth-modal.css" />
     <link rel="stylesheet" href="/lib/brand.css" />
     <link rel="stylesheet" href="/bookmark/style.css" />
@@ -268,15 +267,15 @@
       </aside>
       <main class="pane">
         <!-- Quick nav above the search bar. Routes to the timeline
-             (followees + self). Hidden on the feed itself. -->
+             (all libraries). Hidden on the feed itself. -->
         <a
           class="rail-link feed-link feed-link-top"
           id="feedLink"
           href="/search"
-          title="Your feed — everyone you follow plus your own library"
+          title="Feed — latest from all libraries"
           hidden
         >
-          <span>Back to your feed</span>
+          <span>Back to feed</span>
           <svg
             class="feed-link-arrow"
             viewBox="0 0 24 24"
@@ -458,34 +457,6 @@
           </div>
           <!-- See search.html — pull-to-refresh gesture replaces the
                old qShuffle button. -->
-          <!-- Scope toggle — when on (and signed in), feed search is
-               narrowed to the caller's follow graph (followees + self).
-               Off by default so day-one users see global results. -->
-          <button
-            type="button"
-            class="scope-filter"
-            id="qFollowingOnly"
-            aria-pressed="false"
-            title="Restrict search to people you follow"
-            hidden
-          >
-            <svg
-              class="scope-filter-icon"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-              <circle cx="9" cy="7" r="4" />
-              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-            </svg>
-            <span>Following only</span>
-          </button>
           <!-- Hide-seen toggle — see search.html for the rationale. -->
           <button
             type="button"
@@ -704,15 +675,13 @@
         </div>
       </div>
 
-      <!-- People-to-follow rail. Sits on the right of the main pane on
+      <!-- People rail. Sits on the right of the main pane on
            desktop; hidden on narrower viewports so the search results
            keep room to breathe. Populated lazily from /api/users (VIPs)
-           and /api/me/following on first paint. -->
-      <aside class="people-rail" id="peopleRail" aria-label="People to follow">
+           on first paint. -->
+      <aside class="people-rail" id="peopleRail" aria-label="People">
         <div class="people-rail-head">
-          <h2 id="discoverBtn" title="Discover people to follow by topic">
-            Peoples
-          </h2>
+          <h2>Peoples</h2>
           <div class="right-rail-toggle" role="tablist" aria-label="Right rail">
             <button
               type="button"
@@ -1044,13 +1013,12 @@
     <script src="/lib/money.js"></script>
     <script src="/export/index.js"></script>
     <script src="/search/api.js?v=9"></script>
-    <script src="/search/onboarding.js"></script>
     <script type="module" src="/source/index.js"></script>
-    <script src="/search/page.js?v=31"></script>
+    <script src="/search/page.js?v=32"></script>
     <!-- ── Auth modal ────────────────────────────────────────────────
          Native <dialog> with three swappable views (login / signup /
          forgot). Opened by the top-right "Sign in" pill and by any
-         action that requires auth (Follow, Save, Star) while the user
+         action that requires auth (Save, Star) while the user
          is anonymous. Wired up by web/search/page.js → openAuthModal()
          and friends. -->
     <dialog
@@ -1261,25 +1229,6 @@
              (e.g. "Check your inbox for the verification link"). -->
         <div class="auth-success" id="authSuccess" hidden></div>
       </form>
-    </dialog>
-
-    <!-- ── Discover overlay ──────────────────────────────────────────
-         Native <dialog> that hosts the onboarding category picker
-         when the user clicks "Discover people" in the rail. Same
-         rendering path as the first-time onboarding — just rendered
-         into this dialog body instead of the empty-state pill.
-         Opened via window.KnowledgeOnboarding.open({ host, …}). -->
-    <dialog
-      id="discoverDialog"
-      class="discover-dialog"
-      aria-label="Discover people to follow"
-    >
-      <div class="discover-body">
-        <!-- Dismissal is owned by the Skip button inside the
-             onboarding panel itself (and Esc / backdrop click on the
-             native <dialog>) — no separate × in the frame. -->
-        <div class="discover-content" id="discoverBody"></div>
-      </div>
     </dialog>
   </body>
 </html>

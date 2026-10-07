@@ -284,136 +284,6 @@
   justify-content: flex-start;
   gap: 14px;
 }
-.profile-header .ph-follow {
-  height: 26px;
-  padding: 0 11px;
-  border-radius: 9px;
-  font: 600 12px/1 var(--sans);
-  letter-spacing: 0;
-  color: rgba(var(--ink-rgb), 0.78);
-  background:
-    linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.55),
-      rgba(255, 255, 255, 0) 55%
-    ),
-    rgba(var(--ink-rgb), 0.04);
-  border: 1px solid rgba(var(--ink-rgb), 0.08);
-  box-shadow:
-    0 1px 0 rgba(var(--ink-rgb), 0.02),
-    inset 0 1px 0 rgba(255, 255, 255, 0.4);
-  cursor: pointer;
-  white-space: nowrap;
-  flex-shrink: 0;
-  transition:
-    background 0.14s ease,
-    color 0.14s ease,
-    border-color 0.14s ease,
-    box-shadow 0.14s ease;
-}
-[data-theme="dark"] .profile-header .ph-follow {
-  background:
-    linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.04),
-      rgba(255, 255, 255, 0) 55%
-    ),
-    rgba(var(--ink-rgb), 0.045);
-  border-color: rgba(255, 255, 255, 0.07);
-  box-shadow:
-    0 1px 0 rgba(0, 0, 0, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
-}
-.profile-header .ph-follow::before {
-  content: "Follow";
-}
-.profile-header .ph-follow:hover {
-  color: rgba(var(--ink-rgb), 0.95);
-  background:
-    linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.65),
-      rgba(255, 255, 255, 0) 55%
-    ),
-    rgba(var(--ink-rgb), 0.07);
-  border-color: rgba(var(--ink-rgb), 0.16);
-  box-shadow:
-    0 1px 2px rgba(var(--ink-rgb), 0.05),
-    inset 0 1px 0 rgba(255, 255, 255, 0.5);
-}
-[data-theme="dark"] .profile-header .ph-follow:hover {
-  background:
-    linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.06),
-      rgba(255, 255, 255, 0) 55%
-    ),
-    rgba(var(--ink-rgb), 0.08);
-  border-color: rgba(255, 255, 255, 0.12);
-  box-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
-}
-.profile-header .ph-follow.is-following {
-  color: rgba(var(--ink-rgb), 0.72);
-  background:
-    linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.55),
-      rgba(255, 255, 255, 0) 55%
-    ),
-    rgba(var(--ink-rgb), 0.04);
-  border-color: rgba(var(--ink-rgb), 0.08);
-  box-shadow:
-    0 1px 0 rgba(var(--ink-rgb), 0.02),
-    inset 0 1px 0 rgba(255, 255, 255, 0.4);
-}
-[data-theme="dark"] .profile-header .ph-follow.is-following {
-  background:
-    linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.04),
-      rgba(255, 255, 255, 0) 55%
-    ),
-    rgba(var(--ink-rgb), 0.045);
-  border-color: rgba(255, 255, 255, 0.07);
-  box-shadow:
-    0 1px 0 rgba(0, 0, 0, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
-}
-.profile-header .ph-follow.is-following::before {
-  content: "Following";
-}
-.profile-header .ph-follow.is-following:hover {
-  color: rgba(var(--ink-rgb), 0.92);
-  background:
-    linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.65),
-      rgba(255, 255, 255, 0) 55%
-    ),
-    rgba(var(--ink-rgb), 0.07);
-  border-color: rgba(var(--ink-rgb), 0.16);
-  box-shadow:
-    0 1px 2px rgba(var(--ink-rgb), 0.05),
-    inset 0 1px 0 rgba(255, 255, 255, 0.5);
-}
-[data-theme="dark"] .profile-header .ph-follow.is-following:hover {
-  background:
-    linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.06),
-      rgba(255, 255, 255, 0) 55%
-    ),
-    rgba(var(--ink-rgb), 0.08);
-  border-color: rgba(255, 255, 255, 0.12);
-  box-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
-}
-.profile-header .ph-follow.is-following:hover::before {
-  content: "Unfollow";
-}
 .profile-header .ph-name {
   font-size: 22px;
   font-weight: 800;
@@ -442,41 +312,6 @@
 .profile-header .ph-stats strong {
   color: var(--text-primary);
   font-weight: 700;
-}
-
-/* Follow-graph kicker shown above #results when the search page is
- * rendering the default-state timeline (activity from people you
- * follow). Kept low-key on purpose — same vertical rhythm as the
- * existing result-sources strip, just a single line with a tiny
- * accent dot. */
-.following-header {
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-  padding: 8px 14px;
-  margin: 0 0 6px;
-  font-size: 13.5px;
-  color: var(--text-secondary);
-}
-.following-header strong {
-  color: var(--text-primary);
-  font-weight: 600;
-}
-.following-header .following-sub {
-  color: var(--text-muted);
-  font-weight: 400;
-}
-.following-header .following-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--accent-primary);
-  box-shadow: 0 0 0 3px var(--accent-glow);
-  display: inline-block;
-  align-self: center;
-}
-.following-header[hidden] {
-  display: none;
 }
 
 .result-sources {
@@ -685,9 +520,9 @@
   display: none !important;
 }
 
-/* "Following only" toggle — sits next to the date filter, same
- * minimalist text+icon family. Off = greyed; On = full ink + a
- * tiny dot indicator so the active state is unmistakable. */
+/* Scope-filter toggles (e.g. "Show seen") — sit next to the date
+ * filter, same minimalist text+icon family. Off = greyed; On = full
+ * ink + a tiny dot indicator so the active state is unmistakable. */
 .scope-filter {
   appearance: none;
   border: 0;

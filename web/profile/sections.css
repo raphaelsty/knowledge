@@ -104,10 +104,9 @@
 }
 
 /* ==========================================================================
-   Discover launcher — routes to /#discover, which page.js intercepts to
-   pop the onboarding overlay. Visually a quiet card with an arrow on the
-   right so it reads as a "go" action without competing with the rest of
-   the settings form.
+   Launcher card (e.g. "Submit a suggestion"). Visually a quiet card with
+   an arrow on the right so it reads as a "go" action without competing
+   with the rest of the settings form.
    ========================================================================== */
 .discover-launch {
   display: inline-flex;

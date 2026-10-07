@@ -306,8 +306,7 @@
     0 1px 3px rgba(var(--ink-rgb), 0.08);
 }
 /* Wrapper for one avatar + its hover popover. The popover surfaces
- * "View profile" and an Unfollow action when the caller is signed in
- * and follows the user. Stays hidden until the user mouses over the
+ * the name and a "View profile" link. Stays hidden until the user mouses over the
  * avatar (or focuses anything inside the host). */
 .result .shared-by .ava-host {
   position: relative;
@@ -388,8 +387,7 @@
  * keep its transparent bridge while only the inner block shows the
  * border + shadow. */
 .result .shared-by .ava-pop > .ava-pop-name,
-.result .shared-by .ava-pop > .ava-pop-link,
-.result .shared-by .ava-pop > .ava-pop-action {
+.result .shared-by .ava-pop > .ava-pop-link {
   background-clip: padding-box;
 }
 .result .shared-by .ava-pop::before {
@@ -408,8 +406,7 @@
   z-index: -1;
 }
 .result .shared-by .ava-pop > .ava-pop-name,
-.result .shared-by .ava-pop > .ava-pop-link,
-.result .shared-by .ava-pop > .ava-pop-action {
+.result .shared-by .ava-pop > .ava-pop-link {
   position: relative;
   z-index: 1;
   margin: 0 6px;
@@ -417,7 +414,6 @@
 .result .shared-by .ava-pop > .ava-pop-name {
   margin-top: 6px;
 }
-.result .shared-by .ava-pop > .ava-pop-action:last-child,
 .result .shared-by .ava-pop > .ava-pop-link:last-child {
   margin-bottom: 6px;
 }
@@ -436,8 +432,7 @@
   color: var(--text-primary);
   border-bottom: 1px solid rgba(var(--ink-rgb), 0.06);
 }
-.result .shared-by .ava-pop-link,
-.result .shared-by .ava-pop-action {
+.result .shared-by .ava-pop-link {
   display: block;
   padding: 5px 8px;
   font: 600 12px/1.2 var(--sans);
@@ -450,15 +445,8 @@
   text-decoration: none;
   white-space: nowrap;
 }
-.result .shared-by .ava-pop-link:hover,
-.result .shared-by .ava-pop-action:hover {
+.result .shared-by .ava-pop-link:hover {
   background: rgba(var(--ink-rgb), 0.06);
-}
-.result .shared-by .ava-pop-action {
-  color: rgba(var(--ink-rgb), 0.72);
-}
-.result .shared-by .ava-pop-action:hover {
-  color: var(--text-primary);
 }
 /* Each avatar: a real <a> linking to the personality, so a
      * cmd-click opens their library. White ring against the warm

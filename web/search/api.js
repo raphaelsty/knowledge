@@ -817,7 +817,7 @@
     }
   }
 
-  /* ── Personality bookmarks (cross-user "follow") ─────────────────────
+  /* ── Personality bookmarks ─────────────────────
    * The signed-in user's saved-people list. Surfaces in the library
    * picker as a dedicated "Bookmarks" section above the by-category
    * grouping.

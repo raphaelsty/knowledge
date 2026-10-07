@@ -34,8 +34,8 @@
 //!                            /api/me/documents`.
 //! - `my_library`           — search / list the bearer-token holder's own
 //!                            library. Bearer-authed, no slug argument.
-//! - `my_timeline`          — recent docs from the bearer-token holder's
-//!                            follow graph (followees ∪ self). Mirrors
+//! - `my_timeline`          — recent docs across every VIP library plus
+//!                            the bearer-token holder's own. Mirrors
 //!                            `GET /api/timeline`.
 
 #![allow(clippy::doc_overindented_list_items, clippy::type_complexity)]
@@ -395,7 +395,7 @@ fn handle_tools_list() -> Value {
             },
             {
                 "name": "feed",
-                "description": "Activity feed. When the MCP HTTP request carries `Authorization: Bearer kn_...` this returns the bearer holder's personal follow-graph timeline — the exact docs the UI's feed renders for that user (followees ∪ self, deduped by URL, most-recent first). When no bearer is present, falls back to the public cross-library aggregate sorted by date desc then by sharer count. Each row carries the list of personalities that have the URL in their library (slug, name, avatar, follower counts). Mirrors `GET /api/timeline` (authed) or `GET /api/feed` (anonymous).",
+                "description": "Activity feed. When the MCP HTTP request carries `Authorization: Bearer kn_...` this returns the bearer holder's timeline — every VIP library plus their own, deduped by URL, most-recent first. When no bearer is present, falls back to the public cross-library aggregate sorted by date desc then by sharer count. Each row carries the list of personalities that have the URL in their library (slug, name, avatar, follower counts). Mirrors `GET /api/timeline` (authed) or `GET /api/feed` (anonymous).",
                 "inputSchema": {
                     "type": "object",
                     "properties": {
@@ -474,7 +474,7 @@ fn handle_tools_list() -> Value {
             },
             {
                 "name": "my_timeline",
-                "description": "Recent documents from the bearer-token holder's follow graph (followees ∪ self), most recent first. Same payload shape as `feed` — each row carries the list of personalities sharing the URL. Mirrors `GET /api/timeline`. Bearer-authed; the token decides whose follow graph is used. Useful for asking 'what's new in my world?'.",
+                "description": "Recent documents across every VIP library plus the bearer-token holder's own, most recent first. Same payload shape as `feed` — each row carries the list of personalities sharing the URL. Mirrors `GET /api/timeline`. Bearer-authed; the token decides whose own library joins the feed. Useful for asking 'what's new?'.",
                 "inputSchema": {
                     "type": "object",
                     "properties": {
@@ -2139,8 +2139,9 @@ async fn tool_get_document(pool: &PgPool, args: Value) -> Result<Value, String> 
 // ---------------------------------------------------------------------------
 
 async fn tool_feed(pool: &PgPool, headers: &HeaderMap, args: Value) -> Result<Value, String> {
-    // If the caller is bearer-authed, return their personal follow-graph
-    // timeline — exactly what the UI feed shows them when libs.size === 0.
+    // If the caller is bearer-authed, return their timeline (every VIP
+    // library + their own) — what the UI feed shows them when
+    // libs.size === 0.
     // Anonymous callers fall back to the public cross-library aggregate
     // below so `feed` keeps doing something useful without credentials.
     if crate::handlers::tokens::resolve_bearer(pool, headers)
@@ -2657,7 +2658,7 @@ async fn tool_my_library(
 }
 
 // ---------------------------------------------------------------------------
-// Tool: my_timeline — bearer-authed follow-graph timeline
+// Tool: my_timeline — bearer-authed timeline (every VIP ∪ self)
 // ---------------------------------------------------------------------------
 
 /// SQL twin of `handlers::follows::timeline` but parametrized by a
@@ -2691,7 +2692,7 @@ async fn tool_my_timeline(
 
     let sql = "
         WITH followed AS (
-            SELECT followed_id AS user_id FROM follows WHERE follower_id = $1
+            SELECT id AS user_id FROM users WHERE vip = TRUE
             UNION
             SELECT $1::bigint AS user_id
         ),

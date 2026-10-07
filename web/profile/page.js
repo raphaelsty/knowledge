@@ -1630,7 +1630,7 @@
       {
         fn: "my_timeline",
         title: "My Timeline",
-        desc: "Recent docs from your follow graph — bearer-token authenticated.",
+        desc: "Recent docs across all libraries plus your own — bearer-token authenticated.",
         auth: "bearer",
         args: [
           {
@@ -1656,7 +1656,7 @@
           },
         ],
         returns:
-          "Per-URL rows from followees ∪ self, newest first. Same `{sharers, sharerCount}` shape as `feed`. Mirrors `GET /api/timeline`.",
+          "Per-URL rows from every library ∪ self, newest first. Same `{sharers, sharerCount}` shape as `feed`. Mirrors `GET /api/timeline`.",
         example: {
           name: "my_timeline",
           arguments: { sources: ["github", "arxiv"], per_page: 30 },

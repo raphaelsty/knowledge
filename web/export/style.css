@@ -5,13 +5,9 @@
  * the global theme tokens (--ink / --paper / --muted / --modern) so
  * dark mode falls out automatically. No accent purple — the primary
  * action uses ink-on-paper to stay neutral in both themes.
- *
- * If the Follow button styling in search.css changes, mirror it on
- * `.ph-export` below.
  */
 
 /* ── Profile-header trigger button ──────────────────────────────── */
-/* Mirrors `.ph-follow` exactly so the two read as peers. */
 .profile-header .ph-export {
   appearance: none;
   height: 26px;

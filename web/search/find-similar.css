@@ -448,8 +448,8 @@
   width: 100%;
 }
 
-/* People rail loading dot — sits below the list while the VIP +
- * following data is in flight. Same visual language as the results
+/* People rail loading dot — sits below the list while the VIP
+ * data is in flight. Same visual language as the results
  * and source spinners. */
 .people-loading {
   display: flex;
@@ -473,7 +473,7 @@
 }
 
 /* Sources rail loading dot — sits in the group-body while the rail
- * is being populated (feed: per-followee /api/sources fetch chain;
+ * is being populated (feed: /api/me/feed/sources fetch;
  * personal: cold `getSources` before the cache lands). Visually
  * matches `.results-loading` but compact for the rail width. */
 .src-loading {

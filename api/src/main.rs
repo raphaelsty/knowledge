@@ -923,13 +923,7 @@ fn build_router(state: Arc<AppState>, pg_pool: Option<sqlx::PgPool>) -> Router {
                 "/auth/me/deleted-urls",
                 get(handlers::auth::list_deleted_urls),
             )
-            // Follow graph + timeline.
-            .route(
-                "/api/follow/{slug}",
-                post(handlers::follows::follow).delete(handlers::follows::unfollow),
-            )
-            .route("/api/me/following", get(handlers::follows::list_following))
-            .route("/api/me/follow/bulk", post(handlers::follows::follow_bulk))
+            // Feed timeline (every VIP library + self).
             .route("/api/me/feed/sources", get(handlers::follows::feed_sources))
             .route("/api/timeline", get(handlers::follows::timeline))
             // Catalogue endpoint feeding the search-bar category picker.

@@ -67,10 +67,9 @@
   const SRC_HYDRATE_MAX_LIBS = 10;
 
   /* Ontology slug → display label. Mirrors the seed in
-   * sources/sql/categories.sql so the library picker and onboarding
-   * can render human-friendly section titles without hitting the
-   * API for the categories table. Keep in sync if the SQL seed is
-   * edited. */
+   * sources/sql/categories.sql so the library picker can render
+   * human-friendly section titles without hitting the API for the
+   * categories table. Keep in sync if the SQL seed is edited. */
   const CATEGORY_LABELS = {
     "llm-research": "LLM Research",
     "nlp-retrieval": "NLP & Retrieval",
@@ -165,7 +164,7 @@
      * open of either picker surface. */
     categories: new Set(),
     /* Desktop right-rail mode — either 'people' (the default
-     * "Peoples to follow" panel) or 'categories' (the topic
+     * people panel) or 'categories' (the topic
      * picker UI). The two share the right column; only one is
      * rendered at a time. Persisted in localStorage under
      * `kn.right_rail` so a user who flips to Topics keeps Topics
@@ -180,11 +179,6 @@
         return "people";
       }
     })(),
-    /* When true (and signed in), feed search narrows to followees +
-     * self. Off by default so first-time users still discover content
-     * across libraries — the toggle next to the date filter lets them
-     * opt back into the focused view. */
-    followingOnly: false,
     /* When true, the timeline includes cards the viewer has already
      * seen (≥1.5 s viewport dwell tracked via the card_seen event).
      * Default false → seen cards are filtered out server-side.
@@ -206,9 +200,9 @@
      * slate). */
     shownUrls: new Set(),
     favorites: new Set(),
-    /* Slugs the signed-in user has bookmarked (cross-user
-     * "follow"). Populated after /auth/me resolves and surfaces in
-     * the library picker's "Bookmarks" section. */
+    /* Slugs the signed-in user has bookmarked. Populated after
+     * /auth/me resolves and surfaces in the library picker's
+     * "Bookmarks" section. */
     personalityBookmarks: new Set(),
     allSources: [],
     allPersonalities: [],
@@ -285,7 +279,6 @@
     if (libList.length) q.set("libs", libList.join(","));
     if (state.sortByDate) q.set("sort", "date");
     if (state.dateSince) q.set("since", state.dateSince);
-    if (state.followingOnly) q.set("scope", "following");
     if (state.categories && state.categories.size) {
       q.set("category", [...state.categories].join(","));
     }
@@ -307,8 +300,8 @@
     const link = document.querySelector('link[rel="canonical"]');
     if (!link) return;
     // Only the same params that appear in the sitemap matter for
-    // canonical purposes — `q`, `tags`, `since`, `sort`, `scope`,
-    // `fav` are user-state and shouldn't fragment indexing.
+    // canonical purposes — `q`, `tags`, `since`, `sort`, `fav` are
+    // user-state and shouldn't fragment indexing.
     const cur = new URLSearchParams(location.search);
     const keep = new URLSearchParams();
     if (cur.get("libs")) keep.set("libs", cur.get("libs"));
@@ -342,7 +335,6 @@
         if (!state.sources.has(s)) state.excludedSources.add(s);
     if (sort === "date") state.sortByDate = true;
     if (since) state.dateSince = since;
-    if (u.get("scope") === "following") state.followingOnly = true;
     // Multi-select: the URL carries a CSV of slugs in the same
     // `category` param (kept singular for backward compatibility
     // with deep-links saved against the v1 single-select picker).
@@ -729,7 +721,7 @@
     // Strip any "Retweet @<handle>: " / "RT @<handle>: " prefix, then
     // collapse whitespace. The pipeline sometimes stores the same
     // original tweet body under multiple wrapper URLs (one per
-    // followee who quoted / retweeted / replied), often without the
+    // library that quoted / retweeted / replied), often without the
     // explicit RT prefix on every row. Hashing the body itself catches
     // those cases too — at length >= 60 chars the false-positive risk
     // of two distinct tweets sharing the same body is negligible
@@ -1328,10 +1320,7 @@
    */
   /* Feed-mode source rail.
    *
-   * Aggregates per-source totals across (signed-in user ∪ followees)
-   * by reusing the same /api/sources endpoint we hit for personal
-   * pages. Loads each followee's source list once and memoises into
-   * state.perSlugSources, so subsequent renders are free.
+   * Aggregates per-source totals across every library.
    *
    * Returns the merged list (also assigned to state.allSources).
    */
@@ -1341,9 +1330,8 @@
     // loader since the existing rows are still valid.
     if (!state.allSources?.length) showSrcSpinner();
     // One round-trip to /api/me/feed/sources — the server aggregates
-    // across (followees ∪ self) in a single GROUP BY against the
-    // `user_source_counts` view. Replaces the previous per-followee
-    // fan-out (N calls → 1) and the client-side merge loop.
+    // across all libraries in a single GROUP BY against the
+    // `user_source_counts` view.
     try {
       const r = await fetch(`${API_BASE}/api/me/feed/sources`, {
         credentials: "include",
@@ -1592,55 +1580,6 @@
     location.href = `/search${tail ? `?${tail}` : ""}`;
   }
 
-  /* Discover overlay — top-of-rail button. Reuses the onboarding
-   * module's category picker rendered into the `#discoverBody`
-   * inside a native <dialog>. Distinct copy ("discover" mode) for
-   * users who already have follows. */
-  function openDiscoverOverlay() {
-    const dialog = $("discoverDialog");
-    const body = $("discoverBody");
-    if (!dialog || !body || !window.KnowledgeOnboarding) return;
-    if (typeof dialog.showModal === "function" && !dialog.open) {
-      dialog.showModal();
-    } else {
-      dialog.setAttribute("open", "");
-    }
-    window.KnowledgeOnboarding.open({
-      personalities: state.allPersonalities,
-      apiBase: API_BASE,
-      mode: "discover",
-      host: body,
-      onSkip: () => {
-        // "Skip for now" inside the discover overlay just closes it.
-        if (typeof dialog.close === "function" && dialog.open) dialog.close();
-        else dialog.removeAttribute("open");
-        body.innerHTML = "";
-      },
-    });
-  }
-  $("discoverBtn")?.addEventListener("click", () => {
-    // Heading click → open the overlay when signed in; anonymous
-    // users get the auth modal on the sign-in view (they can switch
-    // to signup from there if they don't have an account yet).
-    if (me) openDiscoverOverlay();
-    else window.KnowledgeAuth?.open("login");
-  });
-  /* Close paths besides the in-panel Skip button:
-   *   - Esc key (native <dialog> behaviour, free)
-   *   - Click on the backdrop (i.e. the dialog element itself,
-   *     not the card child) */
-  function closeDiscoverOverlay() {
-    const dialog = $("discoverDialog");
-    const body = $("discoverBody");
-    if (!dialog) return;
-    if (typeof dialog.close === "function" && dialog.open) dialog.close();
-    else dialog.removeAttribute("open");
-    if (body) body.innerHTML = "";
-  }
-  $("discoverDialog")?.addEventListener("click", (e) => {
-    if (e.target === $("discoverDialog")) closeDiscoverOverlay();
-  });
-
   /* ── Add-library picker (centred multi-select modal) ──────────
    * Buffers a tentative selection until the user clicks Done, so
    * mid-pick state changes don't trigger refresh storms. Cancel /
@@ -1705,19 +1644,13 @@
       let results;
       if (libs.length === 0) {
         // Feed mode: no per-lib indices to fan out to. Hit the cross-
-        // library __all__ index, then scope results to (me ∪ followees)
-        // so the count matches the user's actual feed. topK scales with
-        // pool size — ~30 hits/source signal still holds when split
-        // across many owners.
-        const scope = me
-          ? new Set([...(_peopleRail?.following || []), me.slug])
-          : null;
-        let docs = await K.search({
+        // library __all__ index. topK scales with pool size — ~30
+        // hits/source signal still holds when split across many owners.
+        const docs = await K.search({
           indexName: ALL_INDEX_NAME,
           query,
           topK: 800,
         }).catch(() => []);
-        if (scope) docs = docs.filter((d) => scope.has(d.owner));
         results = [docs];
       } else {
         // Personal-page / multi-lib path. Single `__all__` index scoped
@@ -2053,9 +1986,6 @@
         renderSrc();
       }
       writeUrl();
-      // The "Following only" toggle's visibility depends on whether
-      // there's an active query — sync after each keystroke.
-      syncFollowingOnlyButton();
       refresh();
     }, 220);
   });
@@ -2074,20 +2004,6 @@
   // Sort toggle was removed — Relevance is implicit while a query is
   // active, browse-mode is always date-desc. The relevant filter lives
   // on the date-range <select> below.
-  /* "Following only" toggle — restricts feed search to followees+self.
-   * Persists in the URL as `&scope=following` so a shared link
-   * reproduces the same view. Only relevant when a search is running
-   * on the feed (libs.size === 0) — otherwise the button is hidden.
-   * Anonymous users see it but a click pops the login modal. */
-  function syncFollowingOnlyButton() {
-    const btn = $("qFollowingOnly");
-    if (!btn) return;
-    const onFeed = state.libs.size === 0;
-    const searching = !!state.query;
-    btn.hidden = !(onFeed && searching);
-    btn.classList.toggle("is-on", !!state.followingOnly);
-    btn.setAttribute("aria-pressed", state.followingOnly ? "true" : "false");
-  }
   /* "Show seen" chip — only meaningful on the logged-in timeline
    * (libs empty, no query). Visibility / enabled state split into
    * two attributes so desktop and mobile can style them differently:
@@ -2149,21 +2065,8 @@
     if (!wrap) return;
     wrap.classList.toggle("has-filter", !!state.dateSince);
   }
-  syncFollowingOnlyButton();
   syncShowSeenButton();
   syncSinceFilterActive();
-  $("qFollowingOnly")?.addEventListener("click", () => {
-    // Anonymous → invite them to sign in. Otherwise toggle the
-    // scope filter and re-run the search.
-    if (!me) {
-      window.KnowledgeAuth?.open("login");
-      return;
-    }
-    state.followingOnly = !state.followingOnly;
-    syncFollowingOnlyButton();
-    writeUrl();
-    refresh();
-  });
   function toggleShowSeen() {
     if (!me) {
       window.KnowledgeAuth?.open("login");
@@ -3541,11 +3444,11 @@
       });
   }
 
-  /* ── Follow-graph timeline (default state for /search) ──────
+  /* ── Timeline (default state for /search) ──────
    *
    * When the user lands on /search with no libraries selected, we
-   * surface the activity of the people they follow (plus their own
-   * library) as a Twitter-style timeline. The payload comes from
+   * surface the latest activity across all libraries as a
+   * Twitter-style timeline. The payload comes from
    * the dedicated `/api/timeline` endpoint and is mapped onto the
    * existing search-card shape so the renderResult template needs
    * zero changes.
@@ -3560,7 +3463,7 @@
   const _timelineCache = new Map();
   const _TIMELINE_SS_TTL_MS = 10 * 60 * 1000; // 10 min
   const _TIMELINE_SS_PREFIX = "timeline:";
-  async function loadFollowingTimeline(overrides = {}) {
+  async function loadTimeline(overrides = {}) {
     const srcs = [...state.sources].filter((s) => s !== FAV_SOURCE_KEY);
     const excl = [...state.excludedSources];
     const tags = [...state.tags];
@@ -3655,7 +3558,7 @@
               name: s.name || s.slug,
               avatar: s.avatar || null,
               // Carry through twitter-follower count so the avatar
-              // shuffler can rank non-followees by popularity.
+              // shuffler can rank sharers by popularity.
               twitterFollowers: s.twitterFollowers || 0,
             };
           }
@@ -3716,15 +3619,11 @@
     }
   }
 
-  /* Small kicker shown above the result list when we're rendering
-   * the follow-graph timeline instead of search results. Inserted
-   * lazily so the search.html markup stays untouched. */
-  /* ── Right-side people-to-follow rail ─────────────────────────
+  /* ── Right-side people rail ─────────────────────────
    *
-   * Renders a filterable list of personalities with a Follow /
-   * Following toggle button per row. The interaction mirrors the
-   * existing libraries picker: a debounced filter input narrows
-   * the list as the user types; buttons hit /api/follow/{slug}.
+   * Renders a filterable list of personalities linking to their
+   * pages. The interaction mirrors the existing libraries picker:
+   * a debounced filter input narrows the list as the user types.
    *
    * Hydrated lazily on first call so the page boot stays cheap. */
   /* Same algorithm as the libraries picker: substring filter over
@@ -3738,32 +3637,9 @@
   const SRC_RAIL_PAGE = 50;
   const _srcRail = { page: SRC_RAIL_PAGE, observer: null };
 
-  /* Lift the follow-set fetch out of the people-rail so the profile
-   * header can read it before the rail is hydrated. We cache the
-   * in-flight promise so concurrent callers (rail boot + personal
-   * page header) only hit /api/me/following once. */
-  let _followingPromise = null;
-  function loadFollowingSet() {
-    if (_followingPromise) return _followingPromise;
-    _followingPromise = (async () => {
-      if (!me) return new Set();
-      try {
-        const r = await fetch(`${API_BASE}/api/me/following`, {
-          credentials: "include",
-        });
-        if (!r.ok) return new Set();
-        const list = await r.json();
-        return new Set(list.map((u) => u.slug));
-      } catch {
-        return new Set();
-      }
-    })();
-    return _followingPromise;
-  }
   const _peopleRail = {
     populated: false,
     rows: [], // [{slug, name, avatar, description, documentCount, category}, …]
-    following: new Set(),
     filter: "",
     filterTimer: null,
     // How many rows we're currently rendering. Grows by PEOPLE_RAIL_PAGE
@@ -3845,11 +3721,6 @@
       [pool[i], pool[j]] = [pool[j], pool[i]];
     }
     _peopleRail.rows = pool;
-
-    // Current follow set — shared loader, so the profile header can
-    // also consume it without re-fetching.
-    _peopleRail.following = await loadFollowingSet();
-    _peopleRail.followingHydrated = true;
 
     renderPeopleRail();
 
@@ -3933,7 +3804,7 @@
       if (extras.length) merged = [...substr, ...extras];
     }
 
-    // Hide the caller's own row — you can't follow yourself.
+    // Hide the caller's own row.
     let visible = merged.filter((u) => u.slug !== mySlug);
     // No-query default. Three buckets, in render order:
     //   1. Recently-clicked people — read from localStorage so the
@@ -3945,9 +3816,7 @@
     //      GitHub followers, then citations, then document count.
     //      No randomness: Karpathy at 2.3M Twitter followers lands
     //      first every time and the order doesn't shift between
-    //      refreshes. Followed-vs-unfollowed is no longer a bucket
-    //      boundary — popularity wins outright so the rail reads as
-    //      one consistent ranking.
+    //      refreshes.
     if (!q) {
       const clicks = _readPeopleClicks();
       const pinned = [];
@@ -3976,7 +3845,7 @@
       visible = [...pinned, ...others];
     }
     // Cap the underlying pool so the render math stays bounded even
-    // for huge follow lists; pagination below decides how many of
+    // for huge lists; pagination below decides how many of
     // the capped list we actually paint.
     visible = visible.slice(0, 500);
     const fullCount = visible.length;
@@ -4025,7 +3894,6 @@
             /* leave avatarStyle empty */
           }
         }
-        const following = _peopleRail.following.has(u.slug);
         return `
           <div class="people-row" role="listitem" data-slug="${escapeAttr(u.slug)}">
             <a class="pr-avatar" href="/search?libs=${encodeURIComponent(u.slug)}" style="${avatarStyle}" aria-label="${escapeAttr(u.name || u.slug)}">${u.avatar ? "" : escapeHtml(initials)}</a>
@@ -4033,10 +3901,6 @@
               <div class="pr-name">${escapeHtml(u.name || u.slug)}</div>
               ${u.description ? `<div class="pr-desc">${escapeHtml(u.description)}</div>` : ""}
             </a>
-            <button class="pr-follow ${following ? "is-following" : ""}"
-                    type="button"
-                    data-slug="${escapeAttr(u.slug)}"
-                    aria-pressed="${following}"></button>
           </div>
         `;
       })
@@ -4079,53 +3943,12 @@
         { capture: true },
       );
     }
-
-    listHost.querySelectorAll(".pr-follow").forEach((btn) => {
-      btn.addEventListener("click", async (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        // Unauthenticated → pop the login modal. After a successful
-        // login the page reloads and the rail rebuilds itself.
-        if (!me) {
-          window.KnowledgeAuth?.open("login");
-          return;
-        }
-        const slug = btn.dataset.slug;
-        const isFollowing = _peopleRail.following.has(slug);
-        // Optimistic toggle.
-        if (isFollowing) _peopleRail.following.delete(slug);
-        else _peopleRail.following.add(slug);
-        btn.classList.toggle("is-following", !isFollowing);
-        btn.setAttribute("aria-pressed", String(!isFollowing));
-        try {
-          const r = await fetch(
-            `${API_BASE}/api/follow/${encodeURIComponent(slug)}`,
-            {
-              method: isFollowing ? "DELETE" : "POST",
-              credentials: "include",
-            },
-          );
-          if (!r.ok) throw new Error(`HTTP ${r.status}`);
-          // Bust the timeline cache so the new follow shows up the
-          // next time the empty-libs landing state renders.
-          _timelineCache.clear();
-          window.KnowledgeSessionCache?.invalidatePrefix?.(_TIMELINE_SS_PREFIX);
-        } catch (err) {
-          // Roll back optimistic state on failure.
-          if (isFollowing) _peopleRail.following.add(slug);
-          else _peopleRail.following.delete(slug);
-          btn.classList.toggle("is-following", isFollowing);
-          btn.setAttribute("aria-pressed", String(isFollowing));
-          console.warn("[follow]", err);
-        }
-      });
-    });
   }
 
   /* Twitter-style profile header — only renders when the current
    * selection is exactly the signed-in user's own library, so the
    * page reads as a personal page (own bookmarks only) rather than
-   * the feed (own bookmarks + followees).
+   * the feed (all libraries).
    *
    * Pass `show = false` to force hide regardless of the rule. */
   function showProfileHeader(show) {
@@ -4167,22 +3990,6 @@
       : `<span class="ph-avatar ph-avatar-fallback" aria-hidden="true">${escapeHtml(initials)}</span>`;
     const docs =
       typeof meta.documentCount === "number" ? meta.documentCount : null;
-    // The follow set might not be hydrated yet on a cold personal-page
-    // load (the people rail is set up lazily). Kick off the shared
-    // loader and re-render once it lands so the Follow / Following
-    // label reflects the actual state.
-    if (me && !_peopleRail.followingHydrated) {
-      loadFollowingSet().then((set) => {
-        _peopleRail.following = set;
-        _peopleRail.followingHydrated = true;
-        // Only re-render if we're still on the same personality.
-        if (state.libs.size === 1 && [...state.libs][0] === slug) {
-          showProfileHeader();
-        }
-      });
-    }
-    const isFollowing = _peopleRail?.following?.has?.(slug);
-    const isMe = me && me.slug === slug;
     // Export button — visible to everyone (anonymous, signed-in,
     // owner, VIP). The click handler in web/export.js handles
     // pricing + auth-gating: it fetches a quote first, shows a
@@ -4194,79 +4001,26 @@
                data-action="ph-export"
                data-slug="${escapeAttr(slug)}"
                title="Export this library as JSONL">Export</button>`;
-    const actionHtml = isMe
-      ? exportBtnHtml
-      : `<button type="button"
-                 class="ph-follow ${isFollowing ? "is-following" : ""}"
-                 data-action="ph-follow"
-                 data-slug="${escapeAttr(slug)}"></button>${exportBtnHtml}`;
     h.innerHTML = `
       <div class="ph-body">
         ${avatarHtml}
         <div class="ph-meta">
           <div class="ph-row">
             <div class="ph-name">${escapeHtml(meta.name || slug)}</div>
-            ${actionHtml}
+            ${exportBtnHtml}
           </div>
           <div class="ph-handle">@${escapeHtml(slug)}</div>
           ${meta.description ? `<div class="ph-bio">${escapeHtml(meta.description)}</div>` : ""}
           <div class="ph-stats">
             ${docs !== null ? `<span><strong>${docs}</strong> bookmarks</span>` : ""}
-            ${
-              // "N following" — only on the signed-in user's own
-              // personal page. We pull from the shared follow-set
-              // loader so the number stays in sync with the people
-              // rail without an extra round-trip.
-              isMe && _peopleRail?.followingHydrated
-                ? `<span><strong>${_peopleRail.following.size}</strong> following</span>`
-                : ""
-            }
           </div>
         </div>
       </div>
     `;
-    // Wire the Follow / Following button.
-    const fb = h.querySelector("[data-action='ph-follow']");
-    if (fb) {
-      fb.addEventListener("click", async (e) => {
-        e.preventDefault();
-        if (!me) {
-          $("authBtn")?.click();
-          return;
-        }
-        const wasOn = fb.classList.contains("is-following");
-        fb.classList.toggle("is-following", !wasOn);
-        try {
-          const r = await fetch(
-            `${API_BASE}/api/follow/${encodeURIComponent(slug)}`,
-            { method: wasOn ? "DELETE" : "POST", credentials: "include" },
-          );
-          if (!r.ok) throw new Error("HTTP " + r.status);
-          if (_peopleRail?.following) {
-            if (wasOn) _peopleRail.following.delete(slug);
-            else _peopleRail.following.add(slug);
-            // Keep the right-rail row in sync without a full re-render.
-            const railBtn = document.querySelector(
-              `.people-row .pr-follow[data-slug="${slug.replace(/"/g, '\\"')}"]`,
-            );
-            if (railBtn) railBtn.classList.toggle("is-following", !wasOn);
-          }
-        } catch {
-          fb.classList.toggle("is-following", wasOn);
-        }
-      });
-    }
     // Export button is wired via document-level event delegation
     // in /export.js — survives re-renders and avoids ordering
     // assumptions between this file and the export module.
     h.hidden = false;
-  }
-
-  function showFollowingHeader(_show) {
-    // Header removed — keep the function as a no-op so existing
-    // call sites don't need to be touched.
-    const h = document.getElementById("followingHeader");
-    if (h) h.remove();
   }
 
   /* Banned-sources strip — sits next to the search bar and shows
@@ -4614,16 +4368,8 @@
       } catch {
         return;
       }
-      // Same scope filter the initial search applies — only relevant
-      // on the bare /search path where followingOnly filters by
-      // followed users.
-      const scope =
-        isBareSearch && me && state.followingOnly
-          ? new Set([...(_peopleRail?.following || []), me.slug])
-          : null;
-      if (scope) raw = raw.filter((d) => scope.has(d.owner));
       // Group by URL just like the initial search (avoids double
-      // rows when the same doc lives in multiple followee libraries).
+      // rows when the same doc lives in multiple libraries).
       const byUrl = new Map();
       for (const d of raw) {
         const ex = byUrl.get(d.url);
@@ -5066,9 +4812,6 @@
     // draw from.
     state.feedShuffled = false;
     state.shownUrls = new Set();
-    // Keep the "Following only" toggle's visibility in lockstep with
-    // (query active × on the feed). Cheap and idempotent.
-    syncFollowingOnlyButton();
     syncShowSeenButton();
     syncShuffleButton();
     // Same idea for the mobile chrome — keep the active tab + the
@@ -5114,24 +4857,19 @@
     const libs = [...state.libs];
     /* Zero libraries → this is "feed" mode. Two behaviours:
      *
-     *   ── No query → render the follow-graph timeline (recent docs
-     *      from followees + the caller's own library). Anonymous
-     *      callers with no follows fall back to the noLibs template.
+     *   ── No query → render the timeline (recent docs across all
+     *      libraries).
      *
      *   ── With a query → run a ColBERT search on the cross-library
-     *      __all__ index, then keep only docs whose owner is in
-     *      (followees ∪ self) so the feed search stays scoped to
-     *      the people you actually follow. The user explicitly
-     *      asked for this: "search using __all__ + my index".
+     *      __all__ index.
      */
     if (libs.length === 0) {
       showProfileHeader(false);
 
       // Favourites chip on the feed → bypass /api/timeline and pull
       // the user's full favourited set straight from the hydrated
-      // endpoint. Favourites are personal and may span libraries the
-      // user doesn't follow, so the timeline scope (followees + self)
-      // would miss them.
+      // endpoint. Favourites are personal, so they bypass the
+      // timeline entirely.
       if (state.sources.has(FAV_SOURCE_KEY) && !state.query) {
         try {
           let favDocs = await K.getFavoriteDocs();
@@ -5183,15 +4921,6 @@
       }
 
       if (state.query) {
-        // Feed search defaults to the global library set so non-
-        // followed sharers can surface (with the faded avatar +
-        // Follow popover) and discovery stays open. The "Following
-        // only" toggle next to the date filter narrows the scope to
-        // followees + self when the user wants a focused view.
-        const scope =
-          me && state.followingOnly
-            ? new Set([...(_peopleRail?.following || []), me.slug])
-            : null;
         let docs = [];
         try {
           // Pre-filter at the index level — sources, excluded sources,
@@ -5211,7 +4940,6 @@
           console.warn("[feed-search]", e);
         }
         if (my !== reqId) return;
-        if (scope) docs = docs.filter((d) => scope.has(d.owner));
 
         // Group by URL so multiple owners of the same doc surface as
         // one row with a stacked avatar list. The __all__ index can
@@ -5243,7 +4971,6 @@
           filteredByCat = filterDocsByUrlSet(merged, new Set(urls));
         }
         const capped = filteredByCat.slice(0, 60);
-        showFollowingHeader(false);
         state.lastDocs = capped;
         renderResultSources();
         $("resultCount").textContent =
@@ -5271,20 +4998,18 @@
         // the rows already on the page (see `loadMoreDocs`).
         armInfiniteScroll();
         postRerank(capped);
-        // Feed mode: aggregate per-source totals across (me + followees)
+        // Feed mode: aggregate per-source totals across all libraries
         // so the rail mirrors a personal page's filter behaviour.
         rebuildAllSourcesForFeed().then(renderSrc);
         return;
       }
 
       // No query → the timeline.
-      const tlDocs = await loadFollowingTimeline();
+      const tlDocs = await loadTimeline();
       if (my !== reqId) return;
       if (tlDocs && tlDocs.length) {
-        showFollowingHeader(true);
-        // Populate the Sources panel from the union of (me + followees)
-        // source lists, with counts. Async — re-renders the rail when
-        // the followee fetches land.
+        // Populate the Sources panel from the all-libraries source
+        // counts. Async — re-renders the rail when the fetch lands.
         rebuildAllSourcesForFeed().then(renderSrc);
         // Source/tag filters are pushed into /api/timeline directly,
         // so tlDocs is already filtered — no client-side narrowing.
@@ -5294,9 +5019,7 @@
         const filtered = reorderFeed(tlDocs);
         state.lastDocs = filtered;
         renderResultSources();
-        $("resultCount").textContent = me
-          ? `${filtered.length} from people you follow`
-          : `${filtered.length} from featured libraries`;
+        $("resultCount").textContent = `${filtered.length} from all libraries`;
         $("resultCount").hidden = false;
         setQueryMetrics({
           nResults: filtered.length,
@@ -5322,43 +5045,14 @@
         }
         return;
       }
-      showFollowingHeader(false);
-      // No timeline docs. When the cause is "signed in but following
-      // nobody yet", show the same discover-people panel the
-      // personal page renders — it's the most useful next action.
-      // Filter-narrowed empties still get the plain "no results" pill.
+      // No timeline docs — filters narrowed the feed to nothing.
       $("results").innerHTML = "";
       hideResultsSpinner();
       setQueryMetrics({ nResults: 0, tMs: null, total: 0 });
-      const noFilters =
-        !state.query &&
-        !state.tags.size &&
-        !state.sources.size &&
-        !state.excludedSources.size;
-      if (me && noFilters && window.KnowledgeOnboarding) {
-        const followsSet = await loadFollowingSet();
-        if (followsSet.size === 0) {
-          window.KnowledgeOnboarding.open({
-            personalities: state.allPersonalities,
-            apiBase: API_BASE,
-            // First-run flow → show the welcome intro before the
-            // picker. The Discover overlay (existing user clicking
-            // "Discover Peoples") is the only place that should skip
-            // straight to the categories.
-            mode: "onboard",
-            onSkip: () => {
-              resetEmptyMessage();
-              $("empty").style.display = "";
-            },
-          });
-          return;
-        }
-      }
       resetEmptyMessage();
       $("empty").style.display = "";
       return;
     }
-    showFollowingHeader(false);
     showProfileHeader();
     let docs = [];
     // One filter, used by every pool: index-side condition for
@@ -5801,19 +5495,7 @@
         !state.sources.size &&
         !state.excludedSources.size;
       if (onOwnPersonal) {
-        // Follow-graph empty? Take that as a stronger "new user"
-        // signal than "no docs" — propose people to follow first, the
-        // library-is-empty CTA falls through after.
-        const followsSet = await loadFollowingSet();
-        if (followsSet.size === 0 && window.KnowledgeOnboarding) {
-          window.KnowledgeOnboarding.open({
-            personalities: state.allPersonalities,
-            apiBase: API_BASE,
-            onSkip: () => renderPersonalEmptyOnboarding(),
-          });
-        } else {
-          renderPersonalEmptyOnboarding();
-        }
+        renderPersonalEmptyOnboarding();
       } else {
         resetEmptyMessage();
         $("empty").style.display = "";
@@ -6666,18 +6348,13 @@
       // Avoid double-paint.
       if (art.querySelector(".co-owners")) continue;
       const owners = doc._co_owners.slice(0, 12);
-      const followingSet = _peopleRail?.following || new Set();
-      const sorted = [
-        ...owners.filter((o) => followingSet.has(o.slug)),
-        ...owners.filter((o) => !followingSet.has(o.slug)),
-      ];
       // The "also liked by" label used to live here as a small
       // muted span before the avatar stack. Dropped on the user's
       // request — the avatars themselves carry the meaning, and the
       // aria-label below keeps the social context discoverable for
       // assistive tech.
       const html = `<div class="co-owners" aria-label="${owners.length} other ${owners.length === 1 ? "person has" : "people have"} this">
-        ${sorted
+        ${owners
           .map(
             (o) =>
               `<span class="ava-host"><a class="ava co-ava" href="/search?libs=${encodeURIComponent(o.slug)}" title="${escapeAttr(o.name || o.slug)}"><img src="${escapeAttr(o.avatar || "")}" alt="" onerror="this.style.opacity=0"/></a></span>`,
@@ -6753,30 +6430,21 @@
     // sequence isn't frozen). Single-library mode is suppressed —
     // every card would just show the host on its own.
     // Avatar stack ordering:
-    //   1. People the signed-in user already follows come first
-    //      (stable order by Twitter-follower count) — they're who
-    //      the caller cares about most.
+    //   1. The caller themselves is pinned at the very front when
+    //      they're a sharer too.
     //   2. Everyone else is weighted-shuffled by popularity so a
     //      well-known sharer surfaces near the front *most* of the
     //      time, but the order isn't frozen each refresh.
-    //   3. The caller themselves is pinned at the very front when
-    //      they're a sharer too.
     const _ownersAllMeta = (d._owners || [])
       .map((s) => state.perSlugMeta[s])
       .filter(Boolean);
-    const _followingSet = _peopleRail?.following || new Set();
     const _meSlug = me?.slug || "";
     const _meBucket = [];
-    const _followedBucket = [];
     const _restBucket = [];
     for (const p of _ownersAllMeta) {
       if (p.slug === _meSlug) _meBucket.push(p);
-      else if (_followingSet.has(p.slug)) _followedBucket.push(p);
       else _restBucket.push(p);
     }
-    _followedBucket.sort(
-      (a, b) => (b.twitterFollowers || 0) - (a.twitterFollowers || 0),
-    );
     // Original-author avatar: when this doc is a retweet/quote
     // whose source author is itself one of our indexed
     // personalities (e.g. raphael retweets antoine_chaffin), we
@@ -6803,7 +6471,6 @@
     const ownersMeta = [
       ...(_origMeta ? [_origMeta] : []),
       ..._meBucket,
-      ..._followedBucket,
       ...weightedShuffleByPopularity(_restBucket),
     ];
     // Show the avatar stack whenever it carries new information:
@@ -6825,7 +6492,7 @@
     // otherwise emit a stack wider than a phone viewport — the card
     // grid overflows and iOS Safari's text autosizing then inflates
     // the card's fonts. The ordering above already puts the most
-    // relevant faces (me → followed → popular) inside the cap; the
+    // relevant faces (me → popular) inside the cap; the
     // long tail collapses into a "+N" chip and the full count stays
     // in the aria-label.
     const MAX_STACK_AVATARS = 8;
@@ -6840,20 +6507,8 @@
           .map((p) => {
             // Each avatar is its own hover-popover host. The avatar
             // itself links to the user's library; the popover
-            // surfaces "View profile" plus (depending on follow
-            // state) a Follow or Unfollow action.
-            const followed = _peopleRail?.following?.has?.(p.slug);
-            const isMe = me && me.slug === p.slug;
-            // Anonymous viewers see neutral avatars (no follow
-            // affordance). Signed-in viewers see followed people
-            // at full opacity and non-followed strangers slightly
-            // faded — the popover lets them flip the state.
-            const showUnfollow = !!me && !isMe && followed;
-            const showFollow = !!me && !isMe && !followed;
-            const hostClass =
-              "ava-host" +
-              (showFollow ? " is-not-followed" : "") +
-              (p._original ? " is-original" : "");
+            // surfaces the name and a "View profile" link.
+            const hostClass = "ava-host" + (p._original ? " is-original" : "");
             const popName = p._original
               ? `${escapeHtml(p.name || p.slug)} · original author`
               : escapeHtml(p.name || p.slug);
@@ -6865,13 +6520,6 @@
                 <span class="ava-pop" role="menu">
                   <span class="ava-pop-name">${popName}</span>
                   <a class="ava-pop-link" href="/search?libs=${encodeURIComponent(p.slug)}">View profile</a>
-                  ${
-                    showUnfollow
-                      ? `<button class="ava-pop-action" type="button" data-unfollow="${escapeAttr(p.slug)}">Unfollow</button>`
-                      : showFollow
-                        ? `<button class="ava-pop-action is-follow" type="button" data-follow="${escapeAttr(p.slug)}">Follow</button>`
-                        : ""
-                  }
                 </span>
               </span>`;
           })
@@ -7176,9 +6824,10 @@
           });
         }
         if (state.favorites.size === 0) state.sources.delete(FAV_SOURCE_KEY);
-        // Feed mode has its own source aggregator (across followees +
-        // self); calling rebuildAllSources() there would wipe the rail
-        // because state.libs is empty. Pick the right rebuilder.
+        // Feed mode has its own source aggregator (across all
+        // libraries); calling rebuildAllSources() there would wipe
+        // the rail because state.libs is empty. Pick the right
+        // rebuilder.
         if (state.libs.size === 0) {
           rebuildAllSourcesForFeed().then(renderSrc);
         } else {
@@ -7277,88 +6926,6 @@
         openInlineEditor(url, b);
       });
     });
-    scope.querySelectorAll("[data-unfollow]").forEach((b) => {
-      if (b.dataset.unfollowWired === "1") return;
-      b.dataset.unfollowWired = "1";
-      b.addEventListener("click", async (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        if (!me) return;
-        const slug = b.dataset.unfollow;
-        // Optimistic flip: drop the slug from the cached follow set
-        // so every other rendering surface (people rail, profile
-        // header, future cards) sees the change immediately.
-        _peopleRail.following.delete(slug);
-        // Repaint every avatar referencing this slug in the current
-        // view — the row stays, but it now reads as "not followed"
-        // (faded + Follow option). Find the closest .ava-host and
-        // flip the class + swap the popover button.
-        scope
-          .querySelectorAll(`[data-unfollow="${CSS.escape(slug)}"]`)
-          .forEach((btn) => {
-            const host = btn.closest(".ava-host");
-            if (host) host.classList.add("is-not-followed");
-            btn.outerHTML = `<button class="ava-pop-action is-follow" type="button" data-follow="${escapeAttr(slug)}">Follow</button>`;
-          });
-        try {
-          const r = await fetch(
-            `${API_BASE}/api/follow/${encodeURIComponent(slug)}`,
-            { method: "DELETE", credentials: "include" },
-          );
-          if (!r.ok) throw new Error("HTTP " + r.status);
-        } catch (err) {
-          // Roll back the optimistic state on failure.
-          _peopleRail.following.add(slug);
-          console.warn("[avatar-unfollow]", err);
-        }
-        // Re-wire the freshly-inserted Follow buttons.
-        wireFollowButtonsIn(scope);
-      });
-    });
-
-    /* Idempotently wire every [data-follow] inside `root`. The
-     * unfollow handler also calls this after it transmutes a button
-     * into Follow so newly-inserted nodes pick up listeners. */
-    function wireFollowButtonsIn(root) {
-      root.querySelectorAll("[data-follow]").forEach((b) => {
-        if (b.dataset.followWired === "1") return;
-        b.dataset.followWired = "1";
-        b.addEventListener("click", async (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          if (!me) {
-            window.KnowledgeAuth?.open("login");
-            return;
-          }
-          const slug = b.dataset.follow;
-          // Optimistic add: mark followed in the shared set so the
-          // people rail, profile header, and other cards re-paint
-          // consistently.
-          _peopleRail.following.add(slug);
-          // Repaint every avatar referencing this slug in the
-          // current view — drop the faded state and swap the popover
-          // button to Unfollow.
-          root
-            .querySelectorAll(`[data-follow="${CSS.escape(slug)}"]`)
-            .forEach((btn) => {
-              const host = btn.closest(".ava-host");
-              if (host) host.classList.remove("is-not-followed");
-              btn.outerHTML = `<button class="ava-pop-action" type="button" data-unfollow="${escapeAttr(slug)}">Unfollow</button>`;
-            });
-          try {
-            const r = await fetch(
-              `${API_BASE}/api/follow/${encodeURIComponent(slug)}`,
-              { method: "POST", credentials: "include" },
-            );
-            if (!r.ok) throw new Error("HTTP " + r.status);
-          } catch (err) {
-            _peopleRail.following.delete(slug);
-            console.warn("[avatar-follow]", err);
-          }
-        });
-      });
-    }
-    wireFollowButtonsIn(scope);
     scope.querySelectorAll("[data-delete]").forEach((b) => {
       if (b.dataset.deleteWired === "1") return;
       b.dataset.deleteWired = "1";
@@ -7758,19 +7325,15 @@
       try {
         const libs = [...state.libs];
         if (libs.length === 0) {
-          // Feed mode: query the cross-library __all__ index, then
-          // scope to (followees ∪ self) and group by URL so multiple
-          // owners of the same doc collapse into one row with a
-          // stacked avatar list. Mirrors the feed-search path.
-          const scope = me
-            ? new Set([...(_peopleRail?.following || []), me.slug])
-            : null;
-          let rows = await K.findSimilar({
+          // Feed mode: query the cross-library __all__ index and
+          // group by URL so multiple owners of the same doc collapse
+          // into one row with a stacked avatar list. Mirrors the
+          // feed-search path.
+          const rows = await K.findSimilar({
             indexName: ALL_INDEX_NAME,
             doc,
             topK: 50,
           }).catch(() => []);
-          if (scope) rows = rows.filter((d) => scope.has(d.owner));
           const map = new Map();
           for (const d of rows) {
             if (d.url === url) continue;
@@ -8821,27 +8384,16 @@
     const btn = $("authBtn");
     const postTrigger = $("postTriggerBtn");
     const settings = $("authSettings");
-    const discover = $("discoverBtn");
     const feedLink = $("feedLink");
     if (postTrigger) postTrigger.hidden = !me;
     if (settings) settings.hidden = !me;
-    // Discover is a signed-in-only utility — anonymous visitors see
-    // the same heading text but it's inert. The `.is-discover` class
-    // adds the cursor + hover affordance.
-    if (discover) discover.classList.toggle("is-discover", !!me);
-    // Following-only filter only makes sense once the user has a
-    // follow graph to filter by — hidden for anonymous visitors.
-    syncFollowingOnlyButton();
     if (feedLink) {
-      // Show whenever we're NOT already on the feed. Logged-out users
-      // get the global VIP timeline at `/`, logged-in users get their
-      // followee feed — same button, same destination.
+      // Show whenever we're NOT already on the feed — the timeline of
+      // all libraries at `/`, same for every viewer.
       feedLink.hidden = state.libs.size === 0;
-      feedLink.title = me
-        ? "Your feed — everyone you follow plus your own library"
-        : "Feed — recent activity across featured libraries";
+      feedLink.title = "Feed — latest from all libraries";
       const label = feedLink.querySelector("span");
-      if (label) label.textContent = me ? "Back to your feed" : "Back to feed";
+      if (label) label.textContent = "Back to feed";
       feedLink.classList.remove("is-current");
     }
     const personalLink = $("personalLink");
@@ -9255,20 +8807,17 @@
       });
     }
     // When the page is reached via a hash (#people / #sources /
-    // #discover / #post) we pop the matching surface open and
+    // #post) we pop the matching surface open and
     // strip the hash. This is how the Settings page's bottom-nav
     // action buttons reach back into the feed page's overlays.
     if (
       location.hash === "#people" ||
       location.hash === "#sources" ||
-      location.hash === "#discover" ||
       location.hash === "#post"
     ) {
       const h = location.hash.slice(1);
       setTimeout(() => {
-        if (h === "discover") {
-          openDiscoverOverlay();
-        } else if (h === "post") {
+        if (h === "post") {
           document.getElementById("postTriggerBtn")?.click();
         } else {
           openSheet(h);
@@ -9359,7 +8908,7 @@
     renderAuthBtn();
     wireMobileChrome();
     wirePullRefresh();
-    // Lazy-hydrate the people-to-follow rail once auth state is known.
+    // Lazy-hydrate the people rail once auth state is known.
     setupPeopleRail();
     showProfileHeader();
     if (!me && state.sources.has(FAV_SOURCE_KEY)) {
@@ -9428,10 +8977,9 @@
    */
   const extraLibsFromUrl = readUrl();
   // Re-sync the topbar controls now that the URL hydration has
-  // populated state.dateSince / state.query / state.followingOnly.
+  // populated state.dateSince / state.query.
   if ($("qSince")) $("qSince").value = state.dateSince || "";
   syncSinceFilterActive();
-  syncFollowingOnlyButton();
   // The picker's initial label sync ran during the wire-up phase
   // before readUrl() populated state.category — re-fire now so the
   // button shows the selected category on a deep-link reload. If
