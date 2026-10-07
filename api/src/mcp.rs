@@ -680,7 +680,7 @@ async fn aggregate_docs_with_feed(
     docs: Vec<Value>,
     boost: bool,
 ) -> Result<Vec<Value>, String> {
-    use crate::handlers::search::{fetch_feed_info, FEED_SCORE_WEIGHT_SEARCH};
+    use crate::handlers::search::{dedup_keys, fetch_feed_info, FEED_SCORE_WEIGHT_SEARCH};
 
     if docs.is_empty() {
         return Ok(docs);
@@ -706,7 +706,15 @@ async fn aggregate_docs_with_feed(
 
     struct Agg {
         doc: Value,
+        // Representative's blend + whether it carries a clean-daemon
+        // rewrite (cleaned candidates win the representative slot).
         best_blend: f64,
+        best_clean: bool,
+        // Group rank: best blend across every collapsed candidate.
+        score: f64,
+        // Second-level dedup keys (media ids + text signature) from
+        // every candidate at this anchor.
+        keys: Vec<String>,
         aggregated_urls: Vec<String>,
         // Union of every candidate's `linked_urls` at this anchor,
         // deduped by each linked-URL object's `url` field — the same
@@ -743,6 +751,9 @@ async fn aggregate_docs_with_feed(
             Agg {
                 doc: Value::Null,
                 best_blend: f64::NEG_INFINITY,
+                best_clean: false,
+                score: f64::NEG_INFINITY,
+                keys: Vec::new(),
                 aggregated_urls: Vec::new(),
                 merged_linked: Vec::new(),
                 seen_linked: HashSet::new(),
@@ -768,10 +779,22 @@ async fn aggregate_docs_with_feed(
                 }
             }
         }
-        if blend > entry.best_blend {
+        for k in dedup_keys(Some(&doc)) {
+            if !entry.keys.contains(&k) {
+                entry.keys.push(k);
+            }
+        }
+        entry.score = entry.score.max(blend);
+        let clean = fi.is_some_and(|f| f.is_cleaned());
+        if (clean, blend) > (entry.best_clean, entry.best_blend) {
             entry.best_blend = blend;
+            entry.best_clean = clean;
             let mut doc = doc;
             if let Some(obj) = doc.as_object_mut() {
+                if let Some(f) = fi.filter(|f| f.is_cleaned()) {
+                    obj.insert("clean_title".to_string(), json!(f.clean_title));
+                    obj.insert("clean_summary".to_string(), json!(f.clean_summary));
+                }
                 obj.insert("anchor_url".to_string(), json!(anchor));
                 obj.insert(
                     "sharers".to_string(),
@@ -796,24 +819,23 @@ async fn aggregate_docs_with_feed(
         }
     }
 
-    // Second-level dedup: same visible content under different
-    // anchors (an author re-posting the identical tweet self-anchors
-    // each copy). Fold groups whose title+summary signature matches
-    // into the first one — same pass the web search path runs.
+    // Second-level dedup: same post under different anchors — an
+    // author re-posting the identical tweet, or retweets/quotes of one
+    // post (shared media id). Fold groups sharing a media id or a
+    // title+summary signature into the first one — same pass the web
+    // search path runs.
     {
-        use crate::handlers::search::content_signature;
-        let mut sig_owner: HashMap<String, String> = HashMap::new();
+        let mut key_owner: HashMap<String, String> = HashMap::new();
         let mut deduped: Vec<String> = Vec::new();
         for anchor in std::mem::take(&mut order) {
             let Some(agg) = by_anchor.get(&anchor) else {
                 continue;
             };
-            let Some(sig) = content_signature(Some(&agg.doc)) else {
-                deduped.push(anchor);
-                continue;
-            };
-            let Some(owner_anchor) = sig_owner.get(&sig).cloned() else {
-                sig_owner.insert(sig, anchor.clone());
+            let keys = agg.keys.clone();
+            let Some(owner_anchor) = keys.iter().find_map(|k| key_owner.get(k).cloned()) else {
+                for k in keys {
+                    key_owner.insert(k, anchor.clone());
+                }
                 deduped.push(anchor);
                 continue;
             };
@@ -838,9 +860,14 @@ async fn aggregate_docs_with_feed(
                     owner.merged_linked.push(lu);
                 }
             }
-            if dup.best_blend > owner.best_blend {
+            owner.score = owner.score.max(dup.score);
+            if (dup.best_clean, dup.best_blend) > (owner.best_clean, owner.best_blend) {
                 owner.best_blend = dup.best_blend;
+                owner.best_clean = dup.best_clean;
                 owner.doc = dup.doc;
+            }
+            for k in keys {
+                key_owner.entry(k).or_insert_with(|| owner_anchor.clone());
             }
         }
         order = deduped;
@@ -856,7 +883,7 @@ async fn aggregate_docs_with_feed(
                 // it's a superset by construction.
                 obj.insert("linked_urls".to_string(), json!(agg.merged_linked));
             }
-            (agg.best_blend, agg.doc)
+            (agg.score, agg.doc)
         })
         .collect();
     if boost {

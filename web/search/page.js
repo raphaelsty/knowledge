@@ -740,11 +740,14 @@
     return `tw:${_hashStr(norm)}`;
   }
   function _docRichness(d) {
+    // A clean-daemon rewrite wins first: it's the readable version of
+    // the same post, so it should represent the collapsed group.
+    const cleaned = (d.cleanSummary || "").trim() ? 1 : 0;
     const linked = Array.isArray(d.linkedUrls) ? d.linkedUrls.length : 0;
     const sharers = d.sharerCount || (d.sharers ? d.sharers.length : 0) || 0;
     const sumLen = (d.summary || "").length;
     const created = d.createdAt || "";
-    return [linked, sharers, sumLen, created];
+    return [cleaned, linked, sharers, sumLen, created];
   }
   function _pickRicher(a, b) {
     const ra = _docRichness(a);
@@ -754,6 +757,14 @@
       if (ra[i] < rb[i]) return b;
     }
     return a;
+  }
+  /* Avatar-stack seed for a search hit: every library the API folded
+   * into this row (reshares of one post collapse server-side), with
+   * the row's own owner first. */
+  function _initialOwners(d) {
+    const out = d.owner ? [d.owner] : [];
+    for (const o of d.groupOwners || []) if (o && !out.includes(o)) out.push(o);
+    return out;
   }
   function _mergeSharers(into, from) {
     const a = Array.isArray(into.sharers) ? into.sharers : [];
@@ -4590,7 +4601,7 @@
           if ((d.similarity || 0) > (ex.similarity || 0))
             ex.similarity = d.similarity;
         } else {
-          byUrl.set(d.url, { ...d, _owners: d.owner ? [d.owner] : [] });
+          byUrl.set(d.url, { ...d, _owners: _initialOwners(d) });
         }
       }
       const merged = [...byUrl.values()];
@@ -5183,7 +5194,7 @@
               ex.similarity = d.similarity;
             }
           } else {
-            byUrl.set(d.url, { ...d, _owners: d.owner ? [d.owner] : [] });
+            byUrl.set(d.url, { ...d, _owners: _initialOwners(d) });
           }
         }
         const merged = [...byUrl.values()];

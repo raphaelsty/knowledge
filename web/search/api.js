@@ -718,6 +718,16 @@
       url: m.url,
       title: m.title || "",
       summary: m.summary || "",
+      // Clean-daemon rewrite of the group's representative — the API's
+      // search dedup attaches it (and prefers a cleaned candidate when
+      // collapsing duplicates). The renderer shows `cleanTitle ||
+      // title` and `cleanSummary || summary`.
+      cleanTitle: m.clean_title || "",
+      cleanSummary: m.clean_summary || "",
+      // Library owners of every duplicate the API collapsed into this
+      // row (reshares of the same post, same media). Seeds the avatar
+      // stack so the merged card shows everyone who posted it.
+      groupOwners: Array.isArray(m.group_owners) ? m.group_owners : [],
       date: m.date || "",
       source: m.source || "",
       source_url: m.source_url || "",

@@ -253,6 +253,18 @@ pub(crate) struct FeedInfo {
     // but not the lib — dead_code fires on the lib pass otherwise.
     #[allow(dead_code)]
     pub linked_urls: Option<serde_json::Value>,
+    /// Pedagogical rewrite from the clean daemon (empty when the doc
+    /// hasn't been cleaned). The index metadata doesn't carry these,
+    /// so search results pick them up here; dedup also prefers a
+    /// cleaned candidate as a group's representative.
+    pub clean_title: String,
+    pub clean_summary: String,
+}
+
+impl FeedInfo {
+    pub(crate) fn is_cleaned(&self) -> bool {
+        !self.clean_summary.trim().is_empty()
+    }
 }
 
 /// Resolve each URL's anchor (priority-picked canonical referenced URL,
@@ -273,8 +285,10 @@ pub(crate) async fn fetch_feed_info(
         Option<serde_json::Value>,
         Option<i32>,
         Option<serde_json::Value>,
+        String,
+        String,
     )> = sqlx::query_as(
-        "WITH input AS (\n            SELECT d.url, d.canonical_url, d.canonical_referenced_urls, d.linked_urls\n              FROM documents d\n             WHERE d.url = ANY($1::text[])\n               -- `AND d.deleted = FALSE` forces the planner to use\n               -- `idx_documents_url_live` (partial, on url WHERE\n               -- deleted=false) instead of `documents_pkey`\n               -- (composite on `user_id, url`). The PK can't seek by\n               -- url alone — it scans the full key range and pays\n               -- ~1.5 M buffer hits per call.\n               AND d.deleted = FALSE\n         ),\n         resolved AS (\n            SELECT i.url, i.linked_urls,\n                   COALESCE(\n                       (SELECT ref FROM unnest(i.canonical_referenced_urls) ref\n                         ORDER BY CASE\n                           WHEN ref LIKE 'https://arxiv.org/abs/%'       THEN 1\n                           WHEN ref LIKE 'https://huggingface.co/%'      THEN 2\n                           WHEN ref LIKE 'https://github.com/%'          THEN 3\n                           WHEN ref LIKE 'https://openreview.net/%'      THEN 4\n                           WHEN ref LIKE 'https://doi.org/%'             THEN 5\n                           WHEN ref LIKE 'https://paperswithcode.com/%'  THEN 6\n                           WHEN ref LIKE 'https://aclanthology.org/%'    THEN 7\n                           WHEN ref LIKE 'https://semanticscholar.org/%' THEN 8\n                           WHEN ref LIKE 'https://distill.pub/%'         THEN 9\n                           WHEN ref LIKE 'https://biorxiv.org/%'         THEN 10\n                           WHEN ref LIKE 'https://medrxiv.org/%'         THEN 11\n                           ELSE 99\n                         END, ref LIMIT 1),\n                       i.canonical_url\n                   ) AS anchor_url\n              FROM input i\n         )\n         SELECT r.url, r.anchor_url, fs.score, fs.sharers, fs.sharer_count, r.linked_urls\n           FROM resolved r\n           LEFT JOIN feed_snapshot fs ON fs.anchor_url = r.anchor_url",
+        "WITH input AS (\n            SELECT d.url, d.canonical_url, d.canonical_referenced_urls, d.linked_urls,\n                   d.clean_title, d.clean_summary\n              FROM documents d\n             WHERE d.url = ANY($1::text[])\n               -- `AND d.deleted = FALSE` forces the planner to use\n               -- `idx_documents_url_live` (partial, on url WHERE\n               -- deleted=false) instead of `documents_pkey`\n               -- (composite on `user_id, url`). The PK can't seek by\n               -- url alone — it scans the full key range and pays\n               -- ~1.5 M buffer hits per call.\n               AND d.deleted = FALSE\n         ),\n         resolved AS (\n            SELECT i.url, i.linked_urls, i.clean_title, i.clean_summary,\n                   COALESCE(\n                       (SELECT ref FROM unnest(i.canonical_referenced_urls) ref\n                         ORDER BY CASE\n                           WHEN ref LIKE 'https://arxiv.org/abs/%'       THEN 1\n                           WHEN ref LIKE 'https://huggingface.co/%'      THEN 2\n                           WHEN ref LIKE 'https://github.com/%'          THEN 3\n                           WHEN ref LIKE 'https://openreview.net/%'      THEN 4\n                           WHEN ref LIKE 'https://doi.org/%'             THEN 5\n                           WHEN ref LIKE 'https://paperswithcode.com/%'  THEN 6\n                           WHEN ref LIKE 'https://aclanthology.org/%'    THEN 7\n                           WHEN ref LIKE 'https://semanticscholar.org/%' THEN 8\n                           WHEN ref LIKE 'https://distill.pub/%'         THEN 9\n                           WHEN ref LIKE 'https://biorxiv.org/%'         THEN 10\n                           WHEN ref LIKE 'https://medrxiv.org/%'         THEN 11\n                           ELSE 99\n                         END, ref LIMIT 1),\n                       i.canonical_url\n                   ) AS anchor_url\n              FROM input i\n         )\n         SELECT r.url, r.anchor_url, fs.score, fs.sharers, fs.sharer_count, r.linked_urls,\n                r.clean_title, r.clean_summary\n           FROM resolved r\n           LEFT JOIN feed_snapshot fs ON fs.anchor_url = r.anchor_url",
     )
     .bind(urls)
     .fetch_all(pool)
@@ -282,7 +296,13 @@ pub(crate) async fn fetch_feed_info(
     .map_err(|e| ApiError::Internal(format!("feed_snapshot anchor lookup failed: {}", e)))?;
 
     let mut out: HashMap<String, FeedInfo> = HashMap::new();
-    for (url, anchor, score, sharers, sharer_count, linked_urls) in rows {
+    for (url, anchor, score, sharers, sharer_count, linked_urls, clean_title, clean_summary) in rows
+    {
+        // Several users can hold the same url; keep a cleaned copy
+        // over an uncleaned one so the rewrite isn't lost to row order.
+        if clean_summary.trim().is_empty() && out.get(&url).is_some_and(|fi| fi.is_cleaned()) {
+            continue;
+        }
         let anchor = anchor.unwrap_or_else(|| url.clone());
         out.insert(
             url,
@@ -292,6 +312,8 @@ pub(crate) async fn fetch_feed_info(
                 sharers,
                 sharer_count: sharer_count.unwrap_or(0),
                 linked_urls,
+                clean_title,
+                clean_summary,
             },
         );
     }
@@ -333,6 +355,75 @@ pub(crate) fn content_signature(meta: Option<&serde_json::Value>) -> Option<Stri
         return None;
     }
     Some(format!("{title}\u{1}{head}"))
+}
+
+/// Twitter media ids embedded in a doc's summary (the `📷 …` / `🎬 …`
+/// markers the tweet fetcher writes). An uploaded image or video keeps
+/// its id when the post is retweeted or quoted, so two results sharing
+/// one are reshares of the same post — commentary on top or not —
+/// even though their text and anchors differ.
+pub(crate) fn media_ids(meta: Option<&serde_json::Value>) -> Vec<String> {
+    const KINDS: [&str; 7] = [
+        "media/",
+        "amplify_video/",
+        "amplify_video_thumb/",
+        "ext_tw_video/",
+        "ext_tw_video_thumb/",
+        "tweet_video/",
+        "tweet_video_thumb/",
+    ];
+    let Some(summary) = meta.and_then(|m| m.get("summary")).and_then(|v| v.as_str()) else {
+        return Vec::new();
+    };
+    let mut out: Vec<String> = Vec::new();
+    for (i, needle) in summary.match_indices("twimg.com/") {
+        let rest = &summary[i + needle.len()..];
+        let Some(tail) = KINDS.iter().find_map(|k| rest.strip_prefix(k)) else {
+            continue;
+        };
+        let id: String = tail
+            .chars()
+            .take_while(|c| c.is_ascii_alphanumeric() || *c == '_' || *c == '-')
+            .collect();
+        // Real ids are 15+ chars; anything shorter is a truncated
+        // summary cutting the URL mid-id.
+        if id.len() >= 10 && !out.contains(&id) {
+            out.push(id);
+        }
+    }
+    out
+}
+
+/// Dedup keys for the second-level (cross-anchor) collapse: the
+/// normalized content signature plus one key per embedded media id.
+pub(crate) fn dedup_keys(meta: Option<&serde_json::Value>) -> Vec<String> {
+    let mut keys: Vec<String> = media_ids(meta)
+        .into_iter()
+        .map(|id| format!("media:{id}"))
+        .collect();
+    if let Some(sig) = content_signature(meta) {
+        keys.push(format!("text:{sig}"));
+    }
+    keys
+}
+
+/// Union two `sharers` arrays (feed_snapshot shape), deduped by slug.
+pub(crate) fn merge_sharers(
+    a: Option<serde_json::Value>,
+    b: Option<serde_json::Value>,
+) -> Option<serde_json::Value> {
+    let mut merged: Vec<serde_json::Value> = Vec::new();
+    let mut seen: HashSet<String> = HashSet::new();
+    for v in [a, b].into_iter().flatten() {
+        let Some(arr) = v.as_array() else { continue };
+        for s in arr {
+            let slug = s.get("slug").and_then(|x| x.as_str()).unwrap_or("");
+            if slug.is_empty() || seen.insert(slug.to_string()) {
+                merged.push(s.clone());
+            }
+        }
+    }
+    (!merged.is_empty()).then_some(serde_json::Value::Array(merged))
 }
 
 /// Anchor-dedup + feed-score blend.
@@ -390,17 +481,23 @@ async fn apply_feed_scope_filter(
     // the global feed shows.
     let url_info = fetch_feed_info(pool, &urls).await?;
     for r in results.iter_mut() {
-        // Per-anchor aggregator: track the winning candidate's
+        // Per-anchor aggregator: track the representative candidate's
         // metadata + every candidate's linked_urls so we can union
-        // them when emitting the merged row. The "winning" candidate
-        // is the highest-blended (= ColBERT × feed-score) — that's
-        // the doc whose title/summary best matches the query.
+        // them when emitting the merged row. The representative is the
+        // AI-rewritten (clean daemon) candidate when one exists, else
+        // the highest-blended (= ColBERT × feed-score) one; the group
+        // itself ranks by its best blended score either way.
         struct AnchorAgg {
             best_doc_id: i64,
             best_blended: f32,
             best_colbert: f32,
-            feed_score: Option<f64>,
+            best_clean: bool,
+            best_url: String,
             best_meta: Option<serde_json::Value>,
+            // Max blended score across every candidate in the group —
+            // the group's rank, independent of which card represents it.
+            score: f32,
+            feed_score: Option<f64>,
             // Union of every candidate's `url` field at this anchor —
             // surfaces in the response as `aggregated_urls` so the
             // client can render the full resource bundle (e.g. the
@@ -411,17 +508,75 @@ async fn apply_feed_scope_filter(
             // by the `url` field within each linked-URL object.
             merged_linked: Vec<serde_json::Value>,
             seen_linked: HashSet<String>,
-            // Cross-personality sharer aggregate from feed_snapshot.
+            // Cross-personality sharer aggregate from feed_snapshot,
+            // unioned across groups the second-level dedup merges.
             sharers: Option<serde_json::Value>,
             sharer_count: i32,
+            // Library owners of every collapsed candidate (`__all__`
+            // index rows carry `owner`), so the card's avatar stack
+            // shows everyone who posted it.
+            owners: Vec<String>,
+            // Second-level dedup keys (media ids + text signature)
+            // collected from every candidate, not just the winner.
+            keys: Vec<String>,
+        }
+        impl AnchorAgg {
+            /// Should a candidate with (`clean`, `blended`) replace the
+            /// current representative? Cleaned beats uncleaned; within
+            /// the same tier, the better match wins.
+            fn prefers(&self, clean: bool, blended: f32) -> bool {
+                (clean, blended) > (self.best_clean, self.best_blended)
+            }
+            /// Fold `dup` (a different anchor showing the same post)
+            /// into `self`.
+            fn absorb(&mut self, dup: AnchorAgg) {
+                for u in dup.aggregated_urls {
+                    if self.seen_urls.insert(u.clone()) {
+                        self.aggregated_urls.push(u);
+                    }
+                }
+                for lu in dup.merged_linked {
+                    let key = lu
+                        .get("url")
+                        .and_then(|v| v.as_str())
+                        .map(|s| s.to_string())
+                        .unwrap_or_else(|| lu.to_string());
+                    if self.seen_linked.insert(key) {
+                        self.merged_linked.push(lu);
+                    }
+                }
+                for o in dup.owners {
+                    if !self.owners.contains(&o) {
+                        self.owners.push(o);
+                    }
+                }
+                for k in dup.keys {
+                    if !self.keys.contains(&k) {
+                        self.keys.push(k);
+                    }
+                }
+                self.sharer_count = self.sharer_count.max(dup.sharer_count);
+                self.sharers = merge_sharers(self.sharers.take(), dup.sharers);
+                self.score = self.score.max(dup.score);
+                self.feed_score = match (self.feed_score, dup.feed_score) {
+                    (Some(a), Some(b)) => Some(a.max(b)),
+                    (a, b) => a.or(b),
+                };
+                if self.prefers(dup.best_clean, dup.best_blended) {
+                    self.best_doc_id = dup.best_doc_id;
+                    self.best_blended = dup.best_blended;
+                    self.best_colbert = dup.best_colbert;
+                    self.best_clean = dup.best_clean;
+                    self.best_url = dup.best_url;
+                    self.best_meta = dup.best_meta;
+                }
+            }
         }
         let mut by_anchor: HashMap<String, AnchorAgg> = HashMap::new();
         let mut anchor_order: Vec<String> = Vec::new();
         for i in 0..r.document_ids.len() {
-            let url_opt = r
-                .metadata
-                .get(i)
-                .and_then(|m| m.as_ref())
+            let meta_i = r.metadata.get(i).and_then(|m| m.as_ref());
+            let url_opt = meta_i
                 .and_then(|m| m.get("url").and_then(|v| v.as_str()))
                 .map(|s| s.to_string());
             let Some(url) = url_opt else { continue };
@@ -447,12 +602,15 @@ async fn apply_feed_scope_filter(
             let colbert = r.scores[i];
             let blended =
                 (colbert as f64 + feed_weight * (1.0 + fs_for_blend.max(0.0)).ln()) as f32;
+            let clean = info.is_some_and(|fi| fi.is_cleaned());
+            let owner = meta_i
+                .and_then(|m| m.get("owner"))
+                .and_then(|v| v.as_str())
+                .unwrap_or("")
+                .to_string();
 
             // Linked URLs on this candidate (deduped on the way in).
-            let linked_from_this: Vec<serde_json::Value> = r
-                .metadata
-                .get(i)
-                .and_then(|m| m.as_ref())
+            let linked_from_this: Vec<serde_json::Value> = meta_i
                 .and_then(|m| m.get("linked_urls"))
                 .and_then(|v| v.as_array())
                 .cloned()
@@ -464,19 +622,32 @@ async fn apply_feed_scope_filter(
                     best_doc_id: r.document_ids[i],
                     best_blended: f32::NEG_INFINITY,
                     best_colbert: 0.0,
-                    feed_score: fs,
+                    best_clean: false,
+                    best_url: url.clone(),
                     best_meta: None,
+                    score: f32::NEG_INFINITY,
+                    feed_score: fs,
                     aggregated_urls: Vec::new(),
                     seen_urls: HashSet::new(),
                     merged_linked: Vec::new(),
                     seen_linked: HashSet::new(),
                     sharers: sharers_json.clone(),
                     sharer_count,
+                    owners: Vec::new(),
+                    keys: Vec::new(),
                 }
             });
             if !entry.seen_urls.contains(&url) {
                 entry.seen_urls.insert(url.clone());
                 entry.aggregated_urls.push(url.clone());
+            }
+            if !owner.is_empty() && !entry.owners.contains(&owner) {
+                entry.owners.push(owner);
+            }
+            for k in dedup_keys(meta_i) {
+                if !entry.keys.contains(&k) {
+                    entry.keys.push(k);
+                }
             }
             for lu in &linked_from_this {
                 // Dedup by the `url` field of each linked-URL object;
@@ -490,40 +661,42 @@ async fn apply_feed_scope_filter(
                     entry.merged_linked.push(lu.clone());
                 }
             }
-            if blended > entry.best_blended {
+            entry.score = entry.score.max(blended);
+            // Every candidate here shares the anchor, hence the same
+            // feed_snapshot row — fill sharers from whichever has it.
+            if entry.sharers.is_none() && info.is_some() {
+                entry.sharers = sharers_json;
+                entry.sharer_count = sharer_count;
+                entry.feed_score = fs;
+            }
+            if entry.prefers(clean, blended) {
                 entry.best_doc_id = r.document_ids[i];
                 entry.best_blended = blended;
                 entry.best_colbert = colbert;
-                entry.feed_score = fs;
+                entry.best_clean = clean;
+                entry.best_url = url.clone();
                 entry.best_meta = r.metadata[i].clone();
-                // Refresh sharers/count from feed_snapshot when the
-                // best candidate's anchor was in the snapshot. If
-                // strict_feed_filter was false and the best one missed
-                // feed_snapshot, we keep whatever sharers we already
-                // had from an earlier candidate.
-                if info.is_some() {
-                    entry.sharers = sharers_json;
-                    entry.sharer_count = sharer_count;
-                }
             }
         }
-        // Second-level dedup: same visible content under different
-        // anchors. The anchor collapse can't merge an author's
-        // re-post of the identical tweet (each copy self-anchors),
-        // so fold anchor groups whose winning title+summary
-        // normalize to the same signature into the first group.
-        let mut sig_owner: HashMap<String, String> = HashMap::new();
+        // Second-level dedup: same post under different anchors. The
+        // anchor collapse can't merge an author's re-post of the
+        // identical tweet (each copy self-anchors), nor the retweets
+        // and quote-tweets of one post (each wrapper is its own URL
+        // with its own commentary). Fold groups that share a media id
+        // or a normalized title+summary signature into the first
+        // (highest-retrieved) group carrying that key.
+        let mut key_owner: HashMap<String, String> = HashMap::new();
         let mut deduped_order: Vec<String> = Vec::new();
         for anchor in anchor_order {
             let Some(agg) = by_anchor.get(&anchor) else {
                 continue;
             };
-            let Some(sig) = content_signature(agg.best_meta.as_ref()) else {
-                deduped_order.push(anchor);
-                continue;
-            };
-            let Some(owner_anchor) = sig_owner.get(&sig).cloned() else {
-                sig_owner.insert(sig, anchor.clone());
+            let keys = agg.keys.clone();
+            let owner_anchor = keys.iter().find_map(|k| key_owner.get(k).cloned());
+            let Some(owner_anchor) = owner_anchor else {
+                for k in keys {
+                    key_owner.insert(k, anchor.clone());
+                }
                 deduped_order.push(anchor);
                 continue;
             };
@@ -533,35 +706,17 @@ async fn apply_feed_scope_filter(
             let Some(owner) = by_anchor.get_mut(&owner_anchor) else {
                 continue;
             };
-            for u in dup.aggregated_urls {
-                if owner.seen_urls.insert(u.clone()) {
-                    owner.aggregated_urls.push(u);
-                }
-            }
-            for lu in dup.merged_linked {
-                let key = lu
-                    .get("url")
-                    .and_then(|v| v.as_str())
-                    .map(|s| s.to_string())
-                    .unwrap_or_else(|| lu.to_string());
-                if owner.seen_linked.insert(key) {
-                    owner.merged_linked.push(lu);
-                }
-            }
-            if dup.best_blended > owner.best_blended {
-                owner.best_doc_id = dup.best_doc_id;
-                owner.best_blended = dup.best_blended;
-                owner.best_colbert = dup.best_colbert;
-                owner.feed_score = dup.feed_score;
-                owner.best_meta = dup.best_meta;
-                owner.sharers = dup.sharers;
-                owner.sharer_count = dup.sharer_count;
+            owner.absorb(dup);
+            // Keys only the duplicate carried now resolve to the
+            // merged group, so a third post sharing them joins too.
+            for k in keys {
+                key_owner.entry(k).or_insert_with(|| owner_anchor.clone());
             }
         }
         let mut anchor_order = deduped_order;
         anchor_order.sort_by(|a, b| {
-            let sa = by_anchor.get(a).map(|t| t.best_blended).unwrap_or(0.0);
-            let sb = by_anchor.get(b).map(|t| t.best_blended).unwrap_or(0.0);
+            let sa = by_anchor.get(a).map(|t| t.score).unwrap_or(0.0);
+            let sb = by_anchor.get(b).map(|t| t.score).unwrap_or(0.0);
             sb.total_cmp(&sa)
         });
         anchor_order.truncate(top_k);
@@ -573,7 +728,7 @@ async fn apply_feed_scope_filter(
                 continue;
             };
             r.document_ids.push(agg.best_doc_id);
-            r.scores.push(agg.best_blended);
+            r.scores.push(agg.score);
             let mut m = agg.best_meta.unwrap_or_else(|| serde_json::json!({}));
             if let Some(obj) = m.as_object_mut() {
                 obj.insert(
@@ -585,6 +740,19 @@ async fn apply_feed_scope_filter(
                     serde_json::Value::from(agg.best_colbert as f64),
                 );
                 obj.insert("anchor_url".to_string(), serde_json::Value::from(anchor));
+                // Pedagogical rewrite of the representative, when the
+                // clean daemon has processed it. The frontend renders
+                // `clean_title || title` and `clean_summary || summary`.
+                if let Some(fi) = url_info.get(&agg.best_url).filter(|fi| fi.is_cleaned()) {
+                    obj.insert(
+                        "clean_title".to_string(),
+                        serde_json::Value::from(fi.clean_title.clone()),
+                    );
+                    obj.insert(
+                        "clean_summary".to_string(),
+                        serde_json::Value::from(fi.clean_summary.clone()),
+                    );
+                }
                 // Override linked_urls with the merged set so the
                 // surviving card carries every distinct linked URL
                 // any candidate at this anchor reported.
@@ -593,11 +761,21 @@ async fn apply_feed_scope_filter(
                     serde_json::Value::Array(agg.merged_linked),
                 );
                 // Companion URLs (the duplicates the dedup collapsed).
-                // Empty when no merging happened.
+                // Single-element when no merging happened.
                 obj.insert(
                     "aggregated_urls".to_string(),
                     serde_json::Value::Array(
                         agg.aggregated_urls
+                            .into_iter()
+                            .map(serde_json::Value::String)
+                            .collect(),
+                    ),
+                );
+                // Library owners of every collapsed candidate.
+                obj.insert(
+                    "group_owners".to_string(),
+                    serde_json::Value::Array(
+                        agg.owners
                             .into_iter()
                             .map(serde_json::Value::String)
                             .collect(),
@@ -608,13 +786,19 @@ async fn apply_feed_scope_filter(
                 // anchor isn't in feed_snapshot these stay
                 // null / 0, which is the right "no breadth signal"
                 // representation.
+                let sharer_count = agg
+                    .sharers
+                    .as_ref()
+                    .and_then(|v| v.as_array())
+                    .map(|a| (a.len() as i32).max(agg.sharer_count))
+                    .unwrap_or(agg.sharer_count);
                 obj.insert(
                     "sharers".to_string(),
                     agg.sharers.unwrap_or(serde_json::Value::Null),
                 );
                 obj.insert(
                     "sharer_count".to_string(),
-                    serde_json::Value::from(agg.sharer_count),
+                    serde_json::Value::from(sharer_count),
                 );
             }
             r.metadata.push(Some(m));
@@ -1248,4 +1432,56 @@ pub async fn search_filtered_with_encoding(
     );
 
     result
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use serde_json::json;
+
+    #[test]
+    fn media_ids_reads_photo_and_video_markers() {
+        let meta = json!({
+            "summary": "launch!\n📷 https://pbs.twimg.com/media/HPmOJZlbUAAOgVt.jpg | \
+                        🎬 https://video.twimg.com/amplify_video/2105708422884909057/vid/avc1/480x270/x.mp4?tag=29 \
+                        Quoting @deepseek_ai\n📷 https://pbs.twimg.com/media/HPmOJZlbUAAOgVt.jpg"
+        });
+        assert_eq!(
+            media_ids(Some(&meta)),
+            vec![
+                "HPmOJZlbUAAOgVt".to_string(),
+                "2105708422884909057".to_string()
+            ]
+        );
+    }
+
+    #[test]
+    fn media_ids_skips_truncated_ids_and_plain_text() {
+        let meta = json!({"summary": "cut off 📷 https://pbs.twimg.com/media/HPm and no media"});
+        assert!(media_ids(Some(&meta)).is_empty());
+        assert!(media_ids(None).is_empty());
+    }
+
+    #[test]
+    fn quote_tweets_of_one_post_share_a_dedup_key() {
+        let a = json!({"title": "A (@a)", "summary": "my take 📷 https://pbs.twimg.com/media/HPmOJZlbUAAOgVt.jpg"});
+        let b = json!({"title": "B (@b)", "summary": "different take, same image 📷 https://pbs.twimg.com/media/HPmOJZlbUAAOgVt.jpg"});
+        let ka = dedup_keys(Some(&a));
+        assert!(dedup_keys(Some(&b)).iter().any(|k| ka.contains(k)));
+    }
+
+    #[test]
+    fn merge_sharers_dedups_by_slug() {
+        let a = Some(json!([{"slug": "x"}, {"slug": "y"}]));
+        let b = Some(json!([{"slug": "y"}, {"slug": "z"}]));
+        let merged = merge_sharers(a, b).unwrap();
+        let slugs: Vec<&str> = merged
+            .as_array()
+            .unwrap()
+            .iter()
+            .map(|s| s["slug"].as_str().unwrap())
+            .collect();
+        assert_eq!(slugs, vec!["x", "y", "z"]);
+        assert!(merge_sharers(None, None).is_none());
+    }
 }
