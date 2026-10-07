@@ -69,7 +69,7 @@ Updates ship the same way as the API: `git push origin main` → Dokploy webhook
 | `knowledge-continuous` | `bash sources/continuous_pipeline.sh` | 1.0 vCPU / 2 G | VIP-first per-user pipeline runner: walks personalities oldest-touched first, invokes `run.py <slug>` for each. The daemon that picks up new source fetchers (e.g. `huggingface.Activity`). |
 | `knowledge-indexer` | `python -m sources.indexer_daemon` | 0.5 vCPU / 2 G | Detects broken ColBERT indices, backfills `indexed=FALSE` documents, owns the index lifecycle. Talks to the API on the internal docker network (`http://knowledge-api:8080`). |
 | `knowledge-categorize-daemon` | `python -m sources.utils.categorize_daemon` | 0.10 vCPU / 384 M | Assigns 0–3 category slugs per doc via Potion static embeddings, newest-first. |
-| `knowledge-clean-daemon` | `python -m sources.utils.clean_daemon` | 0.20 vCPU / 256 M | Rewrites verbose `title` / `summary` into pedagogical `clean_title` / `clean_summary` via OpenAI. Default model is `gpt-4o-mini`; override with `OPENAI_CLEAN_MODEL` env (e.g. `gpt-4.1-nano` for cheaper). Requires `OPENAI_API_KEY`. VIP documents only. |
+| `knowledge-clean-daemon` | `python -m sources.utils.clean_daemon` | 0.20 vCPU / 256 M | Rewrites verbose `title` / `summary` into pedagogical `clean_title` / `clean_summary` via OpenAI. Rust-book-style explainer cards grounded in the post. Default model is `gpt-4.1-mini`; override with `OPENAI_CLEAN_MODEL` env (e.g. `gpt-4.1-nano` for cheaper). Requires `OPENAI_API_KEY`. VIP documents only. |
 
 Operate via Docker on the host:
 ```
