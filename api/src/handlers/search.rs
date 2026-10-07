@@ -363,6 +363,16 @@ pub(crate) fn content_signature(meta: Option<&serde_json::Value>) -> Option<Stri
 /// one are reshares of the same post — commentary on top or not —
 /// even though their text and anchors differ.
 pub(crate) fn media_ids(meta: Option<&serde_json::Value>) -> Vec<String> {
+    meta.and_then(|m| m.get("summary"))
+        .and_then(|v| v.as_str())
+        .map(twimg_ids)
+        .unwrap_or_default()
+}
+
+/// Media ids in any text: `pbs.twimg.com/media/<id>`, video ids from
+/// `video.twimg.com/amplify_video/<id>/…` and the matching poster
+/// thumbnails, in order of appearance, deduped.
+fn twimg_ids(text: &str) -> Vec<String> {
     const KINDS: [&str; 7] = [
         "media/",
         "amplify_video/",
@@ -372,12 +382,9 @@ pub(crate) fn media_ids(meta: Option<&serde_json::Value>) -> Vec<String> {
         "tweet_video/",
         "tweet_video_thumb/",
     ];
-    let Some(summary) = meta.and_then(|m| m.get("summary")).and_then(|v| v.as_str()) else {
-        return Vec::new();
-    };
     let mut out: Vec<String> = Vec::new();
-    for (i, needle) in summary.match_indices("twimg.com/") {
-        let rest = &summary[i + needle.len()..];
+    for (i, needle) in text.match_indices("twimg.com/") {
+        let rest = &text[i + needle.len()..];
         let Some(tail) = KINDS.iter().find_map(|k| rest.strip_prefix(k)) else {
             continue;
         };
@@ -389,6 +396,59 @@ pub(crate) fn media_ids(meta: Option<&serde_json::Value>) -> Vec<String> {
         // summary cutting the URL mid-id.
         if id.len() >= 10 && !out.contains(&id) {
             out.push(id);
+        }
+    }
+    out
+}
+
+/// Photo / video attachments of a tweet doc, parsed from the
+/// `📷 <url>` and `🎬 <poster> | <mp4>` lines the fetcher writes into
+/// the summary (same format the frontend's tweet renderer reads).
+/// Each item is `(dedup key, tile JSON)`; the key is the twimg media
+/// id so a reshare's copy of an image collapses onto the original.
+/// `tweet` records which post the item came from, so a video tile on
+/// a merged card links to the tweet that actually carries it.
+pub(crate) fn media_items(
+    meta: Option<&serde_json::Value>,
+    tweet_url: &str,
+) -> Vec<(String, serde_json::Value)> {
+    let Some(summary) = meta.and_then(|m| m.get("summary")).and_then(|v| v.as_str()) else {
+        return Vec::new();
+    };
+    let key_of = |urls: &[&str]| -> String {
+        urls.iter()
+            .find_map(|u| twimg_ids(u).into_iter().next())
+            .unwrap_or_else(|| {
+                urls.iter()
+                    .find(|u| !u.is_empty())
+                    .unwrap_or(&"")
+                    .to_string()
+            })
+    };
+    let mut out: Vec<(String, serde_json::Value)> = Vec::new();
+    for line in summary.lines() {
+        let line = line.trim();
+        if let Some(rest) = line.strip_prefix('📷') {
+            let Some(url) = rest.split_whitespace().next() else {
+                continue;
+            };
+            out.push((
+                key_of(&[url]),
+                serde_json::json!({"kind": "photo", "url": url, "tweet": tweet_url}),
+            ));
+        } else if let Some(rest) = line.strip_prefix('🎬') {
+            let rest = rest.trim();
+            let (poster, mp4) = match rest.split_once(" | ") {
+                Some((p, m)) => (p.trim(), m.trim()),
+                None => ("", rest),
+            };
+            if poster.is_empty() && mp4.is_empty() {
+                continue;
+            }
+            out.push((
+                key_of(&[poster, mp4]),
+                serde_json::json!({"kind": "video", "poster": poster, "mp4": mp4, "tweet": tweet_url}),
+            ));
         }
     }
     out
@@ -519,6 +579,11 @@ async fn apply_feed_scope_filter(
             // Second-level dedup keys (media ids + text signature)
             // collected from every candidate, not just the winner.
             keys: Vec<String>,
+            // Every distinct photo / video across the group's
+            // candidates, keyed by media id — the kept card shows
+            // them all, once each.
+            media: Vec<(String, serde_json::Value)>,
+            seen_media: HashSet<String>,
         }
         impl AnchorAgg {
             /// Should a candidate with (`clean`, `blended`) replace the
@@ -553,6 +618,11 @@ async fn apply_feed_scope_filter(
                 for k in dup.keys {
                     if !self.keys.contains(&k) {
                         self.keys.push(k);
+                    }
+                }
+                for (k, item) in dup.media {
+                    if self.seen_media.insert(k.clone()) {
+                        self.media.push((k, item));
                     }
                 }
                 self.sharer_count = self.sharer_count.max(dup.sharer_count);
@@ -635,6 +705,8 @@ async fn apply_feed_scope_filter(
                     sharer_count,
                     owners: Vec::new(),
                     keys: Vec::new(),
+                    media: Vec::new(),
+                    seen_media: HashSet::new(),
                 }
             });
             if !entry.seen_urls.contains(&url) {
@@ -647,6 +719,11 @@ async fn apply_feed_scope_filter(
             for k in dedup_keys(meta_i) {
                 if !entry.keys.contains(&k) {
                     entry.keys.push(k);
+                }
+            }
+            for (k, item) in media_items(meta_i, &url) {
+                if entry.seen_media.insert(k.clone()) {
+                    entry.media.push((k, item));
                 }
             }
             for lu in &linked_from_this {
@@ -729,6 +806,18 @@ async fn apply_feed_scope_filter(
             };
             r.document_ids.push(agg.best_doc_id);
             r.scores.push(agg.score);
+            // The kept card's own attachments lead, then every other
+            // distinct one the folded duplicates carried.
+            let mut group_media: Vec<serde_json::Value> = Vec::new();
+            let mut media_seen: HashSet<String> = HashSet::new();
+            for (k, item) in media_items(agg.best_meta.as_ref(), &agg.best_url)
+                .into_iter()
+                .chain(agg.media)
+            {
+                if media_seen.insert(k) {
+                    group_media.push(item);
+                }
+            }
             let mut m = agg.best_meta.unwrap_or_else(|| serde_json::json!({}));
             if let Some(obj) = m.as_object_mut() {
                 obj.insert(
@@ -770,6 +859,10 @@ async fn apply_feed_scope_filter(
                             .map(serde_json::Value::String)
                             .collect(),
                     ),
+                );
+                obj.insert(
+                    "group_media".to_string(),
+                    serde_json::Value::Array(group_media),
                 );
                 // Library owners of every collapsed candidate.
                 obj.insert(
@@ -1468,6 +1561,21 @@ mod tests {
         let b = json!({"title": "B (@b)", "summary": "different take, same image 📷 https://pbs.twimg.com/media/HPmOJZlbUAAOgVt.jpg"});
         let ka = dedup_keys(Some(&a));
         assert!(dedup_keys(Some(&b)).iter().any(|k| ka.contains(k)));
+    }
+
+    #[test]
+    fn media_items_dedup_photos_and_key_videos_by_id() {
+        let meta = json!({
+            "summary": "take\n📷 https://pbs.twimg.com/media/HPmOJZlbUAAOgVt.jpg\n🎬 https://pbs.twimg.com/amplify_video_thumb/2105708422884909057/img/a.jpg | https://video.twimg.com/amplify_video/2105708422884909057/vid/x.mp4\nQuoting @x\n📷 https://pbs.twimg.com/media/HPmOJZlbUAAOgVt.jpg"
+        });
+        let items = media_items(Some(&meta), "https://x.com/a/status/1");
+        let keys: Vec<&str> = items.iter().map(|(k, _)| k.as_str()).collect();
+        assert_eq!(
+            keys,
+            vec!["HPmOJZlbUAAOgVt", "2105708422884909057", "HPmOJZlbUAAOgVt"]
+        );
+        assert_eq!(items[1].1["kind"], "video");
+        assert_eq!(items[1].1["tweet"], "https://x.com/a/status/1");
     }
 
     #[test]

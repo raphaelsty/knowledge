@@ -788,6 +788,36 @@
     }
     return into;
   }
+  /* Every media item a card shows: its own summary tiles plus the
+   * group media the API attached. Shape matches `group_media`. */
+  function _docMediaItems(d) {
+    const summary = d.summary || "";
+    const parts = (
+      summary.includes(_TWEET_SEPARATOR)
+        ? summary.split(_TWEET_SEPARATOR)
+        : [summary]
+    ).map(_parseTweetPart);
+    const own = parts.flatMap((p) => [
+      ...p.photos.map((url) => ({ kind: "photo", url, tweet: d.url })),
+      ...p.videos.map((v) => ({ kind: "video", ...v, tweet: d.url })),
+    ]);
+    return [...own, ...(d.groupMedia || [])];
+  }
+  /* Fold `from`'s media into `into.groupMedia`, once per media id, so
+   * the card kept by the client-side dedup shows both cards' media. */
+  function _mergeGroupMedia(into, from) {
+    const seen = new Set(
+      _docMediaItems(into).map((it) => _mediaKey(it.url, it.poster, it.mp4)),
+    );
+    const merged = (into.groupMedia || []).slice();
+    for (const it of _docMediaItems(from)) {
+      const k = _mediaKey(it.url, it.poster, it.mp4);
+      if (!k || seen.has(k)) continue;
+      seen.add(k);
+      merged.push(it);
+    }
+    into.groupMedia = merged;
+  }
   function dedupFeedDocs(docs) {
     if (!Array.isArray(docs) || docs.length < 2) return docs || [];
     // Two-pass grouping: first by retweet signature (most reliable
@@ -806,8 +836,10 @@
           const winner = _pickRicher(existing, doc);
           if (winner === existing) {
             _mergeSharers(existing, doc);
+            _mergeGroupMedia(existing, doc);
           } else {
             _mergeSharers(doc, existing);
+            _mergeGroupMedia(doc, existing);
             // Replace in-place so all keys pointing at this group
             // continue to resolve to the new representative.
             out[idx] = doc;
@@ -6221,6 +6253,51 @@
     return { text, photos, videos };
   }
 
+  /* Dedup key for a media URL: the twimg media id (an image or video
+   * keeps it across retweets / quotes), else the URL itself. */
+  const _TWIMG_ID_RE =
+    /twimg\.com\/(?:media|amplify_video_thumb|amplify_video|ext_tw_video_thumb|ext_tw_video|tweet_video_thumb|tweet_video)\/([A-Za-z0-9_-]{10,})/;
+  function _mediaKey(...urls) {
+    for (const u of urls) {
+      const m = _TWIMG_ID_RE.exec(u || "");
+      if (m) return m[1];
+    }
+    return urls.find(Boolean) || "";
+  }
+  function _photoTile(u) {
+    return `<button type="button" class="tweet-media-tile" data-zoom="${escapeAttr(u)}">
+               <img loading="lazy" src="${escapeAttr(u)}" alt="" onerror="this.parentElement.style.display='none'"/>
+             </button>`;
+  }
+  // Videos: the poster image with a ▶ overlay, linking to the tweet
+  // that carries the video — playback happens on Twitter (where the
+  // Referer check is satisfied).
+  function _videoTile(v, href) {
+    const poster = v.poster || v.mp4;
+    if (!poster) return "";
+    return `<a class="tweet-media-tile tweet-media-video" href="${safeHref(href)}" target="_blank" rel="noopener" title="Watch on twitter.com">
+               <img loading="lazy" src="${escapeAttr(poster)}" alt="" onerror="this.parentElement.style.display='none'"/>
+               <span class="tweet-media-play" aria-hidden="true">▶</span>
+             </a>`;
+  }
+  /* Tiles for the group media (from the duplicates folded into this
+   * card) that the card's own summary didn't already show. `seen`
+   * holds the keys rendered so far and is updated in place. */
+  function _extraGroupMediaHtml(d, seen) {
+    const tiles = (d.groupMedia || [])
+      .map((it) => {
+        const key = _mediaKey(it.url, it.poster, it.mp4);
+        if (!key || seen.has(key)) return "";
+        seen.add(key);
+        return it.kind === "video"
+          ? _videoTile(it, it.tweet || d.url || "")
+          : _photoTile(it.url);
+      })
+      .filter(Boolean)
+      .join("");
+    return tiles ? `<div class="tweet-media">${tiles}</div>` : "";
+  }
+
   function renderTweetSummary(d) {
     const summary = d.summary || "";
     // Don't early-out on empty summary — a retweet of a URL-only
@@ -6235,33 +6312,31 @@
       .map(_parseTweetPart)
       .filter((p) => p.text || p.photos.length || p.videos.length);
     const hasLinks = Array.isArray(d.linkedUrls) && d.linkedUrls.length > 0;
-    if (parts.length === 0 && !hasLinks) return "";
+    const hasGroupMedia = (d.groupMedia || []).length > 0;
+    if (parts.length === 0 && !hasLinks && !hasGroupMedia) return "";
     const isThread = parts.length > 1;
+    // Media keys already on the card — a thread or a quote of a quote
+    // can repeat the same image; each renders once.
+    const seenMedia = new Set();
     const renderMedia = (p) => {
-      if (!p.photos.length && !p.videos.length) return "";
-      // Photos open the in-app lightbox via `data-zoom`.
-      // Videos: render the poster image with a ▶ overlay and link to
-      // the tweet's own status URL on x.com — playback happens on
-      // Twitter (where the Referer check is satisfied). The doc URL
-      // is the same status URL by construction.
+      // Photos open the in-app lightbox via `data-zoom`. The doc URL is
+      // the tweet's status URL by construction, so videos link there.
       const statusUrl = d.url || "";
       const tiles = [
-        ...p.photos.map(
-          (u) =>
-            `<button type="button" class="tweet-media-tile" data-zoom="${escapeAttr(u)}">
-               <img loading="lazy" src="${escapeAttr(u)}" alt="" onerror="this.parentElement.style.display='none'"/>
-             </button>`,
-        ),
+        ...p.photos.map((u) => {
+          const k = _mediaKey(u);
+          if (seenMedia.has(k)) return "";
+          seenMedia.add(k);
+          return _photoTile(u);
+        }),
         ...p.videos.map((v) => {
-          const poster = v.poster || v.mp4;
-          if (!poster) return "";
-          return `<a class="tweet-media-tile tweet-media-video" href="${safeHref(statusUrl)}" target="_blank" rel="noopener" title="Watch on twitter.com">
-               <img loading="lazy" src="${escapeAttr(poster)}" alt="" onerror="this.parentElement.style.display='none'"/>
-               <span class="tweet-media-play" aria-hidden="true">▶</span>
-             </a>`;
+          const k = _mediaKey(v.poster, v.mp4);
+          if (seenMedia.has(k)) return "";
+          seenMedia.add(k);
+          return _videoTile(v, statusUrl);
         }),
       ].join("");
-      return `<div class="tweet-media">${tiles}</div>`;
+      return tiles ? `<div class="tweet-media">${tiles}</div>` : "";
     };
     const renderPart = (p) => {
       let textHtml = "";
@@ -6291,7 +6366,8 @@
           ${renderMedia(p)}
         </div>`;
     };
-    const inner = parts.map(renderPart).join("");
+    const inner =
+      parts.map(renderPart).join("") + _extraGroupMediaHtml(d, seenMedia);
     // Link cards live at the doc level (one cluster per tweet, not
     // per thread-part) because the rich metadata is stored on the
     // document's `linkedUrls` column rather than parsed out of the
@@ -6316,26 +6392,26 @@
       : [summary];
     const parts = rawParts.map(_parseTweetPart);
     const statusUrl = d.url || "";
+    const seen = new Set();
     const tiles = parts
       .flatMap((p) => [
-        ...p.photos.map(
-          (u) =>
-            `<button type="button" class="tweet-media-tile" data-zoom="${escapeAttr(u)}">
-               <img loading="lazy" src="${escapeAttr(u)}" alt="" onerror="this.parentElement.style.display='none'"/>
-             </button>`,
-        ),
+        ...p.photos.map((u) => {
+          const k = _mediaKey(u);
+          if (seen.has(k)) return "";
+          seen.add(k);
+          return _photoTile(u);
+        }),
         ...p.videos.map((v) => {
-          const poster = v.poster || v.mp4;
-          if (!poster) return "";
-          return `<a class="tweet-media-tile tweet-media-video" href="${safeHref(statusUrl)}" target="_blank" rel="noopener" title="Watch on twitter.com">
-               <img loading="lazy" src="${escapeAttr(poster)}" alt="" onerror="this.parentElement.style.display='none'"/>
-               <span class="tweet-media-play" aria-hidden="true">▶</span>
-             </a>`;
+          const k = _mediaKey(v.poster, v.mp4);
+          if (seen.has(k)) return "";
+          seen.add(k);
+          return _videoTile(v, statusUrl);
         }),
       ])
       .filter(Boolean)
       .join("");
-    return tiles ? `<div class="tweet-media">${tiles}</div>` : "";
+    const own = tiles ? `<div class="tweet-media">${tiles}</div>` : "";
+    return own + _extraGroupMediaHtml(d, seen);
   }
 
   /* populated by the pipeline at ingest time) and emits one card
@@ -6929,7 +7005,10 @@
                   .join("")}</div>`
               : "";
             const linksHtml = renderDocLinkCards(d);
-            const mediaHtml = isTweetDoc(d) ? renderTweetMediaOnly(d) : "";
+            const mediaHtml =
+              isTweetDoc(d) || (d.groupMedia || []).length
+                ? renderTweetMediaOnly(d)
+                : "";
             return summaryHtml + missingHtml + mediaHtml + linksHtml;
           }
           // Tweet-specific renderer: thread parts get their own
@@ -6938,10 +7017,16 @@
           if (isTweetDoc(d)) {
             const hasLinks =
               Array.isArray(d.linkedUrls) && d.linkedUrls.length > 0;
-            if (!d.summary && !hasLinks) return "";
+            if (!d.summary && !hasLinks && !(d.groupMedia || []).length)
+              return "";
             return renderTweetSummary(d);
           }
-          if (!d.summary) return "";
+          // A non-tweet card (paper, model page…) kept as the
+          // representative of folded tweets still shows their media.
+          const groupMediaHtml = (d.groupMedia || []).length
+            ? renderTweetMediaOnly(d)
+            : "";
+          if (!d.summary) return groupMediaHtml;
           // For non-arxiv: keep the existing 320 char clip. For
           // arxiv / scholar / paperswithcode: show the full
           // abstract (the user explicitly asked for this).
@@ -6950,9 +7035,11 @@
               d.source || "",
             );
           const s = cleanDescription(d.summary, isPaper ? 100000 : 320);
-          return s
-            ? `<p class="result-summary">${highlightMatches(s, state.query)}</p>`
-            : "";
+          return (
+            (s
+              ? `<p class="result-summary">${highlightMatches(s, state.query)}</p>`
+              : "") + groupMediaHtml
+          );
         })()}
       </div>
       <div class="result-tags-row">

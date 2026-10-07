@@ -728,6 +728,10 @@
       // row (reshares of the same post, same media). Seeds the avatar
       // stack so the merged card shows everyone who posted it.
       groupOwners: Array.isArray(m.group_owners) ? m.group_owners : [],
+      // Every distinct photo / video across the duplicates the API
+      // collapsed into this row ({kind, url | poster+mp4, tweet}), the
+      // kept post's own first. The card renders them all, once each.
+      groupMedia: Array.isArray(m.group_media) ? m.group_media : [],
       date: m.date || "",
       source: m.source || "",
       source_url: m.source_url || "",
