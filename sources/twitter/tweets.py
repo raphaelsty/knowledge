@@ -90,6 +90,8 @@ _INTERESTING_TOKENS = re.compile(
 )
 
 _API_BASE = "https://api.twitterapi.io"
+# `/twitter/tweets` rejects more than 50 ids per call (HTTP 400).
+_HYDRATE_CHUNK = 50
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -1142,7 +1144,7 @@ class Tweets:
         """Batch-fetch tweet objects by ID, serving cache hits for free.
 
         IDs present in *cache* are returned directly. Misses are fetched
-        in chunks of 100 via ``/twitter/tweets`` and added to *cache*
+        in chunks of ``_HYDRATE_CHUNK`` via ``/twitter/tweets`` and added to *cache*
         in-place so subsequent runs benefit.
         """
         if not tweet_ids:
@@ -1163,13 +1165,13 @@ class Tweets:
         # already collected in Phase 1. Skip the failing chunk, keep
         # going — partial hydration is much better than zero.
         n_failed = 0
-        for i in range(0, len(misses), 100):
-            chunk = misses[i : i + 100]
+        for i in range(0, len(misses), _HYDRATE_CHUNK):
+            chunk = misses[i : i + _HYDRATE_CHUNK]
             try:
                 data = self._get("/twitter/tweets", tweet_ids=",".join(chunk))
             except Exception as exc:
                 n_failed += 1
-                print(f"    Hydrate chunk {i // 100 + 1} failed ({len(chunk)} ids): {exc}")
+                print(f"    Hydrate chunk {i // _HYDRATE_CHUNK + 1} failed ({len(chunk)} ids): {exc}")
                 continue
             for tw in _items(data):
                 tid = str(tw.get("id") or tw.get("id_str") or "")
@@ -1555,7 +1557,7 @@ class Tweets:
         print(f"    Hydrating {len(convo_ids)} thread roots: {hits} cached, {len(misses)} new...")
 
         # Credit gate: only the `misses` count costs money (cached
-        # tweets are returned without an API call). Each chunk of 100
+        # tweets are returned without an API call). Each chunk of _HYDRATE_CHUNK
         # IDs is one paid API call billed at twitter_page_cost(N) for
         # the N tweets actually returned in that chunk.
         from sources.credits import twitter_page_cost, twitter_worst_case_cost
@@ -1569,15 +1571,15 @@ class Tweets:
             print("    hydrate: insufficient credits — skipping thread-root fetch")
             return
 
-        for i in range(0, len(misses), 100):
-            chunk = misses[i : i + 100]
+        for i in range(0, len(misses), _HYDRATE_CHUNK):
+            chunk = misses[i : i + _HYDRATE_CHUNK]
             if budget is not None and not budget.precheck(twitter_worst_case_cost()):
                 print("    hydrate: insufficient credits — stopping mid-hydration")
                 break
             try:
                 data = self._get("/twitter/tweets", tweet_ids=",".join(chunk))
             except Exception as exc:
-                print(f"    Hydrate chunk {i // 100 + 1} failed ({len(chunk)} ids): {exc}")
+                print(f"    Hydrate chunk {i // _HYDRATE_CHUNK + 1} failed ({len(chunk)} ids): {exc}")
                 continue
             chunk_roots: list[dict] = []
             for tw in _items(data):
@@ -1589,7 +1591,7 @@ class Tweets:
                 cost = twitter_page_cost(len(chunk_roots))
                 if not budget.charge(
                     cost,
-                    {"endpoint": "/twitter/tweets", "chunk": i // 100 + 1, "tweets": len(chunk_roots)},
+                    {"endpoint": "/twitter/tweets", "chunk": i // _HYDRATE_CHUNK + 1, "tweets": len(chunk_roots)},
                 ):
                     print(f"    hydrate: debit failed ({cost} credits) — stopping")
                     break
